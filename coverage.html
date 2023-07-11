@@ -207,7 +207,7 @@
 				
 				<option value="file75">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2189,13 +2189,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="28">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="28">total += v
+                <span class="cov8" title="31">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2220,7 +2220,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -6081,12 +6081,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="30393">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="30397">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="30393">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="30082">{
+                <span class="cov9" title="30397">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="30086">{
                         return skipFolder
                 }</span>
 
@@ -6158,7 +6158,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov6" title="310">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="30396">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="30400">{
         s.mu.RLock()
         defer s.mu.RUnlock()
         if info.IsDir() </span><span class="cov8" title="6748">{
@@ -6173,12 +6173,12 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="23648">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="23652">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="23648">ext := utils.GetExtension(path)
-        if !extensions.Include(ext) </span><span class="cov9" title="23338">{
+        <span class="cov9" title="23652">ext := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="23342">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
@@ -6472,7 +6472,7 @@ func compileRegexQueries(
                         return regexQueries, err
                 }</span>
                 <span class="cov7" title="289">regexQueries[i].Regex = compiledRegexp
-                for j := range regexQueries[i].AllowRules </span><span class="cov6" title="176">{
+                for j := range regexQueries[i].AllowRules </span><span class="cov6" title="184">{
                         regexQueries[i].AllowRules[j].Regex = regexp.MustCompile(regexQueries[i].AllowRules[j].RegexStr)
                 }</span>
         }
@@ -6559,7 +6559,7 @@ func IsAllowRule(s string, query *RegexQuery, allowRules []AllowRule) bool <span
 // AllowRuleMatches return all the allow rules matches for the secret queries
 func AllowRuleMatches(s string, allowRules []AllowRule) [][]int <span class="cov3" title="6">{
         allowRuleMatches := [][]int{}
-        for i := range allowRules </span><span class="cov6" title="128">{
+        for i := range allowRules </span><span class="cov6" title="132">{
                 allowRuleMatches = append(allowRuleMatches, allowRules[i].Regex.FindAllStringIndex(s, -1)...)
         }</span>
         <span class="cov3" title="6">return allowRuleMatches</span>
@@ -14346,7 +14346,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov3" title="2">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14355,26 +14355,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov3" title="2">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov0" title="0">p.wg.Done()</span>
+                <span class="cov1" title="1">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file77" style="display: none">package progress
@@ -18688,7 +18688,7 @@ func compileRegexQueries(allRegexQueries []secrets.RegexQuery) ([]secrets.RegexQ
                 }</span>
                 <span class="cov8" title="70">allRegexQueries[i].Regex = compiledRegexp
 
-                for j := range allRegexQueries[i].AllowRules </span><span class="cov7" title="44">{
+                for j := range allRegexQueries[i].AllowRules </span><span class="cov7" title="46">{
                         allRegexQueries[i].AllowRules[j].Regex = regexp.MustCompile(allRegexQueries[i].AllowRules[j].RegexStr)
                 }</span>
         }
