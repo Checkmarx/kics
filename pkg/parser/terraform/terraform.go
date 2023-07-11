@@ -77,18 +77,38 @@ func processElements(elements model.Document, path string) {
 	}
 }
 
+func processResourcesElements(resourcesElements model.Document, path string) error {
+	for _, v2 := range resourcesElements {
+		switch t := v2.(type) {
+		case []interface{}:
+			return errors.New("failed to process resources")
+		case interface{}:
+			if elements, ok := t.(model.Document); ok {
+				processElements(elements, path)
+			}
+		}
+	}
+	return nil
+}
+
 func processResources(doc model.Document, path string) error {
 	var resourcesElements model.Document
-	for _, resources := range doc { // iterate over resources
-		resourcesElements = resources.(model.Document)
-		for _, v2 := range resourcesElements { // resource name
-			switch t := v2.(type) {
-			case []interface{}:
-				return errors.New("failed to process resources")
-			case interface{}:
-				if elements, ok := t.(model.Document); ok {
-					processElements(elements, path)
+	for _, resources := range doc {
+		switch t := resources.(type) {
+		case []interface{}: // support the case of nameless resources - where we get a list of resources
+			for _, value := range t {
+				resourcesElements = value.(model.Document)
+				err := processResourcesElements(resourcesElements, path)
+				if err != nil {
+					return err
 				}
+			}
+
+		case interface{}:
+			resourcesElements = t.(model.Document)
+			err := processResourcesElements(resourcesElements, path)
+			if err != nil {
+				return err
 			}
 		}
 	}
