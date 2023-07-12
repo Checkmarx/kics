@@ -178,9 +178,13 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 		return true
 	}
 	if s.Types[0] != "" {
-		return strings.Contains(strings.ToUpper(strings.Join(s.Types, ",")), strings.ToUpper(queryPlatform.(string)))
+		for _, t := range s.Types {
+			if strings.EqualFold(t, queryPlatform.(string)) {
+				return true
+			}
+		}
 	}
-	return true
+	return false
 }
 
 // CheckCloudProvider checks if the queries have the cloud provider passed as an argument in '--cloud-provider' flag to be loaded

@@ -101,6 +101,7 @@ func (p *Parser) SupportedExtensions() []string {
 func (p *Parser) SupportedTypes() map[string]bool {
 	return map[string]bool{
 		"ansible":                 true,
+		"ansible - hosts":         true,
 		"cloudformation":          true,
 		"kubernetes":              true,
 		"crossplane":              true,

@@ -50,6 +50,7 @@ require (
 	cloud.google.com/go/compute/metadata v0.2.3 // indirect
 	github.com/evanphx/json-patch/v5 v5.6.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.2.1 // indirect
+	github.com/relex/aini v1.5.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/tchap/go-patricia/v2 v2.3.1 // indirect
 	golang.org/x/exp v0.0.0-20220722155223-a9213eeb770e // indirect
