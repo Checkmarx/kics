@@ -227,9 +227,7 @@ func (r *Resolver) resolveYamlPath(
 		value = checkServerlessFileReference(value)
 
 		path := filepath.Join(filepath.Dir(filePath), value)
-		splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
-		// index 0 contains the path of the file while the other indexes contain the sections (e.g. path = "./definitions.json#User/schema")
-		onlyFilePath := splitPath[0]
+		onlyFilePath := getPathFromString(path)
 		_, err := os.Stat(path)
 		if err != nil {
 			return *v, false
@@ -260,7 +258,7 @@ func (r *Resolver) resolveYamlPath(
 		if strings.Contains(strings.ToLower(value), "!ref") { // Cloudformation !Ref check
 			return *obj, false
 		}
-		if len(splitPath) == 1 {
+		if !strings.Contains(path, "#") {
 			return *obj, true
 		}
 	}
