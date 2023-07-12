@@ -1,6 +1,7 @@
 package file
 
 import (
+	"encoding/json"
 	"errors"
 	"io"
 	"os"
@@ -58,7 +59,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
 	// resolve the paths
 	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, resolvedFilesCache)
 
-	b, err := r.marshler(obj)
+	b, err := json.MarshalIndent(obj, "", "")
 	if err != nil {
 		return fileContent
 	}
