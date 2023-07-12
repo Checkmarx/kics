@@ -240,7 +240,7 @@ def loadQueriesData():
                 with open(os.path.join(assetsFolderPath,name), "w") as outfile:
                     file = open(os.path.join(path, name))
                     outfile.write(file.read())
-            if fnmatch(name, pattern):
+            if fnmatch(name, pattern) and os.path.join("assets","queries") in assetsFolderPath: # make sure it is a metadata.json from the queries folder
                 file = open(os.path.join(path, name))
                 data = json.load(file)
                 file.close()
