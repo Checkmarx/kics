@@ -1,2 +1,5 @@
 requests
 tabulate
+shareplum
+pandas
+openpyxl
