@@ -183,8 +183,9 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 				return true
 			}
 		}
+		return false
 	}
-	return false
+	return true
 }
 
 // CheckCloudProvider checks if the queries have the cloud provider passed as an argument in '--cloud-provider' flag to be loaded
