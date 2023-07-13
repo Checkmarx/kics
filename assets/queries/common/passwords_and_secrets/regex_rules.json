@@ -65,8 +65,12 @@
     },
     {
       "id": "a007a85e-a2a7-4a81-803a-7a2ca0c65abb",
-      "name": "Putty Private Key",
-      "regex": "PuTTY-User-Key-File-2"
+      "name": "Putty User Key File Content",
+      "regex": "PuTTY-User-Key-File-\\d: ([\\w\\d-:\\n\\s+/=]+Private-MAC: [\\d\\w\"]+)",
+      "multiline": {
+        "detectLineGroup": 1
+      },
+      "specialMask": "all"
     },
     {
       "id": "c4d3b58a-e6d4-450f-9340-04f1e702eaae",
