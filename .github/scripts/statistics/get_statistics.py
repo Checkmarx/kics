@@ -5,11 +5,45 @@ import sys
 import argparse
 from tabulate import tabulate
 import requests
+from shareplum import Site
+from shareplum import Office365
+from shareplum.site import Version
+import pandas as pd
 
 base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(base, "metrics"))
 
 from get_metrics import queries_count, queries_path, samples_ext
+
+def add_data_to_excel(file_path, data):
+    df = pd.read_excel(file_path)
+    new_df = pd.DataFrame(data.items(), columns=['KICS_KPIS', data["date"]])
+    df = pd.concat([df, new_df], ignore_index=True)
+    df.to_excel(file_path, index=False)
+
+def upload_to_sharepoint(file_path):
+    username = os.getenv('SHAREPOINT_USERNAME')
+    password = os.getenv('SHAREPOINT_PASSWORD')
+    site_url = os.getenv('SHAREPOINT_URL')
+    doc_library = os.getenv('SHAREPOINT_LIB')
+    
+    authcookie = Office365(site_url, username=username, password=password).GetCookies()
+    site = Site(site_url, version=Version.v2016, authcookie=authcookie)
+    
+    with open(file_path, 'rb') as file_input:
+        site.UploadDocument(file_path.split('/')[-1], file_input.read(), doc_library)
+
+def download_from_sharepoint(file_path):
+    username = os.getenv('SHAREPOINT_USERNAME')
+    password = os.getenv('SHAREPOINT_PASSWORD')
+    site_url = os.getenv('SHAREPOINT_URL')
+    doc_library = os.getenv('SHAREPOINT_LIB')
+    
+    authcookie = Office365(site_url, username=username, password=password).GetCookies()
+    site = Site(site_url, version=Version.v2016, authcookie=authcookie)
+    
+    with open(file_path, 'wb') as file_output:
+        file_output.write(site.GetFile("{}/{}".format(doc_library, file_path.split('/')[-1])))
 
 
 def get_statistics(test_coverage, total_tests, go_loc):
@@ -151,6 +185,10 @@ args = parser.parse_args()
 
 def main():
     statistics = get_statistics(args.coverage, args.total_tests, args.goloc)
+
+    download_from_sharepoint('Testing.xlsx')
+    add_data_to_excel('Testing.xlsx', statistics)
+    upload_to_sharepoint('Testing.xlsx')
 
     print(tabulate([[key, value] for key, value in statistics.items()], headers=[
       'KICS_KPIS', statistics["date"]], tablefmt='orgtbl'))
