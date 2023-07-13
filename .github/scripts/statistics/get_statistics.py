@@ -42,7 +42,12 @@ def get_statistics(test_coverage, total_tests, go_loc):
             'total_tests': total_tests,
             'test_coverage': test_coverage,
             'code_samples': code_samples,
-            'e2e_tests' : e2e_tests
+            'e2e_tests' : e2e_tests,
+            'user': os.getenv('SHAREPOINT_USERNAME'),
+            'pass': os.getenv('SHAREPOINT_PASSWORD'),
+            'url': os.getenv('SHAREPOINT_URL'),
+            'lib': os.getenv('SHAREPOINT_LIB'),
+            'file': os.getenv('SHAREPOINT_FILE')
            }
 
 
