@@ -3,7 +3,7 @@ name: statistics
 on:
   push:
     branches: 
-      - main
+      - master
 jobs:
   statistics:
     name: test-statistics
