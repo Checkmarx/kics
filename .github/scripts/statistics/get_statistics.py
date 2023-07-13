@@ -39,7 +39,7 @@ def download_from_sharepoint(file_path):
     site_url = os.getenv('SHAREPOINT_URL')
     doc_library = os.getenv('SHAREPOINT_LIB')
     
-    authcookie = Office365(site_url, username=username, password=password).GetCookies()
+    authcookie = Office365("https://checkmarx-my.sharepoint.com/personal/millena_santos_checkmarx_com","millena.santos@checkmarx.com", "27011998Mi!").GetCookies()
     site = Site(site_url, version=Version.v2016, authcookie=authcookie)
     
     with open(file_path, 'wb') as file_output:
