@@ -1,9 +1,9 @@
 name: statistics
 
 on:
-  workflow_dispatch:
-  release:
-    type: [published]
+  push:
+    branches: 
+      - main
 jobs:
   statistics:
     name: test-statistics
