@@ -36,3 +36,9 @@ jobs:
         run: |
           pip3 install -r .github/scripts/statistics/requirements.txt
           python3 .github/scripts/statistics/get_statistics.py -c ${{steps.testcoverage.outputs.coverage}} -t ${{steps.testcoverage.outputs.total_tests}} -g ${{steps.go_loc.outputs.goloc}}
+        env:
+          SHAREPOINT_USERNAME: ${{ secrets.SHAREPOINT_USERNAME }}
+          SHAREPOINT_PASSWORD: ${{ secrets.SHAREPOINT_PASSWORD }}
+          SHAREPOINT_URL: ${{ secrets.SHAREPOINT_URL }}
+          SHAREPOINT_FILE: ${{ secrets.SHAREPOINT_FILE }}
+          SHAREPOINT_LIB: ${{ secrets.SHAREPOINT_LIB }}
