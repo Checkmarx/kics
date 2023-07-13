@@ -71,7 +71,8 @@ func (p *Parser) SupportedTypes() map[string]bool {
 		"openapi":              true,
 		"azureresourcemanager": true,
 		"terraform":            true,
-		"kubernetes":           true}
+		"kubernetes":           true,
+	}
 }
 
 // GetCommentToken return an empty string, since JSON does not have comment token
