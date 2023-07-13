@@ -38,41 +38,41 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, [
 }
 
 // refactorInv removes all extra information
-func refactorInv(groups map[string]*aini.Group, parentSize int) (*model.Document, map[string]bool) {
-	doc := emptyDocument()
-	children := make(map[string]bool)
+func refactorInv(groups map[string]*aini.Group, parentSize int) (doc *model.Document, children map[string]bool) {
+	children = make(map[string]bool)
 	for _, group := range groups {
-		if parentSize == len(group.Parents) {
-			groupMap := emptyDocument()
-
-			ans, childGroup := refactorInv(group.Children, parentSize+1)
-			if len(*ans) > 0 {
-				(*groupMap)["children"] = ans
-			}
-
-			ans = refactorHosts(group.Hosts, &childGroup)
-			if len(*ans) > 0 {
-				(*groupMap)["hosts"] = ans
-			}
-
-			children[group.Name] = true
-			for child := range childGroup {
-				children[child] = true
-			}
-
-			(*doc)[group.Name] = groupMap
+		if parentSize != len(group.Parents) {
+			continue
 		}
+		groupMap := emptyDocument()
+
+		ans, childGroup := refactorInv(group.Children, parentSize+1)
+		if len(*ans) > 0 {
+			(*groupMap)["children"] = ans
+		}
+
+		ans = refactorHosts(group.Hosts, childGroup)
+		if len(*ans) > 0 {
+			(*groupMap)["hosts"] = ans
+		}
+
+		children[group.Name] = true
+		for child := range childGroup {
+			children[child] = true
+		}
+
+		(*doc)[group.Name] = groupMap
 	}
 	return doc, children
 }
 
 // refactorHosts only add Hosts that aren't defined in Children
-func refactorHosts(hosts map[string]*aini.Host, children *map[string]bool) *model.Document {
+func refactorHosts(hosts map[string]*aini.Host, children map[string]bool) *model.Document {
 	hostMap := emptyDocument()
 	for _, host := range hosts {
-		if !(*children)[host.Name] {
+		if !children[host.Name] {
 			(*hostMap)[host.Name] = refactorVars(host.Vars)
-			(*children)[host.Name] = true
+			children[host.Name] = true
 		}
 	}
 	return hostMap
