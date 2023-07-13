@@ -107,7 +107,7 @@ func (p *Parser) SupportedTypes() map[string]bool {
 
 // GetKind returns YAML constant kind
 func (p *Parser) GetKind() model.FileKind {
-	return model.KindANSIBLEHOST
+	return model.KindINI
 }
 
 // GetCommentToken return the comment token of YAML - #

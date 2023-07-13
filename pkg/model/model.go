@@ -12,16 +12,16 @@ import (
 
 // Constants to describe what kind of file refers
 const (
-	KindTerraform   FileKind = "TF"
-	KindJSON        FileKind = "JSON"
-	KindYAML        FileKind = "YAML"
-	KindYML         FileKind = "YML"
-	KindDOCKER      FileKind = "DOCKERFILE"
-	KindPROTO       FileKind = "PROTO"
-	KindCOMMON      FileKind = "*"
-	KindHELM        FileKind = "HELM"
-	KindBUILDAH     FileKind = "SH"
-	KindANSIBLEHOST FileKind = "INI"
+	KindTerraform FileKind = "TF"
+	KindJSON      FileKind = "JSON"
+	KindYAML      FileKind = "YAML"
+	KindYML       FileKind = "YML"
+	KindDOCKER    FileKind = "DOCKERFILE"
+	KindPROTO     FileKind = "PROTO"
+	KindCOMMON    FileKind = "*"
+	KindHELM      FileKind = "HELM"
+	KindBUILDAH   FileKind = "SH"
+	KindINI       FileKind = "INI"
 )
 
 // Constants to describe commands given from comments
