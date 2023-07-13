@@ -39,6 +39,7 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, [
 
 // refactorInv removes all extra information
 func refactorInv(groups map[string]*aini.Group, parentSize int) (doc *model.Document, children map[string]bool) {
+	doc = emptyDocument()
 	children = make(map[string]bool)
 	for _, group := range groups {
 		if parentSize != len(group.Parents) {
