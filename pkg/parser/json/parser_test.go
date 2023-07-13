@@ -26,7 +26,7 @@ func TestParser_SupportedExtensions(t *testing.T) {
 func TestParser_SupportedTypes(t *testing.T) {
 	p := &Parser{}
 	require.Equal(t, map[string]bool{
-		"ansible - hosts":      true,
+		"ansible":              true,
 		"cloudformation":       true,
 		"openapi":              true,
 		"azureresourcemanager": true,

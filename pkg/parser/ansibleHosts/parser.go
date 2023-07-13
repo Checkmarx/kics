@@ -99,10 +99,10 @@ func (p *Parser) SupportedExtensions() []string {
 	return []string{".ini"}
 }
 
-// SupportedTypes returns types supported by this parser, which are ansible - hosts
+// SupportedTypes returns types supported by this parser, which are ansible-hosts
 func (p *Parser) SupportedTypes() map[string]bool {
 	return map[string]bool{
-		"ansible - hosts": true,
+		"ansible": true,
 	}
 }
 

@@ -66,7 +66,7 @@ func (p *Parser) GetKind() model.FileKind {
 // SupportedTypes returns types supported by this parser, which are cloudFormation
 func (p *Parser) SupportedTypes() map[string]bool {
 	return map[string]bool{
-		"ansible - hosts":      true,
+		"ansible":              true,
 		"cloudformation":       true,
 		"openapi":              true,
 		"azureresourcemanager": true,

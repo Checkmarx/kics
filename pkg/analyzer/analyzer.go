@@ -31,10 +31,6 @@ var (
 	openAPIRegex                                    = regexp.MustCompile(`("(openapi|swagger)"|(openapi|swagger))\s*:`)
 	openAPIRegexInfo                                = regexp.MustCompile(`("info"|info)\s*:`)
 	openAPIRegexPath                                = regexp.MustCompile(`("(paths|components|webhooks)"|(paths|components|webhooks))\s*:`)
-	ansibleHostsAll                                 = regexp.MustCompile(`all\s*:`)
-	ansibleHostsChildren                            = regexp.MustCompile(`children\s*:`)
-	ansibleHostsUngrouped                           = regexp.MustCompile(`ungrouped\s*:`)
-	ansibleHostsHosts                               = regexp.MustCompile(`hosts\s*:`)
 	armRegexContentVersion                          = regexp.MustCompile(`"contentVersion"\s*:`)
 	armRegexResources                               = regexp.MustCompile(`"resources"\s*:`)
 	cloudRegex                                      = regexp.MustCompile(`("Resources"|Resources)\s*:`)
@@ -98,25 +94,23 @@ var (
 		"terraform":            {"terraform", "cdkTf"},
 		"pulumi":               {"pulumi"},
 		"serverlessfw":         {"serverlessfw"},
-		"ansible - hosts":      {"ansible - hosts"},
 	}
 )
 
 const (
-	yml          = ".yml"
-	yaml         = ".yaml"
-	json         = ".json"
-	sh           = ".sh"
-	arm          = "azureresourcemanager"
-	kubernetes   = "kubernetes"
-	terraform    = "terraform"
-	gdm          = "googledeploymentmanager"
-	ansible      = "ansible"
-	grpc         = "grpc"
-	dockerfile   = "dockerfile"
-	crossplane   = "crossplane"
-	knative      = "knative"
-	ansibleHosts = "ansible - hosts"
+	yml        = ".yml"
+	yaml       = ".yaml"
+	json       = ".json"
+	sh         = ".sh"
+	arm        = "azureresourcemanager"
+	kubernetes = "kubernetes"
+	terraform  = "terraform"
+	gdm        = "googledeploymentmanager"
+	ansible    = "ansible"
+	grpc       = "grpc"
+	dockerfile = "dockerfile"
+	crossplane = "crossplane"
+	knative    = "knative"
 )
 
 // regexSlice is a struct to contain a slice of regex
@@ -176,14 +170,6 @@ var types = map[string]regexSlice{
 		[]*regexp.Regexp{
 			armRegexContentVersion,
 			armRegexResources,
-		},
-	},
-	"ansible - hosts": {
-		[]*regexp.Regexp{
-			ansibleHostsAll,
-			ansibleHostsChildren,
-			ansibleHostsUngrouped,
-			ansibleHostsHosts,
 		},
 	},
 	"terraform": {
@@ -396,8 +382,8 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 		}
 	// Ansible Inventory Files
 	case ".ini":
-		if a.isAvailableType(ansibleHosts) {
-			results <- ansibleHosts
+		if a.isAvailableType(ansible) {
+			results <- ansible
 			locCount <- linesCount
 		}
 	// Cloud Formation, Ansible, OpenAPI, Buildah
