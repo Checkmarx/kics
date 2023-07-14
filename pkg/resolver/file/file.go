@@ -390,9 +390,7 @@ func (r *Resolver) resolvePathReturnValue(
 	splitPath []string,
 	sameFileResolve bool,
 	originalFileContent []byte,
-	obj any,
-) (any, bool) {
-
+	obj any) (any, bool) {
 	if len(splitPath) > 1 {
 		if sameFileResolve {
 			r.ResolvedFiles[filePath] = model.ResolvedFile{
