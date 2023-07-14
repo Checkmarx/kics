@@ -382,6 +382,16 @@ func (r *Resolver) resolvePath(
 			return obj, false
 		}
 	}
+	return r.resolvePathReturnValue(value, filePath, splitPath, sameFileResolve, originalFileContent, obj)
+}
+
+func (r *Resolver) resolvePathReturnValue(
+	value, filePath string,
+	splitPath []string,
+	sameFileResolve bool,
+	originalFileContent []byte,
+	obj any,
+) (any, bool) {
 
 	if len(splitPath) > 1 {
 		if sameFileResolve {
