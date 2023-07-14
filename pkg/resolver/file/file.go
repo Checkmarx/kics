@@ -242,8 +242,10 @@ func (r *Resolver) resolveYamlPath(
 
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[filename]; !ok {
-			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, true); isError {
-				return ret.(yaml.Node), false
+			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, true); !isError {
+				if retYaml, yamlNode := ret.(yaml.Node); yamlNode {
+					return retYaml, false
+				}
 			}
 		}
 
