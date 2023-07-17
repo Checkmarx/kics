@@ -40,7 +40,7 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           title: "bump: updating KICS KPI Statistics"
-          token: ${{ secrets.KICS_BOT_PAT }}
+          token:  ${{ secrets.GITHUB_TOKEN }}
           commit-message: "bump: updating KICS KPI Statistics of new release"
           delete-branch: true
           branch: feature/kicsbot-software-statistics
