@@ -41,14 +41,18 @@ def add_data_to_excel(file_path, statistics):
     row_data = []
     for header_cell in sheet[1]:
         header = header_cell.value
+        print("header: ", header)
         statistic_key = mappingColumns.get(header, header)
         value = ''
         if header_cell.column_letter in formula_columns:
             value = formulas[header_cell.column_letter]
+            print("formula: ", value)
         else:
             value = statistics.get(statistic_key, '')
+            print("stat: ", value)
+        print("Value: ", value)
         row_data.append(value)
-        
+    print("row: ", row_data)
     sheet.append(row_data)
     workbook.save(file_path)
 
