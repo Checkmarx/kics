@@ -43,9 +43,9 @@ def add_data_to_excel(file_path, statistics):
             if stat_key in statistics:
                 new_df.loc[0, column] = statistics[stat_key]
             else:
-                new_df.loc[0, column] = np.nan  # fill with NaN or any default value
+                new_df.loc[0, column] = " "  
         else:
-            new_df.loc[0, column] = np.nan  # fill with NaN or any default value if the column is not mapped
+            new_df.loc[0, column] = " " 
 
     df = pd.concat([df, new_df], ignore_index=True)
     
