@@ -5,7 +5,7 @@ import sys
 import argparse
 from tabulate import tabulate
 import requests
-import pandas as pd
+import openpyxl
 
 base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(base, "metrics"))
@@ -31,25 +31,16 @@ def add_data_to_excel(file_path, statistics):
         'code_samples': 'Code Samples',
         'e2e_tests' : 'E2E tests'   
     }
-    df = pd.read_excel(file_path)
-
-    new_df = pd.DataFrame(columns=df.columns) 
-
-    for column in df.columns:
-        print("Column: ", column)
-        if column in mappingColumns.values():  # if column is in the mapped values, then assign the respective statistic value
-            stat_key = list(mappingColumns.keys())[list(mappingColumns.values()).index(column)]  # get the respective stat_key
-            print("Stat: ", stat_key)
-            if stat_key in statistics:
-                new_df.loc[0, column] = statistics[stat_key]
-            else:
-                new_df.loc[0, column] = " "  
-        else:
-            new_df.loc[0, column] = " " 
-
-    df = pd.concat([df, new_df], ignore_index=True)
-    
-    df.to_excel(file_path, index=False)
+    workbook = openpyxl.load_workbook(file_path)
+    sheet = workbook.active
+    row_data = []
+    for header_cell in sheet[1]:
+        header = header_cell.value
+        statistic_key = mappingColumns.get(header, header)
+        value = statistics.get(statistic_key, '')
+        row_data.append(value)
+    sheet.append(row_data)
+    workbook.save(file_path)
 
 def get_statistics(test_coverage, total_tests, go_loc):
     latest_release_url = "https://api.github.com/repos/Checkmarx/kics/releases/latest"
