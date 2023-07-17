@@ -13,9 +13,42 @@ sys.path.append(os.path.join(base, "metrics"))
 from get_metrics import queries_count, queries_path, samples_ext
 
 def add_data_to_excel(file_path, statistics):
+    mappingColumns = {
+        'date': 'DATE',
+        'version': 'Version',
+        'total_queries': 'Queries',
+        'go_loc': 'Go LOC',
+        'dockerhub_pulls': 'DkrHub pulls',
+        'github_stars': 'GH Stars',
+        'github_forks': 'GH Forks',
+        'github_downloads': 'Github Downloads',
+        'bugs_open' : 'Bug Open',
+        'bugs_closed' : 'Bug Close',
+        'feature_requests_open' : 'FeatReq Open',
+        'feature_requests_closed' : 'FeatReq Closed',
+        'total_tests': 'Tests',
+        'test_coverage': 'Test Coverage',
+        'code_samples': 'Code Samples',
+        'e2e_tests' : 'E2E tests'   
+    }
     df = pd.read_excel(file_path)
-    new_df = pd.DataFrame(statistics.items(), columns=['KICS_KPIS', statistics["date"]])
+
+    new_df = pd.DataFrame(columns=df.columns) 
+
+    for column in df.columns:
+        print("Column: ", column)
+        if column in mapping.values():  # if column is in the mapped values, then assign the respective statistic value
+            stat_key = list(mapping.keys())[list(mapping.values()).index(column)]  # get the respective stat_key
+            print("Stat: ", stat_key)
+            if stat_key in statistics:
+                new_df.loc[0, column] = statistics[stat_key]
+            else:
+                new_df.loc[0, column] = np.nan  # fill with NaN or any default value
+        else:
+            new_df.loc[0, column] = np.nan  # fill with NaN or any default value if the column is not mapped
+
     df = pd.concat([df, new_df], ignore_index=True)
+    
     df.to_excel(file_path, index=False)
 
 def get_statistics(test_coverage, total_tests, go_loc):
