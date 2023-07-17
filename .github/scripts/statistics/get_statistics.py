@@ -42,6 +42,7 @@ def add_data_to_excel(file_path, statistics):
     for header_cell in sheet[1]:
         header = header_cell.value
         statistic_key = mappingColumns.get(header, header)
+        value = ''
         if header_cell.column_letter in formula_columns:
             value = formulas[header_cell.column_letter]
         else:
