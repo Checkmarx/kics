@@ -32,7 +32,8 @@ def add_data_to_excel(file_path, statistics):
         'e2e_tests' : 'E2E tests'   
     }
     workbook = openpyxl.load_workbook(file_path)
-    sheet = workbook.active
+    sheet = wb.worksheets[0]
+    print("Sheet: ", sheet[1])
     formula_columns = ["Z", "AA"] 
     formulas = {}
     for col in formula_columns:
