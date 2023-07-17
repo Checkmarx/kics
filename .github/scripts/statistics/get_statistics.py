@@ -37,8 +37,8 @@ def add_data_to_excel(file_path, statistics):
 
     for column in df.columns:
         print("Column: ", column)
-        if column in mapping.values():  # if column is in the mapped values, then assign the respective statistic value
-            stat_key = list(mapping.keys())[list(mapping.values()).index(column)]  # get the respective stat_key
+        if column in mappingColumns.values():  # if column is in the mapped values, then assign the respective statistic value
+            stat_key = list(mappingColumns.keys())[list(mappingColumns.values()).index(column)]  # get the respective stat_key
             print("Stat: ", stat_key)
             if stat_key in statistics:
                 new_df.loc[0, column] = statistics[stat_key]
