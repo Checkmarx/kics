@@ -1,3 +1,4 @@
 requests
 tabulate
 pandas
+openpyxl
