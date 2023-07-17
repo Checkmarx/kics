@@ -242,9 +242,11 @@ func (r *Resolver) resolveYamlPath(
 
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[filename]; !ok {
-			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, true); !isError {
+			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, true); isError {
 				if retYaml, yamlNode := ret.(yaml.Node); yamlNode {
 					return retYaml, false
+				} else {
+					return *v, false
 				}
 			}
 		}
@@ -336,7 +338,6 @@ func (r *Resolver) resolveFile(
 		}
 
 		resolvedFilesCache[filePath] = ResolvedFile{fileContent, obj}
-		return obj, false
 	}
 
 	return nil, false
@@ -374,7 +375,7 @@ func (r *Resolver) resolvePath(
 
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[onlyFilePath]; !ok {
-			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, false); !isError {
+			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, false); isError {
 				return ret, false
 			}
 		}
