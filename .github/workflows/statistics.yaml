@@ -36,9 +36,17 @@ jobs:
         run: |
           pip3 install -r .github/scripts/statistics/requirements.txt
           python3 .github/scripts/statistics/get_statistics.py -c ${{steps.testcoverage.outputs.coverage}} -t ${{steps.testcoverage.outputs.total_tests}} -g ${{steps.go_loc.outputs.goloc}}
-        env:
-          SHAREPOINT_USERNAME: ${{ secrets.SHAREPOINT_USERNAME }}
-          SHAREPOINT_PASSWORD: ${{ secrets.SHAREPOINT_PASSWORD }}
-          SHAREPOINT_URL: ${{ secrets.SHAREPOINT_URL }}
-          SHAREPOINT_FILE: ${{ secrets.SHAREPOINT_FILE }}
-          SHAREPOINT_LIB: ${{ secrets.SHAREPOINT_LIB }}
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          title: "bump: updating KICS KPI Statistics"
+          token: ${{ secrets.KICS_BOT_PAT }}
+          commit-message: "bump: updating KICS KPI Statistics of new release"
+          delete-branch: true
+          branch: feature/kicsbot-software-statistics
+          base: master
+          body: |
+            **Automated Changes**
+            Updating KICS-KPIs-over-time.xlsx file
+            Triggered by SHA: _${{ github.sha }}_
+          labels: statistics
