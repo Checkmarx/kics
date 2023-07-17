@@ -33,12 +33,21 @@ def add_data_to_excel(file_path, statistics):
     }
     workbook = openpyxl.load_workbook(file_path)
     sheet = workbook.active
+    formula_columns = ["Avg Scans per Day", "Avg Scans Per Version"] 
+    formulas = {}
+    for col in formula_columns:
+        formulas[col] = sheet[f"{col}{len(sheet[col])}"].value
+
     row_data = []
     for header_cell in sheet[1]:
         header = header_cell.value
         statistic_key = mappingColumns.get(header, header)
-        value = statistics.get(statistic_key, '')
+        if header_cell.column_letter in formula_columns:
+            value = formulas[header_cell.column_letter]
+        else:
+            value = statistics.get(statistic_key, '')
         row_data.append(value)
+        
     sheet.append(row_data)
     workbook.save(file_path)
 
