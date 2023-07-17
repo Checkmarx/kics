@@ -33,7 +33,7 @@ def add_data_to_excel(file_path, statistics):
     }
     workbook = openpyxl.load_workbook(file_path)
     sheet = workbook.active
-    formula_columns = ["Avg Scans per Day", "Avg Scans Per Version"] 
+    formula_columns = ["Z", "AA"] 
     formulas = {}
     for col in formula_columns:
         formulas[col] = sheet[f"{col}{len(sheet[col])}"].value
