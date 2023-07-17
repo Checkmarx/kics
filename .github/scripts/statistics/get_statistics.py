@@ -14,22 +14,22 @@ from get_metrics import queries_count, queries_path, samples_ext
 
 def add_data_to_excel(file_path, statistics):
     mappingColumns = {
-        'date': 'DATE',
-        'version': 'Version',
-        'total_queries': 'Queries',
-        'go_loc': 'Go LOC',
-        'dockerhub_pulls': 'DkrHub pulls',
-        'github_stars': 'GH Stars',
-        'github_forks': 'GH Forks',
-        'github_downloads': 'Github Downloads',
-        'bugs_open' : 'Bug Open',
-        'bugs_closed' : 'Bug Close',
-        'feature_requests_open' : 'FeatReq Open',
-        'feature_requests_closed' : 'FeatReq Closed',
-        'total_tests': 'Tests',
-        'test_coverage': 'Test Coverage',
-        'code_samples': 'Code Samples',
-        'e2e_tests' : 'E2E tests'   
+        'DATE': 'date',
+        'Version': 'version',
+        'Queries': 'total_queries',
+        'Go LOC': 'go_loc',
+        'DkrHub pulls': 'dockerhub_pulls',
+        'GH Stars': 'github_stars',
+        'GH Forks': 'github_forks',
+        'Github Downloads': 'github_downloads',
+        'Bug Open': 'bugs_open',
+        'Bug Close': 'bugs_closed',
+        'FeatReq Open': 'feature_requests_open',
+        'FeatReq Closed': 'feature_requests_closed',
+        'Tests': 'total_tests',
+        'Test Coverage': 'test_coverage',
+        'Code Samples': 'code_samples',
+        'E2E tests': 'e2e_tests'
     }
     workbook = openpyxl.load_workbook(file_path)
     sheet = workbook.worksheets[0]
