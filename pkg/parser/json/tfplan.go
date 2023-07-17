@@ -18,9 +18,9 @@ type KicsPlanResource map[string]KicsPlanNamedResource
 // KicsPlanNamedResource is an auxiliary structure for parsing tfplans as a KICS Document
 type KicsPlanNamedResource map[string]interface{}
 
-// parseTFPlan unmarshals Document as a plan so it can be rebuilt with only
+// ParseTFPlan unmarshals Document as a plan so it can be rebuilt with only
 // the required information
-func parseTFPlan(doc model.Document) (model.Document, error) {
+func ParseTFPlan(doc model.Document) (model.Document, error) {
 	var plan *hcl_plan.Plan
 	b, err := json.Marshal(doc)
 	if err != nil {

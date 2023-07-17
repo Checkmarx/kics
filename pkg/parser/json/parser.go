@@ -42,7 +42,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 	kicsJSON := jLine.setLineInfo(r)
 
 	// Try to parse JSON as Terraform plan
-	kicsPlan, err := parseTFPlan(kicsJSON)
+	kicsPlan, err := ParseTFPlan(kicsJSON)
 	if err != nil {
 		// JSON is not a tf plan
 		return []model.Document{kicsJSON}, []int{}, nil
