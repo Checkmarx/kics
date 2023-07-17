@@ -336,6 +336,7 @@ func (r *Resolver) resolveFile(
 		}
 
 		resolvedFilesCache[filePath] = ResolvedFile{fileContent, obj}
+		return obj, false
 	}
 
 	return nil, false
