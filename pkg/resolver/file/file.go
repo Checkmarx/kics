@@ -266,6 +266,15 @@ func (r *Resolver) resolveYamlPath(
 		}
 	}
 
+	return r.returnResolveYamlPathValue(splitPath, sameFileResolve, filePath, originalFileContent, obj, v)
+}
+
+func (r *Resolver) returnResolveYamlPathValue(
+	splitPath []string,
+	sameFileResolve bool,
+	filePath string,
+	originalFileContent []byte,
+	obj, v *yaml.Node) (yaml.Node, bool) {
 	if len(splitPath) > 1 {
 		if sameFileResolve {
 			r.ResolvedFiles[filePath] = model.ResolvedFile{
@@ -364,7 +373,7 @@ func (r *Resolver) resolvePath(
 
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[onlyFilePath]; !ok {
-			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, false); isError {
+			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, false); !isError {
 				return ret, false
 			}
 		}
