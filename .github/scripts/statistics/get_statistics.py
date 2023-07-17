@@ -37,8 +37,9 @@ def add_data_to_excel(file_path, statistics):
     row = sheet.max_row 
     next_row = row + 1
     print("Row: ", row)
-    formula_columns = {'Z': f"=ROUNDUP(Y{next_row}/_xlfn.DAYS(C{next_row},"2021-08-04"),0)",
-                       'AA': f"=ROUNDUP((Y{next_row}-Y{row})/_xlfn.DAYS(C{next_row},C{row}),0)"}
+    formula_columns = {'Z': f'=ROUNDUP(Y{next_row}/_xlfn.DAYS(C{next_row},"2021-08-04"),0)',
+                       'AA': f'=ROUNDUP((Y{next_row}-Y{row})/_xlfn.DAYS(C{next_row},C{row}),0)'
+                      }
     
 
     row_data = []
