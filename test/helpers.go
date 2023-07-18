@@ -321,3 +321,30 @@ var SimpleSummaryMock = model.Summary{
 		"./",
 	},
 }
+
+// NoFilesSummaryMock a summary with no files scanned
+var NoFilesSummaryMock = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           0,
+		ParsedFiles:            0,
+		FailedToScanFiles:      0,
+		TotalQueries:           0,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.QueryResult{
+		queryMedium,
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:   0,
+			model.SeverityLow:    0,
+			model.SeverityMedium: 0,
+			model.SeverityHigh:   0,
+		},
+		TotalCounter: 0,
+	},
+	ScannedPaths: []string{
+		"./",
+	},
+}

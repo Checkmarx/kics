@@ -4,17 +4,24 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
 )
 
 var shouldIgnore string
 var shouldFail map[string]struct{}
 
-// ResultsExitCode calculate exit code base on severity of results, returns 0 if no results was reported
+// ResultsExitCode calculate exit code based on severity of results, returns 0 if no results was reported
 func ResultsExitCode(summary *model.Summary) int {
 	// severityArr is needed to make sure 'for' cycle is made in an ordered fashion
 	severityArr := []model.Severity{"HIGH", "MEDIUM", "LOW", "INFO", "TRACE"}
-	codeMap := map[model.Severity]int{"HIGH": 50, "MEDIUM": 40, "LOW": 30, "INFO": 20, "TRACE": 0}
+	codeMap := map[model.Severity]int{
+		"HIGH":   constants.HighResultsExitCode,
+		"MEDIUM": constants.MediumResultsExitCode,
+		"LOW":    constants.LowResultsExitCode,
+		"INFO":   constants.InfoResultsExitCode,
+		"TRACE":  constants.TraceResultsExitCode,
+	}
 	exitMap := summary.SeveritySummary.SeverityCounters
 	for _, severity := range severityArr {
 		if _, reportSeverity := shouldFail[strings.ToLower(string(severity))]; !reportSeverity {
@@ -24,7 +31,16 @@ func ResultsExitCode(summary *model.Summary) int {
 			return codeMap[severity]
 		}
 	}
-	return 0
+	return constants.NoErrors
+}
+
+// FilesExitCode calculate exit code based on the number of scanned files
+func FilesExitCode(summary *model.Summary) int {
+	if summary.ScannedFiles == 0 {
+		return constants.NoFilesScannedExitCode
+	}
+
+	return constants.NoErrors
 }
 
 // InitShouldIgnoreArg initializes what kind of errors should be used on exit codes
@@ -72,11 +88,10 @@ func ShowError(kind string) bool {
 
 // RemediateExitCode calculate exit code base on the difference between remediation selected and done
 func RemediateExitCode(selectedRemediationNumber, actualRemediationDoneNumber int) int {
-	statusCode := 70
 	if selectedRemediationNumber != actualRemediationDoneNumber {
 		// KICS AR was not able to remediate all the selected remediation
-		return statusCode
+		return constants.RemediationFailedExitCode
 	}
 
-	return 0
+	return constants.NoErrors
 }

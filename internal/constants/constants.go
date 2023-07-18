@@ -104,12 +104,6 @@ const (
 	// MaximumPreviewLines - default maximum preview lines number
 	MaximumPreviewLines = 30
 
-	// EngineErrorCode - Exit Status code for error in engine
-	EngineErrorCode = 126
-
-	// SignalInterruptCode - Exit Status code for a signal interrupt
-	SignalInterruptCode = 130
-
 	// MaxInteger - max possible integer in golang
 	MaxInteger = math.MaxInt64
 
