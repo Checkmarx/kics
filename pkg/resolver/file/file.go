@@ -65,7 +65,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
 	}
 
 	// resolve the paths
-	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, resolvedFilesCache)
+	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, resolvedFilesCache, false)
 
 	b, err := r.marshler(obj)
 	if err == nil {
@@ -81,17 +81,18 @@ func (r *Resolver) walk(
 	value any,
 	path string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile) (any, bool) {
+	resolvedFilesCache map[string]ResolvedFile,
+	refBool bool) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
 		if filepath.Base(path) != typedValue {
-			return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolveCount, resolvedFilesCache)
+			return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolveCount, resolvedFilesCache, refBool)
 		}
 		return value, false
 	case []any:
 		for i, v := range typedValue {
-			typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache)
+			typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, refBool)
 		}
 		return typedValue, false
 	case map[string]any:
@@ -105,7 +106,7 @@ func (r *Resolver) handleMap(originalFileContent []byte, fullObject interface{},
 	resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	for k, v := range value {
 		isRef := strings.Contains(strings.ToLower(k), "$ref")
-		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache)
+		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, isRef)
 		// check if it is a ref then add new details
 		if valMap, ok := val.(map[string]interface{}); (ok || !res) && isRef {
 			// Create RefMetadata and add it to the resolved value map
@@ -358,8 +359,9 @@ func (r *Resolver) resolvePath(
 	fullObject interface{},
 	value, filePath string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile) (any, bool) {
-	if resolveCount > constants.MaxResolvedFiles {
+	resolvedFilesCache map[string]ResolvedFile,
+	refBool bool) (any, bool) {
+	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) {
 		return value, false
 	}
 	var splitPath []string
