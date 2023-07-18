@@ -2,6 +2,7 @@ package file
 
 import (
 	"errors"
+	"fmt"
 	"io"
 	"os"
 	"path/filepath"
@@ -46,6 +47,14 @@ func NewResolver(
 
 // Resolve - replace or modifies in-memory content before parsing
 func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) []byte {
+	// handle panic during resolve process
+	defer func() {
+		if r := recover(); r != nil {
+			err := fmt.Errorf("panic: %v", r)
+			log.Err(err).Msg("Recovered from panic during file resolve")
+		}
+	}()
+
 	if utils.Contains(filepath.Ext(path), []string{".yml", ".yaml"}) {
 		return r.yamlResolve(fileContent, path, resolveCount, resolvedFilesCache)
 	}
@@ -59,11 +68,11 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
 	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, resolvedFilesCache, false)
 
 	b, err := r.marshler(obj)
-	if err != nil {
-		return fileContent
+	if err == nil {
+		return b
 	}
 
-	return b
+	return fileContent
 }
 
 func (r *Resolver) walk(
