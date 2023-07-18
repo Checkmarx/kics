@@ -378,7 +378,13 @@
     "fileName": "positive45.tf"
   },
   {
-    "queryName": "Passwords And Secrets - Generic Password",
+    "queryName": "Passwords And Secrets - Google OAuth",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive46.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Secret",
     "severity": "HIGH",
     "line": 6,
     "fileName": "positive46.tf"
