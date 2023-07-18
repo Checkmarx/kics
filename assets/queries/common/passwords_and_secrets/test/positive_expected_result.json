@@ -350,7 +350,7 @@
   {
     "queryName": "Passwords And Secrets - Asymmetric private key",
     "severity": "HIGH",
-    "line": 7,
+    "line": 6,
     "fileName": "positive41.tf"
   },
   {
