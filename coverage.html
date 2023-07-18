@@ -129,7 +129,7 @@
 				
 				<option value="file36">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (71.8%)</option>
 				
-				<option value="file37">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (83.5%)</option>
+				<option value="file37">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (82.4%)</option>
 				
 				<option value="file38">github.com/Checkmarx/kics/pkg/engine/similarity/similarity_id.go (94.7%)</option>
 				
@@ -207,7 +207,7 @@
 				
 				<option value="file75">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2189,13 +2189,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="30">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2220,7 +2220,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4910,7 +4910,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -6469,12 +6469,12 @@ func isValueInArray(value string, array []string) bool <span class="cov8" title=
         <span class="cov8" title="1182">return false</span>
 }
 
-func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, groups [][]string) <span class="cov10" title="3061">{
+func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, groups [][]string) <span class="cov10" title="2973">{
         if IsAllowRule(s, query, append(query.AllowRules, c.allowRules...)) </span><span class="cov0" title="0">{
                 return false, [][]string{}
         }</span>
 
-        <span class="cov10" title="3061">groups = query.Regex.FindAllStringSubmatch(s, -1)
+        <span class="cov10" title="2973">groups = query.Regex.FindAllStringSubmatch(s, -1)
 
         for _, group := range groups </span><span class="cov3" title="6">{
                 splitedText := strings.Split(s, "\n")
@@ -6496,14 +6496,14 @@ func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, gro
                 <span class="cov0" title="0">groups = append(groups, newGroups...)</span>
         }
 
-        <span class="cov10" title="3061">if len(groups) &gt; 0 </span><span class="cov3" title="6">{
+        <span class="cov10" title="2973">if len(groups) &gt; 0 </span><span class="cov3" title="6">{
                 return true, groups
         }</span>
-        <span class="cov9" title="3055">return false, [][]string{}</span>
+        <span class="cov9" title="2967">return false, [][]string{}</span>
 }
 
 // IsAllowRule check if string matches any of the allow rules for the secret queries
-func IsAllowRule(s string, query *RegexQuery, allowRules []AllowRule) bool <span class="cov10" title="3061">{
+func IsAllowRule(s string, query *RegexQuery, allowRules []AllowRule) bool <span class="cov10" title="2973">{
         regexMatch := query.Regex.FindStringIndex(s)
         if regexMatch != nil </span><span class="cov3" title="6">{
                 allowRuleMatches := AllowRuleMatches(s, append(query.AllowRules, allowRules...))
@@ -6518,7 +6518,7 @@ func IsAllowRule(s string, query *RegexQuery, allowRules []AllowRule) bool <span
                 }
         }
 
-        <span class="cov10" title="3061">return false</span>
+        <span class="cov10" title="2973">return false</span>
 }
 
 // AllowRuleMatches return all the allow rules matches for the secret queries
@@ -6530,9 +6530,9 @@ func AllowRuleMatches(s string, allowRules []AllowRule) [][]int <span class="cov
         <span class="cov3" title="6">return allowRuleMatches</span>
 }
 
-func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file *model.FileMetadata) <span class="cov4" title="21">{
+func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file *model.FileMetadata) <span class="cov4" title="28">{
         isSecret, groups := c.isSecret(file.OriginalData, query)
-        if !isSecret </span><span class="cov4" title="20">{
+        if !isSecret </span><span class="cov4" title="27">{
                 return
         }</span>
 
@@ -6616,10 +6616,10 @@ func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadat
 }
 
 func (c *Inspector) checkLineByLine(wg *sync.WaitGroup, query *RegexQuery,
-        basePaths []string, file *model.FileMetadata, lineNumber int, currentLine string) <span class="cov9" title="3040">{
+        basePaths []string, file *model.FileMetadata, lineNumber int, currentLine string) <span class="cov9" title="2945">{
         defer wg.Done()
         isSecret, groups := c.isSecret(currentLine, query)
-        if !isSecret </span><span class="cov9" title="3035">{
+        if !isSecret </span><span class="cov9" title="2940">{
                 return
         }</span>
 
@@ -6725,7 +6725,7 @@ func calculateEntropy(token, charSet string) float64 <span class="cov4" title="1
                 return 0
         }</span>
         <span class="cov3" title="12">charMap := map[rune]float64{}
-        for _, char := range token </span><span class="cov8" title="1234">{
+        for _, char := range token </span><span class="cov9" title="1234">{
                 if strings.Contains(charSet, string(char)) </span><span class="cov8" title="909">{
                         charMap[char]++
                 }</span>
@@ -6778,18 +6778,18 @@ func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.Fil
 
         wg := &amp;sync.WaitGroup{}
         // check file content line by line
-        if c.regexQueries[i].Multiline == (MultilineResult{}) </span><span class="cov7" title="224">{
+        if c.regexQueries[i].Multiline == (MultilineResult{}) </span><span class="cov7" title="217">{
                 lines := (&amp;files[idx]).LinesOriginalData
-                for lineNumber, currentLine := range *lines </span><span class="cov9" title="3040">{
+                for lineNumber, currentLine := range *lines </span><span class="cov9" title="2945">{
                         wg.Add(1)
                         go c.checkLineByLine(wg, &amp;c.regexQueries[i], basePaths, &amp;files[idx], lineNumber, currentLine)
                 }</span>
-                <span class="cov7" title="224">wg.Wait()
+                <span class="cov7" title="217">wg.Wait()
                 return</span>
         }
 
         // check file content as a whole
-        <span class="cov4" title="21">c.checkFileContent(&amp;c.regexQueries[i], basePaths, &amp;files[idx])</span>
+        <span class="cov4" title="28">c.checkFileContent(&amp;c.regexQueries[i], basePaths, &amp;files[idx])</span>
 }
 
 func ignoreLine(lineNumber int, linesIgnore []int) bool <span class="cov2" title="5">{
@@ -6823,27 +6823,27 @@ func hideSecret(linesVuln *model.VulnerabilityLines,
         query *RegexQuery,
         secretTracker *[]SecretTracker) *[]model.CodeLine <span class="cov2" title="3">{
         for idx := range *linesVuln.VulnLines </span><span class="cov1" title="2">{
-                if query.SpecialMask == "all" </span><span class="cov1" title="1">{
+                if query.SpecialMask == "all" &amp;&amp; idx != 0 </span><span class="cov0" title="0">{
                         addToSecretTracker(secretTracker, linesVuln.ResolvedFile, linesVuln.Line, (*linesVuln.VulnLines)[idx].Line, "&lt;SECRET-MASKED-ON-PURPOSE&gt;")
                         (*linesVuln.VulnLines)[idx].Line = "&lt;SECRET-MASKED-ON-PURPOSE&gt;"
                         continue</span>
                 }
 
-                <span class="cov1" title="1">if (*linesVuln.VulnLines)[idx].Line == issueLine </span><span class="cov1" title="1">{
+                <span class="cov1" title="2">if (*linesVuln.VulnLines)[idx].Line == issueLine </span><span class="cov1" title="2">{
                         regex := query.RegexStr
 
-                        if len(query.SpecialMask) &gt; 0 </span><span class="cov1" title="1">{
+                        if len(query.SpecialMask) &gt; 0 </span><span class="cov1" title="2">{
                                 regex = "(.+)" + query.SpecialMask // get key
                         }</span>
 
-                        <span class="cov1" title="1">var re = regexp.MustCompile(regex)
+                        <span class="cov1" title="2">var re = regexp.MustCompile(regex)
                         match := re.FindString(issueLine)
 
-                        if len(query.SpecialMask) &gt; 0 </span><span class="cov1" title="1">{
+                        if len(query.SpecialMask) &gt; 0 </span><span class="cov1" title="2">{
                                 match = issueLine[len(match):] // get value
                         }</span>
 
-                        <span class="cov1" title="1">if match != "" </span><span class="cov1" title="1">{
+                        <span class="cov1" title="2">if match != "" </span><span class="cov1" title="2">{
                                 originalCntAux := (*linesVuln.VulnLines)[idx].Line
                                 (*linesVuln.VulnLines)[idx].Line = strings.Replace(issueLine, match, "&lt;SECRET-MASKED-ON-PURPOSE&gt;", 1)
                                 addToSecretTracker(secretTracker, linesVuln.ResolvedFile, linesVuln.Line, originalCntAux, (*linesVuln.VulnLines)[idx].Line)
@@ -14311,7 +14311,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov3" title="2">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14320,26 +14320,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov3" title="2">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov0" title="0">p.wg.Done()</span>
+                <span class="cov3" title="2">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file77" style="display: none">package progress
