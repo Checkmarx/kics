@@ -207,7 +207,7 @@
 				
 				<option value="file75">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
+				<option value="file76">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
 				<option value="file77">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2189,13 +2189,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="30">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2220,7 +2220,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -14311,7 +14311,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov3" title="2">{
+                close: func() error </span><span class="cov0" title="0">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14320,26 +14320,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov3" title="2">{
+        defer func() </span><span class="cov0" title="0">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov3" title="2">p.wg.Done()</span>
+                <span class="cov0" title="0">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file77" style="display: none">package progress
@@ -17509,7 +17509,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
         }</span>
 
         // resolve the paths
-        <span class="cov3" title="4">obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, resolvedFilesCache)
+        <span class="cov3" title="4">obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, resolvedFilesCache, false)
 
         b, err := r.marshler(obj)
         if err == nil </span><span class="cov3" title="4">{
@@ -17525,17 +17525,18 @@ func (r *Resolver) walk(
         value any,
         path string,
         resolveCount int,
-        resolvedFilesCache map[string]ResolvedFile) (any, bool) <span class="cov8" title="37">{
+        resolvedFilesCache map[string]ResolvedFile,
+        refBool bool) (any, bool) <span class="cov8" title="37">{
         // go over the value and replace paths with the real content
         switch typedValue := value.(type) </span>{
         case string:<span class="cov6" title="13">
                 if filepath.Base(path) != typedValue </span><span class="cov6" title="13">{
-                        return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolveCount, resolvedFilesCache)
+                        return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolveCount, resolvedFilesCache, refBool)
                 }</span>
                 <span class="cov0" title="0">return value, false</span>
         case []any:<span class="cov1" title="1">
                 for i, v := range typedValue </span><span class="cov1" title="1">{
-                        typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache)
+                        typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, refBool)
                 }</span>
                 <span class="cov1" title="1">return typedValue, false</span>
         case map[string]any:<span class="cov7" title="23">
@@ -17549,7 +17550,7 @@ func (r *Resolver) handleMap(originalFileContent []byte, fullObject interface{},
         resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) <span class="cov7" title="23">{
         for k, v := range value </span><span class="cov8" title="32">{
                 isRef := strings.Contains(strings.ToLower(k), "$ref")
-                val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache)
+                val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, isRef)
                 // check if it is a ref then add new details
                 if valMap, ok := val.(map[string]interface{}); (ok || !res) &amp;&amp; isRef </span><span class="cov3" title="3">{
                         // Create RefMetadata and add it to the resolved value map
@@ -17802,8 +17803,9 @@ func (r *Resolver) resolvePath(
         fullObject interface{},
         value, filePath string,
         resolveCount int,
-        resolvedFilesCache map[string]ResolvedFile) (any, bool) <span class="cov6" title="13">{
-        if resolveCount &gt; constants.MaxResolvedFiles </span><span class="cov0" title="0">{
+        resolvedFilesCache map[string]ResolvedFile,
+        refBool bool) (any, bool) <span class="cov6" title="13">{
+        if resolveCount &gt; constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") &amp;&amp; !refBool) </span><span class="cov0" title="0">{
                 return value, false
         }</span>
         <span class="cov6" title="13">var splitPath []string
