@@ -46,6 +46,7 @@ func NewDefaultWithVarsPath(terraformVarsPath string) *Parser {
 
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
+	// Add Panic recover func with logging file that caused trouble
 	getInputVariables(filepath.Dir(filename), string(fileContent), p.terraformVarsPath)
 	getDataSourcePolicy(filepath.Dir(filename))
 	return fileContent, nil

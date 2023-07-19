@@ -32,6 +32,7 @@ const (
 
 // Resolve will render the passed helm chart and return its content ready for parsing
 func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
+	// Add Panic recover func with logging file that caused trouble
 	splits, excluded, err := renderHelm(filePath)
 	if err != nil { // return error to be logged
 		return model.ResolvedFiles{}, errors.New("failed to render helm chart")
