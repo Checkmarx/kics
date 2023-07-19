@@ -7,7 +7,7 @@
       "allowRules": [
         {
           "description": "Avoiding TF resource access",
-          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*(([a-zA-z_]+(.))?[a-zA-z_]+\\s*(.)\\s*[a-zA-z_]+(.)[a-zA-z_]+)?(\\s*:\\s*null|null)?$"
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*(([a-zA-z_]+(.))?[a-zA-z_]+\\s*(.)\\s*[a-zA-z_]+(.)[a-zA-z_]+)?(\\s*:\\s*null|null)$"
         },
         {
           "description": "Avoiding CF AllowUsersToChangePassword",
