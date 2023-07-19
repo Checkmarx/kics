@@ -45,7 +45,8 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ecs_task_definition[name]
-	not common_lib.valid_key(resource, "efs_volume_configuration")
+	volume := resource.volume
+	not common_lib.valid_key(volume, "efs_volume_configuration")
 
 	result := {
 		"documentId": input.document[i].id,
