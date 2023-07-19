@@ -1,0 +1,39 @@
+name: aws-eks
+runtime: yaml
+description: An EKS cluster
+resources:
+  exampleLogGroup:
+    type: aws:cloudwatch:LogGroup
+  exampleLogResourcePolicy:
+    type: aws:cloudwatch:LogResourcePolicy
+    properties:
+      policyName: example
+      policyDocument: ${examplePolicyDocument.json}
+  exampleDomain:
+    type: aws:elasticsearch:Domain
+    properties:
+      elasticsearchVersion: "7.10"
+      elasticsearchClusterConfig:
+        instanceType: "t2.small.elasticsearch"
+        instanceCount: 1
+      ebsOptions:
+        ebsEnabled: true
+        volumeType: "gp2"
+        volumeSize: 10
+variables:
+  examplePolicyDocument:
+    fn::invoke:
+      Function: aws:iam:getPolicyDocument
+      Arguments:
+        statements:
+          - effect: Allow
+            principals:
+              - type: Service
+                identifiers:
+                  - es.amazonaws.com
+            actions:
+              - logs:PutLogEvents
+              - logs:PutLogEventsBatch
+              - logs:CreateLogStream
+            resources:
+              - arn:aws:logs:*

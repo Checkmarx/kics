@@ -18,6 +18,7 @@
         "scan": {
             "type": "object",
             "required": [
+                "analyzer",
                 "start_time",
                 "end_time",
                 "status",
@@ -25,13 +26,50 @@
                 "scanner"
             ],
             "properties": {
+                "analyzer": {
+                    "type": "object",
+                    "required": [
+                        "id",
+                        "name",
+                        "version",
+                        "vendor"
+                      ],
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "name": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "url": {
+                          "type": "string",
+                          "format": "uri",
+                          "pattern": "^https?://.+"
+                        },
+                        "vendor": {
+                          "type": "object",
+                          "required": [
+                            "name"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                        }
+                    }
+                }
+            },   
                 "start_time": {
                     "type": "string",
                     "minLength": 1
                 },
                 "end_time": {
                     "type": "string",
-                    "minLength": 1
+                    "minLength": 1,
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$"
                 },
                 "status": {
                     "type": "string",
@@ -89,12 +127,8 @@
                 "type": "object",
                 "required": [
                     "id",
-                    "category",
                     "severity",
-                    "cve",
-                    "scanner",
                     "name",
-                    "message",
                     "links",
                     "location",
                     "identifiers"
@@ -103,10 +137,6 @@
                     "id": {
                         "type": "string",
                         "pattern": "^[A-Fa-f0-9]{64}$"
-                    },
-                    "category": {
-                        "type": "string",
-                        "minLength": 1
                     },
                     "severity": {
                         "type": "string",
@@ -117,34 +147,10 @@
                             "Info"
                         ]
                     },
-                    "cve": {
-                        "type": "string",
-                        "pattern": "^[A-Fa-f0-9]{64}$"
-                    },
-                    "scanner": {
-                        "type": "object",
-                        "required": [
-                            "id",
-                            "name"
-                        ],
-                        "properties": {
-                            "id": {
-                                "type": "string",
-                                "minLength": 1
-                            },
-                            "name": {
-                                "type": "string",
-                                "minLength": 1
-                            }
-                        }
-                    },
                     "name": {
                         "type": "string",
-                        "minLength": 1
-                    },
-                    "message": {
-                        "type": "string",
-                        "minLength": 1
+                        "minLength": 1,
+                        "maxLength": 255
                     },
                     "links": {
                         "type": "array",

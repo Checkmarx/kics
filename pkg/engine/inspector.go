@@ -360,6 +360,10 @@ func (c *Inspector) DecodeQueryResults(ctx *QueryContext, results rego.ResultSet
 	failedDetectLine := false
 	for _, queryResultItem := range queryResultItems {
 		vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
+		if err != nil && err.Error() == ErrNoResult.Error() {
+			// Ignoring bad results
+			continue
+		}
 		if err != nil {
 			sentryReport.ReportSentry(&sentryReport.Report{
 				Message:  fmt.Sprintf("Inspector can't save vulnerability, query=%s", ctx.Query.Metadata.Query),
