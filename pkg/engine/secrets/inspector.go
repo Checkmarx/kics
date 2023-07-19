@@ -661,7 +661,7 @@ func hideSecret(linesVuln *model.VulnerabilityLines,
 	query *RegexQuery,
 	secretTracker *[]SecretTracker) *[]model.CodeLine {
 	for idx := range *linesVuln.VulnLines {
-		if query.SpecialMask == "all" {
+		if query.SpecialMask == "all" && idx != 0 {
 			addToSecretTracker(secretTracker, linesVuln.ResolvedFile, linesVuln.Line, (*linesVuln.VulnLines)[idx].Line, "<SECRET-MASKED-ON-PURPOSE>")
 			(*linesVuln.VulnLines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
 			continue

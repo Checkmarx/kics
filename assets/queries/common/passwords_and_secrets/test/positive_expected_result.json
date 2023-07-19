@@ -312,7 +312,7 @@
     "fileName": "positive35.yaml"
   },
   {
-    "queryName": "Passwords And Secrets - Putty Private Key",
+    "queryName": "Passwords And Secrets - Putty User Key File Content",
     "severity": "HIGH",
     "line": 5,
     "fileName": "positive36.tf"
@@ -350,7 +350,7 @@
   {
     "queryName": "Passwords And Secrets - Asymmetric private key",
     "severity": "HIGH",
-    "line": 7,
+    "line": 6,
     "fileName": "positive41.tf"
   },
   {
