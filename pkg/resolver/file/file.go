@@ -1,6 +1,7 @@
 package file
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -67,7 +68,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
 	// resolve the paths
 	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, resolvedFilesCache, false)
 
-	b, err := r.marshler(obj)
+	b, err := json.MarshalIndent(obj, "", "")
 	if err == nil {
 		return b
 	}
@@ -236,9 +237,7 @@ func (r *Resolver) resolveYamlPath(
 		value = checkServerlessFileReference(value)
 
 		path := filepath.Join(filepath.Dir(filePath), value)
-		splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
-		// index 0 contains the path of the file while the other indexes contain the sections (e.g. path = "./definitions.json#User/schema")
-		onlyFilePath := splitPath[0]
+		onlyFilePath := getPathFromString(path)
 		_, err := os.Stat(path)
 		if err != nil {
 			return *v, false
@@ -261,7 +260,7 @@ func (r *Resolver) resolveYamlPath(
 			}
 		}
 
-		r.ResolvedFiles[value] = model.ResolvedFile{
+		r.ResolvedFiles[getPathFromString(value)] = model.ResolvedFile{
 			Content:      resolvedFilesCache[filename].fileContent,
 			Path:         path,
 			LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
@@ -273,7 +272,7 @@ func (r *Resolver) resolveYamlPath(
 		if strings.Contains(strings.ToLower(value), "!ref") { // Cloudformation !Ref check
 			return *obj, false
 		}
-		if len(splitPath) == 1 {
+		if !strings.Contains(path, "#") {
 			return *obj, true
 		}
 	}
@@ -353,6 +352,14 @@ func (r *Resolver) resolveFile(
 	return nil, false
 }
 
+func getPathFromString(path string) string {
+	lastIndex := strings.LastIndex(path, "#")
+	if lastIndex == -1 {
+		return path
+	}
+	return path[:lastIndex]
+}
+
 // isPath returns true if the value is a valid path
 func (r *Resolver) resolvePath(
 	originalFileContent []byte,
@@ -391,7 +398,7 @@ func (r *Resolver) resolvePath(
 			}
 		}
 
-		r.ResolvedFiles[value] = model.ResolvedFile{
+		r.ResolvedFiles[getPathFromString(value)] = model.ResolvedFile{
 			Content:      resolvedFilesCache[onlyFilePath].fileContent,
 			Path:         path,
 			LinesContent: utils.SplitLines(string(resolvedFilesCache[onlyFilePath].fileContent)),
