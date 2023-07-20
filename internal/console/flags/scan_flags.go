@@ -20,6 +20,7 @@ const (
 	OutputNameFlag         = "output-name"
 	OutputPathFlag         = "output-path"
 	PathFlag               = "path"
+	SaveReloadedPath       = "save-reloaded-path"
 	PayloadPathFlag        = "payload-path"
 	PreviewLinesFlag       = "preview-lines"
 	QueriesPath            = "queries-path"

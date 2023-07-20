@@ -120,6 +120,16 @@ func (s *Service) StartScan(
 	}
 }
 
+// GetFiles is a getter for the files present in this service
+func (s *Service) GetFiles() model.FileMetadatas {
+	return s.files
+}
+
+// SaveFile allows for saving a file in files
+func (s *Service) SaveFile(fileToSave model.FileMetadata) {
+	s.files = append(s.files, fileToSave)
+}
+
 // Content keeps the content of the file and the number of lines
 type Content struct {
 	Content    *[]byte

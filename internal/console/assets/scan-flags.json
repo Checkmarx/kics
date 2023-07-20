@@ -119,8 +119,14 @@
     "flagType": "multiStr",
     "shorthandFlag": "p",
     "defaultValue": null,
-    "usage": "paths or directories to scan\nexample: \"./somepath,somefile.txt\""
+    "usage": "paths, directories or reloaded file to scan\nexample: \"./somepath,somefile.txt\""
   },
+  "save-reloaded-path": {
+    "flagType": "str",
+    "shorthandFlag": "",
+    "defaultValue": "",
+    "usage": "path where reloaded file will be created (default not created)"
+  },   
   "payload-lines": {
     "flagType": "bool",
     "shorthandFlag": "",

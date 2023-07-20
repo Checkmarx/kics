@@ -90,6 +90,11 @@ func (s *FileSystemSourceProvider) GetBasePaths() []string {
 	return s.paths
 }
 
+// SetBasePaths returns base path of FileSystemSourceProvider
+func (s *FileSystemSourceProvider) SetBasePaths(paths []string) {
+	s.paths = paths
+}
+
 // ignoreDamagedFiles checks whether we should ignore a damaged file from a scan or not.
 func ignoreDamagedFiles(path string) bool {
 	shouldIgnoreFile := false

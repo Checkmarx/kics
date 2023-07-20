@@ -45,8 +45,9 @@ Flags:
       --no-progress                   hides the progress bar
       --output-name string            name used on report creations (default "results")
   -o, --output-path string            directory path to store reports
-  -p, --path strings                  paths or directories to scan
+  -p, --path strings                  paths, directories or reloaded file to scan
                                       example: "./somepath,somefile.txt"
+      --save-reloaded-path string     path where reloaded file will be created (default not created)                     
       --payload-lines                 adds line information inside the payload when printing the payload file
   -d, --payload-path string           path to store internal representation JSON file
       --preview-lines int             number of lines to be display in CLI results (min: 1, max: 30) (default 3)

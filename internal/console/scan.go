@@ -121,6 +121,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		OutputName:                  flags.GetStrFlag(flags.OutputNameFlag),
 		OutputPath:                  flags.GetStrFlag(flags.OutputPathFlag),
 		Path:                        flags.GetMultiStrFlag(flags.PathFlag),
+		SaveReloadedPath:            flags.GetStrFlag(flags.SaveReloadedPath),
 		PayloadPath:                 flags.GetStrFlag(flags.PayloadPathFlag),
 		PreviewLines:                flags.GetIntFlag(flags.PreviewLinesFlag),
 		QueriesPath:                 flags.GetMultiStrFlag(flags.QueriesPath),

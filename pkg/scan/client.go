@@ -43,6 +43,7 @@ type Parameters struct {
 	ScanID                      string
 	BillOfMaterials             bool
 	ExcludeGitIgnore            bool
+	SaveReloadedPath            string
 }
 
 // Client represents a scan client
