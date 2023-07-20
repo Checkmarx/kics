@@ -47,6 +47,14 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 		return nil
 	}
 
+	linesResolved := 0
+	for _, ref := range documents.ResolvedFiles {
+		if ref.Path != filename {
+			linesResolved += len(*ref.LinesContent)
+		}
+	}
+	s.Tracker.TrackFileFoundCountLines(linesResolved)
+
 	fileCommands := s.Parser.CommentsCommands(filename, *content)
 
 	for _, document := range documents.Docs {

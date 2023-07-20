@@ -1,0 +1,7 @@
+# data.yaml
+# This is a malformed YAML file contains a list of items.
+
+- item1
+item2
+- item3
+- item4
