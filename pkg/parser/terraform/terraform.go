@@ -97,6 +97,7 @@ func processResources(doc model.Document, path string) error {
 }
 
 func addExtraInfo(json []model.Document, path string) ([]model.Document, error) {
+	// add panic handling for resource processing
 	for _, documents := range json { // iterate over documents
 		if resources, ok := documents["resource"].(model.Document); ok {
 			err := processResources(resources, path)
