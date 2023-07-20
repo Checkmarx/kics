@@ -1,6 +1,7 @@
 package terraform
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -46,7 +47,13 @@ func NewDefaultWithVarsPath(terraformVarsPath string) *Parser {
 
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
-	// Add Panic recover func with logging file that caused trouble
+	// handle panic during resolve process
+	defer func() {
+		if r := recover(); r != nil {
+			err := fmt.Errorf("panic: %v", r)
+			log.Err(err).Msg("Recovered from panic during resolve of file " + filename)
+		}
+	}()
 	getInputVariables(filepath.Dir(filename), string(fileContent), p.terraformVarsPath)
 	getDataSourcePolicy(filepath.Dir(filename))
 	return fileContent, nil
@@ -97,7 +104,13 @@ func processResources(doc model.Document, path string) error {
 }
 
 func addExtraInfo(json []model.Document, path string) ([]model.Document, error) {
-	// add panic handling for resource processing
+	// handle panic during resource processing
+	defer func() {
+		if r := recover(); r != nil {
+			err := fmt.Errorf("panic: %v", r)
+			log.Err(err).Msg("Recovered from panic during resource processing for file " + path)
+		}
+	}()
 	for _, documents := range json { // iterate over documents
 		if resources, ok := documents["resource"].(model.Document); ok {
 			err := processResources(resources, path)

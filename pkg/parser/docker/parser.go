@@ -35,7 +35,6 @@ type Command struct {
 
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, _ string) ([]byte, error) {
-	// No need for panic handling since resolve does nothing
 	return fileContent, nil
 }
 

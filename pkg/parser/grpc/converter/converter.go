@@ -1,10 +1,12 @@
 package converter
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/emicklei/proto"
+	"github.com/rs/zerolog/log"
 )
 
 // JSONProto is a JSON representation of a proto file
@@ -142,7 +144,13 @@ func newJSONProto() *JSONProto {
 // Convert converts a proto file to a JSONProto struct
 func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) {
 	jproto := newJSONProto()
-	// add error checking for failed conversion
+	// handle panic during conversion process
+	defer func() {
+		if r := recover(); r != nil {
+			err := fmt.Errorf("panic: %v", r)
+			log.Err(err).Msg("Recovered from panic during conversion of JSONProto " + file.PackageName)
+		}
+	}()
 	messageLines := make(map[string]model.LineObject)
 	enumLines := make(map[string]model.LineObject)
 	serviceLines := make(map[string]model.LineObject)

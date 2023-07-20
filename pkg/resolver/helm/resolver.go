@@ -1,6 +1,7 @@
 package helm
 
 import (
+	"fmt"
 	"path/filepath"
 	"regexp"
 	"strconv"
@@ -8,6 +9,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
 	"helm.sh/helm/v3/pkg/chart"
 	"helm.sh/helm/v3/pkg/cli/values"
 	"helm.sh/helm/v3/pkg/release"
@@ -32,7 +34,13 @@ const (
 
 // Resolve will render the passed helm chart and return its content ready for parsing
 func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
-	// Add Panic recover func with logging file that caused trouble
+	// handle panic during resolve process
+	defer func() {
+		if r := recover(); r != nil {
+			err := fmt.Errorf("panic: %v", r)
+			log.Err(err).Msg("Recovered from panic during resolve of file " + filePath)
+		}
+	}()
 	splits, excluded, err := renderHelm(filePath)
 	if err != nil { // return error to be logged
 		return model.ResolvedFiles{}, errors.New("failed to render helm chart")

@@ -51,7 +51,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
 	defer func() {
 		if r := recover(); r != nil {
 			err := fmt.Errorf("panic: %v", r)
-			log.Err(err).Msg("Recovered from panic during file resolve")
+			log.Err(err).Msg("Recovered from panic during resolve of file " + path)
 		}
 	}()
 
