@@ -142,7 +142,7 @@ func newJSONProto() *JSONProto {
 // Convert converts a proto file to a JSONProto struct
 func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) {
 	jproto := newJSONProto()
-
+	// add error checking for failed conversion
 	messageLines := make(map[string]model.LineObject)
 	enumLines := make(map[string]model.LineObject)
 	serviceLines := make(map[string]model.LineObject)
