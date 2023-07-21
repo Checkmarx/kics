@@ -1,0 +1,18 @@
+name: validate-pr-title
+on:
+  pull_request:
+    types: [opened, synchronize, edited, reopened]
+    branches: 
+      - master
+
+jobs:
+  title-check:
+    runs-on: ubuntu-latest
+    env:
+      ERROR_MSG: "The PR title does not match the required format: <fix|build|update|feat|ci>(<tag>): <title>"
+    steps:
+    - name: Print PR Title
+      run: echo "${{ github.event.pull_request.title }}"
+    - name: Check PR Title
+      run: |
+        echo "${{ github.event.pull_request.title }}" | grep -Pq '^(fix|build|update|feat|ci)\([a-z]+\): [a-z]' || (echo "$ERROR_MSG" && exit 1)
