@@ -1,20 +1,11 @@
-resource "google_container_cluster" "primary1" {
-  name               = "marcellus-wallace"
-  location           = "us-central1-a"
-  initial_node_count = 3
-
-  master_auth {
-    username = ""
-    password = "varexample"
-
-    client_certificate_config {
-      issue_client_certificate = true
-      password = var.example
-    }
-  }
-
-  timeouts {
-    create = "30m"
-    update = "40m"
+resource "auth0_connection" "google_oauth2" {
+  name = "Google-OAuth2-Connection"
+  strategy = "google-oauth2"
+  options {
+    client_id = "53221331-2323wasdfa343rwhthfaf33feaf2fa7f.apps.googleusercontent.com"
+    client_secret = "F-oS9Su%}<>[];#"
+    allowed_audiences = [ "example.com", "api.example.com" ]
+    scopes = [ "email", "profile", "gmail", "youtube" ]
+    set_user_root_attributes = "on_each_login"
   }
 }
