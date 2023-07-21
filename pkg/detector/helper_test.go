@@ -207,15 +207,15 @@ func TestGetAdjacents(t *testing.T) { //nolint
 			},
 			want: &[]model.CodeLine{
 				{
-					Position: 3,
+					Position: 2,
 					Line:     "secondline",
 				},
 				{
-					Position: 4,
+					Position: 3,
 					Line:     "thirdline",
 				},
 				{
-					Position: 5,
+					Position: 4,
 					Line:     "forthline",
 				},
 			},

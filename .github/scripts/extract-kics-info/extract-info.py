@@ -235,7 +235,8 @@ def loadQueriesData():
     for path, _, files in os.walk(root):
         assetsFolderPath = os.path.join(exportFolderPath,path)
         for name in files:
-            if "test" not in assetsFolderPath and "." not in path:
+            lastPath = os.path.basename(os.path.normpath(assetsFolderPath))
+            if not (lastPath == "test" or lastPath == ".git"):
                 os.makedirs(assetsFolderPath, exist_ok=True)
                 with open(os.path.join(assetsFolderPath,name), "w") as outfile:
                     file = open(os.path.join(path, name))
