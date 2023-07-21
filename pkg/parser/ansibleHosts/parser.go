@@ -83,9 +83,9 @@ func refactorHosts(hosts map[string]*aini.Host, children map[string]bool) *model
 func refactorVars(vars map[string]string) *model.Document {
 	varMap := emptyDocument()
 	for key, value := range vars {
-		valueInt, ok := strconv.ParseFloat(value, 64)
+		valueInt, err := strconv.ParseFloat(value, 64)
 
-		if ok == nil {
+		if err == nil {
 			(*varMap)[key] = valueInt
 		} else {
 			(*varMap)[key] = value
