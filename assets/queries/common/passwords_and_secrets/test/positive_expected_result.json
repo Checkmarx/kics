@@ -382,5 +382,11 @@
     "severity": "HIGH",
     "line": 20,
     "fileName": "positive46.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive47.tf"
   }
 ]
