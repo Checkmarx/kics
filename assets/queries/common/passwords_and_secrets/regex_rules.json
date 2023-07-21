@@ -6,6 +6,10 @@
       "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-. ]{4,})['\"]?",
       "allowRules": [
         {
+          "description": "Avoiding TF resource access",
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*(([a-zA-z_]+(.))?[a-zA-z_]+\\s*(.)\\s*[a-zA-z_]+(.)[a-zA-z_]+)?(\\s*:\\s*null|null)$"
+        },
+        {
           "description": "Avoiding CF AllowUsersToChangePassword",
           "regex": "['\"]?AllowUsersToChangePassword['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?"
         }
@@ -46,9 +50,9 @@
     {
       "id": "51b5b840-cd0c-4556-98a7-fe5f4def80cf",
       "name": "Asymmetric private key",
-      "regex": "-----BEGIN ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----(\\s*([A-Za-z0-9+,:\\-\\/=\\n\\r]+))+\\s*-----END ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----",
+      "regex": "-----BEGIN ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----\\s*(([A-Za-z0-9+,:\\-\\/=\\n\\r]+\\s*)+)-----END ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----",
       "multiline": {
-        "detectLineGroup": 5
+        "detectLineGroup": 4
       },
       "entropies": [
         {
@@ -61,8 +65,12 @@
     },
     {
       "id": "a007a85e-a2a7-4a81-803a-7a2ca0c65abb",
-      "name": "Putty Private Key",
-      "regex": "PuTTY-User-Key-File-2"
+      "name": "Putty User Key File Content",
+      "regex": "PuTTY-User-Key-File-\\d: ([\\w\\d-:\\n\\s+/=]+Private-MAC: [\\d\\w\"]+)",
+      "multiline": {
+        "detectLineGroup": 1
+      },
+      "specialMask": "all"
     },
     {
       "id": "c4d3b58a-e6d4-450f-9340-04f1e702eaae",
