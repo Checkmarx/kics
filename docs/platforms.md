@@ -9,7 +9,7 @@ KICS supports scanning Ansible files with `.yaml` extension.
 KICS can decrypt Ansible Vault files on the fly. For that, you need to define the environment variable `ANSIBLE_VAULT_PASSWORD_FILE`.
 
 ## Ansible Inventory
-KICS supports scanning Ansible Inventory files with `.ini`, `.json` or `.yaml` extension.
+KICS supports scanning Ansible Inventory files with `.ini`, `.json` or `.yaml` extension. For this, all queries must be done thinking in YAML/JSON files, so that they can work for all extensions
 
 ## Azure Resource Manager
 
