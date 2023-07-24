@@ -21,9 +21,11 @@ jobs:
       run: echo "${{ github.event.pull_request.title }}"
     - name: Install yq
       run: sudo pip install yq
+    - name: Print JSON converted from YAML
+      run: yq e -j .github/pr-title-tags.yaml
     - name: Check PR Title
       run: |
-        keys=$(yq e -j .github/pr-title-tags.yaml | jq -r 'join("|")')
+        keys=$(yq e -j .github/pr-title-tags.yaml | jq -r '.[] | join("|")')
         regex="^($keys)\([a-z]+\): [a-z]"
         echo "Regex: $regex"
         echo "${{ github.event.pull_request.title }}" | grep -Pq "$regex" || (echo "$ERROR_MSG" && exit 1)
