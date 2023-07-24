@@ -396,7 +396,6 @@ func TestDetectCurrentLine(t *testing.T) {
 					IsBreak:         false,
 					FoundAtLeastOne: false,
 					ResolvedFile:    "",
-					ResolvedFiles:   map[string]model.ResolvedFileSplit{},
 				},
 			},
 			want: want{
@@ -405,7 +404,6 @@ func TestDetectCurrentLine(t *testing.T) {
 					IsBreak:         false,
 					FoundAtLeastOne: false,
 					ResolvedFile:    "",
-					ResolvedFiles:   map[string]model.ResolvedFileSplit{},
 				},
 			},
 		},

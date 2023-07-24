@@ -166,6 +166,10 @@ func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) [
 	for idx := range query.Files {
 		file := query.Files[idx]
 		if fileName == file.FileName {
+			referenceString := ""
+			if file.ReferenceLine != -1 {
+				referenceString = fmt.Sprintf(" referencing line %d in '%s' file", file.ReferenceLine, file.ReferenceFileName)
+			}
 			vuln := Vulnerability{
 				Ref: purl + query.QueryID,
 				ID:  query.QueryID,
@@ -183,8 +187,9 @@ func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) [
 				Recommendations: []Recommendation{
 					{
 						Recommendation: fmt.Sprintf(
-							"Problem found in line %d. Expected value: %s. Actual value: %s.",
+							"Problem found in line %d%s. Expected value: %s. Actual value: %s.",
 							file.Line,
+							referenceString,
 							strings.TrimRight(file.KeyExpectedValue, "."),
 							strings.TrimRight(file.KeyActualValue, "."),
 						),

@@ -184,7 +184,7 @@ func printFiles(query *model.QueryResult, printer *Printer) {
 		fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", fileIdx+1), string(query.Severity)),
 			query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
 		if !printer.minimal {
-			fmt.Println()
+			fmt.Print("\n")
 			for _, line := range *query.Files[fileIdx].VulnLines {
 				if len(line.Line) > charsLimitPerLine {
 					line.Line = line.Line[:charsLimitPerLine]
@@ -195,7 +195,24 @@ func printFiles(query *model.QueryResult, printer *Printer) {
 					fmt.Printf("\t\t%03d: %s\n", line.Position, line.Line)
 				}
 			}
-			fmt.Print("\n\n")
+			fmt.Print("\n")
+		}
+		if query.Files[fileIdx].ReferenceLine != -1 {
+			fmt.Printf("\t\t%s %s:%s\n", printer.ContributionMessage.Sprintf("[Referenced File Issue]:"), query.Files[fileIdx].ReferenceFileName, printer.Success.Sprint(query.Files[fileIdx].ReferenceLine))
+			if !printer.minimal {
+				fmt.Print("\n")
+				for _, line := range *query.Files[fileIdx].ReferenceVulnLines {
+					if len(line.Line) > charsLimitPerLine {
+						line.Line = line.Line[:charsLimitPerLine]
+					}
+					if line.Position == query.Files[fileIdx].ReferenceLine {
+						printer.Line.Printf("\t\t\t%03d: %s\n", line.Position, line.Line)
+					} else {
+						fmt.Printf("\t\t\t%03d: %s\n", line.Position, line.Line)
+					}
+				}
+				fmt.Print("\n\n")
+			}
 		}
 	}
 }

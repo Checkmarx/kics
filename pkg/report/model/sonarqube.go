@@ -44,12 +44,12 @@ type SonarQubeReport struct {
 
 // Issue is a single issue for SonarQube Report
 type Issue struct {
-	EngineID           string      `json:"engineId"`
-	RuleID             string      `json:"ruleId"`
-	Severity           string      `json:"severity"`
-	Type               string      `json:"type"`
-	PrimaryLocation    *Location   `json:"primaryLocation"`
-	SecondaryLocations []*Location `json:"secondaryLocations,omitempty"`
+	EngineID           string             `json:"engineId"`
+	RuleID             string             `json:"ruleId"`
+	Severity           string             `json:"severity"`
+	Type               string             `json:"type"`
+	PrimaryLocation    *Location          `json:"primaryLocation"`
+	SecondaryLocations []*LocationWithRef `json:"secondaryLocations,omitempty"`
 }
 
 // Location is the location for the vulnerability in the SonarQube Report
@@ -57,6 +57,15 @@ type Location struct {
 	Message   string `json:"message"`
 	FilePath  string `json:"filePath"`
 	TextRange *Range `json:"textRange"`
+}
+
+// LocationWithRef is the location for the vulnerability in the SonarQube Report with the Ref nfo
+type LocationWithRef struct {
+	Message            string `json:"message"`
+	FilePath           string `json:"filePath"`
+	TextRange          *Range `json:"textRange"`
+	ReferenceFilePath  string `json:"referenceFilePath"`
+	ReferenceTextRange *Range `json:"referenceTextRange"`
 }
 
 // Range is the range for the vulnerability in the SonarQube Report
@@ -96,12 +105,35 @@ func (s *SonarQubeReportBuilder) buildIssue(query *model.QueryResult) {
 }
 
 // buildSecondaryLocation builds the secondary location for the SonarQube Report
-func buildSecondaryLocation(query *model.QueryResult) []*Location {
-	locations := make([]*Location, 0)
+func buildSecondaryLocation(query *model.QueryResult) []*LocationWithRef {
+	locations := make([]*LocationWithRef, 0)
 	for i := range query.Files[1:] {
-		locations = append(locations, buildLocation(i+1, query))
+		locations = append(locations, buildLocationWithRef(i+1, query))
 	}
 	return locations
+}
+
+// buildLocationWithRef builds the location for the SonarQube Report
+func buildLocationWithRef(index int, query *model.QueryResult) *LocationWithRef {
+	message := query.Description
+	if query.CISDescriptionID != "" {
+		message = query.CISDescriptionID
+	}
+	location := &LocationWithRef{
+		Message:  message,
+		FilePath: query.Files[index].FileName,
+		TextRange: &Range{
+			StartLine: query.Files[index].Line,
+		},
+	}
+
+	if query.Files[index].ReferenceLine != -1 {
+		location.ReferenceFilePath = query.Files[index].ReferenceFileName
+		location.ReferenceTextRange = &Range{
+			StartLine: query.Files[index].ReferenceLine,
+		}
+	}
+	return location
 }
 
 // buildLocation builds the location for the SonarQube Report

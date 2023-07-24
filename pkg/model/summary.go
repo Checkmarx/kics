@@ -21,21 +21,25 @@ type SeveritySummary struct {
 
 // VulnerableFile contains information of a vulnerable file and where the vulnerability was found
 type VulnerableFile struct {
-	FileName         string      `json:"file_name"`
-	SimilarityID     string      `json:"similarity_id"`
-	Line             int         `json:"line"`
-	VulnLines        *[]CodeLine `json:"-"`
-	ResourceType     string      `json:"resource_type,omitempty"`
-	ResourceName     string      `json:"resource_name,omitempty"`
-	IssueType        IssueType   `json:"issue_type"`
-	SearchKey        string      `json:"search_key"`
-	SearchLine       int         `json:"search_line"`
-	SearchValue      string      `json:"search_value"`
-	KeyExpectedValue string      `json:"expected_value"`
-	KeyActualValue   string      `json:"actual_value"`
-	Value            *string     `json:"value,omitempty"`
-	Remediation      string      `json:"remediation,omitempty"`
-	RemediationType  string      `json:"remediation_type,omitempty"`
+	FileName           string      `json:"file_name"`
+	ReferenceFileName  string      `json:"reference_file_name"`
+	SimilarityID       string      `json:"similarity_id"`
+	Line               int         `json:"line"`
+	ReferenceLine      int         `json:"reference_line"`
+	VulnLines          *[]CodeLine `json:"-"`
+	ReferenceVulnLines *[]CodeLine `json:"-"`
+	ResourceType       string      `json:"resource_type,omitempty"`
+	ResourceName       string      `json:"resource_name,omitempty"`
+	IssueType          IssueType   `json:"issue_type"`
+	SearchKey          string      `json:"search_key"`
+	ReferenceSearchKey string      `json:"reference_search_key"`
+	SearchLine         int         `json:"search_line"`
+	SearchValue        string      `json:"search_value"`
+	KeyExpectedValue   string      `json:"expected_value"`
+	KeyActualValue     string      `json:"actual_value"`
+	Value              *string     `json:"value,omitempty"`
+	Remediation        string      `json:"remediation,omitempty"`
+	RemediationType    string      `json:"remediation_type,omitempty"`
 }
 
 // QueryResult contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
@@ -207,23 +211,28 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 		}
 
 		resolvedPath := resolvePath(item.FileName, pathExtractionMap)
+		resolvedReferencePath := resolvePath(item.ReferenceFileName, pathExtractionMap)
 
 		qItem := q[item.QueryID]
 		qItem.Files = append(qItem.Files, VulnerableFile{
-			FileName:         resolvedPath,
-			SimilarityID:     item.SimilarityID,
-			Line:             item.Line,
-			VulnLines:        item.VulnLines,
-			ResourceType:     item.ResourceType,
-			ResourceName:     item.ResourceName,
-			IssueType:        item.IssueType,
-			SearchKey:        item.SearchKey,
-			SearchValue:      item.SearchValue,
-			KeyExpectedValue: item.KeyExpectedValue,
-			KeyActualValue:   item.KeyActualValue,
-			Value:            item.Value,
-			Remediation:      item.Remediation,
-			RemediationType:  item.RemediationType,
+			FileName:           resolvedPath,
+			ReferenceFileName:  resolvedReferencePath,
+			SimilarityID:       item.SimilarityID,
+			Line:               item.Line,
+			ReferenceLine:      item.ReferenceLine,
+			VulnLines:          item.VulnLines,
+			ReferenceVulnLines: item.ReferenceVulnLines,
+			ResourceType:       item.ResourceType,
+			ResourceName:       item.ResourceName,
+			IssueType:          item.IssueType,
+			SearchKey:          item.SearchKey,
+			ReferenceSearchKey: item.ReferenceSearchKey,
+			SearchValue:        item.SearchValue,
+			KeyExpectedValue:   item.KeyExpectedValue,
+			KeyActualValue:     item.KeyActualValue,
+			Value:              item.Value,
+			Remediation:        item.Remediation,
+			RemediationType:    item.RemediationType,
 		})
 
 		filePaths[resolvedPath] = item.FileName

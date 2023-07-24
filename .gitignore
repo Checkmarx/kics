@@ -38,6 +38,8 @@ gl-sast-results.json
 sonarqube-results.json
 cyclonedx-results.xml
 junit-results.xml
+asff-results.json
+codeclimate-results.json
 
 # Sarif files
 *.sarif

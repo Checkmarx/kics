@@ -13,13 +13,14 @@ type location struct {
 
 // CodeClimateReport struct contains all the info to create the code climate report
 type CodeClimateReport struct {
-	Type        string   `json:"type"`
-	CheckName   string   `json:"check_name"`
-	Description string   `json:"description"`
-	Categories  []string `json:"categories"`
-	Location    location `json:"location"`
-	Severity    string   `json:"severity"`
-	Fingerprint string   `json:"fingerprint"`
+	Type              string   `json:"type"`
+	CheckName         string   `json:"check_name"`
+	Description       string   `json:"description"`
+	Categories        []string `json:"categories"`
+	Location          location `json:"location"`
+	ReferenceLocation location `json:"reference_location"`
+	Severity          string   `json:"severity"`
+	Fingerprint       string   `json:"fingerprint"`
 }
 
 var severityMap = map[string]string{
@@ -44,6 +45,10 @@ func BuildCodeClimateReport(summary *model.Summary) []CodeClimateReport {
 				Location: location{
 					Path:  summary.Queries[i].Files[j].FileName,
 					Lines: lines{Begin: summary.Queries[i].Files[j].Line},
+				},
+				ReferenceLocation: location{
+					Path:  summary.Queries[i].Files[j].ReferenceFileName,
+					Lines: lines{Begin: summary.Queries[i].Files[j].ReferenceLine},
 				},
 				Severity:    severityMap[string(summary.Queries[i].Severity)],
 				Fingerprint: summary.Queries[i].Files[j].SimilarityID,

@@ -29,7 +29,6 @@ type DefaultDetectLineResponse struct {
 	IsBreak         bool
 	FoundAtLeastOne bool
 	ResolvedFile    string
-	ResolvedFiles   map[string]model.ResolvedFileSplit
 }
 
 // GetBracketValues gets values inside "{{ }}" ignoring any "{{" or "}}" inside

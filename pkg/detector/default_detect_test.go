@@ -58,11 +58,11 @@ func Test_detectLine(t *testing.T) { //nolint
 				VulnLines: &[]model.CodeLine{
 					{
 						Position: 2,
-						Line: `	bucket = "my-tf-test-bucket"`,
+						Line:     `	bucket = "my-tf-test-bucket"`,
 					},
 					{
 						Position: 3,
-						Line: `	acl    = "authenticated-read"`,
+						Line:     `	acl    = "authenticated-read"`,
 					},
 					{
 						Position: 4,
@@ -92,15 +92,15 @@ func Test_detectLine(t *testing.T) { //nolint
 				VulnLines: &[]model.CodeLine{
 					{
 						Position: 6,
-						Line: `	  Name        = "My bucket"`,
+						Line:     `	  Name        = "My bucket"`,
 					},
 					{
 						Position: 7,
-						Line: `	  Environment = "Dev.123"`,
+						Line:     `	  Environment = "Dev.123"`,
 					},
 					{
 						Position: 8,
-						Line: `	  Environment = "test"`,
+						Line:     `	  Environment = "test"`,
 					},
 				},
 				LineWithVulnerability: "",
@@ -145,41 +145,3 @@ func Test_detectLine(t *testing.T) { //nolint
 var content = []byte(
 	`content1
 content2`)
-
-func Test_defaultDetectLine_prepareResolvedFiles(t *testing.T) {
-	type args struct {
-		resFiles map[string]model.ResolvedFile
-	}
-	tests := []struct {
-		name string
-		args args
-		want map[string]model.ResolvedFileSplit
-	}{
-		{
-			name: "prepare_resolved_files",
-			args: args{
-				resFiles: map[string]model.ResolvedFile{
-					"file1": {
-						Content:      content,
-						Path:         "testing/file1",
-						LinesContent: utils.SplitLines(string(content)),
-					},
-				},
-			},
-			want: map[string]model.ResolvedFileSplit{
-				"file1": {
-					Path:  "testing/file1",
-					Lines: []string{"content1", "content2"},
-				},
-			},
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			d := defaultDetectLine{}
-			if got := d.prepareResolvedFiles(tt.args.resFiles); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("prepareResolvedFiles() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}

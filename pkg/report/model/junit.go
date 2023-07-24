@@ -71,14 +71,22 @@ func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) {
 			Failures:  []junitFailure{},
 		}
 
+		referenceString := ""
+		if query.Files[idx].ReferenceLine != -1 {
+			referenceString = fmt.Sprintf(" referencing line %d in '%s' file",
+				query.Files[idx].ReferenceLine,
+				query.Files[idx].ReferenceFileName)
+		}
+
 		failedTest := junitFailure{
 			Type: queryDescription,
 			Message: fmt.Sprintf(
-				"[Severity: %s, Query description: %s] Problem found on '%s' file in line %d. Expected value: %s. Actual value: %s.",
+				"[Severity: %s, Query description: %s] Problem found on '%s' file in line %d%s. Expected value: %s. Actual value: %s.",
 				query.Severity,
 				queryDescription,
 				query.Files[idx].FileName,
 				query.Files[idx].Line,
+				referenceString,
 				strings.TrimRight(query.Files[idx].KeyExpectedValue, "."),
 				strings.TrimRight(query.Files[idx].KeyActualValue, "."),
 			),

@@ -17,10 +17,13 @@ type CSVReport struct {
 	CISDescriptionTitle         string `csv:"cis_description_title"`
 	CISDescriptionTextFormatted string `csv:"cis_description_text"`
 	FileName                    string `csv:"file_name"`
+	ReferenceFileName           string `csv:"reference_file_name"`
 	SimilarityID                string `csv:"similarity_id"`
 	Line                        int    `csv:"line"`
+	ReferenceLine               int    `csv:"reference_line"`
 	IssueType                   string `csv:"issue_type"`
 	SearchKey                   string `csv:"search_key"`
+	ReferenceSearchKey          string `csv:"reference_search_key"`
 	SearchLine                  int    `csv:"search_line"`
 	SearchValue                 string `csv:"search_value"`
 	ExpectedValue               string `csv:"expected_value"`
@@ -47,10 +50,13 @@ func BuildCSVReport(summary *model.Summary) []CSVReport {
 				CISDescriptionTitle:         summary.Queries[i].CISDescriptionTitle,
 				CISDescriptionTextFormatted: summary.Queries[i].CISDescriptionTextFormatted,
 				FileName:                    summary.Queries[i].Files[j].FileName,
+				ReferenceFileName:           summary.Queries[i].Files[j].ReferenceFileName,
 				SimilarityID:                summary.Queries[i].Files[j].SimilarityID,
 				Line:                        summary.Queries[i].Files[j].Line,
+				ReferenceLine:               summary.Queries[i].Files[j].ReferenceLine,
 				IssueType:                   string(summary.Queries[i].Files[j].IssueType),
 				SearchKey:                   summary.Queries[i].Files[j].SearchKey,
+				ReferenceSearchKey:          summary.Queries[i].Files[j].ReferenceSearchKey,
 				SearchLine:                  summary.Queries[i].Files[j].SearchLine,
 				SearchValue:                 summary.Queries[i].Files[j].SearchValue,
 				ExpectedValue:               summary.Queries[i].Files[j].KeyExpectedValue,

@@ -109,6 +109,11 @@ func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.Vulner
 		severity = "INFORMATIONAL"
 	}
 
+	referenceString := ""
+	if file.ReferenceLine != -1 {
+		referenceString = fmt.Sprintf(" referencing line %d in '%s' file", file.ReferenceLine, file.ReferenceFileName)
+	}
+
 	finding := AwsSecurityFinding{
 		AwsAccountID: *aws.String(awsAccountID),
 		CreatedAt:    *aws.String(timeFormatted),
@@ -134,9 +139,10 @@ func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.Vulner
 		Remediation: Remediation{
 			Recommendation: AsffRecommendation{
 				Text: *aws.String(fmt.Sprintf(
-					"Problem found on '%s' file in line %d. Expected value: %s. Actual value: %s.",
+					"Problem found on '%s' file in line %d%s. Expected value: %s. Actual value: %s.",
 					file.FileName,
 					file.Line,
+					referenceString,
 					strings.TrimRight(file.KeyExpectedValue, "."),
 					strings.TrimRight(file.KeyActualValue, "."),
 				)),
