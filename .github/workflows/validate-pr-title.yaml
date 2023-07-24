@@ -19,8 +19,8 @@ jobs:
   labels-check:
     runs-on: ubuntu-latest
     steps:
-    - name: Check user email
-      run: 
+    - name: Check user username
+      run: |
         username=${{ github.event.pull_request.user.login }}
         username_list=("freitasmillena")
         if printf '%s\n' "${username_list[@]}" | grep -q -P "^$username$"; then
