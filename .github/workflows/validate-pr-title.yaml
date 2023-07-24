@@ -15,6 +15,8 @@ jobs:
     env:
       ERROR_MSG: "The PR title does not match the required format: <fix|build|update|feat|ci>(<tag>): <title>"
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -25,7 +27,7 @@ jobs:
     - name: Print PR Title
       run: echo "${{ github.event.pull_request.title }}"
     - name: Print current directory
-      run: ls -al
+      run: ls 
     - name: Check PR Title
       run: |
         tags=$(cat ../pr-title-tags.yaml | shyaml get-values-0)
