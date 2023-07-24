@@ -19,12 +19,16 @@ jobs:
       uses: actions/checkout@v3
     - name: Print PR Title
       run: echo "${{ github.event.pull_request.title }}"
+    - name: Install yq
+      run: |
+        sudo apt-get install -y python3-pip
+        pip3 install yq
     - name: Check PR Title
       run: |
-        sudo apt-get install python3-pip -y
-        sudo pip3 install shyaml
-        regex=$(shyaml get-value title-format < .github/pr-title-tags.yaml)
+        keys=$(yq eval '.[]' .github/pr-title-tags.yaml | tr '\n' '|')
+        regex="^($keys)\([a-z]+\): [a-z]"
         echo "${{ github.event.pull_request.title }}" | grep -Pq "$regex" || (echo "$ERROR_MSG" && exit 1)
+
   labels-check:
     runs-on: ubuntu-latest
     steps:
