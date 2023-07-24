@@ -198,7 +198,10 @@ func printFiles(query *model.QueryResult, printer *Printer) {
 			fmt.Print("\n")
 		}
 		if query.Files[fileIdx].ReferenceLine != -1 {
-			fmt.Printf("\t\t%s %s:%s\n", printer.ContributionMessage.Sprintf("[Referenced File Issue]:"), query.Files[fileIdx].ReferenceFileName, printer.Success.Sprint(query.Files[fileIdx].ReferenceLine))
+			fmt.Printf("\t\t%s %s:%s\n",
+				printer.ContributionMessage.Sprintf("[Referenced File Issue]:"),
+				query.Files[fileIdx].ReferenceFileName,
+				printer.Success.Sprint(query.Files[fileIdx].ReferenceLine))
 			if !printer.minimal {
 				fmt.Print("\n")
 				for _, line := range *query.Files[fileIdx].ReferenceVulnLines {
