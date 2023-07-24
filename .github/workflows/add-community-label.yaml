@@ -1,0 +1,31 @@
+name: add-comunity-label
+on:
+  pull_request_target:
+    types: [opened, synchronize, edited, reopened]
+    branches: 
+      - master
+
+jobs:
+  user-check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Check user email
+      run: |
+        email=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/users/${{ github.event.pull_request.user.login }}" | jq -r '.email')
+        echo "Email: $email"
+        if [[ "aaa" == *"$email"* ]]; then
+          echo "Contributor's email is in the list"
+          is_member="true"
+        else
+          echo "Contributor's email is not in the list"
+          is_member="false"
+        fi
+        echo "IS_MEMBER=$is_member" >> $GITHUB_ENV
+
+    - name: Add community label if user does not belong to Checkmarx Organization
+      run: |
+        if [[ "$IS_MEMBER" == "false" ]]; then
+          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["community"]}'
+        fi
