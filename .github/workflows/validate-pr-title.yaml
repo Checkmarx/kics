@@ -18,16 +18,17 @@ jobs:
         echo "${{ github.event.pull_request.title }}" | grep -Pq '^(fix|build|update|feat|ci)\([a-z]+\): [a-z]' || (echo "$ERROR_MSG" && exit 1)
     - name: Check user email
       run: |
-        email=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/users/${{ github.event.pull_request.user.login }}" | jq -r '.email')
-        echo "Email: $email"
-        if [[ "millena.santos@checkmarx.com" == *"$email"* ]]; then
-          echo "Contributor's email is in the list"
+        username=${{ github.event.pull_request.user.login }}
+        username_list=("a")
+        if printf '%s\n' "${username_list[@]}" | grep -q -P "^$username$"; then
+          echo "Contributor belongs to Checkmarx organization"
           is_member="true"
         else
-          echo "Contributor's email is not in the list"
+          echo "Contributor does not belong to Checkmarx organization"
           is_member="false"
         fi
         echo "IS_MEMBER=$is_member" >> $GITHUB_ENV
+
     - name: Add community label if user does not belong to Checkmarx Organization
       run: |
         if [[ "$IS_MEMBER" == "false" ]]; then
