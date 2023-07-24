@@ -19,7 +19,7 @@ jobs:
     - name: Check user email
       run: |
         username=${{ github.event.pull_request.user.login }}
-        username_list=("a")
+        username_list=("freitasmillena")
         if printf '%s\n' "${username_list[@]}" | grep -q -P "^$username$"; then
           echo "Contributor belongs to Checkmarx organization"
           is_member="true"
