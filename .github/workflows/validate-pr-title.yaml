@@ -23,9 +23,11 @@ jobs:
       run: |
         sudo apt-get install -y python3-pip
         pip3 install yq
+    - name: Install jq
+      run: sudo apt-get install jq
     - name: Check PR Title
       run: |
-        keys=$(yq eval '.[]' .github/pr-title-tags.yaml | tr '\n' '|')
+        keys=$(yq r .github/pr-title-tags.yaml -j | jq -r 'join("|")')
         regex="^($keys)\([a-z]+\): [a-z]"
         echo "${{ github.event.pull_request.title }}" | grep -Pq "$regex" || (echo "$ERROR_MSG" && exit 1)
 
