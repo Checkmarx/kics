@@ -83,6 +83,7 @@ jobs:
       run: |
         title="${{ github.event.pull_request.title }}"
         declare -A keywords=($(python3 .github/scripts/pr-info/get_pr_keywords.py))
+        declare -p keywords
         for keyword in "${!keywords[@]}"; do
           if echo "$title" | grep -iq "\\b$keyword\\b"; then
             label=${keywords[$keyword]}
