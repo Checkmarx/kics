@@ -62,3 +62,14 @@ jobs:
           echo "Adding 'dependencies' label..."
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["dependencies"]}'
         fi
+    - name: Check title for keywords of platforms and cloud providers to add labels
+    run: |
+      title="${{ github.event.pull_request.title }}"
+      declare -A keywords=(["docker"]="docker" ["dkr"]="docker" ["dockerfile"]="dockerfile" ["ansible"]="ansible" ["aws"]="aws" ["gRPC"]="gRPC" ["gcp"]="gcp" ["cloudformation"]="cloudformation" ["cfn"]="cloudformation" ["azure"]="azure" ["arm"]="arm" ["alicloud"]="alicloud" ["tf"]="terraform" ["terraform"]="terraform" ["openapi"]="openapi" ["kubernetes"]="kubernetes" ["k8s"]="kubernetes")
+      for keyword in "${!keywords[@]}"; do
+        if echo "$title" | grep -iq "$keyword"; then
+          label=${keywords[$keyword]}
+          echo "Adding '$label' label..."
+          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d "{\"labels\": [\"$label\"]}"
+        fi
+      done
