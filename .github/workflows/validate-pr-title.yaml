@@ -23,7 +23,7 @@ jobs:
       run: sudo pip install yq
     - name: Check PR Title
       run: |
-        keys=$(yq e '.[]' .github/pr-title-tags.yaml | tr '\n' '|' | sed 's/.$//')
+        keys=$(yq e -j .github/title-format.yaml | jq -r 'join("|")')
         regex="^($keys)\([a-z]+\): [a-z]"
         echo "Regex: $regex"
         echo "${{ github.event.pull_request.title }}" | grep -Pq "$regex" || (echo "$ERROR_MSG" && exit 1)
