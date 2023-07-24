@@ -16,8 +16,11 @@ jobs:
     - name: Check PR Title
       run: |
         echo "${{ github.event.pull_request.title }}" | grep -Pq '^(fix|build|update|feat|ci)\([a-z]+\): [a-z]' || (echo "$ERROR_MSG" && exit 1)
+  labels-check:
+    runs-on: ubuntu-latest
+    steps:
     - name: Check user email
-      run: |
+      run: 
         username=${{ github.event.pull_request.user.login }}
         username_list=("freitasmillena")
         if printf '%s\n' "${username_list[@]}" | grep -q -P "^$username$"; then
@@ -28,9 +31,27 @@ jobs:
           is_member="false"
         fi
         echo "IS_MEMBER=$is_member" >> $GITHUB_ENV
-
     - name: Add community label if user does not belong to Checkmarx Organization
       run: |
         if [[ "$IS_MEMBER" == "false" ]]; then
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["community"]}'
+        fi
+    - name: Add feature or feature request label
+      run: |
+        title="${{ github.event.pull_request.title }}"
+        if [[ "$title" == feat* ]]; then
+          if [[ "$IS_MEMBER" == "true" ]]; then
+            echo "Adding 'feature' label..."
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["feature"]}'
+          else
+            echo "Adding 'feature request' label..."
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["feature request"]}'
+          fi
+        fi
+    - name: Add bug label
+      run: |
+        title="${{ github.event.pull_request.title }}"
+        if [[ "$title" == bug* ]]; then
+          echo "Adding 'bug' label..."
+          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["bug"]}'
         fi
