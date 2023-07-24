@@ -30,7 +30,7 @@ jobs:
       run: ls 
     - name: Check PR Title
       run: |
-        tags=$(cat ../pr-title-tags.yaml | shyaml get-values-0)
+        tags=$(cat .github/pr-title-tags.yaml | shyaml get-values-0)
         regex="^($tags)\([a-z]+\): [a-z]"
         echo "${{ github.event.pull_request.title }}" | grep -Pq "$regex" || (echo "$ERROR_MSG" && exit 1)
   labels-check:
