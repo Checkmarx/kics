@@ -17,21 +17,13 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    - name: Install shyaml
-      run: |
-        pip install shyaml
     - name: Print PR Title
       run: echo "${{ github.event.pull_request.title }}"
-    - name: Print current directory
-      run: cd .github && ls
     - name: Check PR Title
       run: |
-        tags=$(cat .github/pr-title-tags.yaml | shyaml get-values-0)
-        regex="^($tags)\([a-z]+\): [a-z]"
+        sudo apt-get install python3-pip -y
+        sudo pip3 install shyaml
+        regex=$(shyaml get-value title-format < .github/pr-title-tags.yaml)
         echo "${{ github.event.pull_request.title }}" | grep -Pq "$regex" || (echo "$ERROR_MSG" && exit 1)
   labels-check:
     runs-on: ubuntu-latest
