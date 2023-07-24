@@ -24,6 +24,8 @@ jobs:
         pip install shyaml
     - name: Print PR Title
       run: echo "${{ github.event.pull_request.title }}"
+    - name: Print current directory
+      run: pwd
     - name: Check PR Title
       run: |
         tags=$(cat ../pr-title-tags.yaml | shyaml get-values-0)
