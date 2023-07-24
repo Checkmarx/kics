@@ -7,8 +7,7 @@ def load_keywords(file):
         try:
             data = yaml.safe_load(stream)
             formatted = ' '.join([f'["{k}"]="{v}"' for k, v in data.items()])
-            formatted = formatted.replace('[', '').replace(']', '')
-            print(formatted)
+            print(f"({formatted})")
         except yaml.YAMLError as exc:
             print(exc)
 
