@@ -197,7 +197,7 @@ func printFiles(query *model.QueryResult, printer *Printer) {
 			}
 			fmt.Print("\n")
 		}
-		if query.Files[fileIdx].ReferenceLine != -1 {
+		if query.Files[fileIdx].ReferenceLine != -1 && query.Files[fileIdx].ReferenceLine != 0 {
 			fmt.Printf("\t\t%s %s:%s\n",
 				printer.ContributionMessage.Sprintf("[Referenced File Issue]:"),
 				query.Files[fileIdx].ReferenceFileName,

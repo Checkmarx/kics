@@ -304,7 +304,7 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) {
 					},
 				},
 			}
-			if issue.Files[idx].ReferenceLine != -1 {
+			if issue.Files[idx].ReferenceLine != 0 && issue.Files[idx].ReferenceLine != -1 {
 				result.ResultLocations = append(result.ResultLocations,
 					sarifLocation{
 						PhysicalLocation: sarifPhysicalLocation{

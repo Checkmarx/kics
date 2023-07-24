@@ -72,7 +72,7 @@ func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) {
 		}
 
 		referenceString := ""
-		if query.Files[idx].ReferenceLine != -1 {
+		if query.Files[idx].ReferenceLine != 0 && query.Files[idx].ReferenceLine != -1 {
 			referenceString = fmt.Sprintf(" referencing line %d in '%s' file",
 				query.Files[idx].ReferenceLine,
 				query.Files[idx].ReferenceFileName)

@@ -127,7 +127,7 @@ func buildLocationWithRef(index int, query *model.QueryResult) *LocationWithRef 
 		},
 	}
 
-	if query.Files[index].ReferenceLine != -1 {
+	if query.Files[index].ReferenceLine != 0 && query.Files[index].ReferenceLine != -1 {
 		location.ReferenceFilePath = query.Files[index].ReferenceFileName
 		location.ReferenceTextRange = &Range{
 			StartLine: query.Files[index].ReferenceLine,

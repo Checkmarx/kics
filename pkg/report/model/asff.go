@@ -110,7 +110,7 @@ func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.Vulner
 	}
 
 	referenceString := ""
-	if file.ReferenceLine != -1 {
+	if file.ReferenceLine != 0 && file.ReferenceLine != -1 {
 		referenceString = fmt.Sprintf(" referencing line %d in '%s' file", file.ReferenceLine, file.ReferenceFileName)
 	}
 

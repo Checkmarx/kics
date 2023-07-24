@@ -167,7 +167,7 @@ func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) [
 		file := query.Files[idx]
 		if fileName == file.FileName {
 			referenceString := ""
-			if file.ReferenceLine != -1 {
+			if file.ReferenceLine != 0 && file.ReferenceLine != -1 {
 				referenceString = fmt.Sprintf(" referencing line %d in '%s' file", file.ReferenceLine, file.ReferenceFileName)
 			}
 			vuln := Vulnerability{
