@@ -27,7 +27,7 @@ jobs:
     - name: Print PR Title
       run: echo "${{ github.event.pull_request.title }}"
     - name: Print current directory
-      run: cd .github && ls -la 
+      run: cd .github && ls
     - name: Check PR Title
       run: |
         tags=$(cat .github/pr-title-tags.yaml | shyaml get-values-0)
