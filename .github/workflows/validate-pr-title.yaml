@@ -20,7 +20,7 @@ jobs:
       run: |
         email=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/users/${{ github.event.pull_request.user.login }}" | jq -r '.email')
         echo "Email: $email"
-        if [[ "aaa" == *"$email"* ]]; then
+        if [[ "millena.santos@checkmarx.com" == *"$email"* ]]; then
           echo "Contributor's email is in the list"
           is_member="true"
         else
