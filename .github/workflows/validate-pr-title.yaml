@@ -1,6 +1,6 @@
 name: validate-pr-title
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, edited, reopened]
     branches: 
       - master
