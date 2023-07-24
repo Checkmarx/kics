@@ -20,17 +20,13 @@ jobs:
     - name: Print PR Title
       run: echo "${{ github.event.pull_request.title }}"
     - name: Install yq
-      run: |
-        sudo apt-get install -y python3-pip
-        pip3 install yq
-    - name: Install jq
-      run: sudo apt-get install jq
+      run: sudo pip install yq
     - name: Check PR Title
       run: |
-        keys=$(yq r .github/pr-title-tags.yaml -j | jq -r 'join("|")')
+        keys=$(yq r .github/pr-title-tags.yaml | tr '\n' '|' | sed 's/.$//')
         regex="^($keys)\([a-z]+\): [a-z]"
+        echo "Regex: $regex"
         echo "${{ github.event.pull_request.title }}" | grep -Pq "$regex" || (echo "$ERROR_MSG" && exit 1)
-
   labels-check:
     runs-on: ubuntu-latest
     steps:
