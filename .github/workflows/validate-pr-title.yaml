@@ -79,10 +79,14 @@ jobs:
         python-version: "3.x"
     - name: Install dependencies
       run: python3 -m pip install --upgrade pip pyyaml
+    - name: Load keywords from YAML
+      id: load-keywords
+      run: |
+        echo "::set-output name=keywords::$(python3 .github/scripts/pr-info/get_pr_keywords.py)"
     - name: Check title for keywords of platforms and cloud providers to add labels
       run: |
         title="${{ github.event.pull_request.title }}"
-        declare -A keywords="$(python3 .github/scripts/pr-info/get_pr_keywords.py)"
+        eval "${{ steps.load-keywords.outputs.keywords }}"
         declare -p keywords
         for keyword in "${!keywords[@]}"; do
           if echo "$title" | grep -iq "\\b$keyword\\b"; then
@@ -91,4 +95,3 @@ jobs:
             curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d "{\"labels\": [\"$label\"]}"
           fi
         done
-
