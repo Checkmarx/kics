@@ -19,10 +19,18 @@ jobs:
       uses: actions/checkout@v3
     - name: Print PR Title
       run: echo "${{ github.event.pull_request.title }}"
-    - name: Install yq
-      run: sudo pip install yq
-    - name: Print JSON converted from YAML
-      run: yq e -j ".github/pr-title-tags.yaml"
+    - name: Set up Python 
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
+    - name: Install dependencies
+      run: python3 -m pip install --upgrade pip pyyaml
+    - name: Check PR Title
+      run: |
+        regex=$(python3 .github/scripts/pr-info/get_title_tags.py)
+        echo "Title regex: $regex"
+        title="${{ github.event.pull_request.title }}"
+        echo $title | grep -Pq "$regex" || (echo "$ERROR_MSG" && exit 1)
   labels-check:
     runs-on: ubuntu-latest
     steps:
