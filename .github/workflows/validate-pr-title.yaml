@@ -34,6 +34,8 @@ jobs:
   labels-check:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
     - name: Get username
       run: echo "USERNAME=${{ github.event.pull_request.user.login }}" >> $GITHUB_ENV
     - name: Check user username
