@@ -213,7 +213,7 @@ func createResultsTable(m pdf.Maroto, query *model.QueryResult) {
 		}
 
 		referenceString := ""
-		if query.Files[idx].ReferenceLine != 0 {
+		if query.Files[idx].ReferenceLine != 0 && query.Files[idx].ReferenceLine != -1 {
 			referenceString = fmt.Sprintf(" referencing issue on %s:%d", query.Files[idx].ReferenceFileName, query.Files[idx].ReferenceLine)
 		}
 		fileLine := fmt.Sprintf("%s:%s%s", query.Files[idx].FileName, fmt.Sprint(query.Files[idx].Line), referenceString)

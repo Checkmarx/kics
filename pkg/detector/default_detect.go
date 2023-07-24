@@ -32,7 +32,10 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 		sanitizedSubstring = strings.Replace(sanitizedSubstring, str[0], `{{`+strconv.Itoa(idx)+`}}`, -1)
 	}
 
-	lines := *file.LinesOriginalData
+	lines := []string{}
+	if file.LinesOriginalData != nil {
+		lines = *file.LinesOriginalData
+	}
 	splitSanitized := strings.Split(sanitizedSubstring, ".")
 	for index, split := range splitSanitized {
 		if strings.Contains(split, "$ref") {
