@@ -15,11 +15,20 @@ jobs:
     env:
       ERROR_MSG: "The PR title does not match the required format: <fix|build|update|feat|ci>(<tag>): <title>"
     steps:
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install shyaml
+      run: |
+        pip install shyaml
     - name: Print PR Title
       run: echo "${{ github.event.pull_request.title }}"
     - name: Check PR Title
       run: |
-        echo "${{ github.event.pull_request.title }}" | grep -Pq '^(fix|build|update|feat|ci)\([a-z]+\): [a-z]' || (echo "$ERROR_MSG" && exit 1)
+        tags=$(cat ../pr-title-tags.yaml | shyaml get-values-0)
+        regex="^($tags)\([a-z]+\): [a-z]"
+        echo "${{ github.event.pull_request.title }}" | grep -Pq "$regex" || (echo "$ERROR_MSG" && exit 1)
   labels-check:
     runs-on: ubuntu-latest
     steps:
