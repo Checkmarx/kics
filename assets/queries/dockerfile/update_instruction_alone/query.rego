@@ -1,70 +1,157 @@
 package Cx
 
 CxPolicy[result] {
+	# Check if there is a command that runs install before update
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
 	count(resource.Value) == 1
 	command := resource.Value[0]
-
-	isValidUpdate(command)
-	not phpComposerPhar(command)
-	not updateFollowedByInstall(command)
-
+    commandList := split(command, " ")
+    commandRefactor := [x | x := commandList[_]; x != ""]
+    packages := [l | commandRefactor[0] == pkg[l]]
+    count(packages) > 0
+    packageManager := pkg[packages[0]]
+    
+    update := getDetail(commandRefactor, pkg_updater[packageManager])
+    count(update) > 0
+	install := getDetail(commandRefactor, pkg_installer[packageManager])
+    count(install) > 0
+	not checkFollowedBy(update, install)
+    
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Instruction 'RUN <package-manager> update' should be followed by 'RUN <package-manager> install' ",
-		"keyActualValue": "Instruction 'RUN <package-manager> update' isn't followed by 'RUN <package-manager> install in the same 'RUN' statement",
+		"keyExpectedValue": sprintf("Instruction 'RUN %s %s' should be followed by 'RUN %s %s' ", [packageManager, pkg_installer[packageManager], packageManager, pkg_updater[packageManager]]),
+		"keyActualValue": sprintf("Instruction 'RUN %s %s' isn't followed by 'RUN %s %s in the same 'RUN' statement", [packageManager, pkg_installer[packageManager], packageManager, pkg_updater[packageManager]]),
 	}
 }
 
-isValidUpdate(command) {
-	contains(command, " update ")
+CxPolicy[result] {
+	#Check if there is Update Command without Install Command
+	resource := input.document[i].command[name][n]
+	commandRefactor := getRunCommand(resource)
+    packages := [l | commandRefactor[0] == pkg[l]]
+    count(packages) > 0
+    packageManager := pkg[packages[0]]
+
+	update := getDetail(commandRefactor, pkg_updater[packageManager])
+    count(update) > 0
+    install := getDetail(commandRefactor, pkg_installer[packageManager])
+    count(install) == 0
+	
+    #Check if any of the next commands is RUN install Command and there is not Update Command
+    nextResources := array.slice(input.document[i].command[name], n+1, count(input.document[i].command[name]))
+    nextResource := nextResources[_]
+	nextCommandRefactor := getRunCommand(nextResource)
+    nextPackages := [l | nextCommandRefactor[0] == pkg[l]]
+    count(nextPackages) > 0
+    nextPackageManager := pkg[nextPackages[0]]
+	nextPackageManager == packageManager
+    
+	nextInstall = [u | nextCommandRefactor[u] == pkg_installer[nextPackageManager]]
+    count(nextInstall) > 0
+	nextUpdate = getDetail(nextCommandRefactor, pkg_updater[nextPackageManager])
+    count(nextUpdate) == 0
+    
+    result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, nextResource.Value[0]]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Instruction 'RUN %s %s' should be combined with 'RUN %s %s' ", [nextPackageManager, pkg_installer[nextPackageManager], nextPackageManager, pkg_updater[nextPackageManager]]),
+		"keyActualValue": sprintf("Instruction 'RUN %s %s' isn't combined with 'RUN %s %s in the same 'RUN' statement", [nextPackageManager, pkg_installer[nextPackageManager], nextPackageManager, pkg_updater[nextPackageManager]]),
+	}
 }
 
-isValidUpdate(command) {
-	contains(command, " --update ")
+CxPolicy[result] {
+	#Check if there is not any update command and there is some install command
+	not UpdateCommand(input.document[i].command[name])
+    
+    nextResource := input.document[i].command[name][_]
+	nextCommandRefactor := getRunCommand(nextResource)
+    nextPackages := [l | nextCommandRefactor[0] == pkg[l]]
+    count(nextPackages) > 0
+    nextPackageManager := pkg[nextPackages[0]]
+	
+    install := getDetail(nextCommandRefactor, pkg_installer[nextPackageManager])
+    count(install) > 0
+	
+	not checkException(nextPackageManager, nextCommandRefactor)
+	
+    result := {
+		"documentId": input.document[i].id,
+		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, nextResource.Value[0]]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Instruction 'RUN %s %s' should be combined with 'RUN %s %s' ", [nextPackageManager, pkg_installer[nextPackageManager], nextPackageManager, pkg_updater[nextPackageManager]]),
+		"keyActualValue": sprintf("Instruction 'RUN %s %s' isn't combined with 'RUN %s %s in the same 'RUN' statement", [nextPackageManager, pkg_installer[nextPackageManager], nextPackageManager, pkg_updater[nextPackageManager]]),
+	}
 }
 
-isValidUpdate(command) {
-	array_split := split(command, " ")
-
-	len = count(array_split)
-
-	update := {"update", "--update"}
-
-	array_split[len - 1] == update[j]
+UpdateCommand(resources) {
+	resource := resources[_]
+	commandRefactor := getRunCommand(resource)
+    packages := [l | commandRefactor[0] == pkg[l]]
+    count(packages) > 0
+    packageManager := pkg[packages[0]]
+    update := getDetail(commandRefactor, pkg_updater[packageManager])
+    count(update) > 0
 }
 
-phpComposerPhar(command) {
-	php := {x | x := indexof_n(command, "php"); count(x) != 0}
-	count(php) > 0
-	composer := {x | x := indexof_n(command, "composer"); count(x) != 0}
-	count(composer) > 0
-	checkFollowedBy(php[_],composer)
-	update := {x | x := indexof_n(command, "update"); count(x) != 0}
-	count(update) > 0
-	checkFollowedBy(composer[_],update)
-}
-
-commandList := [
-	"install",
-	"source-install",
-	"reinstall",
-	"groupinstall",
-	"localinstall",
-	"add",
+pkg := [
+    "apt-get",
+    "apk",
+    "yum",
+    "dnf",
+    "zypper",
+    "pacman",
+    "apt",
+    "pkg_add"
 ]
 
-updateFollowedByInstall(command) {
-	update := {x | x := indexof_n(command, "update"); count(x) != 0}
-	count(update) > 0
-	install := {x | x := indexof_n(command, commandList[_]); count(x) != 0}
-	count(install) > 0
-	checkFollowedBy(update[_], install)
+pkg_updater := {
+    "apt-get": "update",
+    "apk": "update",
+    "yum": "update",
+    "dnf": "update",
+    "zypper": "refresh",
+    "pacman": "-Syu",
+    "apt": "update",
+}
+
+pkg_installer := {
+    "apt-get": "install",
+    "apk": "add",
+    "yum": "install",
+    "dnf": "install",
+    "zypper": "install",
+    "pacman": "-S",
+    "apt": "install",
+}
+
+exceptions := {
+	"apk": "--update"
+}
+
+
+getRunCommand(resource) = commandRefactor {
+	resource.Cmd == "run"
+	count(resource.Value) == 1
+	command := resource.Value[0]
+    commandList := split(command, " ")
+    commandRefactor := [x | x := commandList[_]; x != ""]
+}
+
+
+getDetail(commandRefactor, value) = list{
+	list := [u | commandRefactor[u] == value]
 }
 
 checkFollowedBy(first, after) {
-	first[_] >= after[_][_]
+	first[_] < after[_]
+}
+
+checkException(nextPackageManager, nextCommandRefactor){
+	exp := exceptions[nextPackageManager]
+	l := getDetail(nextCommandRefactor, exp)
+	count(l) > 0	
 }
