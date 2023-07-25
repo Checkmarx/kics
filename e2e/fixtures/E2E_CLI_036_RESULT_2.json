@@ -44,7 +44,7 @@
 					"resource_name": "EcsSecurityGroupALBports",
 					"issue_type": "IncorrectValue",
 					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
 					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
@@ -57,7 +57,7 @@
 					"resource_name": "EcsSecurityGroupHTTPinbound02",
 					"issue_type": "IncorrectValue",
 					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort should equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
 					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
@@ -70,7 +70,7 @@
 					"resource_name": "EcsSecurityGroupSSHinbound",
 					"issue_type": "IncorrectValue",
 					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
