@@ -66,5 +66,5 @@ updateFollowedByInstall(command) {
 }
 
 checkFollowedBy(first, after) {
-	first[_] < after[_][_]
+	first[_] >= after[_][_]
 }
