@@ -222,7 +222,7 @@ func (r *Resolver) resolveYamlPath(
 	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool) (yaml.Node, bool) {
 	value := v.Value
-	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) {
+	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
 		return *v, false
 	}
 	var splitPath []string
@@ -368,7 +368,7 @@ func (r *Resolver) resolvePath(
 	resolveCount int,
 	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool) (any, bool) {
-	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) {
+	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
 		return value, false
 	}
 	var splitPath []string
