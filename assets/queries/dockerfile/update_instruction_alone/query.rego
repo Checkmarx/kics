@@ -49,7 +49,7 @@ CxPolicy[result] {
     nextPackageManager := pkg[nextPackages[0]]
 	nextPackageManager == packageManager
     
-	nextInstall = [u | nextCommandRefactor[u] == pkg_installer[nextPackageManager]]
+	nextInstall = getDetail(nextCommandRefactor, pkg_installer[nextPackageManager])
     count(nextInstall) > 0
 	nextUpdate = getDetail(nextCommandRefactor, pkg_updater[nextPackageManager])
     count(nextUpdate) == 0
