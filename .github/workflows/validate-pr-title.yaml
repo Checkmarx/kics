@@ -51,8 +51,7 @@ jobs:
     - name: Fetch and print all teams
       run: |
         username=$USERNAME
-        response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics-core-team/members?per_page=100")
-        echo "API response: $response"
+        response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics-core-team/members")
         team_members=$(echo "$response" | jq -r '.[].login')
         echo "Team members:"
         echo "$team_members"
