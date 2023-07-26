@@ -48,13 +48,13 @@ jobs:
       run: echo "USERNAME=${{ github.event.pull_request.user.login }}" >> $GITHUB_ENV
     - name: Install JQ
       run: sudo apt-get install jq
-    - name: Fetch and print all collaborators
+    - name: Fetch and print all teams
       run: |
-        repo=${{ github.repository }}
-        response=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/$repo/collaborators?per_page=100")
-        collaborators=$(echo "$response" | jq -r '.[].login')
-        echo "Collaborators:"
-        echo "$collaborators"
+        username=$USERNAME
+        response=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/orgs/Checkmarx/teams/kics-core-team/members?per_page=100")
+        team_members=$(echo "$response" | jq -r '.[].login')
+        echo "Team members:"
+        echo "$team_members"
     - name: Get title
       run: echo "TITLE=${{ github.event.pull_request.title }}" >> $GITHUB_ENV
     - name: Check user username
