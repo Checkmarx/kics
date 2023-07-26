@@ -22,6 +22,24 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
+	resource := input.document[i].data.google_iam_policy[name]
+
+	tf_lib.check_member(resource.binding[x], "serviceAccount:")
+	has_improperly_privileges(resource.binding[x].role)
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "google_iam_policy",
+		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("google_iam_policy[%s].binding[%s].role", [name, format_int(x, 10)]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("google_iam_policy[%s].binding[%s].role should not have admin, editor, owner, or write privileges for service account member", [name, format_int(x, 10)]),
+		"keyActualValue": sprintf("google_iam_policy[%s].binding[%s].role has admin, editor, owner, or write privilege for service account member", [name, format_int(x, 10)]),
+		"searchLine": common_lib.build_search_line(["resource", "google_iam_policy", name, "binding", x, "role"], []),
+	}
+}
+
+CxPolicy[result] {
 	resources := {"google_project_iam_binding", "google_project_iam_member"}
 	resource := input.document[i].resource[resources[idx]][name]
 
