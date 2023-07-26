@@ -38,6 +38,8 @@ jobs:
       uses: actions/checkout@v3
     - name: Get username
       run: echo "USERNAME=${{ github.event.pull_request.user.login }}" >> $GITHUB_ENV
+    - name: Get title
+      run: echo "TITLE=${{ github.event.pull_request.title }}" >> $GITHUB_ENV
     - name: Check user username
       run: |
         username_list=("freitasmillena" "cxMiguelSilva" "cx-henriqueAlvelos" "pereiramarco011" "kaplanlior" "dependabot" "gabriel-cx" "joaoReigota1" "asofsilva")
@@ -56,8 +58,7 @@ jobs:
         fi
     - name: Add feature or feature request label
       run: |
-        title="${{ github.event.pull_request.title }}"
-        if [[ "$title" == feat* ]]; then
+        if [[ "$TITLE" == feat* ]]; then
           if [[ "$IS_MEMBER" == "true" ]]; then
             echo "Adding 'feature' label..."
             curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["feature"]}'
@@ -68,15 +69,13 @@ jobs:
         fi
     - name: Add bug label
       run: |
-        title="${{ github.event.pull_request.title }}"
-        if [[ "$title" == bug* ]]; then
+        if [[ "$TITLE" == bug* ]]; then
           echo "Adding 'bug' label..."
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["bug"]}'
         fi
     - name: Add query label
       run: |
-        title="${{ github.event.pull_request.title }}"
-        if echo "$title" | grep -iq "\(query\)"; then
+        if echo "$TITLE" | grep -iq "\(query\)"; then
           echo "Adding 'query' label..."
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["query"]}'
         fi
@@ -92,11 +91,10 @@ jobs:
         echo "::set-output name=keywords::$(python3 .github/scripts/pr-info/get_pr_keywords.py)"
     - name: Check title for keywords of platforms and cloud providers to add labels
       run: |
-        title="${{ github.event.pull_request.title }}"
         eval "${{ steps.load-keywords.outputs.keywords }}"
         declare -p keywords
         for keyword in "${!keywords[@]}"; do
-          if echo "$title" | grep -iq "\\b$keyword\\b"; then
+          if echo "$TITLE" | grep -iq "\\b$keyword\\b"; then
             label=${keywords[$keyword]}
             echo "Adding '$label' label..."
             curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d "{\"labels\": [\"$label\"]}"
