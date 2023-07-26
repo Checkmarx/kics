@@ -17,6 +17,10 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        sparse-checkout: |
+          .github/scripts/pr-info/get_title_tags.py
+          .github/pr-title-tags.yaml
     - name: Print PR Title
       run: echo "${{ github.event.pull_request.title }}"
     - name: Set up Python 
@@ -36,6 +40,10 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        sparse-checkout: |
+          .github/scripts/pr-info/get_pr_keywords.py
+          .github/keywords.yaml
     - name: Get username
       run: echo "USERNAME=${{ github.event.pull_request.user.login }}" >> $GITHUB_ENV
     - name: Get title
