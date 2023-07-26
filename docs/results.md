@@ -799,6 +799,10 @@ KICS displays the results in CLI. For detailed information, you can use `-v --lo
 
 ![image](https://user-images.githubusercontent.com/74001161/161743565-f98cb076-e708-4754-8f9a-f1dbed82837b.png)
 
+## Resolved References
+
+All OpenAPI references are resolved and the results obtained from them possess information both about the place where the reference is made as well as the place where the issue is occurring inside the referenced code.
+
 # Exit Status Code
 
 ## Results Status Code
