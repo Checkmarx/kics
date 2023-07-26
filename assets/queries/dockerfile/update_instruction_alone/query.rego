@@ -129,7 +129,7 @@ pkg_installer := {
 }
 
 exceptions := {
-	"apk": "--update"
+	"apk": ["--update", "--update-cache", "-U"]
 }
 
 
@@ -152,6 +152,6 @@ checkFollowedBy(first, after) {
 
 checkException(nextPackageManager, nextCommandRefactor){
 	exp := exceptions[nextPackageManager]
-	l := getDetail(nextCommandRefactor, exp)
+	l := [x | x := getDetail(nextCommandRefactor, exp[_]); count(x) > 0]
 	count(l) > 0	
 }
