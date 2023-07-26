@@ -65,8 +65,10 @@ jobs:
         fi
     - name: Check user username
       run: |
+        echo "USERNAME: $USERNAME" 
         response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics-core-team/members")
         team_members=$(echo "$response" | jq -r '.[].login')
+        echo "$team_members"
         if echo "${team_members[@]}" | grep -Pq "^$USERNAME$"; then
           echo "Contributor belongs to Checkmarx organization"
           is_member="true"
