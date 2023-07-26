@@ -50,9 +50,9 @@ jobs:
     - name: Get username
       run: |
           if [[ "${{ github.event_name }}" == "pull_request" || "${{ github.event_name }}" == "pull_request_target" ]]; then
-            echo "TITLE=${{ github.event.pull_request.user.login }}" >> $GITHUB_ENV
+            echo "USERNAME=${{ github.event.pull_request.user.login }}" >> $GITHUB_ENV
           elif [[ "${{ github.event_name }}" == "issues" ]]; then
-            echo "TITLE=${{ github.event.issue.user.login }}" >> $GITHUB_ENV 
+            echo "USERNAME=${{ github.event.issue.user.login }}" >> $GITHUB_ENV 
           fi
     - name: Install JQ
       run: sudo apt-get install jq
@@ -66,6 +66,7 @@ jobs:
     - name: Check user username
       run: |
         echo "USERNAME: $USERNAME" 
+        echo "TITLE: $TITLE"
         response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics-core-team/members")
         team_members=$(echo "$response" | jq -r '.[].login')
         echo "$team_members"
