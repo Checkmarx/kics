@@ -55,8 +55,8 @@ expressionArr := [
 	},
 ]
 
-#{ ($.eventSource = \"s3.amazonaws.com\") && (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) || 
-#  ($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) || 
+#{ ($.eventSource = \"s3.amazonaws.com\") && (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) ||
+#  ($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) ||
 #  ($.eventName = DeleteBucketLifecycle) || ($.eventName = DeleteBucketReplication)) }
 check_expression_missing(resName, filter, doc) {
 	alarm := doc.resource.aws_cloudwatch_metric_alarm[name]
@@ -64,15 +64,26 @@ check_expression_missing(resName, filter, doc) {
 
 	filter._kics_filter_expr._op == "&&"
 
-	count({x | exp := expressionArr[n]; commonLib.check_selector(filter, exp.value, exp.op, exp.name) == false; x := exp}) == 0
+	count({x | exp := expressionArr[n];
+	    commonLib.check_selector(filter, exp.value, exp.op, exp.name) == false;
+	    x := exp
+	}) == 0
 }
 
 CxPolicy[result] {
 	doc := input.document[i]
 	resources := doc.resource.aws_cloudwatch_log_metric_filter
 
-	allPatternsCount := count([x | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern); x = filter])
-	count([x | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern); not check_expression_missing(path[0], filter, doc); x = filter]) == allPatternsCount
+	allPatternsCount := count([x | [path, value] := walk(resources);
+	    filter := commonLib.json_unmarshal(value.pattern);
+	    x = filter
+	])
+
+	count([x | [path, value] := walk(resources);
+	    filter := commonLib.json_unmarshal(value.pattern);
+	    not check_expression_missing(path[0], filter, doc);
+	    x = filter
+	]) == allPatternsCount
 
 	result := {
 		"documentId": input.document[i].id,
