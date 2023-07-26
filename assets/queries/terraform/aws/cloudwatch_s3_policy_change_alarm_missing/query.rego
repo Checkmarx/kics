@@ -55,7 +55,9 @@ expressionArr := [
 	},
 ]
 
-#{ ($.eventSource = \"s3.amazonaws.com\") && (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) || ($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) || ($.eventName = DeleteBucketLifecycle) || ($.eventName = DeleteBucketReplication)) }
+#{ ($.eventSource = \"s3.amazonaws.com\") && (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) || 
+#  ($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) || 
+#  ($.eventName = DeleteBucketLifecycle) || ($.eventName = DeleteBucketReplication)) }
 check_expression_missing(resName, filter, doc) {
 	alarm := doc.resource.aws_cloudwatch_metric_alarm[name]
 	contains(alarm.metric_name, resName)
@@ -78,7 +80,7 @@ CxPolicy[result] {
 		"resourceName": "unknown",
 		"searchKey": "resource",
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should have pattern { ($.eventSource = \"s3.amazonaws.com\") && (($.eventName = PutBucketAcl) ||\n ($.eventName = PutBucketPolicy) ||\n ($.eventName = PutBucketCors) ||\n ($.eventName = PutBucketLifecycle) ||\n ($.eventName = PutBucketReplication) ||\n ($.eventName = DeleteBucketPolicy) ||\n ($.eventName = DeleteBucketCors) ||\n ($.eventName = DeleteBucketLifecycle) ||\n ($.eventName = DeleteBucketReplication)) } and be associated an aws_cloudwatch_metric_alarm",
+		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should have pattern $.eventSource equal to `s3.amazonaws.com` and $.eventName equal to `PutBucketAcl`, `PutBucketPolicy`, `PutBucketCors`, `PutBucketLifecycle`, `PutBucketReplication`, `DeleteBucketPolicy`, `DeleteBucketCors`, `DeleteBucketLifecycle` or `DeleteBucketReplication` and be associated an aws_cloudwatch_metric_alarm",
 		"keyActualValue": "aws_cloudwatch_log_metric_filter with wrong pattern or not associated with any aws_cloudwatch_metric_alarm",
 		"searchLine": commonLib.build_search_line([], []),
 	}
