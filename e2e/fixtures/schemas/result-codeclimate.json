@@ -78,6 +78,31 @@
                     }
                 }
             },
+            "reference_location": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "path",
+                    "lines"
+                ],
+                "properties": {
+                    "path": {
+                         "type": "string"
+                    },
+                    "lines": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "begin"
+                        ],
+                        "properties": {
+                            "begin": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            },
             "severity": {
                 "type": "string",
                 "enum": ["info", "minor", "major", "critical"]

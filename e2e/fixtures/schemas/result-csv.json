@@ -46,10 +46,13 @@
             "CISDescriptionTitle",
             "CISDescriptionTextFormatted",
             "FileName",
+            "ReferenceFileName",
             "SimilarityID",
             "Line",
+            "ReferenceLine",
             "IssueType",
             "SearchKey",
+            "ReferenceSearchKey",
             "SearchLine",
             "SearchValue",
             "ExpectedValue",
@@ -120,6 +123,9 @@
             "FileName": {
                 "$ref": "#/definitions/file_name_pattern"
             },
+            "ReferenceFileName": {
+                "type" : "string"
+            },
             "SimilarityID": {
                 "$ref": "#/definitions/similarity_id_pattern"
             },
@@ -127,10 +133,16 @@
                 "type": "integer",
                 "minimum": 0
             },
+            "ReferenceLine": {
+                "type": "integer"
+            },
             "IssueType": {
                 "type": "string"
             },
             "SearchKey": {
+                "type": "string"
+            },
+            "ReferenceSearchKey": {
                 "type": "string"
             },
             "SearchLine": {
