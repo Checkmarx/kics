@@ -382,5 +382,23 @@
     "severity": "HIGH",
     "line": 20,
     "fileName": "positive46.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Google OAuth",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive47.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Secret",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive47.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive48.tf"
   }
 ]
