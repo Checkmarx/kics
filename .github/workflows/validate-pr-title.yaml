@@ -8,12 +8,9 @@ on:
     types: [opened, synchronize, edited, reopened]
     branches: 
       - master
-  issues:
-    types: [opened, edited, reopened]
 
 jobs:
   title-check:
-    if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
     runs-on: ubuntu-latest
     env:
       ERROR_MSG: "The PR title does not match the required format: <type>(<tag>): <title>"
@@ -48,21 +45,11 @@ jobs:
           .github/scripts/pr-info/get_pr_keywords.py
           .github/keywords.yaml
     - name: Get username
-      run: |
-          if [[ "${{ github.event_name }}" == "pull_request" || "${{ github.event_name }}" == "pull_request_target" ]]; then
-            echo "USERNAME=${{ github.event.pull_request.user.login }}" >> $GITHUB_ENV
-          elif [[ "${{ github.event_name }}" == "issues" ]]; then
-            echo "USERNAME=${{ github.event.issue.user.login }}" >> $GITHUB_ENV 
-          fi
+      run: echo "USERNAME=${{ github.event.pull_request.user.login }}" >> $GITHUB_ENV
     - name: Install JQ
       run: sudo apt-get install jq
     - name: Get title
-      run: |
-        if [[ "${{ github.event_name }}" == "pull_request" || "${{ github.event_name }}" == "pull_request_target" ]]; then
-          echo "TITLE=${{ github.event.pull_request.title }}" >> $GITHUB_ENV
-        elif [[ "${{ github.event_name }}" == "issues" ]]; then
-          echo "TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV 
-        fi
+      run: echo "TITLE=${{ github.event.pull_request.title }}" >> $GITHUB_ENV
     - name: Check user username
       run: |
         response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics-core-team/members")
