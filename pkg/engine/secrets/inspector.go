@@ -308,7 +308,7 @@ func isValueInArray(value string, array []string) bool {
 }
 
 func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, groups [][]string) {
-	if IsAllowRule(s, query.AllowRules) || IsAllowRule(s, c.allowRules) {
+	if IsAllowRule(s, query, append(query.AllowRules, c.allowRules...)) {
 		return false, [][]string{}
 	}
 
@@ -341,13 +341,31 @@ func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, gro
 }
 
 // IsAllowRule check if string matches any of the allow rules for the secret queries
-func IsAllowRule(s string, allowRules []AllowRule) bool {
-	for i := range allowRules {
-		if allowRules[i].Regex.MatchString(s) {
-			return true
+func IsAllowRule(s string, query *RegexQuery, allowRules []AllowRule) bool {
+	regexMatch := query.Regex.FindStringIndex(s)
+	if regexMatch != nil {
+		allowRuleMatches := AllowRuleMatches(s, append(query.AllowRules, allowRules...))
+
+		for _, allowMatch := range allowRuleMatches {
+			allowStart, allowEnd := allowMatch[0], allowMatch[1]
+			regexStart, regexEnd := regexMatch[0], regexMatch[1]
+
+			if (allowStart <= regexEnd && allowStart >= regexStart) || (regexStart <= allowEnd && regexStart >= allowStart) {
+				return true
+			}
 		}
 	}
+
 	return false
+}
+
+// AllowRuleMatches return all the allow rules matches for the secret queries
+func AllowRuleMatches(s string, allowRules []AllowRule) [][]int {
+	allowRuleMatches := [][]int{}
+	for i := range allowRules {
+		allowRuleMatches = append(allowRuleMatches, allowRules[i].Regex.FindAllStringIndex(s, -1)...)
+	}
+	return allowRuleMatches
 }
 
 func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file *model.FileMetadata) {
@@ -643,7 +661,7 @@ func hideSecret(linesVuln *model.VulnerabilityLines,
 	query *RegexQuery,
 	secretTracker *[]SecretTracker) *[]model.CodeLine {
 	for idx := range *linesVuln.VulnLines {
-		if query.SpecialMask == "all" {
+		if query.SpecialMask == "all" && idx != 0 {
 			addToSecretTracker(secretTracker, linesVuln.ResolvedFile, linesVuln.Line, (*linesVuln.VulnLines)[idx].Line, "<SECRET-MASKED-ON-PURPOSE>")
 			(*linesVuln.VulnLines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
 			continue

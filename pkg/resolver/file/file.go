@@ -1,7 +1,9 @@
 package file
 
 import (
+	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"os"
 	"path/filepath"
@@ -46,6 +48,14 @@ func NewResolver(
 
 // Resolve - replace or modifies in-memory content before parsing
 func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) []byte {
+	// handle panic during resolve process
+	defer func() {
+		if r := recover(); r != nil {
+			err := fmt.Errorf("panic: %v", r)
+			log.Err(err).Msg("Recovered from panic during file resolve")
+		}
+	}()
+
 	if utils.Contains(filepath.Ext(path), []string{".yml", ".yaml"}) {
 		return r.yamlResolve(fileContent, path, resolveCount, resolvedFilesCache)
 	}
@@ -56,14 +66,14 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
 	}
 
 	// resolve the paths
-	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, resolvedFilesCache)
+	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, resolvedFilesCache, false)
 
-	b, err := r.marshler(obj)
-	if err != nil {
-		return fileContent
+	b, err := json.MarshalIndent(obj, "", "")
+	if err == nil {
+		return b
 	}
 
-	return b
+	return fileContent
 }
 
 func (r *Resolver) walk(
@@ -72,17 +82,18 @@ func (r *Resolver) walk(
 	value any,
 	path string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile) (any, bool) {
+	resolvedFilesCache map[string]ResolvedFile,
+	refBool bool) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
 		if filepath.Base(path) != typedValue {
-			return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolveCount, resolvedFilesCache)
+			return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolveCount, resolvedFilesCache, refBool)
 		}
 		return value, false
 	case []any:
 		for i, v := range typedValue {
-			typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache)
+			typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, refBool)
 		}
 		return typedValue, false
 	case map[string]any:
@@ -96,7 +107,7 @@ func (r *Resolver) handleMap(originalFileContent []byte, fullObject interface{},
 	resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
 	for k, v := range value {
 		isRef := strings.Contains(strings.ToLower(k), "$ref")
-		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache)
+		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, isRef)
 		// check if it is a ref then add new details
 		if valMap, ok := val.(map[string]interface{}); (ok || !res) && isRef {
 			// Create RefMetadata and add it to the resolved value map
@@ -126,7 +137,7 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
 	fullObjectCopy := obj
 
 	// resolve the paths
-	obj, _ = r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolveCount, resolvedFilesCache)
+	obj, _ = r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolveCount, resolvedFilesCache, false)
 
 	if obj.Kind == 1 && len(obj.Content) == 1 {
 		obj = *obj.Content[0]
@@ -146,12 +157,13 @@ func (r *Resolver) yamlWalk(
 	value *yaml.Node,
 	path string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
-	// go over the value and replace paths with the real conten
+	resolvedFilesCache map[string]ResolvedFile,
+	refBool bool) (yaml.Node, bool) {
+	// go over the value and replace paths with the real content
 	switch value.Kind {
 	case yaml.ScalarNode:
 		if filepath.Base(path) != value.Value {
-			return r.resolveYamlPath(originalFileContent, fullObject, value, path, resolveCount, resolvedFilesCache)
+			return r.resolveYamlPath(originalFileContent, fullObject, value, path, resolveCount, resolvedFilesCache, refBool)
 		}
 		return *value, false
 	default:
@@ -160,7 +172,7 @@ func (r *Resolver) yamlWalk(
 			if i >= 1 {
 				refBool = strings.Contains(value.Content[i-1].Value, "$ref")
 			}
-			resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache)
+			resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache, refBool)
 
 			if i >= 1 && refBool && (resolved.Kind == yaml.MappingNode || !ok) {
 				// Create RefMetadata and add it to yaml Node
@@ -207,9 +219,10 @@ func (r *Resolver) resolveYamlPath(
 	v *yaml.Node,
 	filePath string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile) (yaml.Node, bool) {
+	resolvedFilesCache map[string]ResolvedFile,
+	refBool bool) (yaml.Node, bool) {
 	value := v.Value
-	if resolveCount > constants.MaxResolvedFiles {
+	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
 		return *v, false
 	}
 	var splitPath []string
@@ -224,9 +237,7 @@ func (r *Resolver) resolveYamlPath(
 		value = checkServerlessFileReference(value)
 
 		path := filepath.Join(filepath.Dir(filePath), value)
-		splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
-		// index 0 contains the path of the file while the other indexes contain the sections (e.g. path = "./definitions.json#User/schema")
-		onlyFilePath := splitPath[0]
+		onlyFilePath := getPathFromString(path)
 		_, err := os.Stat(path)
 		if err != nil {
 			return *v, false
@@ -241,11 +252,15 @@ func (r *Resolver) resolveYamlPath(
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[filename]; !ok {
 			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, true); isError {
-				return ret.(yaml.Node), false
+				if retYaml, yamlNode := ret.(yaml.Node); yamlNode {
+					return retYaml, false
+				} else {
+					return *v, false
+				}
 			}
 		}
 
-		r.ResolvedFiles[value] = model.ResolvedFile{
+		r.ResolvedFiles[getPathFromString(value)] = model.ResolvedFile{
 			Content:      resolvedFilesCache[filename].fileContent,
 			Path:         path,
 			LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
@@ -257,11 +272,20 @@ func (r *Resolver) resolveYamlPath(
 		if strings.Contains(strings.ToLower(value), "!ref") { // Cloudformation !Ref check
 			return *obj, false
 		}
-		if len(splitPath) == 1 {
+		if !strings.Contains(path, "#") {
 			return *obj, true
 		}
 	}
 
+	return r.returnResolveYamlPathValue(splitPath, sameFileResolve, filePath, originalFileContent, obj, v)
+}
+
+func (r *Resolver) returnResolveYamlPathValue(
+	splitPath []string,
+	sameFileResolve bool,
+	filePath string,
+	originalFileContent []byte,
+	obj, v *yaml.Node) (yaml.Node, bool) {
 	if len(splitPath) > 1 {
 		if sameFileResolve {
 			r.ResolvedFiles[filePath] = model.ResolvedFile{
@@ -328,14 +352,23 @@ func (r *Resolver) resolveFile(
 	return nil, false
 }
 
+func getPathFromString(path string) string {
+	lastIndex := strings.LastIndex(path, "#")
+	if lastIndex == -1 {
+		return path
+	}
+	return path[:lastIndex]
+}
+
 // isPath returns true if the value is a valid path
 func (r *Resolver) resolvePath(
 	originalFileContent []byte,
 	fullObject interface{},
 	value, filePath string,
 	resolveCount int,
-	resolvedFilesCache map[string]ResolvedFile) (any, bool) {
-	if resolveCount > constants.MaxResolvedFiles {
+	resolvedFilesCache map[string]ResolvedFile,
+	refBool bool) (any, bool) {
+	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
 		return value, false
 	}
 	var splitPath []string
@@ -365,7 +398,7 @@ func (r *Resolver) resolvePath(
 			}
 		}
 
-		r.ResolvedFiles[value] = model.ResolvedFile{
+		r.ResolvedFiles[getPathFromString(value)] = model.ResolvedFile{
 			Content:      resolvedFilesCache[onlyFilePath].fileContent,
 			Path:         path,
 			LinesContent: utils.SplitLines(string(resolvedFilesCache[onlyFilePath].fileContent)),
@@ -378,7 +411,15 @@ func (r *Resolver) resolvePath(
 			return obj, false
 		}
 	}
+	return r.resolvePathReturnValue(value, filePath, splitPath, sameFileResolve, originalFileContent, obj)
+}
 
+func (r *Resolver) resolvePathReturnValue(
+	value, filePath string,
+	splitPath []string,
+	sameFileResolve bool,
+	originalFileContent []byte,
+	obj any) (any, bool) {
 	if len(splitPath) > 1 {
 		if sameFileResolve {
 			r.ResolvedFiles[filePath] = model.ResolvedFile{

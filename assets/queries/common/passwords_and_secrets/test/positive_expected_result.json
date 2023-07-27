@@ -312,7 +312,7 @@
     "fileName": "positive35.yaml"
   },
   {
-    "queryName": "Passwords And Secrets - Putty Private Key",
+    "queryName": "Passwords And Secrets - Putty User Key File Content",
     "severity": "HIGH",
     "line": 5,
     "fileName": "positive36.tf"
@@ -350,7 +350,7 @@
   {
     "queryName": "Passwords And Secrets - Asymmetric private key",
     "severity": "HIGH",
-    "line": 7,
+    "line": 6,
     "fileName": "positive41.tf"
   },
   {
@@ -358,5 +358,47 @@
     "severity": "HIGH",
     "line": 7,
     "fileName": "positive42.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Token",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive43.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Secret",
+    "severity": "HIGH",
+    "line": 17,
+    "fileName": "positive44.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive45.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 20,
+    "fileName": "positive46.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Google OAuth",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive47.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Secret",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive47.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive48.tf"
   }
 ]
