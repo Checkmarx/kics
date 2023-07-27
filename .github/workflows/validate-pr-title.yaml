@@ -18,6 +18,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       with:
+        persist-credentials: false
         sparse-checkout: |
           .github/scripts/pr-info/get_title_tags.py
           .github/pr-title-tags.yaml
@@ -41,6 +42,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       with:
+        persist-credentials: false
         sparse-checkout: |
           .github/scripts/pr-info/get_pr_keywords.py
           .github/keywords.yaml
