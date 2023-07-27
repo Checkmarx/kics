@@ -6,7 +6,10 @@ import data.generic.common as common_lib
 extensions := {".json", ".yaml"}
 
 CxPolicy[result] {
-	count({i | resources := input.document[i].Resources; resources[_].Type == "AWS::AccessAnalyzer::Analyzer"}) == 0
+
+	resources := input.document[i].Resources;
+	count(resources) > 0
+	count({i | resources[_].Type == "AWS::AccessAnalyzer::Analyzer"}) == 0
 
 	result := {
 		"documentId": input.document[i].id,

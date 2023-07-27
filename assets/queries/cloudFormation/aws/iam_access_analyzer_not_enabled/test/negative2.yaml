@@ -1,0 +1,4 @@
+# Random yaml file
+---
+my_var: provider:a
+service: foo
