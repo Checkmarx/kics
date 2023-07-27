@@ -396,7 +396,7 @@
     "fileName": "positive47.tf"
   },
   {
-    "queryName": "Passwords And Secrets - Generic Private Key",
+    "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
     "line": 8,
     "fileName": "positive48.tf"
