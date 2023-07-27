@@ -160,7 +160,8 @@
       "regex": "['\"]?(?i)heroku((.|\\n)*)\\b([0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})\\b['\"]?",
       "multiline": {
         "detectLineGroup": 3
-      }
+      },
+      "specialMask": "['\"]?(?i)api_key[^\\w]+"
     },
     {
       "id": "bb51eb1e-0357-44a2-86d7-dd5350cffd43",
