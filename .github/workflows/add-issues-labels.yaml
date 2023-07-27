@@ -66,6 +66,6 @@ jobs:
           if echo "$TITLE" | grep -iq "\\b$keyword\\b"; then
             label=${keywords[$keyword]}
             echo "Adding '$label' label..."
-            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d "{\"labels\": [\"$label\"]}"
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{  github.event.issue.number  }}/labels -d "{\"labels\": [\"$label\"]}"
           fi
         done
