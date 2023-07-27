@@ -229,7 +229,13 @@
       "id": "2f665079-c383-4b33-896e-88268c1fa258",
       "name": "Generic Private Key",
       "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?",
-      "specialMask": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*"
+      "specialMask": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*",
+      "allowRules": [
+        {
+          "description": "Avoiding bash variables",
+          "regex": "(?i)['\"]?\\$\\s*\\{[^\\s\\}]+\\}['\"]?"
+        }
+      ]
     },
     {
       "id": "baee238e-1921-4801-9c3f-79ae1d7b2cbc",
