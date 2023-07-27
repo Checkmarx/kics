@@ -333,7 +333,7 @@
   "allowRules": [
     {
       "description": "Avoiding TF variables",
-      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*=\\s*['\"]?(var.)['\"]?"
+      "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*=\\s*['\"]?(var\\.)['\"]?"
     },
     {
       "description": "!Ref is a cloudFormation reference",
