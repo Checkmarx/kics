@@ -803,7 +803,7 @@ KICS displays the results in CLI. For detailed information, you can use `-v --lo
 
 All OpenAPI references are resolved and the results obtained from them possess information both about the place where the reference is made as well as the place where the issue is occurring inside the referenced code.
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/kics/890-docs/docs/img/openapi_resolved_reference_results.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/openapi_resolved_reference_results.png" width="850">
 
 # Exit Status Code
 
