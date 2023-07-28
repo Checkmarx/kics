@@ -161,7 +161,7 @@
       "multiline": {
         "detectLineGroup": 3
       },
-      "specialMask": "['\"]?(?i)api_key[^\\w]+"
+      "specialMask": "['\"]?(?i)api_key[^\\w\"']+"
     },
     {
       "id": "bb51eb1e-0357-44a2-86d7-dd5350cffd43",
