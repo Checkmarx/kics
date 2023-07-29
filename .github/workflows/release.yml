@@ -1,3 +1,13 @@
+name: No-op Workflow
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Silence Workflow error
+        run: echo ""
+
 # name: goreleaser
 
 # on:
