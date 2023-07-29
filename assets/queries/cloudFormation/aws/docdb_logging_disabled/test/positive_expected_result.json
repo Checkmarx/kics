@@ -20,7 +20,7 @@
   {
     "queryName": "DocDB Logging Is Disabled",
     "severity": "LOW",
-    "line": 15,
+    "line": 14,
     "filename": "positive4.json"
   }
 ]
