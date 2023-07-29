@@ -3,7 +3,7 @@
     "queryName": "DocDB Logging Is Disabled",
     "severity": "LOW",
     "line": 10,
-    "filename": "positive1.yml"
+    "filename": "positive1.yaml"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
