@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 
 expressionArr := [
 	{
@@ -58,14 +58,32 @@ expressionArr := [
 #{ ($.eventSource = \"s3.amazonaws.com\") && (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) ||
 #  ($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) ||
 #  ($.eventName = DeleteBucketLifecycle) || ($.eventName = DeleteBucketReplication)) }
-check_expression_missing(resName, filter, doc) {
-	alarm := doc.resource.aws_cloudwatch_metric_alarm[name]
-	contains(alarm.metric_name, resName)
 
+CxPolicy[result] {
+	doc := input.document[i]
+	_ := doc.resource.aws_cloudwatch_log_metric_filter[name]
+
+	
+	count([alarm | alarm := doc.resource.aws_cloudwatch_metric_alarm[_]; contains(alarm.metric_name, name)]) == 0 
+	
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "aws_cloudwatch_log_metric_filter",
+		"resourceName": name,
+		"searchKey": sprintf("aws_cloudwatch_log_metric_filter[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should be associated an aws_cloudwatch_metric_alarm",
+		"keyActualValue": "aws_cloudwatch_log_metric_filter not associated with any aws_cloudwatch_metric_alarm",
+		"searchLine": common_lib.build_search_line(["resource","aws_cloudwatch_log_metric_filter", name], []),
+	}
+}
+
+
+check_expression_missing(filter) {
 	filter._kics_filter_expr._op == "&&"
 
 	count({x | exp := expressionArr[n];
-	    commonLib.check_selector(filter, exp.value, exp.op, exp.name) == false;
+	    common_lib.check_selector(filter, exp.value, exp.op, exp.name) == false;
 	    x := exp
 	}) == 0
 }
@@ -74,25 +92,28 @@ CxPolicy[result] {
 	doc := input.document[i]
 	resources := doc.resource.aws_cloudwatch_log_metric_filter
 
-	allPatternsCount := count([x | [path, value] := walk(resources);
-	    filter := commonLib.json_unmarshal(value.pattern);
+	allPatternsCount := count([x | [_, value] := walk(resources);
+	    filter := common_lib.json_unmarshal(value.pattern);
 	    x = filter
 	])
 
-	count([x | [path, value] := walk(resources);
-	    filter := commonLib.json_unmarshal(value.pattern);
-	    not check_expression_missing(path[0], filter, doc);
-	    x = filter
-	]) == allPatternsCount
-
+	resourceNames := [resourceName | [path, value] := walk(resources);
+	    filter := common_lib.json_unmarshal(value.pattern);
+	    not check_expression_missing(filter);
+	    resourceName := path[count(path)-1]
+	]
+	count(resourceNames) == allPatternsCount
+    
+    resourceName := resourceNames[_]
+    
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_cloudwatch_log_metric_filter",
-		"resourceName": "unknown",
-		"searchKey": "resource",
+		"resourceName": resourceName,
+		"searchKey": sprintf("aws_cloudwatch_log_metric_filter.%s",[resourceName]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should have pattern $.eventSource equal to `s3.amazonaws.com` and $.eventName equal to `PutBucketAcl`, `PutBucketPolicy`, `PutBucketCors`, `PutBucketLifecycle`, `PutBucketReplication`, `DeleteBucketPolicy`, `DeleteBucketCors`, `DeleteBucketLifecycle` or `DeleteBucketReplication` and be associated an aws_cloudwatch_metric_alarm",
 		"keyActualValue": "aws_cloudwatch_log_metric_filter with wrong pattern or not associated with any aws_cloudwatch_metric_alarm",
-		"searchLine": commonLib.build_search_line([], []),
+		"searchLine": common_lib.build_search_line(["resource","aws_cloudwatch_log_metric_filter", resourceName, "pattern"], []),
 	}
 }
