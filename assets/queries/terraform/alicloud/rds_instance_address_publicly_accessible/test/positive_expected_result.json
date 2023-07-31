@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "DB Instance Publicly Accessible",
+		"queryName": "Alicloud RDS Instance Address Publicly Accessible",
 		"severity": "HIGH",
 		"line": 10,
 		"fileName": "positive1.tf"
