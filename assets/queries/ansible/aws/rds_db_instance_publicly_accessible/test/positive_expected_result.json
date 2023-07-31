@@ -1,11 +1,11 @@
 [
   {
-    "queryName": "DB Instance Publicly Accessible",
+    "queryName": "Amazon RDS DB Instance Publicly Accessible",
     "severity": "HIGH",
     "line": 12
   },
   {
-    "queryName": "DB Instance Publicly Accessible",
+    "queryName": "Amazon RDS DB Instance Publicly Accessible",
     "severity": "HIGH",
     "line": 22
   }
