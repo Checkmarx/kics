@@ -23,3 +23,4 @@ func init() { //nolint
 //3rd case
 //4th
 //teste
+//6
