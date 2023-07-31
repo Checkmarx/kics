@@ -17,3 +17,5 @@ func init() { //nolint
 
 	Tests = append(Tests, testSample)
 }
+
+//add line to test 918
