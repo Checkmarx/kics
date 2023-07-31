@@ -20,7 +20,7 @@
   {
     "queryName": "Service Account with Improper Privileges",
     "severity": "MEDIUM",
-    "line": 1,
+    "line": 10,
     "fileName": "positive3.tf"
   }
 ]

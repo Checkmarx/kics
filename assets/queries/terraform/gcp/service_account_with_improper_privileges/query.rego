@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_iam_policy[%s].binding[%s].role should not have admin, editor, owner, or write privileges for service account member", [name, format_int(x, 10)]),
 		"keyActualValue": sprintf("google_iam_policy[%s].binding[%s].role has admin, editor, owner, or write privilege for service account member", [name, format_int(x, 10)]),
-		"searchLine": common_lib.build_search_line(["resource", "google_iam_policy", name, "binding", x, "role"], []),
+		"searchLine": common_lib.build_search_line(["data", "google_iam_policy", name, "binding", x, "role"], []),
 	}
 }
 
