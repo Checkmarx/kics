@@ -26,3 +26,4 @@ func init() { //nolint
 //bugquery
 //updatebug
 //featuredockerqueryazure
+//rg
