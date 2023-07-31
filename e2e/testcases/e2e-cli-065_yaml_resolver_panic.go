@@ -18,12 +18,4 @@ func init() { //nolint
 	Tests = append(Tests, testSample)
 }
 
-//7
-//8
-//docs
-//buugs
-//bugbug´
-//bugquery
-//updatebug
-//featuredockerqueryazure
-//rg
+//17
