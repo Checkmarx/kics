@@ -19,3 +19,4 @@ func init() { //nolint
 }
 
 //test 918 in a new branch
+//add 2nd line to success test
