@@ -22,3 +22,4 @@ func init() { //nolint
 //8
 //docs
 //buugs
+//same bug
