@@ -2,6 +2,7 @@ docker: docker
 dkr: docker
 dockerfile: dockerfile
 ansible: ansible
+amazon: aws
 aws: aws
 gRPC: gRPC
 gcp: gcp
@@ -15,3 +16,4 @@ terraform: terraform
 openapi: openapi
 kubernetes: kubernetes
 k8s: kubernetes
+pulumi: pulumi
