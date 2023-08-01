@@ -25,7 +25,7 @@ func NewAnalyzeCmd() *cobra.Command {
 		Use:   "analyze",
 		Short: "Displays the detected platforms and cloud providers of a certain project",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			return analyze(cmd)
+			return analyze()
 		},
 	}
 }
@@ -51,7 +51,7 @@ func initAnalyzeCmd(analyzeCmd *cobra.Command) error {
 	return nil
 }
 
-func analyze(cmd *cobra.Command) error {
+func analyze() error {
 	// save the analyze parameters into the AnalyzeParameters struct
 	analyzeParams := getAnalyzeParameters()
 
