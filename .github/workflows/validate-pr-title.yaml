@@ -17,8 +17,8 @@ jobs:
       with:
         persist-credentials: false
         sparse-checkout: |
-          .github/scripts/pr-info/get_title_tags.py
-          .github/pr-title-tags.yaml
+          .github/scripts/pr-info/get_title_types.py
+          .github/pr-title-types.yaml
     - name: Print PR Title
       run: echo "${{ github.event.pull_request.title }}"
     - name: Set up Python 
@@ -29,7 +29,7 @@ jobs:
       run: python3 -m pip install --upgrade pip pyyaml
     - name: Check PR Title
       run: |
-        regex=$(python3 .github/scripts/pr-info/get_title_tags.py)
+        regex=$(python3 .github/scripts/pr-info/get_title_types.py)
         echo "Title regex: $regex"
         title="${{ github.event.pull_request.title }}"
         echo $title | grep -Pq "$regex" || (echo "$ERROR_MSG" && exit 1)

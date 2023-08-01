@@ -1,4 +1,4 @@
-# gets all tags from pr-title-tags.yaml file and inserts them into the regex
+# gets all types from pr-title-types.yaml file and inserts them into the regex
 
 import yaml
 
@@ -10,4 +10,4 @@ def yaml_to_regex(yaml_file):
 
 
 if __name__ == "__main__":
-    yaml_to_regex('.github/pr-title-tags.yaml')
+    yaml_to_regex('.github/pr-title-types.yaml')
