@@ -55,10 +55,7 @@ expressionArr := [
 	},
 ]
 
-#{ ($.eventSource = \"s3.amazonaws.com\") && (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) ||
-#  ($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) ||
-#  ($.eventName = DeleteBucketLifecycle) || ($.eventName = DeleteBucketReplication)) }
-
+#{ ($.eventSource = \"s3.amazonaws.com\") && (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) || ($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) || ($.eventName = DeleteBucketLifecycle) || ($.eventName = DeleteBucketReplication)) }
 CxPolicy[result] {
 	doc := input.document[i]
 	_ := doc.resource.aws_cloudwatch_log_metric_filter[name]
@@ -92,17 +89,11 @@ CxPolicy[result] {
 	doc := input.document[i]
 	resources := doc.resource.aws_cloudwatch_log_metric_filter
 
-	allPatternsCount := count([x | [_, value] := walk(resources);
-	    filter := common_lib.json_unmarshal(value.pattern);
-	    x = filter
-	])
-
 	resourceNames := [resourceName | [path, value] := walk(resources);
 	    filter := common_lib.json_unmarshal(value.pattern);
 	    not check_expression_missing(filter);
 	    resourceName := path[count(path)-1]
 	]
-	count(resourceNames) == allPatternsCount
     
     resourceName := resourceNames[_]
     
@@ -112,8 +103,8 @@ CxPolicy[result] {
 		"resourceName": resourceName,
 		"searchKey": sprintf("aws_cloudwatch_log_metric_filter.%s",[resourceName]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should have pattern $.eventSource equal to `s3.amazonaws.com` and $.eventName equal to `PutBucketAcl`, `PutBucketPolicy`, `PutBucketCors`, `PutBucketLifecycle`, `PutBucketReplication`, `DeleteBucketPolicy`, `DeleteBucketCors`, `DeleteBucketLifecycle` or `DeleteBucketReplication` and be associated an aws_cloudwatch_metric_alarm",
-		"keyActualValue": "aws_cloudwatch_log_metric_filter with wrong pattern or not associated with any aws_cloudwatch_metric_alarm",
+		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should have pattern $.eventSource equal to `s3.amazonaws.com` and $.eventName equal to `PutBucketAcl`, `PutBucketPolicy`, `PutBucketCors`, `PutBucketLifecycle`, `PutBucketReplication`, `DeleteBucketPolicy`, `DeleteBucketCors`, `DeleteBucketLifecycle` or `DeleteBucketReplication`",
+		"keyActualValue": "aws_cloudwatch_log_metric_filter with wrong pattern",
 		"searchLine": common_lib.build_search_line(["resource","aws_cloudwatch_log_metric_filter", resourceName, "pattern"], []),
 	}
 }
