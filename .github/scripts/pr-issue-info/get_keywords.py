@@ -1,4 +1,4 @@
-# gets platforms and cloud providers keywords from keywordd.yaml file and inserts into a map in shell script
+# gets platforms and cloud providers keywords from keywords.yaml file and inserts into a map in shell script
 
 import yaml
 
