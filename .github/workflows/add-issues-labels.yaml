@@ -6,8 +6,8 @@ on:
 jobs:
   labels-check:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
+    env:
+      BODY: ${{ github.event.issue.body }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -16,14 +16,12 @@ jobs:
         sparse-checkout: |
           .github/scripts/pr-info/get_pr_keywords.py
           .github/keywords.yaml
+    - name: Install JQ
+      run: sudo apt-get install jq
     - name: Get username
       run: echo "USERNAME=${{ github.event.issue.user.login }}" >> $GITHUB_ENV
     - name: Get title
       run: echo "TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
-    - name: Get body
-      run: echo "BODY=${{ github.event.issue.body }}" >> $GITHUB_ENV
-    - name: Install JQ
-      run: sudo apt-get install jq
     - name: Check user username
       run: |
         response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics-core-team/members")
@@ -59,13 +57,10 @@ jobs:
         python-version: "3.x"
     - name: Install dependencies
       run: python3 -m pip install --upgrade pip pyyaml
-    - name: Load keywords from YAML
-      id: load-keywords
-      run: |
-        echo "::set-output name=keywords::$(python3 .github/scripts/pr-info/get_pr_keywords.py)"
     - name: Check title for keywords of platforms and cloud providers to add labels
       run: |
-        eval "${{ steps.load-keywords.outputs.keywords }}"
+        keywords=$(python3 .github/scripts/pr-info/get_pr_keywords.py)
+        eval "$keywords"
         declare -p keywords
         for keyword in "${!keywords[@]}"; do
           if echo "$TITLE $BODY" | grep -iq "\\b$keyword\\b"; then
