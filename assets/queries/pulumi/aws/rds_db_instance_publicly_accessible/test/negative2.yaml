@@ -1,3 +1,6 @@
+name: aws-rds
+runtime: yaml
+description: An RDS Instance
 resources:
   default:
     type: aws:rds:Instance
