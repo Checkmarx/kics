@@ -1,0 +1,126 @@
+package console
+
+import (
+	_ "embed" // Embed kics CLI img and analyze-flags
+	"encoding/json"
+	"os"
+
+	"github.com/Checkmarx/kics/internal/console/flags"
+	sentryReport "github.com/Checkmarx/kics/internal/sentry"
+	"github.com/Checkmarx/kics/pkg/analyzer"
+	"github.com/Checkmarx/kics/pkg/engine/source"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/rs/zerolog/log"
+	"github.com/spf13/cobra"
+)
+
+var (
+	//go:embed assets/analyze-flags.json
+	analyzeFlagsListContent string
+)
+
+// NewAnalyzeCmd creates a new instance of the analyze Command
+func NewAnalyzeCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "analyze",
+		Short: "Displays the detected platforms and cloud providers of a certain project",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			return analyze(cmd)
+		},
+	}
+}
+
+func initAnalyzeCmd(analyzeCmd *cobra.Command) error {
+	if err := flags.InitJSONFlags(
+		analyzeCmd,
+		analyzeFlagsListContent,
+		false,
+		source.ListSupportedPlatforms(),
+		source.ListSupportedCloudProviders()); err != nil {
+		return err
+	}
+
+	if err := analyzeCmd.MarkFlagRequired(flags.AnalyzePath); err != nil {
+		sentryReport.ReportSentry(&sentryReport.Report{
+			Message:  "Failed to add command required flags",
+			Err:      err,
+			Location: "func initAnalyzeCmd()",
+		}, true)
+		log.Err(err).Msg("Failed to add command required flags")
+	}
+	return nil
+}
+
+func analyze(cmd *cobra.Command) error {
+	// save the analyze parameters into the AnalyzeParameters struct
+	analyzeParams := getAnalyzeParameters()
+
+	return executeAnalyze(analyzeParams)
+}
+
+func getAnalyzeParameters() *analyzer.Parameters {
+	analyzeParams := analyzer.Parameters{
+		Path:    flags.GetMultiStrFlag(flags.AnalyzePath),
+		Results: flags.GetStrFlag(flags.AnalyzeResults),
+	}
+
+	return &analyzeParams
+}
+
+func executeAnalyze(analyzeParams *analyzer.Parameters) error {
+	log.Debug().Msg("console.scan()")
+
+	for _, warn := range warnings {
+		log.Warn().Msgf(warn)
+	}
+
+	console := newConsole()
+
+	console.preScan()
+
+	analyzerStruct := &analyzer.Analyzer{
+		Paths:             analyzeParams.Path,
+		Types:             []string{""},
+		ExcludeTypes:      []string{""},
+		Exc:               []string{""},
+		ExcludeGitIgnore:  false,
+		GitIgnoreFileName: "",
+	}
+
+	analyzedPaths, err := analyzer.Analyze(analyzerStruct)
+
+	if err != nil {
+		log.Err(err)
+		return err
+	}
+
+	err = writeToFile(analyzeParams.Results, analyzedPaths)
+
+	if err != nil {
+		log.Err(err)
+		return err
+	}
+
+	return nil
+}
+
+func writeToFile(resultsPath string, analyzerResults model.AnalyzedPaths) error {
+	f, err := os.Create(resultsPath)
+	if err != nil {
+		return err
+	}
+
+	defer f.Close()
+
+	content, err := json.Marshal(analyzerResults)
+	if err != nil {
+		return err
+	}
+
+	_, err = f.Write(content)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

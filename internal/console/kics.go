@@ -43,11 +43,13 @@ func NewKICSCmd() *cobra.Command {
 func initialize(rootCmd *cobra.Command) error {
 	scanCmd := NewScanCmd()
 	remediateCmd := NewRemediateCmd()
+	analyzeCmd := NewAnalyzeCmd()
 	rootCmd.AddCommand(NewVersionCmd())
 	rootCmd.AddCommand(NewGenerateIDCmd())
 	rootCmd.AddCommand(scanCmd)
 	rootCmd.AddCommand(NewListPlatformsCmd())
 	rootCmd.AddCommand(remediateCmd)
+	rootCmd.AddCommand(analyzeCmd)
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
 
 	if err := flags.InitJSONFlags(
@@ -64,6 +66,10 @@ func initialize(rootCmd *cobra.Command) error {
 	}
 
 	if err := initRemediateCmd(remediateCmd); err != nil {
+		return err
+	}
+
+	if err := initAnalyzeCmd(analyzeCmd); err != nil {
 		return err
 	}
 

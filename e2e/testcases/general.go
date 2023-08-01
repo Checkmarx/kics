@@ -32,6 +32,7 @@ type TestTemplates struct {
 	Help          string
 	ScanHelp      string
 	RemediateHelp string
+	AnalyzeHelp   string
 }
 
 type cmdArgs []string

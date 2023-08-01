@@ -211,10 +211,16 @@ func prepareTemplates() testcases.TestTemplates {
 		remediateHelp = []string{}
 	}
 
+	var analyzeHelp, errAH = utils.PrepareExpected("analyze_help", "fixtures/assets")
+	if errAH != nil {
+		analyzeHelp = []string{}
+	}
+
 	return testcases.TestTemplates{
 		Help:          strings.Join(help, "\n"),
 		ScanHelp:      strings.Join(scanHelp, "\n"),
 		RemediateHelp: strings.Join(remediateHelp, "\n"),
+		AnalyzeHelp:   strings.Join(analyzeHelp, "\n"),
 	}
 }
 

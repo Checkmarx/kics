@@ -34,6 +34,7 @@ kics.config
 
 # Results
 results.*
+platforms.json
 gl-sast-results.json
 sonarqube-results.json
 cyclonedx-results.xml

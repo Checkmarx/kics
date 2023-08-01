@@ -112,6 +112,11 @@ const (
 	knative    = "knative"
 )
 
+type Parameters struct {
+	Results string
+	Path    []string
+}
+
 // regexSlice is a struct to contain a slice of regex
 type regexSlice struct {
 	regex []*regexp.Regexp
