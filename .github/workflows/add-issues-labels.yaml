@@ -14,7 +14,7 @@ jobs:
       with:
         persist-credentials: false
         sparse-checkout: |
-          .github/scripts/pr-info/get_pr_keywords.py
+          .github/scripts/pr-issue-info/get_keywords.py
           .github/keywords.yaml
     - name: Install JQ
       run: sudo apt-get install jq
@@ -59,7 +59,7 @@ jobs:
       run: python3 -m pip install --upgrade pip pyyaml
     - name: Check title for keywords of platforms and cloud providers to add labels
       run: |
-        keywords=$(python3 .github/scripts/pr-info/get_pr_keywords.py)
+        keywords=$(python3 .github/scripts/pr-issue-info/get_keywords.py)
         eval "$keywords"
         declare -p keywords
         for keyword in "${!keywords[@]}"; do
