@@ -5,7 +5,7 @@ Flags:
   -h, --help                  help for analyze
       --analyze-path strings          paths or directories to scan
                                       example: "./somepath,somefile.txt"
-      --results string        points to the JSON results file of analyzer
+      --results string        points to the JSON results file of analyzer (default "platforms.json")
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)

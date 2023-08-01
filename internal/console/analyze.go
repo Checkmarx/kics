@@ -23,7 +23,7 @@ var (
 func NewAnalyzeCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "analyze",
-		Short: "Displays the detected platforms and cloud providers of a certain project",
+		Short: "Determines the detected platforms of a certain project",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return analyze()
 		},

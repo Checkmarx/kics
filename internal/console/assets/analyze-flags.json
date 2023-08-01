@@ -8,7 +8,7 @@
     "results": {
         "flagType": "str",
         "shorthandFlag": "",
-        "defaultValue": "res/platforms.json",
+        "defaultValue": "platforms.json",
         "usage": "points to the JSON results file of analyzer"
     }
 }
