@@ -101,13 +101,10 @@ jobs:
         python-version: "3.x"
     - name: Install dependencies
       run: python3 -m pip install --upgrade pip pyyaml
-    - name: Load keywords from YAML
-      id: load-keywords
-      run: |
-        echo "::set-output name=keywords::$(python3 .github/scripts/pr-info/get_pr_keywords.py)"
     - name: Check title for keywords of platforms and cloud providers to add labels
       run: |
-        eval "${{ steps.load-keywords.outputs.keywords }}"
+        keywords=$(python3 .github/scripts/pr-info/get_pr_keywords.py)
+        eval "$keywords"
         declare -p keywords
         for keyword in "${!keywords[@]}"; do
           if echo "$TITLE" | grep -iq "\\b$keyword\\b"; then
