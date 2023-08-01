@@ -2,6 +2,6 @@ package flags
 
 // Flags constants for analyze
 const (
-	AnalyzeResults = "results"
+	AnalyzeResults = "analyze-results"
 	AnalyzePath    = "analyze-path"
 )

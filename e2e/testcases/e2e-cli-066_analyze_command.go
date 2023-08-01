@@ -9,7 +9,7 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"analyze",
-					"-analyze-path", "/path/e2e/fixtures/samples/swagger",
+					"--analyze-path", "/path/e2e/fixtures/samples/swagger",
 					"--results", "/path/e2e/output/E2E_CLI_066_ANALYZE_RESULTS.json"},
 			},
 			UseMock: []bool{true, true},

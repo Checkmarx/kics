@@ -5,7 +5,7 @@
         "defaultValue": null,
         "usage": "paths or directories to scan\nexample: \"./somepath,somefile.txt\""
   },
-    "results": {
+    "analyze-results": {
         "flagType": "str",
         "shorthandFlag": "",
         "defaultValue": "platforms.json",
