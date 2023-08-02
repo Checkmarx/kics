@@ -21,6 +21,7 @@ const (
 	KindCOMMON    FileKind = "*"
 	KindHELM      FileKind = "HELM"
 	KindBUILDAH   FileKind = "SH"
+	KindCFG       FileKind = "CFG"
 )
 
 // Constants to describe commands given from comments

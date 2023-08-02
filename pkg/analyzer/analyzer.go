@@ -80,6 +80,8 @@ var (
 		"tfvars":             true,
 		".proto":             true,
 		".sh":                true,
+		".cfg":               true,
+		".conf":              true,
 	}
 	supportedRegexes = map[string][]string{
 		"azureresourcemanager": append(armRegexTypes, arm),
@@ -377,6 +379,11 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 	case ".proto":
 		if a.isAvailableType(grpc) {
 			results <- grpc
+			locCount <- linesCount
+		}
+	case ".cfg", ".conf":
+		if a.isAvailableType(ansible) {
+			results <- ansible
 			locCount <- linesCount
 		}
 	// Cloud Formation, Ansible, OpenAPI, Buildah
