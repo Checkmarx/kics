@@ -44,7 +44,7 @@
 					"resource_name": "ALBListener",
 					"issue_type": "IncorrectValue",
 					"search_key": "Resources.ALBListener.Properties.Protocol=HTTP",
-					"search_line": 0,
+					"search_line": 104,
 					"search_value": "",
 					"expected_value": "'Resources.ALBListener.Protocol' should not equal to 'HTTP'",
 					"actual_value": "'Resources.ALBListener.Protocol' equals to 'HTTP'"
@@ -70,7 +70,7 @@
 					"resource_name": "TaskDefinition",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.TaskDefinition.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "'Resources.TaskDefinition.Properties.NetworkMode' should be set and should be 'awsvpc'",
 					"actual_value": "'Resources.TaskDefinition.Properties.NetworkMode' is undefined and defaults to 'bridge'"
@@ -96,7 +96,7 @@
 					"resource_name": "EcsSecurityGroupHTTPinbound02",
 					"issue_type": "IncorrectValue",
 					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from all IPv4 adresses and to all available ports",
 					"actual_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
@@ -109,7 +109,7 @@
 					"resource_name": "EcsSecurityGroupSSHinbound",
 					"issue_type": "IncorrectValue",
 					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from all IPv4 adresses and to all available ports",
 					"actual_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
@@ -183,7 +183,7 @@
 					"resource_name": "EcsSecurityGroupHTTPinbound02",
 					"issue_type": "IncorrectValue",
 					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
 					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
@@ -196,7 +196,7 @@
 					"resource_name": "EcsSecurityGroupSSHinbound",
 					"issue_type": "IncorrectValue",
 					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)"
@@ -222,7 +222,7 @@
 					"resource_name": "ECSALB",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.ECSALB",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "'Resources.ECSALB' should not have an 'internal' scheme and should have a 'WebACLAssociation' associated",
 					"actual_value": "'Resources.ECSALB' does not have an 'internal' scheme and a 'WebACLAssociation' associated"
@@ -248,7 +248,7 @@
 					"resource_name": "ECSAutoScalingGroup",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.ECSAutoScalingGroup.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "'Resources.ECSAutoScalingGroup.Properties.LoadBalancerNames' should be defined",
 					"actual_value": "'Resources.ECSAutoScalingGroup.Properties.LoadBalancerNames' is not defined"
@@ -274,7 +274,7 @@
 					"resource_name": "service",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.service.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resources.service.Properties.DeploymentConfiguration should be defined and not null",
 					"actual_value": "Resources.service.Properties.DeploymentConfiguration is undefined or null"
@@ -300,7 +300,7 @@
 					"resource_name": "ECSALB",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.EcsSecurityGroup.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupIngress' is defined",
 					"actual_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupIngress' is undefined"
@@ -326,7 +326,7 @@
 					"resource_name": "ECSALB",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.EcsSecurityGroup.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupEgress' is defined",
 					"actual_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupEgress' is undefined"
@@ -352,7 +352,7 @@
 					"resource_name": "service",
 					"issue_type": "IncorrectValue",
 					"search_key": "Resources.service.Properties.TaskDefinition",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "'Resources.service.Properties.TaskDefinition' refers to a TaskDefinition with Role",
 					"actual_value": "'Resources.service.Properties.TaskDefinition' does not refer to a TaskDefinition with Role"
@@ -378,7 +378,7 @@
 					"resource_name": "MyAmpAppSecretManagerRotater",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.MyAmpAppSecretManagerRotater.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resources.MyAmpAppSecretManagerRotater.Properties.KmsKeyId should be defined",
 					"actual_value": "Resources.MyAmpAppSecretManagerRotater.Properties.KmsKeyId is undefined"
@@ -404,7 +404,7 @@
 					"resource_name": "EcsSecurityGroupSSHinbound",
 					"issue_type": "IncorrectValue",
 					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
@@ -417,7 +417,7 @@
 					"resource_name": "EcsSecurityGroupALBports",
 					"issue_type": "IncorrectValue",
 					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
 					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
@@ -430,7 +430,7 @@
 					"resource_name": "EcsSecurityGroupHTTPinbound02",
 					"issue_type": "IncorrectValue",
 					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort should equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
 					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
@@ -456,7 +456,7 @@
 					"resource_name": "TaskDefinition",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions",
-					"search_line": 0,
+					"search_line": 51,
 					"search_value": "",
 					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
 					"actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
@@ -469,7 +469,7 @@
 					"resource_name": "TaskDefinition",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions",
-					"search_line": 0,
+					"search_line": 67,
 					"search_value": "",
 					"expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
 					"actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
@@ -495,7 +495,7 @@
 					"resource_name": "n/a",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "'AWS::AccessAnalyzer::Analyzer' should be set",
 					"actual_value": "'AWS::AccessAnalyzer::Analyzer' is undefined"
@@ -521,7 +521,7 @@
 					"resource_name": "EcsSecurityGroupSSHinbound",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description should be set",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
@@ -534,7 +534,7 @@
 					"resource_name": "EcsSecurityGroupALBports",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description should be set",
 					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
@@ -547,7 +547,7 @@
 					"resource_name": "EcsSecurityGroupHTTPinbound02",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description should be set",
 					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is undefined"
