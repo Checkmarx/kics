@@ -35,6 +35,8 @@ jobs:
         echo $title | grep -Pq "$regex" || (echo "$ERROR_MSG" && exit 1)
   labels-check:
     runs-on: ubuntu-latest
+    env:
+      LABELS: ${{ toJson(github.event.pull_request.labels) }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -76,24 +78,47 @@ jobs:
             echo "Adding 'feature request' label..."
             curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["feature request"]}'
           fi
+        else
+          if echo "$LABELS" | grep -q "feature request"; then
+            echo "Removing 'feature request' label..."
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/feature request"
+          elif echo "$LABELS" | grep -q "feature"; then
+            echo "Removing 'feature' label..."
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/feature
+          fi
         fi
     - name: Add documentation label
       run: |
         if [[ "$TITLE" == docs* ]]; then
           echo "Adding 'documentation' label..."
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["documentation"]}'
+        else
+          if echo "$LABELS" | grep -q "documentation"; then
+            echo "Removing 'documentation' label..."
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/documentation
+          fi
         fi
     - name: Add bug label
       run: |
         if echo "$TITLE" | grep -iqP "(\\b|_)bugs?(\\b|_)"; then
           echo "Adding 'bug' label..."
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["bug"]}'
+        else
+          if echo "$LABELS" | grep -q "bug"; then
+            echo "Removing 'bug' label..."
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/bug
+          fi
         fi
     - name: Add query label
       run: |
         if echo "$TITLE" | grep -iqP "(\\b|_)quer(y|ies)(\\b|_)"; then
           echo "Adding 'query' label..."
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d '{"labels": ["query"]}'
+        else
+          if echo "$LABELS" | grep -q "query"; then
+            echo "Removing 'query' label..."
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/query
+          fi
         fi
     - name: Set up Python 
       uses: actions/setup-python@v4
@@ -106,10 +131,24 @@ jobs:
         keywords=$(python3 .github/scripts/pr-issue-info/get_keywords.py)
         eval "$keywords"
         declare -p keywords
+        declare -a labels_to_add=()
         for keyword in "${!keywords[@]}"; do
           if echo "$TITLE" | grep -iPq "(\\b|_)$keyword(\\b|_)"; then
-            label=${keywords[$keyword]}
+            labels_to_add+=("${keywords[$keyword]}")
+          fi
+        done
+        mapfile -t current_labels < <(echo "$LABELS" | jq -r '.[].name')
+        echo "Current labels: ${current_labels[@]}"
+        echo "Labels to add: ${labels_to_add[@]}"
+        echo "Labels: $LABELS"
+        for keyword in "${!keywords[@]}"; do
+          label=${keywords[$keyword]}
+          if [[ ! " ${labels_to_add[@]} " =~ " ${label} " ]] && [[ " ${current_labels[@]} " =~ " ${label} " ]]; then
+            echo "Removing '$label' label..."
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/$label
+          elif [[ " ${labels_to_add[@]} " =~ " ${label} " ]] && [[ ! " ${current_labels[@]} " =~ " ${label} " ]]; then
             echo "Adding '$label' label..."
             curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels -d "{\"labels\": [\"$label\"]}"
           fi
         done
+
