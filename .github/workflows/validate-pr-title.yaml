@@ -81,7 +81,7 @@ jobs:
         else
           if echo "$LABELS" | grep -q "feature request"; then
             echo "Removing 'feature request' label..."
-            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/feature request"
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/feature+request
           elif echo "$LABELS" | grep -q "feature"; then
             echo "Removing 'feature' label..."
             curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/feature
