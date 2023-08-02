@@ -16,6 +16,3 @@ def load_keywords(file):
 
 if __name__ == "__main__":
     load_keywords('.github/keywords.yaml')
-
-
-
