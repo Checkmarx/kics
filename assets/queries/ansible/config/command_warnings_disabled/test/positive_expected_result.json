@@ -2,6 +2,13 @@
 	{
 		"queryName": "Command Warnings is Disabled",
 		"severity": "HIGH",
-		"line": 5
+		"line": 5,
+		"filename": "positive1.cfg"
+	},
+	{
+		"queryName": "Command Warnings is Disabled",
+		"severity": "HIGH",
+		"line": 1,
+		"filename": "positive2.cfg"
 	}
 ]
