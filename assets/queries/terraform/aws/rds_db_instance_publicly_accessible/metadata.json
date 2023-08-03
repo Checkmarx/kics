@@ -1,6 +1,6 @@
 {
   "id": "35113e6f-2c6b-414d-beec-7a9482d3b2d1",
-  "queryName": "Amazon RDS DB Instance Publicly Accessible",
+  "queryName": "RDS DB Instance Publicly Accessible",
   "severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "RDS must not be defined with public interface, which means the field 'publicly_accessible' should not be set to 'true' (default is 'false').",
