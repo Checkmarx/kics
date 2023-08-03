@@ -1,4 +1,4 @@
-package ansibleConfig
+package ansibleconfig
 
 import (
 	"strconv"
@@ -27,9 +27,10 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, [
 		return nil, nil, err
 	}
 
-	doc := refactorConfig(config)
+	doc := make(map[string]interface{})
+	doc["groups"] = refactorConfig(config)
 
-	return []model.Document{*doc}, []int{}, nil
+	return []model.Document{doc}, []int{}, nil
 }
 
 // refactorConfig removes all extra information
@@ -45,11 +46,15 @@ func refactorConfig(config *configparser.ConfigParser) (doc *model.Document) {
 			if intValue, err := strconv.Atoi(value); err == nil {
 				dictRefact[key] = intValue
 				continue
+			} else if boolValue, err := strconv.ParseBool(value); err == nil {
+				dictRefact[key] = boolValue
+				continue
 			}
 			dictRefact[key] = value
 		}
 		(*doc)[section] = dictRefact
 	}
+
 	return doc
 }
 

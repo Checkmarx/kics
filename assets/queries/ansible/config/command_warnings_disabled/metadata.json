@@ -1,0 +1,11 @@
+{
+  "id": "23a499ab-8083-4596-a41f-bf35ac829239",
+  "queryName": "Command Warnings is Disabled",
+  "severity": "HIGH",
+  "category": "Access Control",
+  "descriptionText": "Allows the injection of arbitrary commands on remote hosts through Ansible, which can lead to unauthorized execution of commands on the target systems and even gaining elevated privileges.",
+  "descriptionUrl": "https://docs.ansible.com/archive/ansible/2.4/intro_configuration.html#id96",
+  "platform": "Ansible",
+  "descriptionID": "3b61bb0b",
+  "cloudProvider": "hosts"
+}

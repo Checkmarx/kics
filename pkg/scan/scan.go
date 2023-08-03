@@ -13,7 +13,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
-	ansibleConfigParser "github.com/Checkmarx/kics/pkg/parser/ansible/ansibleConfig"
+	ansibleConfigParser "github.com/Checkmarx/kics/pkg/parser/ansible/ansibleconfig"
 	buildahParser "github.com/Checkmarx/kics/pkg/parser/buildah"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"

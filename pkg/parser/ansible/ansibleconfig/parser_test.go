@@ -1,4 +1,4 @@
-package ansibleConfig
+package ansibleconfig
 
 import (
 	"encoding/json"
