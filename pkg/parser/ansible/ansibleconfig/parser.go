@@ -64,6 +64,8 @@ func refactorConfig(config *configparser.ConfigParser) (doc *model.Document) {
 				} else {
 					dictRefact[key] = []string{}
 				}
+			} else if value == "[]" {
+				dictRefact[key] = []string{}
 			} else {
 				dictRefact[key] = value
 			}

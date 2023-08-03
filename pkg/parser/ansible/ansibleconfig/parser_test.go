@@ -54,6 +54,10 @@ roles_path = /etc/ansible/roles
 stdout_callback = yaml
 forks = 10
 strategy = free
+httpapi_plugins=~/.ansible/plugins/httpapi:/usr/share/ansible/plugins/httpapi
+internal_poll_interval=0.001
+inventory_plugins=~/.ansible/plugins/inventory:/usr/share/ansible/plugins/inventory
+jinja2_extensions=[]
 
 [ssh_connection]
 pipelining = True
