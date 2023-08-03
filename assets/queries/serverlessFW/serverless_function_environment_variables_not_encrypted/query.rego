@@ -8,8 +8,9 @@ CxPolicy[result] {
 	functions := document.functions
 	function := functions[fname]
 
+	common_lib.valid_key(function, "environment")
 	not common_lib.valid_key(function, "kmsKeyArn")
-	not hasKMSarnAtProvider(document)
+
 
 	result := {
 		"documentId": input.document[i].id,
@@ -20,6 +21,23 @@ CxPolicy[result] {
 		"keyExpectedValue": "'kmsKeyArn' should be defined inside the function",
 		"keyActualValue": "'kmsKeyArn' is not defined",
 		"searchLine": common_lib.build_search_line(["functions", fname], []),
+	}
+}
+
+CxPolicy[result] {
+	document := input.document[i]
+
+	common_lib.valid_key(document.provider, "environment")
+	not hasKMSarnAtProvider(document)
+	
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": "provider",
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'kmsKeyArn' should be defined inside the provider",
+		"keyActualValue": "'kmsKeyArn' is not defined",
+		"searchLine": common_lib.build_search_line(["provider"], []),
 	}
 }
 

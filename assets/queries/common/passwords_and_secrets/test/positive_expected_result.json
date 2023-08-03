@@ -400,5 +400,11 @@
     "severity": "HIGH",
     "line": 8,
     "fileName": "positive48.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Private Key",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive49.yml"
   }
 ]
