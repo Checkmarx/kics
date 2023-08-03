@@ -27,9 +27,9 @@ jobs:
         if: steps.verify-changed-files.outputs.files_changed == 'true'
         uses: peter-evans/create-pull-request@v4
         with:
-          title: "bump: updating software versions"
+          title: "build(deps): updating software versions"
           token: ${{ secrets.KICS_BOT_PAT }}
-          commit-message: "bump: updating software versions to new release"
+          commit-message: "build(deps): updating software versions to new release"
           delete-branch: true
           branch: feature/kicsbot-software-versions
           base: master
