@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/archive/ansible/2.4/intro_configuration.html#id96",
   "platform": "Ansible",
   "descriptionID": "3b61bb0b",
-  "cloudProvider": "hosts"
+  "cloudProvider": "common"
 }
