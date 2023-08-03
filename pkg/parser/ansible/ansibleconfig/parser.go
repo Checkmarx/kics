@@ -1,6 +1,7 @@
 package ansibleconfig
 
 import (
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -33,7 +34,7 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, [
 	return []model.Document{doc}, []int{}, nil
 }
 
-// refactorConfig removes all extra information
+// refactorConfig removes all extra information and tries to convert
 func refactorConfig(config *configparser.ConfigParser) (doc *model.Document) {
 	doc = emptyDocument()
 	for _, section := range config.Sections() {
@@ -43,14 +44,29 @@ func refactorConfig(config *configparser.ConfigParser) (doc *model.Document) {
 		}
 		dictRefact := make(map[string]interface{})
 		for key, value := range dict {
-			if intValue, err := strconv.Atoi(value); err == nil {
-				dictRefact[key] = intValue
-				continue
-			} else if boolValue, err := strconv.ParseBool(value); err == nil {
+			if boolValue, err := strconv.ParseBool(value); err == nil {
 				dictRefact[key] = boolValue
-				continue
+			} else if floatValue, err := strconv.ParseFloat(value, 64); err == nil {
+				dictRefact[key] = floatValue
+			} else if strings.Contains(value, ",") {
+				re := regexp.MustCompile(`\w+`)
+				matches := re.FindAllString(value, -1)
+				if len(matches) > 0 {
+					dictRefact[key] = matches
+				} else {
+					dictRefact[key] = []string{}
+				}
+			} else if strings.Contains(value, ":") {
+				re := regexp.MustCompile(`\w+`)
+				matches := re.FindAllString(value, -1)
+				if len(matches) > 0 {
+					dictRefact[key] = matches
+				} else {
+					dictRefact[key] = []string{}
+				}
+			} else {
+				dictRefact[key] = value
 			}
-			dictRefact[key] = value
 		}
 		(*doc)[section] = dictRefact
 	}
