@@ -1,4 +1,4 @@
-package json
+package ansiblehosts
 
 import (
 	"strconv"
@@ -83,18 +83,22 @@ func refactorHosts(hosts map[string]*aini.Host, children map[string]bool) *model
 func refactorVars(vars map[string]string) *model.Document {
 	varMap := emptyDocument()
 	for key, value := range vars {
-		valueInt, err := strconv.ParseFloat(value, 64)
+		valueFloat, err := strconv.ParseFloat(value, 64)
 
 		if err == nil {
-			(*varMap)[key] = valueInt
+			(*varMap)[key] = valueFloat
 		} else {
-			(*varMap)[key] = value
+			if valueBool, err := strconv.ParseBool(value); err == nil {
+				(*varMap)[key] = valueBool
+			} else {
+				(*varMap)[key] = value
+			}
 		}
 	}
 	return varMap
 }
 
-// SupportedExtensions returns extensions supported by this parser, which are only ini extension
+// SupportedExtensions returns extensions supported by this parser, which is INI extension
 func (p *Parser) SupportedExtensions() []string {
 	return []string{".ini"}
 }
@@ -106,12 +110,12 @@ func (p *Parser) SupportedTypes() map[string]bool {
 	}
 }
 
-// GetKind returns YAML constant kind
+// GetKind returns INI constant kind
 func (p *Parser) GetKind() model.FileKind {
 	return model.KindINI
 }
 
-// GetCommentToken return the comment token of YAML - #
+// GetCommentToken return the comment token of INI - #
 func (p *Parser) GetCommentToken() string {
 	return "#"
 }
