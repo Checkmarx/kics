@@ -1,0 +1,43 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+      "Analyzer": {
+        "Type": "AWS::AccessAnalyzer::Analyzer",
+        "Properties": {
+          "AnalyzerName": "MyAccountAnalyzer",
+          "Type": "ACCOUNT",
+          "Tags": [
+            {
+              "Key": "Kind",
+              "Value": "Dev"
+            }
+          ],
+          "ArchiveRules": [
+            {
+              "RuleName": "ArchiveTrustedAccountAccess",
+              "Filter": [
+                {
+                  "Property": "principal.AWS",
+                  "Eq": [
+                    "123456789012"
+                  ]
+                }
+              ]
+            },
+            {
+              "RuleName": "ArchivePublicS3BucketsAccess",
+              "Filter": [
+                {
+                  "Property": "resource",
+                  "Contains": [
+                    "arn:aws:s3:::docs-bucket",
+                    "arn:aws:s3:::clients-bucket"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
