@@ -19,7 +19,7 @@
         <link rel="next" href="../dockercompose-queries/">
       
       <link rel="icon" href="../../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
     
     
       
@@ -1442,13 +1442,6 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#expose">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Same Alias In Different Froms<br/><sup><sub>f2daed12-c802-49cd-afed-fe41d0b82fed</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Build Process</td>
-<td>Different FROMS cant have the same alias defined (<a href="../dockerfile-queries/f2daed12-c802-49cd-afed-fe41d0b82fed" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/develop/develop-images/multistage-build/">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Multiple ENTRYPOINT Instructions Listed<br/><sup><sub>6938958b-3f1a-451c-909b-baeee14bdc97</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Build Process</td>
@@ -1456,17 +1449,24 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#entrypoint">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Copy With More Than Two Arguments Not Ending With Slash<br/><sup><sub>6db6e0c2-32a3-4a2e-93b5-72c35f4119db</sub></sup></td>
+<td>WORKDIR Path Not Absolute<br/><sup><sub>6b376af8-cfe8-49ab-a08d-f32de23661a4</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Build Process</td>
-<td>When a COPY command has more than two arguments, the last one should end with a slash (<a href="../dockerfile-queries/6db6e0c2-32a3-4a2e-93b5-72c35f4119db" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/engine/reference/builder/#copy">Documentation</a><br/></td>
+<td>For clarity and reliability, you should always use absolute paths for your WORKDIR (<a href="../dockerfile-queries/6b376af8-cfe8-49ab-a08d-f32de23661a4" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#workdir">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>COPY '--from' References Current FROM Alias<br/><sup><sub>cdddb86f-95f6-4fc4-b5a1-483d9afceb2b</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Build Process</td>
 <td>COPY '--from' should not mention the current FROM alias, since it is impossible to copy from itself (<a href="../dockerfile-queries/cdddb86f-95f6-4fc4-b5a1-483d9afceb2b" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/develop/develop-images/multistage-build/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Same Alias In Different Froms<br/><sup><sub>f2daed12-c802-49cd-afed-fe41d0b82fed</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Build Process</td>
+<td>Different FROMS cant have the same alias defined (<a href="../dockerfile-queries/f2daed12-c802-49cd-afed-fe41d0b82fed" target="_blank">read more</a>)</td>
 <td><a href="https://docs.docker.com/develop/develop-images/multistage-build/">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1477,11 +1477,11 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#user">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>WORKDIR Path Not Absolute<br/><sup><sub>6b376af8-cfe8-49ab-a08d-f32de23661a4</sub></sup></td>
+<td>Copy With More Than Two Arguments Not Ending With Slash<br/><sup><sub>6db6e0c2-32a3-4a2e-93b5-72c35f4119db</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Build Process</td>
-<td>For clarity and reliability, you should always use absolute paths for your WORKDIR (<a href="../dockerfile-queries/6b376af8-cfe8-49ab-a08d-f32de23661a4" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#workdir">Documentation</a><br/></td>
+<td>When a COPY command has more than two arguments, the last one should end with a slash (<a href="../dockerfile-queries/6db6e0c2-32a3-4a2e-93b5-72c35f4119db" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/engine/reference/builder/#copy">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Run Using Sudo<br/><sup><sub>8ada6e80-0ade-439e-b176-0b28f6bce35a</sub></sup></td>
@@ -1512,25 +1512,18 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#user">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>RUN Instruction Using 'cd' Instead of WORKDIR<br/><sup><sub>f4a6bcd3-e231-4acf-993c-aa027be50d2e</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Build Process</td>
-<td>When using RUN command 'cd' should only be used for full path. For relative path make use of WORKDIR command instead. (<a href="../dockerfile-queries/f4a6bcd3-e231-4acf-993c-aa027be50d2e" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#workdir">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Update Instruction Alone<br/><sup><sub>9bae49be-0aa3-4de5-bab2-4c3a069e40cd</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Build Process</td>
-<td>Instruction 'RUN <package-manager> update' should always be followed by '<package-manager> install' in the same RUN statement (<a href="../dockerfile-queries/9bae49be-0aa3-4de5-bab2-4c3a069e40cd" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Multiple CMD Instructions Listed<br/><sup><sub>41c195f4-fc31-4a5c-8a1b-90605538d49f</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Build Process</td>
 <td>There can only be one CMD instruction in a Dockerfile. If you list more than one CMD then only the last CMD will take effect (<a href="../dockerfile-queries/41c195f4-fc31-4a5c-8a1b-90605538d49f" target="_blank">read more</a>)</td>
 <td><a href="https://docs.docker.com/engine/reference/builder/#cmd">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>RUN Instruction Using 'cd' Instead of WORKDIR<br/><sup><sub>f4a6bcd3-e231-4acf-993c-aa027be50d2e</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Build Process</td>
+<td>When using RUN command 'cd' should only be used for full path. For relative path make use of WORKDIR command instead. (<a href="../dockerfile-queries/f4a6bcd3-e231-4acf-993c-aa027be50d2e" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#workdir">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Not Using JSON In CMD And ENTRYPOINT Arguments<br/><sup><sub>b86987e1-6397-4619-81d5-8807f2387c79</sub></sup></td>
@@ -1540,6 +1533,13 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#entrypoint">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Update Instruction Alone<br/><sup><sub>9bae49be-0aa3-4de5-bab2-4c3a069e40cd</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Build Process</td>
+<td>Instruction 'RUN <package-manager> update' should always be followed by '<package-manager> install' in the same RUN statement (<a href="../dockerfile-queries/9bae49be-0aa3-4de5-bab2-4c3a069e40cd" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Shell Running A Pipe Without Pipefail Flag<br/><sup><sub>efbf148a-67e9-42d2-ac47-02fa1c0d0b22</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Defaults</td>
@@ -1547,10 +1547,17 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Missing Zypper Clean<br/><sup><sub>38300d1a-feb2-4a48-936a-d1ef1cd24313</sub></sup></td>
+<td>Apt Get Install Pin Version Not Defined<br/><sup><sub>965a08d7-ef86-4f14-8792-4a3b2098937e</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
-<td>Reduce layer and image size by deleting unneeded caches after running zypper (<a href="../dockerfile-queries/38300d1a-feb2-4a48-936a-d1ef1cd24313" target="_blank">read more</a>)</td>
+<td>When installing a package, its pin version should be defined (<a href="../dockerfile-queries/965a08d7-ef86-4f14-8792-4a3b2098937e" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Zypper Install Without Version<br/><sup><sub>562952e4-0348-4dea-9826-44f3a2c6117b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>Not specifying the package version can cause failures due to unanticipated changes in required packages (<a href="../dockerfile-queries/562952e4-0348-4dea-9826-44f3a2c6117b" target="_blank">read more</a>)</td>
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1561,6 +1568,20 @@
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Unpinned Package Version in Pip Install<br/><sup><sub>02d9c71f-3ee8-4986-9c27-1a20d0d19bfc</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>Package version pinning reduces the range of versions that can be installed, reducing the chances of failure due to unanticipated changes (<a href="../dockerfile-queries/02d9c71f-3ee8-4986-9c27-1a20d0d19bfc" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Run Using 'wget' and 'curl'<br/><sup><sub>fc775e75-fcfb-4c98-b2f2-910c5858b359</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>Shouldn't use both 'wget' and 'curl' since they are two tools that have the same effect (<a href="../dockerfile-queries/fc775e75-fcfb-4c98-b2f2-910c5858b359" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>APT-GET Missing '-y' To Avoid Manual Input<br/><sup><sub>77783205-c4ca-4f80-bb80-c777f267c547</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
@@ -1568,18 +1589,39 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Unpinned Package Version in Apk Add<br/><sup><sub>d3499f6d-1651-41bb-a9a7-de925fea487b</sub></sup></td>
+<td>Missing Zypper Clean<br/><sup><sub>38300d1a-feb2-4a48-936a-d1ef1cd24313</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
-<td>Package version pinning reduces the range of versions that can be installed, reducing the chances of failure due to unanticipated changes (<a href="../dockerfile-queries/d3499f6d-1651-41bb-a9a7-de925fea487b" target="_blank">read more</a>)</td>
+<td>Reduce layer and image size by deleting unneeded caches after running zypper (<a href="../dockerfile-queries/38300d1a-feb2-4a48-936a-d1ef1cd24313" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Missing Dnf Clean All<br/><sup><sub>295acb63-9246-4b21-b441-7c1f1fb62dc0</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>Cached package data should be cleaned after installation to reduce image size (<a href="../dockerfile-queries/295acb63-9246-4b21-b441-7c1f1fb62dc0" target="_blank">read more</a>)</td>
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Image Version Using 'latest'<br/><sup><sub>f45ea400-6bbe-4501-9fc7-1c3d75c32067</sub></sup></td>
+<td>Using Platform Flag with FROM Command<br/><sup><sub>b16e8501-ef3c-44e1-a543-a093238099c9</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
-<td>When building images, always tag them with useful tags which codify version information, intended destination (prod or test, for instance), stability, or other information that is useful when deploying the application in different environments. Do not rely on the automatically-created latest tag (<a href="../dockerfile-queries/f45ea400-6bbe-4501-9fc7-1c3d75c32067" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/develop/dev-best-practices/">Documentation</a><br/></td>
+<td>Don't use '--platform' flag with FROM (<a href="../dockerfile-queries/b16e8501-ef3c-44e1-a543-a093238099c9" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/engine/reference/builder/#from">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Missing Flag From Dnf Install<br/><sup><sub>7ebd323c-31b7-4e5b-b26f-de5e9e477af8</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>The '-y' or '--assumeyes' flag should be added when invoking dnf install. If omitted, it can cause the command to fail during the build process, because dnf would expect manual input. (<a href="../dockerfile-queries/7ebd323c-31b7-4e5b-b26f-de5e9e477af8" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Gem Install Without Version<br/><sup><sub>22cd11f7-9c6c-4f6e-84c0-02058120b341</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>Instead of 'gem install <gem>' we should use 'gem install <gem>:<version>' (<a href="../dockerfile-queries/22cd11f7-9c6c-4f6e-84c0-02058120b341" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Run Using apt<br/><sup><sub>b84a0b47-2e99-4c9f-8933-98bcabe2b94d</sub></sup></td>
@@ -1596,34 +1638,6 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Gem Install Without Version<br/><sup><sub>22cd11f7-9c6c-4f6e-84c0-02058120b341</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>Instead of 'gem install <gem>' we should use 'gem install <gem>:<version>' (<a href="../dockerfile-queries/22cd11f7-9c6c-4f6e-84c0-02058120b341" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Add Instead of Copy<br/><sup><sub>9513a694-aa0d-41d8-be61-3271e056f36b</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>Using ADD to load external installation scripts could lead to an evil web server leveraging this and loading a malicious script. (<a href="../dockerfile-queries/9513a694-aa0d-41d8-be61-3271e056f36b" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/engine/reference/builder/#add">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Image Version Not Explicit<br/><sup><sub>9efb0b2d-89c9-41a3-91ca-dcc0aec911fd</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>Always tag the version of an image explicitly (<a href="../dockerfile-queries/9efb0b2d-89c9-41a3-91ca-dcc0aec911fd" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/engine/reference/builder/#from">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Zypper Install Without Version<br/><sup><sub>562952e4-0348-4dea-9826-44f3a2c6117b</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>Not specifying the package version can cause failures due to unanticipated changes in required packages (<a href="../dockerfile-queries/562952e4-0348-4dea-9826-44f3a2c6117b" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Yum Clean All Missing<br/><sup><sub>00481784-25aa-4a55-8633-3136dfcf4f37</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
@@ -1631,45 +1645,10 @@
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Using Platform Flag with FROM Command<br/><sup><sub>b16e8501-ef3c-44e1-a543-a093238099c9</sub></sup></td>
+<td>Missing Zypper Non-interactive Switch<br/><sup><sub>45e1fca5-f90e-465d-825f-c2cb63fa3944</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
-<td>Don't use '--platform' flag with FROM (<a href="../dockerfile-queries/b16e8501-ef3c-44e1-a543-a093238099c9" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/engine/reference/builder/#from">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Unpinned Package Version in Pip Install<br/><sup><sub>02d9c71f-3ee8-4986-9c27-1a20d0d19bfc</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>Package version pinning reduces the range of versions that can be installed, reducing the chances of failure due to unanticipated changes (<a href="../dockerfile-queries/02d9c71f-3ee8-4986-9c27-1a20d0d19bfc" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Missing Flag From Dnf Install<br/><sup><sub>7ebd323c-31b7-4e5b-b26f-de5e9e477af8</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>The '-y' or '--assumeyes' flag should be added when invoking dnf install. If omitted, it can cause the command to fail during the build process, because dnf would expect manual input. (<a href="../dockerfile-queries/7ebd323c-31b7-4e5b-b26f-de5e9e477af8" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>NPM Install Command Without Pinned Version<br/><sup><sub>e36d8880-3f78-4546-b9a1-12f0745ca0d5</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>Check if packages installed by npm are pinning a specific version. (<a href="../dockerfile-queries/e36d8880-3f78-4546-b9a1-12f0745ca0d5" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Apt Get Install Pin Version Not Defined<br/><sup><sub>965a08d7-ef86-4f14-8792-4a3b2098937e</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>When installing a package, its pin version should be defined (<a href="../dockerfile-queries/965a08d7-ef86-4f14-8792-4a3b2098937e" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Run Using 'wget' and 'curl'<br/><sup><sub>fc775e75-fcfb-4c98-b2f2-910c5858b359</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Supply-Chain</td>
-<td>Shouldn't use both 'wget' and 'curl' since they are two tools that have the same effect (<a href="../dockerfile-queries/fc775e75-fcfb-4c98-b2f2-910c5858b359" target="_blank">read more</a>)</td>
+<td>Omitting the non-interactive switch causes the command to fail during the build process, because zypper would expect manual input (<a href="../dockerfile-queries/45e1fca5-f90e-465d-825f-c2cb63fa3944" target="_blank">read more</a>)</td>
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -1680,6 +1659,20 @@
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Image Version Using 'latest'<br/><sup><sub>f45ea400-6bbe-4501-9fc7-1c3d75c32067</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>When building images, always tag them with useful tags which codify version information, intended destination (prod or test, for instance), stability, or other information that is useful when deploying the application in different environments. Do not rely on the automatically-created latest tag (<a href="../dockerfile-queries/f45ea400-6bbe-4501-9fc7-1c3d75c32067" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/develop/dev-best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Image Version Not Explicit<br/><sup><sub>9efb0b2d-89c9-41a3-91ca-dcc0aec911fd</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>Always tag the version of an image explicitly (<a href="../dockerfile-queries/9efb0b2d-89c9-41a3-91ca-dcc0aec911fd" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/engine/reference/builder/#from">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Missing Version Specification In dnf install<br/><sup><sub>93d88cf7-f078-46a8-8ddc-178e03aeacf1</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
@@ -1687,18 +1680,25 @@
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Missing Zypper Non-interactive Switch<br/><sup><sub>45e1fca5-f90e-465d-825f-c2cb63fa3944</sub></sup></td>
+<td>NPM Install Command Without Pinned Version<br/><sup><sub>e36d8880-3f78-4546-b9a1-12f0745ca0d5</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
-<td>Omitting the non-interactive switch causes the command to fail during the build process, because zypper would expect manual input (<a href="../dockerfile-queries/45e1fca5-f90e-465d-825f-c2cb63fa3944" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run">Documentation</a><br/></td>
+<td>Check if packages installed by npm are pinning a specific version. (<a href="../dockerfile-queries/e36d8880-3f78-4546-b9a1-12f0745ca0d5" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Missing Dnf Clean All<br/><sup><sub>295acb63-9246-4b21-b441-7c1f1fb62dc0</sub></sup></td>
+<td>Unpinned Package Version in Apk Add<br/><sup><sub>d3499f6d-1651-41bb-a9a7-de925fea487b</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
-<td>Cached package data should be cleaned after installation to reduce image size (<a href="../dockerfile-queries/295acb63-9246-4b21-b441-7c1f1fb62dc0" target="_blank">read more</a>)</td>
+<td>Package version pinning reduces the range of versions that can be installed, reducing the chances of failure due to unanticipated changes (<a href="../dockerfile-queries/d3499f6d-1651-41bb-a9a7-de925fea487b" target="_blank">read more</a>)</td>
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Add Instead of Copy<br/><sup><sub>9513a694-aa0d-41d8-be61-3271e056f36b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Supply-Chain</td>
+<td>Using ADD to load external installation scripts could lead to an evil web server leveraging this and loading a malicious script. (<a href="../dockerfile-queries/9513a694-aa0d-41d8-be61-3271e056f36b" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/engine/reference/builder/#add">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Curl or Wget Instead of Add<br/><sup><sub>4b410d24-1cbe-4430-a632-62c9a931cf1c</sub></sup></td>
@@ -1706,6 +1706,13 @@
 <td>Best Practices</td>
 <td>Use of Curl or Wget should be done instead of Add to fetch packages from remote URLs due to the use of Add being strongly discouraged (<a href="../dockerfile-queries/4b410d24-1cbe-4430-a632-62c9a931cf1c" target="_blank">read more</a>)</td>
 <td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>MAINTAINER Instruction Being Used<br/><sup><sub>99614418-f82b-4852-a9ae-5051402b741c</sub></sup></td>
+<td><span style="color:#CC0">Low</span></td>
+<td>Best Practices</td>
+<td>The MAINTAINER instruction sets the Author field of the generated images. The LABEL instruction is a much more flexible version of this and you should use it instead, as it enables setting any metadata you require, and can be viewed easily (<a href="../dockerfile-queries/99614418-f82b-4852-a9ae-5051402b741c" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/engine/reference/builder/#maintainer-deprecated">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Multiple RUN, ADD, COPY, Instructions Listed<br/><sup><sub>0008c003-79aa-42d8-95b8-1c2fe37dbfe6</sub></sup></td>
@@ -1729,13 +1736,6 @@
 <td><a href="https://sysdig.com/blog/dockerfile-best-practices/">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>MAINTAINER Instruction Being Used<br/><sup><sub>99614418-f82b-4852-a9ae-5051402b741c</sub></sup></td>
-<td><span style="color:#CC0">Low</span></td>
-<td>Best Practices</td>
-<td>The MAINTAINER instruction sets the Author field of the generated images. The LABEL instruction is a much more flexible version of this and you should use it instead, as it enables setting any metadata you require, and can be viewed easily (<a href="../dockerfile-queries/99614418-f82b-4852-a9ae-5051402b741c" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/engine/reference/builder/#maintainer-deprecated">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Using Unnamed Build Stages<br/><sup><sub>68a51e22-ae5a-4d48-8e87-b01a323605c9</sub></sup></td>
 <td><span style="color:#CC0">Low</span></td>
 <td>Build Process</td>
@@ -1750,6 +1750,13 @@
 <td><a href="https://docs.docker.com/engine/reference/builder/#healthcheck">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Apt Get Install Lists Were Not Deleted<br/><sup><sub>df746b39-6564-4fed-bf85-e9c44382303c</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Supply-Chain</td>
+<td>After using apt-get install, it is needed to delete apt-get lists (<a href="../dockerfile-queries/df746b39-6564-4fed-bf85-e9c44382303c" target="_blank">read more</a>)</td>
+<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Run Utilities And POSIX Commands<br/><sup><sub>9b6b0f38-92a2-41f9-b881-3a1083d99f1b</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Supply-Chain</td>
@@ -1762,13 +1769,6 @@
 <td>Supply-Chain</td>
 <td>When installing packages, use the '--no-cache' switch to avoid the need to use '--update' and remove '/var/cache/apk/*' (<a href="../dockerfile-queries/ae9c56a6-3ed1-4ac0-9b54-31267f51151d" target="_blank">read more</a>)</td>
 <td><a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Apt Get Install Lists Were Not Deleted<br/><sup><sub>df746b39-6564-4fed-bf85-e9c44382303c</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Supply-Chain</td>
-<td>After using apt-get install, it is needed to delete apt-get lists (<a href="../dockerfile-queries/df746b39-6564-4fed-bf85-e9c44382303c" target="_blank">read more</a>)</td>
-<td><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>APT-GET Not Avoiding Additional Packages<br/><sup><sub>7384dfb2-fcd1-4fbf-91cd-6c44c318c33c</sub></sup></td>
