@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Amazon RDS DB Instance Publicly Accessible",
+    "queryName": "RDS DB Instance Publicly Accessible",
     "severity": "HIGH",
     "line": 17,
     "fileName": "positive1.yaml"
