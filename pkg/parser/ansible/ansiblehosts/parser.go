@@ -12,12 +12,12 @@ import (
 type Parser struct {
 }
 
-func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, _ string) ([]byte, error) {
 	return fileContent, nil
 }
 
 // Parse parses .ini file and returns it as a Document
-func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, []int, error) {
+func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, error) {
 	model.NewIgnore.Reset()
 
 	inventoryReader := strings.NewReader(string(fileContent))
@@ -34,7 +34,9 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, [
 	(*allMap)["children"] = childrenMap
 	doc["all"] = allMap
 
-	return []model.Document{doc}, []int{}, nil
+	ignoreLines := getIgnoreLines(strings.Split(string(fileContent), "\n"))
+
+	return []model.Document{doc}, ignoreLines, nil
 }
 
 // refactorInv removes all extra information
