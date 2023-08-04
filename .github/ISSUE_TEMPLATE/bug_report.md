@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a bug report to help us improve
-title: 'bug(<scope>): <your title>'
+title: 'bug(<scope>): <title starting with lowercase letter>'
 labels: community, bug
 assignees: ''
 

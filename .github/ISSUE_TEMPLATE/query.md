@@ -1,7 +1,7 @@
 ---
 name: Query
 about: Template to help create/update a query
-title: 'query(<platform>): <your title>'
+title: 'query(<platform>): <title starting with lowercase letter>'
 labels: community, query
 assignees: ''
 

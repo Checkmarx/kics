@@ -4,7 +4,6 @@ on:
     types: [opened, synchronize, edited, reopened]
     branches: 
       - master
-
 jobs:
   title-check:
     runs-on: ubuntu-latest
@@ -28,6 +27,8 @@ jobs:
     - name: Install dependencies
       run: python3 -m pip install --upgrade pip pyyaml
     - name: Check PR Title
+      env:
+        FILE_PATH: .github/pr-title-types.yaml
       run: |
         regex=$(python3 .github/scripts/pr-issue-info/get_title_types.py)
         echo "Title regex: $regex"
