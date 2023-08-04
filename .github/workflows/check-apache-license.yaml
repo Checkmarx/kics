@@ -1,0 +1,31 @@
+name: check-apache-license
+on:
+  pull_request_target:
+    types: [opened, synchronize, edited, reopened]
+    branches: 
+      - master
+      - apache_workflow
+jobs:
+  check-license:
+    runs-on: ubuntu-latest
+    env:
+      BODY: ${{ github.event.pull_request.body }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        persist-credentials: false
+        sparse-checkout: |
+          .github/scripts/pr-issue-info/apache-check.md
+    - name: Check for Apache License
+      run: |
+        echo "$BODY" | grep -iPq "I submit this contribution under the Apache-2.0 license." || echo "CHECK_FAILED=true" >> $GITHUB_ENV
+    - name: Add comment if no license
+      if: env.CHECK_FAILED == 'true'
+      uses: thollander/actions-comment-pull-request@v2
+      with:
+        filePath: .github/scripts/pr-issue-info/apache-check.md
+        GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+    - name: Fail the workflow if no license
+      if: env.CHECK_FAILED == 'true'
+      run: exit 1
