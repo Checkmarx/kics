@@ -5,6 +5,7 @@ service:
  
 provider:
   name: aws
+  kmsKeyArn: arn:aws:kms:us-east-1:XXXXXX:key/some-hash
   environment:
     TABLE_NAME: tableName1
  

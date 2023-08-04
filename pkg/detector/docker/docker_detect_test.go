@@ -115,15 +115,15 @@ func TestDetectDockerLine(t *testing.T) { //nolint
 				Line: 6,
 				VulnLines: &[]model.CodeLine{
 					{
+						Position: 4,
+						Line:     `	&& apk add kubectl=1.20.0-r0 \`,
+					},
+					{
 						Position: 5,
-						Line: `	&& apk add kubectl=1.20.0-r0 \`,
+						Line:     "	&& rm -rf /var/cache/apk/*",
 					},
 					{
 						Position: 6,
-						Line: "	&& rm -rf /var/cache/apk/*",
-					},
-					{
-						Position: 7,
 						Line:     `ENTRYPOINT ["kubectl"]`,
 					},
 				},

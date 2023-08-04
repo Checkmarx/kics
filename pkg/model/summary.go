@@ -70,6 +70,7 @@ type Counters struct {
 	ScannedFilesLines      int `json:"lines_scanned"`
 	ParsedFiles            int `json:"files_parsed"`
 	ParsedFilesLines       int `json:"lines_parsed"`
+	IgnoredFilesLines      int `json:"lines_ignored"`
 	FailedToScanFiles      int `json:"files_failed_to_scan"`
 	TotalQueries           int `json:"queries_total"`
 	FailedToExecuteQueries int `json:"queries_failed_to_execute"`
@@ -218,6 +219,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 			IssueType:        item.IssueType,
 			SearchKey:        item.SearchKey,
 			SearchValue:      item.SearchValue,
+			SearchLine:       item.SearchLine,
 			KeyExpectedValue: item.KeyExpectedValue,
 			KeyActualValue:   item.KeyActualValue,
 			Value:            item.Value,
