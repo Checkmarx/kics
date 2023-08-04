@@ -4,7 +4,6 @@ on:
     types: [opened, synchronize, edited, reopened]
     branches: 
       - master
-      - fix_workflows
 
 jobs:
   title-check:
@@ -19,6 +18,7 @@ jobs:
         sparse-checkout: |
           .github/scripts/pr-issue-info/get_title_types.py
           .github/pr-title-types.yaml
+          .github/scripts/pr-issue-info/title-fail.md
     - name: Print PR Title
       run: echo "${{ github.event.pull_request.title }}"
     - name: Set up Python 
@@ -32,16 +32,16 @@ jobs:
         regex=$(python3 .github/scripts/pr-issue-info/get_title_types.py)
         echo "Title regex: $regex"
         title="${{ github.event.pull_request.title }}"
-        echo $title | grep -Pq "$regex"
-        if [ $? -ne 0 ]; then
-          echo "$ERROR_MSG"
-          COMMENT="Please, follow the guideline for a pull request title: <type>(<scope>): <title starting with lowercase letter>\nYou can read more about it here: https://docs.kics.io/latest/CONTRIBUTING/#pull_requests"
-          echo "Adding a comment to the PR..."
-          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
-            -d "{\"body\":\"${COMMENT}\"}"
-          exit 1
-        fi
+        echo "$title" | grep -Pq "$regex" || (echo "$ERROR_MSG" && echo "TITLE_CHECK_FAILED=true" >> $GITHUB_ENV)
+    - name: Add comment
+      if: env.TITLE_CHECK_FAILED == 'true'
+      uses: thollander/actions-comment-pull-request@v2
+      with:
+        filePath: .github/scripts/pr-issue-info/title-fail.md
+        GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+    - name: Fail the workflow
+      if: env.TITLE_CHECK_FAILED == 'true'
+      run: exit 1
   labels-check:
     runs-on: ubuntu-latest
     env:
