@@ -28,10 +28,7 @@ func getIgnoreLinesFromBlock(lines []string, ignoreBlockLine int) int {
 
 	// Now needs to find the end of the block (next group or end of file)
 	i += 1
-	nextGroup, err := regexp.Compile(`^\s*\[`)
-	if err != nil {
-		return ignoreBlockLine
-	}
+	nextGroup := regexp.MustCompile(`^\s*\[`)
 
 	for ; i < len(lines); i++ {
 		if nextGroup.MatchString(lines[i]) {
@@ -43,10 +40,8 @@ func getIgnoreLinesFromBlock(lines []string, ignoreBlockLine int) int {
 
 func getIgnoreLines(lines []string) []int {
 	ignoreLines := make([]int, 0)
-	comment, err := regexp.Compile(`^[#;]`)
-	if err != nil {
-		return []int{}
-	}
+	comment := regexp.MustCompile(`^[#;]`)
+
 	for i, line := range lines {
 		if model.KICSCommentRgxp.MatchString(line) {
 			kicsIgnore := getKicsIgnore(line)
