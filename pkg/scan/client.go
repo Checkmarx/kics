@@ -33,6 +33,7 @@ type Parameters struct {
 	ReportFormats               []string
 	Platform                    []string
 	ExcludePlatform             []string
+	TerraformVarsPath           string
 	QueryExecTimeout            int
 	LineInfoPayload             bool
 	DisableSecrets              bool

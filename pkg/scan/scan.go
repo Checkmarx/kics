@@ -222,7 +222,7 @@ func (c *Client) createService(
 	combinedParser, err := parser.NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
-		Add(terraformParser.NewDefault()).
+		Add(terraformParser.NewDefaultWithVarsPath(c.ScanParams.TerraformVarsPath)).
 		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).
 		Add(&buildahParser.Parser{}).

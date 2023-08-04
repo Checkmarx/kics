@@ -23,6 +23,7 @@ func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathPa
 		ScannedFilesLines:      c.Tracker.FoundCountLines,
 		ParsedFilesLines:       c.Tracker.ParsedCountLines,
 		ParsedFiles:            c.Tracker.ParsedFiles,
+		IgnoredFilesLines:      c.Tracker.IgnoreCountLines,
 		TotalQueries:           c.Tracker.LoadedQueries,
 		FailedToExecuteQueries: c.Tracker.ExecutingQueries - c.Tracker.ExecutedQueries,
 		FailedSimilarityID:     c.Tracker.FailedSimilarityID,
