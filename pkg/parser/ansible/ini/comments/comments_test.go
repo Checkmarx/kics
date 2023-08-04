@@ -1,4 +1,4 @@
-package ansiblehosts
+package comments
 
 import (
 	"fmt"
@@ -129,7 +129,7 @@ func Test_getIgnoreLines(t *testing.T) {
 			if i == 3 {
 				fmt.Println("olaola")
 			}
-			if got := getIgnoreLines(tt.lines); !reflect.DeepEqual(got, tt.want) {
+			if got := GetIgnoreLines(tt.lines); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("got = %d, want %d", got, tt.want)
 			}
 		})

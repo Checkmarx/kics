@@ -1,10 +1,11 @@
-package ansiblehosts
+package hosts
 
 import (
 	"strconv"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser/ansible/ini/comments"
 	"github.com/relex/aini"
 )
 
@@ -34,7 +35,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 	(*allMap)["children"] = childrenMap
 	doc["all"] = allMap
 
-	ignoreLines := getIgnoreLines(strings.Split(string(fileContent), "\n"))
+	ignoreLines := comments.GetIgnoreLines(strings.Split(string(fileContent), "\n"))
 
 	return []model.Document{doc}, ignoreLines, nil
 }

@@ -1,4 +1,4 @@
-package ansiblehosts
+package hosts
 
 import (
 	"encoding/json"

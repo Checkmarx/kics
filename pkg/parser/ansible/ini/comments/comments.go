@@ -1,4 +1,4 @@
-package ansiblehosts
+package comments
 
 import (
 	"regexp"
@@ -38,7 +38,7 @@ func getIgnoreLinesFromBlock(lines []string, ignoreBlockLine int) int {
 	return i - 1
 }
 
-func getIgnoreLines(lines []string) []int {
+func GetIgnoreLines(lines []string) []int {
 	ignoreLines := make([]int, 0)
 	comment := regexp.MustCompile(`^[#;]`)
 
