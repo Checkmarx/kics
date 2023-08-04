@@ -28,7 +28,7 @@ The HTTP port is open to the internet in a Security Group<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="8"
+```yaml title="Postitive test num. 1 - yaml file" hl_lines="10 11"
 Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -43,7 +43,7 @@ Resources:
           CidrIp: 0.0.0.0/0
 
 ```
-```json title="Postitive test num. 2 - json file" hl_lines="10"
+```json title="Postitive test num. 2 - json file" hl_lines="13 14"
 {
   "Resources": {
     "InstanceSecurityGroup": {
