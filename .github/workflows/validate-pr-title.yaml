@@ -9,7 +9,7 @@ jobs:
   title-check:
     runs-on: ubuntu-latest
     env:
-      ERROR_MSG: "The PR title does not match the required format: <type>(<tag>): <title>"
+      ERROR_MSG: "The PR title does not match the required format: <type>(<scope>): <title>"
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -31,7 +31,16 @@ jobs:
         regex=$(python3 .github/scripts/pr-issue-info/get_title_types.py)
         echo "Title regex: $regex"
         title="${{ github.event.pull_request.title }}"
-        echo $title | grep -Pq "$regex" || (echo "$ERROR_MSG" && exit 1)
+        echo $title | grep -Pq "$regex"
+        if [ $? -ne 0 ]; then
+          echo "$ERROR_MSG"
+          COMMENT_BODY="Please, follow the guideline for a pull request title: <type>(<scope>): <title starting with lowercase letter>\nYou can read more about it here: https://docs.kics.io/latest/CONTRIBUTING/#pull_requests"
+          echo "Adding a comment to the PR..."
+          curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
+            -d "{\"body\":\"${COMMENT_BODY}\"}"
+          exit 1
+        fi
   labels-check:
     runs-on: ubuntu-latest
     env:
