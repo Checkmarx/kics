@@ -31,6 +31,8 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, [
 	doc := make(map[string]interface{})
 	doc["groups"] = refactorConfig(config)
 
+	// TODO: GET IGNOREDLINES
+
 	return []model.Document{doc}, []int{}, nil
 }
 
