@@ -1,4 +1,4 @@
-name: validate-pr-title
+name: validate-prs
 on:
   pull_request_target:
     types: [opened, synchronize, edited, reopened]

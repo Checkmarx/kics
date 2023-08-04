@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea/feature for this project
-title: ''
+title: 'feat(<scope>): <your title>'
 labels: community, feature request
 assignees: ''
 

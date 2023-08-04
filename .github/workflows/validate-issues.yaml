@@ -1,4 +1,4 @@
-name: add-issues-labels
+name: validate-issues
 on:
   issues:
     types: [opened, edited, reopened]
