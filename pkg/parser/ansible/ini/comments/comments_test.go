@@ -126,8 +126,6 @@ func Test_getIgnoreLines(t *testing.T) {
 
 	for i, tt := range tests {
 		t.Run("Test number "+strconv.Itoa(i), func(t *testing.T) {
-			if i == 3 {
-			}
 			if got := GetIgnoreLines(tt.lines); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("got = %d, want %d", got, tt.want)
 			}
