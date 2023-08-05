@@ -39,11 +39,11 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 		}
 
 		if kind == model.KindHELM {
-			ignoreList, err := s.getOriginalIgnoreLines(rfile.FileName, rfile.OriginalData)
+			var ignoreList, err = s.getOriginalIgnoreLines(rfile.FileName, rfile.OriginalData)
 			if err == nil {
 				documents.IgnoreLines = ignoreList
 
-				//Need to ignore #KICS_HELM_ID Line
+				// Need to ignore #KICS_HELM_ID Line
 				documents.CountLines = bytes.Count(rfile.OriginalData, []byte{'\n'})
 			}
 		} else {
