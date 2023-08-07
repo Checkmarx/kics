@@ -104,6 +104,10 @@ Flags:
       --exclude-severities strings    exclude results by providing the severity of a result
                                       can be provided multiple times or as a comma separated string
                                       example: 'info,low'
+      --experimental-features strings includes queries from experimental features (features not yet fully reviwed) by providing the name of a feature
+                                      can be provided multiple times or as a comma separated string
+                                      example: 'databricks,nifcloud'
+                                      possible values: 'databricks, nifcloud'
       --fail-on strings               which kind of results should return an exit code different from 0
                                       accepts: high, medium, low and info
                                       example: "high,low" (default [high,medium,low,info])

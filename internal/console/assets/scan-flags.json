@@ -59,6 +59,13 @@
     "defaultValue": "false",
     "usage": "include bill of materials (BoM) in results output"
   },
+  "experimental-features": {
+    "flagType": "multiStr",
+    "shorthandFlag": "",
+    "defaultValue": null,
+    "usage": "includes queries from experimental features (features not yet fully reviwed) by providing the name of a feature\n${sliceInstructions}\nexample: 'databricks,nifcloud'",
+    "validation": "sliceFlagsShouldNotStartWithFlags,validateMultiStrEnum"
+  },
   "fail-on": {
     "flagType": "multiStr",
     "shorthandFlag": "",
