@@ -34,11 +34,23 @@ jobs:
         echo "Title regex: $regex"
         title="${{ github.event.pull_request.title }}"
         echo "$title" | grep -Pq "$regex" || (echo "$ERROR_MSG" && echo "TITLE_CHECK_FAILED=true" >> $GITHUB_ENV)
-    - name: Add comment
+    - name: Delete comment if title is fixed
+      if: env.TITLE_CHECK_FAILED != 'true'
+      uses: thollander/actions-comment-pull-request@v2
+      with:
+        message: |
+          Deleting comment, please refresh the page...
+        comment_tag: title_check
+        mode: delete
+        GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+    - name: Add comment if title fails
       if: env.TITLE_CHECK_FAILED == 'true'
       uses: thollander/actions-comment-pull-request@v2
       with:
         filePath: .github/scripts/pr-issue-info/title-fail.md
+        comment_tag: title_check
+        mode: recreate
+        create_if_not_exists: true
         GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
     - name: Fail the workflow
       if: env.TITLE_CHECK_FAILED == 'true'

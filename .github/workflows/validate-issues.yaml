@@ -35,7 +35,7 @@ jobs:
       uses: thollander/actions-comment-pull-request@v2
       with:
         message: |
-          Deleting comment...
+          Deleting comment, please refresh the page...
         comment_tag: title_check
         mode: delete
         GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
