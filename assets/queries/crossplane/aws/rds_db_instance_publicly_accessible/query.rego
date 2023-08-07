@@ -51,8 +51,8 @@ CxPolicy[result] {
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("metadata.name={{%s}}.spec.forProvider.dbSubnetGroupName", [resource.metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "storageEncrypted should be defined and set to true",
-		"keyActualValue": "storageEncrypted is not defined",
+		"keyActualValue": "dbSubnetGroupName' subnets are part of a VPC that has an Internet gateway attached to it",
+		"keyExpectedValue": "dbSubnetGroupName' subnets not being part of a VPC that has an Internet gateway attached to it",
 	}
 }
 
@@ -71,7 +71,7 @@ CxPolicy[result] {
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("metadata.name={{%s}}.spec.forProvider.publiclyAccessible", [resource.metadata.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "storageEncrypted should be defined and set to true",
-		"keyActualValue": "storageEncrypted is not defined",
+		"keyExpectedValue": "publiclyAccessible should be set to false",
+		"keyActualValue": "publiclyAccessible is set to true",
 	}
 }
