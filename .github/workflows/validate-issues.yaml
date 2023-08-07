@@ -30,13 +30,24 @@ jobs:
         echo "Title regex: $regex"
         title="${{ github.event.issue.title }}"
         echo "$title" | grep -Pq "$regex" || (echo "$ERROR_MSG" && echo "TITLE_CHECK_FAILED=true" >> $GITHUB_ENV)
-    - name: Add comment
-      if: env.TITLE_CHECK_FAILED == 'true'
-      uses: peter-evans/create-or-update-comment@v3
+    - name: Delete comment if title is fixed
+      if: env.TITLE_CHECK_FAILED != 'true'
+      uses: thollander/actions-comment-pull-request@v2
       with:
-        issue-number: ${{ github.event.issue.number }}
-        body-path: .github/scripts/pr-issue-info/issue-fail.md
-        token: ${{ secrets.KICS_BOT_PAT }}
+        message: |
+          Deleting comment...
+        comment_tag: title_check
+        mode: delete
+        GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+    - name: Add comment if title fails
+      if: env.TITLE_CHECK_FAILED == 'true'
+      uses: thollander/actions-comment-pull-request@v2
+      with:
+        filePath: .github/scripts/pr-issue-info/issue-fail.md
+        comment_tag: title_check
+        mode: recreate
+        create_if_not_exists: true
+        GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
     - name: Fail the workflow
       if: env.TITLE_CHECK_FAILED == 'true'
       run: exit 1
