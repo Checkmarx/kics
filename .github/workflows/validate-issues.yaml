@@ -3,6 +3,43 @@ on:
   issues:
     types: [opened, edited, reopened]
 jobs:
+  title-check:
+    runs-on: ubuntu-latest
+    env:
+      BODY: ${{ github.event.issue.body }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        persist-credentials: false
+        sparse-checkout: |
+          .github/scripts/pr-issue-info/issue-fail.md
+          .github/scripts/pr-issue-info/get_title_types.py
+          .github/issue-title-types.yaml
+    - name: Set up Python 
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
+    - name: Install dependencies
+      run: python3 -m pip install --upgrade pip pyyaml
+    - name: Check issue title 
+      env:
+        FILE_PATH: .github/issue-title-types.yaml
+      run: |
+        regex=$(python3 .github/scripts/pr-issue-info/get_title_types.py)
+        echo "Title regex: $regex"
+        title="${{ github.event.issue.title }}"
+        echo "$title" | grep -Pq "$regex" || (echo "$ERROR_MSG" && echo "TITLE_CHECK_FAILED=true" >> $GITHUB_ENV)
+    - name: Add comment
+      if: env.TITLE_CHECK_FAILED == 'true'
+      uses: peter-evans/create-or-update-comment@v3
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body-path: .github/scripts/pr-issue-info/issue-fail.md
+        token: ${{ secrets.KICS_BOT_PAT }}
+    - name: Fail the workflow
+      if: env.TITLE_CHECK_FAILED == 'true'
+      run: exit 1
   labels-check:
     runs-on: ubuntu-latest
     env:
