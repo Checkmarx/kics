@@ -53,8 +53,7 @@ var (
 	blueprintpRegexTargetScope                      = regexp.MustCompile(`("targetScope"|targetScope)\s*:`)
 	blueprintpRegexProperties                       = regexp.MustCompile(`("properties"|properties)\s*:`)
 	buildahRegex                                    = regexp.MustCompile(`buildah\s*from\s*\w+`)
-	dockerComposeVersionRegex                       = regexp.MustCompile(`version\s*:`)
-	dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:`)
+	dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:[\w\W]+(image|build)\s*:`)
 	crossPlaneRegex                                 = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
 	knativeRegex                                    = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+knative\.dev/v\w+\s*`)
 	pulumiNameRegex                                 = regexp.MustCompile(`name\s*:`)
@@ -223,7 +222,6 @@ var types = map[string]regexSlice{
 	},
 	"dockercompose": {
 		[]*regexp.Regexp{
-			dockerComposeVersionRegex,
 			dockerComposeServicesRegex,
 		},
 	},
