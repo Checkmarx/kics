@@ -2189,13 +2189,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="26">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="28">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="26">total += v
+                <span class="cov8" title="28">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2220,7 +2220,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2816,7 +2816,7 @@ func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, locCount chan&
                         results &lt;- grpc
                         locCount &lt;- linesCount
                 }</span>
-        // Cloud Formation, Ansible, OpenAPI, Buildah
+        // It could be Ansible, Buildah, CloudFormation, Crossplane, or OpenAPI
         case yaml, yml, json, sh:<span class="cov6" title="103">
                 a.checkContent(results, unwanted, locCount, linesCount, ext)</span>
         }
@@ -2850,7 +2850,7 @@ func isDockerfile(path string) bool <span class="cov1" title="2">{
 func needsOverride(check bool, returnType, key, ext string) bool <span class="cov9" title="1303">{
         if check &amp;&amp; returnType == kubernetes &amp;&amp; key == arm &amp;&amp; ext == json </span><span class="cov0" title="0">{
                 return true
-        }</span> else<span class="cov9" title="1303"> if check &amp;&amp; returnType == kubernetes &amp;&amp; (key == knative || key == crossplane) &amp;&amp; ext == yaml </span><span class="cov3" title="9">{
+        }</span> else<span class="cov9" title="1303"> if check &amp;&amp; returnType == kubernetes &amp;&amp; (key == knative || key == crossplane) &amp;&amp; (ext == yaml || ext == yml) </span><span class="cov3" title="9">{
                 return true
         }</span>
         <span class="cov9" title="1294">return false</span>
@@ -6044,12 +6044,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="30417">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="30435">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="30417">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="30106">{
+                <span class="cov9" title="30435">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="30124">{
                         return skipFolder
                 }</span>
 
@@ -6121,27 +6121,27 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov6" title="310">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="30420">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="30438">{
         s.mu.RLock()
         defer s.mu.RUnlock()
-        if info.IsDir() </span><span class="cov8" title="6748">{
+        if info.IsDir() </span><span class="cov8" title="6752">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="6747">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="6745">{
+                <span class="cov8" title="6751">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="6749">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="23672">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="23686">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="23672">ext := utils.GetExtension(path)
-        if !extensions.Include(ext) </span><span class="cov9" title="23362">{
+        <span class="cov9" title="23686">ext := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="23376">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
@@ -20025,15 +20025,15 @@ func StringifyStruct(v interface{}) (string, error) <span class="cov0" title="0"
 }
 
 // MapToStringSlice extract slice of keys from a map[string]string
-func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="4988">{
+func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="4991">{
         keys := make([]string, len(stringKeyMap))
 
         i := 0
-        for k := range stringKeyMap </span><span class="cov10" title="74821">{
+        for k := range stringKeyMap </span><span class="cov10" title="74866">{
                 keys[i] = k
                 i++
         }</span>
-        <span class="cov7" title="4988">return keys</span>
+        <span class="cov7" title="4991">return keys</span>
 }
 
 var queryHigh = model.QueryResult{
