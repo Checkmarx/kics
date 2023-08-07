@@ -1,7 +1,6 @@
 package comments
 
 import (
-	"fmt"
 	"reflect"
 	"strconv"
 	"testing"
