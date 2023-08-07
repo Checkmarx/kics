@@ -1,0 +1,30 @@
+apiVersion: docdb.aws.crossplane.io/v1alpha1
+kind: DBCluster
+metadata:
+  name: example-cluster-autogen-password
+spec:
+  forProvider:
+    autogeneratePassword: true
+    availabilityZones:
+      - us-east-1b
+      - us-east-1c
+    dbClusterParameterGroupName: example-parameter-group
+    dbSubnetGroupName: example-subnet-group
+    engine: docdb
+    masterUserPasswordSecretRef:
+      key: password
+      name: my-docdb-creds
+      namespace: crossplane-system
+    masterUsername: master
+    region: us-east-1
+    skipFinalSnapshot: true
+    tags:
+      - key: cluster
+        value: my-cluster
+    vpcSecurityGroupIDsRefs:
+      - name: sample-cluster-sg
+    enableCloudwatchLogsExports:
+      - audit
+      - error
+  providerConfigRef:
+    name: example
