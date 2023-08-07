@@ -2,7 +2,6 @@ name: validate-issues
 on:
   issues:
     types: [opened, edited, reopened]
-
 jobs:
   labels-check:
     runs-on: ubuntu-latest
@@ -40,9 +39,28 @@ jobs:
         if [[ "$IS_MEMBER" == "false" ]]; then
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels -d '{"labels": ["community"]}'
         fi
+    - name: Add feature or feature request label
+      run: |
+        if [[ "$TITLE" == feat* ]] || echo "$TITLE $BODY" | grep -iqP "feature request"; then
+          if [[ "$IS_MEMBER" == "true" ]]; then
+            echo "Adding 'feature' label..."
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels -d '{"labels": ["feature"]}'
+          else
+            echo "Adding 'feature request' label..."
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels -d '{"labels": ["feature request"]}'
+          fi
+        else
+          if echo "$LABELS" | grep -q "feature request"; then
+            echo "Removing 'feature request' label..."
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels/feature%20request
+          elif echo "$LABELS" | grep -q "feature"; then
+            echo "Removing 'feature' label..."
+            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels/feature
+          fi
+        fi
     - name: Add bug label
       run: |
-        if echo "$TITLE $BODY" | grep -iqP "(\\b|_)bugs?(\\b|_)" || echo "$TITLE $BODY" | grep -iqP "steps to reproduce" || echo "$TITLE $BODY" | grep -iqP "actual behavior" || echo "$TITLE $BODY" | grep -iqP "expected behavior"; then
+        if echo "$TITLE $BODY" | grep -iqP "(\\b|_)bugs?(\\b|_)" || echo "$BODY" | grep -iqP "steps to reproduce" || echo "$BODY" | grep -iqP "actual behavior" || echo "$BODY" | grep -iqP "expected behavior"; then
           echo "Adding 'bug' label..."
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels -d '{"labels": ["bug"]}'
         else 
@@ -53,7 +71,7 @@ jobs:
         fi
     - name: Add query label
       run: |
-        if echo "$TITLE $BODY" | grep -iqP "(\\b|_)quer(y|ies)(\\b|_)"; then
+        if echo "$TITLE $BODY" | grep -iqP "(\\b|_)quer(y|ies)(\\b|_)" || echo "$BODY" | grep -iqP "### Platform" || echo "$BODY" | grep -iqP "### Provider"; then
           echo "Adding 'query' label... "
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels -d '{"labels": ["query"]}'
         else 
