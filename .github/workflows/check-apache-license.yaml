@@ -20,11 +20,23 @@ jobs:
     - name: Check for Apache License
       run: |
         echo "$BODY" | grep -iPq "I submit this contribution under the Apache-2.0 license." || echo "CHECK_FAILED=true" >> $GITHUB_ENV
+    - name: Delete comment if license is fixed
+      if: env.CHECK_FAILED != 'true'
+      uses: thollander/actions-comment-pull-request@v2
+      with:
+        message: |
+          Deleting comment...
+        comment_tag: apache_license
+        mode: delete
+        GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
     - name: Add comment if no license
       if: env.CHECK_FAILED == 'true'
       uses: thollander/actions-comment-pull-request@v2
       with:
         filePath: .github/scripts/pr-issue-info/apache-check.md
+        comment_tag: apache_license
+        mode: recreate
+        create_if_not_exists: true
         GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
     - name: Fail the workflow if no license
       if: env.CHECK_FAILED == 'true'
