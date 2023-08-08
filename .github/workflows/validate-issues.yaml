@@ -48,7 +48,7 @@ jobs:
         mode: recreate
         create_if_not_exists: true
         GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
-    - name: Fail the workflow
+    - name: Workflow failed
       if: env.TITLE_CHECK_FAILED == 'true'
       run: exit 1
   labels-check:
