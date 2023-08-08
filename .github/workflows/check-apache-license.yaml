@@ -4,7 +4,6 @@ on:
     types: [opened, synchronize, edited, reopened]
     branches: 
       - master
-      - apache_workflow
 jobs:
   check-license:
     runs-on: ubuntu-latest
@@ -38,6 +37,6 @@ jobs:
         mode: recreate
         create_if_not_exists: true
         GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
-    - name: Fail the workflow if no license
+    - name: Workflow failed
       if: env.CHECK_FAILED == 'true'
       run: exit 1
