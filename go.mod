@@ -4,13 +4,13 @@ go 1.20
 
 require (
 	code.cloudfoundry.org/bytefmt v0.0.0-20211005130812-5bb3c17173e5
-	github.com/BurntSushi/toml v1.2.1
+	github.com/BurntSushi/toml v1.3.2
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr/v4 v4.0.0-20221202181307-76fa05c21b12
-	github.com/aws/aws-sdk-go v1.44.227
+	github.com/aws/aws-sdk-go v1.44.295
 	github.com/cheggaaa/pb/v3 v3.1.2
-	github.com/emicklei/proto v1.11.1
+	github.com/emicklei/proto v1.11.2
 	github.com/getsentry/sentry-go v0.20.0
 	github.com/gocarina/gocsv v0.0.0-20220310154401-d4df709ca055
 	github.com/golang/mock v1.6.0
@@ -20,7 +20,7 @@ require (
 	github.com/hashicorp/go-getter v1.7.1
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.16.2
-	github.com/hashicorp/terraform-json v0.15.0
+	github.com/hashicorp/terraform-json v0.16.0
 	github.com/johnfercher/maroto v0.40.0
 	github.com/mackerelio/go-osstat v0.2.4
 	github.com/mailru/easyjson v0.7.7

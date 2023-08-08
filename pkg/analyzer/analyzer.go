@@ -53,8 +53,7 @@ var (
 	blueprintpRegexTargetScope                      = regexp.MustCompile(`("targetScope"|targetScope)\s*:`)
 	blueprintpRegexProperties                       = regexp.MustCompile(`("properties"|properties)\s*:`)
 	buildahRegex                                    = regexp.MustCompile(`buildah\s*from\s*\w+`)
-	dockerComposeVersionRegex                       = regexp.MustCompile(`version\s*:`)
-	dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:`)
+	dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:[\w\W]+(image|build)\s*:`)
 	crossPlaneRegex                                 = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
 	knativeRegex                                    = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+knative\.dev/v\w+\s*`)
 	pulumiNameRegex                                 = regexp.MustCompile(`name\s*:`)
@@ -223,7 +222,6 @@ var types = map[string]regexSlice{
 	},
 	"dockercompose": {
 		[]*regexp.Regexp{
-			dockerComposeVersionRegex,
 			dockerComposeServicesRegex,
 		},
 	},
@@ -277,7 +275,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 			ext := utils.GetExtension(path)
 
-			if hasGitIgnoreFile && gitIgnore.MatchesPath(path) {
+			if (hasGitIgnoreFile && gitIgnore.MatchesPath(path)) || isDeadSymlink(path) {
 				ignoreFiles = append(ignoreFiles, path)
 				a.Exc = append(a.Exc, path)
 			}
@@ -379,7 +377,7 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 			results <- grpc
 			locCount <- linesCount
 		}
-	// Cloud Formation, Ansible, OpenAPI, Buildah
+	// It could be Ansible, Buildah, CloudFormation, Crossplane, or OpenAPI
 	case yaml, yml, json, sh:
 		a.checkContent(results, unwanted, locCount, linesCount, ext)
 	}
@@ -413,7 +411,7 @@ func isDockerfile(path string) bool {
 func needsOverride(check bool, returnType, key, ext string) bool {
 	if check && returnType == kubernetes && key == arm && ext == json {
 		return true
-	} else if check && returnType == kubernetes && (key == knative || key == crossplane) && ext == yaml {
+	} else if check && returnType == kubernetes && (key == knative || key == crossplane) && (ext == yaml || ext == yml) {
 		return true
 	}
 	return false
@@ -591,6 +589,11 @@ func isExcludedFile(path string, exc []string) bool {
 	return false
 }
 
+func isDeadSymlink(path string) bool {
+	fileInfo, _ := os.Stat(path)
+	return fileInfo == nil
+}
+
 func isConfigFile(path string, exc []string) bool {
 	for i := range exc {
 		exclude, err := provider.GetExcludePaths(exc[i])
@@ -599,7 +602,7 @@ func isConfigFile(path string, exc []string) bool {
 		}
 		for j := range exclude {
 			fileInfo, _ := os.Stat(path)
-			if fileInfo.IsDir() {
+			if fileInfo != nil && fileInfo.IsDir() {
 				continue
 			}
 

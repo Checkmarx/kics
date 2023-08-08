@@ -73,7 +73,8 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 			s.saveToFile(ctx, &file)
 		}
 		s.Tracker.TrackFileParse()
-		s.Tracker.TrackFileParseCountLines(documents.CountLines)
+		s.Tracker.TrackFileParseCountLines(documents.CountLines - len(documents.IgnoreLines))
+		s.Tracker.TrackFileIgnoreCountLines(len(documents.IgnoreLines))
 	}
 	return resFiles.Excluded, nil
 }
