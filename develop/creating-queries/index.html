@@ -1798,6 +1798,8 @@ It take two arguments:</p>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    son == false
 <a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>    build_search_line(path, [&quot;son&quot;])
 </code></pre></div></p>
+<h5 id="ansible_inventory">Ansible Inventory<a class="headerlink" href="#ansible_inventory" title="Permanent link">&para;</a></h5>
+<p>To create a <code>searchLine</code> query in Rego for this case, you need to think of the path as if you were dealing with a YAML/JSON file. This way, the query will be capable of locating vulnerabilities in all three types of Ansible host files.</p>
 <h4 id="allowing_users_to_overwrite_query_data">Allowing users to overwrite query data<a class="headerlink" href="#allowing_users_to_overwrite_query_data" title="Permanent link">&para;</a></h4>
 <p>Starting on v1.3.5, KICS started to support custom data overwriting on queries. This can be useful if users want to provide their own dataset or if users have different datasets for multiple environments. This can be supported easily following some steps:</p>
 <ol>
