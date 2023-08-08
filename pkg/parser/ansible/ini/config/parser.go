@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser/ansible/ini/comments"
 	"github.com/bigkevmcd/go-configparser"
 )
 
@@ -31,9 +32,9 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, [
 	doc := make(map[string]interface{})
 	doc["groups"] = refactorConfig(config)
 
-	// TODO: GET IGNOREDLINES
+	ignoreLines := comments.GetIgnoreLines(strings.Split(string(fileContent), "\n"))
 
-	return []model.Document{doc}, []int{}, nil
+	return []model.Document{doc}, ignoreLines, nil
 }
 
 // refactorConfig removes all extra information and tries to convert
