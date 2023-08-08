@@ -12,6 +12,26 @@ getForProvider(apiVersion, kind, name, docs) = forProvider {
     forProvider := resource.spec.forProvider
 }
 
+existsInternetGateway(dbSubnetGroupName) {
+    DBSGforProvider := getForProvider("database.aws.crossplane.io", "DBSubnetGroup", dbSubnetGroupName, input.document)
+    subnetIds := DBSGforProvider.subnetIds
+
+    count(subnetIds) > 0
+    subnetId := subnetIds[s]
+
+    EC2SforProvider := getForProvider("ec2.aws.crossplane.io", "Subnet", subnetId, input.document)
+
+    vpcId := EC2SforProvider.vpcId
+
+    IGdocs := input.document[_]
+    [_, IGresource] := walk(IGdocs)
+	startswith(IGresource.apiVersion, "network.aws.crossplane.io")
+    IGresource.kind == "InternetGateway"
+    
+    IGforProvider := IGresource.spec.forProvider
+    vpcId == IGforProvider.vpcId
+} 
+
 CxPolicy[result] {
     docs := input.document[i]
 	[path, resource] := walk(docs)
@@ -25,25 +45,7 @@ CxPolicy[result] {
     
     dbSubnetGroupName := forProvider.dbSubnetGroupName
     
-    DBSGforProvider := getForProvider("database.aws.crossplane.io", "DBSubnetGroup", dbSubnetGroupName, input.document)
-    subnetIds := DBSGforProvider.subnetIds
-
-    count(subnetIds) > 0
-    subnetId := subnetIds[s]
-
-    EC2SforProvider := getForProvider("ec2.aws.crossplane.io", "Subnet", subnetId, input.document)
-
-    common_lib.valid_key(EC2SforProvider, "vpcId")
-    vpcId := EC2SforProvider.vpcId
-
-    IGdocs := input.document[_]
-    [_, IGresource] := walk(IGdocs)
-	startswith(IGresource.apiVersion, "network.aws.crossplane.io")
-    IGresource.kind == "InternetGateway"
-    
-    IGforProvider := IGresource.spec.forProvider
-    common_lib.valid_key(IGforProvider, "vpcId")
-    vpcId == IGforProvider.vpcId
+    existsInternetGateway(dbSubnetGroupName) == true
 
     result := {
 		"documentId": input.document[i].id,
