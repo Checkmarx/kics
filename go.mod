@@ -20,13 +20,14 @@ require (
 	github.com/hashicorp/go-getter v1.7.1
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.16.2
-	github.com/hashicorp/terraform-json v0.15.0
+	github.com/hashicorp/terraform-json v0.16.0
 	github.com/johnfercher/maroto v0.40.0
 	github.com/mackerelio/go-osstat v0.2.4
 	github.com/mailru/easyjson v0.7.7
 	github.com/moby/buildkit v0.10.4
 	github.com/open-policy-agent/opa v0.51.0
 	github.com/pkg/errors v0.9.1
+	github.com/relex/aini v1.6.0
 	github.com/rs/zerolog v1.29.0
 	github.com/sosedoff/ansible-vault-go v0.1.1
 	github.com/spf13/cobra v1.7.0
@@ -51,8 +52,9 @@ require (
 	github.com/evanphx/json-patch/v5 v5.6.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.2.1 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
+	github.com/samber/lo v1.38.1 // indirect
 	github.com/tchap/go-patricia/v2 v2.3.1 // indirect
-	golang.org/x/exp v0.0.0-20220722155223-a9213eeb770e // indirect
+	golang.org/x/exp v0.0.0-20230713183714-613f0c0eb8a1 // indirect
 )
 
 require (
