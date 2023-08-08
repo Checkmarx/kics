@@ -25,14 +25,14 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		{
 			name:      "analyze_test_dir_single_path",
 			paths:     []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
-			wantTypes: []string{"dockerfile", "googledeploymentmanager", "cloudformation", "crossplane", "knative", "kubernetes", "openapi", "terraform", "ansible", "azureresourcemanager", "dockercompose", "pulumi", "serverlessfw"},
+			wantTypes: []string{"ansible", "azureresourcemanager", "cloudformation", "crossplane", "dockercompose", "dockerfile", "googledeploymentmanager", "knative", "kubernetes", "openapi", "pulumi", "serverlessfw", "terraform"},
 			wantExclude: []string{
 				filepath.FromSlash("../../test/fixtures/analyzer_test/not_openapi.json"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/pnpm-lock.yaml"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/dead_symlink")},
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
-			wantLOC:              750,
+			wantLOC:              602,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -219,7 +219,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/analyzer_test/dead_symlink")},
 			typesFromFlag:        []string{"ansible", "pulumi"},
 			excludeTypesFromFlag: []string{""},
-			wantLOC:              448,
+			wantLOC:              300,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -227,7 +227,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		{
 			name:      "analyze_test_dir_single_path_exclude_type_value",
 			paths:     []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
-			wantTypes: []string{"dockerfile", "googledeploymentmanager", "cloudformation", "crossplane", "knative", "kubernetes", "openapi", "terraform", "azureresourcemanager", "dockercompose", "serverlessfw"},
+			wantTypes: []string{"azureresourcemanager", "cloudformation", "crossplane", "dockercompose", "dockerfile", "googledeploymentmanager", "knative", "kubernetes", "openapi", "serverlessfw", "terraform"},
 			wantExclude: []string{
 				filepath.FromSlash("../../test/fixtures/analyzer_test/ansible.yaml"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/not_openapi.json"),
@@ -251,7 +251,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/analyzer_test/dead_symlink")},
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
-			wantLOC:              750,
+			wantLOC:              602,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -267,12 +267,24 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			},
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
-			wantLOC:              750,
+			wantLOC:              602,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
 		},
 		{
+			name:                 "analyze_test_ansible_host",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/analyzer_test/hosts.ini")},
+			wantTypes:            []string{"ansible"},
+			wantExclude:          []string{},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantLOC:              39,
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+		},
+    {
 			name:                 "analyze_test_ansible_cfg",
 			paths:                []string{filepath.FromSlash("../../test/fixtures/analyzer_test/ansible.cfg")},
 			wantTypes:            []string{"ansible"},
@@ -323,7 +335,6 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			require.Equal(t, tt.wantTypes, got.Types, "wrong types from analyzer")
 			require.Equal(t, tt.wantExclude, got.Exc, "wrong excludes from analyzer")
 			require.Equal(t, tt.wantLOC, got.ExpectedLOC, "wrong loc from analyzer")
-
 		})
 	}
 }

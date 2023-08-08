@@ -14,6 +14,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	ansibleConfigParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/config"
+	ansibleHostsParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/hosts"
 	buildahParser "github.com/Checkmarx/kics/pkg/parser/buildah"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"
@@ -228,6 +229,7 @@ func (c *Client) createService(
 		Add(&protoParser.Parser{}).
 		Add(&buildahParser.Parser{}).
 		Add(&ansibleConfigParser.Parser{}).
+		Add(&ansibleHostsParser.Parser{}).
 		Build(querySource.Types, querySource.CloudProviders)
 	if err != nil {
 		return nil, err
