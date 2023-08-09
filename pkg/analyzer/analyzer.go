@@ -79,6 +79,7 @@ var (
 		"tfvars":             true,
 		".proto":             true,
 		".sh":                true,
+		".ini":               true,
 	}
 	supportedRegexes = map[string][]string{
 		"azureresourcemanager": append(armRegexTypes, arm),
@@ -375,6 +376,12 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 	case ".proto":
 		if a.isAvailableType(grpc) {
 			results <- grpc
+			locCount <- linesCount
+		}
+	// Ansible Inventory Files
+	case ".ini":
+		if a.isAvailableType(ansible) {
+			results <- ansible
 			locCount <- linesCount
 		}
 	// It could be Ansible, Buildah, CloudFormation, Crossplane, or OpenAPI
