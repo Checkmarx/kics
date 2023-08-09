@@ -634,6 +634,30 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "test_7: ignore_multiline_string",
+			want: []int{4, 5, 6, 7, 8, 9},
+			args: args{
+				&yaml.Node{
+					Kind: yaml.MappingNode,
+					Content: []*yaml.Node{
+						{
+							Kind:        yaml.ScalarNode,
+							Value:       "deploy.yml",
+							HeadComment: "# kics-scan ignore-block",
+							Line:        5,
+							Column:      3,
+						},
+						{
+							Kind:   yaml.ScalarNode,
+							Value:  "---\nfoo\n  bar: abc\nuploader-token: my-awesome-token\n",
+							Line:   5,
+							Column: 15,
+						},
+					},
+				},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
