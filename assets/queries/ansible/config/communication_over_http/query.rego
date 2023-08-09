@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": "defaults.httpapi_plugins",
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "allow_unsafe_lookups should not be set",
-		"keyActualValue": "allow_unsafe_lookups is set",
+		"keyExpectedValue": "httpapi_plugins should not be set",
+		"keyActualValue": "httpapi_plugins is set",
 	}
 }
