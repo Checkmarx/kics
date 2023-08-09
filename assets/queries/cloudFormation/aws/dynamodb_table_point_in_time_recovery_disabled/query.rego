@@ -8,7 +8,8 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties
-	properties.PointInTimeRecoverySpecification == false
+	
+	properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled == false
 
 	result := {
 		"documentId": input.document[i].id,
