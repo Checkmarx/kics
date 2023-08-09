@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	app := input.document[i].resource.azurerm_function_app[name]
 
-	app.site_config.min_tls_version != 1.2
+	to_number(app.site_config.min_tls_version) != 1.2
 
 	result := {
 		"documentId": input.document[i].id,
