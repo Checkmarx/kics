@@ -79,6 +79,7 @@ var (
 		"tfvars":             true,
 		".proto":             true,
 		".sh":                true,
+		".ini":               true,
 	}
 	supportedRegexes = map[string][]string{
 		"azureresourcemanager": append(armRegexTypes, arm),
@@ -377,7 +378,13 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 			results <- grpc
 			locCount <- linesCount
 		}
-	// Cloud Formation, Ansible, OpenAPI, Buildah
+	// Ansible Inventory Files
+	case ".ini":
+		if a.isAvailableType(ansible) {
+			results <- ansible
+			locCount <- linesCount
+		}
+	// It could be Ansible, Buildah, CloudFormation, Crossplane, or OpenAPI
 	case yaml, yml, json, sh:
 		a.checkContent(results, unwanted, locCount, linesCount, ext)
 	}
@@ -411,7 +418,7 @@ func isDockerfile(path string) bool {
 func needsOverride(check bool, returnType, key, ext string) bool {
 	if check && returnType == kubernetes && key == arm && ext == json {
 		return true
-	} else if check && returnType == kubernetes && (key == knative || key == crossplane) && ext == yaml {
+	} else if check && returnType == kubernetes && (key == knative || key == crossplane) && (ext == yaml || ext == yml) {
 		return true
 	}
 	return false
