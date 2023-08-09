@@ -106,7 +106,7 @@ func executeAnalyze(analyzeParams *analyzer.Parameters) error {
 }
 
 func writeToFile(resultsPath string, analyzerResults model.AnalyzedPaths) error {
-	err := os.MkdirAll(filepath.Dir(resultsPath), 0666)
+	err := os.MkdirAll(filepath.Dir(resultsPath), 0640)
 	if err != nil {
 		return err
 	}
