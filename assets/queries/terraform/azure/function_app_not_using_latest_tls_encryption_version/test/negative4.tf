@@ -1,4 +1,4 @@
-resource "azurerm_function_app" "negative1" {
+resource "azurerm_function_app" "negative4" {
   name                       = "test-azure-functions"
   location                   = azurerm_resource_group.example.location
   resource_group_name        = azurerm_resource_group.example.name
