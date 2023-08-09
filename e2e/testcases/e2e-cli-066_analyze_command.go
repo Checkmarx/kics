@@ -12,15 +12,12 @@ func init() { //nolint
 					"--analyze-path", "/path/e2e/fixtures/samples/swagger",
 					"--analyze-results", "/path/e2e/output/E2E_CLI_066_ANALYZE_RESULTS.json"},
 			},
-			UseMock: []bool{true, true},
-			ExpectedResult: []ResultsValidation{
-				{
-					ResultsFile:    "E2E_CLI_066_ANALYZE_RESULTS",
-					ResultsFormats: []string{"json"},
-				},
+			ExpectedAnalyzerResults: &ResultsValidation{
+				ResultsFile:    "E2E_CLI_066_ANALYZE_RESULTS",
+				ResultsFormats: []string{"json"},
 			},
 		},
-		WantStatus: []int{126},
+		WantStatus: []int{0},
 	}
 	Tests = append(Tests, testSample)
 }

@@ -79,6 +79,10 @@ func Test_E2E_CLI(t *testing.T) {
 					checkExpectedOutput(t, &tt, arg)
 				}
 
+				if tt.Args.ExpectedAnalyzerResults != nil && arg < len(tt.Args.ExpectedResult) {
+					checkExpectedAnalyzerResults(t, &tt, arg)
+				}
+
 				if tt.Args.ExpectedPayload != nil {
 					// Check payload file
 					utils.FileCheck(t, tt.Args.ExpectedPayload[arg], tt.Args.ExpectedPayload[arg], "payload")
@@ -125,6 +129,11 @@ func Test_E2E_CLI(t *testing.T) {
 		}
 		t.Logf("E2E tests ::ellapsed time:: %v", time.Since(scanStartTime))
 	})
+}
+
+func checkExpectedAnalyzerResults(t *testing.T, tt *testcases.TestCase, argIndex int) {
+	jsonFileName := tt.Args.ExpectedResult[argIndex].ResultsFile + ".json"
+	utils.JSONSchemaValidationFromFile(t, jsonFileName, "AnalyzerResults.json")
 }
 
 func checkExpectedOutput(t *testing.T, tt *testcases.TestCase, argIndex int) {

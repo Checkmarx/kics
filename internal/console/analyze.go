@@ -4,6 +4,7 @@ import (
 	_ "embed" // Embed kics CLI img and analyze-flags
 	"encoding/json"
 	"os"
+	"path/filepath"
 
 	"github.com/Checkmarx/kics/internal/console/flags"
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
@@ -105,6 +106,11 @@ func executeAnalyze(analyzeParams *analyzer.Parameters) error {
 }
 
 func writeToFile(resultsPath string, analyzerResults model.AnalyzedPaths) error {
+	err := os.MkdirAll(filepath.Dir(resultsPath), 0666)
+	if err != nil {
+		return err
+	}
+
 	f, err := os.Create(resultsPath)
 	if err != nil {
 		return err
