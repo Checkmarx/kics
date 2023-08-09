@@ -29,7 +29,9 @@ existsInternetGateway(dbSubnetGroupName) {
     IGresource.kind == "InternetGateway"
     
     IGforProvider := IGresource.spec.forProvider
-    vpcId == IGforProvider.vpcId
+	
+    common_lib.valid_key(IGforProvider, "vpcId")
+	vpcId == IGforProvider.vpcId
 } 
 
 CxPolicy[result] {
