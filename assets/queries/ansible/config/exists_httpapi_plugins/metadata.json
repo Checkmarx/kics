@@ -1,0 +1,12 @@
+{
+    "id": "d7dc9350-74bc-485b-8c85-fed22d276c43",
+    "queryName": "Communication over HTTP",
+    "severity": "HIGH",
+    "category": "Insecure Configurations",
+    "descriptionText": "Communication between Ansible and the httpapi interface is not secure",
+    "descriptionUrl": "https://docs.ansible.com/ansible/latest/plugins/httpapi.html",
+    "platform": "Ansible",
+    "descriptionID": "8c03b0c0",
+    "cloudProvider": "config"
+  }
+  
