@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'azurerm_function_app[%s].site_config.min_tls_version' is not set to '1.2'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name, "site_config", "min_tls_version"], []),
 		"remediation": json.marshal({
-			"before": sprintf("%.1f", [app.site_config.min_tls_version]),
+			"before": sprintf("%.1f", [to_number(app.site_config.min_tls_version)]),
 			"after": "1.2"
 		}),
 		"remediationType": "replacement",
