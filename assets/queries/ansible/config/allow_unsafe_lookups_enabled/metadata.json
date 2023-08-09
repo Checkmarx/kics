@@ -2,7 +2,7 @@
     "id": "86b97bb4-85c9-462d-8635-cbc057c5c8c5",
     "queryName": "Allow Unsafe Lookups Enabled",
     "severity": "HIGH",
-    "category": "Insecure configurations",
+    "category": "Insecure Configurations",
     "descriptionText": "Unsafe Lookups are allowed which could lead to information leaks.",
     "descriptionUrl": "https://docs.ansible.com/ansible/latest/plugins/lookup.html",
     "platform": "Ansible",
