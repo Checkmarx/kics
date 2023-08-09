@@ -40,7 +40,6 @@ CxPolicy[result] {
     
     forProvider := resource.spec.forProvider
 
-    common_lib.valid_key(forProvider, "dbSubnetGroupName")
     not common_lib.valid_key(forProvider, "publiclyAccessible")
     
     dbSubnetGroupName := forProvider.dbSubnetGroupName
