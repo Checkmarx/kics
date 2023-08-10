@@ -1,0 +1,12 @@
+{
+    "id": "bdcd4a53-be20-47c9-8da0-1db38ecad03d",
+    "queryName": "Absence of Plugin Filters",
+    "severity": "LOW",
+    "category": "Best Practices",
+    "descriptionText": "Use Plugin Filters to check which plugins installed on the system are allowed to be used.",
+    "descriptionUrl": "https://docs.ansible.com/ansible/latest/plugins/filter.html",
+    "platform": "Ansible",
+    "descriptionID": "6030be40",
+    "cloudProvider": "config"
+  }
+  
