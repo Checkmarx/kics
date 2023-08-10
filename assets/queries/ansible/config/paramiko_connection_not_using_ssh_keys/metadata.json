@@ -1,0 +1,12 @@
+{
+    "id": "33e96603-8cbf-4d15-91a6-05e21ec2979e",
+    "queryName": "Paramiko Connection Not Using SSH Keys",
+    "severity": "MEDIUM",
+    "category": "Networking and Firewall",
+    "descriptionText": "Using SSH with usernames and passwords is susceptible to brute-force attacks. Use SSH keys instead",
+    "descriptionUrl": "https://docs.ansible.com/ansible/2.9/plugins/connection/paramiko_ssh.html#paramiko-ssh-connection",
+    "platform": "Ansible",
+    "descriptionID": "019471cd",
+    "cloudProvider": "config"
+  }
+  

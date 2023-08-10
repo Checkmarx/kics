@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Paramiko Connection Not Using SSH Keys",
+		"severity": "MEDIUM",
+		"line": 1
+	}
+]
