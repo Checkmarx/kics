@@ -20,6 +20,10 @@ var (
 	analyzeFlagsListContent string
 )
 
+const (
+	perms = 0640
+)
+
 // NewAnalyzeCmd creates a new instance of the analyze Command
 func NewAnalyzeCmd() *cobra.Command {
 	return &cobra.Command{
@@ -106,7 +110,7 @@ func executeAnalyze(analyzeParams *analyzer.Parameters) error {
 }
 
 func writeToFile(resultsPath string, analyzerResults model.AnalyzedPaths) error {
-	err := os.MkdirAll(filepath.Dir(resultsPath), 0640)
+	err := os.MkdirAll(filepath.Dir(resultsPath), perms)
 	if err != nil {
 		return err
 	}
