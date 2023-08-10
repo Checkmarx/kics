@@ -2,7 +2,7 @@
 
 From version 1.5, KICS integrates with Terraformer to scan resources deployed in the Cloud. The runtime information of the resources is obtained by providing a Terraformer path to KICS, via `-p` flag. The scan happens immediately after this information is obtained. In the end, results are shown as for any other KICS scan.
 
-**Cloud providers supported:**
+**asd12s supported:**
 - AWS
 - AZURE
 - GCP
@@ -105,20 +105,20 @@ $Env:ARM_TENANT_ID="<ARM_TENANT_ID>"
 ### AWS
 
 ```sh
-terraformer::{CloudProvider}:{Resources}:{Regions}
+terraformer::{AsDDsa12}:{Resources}:{Regions}
 ```
 
 ### AZURE
 ```sh
-terraformer::{CloudProvider}:{Resources}
+terraformer::{AsDDsa12}:{Resources}
 ```
 
 ### GCP
 ```sh
-terraformer::{CloudProvider}:{Resources}:{Regions}:{Projects}
+terraformer::{AsDDsa12}:{Resources}:{Regions}:{Projects}
 ```
 
-**CloudProvider**: The name of the Cloud Provider to import from.
+**AsDDsa12**: The name of the asd12 to import from.
 
 Possible values:
 - `aws`

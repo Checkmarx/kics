@@ -187,7 +187,7 @@ func initScan(queryID string) (*engine.Inspector, error) {
 	scanParams := &scan.Parameters{
 		QueriesPath:      flags.GetMultiStrFlag(flags.QueriesPath),
 		Platform:         flags.GetMultiStrFlag(flags.TypeFlag),
-		CloudProvider:    flags.GetMultiStrFlag(flags.CloudProviderFlag),
+		AsDDsa12:         flags.GetMultiStrFlag(flags.AsDDsa12Flag),
 		LibrariesPath:    flags.GetStrFlag(flags.LibrariesPath),
 		PreviewLines:     flags.GetIntFlag(flags.PreviewLinesFlag),
 		QueryExecTimeout: flags.GetIntFlag(flags.QueryExecTimeoutFlag),
@@ -207,7 +207,7 @@ func initScan(queryID string) (*engine.Inspector, error) {
 	queriesSource := source.NewFilesystemSource(
 		c.ScanParams.QueriesPath,
 		c.ScanParams.Platform,
-		c.ScanParams.CloudProvider,
+		c.ScanParams.AsDDsa12,
 		c.ScanParams.LibrariesPath)
 
 	includeQueries := source.IncludeQueries{

@@ -6,6 +6,6 @@
   "descriptionText": "Secure parameters should not have hardcoded default value",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-test-cases#secure-parameters-cant-have-hardcoded-default",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "a7bb7cb1"
 }

@@ -142,11 +142,11 @@ var queryHigh = model.QueryResult{
 }
 
 var queryMedium = model.QueryResult{
-	QueryName:     "AmazonMQ Broker Encryption Disabled",
-	Description:   "AmazonMQ Broker should have Encryption Options defined",
-	QueryID:       "3db3f534-e3a3-487f-88c7-0a9fbf64b702",
-	CloudProvider: "AWS",
-	Severity:      model.SeverityMedium,
+	QueryName:   "AmazonMQ Broker Encryption Disabled",
+	Description: "AmazonMQ Broker should have Encryption Options defined",
+	QueryID:     "3db3f534-e3a3-487f-88c7-0a9fbf64b702",
+	AsDDsa12:    "AWS",
+	Severity:    model.SeverityMedium,
 	Files: []model.VulnerableFile{
 		{
 			FileName:         positive,

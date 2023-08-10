@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-network_acls/bypass",
   "platform": "Ansible",
   "descriptionID": "e86db9c1",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

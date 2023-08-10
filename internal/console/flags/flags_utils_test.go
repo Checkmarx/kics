@@ -89,13 +89,13 @@ func TestFlags_BindFlags(t *testing.T) {
 	v.Set("preview-lines", 3)
 
 	tests := []struct {
-		name                    string
-		cmd                     *cobra.Command
-		flagsListContent        string
-		persistentFlag          bool
-		supportedPlatforms      []string
-		supportedCloudProviders []string
-		wantErr                 bool
+		name               string
+		cmd                *cobra.Command
+		flagsListContent   string
+		persistentFlag     bool
+		supportedPlatforms []string
+		supportedAsDDsa123 []string
+		wantErr            bool
 	}{
 		{
 			name: "should bind flags without error",
@@ -117,16 +117,16 @@ func TestFlags_BindFlags(t *testing.T) {
 				"defaultValue": "./assets/queries",
 				"usage": "paths to directory with queries"
 			}}`,
-			persistentFlag:          false,
-			supportedPlatforms:      []string{"terraform"},
-			supportedCloudProviders: []string{"aws"},
-			wantErr:                 false,
+			persistentFlag:     false,
+			supportedPlatforms: []string{"terraform"},
+			supportedAsDDsa123: []string{"aws"},
+			wantErr:            false,
 		},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			InitJSONFlags(test.cmd, test.flagsListContent, test.persistentFlag, test.supportedPlatforms, test.supportedCloudProviders)
+			InitJSONFlags(test.cmd, test.flagsListContent, test.persistentFlag, test.supportedPlatforms, test.supportedAsDDsa123)
 			got := BindFlags(test.cmd, v)
 			if !test.wantErr {
 				require.NoError(t, got)

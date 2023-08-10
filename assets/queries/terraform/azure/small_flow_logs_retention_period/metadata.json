@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_watcher_flow_log",
   "platform": "Terraform",
   "descriptionID": "02e10365",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

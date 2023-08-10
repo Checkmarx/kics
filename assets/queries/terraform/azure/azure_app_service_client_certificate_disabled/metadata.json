@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#client_cert_enabled",
   "platform": "Terraform",
   "descriptionID": "7beaf18e",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

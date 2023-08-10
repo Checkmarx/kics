@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_ssl_policy",
   "platform": "Terraform",
   "descriptionID": "27c7da5e",
-  "cloudProvider": "gcp"
+  "asdDsa123": "gcp"
 }

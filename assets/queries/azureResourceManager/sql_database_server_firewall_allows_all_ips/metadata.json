@@ -6,6 +6,6 @@
   "descriptionText": "SQL Database Server Firewall endIpAddress should not be '255.255.255.255' when startIpAddress is '0.0.0.0' since this allows all IPS",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/2014-04-01/servers/firewallrules?tabs=json",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "6664d4d6"
 }

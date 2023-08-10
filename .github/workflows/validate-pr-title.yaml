@@ -125,7 +125,7 @@ jobs:
         python-version: "3.x"
     - name: Install dependencies
       run: python3 -m pip install --upgrade pip pyyaml
-    - name: Check title for keywords of platforms and cloud providers to add labels
+    - name: Check title for keywords of platforms and asddsa12s to add labels
       run: |
         keywords=$(python3 .github/scripts/pr-issue-info/get_keywords.py)
         eval "$keywords"

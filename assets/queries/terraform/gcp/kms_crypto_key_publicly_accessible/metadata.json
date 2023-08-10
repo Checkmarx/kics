@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_kms_crypto_key_iam#google_kms_crypto_key_iam_policy",
   "platform": "Terraform",
   "descriptionID": "b1146d1f",
-  "cloudProvider": "gcp"
+  "asdDsa123": "gcp"
 }

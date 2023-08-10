@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticmapreduce-cluster-jobflowinstancesconfig.html#cfn-elasticmapreduce-cluster-jobflowinstancesconfig-ec2subnetid",
   "platform": "CloudFormation",
   "descriptionID": "26800d21",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

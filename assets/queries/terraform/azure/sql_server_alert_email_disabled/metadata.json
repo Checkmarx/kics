@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server_security_alert_policy#email_account_admins",
   "platform": "Terraform",
   "descriptionID": "4eb880dd",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

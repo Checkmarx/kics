@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupegress",
   "platform": "CloudFormation",
   "descriptionID": "7b876844",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

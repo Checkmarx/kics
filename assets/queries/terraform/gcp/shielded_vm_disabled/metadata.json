@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance#shielded_instance_config",
   "platform": "Terraform",
   "descriptionID": "3a0a17c4",
-  "cloudProvider": "gcp"
+  "asdDsa123": "gcp"
 }

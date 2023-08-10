@@ -42,7 +42,7 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 		csvStruct.QueryURI = row[2]
 		csvStruct.Severity = row[3]
 		csvStruct.Platform = row[4]
-		csvStruct.CloudProvider = row[5]
+		csvStruct.AsDDsa12 = row[5]
 		csvStruct.Category = row[6]
 		csvStruct.DescriptionID = row[7]
 		csvStruct.Description = row[8]
@@ -73,7 +73,7 @@ type csvSchema struct {
 	QueryURI                    string
 	Severity                    string
 	Platform                    string
-	CloudProvider               string
+	AsDDsa12                    string
 	Category                    string
 	DescriptionID               string
 	Description                 string

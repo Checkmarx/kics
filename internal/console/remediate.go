@@ -43,7 +43,7 @@ func initRemediateCmd(remediateCmd *cobra.Command) error {
 		remediateFlagsListContent,
 		false,
 		source.ListSupportedPlatforms(),
-		source.ListSupportedCloudProviders()); err != nil {
+		source.ListSupportedAsDDsa123()); err != nil {
 		return err
 	}
 

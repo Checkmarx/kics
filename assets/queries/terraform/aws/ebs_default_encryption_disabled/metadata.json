@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_encryption_by_default",
   "platform": "Terraform",
   "descriptionID": "2990583f",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

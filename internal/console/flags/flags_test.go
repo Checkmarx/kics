@@ -45,22 +45,22 @@ func TestFlags_InitJSONFlags(t *testing.T) {
 	kicsFlags, _ := os.ReadFile("../assets/kics-flags.json")
 
 	tests := []struct {
-		name                    string
-		cmd                     *cobra.Command
-		flagsListContent        string
-		persistentFlag          bool
-		supportedPlatforms      []string
-		supportedCloudProviders []string
-		wantErr                 bool
+		name               string
+		cmd                *cobra.Command
+		flagsListContent   string
+		persistentFlag     bool
+		supportedPlatforms []string
+		supportedAsDDsa123 []string
+		wantErr            bool
 	}{
 		{
-			name:                    "should initialize flags without error",
-			cmd:                     mockCmd,
-			flagsListContent:        string(kicsFlags),
-			persistentFlag:          true,
-			supportedPlatforms:      []string{"terraform"},
-			supportedCloudProviders: []string{"aws"},
-			wantErr:                 false,
+			name:               "should initialize flags without error",
+			cmd:                mockCmd,
+			flagsListContent:   string(kicsFlags),
+			persistentFlag:     true,
+			supportedPlatforms: []string{"terraform"},
+			supportedAsDDsa123: []string{"aws"},
+			wantErr:            false,
 		},
 		{
 			name: "should throw error due to wrong json marshal on flagListContent",
@@ -71,10 +71,10 @@ func TestFlags_InitJSONFlags(t *testing.T) {
 				"defaultValue": "false",
 				"usage": "write logs to stdout too (mutually exclusive with silent)"
 			}`,
-			persistentFlag:          true,
-			supportedPlatforms:      []string{"terraform"},
-			supportedCloudProviders: []string{"aws"},
-			wantErr:                 true,
+			persistentFlag:     true,
+			supportedPlatforms: []string{"terraform"},
+			supportedAsDDsa123: []string{"aws"},
+			wantErr:            true,
 		},
 		{
 			name: "should throw error due to not being possible to convert bool default value",
@@ -88,10 +88,10 @@ func TestFlags_InitJSONFlags(t *testing.T) {
 				}
 			  }
 			  `,
-			persistentFlag:          true,
-			supportedPlatforms:      []string{"terraform"},
-			supportedCloudProviders: []string{"aws"},
-			wantErr:                 true,
+			persistentFlag:     true,
+			supportedPlatforms: []string{"terraform"},
+			supportedAsDDsa123: []string{"aws"},
+			wantErr:            true,
 		},
 		{
 			name: "should throw error due to not being possible to convert default int value",
@@ -105,10 +105,10 @@ func TestFlags_InitJSONFlags(t *testing.T) {
 				}
 			  }
 			  `,
-			persistentFlag:          true,
-			supportedPlatforms:      []string{"terraform"},
-			supportedCloudProviders: []string{"aws"},
-			wantErr:                 true,
+			persistentFlag:     true,
+			supportedPlatforms: []string{"terraform"},
+			supportedAsDDsa123: []string{"aws"},
+			wantErr:            true,
 		},
 		{
 			name: "should not throw error due to not being possible to convert flag value type",
@@ -122,25 +122,25 @@ func TestFlags_InitJSONFlags(t *testing.T) {
 				}
 			  }
 			  `,
-			persistentFlag:          true,
-			supportedPlatforms:      []string{"terraform"},
-			supportedCloudProviders: []string{"aws"},
-			wantErr:                 false,
+			persistentFlag:     true,
+			supportedPlatforms: []string{"terraform"},
+			supportedAsDDsa123: []string{"aws"},
+			wantErr:            false,
 		},
 		{
-			name:                    "should not throw error due to hidden flag",
-			cmd:                     mockCmd,
-			flagsListContent:        "{\n  \"dummy\": {\n    \"flagType\": \"bool\",\n    \"shorthandFlag\": \"\",\n    \"defaultValue\": \"false\",\n    \"hidden\": true,\n    \"usage\": \"display only log messages to CLI output (mutually exclusive with silent)\"\n  }\n}\n",
-			persistentFlag:          true,
-			supportedPlatforms:      []string{"terraform"},
-			supportedCloudProviders: []string{"aws"},
-			wantErr:                 false,
+			name:               "should not throw error due to hidden flag",
+			cmd:                mockCmd,
+			flagsListContent:   "{\n  \"dummy\": {\n    \"flagType\": \"bool\",\n    \"shorthandFlag\": \"\",\n    \"defaultValue\": \"false\",\n    \"hidden\": true,\n    \"usage\": \"display only log messages to CLI output (mutually exclusive with silent)\"\n  }\n}\n",
+			persistentFlag:     true,
+			supportedPlatforms: []string{"terraform"},
+			supportedAsDDsa123: []string{"aws"},
+			wantErr:            false,
 		},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			got := InitJSONFlags(test.cmd, test.flagsListContent, test.persistentFlag, test.supportedCloudProviders, test.supportedCloudProviders)
+			got := InitJSONFlags(test.cmd, test.flagsListContent, test.persistentFlag, test.supportedAsDDsa123, test.supportedAsDDsa123)
 			if !test.wantErr {
 				require.NoError(t, got)
 			} else {

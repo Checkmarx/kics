@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html#cfn-ec2-networkaclentry-portrange",
   "platform": "CloudFormation",
   "descriptionID": "51ad2aeb",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

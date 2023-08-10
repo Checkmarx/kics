@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html#parameter-assign_public_ip",
   "platform": "Ansible",
   "descriptionID": "f32c5d88",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

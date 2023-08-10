@@ -51,7 +51,7 @@ func initScanCmd(scanCmd *cobra.Command) error {
 		scanFlagsListContent,
 		false,
 		source.ListSupportedPlatforms(),
-		source.ListSupportedCloudProviders()); err != nil {
+		source.ListSupportedAsDDsa123()); err != nil {
 		return err
 	}
 
@@ -109,7 +109,7 @@ func updateReportFormats() {
 
 func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool) *scan.Parameters {
 	scanParams := scan.Parameters{
-		CloudProvider:               flags.GetMultiStrFlag(flags.CloudProviderFlag),
+		AsDDsa12:                    flags.GetMultiStrFlag(flags.AsDDsa12Flag),
 		DisableFullDesc:             flags.GetBoolFlag(flags.DisableFullDescFlag),
 		ExcludeCategories:           flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag),
 		ExcludePaths:                flags.GetMultiStrFlag(flags.ExcludePathsFlag),

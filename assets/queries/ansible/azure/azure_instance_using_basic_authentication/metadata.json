@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_virtualmachine_module.html#parameter-linux_config/disable_password_authentication",
   "platform": "Ansible",
   "descriptionID": "e2d834b7",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

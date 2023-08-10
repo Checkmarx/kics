@@ -81,7 +81,7 @@ func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []mode
 			string(data),
 			true,
 			source.ListSupportedPlatforms(),
-			source.ListSupportedCloudProviders(),
+			source.ListSupportedAsDDsa123(),
 		)
 
 		temporaryRemediationSets := make(map[string]interface{})

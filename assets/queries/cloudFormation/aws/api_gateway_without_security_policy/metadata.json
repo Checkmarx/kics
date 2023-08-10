@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-domainname.html#cfn-apigateway-domainname-securitypolicy",
   "platform": "CloudFormation",
   "descriptionID": "92418e29",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

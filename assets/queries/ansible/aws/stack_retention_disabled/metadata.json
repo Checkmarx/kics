@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudformation_stack_set_module.html#parameter-purge_stacks",
   "platform": "Ansible",
   "descriptionID": "78d78b74",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

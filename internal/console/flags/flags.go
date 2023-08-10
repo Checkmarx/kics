@@ -33,12 +33,12 @@ type flagJSON struct {
 	Validation     string
 }
 
-func evalUsage(usage string, supportedPlatforms, supportedCloudProviders []string) string {
+func evalUsage(usage string, supportedPlatforms, supportedAsDDsa123 []string) string {
 	variables := map[string]string{
 		"sliceInstructions":  "can be provided multiple times or as a comma separated string",
 		"supportedLogLevels": strings.Join(constants.AvailableLogLevels, ","),
 		"supportedPlatforms": strings.Join(supportedPlatforms, ", "),
-		"supportedProviders": strings.Join(supportedCloudProviders, ", "),
+		"supportedProviders": strings.Join(supportedAsDDsa123, ", "),
 		"supportedReports":   strings.Join(append([]string{"all"}, helpers.ListReportFormats()...), ", "),
 		"defaultLogFile":     constants.DefaultLogFile,
 		"logFormatPretty":    constants.LogFormatPretty,
@@ -76,7 +76,7 @@ func InitJSONFlags(
 	flagsListContent string,
 	persistentFlag bool,
 	supportedPlatforms,
-	supportedCloudProviders []string) error {
+	supportedAsDDsa123 []string) error {
 	var flagsList map[string]flagJSON
 	err := json.Unmarshal([]byte(flagsListContent), &flagsList)
 	if err != nil {
@@ -90,7 +90,7 @@ func InitJSONFlags(
 	}
 
 	for flagName, flagProps := range flagsList {
-		flagProps.Usage = evalUsage(flagProps.Usage, supportedPlatforms, supportedCloudProviders)
+		flagProps.Usage = evalUsage(flagProps.Usage, supportedPlatforms, supportedAsDDsa123)
 
 		switch flagProps.FlagType {
 		case "multiStr":

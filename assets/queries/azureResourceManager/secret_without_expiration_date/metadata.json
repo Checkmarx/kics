@@ -6,6 +6,6 @@
   "descriptionText": "All Secrets must have an expiration date defined",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.keyvault/vaults/secrets?tabs=json#SecretAttributes",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "bb5f96a2"
 }

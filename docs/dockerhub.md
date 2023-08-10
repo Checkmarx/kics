@@ -82,7 +82,7 @@ Usage:
 
 Flags:
   -m, --bom                           include bill of materials (BoM) in results output
-      --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp)
+      --cloud-provider strings        list of asddsa12s to scan (alicloud, aws, azure, gcp)
       --config string                 path to configuration file
       --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
       --disable-secrets               disable secrets scanning

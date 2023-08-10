@@ -6,6 +6,6 @@
   "descriptionText": "Microsoft.DBforPostgreSQL/servers/configurations should have 'connection_throttling' property set to 'on'",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/servers/configurations?tabs=json",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "2eb0e3a8"
 }

@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-security-warning-pass-role-with-star-in-resource",
   "platform": "Terraform",
   "descriptionID": "380dd3f7",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

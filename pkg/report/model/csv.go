@@ -9,7 +9,7 @@ type CSVReport struct {
 	QueryURI                    string `csv:"query_uri"`
 	Severity                    string `csv:"severity"`
 	Platform                    string `csv:"platform"`
-	CloudProvider               string `csv:"cloud_provider"`
+	AsDDsa12                    string `csv:"asddsa123"`
 	Category                    string `csv:"category"`
 	DescriptionID               string `csv:"description_id"`
 	Description                 string `csv:"description"`
@@ -39,7 +39,7 @@ func BuildCSVReport(summary *model.Summary) []CSVReport {
 				QueryURI:                    summary.Queries[i].QueryURI,
 				Severity:                    string(summary.Queries[i].Severity),
 				Platform:                    summary.Queries[i].Platform,
-				CloudProvider:               summary.Queries[i].CloudProvider,
+				AsDDsa12:                    summary.Queries[i].AsDDsa12,
 				Category:                    summary.Queries[i].Category,
 				DescriptionID:               summary.Queries[i].DescriptionID,
 				Description:                 summary.Queries[i].Description,

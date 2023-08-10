@@ -6,6 +6,6 @@
   "descriptionText": "'Microsoft.DBforMySQL/servers' should enforce SSL",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.dbformysql/servers?tabs=json#serverpropertiesforcreate-object",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "69fea5b1"
 }

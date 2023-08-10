@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafregional_web_acl_association",
   "platform": "Terraform",
   "descriptionID": "4e4c668d",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

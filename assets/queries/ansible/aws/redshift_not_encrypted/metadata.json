@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#encrypted",
   "platform": "Ansible",
   "descriptionID": "85cddbf3",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

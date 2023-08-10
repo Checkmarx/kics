@@ -76,8 +76,8 @@ var (
 		"FATAL",
 	}
 
-	// AvailableCloudProviders - All cloud providers available
-	AvailableCloudProviders = map[string]string{
+	// AvailableAsDDsa123 - All asddsa12s available
+	AvailableAsDDsa123 = map[string]string{
 		"alicloud": "",
 		"aws":      "",
 		"azure":    "",

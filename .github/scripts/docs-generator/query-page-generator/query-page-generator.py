@@ -209,7 +209,7 @@ def generate_md_docs(queries_database : str, output_path : str, template_file_pa
 
         platform_folder_path = os.path.join(output_path,
                                             f"{query_data.get('platform').lower()}-queries",
-                                            query_data.get('cloudProvider', '').lower())
+                                            query_data.get('asDDsa12', '').lower())
         if not os.path.exists(platform_folder_path):
             os.makedirs(platform_folder_path)
 

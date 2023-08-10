@@ -3,7 +3,7 @@
     "flagType": "multiStr",
     "shorthandFlag": "",
     "defaultValue": "",
-    "usage": "list of cloud providers to scan (${supportedProviders})",
+    "usage": "list of asddsa12s to scan (${supportedProviders})",
     "validation": "validateMultiStrEnum"
   },
   "config": {

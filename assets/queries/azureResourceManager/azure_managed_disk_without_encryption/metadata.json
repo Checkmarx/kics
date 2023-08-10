@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.compute/disks?tabs=json#encryptionsettingscollection-object",
   "platform": "AzureResourceManager",
   "descriptionID": "e2fa6cda",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

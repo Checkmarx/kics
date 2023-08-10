@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_dns_managed_zone_module.html#return-dnssecConfig/defaultKeySpecs/algorithm",
   "platform": "Ansible",
   "descriptionID": "e6a4b99b",
-  "cloudProvider": "gcp"
+  "asdDsa123": "gcp"
 }

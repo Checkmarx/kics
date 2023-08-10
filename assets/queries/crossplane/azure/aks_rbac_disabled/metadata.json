@@ -7,5 +7,5 @@
   "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-azure/compute.azure.crossplane.io/AKSCluster/v1alpha3@v0.19.0#spec-disableRBAC",
   "platform": "Crossplane",
   "descriptionID": "b9f4440e",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

@@ -21,10 +21,10 @@ import (
 // Source is the path to the queries
 // Types are the types given by the flag --type for query selection mechanism
 type FilesystemSource struct {
-	Source         []string
-	Types          []string
-	CloudProviders []string
-	Library        string
+	Source    []string
+	Types     []string
+	AsDDsa123 []string
+	Library   string
 }
 
 const (
@@ -43,15 +43,15 @@ const (
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
-func NewFilesystemSource(source, types, cloudProviders []string, libraryPath string) *FilesystemSource {
+func NewFilesystemSource(source, types, asDDsa123 []string, libraryPath string) *FilesystemSource {
 	log.Debug().Msg("source.NewFilesystemSource()")
 
 	if len(types) == 0 {
 		types = []string{""}
 	}
 
-	if len(cloudProviders) == 0 {
-		cloudProviders = []string{""}
+	if len(asDDsa123) == 0 {
+		asDDsa123 = []string{""}
 	}
 
 	for s := range source {
@@ -59,10 +59,10 @@ func NewFilesystemSource(source, types, cloudProviders []string, libraryPath str
 	}
 
 	return &FilesystemSource{
-		Source:         source,
-		Types:          types,
-		CloudProviders: cloudProviders,
-		Library:        filepath.FromSlash(libraryPath),
+		Source:    source,
+		Types:     types,
+		AsDDsa123: asDDsa123,
+		Library:   filepath.FromSlash(libraryPath),
 	}
 }
 
@@ -78,8 +78,8 @@ func ListSupportedPlatforms() []string {
 	return keys
 }
 
-// ListSupportedCloudProviders returns a list of supported cloud providers
-func ListSupportedCloudProviders() []string {
+// ListSupportedAsDDsa123 returns a list of supported asddsa12s
+func ListSupportedAsDDsa123() []string {
 	return []string{"alicloud", "aws", "azure", "gcp"}
 }
 
@@ -188,18 +188,18 @@ func (s *FilesystemSource) CheckType(queryPlatform interface{}) bool {
 	return true
 }
 
-// CheckCloudProvider checks if the queries have the cloud provider passed as an argument in '--cloud-provider' flag to be loaded
-func (s *FilesystemSource) CheckCloudProvider(cloudProvider interface{}) bool {
-	if cloudProvider != nil {
-		if strings.EqualFold(cloudProvider.(string), common) {
+// CheckAsDDsa12 checks if the queries have the asddsa12 passed as an argument in '--cloud-provider' flag to be loaded
+func (s *FilesystemSource) CheckAsDDsa12(asDDsa12 interface{}) bool {
+	if asDDsa12 != nil {
+		if strings.EqualFold(asDDsa12.(string), common) {
 			return true
 		}
-		if s.CloudProviders[0] != "" {
-			return strings.Contains(strings.ToUpper(strings.Join(s.CloudProviders, ",")), strings.ToUpper(cloudProvider.(string)))
+		if s.AsDDsa123[0] != "" {
+			return strings.Contains(strings.ToUpper(strings.Join(s.AsDDsa123, ",")), strings.ToUpper(asDDsa12.(string)))
 		}
 	}
 
-	if s.CloudProviders[0] == "" {
+	if s.AsDDsa123[0] == "" {
 		return true
 	}
 
@@ -285,7 +285,7 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 			continue
 		}
 
-		if !s.CheckCloudProvider(query.Metadata["cloudProvider"]) {
+		if !s.CheckAsDDsa12(query.Metadata["asdDsa123"]) {
 			continue
 		}
 

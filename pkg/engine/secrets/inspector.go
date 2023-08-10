@@ -534,7 +534,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 				DescriptionID:    SecretsQueryMetadata["descriptionID"],
 				KeyExpectedValue: "Hardcoded secret key should not appear in source",
 				KeyActualValue:   "Hardcoded secret key appears in source",
-				CloudProvider:    SecretsQueryMetadata["cloudProvider"],
+				AsDDsa12:         SecretsQueryMetadata["asdDsa123"],
 			}
 			c.vulnerabilities = append(c.vulnerabilities, vuln)
 		}

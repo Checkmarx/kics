@@ -6,6 +6,6 @@
   "descriptionText": "Log Profile Categories should be set to 'Write', 'Delete', and/or 'Action'",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.insights/2016-03-01/logprofiles?tabs=json#logprofileproperties-object",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "ead4e0f2"
 }

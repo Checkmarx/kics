@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_firewall_rule",
   "platform": "Terraform",
   "descriptionID": "837de8dd",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

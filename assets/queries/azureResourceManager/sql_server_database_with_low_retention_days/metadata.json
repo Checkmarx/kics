@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/auditingsettings?tabs=json",
   "platform": "AzureResourceManager",
   "descriptionID": "7867ae74",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

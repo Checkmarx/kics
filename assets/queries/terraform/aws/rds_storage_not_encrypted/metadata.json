@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#storage_encrypted",
   "platform": "Terraform",
   "descriptionID": "54288d64",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

@@ -137,9 +137,9 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 			}
 			fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
 
-			queryCloudProvider := summary.Queries[idx].CloudProvider
-			if queryCloudProvider != "" {
-				queryCloudProvider = strings.ToLower(queryCloudProvider) + "/"
+			queryAsDDsa12 := summary.Queries[idx].AsDDsa12
+			if queryAsDDsa12 != "" {
+				queryAsDDsa12 = strings.ToLower(queryAsDDsa12) + "/"
 			}
 
 			// checks if should print queries URL DOCS based on the use of custom queries and invalid ids
@@ -149,7 +149,7 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 						printer.Bold("Learn more about this vulnerability:"),
 						fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s%s",
 							strings.ToLower(summary.Queries[idx].Platform),
-							queryCloudProvider,
+							queryAsDDsa12,
 							summary.Queries[idx].QueryID))
 				}
 			}

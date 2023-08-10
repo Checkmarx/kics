@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_domain_name#security_policy",
   "platform": "Terraform",
   "descriptionID": "b78cd4cb",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

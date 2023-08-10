@@ -11,7 +11,7 @@ import (
 )
 
 var validMultiStrEnums = map[string]map[string]string{
-	CloudProviderFlag:     constants.AvailableCloudProviders,
+	AsDDsa12Flag:          constants.AvailableAsDDsa123,
 	ExcludeCategoriesFlag: constants.AvailableCategories,
 	ExcludeSeveritiesFlag: convertSliceToDummyMap(constants.AvailableSeverities),
 	FailOnFlag:            convertSliceToDummyMap(constants.AvailableSeverities),

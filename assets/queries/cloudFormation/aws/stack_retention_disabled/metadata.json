@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudformation-stackset-autodeployment.html#cfn-cloudformation-stackset-autodeployment-retainstacksonaccountremoval",
   "platform": "CloudFormation",
   "descriptionID": "2f8bf223",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

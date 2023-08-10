@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_virtualmachine_module.html#parameter-network_interface_names",
   "platform": "Ansible",
   "descriptionID": "33a5e5ec",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

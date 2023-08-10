@@ -69,7 +69,7 @@
             "type": "string",
             "format": "uri"
         },
-        "cloudProvider": {
+        "asdDsa123": {
             "type": "string",
             "enum": [
                 "alicloud",

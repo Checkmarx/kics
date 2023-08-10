@@ -56,7 +56,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="Azure BluePrints" src="docs/img/logo-azure-blueprints.png" width="100">&nbsp;&nbsp;&nbsp;
 
 
-Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
+Support of other solutions and additional asddsa12s are on the [roadmap](docs/roadmap.md).
 
 ## Getting Started
 

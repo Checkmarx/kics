@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-network_acls",
   "platform": "Ansible",
   "descriptionID": "78d2c5b3",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

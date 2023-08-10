@@ -21,24 +21,24 @@ func Test_PrintScanDuration(t *testing.T) {
 	}
 
 	tests := []struct {
-		name                    string
-		cmd                     *cobra.Command
-		flagsListContent        string
-		persintentFlag          bool
-		supportedPlatforms      []string
-		supportedCloudProviders []string
-		elapsed                 time.Duration
-		expected                string
+		name               string
+		cmd                *cobra.Command
+		flagsListContent   string
+		persintentFlag     bool
+		supportedPlatforms []string
+		supportedAsDDsa123 []string
+		elapsed            time.Duration
+		expected           string
 	}{
 		{
-			name:                    "should print scan duration",
-			cmd:                     mockCmd,
-			flagsListContent:        "",
-			persintentFlag:          true,
-			supportedPlatforms:      []string{"terraform"},
-			supportedCloudProviders: []string{"aws"},
-			elapsed:                 time.Duration(1),
-			expected:                "Scan duration: 1ns\n",
+			name:               "should print scan duration",
+			cmd:                mockCmd,
+			flagsListContent:   "",
+			persintentFlag:     true,
+			supportedPlatforms: []string{"terraform"},
+			supportedAsDDsa123: []string{"aws"},
+			elapsed:            time.Duration(1),
+			expected:           "Scan duration: 1ns\n",
 		},
 		{
 			name: "should print scan duration when ci flag is true",
@@ -49,17 +49,17 @@ func Test_PrintScanDuration(t *testing.T) {
 				"defaultValue": "true",
 				"usage": "display only log messages to CLI output (mutually exclusive with silent)"
 			}}`,
-			persintentFlag:          true,
-			supportedPlatforms:      []string{"terraform"},
-			supportedCloudProviders: []string{"aws"},
-			elapsed:                 time.Duration(1),
-			expected:                "Scan duration: 0ms\n",
+			persintentFlag:     true,
+			supportedPlatforms: []string{"terraform"},
+			supportedAsDDsa123: []string{"aws"},
+			elapsed:            time.Duration(1),
+			expected:           "Scan duration: 0ms\n",
 		},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			flags.InitJSONFlags(test.cmd, test.flagsListContent, test.persintentFlag, test.supportedPlatforms, test.supportedCloudProviders)
+			flags.InitJSONFlags(test.cmd, test.flagsListContent, test.persintentFlag, test.supportedPlatforms, test.supportedAsDDsa123)
 
 			rescueStdout := os.Stdout
 			r, w, _ := os.Pipe()

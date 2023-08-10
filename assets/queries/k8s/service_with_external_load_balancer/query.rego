@@ -40,8 +40,8 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.annotations", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.name={{%s}} using an external Load Balancer provider by cloud provider", [metadata.name]),
-		"keyActualValue": sprintf("metadata.name={{%s}} is exposing a workload, not using an external Load Balancer provider by cloud provider", [metadata.name]),
+		"keyExpectedValue": sprintf("metadata.name={{%s}} using an external Load Balancer provider by asddsa12", [metadata.name]),
+		"keyActualValue": sprintf("metadata.name={{%s}} is exposing a workload, not using an external Load Balancer provider by asddsa12", [metadata.name]),
 	}
 }
 

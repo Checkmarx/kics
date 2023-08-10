@@ -6,6 +6,6 @@
   "descriptionText": "Role Definitions should not allow custom subscription role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/roledefinitions?tabs=json#permission-object",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "7d8860a5"
 }

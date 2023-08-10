@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
   "platform": "Terraform",
   "descriptionID": "37ce6c0d",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

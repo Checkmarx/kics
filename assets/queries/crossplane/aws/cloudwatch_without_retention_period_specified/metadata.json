@@ -7,5 +7,5 @@
   "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/cloudwatchlogs.aws.crossplane.io/LogGroup/v1alpha1@v0.29.0#spec-forProvider-retentionInDays",
   "platform": "Crossplane",
   "descriptionID": "9ce0c6f8",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

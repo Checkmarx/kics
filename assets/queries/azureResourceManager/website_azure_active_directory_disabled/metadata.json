@@ -6,6 +6,6 @@
   "descriptionText": "WebApp should have Azure Active Directory  enabled with 'identity.type' set to 'SystemAssigned' or 'userAssignedIdentities' set to 'true'",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/2019-08-01/sites?tabs=json#ManagedServiceIdentity",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "f50ec4cb"
 }

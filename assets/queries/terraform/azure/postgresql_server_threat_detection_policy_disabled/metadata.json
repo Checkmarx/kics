@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server#threat_detection_policy",
   "platform": "Terraform",
   "descriptionID": "ed803b39",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

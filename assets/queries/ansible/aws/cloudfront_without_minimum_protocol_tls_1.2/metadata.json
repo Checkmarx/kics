@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html#parameter-viewer_certificate/minimum_protocol_version",
   "platform": "Ansible",
   "descriptionID": "b0a58f2f",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

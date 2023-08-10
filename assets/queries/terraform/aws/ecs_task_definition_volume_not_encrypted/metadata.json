@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#transit_encryption",
   "platform": "Terraform",
   "descriptionID": "b01e131b",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

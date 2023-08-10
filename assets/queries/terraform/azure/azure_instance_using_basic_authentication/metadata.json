@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine#admin_ssh_key",
   "platform": "Terraform",
   "descriptionID": "dafe30ec",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

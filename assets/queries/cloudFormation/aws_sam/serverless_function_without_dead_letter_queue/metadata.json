@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-deadletterqueue",
   "platform": "CloudFormation",
   "descriptionID": "1142bb9f",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

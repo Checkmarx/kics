@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#iam_database_authentication_enabled",
   "platform": "Terraform",
   "descriptionID": "12b1c8aa",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

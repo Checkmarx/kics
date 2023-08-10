@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_ses_identity_policy_module.html#parameter-policy",
   "platform": "Ansible",
   "descriptionID": "89d6e6fd",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

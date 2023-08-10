@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule",
   "platform": "Terraform",
   "descriptionID": "21b8be3f",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

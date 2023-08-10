@@ -6,6 +6,6 @@
   "descriptionText": "SQL Database Server should contain emails to be notified in the event of a Security Alert",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/securityalertpolicies?tabs=json",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "3b84ba2d"
 }

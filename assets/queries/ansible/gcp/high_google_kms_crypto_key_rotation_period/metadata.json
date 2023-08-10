@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_kms_crypto_key_module.html",
   "platform": "Ansible",
   "descriptionID": "9072f426",
-  "cloudProvider": "gcp"
+  "asdDsa123": "gcp"
 }

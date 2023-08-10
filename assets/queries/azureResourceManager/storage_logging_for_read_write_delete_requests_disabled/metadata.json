@@ -6,6 +6,6 @@
   "descriptionText": "Storage Logging should be enabled for read, write and delete methods",
   "descriptionUrl": "https://docs.microsoft.com/pt-pt/azure/azure-monitor/essentials/resource-manager-diagnostic-settings#diagnostic-setting-for-azure-storage",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "83fa7bb6"
 }

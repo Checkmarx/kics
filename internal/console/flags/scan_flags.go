@@ -3,7 +3,7 @@ package flags
 // Flags constants for scan
 const (
 	BomFlag                = "bom"
-	CloudProviderFlag      = "cloud-provider"
+	AsDDsa12Flag           = "cloud-provider"
 	ConfigFlag             = "config"
 	DisableFullDescFlag    = "disable-full-descriptions"
 	ExcludeCategoriesFlag  = "exclude-categories"

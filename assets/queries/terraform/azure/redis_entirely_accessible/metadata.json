@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_firewall_rule",
   "platform": "Terraform",
   "descriptionID": "d18de348",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

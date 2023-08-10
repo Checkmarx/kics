@@ -40,7 +40,7 @@ func (b *Builder) Add(p kindParser) *Builder {
 }
 
 // Build prepares parsers and associates a parser to its extension and returns it
-func (b *Builder) Build(types, cloudProviders []string) ([]*Parser, error) {
+func (b *Builder) Build(types, asDDsa123 []string) ([]*Parser, error) {
 	parserSlice := make([]*Parser, 0, len(b.parsers))
 	for _, parser := range b.parsers {
 		supportedTypes := parser.SupportedTypes()

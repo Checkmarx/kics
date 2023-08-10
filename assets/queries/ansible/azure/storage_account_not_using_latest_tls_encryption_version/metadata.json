@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-minimum_tls_version",
   "platform": "Ansible",
   "descriptionID": "f050a4f3",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

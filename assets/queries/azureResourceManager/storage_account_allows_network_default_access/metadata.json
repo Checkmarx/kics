@@ -6,6 +6,6 @@
   "descriptionText": "'Microsoft.Storage/storageAccounts' should force the use of HTTPS",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#storageaccountpropertiescreateparameters-object",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "6ae0507e"
 }

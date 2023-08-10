@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-public_network_access",
   "platform": "Ansible",
   "descriptionID": "ca4df748",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

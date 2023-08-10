@@ -23,10 +23,10 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 		b.Fatal(err)
 	}
 	type fields struct {
-		Source         []string
-		Types          []string
-		CloudProviders []string
-		Library        string
+		Source    []string
+		Types     []string
+		AsDDsa123 []string
+		Library   string
 	}
 	tests := []struct {
 		name   string
@@ -35,16 +35,16 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 		{
 			name: "testing_all_paths",
 			fields: fields{
-				Source:         []string{"./assets/queries/"},
-				Types:          []string{""},
-				CloudProviders: []string{""},
-				Library:        "./assets/libraries",
+				Source:    []string{"./assets/queries/"},
+				Types:     []string{""},
+				AsDDsa123: []string{""},
+				Library:   "./assets/libraries",
 			},
 		},
 	}
 	for _, tt := range tests {
 		b.Run(tt.name, func(b *testing.B) {
-			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types, tt.fields.CloudProviders, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types, tt.fields.AsDDsa123, tt.fields.Library)
 			for n := 0; n < b.N; n++ {
 				filter := QueryInspectorParameters{
 					IncludeQueries: IncludeQueries{ByIDs: []string{}},
@@ -67,10 +67,10 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 	contentByte, err := os.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
 	require.NoError(t, err)
 	type fields struct {
-		Source         []string
-		Types          []string
-		CloudProviders []string
-		Library        string
+		Source    []string
+		Types     []string
+		AsDDsa123 []string
+		Library   string
 	}
 	tests := []struct {
 		name              string
@@ -85,7 +85,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 			name: "get_queries_with_exclude_result_1",
 			fields: fields{
 				Source: []string{source}, Types: []string{""},
-				CloudProviders: []string{""}, Library: "./assets/libraries",
+				AsDDsa123: []string{""}, Library: "./assets/libraries",
 			},
 			excludeCategory:   []string{},
 			excludeSeverities: []string{},
@@ -114,7 +114,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 			name: "get_queries_with_exclude_no_result_1",
 			fields: fields{
 				Source: []string{source}, Types: []string{""},
-				CloudProviders: []string{""}, Library: "./assets/libraries",
+				AsDDsa123: []string{""}, Library: "./assets/libraries",
 			},
 			excludeCategory:   []string{},
 			excludeIDs:        []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
@@ -136,7 +136,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 			name: "get_queries_with_exclude_category_no_result",
 			fields: fields{
 				Source: []string{source}, Types: []string{""},
-				CloudProviders: []string{""}, Library: "./assets/libraries",
+				AsDDsa123: []string{""}, Library: "./assets/libraries",
 			},
 			excludeCategory:   []string{"Access Control"},
 			excludeIDs:        []string{},
@@ -148,7 +148,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 			name: "get_queries_with_exclude_severity_no_result",
 			fields: fields{
 				Source: []string{source}, Types: []string{""},
-				CloudProviders: []string{""}, Library: "./assets/libraries",
+				AsDDsa123: []string{""}, Library: "./assets/libraries",
 			},
 			excludeCategory:   []string{},
 			excludeIDs:        []string{},
@@ -189,10 +189,10 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 	require.NoError(t, err)
 
 	type fields struct {
-		Source         []string
-		Types          []string
-		CloudProviders []string
-		Library        string
+		Source    []string
+		Types     []string
+		AsDDsa123 []string
+		Library   string
 	}
 	tests := []struct {
 		name       string
@@ -204,7 +204,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 		{
 			name: "get_queries_with_include_result_1",
 			fields: fields{
-				Source: []string{source}, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
+				Source: []string{source}, Types: []string{""}, AsDDsa123: []string{""}, Library: "./assets/libraries",
 			},
 			includeIDs: []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
 			want: []model.QueryMetadata{
@@ -230,7 +230,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 		{
 			name: "get_queries_with_include_no_result_1",
 			fields: fields{
-				Source: []string{source}, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
+				Source: []string{source}, Types: []string{""}, AsDDsa123: []string{""}, Library: "./assets/libraries",
 			},
 			includeIDs: []string{"57b9893d-33b1-4419-bcea-xxxxxxx"},
 			want:       []model.QueryMetadata{},
@@ -405,10 +405,10 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	require.NoError(t, err)
 
 	type fields struct {
-		Source         []string
-		Types          []string
-		CloudProviders []string
-		Library        string
+		Source    []string
+		Types     []string
+		AsDDsa123 []string
+		Library   string
 	}
 	tests := []struct {
 		name    string
@@ -419,7 +419,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_1",
 			fields: fields{
-				Source: []string{source, source}, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
+				Source: []string{source, source}, Types: []string{""}, AsDDsa123: []string{""}, Library: "./assets/libraries",
 			},
 			want: []model.QueryMetadata{
 				{
@@ -720,11 +720,11 @@ func TestSource_validateMetadata(t *testing.T) {
 	}
 }
 
-// TestSource_ListSupportedCloudProviders tests the function ListSupportedCloudProviders.
-func TestSource_ListSupportedCloudProviders(t *testing.T) {
+// TestSource_ListSupportedAsDDsa123 tests the function ListSupportedAsDDsa123.
+func TestSource_ListSupportedAsDDsa123(t *testing.T) {
 	want := []string{"alicloud", "aws", "azure", "gcp"}
 	t.Run("test List Supported CP", func(t *testing.T) {
-		got := ListSupportedCloudProviders()
+		got := ListSupportedAsDDsa123()
 		require.Equal(t, want, got)
 	})
 }

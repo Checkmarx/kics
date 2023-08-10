@@ -481,7 +481,7 @@ var testNewInspectorInputs = []struct {
 			"descriptionUrl": "https://kics.io/",
 			"platform": "Common",
 			"descriptionID": "d69d8a89",
-			"cloudProvider": "common"
+			"asdDsa123": "common"
 		  }`,
 		disableSecrets: false,
 		wantRegLen:     1,
@@ -511,7 +511,7 @@ var testNewInspectorInputs = []struct {
 			"descriptionUrl": "https://kics.io/",
 			"platform": "Common",
 			"descriptionID": "d69d8a89",
-			"cloudProvider": "common"
+			"asdDsa123": "common"
 		  }`,
 		disableSecrets: true,
 		wantRegLen:     0,
@@ -541,7 +541,7 @@ var testNewInspectorInputs = []struct {
 			"descriptionUrl": "https://kics.io/",
 			"platform": "Common",
 			"descriptionID": "d69d8a89",
-			"cloudProvider": "common"
+			"asdDsa123": "common"
 		  }`,
 		disableSecrets: false,
 		wantRegLen:     1,

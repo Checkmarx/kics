@@ -58,7 +58,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 	querySource := source.NewFilesystemSource(
 		c.ScanParams.QueriesPath,
 		c.ScanParams.Platform,
-		c.ScanParams.CloudProvider,
+		c.ScanParams.AsDDsa12,
 		c.ScanParams.LibrariesPath)
 
 	queryFilter := c.createQueryFilter()
@@ -228,7 +228,7 @@ func (c *Client) createService(
 		Add(&protoParser.Parser{}).
 		Add(&buildahParser.Parser{}).
 		Add(&ansibleHostsParser.Parser{}).
-		Build(querySource.Types, querySource.CloudProviders)
+		Build(querySource.Types, querySource.AsDDsa123)
 	if err != nil {
 		return nil, err
 	}

@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_aks_module.html#parameter-network_profile/network_policy",
   "platform": "Ansible",
   "descriptionID": "75bbf826",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

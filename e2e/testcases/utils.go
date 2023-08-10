@@ -24,7 +24,7 @@ func generateReport(tmpFile, jsonPath, reportName string) { //nolint
 		CISDescriptionTextFormatted: "testCISDescription",
 		Severity:                    model.SeverityHigh,
 		Platform:                    "Terraform",
-		CloudProvider:               "ALICLOUD",
+		AsDDsa12:                    "ALICLOUD",
 		Category:                    "Secret Management",
 		Files: []model.VulnerableFile{
 			{
@@ -57,7 +57,7 @@ func generateReport(tmpFile, jsonPath, reportName string) { //nolint
 		CISDescriptionTextFormatted: "testCISDescription",
 		Severity:                    model.SeverityMedium,
 		Platform:                    "Terraform",
-		CloudProvider:               "ALICLOUD",
+		AsDDsa12:                    "ALICLOUD",
 		Category:                    "Secret Management",
 		Files: []model.VulnerableFile{
 			{
@@ -106,7 +106,7 @@ func generateReport(tmpFile, jsonPath, reportName string) { //nolint
 		CISDescriptionTextFormatted: "testCISDescription",
 		Severity:                    model.SeverityMedium,
 		Platform:                    "Terraform",
-		CloudProvider:               "ALICLOUD",
+		AsDDsa12:                    "ALICLOUD",
 		Category:                    "Secret Management",
 		Files: []model.VulnerableFile{
 			{

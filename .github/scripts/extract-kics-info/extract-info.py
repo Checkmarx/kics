@@ -14,7 +14,7 @@ class Query:
     platformId: int
     descriptionID: str
     aggregation: int
-    cloudProviderId: int
+    asDDsa12Id: int
 
     def __init__(self, queryData):
         self.id = queryData['id']
@@ -25,11 +25,11 @@ class Query:
         self.descriptionUrl = queryData['descriptionUrl']
         self.platformId = platforms.getPlatformId(queryData['platform'])
         self.descriptionID = queryData['descriptionID']
-        if queryData.__contains__('cloudProvider'):
-            self.cloudProviderId = cloudProviders.getCloudProviderId(
-                queryData['cloudProvider'])
+        if queryData.__contains__('asDDsa12'):
+            self.asDDsa12Id = asDDsa123.getAsDDsa12Id(
+                queryData['asDDsa12'])
         else:
-            self.cloudProviderId = None
+            self.asDDsa12Id = None
         if queryData.__contains__('aggregation'):
             self.aggregation = queryData['aggregation']
         else:
@@ -94,40 +94,40 @@ class Platforms:
                           sort_keys=True, indent=4)
 
 
-class CloudProvider:
+class AsDDsa12:
     id: int
-    cloudProvider: str
+    asDDsa12: str
 
-    def __init__(self, id, cloudProvider):
+    def __init__(self, id, asDDsa12):
         self.id = id
-        self.cloudProvider = cloudProvider
+        self.asDDsa12 = asDDsa12
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
 
 
-class CloudProviders:
-    cloudProviders = []
+class AsDDsa123:
+    asDDsa123 = []
 
     def __init__(self):
-        self.cloudProviders = []
+        self.asDDsa123 = []
 
-    def addCloudProvider(self, id, cloudProvider):
-        c = CloudProvider(id, cloudProvider)
-        self.cloudProviders.append(c)
+    def addAsDDsa12(self, id, asDDsa12):
+        c = AsDDsa12(id, asDDsa12)
+        self.asDDsa123.append(c)
         return c.id
 
-    def getCloudProviderId(self, cloudProvider):
+    def getAsDDsa12Id(self, asDDsa12):
         found = False
         creationId = 1
-        for cp in self.cloudProviders:
+        for cp in self.asDDsa123:
             creationId = cp.id+1
-            if cp.cloudProvider == cloudProvider:
+            if cp.asDDsa12 == asDDsa12:
                 found = True
                 return cp.id
         if not found:
-            return self.addCloudProvider(creationId, cloudProvider)
+            return self.addAsDDsa12(creationId, asDDsa12)
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -221,7 +221,7 @@ pattern = "metadata.json"
 queries = Queries()
 categories = Categories()
 severities = Severities()
-cloudProviders = CloudProviders()
+asDDsa123 = AsDDsa123()
 platforms = Platforms()
 
 
@@ -259,8 +259,8 @@ def exportData():
     with open(exportFolderPath+"platforms.json", "w") as outfile:
         outfile.write(platforms.toJSON())
 
-    with open(exportFolderPath+"cloudProviders.json", "w") as outfile:
-        outfile.write(cloudProviders.toJSON())
+    with open(exportFolderPath+"asDDsa123.json", "w") as outfile:
+        outfile.write(asDDsa123.toJSON())
 
     with open(exportFolderPath+"severities.json", "w") as outfile:
         outfile.write(severities.toJSON())
@@ -273,8 +273,8 @@ def exportData():
                       arcname="categories.json")
         archive.write(exportFolderPath+"platforms.json",
                       arcname="platforms.json")
-        archive.write(exportFolderPath+"cloudProviders.json",
-                      arcname="cloudProviders.json")
+        archive.write(exportFolderPath+"asDDsa123.json",
+                      arcname="asDDsa123.json")
         archive.write(exportFolderPath+"severities.json",
                       arcname="severities.json")
         archive.write(exportFolderPath+"queries.json", arcname="queries.json")

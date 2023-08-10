@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-security-group-egress.html",
   "platform": "CloudFormation",
   "descriptionID": "af27e909",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

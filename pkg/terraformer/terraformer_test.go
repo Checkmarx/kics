@@ -93,10 +93,10 @@ func Test_BuildArgs(t *testing.T) {
 		{
 			name: "test aws build",
 			pathOptions: &Path{
-				CloudProvider: "aws",
-				Regions:       "eu-central-1",
-				Resources:     "s3",
-				Projects:      "",
+				AsDDsa12:  "aws",
+				Regions:   "eu-central-1",
+				Resources: "s3",
+				Projects:  "",
 			},
 			destination:    "some/dest",
 			expectedOutput: []string{"import", "aws", "--resources=s3", "-o", "some/dest", "--verbose", "--regions=eu-central-1", "--profile="},
@@ -104,10 +104,10 @@ func Test_BuildArgs(t *testing.T) {
 		{
 			name: "test gcp build",
 			pathOptions: &Path{
-				CloudProvider: "gcp",
-				Regions:       "eu-central-1",
-				Resources:     "google_storage_bucket",
-				Projects:      "someProj",
+				AsDDsa12:  "gcp",
+				Regions:   "eu-central-1",
+				Resources: "google_storage_bucket",
+				Projects:  "someProj",
 			},
 			destination:    "some/dest",
 			expectedOutput: []string{"import", "google", "--resources=google_storage_bucket", "-o", "some/dest", "--verbose", "--regions=eu-central-1", "--projects=someProj"},

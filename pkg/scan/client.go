@@ -14,7 +14,7 @@ import (
 
 // Parameters represents all available scan parameters
 type Parameters struct {
-	CloudProvider               []string
+	AsDDsa12                    []string
 	DisableFullDesc             bool
 	ExcludeCategories           []string
 	ExcludePaths                []string

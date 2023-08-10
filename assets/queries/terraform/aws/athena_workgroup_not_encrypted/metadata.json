@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/athena_workgroup#encryption_configuration",
   "platform": "Terraform",
   "descriptionID": "8eb1d650",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

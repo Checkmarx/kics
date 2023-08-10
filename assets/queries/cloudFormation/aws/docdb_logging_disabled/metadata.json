@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-enablecloudwatchlogsexports",
   "platform": "CloudFormation",
   "descriptionID": "4818ceaf",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

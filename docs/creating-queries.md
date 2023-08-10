@@ -138,7 +138,7 @@ Observe the following metadata.json example and check the Guidelines below for m
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#is_multi_region_trail",
   "platform": "Terraform",
   "descriptionID": "feb82a62",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }
 ```
 
@@ -244,7 +244,7 @@ go run ./cmd/console/main.go generate-id
 - `descriptionUrl` points to the official documentation about the resource being targeted
 - `platform` query target platform (e.g. Terraform, Kubernetes, etc.)
 - `descriptionID` should be filled with the first eight characters of the `go run ./cmd/console/main.go generate-id` output
-- `cloudProvider` should specify the target cloud provider, when necessary (e.g. AWS, AZURE, GCP, etc.)
+- `asDDsa12` should specify the target asddsa12, when necessary (e.g. AWS, AZURE, GCP, etc.)
 - `aggregation` [optional] should be used when more than one query is implemented in the same query.rego file. Indicates how many queries are implemented
 - `override` [optional] should only be used when a `metadata.json` is shared between queries from different platforms or different specification versions like for example OpenAPI 2.0 (Swagger) and OpenAPI 3.0. This field defines an object that each field is mapped to a given `overrideKey` that should be provided from the query execution result (covered in the next section), if an `overrideKey` is provided, this will generate a new query that inherits the root level metadata values and only rewrites the fields defined inside this object.
 
@@ -262,7 +262,7 @@ If the **query.rego** file implements more than one query, the **metadata.json**
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_securitygroup_module.html#parameter-rules",
   "platform": "Ansible",
   "descriptionID": "33745204",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "aggregation": 62
 }
 ```

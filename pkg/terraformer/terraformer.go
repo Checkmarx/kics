@@ -25,10 +25,10 @@ var (
 
 // Path is a struct that contains the terraformer path information
 type Path struct {
-	CloudProvider string
-	Regions       string
-	Resources     string
-	Projects      string
+	AsDDsa12  string
+	Regions   string
+	Resources string
+	Projects  string
 }
 
 // Import imports the terraformer resources into the destination using terraformer
@@ -73,7 +73,7 @@ func Import(terraformerPath, destinationPath string) (string, error) {
 }
 
 // extractTerraformerOptions extracts all the information from the KICS terraformer path syntax without the prefix 'terraformer::'
-// {CloudProvider}:{Resources}:{Regions}:{Projects}
+// {AsDDsa12}:{Resources}:{Regions}:{Projects}
 func extractTerraformerOptions(path string) (*Path, error) {
 	pathInfo := strings.Split(path, ":")
 	if len(pathInfo) != terraformerPathLength &&
@@ -82,10 +82,10 @@ func extractTerraformerOptions(path string) (*Path, error) {
 		return nil, errors.New("wrong terraformer path syntax")
 	}
 	return &Path{
-		CloudProvider: pathInfo[0],
-		Regions:       getRegions(pathInfo),
-		Resources:     strings.ReplaceAll(pathInfo[1], "/", ","),
-		Projects:      getProjects(pathInfo),
+		AsDDsa12:  pathInfo[0],
+		Regions:   getRegions(pathInfo),
+		Resources: strings.ReplaceAll(pathInfo[1], "/", ","),
+		Projects:  getProjects(pathInfo),
 	}, nil
 }
 
@@ -112,24 +112,24 @@ func getRegions(pathInfo []string) string {
 // buildArgs build the args for the command terraformer
 func buildArgs(pathOptions *Path, destination string) []string {
 	// the terraformer command for gcp is google
-	if pathOptions.CloudProvider == "gcp" {
-		pathOptions.CloudProvider = "google"
+	if pathOptions.AsDDsa12 == "gcp" {
+		pathOptions.AsDDsa12 = "google"
 	}
 
 	args := []string{
-		"import", pathOptions.CloudProvider,
+		"import", pathOptions.AsDDsa12,
 		"--resources=" + pathOptions.Resources,
 		"-o", destination,
 		"--verbose",
 	}
 
 	// probably we will need to define the profile to ""
-	if pathOptions.CloudProvider == "aws" {
+	if pathOptions.AsDDsa12 == "aws" {
 		args = append(args, "--regions="+pathOptions.Regions, "--profile=")
 	}
 
 	// the flag '--projects' is only required for gcp
-	if pathOptions.Projects != "" && pathOptions.CloudProvider == "google" {
+	if pathOptions.Projects != "" && pathOptions.AsDDsa12 == "google" {
 		args = append(args, "--regions="+pathOptions.Regions, "--projects="+pathOptions.Projects)
 	}
 

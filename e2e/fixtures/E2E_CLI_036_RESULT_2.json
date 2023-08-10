@@ -31,7 +31,7 @@
 			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html",
 			"severity": "MEDIUM",
 			"platform": "CloudFormation",
-			"cloud_provider": "AWS",
+			"asddsa123": "AWS",
 			"category": "Networking and Firewall",
 			"description": "AWS Security Group Ingress should have a single port",
 			"description_id": "5f2b65f3",

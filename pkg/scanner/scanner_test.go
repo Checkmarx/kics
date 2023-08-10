@@ -41,8 +41,8 @@ func TestScanner_StartScan(t *testing.T) {
 		noProgress bool
 	}
 	type fields struct {
-		types          []string
-		cloudProviders []string
+		types     []string
+		asDDsa123 []string
 	}
 
 	ctx := context.Background()
@@ -59,8 +59,8 @@ func TestScanner_StartScan(t *testing.T) {
 				noProgress: true,
 			},
 			fields: fields{
-				types:          []string{""},
-				cloudProviders: []string{""},
+				types:     []string{""},
+				asDDsa123: []string{""},
 			},
 			ctx: createContext(ctx, time.Second*99999),
 		},
@@ -71,8 +71,8 @@ func TestScanner_StartScan(t *testing.T) {
 				noProgress: true,
 			},
 			fields: fields{
-				types:          []string{""},
-				cloudProviders: []string{""},
+				types:     []string{""},
+				asDDsa123: []string{""},
 			},
 			ctx: createContext(ctx, time.Second*1),
 		},
@@ -81,7 +81,7 @@ func TestScanner_StartScan(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			defer tt.ctx.cancel()
-			services, store, err := createServices(tt.fields.types, tt.fields.cloudProviders)
+			services, store, err := createServices(tt.fields.types, tt.fields.asDDsa123)
 			require.NoError(t, err)
 			err = StartScan(tt.ctx.ctx, tt.args.scanID, progress.PbBuilder{}, services)
 			require.NoError(t, err)
@@ -90,14 +90,14 @@ func TestScanner_StartScan(t *testing.T) {
 	}
 }
 
-func createServices(types, cloudProviders []string) (serviceSlice, *storage.MemoryStorage, error) {
+func createServices(types, asDDsa123 []string) (serviceSlice, *storage.MemoryStorage, error) {
 	filesSource, err := provider.NewFileSystemSourceProvider([]string{filepath.FromSlash("../../test")}, []string{})
 	if err != nil {
 		return nil, nil, err
 	}
 
 	t := &tracker.CITracker{}
-	querySource := source.NewFilesystemSource(sourcePath, types, cloudProviders, filepath.FromSlash("../../assets/libraries"))
+	querySource := source.NewFilesystemSource(sourcePath, types, asDDsa123, filepath.FromSlash("../../assets/libraries"))
 
 	inspector, err := engine.NewInspector(context.Background(),
 		querySource, engine.DefaultVulnerabilityBuilder,
@@ -125,7 +125,7 @@ func createServices(types, cloudProviders []string) (serviceSlice, *storage.Memo
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
-		Build(types, cloudProviders)
+		Build(types, asDDsa123)
 	if err != nil {
 		return nil, nil, err
 	}

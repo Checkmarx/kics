@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AmazonS3/latest/user-guide/default-bucket-encryption.html",
   "platform": "CloudFormation",
   "descriptionID": "314a460b",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

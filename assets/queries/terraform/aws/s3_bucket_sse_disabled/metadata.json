@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#server_side_encryption_configuration",
   "platform": "Terraform",
   "descriptionID": "b386c506",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

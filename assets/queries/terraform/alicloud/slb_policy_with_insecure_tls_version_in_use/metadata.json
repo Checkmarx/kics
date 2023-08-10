@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/slb_tls_cipher_policy",
   "platform": "Terraform",
   "descriptionID": "dcc71406",
-  "cloudProvider": "alicloud"
+  "asdDsa123": "alicloud"
 }

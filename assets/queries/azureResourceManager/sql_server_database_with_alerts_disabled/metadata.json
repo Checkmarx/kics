@@ -6,6 +6,6 @@
   "descriptionText": "All Alerts should be enabled in SQL Database Server SecurityAlerts Policy Properties",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/securityalertpolicies?tabs=json",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "e8a4e321"
 }

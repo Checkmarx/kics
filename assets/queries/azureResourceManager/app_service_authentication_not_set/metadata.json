@@ -6,6 +6,6 @@
   "descriptionText": "Azure App Service should have App Service Authentication set",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites/config-web?tabs=json",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "831efa07"
 }

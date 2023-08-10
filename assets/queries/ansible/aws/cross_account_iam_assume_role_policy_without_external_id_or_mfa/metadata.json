@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_role_module.html#parameter-assume_role_policy_document",
   "platform": "Ansible",
   "descriptionID": "54f0a7dd",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

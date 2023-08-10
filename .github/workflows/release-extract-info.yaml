@@ -30,7 +30,7 @@ jobs:
         run : |
           rm -f \
           .github/scripts/extract-kics-info/categories.json \
-          .github/scripts/extract-kics-info/cloudProviders.json \
+          .github/scripts/extract-kics-info/asDDsa123.json \
           .github/scripts/extract-kics-info/platforms.json \
           .github/scripts/extract-kics-info/queries.json \
           .github/scripts/extract-kics-info/severities.json \

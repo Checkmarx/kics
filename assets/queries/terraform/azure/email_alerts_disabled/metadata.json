@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/security_center_contact",
   "platform": "Terraform",
   "descriptionID": "23aadb20",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

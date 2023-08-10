@@ -6,6 +6,6 @@
   "descriptionText": "'Microsoft.Web/sites' should have 'Http20Enabled' enabled",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "e0cdbc75"
 }

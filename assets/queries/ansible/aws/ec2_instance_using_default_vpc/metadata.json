@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html#parameter-vpc_subnet_id",
   "platform": "Ansible",
   "descriptionID": "701b1c92",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

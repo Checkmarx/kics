@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticache-replicationgroup.html#cfn-elasticache-replicationgroup-atrestencryptionenabled",
   "platform": "CloudFormation",
   "descriptionID": "86353328",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

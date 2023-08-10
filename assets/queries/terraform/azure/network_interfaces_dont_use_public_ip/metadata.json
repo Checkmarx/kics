@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface#public_ip_address_id",
   "platform": "Terraform",
   "descriptionID": "49907665",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

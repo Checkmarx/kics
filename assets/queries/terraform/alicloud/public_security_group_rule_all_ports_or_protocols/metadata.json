@@ -7,5 +7,5 @@
     "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/security_group_rule#cidr_ip",
     "platform": "Terraform",
     "descriptionID": "6dcb70e8",
-    "cloudProvider": "alicloud"
+    "asdDsa123": "alicloud"
   }

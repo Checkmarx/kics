@@ -6,6 +6,6 @@
   "descriptionText": "Network Watcher Flow Log Retention Policy should be enabled and the recommended number of days for the retention should be higher than 90",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2019-11-01/networkwatchers/flowlogs?tabs=json#retentionpolicyparameters-object",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "71ce9f8c"
 }

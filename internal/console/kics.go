@@ -55,7 +55,7 @@ func initialize(rootCmd *cobra.Command) error {
 		kicsFlagsListContent,
 		true,
 		source.ListSupportedPlatforms(),
-		source.ListSupportedCloudProviders()); err != nil {
+		source.ListSupportedAsDDsa123()); err != nil {
 		return err
 	}
 

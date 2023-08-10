@@ -6,6 +6,6 @@
   "descriptionText": "Key Vault should have 'enableSoftDelete' and 'enablePurgeProtection' set to true",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.keyvault/2019-09-01/vaults?tabs=json#vaultproperties-object",
   "platform": "AzureResourceManager",
-  "cloudProvider": "azure",
+  "asdDsa123": "azure",
   "descriptionID": "8e3ca202"
 }

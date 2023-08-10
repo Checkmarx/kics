@@ -99,7 +99,7 @@ func Test_RemediateFile(t *testing.T) {
 		string(data),
 		true,
 		source.ListSupportedPlatforms(),
-		source.ListSupportedCloudProviders(),
+		source.ListSupportedAsDDsa123(),
 	)
 
 	for _, tt := range tests {

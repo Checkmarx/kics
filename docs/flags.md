@@ -91,6 +91,6 @@ You can also set a flag value, using set functions. Currently there are 2 set fu
 Usage field has a special function that replace variables found in this field, using the syntax `${variable}`. If a variable is listed when evaluating usage, it will replace it with this text. Currently there are 3 variables supported:
 - `sliceInstructions`: A constant with instructions for slice flags;
 - `supportedPlatforms`: The result of `ListSupportedPlatforms` function converted to string, which gets all KICS supported platforms;
-- `supportedProviders`: The result of `ListSupportedCloudProviders` function converted to string, which gets all KICS supported providers;
+- `supportedProviders`: The result of `ListSupportedAsDDsa123` function converted to string, which gets all KICS supported providers;
 
 You can add variables by modifying `variables` map on `evalUsage` function of flags.go file.

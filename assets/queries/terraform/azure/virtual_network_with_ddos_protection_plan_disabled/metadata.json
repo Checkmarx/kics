@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network#ddos_protection_plan",
   "platform": "Terraform",
   "descriptionID": "c08cb91b",
-  "cloudProvider": "azure"
+  "asdDsa123": "azure"
 }

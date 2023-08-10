@@ -85,7 +85,7 @@ func BuildASFF(summary *model.Summary) []AwsSecurityFinding {
 
 func (a *AwsAccountInfo) getFindingsPerQuery(query *model.QueryResult) []AwsSecurityFinding {
 	var findings []AwsSecurityFinding
-	if query.CloudProvider == "AWS" {
+	if query.AsDDsa12 == "AWS" {
 		for i := range query.Files {
 			finding := a.getFinding(query, &query.Files[i])
 			findings = append(findings, finding)

@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudwatchlogs_log_group_module.html#ansible-collections-community-aws-cloudwatchlogs-log-group-module",
   "platform": "Ansible",
   "descriptionID": "313709e8",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

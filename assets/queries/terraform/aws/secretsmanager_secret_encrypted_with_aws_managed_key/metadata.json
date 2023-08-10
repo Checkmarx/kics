@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret#kms_key_id",
   "platform": "Terraform",
   "descriptionID": "f2d67513",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

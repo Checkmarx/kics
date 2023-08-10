@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html#parameter-pw_reuse_prevent",
   "platform": "Ansible",
   "descriptionID": "ad12d750",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

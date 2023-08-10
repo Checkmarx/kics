@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#vpc_security_group_ids",
   "platform": "Terraform",
   "descriptionID": "6fd531fa",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

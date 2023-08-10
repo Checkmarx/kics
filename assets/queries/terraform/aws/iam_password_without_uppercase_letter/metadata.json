@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",
   "platform": "Terraform",
   "descriptionID": "4e96ea27",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }

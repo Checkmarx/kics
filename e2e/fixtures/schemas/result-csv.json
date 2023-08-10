@@ -38,7 +38,7 @@
             "QueryURI",
             "Severity",
             "Platform",
-            "CloudProvider",
+            "AsDDsa12",
             "Category",
             "DescriptionID",
             "Description",
@@ -93,7 +93,7 @@
                     "Terraform"
                 ]
             },
-            "CloudProvider": {
+            "AsDDsa12": {
                 "type": "string",
                 "minLength": 1
             },

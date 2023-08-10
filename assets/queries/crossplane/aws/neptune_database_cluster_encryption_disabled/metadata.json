@@ -7,5 +7,5 @@
   "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/neptune.aws.crossplane.io/DBCluster/v1alpha1@v0.29.0#spec-forProvider-storageEncrypted",
   "platform": "Crossplane",
   "descriptionID": "f7998100",
-  "cloudProvider": "aws"
+  "asdDsa123": "aws"
 }
