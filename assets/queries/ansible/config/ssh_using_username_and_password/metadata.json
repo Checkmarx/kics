@@ -1,0 +1,12 @@
+{
+    "id": "d4c39f3e-21dd-4fdf-8504-35ca080cdc84",
+    "queryName": "SSH Using Username and Password",
+    "severity": "MEDIUM",
+    "category": "Networking and Firewall",
+    "descriptionText": "Using SSH with usernames and passwords is susceptible to brute-force attacks. Use SSH keys instead",
+    "descriptionUrl": "https://docs.ansible.com/ansible/latest/plugins/connection.html",
+    "platform": "Ansible",
+    "descriptionID": "e1812d21",
+    "cloudProvider": "config"
+  }
+  
