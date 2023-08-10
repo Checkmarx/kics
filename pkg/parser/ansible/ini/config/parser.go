@@ -24,7 +24,9 @@ func (p *Parser) Parse(filePath string, fileContent []byte) ([]model.Document, [
 
 	reader := strings.NewReader(string(fileContent))
 	configparser.Delimiters("=")
-	config, err := configparser.ParseReader(reader)
+	inline := configparser.InlineCommentPrefixes([]string{";"})
+
+	config, err := configparser.ParseReaderWithOptions(reader, inline)
 	if err != nil {
 		return nil, nil, err
 	}
