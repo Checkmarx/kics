@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": "defaults",
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "private_key_file should be set",
-		"keyActualValue": "private_key_file is not set",
+		"keyExpectedValue": "private_key_file should not be set",
+		"keyActualValue": "private_key_file is set",
 	}
 }
