@@ -1,0 +1,11 @@
+{
+  "id": "f81d63d2-c5d7-43a4-a5b5-66717a41c895",
+  "queryName": "Testing Query 1",
+  "severity": "HIGH",
+  "category": "github",
+  "descriptionText": "Testing if on trigger is a pull request target",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html",
+  "platform": "CICD",
+  "descriptionID": "3a7576e5",
+  "cloudProvider": "github"
+}

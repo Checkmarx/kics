@@ -110,6 +110,7 @@ const (
 	dockerfile = "dockerfile"
 	crossplane = "crossplane"
 	knative    = "knative"
+	cicd       = "cicd"
 )
 
 // regexSlice is a struct to contain a slice of regex
@@ -384,10 +385,38 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 			results <- ansible
 			locCount <- linesCount
 		}
-	// It could be Ansible, Buildah, CloudFormation, Crossplane, or OpenAPI
+	// It could be Ansible, Buildah, CloudFormation, Crossplane, OpenAPI or CICD
 	case yaml, yml, json, sh:
-		a.checkContent(results, unwanted, locCount, linesCount, ext)
+		if isGithubWorkflowfile(a.filePath) {
+			if a.isAvailableType(cicd) {
+				results <- cicd
+				locCount <- linesCount
+			}
+		} else {
+			a.checkContent(results, unwanted, locCount, linesCount, ext)
+		}
 	}
+}
+
+func isGithubWorkflowfile(path string) bool {
+	content, err := os.ReadFile(filepath.Clean(path))
+	if err != nil {
+		log.Error().Msgf("failed to analyze file: %s", err)
+		return false
+	}
+	regexes := []*regexp.Regexp{
+		regexp.MustCompile(`\s*on:\s*`),
+		regexp.MustCompile(`\s*jobs:\s*`),
+		regexp.MustCompile(`\s*steps:\s*`),
+	}
+	check := true
+	for _, regex := range regexes {
+		if !regex.Match(content) {
+			check = false
+			break
+		}
+	}
+	return check
 }
 
 func isDockerfile(path string) bool {
