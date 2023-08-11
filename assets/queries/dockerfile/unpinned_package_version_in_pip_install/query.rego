@@ -2,6 +2,8 @@ package Cx
 
 import data.generic.dockerfile as dockerLib
 
+flags = ["-r", "-c"]
+
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
@@ -12,11 +14,14 @@ CxPolicy[result] {
 	yum := regex.find_n("pip(3)? (-(-)?[a-zA-Z]+ *)*install", commands, -1)
 	yum != null
 
-	packages = dockerLib.getPackages(commands, yum)
-	length := count(packages)
+	packages = getPackages(commands, yum)
+    refactorPackages = [ x | x := packages[_]; x != ""]
+    length := count(refactorPackages)
+
+	count({x | x := packages[_]; x != flags[_]}) == length
 
 	some j
-	analyzePackages(j, packages[j], packages, length)
+	analyzePackages(j, refactorPackages[j], packages, length)
 
 	result := {
 		"documentId": input.document[i].id,
