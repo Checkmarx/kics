@@ -260,18 +260,25 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 			Variables: inputVarMap,
 			Functions: functions.TerraformFuncs,
 		})
-		if !valueConverted.Type().HasDynamicTypes() && valueConverted.IsKnown() {
-			if valueConverted.Type().FriendlyName() == "tuple" {
-				for _, val := range valueConverted.AsValueSlice() {
-					if val.Type().HasDynamicTypes() || !val.IsKnown() {
-						return c.wrapExpr(expr)
-					}
-				}
-			}
+		if !checkDynamicKnownTypes(valueConverted) {
 			return ctyjson.SimpleJSONValue{Value: valueConverted}, nil
 		}
 		return c.wrapExpr(expr)
 	}
+}
+
+func checkDynamicKnownTypes(valueConverted cty.Value) bool {
+	if !valueConverted.Type().HasDynamicTypes() && valueConverted.IsKnown() {
+		if valueConverted.Type().FriendlyName() == "tuple" {
+			for _, val := range valueConverted.AsValueSlice() {
+				if val.Type().HasDynamicTypes() || !val.IsKnown() {
+					return true
+				}
+			}
+		}
+		return false
+	}
+	return true
 }
 
 func (c *converter) objectConsExpr(value *hclsyntax.ObjectConsExpr) (model.Document, error) {
