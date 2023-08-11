@@ -19,8 +19,18 @@ jobs:
     - name: Check for Apache License
       run: |
         echo "$BODY" | grep -iPq "^I submit this contribution under the Apache-2.0 license.$" || echo "CHECK_FAILED=true" >> $GITHUB_ENV
-    - name: Delete comment if license is fixed
+    - name: Check for comment tag
       if: env.CHECK_FAILED != 'true'
+      run: |
+        comments=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" \
+            -X GET "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments")
+        if echo "$comments" | grep -q "apache_license"; then
+          echo "TAG_EXISTS=true" >> $GITHUB_ENV
+        else
+          echo "TAG_EXISTS=false" >> $GITHUB_ENV
+        fi
+    - name: Delete comment if license is fixed
+      if: env.TAG_EXISTS == 'true'
       uses: thollander/actions-comment-pull-request@v2
       with:
         message: |
