@@ -1,0 +1,60 @@
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstance
+metadata:
+  name: my-rds-instance
+spec:
+  forProvider:
+    engine: mysql
+    engineVersion: "8.0"
+    instanceClass: db.t2.micro
+    allocatedStorage: 20
+    dbSubnetGroupName: my-db-subnet-group
+  writeConnectionSecretToRef:
+    name: my-rds-instance-connection
+
+---
+
+apiVersion: database.aws.crossplane.io/v1alpha3
+kind: DBSubnetGroup
+metadata:
+  name: my-db-subnet-group
+spec:
+  forProvider:
+    description: "My DB Subnet Group"
+    subnetIds:
+      - subnet-12345678
+      - subnet-87654321
+
+---
+
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: subnet-12345678
+spec:
+  forProvider:
+    cidrBlock: "10.0.0.0/24"
+    vpcId: vpc-abcdef12
+    availabilityZone: us-west-2a
+
+---
+
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: subnet-87654321
+spec:
+  forProvider:
+    cidrBlock: "10.0.0.1/24"
+    vpcId: vpc-abcdef12
+    availabilityZone: us-west-2a
+
+---
+
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: InternetGateway
+metadata:
+  name: my-internet-gateway
+spec:
+  forProvider:
+    vpcId: vpc-abcdef12
