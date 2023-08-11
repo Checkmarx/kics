@@ -34,8 +34,18 @@ jobs:
         echo "Title regex: $regex"
         title="${{ github.event.pull_request.title }}"
         echo "$title" | grep -Pq "$regex" || (echo "$ERROR_MSG" && echo "TITLE_CHECK_FAILED=true" >> $GITHUB_ENV)
-    - name: Delete comment if title is fixed
+    - name: Check for comment tag
       if: env.TITLE_CHECK_FAILED != 'true'
+      run: |
+        comments=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" \
+            -X GET "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments")
+        if echo "$comments" | grep -q "title_check"; then
+          echo "TAG_EXISTS=true" >> $GITHUB_ENV
+        else
+          echo "TAG_EXISTS=false" >> $GITHUB_ENV
+        fi
+    - name: Delete comment if title is fixed
+      if: env.TAG_EXISTS == 'true'
       uses: thollander/actions-comment-pull-request@v2
       with:
         message: |
