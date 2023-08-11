@@ -261,6 +261,13 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 			Functions: functions.TerraformFuncs,
 		})
 		if !valueConverted.Type().HasDynamicTypes() && valueConverted.IsKnown() {
+			if valueConverted.Type().FriendlyName() == "tuple" {
+				for _, val := range valueConverted.AsValueSlice() {
+					if val.Type().HasDynamicTypes() || !val.IsKnown() {
+						return c.wrapExpr(expr)
+					}
+				}
+			}
 			return ctyjson.SimpleJSONValue{Value: valueConverted}, nil
 		}
 		return c.wrapExpr(expr)
