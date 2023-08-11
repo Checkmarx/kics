@@ -14,7 +14,7 @@ CxPolicy[result] {
 	yum := regex.find_n("pip(3)? (-(-)?[a-zA-Z]+ *)*install", commands, -1)
 	yum != null
 
-	packages = getPackages(commands, yum)
+	packages = dockerLib.getPackages(commands, yum)
     refactorPackages = [ x | x := packages[_]; x != ""]
     length := count(refactorPackages)
 
