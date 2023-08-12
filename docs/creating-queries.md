@@ -453,6 +453,8 @@ Examples:
     build_search_line(path, ["son"])
 ```
 
+##### Ansible Inventory
+To create a `searchLine` query in Rego for this case, you need to think of the path as if you were dealing with a YAML/JSON file. This way, the query will be capable of locating vulnerabilities in all three types of Ansible host files.
 
 #### Allowing users to overwrite query data
 Starting on v1.3.5, KICS started to support custom data overwriting on queries. This can be useful if users want to provide their own dataset or if users have different datasets for multiple environments. This can be supported easily following some steps:

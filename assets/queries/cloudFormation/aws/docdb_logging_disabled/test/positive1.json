@@ -1,0 +1,33 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "MyDocDBCluster": {
+      "Type": "AWS::DocDB::DBCluster",
+      "Properties": {
+        "AvailabilityZones": ["us-east-1a", "us-east-1b"],
+        "BackupRetentionPeriod": 30,
+        "CopyTagsToSnapshot": true,
+        "DBClusterIdentifier": "my-docdb-cluster",
+        "DBClusterParameterGroupName": "default.docdb3.6",
+        "DBSubnetGroupName": "my-docdb-subnet-group",
+        "DeletionProtection": false,
+        "EngineVersion": "3.6.0",
+        "KmsKeyId": "arn:aws:kms:us-east-1:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+        "MasterUsername": "mydocdbuser",
+        "MasterUserPassword": "mysecretpassword123",
+        "Port": 27017,
+        "PreferredBackupWindow": "07:00-09:00",
+        "PreferredMaintenanceWindow": "sun:05:00-sun:06:00",
+        "StorageEncrypted": true,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "MyDocDBCluster"
+          }
+        ],
+        "UseLatestRestorableTime": true,
+        "VpcSecurityGroupIds": ["sg-0123456789abcdef0", "sg-abcdef01234567890"]
+      }
+    }
+  }
+}
