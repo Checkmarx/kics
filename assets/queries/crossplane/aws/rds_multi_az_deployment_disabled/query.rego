@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
-		"searchKey": sprintf("metadata.name={{%s}}.spec.forProvider.multiAZ", [resource.metadata.name]),
+		"searchKey": sprintf("metadata.name={{%s}}.spec.forProvider", [resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("The RDS DBInstance '%s' should have Multi-Availability Zone enabled", [resource.metadata.name]),
 		"keyActualValue": sprintf("The RDS DBInstance '%s' MultiAZ property is undefined and by default disabled", [resource.metadata.name]),
