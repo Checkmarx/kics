@@ -34,5 +34,11 @@
     "severity": "HIGH",
     "line": 22,
     "fileName": "positive6.json"
+  },
+  {
+    "queryName": "Network Security Group With Unrestricted Access To SSH",
+    "severity": "HIGH",
+    "line": 22,
+    "fileName": "positive7.json"
   }
 ]
