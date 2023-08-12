@@ -10,7 +10,7 @@ CxPolicy[result] {
 	rds_instance := task[modules[m]]
 	ansLib.checkState(rds_instance)
 
-	not ansLib.isAnsibleTrue(rds_instance.multi_az)
+	rds_instance.multi_az == false
 
 	result := {
 		"documentId": id,
