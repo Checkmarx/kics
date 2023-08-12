@@ -79,6 +79,8 @@ var (
 		"tfvars":             true,
 		".proto":             true,
 		".sh":                true,
+		".cfg":               true,
+		".conf":              true,
 		".ini":               true,
 	}
 	supportedRegexes = map[string][]string{
@@ -378,8 +380,7 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 			results <- grpc
 			locCount <- linesCount
 		}
-	// Ansible Inventory Files
-	case ".ini":
+	case ".cfg", ".conf", ".ini":
 		if a.isAvailableType(ansible) {
 			results <- ansible
 			locCount <- linesCount
