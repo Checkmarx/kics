@@ -18,7 +18,7 @@ CxPolicy[result] {
     refactorPackages = [ x | x := packages[_]; x != ""]
     length := count(refactorPackages)
 
-	count({x | x := refactorPackages[_]; x != flags[_]}) == length
+	count({x | x := refactorPackages[_]; x == flags[_]}) == 0
 
 	some j
 	analyzePackages(j, refactorPackages[j], packages, length)
