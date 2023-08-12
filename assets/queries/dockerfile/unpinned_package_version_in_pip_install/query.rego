@@ -65,7 +65,7 @@ isPip(command) {
 analyzePackages(j, currentPackage, _, length) {
 	j == length - 1
 	regex.match("^[a-zA-Z]", currentPackage) == true
-	not withVersion(currentPackage)
+	not dockerLib.withVersion(currentPackage)
 }
 
 analyzePackages(j, currentPackage, packages, length) {
