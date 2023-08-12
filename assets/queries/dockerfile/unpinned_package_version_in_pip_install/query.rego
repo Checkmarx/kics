@@ -18,7 +18,7 @@ CxPolicy[result] {
     refactorPackages = [ x | x := packages[_]; x != ""]
     length := count(refactorPackages)
 
-	count({x | x := packages[_]; x != flags[_]}) == length
+	count({x | x := refactorPackages[_]; x != flags[_]}) == length
 
 	some j
 	analyzePackages(j, refactorPackages[j], packages, length)
@@ -62,10 +62,10 @@ isPip(command) {
 	contains(command[j], "install")
 }
 
-analyzePackages(j, currentPackage, packages, length) {
+analyzePackages(j, currentPackage, _, length) {
 	j == length - 1
 	regex.match("^[a-zA-Z]", currentPackage) == true
-	not dockerLib.withVersion(currentPackage)
+	not withVersion(currentPackage)
 }
 
 analyzePackages(j, currentPackage, packages, length) {
