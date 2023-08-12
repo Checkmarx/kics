@@ -1,0 +1,12 @@
+{
+  "Resources": {
+    "DynamoDBOnDemandTable1": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Sample CloudFormation template for DynamoDB with customer managed CMK"
+  }
+}

@@ -15,10 +15,10 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
-		"searchKey": sprintf("Resources.%s.Properties.PointInTimeRecoverySpecification", [key]),
+		"searchKey": sprintf("Resources.%s.Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources[%s].Properties.PointInTimeRecoverySpecification should be 'true'", [key]),
-		"keyActualValue": sprintf("Resources[%s].Properties.PointInTimeRecoverySpecification is 'false'", [key]),
+		"keyExpectedValue": sprintf("Resources[%s].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be set to 'true'", [key]),
+		"keyActualValue": sprintf("Resources[%s].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is set to 'false'", [key]),
 	}
 }
 
@@ -36,7 +36,27 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties", [key]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources[%s].Properties.PointInTimeRecoverySpecification should be set and to 'true'", [key]),
-		"keyActualValue": sprintf("Resources[%s].Properties.PointInTimeRecoverySpecification is not set", [key]),
+		"keyExpectedValue": sprintf("Resources[%s].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be defined and set to 'true'", [key]),
+		"keyActualValue": sprintf("Resources[%s].Properties.PointInTimeRecoverySpecification is not defined", [key]),
+	}
+}
+
+CxPolicy[result] {
+	document := input.document[i]
+	resource := document.Resources[key]
+	resource.Type == "AWS::DynamoDB::Table"
+	properties := resource.Properties
+	specification := properties.PointInTimeRecoverySpecification
+
+	not common_lib.valid_key(specification, "PointInTimeRecoveryEnabled")
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, key),
+		"searchKey": sprintf("Resources.%s.Properties.PointInTimeRecoverySpecification", [key]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("Resources[%s].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled should be defined and set to 'true'", [key]),
+		"keyActualValue": sprintf("Resources[%s].Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled is not defined", [key]),
 	}
 }
