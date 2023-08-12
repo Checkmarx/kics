@@ -4,7 +4,7 @@
   "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "Port 22 (SSH) is exposed to the Internet",
-  "descriptionUrl": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview#security-rules",
+  "descriptionUrl": "https://learn.microsoft.com/en-us/azure/templates/microsoft.network/networksecuritygroups?pivots=deployment-language-bicep#securityrulepropertiesformat",
   "platform": "AzureResourceManager",
   "cloudProvider": "azure",
   "descriptionID": "97b6233c"

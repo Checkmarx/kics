@@ -12,7 +12,7 @@ CxPolicy[result] {
 	properties := value.properties.securityRules[x].properties
 
 	properties.access == "Allow"
-	lower(properties.protocol) == "tcp"
+	properties.protocol == "Tcp"
 	properties.direction == "Inbound"
 	arm_lib.contains_port(properties, 22)
 	arm_lib.source_address_prefix_is_open(properties)
