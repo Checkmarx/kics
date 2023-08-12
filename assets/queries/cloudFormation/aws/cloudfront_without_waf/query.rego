@@ -32,7 +32,7 @@ CxPolicy[result] {
 	distributionConfig := resource.Properties.DistributionConfig
 
 	not cf_lib.isCloudFormationFalse(distributionConfig.Enabled)
-	regex_match(".*\S.*",distributionConfig.WebACLId)
+	not regex.match(".*\\S.*",distributionConfig.WebACLId)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -40,7 +40,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.DistributionConfig.WebACLId", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId should match with `.*\S.*` regex", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId doesn't match with `.*\S.*` regex", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId should match with `.*\\S.*` regex", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId doesn't match with `.*\\S.*` regex", [name]),
 	}
 }
