@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "RDS DB Instance Publicly Accessible",
+    "severity": "MEDIUM",
+    "filename": "positive1.yaml",
+    "line": 12
+  },
+  {
+    "queryName": "RDS DB Instance Publicly Accessible",
+    "severity": "MEDIUM",
+    "filename": "positive1.yaml",
+    "line": 14
+  }
+]
