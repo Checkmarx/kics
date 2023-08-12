@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "RDS DB Instance Publicly Accessible",
+    "queryName": "RDS Multi-AZ Deployment Disabled",
     "severity": "MEDIUM",
     "filename": "positive1.yaml",
     "line": 12
   },
   {
-    "queryName": "RDS DB Instance Publicly Accessible",
+    "queryName": "RDS Multi-AZ Deployment Disabled",
     "severity": "MEDIUM",
     "filename": "positive1.yaml",
     "line": 14
