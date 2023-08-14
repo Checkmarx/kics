@@ -1,0 +1,17 @@
+name: aws-rds
+runtime: yaml
+description: An RDS Instance
+resources:
+  default:
+    type: aws:rds:Instance
+    properties:
+      allocatedStorage: 10
+      dbName: mydb
+      engine: mysql
+      engineVersion: '5.7'
+      instanceClass: db.t3.micro
+      parameterGroupName: default.mysql5.7
+      password: foobarbaz
+      skipFinalSnapshot: true
+      username: foo
+      publiclyAccessible: false
