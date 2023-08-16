@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ERROR_MSG: "The PR title does not match the required format: <type>(<scope>): <title>"
+      TITLE: ${{ github.event.pull_request.title }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -19,7 +20,7 @@ jobs:
           .github/pr-title-types.yaml
           .github/scripts/pr-issue-info/title-fail.md
     - name: Print PR Title
-      run: echo "${{ github.event.pull_request.title }}"
+      run: echo "$TITLE"
     - name: Set up Python 
       uses: actions/setup-python@v4
       with:
@@ -32,8 +33,7 @@ jobs:
       run: |
         regex=$(python3 .github/scripts/pr-issue-info/get_title_types.py)
         echo "Title regex: $regex"
-        title="${{ github.event.pull_request.title }}"
-        echo "$title" | grep -Pq "$regex" || (echo "$ERROR_MSG" && echo "TITLE_CHECK_FAILED=true" >> $GITHUB_ENV)
+        echo "$TITLE" | grep -Pq "$regex" || (echo "$ERROR_MSG" && echo "TITLE_CHECK_FAILED=true" >> $GITHUB_ENV)
     - name: Check for comment tag
       if: env.TITLE_CHECK_FAILED != 'true'
       run: |
@@ -70,6 +70,7 @@ jobs:
     env:
       BODY: ${{ github.event.pull_request.body }}
       LABELS: ${{ toJson(github.event.pull_request.labels) }}
+      TITLE: ${{ github.event.pull_request.title }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -82,8 +83,6 @@ jobs:
       run: echo "USERNAME=${{ github.event.pull_request.user.login }}" >> $GITHUB_ENV
     - name: Install JQ
       run: sudo apt-get install jq
-    - name: Get title
-      run: echo "TITLE=${{ github.event.pull_request.title }}" >> $GITHUB_ENV
     - name: Check user username
       run: |
         response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics-core-team/members")

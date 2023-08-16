@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BODY: ${{ github.event.issue.body }}
+      TITLE: ${{ github.event.issue.title }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -28,8 +29,7 @@ jobs:
       run: |
         regex=$(python3 .github/scripts/pr-issue-info/get_title_types.py)
         echo "Title regex: $regex"
-        title="${{ github.event.issue.title }}"
-        echo "$title" | grep -Pq "$regex" || (echo "$ERROR_MSG" && echo "TITLE_CHECK_FAILED=true" >> $GITHUB_ENV)
+        echo "$TITLE" | grep -Pq "$regex" || (echo "$ERROR_MSG" && echo "TITLE_CHECK_FAILED=true" >> $GITHUB_ENV)
     - name: Check for comment tag
       if: env.TITLE_CHECK_FAILED != 'true'
       run: |
@@ -66,6 +66,7 @@ jobs:
     env:
       BODY: ${{ github.event.issue.body }}
       LABELS: ${{ toJson(github.event.issue.labels) }}
+      TITLE: ${{ github.event.issue.title }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -78,8 +79,6 @@ jobs:
       run: sudo apt-get install jq
     - name: Get username
       run: echo "USERNAME=${{ github.event.issue.user.login }}" >> $GITHUB_ENV
-    - name: Get title
-      run: echo "TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
     - name: Check user username
       run: |
         response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics-core-team/members")
@@ -99,7 +98,7 @@ jobs:
         fi
     - name: Add feature or feature request label
       run: |
-        if [[ "$TITLE" == feat* ]] || echo "$TITLE $BODY" | grep -iqP "feature request"; then
+        if [[ "$TITLE" == feat* ]] || echo "$TITLE $BODY" | grep -iqP "feature request" || echo "$BODY" | grep -iqP "Is your feature request related to a problem? Please describe." || echo "$BODY" | grep -iqP "Describe the solution you'd like" || echo "$BODY" | grep -iqP "Describe alternatives you've considered" || echo "$BODY" | grep -iqP "Additional context"; then
           if [[ "$IS_MEMBER" == "true" ]]; then
             echo "Adding 'feature' label..."
             curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels -d '{"labels": ["feature"]}'
