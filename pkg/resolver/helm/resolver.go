@@ -1,15 +1,14 @@
 package helm
 
 import (
-	"fmt"
 	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	masterUtils "github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
 	"helm.sh/helm/v3/pkg/chart"
 	"helm.sh/helm/v3/pkg/cli/values"
 	"helm.sh/helm/v3/pkg/release"
@@ -36,10 +35,8 @@ const (
 func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
 	// handle panic during resolve process
 	defer func() {
-		if r := recover(); r != nil {
-			err := fmt.Errorf("panic: %v", r)
-			log.Err(err).Msg("Recovered from panic during resolve of file " + filePath)
-		}
+		errMessage := "Recovered from panic during resolve of file " + filePath
+		masterUtils.HandlePanic(errMessage)
 	}()
 	splits, excluded, err := renderHelm(filePath)
 	if err != nil { // return error to be logged

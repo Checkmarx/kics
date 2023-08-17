@@ -1,7 +1,6 @@
 package terraform
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -10,6 +9,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/parser/terraform/comment"
 	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
 	"github.com/Checkmarx/kics/pkg/parser/utils"
+	masterUtils "github.com/Checkmarx/kics/pkg/utils"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/pkg/errors"
@@ -49,10 +49,8 @@ func NewDefaultWithVarsPath(terraformVarsPath string) *Parser {
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
 	// handle panic during resolve process
 	defer func() {
-		if r := recover(); r != nil {
-			err := fmt.Errorf("panic: %v", r)
-			log.Err(err).Msg("Recovered from panic during resolve of file " + filename)
-		}
+		errMessage := "Recovered from panic during resolve of file " + filename
+		masterUtils.HandlePanic(errMessage)
 	}()
 	getInputVariables(filepath.Dir(filename), string(fileContent), p.terraformVarsPath)
 	getDataSourcePolicy(filepath.Dir(filename))
@@ -106,10 +104,8 @@ func processResources(doc model.Document, path string) error {
 func addExtraInfo(json []model.Document, path string) ([]model.Document, error) {
 	// handle panic during resource processing
 	defer func() {
-		if r := recover(); r != nil {
-			err := fmt.Errorf("panic: %v", r)
-			log.Err(err).Msg("Recovered from panic during resource processing for file " + path)
-		}
+		errMessage := "Recovered from panic during resource processing for file " + path
+		masterUtils.HandlePanic(errMessage)
 	}()
 	for _, documents := range json { // iterate over documents
 		if resources, ok := documents["resource"].(model.Document); ok {
