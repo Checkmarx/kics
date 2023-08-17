@@ -29,8 +29,8 @@ func TestParser_SupportedTypes(t *testing.T) {
 	require.Equal(t, map[string]bool{
 		"ansible":                 true,
 		"cloudformation":          true,
-		"crossplane":              true,
 		"kubernetes":              true,
+		"crossplane":              true,
 		"knative":                 true,
 		"openapi":                 true,
 		"googledeploymentmanager": true,
