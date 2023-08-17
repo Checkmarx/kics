@@ -4,3 +4,6 @@
 
 data_file: 
     $ref: "data.yaml"
+
+self_ref:
+    $ref: "#"

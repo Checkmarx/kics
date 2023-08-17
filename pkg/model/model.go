@@ -21,6 +21,8 @@ const (
 	KindCOMMON    FileKind = "*"
 	KindHELM      FileKind = "HELM"
 	KindBUILDAH   FileKind = "SH"
+	KindCFG       FileKind = "CFG"
+	KindINI       FileKind = "INI"
 )
 
 // Constants to describe commands given from comments
@@ -65,7 +67,7 @@ var (
 
 var (
 	// KICSCommentRgxp is the regexp to identify if a comment is a KICS comment
-	KICSCommentRgxp = regexp.MustCompile(`^((/{2})|#)*\s*kics-scan\s*`)
+	KICSCommentRgxp = regexp.MustCompile(`^((/{2})|#|;)*\s*kics-scan\s*`)
 	// KICSCommentRgxpYaml is the regexp to identify if the comment has KICS comment at the end of the comment in YAML
 	KICSCommentRgxpYaml = regexp.MustCompile(`((/{2})|#)*\s*kics-scan\s*(ignore-line|ignore-block)\s*\n*$`)
 )

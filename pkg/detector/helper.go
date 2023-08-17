@@ -170,7 +170,7 @@ func GetAdjacentVulnLines(idx, adj int, lines []string) *[]model.CodeLine {
 		return createVulnLines(1, lines[:adj])
 	case len(lines) - 1:
 		// case vulnerability is the last line of the file
-		return createVulnLines(startPos+1, lines[len(lines)-adj:])
+		return createVulnLines(len(lines)-adj+1, lines[len(lines)-adj:])
 	default:
 		// case vulnerability is in the middle of the file
 		return createVulnLines(startPos+1, lines[startPos:endPos])

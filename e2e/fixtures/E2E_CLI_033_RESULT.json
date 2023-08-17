@@ -44,7 +44,7 @@
 					"resource_name": "default1",
 					"issue_type": "MissingAttribute",
 					"search_key": "aws_redshift_cluster[default1]",
-					"search_line": 0,
+					"search_line": 1,
 					"search_value": "",
 					"expected_value": "'aws_redshift_cluster.logging' should be true",
 					"actual_value": "'aws_redshift_cluster.logging' is undefined",
@@ -72,7 +72,7 @@
 					"resource_name": "default1",
 					"issue_type": "MissingAttribute",
 					"search_key": "aws_redshift_cluster[default1]",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "cluster_subnet_group_name",
 					"expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name should be set",
 					"actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined"
@@ -85,7 +85,7 @@
 					"resource_name": "default1",
 					"issue_type": "MissingAttribute",
 					"search_key": "aws_redshift_cluster[default1]",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "vpc_security_group_ids",
 					"expected_value": "aws_redshift_cluster[default1].vpc_security_group_ids should be set",
 					"actual_value": "aws_redshift_cluster[default1].vpc_security_group_ids is undefined"
@@ -111,7 +111,7 @@
 					"resource_name": "n/a",
 					"issue_type": "MissingAttribute",
 					"search_key": "resource",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "'aws_accessanalyzer_analyzer' should be set",
 					"actual_value": "'aws_accessanalyzer_analyzer' is undefined"
@@ -137,7 +137,7 @@
 					"resource_name": "default1",
 					"issue_type": "MissingAttribute",
 					"search_key": "aws_redshift_cluster[default1]",
-					"search_line": 0,
+					"search_line": 1,
 					"search_value": "",
 					"expected_value": "aws_redshift_cluster.port should be defined and not null",
 					"actual_value": "aws_redshift_cluster.port is undefined or null"
@@ -163,7 +163,7 @@
 					"resource_name": "default1",
 					"issue_type": "MissingAttribute",
 					"search_key": "aws_redshift_cluster[{{default1}}]",
-					"search_line": 0,
+					"search_line": -1,
 					"search_value": "",
 					"expected_value": "aws_redshift_cluster[{{default1}}].tags should be defined and not null",
 					"actual_value": "aws_redshift_cluster[{{default1}}].tags is undefined or null"
