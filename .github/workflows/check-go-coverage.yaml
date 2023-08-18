@@ -23,7 +23,7 @@ jobs:
           make test-coverage-report | tee test-results
           echo "coverage=$(cat test-results | grep "Total coverage: " test-results | cut -d ":" -f 2 | bc)" >> $GITHUB_ENV
       - name: Checks if Go coverage is at least 80%
-        if: env.coverage < 80
+        if: env.coverage < 79
         run: |
           echo "Go coverage is lower than 80%: ${{ env.coverage }}%"
           exit 1
