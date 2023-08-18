@@ -25,5 +25,5 @@ jobs:
       - name: Checks if Go coverage is at least 80%
         if: env.coverage < 80
         run: |
-          echo "coverage: ${{ env.coverage }}"
+          echo "Go coverage is lower than 80%: ${{ env.coverage }}%"
           exit 1
