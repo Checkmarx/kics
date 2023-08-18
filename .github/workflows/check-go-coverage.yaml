@@ -20,10 +20,10 @@ jobs:
       - name: Run test metrics script
         id: testcov
         run: |
-          make test-coverage-report | tee test-results
-          TOTAL_TESTS=$(cat test-results | grep -v TestQueriesContent/ | grep -v TestQueriesMetadata/ | grep -v TestQueries/ | grep PASS | wc -l) >> $GITHUB_OUTPUT
+          coverage = make test-coverage-report | tee test-results >> $GITHUB_OUTPUT
+          TOTAL_TESTS=$(cat test-results | grep -v TestQueriesContent/ | grep -v TestQueriesMetadata/ | grep -v TestQueries/ | grep PASS | wc -l)
           echo "Total Tests :: ${TOTAL_TESTS}"
           echo "::set-output name=total_tests::${TOTAL_TESTS}"
       - name: Checks if Go coverage is at least 80%
         run: |
-          echo "Total Tests :: ${{ steps.testcov.outputs.TOTAL_TESTS }}"
+          echo "Total Tests :: ${{ steps.testcov.outputs.coverage }}"
