@@ -20,7 +20,7 @@ jobs:
       - name: Run test metrics script
         id: testcov
         run: |
-          coverage = make test-coverage-report | tee test-results >> $GITHUB_ENV
+          echo "coverage = make test-coverage-report | tee test-results" >> $GITHUB_ENV
       - name: Checks if Go coverage is at least 80%
         run: |
           echo "Total Tests :: env.coverage"
