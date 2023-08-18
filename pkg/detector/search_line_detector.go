@@ -70,7 +70,7 @@ func (d *searchLineDetector) preparePath(pathItems []string) int {
 
 	var treatedPathItems []string
 	if len(pathItems) > 1 {
-		treatedPathItems = pathItems[1:]
+		treatedPathItems = pathItems[1 : len(pathItems)-1]
 	}
 
 	// Create a string based on the path components so it can be later transformed in a gjson path
