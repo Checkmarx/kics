@@ -9,7 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BODY: ${{ github.event.pull_request.body }}
+      USERNAME: ${{ github.event.pull_request.user.login }}
     steps:
+    - name: Check for bots
+      run: |
+        if [ $USERNAME == "dependabot[bot]" ] || [ $USERNAME == "kicsbot" ]; then
+          echo "This workflow will be skipped for $USERNAME."
+          exit 0
+        else
+          echo "This workflow will run for $USERNAME."
+        fi
     - name: Checkout code
       uses: actions/checkout@v3
       with:
