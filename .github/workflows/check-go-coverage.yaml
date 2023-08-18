@@ -21,7 +21,9 @@ jobs:
         id: testcov
         run: |
           make test-coverage-report | tee test-results
-          echo "TOTAL_TESTS=$(cat test-results | grep -v TestQueriesContent/ | grep -v TestQueriesMetadata/ | grep -v TestQueries/ | grep PASS | wc -l)" >> $GITHUB_ENV
+          echo "coverage=$(cat test-results | grep "Total coverage: " test-results | cut -d ":" -f 2 | bc)" >> $GITHUB_ENV
       - name: Checks if Go coverage is at least 80%
-        if: env.TOTAL_TESTS > 120
-        run: exit 1
+        if: env.coverage < 80
+        run: |
+          echo "coverage: ${{ env.coverage }}"
+          exit 1
