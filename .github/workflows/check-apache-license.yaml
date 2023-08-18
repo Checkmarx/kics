@@ -11,14 +11,6 @@ jobs:
       BODY: ${{ github.event.pull_request.body }}
       USERNAME: ${{ github.event.pull_request.user.login }}
     steps:
-    - name: Check for bots
-      run: |
-        if [ $USERNAME == "dependabot[bot]" ] || [ $USERNAME == "kicsbot" ]; then
-          echo "This workflow will be skipped for $USERNAME."
-          exit 0
-        else
-          echo "This workflow will run for $USERNAME."
-        fi
     - name: Checkout code
       uses: actions/checkout@v3
       with:
@@ -26,6 +18,7 @@ jobs:
         sparse-checkout: |
           .github/scripts/pr-issue-info/apache-check.md
     - name: Check for Apache License
+      if: env.USERNAME != 'kicsbot' && env.USERNAME != 'dependabot[bot]'
       run: |
         echo "$BODY" | grep -iPq "^I submit this contribution under the Apache-2.0 license.$" || echo "CHECK_FAILED=true" >> $GITHUB_ENV
     - name: Check for comment tag
