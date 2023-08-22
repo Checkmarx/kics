@@ -79,6 +79,8 @@ var (
 		"tfvars":             true,
 		".proto":             true,
 		".sh":                true,
+		".cfg":               true,
+		".conf":              true,
 		".ini":               true,
 	}
 	supportedRegexes = map[string][]string{
@@ -112,6 +114,11 @@ const (
 	knative    = "knative"
 	cicd       = "cicd"
 )
+
+type Parameters struct {
+	Results string
+	Path    []string
+}
 
 // regexSlice is a struct to contain a slice of regex
 type regexSlice struct {
@@ -379,8 +386,7 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 			results <- grpc
 			locCount <- linesCount
 		}
-	// Ansible Inventory Files
-	case ".ini":
+	case ".cfg", ".conf", ".ini":
 		if a.isAvailableType(ansible) {
 			results <- ansible
 			locCount <- linesCount
