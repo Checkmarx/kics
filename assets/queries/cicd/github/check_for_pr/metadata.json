@@ -2,7 +2,7 @@
   "id": "555ab8f9-2001-455e-a077-f2d0f41e2fb9",
   "queryName": "Testing Query 1",
   "severity": "HIGH",
-  "category": "github",
+  "category": "Insecure Configurations",
   "descriptionText": "Testing if on trigger is a pull request target",
   "descriptionUrl": "",
   "platform": "CICD",
