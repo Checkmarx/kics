@@ -293,7 +293,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantLOC:              42,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
-			excludeGitIgnore:     true,
+			excludeGitIgnore:     false,
 		},
 	}
 

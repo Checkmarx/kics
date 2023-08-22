@@ -53,6 +53,10 @@ cdk synth > cfn-stack.yaml
 docker run -t -v $PWD/cfn-stack.yaml:/path/cfn-stack.yaml -it checkmarx/kics:latest scan -p /path/cfn-stack.yaml
 ```
 
+## CICD
+
+KICS supports scanning Github Workflows CICD files with `.yaml` or `.yml` extension.
+
 ## CloudFormation
 
 KICS supports scanning CloudFormation templates with `.json` or `.yaml` extension.
