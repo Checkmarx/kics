@@ -4,7 +4,7 @@
   "severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "Testing if on trigger is a pull request target",
-  "descriptionUrl": "",
+  "descriptionUrl": "https://checkmarx.atlassian.net/wiki/spaces/AP/pages/6662848552/GitHub+Actions",
   "platform": "CICD",
   "descriptionID": "9cb8402d",
   "cloudProvider": "github"
