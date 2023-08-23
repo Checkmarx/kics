@@ -52,6 +52,7 @@ var (
 		"ansible":                 {".yaml", ".yml"},
 		"azureResourceManager":    {".json"},
 		"buildah":                 {".sh"},
+		"cicd":                    {".yaml", ".yml"},
 		"cloudFormation":          {".json", ".yaml", ".yml"},
 		"docker":                  {".dockerfile"},
 		"googleDeploymentManager": {".yaml", ".yml"},
