@@ -195,7 +195,7 @@
 				
 				<option value="file69">github.com/Checkmarx/kics/pkg/parser/terraform/comment/comment.go (96.9%)</option>
 				
-				<option value="file70">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (77.3%)</option>
+				<option value="file70">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (78.0%)</option>
 				
 				<option value="file71">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (76.8%)</option>
 				
@@ -215,7 +215,7 @@
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file80">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
+				<option value="file80">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
 				<option value="file81">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2341,13 +2341,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="30">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="28">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="30">total += v
+                <span class="cov8" title="28">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -5073,7 +5073,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -12830,11 +12830,11 @@ type converter struct {
         bytes []byte
 }
 
-func (c *converter) rangeSource(r hcl.Range) string <span class="cov8" title="35">{
+func (c *converter) rangeSource(r hcl.Range) string <span class="cov8" title="36">{
         return string(c.bytes[r.Start.Byte:r.End.Byte])
 }</span>
 
-func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Document, error) <span class="cov7" title="23">{
+func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Document, error) <span class="cov8" title="26">{
         var err error
         var v string
         countValue := body.Attributes["count"]
@@ -12857,19 +12857,19 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
                 }
         }
 
-        <span class="cov7" title="23">if count == 0 </span><span class="cov0" title="0">{
+        <span class="cov8" title="26">if count == 0 </span><span class="cov0" title="0">{
                 return nil, nil
         }</span>
 
-        <span class="cov7" title="23">out := make(model.Document)
+        <span class="cov8" title="26">out := make(model.Document)
         kicsS := make(map[string]model.LineObject)
         // set kics line for the body
         kicsS["_kics__default"] = model.LineObject{
                 Line: defLine,
         }
 
-        if body.Attributes != nil </span><span class="cov7" title="23">{
-                for key, value := range body.Attributes </span><span class="cov8" title="33">{
+        if body.Attributes != nil </span><span class="cov8" title="26">{
+                for key, value := range body.Attributes </span><span class="cov8" title="35">{
                         out[key], err = c.convertExpression(value.Expr)
                         // set kics line for the body value
                         kicsS["_kics_"+key] = model.LineObject{
@@ -12888,7 +12888,7 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
                 }
         }
 
-        <span class="cov7" title="23">for _, block := range body.Blocks </span><span class="cov6" title="15">{
+        <span class="cov8" title="26">for _, block := range body.Blocks </span><span class="cov7" title="17">{
                 // set kics line for block
                 kicsS["_kics_"+block.Type] = model.LineObject{
                         Line: block.TypeRange.Start.Line,
@@ -12905,16 +12905,16 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
                 }</span>
         }
 
-        <span class="cov7" title="23">out["_kics_lines"] = kicsS
+        <span class="cov8" title="26">out["_kics_lines"] = kicsS
 
         return out, nil</span>
 }
 
 // getArrLines will get line information for the array elements
-func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]*model.LineObject <span class="cov8" title="33">{
+func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]*model.LineObject <span class="cov8" title="35">{
         arr := make([]map[string]*model.LineObject, 0)
-        if v, ok := expr.(*hclsyntax.TupleConsExpr); ok </span><span class="cov2" title="2">{
-                for _, ex := range v.Exprs </span><span class="cov5" title="7">{
+        if v, ok := expr.(*hclsyntax.TupleConsExpr); ok </span><span class="cov3" title="3">{
+                for _, ex := range v.Exprs </span><span class="cov5" title="8">{
                         arrEx := make(map[string]*model.LineObject)
                         // set default line of array
                         arrEx["_kics__default"] = &amp;model.LineObject{
@@ -12948,13 +12948,13 @@ func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]*model.L
                                 }</span>
                         }
 
-                        <span class="cov5" title="7">arr = append(arr, arrEx)</span>
+                        <span class="cov5" title="8">arr = append(arr, arrEx)</span>
                 }
         }
-        <span class="cov8" title="33">return arr</span>
+        <span class="cov8" title="35">return arr</span>
 }
 
-func (c *converter) convertBlock(block *hclsyntax.Block, out model.Document, defLine int) error <span class="cov6" title="15">{
+func (c *converter) convertBlock(block *hclsyntax.Block, out model.Document, defLine int) error <span class="cov7" title="17">{
         var key = block.Type
         value, err := c.convertBody(block.Body, defLine)
 
@@ -12962,50 +12962,50 @@ func (c *converter) convertBlock(block *hclsyntax.Block, out model.Document, def
                 return err
         }</span>
 
-        <span class="cov6" title="15">if value == nil </span><span class="cov0" title="0">{
+        <span class="cov7" title="17">if value == nil </span><span class="cov0" title="0">{
                 return nil
         }</span>
 
-        <span class="cov6" title="15">for _, label := range block.Labels </span><span class="cov6" title="14">{
+        <span class="cov7" title="17">for _, label := range block.Labels </span><span class="cov7" title="16">{
                 if inner, exists := out[key]; exists </span><span class="cov2" title="2">{
                         var ok bool
                         out, ok = inner.(model.Document)
                         if !ok </span><span class="cov0" title="0">{
                                 return fmt.Errorf("unable to convert Block to JSON: %v.%v", block.Type, strings.Join(block.Labels, "."))
                         }</span>
-                } else<span class="cov6" title="12"> {
+                } else<span class="cov6" title="14"> {
                         obj := make(model.Document)
                         out[key] = obj
                         out = obj
                 }</span>
-                <span class="cov6" title="14">key = label</span>
+                <span class="cov7" title="16">key = label</span>
         }
 
-        <span class="cov6" title="15">if current, exists := out[key]; exists </span><span class="cov3" title="3">{
+        <span class="cov7" title="17">if current, exists := out[key]; exists </span><span class="cov3" title="3">{
                 if list, ok := current.([]interface{}); ok </span><span class="cov1" title="1">{
                         out[key] = append(list, value)
                 }</span> else<span class="cov2" title="2"> {
                         out[key] = []interface{}{current, value}
                 }</span>
-        } else<span class="cov6" title="12"> {
+        } else<span class="cov6" title="14"> {
                 out[key] = value
         }</span>
 
-        <span class="cov6" title="15">return nil</span>
+        <span class="cov7" title="17">return nil</span>
 }
 
-func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, error) <span class="cov10" title="60">{
+func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, error) <span class="cov10" title="63">{
         // assume it is hcl syntax (because, um, it is)
         switch value := expr.(type) </span>{
         case *hclsyntax.LiteralValueExpr:<span class="cov6" title="10">
                 return ctyjson.SimpleJSONValue{Value: value.Val}, nil</span>
-        case *hclsyntax.TemplateExpr:<span class="cov7" title="23">
+        case *hclsyntax.TemplateExpr:<span class="cov7" title="24">
                 return c.convertTemplate(value)</span>
         case *hclsyntax.TemplateWrapExpr:<span class="cov2" title="2">
                 return c.convertExpression(value.Wrapped)</span>
-        case *hclsyntax.TupleConsExpr:<span class="cov2" title="2">
+        case *hclsyntax.TupleConsExpr:<span class="cov3" title="3">
                 list := make([]interface{}, 0)
-                for _, ex := range value.Exprs </span><span class="cov5" title="7">{
+                for _, ex := range value.Exprs </span><span class="cov5" title="8">{
                         elem, err := c.convertExpression(ex)
                         if err != nil </span><span class="cov0" title="0">{
                                 sentryReport.ReportSentry(&amp;sentryReport.Report{
@@ -13016,9 +13016,9 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
                                 }, false)
                                 return nil, err
                         }</span>
-                        <span class="cov5" title="7">list = append(list, elem)</span>
+                        <span class="cov5" title="8">list = append(list, elem)</span>
                 }
-                <span class="cov2" title="2">return list, nil</span>
+                <span class="cov3" title="3">return list, nil</span>
         case *hclsyntax.ObjectConsExpr:<span class="cov4" title="5">
                 return c.objectConsExpr(value)</span>
         case *hclsyntax.FunctionCallExpr:<span class="cov4" title="6">
@@ -13032,17 +13032,31 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
                         return c.wrapExpr(expr)
                 }</span>
                 <span class="cov0" title="0">return ctyjson.SimpleJSONValue{Value: expressionEvaluated}, nil</span>
-        default:<span class="cov6" title="11">
+        default:<span class="cov6" title="12">
                 // try to evaluate with variables and functions
                 valueConverted, _ := expr.Value(&amp;hcl.EvalContext{
                         Variables: inputVarMap,
                         Functions: functions.TerraformFuncs,
                 })
-                if !valueConverted.Type().HasDynamicTypes() &amp;&amp; valueConverted.IsKnown() </span><span class="cov4" title="6">{
+                if !checkDynamicKnownTypes(valueConverted) </span><span class="cov4" title="6">{
                         return ctyjson.SimpleJSONValue{Value: valueConverted}, nil
                 }</span>
-                <span class="cov4" title="5">return c.wrapExpr(expr)</span>
+                <span class="cov4" title="6">return c.wrapExpr(expr)</span>
         }
+}
+
+func checkDynamicKnownTypes(valueConverted cty.Value) bool <span class="cov6" title="12">{
+        if !valueConverted.Type().HasDynamicTypes() &amp;&amp; valueConverted.IsKnown() </span><span class="cov5" title="7">{
+                if valueConverted.Type().FriendlyName() == "tuple" </span><span class="cov1" title="1">{
+                        for _, val := range valueConverted.AsValueSlice() </span><span class="cov1" title="1">{
+                                if val.Type().HasDynamicTypes() || !val.IsKnown() </span><span class="cov1" title="1">{
+                                        return true
+                                }</span>
+                        }
+                }
+                <span class="cov4" title="6">return false</span>
+        }
+        <span class="cov4" title="5">return true</span>
 }
 
 func (c *converter) objectConsExpr(value *hclsyntax.ObjectConsExpr) (model.Document, error) <span class="cov4" title="5">{
@@ -13083,14 +13097,14 @@ func (c *converter) convertKey(keyExpr hclsyntax.Expression) (string, error) <sp
         <span class="cov4" title="4">return c.convertStringPart(keyExpr)</span>
 }
 
-func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) <span class="cov8" title="31">{
-        if t.IsStringLiteral() </span><span class="cov7" title="24">{
+func (c *converter) convertTemplate(t *hclsyntax.TemplateExpr) (string, error) <span class="cov8" title="32">{
+        if t.IsStringLiteral() </span><span class="cov7" title="25">{
                 // safe because the value is just the string
                 v, err := t.Value(nil)
                 if err != nil </span><span class="cov0" title="0">{
                         return "", err
                 }</span>
-                <span class="cov7" title="24">return v.AsString(), nil</span>
+                <span class="cov7" title="25">return v.AsString(), nil</span>
         }
         <span class="cov5" title="7">builder := &amp;strings.Builder{}
         for _, part := range t.Parts </span><span class="cov7" title="19">{
@@ -13223,12 +13237,12 @@ func (c *converter) convertTemplateFor(expr *hclsyntax.ForExpr) (string, error) 
         return s, nil</span>
 }
 
-func (c *converter) wrapExpr(expr hclsyntax.Expression) (string, error) <span class="cov6" title="11">{
+func (c *converter) wrapExpr(expr hclsyntax.Expression) (string, error) <span class="cov6" title="12">{
         expression := c.rangeSource(expr.Range())
         if strings.HasPrefix(expression, "var.") </span><span class="cov3" title="3">{
                 log.Trace().Msgf("Variable ${%s} value not found", expression)
         }</span>
-        <span class="cov6" title="11">return "${" + expression + "}", nil</span>
+        <span class="cov6" title="12">return "${" + expression + "}", nil</span>
 }
 
 func (c *converter) evalFunction(expression hclsyntax.Expression) (interface{}, error) <span class="cov4" title="6">{
@@ -14843,7 +14857,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov3" title="2">{
+                close: func() error </span><span class="cov0" title="0">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14852,26 +14866,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov3" title="2">{
+        defer func() </span><span class="cov0" title="0">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov3" title="2">p.wg.Done()</span>
+                <span class="cov0" title="0">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file81" style="display: none">package progress
