@@ -64,7 +64,7 @@
     "shorthandFlag": "",
     "defaultValue": null,
     "usage": "includes experimental queries (queries not yet fully reviewed) by providing the path of the queries folder\nexample: 'terraform/databricks'",
-    "validation": "sliceFlagsShouldNotStartWithFlags,validateMultiStrEnum"
+    "validation": "validateMultiStr"
   },
   "fail-on": {
     "flagType": "multiStr",

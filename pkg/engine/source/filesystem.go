@@ -275,16 +275,35 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 					return nil
 				}
 
-				//if in experimental feature flag and not in json
 				querypathDir := filepath.Dir(p)
-				//in json
-				inJson := false
-				for _, queryPath := range experimentalQueriesPaths {
-					if strings.Contains(querypathDir, queryPath) {
-						inJson = true
+				absQueriesPath, err := filepath.Abs("./assets/queries")
+				if err == nil {
+					var cleanPlatformCloudProviderDir string
+					cleanPlatformCloudProviderDir, err = filepath.Rel(absQueriesPath, querypathDir)
+					if err == nil {
+						cleanPlatformCloudProviderDir = filepath.ToSlash(cleanPlatformCloudProviderDir)
+						inExperimentalQueriesJSON := false
+						for _, queryPath := range experimentalQueriesPaths {
+							if strings.Contains(querypathDir, queryPath) {
+								inExperimentalQueriesJSON = true
+								break
+							}
+						}
+
+						inExperimentalQueriesFlag := false
+						for _, experimentalFlag := range queryParameters.ExperimentalQueries {
+							if strings.HasPrefix(cleanPlatformCloudProviderDir, experimentalFlag) {
+								inExperimentalQueriesFlag = true
+								break
+							}
+						}
+
+						if inExperimentalQueriesFlag || !inExperimentalQueriesJSON {
+							queryDirs = append(queryDirs, querypathDir)
+						}
 					}
 				}
-				if true || !inJson {
+				if err != nil {
 					queryDirs = append(queryDirs, querypathDir)
 				}
 				return nil

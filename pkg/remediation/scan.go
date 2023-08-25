@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"path/filepath"
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -209,7 +210,7 @@ func initScan(queryID string) (*engine.Inspector, error) {
 		c.ScanParams.Platform,
 		c.ScanParams.CloudProvider,
 		c.ScanParams.LibrariesPath,
-		"./assets/utils/experimental-queries.json")
+		filepath.FromSlash("./assets/utils/experimental-queries.json"))
 
 	includeQueries := source.IncludeQueries{
 		ByIDs: []string{queryID},

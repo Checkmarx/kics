@@ -4,6 +4,7 @@ package scan
 import (
 	"context"
 	"os"
+	"path/filepath"
 
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -59,7 +60,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		c.ScanParams.Platform,
 		c.ScanParams.CloudProvider,
 		c.ScanParams.LibrariesPath,
-		"./assets/utils/experimental-queries.json")
+		filepath.FromSlash("./assets/utils/experimental-queries.json"))
 
 	queryFilter := c.createQueryFilter()
 
