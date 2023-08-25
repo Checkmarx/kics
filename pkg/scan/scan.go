@@ -58,7 +58,8 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		c.ScanParams.QueriesPath,
 		c.ScanParams.Platform,
 		c.ScanParams.CloudProvider,
-		c.ScanParams.LibrariesPath)
+		c.ScanParams.LibrariesPath,
+		"./assets/utils/experimental-queries.json")
 
 	queryFilter := c.createQueryFilter()
 
@@ -198,10 +199,11 @@ func (c *Client) createQueryFilter() *source.QueryInspectorParameters {
 	}
 
 	queryFilter := source.QueryInspectorParameters{
-		IncludeQueries: includeQueries,
-		ExcludeQueries: excludeQueries,
-		InputDataPath:  c.ScanParams.InputData,
-		BomQueries:     c.ScanParams.BillOfMaterials,
+		IncludeQueries:      includeQueries,
+		ExcludeQueries:      excludeQueries,
+		ExperimentalQueries: c.ScanParams.ExperimentalQueries,
+		InputDataPath:       c.ScanParams.InputData,
+		BomQueries:          c.ScanParams.BillOfMaterials,
 	}
 
 	return &queryFilter

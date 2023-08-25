@@ -208,7 +208,8 @@ func initScan(queryID string) (*engine.Inspector, error) {
 		c.ScanParams.QueriesPath,
 		c.ScanParams.Platform,
 		c.ScanParams.CloudProvider,
-		c.ScanParams.LibrariesPath)
+		c.ScanParams.LibrariesPath,
+		"./assets/utils/experimental-queries.json")
 
 	includeQueries := source.IncludeQueries{
 		ByIDs: []string{queryID},

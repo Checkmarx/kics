@@ -3,6 +3,7 @@ package source
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
@@ -21,10 +22,11 @@ import (
 // Source is the path to the queries
 // Types are the types given by the flag --type for query selection mechanism
 type FilesystemSource struct {
-	Source         []string
-	Types          []string
-	CloudProviders []string
-	Library        string
+	Source               []string
+	Types                []string
+	CloudProviders       []string
+	Library              string
+	ExperimentalFeatures string
 }
 
 const (
@@ -43,7 +45,7 @@ const (
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
-func NewFilesystemSource(source, types, cloudProviders []string, libraryPath string) *FilesystemSource {
+func NewFilesystemSource(source, types, cloudProviders []string, libraryPath string, experimentalFeaturesPath string) *FilesystemSource {
 	log.Debug().Msg("source.NewFilesystemSource()")
 
 	if len(types) == 0 {
@@ -59,10 +61,11 @@ func NewFilesystemSource(source, types, cloudProviders []string, libraryPath str
 	}
 
 	return &FilesystemSource{
-		Source:         source,
-		Types:          types,
-		CloudProviders: cloudProviders,
-		Library:        filepath.FromSlash(libraryPath),
+		Source:               source,
+		Types:                types,
+		CloudProviders:       cloudProviders,
+		Library:              filepath.FromSlash(libraryPath),
+		ExperimentalFeatures: experimentalFeaturesPath,
 	}
 }
 
@@ -242,7 +245,24 @@ func checkQueryExclude(metadata map[string]interface{}, queryParameters *QueryIn
 // QueryMetadata struct
 func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters) ([]model.QueryMetadata, error) {
 	queryDirs := make([]string, 0)
+	queries := make([]model.QueryMetadata, 0, len(queryDirs))
+	experimentalQueriesPaths := make([]string, 0)
 	var err error
+
+	if s.ExperimentalFeatures != "" {
+
+		experimentalQueriesFile, err := os.Open(s.ExperimentalFeatures)
+		if err != nil {
+			return queries, nil
+		}
+
+		defer experimentalQueriesFile.Close()
+
+		byteValue, _ := ioutil.ReadAll(experimentalQueriesFile)
+
+		json.Unmarshal(byteValue, &experimentalQueriesPaths)
+
+	}
 
 	for _, source := range s.Source {
 		err = filepath.Walk(source,
@@ -255,7 +275,18 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 					return nil
 				}
 
-				queryDirs = append(queryDirs, filepath.Dir(p))
+				//if in experimental feature flag and not in json
+				querypathDir := filepath.Dir(p)
+				//in json
+				inJson := false
+				for _, queryPath := range experimentalQueriesPaths {
+					if strings.Contains(querypathDir, queryPath) {
+						inJson = true
+					}
+				}
+				if true || !inJson {
+					queryDirs = append(queryDirs, querypathDir)
+				}
 				return nil
 			})
 		if err != nil {
@@ -263,7 +294,6 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 		}
 	}
 
-	queries := make([]model.QueryMetadata, 0, len(queryDirs))
 	for _, queryDir := range queryDirs {
 		query, errRQ := ReadQuery(queryDir)
 		if errRQ != nil {

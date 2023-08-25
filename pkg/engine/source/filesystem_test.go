@@ -23,10 +23,11 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 		b.Fatal(err)
 	}
 	type fields struct {
-		Source         []string
-		Types          []string
-		CloudProviders []string
-		Library        string
+		Source               []string
+		Types                []string
+		CloudProviders       []string
+		Library              string
+		ExperimentalFeatures string
 	}
 	tests := []struct {
 		name   string
@@ -35,16 +36,17 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 		{
 			name: "testing_all_paths",
 			fields: fields{
-				Source:         []string{"./assets/queries/"},
-				Types:          []string{""},
-				CloudProviders: []string{""},
-				Library:        "./assets/libraries",
+				Source:               []string{"./assets/queries/"},
+				Types:                []string{""},
+				CloudProviders:       []string{""},
+				Library:              "./assets/libraries",
+				ExperimentalFeatures: "./assets/utils/experimental-queries.json",
 			},
 		},
 	}
 	for _, tt := range tests {
 		b.Run(tt.name, func(b *testing.B) {
-			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types, tt.fields.CloudProviders, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types, tt.fields.CloudProviders, tt.fields.Library, tt.fields.ExperimentalFeatures)
 			for n := 0; n < b.N; n++ {
 				filter := QueryInspectorParameters{
 					IncludeQueries: IncludeQueries{ByIDs: []string{}},
@@ -67,10 +69,11 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 	contentByte, err := os.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
 	require.NoError(t, err)
 	type fields struct {
-		Source         []string
-		Types          []string
-		CloudProviders []string
-		Library        string
+		Source               []string
+		Types                []string
+		CloudProviders       []string
+		Library              string
+		ExperimentalFeatures string
 	}
 	tests := []struct {
 		name              string
@@ -86,6 +89,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 			fields: fields{
 				Source: []string{source}, Types: []string{""},
 				CloudProviders: []string{""}, Library: "./assets/libraries",
+				ExperimentalFeatures: "./assets/utils/experimental-queries.json",
 			},
 			excludeCategory:   []string{},
 			excludeSeverities: []string{},
@@ -159,7 +163,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library, tt.fields.ExperimentalFeatures)
 			filter := QueryInspectorParameters{
 				IncludeQueries: IncludeQueries{ByIDs: []string{}},
 				ExcludeQueries: ExcludeQueries{ByIDs: tt.excludeIDs, ByCategories: tt.excludeCategory, BySeverities: tt.excludeSeverities},
@@ -189,10 +193,11 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 	require.NoError(t, err)
 
 	type fields struct {
-		Source         []string
-		Types          []string
-		CloudProviders []string
-		Library        string
+		Source               []string
+		Types                []string
+		CloudProviders       []string
+		Library              string
+		ExperimentalFeatures string
 	}
 	tests := []struct {
 		name       string
@@ -204,7 +209,9 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 		{
 			name: "get_queries_with_include_result_1",
 			fields: fields{
-				Source: []string{source}, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
+				Source: []string{source}, Types: []string{""}, CloudProviders: []string{""},
+				Library:              "./assets/libraries",
+				ExperimentalFeatures: "./assets/utils/experimental-queries.json",
 			},
 			includeIDs: []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
 			want: []model.QueryMetadata{
@@ -248,7 +255,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library, tt.fields.ExperimentalFeatures)
 			filter := QueryInspectorParameters{
 				IncludeQueries: IncludeQueries{
 					ByIDs: tt.includeIDs,
@@ -281,8 +288,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		t.Fatal(err)
 	}
 	type fields struct {
-		Source  []string
-		Library string
+		Source               []string
+		Library              string
+		ExperimentalFeatures string
 	}
 	type args struct {
 		platform string
@@ -297,8 +305,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_terraform",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:               []string{"./assets/queries/template"},
+				Library:              "./assets/libraries",
+				ExperimentalFeatures: "./assets/utils/experimental-queries.json",
 			},
 			args: args{
 				platform: "terraform",
@@ -309,8 +318,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_common",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:               []string{"./assets/queries/template"},
+				Library:              "./assets/libraries",
+				ExperimentalFeatures: "./assets/utils/experimental-queries.json",
 			},
 			args: args{
 				platform: "common",
@@ -321,8 +331,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_cloudformation",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:               []string{"./assets/queries/template"},
+				Library:              "./assets/libraries",
+				ExperimentalFeatures: "./assets/utils/experimental-queries.json",
 			},
 			args: args{
 				platform: "cloudFormation",
@@ -333,8 +344,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_ansible",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:               []string{"./assets/queries/template"},
+				Library:              "./assets/libraries",
+				ExperimentalFeatures: "./assets/utils/experimental-queries.json",
 			},
 			args: args{
 				platform: "ansible",
@@ -345,8 +357,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_dockerfile",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:               []string{"./assets/queries/template"},
+				Library:              "./assets/libraries",
+				ExperimentalFeatures: "./assets/utils/experimental-queries.json",
 			},
 			args: args{
 				platform: "dockerfile",
@@ -357,8 +370,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_k8s",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:               []string{"./assets/queries/template"},
+				Library:              "./assets/libraries",
+				ExperimentalFeatures: "./assets/utils/experimental-queries.json",
 			},
 			args: args{
 				platform: "k8s",
@@ -369,8 +383,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_unknown",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:               []string{"./assets/queries/template"},
+				Library:              "./assets/libraries",
+				ExperimentalFeatures: "./assets/utils/experimental-queries.json",
 			},
 			args: args{
 				platform: "unknown",
@@ -381,7 +396,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library, tt.fields.ExperimentalFeatures)
 
 			got, err := s.GetQueryLibrary(tt.args.platform)
 			if (err != nil) != tt.wantErr {
@@ -405,10 +420,11 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	require.NoError(t, err)
 
 	type fields struct {
-		Source         []string
-		Types          []string
-		CloudProviders []string
-		Library        string
+		Source               []string
+		Types                []string
+		CloudProviders       []string
+		Library              string
+		ExperimentalFeatures string
 	}
 	tests := []struct {
 		name    string
@@ -419,7 +435,9 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_1",
 			fields: fields{
-				Source: []string{source, source}, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
+				Source: []string{source, source}, Types: []string{""}, CloudProviders: []string{""},
+				Library:              "./assets/libraries",
+				ExperimentalFeatures: "./assets/utils/experimental-queries.json",
 			},
 			want: []model.QueryMetadata{
 				{
@@ -460,7 +478,8 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_error",
 			fields: fields{
-				Source: []string{"../no-path"},
+				Source:               []string{"../no-path"},
+				ExperimentalFeatures: "./assets/utils/experimental-queries.json",
 			},
 			want:    nil,
 			wantErr: true,
@@ -468,7 +487,7 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library, tt.fields.ExperimentalFeatures)
 			filter := QueryInspectorParameters{
 				IncludeQueries: IncludeQueries{
 					ByIDs: []string{}},

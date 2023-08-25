@@ -59,11 +59,11 @@
     "defaultValue": "false",
     "usage": "include bill of materials (BoM) in results output"
   },
-  "experimental-features": {
+  "experimental-queries": {
     "flagType": "multiStr",
     "shorthandFlag": "",
     "defaultValue": null,
-    "usage": "includes queries from experimental features (features not yet fully reviwed) by providing the name of a feature\n${sliceInstructions}\nexample: 'databricks,nifcloud'",
+    "usage": "includes experimental queries (queries not yet fully reviewed) by providing the path of the queries folder\nexample: 'terraform/databricks'",
     "validation": "sliceFlagsShouldNotStartWithFlags,validateMultiStrEnum"
   },
   "fail-on": {
