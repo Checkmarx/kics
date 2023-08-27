@@ -195,5 +195,11 @@
     "shorthandFlag": "",
     "defaultValue": "false",
     "usage": "disables the exclusion of paths specified within .gitignore file"
+  },
+  "max-file-size": {
+    "flagType": "int",
+    "shorthandFlag": "",
+    "defaultValue": "5",
+    "usage": "max file size that allowed to scan in MB"
   }
 }

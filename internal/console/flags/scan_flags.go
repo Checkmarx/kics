@@ -33,4 +33,6 @@ const (
 	DisableSecretsFlag     = "disable-secrets"
 	SecretsRegexesPathFlag = "secrets-regexes-path" //nolint:gosec
 	ExcludeGitIgnore       = "exclude-gitignore"
+	MaxFileSizeFlag        = "max-file-size" // orca-specifics
+
 )

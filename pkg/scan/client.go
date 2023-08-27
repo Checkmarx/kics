@@ -43,6 +43,7 @@ type Parameters struct {
 	ScanID                      string
 	BillOfMaterials             bool
 	ExcludeGitIgnore            bool
+	MaxFileSizeFlag             int
 }
 
 // Client represents a scan client

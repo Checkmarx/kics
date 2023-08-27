@@ -30,7 +30,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 	s.Tracker.TrackFileFound()
 	log.Debug().Msgf("Starting to process file %s", filename)
 
-	c, err := getContent(rc, data)
+	c, err := getContent(rc, data, s.MaxFileSize)
 
 	*c.Content = resolveCRLFFile(*c.Content)
 	content := c.Content
