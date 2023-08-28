@@ -11,7 +11,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
-	object.get(value, "name", "CXundefinedCX") != "CXundefinedCX"
+	object.get(value, "schema", "CXundefinedCX") != "CXundefinedCX"
 	openapi_lib.undefined_field_in_string_type(value.schema, "pattern")
 
 	result := {
@@ -32,7 +32,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	openapi_lib.is_operation(path) == {}
-	object.get(value, "name", "CXundefinedCX") != "CXundefinedCX"
+	object.get(value, "schema", "CXundefinedCX") != "CXundefinedCX"
 	openapi_lib.undefined_field_in_string_type(value.schema, "pattern")
 
 	result := {
