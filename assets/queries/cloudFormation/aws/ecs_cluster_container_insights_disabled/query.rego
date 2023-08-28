@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties", [key]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.ClusterSettings should be defined and have `containerInsights` set to `enabled`", [key]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.ClusterSettings should be defined and have a ClusterSetting named containerInsights which value is `enabled`", [key]),
 		"keyActualValue": sprintf("Resources.%s.Properties.ClusterSettings is not defined", [key]),
 	}
 }
@@ -25,38 +25,23 @@ CxPolicy[result] {
 	resource := input.document[i].Resources
 	elem := resource[key]
 	elem.Type == "AWS::ECS::Cluster"
-	
+
 	taskDefinitionList := elem.Properties.ClusterSettings
 
-	count(taskDefinitionList) == 0
+	not container_insights(taskDefinitionList)
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": elem.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.ClusterSettings", [key]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.ClusterSettings.containerInsights should be defined and set to `enabled`", [key]),
-		"keyActualValue": sprintf("Resources.%s.Properties.ClusterSettings.containerInsights is not defined", [key]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.ClusterSettings should have a ClusterSetting named `containerInsights` which value is `enabled`", [key]),
+		"keyActualValue": sprintf("Resources.%s.Properties.ClusterSettings hasn't got a ClusterSetting named `containerInsights` which value is `enabled`", [key]),
 	}
 }
 
-CxPolicy[result] {
-	resource := input.document[i].Resources
-	elem := resource[key]
-	elem.Type == "AWS::ECS::Cluster"
-
-	taskDefinitionList := elem.Properties.ClusterSettings
-
-	taskDefinitionList[0].Value != "enabled"
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": elem.Type,
-		"resourceName": cf_lib.get_resource_name(resource, key),
-		"searchKey": sprintf("Resources.%s.Properties.ClusterSettings.Name", [key]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.ClusterSettings should have ClusterSetting named containerInsights which value is `enabled`", [key]),
-		"keyActualValue": sprintf("Resources.%s.Properties.ClusterSettings hasn't got a ClusterSetting named containerInsights which value is `enabled`", [key]),
-	}
+container_insights(settings){
+	settings[0].name == "containerInsights"
+	settings[0].value != "enabled"
 }
