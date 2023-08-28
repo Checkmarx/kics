@@ -31,11 +31,11 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
 		"resourceName": plm_lib.getResourceName(resource, name),
-		"searchKey": sprintf("resources[%s].properties.monitoring", [name]),
+		"searchKey": sprintf("resources[%s].properties.settings", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Attribute 'monitoring' should be set to true",
-		"keyActualValue": "Attribute 'monitoring' is set to false",
-		"searchLine": common_lib.build_search_line(["resources", name, "properties"], ["monitoring"]),
+		"keyExpectedValue": "Attribute 'settings' should have a ClusterSetting named 'containerInsights' which value is 'enabled'",
+		"keyActualValue": "Attribute 'settings' doesn't have a ClusterSetting named 'containerInsights' which value is 'enabled'",
+		"searchLine": common_lib.build_search_line(["resources", name, "properties","settings"], []),
 	}
 }
 
