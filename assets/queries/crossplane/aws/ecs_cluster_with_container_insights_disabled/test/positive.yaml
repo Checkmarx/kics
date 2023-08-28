@@ -1,0 +1,7 @@
+apiVersion: ecs.aws.crossplane.io/v1alpha1
+kind: Cluster
+metadata:
+  name: example
+spec:
+  forProvider:
+    region: us-east-1
