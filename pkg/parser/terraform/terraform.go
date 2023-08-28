@@ -24,9 +24,8 @@ type Converter func(file *hcl.File, inputVariables converter.VariableMap) (model
 
 // Parser struct that contains the function to parse file and the number of retries if something goes wrong
 type Parser struct {
-	convertFunc       Converter
-	numOfRetries      int
-	terraformVarsPath string
+	convertFunc  Converter
+	numOfRetries int
 }
 
 // NewDefault initializes a parser with Parser default values
@@ -37,16 +36,9 @@ func NewDefault() *Parser {
 	}
 }
 
-// NewDefaultWithVarsPath initializes a parser with the default values using a variables path
-func NewDefaultWithVarsPath(terraformVarsPath string) *Parser {
-	parser := NewDefault()
-	parser.terraformVarsPath = terraformVarsPath
-	return parser
-}
-
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
-	getInputVariables(filepath.Dir(filename), string(fileContent), p.terraformVarsPath)
+	getInputVariables(filepath.Dir(filename))
 	getDataSourcePolicy(filepath.Dir(filename))
 	return fileContent, nil
 }

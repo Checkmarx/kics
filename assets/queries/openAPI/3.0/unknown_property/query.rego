@@ -120,7 +120,6 @@ flow := {
 
 parameters_properties := {
 	"$ref",
-	"RefMetadata",
 	"name",
 	"in",
 	"description",
@@ -138,7 +137,6 @@ parameters_properties := {
 
 request_body_properties := {
 	"$ref",
-	"RefMetadata",
 	"description",
 	"content",
 	"required",
@@ -146,7 +144,6 @@ request_body_properties := {
 
 schema_properties := {
 	"$ref",
-	"RefMetadata",
 	"title",
 	"multipleOf",
 	"maximum",
@@ -212,7 +209,6 @@ map_objects := {
 	"schemas": schema_properties,
 	"headers": {
 		"$ref",
-		"RefMetadata",
 		"description",
 		"required",
 		"deprecated",
@@ -227,7 +223,6 @@ map_objects := {
 	},
 	"securitySchemes": {
 		"$ref",
-		"RefMetadata",
 		"type",
 		"description",
 		"name",
@@ -241,7 +236,6 @@ map_objects := {
 	"parameters": parameters_properties,
 	"examples": {
 		"$ref",
-		"RefMetadata",
 		"summary",
 		"description",
 		"value",
@@ -249,7 +243,6 @@ map_objects := {
 	},
 	"responses": {
 		"$ref",
-		"RefMetadata",
 		"description",
 		"headers",
 		"content",

@@ -1,8 +1,0 @@
-Resources:
-  ReplicationInstance:
-    Type: "AWS::DMS::ReplicationInstance"
-    Properties:
-      ReplicationInstanceIdentifier: my-replication-instance
-      ReplicationInstanceClass: dms.r5.large
-      AllocatedStorage: 100
-      EngineVersion: "3.4.3"

@@ -1,8 +1,0 @@
-[
-    {
-      "queryName": "Elasticsearch with HTTPS disabled",
-      "severity": "HIGH",
-      "line": 27,
-      "fileName": "positive1.tf"
-    }
-]

@@ -15,13 +15,13 @@ import (
 // Parameters represents all available scan parameters
 type Parameters struct {
 	CloudProvider               []string
+	DisableCISDesc              bool
 	DisableFullDesc             bool
 	ExcludeCategories           []string
 	ExcludePaths                []string
 	ExcludeQueries              []string
 	ExcludeResults              []string
 	ExcludeSeverities           []string
-	ExperimentalQueries         []string
 	IncludeQueries              []string
 	InputData                   string
 	OutputName                  string
@@ -33,8 +33,6 @@ type Parameters struct {
 	LibrariesPath               string
 	ReportFormats               []string
 	Platform                    []string
-	ExcludePlatform             []string
-	TerraformVarsPath           string
 	QueryExecTimeout            int
 	LineInfoPayload             bool
 	DisableSecrets              bool

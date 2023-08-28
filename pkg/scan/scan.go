@@ -4,7 +4,6 @@ package scan
 import (
 	"context"
 	"os"
-	"path/filepath"
 
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -59,8 +58,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		c.ScanParams.QueriesPath,
 		c.ScanParams.Platform,
 		c.ScanParams.CloudProvider,
-		c.ScanParams.LibrariesPath,
-		filepath.FromSlash("./assets/utils/experimental-queries.json"))
+		c.ScanParams.LibrariesPath)
 
 	queryFilter := c.createQueryFilter()
 
@@ -200,11 +198,10 @@ func (c *Client) createQueryFilter() *source.QueryInspectorParameters {
 	}
 
 	queryFilter := source.QueryInspectorParameters{
-		IncludeQueries:      includeQueries,
-		ExcludeQueries:      excludeQueries,
-		ExperimentalQueries: c.ScanParams.ExperimentalQueries,
-		InputDataPath:       c.ScanParams.InputData,
-		BomQueries:          c.ScanParams.BillOfMaterials,
+		IncludeQueries: includeQueries,
+		ExcludeQueries: excludeQueries,
+		InputDataPath:  c.ScanParams.InputData,
+		BomQueries:     c.ScanParams.BillOfMaterials,
 	}
 
 	return &queryFilter
@@ -225,7 +222,7 @@ func (c *Client) createService(
 	combinedParser, err := parser.NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
-		Add(terraformParser.NewDefaultWithVarsPath(c.ScanParams.TerraformVarsPath)).
+		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).
 		Add(&buildahParser.Parser{}).

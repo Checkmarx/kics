@@ -27,7 +27,6 @@ func TestCITracker(t *testing.T) {
 		Version            model.Version
 		FoundCountLines    int
 		ParsedCountLines   int
-		IgnoreCountLines   int
 		lines              int
 	}
 	tests := []struct {
@@ -48,7 +47,6 @@ func TestCITracker(t *testing.T) {
 				Version:            model.Version{},
 				FoundCountLines:    2,
 				ParsedCountLines:   1,
-				IgnoreCountLines:   4,
 				lines:              3,
 			},
 		},
@@ -67,7 +65,6 @@ func TestCITracker(t *testing.T) {
 			Version:            tt.fields.Version,
 			FoundCountLines:    tt.fields.FoundCountLines,
 			ParsedCountLines:   tt.fields.ParsedCountLines,
-			IgnoreCountLines:   tt.fields.IgnoreCountLines,
 			lines:              tt.fields.lines,
 		}
 		t.Run(fmt.Sprintf(tt.name+"_LoadedQueries"), func(t *testing.T) {
@@ -120,10 +117,6 @@ func TestCITracker(t *testing.T) {
 		t.Run(fmt.Sprintf(tt.name+"_TrackFileParseCountLines"), func(t *testing.T) {
 			c.TrackFileParseCountLines(2)
 			require.Equal(t, 3, c.ParsedCountLines)
-		})
-		t.Run(fmt.Sprintf(tt.name+"TrackFileIgnoreCountLines"), func(t *testing.T) {
-			c.TrackFileIgnoreCountLines(2)
-			require.Equal(t, 6, c.IgnoreCountLines)
 		})
 		t.Run(fmt.Sprintf(tt.name+"_GetOutputLines"), func(t *testing.T) {
 			got := c.GetOutputLines()

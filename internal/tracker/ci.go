@@ -27,7 +27,6 @@ type CITracker struct {
 	lines              int
 	FoundCountLines    int
 	ParsedCountLines   int
-	IgnoreCountLines   int
 	Version            model.Version
 }
 
@@ -108,9 +107,4 @@ func (c *CITracker) TrackFileFoundCountLines(countLines int) {
 // TrackFileParseCountLines - information about the lines of the parsed files
 func (c *CITracker) TrackFileParseCountLines(countLines int) {
 	c.ParsedCountLines += countLines
-}
-
-// TrackFileIgnoreCountLines - information about the lines ignored of the parsed files
-func (c *CITracker) TrackFileIgnoreCountLines(countLines int) {
-	c.IgnoreCountLines += countLines
 }

@@ -207,15 +207,15 @@ func TestGetAdjacents(t *testing.T) { //nolint
 			},
 			want: &[]model.CodeLine{
 				{
-					Position: 2,
+					Position: 3,
 					Line:     "secondline",
 				},
 				{
-					Position: 3,
+					Position: 4,
 					Line:     "thirdline",
 				},
 				{
-					Position: 4,
+					Position: 5,
 					Line:     "forthline",
 				},
 			},
@@ -359,19 +359,82 @@ func TestGetAdjacents(t *testing.T) { //nolint
 	}
 }
 
-func TestDetectCurrentLine(t *testing.T) {
+func TestDefaultDetectLineResponse_restore(t *testing.T) {
 	type fields struct {
-		defaultDetectLineResponse *DefaultDetectLineResponse
+		CurrentLine     int
+		IsBreak         bool
+		FoundAtLeastOne bool
+		Lines           []string
+		ResolvedFile    string
+		ResolvedFiles   map[string]model.ResolvedFileSplit
 	}
-
 	type args struct {
 		lines []string
-		str1  string
-		str2  string
+		file  string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   *DefaultDetectLineResponse
+	}{
+		{
+			name: "test_empty_lines",
+			args: args{
+				lines: []string{"this is a line"},
+				file:  "newfile",
+			},
+			fields: fields{
+				CurrentLine:     27,
+				IsBreak:         false,
+				FoundAtLeastOne: false,
+				Lines:           []string{"oldline"},
+				ResolvedFile:    "oldfile",
+				ResolvedFiles:   map[string]model.ResolvedFileSplit{},
+			},
+			want: &DefaultDetectLineResponse{
+				CurrentLine:     0,
+				IsBreak:         false,
+				FoundAtLeastOne: false,
+				ResolvedFile:    "newfile",
+				ResolvedFiles:   map[string]model.ResolvedFileSplit{},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			d := &DefaultDetectLineResponse{
+				CurrentLine:     tt.fields.CurrentLine,
+				IsBreak:         tt.fields.IsBreak,
+				FoundAtLeastOne: tt.fields.FoundAtLeastOne,
+				ResolvedFile:    tt.fields.ResolvedFile,
+				ResolvedFiles:   tt.fields.ResolvedFiles,
+			}
+			if got := d.restore(tt.args.file); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("restore() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestDefaultDetectLineResponse_checkResolvedFile(t *testing.T) {
+	type fields struct {
+		CurrentLine     int
+		IsBreak         bool
+		FoundAtLeastOne bool
+		Lines           []string
+		ResolvedFile    string
+		ResolvedFiles   map[string]model.ResolvedFileSplit
+	}
+	type args struct {
+		line string
+		str1 string
+		st2  string
 	}
 
 	type want struct {
 		defaultDetectLineResponse *DefaultDetectLineResponse
+		lines                     []string
 	}
 
 	tests := []struct {
@@ -381,46 +444,68 @@ func TestDetectCurrentLine(t *testing.T) {
 		want   want
 	}{
 		{
-			name: "test_checkLines",
+			name: "test_lines",
 			args: args{
-				lines: []string{
-					"		\"type\": \"string\"",
-					"	\"type\": \"array\"",
-				},
-				str1: "\"type\"",
-				str2: "",
+				line: "$ref: path/to/file",
+				str1: "key",
+				st2:  "value",
 			},
 			fields: fields{
-				&DefaultDetectLineResponse{
-					CurrentLine:     0,
-					IsBreak:         false,
-					FoundAtLeastOne: false,
-					ResolvedFile:    "",
-					ResolvedFiles:   map[string]model.ResolvedFileSplit{},
+				CurrentLine:     27,
+				IsBreak:         false,
+				FoundAtLeastOne: false,
+				Lines:           []string{"oldline"},
+				ResolvedFile:    "oldfile",
+				ResolvedFiles: map[string]model.ResolvedFileSplit{
+					"path/to/file": {
+						Path: "abs/path/to/file",
+						Lines: []string{
+							"this is line one",
+							"key: value",
+							"this is line three",
+						},
+					},
 				},
 			},
 			want: want{
-				&DefaultDetectLineResponse{
-					CurrentLine:     0,
+				defaultDetectLineResponse: &DefaultDetectLineResponse{
+					CurrentLine:     1,
 					IsBreak:         false,
-					FoundAtLeastOne: false,
-					ResolvedFile:    "",
-					ResolvedFiles:   map[string]model.ResolvedFileSplit{},
+					FoundAtLeastOne: true,
+
+					ResolvedFile: "abs/path/to/file",
+					ResolvedFiles: map[string]model.ResolvedFileSplit{
+						"path/to/file": {
+							Path: "abs/path/to/file",
+							Lines: []string{
+								"this is line one",
+								"key: value",
+								"this is line three",
+							},
+						},
+					},
 				},
+				lines: []string{"this is line one", "key: value", "this is line three"},
 			},
 		},
 	}
-
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			d := tt.fields.defaultDetectLineResponse
+			d := &DefaultDetectLineResponse{
+				CurrentLine:     tt.fields.CurrentLine,
+				IsBreak:         tt.fields.IsBreak,
+				FoundAtLeastOne: tt.fields.FoundAtLeastOne,
+				ResolvedFile:    tt.fields.ResolvedFile,
+				ResolvedFiles:   tt.fields.ResolvedFiles,
+			}
+			gotDefaultDetectLineResponse, gotLines := d.checkResolvedFile(tt.args.line, tt.args.str1, tt.args.st2, 0)
 
-			d, _ = d.DetectCurrentLine(tt.args.str1, tt.args.str2, 0, tt.args.lines)
-
-			if d.CurrentLine != tt.want.defaultDetectLineResponse.CurrentLine {
-				t.Errorf("DetectCurrentLine() = %v, want %v", d.CurrentLine, tt.want.defaultDetectLineResponse.CurrentLine)
+			if !reflect.DeepEqual(gotDefaultDetectLineResponse, tt.want.defaultDetectLineResponse) {
+				t.Errorf("checkResolvedFile() = %v, want %v", gotDefaultDetectLineResponse, tt.want.defaultDetectLineResponse)
+			}
+			if !reflect.DeepEqual(gotLines, tt.want.lines) {
+				t.Errorf("checkResolvedFile() = %v, want %v", gotLines, tt.want.lines)
 			}
 		})
 	}
-
 }

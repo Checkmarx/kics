@@ -1,8 +1,0 @@
-variables:
-  - name: environment
-    value: dev
-  - name: 'tokenPrefix'
-    value: '#{'
-  - name: tokenSuffix
-    value: "}#"
-  #- group: '$(Build.DefinitionName)-dev'

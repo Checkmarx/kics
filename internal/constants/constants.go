@@ -14,7 +14,7 @@ var (
 	SCMCommit = "NOCOMMIT"
 	// SentryDSN - sentry DSN, unset for disabling
 	SentryDSN = ""
-	// BaseURL - Descriptions endpoint URL
+	// BaseURL - CIS descriptions endpoint URL
 	BaseURL = ""
 	// APIScanner - API scanner feature switch
 	APIScanner = ""
