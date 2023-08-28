@@ -1,0 +1,11 @@
+{
+  "id": "1a690d1d-0ae7-49fa-b2db-b75ae0dd1d3e",
+  "queryName": "Aurora With Disabled at Rest Encryption",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Amazon Aurora does not have encryption for data at rest enabled. To prevent such a scenario, update the attribute 'StorageEncrypted' to 'true'.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#storage_encrypted",
+  "platform": "Terraform",
+  "descriptionID": "3e7eea78",
+  "cloudProvider": "aws"
+}

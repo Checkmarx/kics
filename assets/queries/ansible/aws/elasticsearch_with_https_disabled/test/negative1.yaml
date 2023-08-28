@@ -1,0 +1,42 @@
+- name: Create OpenSearch domain with dedicated masters
+  community.aws.opensearch:
+    domain_name: "my-domain"
+    engine_version: OpenSearch_1.1
+    cluster_config:
+      instance_type: "t2.small.search"
+      instance_count: 12
+      dedicated_master: true
+      zone_awareness: true
+      availability_zone_count: 2
+      dedicated_master_instance_type: "t2.small.search"
+      dedicated_master_instance_count: 3
+      warm_enabled: true
+      warm_type: "ultrawarm1.medium.search"
+      warm_count: 1
+      cold_storage_options:
+        enabled: false
+    domain_endpoint_options:
+      enforce_https: true
+    ebs_options:
+      ebs_enabled: true
+      volume_type: "io1"
+      volume_size: 10
+      iops: 1000
+    vpc_options:
+      subnets:
+        - "subnet-e537d64a"
+        - "subnet-e537d64b"
+      security_groups:
+        - "sg-dd2f13cb"
+        - "sg-dd2f13cc"
+    snapshot_options:
+      automated_snapshot_start_hour: 13
+    access_policies: "{{ lookup('file', 'policy.json') | from_json }}"
+    encryption_at_rest_options:
+      enabled: false
+    node_to_node_encryption_options:
+      enabled: false
+    tags:
+      Environment: Development
+      Application: Search
+    wait: true

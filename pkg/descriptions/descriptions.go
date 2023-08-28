@@ -10,7 +10,7 @@ var (
 	descClient HTTPDescription = &Client{}
 )
 
-// RequestAndOverrideDescriptions - Requests CIS descriptions and override default descriptions
+// RequestAndOverrideDescriptions - Requests descriptions and override default descriptions
 func RequestAndOverrideDescriptions(summary *model.Summary) error {
 	descriptionIDs := make([]string, 0)
 	for idx := range summary.Queries {
@@ -41,7 +41,7 @@ func RequestAndOverrideDescriptions(summary *model.Summary) error {
 		summary.Queries[idx].CISBenchmarkVersion = descriptionMap[descriptionID].BenchmarkVersion
 
 		summary.Queries[idx].CISDescriptionIDFormatted = fmt.Sprintf(
-			"CIS Security - %s v%s - Rule %s",
+			"Security - %s v%s - Rule %s",
 			descriptionMap[descriptionID].BenchmarkName,
 			descriptionMap[descriptionID].BenchmarkVersion,
 			descriptionMap[descriptionID].DescriptionID,

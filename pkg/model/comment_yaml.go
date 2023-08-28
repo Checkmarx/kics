@@ -121,7 +121,7 @@ func processRegularLine(comment string, content *yaml.Node, position int, isFoot
 	}
 
 	line := content.Content[position].Line
-	commentsNumber := strings.Count(comment, "#") // number of comments (coverage of nested comments)
+	commentsNumber := strings.Count(comment, "\n") + 1 // number of comments (coverage of nested comments)
 
 	if isFooter { // comment is a foot comment
 		return getFootComments(comment, content, position, commentsNumber)

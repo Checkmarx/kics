@@ -21,11 +21,12 @@ type gitlabSASTReport struct {
 }
 
 type gitlabSASTScan struct {
-	StartTime string            `json:"start_time"`
-	EndTime   string            `json:"end_time"`
-	Status    string            `json:"status"`
-	Scantype  string            `json:"type"`
-	Scanner   gitlabSASTScanner `json:"scanner"`
+	Analyzer  gitlabSASTAnalyzer `json:"analyzer"`
+	StartTime string             `json:"start_time"`
+	EndTime   string             `json:"end_time"`
+	Status    string             `json:"status"`
+	Scantype  string             `json:"type"`
+	Scanner   gitlabSASTScanner  `json:"scanner"`
 }
 
 type gitlabSASTScanner struct {
@@ -44,21 +45,12 @@ type gitlabSASTVulnerabilityDetails map[string]interface{}
 
 type gitlabSASTVulnerability struct {
 	ID          string                              `json:"id"`
-	Category    string                              `json:"category"`
 	Severity    string                              `json:"severity"`
-	CVE         string                              `json:"cve"`
-	Scanner     gitlabSASTVulnerabilityScanner      `json:"scanner"`
 	Name        string                              `json:"name"`
-	Message     string                              `json:"message"`
 	Links       []gitlabSASTVulnerabilityLink       `json:"links"`
 	Location    gitlabSASTVulnerabilityLocation     `json:"location"`
 	Identifiers []gitlabSASTVulnerabilityIdentifier `json:"identifiers"`
 	Details     gitlabSASTVulnerabilityDetails      `json:"details,omitempty"`
-}
-
-type gitlabSASTVulnerabilityScanner struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
 }
 
 type gitlabSASTVulnerabilityLink struct {
@@ -78,16 +70,23 @@ type gitlabSASTVulnerabilityIdentifier struct {
 	Value          string `json:"value"`
 }
 
+type gitlabSASTAnalyzer struct {
+	ID      string                  `json:"id"`
+	Name    string                  `json:"name"`
+	Version string                  `json:"version"`
+	Vendor  gitlabSASTScannerVendor `json:"vendor"`
+}
+
 // GitlabSASTReport represents a usable gitlab sast report reference
 type GitlabSASTReport interface {
 	BuildGitlabSASTVulnerability(issue *model.QueryResult, file *model.VulnerableFile)
 }
 
-// NewGitlabSASTReport initializes a new instance of GitlabSASTReport to be uses
+// NewGitlabSASTReport initializes a new instance of GitlabSASTReport to be used
 func NewGitlabSASTReport(start, end time.Time) GitlabSASTReport {
 	return &gitlabSASTReport{
-		Schema:          "https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v14.1.0/dist/sast-report-format.json",
-		SchemaVersion:   "14.0.1",
+		Schema:          "https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v15.0.6/dist/sast-report-format.json",
+		SchemaVersion:   "15.0.6",
 		Scan:            initGitlabSASTScan(start, end),
 		Vulnerabilities: make([]gitlabSASTVulnerability, 0),
 	}
@@ -95,6 +94,14 @@ func NewGitlabSASTReport(start, end time.Time) GitlabSASTReport {
 
 func initGitlabSASTScan(start, end time.Time) gitlabSASTScan {
 	return gitlabSASTScan{
+		Analyzer: gitlabSASTAnalyzer{
+			ID:      "keeping-infrastructure-as-code-secure",
+			Name:    constants.Fullname,
+			Version: constants.Version,
+			Vendor: gitlabSASTScannerVendor{
+				Name: "Checkmarx",
+			},
+		},
 		Status:    "success",
 		Scantype:  "sast",
 		StartTime: start.Format(timeFormat),
@@ -116,15 +123,8 @@ func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryRes
 	if len(issue.Files) > 0 {
 		vulnerability := gitlabSASTVulnerability{
 			ID:       file.SimilarityID,
-			Category: "sast",
 			Severity: cases.Title(language.Und).String(strings.ToLower(string(issue.Severity))),
-			CVE:      file.SimilarityID,
-			Scanner: gitlabSASTVulnerabilityScanner{
-				ID:   "keeping_infrastructure_as_code_secure",
-				Name: constants.Fullname,
-			},
-			Name:    issue.QueryName,
-			Message: issue.Description,
+			Name:     issue.QueryName,
 			Links: []gitlabSASTVulnerabilityLink{
 				{
 					URL: issue.QueryURI,
@@ -145,7 +145,6 @@ func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryRes
 			},
 		}
 		if issue.CISDescriptionID != "" {
-			vulnerability.Message = issue.CISDescriptionTextFormatted
 			vulnerability.Details = gitlabSASTVulnerabilityDetails{
 				"cisTitle": issue.CISDescriptionTitle,
 				"cisId":    issue.CISDescriptionIDFormatted,

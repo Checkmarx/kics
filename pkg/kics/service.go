@@ -43,6 +43,7 @@ type Tracker interface {
 	TrackFileParse()
 	TrackFileFoundCountLines(countLines int)
 	TrackFileParseCountLines(countLines int)
+	TrackFileIgnoreCountLines(countLines int)
 }
 
 // Service is a struct that contains a SourceProvider to receive sources, a storage to save and retrieve scanning informations

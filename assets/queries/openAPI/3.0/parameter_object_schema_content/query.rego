@@ -7,7 +7,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
 	params := doc.paths[name].parameters[n]
-	not common_lib.valid_key(params, "$ref")
+	not common_lib.valid_key(params, "RefMetadata")
 
 	not check_params(params)
 
@@ -24,7 +24,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
 	params := doc.paths[name][oper].parameters[n]
-	not common_lib.valid_key(params, "$ref")
+	not common_lib.valid_key(params, "RefMetadata")
 
 	not check_params(params)
 
@@ -41,7 +41,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
 	params := doc.components.parameters[n]
-	not common_lib.valid_key(params, "$ref")
+	not common_lib.valid_key(params, "RefMetadata")
 
 	not check_params(params)
 

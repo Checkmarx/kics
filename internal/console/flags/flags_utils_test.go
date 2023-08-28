@@ -54,6 +54,26 @@ func TestFlags_ValidateQuerySelectionFlags(t *testing.T) {
 	require.Error(t, got)
 }
 
+func TestFlags_ValidateTypeSelectionFlags(t *testing.T) {
+	//Default behavior
+	flagsMultiStrReferences[TypeFlag] = &[]string{""}
+	flagsMultiStrReferences[ExcludeTypeFlag] = &[]string{""}
+	got := ValidateTypeSelectionFlags()
+	require.NoError(t, got)
+
+	multiFlag := []string{"test", "kics"}
+	flagsMultiStrReferences[TypeFlag] = &multiFlag
+	flagsMultiStrReferences[ExcludeTypeFlag] = &multiFlag
+
+	got = ValidateTypeSelectionFlags()
+	require.Error(t, got)
+
+	flagsMultiStrReferences[ExcludeTypeFlag] = &[]string{""}
+
+	got = ValidateTypeSelectionFlags()
+	require.NoError(t, got)
+}
+
 func TestFlags_BindFlags(t *testing.T) {
 	mockCmd := &cobra.Command{
 		Use:   "mock",

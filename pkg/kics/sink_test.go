@@ -2,6 +2,7 @@ package kics
 
 import (
 	"encoding/json"
+	"regexp"
 	"testing"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -118,6 +119,25 @@ func TestKics_prepareDocument(t *testing.T) {
 
 			got := PrepareScanDocument(interf, tt.args.kind)
 			compareJSONLine(t, got, tt.want)
+		})
+	}
+}
+
+func TestKics_resolveCRLFFile(t *testing.T) {
+	tests := []struct {
+		name string
+		body string
+	}{
+		{
+			name: "CRLF File 1",
+			body: "Resources:\r\nDemoSecurityGroup:\r\nType: 'AWS::EC2::SecurityGroup'\r\nProperties:\r\nVpcId: !Ref myVPC\r\nGroupDescription: Ports open to the world\r\nSecurityGroupIngress:\r\n- Description: Allowing port 22 for everyone\r\nIpProtocol: tcp\r\nFromPort: 22\r\nToPort: 22\r\nCidrIp: \"0.0.0.0/0\"\r\n# kics-scan ignore-block\r\n- Description: Allowing port 80 for everyone\r\nIpProtocol: tcp\r\nFromPort: 80\r\nToPort: 80\r\nCidrIp: \"0.0.0.0/0\"",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			resolved := resolveCRLFFile([]byte(tt.body))
+			require.NotRegexp(t, regexp.MustCompile("[\r\n]"), resolved, tt.name+" is matching with [\\r\\n] regexp")
 		})
 	}
 }

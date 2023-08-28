@@ -30,6 +30,7 @@ func Test_GetSummary(t *testing.T) {
 				FoundFiles:         1,
 				FoundCountLines:    1,
 				ParsedCountLines:   1,
+				IgnoreCountLines:   0,
 				ParsedFiles:        1,
 				LoadedQueries:      2,
 				ExecutingQueries:   1,
@@ -41,7 +42,6 @@ func Test_GetSummary(t *testing.T) {
 				},
 			},
 			scanParameters: Parameters{
-				DisableCISDesc:  false,
 				DisableFullDesc: false,
 			},
 			results: []model.Vulnerability{
