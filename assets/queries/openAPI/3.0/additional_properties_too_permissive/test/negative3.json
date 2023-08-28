@@ -20,66 +20,8 @@
                 "type": "string"
               }
             }
-          ],
-          "responses": {
-            "2XX": {
-              "description": "",
-              "headers": {
-                "content-type": {
-                  "description": "Word",
-                  "schema": {
-                    "pattern": "[a-z0-9-]+",
-                    "type": "string"
-                  }
-                },
-                "date": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      }
-                    },
-                    "additionalProperties": "true"
-                  }
-                }
-              }
-            },
-            "default": {
-              "description": ""
-            }
-          }
+          ]
         }
-      },
-      "/api/backgrounds/1": {
-        "get": {
-          "description": "Swagger auto-generated from learnt schema",
-          "responses": {
-            "2XX": {
-              "description": ""
-            },
-            "default": {
-              "description": ""
-            }
-          }
-        }
-      },
-      "/api/backgrounds/10": {
-        "get": {
-          "description": "Swagger auto-generated from learnt schema",
-          "responses": {
-            "2XX": {
-              "description": ""
-            },
-            "default": {
-              "description": ""
-            }
-          }
-        }
-      }
     },
     "servers": [
       {
@@ -90,3 +32,4 @@
       }
     ]
   }
+}
