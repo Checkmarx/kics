@@ -22,11 +22,11 @@ import (
 // Source is the path to the queries
 // Types are the types given by the flag --type for query selection mechanism
 type FilesystemSource struct {
-	Source               []string
-	Types                []string
-	CloudProviders       []string
-	Library              string
-	ExperimentalFeatures string
+	Source              []string
+	Types               []string
+	CloudProviders      []string
+	Library             string
+	ExperimentalQueries string
 }
 
 const (
@@ -45,7 +45,7 @@ const (
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
-func NewFilesystemSource(source, types, cloudProviders []string, libraryPath string, experimentalFeaturesPath string) *FilesystemSource {
+func NewFilesystemSource(source, types, cloudProviders []string, libraryPath string, experimentalQueriesPath string) *FilesystemSource {
 	log.Debug().Msg("source.NewFilesystemSource()")
 
 	if len(types) == 0 {
@@ -61,11 +61,11 @@ func NewFilesystemSource(source, types, cloudProviders []string, libraryPath str
 	}
 
 	return &FilesystemSource{
-		Source:               source,
-		Types:                types,
-		CloudProviders:       cloudProviders,
-		Library:              filepath.FromSlash(libraryPath),
-		ExperimentalFeatures: experimentalFeaturesPath,
+		Source:              source,
+		Types:               types,
+		CloudProviders:      cloudProviders,
+		Library:             filepath.FromSlash(libraryPath),
+		ExperimentalQueries: experimentalQueriesPath,
 	}
 }
 
@@ -249,9 +249,9 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 	experimentalQueriesPaths := make([]string, 0)
 	var err error
 
-	if s.ExperimentalFeatures != "" {
+	if s.ExperimentalQueries != "" {
 
-		experimentalQueriesFile, err := os.Open(s.ExperimentalFeatures)
+		experimentalQueriesFile, err := os.Open(s.ExperimentalQueries)
 		if err != nil {
 			return queries, nil
 		}
@@ -276,14 +276,16 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 				}
 
 				querypathDir := filepath.Dir(p)
-				absQueriesPath, err := filepath.Abs("./assets/queries")
-				if err == nil {
+				absQueryPathDir, err1 := filepath.Abs(querypathDir)
+				absQueriesPath, err2 := filepath.Abs(source)
+				if err1 == nil && err2 == nil {
 					var cleanPlatformCloudProviderDir string
-					cleanPlatformCloudProviderDir, err = filepath.Rel(absQueriesPath, querypathDir)
+					cleanPlatformCloudProviderDir, err = filepath.Rel(absQueriesPath, absQueryPathDir)
 					if err == nil {
-						cleanPlatformCloudProviderDir = filepath.ToSlash(cleanPlatformCloudProviderDir)
+						cleanPlatformCloudProviderDir = filepath.FromSlash(cleanPlatformCloudProviderDir)
 						inExperimentalQueriesJSON := false
 						for _, queryPath := range experimentalQueriesPaths {
+							queryPath := filepath.FromSlash(queryPath)
 							if strings.Contains(querypathDir, queryPath) {
 								inExperimentalQueriesJSON = true
 								break
@@ -292,6 +294,7 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 
 						inExperimentalQueriesFlag := false
 						for _, experimentalFlag := range queryParameters.ExperimentalQueries {
+							experimentalFlag := filepath.FromSlash(experimentalFlag)
 							if strings.HasPrefix(cleanPlatformCloudProviderDir, experimentalFlag) {
 								inExperimentalQueriesFlag = true
 								break
