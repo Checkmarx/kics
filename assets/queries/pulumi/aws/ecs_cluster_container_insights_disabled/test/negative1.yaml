@@ -1,0 +1,7 @@
+resources:
+  foo:
+    type: aws:ecs:Cluster
+    properties:
+      settings:
+        - name: containerInsights
+          value: enabled
