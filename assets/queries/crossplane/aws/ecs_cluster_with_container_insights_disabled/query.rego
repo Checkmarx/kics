@@ -31,7 +31,7 @@ CxPolicy[result] {
 	resource.kind == "Cluster"
 	forProvider := resource.spec.forProvider
 
-	not container_insights(forProvider)
+	not container_insights(forProvider.settings)
 
 	result := {
 		"documentId": input.document[i].id,
