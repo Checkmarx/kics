@@ -75,3 +75,30 @@ When the flag `--include-queries` is not used, the Password and Secrets query is
 If you want to use your own rules, you can point the path through the flag `--secrets-regexes-path`. KICS is prepared for two cases:
 - only the use of the user's rule (through the flag `--secrets-regexes-path`)
 - the use of the user's rules plus all KICS rules (through the flag `--secrets-regexes-path` and `--include-queries`, which should point to the Passwords and Secrets query ID)
+
+#### Entropies
+
+The password and secret regex queries utilize an object array called `entropies` to reduce the false positive rate. This
+array contains information about the entropy of the strings that are being searched.
+
+```json
+{
+    "id": "3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99",
+    "name": "Generic Secret",
+    "regex": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-]{10,})['\"]?",
+    "entropies": [
+        {
+            "group": 3,
+            "min": 2.8,
+            "max": 8
+        }
+    ]
+}
+```
+
+The `entropies` array contains information about the minimum and maximum entropy values that are expected for a
+particular group of characters in the regex pattern. Entropy is a measure of the randomness or unpredictability of a
+string or set of strings, and is calculated using the Shannon formula. It takes into
+account the frequency of occurrence of each character in the string, and the total length of the string. For every given
+entropy, the result of the regex group should be between the maximum and minimum values specified in the `entropies`
+array.

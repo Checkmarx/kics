@@ -8,7 +8,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 
-	ref := value.schema["$ref"]
+	ref := value.schema["RefMetadata"]["$ref"]
 	openapi_lib.incorrect_ref(ref, "schemas")
 
 	result := {

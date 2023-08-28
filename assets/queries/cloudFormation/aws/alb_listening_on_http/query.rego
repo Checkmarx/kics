@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties.Protocol", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.Protocol=HTTP", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Protocol' should not equal to 'HTTP'", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Protocol' equals to 'HTTP'", [name]),

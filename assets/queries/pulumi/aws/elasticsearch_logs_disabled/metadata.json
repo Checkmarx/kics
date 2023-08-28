@@ -1,0 +1,11 @@
+{
+  "id": "a1120ee4-a712-42d9-8fb5-22595fed643b",
+  "queryName": "Elasticsearch Logs Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "AWS Elasticsearch should have logs enabled",
+  "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/elasticsearch/domain/#logpublishingoptions_yaml",
+  "platform": "Pulumi",
+  "descriptionID": "55b7425d",
+  "cloudProvider": "aws"
+}

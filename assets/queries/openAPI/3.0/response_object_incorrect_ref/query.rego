@@ -8,7 +8,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 
-	ref := value.responses[code]["$ref"]
+	ref := value.responses[code]["RefMetadata"]["$ref"]
 	path[minus(count(path), 1)] != "components"
 	openapi_lib.incorrect_ref(ref, "responses")
 

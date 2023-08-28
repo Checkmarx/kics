@@ -17,6 +17,7 @@ var validMultiStrEnums = map[string]map[string]string{
 	FailOnFlag:            convertSliceToDummyMap(constants.AvailableSeverities),
 	ReportFormatsFlag:     convertSliceToDummyMap(append([]string{"all"}, helpers.ListReportFormats()...)),
 	TypeFlag:              constants.AvailablePlatforms,
+	ExcludeTypeFlag:       constants.AvailablePlatforms,
 }
 
 func sliceFlagsShouldNotStartWithFlags(flagName string) error {

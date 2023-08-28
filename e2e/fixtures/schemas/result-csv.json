@@ -135,7 +135,7 @@
             },
             "SearchLine": {
                 "type": "integer",
-                "minimum": 0
+                "minimum": -1
             },
             "SearchValue": {
                 "type": "string"

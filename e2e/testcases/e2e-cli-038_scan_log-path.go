@@ -18,9 +18,13 @@ func init() { //nolint
 				LogFile: "E2E_CLI_038_LOG",
 				ValidationFunc: func(logText string) bool {
 					match1, _ := regexp.MatchString("Scanning with Keeping Infrastructure as Code Secure", logText)
-					match2, _ := regexp.MatchString(`Files scanned: \d+`, logText)
-					match3, _ := regexp.MatchString(`Queries loaded: \d+`, logText)
-					return match1 && match2 && match3
+					match2, _ := regexp.MatchString(`Parsed Files: \d+`, logText)
+					match3, _ := regexp.MatchString(`Scanned Lines: \d+`, logText)
+					match4, _ := regexp.MatchString(`Parsed Lines: \d+`, logText)
+					match5, _ := regexp.MatchString(`Ignored Lines: \d+`, logText)
+					match6, _ := regexp.MatchString(`Queries loaded: \d+`, logText)
+					match7, _ := regexp.MatchString(`Queries failed to execute: \d+`, logText)
+					return match1 && match2 && match3 && match4 && match5 && match6 && match7
 				},
 			},
 		},

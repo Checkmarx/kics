@@ -1,0 +1,11 @@
+{
+  "id": "579a0727-9c29-4d58-8195-fc5802a8bdb4",
+  "queryName": "Shielded GKE Nodes Disabled",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "GKE cluster nodes must be launched with Shielded VM enabled, which means the attribute 'enable_shielded_nodes' must be set to 'true'.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#enable_shielded_nodes",
+  "descriptionID": "579a0727",
+  "platform": "Terraform",
+  "cloudProvider": "gcp"
+}

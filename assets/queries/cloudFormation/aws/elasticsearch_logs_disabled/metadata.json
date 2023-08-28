@@ -1,0 +1,11 @@
+{
+  "id": "edbd62d4-8700-41de-b000-b3cfebb5e996",
+  "queryName": "Elasticsearch Logs Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "AWS Elasticsearch should have logs enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-logpublishingoptions",
+  "platform": "CloudFormation",
+  "descriptionID": "e2451952",
+  "cloudProvider": "aws"
+}
