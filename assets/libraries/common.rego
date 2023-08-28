@@ -326,13 +326,13 @@ check_selector(filter, value, op, name) {
 }
 
 find_selector_by_value(filter, str) = rtn {
-	[_, fvalue] := walk(filter)
+	[fpath, fvalue] := walk(filter)
 	trim(fvalue._value, "\"") == str
 	rtn := fvalue
 } else {
-	[_, fvalue] := walk(filter)
+	[fpath, fvalue] := walk(filter)
 	trim(fvalue._value, "'") == str
-	rtn = fvalue
+	rtn := fvalue
 }
 
 get_tag_name_if_exists(resource) = name {

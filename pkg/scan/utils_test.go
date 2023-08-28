@@ -169,7 +169,7 @@ func Test_GetTotalFiles(t *testing.T) {
 		{
 			name:           "count utils folder files",
 			paths:          []string{filepath.Join("..", "..", "pkg", "utils")},
-			expectedOutput: 16,
+			expectedOutput: 14,
 		},
 		{
 			name:           "count progress folder files",
@@ -179,7 +179,7 @@ func Test_GetTotalFiles(t *testing.T) {
 		{
 			name:           "count progress and utils folder files",
 			paths:          []string{filepath.Join("..", "..", "pkg", "progress"), filepath.Join("..", "..", "pkg", "utils")},
-			expectedOutput: 22,
+			expectedOutput: 20,
 		},
 		{
 			name:           "count invalid folder",
@@ -550,7 +550,6 @@ func Test_AnalyzePaths(t *testing.T) {
 					filepath.Join("..", "..", "assets", "queries", "terraform", "alicloud", "actiontrail_trail_oss_bucket_is_publicly_accessible"),
 				},
 				Types:             []string{""},
-				ExcludeTypes:      []string{""},
 				Exc:               []string{},
 				GitIgnoreFileName: ".gitignore",
 				ExcludeGitIgnore:  false,

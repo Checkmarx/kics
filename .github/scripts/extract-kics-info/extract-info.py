@@ -214,8 +214,7 @@ class Categories:
                           sort_keys=True, indent=4)
 
 
-root = 'assets'
-queriesRoot = root + "/queries"
+root = 'assets/queries'
 pattern = "metadata.json"
 
 queries = Queries()
@@ -226,22 +225,15 @@ platforms = Platforms()
 
 
 def getFramworks():
-    frameworksList = next(os.walk(queriesRoot))[1]
+    frameworksList = next(os.walk(root))[1]
     frameworksList.remove('common')
     return frameworksList
 
 
 def loadQueriesData():
-    for path, _, files in os.walk(root):
-        assetsFolderPath = os.path.join(exportFolderPath,path)
+    for path, subdirs, files in os.walk(root):
         for name in files:
-            lastPath = os.path.basename(os.path.normpath(assetsFolderPath))
-            if not (lastPath == "test" or lastPath == ".git"):
-                os.makedirs(assetsFolderPath, exist_ok=True)
-                with open(os.path.join(assetsFolderPath,name), "w") as outfile:
-                    file = open(os.path.join(path, name))
-                    outfile.write(file.read())
-            if fnmatch(name, pattern) and os.path.join("assets","queries") in assetsFolderPath: # make sure it is a metadata.json from the queries folder
+            if fnmatch(name, pattern):
                 file = open(os.path.join(path, name))
                 data = json.load(file)
                 file.close()
@@ -278,10 +270,6 @@ def exportData():
         archive.write(exportFolderPath+"severities.json",
                       arcname="severities.json")
         archive.write(exportFolderPath+"queries.json", arcname="queries.json")
-        for dirname, _, files in os.walk(os.path.join(exportFolderPath,"assets")):
-            archive.write(os.path.relpath(dirname,exportFolderPath))
-            for filename in files:
-                archive.write(os.path.join(os.path.relpath(dirname,exportFolderPath), filename))
 
 
 if __name__ == "__main__":

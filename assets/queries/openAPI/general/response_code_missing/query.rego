@@ -20,10 +20,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s response should be set", [wantedResponses]),
 		"keyActualValue": sprintf("%s response is undefined", [wantedResponses]),
-		"searchValue": sprintf("%s", [wantedResponses]),
 		"overrideKey": version,
-		"searchValue": sprintf("%s response", [wantedResponses]),
-		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"],[]),
 	}
 }
 
@@ -44,8 +41,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "415 response should be set",
 		"keyActualValue": "415 response is undefined",
 		"overrideKey": version,
-		"searchValue": "415 response",
-		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"],[]),
 	}
 }
 
@@ -66,8 +61,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "404 response should be set",
 		"keyActualValue": "404 response is undefined",
 		"overrideKey": version,
-		"searchValue": "404 response",
-		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"],[]),
 	}
 }
 
@@ -87,8 +80,6 @@ CxPolicy[result] {
 		"keyExpectedValue": "200 response should be set",
 		"keyActualValue": "200 response is undefined",
 		"overrideKey": version,
-		"searchValue": "200 response",
-		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"],[]),
 	}
 }
 
@@ -109,9 +100,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s response should be set when security field is defined", [wantedResponses]),
 		"keyActualValue": sprintf("%s response is undefined when security field is defined", [wantedResponses]),
-		"searchValue": sprintf("%s", [wantedResponses]),
 		"overrideKey": version,
-		"searchValue": sprintf("%s response", [wantedResponses]),
-		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"],[]),
 	}
 }

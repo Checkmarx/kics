@@ -7,8 +7,6 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/utils"
-
 	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/gookit/color"
@@ -102,7 +100,7 @@ func WordWrap(s, indentation string, limit int) string {
 }
 
 // PrintResult prints on output the summary results
-func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer, usingCustomQueries bool) error {
+func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer) error {
 	log.Debug().Msg("helpers.PrintResult()")
 	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
 	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
@@ -113,7 +111,6 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		fmt.Printf("\t- %s:\n", queryName)
 		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", wordWrapCount))
 	}
-
 	fmt.Printf("------------------------------------\n\n")
 	for index := range summary.Queries {
 		idx := len(summary.Queries) - index - 1
@@ -129,30 +126,13 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		)
 		if !printer.minimal {
 			if summary.Queries[idx].CISDescriptionID != "" {
-				fmt.Printf("%s %s\n", printer.Bold("Description ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
+				fmt.Printf("%s %s\n", printer.Bold("CIS ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
 				fmt.Printf("%s %s\n", printer.Bold("Title:"), summary.Queries[idx].CISDescriptionTitle)
 				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].CISDescriptionTextFormatted)
 			} else {
 				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
 			}
-			fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
-
-			queryCloudProvider := summary.Queries[idx].CloudProvider
-			if queryCloudProvider != "" {
-				queryCloudProvider = strings.ToLower(queryCloudProvider) + "/"
-			}
-
-			// checks if should print queries URL DOCS based on the use of custom queries and invalid ids
-			if !usingCustomQueries {
-				if validQueryID(summary.Queries[idx].QueryID) {
-					fmt.Printf("%s %s\n\n",
-						printer.Bold("Learn more about this vulnerability:"),
-						fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s%s",
-							strings.ToLower(summary.Queries[idx].Platform),
-							queryCloudProvider,
-							summary.Queries[idx].QueryID))
-				}
-			}
+			fmt.Printf("%s %s\n\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
 		}
 		printFiles(&summary.Queries[idx], printer)
 	}
@@ -163,11 +143,10 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	printSeverityCounter(model.SeverityInfo, summary.SeveritySummary.SeverityCounters[model.SeverityInfo], printer.Info)
 	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
 
-	log.Info().Msgf("Scanned Files: %d", summary.ScannedFiles)
-	log.Info().Msgf("Parsed Files: %d", summary.ParsedFiles)
-	log.Info().Msgf("Scanned Lines: %d", summary.ScannedFilesLines)
-	log.Info().Msgf("Parsed Lines: %d", summary.ParsedFilesLines)
-	log.Info().Msgf("Ignored Lines: %d", summary.IgnoredFilesLines)
+	log.Info().Msgf("Files scanned: %d", summary.ScannedFiles)
+	log.Info().Msgf("Lines scanned: %d", summary.ScannedFilesLines)
+	log.Info().Msgf("Parsed files: %d", summary.ParsedFiles)
+	log.Info().Msgf("Lines parsed: %d", summary.ParsedFilesLines)
 	log.Info().Msgf("Queries loaded: %d", summary.TotalQueries)
 	log.Info().Msgf("Queries failed to execute: %d", summary.FailedToExecuteQueries)
 	log.Info().Msg("Inspector stopped")
@@ -293,13 +272,4 @@ func (p *Printer) PrintBySev(content, sev string) string {
 // Bold returns the output in a bold format
 func (p *Printer) Bold(content string) string {
 	return color.Bold.Sprintf(content)
-}
-
-func validQueryID(queryID string) bool {
-	if queryID == "" {
-		return false
-	} else if queryID != "" {
-		return utils.ValidateUUID(queryID)
-	}
-	return true
 }

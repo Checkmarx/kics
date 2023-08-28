@@ -4,19 +4,19 @@ go 1.20
 
 require (
 	code.cloudfoundry.org/bytefmt v0.0.0-20211005130812-5bb3c17173e5
-	github.com/BurntSushi/toml v1.3.2
+	github.com/BurntSushi/toml v1.2.1
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr/v4 v4.0.0-20221202181307-76fa05c21b12
-	github.com/aws/aws-sdk-go v1.44.295
+	github.com/aws/aws-sdk-go v1.44.227
 	github.com/cheggaaa/pb/v3 v3.1.2
-	github.com/emicklei/proto v1.11.2
+	github.com/emicklei/proto v1.11.1
 	github.com/getsentry/sentry-go v0.20.0
 	github.com/gocarina/gocsv v0.0.0-20220310154401-d4df709ca055
 	github.com/golang/mock v1.6.0
 	github.com/google/pprof v0.0.0-20210720184732-4bb14d4b1be1
 	github.com/google/uuid v1.3.0
-	github.com/gookit/color v1.5.3
+	github.com/gookit/color v1.5.2
 	github.com/hashicorp/go-getter v1.7.1
 	github.com/hashicorp/hcl v1.0.0
 	github.com/hashicorp/hcl/v2 v2.16.2
@@ -29,7 +29,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.29.0
 	github.com/sosedoff/ansible-vault-go v0.1.1
-	github.com/spf13/cobra v1.7.0
+	github.com/spf13/cobra v1.6.1
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.15.0
 	github.com/stretchr/testify v1.8.2
@@ -82,7 +82,7 @@ require (
 	github.com/cyphar/filepath-securejoin v0.2.3 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/docker/cli v20.10.21+incompatible // indirect
-	github.com/docker/distribution v2.8.2+incompatible // indirect
+	github.com/docker/distribution v2.8.1+incompatible // indirect
 	github.com/docker/docker v20.10.24+incompatible // indirect
 	github.com/docker/docker-credential-helpers v0.7.0 // indirect
 	github.com/docker/go-connections v0.4.0 // indirect
@@ -118,7 +118,7 @@ require (
 	github.com/hashicorp/go-version v1.6.0 // indirect
 	github.com/huandu/xstrings v1.4.0 // indirect
 	github.com/imdario/mergo v0.3.13 // indirect
-	github.com/inconshreveable/mousetrap v1.1.0 // indirect
+	github.com/inconshreveable/mousetrap v1.0.1 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/jmoiron/sqlx v1.3.5 // indirect
 	github.com/josharian/intern v1.0.0 // indirect

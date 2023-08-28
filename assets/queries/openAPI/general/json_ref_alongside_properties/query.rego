@@ -9,7 +9,8 @@ CxPolicy[result] {
 	version != "undefined"
 
 	[path, value] := walk(doc)
-	value["RefMetadata"]["alone"] == false
+	common_lib.valid_key(value, "$ref")
+	count(value) > 1
 
 	result := {
 		"documentId": doc.id,

@@ -1,8 +1,0 @@
-[
-  {
-    "queryName": "Shielded GKE Nodes Disabled",
-    "severity": "MEDIUM",
-    "line": 4,
-    "fileName": "positive.tf"
-  }
-]

@@ -110,13 +110,13 @@ func updateReportFormats() {
 func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool) *scan.Parameters {
 	scanParams := scan.Parameters{
 		CloudProvider:               flags.GetMultiStrFlag(flags.CloudProviderFlag),
+		DisableCISDesc:              flags.GetBoolFlag(flags.DisableCISDescFlag),
 		DisableFullDesc:             flags.GetBoolFlag(flags.DisableFullDescFlag),
 		ExcludeCategories:           flags.GetMultiStrFlag(flags.ExcludeCategoriesFlag),
 		ExcludePaths:                flags.GetMultiStrFlag(flags.ExcludePathsFlag),
 		ExcludeQueries:              flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),
 		ExcludeResults:              flags.GetMultiStrFlag(flags.ExcludeResultsFlag),
 		ExcludeSeverities:           flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag),
-		ExperimentalQueries:         flags.GetMultiStrFlag(flags.ExperimentalQueriesFlag),
 		IncludeQueries:              flags.GetMultiStrFlag(flags.IncludeQueriesFlag),
 		InputData:                   flags.GetStrFlag(flags.InputDataFlag),
 		OutputName:                  flags.GetStrFlag(flags.OutputNameFlag),
@@ -128,8 +128,6 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		LibrariesPath:               flags.GetStrFlag(flags.LibrariesPath),
 		ReportFormats:               flags.GetMultiStrFlag(flags.ReportFormatsFlag),
 		Platform:                    flags.GetMultiStrFlag(flags.TypeFlag),
-		ExcludePlatform:             flags.GetMultiStrFlag(flags.ExcludeTypeFlag),
-		TerraformVarsPath:           flags.GetStrFlag(flags.TerraformVarsPathFlag),
 		QueryExecTimeout:            flags.GetIntFlag(flags.QueryExecTimeoutFlag),
 		LineInfoPayload:             flags.GetBoolFlag(flags.LineInfoPayloadFlag),
 		DisableSecrets:              flags.GetBoolFlag(flags.DisableSecretsFlag),

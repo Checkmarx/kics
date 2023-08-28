@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "KMS Key With Vulnerable Policy",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "KMS Key With Vulnerable Policy",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "KMS Key With Vulnerable Policy",
+    "severity": "HIGH",
+    "line": 1,
+    "fileName": "positive3.tf"
+  }
+]

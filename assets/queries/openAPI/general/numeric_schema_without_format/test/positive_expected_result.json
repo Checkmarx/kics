@@ -8,12 +8,6 @@
   {
     "queryName": "Numeric Schema Without Format (v3)",
     "severity": "MEDIUM",
-    "line": 75,
-    "filename": "positive1.json"
-  },
-  {
-    "queryName": "Numeric Schema Without Format (v3)",
-    "severity": "MEDIUM",
     "line": 27,
     "filename": "positive2.json"
   },
@@ -21,12 +15,6 @@
     "queryName": "Numeric Schema Without Format (v3)",
     "severity": "MEDIUM",
     "line": 34,
-    "filename": "positive3.yaml"
-  },
-  {
-    "queryName": "Numeric Schema Without Format (v3)",
-    "severity": "MEDIUM",
-    "line": 46,
     "filename": "positive3.yaml"
   },
   {
