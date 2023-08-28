@@ -211,6 +211,7 @@ Bellow are listed queries related with Terraform KUBERNETES:
 |Secrets As Environment Variables<br/><sup><sub>6d8f1a10-b6cd-48f0-b960-f7c535d5cdb8</sub></sup>|<span style="color:#CC0">Low</span>|Secret Management|Container should not use secrets as environment variables (<a href="../terraform-queries/6d8f1a10-b6cd-48f0-b960-f7c535d5cdb8" target="_blank">read more</a>)|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#secret_key_ref">Documentation</a><br/>|
 |Invalid Image<br/><sup><sub>e76cca7c-c3f9-4fc9-884c-b2831168ebd8</sub></sup>|<span style="color:#CC0">Low</span>|Supply-Chain|Image must be defined and not be empty or equal to latest. (<a href="../terraform-queries/e76cca7c-c3f9-4fc9-884c-b2831168ebd8" target="_blank">read more</a>)|<a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image">Documentation</a><br/>|
 
+
 ### GCP_BOM
 Bellow are listed queries related with Terraform GCP_BOM:
 
