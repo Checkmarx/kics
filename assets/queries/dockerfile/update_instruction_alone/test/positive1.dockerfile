@@ -1,6 +1,5 @@
-FROM ubuntu:18.04
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends mysql-client \
-    && rm -rf /var/lib/apt/lists/*
+FROM alpine:latest
 RUN apk update
-ENTRYPOINT ["mysql"]
+RUN apk add nginx
+
+CMD ["nginx", "-g", "daemon off;"]

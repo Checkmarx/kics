@@ -34,11 +34,5 @@
     "severity": "MEDIUM",
     "line": 3,
     "fileName": "positive6.dockerfile"
-  },
-  {
-    "queryName": "Update Instruction Alone",
-    "severity": "MEDIUM",
-    "line": 3,
-    "fileName": "positive7.dockerfile"
   }
 ]
