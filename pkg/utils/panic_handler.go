@@ -6,9 +6,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func HandlePanic(errMessage string) {
-	if r := recover(); r != nil {
-		err := fmt.Errorf("panic: %v", r)
-		log.Err(err).Msg(errMessage)
-	}
+func HandlePanic(r any, errMessage string) {
+	err := fmt.Errorf("panic: %v", r)
+	log.Err(err).Msg(errMessage)
 }

@@ -145,8 +145,10 @@ func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) {
 	jproto := newJSONProto()
 	// handle panic during conversion process
 	defer func() {
-		errMessage := "Recovered from panic during conversion of JSONProto " + file.PackageName
-		utils.HandlePanic(errMessage)
+		if r := recover(); r != nil {
+			errMessage := "Recovered from panic during conversion of JSONProto " + file.PackageName
+			utils.HandlePanic(r, errMessage)
+		}
 	}()
 	messageLines := make(map[string]model.LineObject)
 	enumLines := make(map[string]model.LineObject)

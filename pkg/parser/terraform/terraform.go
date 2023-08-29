@@ -49,8 +49,10 @@ func NewDefaultWithVarsPath(terraformVarsPath string) *Parser {
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
 	// handle panic during resolve process
 	defer func() {
-		errMessage := "Recovered from panic during resolve of file " + filename
-		masterUtils.HandlePanic(errMessage)
+		if r := recover(); r != nil {
+			errMessage := "Recovered from panic during resolve of file " + filename
+			masterUtils.HandlePanic(r, errMessage)
+		}
 	}()
 	getInputVariables(filepath.Dir(filename), string(fileContent), p.terraformVarsPath)
 	getDataSourcePolicy(filepath.Dir(filename))
@@ -85,6 +87,15 @@ func processElements(elements model.Document, path string) {
 
 func processResources(doc model.Document, path string) error {
 	var resourcesElements model.Document
+
+	defer func() {
+		if r := recover(); r != nil {
+			errMessage := "Recovered from panic during process of resources in file " + path
+			masterUtils.HandlePanic(r, errMessage)
+
+		}
+	}()
+
 	for _, resources := range doc { // iterate over resources
 		resourcesElements = resources.(model.Document)
 		for _, v2 := range resourcesElements { // resource name
@@ -104,8 +115,10 @@ func processResources(doc model.Document, path string) error {
 func addExtraInfo(json []model.Document, path string) ([]model.Document, error) {
 	// handle panic during resource processing
 	defer func() {
-		errMessage := "Recovered from panic during resource processing for file " + path
-		masterUtils.HandlePanic(errMessage)
+		if r := recover(); r != nil {
+			errMessage := "Recovered from panic during resource processing for file " + path
+			masterUtils.HandlePanic(r, errMessage)
+		}
 	}()
 	for _, documents := range json { // iterate over documents
 		if resources, ok := documents["resource"].(model.Document); ok {

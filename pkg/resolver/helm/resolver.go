@@ -35,8 +35,10 @@ const (
 func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
 	// handle panic during resolve process
 	defer func() {
-		errMessage := "Recovered from panic during resolve of file " + filePath
-		masterUtils.HandlePanic(errMessage)
+		if r := recover(); r != nil {
+			errMessage := "Recovered from panic during resolve of file " + filePath
+			masterUtils.HandlePanic(r, errMessage)
+		}
 	}()
 	splits, excluded, err := renderHelm(filePath)
 	if err != nil { // return error to be logged
