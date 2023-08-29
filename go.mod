@@ -225,5 +225,4 @@ replace (
 	github.com/moby/buildkit => github.com/moby/buildkit v0.10.4
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
-	gopkg.in/jarcoal/httpmock.v1 => github.com/jarcoal/httpmock v1.0.5
 )
