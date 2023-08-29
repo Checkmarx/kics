@@ -131,6 +131,9 @@ func GetSources(source []string) (ExtractedPath, error) {
 
 		getterDst, err := getPaths(&goGetter)
 		if err != nil {
+			if ignoreDamagedFiles(path) {
+				continue
+			}
 			log.Error().Msgf("%s", err)
 			return ExtractedPath{}, err
 		}
