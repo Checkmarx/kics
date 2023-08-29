@@ -181,7 +181,7 @@
 				
 				<option value="file62">github.com/Checkmarx/kics/pkg/parser/docker/parser.go (95.7%)</option>
 				
-				<option value="file63">github.com/Checkmarx/kics/pkg/parser/grpc/converter/converter.go (87.4%)</option>
+				<option value="file63">github.com/Checkmarx/kics/pkg/parser/grpc/converter/converter.go (86.6%)</option>
 				
 				<option value="file64">github.com/Checkmarx/kics/pkg/parser/grpc/parser.go (85.7%)</option>
 				
@@ -199,7 +199,7 @@
 				
 				<option value="file71">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (76.8%)</option>
 				
-				<option value="file72">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (77.8%)</option>
+				<option value="file72">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (73.8%)</option>
 				
 				<option value="file73">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (85.3%)</option>
 				
@@ -271,7 +271,7 @@
 				
 				<option value="file107">github.com/Checkmarx/kics/pkg/resolver/helm/helm.go (88.5%)</option>
 				
-				<option value="file108">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (85.7%)</option>
+				<option value="file108">github.com/Checkmarx/kics/pkg/resolver/helm/resolver.go (84.0%)</option>
 				
 				<option value="file109">github.com/Checkmarx/kics/pkg/resolver/resolver.go (90.5%)</option>
 				
@@ -301,13 +301,15 @@
 				
 				<option value="file122">github.com/Checkmarx/kics/pkg/utils/map.go (100.0%)</option>
 				
-				<option value="file123">github.com/Checkmarx/kics/pkg/utils/random.go (100.0%)</option>
+				<option value="file123">github.com/Checkmarx/kics/pkg/utils/panic_handler.go (0.0%)</option>
 				
-				<option value="file124">github.com/Checkmarx/kics/pkg/utils/split_lines.go (100.0%)</option>
+				<option value="file124">github.com/Checkmarx/kics/pkg/utils/random.go (100.0%)</option>
 				
-				<option value="file125">github.com/Checkmarx/kics/pkg/utils/validations.go (100.0%)</option>
+				<option value="file125">github.com/Checkmarx/kics/pkg/utils/split_lines.go (100.0%)</option>
 				
-				<option value="file126">github.com/Checkmarx/kics/test/helpers.go (37.5%)</option>
+				<option value="file126">github.com/Checkmarx/kics/pkg/utils/validations.go (100.0%)</option>
+				
+				<option value="file127">github.com/Checkmarx/kics/test/helpers.go (37.5%)</option>
 				
 				</select>
 			</div>
@@ -2341,13 +2343,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="26">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="28">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="26">total += v
+                <span class="cov8" title="28">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2372,7 +2374,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov6" title="13">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -11183,6 +11185,7 @@ import (
         "strings"
 
         "github.com/Checkmarx/kics/pkg/model"
+        "github.com/Checkmarx/kics/pkg/utils"
         "github.com/emicklei/proto"
 )
 
@@ -11321,8 +11324,14 @@ func newJSONProto() *JSONProto <span class="cov5" title="6">{
 // Convert converts a proto file to a JSONProto struct
 func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) <span class="cov4" title="5">{
         jproto := newJSONProto()
-
-        messageLines := make(map[string]model.LineObject)
+        // handle panic during conversion process
+        defer func() </span><span class="cov4" title="5">{
+                if r := recover(); r != nil </span><span class="cov0" title="0">{
+                        errMessage := "Recovered from panic during conversion of JSONProto " + file.PackageName
+                        utils.HandlePanic(r, errMessage)
+                }</span>
+        }()
+        <span class="cov4" title="5">messageLines := make(map[string]model.LineObject)
         enumLines := make(map[string]model.LineObject)
         serviceLines := make(map[string]model.LineObject)
         importLines := make(map[string]model.LineObject)
@@ -13653,6 +13662,7 @@ import (
         "github.com/Checkmarx/kics/pkg/parser/terraform/comment"
         "github.com/Checkmarx/kics/pkg/parser/terraform/converter"
         "github.com/Checkmarx/kics/pkg/parser/utils"
+        masterUtils "github.com/Checkmarx/kics/pkg/utils"
         "github.com/hashicorp/hcl/v2"
         "github.com/hashicorp/hcl/v2/hclsyntax"
         "github.com/pkg/errors"
@@ -13690,10 +13700,17 @@ func NewDefaultWithVarsPath(terraformVarsPath string) *Parser <span class="cov0"
 
 // Resolve - replace or modifies in-memory content before parsing
 func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) <span class="cov1" title="1">{
-        getInputVariables(filepath.Dir(filename), string(fileContent), p.terraformVarsPath)
+        // handle panic during resolve process
+        defer func() </span><span class="cov1" title="1">{
+                if r := recover(); r != nil </span><span class="cov0" title="0">{
+                        errMessage := "Recovered from panic during resolve of file " + filename
+                        masterUtils.HandlePanic(r, errMessage)
+                }</span>
+        }()
+        <span class="cov1" title="1">getInputVariables(filepath.Dir(filename), string(fileContent), p.terraformVarsPath)
         getDataSourcePolicy(filepath.Dir(filename))
-        return fileContent, nil
-}</span>
+        return fileContent, nil</span>
+}
 
 func processContent(elements model.Document, content, path string) <span class="cov1" title="1">{
         var certInfo map[string]interface{}
@@ -13737,7 +13754,15 @@ func processResourcesElements(resourcesElements model.Document, path string) err
 
 func processResources(doc model.Document, path string) error <span class="cov4" title="3">{
         var resourcesElements model.Document
-        for _, resources := range doc </span><span class="cov4" title="3">{
+
+        defer func() </span><span class="cov4" title="3">{
+                if r := recover(); r != nil </span><span class="cov0" title="0">{
+                        errMessage := "Recovered from panic during process of resources in file " + path
+                        masterUtils.HandlePanic(r, errMessage)
+                }</span>
+        }()
+
+        <span class="cov4" title="3">for _, resources := range doc </span><span class="cov4" title="3">{
                 switch t := resources.(type) </span>{
                 case []interface{}:<span class="cov1" title="1"> // support the case of nameless resources - where we get a list of resources
                         for _, value := range t </span><span class="cov2" title="2">{
@@ -13760,7 +13785,14 @@ func processResources(doc model.Document, path string) error <span class="cov4" 
 }
 
 func addExtraInfo(json []model.Document, path string) ([]model.Document, error) <span class="cov4" title="4">{
-        for _, documents := range json </span><span class="cov4" title="4">{ // iterate over documents
+        // handle panic during resource processing
+        defer func() </span><span class="cov4" title="4">{
+                if r := recover(); r != nil </span><span class="cov0" title="0">{
+                        errMessage := "Recovered from panic during resource processing for file " + path
+                        masterUtils.HandlePanic(r, errMessage)
+                }</span>
+        }()
+        <span class="cov4" title="4">for _, documents := range json </span><span class="cov4" title="4">{ // iterate over documents
                 if resources, ok := documents["resource"].(model.Document); ok </span><span class="cov4" title="3">{
                         err := processResources(resources, path)
                         if err != nil </span><span class="cov0" title="0">{
@@ -18072,7 +18104,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
         defer func() </span><span class="cov5" title="10">{
                 if r := recover(); r != nil </span><span class="cov0" title="0">{
                         err := fmt.Errorf("panic: %v", r)
-                        log.Err(err).Msg("Recovered from panic during file resolve")
+                        log.Err(err).Msg("Recovered from panic during resolve of file " + path)
                 }</span>
         }()
 
@@ -18713,6 +18745,7 @@ import (
         "strings"
 
         "github.com/Checkmarx/kics/pkg/model"
+        masterUtils "github.com/Checkmarx/kics/pkg/utils"
         "github.com/pkg/errors"
         "helm.sh/helm/v3/pkg/chart"
         "helm.sh/helm/v3/pkg/cli/values"
@@ -18738,7 +18771,14 @@ const (
 
 // Resolve will render the passed helm chart and return its content ready for parsing
 func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) <span class="cov3" title="3">{
-        splits, excluded, err := renderHelm(filePath)
+        // handle panic during resolve process
+        defer func() </span><span class="cov3" title="3">{
+                if r := recover(); r != nil </span><span class="cov0" title="0">{
+                        errMessage := "Recovered from panic during resolve of file " + filePath
+                        masterUtils.HandlePanic(r, errMessage)
+                }</span>
+        }()
+        <span class="cov3" title="3">splits, excluded, err := renderHelm(filePath)
         if err != nil </span><span class="cov1" title="1">{ // return error to be logged
                 return model.ResolvedFiles{}, errors.New("failed to render helm chart")
         }</span>
@@ -19915,16 +19955,16 @@ func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) <s
 func getTotalFiles(paths []string) int <span class="cov4" title="4">{
         files := 0
         for _, path := range paths </span><span class="cov4" title="5">{
-                if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov10" title="53">{
+                if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov10" title="55">{
                         if err != nil </span><span class="cov1" title="1">{
                                 return err
                         }</span>
 
-                        <span class="cov9" title="52">if !info.IsDir() </span><span class="cov9" title="44">{
+                        <span class="cov9" title="54">if !info.IsDir() </span><span class="cov9" title="46">{
                                 files++
                         }</span>
 
-                        <span class="cov9" title="52">return nil</span>
+                        <span class="cov9" title="54">return nil</span>
                 }); err != nil <span class="cov1" title="1">{
                         log.Error().Msgf("failed to walk path %s: %s", path, err)
                 }</span>
@@ -20441,6 +20481,20 @@ func MergeMaps(map1, map2 map[string]interface{}) <span class="cov1" title="1">{
 		<pre class="file" id="file123" style="display: none">package utils
 
 import (
+        "fmt"
+
+        "github.com/rs/zerolog/log"
+)
+
+func HandlePanic(r any, errMessage string) <span class="cov0" title="0">{
+        err := fmt.Errorf("panic: %v", r)
+        log.Err(err).Msg(errMessage)
+}</span>
+</pre>
+		
+		<pre class="file" id="file124" style="display: none">package utils
+
+import (
         "os"
         "strconv"
         "sync"
@@ -20473,7 +20527,7 @@ func NextRandom() string <span class="cov10" title="2">{
 // ==============================================================================
 </pre>
 		
-		<pre class="file" id="file124" style="display: none">package utils
+		<pre class="file" id="file125" style="display: none">package utils
 
 import "strings"
 
@@ -20486,7 +20540,7 @@ func SplitLines(content string) *[]string <span class="cov8" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file125" style="display: none">// Package utils contains various utility functions to use in other packages
+		<pre class="file" id="file126" style="display: none">// Package utils contains various utility functions to use in other packages
 package utils
 
 import "regexp"
@@ -20501,7 +20555,7 @@ func ValidateUUID(id string) bool <span class="cov10" title="4">{
 }
 </pre>
 		
-		<pre class="file" id="file126" style="display: none">package test
+		<pre class="file" id="file127" style="display: none">package test
 
 import (
         "bytes"
