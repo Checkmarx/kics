@@ -127,9 +127,9 @@
 				
 				<option value="file35">github.com/Checkmarx/kics/pkg/engine/inspector.go (80.9%)</option>
 				
-				<option value="file36">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (72.9%)</option>
+				<option value="file36">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (73.5%)</option>
 				
-				<option value="file37">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (71.8%)</option>
+				<option value="file37">github.com/Checkmarx/kics/pkg/engine/provider/filesystem.go (80.8%)</option>
 				
 				<option value="file38">github.com/Checkmarx/kics/pkg/engine/secrets/inspector.go (82.4%)</option>
 				
@@ -283,7 +283,7 @@
 				
 				<option value="file113">github.com/Checkmarx/kics/pkg/scan/scan.go (16.3%)</option>
 				
-				<option value="file114">github.com/Checkmarx/kics/pkg/scan/utils.go (71.5%)</option>
+				<option value="file114">github.com/Checkmarx/kics/pkg/scan/utils.go (70.5%)</option>
 				
 				<option value="file115">github.com/Checkmarx/kics/pkg/scanner/scanner.go (56.4%)</option>
 				
@@ -2341,13 +2341,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="28">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="27">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="28">total += v
+                <span class="cov8" title="27">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2372,7 +2372,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4864,7 +4864,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -5073,7 +5073,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5905,12 +5905,12 @@ func GetKuberneterSources(ctx context.Context, source []string, destinationPath 
 // GetSources goes through the source slice, and determines the of source type (ex: zip, git, local).
 // It than extracts the files to be scanned. If the source given is not local, a temp dir
 // will be created where the files will be stored.
-func GetSources(source []string) (ExtractedPath, error) <span class="cov10" title="5">{
+func GetSources(source []string) (ExtractedPath, error) <span class="cov10" title="6">{
         extrStruct := ExtractedPath{
                 Path:          []string{},
                 ExtractionMap: make(map[string]model.ExtractedPathObject),
         }
-        for _, path := range source </span><span class="cov10" title="5">{
+        for _, path := range source </span><span class="cov10" title="6">{
                 destination := filepath.Join(os.TempDir(), "kics-extract-"+utils.NextRandom())
 
                 mode := getter.ClientModeAny
@@ -5920,7 +5920,7 @@ func GetSources(source []string) (ExtractedPath, error) <span class="cov10" titl
                         log.Fatal().Msgf("Error getting wd: %s", err)
                 }</span>
 
-                <span class="cov10" title="5">opts := []getter.ClientOption{}
+                <span class="cov10" title="6">opts := []getter.ClientOption{}
 
                 opts = append(opts, getter.WithInsecure())
 
@@ -5937,11 +5937,14 @@ func GetSources(source []string) (ExtractedPath, error) <span class="cov10" titl
                 }
 
                 getterDst, err := getPaths(&amp;goGetter)
-                if err != nil </span><span class="cov4" title="2">{
-                        log.Error().Msgf("%s", err)
-                        return ExtractedPath{}, err
-                }</span>
-                <span class="cov7" title="3">tempDst, local := checkSymLink(getterDst, path)
+                if err != nil </span><span class="cov6" title="3">{
+                        if ignoreDamagedFiles(path) </span><span class="cov1" title="1">{
+                                continue</span>
+                        }
+                        <span class="cov4" title="2">log.Error().Msgf("%s", err)
+                        return ExtractedPath{}, err</span>
+                }
+                <span class="cov6" title="3">tempDst, local := checkSymLink(getterDst, path)
 
                 extrStruct.ExtractionMap[getterDst] = model.ExtractedPathObject{
                         Path:      path,
@@ -5951,10 +5954,10 @@ func GetSources(source []string) (ExtractedPath, error) <span class="cov10" titl
                 extrStruct.Path = append(extrStruct.Path, tempDst)</span>
         }
 
-        <span class="cov7" title="3">return extrStruct, nil</span>
+        <span class="cov7" title="4">return extrStruct, nil</span>
 }
 
-func getPaths(g *getterStruct) (string, error) <span class="cov10" title="5">{
+func getPaths(g *getterStruct) (string, error) <span class="cov10" title="6">{
         if isEncrypted(g.source) </span><span class="cov1" title="1">{
                 err := errors.New("zip encrypted files are not supported")
                 log.Err(err)
@@ -5962,7 +5965,7 @@ func getPaths(g *getterStruct) (string, error) <span class="cov10" title="5">{
         }</span>
 
         // Build the client
-        <span class="cov8" title="4">client := &amp;getter.Client{
+        <span class="cov9" title="5">client := &amp;getter.Client{
                 Ctx:     g.ctx,
                 Src:     g.source,
                 Dst:     g.destination,
@@ -5974,15 +5977,15 @@ func getPaths(g *getterStruct) (string, error) <span class="cov10" title="5">{
         wg := sync.WaitGroup{}
         wg.Add(1)
         errChan := make(chan error, channelLength)
-        go func() </span><span class="cov8" title="4">{
+        go func() </span><span class="cov9" title="5">{
                 defer wg.Done()
                 defer g.cancel()
-                if err := client.Get(); err != nil </span><span class="cov1" title="1">{
+                if err := client.Get(); err != nil </span><span class="cov4" title="2">{
                         errChan &lt;- err
                 }</span>
         }()
 
-        <span class="cov8" title="4">c := make(chan os.Signal, channelLength)
+        <span class="cov9" title="5">c := make(chan os.Signal, channelLength)
         signal.Notify(c, os.Interrupt)
 
         select </span>{
@@ -5990,30 +5993,30 @@ func getPaths(g *getterStruct) (string, error) <span class="cov10" title="5">{
                 signal.Reset(os.Interrupt)
                 g.cancel()
                 wg.Wait()</span>
-        case &lt;-g.ctx.Done():<span class="cov7" title="3">
+        case &lt;-g.ctx.Done():<span class="cov6" title="3">
                 wg.Wait()</span>
-        case err := &lt;-errChan:<span class="cov1" title="1">
+        case err := &lt;-errChan:<span class="cov4" title="2">
                 wg.Wait()
                 return "", err</span>
         }
 
-        <span class="cov7" title="3">return g.destination, nil</span>
+        <span class="cov6" title="3">return g.destination, nil</span>
 }
 
 // check if the dst is a symbolic link
-func checkSymLink(getterDst, pathFile string) (string, bool) <span class="cov7" title="3">{
+func checkSymLink(getterDst, pathFile string) (string, bool) <span class="cov6" title="3">{
         var local bool
         _, err := os.Stat(pathFile)
-        if err == nil </span><span class="cov7" title="3">{ // check if file exist locally
+        if err == nil </span><span class="cov6" title="3">{ // check if file exist locally
                 local = true
         }</span>
 
-        <span class="cov7" title="3">info, err := os.Lstat(getterDst)
+        <span class="cov6" title="3">info, err := os.Lstat(getterDst)
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("failed lstat for %s: %v", getterDst, err)
         }</span>
 
-        <span class="cov7" title="3">fileInfo := getFileInfo(info, getterDst, pathFile)
+        <span class="cov6" title="3">fileInfo := getFileInfo(info, getterDst, pathFile)
 
         if info.Mode()&amp;os.ModeSymlink != 0 </span><span class="cov4" title="2">{ // if it's a symbolic Link
                 path, err := os.Readlink(getterDst) // get location of symbolic Link
@@ -6026,10 +6029,10 @@ func checkSymLink(getterDst, pathFile string) (string, bool) <span class="cov7" 
                         getterDst = pathFile
                 }</span>
         }
-        <span class="cov7" title="3">return getterDst, local</span>
+        <span class="cov6" title="3">return getterDst, local</span>
 }
 
-func getFileInfo(info fs.FileInfo, dst, pathFile string) fs.FileInfo <span class="cov7" title="3">{
+func getFileInfo(info fs.FileInfo, dst, pathFile string) fs.FileInfo <span class="cov6" title="3">{
         var extension = filepath.Ext(pathFile)
         var path string
         if extension == "" </span><span class="cov4" title="2">{
@@ -6037,15 +6040,15 @@ func getFileInfo(info fs.FileInfo, dst, pathFile string) fs.FileInfo <span class
         }</span> else<span class="cov1" title="1"> {
                 path = filepath.Join(dst, filepath.Base(pathFile)) // for directories
         }</span>
-        <span class="cov7" title="3">fileInfo, err := os.Lstat(path)
-        if err != nil </span><span class="cov7" title="3">{
+        <span class="cov6" title="3">fileInfo, err := os.Lstat(path)
+        if err != nil </span><span class="cov6" title="3">{
                 fileInfo = info
         }</span>
-        <span class="cov7" title="3">return fileInfo</span>
+        <span class="cov6" title="3">return fileInfo</span>
 }
 
-func isEncrypted(sourceFile string) bool <span class="cov10" title="5">{
-        if filepath.Ext(sourceFile) != ".zip" </span><span class="cov7" title="3">{
+func isEncrypted(sourceFile string) bool <span class="cov10" title="6">{
+        if filepath.Ext(sourceFile) != ".zip" </span><span class="cov7" title="4">{
                 return false
         }</span>
         <span class="cov4" title="2">zipFile, err := zip.OpenReader(sourceFile)
@@ -6054,7 +6057,7 @@ func isEncrypted(sourceFile string) bool <span class="cov10" title="5">{
                 return false
         }</span>
         <span class="cov4" title="2">defer zipFile.Close()
-        for _, file := range zipFile.File </span><span class="cov7" title="3">{
+        for _, file := range zipFile.File </span><span class="cov6" title="3">{
                 if file.IsEncrypted() </span><span class="cov1" title="1">{
                         log.Error().Msgf("file %s is encrypted", sourceFile)
                         return true
@@ -6069,10 +6072,12 @@ func isEncrypted(sourceFile string) bool <span class="cov10" title="5">{
 import (
         "context"
         "fmt"
+        ioFs "io/fs"
         "os"
         "path/filepath"
         "strings"
         "sync"
+        "syscall"
 
         sentryReport "github.com/Checkmarx/kics/internal/sentry"
         "github.com/Checkmarx/kics/pkg/model"
@@ -6119,11 +6124,16 @@ func NewFileSystemSourceProvider(paths, excludes []string) (*FileSystemSourcePro
 }
 
 // AddExcluded add new excluded files to the File System Source Provider
-func (s *FileSystemSourceProvider) AddExcluded(excludePaths []string) error <span class="cov2" title="4">{
-        for _, excludePath := range excludePaths </span><span class="cov1" title="3">{
+func (s *FileSystemSourceProvider) AddExcluded(excludePaths []string) error <span class="cov2" title="5">{
+        for _, excludePath := range excludePaths </span><span class="cov2" title="4">{
                 info, err := os.Stat(excludePath)
-                if err != nil </span><span class="cov1" title="2">{
+                if err != nil </span><span class="cov1" title="3">{
                         if os.IsNotExist(err) </span><span class="cov1" title="2">{
+                                continue</span>
+                        }
+                        <span class="cov1" title="1">if sysErr, ok := err.(*ioFs.PathError); ok </span><span class="cov1" title="1">{
+                                log.Warn().Msgf("Failed getting file info for file '%s', Skipping due to: %s, Error number: %d",
+                                        excludePath, sysErr, sysErr.Err.(syscall.Errno))
                                 continue</span>
                         }
                         <span class="cov0" title="0">return errors.Wrap(err, "failed to open excluded file")</span>
@@ -6135,7 +6145,7 @@ func (s *FileSystemSourceProvider) AddExcluded(excludePaths []string) error <spa
                 <span class="cov1" title="1">s.excludes[info.Name()] = append(s.excludes[info.Name()], info)
                 s.mu.Unlock()</span>
         }
-        <span class="cov2" title="4">return nil</span>
+        <span class="cov2" title="5">return nil</span>
 }
 
 // GetExcludePaths gets all the files that should be excluded
@@ -6157,21 +6167,21 @@ func (s *FileSystemSourceProvider) GetBasePaths() []string <span class="cov1" ti
 }</span>
 
 // ignoreDamagedFiles checks whether we should ignore a damaged file from a scan or not.
-func ignoreDamagedFiles(path string) bool <span class="cov0" title="0">{
+func ignoreDamagedFiles(path string) bool <span class="cov1" title="3">{
         shouldIgnoreFile := false
         fileInfo, err := os.Lstat(path)
-        if err != nil </span><span class="cov0" title="0">{
+        if err != nil </span><span class="cov1" title="1">{
                 log.Warn().Msgf("Failed getting the file info for file '%s'", path)
                 return shouldIgnoreFile
         }</span>
-        <span class="cov0" title="0">log.Info().Msgf("No mode type bits are set( is a regular file ) for file '%s' : %t ", path, fileInfo.Mode().IsRegular())
+        <span class="cov1" title="2">log.Info().Msgf("No mode type bits are set( is a regular file ) for file '%s' : %t ", path, fileInfo.Mode().IsRegular())
 
-        if fileInfo.Mode()&amp;os.ModeSymlink == os.ModeSymlink </span><span class="cov0" title="0">{
+        if fileInfo.Mode()&amp;os.ModeSymlink == os.ModeSymlink </span><span class="cov1" title="1">{
                 log.Warn().Msgf("File '%s' is a symbolic link - but seems not to be accessible", path)
                 shouldIgnoreFile = true
         }</span>
 
-        <span class="cov0" title="0">return shouldIgnoreFile</span>
+        <span class="cov1" title="2">return shouldIgnoreFile</span>
 }
 
 // GetSources tries to open file or directory and execute sink function on it
@@ -19672,8 +19682,10 @@ func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.Extracted
         }</span>
 
         <span class="cov0" title="0">allPaths := combinePaths(terraformerExPaths, kuberneterExPaths, regularExPaths, queryExPaths, libExPaths)
-
-        log.Info().Msgf("Total files in the project: %d", getTotalFiles(allPaths.Path))
+        if len(allPaths.Path) == 0 </span><span class="cov0" title="0">{
+                return provider.ExtractedPath{}, nil
+        }</span>
+        <span class="cov0" title="0">log.Info().Msgf("Total files in the project: %d", getTotalFiles(allPaths.Path))
 
         a := &amp;analyzer.Analyzer{
                 Paths:             allPaths.Path,
