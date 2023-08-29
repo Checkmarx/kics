@@ -176,7 +176,7 @@ require (
 	github.com/tdewolff/parse/v2 v2.6.5 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.0 // indirect
-	github.com/ulikunitz/xz v0.5.10 // indirect
+	github.com/ulikunitz/xz v0.5.11 // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
 	github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415 // indirect
 	github.com/xlab/treeprint v1.1.0 // indirect
@@ -220,7 +220,7 @@ require (
 )
 
 replace (
-	github.com/containerd/containerd => github.com/containerd/containerd v1.6.12
+	github.com/containerd/containerd => github.com/containerd/containerd v1.6.18
 	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
 	github.com/moby/buildkit => github.com/moby/buildkit v0.10.4
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
