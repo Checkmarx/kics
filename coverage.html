@@ -199,7 +199,7 @@
 				
 				<option value="file71">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (76.8%)</option>
 				
-				<option value="file72">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (77.4%)</option>
+				<option value="file72">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (77.8%)</option>
 				
 				<option value="file73">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (85.3%)</option>
 				
@@ -2341,13 +2341,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="27">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="26">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="27">total += v
+                <span class="cov8" title="26">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2372,7 +2372,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -4864,7 +4864,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -13674,7 +13674,7 @@ type Parser struct {
 }
 
 // NewDefault initializes a parser with Parser default values
-func NewDefault() *Parser <span class="cov4" title="4">{
+func NewDefault() *Parser <span class="cov5" title="5">{
         return &amp;Parser{
                 numOfRetries: RetriesDefaultValue,
                 convertFunc:  converter.DefaultConverted,
@@ -13721,27 +13721,47 @@ func processElements(elements model.Document, path string) <span class="cov2" ti
         }
 }
 
-func processResources(doc model.Document, path string) error <span class="cov2" title="2">{
-        var resourcesElements model.Document
-        for _, resources := range doc </span><span class="cov2" title="2">{ // iterate over resources
-                resourcesElements = resources.(model.Document)
-                for _, v2 := range resourcesElements </span><span class="cov2" title="2">{ // resource name
-                        switch t := v2.(type) </span>{
-                        case []interface{}:<span class="cov0" title="0">
-                                return errors.New("failed to process resources")</span>
-                        case interface{}:<span class="cov2" title="2">
-                                if elements, ok := t.(model.Document); ok </span><span class="cov2" title="2">{
-                                        processElements(elements, path)
-                                }</span>
-                        }
+func processResourcesElements(resourcesElements model.Document, path string) error <span class="cov4" title="4">{
+        for _, v2 := range resourcesElements </span><span class="cov8" title="14">{
+                switch t := v2.(type) </span>{
+                case []interface{}:<span class="cov0" title="0">
+                        return errors.New("failed to process resources")</span>
+                case interface{}:<span class="cov8" title="14">
+                        if elements, ok := t.(model.Document); ok </span><span class="cov2" title="2">{
+                                processElements(elements, path)
+                        }</span>
                 }
         }
-        <span class="cov2" title="2">return nil</span>
+        <span class="cov4" title="4">return nil</span>
 }
 
-func addExtraInfo(json []model.Document, path string) ([]model.Document, error) <span class="cov4" title="3">{
-        for _, documents := range json </span><span class="cov4" title="3">{ // iterate over documents
-                if resources, ok := documents["resource"].(model.Document); ok </span><span class="cov2" title="2">{
+func processResources(doc model.Document, path string) error <span class="cov4" title="3">{
+        var resourcesElements model.Document
+        for _, resources := range doc </span><span class="cov4" title="3">{
+                switch t := resources.(type) </span>{
+                case []interface{}:<span class="cov1" title="1"> // support the case of nameless resources - where we get a list of resources
+                        for _, value := range t </span><span class="cov2" title="2">{
+                                resourcesElements = value.(model.Document)
+                                err := processResourcesElements(resourcesElements, path)
+                                if err != nil </span><span class="cov0" title="0">{
+                                        return err
+                                }</span>
+                        }
+
+                case interface{}:<span class="cov2" title="2">
+                        resourcesElements = t.(model.Document)
+                        err := processResourcesElements(resourcesElements, path)
+                        if err != nil </span><span class="cov0" title="0">{
+                                return err
+                        }</span>
+                }
+        }
+        <span class="cov4" title="3">return nil</span>
+}
+
+func addExtraInfo(json []model.Document, path string) ([]model.Document, error) <span class="cov4" title="4">{
+        for _, documents := range json </span><span class="cov4" title="4">{ // iterate over documents
+                if resources, ok := documents["resource"].(model.Document); ok </span><span class="cov4" title="3">{
                         err := processResources(resources, path)
                         if err != nil </span><span class="cov0" title="0">{
                                 return []model.Document{}, err
@@ -13749,7 +13769,7 @@ func addExtraInfo(json []model.Document, path string) ([]model.Document, error) 
                 }
         }
 
-        <span class="cov4" title="3">return json, nil</span>
+        <span class="cov4" title="4">return json, nil</span>
 }
 
 func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error) <span class="cov10" title="26">{
@@ -13767,19 +13787,19 @@ func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error)
 }
 
 // Parse execute parser for the content in a file
-func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, error) <span class="cov4" title="3">{
+func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, error) <span class="cov4" title="4">{
         file, diagnostics := hclsyntax.ParseConfig(content, filepath.Base(path), hcl.Pos{Byte: 0, Line: 1, Column: 1})
         if diagnostics != nil &amp;&amp; diagnostics.HasErrors() &amp;&amp; len(diagnostics.Errs()) &gt; 0 </span><span class="cov0" title="0">{
                 err := diagnostics.Errs()[0]
                 return nil, []int{}, err
         }</span>
 
-        <span class="cov4" title="3">ignore, err := comment.ParseComments(content, path)
+        <span class="cov4" title="4">ignore, err := comment.ParseComments(content, path)
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msg("failed to parse comments")
         }</span>
 
-        <span class="cov4" title="3">linesToIgnore := comment.GetIgnoreLines(ignore, file.Body.(*hclsyntax.Body))
+        <span class="cov4" title="4">linesToIgnore := comment.GetIgnoreLines(ignore, file.Body.(*hclsyntax.Body))
 
         fc, parseErr := p.convertFunc(file, inputVariableMap)
         json, err := addExtraInfo([]model.Document{fc}, path)
@@ -13787,7 +13807,7 @@ func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, er
                 return json, []int{}, errors.Wrap(err, "failed terraform parse")
         }</span>
 
-        <span class="cov4" title="3">return json, linesToIgnore, errors.Wrap(parseErr, "failed terraform parse")</span>
+        <span class="cov4" title="4">return json, linesToIgnore, errors.Wrap(parseErr, "failed terraform parse")</span>
 }
 
 // SupportedExtensions returns Terraform extensions
