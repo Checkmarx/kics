@@ -8,6 +8,7 @@ CxPolicy[result] {
 	resource := Resources[name]
 	ports := [20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389]
 
+	check_cidrip(resource.Properties)
 	check_security_groups_ingress(resource.Properties, ports)
 
 	result := {
@@ -19,6 +20,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("None of the Resources.%s.Properties.SecurityGroupIngress should have an exposed port", [name]),
 		"keyActualValue": sprintf("One of the Resources.%s.Properties.SecurityGroupIngress has a exposed port (20,21,22,23,115,137,138,2049,3389)", [name]),
 	}
+}
+
+check_cidrip(group) {
+	group.SecurityGroupIngress[_].CidrIp == "0.0.0.0/0"
 }
 
 check_security_groups_ingress(group, ports) {
