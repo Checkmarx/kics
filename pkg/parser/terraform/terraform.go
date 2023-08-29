@@ -108,7 +108,7 @@ func processResources(doc model.Document, path string) error {
 			masterUtils.HandlePanic(r, errMessage)
 		}
 	}()
-  
+
 	for _, resources := range doc {
 		switch t := resources.(type) {
 		case []interface{}: // support the case of nameless resources - where we get a list of resources
