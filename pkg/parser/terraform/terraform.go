@@ -92,7 +92,6 @@ func processResources(doc model.Document, path string) error {
 		if r := recover(); r != nil {
 			errMessage := "Recovered from panic during process of resources in file " + path
 			masterUtils.HandlePanic(r, errMessage)
-
 		}
 	}()
 
