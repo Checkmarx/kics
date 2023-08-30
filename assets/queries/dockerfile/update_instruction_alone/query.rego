@@ -98,10 +98,6 @@ pkg_installer := {
     "apt": ["install"],
 }
 
-exceptions := {
-	"apk": ["--update", "--update-cache", "-U"]
-}
-
 
 getRunCommand(resource) = commandRefactor {
 	resource.Cmd == "run"
@@ -111,17 +107,10 @@ getRunCommand(resource) = commandRefactor {
     commandRefactor := [x | x := commandList[_]; x != ""]
 }
 
-
 getDetail(commandRefactor, value) = list{
 	list := [u | commandRefactor[u] == value]
 }
 
 checkFollowedBy(first, after) {
 	first[_] < after[_]
-}
-
-checkException(nextPackageManager, nextCommandRefactor){
-	exp := exceptions[nextPackageManager]
-	l := [x | x := getDetail(nextCommandRefactor, exp[_]); count(x) > 0]
-	count(l) > 0	
 }
