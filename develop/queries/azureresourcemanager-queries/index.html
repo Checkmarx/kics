@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.3">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.5">
     
     
       
@@ -1888,11 +1888,25 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>Website with Client Certificate Auth Disabled<br/><sup><sub>92302b47-b0cc-46cb-a28f-5610ecda140b</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>'Microsoft.Web/sites' should have client certificate authentication enabled (<a href="../azureresourcemanager-queries/azure/92302b47-b0cc-46cb-a28f-5610ecda140b" target="_blank">read more</a>)</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Trusted Microsoft Services Not Enabled<br/><sup><sub>e25b56cd-a4d6-498f-ab92-e6296a082097</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
 <td>Trusted Microsoft Services should be enabled for Storage Account access (<a href="../azureresourcemanager-queries/azure/e25b56cd-a4d6-498f-ab92-e6296a082097" target="_blank">read more</a>)</td>
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#networkruleset">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Network Security Group With Unrestricted Access To RDP<br/><sup><sub>59cb3da7-f206-4ae6-b827-7abf0a9cab9d</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Networking and Firewall</td>
+<td>Port 3389 (Remote Desktop) is exposed to the Internet (<a href="../azureresourcemanager-queries/azure/59cb3da7-f206-4ae6-b827-7abf0a9cab9d" target="_blank">read more</a>)</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2020-07-01/networksecuritygroups?tabs=json#securityrulepropertiesformat-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Network Security Group With Unrestricted Access To SSH<br/><sup><sub>2ade1579-4b2c-4590-bebb-f99bf597f612</sub></sup></td>
@@ -1902,18 +1916,18 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2020-07-01/networksecuritygroups?tabs=json#securityrulepropertiesformat-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Website with Client Certificate Auth Disabled<br/><sup><sub>92302b47-b0cc-46cb-a28f-5610ecda140b</sub></sup></td>
+<td>MySQL Server SSL Enforcement Disabled<br/><sup><sub>90120147-f2e7-4fda-bb21-6fa9109afd63</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
-<td>'Microsoft.Web/sites' should have client certificate authentication enabled (<a href="../azureresourcemanager-queries/azure/92302b47-b0cc-46cb-a28f-5610ecda140b" target="_blank">read more</a>)</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object">Documentation</a><br/></td>
+<td>'Microsoft.DBforMySQL/servers' should enforce SSL (<a href="../azureresourcemanager-queries/azure/90120147-f2e7-4fda-bb21-6fa9109afd63" target="_blank">read more</a>)</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbformysql/servers?tabs=json#serverpropertiesforcreate-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Network Security Group With Unrestricted Access To RDP<br/><sup><sub>59cb3da7-f206-4ae6-b827-7abf0a9cab9d</sub></sup></td>
+<td>Storage Blob Service Container With Public Access<br/><sup><sub>a0ab985d-660b-41f7-ac81-70957ee8e627</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Networking and Firewall</td>
-<td>Port 3389 (Remote Desktop) is exposed to the Internet (<a href="../azureresourcemanager-queries/azure/59cb3da7-f206-4ae6-b827-7abf0a9cab9d" target="_blank">read more</a>)</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2020-07-01/networksecuritygroups?tabs=json#securityrulepropertiesformat-object">Documentation</a><br/></td>
+<td>Storage Blob Service Container should not publicly accessible (<a href="../azureresourcemanager-queries/azure/a0ab985d-660b-41f7-ac81-70957ee8e627" target="_blank">read more</a>)</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts/blobservices/containers?tabs=json#containerproperties-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>PostgreSQL Database Server SSL Disabled<br/><sup><sub>bf500309-da53-4dd3-bcf7-95f7974545a5</sub></sup></td>
@@ -1930,18 +1944,11 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/2014-04-01/servers/firewallrules?tabs=json">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Storage Blob Service Container With Public Access<br/><sup><sub>a0ab985d-660b-41f7-ac81-70957ee8e627</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Networking and Firewall</td>
-<td>Storage Blob Service Container should not publicly accessible (<a href="../azureresourcemanager-queries/azure/a0ab985d-660b-41f7-ac81-70957ee8e627" target="_blank">read more</a>)</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts/blobservices/containers?tabs=json#containerproperties-object">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>MySQL Server SSL Enforcement Disabled<br/><sup><sub>90120147-f2e7-4fda-bb21-6fa9109afd63</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Networking and Firewall</td>
-<td>'Microsoft.DBforMySQL/servers' should enforce SSL (<a href="../azureresourcemanager-queries/azure/90120147-f2e7-4fda-bb21-6fa9109afd63" target="_blank">read more</a>)</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbformysql/servers?tabs=json#serverpropertiesforcreate-object">Documentation</a><br/></td>
+<td>Role Definitions Allow Custom Subscription Role Creation<br/><sup><sub>8fa9ceea-881f-4ef0-b0b8-728f589699a7</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Role Definitions should not allow custom subscription role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write') (<a href="../azureresourcemanager-queries/azure/8fa9ceea-881f-4ef0-b0b8-728f589699a7" target="_blank">read more</a>)</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/roledefinitions?tabs=json#permission-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>AKS Cluster RBAC Disabled<br/><sup><sub>9307a2ed-35c2-413d-94de-a1a0682c2158</sub></sup></td>
@@ -1949,13 +1956,6 @@
 <td>Access Control</td>
 <td>Microsoft.ContainerService/managedClusters should have enableRBAC set to true (<a href="../azureresourcemanager-queries/azure/9307a2ed-35c2-413d-94de-a1a0682c2158" target="_blank">read more</a>)</td>
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Role Definitions Allow Custom Subscription Role Creation<br/><sup><sub>8fa9ceea-881f-4ef0-b0b8-728f589699a7</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Access Control</td>
-<td>Role Definitions should not allow custom subscription role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write') (<a href="../azureresourcemanager-queries/azure/8fa9ceea-881f-4ef0-b0b8-728f589699a7" target="_blank">read more</a>)</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/roledefinitions?tabs=json#permission-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Default Azure Storage Account Network Access Is Too Permissive<br/><sup><sub>d855ced8-6157-448f-9f1d-f05a41d046f7</sub></sup></td>
@@ -1986,11 +1986,11 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/2017-12-01/servers/configurations?tabs=json">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>PostgreSQL Database Server Log Connections Disabled<br/><sup><sub>e69bda39-e1e2-47ca-b9ee-b6531b23aedd</sub></sup></td>
+<td>PostgresSQL Database Server Connection Throttling Disabled<br/><sup><sub>a6d774b6-d9ea-4bf4-8433-217bf15d2fb8</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
-<td>Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' property set to 'on' (<a href="../azureresourcemanager-queries/azure/e69bda39-e1e2-47ca-b9ee-b6531b23aedd" target="_blank">read more</a>)</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/servers/configurations?tabs=json#configurationproperties-object">Documentation</a><br/></td>
+<td>Microsoft.DBforPostgreSQL/servers/configurations should have 'connection_throttling' property set to 'on' (<a href="../azureresourcemanager-queries/azure/a6d774b6-d9ea-4bf4-8433-217bf15d2fb8" target="_blank">read more</a>)</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/servers/configurations?tabs=json">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Standard Price Is Not Selected<br/><sup><sub>2081c7d6-2851-4cce-bda5-cb49d462da42</sub></sup></td>
@@ -2007,11 +2007,18 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#managedclusterapiserveraccessprofile-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>PostgresSQL Database Server Connection Throttling Disabled<br/><sup><sub>a6d774b6-d9ea-4bf4-8433-217bf15d2fb8</sub></sup></td>
+<td>PostgreSQL Database Server Log Connections Disabled<br/><sup><sub>e69bda39-e1e2-47ca-b9ee-b6531b23aedd</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Networking and Firewall</td>
-<td>Microsoft.DBforPostgreSQL/servers/configurations should have 'connection_throttling' property set to 'on' (<a href="../azureresourcemanager-queries/azure/a6d774b6-d9ea-4bf4-8433-217bf15d2fb8" target="_blank">read more</a>)</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/servers/configurations?tabs=json">Documentation</a><br/></td>
+<td>Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' property set to 'on' (<a href="../azureresourcemanager-queries/azure/e69bda39-e1e2-47ca-b9ee-b6531b23aedd" target="_blank">read more</a>)</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/servers/configurations?tabs=json#configurationproperties-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Log Profile Incorrect Category<br/><sup><sub>4d522e7b-f938-4d51-a3b1-974ada528bd3</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>Log Profile Categories should be set to 'Write', 'Delete', and/or 'Action' (<a href="../azureresourcemanager-queries/azure/4d522e7b-f938-4d51-a3b1-974ada528bd3" target="_blank">read more</a>)</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.insights/2016-03-01/logprofiles?tabs=json#logprofileproperties-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Unrecommended Network Watcher Flow Log Retention Policy<br/><sup><sub>564b70f8-41cd-4690-aff8-bb53add86bc9</sub></sup></td>
@@ -2019,6 +2026,13 @@
 <td>Observability</td>
 <td>Network Watcher Flow Log Retention Policy should be enabled and the recommended number of days for the retention should be higher than 90 (<a href="../azureresourcemanager-queries/azure/564b70f8-41cd-4690-aff8-bb53add86bc9" target="_blank">read more</a>)</td>
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2019-11-01/networkwatchers/flowlogs?tabs=json#retentionpolicyparameters-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>SQL Server Database With Unrecommended Retention Days<br/><sup><sub>c09cdac2-7670-458a-bf6c-efad6880973a</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>SQL Server Database Auditing Settings should keep the audit logs in the storage account for at least 90 days (<a href="../azureresourcemanager-queries/azure/c09cdac2-7670-458a-bf6c-efad6880973a" target="_blank">read more</a>)</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/auditingsettings?tabs=json">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>SQL Server Database Without Auditing<br/><sup><sub>e055285c-bc01-48b4-8aa5-8a54acdd29df</sub></sup></td>
@@ -2035,13 +2049,6 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.insights/2016-03-01/logprofiles?tabs=json#retentionpolicy-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>SQL Server Database With Unrecommended Retention Days<br/><sup><sub>c09cdac2-7670-458a-bf6c-efad6880973a</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Observability</td>
-<td>SQL Server Database Auditing Settings should keep the audit logs in the storage account for at least 90 days (<a href="../azureresourcemanager-queries/azure/c09cdac2-7670-458a-bf6c-efad6880973a" target="_blank">read more</a>)</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/auditingsettings?tabs=json">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>AKS Logging To Azure Monitoring Is Disabled<br/><sup><sub>9b09dee1-f09b-4013-91d2-158fa4695f4b</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
@@ -2056,13 +2063,6 @@
 <td><a href="https://docs.microsoft.com/pt-pt/azure/azure-monitor/essentials/resource-manager-diagnostic-settings#diagnostic-setting-for-azure-storage">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Log Profile Incorrect Category<br/><sup><sub>4d522e7b-f938-4d51-a3b1-974ada528bd3</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Observability</td>
-<td>Log Profile Categories should be set to 'Write', 'Delete', and/or 'Action' (<a href="../azureresourcemanager-queries/azure/4d522e7b-f938-4d51-a3b1-974ada528bd3" target="_blank">read more</a>)</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.insights/2016-03-01/logprofiles?tabs=json#logprofileproperties-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Hardcoded SecureString Parameter Default Value<br/><sup><sub>4d2cf896-c053-4be5-9c95-8b4771112f29</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Secret Management</td>
@@ -2074,7 +2074,7 @@
 <td><span style="color:#CC0">Low</span></td>
 <td>Access Control</td>
 <td>WebApp should have Azure Active Directory  enabled with 'identity.type' set to 'SystemAssigned' or 'userAssignedIdentities' set to 'true' (<a href="../azureresourcemanager-queries/azure/e9c133e5-c2dd-4b7b-8fff-40f2de367b56" target="_blank">read more</a>)</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.web/2019-08-01/sites?tabs=json#ManagedServiceIdentity">Documentation</a><br/></td>
+<td><a href="https://learn.microsoft.com/en-us/azure/templates/microsoft.web/sites?pivots=deployment-language-arm-template">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Phone Number Not Set For Security Contacts<br/><sup><sub>3e9fcc67-1f64-405f-b2f9-0a6be17598f0</sub></sup></td>
@@ -2112,18 +2112,18 @@
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites/config-web?tabs=json">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Account Admins Not Notified By Email<br/><sup><sub>a8852cc0-fd4b-4fc7-9372-1e43fad0732e</sub></sup></td>
-<td><span style="color:#00C">Info</span></td>
-<td>Best Practices</td>
-<td>Account admins should be notified by email in the event of security alerts (<a href="../azureresourcemanager-queries/azure/a8852cc0-fd4b-4fc7-9372-1e43fad0732e" target="_blank">read more</a>)</td>
-<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/2017-03-01-preview/servers/securityalertpolicies?tabs=json">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>SQL Alert Policy Without Emails<br/><sup><sub>89b79fe5-49bd-4d39-84ce-55f5fc6f7764</sub></sup></td>
 <td><span style="color:#00C">Info</span></td>
 <td>Best Practices</td>
 <td>SQL Database Server should contain emails to be notified in the event of a Security Alert (<a href="../azureresourcemanager-queries/azure/89b79fe5-49bd-4d39-84ce-55f5fc6f7764" target="_blank">read more</a>)</td>
 <td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/securityalertpolicies?tabs=json">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Account Admins Not Notified By Email<br/><sup><sub>a8852cc0-fd4b-4fc7-9372-1e43fad0732e</sub></sup></td>
+<td><span style="color:#00C">Info</span></td>
+<td>Best Practices</td>
+<td>Account admins should be notified by email in the event of security alerts (<a href="../azureresourcemanager-queries/azure/a8852cc0-fd4b-4fc7-9372-1e43fad0732e" target="_blank">read more</a>)</td>
+<td><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/2017-03-01-preview/servers/securityalertpolicies?tabs=json">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Email Notifications Disabled<br/><sup><sub>79c2c2c0-eb00-47c0-ac16-f8b0e2c81c92</sub></sup></td>

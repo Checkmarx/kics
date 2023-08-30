@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.3">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.5">
     
     
       
@@ -1774,35 +1774,6 @@
 
 <h2 id="pulumi_queries_list">Pulumi Queries List<a class="headerlink" href="#pulumi_queries_list" title="Permanent link">&para;</a></h2>
 <p>This page contains all queries from Pulumi.</p>
-<h3 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h3>
-<p>Bellow are listed queries related with Pulumi GCP:</p>
-<table>
-<thead>
-<tr>
-<th>Query</th>
-<th>Severity</th>
-<th>Category</th>
-<th>Description</th>
-<th>Help</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>48f7e44d-d1d1-44c2-b336-9f11b65c4fb0</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Observability</td>
-<td>Cloud storage bucket should have logging enabled (<a href="../pulumi-queries/gcp/48f7e44d-d1d1-44c2-b336-9f11b65c4fb0" target="_blank">read more</a>)</td>
-<td><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/storage/bucket/#logging_yaml">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Google Compute SSL Policy Weak Cipher In Use<br/><sup><sub>965e8830-2bec-4b9b-a7f0-24dbc200a68f</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Encryption</td>
-<td>This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers (<a href="../pulumi-queries/gcp/965e8830-2bec-4b9b-a7f0-24dbc200a68f" target="_blank">read more</a>)</td>
-<td><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/compute/sslpolicy/#mintlsversion_yaml">Documentation</a><br/></td>
-</tr>
-</tbody>
-</table>
 <h3 id="aws">AWS<a class="headerlink" href="#aws" title="Permanent link">&para;</a></h3>
 <p>Bellow are listed queries related with Pulumi AWS:</p>
 <table>
@@ -1852,18 +1823,18 @@
 <td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/elasticache/cluster/#snapshotretentionlimit_yaml">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>IAM Password Without Minimum Length<br/><sup><sub>9850d621-7485-44f7-8bdd-b3cf426315cf</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Best Practices</td>
-<td>IAM password should have the required minimum length (<a href="../pulumi-queries/aws/9850d621-7485-44f7-8bdd-b3cf426315cf" target="_blank">read more</a>)</td>
-<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/iam/accountpasswordpolicy/#minimumpasswordlength_yaml">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>IAM Password Without Lowercase Letter<br/><sup><sub>de92dd34-1b88-43e8-b825-6e02d73c4549</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Best Practices</td>
 <td>IAM Password should have at least one lowercase letter (<a href="../pulumi-queries/aws/de92dd34-1b88-43e8-b825-6e02d73c4549" target="_blank">read more</a>)</td>
 <td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/iam/accountpasswordpolicy/#requirelowercasecharacters_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Password Without Minimum Length<br/><sup><sub>9850d621-7485-44f7-8bdd-b3cf426315cf</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Best Practices</td>
+<td>IAM password should have the required minimum length (<a href="../pulumi-queries/aws/9850d621-7485-44f7-8bdd-b3cf426315cf" target="_blank">read more</a>)</td>
+<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/iam/accountpasswordpolicy/#minimumpasswordlength_yaml">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>DynamoDB Table Not Encrypted<br/><sup><sub>b6a7e0ae-aed8-4a19-a993-a95760bf8836</sub></sup></td>
@@ -1949,6 +1920,35 @@
 <td>Access Control</td>
 <td>Containers should be configured with AppArmor for any application to reduce its potential attack (<a href="../pulumi-queries/95588189-1abd-4df1-9588-b0a5034f9e87" target="_blank">read more</a>)</td>
 <td><a href="https://www.pulumi.com/registry/packages/kubernetes/api-docs/core/v1/pod/#objectmeta">Documentation</a><br/></td>
+</tr>
+</tbody>
+</table>
+<h3 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h3>
+<p>Bellow are listed queries related with Pulumi GCP:</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Severity</th>
+<th>Category</th>
+<th>Description</th>
+<th>Help</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>48f7e44d-d1d1-44c2-b336-9f11b65c4fb0</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Cloud storage bucket should have logging enabled (<a href="../pulumi-queries/gcp/48f7e44d-d1d1-44c2-b336-9f11b65c4fb0" target="_blank">read more</a>)</td>
+<td><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/storage/bucket/#logging_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Google Compute SSL Policy Weak Cipher In Use<br/><sup><sub>965e8830-2bec-4b9b-a7f0-24dbc200a68f</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers (<a href="../pulumi-queries/gcp/965e8830-2bec-4b9b-a7f0-24dbc200a68f" target="_blank">read more</a>)</td>
+<td><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/compute/sslpolicy/#mintlsversion_yaml">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table>
