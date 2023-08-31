@@ -3,7 +3,7 @@
     "queryName": "Communication Over HTTP",
     "severity": "MEDIUM",
     "category": "Insecure Configurations",
-    "descriptionText": "",
+    "descriptionText": "Using HTTP URLs (without encryption) could lead to security vulnerabilities and risks",
     "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/builtin/uri_module.html#parameter-url",
     "platform": "Ansible",
     "descriptionID": "04892b9b",
