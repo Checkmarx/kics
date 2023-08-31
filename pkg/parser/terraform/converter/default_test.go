@@ -308,7 +308,7 @@ func TestEvalFunction(t *testing.T) { //nolint
 	}
 	tests := []funcTest{
 		{
-			name: "should evaluate without problems",
+			name: "should evaluate without problems (1)",
 			input: `
 block "label_one" {
 	policy = jsonencode({
@@ -385,6 +385,74 @@ block "label_one" {
 				}
 			  }
 			  `,
+			wantErr: false,
+		},
+		{
+			name: "should evaluate without problems (2)",
+			input: `data "aws_iam_policy_document" "blabla" {
+	statement {
+	  actions = [
+		"secretsmanager:GetSecretValue",
+	  ]
+	  resources = [
+		for s in [
+		  "DATABASE_READONLY_PASSWORD",
+		  "DATABASE_DATA_PASSWORD",
+		] : "arn:aws:secretsmanager:eu-west-1:${data.aws_caller_identity.this.account_id}:secret:/${var.env}/*/${s}-*"
+	  ]
+	}
+  }
+`,
+			want: `
+			{
+				"data": {
+				  "aws_iam_policy_document": {
+					"blabla": {
+					  "statement": {
+						"resources": "${[\n\t\tfor s in [\n\t\t  \"DATABASE_READONLY_PASSWORD\",\n\t\t  \"DATABASE_DATA_PASSWORD\",\n\t\t] : \"arn:aws:secretsmanager:eu-west-1:${data.aws_caller_identity.this.account_id}:secret:/${var.env}/*/${s}-*\"\n\t  ]}",
+						"actions": [
+						  "secretsmanager:GetSecretValue"
+						],
+						"_kics_lines": {
+						  "_kics__default": {
+							"_kics_line": 2
+						  },
+						  "_kics_actions": {
+							"_kics_line": 3,
+							"_kics_arr": [
+							  {
+								"_kics__default": {
+								  "_kics_line": 4
+								}
+							  }
+							]
+						  },
+						  "_kics_resources": {
+							"_kics_line": 6
+						  }
+						}
+					  },
+					  "_kics_lines": {
+						"_kics__default": {
+						  "_kics_line": 1
+						},
+						"_kics_statement": {
+						  "_kics_line": 2
+						}
+					  }
+					}
+				  }
+				},
+				"_kics_lines": {
+				  "_kics__default": {
+					"_kics_line": 0
+				  },
+				  "_kics_data": {
+					"_kics_line": 1
+				  }
+				}
+			  }
+`,
 			wantErr: false,
 		},
 	}
