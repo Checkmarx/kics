@@ -1,7 +1,7 @@
 {
     "id": "2e8d4922-8362-4606-8c14-aa10466a1ce3",
     "queryName": "Communication Over HTTP",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "category": "Insecure Configurations",
     "descriptionText": "",
     "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/builtin/uri_module.html#parameter-url",
