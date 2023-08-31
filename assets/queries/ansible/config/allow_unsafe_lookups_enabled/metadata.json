@@ -3,8 +3,8 @@
     "queryName": "Allow Unsafe Lookups Enabled",
     "severity": "HIGH",
     "category": "Insecure Configurations",
-    "descriptionText": "Unsafe Lookups are allowed which could lead to information leaks.",
-    "descriptionUrl": "https://docs.ansible.com/ansible/latest/plugins/lookup.html",
+    "descriptionText": "When enabled, this option allows lookup plugins to return data that is not marked 'unsafe'.",
+    "descriptionUrl": "https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-allow-unsafe-lookups",
     "platform": "Ansible",
     "descriptionID": "0d491461",
     "cloudProvider": "config"
