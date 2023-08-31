@@ -7,6 +7,6 @@
     "descriptionUrl": "https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-allow-unsafe-lookups",
     "platform": "Ansible",
     "descriptionID": "0d491461",
-    "cloudProvider": "config"
+    "cloudProvider": "common"
   }
   
