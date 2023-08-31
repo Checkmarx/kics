@@ -7,6 +7,5 @@
     "descriptionUrl": "https://docs.ansible.com/ansible/latest/plugins/httpapi.html",
     "platform": "Ansible",
     "descriptionID": "8c03b0c0",
-    "cloudProvider": "config"
-  }
-  
+    "cloudProvider": "common"
+}
