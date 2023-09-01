@@ -52,10 +52,10 @@ variable "default" {
 		type    = "string"
 		default = "default_var_file"
 }
-	
+
 data "aws_ami" "example" {
 		most_recent = true
-	  
+
 		owners = ["self"]
 		tags = {
 		  Name   = "app-server"
@@ -64,6 +64,22 @@ data "aws_ami" "example" {
 		}
 }
   `
+	namelessResource = `resource "aws_lb" {
+  name               = "test-lb-tf-1"
+  internal           = false
+  load_balancer_type = "network"
+  subnets            = [for subnet in aws_subnet.public : subnet.id]
+  enable_deletion_protection = true
+}
+
+resource "aws_lb" {
+  name               = "test-lb-tf-2"
+  internal           = false
+  load_balancer_type = "network"
+  subnets            = [for subnet in aws_subnet.public : subnet.id]
+  enable_deletion_protection = true
+}
+`
 )
 
 type fileTest struct {
@@ -125,6 +141,20 @@ func Test_Parentheses_Expr(t *testing.T) {
 	require.Contains(t, document[0], "data")
 	ami := document[0]["data"].(model.Document)["aws_ami"].(model.Document)["example"]
 	require.Contains(t, ami.(model.Document)["tags"], "Tag/default_var_file")
+}
+
+// Test_namelessResource tests the case of the nameless resource where the resource name is not specified and model.Document resource is a list
+func Test_namelessResource(t *testing.T) {
+	parser := NewDefault()
+	document, _, err := parser.Parse("namelessResource.tf", []byte(namelessResource))
+	require.NoError(t, err)
+	require.Len(t, document, 1)
+	require.Contains(t, document[0], "resource")
+	require.Len(t, document[0]["resource"].(model.Document)["aws_lb"].([]interface{}), 2)
+	require.Equal(t, document[0]["resource"].(model.Document)["aws_lb"].([]interface{})[0].(model.Document)["name"],
+		"test-lb-tf-1")
+	require.Equal(t, document[0]["resource"].(model.Document)["aws_lb"].([]interface{})[1].(model.Document)["name"],
+		"test-lb-tf-2")
 }
 
 // Test_Resolve tests the functions [Resolve()] and all the methods called by them
