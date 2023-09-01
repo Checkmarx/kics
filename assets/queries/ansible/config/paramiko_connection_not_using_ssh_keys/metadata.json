@@ -7,6 +7,6 @@
     "descriptionUrl": "https://docs.ansible.com/ansible/2.9/plugins/connection/paramiko_ssh.html#paramiko-ssh-connection",
     "platform": "Ansible",
     "descriptionID": "019471cd",
-    "cloudProvider": "config"
+    "cloudProvider": "common"
   }
   
