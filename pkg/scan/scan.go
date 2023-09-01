@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 
 	"github.com/Checkmarx/kics/assets"
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/engine/secrets"
@@ -57,12 +58,18 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		return nil, nil
 	}
 
+	experimentalQueries, err := consoleHelpers.GetDefaultExperimentalPath(filepath.FromSlash("./assets/utils/experimental-queries.json"))
+	if err != nil {
+		log.Err(err)
+		return nil, err
+	}
+
 	querySource := source.NewFilesystemSource(
 		c.ScanParams.QueriesPath,
 		c.ScanParams.Platform,
 		c.ScanParams.CloudProvider,
 		c.ScanParams.LibrariesPath,
-		filepath.FromSlash("./assets/utils/experimental-queries.json"))
+		experimentalQueries)
 
 	queryFilter := c.createQueryFilter()
 

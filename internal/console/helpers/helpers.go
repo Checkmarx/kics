@@ -153,6 +153,30 @@ func GetDefaultQueryPath(queriesPath string) (string, error) {
 	return queriesDirectory, nil
 }
 
+// GetDefaultExperimentalPath - returns the default Experimental path
+func GetDefaultExperimentalPath(experimentalQueriesPath string) (string, error) {
+	log.Debug().Msg("helpers.GetDefaultExperimentalPath()")
+	executableDirPath := GetExecutableDirectory()
+	experimentalQueriesFile := filepath.Join(executableDirPath, experimentalQueriesPath)
+	if _, err := os.Stat(experimentalQueriesFile); os.IsNotExist(err) {
+		currentWorkDir, err := os.Getwd()
+		if err != nil {
+			return "", err
+		}
+		idx := strings.Index(currentWorkDir, "kics")
+		if idx != -1 {
+			currentWorkDir = currentWorkDir[:strings.LastIndex(currentWorkDir, "kics")] + "kics"
+		}
+		experimentalQueriesFile = filepath.Join(currentWorkDir, experimentalQueriesPath)
+		if _, err := os.Stat(experimentalQueriesFile); os.IsNotExist(err) {
+			return "", err
+		}
+	}
+
+	log.Debug().Msgf("Experimental Queries found in %s", experimentalQueriesFile)
+	return experimentalQueriesFile, nil
+}
+
 // ListReportFormats return a slice with all supported report formats
 func ListReportFormats() []string {
 	supportedFormats := make([]string, 0, len(reportGenerators))
