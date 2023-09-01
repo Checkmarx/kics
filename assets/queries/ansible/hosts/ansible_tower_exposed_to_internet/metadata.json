@@ -1,0 +1,12 @@
+{
+    "id": "1b2bf3ff-31e9-460e-bbfb-45e48f4f20cc",
+    "queryName": "Ansible Tower Exposed To Internet",
+    "severity": "MEDIUM",
+    "category": "Best Practices",
+    "descriptionText": "It is recommended that you do not expose Ansible Tower on the open internet, significantly reducing the threat surface of your installation",
+    "descriptionUrl": "https://docs.ansible.com/ansible-tower/latest/html/administration/security_best_practices.html#understand-the-architecture-of-ansible-and-tower",
+    "platform": "Ansible",
+    "cloudProvider": "common",
+    "descriptionID": "657a8b1d"
+  }
+  
