@@ -1,7 +1,7 @@
 [
 	{
 		"queryName": "Communication over HTTP",
-		"severity": "HIGH",
+		"severity": "MEDIUM",
 		"line": 18
 	}
 ]
