@@ -12,7 +12,7 @@ CxPolicy[result] {
 		"documentId": input.document[id].id,
 		"hostname": "tower",
 		"resourceName": "children",
-		"searchKey": sprintf("all.children.tower.hosts.%s", [split(ip, ".")[0]]),
+		"searchKey": "all.children.tower.hosts",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Ansible Tower IP should be private",
 		"keyActualValue": "Ansible Tower IP is public",
