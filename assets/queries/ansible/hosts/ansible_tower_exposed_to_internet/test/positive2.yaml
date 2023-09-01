@@ -22,7 +22,7 @@ all:
           pg_username: awx
     tower:
       hosts:
-        150.50.1.1:
+        139.50.1.1:
           admin_password: <password>
           pg_database: awx
           pg_host: database-01.acme.org
