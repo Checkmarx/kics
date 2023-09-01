@@ -3,7 +3,7 @@ package source
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"path"
 	"path/filepath"
@@ -45,7 +45,7 @@ const (
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
-func NewFilesystemSource(source, types, cloudProviders []string, libraryPath string, experimentalQueriesPath string) *FilesystemSource {
+func NewFilesystemSource(source, types, cloudProviders []string, libraryPath, experimentalQueriesPath string) *FilesystemSource {
 	log.Debug().Msg("source.NewFilesystemSource()")
 
 	if len(types) == 0 {
@@ -244,28 +244,42 @@ func checkQueryExclude(metadata map[string]interface{}, queryParameters *QueryIn
 // GetQueries walks a given filesource path returns all queries found in an array of
 // QueryMetadata struct
 func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters) ([]model.QueryMetadata, error) {
-	queryDirs := make([]string, 0)
-	queries := make([]model.QueryMetadata, 0, len(queryDirs))
 	experimentalQueriesPaths := make([]string, 0)
-	var err error
 
 	if s.ExperimentalQueries != "" {
-
 		experimentalQueriesFile, err := os.Open(s.ExperimentalQueries)
 		if err != nil {
-			return queries, nil
+			return nil, err
 		}
 
 		defer experimentalQueriesFile.Close()
 
-		byteValue, _ := ioutil.ReadAll(experimentalQueriesFile)
+		byteValue, err := io.ReadAll(experimentalQueriesFile)
+		if err != nil {
+			return nil, err
+		}
 
-		json.Unmarshal(byteValue, &experimentalQueriesPaths)
-
+		err = json.Unmarshal(byteValue, &experimentalQueriesPaths)
+		if err != nil {
+			return nil, err
+		}
 	}
 
+	queryDirs, err := s.iterateSources(experimentalQueriesPaths, queryParameters)
+	if err != nil {
+		return nil, err
+	}
+
+	queries := s.iterateQueryDirs(queryDirs, queryParameters)
+
+	return queries, nil
+}
+
+func (s *FilesystemSource) iterateSources(experimentalQueriesPaths []string, queryParameters *QueryInspectorParameters) ([]string, error) {
+	queryDirs := make([]string, 0)
+
 	for _, source := range s.Source {
-		err = filepath.Walk(source,
+		err := filepath.Walk(source,
 			func(p string, f os.FileInfo, err error) error {
 				if err != nil {
 					return err
@@ -281,32 +295,11 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 				if err1 == nil && err2 == nil {
 					var cleanPlatformCloudProviderDir string
 					cleanPlatformCloudProviderDir, err = filepath.Rel(absQueriesPath, absQueryPathDir)
-					if err == nil {
-						cleanPlatformCloudProviderDir = filepath.FromSlash(cleanPlatformCloudProviderDir)
-						inExperimentalQueriesJSON := false
-						for _, queryPath := range experimentalQueriesPaths {
-							queryPath := filepath.FromSlash(queryPath)
-							if strings.Contains(querypathDir, queryPath) {
-								inExperimentalQueriesJSON = true
-								break
-							}
-						}
-
-						inExperimentalQueriesFlag := false
-						for _, experimentalFlag := range queryParameters.ExperimentalQueries {
-							experimentalFlag := filepath.FromSlash(experimentalFlag)
-							if strings.HasPrefix(cleanPlatformCloudProviderDir, experimentalFlag) {
-								inExperimentalQueriesFlag = true
-								break
-							}
-						}
-
-						if inExperimentalQueriesFlag || !inExperimentalQueriesJSON {
-							queryDirs = append(queryDirs, querypathDir)
-						}
+					if err == nil && isExperimental(querypathDir, cleanPlatformCloudProviderDir, experimentalQueriesPaths, queryParameters) {
+						queryDirs = append(queryDirs, querypathDir)
 					}
 				}
-				if err != nil {
+				if err != nil || err1 != nil || err2 != nil {
 					queryDirs = append(queryDirs, querypathDir)
 				}
 				return nil
@@ -315,6 +308,39 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 			return nil, errors.Wrap(err, "failed to get query Source")
 		}
 	}
+
+	return queryDirs, nil
+}
+
+func isExperimental(
+	querypathDir, cleanPlatformCloudProviderDir string,
+	experimentalQueriesPaths []string,
+	queryParameters *QueryInspectorParameters) bool {
+	cleanPlatformCloudProviderDir = filepath.FromSlash(cleanPlatformCloudProviderDir)
+	inExperimentalQueriesJSON := false
+	for _, queryPath := range experimentalQueriesPaths {
+		queryPath = filepath.FromSlash(queryPath)
+		if strings.Contains(querypathDir, queryPath) {
+			inExperimentalQueriesJSON = true
+			break
+		}
+	}
+
+	inExperimentalQueriesFlag := false
+	for _, experimentalFlag := range queryParameters.ExperimentalQueries {
+		experimentalFlag = filepath.FromSlash(experimentalFlag)
+		if strings.HasPrefix(cleanPlatformCloudProviderDir, experimentalFlag) {
+			inExperimentalQueriesFlag = true
+			break
+		}
+	}
+
+	return inExperimentalQueriesFlag || !inExperimentalQueriesJSON
+}
+
+// iterateQueryDirs iterates all query directories and reads the respective queries
+func (s *FilesystemSource) iterateQueryDirs(queryDirs []string, queryParameters *QueryInspectorParameters) []model.QueryMetadata {
+	queries := make([]model.QueryMetadata, 0, len(queryDirs))
 
 	for _, queryDir := range queryDirs {
 		query, errRQ := ReadQuery(queryDir)
@@ -365,8 +391,7 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 			queries = append(queries, query)
 		}
 	}
-
-	return queries, err
+	return queries
 }
 
 // validateMetadata prevents panics when KICS queries metadata fields are missing
