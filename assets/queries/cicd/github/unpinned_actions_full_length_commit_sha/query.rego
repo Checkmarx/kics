@@ -12,8 +12,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("uses={{%s}}", [uses]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "Action pinned to a full length commit SHA",
-		"keyActualValue": "Action is not pinned to a full length commit SHA",
+		"keyExpectedValue": "Action pinned to a full length commit SHA.",
+		"keyActualValue": "Action is not pinned to a full length commit SHA.",
 		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "uses"],[])
 	}
 }
