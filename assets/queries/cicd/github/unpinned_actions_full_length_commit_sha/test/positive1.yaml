@@ -8,8 +8,9 @@ jobs:
   test-positive:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+    - name: PR comment
+      uses: thollander/actions-comment-pull-request@v2
       with:
-        persist-credentials: false
-        fetch-depth: 0
+        comment_tag: title_check
+        mode: recreate
+        create_if_not_exists: true
