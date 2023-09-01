@@ -29,9 +29,9 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v4
         with:
-          title: "docs: preparing for release ${{ github.event.inputs.version }}"
+          title: "docs(kicsbot): preparing for release ${{ github.event.inputs.version }}"
           token: ${{ secrets.KICS_BOT_PAT }}
-          commit-message: "docs: preparing for release ${{ github.event.inputs.version }}"
+          commit-message: "docs(kicsbot): preparing for release ${{ github.event.inputs.version }}"
           delete-branch: true
           branch: feature/kicsbot-update-docs-index
           base: master
