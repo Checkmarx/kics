@@ -1,0 +1,68 @@
+[
+    {
+        "queryName": "Risky File Permissions",
+        "severity": "INFO",
+        "file": "positive1.yaml",
+        "line": 5
+    },
+    {
+        "queryName": "Risky File Permissions",
+        "severity": "INFO",
+        "file": "positive1.yaml",
+        "line": 15
+    },
+    {
+        "queryName": "Risky File Permissions",
+        "severity": "INFO",
+        "file": "positive1.yaml",
+        "line": 24
+    },
+    {
+        "queryName": "Risky File Permissions",
+        "severity": "INFO",
+        "file": "positive1.yaml",
+        "line": 32
+    },
+    {
+        "queryName": "Risky File Permissions",
+        "severity": "INFO",
+        "file": "positive1.yaml",
+        "line": 36
+    },
+    {
+        "queryName": "Risky File Permissions",
+        "severity": "INFO",
+        "file": "positive1.yaml",
+        "line": 44
+    },
+    {
+        "queryName": "Risky File Permissions",
+        "severity": "INFO",
+        "file": "positive1.yaml",
+        "line": 48
+    },
+    {
+        "queryName": "Risky File Permissions",
+        "severity": "INFO",
+        "file": "positive1.yaml",
+        "line": 57
+    },
+    {
+        "queryName": "Risky File Permissions",
+        "severity": "INFO",
+        "file": "positive1.yaml",
+        "line": 65
+    },
+    {
+        "queryName": "Risky File Permissions",
+        "severity": "INFO",
+        "file": "positive1.yaml",
+        "line": 74
+    },
+    {
+        "queryName": "Risky File Permissions",
+        "severity": "INFO",
+        "file": "positive1.yaml",
+        "line": 83
+    }
+]
