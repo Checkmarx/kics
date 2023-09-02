@@ -6,6 +6,7 @@ CxPolicy[result] {
 
 	cmd := concat(" ", runCmd.Value)
 
+	// splits on '&&', '||', '|', '&', ';'
 	splittedCmd := regex.split(`(\&\& | \|\| | \| | \& | \;)`, cmd)
 
 	currentCmd := splittedCmd[_]
@@ -24,7 +25,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, runCmd.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' uses npm install with a pinned version", [runCmd.Original]),
-		"keyActualValue": sprintf("'%s' does not uses npm install with a pinned version", [runCmd.Original]),
+		"keyActualValue": sprintf("'%s' does not use npm install with a pinned version", [runCmd.Original]),
 	}
 }
 
@@ -35,6 +36,7 @@ is_run_cmd(com) {
 valid_match(token) {
 	startswith(token, "git") # npm install from git repository
 } else {
+	// skips things like '-g'
 	startswith(token, "-")
 } else {
 	hasScope := re_match("@.+/.*", token)
