@@ -148,7 +148,7 @@ isEntireNetwork(cidr) {
 	cidr == cidrs[j]
 }
 
-installer_modules := {
+installer_modules := [
 	"community.general.apk",
 	"ansible.builtin.apt",
 	"ansible.builtin.apt",
@@ -176,4 +176,4 @@ installer_modules := {
 	"community.general.yarn",
 	"ansible.builtin.yum",
 	"community.general.zypper",
-}
+]
