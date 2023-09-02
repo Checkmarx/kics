@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/emicklei/proto"
 )
 
@@ -142,7 +143,13 @@ func newJSONProto() *JSONProto {
 // Convert converts a proto file to a JSONProto struct
 func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) {
 	jproto := newJSONProto()
-
+	// handle panic during conversion process
+	defer func() {
+		if r := recover(); r != nil {
+			errMessage := "Recovered from panic during conversion of JSONProto " + file.PackageName
+			utils.HandlePanic(r, errMessage)
+		}
+	}()
 	messageLines := make(map[string]model.LineObject)
 	enumLines := make(map[string]model.LineObject)
 	serviceLines := make(map[string]model.LineObject)
