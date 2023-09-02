@@ -1,6 +1,7 @@
 # gets all types from pr-title-types.yaml file and inserts them into the regex
 
 import yaml
+import os
 
 def yaml_to_regex(yaml_file):
     with open(yaml_file, 'r') as f:
@@ -10,4 +11,5 @@ def yaml_to_regex(yaml_file):
 
 
 if __name__ == "__main__":
-    yaml_to_regex('.github/pr-title-types.yaml')
+    file_path = os.environ['FILE_PATH']
+    yaml_to_regex(file_path)
