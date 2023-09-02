@@ -46,8 +46,8 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "All the permissions set about creating files/directories",
-		"keyActualValue": "There are some permissions missing and might create directory/file",
+		"keyExpectedValue": sprintf("All the permissions set in %s about creating files/directories", [m]),
+		"keyActualValue": sprintf("There are some permissions missing in %s and might create directory/file", [m]),
 	}
 }
 
@@ -77,8 +77,8 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, m]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s 'create' key should set to 'false' or 'mode' key should be defined and set to 'preserve'", [modules[m]]),
-		"keyActualValue": sprintf("%s 'create' key is set to 'true' or 'mode' key is not defined", [modules[m]]),
+		"keyExpectedValue": sprintf("%s 'create' key should set to 'false' or 'mode' key should be defined and set to 'preserve'", [m]),
+		"keyActualValue": sprintf("%s 'create' key is set to 'true' or 'mode' key is not defined", [m]),
 	}
 }
 
