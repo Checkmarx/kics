@@ -18,8 +18,8 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, m]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s does not allow setting 'preserve' value for mode key", [m]),
-		"keyActualValue": sprintf("Mode key of %s is set to 'preserve'", [m]),
+		"keyExpectedValue": sprintf("%s does not allow setting 'preserve' value for 'mode' key", [m]),
+		"keyActualValue": sprintf("'Mode' key of %s is set to 'preserve'", [m]),
 	}
 }
 
@@ -46,8 +46,8 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("All the permissions set in %s about creating files/directories", [m]),
-		"keyActualValue": sprintf("There are some permissions missing in %s and might create directory/file", [m]),
+		"keyExpectedValue": sprintf("All the permissions set in %s about creating files/directories", [modules[m]]),
+		"keyActualValue": sprintf("There are some permissions missing in %s and might create directory/file", [modules[m]]),
 	}
 }
 
