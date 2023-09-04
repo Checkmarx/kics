@@ -132,33 +132,31 @@ func GetExecutableDirectory() string {
 // GetDefaultQueryPath - returns the default query path
 func GetDefaultQueryPath(queriesPath string) (string, error) {
 	log.Debug().Msg("helpers.GetDefaultQueryPath()")
-	executableDirPath := GetExecutableDirectory()
-	queriesDirectory := filepath.Join(executableDirPath, queriesPath)
-	if _, err := os.Stat(queriesDirectory); os.IsNotExist(err) {
-		currentWorkDir, err := os.Getwd()
-		if err != nil {
-			return "", err
-		}
-		idx := strings.Index(currentWorkDir, "kics")
-		if idx != -1 {
-			currentWorkDir = currentWorkDir[:strings.LastIndex(currentWorkDir, "kics")] + "kics"
-		}
-		queriesDirectory = filepath.Join(currentWorkDir, queriesPath)
-		if _, err := os.Stat(queriesDirectory); os.IsNotExist(err) {
-			return "", err
-		}
+	queriesDirectory, err := GetFullPath(queriesPath)
+	if err != nil {
+		return "", err
 	}
-
 	log.Debug().Msgf("Queries found in %s", queriesDirectory)
 	return queriesDirectory, nil
 }
 
-// GetDefaultExperimentalPath - returns the default Experimental path
+// GetDefaultExperimentalPath returns the default Experimental path
 func GetDefaultExperimentalPath(experimentalQueriesPath string) (string, error) {
 	log.Debug().Msg("helpers.GetDefaultExperimentalPath()")
+	experimentalQueriesFile, err := GetFullPath(experimentalQueriesPath)
+	if err != nil {
+		return "", err
+	}
+
+	log.Debug().Msgf("Experimental Queries found in %s", experimentalQueriesFile)
+	return experimentalQueriesFile, nil
+}
+
+// GetFulPath returns the full path of a partial path used for queries or experimental queries json path
+func GetFullPath(partialPath string) (string, error) {
 	executableDirPath := GetExecutableDirectory()
-	experimentalQueriesFile := filepath.Join(executableDirPath, experimentalQueriesPath)
-	if _, err := os.Stat(experimentalQueriesFile); os.IsNotExist(err) {
+	fullPath := filepath.Join(executableDirPath, partialPath)
+	if _, err := os.Stat(fullPath); os.IsNotExist(err) {
 		currentWorkDir, err := os.Getwd()
 		if err != nil {
 			return "", err
@@ -167,14 +165,13 @@ func GetDefaultExperimentalPath(experimentalQueriesPath string) (string, error) 
 		if idx != -1 {
 			currentWorkDir = currentWorkDir[:strings.LastIndex(currentWorkDir, "kics")] + "kics"
 		}
-		experimentalQueriesFile = filepath.Join(currentWorkDir, experimentalQueriesPath)
-		if _, err := os.Stat(experimentalQueriesFile); os.IsNotExist(err) {
+		fullPath = filepath.Join(currentWorkDir, partialPath)
+		if _, err := os.Stat(fullPath); os.IsNotExist(err) {
 			return "", err
 		}
 	}
 
-	log.Debug().Msgf("Experimental Queries found in %s", experimentalQueriesFile)
-	return experimentalQueriesFile, nil
+	return fullPath, nil
 }
 
 // ListReportFormats return a slice with all supported report formats
