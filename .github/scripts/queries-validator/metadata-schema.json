@@ -76,8 +76,7 @@
                 "aws",
                 "azure",
                 "common",
-                "gcp",
-                "github"
+                "gcp"
             ]
         },
         "platform": {
