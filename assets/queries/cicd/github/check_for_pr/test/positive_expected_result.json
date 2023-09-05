@@ -1,8 +1,0 @@
-[
-    {
-		"queryName": "Testing Query 1",
-		"severity": "HIGH",
-		"line": 3,
-		"fileName": "positive1.yaml"
-	}
-]
