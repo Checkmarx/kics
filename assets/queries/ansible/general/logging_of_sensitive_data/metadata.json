@@ -1,0 +1,12 @@
+{
+    "id": "59029ddf-e651-412b-ae7b-ff6d403184bc",
+    "queryName": "Logging of Sensitive Data",
+    "severity": "LOW",
+    "category": "Best Practices",
+    "descriptionText": "In order to perform an action as a different user with the become_user, you must define become and set to 'true'",
+    "descriptionUrl": "https://ansible.readthedocs.io/projects/lint/rules/no-log-password/",
+    "platform": "Ansible",
+    "descriptionID": "a700e724",
+    "cloudProvider": "common"
+  }
+  

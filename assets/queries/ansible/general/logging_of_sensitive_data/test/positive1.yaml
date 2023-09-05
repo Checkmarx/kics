@@ -1,0 +1,14 @@
+---
+- name: Example playbook
+  hosts: localhost
+  tasks:
+    - name: Log user passwords
+      ansible.builtin.user:
+        name: john_doe
+        comment: John Doe
+        uid: 1040
+        group: admin
+        password: "{{ item }}"
+      with_items:
+        - wow
+      no_log: false # <- Sets the no_log attribute to false.
