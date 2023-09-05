@@ -4,14 +4,27 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 
-	input.document[i].on.pull_request_target
-
-
+	uses := input.document[i].jobs[j].steps[k].uses
+	not isAllowed(uses)
+	not isPinned(uses)
+	
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": "pull_request_target",
+		"searchKey": sprintf("uses={{%s}}", [uses]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "has pull request trigger",
-		"keyActualValue": "does not have a pull request trigger",
+		"keyExpectedValue": "Action pinned to a full length commit SHA.",
+		"keyActualValue": "Action is not pinned to a full length commit SHA.",
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "uses"],[])
 	}
 }
+
+
+isAllowed(use){
+	allowed := ["actions/"]
+    startswith(use,allowed[i])
+}
+
+isPinned(use){
+	regex.match("@[a-f0-9]{40}$", use)
+}
+
