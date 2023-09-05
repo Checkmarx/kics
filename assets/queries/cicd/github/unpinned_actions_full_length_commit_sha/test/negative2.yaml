@@ -1,6 +1,6 @@
 name: test-positive
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, synchronize, edited, reopened]
     branches: 
       - master
@@ -8,8 +8,7 @@ jobs:
   test-positive:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
+    - name: Checkout Code
       uses: actions/checkout@v3
       with:
         persist-credentials: false
-        fetch-depth: 0
