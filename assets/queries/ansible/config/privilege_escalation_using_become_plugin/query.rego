@@ -6,13 +6,29 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	defaultsGroup := input.document[i].groups.defaults
 
-    common_lib.valid_key(defaultsGroup, "become_plugins")
+    not common_lib.valid_key(defaultsGroup, "become")
+	common_lib.valid_key(defaultsGroup, "become_user")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": "defaults.become_plugins",
+		"searchKey": "defaults.become_user",
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'become' should be defined and set to 'true'",
+		"keyActualValue": "'become' is not defined",
+	}
+}
+
+CxPolicy[result] {
+	defaultsGroup := input.document[i].groups.defaults
+
+    defaultsGroup.become == false
+	common_lib.valid_key(defaultsGroup, "become_user")
+
+	result := {
+		"documentId": input.document[i].id,
+		"searchKey": "defaults.become",
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "become_plugins should not be set",
-		"keyActualValue": "become_plugins is set",
+		"keyExpectedValue": "'become' should be set to 'true'",
+		"keyActualValue": "'become' is set to 'false'",
 	}
 }
