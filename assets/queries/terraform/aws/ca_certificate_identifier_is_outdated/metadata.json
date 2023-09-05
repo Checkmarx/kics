@@ -3,7 +3,7 @@
   "queryName": "CA Certificate Identifier Is Outdated",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "The certificate authority (CA) is the certificate that identifies the root CA at the top of the certificate chain. The CA certificate identifier must be one provided by Amazon RDS [1].\n[1] Certificate authorities https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html",
+  "descriptionText": "The certificate authority (CA) is the certificate that identifies the root CA at the top of the certificate chain. The CA certificate identifier must be one provided by Amazon RDS.",
   "descriptionUrl": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html",
   "platform": "Terraform",
   "descriptionID": "09935963",
