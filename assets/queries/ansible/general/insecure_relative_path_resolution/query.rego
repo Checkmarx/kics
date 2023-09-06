@@ -26,8 +26,8 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.src", [task.name, m]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s'.src should not be a relative path", [m]),
-		"keyActualValue": sprintf("'%s'.src is a relative path", [m]),
+		"keyExpectedValue": sprintf("%s.src should not be a relative path", [m]),
+		"keyActualValue": sprintf("%s.src is a relative path", [m]),
 	}
 }
 
