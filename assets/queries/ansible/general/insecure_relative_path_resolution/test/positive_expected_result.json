@@ -1,12 +1,12 @@
 [
 	{
-		"queryName": "No Relative Paths",
+		"queryName": "Insecure Relative Path Resolution",
 		"severity": "LOW",
 		"line": 7,
 		"fileName": "positive1.yml"
 	},
 	{
-		"queryName": "No Relative Paths",
+		"queryName": "Insecure Relative Path Resolution",
 		"severity": "LOW",
 		"line": 12,
 		"fileName": "positive1.yml"
