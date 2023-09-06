@@ -45,7 +45,7 @@ CxPolicy[result] {
 		"resourceType": modules[m],
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("All the permissions set in %s about creating files/directories", [modules[m]]),
 		"keyActualValue": sprintf("There are some permissions missing in %s and might create directory/file", [modules[m]]),
 	}
