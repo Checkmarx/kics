@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("name={{%s}}.become_user={{%s}}", [task.name, task.become_user]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'become' should be defined and set to 'true' in order to perform an action with %s", [task.become_user]),
-		"keyActualValue": "'become' is not set",
+		"keyActualValue": "'become' is not defined",
 	}
 }
 
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("become_user={{%s}}", [input.document[i].playbooks[j].become_user]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'become' should be defined and set to 'true'",
-		"keyActualValue": "'become' is not set",
+		"keyActualValue": "'become' is not defined",
 	}
 }
 
