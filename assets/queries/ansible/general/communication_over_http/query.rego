@@ -18,6 +18,6 @@ CxPolicy[result] {
 		"searchKey": sprintf("name={{%s}}.{{%s}}.url", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "ansible.builtin.uri.url should be accessed via the HTTPS protocol",
-		"keyActualValue": "ansible.builtin.uri.url should not be accessed via the HTTP protocol'",
+		"keyActualValue": "ansible.builtin.uri.url is accessed via the HTTP protocol'",
 	}
 }
