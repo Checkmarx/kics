@@ -1,8 +1,8 @@
 ---
-- name: Example playbook
+- name: Positive Playbook
   hosts: localhost
   tasks:
-    - name: Log user passwords
+    - name: bar
       ansible.builtin.user:
         name: john_doe
         comment: John Doe
@@ -11,4 +11,4 @@
         password: "{{ item }}"
       with_items:
         - wow
-      no_log: false # <- Sets the no_log attribute to false.
+      no_log: false
