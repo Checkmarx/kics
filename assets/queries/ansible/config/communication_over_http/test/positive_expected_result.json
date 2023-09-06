@@ -2,6 +2,6 @@
 	{
 		"queryName": "Communication over HTTP",
 		"severity": "MEDIUM",
-		"line": 18
+		"line": 5
 	}
 ]

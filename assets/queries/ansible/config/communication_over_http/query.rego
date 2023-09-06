@@ -4,15 +4,16 @@ import data.generic.ansible as ansLib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	defaultsGroup := input.document[i].groups.defaults
+	galaxyGroup := input.document[i].groups.galaxy
 
-    common_lib.valid_key(defaultsGroup, "httpapi_plugins")
+	url := galaxyGroup.server
+	startswith(url, "http://")
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": "defaults.httpapi_plugins",
+		"searchKey": "galaxy.server",
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "httpapi_plugins should not be set",
-		"keyActualValue": "httpapi_plugins is set",
+		"keyExpectedValue": "'server' from galaxy group should be accessed via the HTTPS protocol",
+		"keyActualValue": "'server' from galaxy group is accessed via the HTTP protocol'",
 	}
 }
