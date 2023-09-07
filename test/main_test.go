@@ -14,6 +14,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
+	ansibleHostsParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/hosts"
 	buildahParser "github.com/Checkmarx/kics/pkg/parser/buildah"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"
@@ -51,6 +52,7 @@ var (
 		"../assets/queries/ansible/aws":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/ansible/gcp":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/ansible/azure":                   {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/ansible/hosts":                   {FileKind: []model.FileKind{model.KindINI}, Platform: "ansible"},
 		"../assets/queries/dockerfile":                      {FileKind: []model.FileKind{model.KindDOCKER}, Platform: "dockerfile"},
 		"../assets/queries/dockerCompose":                   {FileKind: []model.FileKind{model.KindYAML}, Platform: "dockerCompose"},
 		"../assets/queries/openAPI/general":                 {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
@@ -189,6 +191,7 @@ func getCombinedParser() []*parser.Parser {
 		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).
 		Add(&buildahParser.Parser{}).
+		Add(&ansibleHostsParser.Parser{}).
 		Build([]string{""}, []string{""})
 	return bd
 }
