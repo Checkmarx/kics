@@ -2343,13 +2343,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="25">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="28">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="25">total += v
+                <span class="cov8" title="28">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2374,7 +2374,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2978,12 +2978,14 @@ func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, locCount chan&
                         results &lt;- grpc
                         locCount &lt;- linesCount
                 }</span>
+        // It could be Ansible Config or Ansible Inventory
         case ".cfg", ".conf", ".ini":<span class="cov4" title="18">
                 if a.isAvailableType(ansible) </span><span class="cov4" title="15">{
                         results &lt;- ansible
                         locCount &lt;- linesCount
                 }</span>
-        // It could be Ansible, Buildah, CloudFormation, Crossplane, or OpenAPI
+        /* It could be Ansible, Buildah, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
+        Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager*/
         case yaml, yml, json, sh:<span class="cov6" title="103">
                 a.checkContent(results, unwanted, locCount, linesCount, ext)</span>
         }
@@ -5075,7 +5077,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
