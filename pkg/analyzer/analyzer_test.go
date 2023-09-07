@@ -218,7 +218,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/analyzer_test/dead_symlink")},
 			typesFromFlag:        []string{"ansible", "pulumi"},
 			excludeTypesFromFlag: []string{""},
-			wantLOC:              491,
+			wantLOC:              533,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
