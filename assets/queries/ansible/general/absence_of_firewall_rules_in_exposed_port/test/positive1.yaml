@@ -1,0 +1,12 @@
+---
+- name: Configure firewall rules using Ansible
+  hosts: myserver
+  become: yes
+  tasks:
+    - name: Open port 80 (HTTP)
+      ansible.builtin.firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+      notify:
+        - Reload Firewalld
