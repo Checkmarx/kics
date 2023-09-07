@@ -116,7 +116,6 @@ const (
 	dockerfile = "dockerfile"
 	crossplane = "crossplane"
 	knative    = "knative"
-	cicd       = "cicd"
 )
 
 type Parameters struct {
