@@ -61,6 +61,9 @@ var (
 	pulumiResourcesRegex                            = regexp.MustCompile(`resources\s*:`)
 	serverlessServiceRegex                          = regexp.MustCompile(`service\s*:`)
 	serverlessProviderRegex                         = regexp.MustCompile(`provider\s*:`)
+	cicdOnRegex                                     = regexp.MustCompile(`\s*on:\s*`)
+	cicdJobsRegex                                   = regexp.MustCompile(`\s*jobs:\s*`)
+	cicdStepsRegex                                  = regexp.MustCompile(`\s*steps:\s*`)
 )
 
 var (
@@ -86,6 +89,7 @@ var (
 	supportedRegexes = map[string][]string{
 		"azureresourcemanager": append(armRegexTypes, arm),
 		"buildah":              {"buildah"},
+		"cicd":                 {"cicd"},
 		"cloudformation":       {"cloudformation"},
 		"crossplane":           {"crossplane"},
 		"dockercompose":        {"dockercompose"},
@@ -247,6 +251,13 @@ var types = map[string]regexSlice{
 			serverlessProviderRegex,
 		},
 	},
+	"cicd": {
+		[]*regexp.Regexp{
+			cicdOnRegex,
+			cicdJobsRegex,
+			cicdStepsRegex,
+		},
+	},
 }
 
 var defaultConfigFiles = []string{"pnpm-lock.yaml"}
@@ -393,36 +404,8 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 		}
 	// It could be Ansible, Buildah, CloudFormation, Crossplane, OpenAPI or CICD
 	case yaml, yml, json, sh:
-		if isGithubWorkflowfile(a.filePath) {
-			if a.isAvailableType(cicd) {
-				results <- cicd
-				locCount <- linesCount
-			}
-		} else {
-			a.checkContent(results, unwanted, locCount, linesCount, ext)
-		}
+		a.checkContent(results, unwanted, locCount, linesCount, ext)
 	}
-}
-
-func isGithubWorkflowfile(path string) bool {
-	content, err := os.ReadFile(filepath.Clean(path))
-	if err != nil {
-		log.Error().Msgf("failed to analyze file: %s", err)
-		return false
-	}
-	regexes := []*regexp.Regexp{
-		regexp.MustCompile(`\s*on:\s*`),
-		regexp.MustCompile(`\s*jobs:\s*`),
-		regexp.MustCompile(`\s*steps:\s*`),
-	}
-	check := true
-	for _, regex := range regexes {
-		if !regex.Match(content) {
-			check = false
-			break
-		}
-	}
-	return check
 }
 
 func isDockerfile(path string) bool {
