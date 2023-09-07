@@ -635,7 +635,7 @@ func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bo
 	gitIgnorePath := filepath.ToSlash(filepath.Join(path, gitIgnore))
 	_, err := os.Stat(gitIgnorePath)
 
-	if !excludeGitIgnoreFile && err == nil {
+	if !excludeGitIgnoreFile && err == nil && gitIgnore != "" {
 		gitIgnore, _ := ignore.CompileIgnoreFile(gitIgnorePath)
 		if gitIgnore != nil {
 			log.Info().Msgf(".gitignore file was found in '%s' and it will be used to automatically exclude paths", path)
