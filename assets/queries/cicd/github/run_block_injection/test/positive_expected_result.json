@@ -1,0 +1,44 @@
+[
+    {
+		"queryName": "Run Block Injection",
+		"severity": "HIGH",
+		"line": 11,
+		"fileName": "positive1.yaml"
+	},
+    {
+		"queryName": "Run Block Injection",
+		"severity": "HIGH",
+		"line": 14,
+		"fileName": "positive2.yaml"
+	},
+    {
+		"queryName": "Run Block Injection",
+		"severity": "HIGH",
+		"line": 14,
+		"fileName": "positive3.yaml"
+	},
+    {
+		"queryName": "Run Block Injection",
+		"severity": "HIGH",
+		"line": 14,
+		"fileName": "positive4.yaml"
+	},
+    {
+		"queryName": "Run Block Injection",
+		"severity": "HIGH",
+		"line": 14,
+		"fileName": "positive5.yaml"
+	},
+    {
+		"queryName": "Run Block Injection",
+		"severity": "HIGH",
+		"line": 14,
+		"fileName": "positive6.yaml"
+	},
+    {
+		"queryName": "Run Block Injection",
+		"severity": "HIGH",
+		"line": 14,
+		"fileName": "positive7.yaml"
+	}
+]
