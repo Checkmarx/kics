@@ -9,6 +9,6 @@
     "queryName": "Ansible Tower Exposed To Internet",
     "severity": "MEDIUM",
     "line": 24,
-    "fileName": "positive1.yaml"
+    "fileName": "positive2.yaml"
   }
 ]
