@@ -14,8 +14,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
-	ansibleConfigParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/config"
-	ansibleHostsParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/hosts"
 	buildahParser "github.com/Checkmarx/kics/pkg/parser/buildah"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"
@@ -191,8 +189,6 @@ func getCombinedParser() []*parser.Parser {
 		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).
 		Add(&buildahParser.Parser{}).
-		Add(&ansibleConfigParser.Parser{}).
-		Add(&ansibleHostsParser.Parser{}).
 		Build([]string{""}, []string{""})
 	return bd
 }
