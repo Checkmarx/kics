@@ -19,5 +19,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "ansible.builtin.uri.url should be accessed via the HTTPS protocol",
 		"keyActualValue": "ansible.builtin.uri.url is accessed via the HTTP protocol'",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "url"], []),
 	}
 }
