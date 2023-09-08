@@ -1,0 +1,10 @@
+{
+  "id": "df87631d-1ebb-45d8-9749-2d2ab2bb92f5",
+  "queryName": "Upgrade Instruction Alone",
+  "severity": "MEDIUM",
+  "category": "Build Process",
+  "descriptionText": "Instruction 'RUN <package-manager> install' should always be before of '<package-manager> update' in the same RUN statement",
+  "descriptionUrl": "",
+  "platform": "Dockerfile",
+  "descriptionID": "6959662a"
+}
