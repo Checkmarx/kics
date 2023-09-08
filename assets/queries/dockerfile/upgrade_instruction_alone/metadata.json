@@ -3,8 +3,8 @@
   "queryName": "Upgrade Instruction Alone",
   "severity": "MEDIUM",
   "category": "Build Process",
-  "descriptionText": "Instruction 'RUN <package-manager> install' should always be before of '<package-manager> update' in the same RUN statement",
-  "descriptionUrl": "",
+  "descriptionText": "Instruction 'RUN <package> <install>' should always be preceded by '<package> <update>' in the same RUN statement to ensure the package index is up to date before installing packages",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
   "platform": "Dockerfile",
   "descriptionID": "6959662a"
 }
