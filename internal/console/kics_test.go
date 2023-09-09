@@ -211,6 +211,13 @@ func TestConsole_Execute(t *testing.T) { //nolint
 			remove:                   "",
 			rewriteRemediateTestFile: true,
 		},
+		{
+			name:                     "test_kics_analyze",
+			args:                     []string{"kics", "analyze", "--analyze-path", filepath.FromSlash("../../test/assets/"), "--analyze-results", "analyze-results.json"},
+			wantErr:                  false,
+			remove:                   "analyze-results.json",
+			rewriteRemediateTestFile: false,
+		},
 	}
 
 	for _, tt := range tests {
