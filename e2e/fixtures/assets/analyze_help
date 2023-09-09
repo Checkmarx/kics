@@ -1,0 +1,18 @@
+Usage:
+  kics remediate [flags]
+
+Flags:
+  -h, --help                  help for analyze
+      --analyze-path strings          paths or directories to scan
+                                      example: "./somepath,somefile.txt"
+      --analyze-results string        points to the JSON results file of analyzer (default "platforms.json")
+
+Global Flags:
+      --ci                  display only log messages to CLI output (mutually exclusive with silent)
+  -f, --log-format string   determines log format (pretty,json) (default "pretty")
+      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
+      --log-path string     path to generate log file (info.log)
+      --no-color            disable CLI color output
+      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
+  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
+  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
