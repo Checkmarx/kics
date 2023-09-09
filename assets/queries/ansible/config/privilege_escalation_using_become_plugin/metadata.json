@@ -3,7 +3,7 @@
     "queryName": "Privilege Escalation Using Become Plugin",
     "severity": "MEDIUM",
     "category": "Access Control",
-    "descriptionText": "Using Become Plugin could lead to security risks",
+    "descriptionText": "In order to perform an action as a different user with the become_user, you must define become and set to 'true'",
     "descriptionUrl": "https://docs.ansible.com/ansible/latest/plugins/become.html",
     "platform": "Ansible",
     "descriptionID": "00396668",
