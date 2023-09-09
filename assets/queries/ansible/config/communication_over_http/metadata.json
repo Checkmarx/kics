@@ -3,7 +3,7 @@
     "queryName": "Communication over HTTP",
     "severity": "MEDIUM",
     "category": "Insecure Configurations",
-    "descriptionText": "Communication between Ansible and the httpapi interface is not secure",
+    "descriptionText": "Using HTTP URLs (without encryption) could lead to security vulnerabilities and risks",
     "descriptionUrl": "https://docs.ansible.com/ansible/latest/plugins/httpapi.html",
     "platform": "Ansible",
     "descriptionID": "8c03b0c0",
