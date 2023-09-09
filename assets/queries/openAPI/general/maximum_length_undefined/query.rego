@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -11,6 +12,7 @@ CxPolicy[result] {
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
 	openapi_lib.undefined_field_in_string_type(value, "maxLength")
+	not common_lib.valid_key(value, "pattern")
 
 	result := {
 		"documentId": doc.id,
@@ -30,6 +32,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	openapi_lib.is_operation(path) == {}
 	openapi_lib.undefined_field_in_string_type(value, "maxLength")
+	not common_lib.valid_key(value, "pattern")
 
 	result := {
 		"documentId": doc.id,
