@@ -3,7 +3,7 @@
     "queryName": "Logging of sensitive data",
     "severity": "LOW",
     "category": "Best Practices",
-    "descriptionText": "To keep sensitive values out of your logs, mark tasks that expose them defining no_log and set to True",
+    "descriptionText": "To keep sensitive values out of logs, tasks that expose them need to be marked defining 'no_log' and setting to True",
     "descriptionUrl": "https://docs.ansible.com/ansible/latest/reference_appendices/logging.html#protecting-sensitive-data-with-no-log",
     "platform": "Ansible",
     "descriptionID": "0eca35f3",
