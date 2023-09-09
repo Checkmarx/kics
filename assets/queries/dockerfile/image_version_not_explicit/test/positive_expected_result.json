@@ -2,6 +2,13 @@
 	{
 		"queryName": "Image Version Not Explicit",
 		"severity": "MEDIUM",
+		"fileName": "negative1.dockerfile",
 		"line": 1
+	},
+	{
+		"queryName": "Image Version Not Explicit",
+		"severity": "MEDIUM",
+		"fileName": "negative2.dockerfile",
+		"line": 7
 	}
 ]
