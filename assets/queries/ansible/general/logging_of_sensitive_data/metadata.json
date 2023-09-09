@@ -3,7 +3,7 @@
     "queryName": "Logging of Sensitive Data",
     "severity": "LOW",
     "category": "Best Practices",
-    "descriptionText": "In order to perform an action as a different user with the become_user, you must define become and set to 'true'",
+    "descriptionText": "To keep sensitive values out of logs, tasks that expose them need to be marked defining 'no_log' and setting to True",
     "descriptionUrl": "https://ansible.readthedocs.io/projects/lint/rules/no-log-password/",
     "platform": "Ansible",
     "descriptionID": "a700e724",
