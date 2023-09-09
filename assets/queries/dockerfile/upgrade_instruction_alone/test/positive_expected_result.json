@@ -20,7 +20,7 @@
   {
     "queryName": "Update Instruction Alone",
     "severity": "MEDIUM",
-    "line": 2,
+    "line": 3,
     "fileName": "positive4.dockerfile"
   },
   {
