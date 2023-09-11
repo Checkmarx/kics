@@ -3,8 +3,8 @@
   "queryName": "CA Certificate Identifier Is Outdated",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "The CA certificate Identifier must be 'rds-ca-2019'.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance",
+  "descriptionText": "The certificate authority (CA) is the certificate that identifies the root CA at the top of the certificate chain. The CA certificate identifier must be one provided by Amazon RDS.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html",
   "platform": "Terraform",
   "descriptionID": "09935963",
   "cloudProvider": "aws"
