@@ -79,6 +79,8 @@ var (
 		"tfvars":             true,
 		".proto":             true,
 		".sh":                true,
+		".cfg":               true,
+		".conf":              true,
 		".ini":               true,
 	}
 	supportedRegexes = map[string][]string{
@@ -111,6 +113,11 @@ const (
 	crossplane = "crossplane"
 	knative    = "knative"
 )
+
+type Parameters struct {
+	Results string
+	Path    []string
+}
 
 // regexSlice is a struct to contain a slice of regex
 type regexSlice struct {
@@ -378,13 +385,14 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 			results <- grpc
 			locCount <- linesCount
 		}
-	// Ansible Inventory Files
-	case ".ini":
+	// It could be Ansible Config or Ansible Inventory
+	case ".cfg", ".conf", ".ini":
 		if a.isAvailableType(ansible) {
 			results <- ansible
 			locCount <- linesCount
 		}
-	// It could be Ansible, Buildah, CloudFormation, Crossplane, or OpenAPI
+	/* It could be Ansible, Buildah, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
+	Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager*/
 	case yaml, yml, json, sh:
 		a.checkContent(results, unwanted, locCount, linesCount, ext)
 	}
@@ -627,7 +635,7 @@ func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bo
 	gitIgnorePath := filepath.ToSlash(filepath.Join(path, gitIgnore))
 	_, err := os.Stat(gitIgnorePath)
 
-	if !excludeGitIgnoreFile && err == nil {
+	if !excludeGitIgnoreFile && err == nil && gitIgnore != "" {
 		gitIgnore, _ := ignore.CompileIgnoreFile(gitIgnorePath)
 		if gitIgnore != nil {
 			log.Info().Msgf(".gitignore file was found in '%s' and it will be used to automatically exclude paths", path)
