@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
     - name: command-demo-container
-      image: joaodanielrufino/kubelet
+      image: foo/bar
       command: ["kubelet", "--anonymous-auth=true"]
   restartPolicy: OnFailure
