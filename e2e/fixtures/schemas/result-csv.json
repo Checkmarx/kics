@@ -82,6 +82,7 @@
                     "Ansible",
                     "AzureResourceManager",
                     "Buildah",
+                    "CICD",
                     "CloudFormation",
                     "Common",
                     "Dockerfile",
