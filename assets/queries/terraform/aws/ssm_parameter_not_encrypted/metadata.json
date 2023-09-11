@@ -1,0 +1,12 @@
+{
+    "id": "2da7f664-d718-40a5-9a5d-0658bcad47b7",
+    "queryName": "SSM Parameter Not Encrypted",
+    "severity": "",
+    "category": "",
+    "descriptionText": "",
+    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter.html#key_id",
+    "platform": "Terraform",
+    "descriptionID": "65ccfb5b",
+    "cloudProvider": "aws"
+  }
+  

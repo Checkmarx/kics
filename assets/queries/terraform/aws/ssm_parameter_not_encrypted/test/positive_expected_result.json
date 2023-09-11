@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "SSM Session Transit Encryption Disabled",
+    "severity": "",
+    "line": 17,
+    "fileName": "positive1.tf"
+  }
+]
