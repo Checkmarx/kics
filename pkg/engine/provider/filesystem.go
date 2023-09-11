@@ -3,10 +3,12 @@ package provider
 import (
 	"context"
 	"fmt"
+	ioFs "io/fs"
 	"os"
 	"path/filepath"
 	"strings"
 	"sync"
+	"syscall"
 
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/model"
@@ -58,6 +60,11 @@ func (s *FileSystemSourceProvider) AddExcluded(excludePaths []string) error {
 		info, err := os.Stat(excludePath)
 		if err != nil {
 			if os.IsNotExist(err) {
+				continue
+			}
+			if sysErr, ok := err.(*ioFs.PathError); ok {
+				log.Warn().Msgf("Failed getting file info for file '%s', Skipping due to: %s, Error number: %d",
+					excludePath, sysErr, sysErr.Err.(syscall.Errno))
 				continue
 			}
 			return errors.Wrap(err, "failed to open excluded file")
