@@ -7,6 +7,6 @@
     "descriptionUrl": "https://docs.ansible.com/ansible/latest/plugins/connection.html",
     "platform": "Ansible",
     "descriptionID": "e1812d21",
-    "cloudProvider": "config"
+    "cloudProvider": "common"
   }
   
