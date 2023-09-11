@@ -12,7 +12,7 @@ CxPolicy[result] {
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
 	openapi_lib.undefined_field_in_string_type(value, "maxLength")
-	not common_lib.valid_key(value, "pattern")
+	not limited_regex(value)
 
 	result := {
 		"documentId": doc.id,
@@ -32,7 +32,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	openapi_lib.is_operation(path) == {}
 	openapi_lib.undefined_field_in_string_type(value, "maxLength")
-	not common_lib.valid_key(value, "pattern")
+	not limited_regex(value)
 
 	result := {
 		"documentId": doc.id,
@@ -42,4 +42,10 @@ CxPolicy[result] {
 		"keyActualValue": "'maxLength' is undefined",
 		"overrideKey": version,
 	}
+}
+
+limited_regex(value){
+	not contains(value.pattern, "+")
+	not contains(value.pattern, "*")
+	not regex.match("[^\\\\]{\\d+,}", value.pattern)
 }

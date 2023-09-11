@@ -22,11 +22,11 @@
                 "code": {
                   "type": "string",
                   "format": "int32",
-                  "pattern": "[a-z0-9-]+"
+                  "pattern": "[a-z0-9-]{2,3}"
                 },
                 "message": {
                   "type": "string",
-                  "pattern": "[a-z0-9-]+"
+                  "pattern": "[a-z]+"
                 }
               },
               "required": [
