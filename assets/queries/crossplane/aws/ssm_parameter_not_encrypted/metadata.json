@@ -1,0 +1,11 @@
+{
+  "id": "d4be25bc-1742-40ee-a430-5e1aa54f262e",
+  "queryName": "SSM Parameter Not Encrypted",
+  "severity": "",
+  "category": "",
+  "descriptionText": "",
+  "descriptionUrl": "https://doc.crds.dev/github.com/crossplane-contrib/provider-jet-aws/ssm.aws.jet.crossplane.io/Parameter/v1alpha1@v0.3.0-preview#spec-forProvider-keyId",
+  "platform": "Crossplane",
+  "descriptionID": "eb8aa22d",
+  "cloudProvider": "aws"
+}
