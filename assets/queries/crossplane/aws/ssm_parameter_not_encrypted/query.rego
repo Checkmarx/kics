@@ -7,7 +7,6 @@ apiVersions = ["ssm.aws.jet.crossplane.io", "ssm.aws.upbound.io"]
 CxPolicy[result] {
 	docs := input.document[i]
 	[path, resource] := walk(docs)
-	startswith(resource.apiVersion, "ssm.aws.jet.crossplane.io")
 	count([x | y := startswith(resource.apiVersion,apiVersions[x]); y == true]) > 0
 
 	resource.kind == "Parameter"
