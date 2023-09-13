@@ -168,6 +168,12 @@ func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error)
 // Parse execute parser for the content in a file
 func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, error) {
 	file, diagnostics := hclsyntax.ParseConfig(content, filepath.Base(path), hcl.Pos{Byte: 0, Line: 1, Column: 1})
+	defer func() {
+		if r := recover(); r != nil {
+			errMessage := "Recovered from panic during parsing of file " + path
+			masterUtils.HandlePanic(r, errMessage)
+		}
+	}()
 	if diagnostics != nil && diagnostics.HasErrors() && len(diagnostics.Errs()) > 0 {
 		err := diagnostics.Errs()[0]
 		return nil, []int{}, err
