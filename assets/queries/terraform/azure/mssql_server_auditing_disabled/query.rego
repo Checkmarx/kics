@@ -7,9 +7,7 @@ CxPolicy[result] {
 	
 	server:= resource.azurerm_mssql_server[name]
 	
-	not server.extended_auditing_policy
-
-	not resource.azurerm_mssql_server_extended_auditing_policy
+	not resource.azurerm_mssql_server_extended_auditing_policy[name]
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,7 +15,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(server, name),
 		"searchKey": sprintf("azurerm_mssql_server[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_mssql_server.%s.extended_auditing_policy' should exist", [name]),
-		"keyActualValue": sprintf("'azurerm_mssql_server.%s.extended_auditing_policy' does not exist", [name]),
+		"keyExpectedValue": sprintf("'azurerm_mssql_server_extended_auditing_policy' resource should exist", [name]),
+		"keyActualValue": sprintf("'azurerm_mssql_server_extended_auditing_policy' resource does not exist", [name]),
 	}
 }
