@@ -77,7 +77,7 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
         <img alt="Azure Blueprints" src="img/logo-azure-blueprints.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
 </div>
 <div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="Azure Blueprints" src="img/logo-github-icon.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+        <img alt="GitHub Workflows" src="img/logo-github-icon.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
 </div>
 </div>
 
