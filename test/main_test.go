@@ -53,6 +53,7 @@ var (
 		"../assets/queries/ansible/aws":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/ansible/gcp":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/ansible/azure":                   {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/ansible/general":                 {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/ansible/config":                  {FileKind: []model.FileKind{model.KindCFG}, Platform: "ansible"},
 		"../assets/queries/ansible/hosts":                   {FileKind: []model.FileKind{model.KindINI, model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/dockerfile":                      {FileKind: []model.FileKind{model.KindDOCKER}, Platform: "dockerfile"},
