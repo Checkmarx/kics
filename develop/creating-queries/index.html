@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.3.0">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.3.1">
     
     
       
@@ -2142,6 +2142,7 @@ To test and debug there are two ways:</p>
 <h4 id="search_line">Search Line<a class="headerlink" href="#search_line" title="Permanent link">&para;</a></h4>
 <p>To improve the KICS line detection mechanism, <code>searchLine</code> was introduced.</p>
 <p>SearchLine uses json path to get the correct line information from the payload (which can be seen with the flag <code>payload-lines</code>).</p>
+<p>For Ansible Hosts and Config files, there is no need to fill this parameter since the attributes can vary in different files. If you still want to use you will expect an inconsistent behaviour.</p>
 <p>Original Content:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>father:
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  name: son
