@@ -199,7 +199,7 @@
 				
 				<option value="file71">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (76.8%)</option>
 				
-				<option value="file72">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (73.8%)</option>
+				<option value="file72">github.com/Checkmarx/kics/pkg/parser/terraform/terraform.go (75.0%)</option>
 				
 				<option value="file73">github.com/Checkmarx/kics/pkg/parser/terraform/variables.go (85.3%)</option>
 				
@@ -2344,13 +2344,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="27">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="31">total += v
+                <span class="cov8" title="27">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2375,7 +2375,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -13842,19 +13842,25 @@ func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error)
 }
 
 // Parse execute parser for the content in a file
-func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, error) <span class="cov4" title="4">{
+func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, error) <span class="cov5" title="5">{
         file, diagnostics := hclsyntax.ParseConfig(content, filepath.Base(path), hcl.Pos{Byte: 0, Line: 1, Column: 1})
-        if diagnostics != nil &amp;&amp; diagnostics.HasErrors() &amp;&amp; len(diagnostics.Errs()) &gt; 0 </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov5" title="5">{
+                if r := recover(); r != nil </span><span class="cov1" title="1">{
+                        errMessage := "Recovered from panic during parsing of file " + path
+                        masterUtils.HandlePanic(r, errMessage)
+                }</span>
+        }()
+        <span class="cov5" title="5">if diagnostics != nil &amp;&amp; diagnostics.HasErrors() &amp;&amp; len(diagnostics.Errs()) &gt; 0 </span><span class="cov0" title="0">{
                 err := diagnostics.Errs()[0]
                 return nil, []int{}, err
         }</span>
 
-        <span class="cov4" title="4">ignore, err := comment.ParseComments(content, path)
+        <span class="cov5" title="5">ignore, err := comment.ParseComments(content, path)
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msg("failed to parse comments")
         }</span>
 
-        <span class="cov4" title="4">linesToIgnore := comment.GetIgnoreLines(ignore, file.Body.(*hclsyntax.Body))
+        <span class="cov5" title="5">linesToIgnore := comment.GetIgnoreLines(ignore, file.Body.(*hclsyntax.Body))
 
         fc, parseErr := p.convertFunc(file, inputVariableMap)
         json, err := addExtraInfo([]model.Document{fc}, path)
@@ -14957,7 +14963,7 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov1" title="1">p.wg.Done()</span>
+                <span class="cov3" title="2">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
