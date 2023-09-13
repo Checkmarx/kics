@@ -80,6 +80,16 @@ resource "aws_lb" {
   enable_deletion_protection = true
 }
 `
+	conditionalValResource = `resource "aws_secretsmanager_secret_version" "example" {
+  count         = 1
+  secret_id     = aws_secretsmanager_secret.rds_db_secrets[0].id
+  secret_string = <<EOF
+{
+  "password":"${var.create_db_instance ? 123456 : null}"
+}
+EOF
+}
+`
 )
 
 type fileTest struct {
@@ -118,6 +128,13 @@ func Test_Parser(t *testing.T) {
 	require.Len(t, document, 1)
 	require.Contains(t, document[0], "resource")
 	require.Contains(t, document[0]["resource"], "aws_s3_bucket")
+
+	// case where we fail to parse the file and a fatal error is thrown caught with recover
+	document, linesToIgnore, err = parser.Parse("test.tf", []byte(conditionalValResource))
+	require.NoError(t, err)
+	require.Len(t, document, 0)
+	require.Len(t, linesToIgnore, 0)
+
 }
 
 // Test_Count tests resources with count set to 0
