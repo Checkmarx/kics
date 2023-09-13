@@ -65,6 +65,7 @@ var (
 		"../assets/queries/buildah":                         {FileKind: []model.FileKind{model.KindBUILDAH}, Platform: "buildah"},
 		"../assets/queries/serverlessFW":                    {FileKind: []model.FileKind{model.KindYAML, model.KindYML}, Platform: "serverlessFW"},
 		"../assets/queries/knative":                         {FileKind: []model.FileKind{model.KindYAML}, Platform: "knative"},
+		"../assets/queries/cicd/github":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "cicd"},
 	}
 
 	issueTypes = map[string]string{
