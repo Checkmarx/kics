@@ -31,8 +31,8 @@
 ---
 - hosts: localhost
   tasks:
-    - name: become_user without become task
+    - name: become_user with become task as false
       ansible.builtin.command: whoami
-      become_user: postgres
+      become_user: mongodb
       become: false
       changed_when: false
