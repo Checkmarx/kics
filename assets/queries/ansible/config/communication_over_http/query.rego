@@ -11,7 +11,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": "galaxy.server",
+		"resourceType": "n/a",
+		"resourceName": "n/a",
+		"searchKey": "[galaxy].server",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'server' from galaxy group should be accessed via the HTTPS protocol",
 		"keyActualValue": "'server' from galaxy group is accessed via the HTTP protocol'",
