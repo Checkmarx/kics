@@ -16,5 +16,11 @@
 		"severity": "MEDIUM",
 		"line": 28,
 		"fileName": "positive1.yaml"
+	},
+	{
+		"queryName": "Privilege Escalation Using Become Plugin",
+		"severity": "MEDIUM",
+		"line": 37,
+		"fileName": "positive1.yaml"
 	}
 ]
