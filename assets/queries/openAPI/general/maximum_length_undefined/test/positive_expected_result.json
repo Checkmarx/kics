@@ -105,12 +105,12 @@
     "queryName": "Maximum Length Undefined (v2)",
     "severity": "MEDIUM",
     "line": 28,
-    "filename": "positive7.yaml"
+    "filename": "positive7.json"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
     "severity": "MEDIUM",
     "line": 28,
-    "filename": "positive8.yaml"
+    "filename": "positive8.json"
   }
 ]
