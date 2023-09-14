@@ -10,3 +10,12 @@
     - name: become from higher scope
       ansible.builtin.command: whoamyou
       changed_when: false
+
+---
+- hosts: localhost
+  tasks:
+    - name: become from the same scope
+      ansible.builtin.command: whoami
+      become: true
+      become_user: postgres
+      changed_when: false

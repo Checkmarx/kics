@@ -27,3 +27,12 @@
         - name: Sample become_user
           become_user: postgres
           ansible.builtin.command: ls .
+
+---
+- hosts: localhost
+  tasks:
+    - name: become_user without become task
+      ansible.builtin.command: whoami
+      become_user: postgres
+      become: false
+      changed_when: false
