@@ -41,6 +41,7 @@ var (
 	// AvailablePlatforms - All platforms available
 	AvailablePlatforms = map[string]string{
 		"Ansible":                 "ansible",
+		"CICD":                    "cicd",
 		"CloudFormation":          "cloudFormation",
 		"Crossplane":              "crossplane",
 		"Dockerfile":              "dockerfile",
