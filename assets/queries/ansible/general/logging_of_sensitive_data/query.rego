@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": id,
 		"resourceName": task.name,
 		"resourceType": "ansible.builtin.user",
-		"searchKey": sprintf("name={{%s}}", [task.name, action.password]),
+		"searchKey": sprintf("name={{%s}}", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'no_log' should be defined and set to 'true' in order to not expose sensitive data",
 		"keyActualValue": "'no_log' is set to false",

@@ -8,7 +8,7 @@
 	{
 		"queryName": "Logging of Sensitive Data",
 		"severity": "LOW",
-		"line": 11,
+		"line": 5,
 		"fileName": "positive2.yaml"
 	}
 ]
