@@ -8,6 +8,9 @@ KICS supports scanning Ansible files with `.yaml` extension.
 
 KICS can decrypt Ansible Vault files on the fly. For that, you need to define the environment variable `ANSIBLE_VAULT_PASSWORD_FILE`.
 
+## Ansible Config
+KICS supports scanning Ansible Configuration files with `.cfg` or `.conf` extension.
+
 ## Ansible Inventory
 KICS supports scanning Ansible Inventory files with `.ini`, `.json` or `.yaml` extension.
 
@@ -52,6 +55,10 @@ cdk synth > cfn-stack.yaml
 ```bash
 docker run -t -v $PWD/cfn-stack.yaml:/path/cfn-stack.yaml -it checkmarx/kics:latest scan -p /path/cfn-stack.yaml
 ```
+
+## CICD
+
+KICS supports scanning Github Workflows CICD files with `.yaml` or `.yml` extension.
 
 ## CloudFormation
 
