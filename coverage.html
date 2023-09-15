@@ -169,7 +169,7 @@
 				
 				<option value="file56">github.com/Checkmarx/kics/pkg/parser/ansible/ini/comments/comments.go (96.8%)</option>
 				
-				<option value="file57">github.com/Checkmarx/kics/pkg/parser/ansible/ini/config/parser.go (74.5%)</option>
+				<option value="file57">github.com/Checkmarx/kics/pkg/parser/ansible/ini/config/parser.go (75.0%)</option>
 				
 				<option value="file58">github.com/Checkmarx/kics/pkg/parser/ansible/ini/hosts/parser.go (88.5%)</option>
 				
@@ -215,7 +215,7 @@
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file80">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file80">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
 				
 				<option value="file81">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2344,13 +2344,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="26">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="27">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="26">total += v
+                <span class="cov8" title="27">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -6235,12 +6235,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="30577">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="30591">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="30577">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="30266">{
+                <span class="cov9" title="30591">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="30280">{
                         return skipFolder
                 }</span>
 
@@ -6312,27 +6312,27 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov5" title="310">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="30580">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="30594">{
         s.mu.RLock()
         defer s.mu.RUnlock()
-        if info.IsDir() </span><span class="cov8" title="6790">{
+        if info.IsDir() </span><span class="cov8" title="6794">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="6789">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="6787">{
+                <span class="cov8" title="6793">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="6791">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="23790">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="23800">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="23790">ext := utils.GetExtension(path)
-        if !extensions.Include(ext) </span><span class="cov9" title="23480">{
+        <span class="cov9" title="23800">ext := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="23490">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
@@ -10380,7 +10380,6 @@ func GetIgnoreLines(lines []string) []int <span class="cov7" title="6">{
 		<pre class="file" id="file57" style="display: none">package ansibleconfig
 
 import (
-        "regexp"
         "strconv"
         "strings"
 
@@ -10433,24 +10432,16 @@ func refactorConfig(config *configparser.ConfigParser) (doc *model.Document) <sp
                         }</span> else<span class="cov9" title="13"> if floatValue, err := strconv.ParseFloat(value, 64); err == nil </span><span class="cov3" title="2">{
                                 dictRefact[key] = floatValue
                         }</span> else<span class="cov9" title="11"> if strings.Contains(value, ",") </span><span class="cov0" title="0">{
-                                re := regexp.MustCompile(`\w+`)
-                                matches := re.FindAllString(value, -1)
-                                if len(matches) &gt; 0 </span><span class="cov0" title="0">{
-                                        dictRefact[key] = matches
-                                }</span> else<span class="cov0" title="0"> {
-                                        dictRefact[key] = []string{}
+                                elements := strings.Split(value, ",")
+
+                                for i := 0; i &lt; len(elements); i++ </span><span class="cov0" title="0">{
+                                        elements[i] = strings.TrimSpace(elements[i])
                                 }</span>
-                        } else<span class="cov9" title="11"> if strings.Contains(value, ":") </span><span class="cov3" title="2">{
-                                re := regexp.MustCompile(`\w+`)
-                                matches := re.FindAllString(value, -1)
-                                if len(matches) &gt; 0 </span><span class="cov3" title="2">{
-                                        dictRefact[key] = matches
-                                }</span> else<span class="cov0" title="0"> {
-                                        dictRefact[key] = []string{}
-                                }</span>
-                        } else<span class="cov8" title="9"> if value == "[]" </span><span class="cov1" title="1">{
+
+                                <span class="cov0" title="0">dictRefact[key] = elements</span>
+                        } else<span class="cov9" title="11"> if value == "[]" </span><span class="cov1" title="1">{
                                 dictRefact[key] = []string{}
-                        }</span> else<span class="cov8" title="8"> {
+                        }</span> else<span class="cov8" title="10"> {
                                 dictRefact[key] = value
                         }</span>
                 }
@@ -14949,7 +14940,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov3" title="2">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -14958,26 +14949,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov3" title="2">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov0" title="0">p.wg.Done()</span>
+                <span class="cov3" title="2">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file81" style="display: none">package progress
@@ -20684,15 +20675,15 @@ func StringifyStruct(v interface{}) (string, error) <span class="cov0" title="0"
 }
 
 // MapToStringSlice extract slice of keys from a map[string]string
-func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="5012">{
+func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="5015">{
         keys := make([]string, len(stringKeyMap))
 
         i := 0
-        for k := range stringKeyMap </span><span class="cov10" title="80192">{
+        for k := range stringKeyMap </span><span class="cov10" title="80240">{
                 keys[i] = k
                 i++
         }</span>
-        <span class="cov7" title="5012">return keys</span>
+        <span class="cov7" title="5015">return keys</span>
 }
 
 var queryHigh = model.QueryResult{
