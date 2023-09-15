@@ -56,7 +56,7 @@ RUN wget https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_am
     && mkdir ~/.terraform.d && mkdir ~/.terraform.d/plugins && mkdir ~/.terraform.d/plugins/linux_amd64 && mv terraform-provider-aws_v3.72.0_x5 terraform-provider-google_v4.32.0_x5 terraform-provider-azurerm_v3.71.0_x5 ~/.terraform.d/plugins/linux_amd64
 
 # Install Terraformer
-RUN wget https://github.com/GoogleCloudPlatform/terraformer/releases/download/0.8.22/terraformer-all-linux-amd64 \
+RUN wget https://github.com/GoogleCloudPlatform/terraformer/releases/download/0.8.24/terraformer-all-linux-amd64 \
     && chmod +x terraformer-all-linux-amd64 \
     && mv terraformer-all-linux-amd64 /usr/bin/terraformer
 
