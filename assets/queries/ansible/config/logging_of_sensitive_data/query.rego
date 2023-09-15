@@ -11,6 +11,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": "defaults",
 		"issueType": "IncorrectValue",
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"keyExpectedValue": "no_log should be defined and set to 'true'",
 		"keyActualValue": "no_log is not defined",
 	}
@@ -25,6 +27,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": "defaults.no_log",
 		"issueType": "IncorrectValue",
+		"resourceType": "n/a",
+		"resourceName": "n/a",
 		"keyExpectedValue": "no_log should be set to 'true'",
 		"keyActualValue": "no_log is set to 'false'",
 	}
