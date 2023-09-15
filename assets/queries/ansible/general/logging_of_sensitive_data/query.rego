@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("name={{%s}}", [task.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'no_log' should be defined and set to 'true' in order to not expose sensitive data",
-		"keyActualValue": "'no_log' is set to false",
+		"keyActualValue": "'no_log' is not defined",
 	}
 }
 
@@ -37,6 +37,6 @@ CxPolicy[result] {
 		"searchKey": sprintf("name={{%s}}.no_log", [task.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'no_log' should be set to 'true' in order to not expose sensitive data",
-		"keyActualValue": "'no_log' is not defined",
+		"keyActualValue": "'no_log' is set to false",
 	}
 }
