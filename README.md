@@ -54,6 +54,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <br>
 <br>
 <img alt="Azure BluePrints" src="docs/img/logo-azure-blueprints.png" width="100">&nbsp;&nbsp;&nbsp;
+<img alt="GitHub Workflows" src="docs/img/logo-github-icon.png" width="100">&nbsp;&nbsp;&nbsp;
 
 
 Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
