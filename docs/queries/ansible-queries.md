@@ -140,6 +140,24 @@ Bellow are listed queries related with Ansible AWS:
 |CloudTrail Log File Validation Disabled<br/><sup><sub>4d8681a2-3d30-4c89-8070-08acd142748e</sub></sup>|<span style="color:#CC0">Low</span>|Observability|CloudTrail log file validation should be enabled to determine whether a log file has not been tampered (<a href="../ansible-queries/aws/4d8681a2-3d30-4c89-8070-08acd142748e" target="_blank">read more</a>)|<a href="https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html">Documentation</a><br/>|
 |EC2 Not EBS Optimized<br/><sup><sub>338b6cab-961d-4998-bb49-e5b6a11c9a5c</sub></sup>|<span style="color:#00C">Info</span>|Best Practices|It's considered a best practice for an EC2 instance to use an EBS optimized instance. This provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance (<a href="../ansible-queries/aws/338b6cab-961d-4998-bb49-e5b6a11c9a5c" target="_blank">read more</a>)|<a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_module.html#parameter-ebs_optimized">Documentation</a><br/>|
 
+### CONFIG
+Bellow are listed queries related with Ansible CONFIG:
+
+
+
+|            Query             |Severity|Category|Description|Help|
+|------------------------------|--------|--------|-----------|----|
+|Allow Unsafe Lookups Enabled<br/><sup><sub>86b97bb4-85c9-462d-8635-cbc057c5c8c5</sub></sup>|<span style="color:#C00">High</span>|Insecure Configurations|When enabled, this option allows lookup plugins to return data that is not marked 'unsafe'. (<a href="../ansible-queries/common/86b97bb4-85c9-462d-8635-cbc057c5c8c5" target="_blank">read more</a>)|<a href="https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-allow-unsafe-lookups">Documentation</a><br/>|
+
+### SHARED (V2/V3)
+Bellow are listed queries related with Ansible SHARED (V2/V3):
+
+
+
+|            Query             |Severity|Category|Description|Help|
+|------------------------------|--------|--------|-----------|----|
+|Communication Over HTTP<br/><sup><sub>2e8d4922-8362-4606-8c14-aa10466a1ce3</sub></sup>|<span style="color:#C60">Medium</span>|Insecure Configurations|Using HTTP URLs (without encryption) could lead to security vulnerabilities and risks (<a href="../ansible-queries/common/2e8d4922-8362-4606-8c14-aa10466a1ce3" target="_blank">read more</a>)|<a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/uri_module.html#parameter-url">Documentation</a><br/>|
+
 ### GCP
 Bellow are listed queries related with Ansible GCP:
 
@@ -244,3 +262,12 @@ Bellow are listed queries related with Ansible AZURE:
 |Log Retention Is Not Set<br/><sup><sub>0461b4fd-21ef-4687-929e-484ee4796785</sub></sup>|<span style="color:#C60">Medium</span>|Observability|Make sure that for PostgreSQL Database, server parameter 'log_retention' is set to 'ON' (<a href="../ansible-queries/azure/0461b4fd-21ef-4687-929e-484ee4796785" target="_blank">read more</a>)|<a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html">Documentation</a><br/>|
 |PostgreSQL Log Disconnections Not Set<br/><sup><sub>054d07b5-941b-4c28-8eef-18989dc62323</sub></sup>|<span style="color:#C60">Medium</span>|Observability|Make sure that for PostgreSQL Database, server parameter 'log_disconnections' is set to 'ON' (<a href="../ansible-queries/azure/054d07b5-941b-4c28-8eef-18989dc62323" target="_blank">read more</a>)|<a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html">Documentation</a><br/>|
 |PostgreSQL Log Checkpoints Disabled<br/><sup><sub>7ab33ac0-e4a3-418f-a673-50da4e34df21</sub></sup>|<span style="color:#C60">Medium</span>|Observability|Make sure that for Postgre SQL Database Server, parameter 'log_checkpoints' is set to 'ON' (<a href="../ansible-queries/azure/7ab33ac0-e4a3-418f-a673-50da4e34df21" target="_blank">read more</a>)|<a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html">Documentation</a><br/>|
+
+### HOSTS
+Bellow are listed queries related with Ansible HOSTS:
+
+
+
+|            Query             |Severity|Category|Description|Help|
+|------------------------------|--------|--------|-----------|----|
+|Ansible Tower Exposed To Internet<br/><sup><sub>1b2bf3ff-31e9-460e-bbfb-45e48f4f20cc</sub></sup>|<span style="color:#C60">Medium</span>|Best Practices|Avoid exposing Ansible Tower to the public internet, effectively reducing the potential attack surface of your deployment (<a href="../ansible-queries/common/1b2bf3ff-31e9-460e-bbfb-45e48f4f20cc" target="_blank">read more</a>)|<a href="https://docs.ansible.com/ansible-tower/latest/html/administration/security_best_practices.html#understand-the-architecture-of-ansible-and-tower">Documentation</a><br/>|
