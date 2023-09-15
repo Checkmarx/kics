@@ -110,6 +110,7 @@ func (p *Parser) SupportedTypes() map[string]bool {
 		"dockercompose":           true,
 		"pulumi":                  true,
 		"serverlessfw":            true,
+		"cicd":                    true,
 	}
 }
 
