@@ -367,6 +367,18 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 			wantErr:  false,
 		},
 		{
+			name: "get_generic_query_cicd",
+			fields: fields{
+				Source:  []string{"./assets/queries/template"},
+				Library: "./assets/libraries",
+			},
+			args: args{
+				platform: "cicd",
+			},
+			contains: "generic.cicd",
+			wantErr:  false,
+		},
+		{
 			name: "get_generic_query_unknown",
 			fields: fields{
 				Source:  []string{"./assets/queries/template"},
@@ -579,6 +591,13 @@ func Test_getPlatform(t *testing.T) {
 			want: "cloudFormation",
 		},
 		{
+			name: "get_platform_cicd",
+			args: args{
+				PlatformInMetadata: "CICD",
+			},
+			want: "cicd",
+		},
+		{
 			name: "get_platform_dockerfile",
 			args: args{
 				PlatformInMetadata: "Dockerfile",
@@ -636,6 +655,7 @@ func TestListSupportedPlatforms(t *testing.T) {
 		"Ansible",
 		"AzureResourceManager",
 		"Buildah",
+		"CICD",
 		"CloudFormation",
 		"Crossplane",
 		"Dockerfile",
