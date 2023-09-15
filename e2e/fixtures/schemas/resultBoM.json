@@ -45,6 +45,7 @@
                   "Ansible",
                   "AzureResourceManager",
                   "Buildah",
+                  "CICD",
                   "CloudFormation",
                   "CrossPlane",
                   "Common",

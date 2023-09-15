@@ -1,7 +1,6 @@
 package ansibleconfig
 
 import (
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -54,21 +53,13 @@ func refactorConfig(config *configparser.ConfigParser) (doc *model.Document) {
 			} else if floatValue, err := strconv.ParseFloat(value, 64); err == nil {
 				dictRefact[key] = floatValue
 			} else if strings.Contains(value, ",") {
-				re := regexp.MustCompile(`\w+`)
-				matches := re.FindAllString(value, -1)
-				if len(matches) > 0 {
-					dictRefact[key] = matches
-				} else {
-					dictRefact[key] = []string{}
+				elements := strings.Split(value, ",")
+
+				for i := 0; i < len(elements); i++ {
+					elements[i] = strings.TrimSpace(elements[i])
 				}
-			} else if strings.Contains(value, ":") {
-				re := regexp.MustCompile(`\w+`)
-				matches := re.FindAllString(value, -1)
-				if len(matches) > 0 {
-					dictRefact[key] = matches
-				} else {
-					dictRefact[key] = []string{}
-				}
+
+				dictRefact[key] = elements
 			} else if value == "[]" {
 				dictRefact[key] = []string{}
 			} else {
