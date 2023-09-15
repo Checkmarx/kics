@@ -20,18 +20,20 @@ type ResultsValidation struct {
 }
 
 type args struct {
-	Args            []cmdArgs // args to pass to kics binary
-	ExpectedOut     []string  // path to file with expected output
-	ExpectedPayload []string
-	ExpectedResult  []ResultsValidation
-	ExpectedLog     LogValidation
-	UseMock         []bool
+	Args                    []cmdArgs // args to pass to kics binary
+	ExpectedOut             []string  // path to file with expected output
+	ExpectedPayload         []string
+	ExpectedResult          []ResultsValidation
+	ExpectedAnalyzerResults *ResultsValidation
+	ExpectedLog             LogValidation
+	UseMock                 []bool
 }
 
 type TestTemplates struct {
 	Help          string
 	ScanHelp      string
 	RemediateHelp string
+	AnalyzeHelp   string
 }
 
 type cmdArgs []string
