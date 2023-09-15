@@ -1,13 +1,9 @@
 ---
 - hosts: localhost
   become_user: postgres
+  become: true
   tasks:
-    - name: become from a lower scope
-      ansible.builtin.command: whoami
-      become: false
-      changed_when: false
-
-    - name: become from higher scope
+    - name: some task
       ansible.builtin.command: whoamyou
       changed_when: false
 

@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   name: become_user without become
-  become_user: root
+  become_user: bar
 
   tasks:
     - name: Simple hello
@@ -10,11 +10,14 @@
 
 ---
 - hosts: localhost
+  name: become_user with become false
+  become_user: root
+  become: false
+
   tasks:
-    - name: become_user without become task
-      ansible.builtin.command: whoami
-      become_user: postgres
-      changed_when: false
+    - name: Simple hello
+      ansible.builtin.debug:
+        msg: hello
 
 ---
 - hosts: localhost
@@ -25,7 +28,20 @@
           become: true
           ansible.builtin.command: ls .
         - name: Sample become_user
+          become_user: foo
+          ansible.builtin.command: ls .
+
+---
+- hosts: localhost
+  tasks:
+    - name: become false
+      block:
+        - name: Sample become
+          become: true
+          ansible.builtin.command: ls .
+        - name: Sample become_user
           become_user: postgres
+          become: false
           ansible.builtin.command: ls .
 
 ---
@@ -35,4 +51,12 @@
       ansible.builtin.command: whoami
       become_user: mongodb
       become: false
+      changed_when: false
+
+---
+- hosts: localhost
+  tasks:
+    - name: become_user without become
+      ansible.builtin.command: whoami
+      become_user: mysql
       changed_when: false
