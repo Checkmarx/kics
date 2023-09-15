@@ -28,6 +28,7 @@ func TestParser_SupportedTypes(t *testing.T) {
 	p := &Parser{}
 	require.Equal(t, map[string]bool{
 		"ansible":                 true,
+		"cicd":                    true,
 		"cloudformation":          true,
 		"kubernetes":              true,
 		"crossplane":              true,

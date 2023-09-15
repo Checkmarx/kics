@@ -6,7 +6,7 @@ This provides you the ability to run KICS scans in your Github repositories and 
 
 #### Important note
 If you use a version from **v1.2 to v1.5 of the kics-github-action** it means you will be scanning your IaC files with **KICS version 1.5.15**.</br></br>
-In order to use **KICS version 1.6.x** to scan your files, you should use the **v1.6 of the kics-github-action**.
+In order to use **KICS version 1.7.x** to scan your files, you should use the **v1.7.0 of the kics-github-action**.
 
 #### Tutorial
 
@@ -16,7 +16,7 @@ In order to use **KICS version 1.6.x** to scan your files, you should use the **
 
 ```yaml
 - name: KICS Github Action
-  uses: Checkmarx/kics-github-action@v1.6
+  uses: Checkmarx/kics-github-action@v1.7.0
   with:
     # path to file or directory to scan
     path:
@@ -45,7 +45,7 @@ steps:
     # make sure results dir is created
     run: mkdir -p results-dir
   - name: run kics Scan
-    uses: Checkmarx/kics-github-action@v1.6
+    uses: Checkmarx/kics-github-action@v1.7.0
     with:
       path: 'terraform'
       output_path: results-dir
