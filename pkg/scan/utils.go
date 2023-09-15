@@ -47,7 +47,9 @@ func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.Extracted
 	}
 
 	allPaths := combinePaths(terraformerExPaths, kuberneterExPaths, regularExPaths, queryExPaths, libExPaths)
-
+	if len(allPaths.Path) == 0 {
+		return provider.ExtractedPath{}, nil
+	}
 	log.Info().Msgf("Total files in the project: %d", getTotalFiles(allPaths.Path))
 
 	a := &analyzer.Analyzer{
