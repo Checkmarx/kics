@@ -52,6 +52,7 @@ var (
 		"ansible":                 {".yaml", ".yml"},
 		"azureResourceManager":    {".json"},
 		"buildah":                 {".sh"},
+		"cicd":                    {".yaml", ".yml"},
 		"cloudFormation":          {".json", ".yaml", ".yml"},
 		"docker":                  {".dockerfile"},
 		"googleDeploymentManager": {".yaml", ".yml"},
@@ -317,7 +318,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 
 	wg := &sync.WaitGroup{}
 	proBarBuilder := progress.InitializePbBuilder(true, true, true)
-	platforms := []string{"Ansible", "AzureResourceManager", "Buildah", "CloudFormation", "Dockerfile", "GRPC", "Kubernetes", "OpenAPI", "Terraform"}
+	platforms := []string{"Ansible", "AzureResourceManager", "Buildah", "CICD", "CloudFormation", "Dockerfile", "GRPC", "Kubernetes", "OpenAPI", "Terraform"}
 	progressBar := proBarBuilder.BuildCounter("Executing queries: ", inspector.LenQueriesByPlat(platforms), wg, currentQuery)
 	go progressBar.Start()
 
@@ -331,7 +332,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			testParams.sampleContent(t),
 		),
 		[]string{BaseTestsScanPath},
-		[]string{"Ansible", "AzureResourceManager", "Buildah", "CloudFormation", "Dockerfile", "GRPC", "Kubernetes", "OpenAPI", "Terraform"},
+		[]string{"Ansible", "AzureResourceManager", "Buildah", "CICD", "CloudFormation", "Dockerfile", "GRPC", "Kubernetes", "OpenAPI", "Terraform"},
 		currentQuery,
 	)
 
