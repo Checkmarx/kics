@@ -387,6 +387,19 @@ func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
 		wantErr bool
 	}{
 		{
+			name: "test_too_many_levels_of_symbolic_links",
+			fields: fields{
+				fs: fsystem,
+			},
+			args: args{
+				excludePaths: []string{
+					"test/fixtures/link_test/eloop_link",
+				},
+			},
+			want:    []string{},
+			wantErr: false,
+		},
+		{
 			name: "test_add_excluded",
 			fields: fields{
 				fs: fsystem,
