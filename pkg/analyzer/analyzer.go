@@ -53,8 +53,7 @@ var (
 	blueprintpRegexTargetScope                      = regexp.MustCompile(`("targetScope"|targetScope)\s*:`)
 	blueprintpRegexProperties                       = regexp.MustCompile(`("properties"|properties)\s*:`)
 	buildahRegex                                    = regexp.MustCompile(`buildah\s*from\s*\w+`)
-	dockerComposeVersionRegex                       = regexp.MustCompile(`version\s*:`)
-	dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:`)
+	dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:[\w\W]+(image|build)\s*:`)
 	crossPlaneRegex                                 = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
 	knativeRegex                                    = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+knative\.dev/v\w+\s*`)
 	pulumiNameRegex                                 = regexp.MustCompile(`name\s*:`)
@@ -62,6 +61,9 @@ var (
 	pulumiResourcesRegex                            = regexp.MustCompile(`resources\s*:`)
 	serverlessServiceRegex                          = regexp.MustCompile(`service\s*:`)
 	serverlessProviderRegex                         = regexp.MustCompile(`provider\s*:`)
+	cicdOnRegex                                     = regexp.MustCompile(`\s*on:\s*`)
+	cicdJobsRegex                                   = regexp.MustCompile(`\s*jobs:\s*`)
+	cicdStepsRegex                                  = regexp.MustCompile(`\s*steps:\s*`)
 )
 
 var (
@@ -80,10 +82,14 @@ var (
 		"tfvars":             true,
 		".proto":             true,
 		".sh":                true,
+		".cfg":               true,
+		".conf":              true,
+		".ini":               true,
 	}
 	supportedRegexes = map[string][]string{
 		"azureresourcemanager": append(armRegexTypes, arm),
 		"buildah":              {"buildah"},
+		"cicd":                 {"cicd"},
 		"cloudformation":       {"cloudformation"},
 		"crossplane":           {"crossplane"},
 		"dockercompose":        {"dockercompose"},
@@ -111,6 +117,11 @@ const (
 	crossplane = "crossplane"
 	knative    = "knative"
 )
+
+type Parameters struct {
+	Results string
+	Path    []string
+}
 
 // regexSlice is a struct to contain a slice of regex
 type regexSlice struct {
@@ -223,7 +234,6 @@ var types = map[string]regexSlice{
 	},
 	"dockercompose": {
 		[]*regexp.Regexp{
-			dockerComposeVersionRegex,
 			dockerComposeServicesRegex,
 		},
 	},
@@ -238,6 +248,13 @@ var types = map[string]regexSlice{
 		[]*regexp.Regexp{
 			serverlessServiceRegex,
 			serverlessProviderRegex,
+		},
+	},
+	"cicd": {
+		[]*regexp.Regexp{
+			cicdOnRegex,
+			cicdJobsRegex,
+			cicdStepsRegex,
 		},
 	},
 }
@@ -379,7 +396,14 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 			results <- grpc
 			locCount <- linesCount
 		}
-	// Cloud Formation, Ansible, OpenAPI, Buildah
+	// It could be Ansible Config or Ansible Inventory
+	case ".cfg", ".conf", ".ini":
+		if a.isAvailableType(ansible) {
+			results <- ansible
+			locCount <- linesCount
+		}
+	/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
+	Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager*/
 	case yaml, yml, json, sh:
 		a.checkContent(results, unwanted, locCount, linesCount, ext)
 	}
@@ -413,7 +437,7 @@ func isDockerfile(path string) bool {
 func needsOverride(check bool, returnType, key, ext string) bool {
 	if check && returnType == kubernetes && key == arm && ext == json {
 		return true
-	} else if check && returnType == kubernetes && (key == knative || key == crossplane) && ext == yaml {
+	} else if check && returnType == kubernetes && (key == knative || key == crossplane) && (ext == yaml || ext == yml) {
 		return true
 	}
 	return false
@@ -622,7 +646,7 @@ func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bo
 	gitIgnorePath := filepath.ToSlash(filepath.Join(path, gitIgnore))
 	_, err := os.Stat(gitIgnorePath)
 
-	if !excludeGitIgnoreFile && err == nil {
+	if !excludeGitIgnoreFile && err == nil && gitIgnore != "" {
 		gitIgnore, _ := ignore.CompileIgnoreFile(gitIgnorePath)
 		if gitIgnore != nil {
 			log.Info().Msgf(".gitignore file was found in '%s' and it will be used to automatically exclude paths", path)

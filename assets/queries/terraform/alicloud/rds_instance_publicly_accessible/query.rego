@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("alicloud_db_instance[%s].security_ips.%s", [name,x]),
+		"searchKey": sprintf("alicloud_db_instance[%s].security_ips[%v]", [name,x]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' should not be in 'security_ips' list", [sec_ip]),
 		"keyActualValue": sprintf("'%s' is in 'security_ips' list", [sec_ip]),
