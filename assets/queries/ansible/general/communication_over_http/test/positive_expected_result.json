@@ -1,0 +1,8 @@
+[
+    {
+      "queryName": "Communication Over HTTP",
+      "severity": "MEDIUM",
+      "line": 6,
+      "filename": "positive1.yaml"
+    }
+]

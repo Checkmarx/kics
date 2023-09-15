@@ -1126,7 +1126,7 @@ EOF
 </details>
 <details><summary>Postitive test num. 41 - tf file</summary>
 
-```tf hl_lines="7"
+```tf hl_lines="6"
 resource "aws_transfer_ssh_key" "positive44" {
 	server_id = aws_transfer_server.example.id
 	user_name = aws_transfer_user.example.user_name
@@ -1160,6 +1160,144 @@ data "terraform_remote_state" "intnet" {
     access_key           = "sdsaljasbdasddsadsa"
   }
   workspace = terraform.workspace
+}
+
+```
+</details>
+<details><summary>Postitive test num. 43 - yaml file</summary>
+
+```yaml hl_lines="5"
+Resources:
+  ElastiCacheReplicationGroup:
+    Type: AWS::ElastiCache::ReplicationGroup
+    Properties:
+      AuthToken: '{{resolve:secretsmanager:/elasticache/replicationgroup/authtoken:SecretString:password}}'
+      CacheNodeType: cache.m5.large
+      CacheSubnetGroupName: subnet-foobar
+      Engine: redis
+      EngineVersion: '5.0.0'
+      NumCacheClusters: 2
+      ReplicationGroupDescription: foobar
+      SecurityGroupIds:
+        - sg-foobar
+      TransitEncryptionEnabled: True
+
+```
+</details>
+<details><summary>Postitive test num. 44 - yaml file</summary>
+
+```yaml hl_lines="17"
+Transform: 'AWS::Serverless-2016-10-31'
+Metadata:
+  'AWS::ServerlessRepo::Application':
+    Name: AthenaJdbcConnector
+    Description: 'This connector enables Amazon Athena to communicate with your Database instance(s) using JDBC driver.'
+    Author: 'default author'
+    SpdxLicenseId: Apache-2.0
+    LicenseUrl: LICENSE.txt
+    ReadmeUrl: README.md
+    Labels:
+      - athena-federation
+    HomePageUrl: 'https://github.com/awslabs/aws-athena-query-federation'
+    SemanticVersion: 2021.41.1
+    SourceCodeUrl: 'https://github.com/awslabs/aws-athena-query-federation'
+Parameters:
+  SecretNamePrefix:
+      Description: 'Used to create resource-based authorization policy for "secretsmanager:GetSecretValue" action. E.g. All Athena JDBC Federation secret names can be prefixed with "AthenaJdbcFederation" and authorization policy will allow "arn:${AWS::Partition}:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:AthenaJdbcFederatione*". Parameter value in this case should be "AthenaJdbcFederation". If you do not have a prefix, you can manually update the IAM policy to add allow any secret names.'
+      Type: String
+
+```
+</details>
+<details><summary>Postitive test num. 45 - tf file</summary>
+
+```tf hl_lines="9"
+#this is a problematic code where the query should report a result(s)
+resource "google_container_cluster" "primary1" {
+  name               = "marcellus-wallace"
+  location           = "us-central1-a"
+  initial_node_count = 3
+
+  master_auth {
+    username = ""
+    password = local.rds_postgres_is_primary ? var.rds_postgres_password : "null"
+
+    client_certificate_config {
+      issue_client_certificate = true
+    }
+  }
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+  }
+}
+
+```
+</details>
+<details><summary>Postitive test num. 46 - yaml file</summary>
+
+```yaml hl_lines="20"
+version: '3.9'
+services:
+  vulnerable_node:
+    restart: always
+    build: .
+    depends_on:
+      - postgres_db
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres_db
+
+  postgres_db:
+    restart: always
+    build: ./services/postgresql
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+```
+</details>
+<details><summary>Postitive test num. 47 - tf file</summary>
+
+```tf hl_lines="5 6"
+resource "auth0_connection" "google_oauth2" {
+  name = "Google-OAuth2-Connection"
+  strategy = "google-oauth2"
+  options {
+    client_id = "53221331-2323wasdfa343rwhthfaf33feaf2fa7f.apps.googleusercontent.com"
+    client_secret = "F-oS9Su%}<>[];#"
+    allowed_audiences = [ "example.com", "api.example.com" ]
+    scopes = [ "email", "profile", "gmail", "youtube" ]
+    set_user_root_attributes = "on_each_login"
+  }
+}
+
+```
+</details>
+<details><summary>Postitive test num. 48 - tf file</summary>
+
+```tf hl_lines="8"
+resource "google_container_cluster" "primary1" {
+  name               = "marcellus-wallace"
+  location           = "us-central1-a"
+  initial_node_count = 3
+
+  master_auth {
+    username = ""
+    password = "varexample"
+
+    client_certificate_config {
+      issue_client_certificate = true
+      password = var.example
+    }
+  }
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+  }
 }
 
 ```
@@ -1707,21 +1845,57 @@ provider rancher2 {
 <details><summary>Negative test num. 29 - yaml file</summary>
 
 ```yaml
-Resources:
-  ElastiCacheReplicationGroup:
-    Type: AWS::ElastiCache::ReplicationGroup
-    Properties:
-      AuthToken: '{{resolve:secretsmanager:/elasticache/replicationgroup/authtoken:SecretString:password}}'
-      CacheNodeType: cache.m5.large
-      CacheSubnetGroupName: subnet-foobar
-      Engine: redis
-      EngineVersion: '5.0.0'
-      NumCacheClusters: 2
-      ReplicationGroupDescription: foobar
-      SecurityGroupIds:
-        - sg-foobar
-      TransitEncryptionEnabled: True
+name: Example Workflow
 
+on: workflow_call
+
+jobs:
+  build-deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    runs-on: ubuntu
+
+    steps:
+      - uses: actions/checkout@v3
+
+---
+
+name: Example Workflow
+
+on: workflow_call
+
+jobs:
+  build-deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: read
+
+    runs-on: ubuntu
+
+    steps:
+      - uses: actions/checkout@v3
+
+---
+
+name: Example Workflow
+
+on: workflow_call
+
+jobs:
+  build-deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: none
+
+    runs-on: ubuntu
+
+    steps:
+      - uses: actions/checkout@v3
 ```
 </details>
 <details><summary>Negative test num. 30 - yaml file</summary>
@@ -1980,24 +2154,31 @@ Resources:
 <details><summary>Negative test num. 40 - yaml file</summary>
 
 ```yaml
-Transform: 'AWS::Serverless-2016-10-31'
-Metadata:
-  'AWS::ServerlessRepo::Application':
-    Name: AthenaJdbcConnector
-    Description: 'This connector enables Amazon Athena to communicate with your Database instance(s) using JDBC driver.'
-    Author: 'default author'
-    SpdxLicenseId: Apache-2.0
-    LicenseUrl: LICENSE.txt
-    ReadmeUrl: README.md
-    Labels:
-      - athena-federation
-    HomePageUrl: 'https://github.com/awslabs/aws-athena-query-federation'
-    SemanticVersion: 2021.41.1
-    SourceCodeUrl: 'https://github.com/awslabs/aws-athena-query-federation'
-Parameters:
-  SecretNamePrefix:
-      Description: 'Used to create resource-based authorization policy for "secretsmanager:GetSecretValue" action. E.g. All Athena JDBC Federation secret names can be prefixed with "AthenaJdbcFederation" and authorization policy will allow "arn:${AWS::Partition}:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:AthenaJdbcFederation*". Parameter value in this case should be "AthenaJdbcFederation". If you do not have a prefix, you can manually update the IAM policy to add allow any secret names.'
-      Type: String
+Type: AWS::Glue::Connection
+Properties:
+    CatalogId: "1111111111111"
+    ConnectionInput:
+      ConnectionProperties:
+          CONNECTION_URL:
+            Fn::Join:
+              - ""
+              - - "mongodb://{{resolve:secretsmanager:arn:"
+                - Ref: AWS::Partition
+                - :secretsmanager:*:1111111111111:secret:/test/resources/docdb-test:SecretString:endpoint::}}/test
+          USERNAME:
+            Fn::Join:
+              - ""
+              - - "{{resolve:secretsmanager:arn:"
+                - Ref: AWS::Partition
+                - :secretsmanager:eu-west-1:*:secret:/test/resources/docdb-test:SecretString:username::}}
+          PASSWORD:
+            Fn::Join:
+              - ""
+              - - "{{resolve:secretsmanager:arn:"
+                - Ref: AWS::Partition
+                - :secretsmanager:us-east-?:*:secret:tiny::}}
+          JDBC_ENFORCE_SSL: true
+      ConnectionType: MONGODB
 
 ```
 </details>
@@ -2164,109 +2345,6 @@ Resources:
       EventSourceArn: !GetAtt StreamConsumer.StreamARN
       FunctionName: !Ref LambdaFunctionArn
       StartingPosition: LATEST
-
-```
-</details>
-<details><summary>Negative test num. 42 - yaml file</summary>
-
-```yaml
-name: Example Workflow
-
-on: workflow_call
-
-jobs:
-  build-deploy:
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-
-    runs-on: ubuntu
-
-    steps:
-      - uses: actions/checkout@v3
-
----
-
-name: Example Workflow
-
-on: workflow_call
-
-jobs:
-  build-deploy:
-    permissions:
-      contents: read
-      pages: write
-      id-token: read
-
-    runs-on: ubuntu
-
-    steps:
-      - uses: actions/checkout@v3
-
----
-
-name: Example Workflow
-
-on: workflow_call
-
-jobs:
-  build-deploy:
-    permissions:
-      contents: read
-      pages: write
-      id-token: none
-
-    runs-on: ubuntu
-
-    steps:
-      - uses: actions/checkout@v3
-```
-</details>
-<details><summary>Negative test num. 43 - yaml file</summary>
-
-```yaml
-Type: AWS::Glue::Connection
-Properties:
-    CatalogId: "1111111111111"
-    ConnectionInput:
-      ConnectionProperties:
-          CONNECTION_URL:
-            Fn::Join:
-              - ""
-              - - "mongodb://{{resolve:secretsmanager:arn:"
-                - Ref: AWS::Partition
-                - :secretsmanager:*:1111111111111:secret:/test/resources/docdb-test:SecretString:endpoint::}}/test
-          USERNAME:
-            Fn::Join:
-              - ""
-              - - "{{resolve:secretsmanager:arn:"
-                - Ref: AWS::Partition
-                - :secretsmanager:eu-west-1:*:secret:/test/resources/docdb-test:SecretString:username::}}
-          PASSWORD:
-            Fn::Join:
-              - ""
-              - - "{{resolve:secretsmanager:arn:"
-                - Ref: AWS::Partition
-                - :secretsmanager:us-east-?:*:secret:tiny::}}
-          JDBC_ENFORCE_SSL: true
-      ConnectionType: MONGODB
-
-```
-</details>
-<details><summary>Negative test num. 44 - tf file</summary>
-
-```tf
-data "terraform_remote_state" "intnet" {
-  backend = "azurerm"
-  config = {
-    storage_account_name = "asdsadas"
-    container_name       = "dp-prasdasdase-001"
-    key                  = "infrastructure.tfstate"
-    access_key           = file(var.access_key_path)
-  }
-  workspace = terraform.workspace
-}
 
 ```
 </details>

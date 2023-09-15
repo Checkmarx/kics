@@ -1,0 +1,20 @@
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstance
+metadata:
+  name: sample-cluster3
+spec: 
+  forProvider:
+    publiclyAccessible: false
+
+---
+
+apiVersion: database.aws.crossplane.io/v1alpha3
+kind: DBSubnetGroup
+metadata:
+  name: my-db-subnet-group
+spec:
+  forProvider:
+    description: "My DB Subnet Group"
+    subnetIds:
+      - subnet-12345678
+      - subnet-87654321
