@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	masterUtils "github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"helm.sh/helm/v3/pkg/chart"
 	"helm.sh/helm/v3/pkg/cli/values"
@@ -32,6 +33,13 @@ const (
 
 // Resolve will render the passed helm chart and return its content ready for parsing
 func (r *Resolver) Resolve(filePath string) (model.ResolvedFiles, error) {
+	// handle panic during resolve process
+	defer func() {
+		if r := recover(); r != nil {
+			errMessage := "Recovered from panic during resolve of file " + filePath
+			masterUtils.HandlePanic(r, errMessage)
+		}
+	}()
 	splits, excluded, err := renderHelm(filePath)
 	if err != nil { // return error to be logged
 		return model.ResolvedFiles{}, errors.New("failed to render helm chart")
