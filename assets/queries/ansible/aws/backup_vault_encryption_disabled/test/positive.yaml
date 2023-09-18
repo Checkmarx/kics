@@ -1,0 +1,7 @@
+- name: create backup vault
+  amazon.aws.backup_vault:
+    state: present
+    backup_vault_name: default-vault
+    tags:
+      environment: dev
+      Name: default

@@ -1,0 +1,11 @@
+{
+  "id": "131a89fe-21ae-4516-b428-af4d2af38739",
+  "queryName": "Backup Vault Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Amazon Backup Vault does not have encryption enabled. It shall be provided a key to encrypt the backups, preventing access from unauthorized users.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/backup_vault_module.html#parameter-encryption_key_arn",
+  "platform": "Ansible",
+  "descriptionID": "1cd5ea9a",
+  "cloudProvider": "aws"
+}
