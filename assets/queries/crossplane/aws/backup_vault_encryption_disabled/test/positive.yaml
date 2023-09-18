@@ -1,0 +1,7 @@
+apiVersion: backup.aws.jet.crossplane.io/v1alpha1
+kind: Vault
+metadata:
+  name: example-bucket-vault
+spec:
+  forProvider:
+    region: us-west-1
