@@ -27,7 +27,7 @@ CxPolicy[result] {
 	task := ansLib.tasks[id][_]
     modules := [
         "archive", "community.general.archive", "assemble", "ansible.builtin.assemble", "copy", "ansible.builtin.copy", "file", "ansible.builtin.file", 
-        "get_url", "ansible.builtin.get_url", "ansible.builtin.replace", "template", "ansible.builtin.template",
+        "get_url", "ansible.builtin.get_url", "template", "ansible.builtin.template",
     ]
 	action := task[modules[m]]
 
@@ -67,8 +67,8 @@ CxPolicy[result] {
         "ansible.builtin.lineinfile": false,
     }
 
-    bool := modules[m]
 	action := task[m]
+    bool := modules[m]
     object.get(action, "create", bool) == true
 
 	result := {
@@ -84,5 +84,8 @@ CxPolicy[result] {
 
 file_module(action, module_name){
     module_name == "file"
+    object.get(action, "state", "file") == "file"
+} else {
+	module_name == "ansible.builtin.file"
     object.get(action, "state", "file") == "file"
 }
