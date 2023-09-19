@@ -312,6 +312,7 @@ func (s *FilesystemSource) iterateSources(experimentalQueriesPaths []string, que
 					}
 				} else {
 					return errors.Wrap(err, "Failed to get query absolute path")
+				}
 				return nil
 			})
 		if err != nil {
