@@ -1,0 +1,33 @@
+all:
+  children:
+    automationhub:
+      hosts:
+        automationhub.acme.org:
+          admin_password: <password>
+          pg_database: awx
+          pg_host: database-01.acme.org
+          pg_password: <password>
+          pg_port: '5432'
+          pg_sslmode: prefer
+          pg_username: awx
+    database:
+      hosts:
+        database-01.acme.org:
+          admin_password: <password>
+          pg_database: awx
+          pg_host: database-01.acme.org
+          pg_password: <password>
+          pg_port: '5432'
+          pg_sslmode: prefer
+          pg_username: awx
+    tower:
+      hosts:
+        172.27.0.5:
+          admin_password: <password>
+          pg_database: awx
+          pg_host: database-01.acme.org
+          pg_password: <password>
+          pg_port: '5432'
+          pg_sslmode: prefer
+          pg_username: awx
+    ungrouped: {}

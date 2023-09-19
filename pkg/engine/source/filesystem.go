@@ -512,6 +512,7 @@ var supPlatforms = &supportedPlatforms{
 	"Buildah":                 "buildah",
 	"Pulumi":                  "pulumi",
 	"ServerlessFW":            "serverlessFW",
+	"CICD":                    "cicd",
 }
 
 func getPlatform(metadataPlatform string) string {
