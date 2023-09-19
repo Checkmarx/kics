@@ -257,7 +257,12 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 			return nil, err
 		}
 
-		defer experimentalQueriesFile.Close()
+		defer func(experimentalQueriesFile *os.File) {
+			err := experimentalQueriesFile.Close()
+			if err != nil {
+				log.Err(err).Msg("Failed to close experimental queries file")
+			}
+		}(experimentalQueriesFile)
 
 		byteValue, err := io.ReadAll(experimentalQueriesFile)
 		if err != nil {
