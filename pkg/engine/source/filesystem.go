@@ -252,15 +252,15 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 	experimentalQueriesPaths := make([]string, 0)
 
 	if s.ExperimentalQueries != "" {
-		experimentalQueriesFile, err := os.Open(s.ExperimentalQueries)
-		if err != nil {
-			return nil, err
+		experimentalQueriesFile, errOpeningFile := os.Open(s.ExperimentalQueries)
+		if errOpeningFile != nil {
+			return nil, errOpeningFile
 		}
 
 		defer func(experimentalQueriesFile *os.File) {
-			err := experimentalQueriesFile.Close()
-			if err != nil {
-				log.Err(err).Msg("Failed to close experimental queries file")
+			errClosingFile := experimentalQueriesFile.Close()
+			if errClosingFile != nil {
+				log.Err(errClosingFile).Msg("Failed to close experimental queries file")
 			}
 		}(experimentalQueriesFile)
 
