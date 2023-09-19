@@ -98,3 +98,13 @@
       copy:
         path: foo
         mode: preserve
+
+---
+- name: LINEINFILE_CREATE2
+  tasks:
+    - name: create_false
+      ansible.builtin.lineinfile:
+        path: foo
+        create: true
+        line: some content here
+        mode: "644"

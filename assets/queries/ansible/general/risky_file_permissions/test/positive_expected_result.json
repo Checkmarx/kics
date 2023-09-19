@@ -52,5 +52,11 @@
         "severity": "INFO",
         "file": "positive1.yaml",
         "line": 64
+    },
+    {
+        "queryName": "Risky File Permissions",
+        "severity": "INFO",
+        "file": "positive1.yaml",
+        "line": 74
     }
 ]

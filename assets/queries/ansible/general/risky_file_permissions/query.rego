@@ -54,8 +54,6 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][_]
-    not common_lib.valid_key(task, "mode")
-
     modules := {
         "blockinfile": false,
         "ansible.builtin.blockinfile": false,
@@ -68,6 +66,8 @@ CxPolicy[result] {
     }
 
 	action := task[m]
+    not common_lib.valid_key(action, "mode")
+
     bool := modules[m]
     object.get(action, "create", bool) == true
 
@@ -77,7 +77,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, m]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s 'create' key should set to 'false' or 'mode' key should be defined and set to 'preserve'", [m]),
+		"keyExpectedValue": sprintf("%s 'create' key should set to 'false' or 'mode' key should be defined", [m]),
 		"keyActualValue": sprintf("%s 'create' key is set to 'true' and 'mode' key is not defined", [m]),
 	}
 }
