@@ -63,7 +63,7 @@
     "flagType": "multiStr",
     "shorthandFlag": "",
     "defaultValue": null,
-    "usage": "includes experimental queries (queries not yet fully reviewed) by providing the path of the queries folder\ncan be provided multiple times or as a comma separated string, (platform:cloudProvider or platform)\nexample: 'terraform/databricks'\npossible values found in: '/assets/utils/experimental-queries.json'",
+    "usage": " strings include experimental queries (queries not yet thoroughly reviewed) by providing the path of the queries folder\ncan be provided multiple times or as a comma-separated string (platform:cloudProvider or platform)\nexample: 'terraform:databricks'\npossible values found in: '/assets/utils/experimental-queries.json'",
     "validation": "validateMultiStr"
   },
   "fail-on": {
