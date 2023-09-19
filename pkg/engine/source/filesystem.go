@@ -307,11 +307,11 @@ func (s *FilesystemSource) iterateSources(experimentalQueriesPaths []string, que
 					cleanPlatformCloudProviderDir, err = filepath.Rel(absQueriesPath, absQueryPathDir)
 					if err == nil && isExperimental(querypathDir, cleanPlatformCloudProviderDir, experimentalQueriesPaths, queryParameters) {
 						queryDirs = append(queryDirs, querypathDir)
+					} else if err != nil {
+						return errors.Wrap(err, "Failed to get query relative path")
 					}
-				}
-				if err != nil || err1 != nil || err2 != nil {
-					queryDirs = append(queryDirs, querypathDir)
-				}
+				} else {
+					return errors.Wrap(err, "Failed to get query absolute path")
 				return nil
 			})
 		if err != nil {
