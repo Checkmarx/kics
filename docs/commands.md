@@ -69,7 +69,7 @@ Flags:
                                       possible values: 'high, medium, low, info, trace'
       --experimental-queries strings includes experimental queries (queries not yet fully reviewed) by providing the path of the queries folder
                                       can be provided multiple times or as a comma separated string, (platform:cloudProvider or platform)
-                                      example: 'terraform/databricks'
+                                      example: 'terraform:databricks'
                                       possible values found in: '/assets/utils/experimental-queries.json'
       --fail-on strings               which kind of results should return an exit code different from 0
                                       accepts: high, medium, low and info
