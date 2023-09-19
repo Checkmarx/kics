@@ -78,7 +78,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, m]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s 'create' key should set to 'false' or 'mode' key should be defined and set to 'preserve'", [m]),
-		"keyActualValue": sprintf("%s 'create' key is set to 'true' or 'mode' key is not defined", [m]),
+		"keyActualValue": sprintf("%s 'create' key is set to 'true' and 'mode' key is not defined", [m]),
 	}
 }
 

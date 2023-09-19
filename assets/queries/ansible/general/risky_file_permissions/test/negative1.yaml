@@ -81,3 +81,20 @@
         path: foo
         create: false
         line: some content here
+
+---
+- name: LINIINFILE_CREATE
+  tasks: 
+    - name: create is true 2x
+      lineinfile:
+        path: foo
+        line: some content here
+        mode: "0600"
+
+---
+- name: PRESERVE_MODE
+  tasks:
+    - name: not preserve value
+      copy:
+        path: foo
+        mode: preserve
