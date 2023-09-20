@@ -18,7 +18,7 @@ CxPolicy[result] {
     "github.event.pull_request.title"
 	]
 
-	containsPattern(run, patterns)
+	matched = containsPatterns(run, patterns)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -40,7 +40,7 @@ CxPolicy[result] {
 	"github.event.issue.title"
 	]
 
-	containsPattern(run, patterns)
+	matched = containsPatterns(run, patterns)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -63,7 +63,7 @@ CxPolicy[result] {
 	"github.event.issue.title"
 	]
 
-	containsPattern(run, patterns)
+	matched = containsPatterns(run, patterns)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -85,7 +85,7 @@ CxPolicy[result] {
 	"github.event.discussion.title"
 	]
 
-	containsPattern(run, patterns)
+	matched = containsPatterns(run, patterns)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -108,7 +108,7 @@ CxPolicy[result] {
 	"github.event.discussion.title"
 	]
 
-	containsPattern(run, patterns)
+	matched = containsPatterns(run, patterns)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -134,7 +134,7 @@ CxPolicy[result] {
 	"github.event.workflow_run.head_repository.description"
 	]
 
-	containsPattern(run, patterns)
+	matched = containsPatterns(run, patterns)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -156,7 +156,7 @@ CxPolicy[result] {
 	"github.*.authors.email"
 	]
 
-	containsPattern(run, patterns)
+	matched = containsPatterns(run, patterns)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -170,8 +170,10 @@ CxPolicy[result] {
 
 
 
-containsPattern(str, patterns) {
-    pattern := patterns[_]
-    regex.match(pattern, str)
+containsPatterns(str, patterns) = matched {
+    matched := {pattern |
+        pattern := patterns[_]
+        regex.match(pattern, str)
+    }
 }
 
