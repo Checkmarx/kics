@@ -1,0 +1,11 @@
+{
+    "id": "88841d5c-d22d-4b7e-a6a0-89ca50e44b9f",
+    "queryName": "Risky File Permissions",
+    "severity": "INFO",
+    "category": "Supply-Chain",
+    "descriptionText": "Some modules could end up creating new files on disk with permissions that might be too open or unpredictable",
+    "descriptionUrl": "https://ansible.readthedocs.io/projects/lint/rules/risky-file-permissions/",
+    "platform": "Ansible",
+    "descriptionID": "1f0e1485",
+    "cloudProvider": "common"
+  }
