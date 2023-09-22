@@ -23,7 +23,7 @@ CxPolicy[result] {
     "github.event.pull_request.title"
 	]
 
-	containsPattern(script, patterns)
+	matched = containsPatterns(script, patterns)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -31,7 +31,8 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "with", "script"],[])
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "with", "script"],[]),
+		"searchValue": matched[m]
 	}
 }
 
@@ -45,7 +46,7 @@ CxPolicy[result] {
 	"github.event.issue.title"
 	]
 
-	containsPattern(script, patterns)
+	matched = containsPatterns(script, patterns)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -53,7 +54,8 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "script"],[])
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "script"],[]),
+		"searchValue": matched[m]
 	}
 }
 
@@ -68,7 +70,7 @@ CxPolicy[result] {
 	"github.event.issue.title"
 	]
 
-	containsPattern(script, patterns)
+	matched = containsPatterns(script, patterns)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -76,7 +78,8 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "script"],[])
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "script"],[]),
+		"searchValue": matched[m]
 	}
 }
 
@@ -90,7 +93,7 @@ CxPolicy[result] {
 	"github.event.discussion.title"
 	]
 
-	containsPattern(script, patterns)
+	matched = containsPatterns(script, patterns)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -98,7 +101,8 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "script"],[])
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "script"],[]),
+		"searchValue": matched[m]
 	}
 }
 
@@ -113,7 +117,7 @@ CxPolicy[result] {
 	"github.event.discussion.title"
 	]
 
-	containsPattern(script, patterns)
+	matched = containsPatterns(script, patterns)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -121,7 +125,8 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "script"],[])
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "script"],[]),
+		"searchValue": matched[m]
 	}
 }
 
@@ -139,7 +144,7 @@ CxPolicy[result] {
 	"github.event.workflow_run.head_repository.description"
 	]
 
-	containsPattern(script, patterns)
+	matched = containsPatterns(script, patterns)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -147,7 +152,8 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "script"],[])
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "script"],[]),
+		"searchValue": matched[m]
 	}
 }
 
@@ -161,7 +167,7 @@ CxPolicy[result] {
 	"github.*.authors.email"
 	]
 
-	containsPattern(script, patterns)
+	matched = containsPatterns(script, patterns)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -169,14 +175,17 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "script"],[])
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "script"],[]),
+		"searchValue": matched[m]
 	}
 }
 
 
 
-containsPattern(str, patterns) {
-    pattern := patterns[_]
-    regex.match(pattern, str)
+containsPatterns(str, patterns) = matched {
+    matched := {pattern |
+        pattern := patterns[_]
+        regex.match(pattern, str)
+    }
 }
 
