@@ -12,4 +12,4 @@ jobs:
       - name: Echo Pull Request Body
         run: |
           echo "Pull Request Body: ${{ github.event.pull_request.body }}"
-          echo "Pull Request Title: ${{ github.event.pull_request.title }}"
+
