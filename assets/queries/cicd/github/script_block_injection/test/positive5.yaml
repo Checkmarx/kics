@@ -1,7 +1,7 @@
 name: test-script-run
 
 on:
-  issues:
+  discussion_comment:
     types: [opened]
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const body = fs.readFileSync('/tmp/${{ github.event.issue.title }}.txt', {encoding: 'utf8'});
+            const body = fs.readFileSync('/tmp/${{ github.event.discussion.title }}.txt', {encoding: 'utf8'});
 
             await github.rest.issues.createComment({
               issue_number: context.issue.number,

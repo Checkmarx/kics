@@ -1,7 +1,7 @@
 name: test-script-run
 
 on:
-  issues:
+  issue_comment:
     types: [opened]
 
 jobs:
