@@ -26,7 +26,8 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Run block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[])
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[]),
+		"searchValue": matched[m]
 	}
 }
 
@@ -48,7 +49,8 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Run block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[])
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[]),
+		"searchValue": matched[m]
 	}
 }
 
@@ -71,7 +73,8 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Run block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[])
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[]),
+		"searchValue": matched[m]
 	}
 }
 
@@ -93,7 +96,8 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Run block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[])
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[]),
+		"searchValue": matched[m]
 	}
 }
 
@@ -116,7 +120,8 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Run block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[])
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[]),
+		"searchValue": matched[m]
 	}
 }
 
@@ -142,7 +147,8 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Run block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[])
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[]),
+		"searchValue": matched[m]
 	}
 }
 
@@ -164,7 +170,8 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Run block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[])
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "run"],[]),
+		"searchValue": matched[m]
 	}
 }
 
