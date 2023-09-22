@@ -55,6 +55,7 @@ var (
 		"../assets/queries/dockerfile/apt_get_install_pin_version_not_defined",
 		"../assets/queries/terraform/aws/redshift_cluster_without_vpc",
 		"../assets/queries/openAPI/general/response_code_missing",
+		"../assets/queries/cicd/github/run_block_injection",
 	}
 
 	// TODO uncomment this test once all metadata are fixed
