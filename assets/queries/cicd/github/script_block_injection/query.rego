@@ -8,7 +8,7 @@ CxPolicy[result] {
 
     uses := input.document[i].jobs[j].steps[k].uses
 
-    startswith("actions/github-scripts", uses)
+    startswith(uses, "actions/github-script")
     
     script := input.document[i].jobs[j].steps[k]["with"].script
 
@@ -42,7 +42,7 @@ CxPolicy[result] {
 
 	uses := input.document[i].jobs[j].steps[k].uses
 
-    startswith("actions/github-scripts", uses)
+    startswith(uses, "actions/github-script")
     
     script := input.document[i].jobs[j].steps[k]["with"].script
 
@@ -55,11 +55,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"searchKey": sprintf("script={{%s}}", [script]),
+		"searchKey": "issues",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
 		"keyActualValue": "Script block contains dangerous input controlled by user.",
-		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "script"],[]),
+		"searchLine": common_lib.build_search_line(["jobs", j, "steps", k, "with", "script"],[]),
 		"searchValue": matched[m]
 	}
 }
@@ -70,7 +70,7 @@ CxPolicy[result] {
 	
 	uses := input.document[i].jobs[j].steps[k].uses
 
-    startswith("actions/github-scripts", uses)
+    startswith(uses, "actions/github-script")
     
     script := input.document[i].jobs[j].steps[k]["with"].script
 
@@ -99,7 +99,7 @@ CxPolicy[result] {
 	
 	uses := input.document[i].jobs[j].steps[k].uses
 
-    startswith("actions/github-scripts", uses)
+    startswith(uses, "actions/github-script")
     
     script := input.document[i].jobs[j].steps[k]["with"].script
 
@@ -127,7 +127,7 @@ CxPolicy[result] {
 	
 	uses := input.document[i].jobs[j].steps[k].uses
 
-    startswith("actions/github-scripts", uses)
+    startswith(uses, "actions/github-script")
     
     script := input.document[i].jobs[j].steps[k]["with"].script
 
@@ -156,7 +156,7 @@ CxPolicy[result] {
 	
 	uses := input.document[i].jobs[j].steps[k].uses
 
-    startswith("actions/github-scripts", uses)
+    startswith(uses, "actions/github-script")
     
     script := input.document[i].jobs[j].steps[k]["with"].script
 
@@ -188,7 +188,7 @@ CxPolicy[result] {
 	
 	uses := input.document[i].jobs[j].steps[k].uses
 
-    startswith("actions/github-scripts", uses)
+    startswith(uses, "actions/github-script")
     
     script := input.document[i].jobs[j].steps[k]["with"].script
 

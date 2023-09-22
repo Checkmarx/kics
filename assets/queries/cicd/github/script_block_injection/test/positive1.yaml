@@ -1,9 +1,8 @@
 name: test-script-run
 
 on:
-- pull_request_target:
-    types:
-    - opened
+- issues:
+    types: [opened]
 
 jobs:
   script-run:
