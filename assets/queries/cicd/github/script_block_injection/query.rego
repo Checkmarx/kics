@@ -8,9 +8,9 @@ CxPolicy[result] {
 
     uses := input.document[i].jobs[j].steps[k].uses
 
-    startswith(uses,"actions/github-scripts")
-
-    script := input.document[i].jobs[j].steps[k].with["script"]
+    startswith("actions/github-scripts", uses)
+    
+    script := input.document[i].jobs[j].steps[k]["with"].script
 
 	patterns := [
     "github.head_ref",
@@ -39,7 +39,12 @@ CxPolicy[result] {
 CxPolicy[result] {
 
 	input.document[i].on["issues"]
-	script := input.document[i].jobs[j].steps[k].run
+
+	uses := input.document[i].jobs[j].steps[k].uses
+
+    startswith("actions/github-scripts", uses)
+    
+    script := input.document[i].jobs[j].steps[k]["with"].script
 
 	patterns := [
     "github.event.issue.body",
@@ -62,7 +67,12 @@ CxPolicy[result] {
 CxPolicy[result] {
 
 	input.document[i].on["issue_comment"]
-	script := input.document[i].jobs[j].steps[k].run
+	
+	uses := input.document[i].jobs[j].steps[k].uses
+
+    startswith("actions/github-scripts", uses)
+    
+    script := input.document[i].jobs[j].steps[k]["with"].script
 
 	patterns := [
     "github.event.comment.body",
@@ -86,7 +96,12 @@ CxPolicy[result] {
 CxPolicy[result] {
 
 	input.document[i].on["discussion"]
-	script := input.document[i].jobs[j].steps[k].run
+	
+	uses := input.document[i].jobs[j].steps[k].uses
+
+    startswith("actions/github-scripts", uses)
+    
+    script := input.document[i].jobs[j].steps[k]["with"].script
 
 	patterns := [
     "github.event.discussion.body",
@@ -109,7 +124,12 @@ CxPolicy[result] {
 CxPolicy[result] {
 
 	input.document[i].on["discussion_comment"]
-	script := input.document[i].jobs[j].steps[k].run
+	
+	uses := input.document[i].jobs[j].steps[k].uses
+
+    startswith("actions/github-scripts", uses)
+    
+    script := input.document[i].jobs[j].steps[k]["with"].script
 
 	patterns := [
     "github.event.comment.body",
@@ -133,7 +153,12 @@ CxPolicy[result] {
 CxPolicy[result] {
 
 	input.document[i].on["workflow_run"]
-	script := input.document[i].jobs[j].steps[k].run
+	
+	uses := input.document[i].jobs[j].steps[k].uses
+
+    startswith("actions/github-scripts", uses)
+    
+    script := input.document[i].jobs[j].steps[k]["with"].script
 
 	patterns := [
     "github.event.workflow.path",
@@ -160,7 +185,12 @@ CxPolicy[result] {
 CxPolicy[result] {
 
 	input.document[i].on["author"]
-	script := input.document[i].jobs[j].steps[k].run
+	
+	uses := input.document[i].jobs[j].steps[k].uses
+
+    startswith("actions/github-scripts", uses)
+    
+    script := input.document[i].jobs[j].steps[k]["with"].script
 
 	patterns := [
     "github.*.authors.name",
@@ -179,7 +209,6 @@ CxPolicy[result] {
 		"searchValue": matched[m]
 	}
 }
-
 
 
 containsPatterns(str, patterns) = matched {
