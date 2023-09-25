@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "Logging of Sensitive Data",
+		"severity": "LOW",
+		"line": 14,
+		"fileName": "positive1.yaml"
+	},
+	{
+		"queryName": "Logging of Sensitive Data",
+		"severity": "LOW",
+		"line": 5,
+		"fileName": "positive2.yaml"
+	}
+]

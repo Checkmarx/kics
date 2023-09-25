@@ -1,0 +1,12 @@
+{
+    "id": "59029ddf-e651-412b-ae7b-ff6d403184bc",
+    "queryName": "Logging of Sensitive Data",
+    "severity": "LOW",
+    "category": "Best Practices",
+    "descriptionText": "To keep sensitive values out of logs, tasks that expose them need to be marked defining 'no_log' and setting to True",
+    "descriptionUrl": "https://ansible.readthedocs.io/projects/lint/rules/no-log-password/",
+    "platform": "Ansible",
+    "descriptionID": "a700e724",
+    "cloudProvider": "common"
+  }
+  
