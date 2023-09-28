@@ -81,6 +81,10 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 </div>
 </div>
 
+#### Beta Features
+
+
+
 Support of other solutions, such as Chef, and of additional cloud providers are on the [roadmap](roadmap.md).
 
 ## Getting Started
