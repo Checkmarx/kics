@@ -50,7 +50,7 @@ steps:
       path: 'terraform'
       output_path: results-dir
   - name: Upload SARIF file
-    uses: github/codeql-action/upload-sarif@v1
+    uses: github/codeql-action/upload-sarif@v2
     with:
       sarif_file: results-dir/results.sarif
 ```
