@@ -1,4 +1,4 @@
-FROM golang:1.21.0-alpine as build_env
+FROM golang:1.21.1-alpine as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
