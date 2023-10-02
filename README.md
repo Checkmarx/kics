@@ -57,10 +57,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="GitHub Workflows" src="docs/img/logo-github-icon.png" width="100">&nbsp;&nbsp;&nbsp;
 
 #### Beta Features
-
-
-
-Support of other solutions and additional cloud providers are on the [roadmap](docs/roadmap.md).
+Soon...
 
 ## Getting Started
 
