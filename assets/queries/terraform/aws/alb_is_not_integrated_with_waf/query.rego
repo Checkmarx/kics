@@ -12,7 +12,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource[lb[idx]][name]
 	not is_internal_alb(resource)
 	count({x | x := associated_waf(name)}) == 0
-	
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": lb[idx],
@@ -29,7 +29,7 @@ is_internal_alb(resource) {
 }
 
 associated_waf(name) {
-	waf := input.document[_].resource[waf_resources[_]][waf_name]
+	waf := input.document[_].resource[waf_resources[_]][_]
 	attribute := waf.resource_arn
 	attribute_split := split(attribute, ".")
 	options := {"${aws_alb", "${aws_lb"}
