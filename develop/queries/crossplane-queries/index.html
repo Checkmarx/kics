@@ -1816,6 +1816,35 @@
 
 <h2 id="crossplane_queries_list">Crossplane Queries List<a class="headerlink" href="#crossplane_queries_list" title="Permanent link">&para;</a></h2>
 <p>This page contains all queries from Crossplane.</p>
+<h3 id="azure">AZURE<a class="headerlink" href="#azure" title="Permanent link">&para;</a></h3>
+<p>Bellow are listed queries related with Crossplane AZURE:</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Severity</th>
+<th>Category</th>
+<th>Description</th>
+<th>Help</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AKS RBAC Disabled<br/><sup><sub>b2418936-cd47-4ea2-8346-623c0bdb87bd</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Access Control</td>
+<td>Azure Container Service (AKS) instance should have role-based access control (RBAC) enabled (<a href="../crossplane-queries/azure/b2418936-cd47-4ea2-8346-623c0bdb87bd" target="_blank">read more</a>)</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-azure/compute.azure.crossplane.io/AKSCluster/v1alpha3@v0.19.0#spec-disableRBAC">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>6c7cfec3-c686-4ed2-bf58-a1ec054b63fc</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Redis Cache resource should not allow non-SSL connections. (<a href="../crossplane-queries/azure/6c7cfec3-c686-4ed2-bf58-a1ec054b63fc" target="_blank">read more</a>)</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-azure/cache.azure.crossplane.io/Redis/v1beta1@v0.19.0#spec-forProvider-enableNonSslPort">Documentation</a><br/></td>
+</tr>
+</tbody>
+</table>
 <h3 id="aws">AWS<a class="headerlink" href="#aws" title="Permanent link">&para;</a></h3>
 <p>Bellow are listed queries related with Crossplane AWS:</p>
 <table>
@@ -1844,18 +1873,18 @@
 <td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/database.aws.crossplane.io/RDSInstance/v1beta1@v0.29.0#spec-forProvider-storageEncrypted">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>EFS Not Encrypted<br/><sup><sub>72840c35-3876-48be-900d-f21b2f0c2ea1</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Encryption</td>
-<td>Elastic File System (EFS) must be encrypted (<a href="../crossplane-queries/aws/72840c35-3876-48be-900d-f21b2f0c2ea1" target="_blank">read more</a>)</td>
-<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/efs.aws.crossplane.io/FileSystem/v1alpha1@v0.29.0#spec-forProvider-encrypted">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>ELB Using Weak Ciphers<br/><sup><sub>a507daa5-0795-4380-960b-dd7bb7c56661</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Encryption</td>
 <td>ELB Predefined or Custom Security Policies must not use weak ciphers, to reduce the risk of the SSL connection between the client and the load balancer being exploited. That means the 'sslPolicy' of 'Listener' must not coincide with any of a predefined list of weak ciphers. (<a href="../crossplane-queries/aws/a507daa5-0795-4380-960b-dd7bb7c56661" target="_blank">read more</a>)</td>
 <td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/elbv2.aws.crossplane.io/Listener/v1alpha1@v0.29.0#spec-forProvider-sslPolicy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>EFS Not Encrypted<br/><sup><sub>72840c35-3876-48be-900d-f21b2f0c2ea1</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Encryption</td>
+<td>Elastic File System (EFS) must be encrypted (<a href="../crossplane-queries/aws/72840c35-3876-48be-900d-f21b2f0c2ea1" target="_blank">read more</a>)</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/efs.aws.crossplane.io/FileSystem/v1alpha1@v0.29.0#spec-forProvider-encrypted">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>RDS DB Instance Publicly Accessible<br/><sup><sub>d9dc6429-5140-498a-8f55-a10daac5f000</sub></sup></td>
@@ -1865,13 +1894,6 @@
 <td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/database.aws.crossplane.io/RDSInstance/v1beta1@v0.17.0">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>CloudFront Without Minimum Protocol TLS 1.2<br/><sup><sub>255b0fcc-9f82-41fe-9229-01b163e3376b</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Insecure Configurations</td>
-<td>CloudFront Minimum Protocol version should be at least TLS 1.2 (<a href="../crossplane-queries/aws/255b0fcc-9f82-41fe-9229-01b163e3376b" target="_blank">read more</a>)</td>
-<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/cloudfront.aws.crossplane.io/Distribution/v1alpha1@v0.29.0#spec-forProvider-distributionConfig-viewerCertificate-minimumProtocolVersion">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>DB Security Group Has Public Interface<br/><sup><sub>dd667399-8d9d-4a8d-bbb4-e49ab53b2f52</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
@@ -1879,11 +1901,11 @@
 <td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/ec2.aws.crossplane.io/SecurityGroup/v1beta1@v0.29.0#spec-forProvider-ingress-ipRanges-cidrIp">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Neptune Database Cluster Encryption Disabled<br/><sup><sub>83bf5aca-138a-498e-b9cd-ad5bc5e117b4</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Encryption</td>
-<td>Neptune database cluster storage should have encryption enabled (<a href="../crossplane-queries/aws/83bf5aca-138a-498e-b9cd-ad5bc5e117b4" target="_blank">read more</a>)</td>
-<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/neptune.aws.crossplane.io/DBCluster/v1alpha1@v0.29.0#spec-forProvider-storageEncrypted">Documentation</a><br/></td>
+<td>CloudFront Without Minimum Protocol TLS 1.2<br/><sup><sub>255b0fcc-9f82-41fe-9229-01b163e3376b</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>CloudFront Minimum Protocol version should be at least TLS 1.2 (<a href="../crossplane-queries/aws/255b0fcc-9f82-41fe-9229-01b163e3376b" target="_blank">read more</a>)</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/cloudfront.aws.crossplane.io/Distribution/v1alpha1@v0.29.0#spec-forProvider-distributionConfig-viewerCertificate-minimumProtocolVersion">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>SQS With SSE Disabled<br/><sup><sub>9296f1cc-7a40-45de-bd41-f31745488a0e</sub></sup></td>
@@ -1891,6 +1913,13 @@
 <td>Encryption</td>
 <td>Amazon Simple Queue Service (SQS) queue should protect the contents of their messages using Server-Side Encryption (SSE) (<a href="../crossplane-queries/aws/9296f1cc-7a40-45de-bd41-f31745488a0e" target="_blank">read more</a>)</td>
 <td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/sqs.aws.crossplane.io/Queue/v1beta1@v0.29.0#spec-forProvider-kmsMasterKeyId">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Neptune Database Cluster Encryption Disabled<br/><sup><sub>83bf5aca-138a-498e-b9cd-ad5bc5e117b4</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>Neptune database cluster storage should have encryption enabled (<a href="../crossplane-queries/aws/83bf5aca-138a-498e-b9cd-ad5bc5e117b4" target="_blank">read more</a>)</td>
+<td><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/neptune.aws.crossplane.io/DBCluster/v1alpha1@v0.29.0#spec-forProvider-storageEncrypted">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>CloudFront Logging Disabled<br/><sup><sub>7b590235-1ff4-421b-b9ff-5227134be9bb</sub></sup></td>
@@ -1948,35 +1977,6 @@
 <td>Insecure Configurations</td>
 <td>Google Container Node Pool Auto Repair should be enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state. (<a href="../crossplane-queries/gcp/b4f65d13-a609-4dc1-af7c-63d2e08bffe9" target="_blank">read more</a>)</td>
 <td><a href="https://doc.crds.dev/github.com/crossplane/provider-gcp/container.gcp.crossplane.io/NodePool/v1beta1@v0.21.0#spec-forProvider-management-autoRepair">Documentation</a><br/></td>
-</tr>
-</tbody>
-</table>
-<h3 id="azure">AZURE<a class="headerlink" href="#azure" title="Permanent link">&para;</a></h3>
-<p>Bellow are listed queries related with Crossplane AZURE:</p>
-<table>
-<thead>
-<tr>
-<th>Query</th>
-<th>Severity</th>
-<th>Category</th>
-<th>Description</th>
-<th>Help</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AKS RBAC Disabled<br/><sup><sub>b2418936-cd47-4ea2-8346-623c0bdb87bd</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Access Control</td>
-<td>Azure Container Service (AKS) instance should have role-based access control (RBAC) enabled (<a href="../crossplane-queries/azure/b2418936-cd47-4ea2-8346-623c0bdb87bd" target="_blank">read more</a>)</td>
-<td><a href="https://doc.crds.dev/github.com/crossplane/provider-azure/compute.azure.crossplane.io/AKSCluster/v1alpha3@v0.19.0#spec-disableRBAC">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>6c7cfec3-c686-4ed2-bf58-a1ec054b63fc</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Encryption</td>
-<td>Redis Cache resource should not allow non-SSL connections. (<a href="../crossplane-queries/azure/6c7cfec3-c686-4ed2-bf58-a1ec054b63fc" target="_blank">read more</a>)</td>
-<td><a href="https://doc.crds.dev/github.com/crossplane/provider-azure/cache.azure.crossplane.io/Redis/v1beta1@v0.19.0#spec-forProvider-enableNonSslPort">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table>

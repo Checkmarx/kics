@@ -1830,6 +1830,27 @@
 </thead>
 <tbody>
 <tr>
+<td>Script Block Injection<br/><sup><sub>62ff6823-927a-427f-acf9-f1ea2932d616</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event. (<a href="../cicd-queries/common/62ff6823-927a-427f-acf9-f1ea2932d616" target="_blank">read more</a>)</td>
+<td><a href="https://securitylab.github.com/research/github-actions-untrusted-input/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Run Block Injection<br/><sup><sub>20f14e1a-a899-4e79-9f09-b6a84cd4649b</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td>GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event. (<a href="../cicd-queries/common/20f14e1a-a899-4e79-9f09-b6a84cd4649b" target="_blank">read more</a>)</td>
+<td><a href="https://securitylab.github.com/research/github-actions-untrusted-input/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unsecured Commands<br/><sup><sub>60fd272d-15f4-4d8f-afe4-77d9c6cc0453</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Insecure Configurations</td>
+<td>There are deprecated set-env and add-path commands that can be explicitly enabled by a user via setting the ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable as true. Depending on the use of the environment variable, this could enable an attacker to, at worst, modify the system path to run a different command than intended, resulting in arbitrary code execution. (<a href="../cicd-queries/common/60fd272d-15f4-4d8f-afe4-77d9c6cc0453" target="_blank">read more</a>)</td>
+<td><a href="https://0xn3va.gitbook.io/cheat-sheets/ci-cd/github/actions#misuse-of-the-events-related-to-incoming-prs">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Unpinned Actions Full Length Commit SHA<br/><sup><sub>555ab8f9-2001-455e-a077-f2d0f41e2fb9</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>

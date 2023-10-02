@@ -1211,6 +1211,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/ansible-queries/common/0e75052f-cc02-41b8-ac39-a78017527e95/</loc>
+         <lastmod>2023-10-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/ansible-queries/common/1b2bf3ff-31e9-460e-bbfb-45e48f4f20cc/</loc>
          <lastmod>2023-10-02</lastmod>
          <changefreq>daily</changefreq>
@@ -1221,7 +1226,42 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/ansible-queries/common/404908b6-4954-4611-98f0-e8ceacdabcb1/</loc>
+         <lastmod>2023-10-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/ansible-queries/common/59029ddf-e651-412b-ae7b-ff6d403184bc/</loc>
+         <lastmod>2023-10-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/ansible-queries/common/86b97bb4-85c9-462d-8635-cbc057c5c8c5/</loc>
+         <lastmod>2023-10-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/ansible-queries/common/88841d5c-d22d-4b7e-a6a0-89ca50e44b9f/</loc>
+         <lastmod>2023-10-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/ansible-queries/common/8d22ae91-6ac1-459f-95be-d37bd373f244/</loc>
+         <lastmod>2023-10-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/ansible-queries/common/c05e2c20-0a2c-4686-b1f8-5f0a5612d4e8/</loc>
+         <lastmod>2023-10-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/ansible-queries/common/c6473dae-8477-4119-88b7-b909b435ce7b/</loc>
+         <lastmod>2023-10-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/ansible-queries/common/d7dc9350-74bc-485b-8c85-fed22d276c43/</loc>
          <lastmod>2023-10-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -1686,7 +1726,22 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/cicd-queries/common/20f14e1a-a899-4e79-9f09-b6a84cd4649b/</loc>
+         <lastmod>2023-10-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/cicd-queries/common/555ab8f9-2001-455e-a077-f2d0f41e2fb9/</loc>
+         <lastmod>2023-10-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/cicd-queries/common/60fd272d-15f4-4d8f-afe4-77d9c6cc0453/</loc>
+         <lastmod>2023-10-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/cicd-queries/common/62ff6823-927a-427f-acf9-f1ea2932d616/</loc>
          <lastmod>2023-10-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
