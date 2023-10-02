@@ -1,0 +1,12 @@
+{
+    "id": "60fd272d-15f4-4d8f-afe4-77d9c6cc0453",
+    "queryName": "Unsecured Commands",
+    "severity": "MEDIUM",
+    "category": "Insecure Configurations",
+    "descriptionText": "There are deprecated set-env and add-path commands that can be explicitly enabled by a user via setting the ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable as true. Depending on the use of the environment variable, this could enable an attacker to, at worst, modify the system path to run a different command than intended, resulting in arbitrary code execution.",
+    "descriptionUrl": "https://0xn3va.gitbook.io/cheat-sheets/ci-cd/github/actions#misuse-of-the-events-related-to-incoming-prs",
+    "platform": "CICD",
+    "descriptionID": "44751f79",
+    "cloudProvider": "common"
+  }
+  
