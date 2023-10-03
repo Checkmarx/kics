@@ -58,7 +58,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="Databricks" src="docs/img/logo-databricks.png" width="150">&nbsp;&nbsp;&nbsp;
 
 #### Beta Features
-Soon...
+<img alt="Databricks" src="docs/img/logo-databricks.png" width="200">&nbsp;&nbsp;&nbsp;
 
 ## Getting Started
 
