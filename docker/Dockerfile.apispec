@@ -56,7 +56,7 @@ COPY --from=build_env /app/assets/libraries/common /app/bin/assets/libraries/com
 COPY --from=build_env /app/assets/libraries/openapi /app/bin/assets/libraries/openapi
 COPY --from=build_env /app/assets/queries/openAPI /app/bin/assets/queries/openAPI
 COPY --from=build_env /app/assets/queries/common /app/bin/assets/queries/common
-COPY --from=build_env /app/assets/utils/* /app/bin/assets/utils
+COPY --from=build_env /app/assets/utils/* /app/bin/assets/utils/
 
 WORKDIR /app/bin
 
