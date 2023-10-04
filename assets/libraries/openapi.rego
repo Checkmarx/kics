@@ -223,15 +223,24 @@ get_schema_info(doc, version) = schemaInfo {
 	schemaInfo := {"obj": doc.definitions, "path": "definitions"}
 }
 
-api_key_exposed(doc, version, s) if {
+api_key_exposed(doc, version, s) {
 	version == "3.0"
 	doc.components.securitySchemes[s].type == "apiKey"
-	some server in doc.servers
+	server := doc.servers[_]
 	startswith(server.url, "http://")
+} else {
+	version == "3.0"
+	doc.components.securitySchemes[s].type == "apiKey"
+	not valid_key(doc, "servers")
 } else {
 	version == "2.0"
 	doc.securityDefinitions[s].type == "apiKey"
-	"http" in doc.schemes
+	scheme := doc.schemes[_]
+    scheme == "http"
+} else {
+	version == "2.0"
+	doc.securityDefinitions[s].type == "apiKey"
+	not valid_key(doc, "schemes")
 }
 
 check_scheme(doc, schemeKey, scope, version) {
