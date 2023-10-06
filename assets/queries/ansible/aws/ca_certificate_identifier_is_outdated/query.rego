@@ -28,7 +28,8 @@ CxPolicy[result] {
 	rds_instance := task[modules[m]]
 	ansLib.checkState(rds_instance)
 
-	rds_instance.ca_certificate_identifier != "rds-ca-2019"
+	allowed := ["rds-ca-2019", "rds-ca-rsa2048-g1", "rds-ca-rsa4096-g1", "rds-ca-ecc384-g1"]
+    not common_lib.inArray(allowed, rds_instance.ca_certificate_identifier)
 
 	result := {
 		"documentId": id,
@@ -36,7 +37,7 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.ca_certificate_identifier", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "rds_instance.ca_certificate_identifier should equal to 'rds-ca-2019'",
-		"keyActualValue": "rds_instance.ca_certificate_identifier is not equal to 'rds-ca-2019'",
+		"keyExpectedValue": "rds_instance.ca_certificate_identifier should equal to one provided by Amazon RDS.",
+		"keyActualValue": sprintf("'aws_db_instance.ca_cert_identifier' is '%s'", [rds_instance.ca_certificate_identifier]),
 	}
 }
