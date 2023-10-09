@@ -11,6 +11,7 @@ const (
 	ExcludeQueriesFlag     = "exclude-queries"
 	ExcludeResultsFlag     = "exclude-results"
 	ExcludeSeveritiesFlag  = "exclude-severities"
+	ExperimentalQueriesFlag = "experimental-queries"
 	IncludeQueriesFlag     = "include-queries"
 	InputDataFlag          = "input-data"
 	FailOnFlag             = "fail-on"
@@ -34,5 +35,4 @@ const (
 	SecretsRegexesPathFlag = "secrets-regexes-path" //nolint:gosec
 	ExcludeGitIgnore       = "exclude-gitignore"
 	MaxFileSizeFlag        = "max-file-size" // orca-specifics
-
 )
