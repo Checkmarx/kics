@@ -3,7 +3,6 @@ package source
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 	"os"
 	"path"
 	"path/filepath"
@@ -26,7 +25,7 @@ type FilesystemSource struct {
 	Types               []string
 	CloudProviders      []string
 	Library             string
-	ExperimentalQueries string
+	ExperimentalQueries bool
 }
 
 const (
@@ -45,7 +44,7 @@ const (
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
-func NewFilesystemSource(source, types, cloudProviders []string, libraryPath, experimentalQueriesPath string) *FilesystemSource {
+func NewFilesystemSource(source, types, cloudProviders []string, libraryPath string, experimentalQueries bool) *FilesystemSource {
 	log.Debug().Msg("source.NewFilesystemSource()")
 
 	if len(types) == 0 {
@@ -65,7 +64,7 @@ func NewFilesystemSource(source, types, cloudProviders []string, libraryPath, ex
 		Types:               types,
 		CloudProviders:      cloudProviders,
 		Library:             filepath.FromSlash(libraryPath),
-		ExperimentalQueries: experimentalQueriesPath,
+		ExperimentalQueries: experimentalQueries,
 	}
 }
 
@@ -249,33 +248,8 @@ func checkQueryExclude(metadata map[string]interface{}, queryParameters *QueryIn
 // GetQueries walks a given filesource path returns all queries found in an array of
 // QueryMetadata struct
 func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters) ([]model.QueryMetadata, error) {
-	experimentalQueriesPaths := make([]string, 0)
 
-	if s.ExperimentalQueries != "" {
-		experimentalQueriesFile, errOpeningFile := os.Open(s.ExperimentalQueries)
-		if errOpeningFile != nil {
-			return nil, errOpeningFile
-		}
-
-		defer func(experimentalQueriesFile *os.File) {
-			errClosingFile := experimentalQueriesFile.Close()
-			if errClosingFile != nil {
-				log.Err(errClosingFile).Msg("Failed to close experimental queries file")
-			}
-		}(experimentalQueriesFile)
-
-		byteValue, err := io.ReadAll(experimentalQueriesFile)
-		if err != nil {
-			return nil, err
-		}
-
-		err = json.Unmarshal(byteValue, &experimentalQueriesPaths)
-		if err != nil {
-			return nil, err
-		}
-	}
-
-	queryDirs, err := s.iterateSources(experimentalQueriesPaths, queryParameters)
+	queryDirs, err := s.iterateSources()
 	if err != nil {
 		return nil, err
 	}
@@ -285,7 +259,7 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 	return queries, nil
 }
 
-func (s *FilesystemSource) iterateSources(experimentalQueriesPaths []string, queryParameters *QueryInspectorParameters) ([]string, error) {
+func (s *FilesystemSource) iterateSources() ([]string, error) {
 	queryDirs := make([]string, 0)
 
 	for _, source := range s.Source {
@@ -300,19 +274,13 @@ func (s *FilesystemSource) iterateSources(experimentalQueriesPaths []string, que
 				}
 
 				querypathDir := filepath.Dir(p)
-				absQueryPathDir, err1 := filepath.Abs(querypathDir)
-				absQueriesPath, err2 := filepath.Abs(source)
-				if err1 == nil && err2 == nil {
-					var cleanPlatformCloudProviderDir string
-					cleanPlatformCloudProviderDir, err = filepath.Rel(absQueriesPath, absQueryPathDir)
-					if err == nil && isExperimental(querypathDir, cleanPlatformCloudProviderDir, experimentalQueriesPaths, queryParameters) {
-						queryDirs = append(queryDirs, querypathDir)
-					} else if err != nil {
-						return errors.Wrap(err, "Failed to get query relative path")
-					}
-				} else {
-					return errors.Wrap(err, "Failed to get query absolute path")
+
+				if err == nil {
+					queryDirs = append(queryDirs, querypathDir)
+				} else if err != nil {
+					return errors.Wrap(err, "Failed to get query relative path")
 				}
+
 				return nil
 			})
 		if err != nil {
@@ -321,32 +289,6 @@ func (s *FilesystemSource) iterateSources(experimentalQueriesPaths []string, que
 	}
 
 	return queryDirs, nil
-}
-
-func isExperimental(
-	querypathDir, cleanPlatformCloudProviderDir string,
-	experimentalQueriesPaths []string,
-	queryParameters *QueryInspectorParameters) bool {
-	cleanPlatformCloudProviderDir = filepath.FromSlash(cleanPlatformCloudProviderDir)
-	inExperimentalQueriesJSON := false
-	for _, queryPath := range experimentalQueriesPaths {
-		queryPath = filepath.FromSlash(queryPath)
-		if strings.Contains(querypathDir, queryPath) {
-			inExperimentalQueriesJSON = true
-			break
-		}
-	}
-
-	inExperimentalQueriesFlag := false
-	for _, experimentalFlag := range queryParameters.ExperimentalQueries {
-		experimentalFlag = filepath.FromSlash(experimentalFlag)
-		if strings.HasPrefix(cleanPlatformCloudProviderDir, experimentalFlag) {
-			inExperimentalQueriesFlag = true
-			break
-		}
-	}
-
-	return inExperimentalQueriesFlag || !inExperimentalQueriesJSON
 }
 
 // iterateQueryDirs iterates all query directories and reads the respective queries
@@ -362,6 +304,10 @@ func (s *FilesystemSource) iterateQueryDirs(queryDirs []string, queryParameters 
 				Location: "func GetQueries()",
 				FileName: path.Base(queryDir),
 			}, true)
+			continue
+		}
+
+		if !queryParameters.ExperimentalQueries && query.Experimental {
 			continue
 		}
 
@@ -449,13 +395,17 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 		aggregation = int(agg.(float64))
 	}
 
+	readExperimental, _ := metadata["experimental"].(string)
+	experimental := getExperimental(readExperimental)
+
 	return model.QueryMetadata{
-		Query:       path.Base(filepath.ToSlash(queryDir)),
-		Content:     string(queryContent),
-		Metadata:    metadata,
-		Platform:    platform,
-		InputData:   inputData,
-		Aggregation: aggregation,
+		Query:        path.Base(filepath.ToSlash(queryDir)),
+		Content:      string(queryContent),
+		Metadata:     metadata,
+		Platform:     platform,
+		InputData:    inputData,
+		Aggregation:  aggregation,
+		Experimental: experimental,
 	}, nil
 }
 
@@ -521,6 +471,14 @@ func getPlatform(metadataPlatform string) string {
 		return p
 	}
 	return "unknown"
+}
+
+func getExperimental(experimental string) bool {
+	if experimental == "true" {
+		return true
+	} else {
+		return false
+	}
 }
 
 func readInputData(inputDataPath string) (string, error) {
