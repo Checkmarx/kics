@@ -2,15 +2,13 @@ package generic.serverlessfw
 
 import data.generic.common as common_lib
 
-resourceTypeMapping(resourceType, provider)= resourceTypeVal{
-    resourceTypeVal :=resourcesMap[provider][resourceType]
-}
+resourceTypeMapping(resourceType, provider) := resourcesMap[provider][resourceType]
 
 resourcesMap = {
     "aws": {
         "function": "AWS::Lambda",
         "api": "AWS::ApiGateway",
-        "iam": "AWS::IAM"        
+        "iam": "AWS::IAM"
     },
     "azure":{
         "function": "Azure:Function",

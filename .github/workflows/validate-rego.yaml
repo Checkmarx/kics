@@ -1,0 +1,19 @@
+name: validate-rego
+
+on:
+  pull_request:
+    paths:
+      - "assets/**/*.rego"
+
+jobs:
+  lint-rego:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Setup Regal
+        uses: StyraInc/setup-regal@v0.2.0
+        with:
+          version: v0.11.0
+      - run: regal lint --format=github assets

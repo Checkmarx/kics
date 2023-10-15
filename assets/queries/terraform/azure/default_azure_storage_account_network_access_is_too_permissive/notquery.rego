@@ -56,7 +56,7 @@ CxPolicy[result] {
 CxPolicy[result] {
     resource := input.document[i].resource.azurerm_storage_account[var0]
     resource_name := tf_lib.get_resource_name(resource, var0)
-    has_key(resource, "public_network_access_enabled")
+    "public_network_access_enabled" in object.keys(resource)
     resource.public_network_access_enabled
 
     result := {
@@ -79,7 +79,7 @@ CxPolicy[result] {
 CxPolicy[result] {
     resource := input.document[i].resource.azurerm_storage_account[var0]
     resource_name := tf_lib.get_resource_name(resource, var0)
-    not has_key(resource, "public_network_access_enabled")
+    not "public_network_access_enabled" in object.keys(resource)
 
     result := {
 		"documentId": input.document[i].id,
@@ -95,12 +95,8 @@ CxPolicy[result] {
 	}
 }
 
-has_key(x, k) {
-	_ = x[k]
-}
-
 has_net_rules_obj(res_name, all_resources) = true {
-	has_key(all_resources, "azurerm_storage_account_network_rules")
+	"azurerm_storage_account_network_rules" in object.keys(all_resources)
 	every rule in all_resources.resource.azurerm_storage_account_network_rules {
         rule.storage_account_id != sprintf("${azurerm_storage_account.%s.id}", [res_name])
     }

@@ -25,9 +25,7 @@ convert_path_item(pathItem) = convertedPath {
 	convertedPath := sprintf("%s", [pathItem])
 }
 
-concat_path(path) = concatenated {
-	concatenated := concat(".", [x | x := resolve_path(path[_]); x != ""])
-}
+concat_path(path) := concat(".", [x | x := resolve_path(path[_]); x != ""])
 
 resolve_path(pathItem) = resolved {
 	any([contains(pathItem, "."), contains(pathItem, "="), contains(pathItem, "/")])
@@ -516,9 +514,7 @@ get_nested_values_info(object, array_vals) = return_value {
 	}
 }
 
-remove_last_point(searchKey) = sk {
-	sk := trim_right(searchKey, ".")
-}
+remove_last_point(searchKey) := trim_right(searchKey, ".")
 
 isOSDir(mountPath) = result {
 	hostSensitiveDir = {

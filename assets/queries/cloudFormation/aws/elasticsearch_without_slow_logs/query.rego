@@ -1,5 +1,7 @@
 package Cx
 
+import future.keywords.in
+
 import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
@@ -11,7 +13,10 @@ CxPolicy[result] {
 	resource := Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
 	common_lib.valid_key(resource.Properties, "LogPublishingOptions")
-	logs := [logName | contains(slowLogs, logName); log := resource.Properties.LogPublishingOptions[logName]]
+	logs := [logName |
+		localresource.Properties.LogPublishingOptions[logName]
+        logName in slowLogs
+	]
 	count(logs) == 0
 
 	result := {
@@ -65,10 +70,4 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties"], []),
 	}
-}
-
-contains(array, elem) {
-	array[_] == elem
-} else = false {
-	true
 }

@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.k8s as k8s
+import data.generic.k8s
 
 CxPolicy[result] {
 	document := input.document[i]

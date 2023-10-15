@@ -1,5 +1,7 @@
 package Cx
 
+import future.keywords.in
+
 import data.generic.terraform as tf_lib
 
 validTypes := {"audit"}
@@ -8,8 +10,7 @@ validTypeConcat := concat(", ", validTypes)
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_neptune_cluster[name]
-	not exist(resource, "enable_cloudwatch_logs_exports")
-
+	not "enable_cloudwatch_logs_exports" in object.keys(resource)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -55,8 +56,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("aws_neptune_cluster.enable_cloudwatch_logs_exports should have all following values: %s", [validTypeConcat]),
 		"keyActualValue": sprintf("aws_neptune_cluster.enable_cloudwatch_logs_exports has the following missing values: %s", [concat(", ", missingTypes)]),
 	}
-}
-
-exist(obj, key) {
-	_ = obj[key]
 }

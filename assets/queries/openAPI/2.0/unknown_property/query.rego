@@ -1,5 +1,7 @@
 package Cx
 
+import future.keywords.in
+
 import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
@@ -36,7 +38,7 @@ CxPolicy[result] {
 	objType == "array"
 	is_array(value)
 	value[x][field]
-	not known_field(objValues, field)
+	not field in objValues
 
 	result := {
 		"documentId": doc.id,
@@ -61,7 +63,7 @@ CxPolicy[result] {
 
 	any([objType == "simple", objType == "map"])
 	value[field]
-	not known_field(objValues, field)
+	not field in objValues
 
 	result := {
 		"documentId": doc.id,
@@ -92,10 +94,6 @@ swagger := {
 
 known_swagger_object_field(field) {
 	field == swagger[_]
-}
-
-known_field(object, value) {
-	object[_] == value
 }
 
 parameters_properties := {
