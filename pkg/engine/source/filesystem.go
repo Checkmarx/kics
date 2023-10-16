@@ -395,8 +395,7 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 		aggregation = int(agg.(float64))
 	}
 
-	readExperimental, _ := metadata["experimental"].(string)
-	experimental := getExperimental(readExperimental)
+	experimental := getExperimental(metadata["experimental"])
 
 	return model.QueryMetadata{
 		Query:        path.Base(filepath.ToSlash(queryDir)),
@@ -473,8 +472,9 @@ func getPlatform(metadataPlatform string) string {
 	return "unknown"
 }
 
-func getExperimental(experimental string) bool {
-	if experimental == "true" {
+func getExperimental(experimental interface{}) bool {
+	readExperimental, _ := experimental.(string)
+	if readExperimental == "true" {
 		return true
 	} else {
 		return false
