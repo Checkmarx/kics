@@ -63,7 +63,7 @@
     "flagType": "multiStr",
     "shorthandFlag": "",
     "defaultValue": "false",
-    "usage": "include experimental queries (queries not yet thoroughly reviewed) ",
+    "usage": "include experimental queries (queries not yet thoroughly reviewed)",
     "validation": "validateMultiStr"
   },
   "fail-on": {
