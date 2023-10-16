@@ -60,7 +60,7 @@
     "usage": "include bill of materials (BoM) in results output"
   },
   "experimental-queries": {
-    "flagType": "multiStr",
+    "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
     "usage": "include experimental queries (queries not yet thoroughly reviewed)",

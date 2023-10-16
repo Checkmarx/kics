@@ -104,7 +104,7 @@ Flags:
       --exclude-severities strings    exclude results by providing the severity of a result
                                       can be provided multiple times or as a comma separated string
                                       example: 'info,low'
-      --experimental-queries          include experimental queries (queries not yet thoroughly reviewed)
+      --experimental-queries          include experimental queries (queries not yet thoroughly reviewed) (default [false])
       --fail-on strings               which kind of results should return an exit code different from 0
                                       accepts: high, medium, low and info
                                       example: "high,low" (default [high,medium,low,info])

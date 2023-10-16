@@ -68,7 +68,7 @@ Flags:
                                       can be provided multiple times or as a comma separated string
                                       example: 'info,low'
                                       possible values: 'high, medium, low, info, trace'
-      --experimental-queries          include experimental queries (queries not yet thoroughly reviewed)
+      --experimental-queries          include experimental queries (queries not yet thoroughly reviewed) (default [false])
       --fail-on strings               which kind of results should return an exit code different from 0
                                       accepts: high, medium, low and info
                                       example: "high,low" (default [high,medium,low,info])
