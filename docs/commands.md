@@ -68,7 +68,7 @@ Flags:
                                       can be provided multiple times or as a comma separated string
                                       example: 'info,low'
                                       possible values: 'high, medium, low, info, trace'
-      --experimental-queries strings include experimental queries (queries not yet thoroughly reviewed)
+      --experimental-queries strings  include experimental queries (queries not yet thoroughly reviewed)
       --fail-on strings               which kind of results should return an exit code different from 0
                                       accepts: high, medium, low and info
                                       example: "high,low" (default [high,medium,low,info])
@@ -138,9 +138,9 @@ behavior, use flag `--exclude-gitignore`.
 
 ## Library Flag Usage
 
-As mentioned above, the library flag (`-b` or `--libraries-path`) refers to the directory with libraries. The functions
+As mentioned above, the library flag (`-b` or `--libraries-path`) refers to the directory with libraries. The functions 
 need to be grouped by platform and the library file name should follow the format: `<platform>.rego` to be loaded by
-KICS. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that
+KICS. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that 
 contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a
 file named `terraform.rego` wherever you want.
 
