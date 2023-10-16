@@ -79,7 +79,7 @@ Flags:
                                       accepts: all, results, errors, none
                                       example: if 'results' is set, only engine errors will make KICS exit code different from 0 (default "none")
   -i, --include-queries strings       include queries by providing the query ID
-                                      cannot be provided with query exclusion flags
+                                      c[Dockerfile](..%2FDockerfile)annot be provided with query exclusion flags
                                       can be provided multiple times or as a comma separated string
                                       example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
       --input-data string             path to query input data files
