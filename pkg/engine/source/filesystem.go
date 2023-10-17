@@ -248,7 +248,6 @@ func checkQueryExclude(metadata map[string]interface{}, queryParameters *QueryIn
 // GetQueries walks a given filesource path returns all queries found in an array of
 // QueryMetadata struct
 func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters) ([]model.QueryMetadata, error) {
-
 	queryDirs, err := s.iterateSources()
 	if err != nil {
 		return nil, err
