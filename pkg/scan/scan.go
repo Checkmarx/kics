@@ -3,6 +3,8 @@ package scan
 
 import (
 	"context"
+	"os"
+
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
@@ -22,8 +24,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/Checkmarx/kics/pkg/scanner"
-	"os"
-
 	"github.com/rs/zerolog/log"
 )
 
