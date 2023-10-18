@@ -1,0 +1,15 @@
+name: Issue Workflow
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  process_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greet the New Issue
+        run: |
+          # Echo a simple sentence
+          echo "Hello, a new issue has been opened!"
