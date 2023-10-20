@@ -60,7 +60,7 @@ var (
 	pulumiRuntimeRegex                              = regexp.MustCompile(`runtime\s*:`)
 	pulumiResourcesRegex                            = regexp.MustCompile(`resources\s*:`)
 	serverlessServiceRegex                          = regexp.MustCompile(`service\s*:`)
-	serverlessProviderRegex                         = regexp.MustCompile(`provider\s*:`)
+	serverlessProviderRegex                         = regexp.MustCompile(`(^|\n)provider\s*:`)
 	cicdOnRegex                                     = regexp.MustCompile(`\s*on:\s*`)
 	cicdJobsRegex                                   = regexp.MustCompile(`\s*jobs:\s*`)
 	cicdStepsRegex                                  = regexp.MustCompile(`\s*steps:\s*`)
@@ -100,6 +100,9 @@ var (
 		"pulumi":               {"pulumi"},
 		"serverlessfw":         {"serverlessfw"},
 	}
+	listKeywordsAnsible = []string{"playbooks", "name", "gather_facts",
+		"hosts", "tasks", "become", "with_items", "with_dict",
+		"when", "become_pass", "become_exe", "become_flags"}
 )
 
 const (
@@ -543,9 +546,18 @@ func checkYamlPlatform(content []byte, path string) string {
 		}
 	}
 
-	// Since Ansible has no defining property
-	// and no other type matched for YAML file extension, assume the file type is Ansible
-	return ansible
+	// check if the file contains some keywords related with Ansiable
+	isAnsible := false
+	for _, keyword := range listKeywordsAnsible {
+		if _, ok := yamlContent[keyword]; ok {
+			isAnsible = true
+		}
+	}
+
+	if isAnsible {
+		return ansible
+	}
+	return ""
 }
 
 // computeValues computes expected Lines of Code to be scanned from locCount channel
