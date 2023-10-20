@@ -5,7 +5,7 @@
   "category": "Best Practices",
   "descriptionText": "Job's Task Is spark_submit_task",
   "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/job#spark_submit_task-configuration-block",
-  "descriptionID": "fdaa059f",
+  "descriptionID": "fcfdfbd3",
   "platform": "Terraform",
   "cloudProvider": "common"
 }
