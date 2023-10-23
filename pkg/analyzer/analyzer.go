@@ -100,9 +100,10 @@ var (
 		"pulumi":               {"pulumi"},
 		"serverlessfw":         {"serverlessfw"},
 	}
-	listKeywordsAnsible = []string{"playbooks", "name", "gather_facts",
+	listKeywordsAnsible = []string{"name", "gather_facts",
 		"hosts", "tasks", "become", "with_items", "with_dict",
 		"when", "become_pass", "become_exe", "become_flags"}
+	playBooks = "playbooks"
 )
 
 const (
@@ -547,17 +548,29 @@ func checkYamlPlatform(content []byte, path string) string {
 	}
 
 	// check if the file contains some keywords related with Ansiable
-	isAnsible := false
-	for _, keyword := range listKeywordsAnsible {
-		if _, ok := yamlContent[keyword]; ok {
-			isAnsible = true
-		}
-	}
-
-	if isAnsible {
+	if checkForAnsible(yamlContent) {
 		return ansible
 	}
 	return ""
+}
+
+func checkForAnsible(yamlContent model.Document) bool {
+	isAnsible := false
+	if play := yamlContent[playBooks]; play != nil {
+		if listOfPlayBooks, ok := play.([]interface{}); ok {
+			for _, value := range listOfPlayBooks {
+				castingValue, ok := value.(map[string]interface{})
+				if ok {
+					for _, keyword := range listKeywordsAnsible {
+						if _, ok := castingValue[keyword]; ok {
+							isAnsible = true
+						}
+					}
+				}
+			}
+		}
+	}
+	return isAnsible
 }
 
 // computeValues computes expected Lines of Code to be scanned from locCount channel
