@@ -18,8 +18,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("FROM={{%s}}.{{%s}} avoids manual input", [name, resource.Original]),
-		"keyActualValue": sprintf("FROM={{%s}}.{{%s}} doesn't avoid manual input", [name, resource.Original]),
+		"keyExpectedValue": sprintf("{{%s}} avoids manual input", [resource.Original]),
+		"keyActualValue": sprintf("{{%s}} doesn't avoid manual input", [resource.Original]),
 	}
 }
 
@@ -37,8 +37,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("FROM={{%s}}.{{%s}} avoids manual input", [name, resource.Original]),
-		"keyActualValue": sprintf("FROM={{%s}}.{{%s}} doesn't avoid manual input", [name, resource.Original]),
+		"keyExpectedValue": sprintf("{{%s}} avoids manual input", [name, resource.Original]),
+		"keyActualValue": sprintf("{{%s}} doesn't avoid manual input", [name, resource.Original]),
 	}
 }
 
