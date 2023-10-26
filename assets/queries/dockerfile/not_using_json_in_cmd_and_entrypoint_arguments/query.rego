@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("{{%s}} is in the JSON Notation", [resource.Original]),
-		"keyActualValue": sprintf("{{%s}} isn't in the JSON Notation", [resource.Original]),
+		"keyActualValue": sprintf("{{%s}} should be in JSON Notation", [resource.Original]),
 	}
 }
 
