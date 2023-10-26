@@ -56,6 +56,12 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.InputParameters.maxAccessKeyAge should be less or equal to 90 (days)", [name]),
 		"keyActualValue": sprintf("Resources.%s.InputParameters.maxAccessKeyAge is more than 90 (days).", [name]),
+		"searchLine": common_lib.build_search_line(["Resources",name,"Properties","InputParameters","maxAccessKeyAge"], []),
+        "remediation": json.marshal({
+                       			"before": sprintf("%s",[maxDays]),
+                       			"after": "90"
+                       		}),
+        "remediationType": "replacement",
 	}
 }
 
