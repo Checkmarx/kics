@@ -306,7 +306,7 @@ func (s *FilesystemSource) iterateQueryDirs(queryDirs []string, queryParameters 
 			continue
 		}
 
-		if !queryParameters.ExperimentalQueries && query.Experimental {
+		if query.Experimental && !queryParameters.ExperimentalQueries {
 			continue
 		}
 
