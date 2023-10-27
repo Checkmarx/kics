@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("{{%s}} should use the SHELL command to change the default shell", [name, resource.Original]),
+		"keyExpectedValue": sprintf("{{%s}} should use the SHELL command to change the default shell", [resource.Original]),
 		"keyActualValue": sprintf("{{%s}} uses the RUN command to change the default shell", [name, resource.Original]),
 	}
 }
