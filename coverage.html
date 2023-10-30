@@ -125,7 +125,7 @@
 				
 				<option value="file34">github.com/Checkmarx/kics/pkg/detector/search_line_detector.go (95.0%)</option>
 				
-				<option value="file35">github.com/Checkmarx/kics/pkg/engine/inspector.go (80.9%)</option>
+				<option value="file35">github.com/Checkmarx/kics/pkg/engine/inspector.go (79.8%)</option>
 				
 				<option value="file36">github.com/Checkmarx/kics/pkg/engine/provider/extract.go (73.5%)</option>
 				
@@ -2366,13 +2366,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="24">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="26">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="24">total += v
+                <span class="cov8" title="26">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -5111,7 +5111,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5620,10 +5620,17 @@ func (c *Inspector) GetFailedQueries() map[string]error <span class="cov1" title
         return c.failedQueries
 }</span>
 
-func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) <span class="cov2" title="2">{
+func (c *Inspector) doRun(ctx *QueryContext) (vulns []model.Vulnerability, err error) <span class="cov2" title="2">{
         timeoutCtx, cancel := context.WithTimeout(ctx.Ctx, c.queryExecTimeout)
         defer cancel()
-        options := []rego.EvalOption{rego.EvalParsedInput(*ctx.payload)}
+        defer func() </span><span class="cov2" title="2">{
+                if r := recover(); r != nil </span><span class="cov0" title="0">{
+                        errMessage := fmt.Sprintf("Recovered from panic during query '%s' run. ", ctx.Query.Metadata.Query)
+                        err = fmt.Errorf("panic: %v", r)
+                        log.Err(err).Msg(errMessage)
+                }</span>
+        }()
+        <span class="cov2" title="2">options := []rego.EvalOption{rego.EvalParsedInput(*ctx.payload)}
 
         var cov *cover.Cover
         if c.enableCoverageReport </span><span class="cov2" title="2">{
