@@ -13,8 +13,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("{{%s}} is in the JSON Notation", [resource.Original]),
-		"keyActualValue": sprintf("{{%s}} should be in JSON Notation", [resource.Original]),
+		"keyExpectedValue": sprintf("{{%s}} should be in the JSON Notation", [resource.Original]),
+		"keyActualValue": sprintf("{{%s}} isn't in JSON Notation", [resource.Original]),
 	}
 }
 
@@ -29,7 +29,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("{{%s}} is in the JSON Notation", [resource.Original]),
-		"keyActualValue": sprintf("{{%s}} isn't in the JSON Notation", [resource.Original]),
+		"keyExpectedValue": sprintf("{{%s}} should be in the JSON Notation", [resource.Original]),
+        "keyActualValue": sprintf("{{%s}} isn't in JSON Notation", [resource.Original]),
 	}
 }
