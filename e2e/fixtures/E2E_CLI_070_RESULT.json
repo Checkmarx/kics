@@ -38,7 +38,7 @@
 			"description_id": "68984bf2",
 			"files": [
 				{
-					"file_name": "test\\fixtures\\experimental_test\\sample\\sample.tf",
+					"file_name": "path\\test\\fixtures\\experimental_test\\sample\\sample.tf",
 					"similarity_id": "4e651f5c005de96ab66f25419b1f160d9e0eecae83181edfcd1b72b3afbe9f69",
 					"line": 4,
 					"resource_type": "aws_elasticache_cluster",
@@ -66,7 +66,7 @@
 			"description_id": "68984bf2",
 			"files": [
 				{
-					"file_name": "test\\fixtures\\experimental_test\\sample\\sample.tf",
+					"file_name": "path\\test\\fixtures\\experimental_test\\sample\\sample.tf",
 					"similarity_id": "32a6747d15f909ebe86d171c563878dd7e06dfb2f9ec1b569ef46e810860f27a",
 					"line": 4,
 					"resource_type": "aws_elasticache_cluster",
