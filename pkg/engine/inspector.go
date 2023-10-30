@@ -300,9 +300,16 @@ func (c *Inspector) GetFailedQueries() map[string]error {
 	return c.failedQueries
 }
 
-func (c *Inspector) doRun(ctx *QueryContext) ([]model.Vulnerability, error) {
+func (c *Inspector) doRun(ctx *QueryContext) (vulns []model.Vulnerability, err error) {
 	timeoutCtx, cancel := context.WithTimeout(ctx.Ctx, c.queryExecTimeout)
 	defer cancel()
+	defer func() {
+		if r := recover(); r != nil {
+			errMessage := fmt.Sprintf("Recovered from panic during query '%s' run. ", ctx.Query.Metadata.Query)
+			err = fmt.Errorf("panic: %v", r)
+			log.Err(err).Msg(errMessage)
+		}
+	}()
 	options := []rego.EvalOption{rego.EvalParsedInput(*ctx.payload)}
 
 	var cov *cover.Cover
