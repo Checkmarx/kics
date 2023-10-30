@@ -8,7 +8,7 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output", "--output-name", "E2E_CLI_069_RESULT",
-					"-p", "/path/test/fixtures/experimental_test/sample", "-q", "/path/test/fixtures/experimental_test/queries",
+					"-p", "\"/path/test/fixtures/experimental_test/sample\"", "-q", "\"/path/test/fixtures/experimental_test/queries\"",
 				},
 			},
 			ExpectedResult: []ResultsValidation{
