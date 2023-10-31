@@ -26,7 +26,7 @@ require (
 	github.com/mackerelio/go-osstat v0.2.4
 	github.com/mailru/easyjson v0.7.7
 	github.com/moby/buildkit v0.10.4
-	github.com/open-policy-agent/opa v0.51.0
+	github.com/open-policy-agent/opa v0.58.0
 	github.com/pkg/errors v0.9.1
 	github.com/relex/aini v1.6.0
 	github.com/rs/zerolog v1.29.0
