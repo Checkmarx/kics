@@ -547,7 +547,7 @@ func checkYamlPlatform(content []byte, path string) string {
 		}
 	}
 
-	// check if the file contains some keywords related with Ansiable
+	// check if the file contains some keywords related with Ansible
 	if checkForAnsible(yamlContent) {
 		return ansible
 	}
