@@ -43,16 +43,16 @@ versionNotExplicit(cmd) {
 	count(cmd) > 1
 
 	not contains(cmd[0], ":")
+    count([x | x := input.document[i].command[name][_]; build_name_exists(x, cmd[0])]) == 0
+}
 
-	resource := input.document[i].command[name][_]
+build_name_exists(resource, build_name){
 	not resource.Value[0] == "scratch"
 	resource.Cmd == "from"
 
 	count(resource.Value) > 1
 
-	resource.Value[1] == "as"
+	lower(resource.Value[1]) == "as"
 
-	resource.Value[2] == cmd[0]
-
-	not contains(resource.Value[0], ":")
+	resource.Value[2] == build_name
 }
