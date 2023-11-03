@@ -23,7 +23,6 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 		IsBreak:         false,
 		FoundAtLeastOne: false,
 		ResolvedFile:    file.FilePath,
-		ResolvedFiles:   d.prepareResolvedFiles(file.ResolvedFiles),
 	}
 
 	var extractedString [][]string
@@ -33,7 +32,10 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 		sanitizedSubstring = strings.Replace(sanitizedSubstring, str[0], `{{`+strconv.Itoa(idx)+`}}`, -1)
 	}
 
-	lines := *file.LinesOriginalData
+	lines := []string{}
+	if file.LinesOriginalData != nil {
+		lines = *file.LinesOriginalData
+	}
 	splitSanitized := strings.Split(sanitizedSubstring, ".")
 	for index, split := range splitSanitized {
 		if strings.Contains(split, "$ref") {
@@ -68,15 +70,4 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 		VulnLines:    &[]model.CodeLine{},
 		ResolvedFile: detector.ResolvedFile,
 	}
-}
-
-func (d defaultDetectLine) prepareResolvedFiles(resFiles map[string]model.ResolvedFile) map[string]model.ResolvedFileSplit {
-	resolvedFiles := make(map[string]model.ResolvedFileSplit)
-	for f, res := range resFiles {
-		resolvedFiles[f] = model.ResolvedFileSplit{
-			Path:  res.Path,
-			Lines: *res.LinesContent,
-		}
-	}
-	return resolvedFiles
 }

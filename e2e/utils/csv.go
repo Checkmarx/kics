@@ -32,9 +32,11 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 	var csvItems []csvSchema
 
 	for _, row := range csvData[1:] {
-		line, lineErr := strconv.Atoi(row[14])
+		line, lineErr := strconv.Atoi(row[15])
 		require.NoError(t, lineErr, "Error when converting CSV: %s", fullPath)
-		searchLine, searchErr := strconv.Atoi(row[17])
+		refLine, refLineErr := strconv.Atoi(row[16])
+		require.NoError(t, refLineErr, "Error when converting CSV: %s", fullPath)
+		searchLine, searchErr := strconv.Atoi(row[20])
 		require.NoError(t, searchErr, "Error when converting CSV: %s", fullPath)
 
 		csvStruct.QueryName = row[0]
@@ -50,14 +52,17 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 		csvStruct.CISDescriptionTitle = row[10]
 		csvStruct.CISDescriptionTextFormatted = row[11]
 		csvStruct.FileName = row[12]
-		csvStruct.SimilarityID = row[13]
+		csvStruct.ReferenceFileName = row[13]
+		csvStruct.SimilarityID = row[14]
 		csvStruct.Line = line
-		csvStruct.IssueType = row[15]
-		csvStruct.SearchKey = row[16]
+		csvStruct.ReferenceLine = refLine
+		csvStruct.IssueType = row[17]
+		csvStruct.SearchKey = row[18]
+		csvStruct.ReferenceSearchKey = row[19]
 		csvStruct.SearchLine = searchLine
-		csvStruct.SearchValue = row[18]
-		csvStruct.ExpectedValue = row[19]
-		csvStruct.ActualValue = row[20]
+		csvStruct.SearchValue = row[21]
+		csvStruct.ExpectedValue = row[22]
+		csvStruct.ActualValue = row[23]
 		csvItems = append(csvItems, csvStruct)
 	}
 
@@ -81,10 +86,13 @@ type csvSchema struct {
 	CISDescriptionTitle         string
 	CISDescriptionTextFormatted string
 	FileName                    string
+	ReferenceFileName           string
 	SimilarityID                string
 	Line                        int
+	ReferenceLine               int
 	IssueType                   string
 	SearchKey                   string
+	ReferenceSearchKey          string
 	SearchLine                  int
 	SearchValue                 string
 	ExpectedValue               string

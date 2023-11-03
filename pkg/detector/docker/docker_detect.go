@@ -32,7 +32,6 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		IsBreak:         false,
 		FoundAtLeastOne: false,
 		ResolvedFile:    file.FilePath,
-		ResolvedFiles:   make(map[string]model.ResolvedFileSplit),
 	}
 
 	var extractedString [][]string

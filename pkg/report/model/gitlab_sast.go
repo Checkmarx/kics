@@ -44,13 +44,14 @@ type gitlabSASTScannerVendor struct {
 type gitlabSASTVulnerabilityDetails map[string]interface{}
 
 type gitlabSASTVulnerability struct {
-	ID          string                              `json:"id"`
-	Severity    string                              `json:"severity"`
-	Name        string                              `json:"name"`
-	Links       []gitlabSASTVulnerabilityLink       `json:"links"`
-	Location    gitlabSASTVulnerabilityLocation     `json:"location"`
-	Identifiers []gitlabSASTVulnerabilityIdentifier `json:"identifiers"`
-	Details     gitlabSASTVulnerabilityDetails      `json:"details,omitempty"`
+	ID                string                              `json:"id"`
+	Severity          string                              `json:"severity"`
+	Name              string                              `json:"name"`
+	Links             []gitlabSASTVulnerabilityLink       `json:"links"`
+	Location          gitlabSASTVulnerabilityLocation     `json:"location"`
+	ReferenceLocation gitlabSASTVulnerabilityLocation     `json:"referenceLocation"`
+	Identifiers       []gitlabSASTVulnerabilityIdentifier `json:"identifiers"`
+	Details           gitlabSASTVulnerabilityDetails      `json:"details,omitempty"`
 }
 
 type gitlabSASTVulnerabilityLink struct {
@@ -134,6 +135,11 @@ func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryRes
 				File:  file.FileName,
 				Start: file.Line,
 				End:   file.Line,
+			},
+			ReferenceLocation: gitlabSASTVulnerabilityLocation{
+				File:  file.ReferenceFileName,
+				Start: file.ReferenceLine,
+				End:   file.ReferenceLine,
 			},
 			Identifiers: []gitlabSASTVulnerabilityIdentifier{
 				{

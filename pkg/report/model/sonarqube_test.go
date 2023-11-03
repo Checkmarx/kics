@@ -74,7 +74,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 								StartLine: 25,
 							},
 						},
-						SecondaryLocations: []*Location{
+						SecondaryLocations: []*LocationWithRef{
 							{
 								Message:  "ALB protocol is HTTP Description",
 								FilePath: "positive.tf",
