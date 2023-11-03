@@ -1,0 +1,12 @@
+{
+    "id": "c05e2c20-0a2c-4686-b1f8-5f0a5612d4e8",
+    "queryName": "Unpinned Package Version",
+    "severity": "LOW",
+    "category": "Supply-Chain",
+    "descriptionText": "Setting state to latest performs an update and installs additional packages possibly resulting in performance degradation or loss of service",
+    "descriptionUrl": "https://ansible.readthedocs.io/projects/lint/rules/package-latest/",
+    "platform": "Ansible",
+    "descriptionID": "43e877b3",
+    "cloudProvider": "common"
+  }
+  
