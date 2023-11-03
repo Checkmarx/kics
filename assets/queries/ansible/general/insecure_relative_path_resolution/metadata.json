@@ -1,0 +1,11 @@
+{
+	"id": "8d22ae91-6ac1-459f-95be-d37bd373f244",
+	"queryName": "Insecure Relative Path Resolution",
+	"severity": "LOW",
+	"category": "Best Practices",
+	"descriptionText": "Using relative paths can lead to unexpected behavior as the path is resolved relative to the current working directory, which can change.",
+	"descriptionUrl": "https://ansible.readthedocs.io/projects/lint/rules/no-relative-paths/",
+	"platform": "Ansible",
+	"descriptionID": "84ea91c8",
+	"cloudProvider": "common"
+}
