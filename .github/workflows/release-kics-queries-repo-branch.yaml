@@ -1,0 +1,35 @@
+name: release-kics-queries-repo-branch
+on:
+  workflow_dispatch:
+  release:
+    type: [published]
+jobs:
+  create-branch:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Create kics-queries-repo branch
+      run: |
+        ORGANIZATION=CheckmarxDev
+        REPO=kics-queries-repo
+        BRANCH_NAME=${{ github.event.release.name }}
+
+        # Set the branch name
+        BRANCH_NAME=$ORGANIZATION/${{ github.event.release.name }}
+
+        # Create the branch from the latest commit in the main branch
+        ACCESS_TOKEN=$ACCESS_TOKEN  # Set your GitHub Personal Access Token here
+        REF="refs/heads/$BRANCH_NAME"
+        git_ref="{
+          \"ref\": \"$REF\",
+          \"sha\": \"$(curl -X GET -s -H \"Authorization: token $ACCESS_TOKEN\" $GITHUB_API/repos/$ORGANIZATION/$REPO/git/refs/heads/master | jq -r .object.sha)\"
+        }"
+        curl -X POST -s -H "Authorization: token $ACCESS_TOKEN" -d "$git_ref" $GITHUB_API/repos/$ORGANIZATION/$REPO/git/refs
+
+      env:
+        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_API: https://api.github.com
+
+
