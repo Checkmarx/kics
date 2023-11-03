@@ -1,0 +1,41 @@
+---
+- name: Negative playbook
+  hosts: localhost
+  tasks:
+    - name: foo
+      ansible.builtin.user:
+        name: john_doe
+        comment: John Doe
+        uid: 1040
+        group: admin
+        password: "{{ item }}"
+      with_items:
+        - wow
+      no_log: true
+  
+---
+- name: Negative Playbook 2
+  hosts: localhost
+  tasks:
+    - name: bar
+      ansible.builtin.user:
+        name: john_doe
+        comment: John Doe
+        uid: 1040
+        group: admin
+      with_items:
+        - wow
+      no_log: false
+
+---
+- name: Negative Playbook 3
+  hosts: localhost
+  tasks:
+    - name: bar
+      ansible.builtin.user:
+        name: john_doe
+        comment: John Doe
+        uid: 1040
+        group: admin
+      with_items:
+        - wow
