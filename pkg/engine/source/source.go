@@ -13,10 +13,11 @@ import (
 
 // QueryInspectorParameters is a struct that represents the optionn to select queries to be executed
 type QueryInspectorParameters struct {
-	IncludeQueries IncludeQueries
-	ExcludeQueries ExcludeQueries
-	InputDataPath  string
-	BomQueries     bool
+	IncludeQueries      IncludeQueries
+	ExcludeQueries      ExcludeQueries
+	ExperimentalQueries []string
+	InputDataPath       string
+	BomQueries          bool
 }
 
 // ExcludeQueries is a struct that represents the option to exclude queries by ids or by categories

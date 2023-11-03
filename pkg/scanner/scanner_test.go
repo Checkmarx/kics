@@ -97,7 +97,7 @@ func createServices(types, cloudProviders []string) (serviceSlice, *storage.Memo
 	}
 
 	t := &tracker.CITracker{}
-	querySource := source.NewFilesystemSource(sourcePath, types, cloudProviders, filepath.FromSlash("../../assets/libraries"))
+	querySource := source.NewFilesystemSource(sourcePath, types, cloudProviders, filepath.FromSlash("../../assets/libraries"), filepath.FromSlash("../../assets/utils/experimental-queries.json"))
 
 	inspector, err := engine.NewInspector(context.Background(),
 		querySource, engine.DefaultVulnerabilityBuilder,
