@@ -1,0 +1,34 @@
+---
+- name: Negative Example
+  hosts: localhost
+  tasks:
+    - name: One
+      ansible.builtin.copy:
+        content:
+        dest: /etc/mine.conf
+        mode: "0644"
+    - name: Two
+      ansible.builtin.copy:
+        src: /home/example/files/foo.conf
+        dest: /etc/foo.conf
+        mode: "0644"
+
+---
+- name: Negative Example 2
+  hosts: localhost
+  tasks:
+    - name: One
+      ansible.builtin.template:
+        src: ../example/foo.j2
+        dest: /etc/file.conf
+        mode: "0644"
+    - name: Two
+      ansible.builtin.copy:
+        src: ../example/foo.conf
+        dest: /etc/foo.conf
+        mode: "0644"
+    - name: Three
+      win_template:
+        src: ../example/foo2.j2
+        dest: /etc/file.conf
+        mode: "0644"

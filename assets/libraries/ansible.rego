@@ -147,3 +147,13 @@ isEntireNetwork(cidr) {
 	cidrs = {"0.0.0.0/0", "::/0"}
 	cidr == cidrs[j]
 }
+
+installer_modules := [
+	"community.general.apk", "ansible.builtin.apt", "ansible.builtin.apt", "community.general.bundler", "ansible.builtin.dnf", "community.general.easy_install", 
+	"community.general.gem", "community.general.homebrew", "community.general.jenkins_plugin", "community.general.npm", "community.general.openbsd_pkg", 
+	"ansible.builtin.package", "ansible.builtin.package", "community.general.pear", "community.general.pacman", "ansible.builtin.pip", "community.general.pkg5", 
+	"community.general.pkgutil", "community.general.pkgutil", "community.general.portage", "community.general.slackpkg", "community.general.sorcery", 
+	"community.general.swdepot", "win_chocolatey", "community.general.yarn", "ansible.builtin.yum", "community.general.zypper", "apk", "apt", "bower", "bundler", 
+	"dnf", "easy_install", "gem", "homebrew", "jenkins_plugin", "npm", "openbsd_package", "openbsd_pkg", "package", "pacman", "pear", "pip", "pkg5", "pkgutil", 
+	"portage", "slackpkg", "sorcery", "swdepot", "win_chocolatey", "yarn", "yum", "zypper",
+]

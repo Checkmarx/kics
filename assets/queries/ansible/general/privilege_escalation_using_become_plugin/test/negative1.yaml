@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  become_user: postgres
+  become: true
+  tasks:
+    - name: some task
+      ansible.builtin.command: whoamyou
+      changed_when: false
+
+---
+- hosts: localhost
+  tasks:
+    - name: become from the same scope
+      ansible.builtin.command: whoami
+      become: true
+      become_user: postgres
+      changed_when: false
