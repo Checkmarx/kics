@@ -4,7 +4,7 @@
     id: test-encrypted-db
     state: present
     engine: mariadb
-    storage_encrypted: True
+    storage_encrypted: true
     db_instance_class: db.t2.medium
     username: "{{ username }}"
     password: "{{ password }}"

@@ -1,3 +1,4 @@
+---
 - name: create RDS instance in default VPC and default subnet group02
   community.aws.rds_instance:
     engine: aurora
