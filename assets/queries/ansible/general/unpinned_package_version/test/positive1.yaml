@@ -96,8 +96,8 @@
     - name: Install several packages
       community.general.pkgutil:
         name:
-        - CSWsudo
-        - CSWtop
+          - CSWsudo
+          - CSWtop
         state: latest
 
     - name: Install package foo
@@ -124,9 +124,9 @@
     - name: Install multiple packages
       win_chocolatey:
         name:
-        - procexp
-        - putty
-        - windirstat
+          - procexp
+          - putty
+          - windirstat
         state: latest
 
     - name: Install "imagemin" node.js package globally.
