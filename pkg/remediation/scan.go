@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"path/filepath"
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -13,6 +14,7 @@ import (
 	"github.com/open-policy-agent/opa/topdown"
 
 	"github.com/Checkmarx/kics/internal/console/flags"
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/parser"
@@ -198,7 +200,12 @@ func initScan(queryID string) (*engine.Inspector, error) {
 	}
 
 	_, err := c.GetQueryPath()
+	if err != nil {
+		log.Err(err)
+		return &engine.Inspector{}, err
+	}
 
+	experimentalQueries, err := consoleHelpers.GetDefaultExperimentalPath(filepath.FromSlash("./assets/utils/experimental-queries.json"))
 	if err != nil {
 		log.Err(err)
 		return &engine.Inspector{}, err
@@ -208,7 +215,8 @@ func initScan(queryID string) (*engine.Inspector, error) {
 		c.ScanParams.QueriesPath,
 		c.ScanParams.Platform,
 		c.ScanParams.CloudProvider,
-		c.ScanParams.LibrariesPath)
+		c.ScanParams.LibrariesPath,
+		experimentalQueries)
 
 	includeQueries := source.IncludeQueries{
 		ByIDs: []string{queryID},
