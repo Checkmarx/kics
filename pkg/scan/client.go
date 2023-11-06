@@ -21,6 +21,7 @@ type Parameters struct {
 	ExcludeQueries              []string
 	ExcludeResults              []string
 	ExcludeSeverities           []string
+	ExperimentalQueries         []string
 	IncludeQueries              []string
 	InputData                   string
 	OutputName                  string
