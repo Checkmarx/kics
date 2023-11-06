@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' should have the 'identity' property defined",
 		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'identity' property defined",
-		"searchLine": common_lib.build_search_line(path, []),
+		"searchLine": common_lib.build_search_line(path, ["name"]),
 	}
 }
 

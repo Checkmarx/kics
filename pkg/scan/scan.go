@@ -4,8 +4,10 @@ package scan
 import (
 	"context"
 	"os"
+	"path/filepath"
 
 	"github.com/Checkmarx/kics/assets"
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/engine/secrets"
@@ -13,6 +15,8 @@ import (
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
+	ansibleConfigParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/config"
+	ansibleHostsParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/hosts"
 	buildahParser "github.com/Checkmarx/kics/pkg/parser/buildah"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"
@@ -54,11 +58,18 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		return nil, nil
 	}
 
+	experimentalQueries, err := consoleHelpers.GetDefaultExperimentalPath(filepath.FromSlash("./assets/utils/experimental-queries.json"))
+	if err != nil {
+		log.Err(err)
+		return nil, err
+	}
+
 	querySource := source.NewFilesystemSource(
 		c.ScanParams.QueriesPath,
 		c.ScanParams.Platform,
 		c.ScanParams.CloudProvider,
-		c.ScanParams.LibrariesPath)
+		c.ScanParams.LibrariesPath,
+		experimentalQueries)
 
 	queryFilter := c.createQueryFilter()
 
@@ -198,10 +209,11 @@ func (c *Client) createQueryFilter() *source.QueryInspectorParameters {
 	}
 
 	queryFilter := source.QueryInspectorParameters{
-		IncludeQueries: includeQueries,
-		ExcludeQueries: excludeQueries,
-		InputDataPath:  c.ScanParams.InputData,
-		BomQueries:     c.ScanParams.BillOfMaterials,
+		IncludeQueries:      includeQueries,
+		ExcludeQueries:      excludeQueries,
+		ExperimentalQueries: c.ScanParams.ExperimentalQueries,
+		InputDataPath:       c.ScanParams.InputData,
+		BomQueries:          c.ScanParams.BillOfMaterials,
 	}
 
 	return &queryFilter
@@ -226,6 +238,8 @@ func (c *Client) createService(
 		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).
 		Add(&buildahParser.Parser{}).
+		Add(&ansibleConfigParser.Parser{}).
+		Add(&ansibleHostsParser.Parser{}).
 		Build(querySource.Types, querySource.CloudProviders)
 	if err != nil {
 		return nil, err

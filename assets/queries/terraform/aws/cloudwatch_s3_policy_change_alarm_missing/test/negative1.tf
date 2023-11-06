@@ -26,7 +26,7 @@ resource "aws_cloudwatch_metric_alarm" "cis_s3_bucket_policy_change_cw_alarm" {
 
 resource "aws_cloudwatch_log_metric_filter" "cis_no_mfa_console_signin_metric_filter" {
   name           = "CIS-ConsoleSigninWithoutMFA"
-  pattern        = "{ ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\") }"
+  pattern        = "{ ($.eventSource = \"s3.amazonaws.com\") && (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) || ($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) || ($.eventName = DeleteBucketLifecycle) || ($.eventName = DeleteBucketReplication)) }"
   log_group_name = aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup.name
 
   metric_transformation {
