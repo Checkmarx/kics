@@ -1,3 +1,4 @@
+---
 - name: create backup vault
   amazon.aws.backup_vault:
     state: present
