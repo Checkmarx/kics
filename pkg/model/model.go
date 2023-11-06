@@ -141,7 +141,8 @@ type QueryMetadata struct {
 	Platform  string
 	// special field for generic queries
 	// represents how many queries are aggregated into a single rego file
-	Aggregation int
+	Aggregation  int
+	Experimental bool
 }
 
 // Vulnerability is a representation of a detected vulnerability in scanned files
