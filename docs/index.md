@@ -9,8 +9,8 @@
     </div>
     <div class="col-6 text-center">
         <br/><br/>
-        <h4>Version 1.7.8</h4>
-        <p style="font-size:8pt">2023.09.14<p>
+        <h4>Version 1.7.10</h4>
+        <p style="font-size:8pt">2023.10.10<p>
         <a class="btn btn-outline-success"  href="https://docs.kics.io/latest/CONTRIBUTING">Contribute!</a>
     </div>
 </div>
@@ -81,7 +81,8 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 </div>
 </div>
 
-Support of other solutions, such as Chef, and of additional cloud providers are on the [roadmap](roadmap.md).
+#### Beta Features
+Soon...
 
 ## Getting Started
 
