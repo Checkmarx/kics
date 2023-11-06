@@ -85,6 +85,7 @@ nav:
       - Terraformer: integrations_terraformer.md
       - KICS Auto Scanning: integrations_auto_scanning_visual_studio.md
       - Kuberneter: integrations_kuberneter.md
+      - AWS CDK: integrations_aws_cdk.md
   - Project:
       - Roadmap: roadmap.md
       - Plans: "https://github.com/Checkmarx/kics/projects"
