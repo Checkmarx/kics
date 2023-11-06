@@ -2,6 +2,6 @@
 	{
 		"queryName": "Backup Vault Encryption Disabled",
 		"severity": "MEDIUM",
-		"line": 2
+		"line": 3
 	}
 ]
