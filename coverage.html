@@ -97,7 +97,7 @@
 				
 				<option value="file20">github.com/Checkmarx/kics/internal/tracker/ci.go (100.0%)</option>
 				
-				<option value="file21">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (91.5%)</option>
+				<option value="file21">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (92.0%)</option>
 				
 				<option value="file22">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -215,7 +215,7 @@
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file80">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file80">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
 				
 				<option value="file81">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2366,13 +2366,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="25">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="31">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="25">total += v
+                <span class="cov8" title="31">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2397,7 +2397,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2676,7 +2676,7 @@ var (
         pulumiRuntimeRegex                              = regexp.MustCompile(`runtime\s*:`)
         pulumiResourcesRegex                            = regexp.MustCompile(`resources\s*:`)
         serverlessServiceRegex                          = regexp.MustCompile(`service\s*:`)
-        serverlessProviderRegex                         = regexp.MustCompile(`provider\s*:`)
+        serverlessProviderRegex                         = regexp.MustCompile(`(^|\n)provider\s*:`)
         cicdOnRegex                                     = regexp.MustCompile(`\s*on:\s*`)
         cicdJobsRegex                                   = regexp.MustCompile(`\s*jobs:\s*`)
         cicdStepsRegex                                  = regexp.MustCompile(`\s*steps:\s*`)
@@ -2716,6 +2716,10 @@ var (
                 "pulumi":               {"pulumi"},
                 "serverlessfw":         {"serverlessfw"},
         }
+        listKeywordsAnsible = []string{"name", "gather_facts",
+                "hosts", "tasks", "become", "with_items", "with_dict",
+                "when", "become_pass", "become_exe", "become_flags"}
+        playBooks = "playbooks"
 )
 
 const (
@@ -3103,15 +3107,15 @@ func (a *analyzerInfo) checkContent(results, unwanted chan&lt;- string, locCount
                 }</span>
         }
         <span class="cov6" title="109">returnType = checkReturnType(a.filePath, returnType, ext, content)
-        if returnType != "" </span><span class="cov6" title="99">{
-                if a.isAvailableType(returnType) </span><span class="cov6" title="94">{
+        if returnType != "" </span><span class="cov6" title="85">{
+                if a.isAvailableType(returnType) </span><span class="cov6" title="81">{
                         results &lt;- returnType
                         locCount &lt;- linesCount
                         return
                 }</span>
         }
         // No type was determined (ignore on parser)
-        <span class="cov4" title="15">unwanted &lt;- a.filePath</span>
+        <span class="cov4" title="28">unwanted &lt;- a.filePath</span>
 }
 
 func checkReturnType(path, returnType, ext string, content []byte) string <span class="cov6" title="109">{
@@ -3127,11 +3131,11 @@ func checkReturnType(path, returnType, ext string, content []byte) string <span 
                         return kubernetes
                 }</span>
                 <span class="cov4" title="25">platform := checkYamlPlatform(content, path)
-                if platform != "" </span><span class="cov4" title="25">{
+                if platform != "" </span><span class="cov3" title="11">{
                         return platform
                 }</span>
         }
-        <span class="cov6" title="72">return returnType</span>
+        <span class="cov6" title="86">return returnType</span>
 }
 
 func checkHelm(path string) bool <span class="cov5" title="37">{
@@ -3159,9 +3163,30 @@ func checkYamlPlatform(content []byte, path string) string <span class="cov4" ti
                 }</span>
         }
 
-        // Since Ansible has no defining property
-        // and no other type matched for YAML file extension, assume the file type is Ansible
-        <span class="cov4" title="19">return ansible</span>
+        // check if the file contains some keywords related with Ansible
+        <span class="cov4" title="19">if checkForAnsible(yamlContent) </span><span class="cov2" title="5">{
+                return ansible
+        }</span>
+        <span class="cov4" title="14">return ""</span>
+}
+
+func checkForAnsible(yamlContent model.Document) bool <span class="cov4" title="19">{
+        isAnsible := false
+        if play := yamlContent[playBooks]; play != nil </span><span class="cov2" title="5">{
+                if listOfPlayBooks, ok := play.([]interface{}); ok </span><span class="cov2" title="5">{
+                        for _, value := range listOfPlayBooks </span><span class="cov3" title="10">{
+                                castingValue, ok := value.(map[string]interface{})
+                                if ok </span><span class="cov3" title="10">{
+                                        for _, keyword := range listKeywordsAnsible </span><span class="cov6" title="110">{
+                                                if _, ok := castingValue[keyword]; ok </span><span class="cov5" title="30">{
+                                                        isAnsible = true
+                                                }</span>
+                                        }
+                                }
+                        }
+                }
+        }
+        <span class="cov4" title="19">return isAnsible</span>
 }
 
 // computeValues computes expected Lines of Code to be scanned from locCount channel
@@ -3170,16 +3195,16 @@ func computeValues(types, unwanted chan string, locCount chan int, done chan boo
         var val int
         unwantedSlice := make([]string, 0)
         typeSlice := make([]string, 0)
-        for </span><span class="cov7" title="279">{
+        for </span><span class="cov7" title="266">{
                 select </span>{
-                case i := &lt;-locCount:<span class="cov6" title="121">
+                case i := &lt;-locCount:<span class="cov6" title="108">
                         val += i</span>
-                case i := &lt;-unwanted:<span class="cov4" title="17">
-                        if !utils.Contains(i, unwantedSlice) </span><span class="cov4" title="17">{
+                case i := &lt;-unwanted:<span class="cov5" title="30">
+                        if !utils.Contains(i, unwantedSlice) </span><span class="cov5" title="30">{
                                 unwantedSlice = append(unwantedSlice, i)
                         }</span>
-                case i := &lt;-types:<span class="cov6" title="121">
-                        if !utils.Contains(i, typeSlice) </span><span class="cov6" title="72">{
+                case i := &lt;-types:<span class="cov6" title="108">
+                        if !utils.Contains(i, typeSlice) </span><span class="cov6" title="71">{
                                 typeSlice = append(typeSlice, i)
                         }</span>
                 case &lt;-done:<span class="cov4" title="20">
@@ -3281,14 +3306,14 @@ func multiPlatformTypeCheck(typesSelected *[]string) <span class="cov4" title="2
         }</span>
 }
 
-func (a *analyzerInfo) isAvailableType(typeName string) bool <span class="cov6" title="133">{
+func (a *analyzerInfo) isAvailableType(typeName string) bool <span class="cov6" title="119">{
         // no flag is set
-        if len(a.typesFlag) == 1 &amp;&amp; a.typesFlag[0] == "" &amp;&amp; len(a.excludeTypesFlag) == 1 &amp;&amp; a.excludeTypesFlag[0] == "" </span><span class="cov6" title="90">{
+        if len(a.typesFlag) == 1 &amp;&amp; a.typesFlag[0] == "" &amp;&amp; len(a.excludeTypesFlag) == 1 &amp;&amp; a.excludeTypesFlag[0] == "" </span><span class="cov6" title="86">{
                 return true
-        }</span> else<span class="cov5" title="43"> if len(a.typesFlag) &gt; 1 || a.typesFlag[0] != "" </span><span class="cov4" title="20">{
+        }</span> else<span class="cov5" title="33"> if len(a.typesFlag) &gt; 1 || a.typesFlag[0] != "" </span><span class="cov3" title="11">{
                 // type flag is set
                 return utils.Contains(typeName, a.typesFlag)
-        }</span> else<span class="cov4" title="23"> if len(a.excludeTypesFlag) &gt; 1 || a.excludeTypesFlag[0] != "" </span><span class="cov4" title="23">{
+        }</span> else<span class="cov4" title="22"> if len(a.excludeTypesFlag) &gt; 1 || a.excludeTypesFlag[0] != "" </span><span class="cov4" title="22">{
                 // exclude type flag is set
                 return !utils.Contains(typeName, a.excludeTypesFlag)
         }</span>
@@ -5111,7 +5136,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -15053,7 +15078,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov3" title="2">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -15062,26 +15087,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov3" title="2">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov0" title="0">p.wg.Done()</span>
+                <span class="cov3" title="2">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file81" style="display: none">package progress
