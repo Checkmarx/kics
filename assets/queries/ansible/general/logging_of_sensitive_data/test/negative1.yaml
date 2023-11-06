@@ -12,7 +12,7 @@
       with_items:
         - wow
       no_log: true
-  
+
 ---
 - name: Negative Playbook 2
   hosts: localhost
