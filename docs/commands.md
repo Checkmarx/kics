@@ -102,7 +102,8 @@ Flags:
       --exclude-type strings          case insensitive list of platform types not to scan
                                       (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
                                       cannot be provided with type inclusion flags
-
+      --resolve-references            resolve the file reference (default [false])
+      
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
   -f, --log-format string   determines log format (pretty,json) (default "pretty")

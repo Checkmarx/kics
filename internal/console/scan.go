@@ -139,6 +139,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		ChangedDefaultQueryPath:     changedDefaultQueryPath,
 		BillOfMaterials:             flags.GetBoolFlag(flags.BomFlag),
 		ExcludeGitIgnore:            flags.GetBoolFlag(flags.ExcludeGitIgnore),
+		ResolveReferences:           flags.GetBoolFlag(flags.ResolveReferencesFlag),
 	}
 
 	return &scanParams

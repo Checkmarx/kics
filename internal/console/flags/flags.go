@@ -22,6 +22,14 @@ var (
 	validations = make(map[string][]string)
 )
 
+type FlagInterface interface {
+	GetBoolFlag(flagName string) bool
+	GetStrFlag(flagName string) string
+}
+
+type FlagStruct struct {
+}
+
 type flagJSON struct {
 	FlagType       string
 	ShorthandFlag  string

@@ -13,7 +13,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func TestResolver_Resolve(t *testing.T) {
+func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 	err := test.ChangeCurrentDir("kics")
 	if err != nil {
 		t.Fatal(err)
@@ -79,7 +79,80 @@ func TestResolver_Resolve(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile)); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
+			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile), true); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
+				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
+			}
+		})
+	}
+}
+
+func TestResolver_Resolve_Without_ResolveReferences(t *testing.T) {
+	err := test.ChangeCurrentDir("kics")
+	if err != nil {
+		t.Fatal(err)
+	}
+	type fields struct {
+		*Resolver
+	}
+	type args struct {
+		path string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   []byte
+	}{
+		{
+			name: "test",
+			fields: fields{
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
+			},
+			args: args{
+				path: filepath.ToSlash("test/fixtures/unresolved_openapi/responses/_index.yaml"),
+			},
+			want: []byte(
+				`UnexpectedError:$ref:"./UnexpectedError.yaml"NullResponse:$ref:"./NullResponse.yaml"`),
+		},
+		{
+			name: "json test",
+			fields: fields{
+				Resolver: NewResolver(json.Unmarshal, json.Marshal, []string{".json"}),
+			},
+			args: args{
+				path: filepath.ToSlash("test/fixtures/unresolved_openapi_json/openapi.json"),
+			},
+			want: []byte(
+				"{\"openapi\":\"3.0.3\",\"info\":{\"title\":\"Reference in reference example\",\"version\":\"1.0.0\"},\"paths\":{\"/api/test/ref/in/ref\":{\"post\":{\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"messages/request.json\"}}}},\"responses\":{\"200\":{\"description\":\"Successful response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"messages/response.json\"}}}}}}}}}",
+			),
+		},
+		{
+			name: "test_serverless",
+			fields: fields{
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
+			},
+			args: args{
+				path: filepath.ToSlash("test/fixtures/unresolved_serverless/serverless.yml"),
+			},
+			want: []byte(
+				"service:aws-node-projectframeworkVersion:'3'provider:name:awsruntime:nodejs14.xfunctions:eventRouterHandler:${file(eventRouterHandler.yml)}"),
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			r := &Resolver{
+				unmarshler:    tt.fields.unmarshler,
+				marshler:      tt.fields.marshler,
+				ResolvedFiles: tt.fields.ResolvedFiles,
+				Extension:     tt.fields.Extension,
+			}
+
+			cont, err := getFileContent(tt.args.path)
+			if err != nil {
+				t.Fatal(err)
+			}
+
+			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile), false); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
 				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
 			}
 		})

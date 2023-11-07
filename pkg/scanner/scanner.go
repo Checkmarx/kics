@@ -12,7 +12,7 @@ import (
 
 type serviceSlice []*kics.Service
 
-func PrepareAndScan(ctx context.Context, scanID string, proBarBuilder progress.PbBuilder, services serviceSlice) error {
+func PrepareAndScan(ctx context.Context, scanID string, proBarBuilder progress.PbBuilder, services serviceSlice, resolveReferences bool) error {
 	metrics.Metric.Start("prepare_sources")
 	var wg sync.WaitGroup
 	wgDone := make(chan bool)
@@ -21,7 +21,7 @@ func PrepareAndScan(ctx context.Context, scanID string, proBarBuilder progress.P
 
 	for _, service := range services {
 		wg.Add(1)
-		go service.PrepareSources(ctx, scanID, &wg, errCh)
+		go service.PrepareSources(ctx, scanID, &wg, errCh, resolveReferences)
 	}
 
 	go func() {
