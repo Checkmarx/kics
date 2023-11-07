@@ -57,41 +57,6 @@ jobs:
           paths:
             - ast_data_env
 
-  #create-pr-to-component-kics:
-  #  executor: cimg-base
-  #  steps:
-  #    - attach_workspace:
-  #        at: workspace
-  #    - run:
-  #        name: Set env vars from workspace
-  #        command: |
-  #          cat workspace/ast_data_env >> "$BASH_ENV"
-  #          source "$BASH_ENV"
-  #          echo "AST data tag: ${AST_DATA_TAG}"
-  #          if [ -z "${AST_DATA_TAG}" ]; then
-  #            echo "No AST_DATA_TAG env found!"
-  #            exit 1
-  #          fi
-  #    - run:
-  #        name: Config git and clone queries-repo
-  #        command: |
-  #          git config --global url."https://api:${GITHUB_TOKEN}@github.com/CheckmarxDev".insteadOf "https://github.com/CheckmarxDev"
-  #          git config --global user.email "${GIT_CX_EMAIL}"
-  #          git config --global user.name "${GIT_CX_USERNAME}"
-  #
-  #          echo "Clone queries-repo main branch"
-  #          git clone --branch main https://github.com/CheckmarxDev/kics-queries-repo.git main
-  #    - run:
-  #        name: Checkout and patch component-kics
-  #        command: |
-  #          main/scripts/patchComponentSAST.sh
-  #    - gh/setup:
-  #        version: 2.3.0
-  #    - run:
-  #        name: Create PR to component-kics
-  #        command: |
-  #          main/scripts/createPR.sh
-
 workflows:
   release-publish-workflow:
     jobs:
@@ -103,12 +68,3 @@ workflows:
           context:
             - AWS
             - JFROG
-      #- create-pr-to-component-sast:
-      #    filters:
-      #      branches:
-      #        only:
-      #          - "branch_name_template_to_replace"
-      #    context:
-      #      - AST-COMPONENT-GH
-      #    requires:
-      #      - publish-github-release-and-images
