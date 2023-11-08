@@ -72,7 +72,7 @@ func (s *Service) PrepareSources(ctx context.Context, scanID string, wg *sync.Wa
 			return s.sink(ctx, filename, scanID, rc, data, resolveReferences)
 		},
 		func(ctx context.Context, filename string) ([]string, error) { // Sink used for resolver files and templates
-			return s.resolverSink(ctx, filename, scanID)
+			return s.resolverSink(ctx, filename, scanID, resolveReferences)
 		},
 	); err != nil {
 		errCh <- errors.Wrap(err, "failed to read sources")
