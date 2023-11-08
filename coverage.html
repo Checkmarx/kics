@@ -215,7 +215,7 @@
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file80">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
+				<option value="file80">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
 				
 				<option value="file81">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2385,7 +2385,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -15038,7 +15038,7 @@ func (p ProgressBar) Start() <span class="cov3" title="2">{
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov0" title="0">p.wg.Done()</span>
+                <span class="cov3" title="2">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
