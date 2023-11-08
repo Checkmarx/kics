@@ -47,7 +47,9 @@ func NewResolver(
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile, resolveReferences bool) []byte {
+func (r *Resolver) Resolve(fileContent []byte, path string,
+	resolveCount int, resolvedFilesCache map[string]ResolvedFile,
+	resolveReferences bool) []byte {
 	// handle panic during resolve process
 	defer func() {
 		if r := recover(); r != nil {
@@ -132,7 +134,9 @@ func (r *Resolver) handleMap(originalFileContent []byte, fullObject interface{},
 	return value, false
 }
 
-func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile, resolveReferences bool) []byte {
+func (r *Resolver) yamlResolve(fileContent []byte, path string,
+	resolveCount int, resolvedFilesCache map[string]ResolvedFile,
+	resolveReferences bool) []byte {
 	var obj yaml.Node
 	err := r.unmarshler(fileContent, &obj)
 	if err != nil {
@@ -169,7 +173,10 @@ func (r *Resolver) yamlWalk(
 	switch value.Kind {
 	case yaml.ScalarNode:
 		if filepath.Base(path) != value.Value {
-			return r.resolveYamlPath(originalFileContent, fullObject, value, path, resolveCount, resolvedFilesCache, refBool, resolveReferences)
+			return r.resolveYamlPath(originalFileContent, fullObject,
+				value, path,
+				resolveCount, resolvedFilesCache,
+				refBool, resolveReferences)
 		}
 		return *value, false
 	default:
@@ -178,7 +185,10 @@ func (r *Resolver) yamlWalk(
 			if i >= 1 {
 				refBool = strings.Contains(value.Content[i-1].Value, "$ref")
 			}
-			resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache, refBool, resolveReferences)
+			resolved, ok := r.yamlWalk(originalFileContent, fullObject,
+				value.Content[i], path,
+				resolveCount, resolvedFilesCache,
+				refBool, resolveReferences)
 
 			if i >= 1 && refBool && (resolved.Kind == yaml.MappingNode || !ok) {
 				// Create RefMetadata and add it to yaml Node

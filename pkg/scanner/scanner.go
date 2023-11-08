@@ -12,7 +12,9 @@ import (
 
 type serviceSlice []*kics.Service
 
-func PrepareAndScan(ctx context.Context, scanID string, proBarBuilder progress.PbBuilder, services serviceSlice, resolveReferences bool) error {
+func PrepareAndScan(ctx context.Context, scanID string,
+	proBarBuilder progress.PbBuilder,
+	services serviceSlice, resolveReferences bool) error {
 	metrics.Metric.Start("prepare_sources")
 	var wg sync.WaitGroup
 	wgDone := make(chan bool)
@@ -48,7 +50,8 @@ func PrepareAndScan(ctx context.Context, scanID string, proBarBuilder progress.P
 }
 
 // StartScan will run concurrent scans by parser
-func StartScan(ctx context.Context, scanID string, proBarBuilder progress.PbBuilder, services serviceSlice) error {
+func StartScan(ctx context.Context, scanID string,
+	proBarBuilder progress.PbBuilder, services serviceSlice) error {
 	defer metrics.Metric.Stop()
 	metrics.Metric.Start("start_scan")
 	var wg sync.WaitGroup
