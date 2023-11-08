@@ -8,7 +8,7 @@
 	{
 		"queryName": "Job's Task is Legacy (spark_submit_task)",
 		"severity": "MEDIUM",
-		"line": 26,
+		"line": 36,
 		"fileName": "positive2.tf"
 	}
 ]
