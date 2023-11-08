@@ -8,7 +8,7 @@
 	{
 		"queryName": "Check Databricks Cluster Azure Attribute Best Practices",
 		"severity": "MEDIUM",
-		"line": 13,
+		"line": 12,
 		"fileName": "positive2.tf"
 	},
 	{
