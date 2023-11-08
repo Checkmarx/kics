@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"path/filepath"
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -14,7 +13,6 @@ import (
 	"github.com/open-policy-agent/opa/topdown"
 
 	"github.com/Checkmarx/kics/internal/console/flags"
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/parser"
@@ -187,12 +185,13 @@ func runQuery(r *runQueryInfo) []model.Vulnerability {
 
 func initScan(queryID string) (*engine.Inspector, error) {
 	scanParams := &scan.Parameters{
-		QueriesPath:      flags.GetMultiStrFlag(flags.QueriesPath),
-		Platform:         flags.GetMultiStrFlag(flags.TypeFlag),
-		CloudProvider:    flags.GetMultiStrFlag(flags.CloudProviderFlag),
-		LibrariesPath:    flags.GetStrFlag(flags.LibrariesPath),
-		PreviewLines:     flags.GetIntFlag(flags.PreviewLinesFlag),
-		QueryExecTimeout: flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+		QueriesPath:         flags.GetMultiStrFlag(flags.QueriesPath),
+		Platform:            flags.GetMultiStrFlag(flags.TypeFlag),
+		CloudProvider:       flags.GetMultiStrFlag(flags.CloudProviderFlag),
+		LibrariesPath:       flags.GetStrFlag(flags.LibrariesPath),
+		PreviewLines:        flags.GetIntFlag(flags.PreviewLinesFlag),
+		QueryExecTimeout:    flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+		ExperimentalQueries: flags.GetBoolFlag(flags.ExperimentalQueriesFlag),
 	}
 
 	c := &scan.Client{
@@ -205,18 +204,12 @@ func initScan(queryID string) (*engine.Inspector, error) {
 		return &engine.Inspector{}, err
 	}
 
-	experimentalQueries, err := consoleHelpers.GetDefaultExperimentalPath(filepath.FromSlash("./assets/utils/experimental-queries.json"))
-	if err != nil {
-		log.Err(err)
-		return &engine.Inspector{}, err
-	}
-
 	queriesSource := source.NewFilesystemSource(
 		c.ScanParams.QueriesPath,
 		c.ScanParams.Platform,
 		c.ScanParams.CloudProvider,
 		c.ScanParams.LibrariesPath,
-		experimentalQueries)
+		c.ScanParams.ExperimentalQueries)
 
 	includeQueries := source.IncludeQueries{
 		ByIDs: []string{queryID},
