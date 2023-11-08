@@ -33,8 +33,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.databricks_cluster[name]
-	not resource.azure_attributes.first_on_demand
+	resource := input.document[i].resource.databricks_cluster[name].azure_attributes
+	not resource.first_on_demand
 
 	result := {
 		"documentId": input.document[i].id,

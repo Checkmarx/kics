@@ -33,8 +33,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.databricks_cluster[name]
-	not resource.aws_attributes.first_on_demand
+	resource := input.document[i].resource.databricks_cluster[name].aws_attributes
+	not resource.first_on_demand
 
 	result := {
 		"documentId": input.document[i].id,
@@ -48,8 +48,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.databricks_cluster[name]
-	not resource.aws_attributes.zone_id == "auto"
+	resource := input.document[i].resource.databricks_cluster[name].aws_attributes
+	not resource.zone_id == "auto"
 
 	result := {
 		"documentId": input.document[i].id,
