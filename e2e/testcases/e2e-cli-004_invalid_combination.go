@@ -8,8 +8,8 @@ func init() { //nolint
 		Name: "should display an error of invalid flag combination [E2E-CLI-004]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "--ci", "--verbose"},
-				[]string{"--ci", "scan", "--verbose"},
+				[]string{"scan", "--ci", "--verbose", "--resolve-references"},
+				[]string{"--ci", "scan", "--verbose", "--resolve-references"},
 			},
 			ExpectedOut: []string{
 				"E2E_CLI_004",
