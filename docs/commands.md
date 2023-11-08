@@ -93,6 +93,7 @@ Flags:
       --preview-lines int             number of lines to be display in CLI results (min: 1, max: 30) (default 3)
   -q, --queries-path strings          paths to directory with queries (default [./assets/queries])
       --report-formats strings        formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])
+      --resolve-references            resolve the file reference (default [false])
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --terraform-vars-path           string path where terraform variables are present
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
@@ -102,8 +103,7 @@ Flags:
       --exclude-type strings          case insensitive list of platform types not to scan
                                       (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
                                       cannot be provided with type inclusion flags
-      --resolve-references            resolve the file reference (default [false])
-      
+       
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
   -f, --log-format string   determines log format (pretty,json) (default "pretty")
