@@ -15,7 +15,7 @@ import (
 type QueryInspectorParameters struct {
 	IncludeQueries      IncludeQueries
 	ExcludeQueries      ExcludeQueries
-	ExperimentalQueries []string
+	ExperimentalQueries bool
 	InputDataPath       string
 	BomQueries          bool
 }

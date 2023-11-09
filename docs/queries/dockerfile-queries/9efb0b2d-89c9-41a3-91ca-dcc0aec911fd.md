@@ -39,6 +39,16 @@ COPY templates/index.html /usr/src/app/templates/
 EXPOSE 5000
 CMD ["python", "/usr/src/app/app.py"] 
 ```
+```dockerfile title="Postitive test num. 2 - dockerfile file" hl_lines="7"
+FROM ubuntu:22.04 AS test
+RUN echo "hello"
+
+FROM test AS build
+RUN echo "build"
+
+FROM construction AS final
+RUN echo "final"
+```
 
 
 #### Code samples without security vulnerabilities
@@ -55,4 +65,14 @@ ARG IMAGE=alpine:3.12
 FROM $IMAGE
 CMD ["python", "/usr/src/app/app.py"]
 
+```
+```dockerfile title="Negative test num. 2 - dockerfile file"
+FROM ubuntu:22.04 AS test
+RUN echo "hello"
+
+FROM test AS build
+RUN echo "build"
+
+FROM build AS final
+RUN echo "final"
 ```
