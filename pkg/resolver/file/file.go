@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/Checkmarx/kics/pkg/analyzer"
 	"io"
 	"os"
 	"path/filepath"
@@ -13,6 +12,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/pkg/analyzer"
 	"gopkg.in/yaml.v3"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -47,7 +47,7 @@ func NewResolver(
 	}
 }
 
-func isOpenApi(fileContent []byte) bool {
+func isOpenAPI(fileContent []byte) bool {
 	regexToRun :=
 		[]*regexp.Regexp{analyzer.OpenAPIRegexInfo,
 			analyzer.OpenAPIRegexPath,
@@ -72,7 +72,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string,
 		}
 	}()
 
-	if !resolveReferences && isOpenApi(fileContent) {
+	if !resolveReferences && isOpenAPI(fileContent) {
 		return fileContent
 	}
 
@@ -124,9 +124,15 @@ func (r *Resolver) walk(
 	}
 }
 
-func (r *Resolver) handleMap(originalFileContent []byte, fullObject interface{}, value map[string]interface{}, path string,
-	resolveCount int, resolvedFilesCache map[string]ResolvedFile, resolveReferences bool) (any, bool) {
-
+func (r *Resolver) handleMap(
+	originalFileContent []byte,
+	fullObject interface{},
+	value map[string]interface{},
+	path string,
+	resolveCount int,
+	resolvedFilesCache map[string]ResolvedFile,
+	resolveReferences bool,
+) (any, bool) {
 	for k, v := range value {
 		isRef := strings.Contains(strings.ToLower(k), "$ref")
 		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, isRef, resolveReferences)

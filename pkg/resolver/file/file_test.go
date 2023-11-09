@@ -194,7 +194,7 @@ func Test_IsOpenApi(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			cont, err := getFileContent(tt.path)
 			require.NoError(t, err)
-			got := isOpenApi(cont)
+			got := isOpenAPI(cont)
 			assert.Equal(t, tt.want, got, fmt.Sprintf("Error: %s", tt.name))
 		})
 	}
