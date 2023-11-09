@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/Checkmarx/kics/pkg/analyzer"
 	"io"
 	"os"
 	"path/filepath"
@@ -46,6 +47,19 @@ func NewResolver(
 	}
 }
 
+func isOpenApi(fileContent []byte) bool {
+	regexToRun :=
+		[]*regexp.Regexp{analyzer.OpenAPIRegexInfo,
+			analyzer.OpenAPIRegexPath,
+			analyzer.OpenAPIRegex}
+	for _, regex := range regexToRun {
+		if !regex.Match(fileContent) {
+			return false
+		}
+	}
+	return true
+}
+
 // Resolve - replace or modifies in-memory content before parsing
 func (r *Resolver) Resolve(fileContent []byte, path string,
 	resolveCount int, resolvedFilesCache map[string]ResolvedFile,
@@ -58,7 +72,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string,
 		}
 	}()
 
-	if !resolveReferences {
+	if !resolveReferences && isOpenApi(fileContent) {
 		return fileContent
 	}
 
@@ -112,6 +126,7 @@ func (r *Resolver) walk(
 
 func (r *Resolver) handleMap(originalFileContent []byte, fullObject interface{}, value map[string]interface{}, path string,
 	resolveCount int, resolvedFilesCache map[string]ResolvedFile, resolveReferences bool) (any, bool) {
+
 	for k, v := range value {
 		isRef := strings.Contains(strings.ToLower(k), "$ref")
 		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, isRef, resolveReferences)

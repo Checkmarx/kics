@@ -1,0 +1,276 @@
+{
+	"kics_version": "development",
+	"files_scanned": 1,
+	"lines_scanned": 169,
+	"files_parsed": 1,
+	"lines_parsed": 169,
+	"lines_ignored": 0,
+	"files_failed_to_scan": 0,
+	"queries_total": 508,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"HIGH": 5,
+		"INFO": 0,
+		"LOW": 2,
+		"MEDIUM": 5,
+		"TRACE": 0
+	},
+	"total_counter": 12,
+	"total_bom_resources": 0,
+	"start": "2023-11-09T15:21:48.1040438Z",
+	"end": "2023-11-09T15:22:01.3482112Z",
+	"paths": [
+		"C:\\CxKics\\kics\\test\\fixtures\\resolve_references_no_change\\vpc.yml"
+	],
+	"queries": [
+		{
+			"query_name": "EC2 Instance Subnet Has Public IP Mapping On Launch",
+			"query_id": "b3de4e4c-14be-4159-b99d-9ad194365e4c",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html#cfn-ec2-subnet-mappubliciponlaunch",
+			"severity": "HIGH",
+			"platform": "CloudFormation",
+			"cloud_provider": "AWS",
+			"category": "Networking and Firewall",
+			"description": "EC2 Instance Subnet should not have MapPublicIpOnLaunch set to true",
+			"description_id": "22e3d598",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\resolve_references_no_change\\vpc.yml",
+					"similarity_id": "5183cf3cdba0ad8ddf21bac6fe281bbb5d5b31daede42642a416bf02eb403617",
+					"line": 142,
+					"resource_type": "AWS::EC2::Subnet",
+					"resource_name": "eks-example-c",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.Subnet1c.Properties.MapPublicIpOnLaunch",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'Resources.Subnet1c.Properties.MapPublicIpOnLaunch' should be false",
+					"actual_value": "'Resources.Subnet1c.Properties.MapPublicIpOnLaunch' is true"
+				},
+				{
+					"file_name": "test\\fixtures\\resolve_references_no_change\\vpc.yml",
+					"similarity_id": "6bdb419c262e4b3b6e895a68af0aeb001ed5d2bd14af0d5419247727c0cb0ff7",
+					"line": 94,
+					"resource_type": "AWS::EC2::Subnet",
+					"resource_name": "eks-example-a",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.Subnet1a.Properties.MapPublicIpOnLaunch",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'Resources.Subnet1a.Properties.MapPublicIpOnLaunch' should be false",
+					"actual_value": "'Resources.Subnet1a.Properties.MapPublicIpOnLaunch' is true"
+				},
+				{
+					"file_name": "test\\fixtures\\resolve_references_no_change\\vpc.yml",
+					"similarity_id": "0d16b0acab457cf81c0b3ae1aa0312234e18c2c651e7c353a56cd835227ce079",
+					"line": 118,
+					"resource_type": "AWS::EC2::Subnet",
+					"resource_name": "eks-example-b",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.Subnet1b.Properties.MapPublicIpOnLaunch",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'Resources.Subnet1b.Properties.MapPublicIpOnLaunch' should be false",
+					"actual_value": "'Resources.Subnet1b.Properties.MapPublicIpOnLaunch' is true"
+				}
+			]
+		},
+		{
+			"query_name": "EC2 Network ACL Overlapping Ports",
+			"query_id": "77b6f1e2-bde4-4a6a-ae7e-a40659ff1576",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html",
+			"severity": "HIGH",
+			"platform": "CloudFormation",
+			"cloud_provider": "AWS",
+			"category": "Networking and Firewall",
+			"description": "NetworkACL Entries are reusing or overlapping ports which may create ineffective rules",
+			"description_id": "cb7c8980",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\resolve_references_no_change\\vpc.yml",
+					"similarity_id": "837e8e314dd4166ccf51bd778863e5a3a4d0ac04550a84d6e4838d1b961bd344",
+					"line": 70,
+					"resource_type": "AWS::EC2::NetworkAclEntry",
+					"resource_name": "InboundNetworkAclEntrySSH",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.InboundNetworkAclEntrySSH.Properties.PortRange",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'Resources.InboundNetworkAclEntrySSH.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
+					"actual_value": "'Resources.InboundNetworkAclEntrySSH.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+				},
+				{
+					"file_name": "test\\fixtures\\resolve_references_no_change\\vpc.yml",
+					"similarity_id": "9a875c5c1a441ea46b62ffef3b48a2795496502045860f2514694dd7fdd2f2f3",
+					"line": 83,
+					"resource_type": "AWS::EC2::NetworkAclEntry",
+					"resource_name": "OutboundNetworkAclEntryAll",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.OutboundNetworkAclEntryAll.Properties.PortRange",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'Resources.OutboundNetworkAclEntryAll.Properties.PortRange should be configured with a different unused port range to avoid overlapping'",
+					"actual_value": "'Resources.OutboundNetworkAclEntryAll.Properties.PortRange has port rage config that is overlapping with others resources and causing ineffective rules'"
+				}
+			]
+		},
+		{
+			"query_name": "EC2 Permissive Network ACL Protocols",
+			"query_id": "03879981-efa2-47a0-a818-c843e1441b88",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-network-acl-entry.html",
+			"severity": "MEDIUM",
+			"platform": "CloudFormation",
+			"cloud_provider": "AWS",
+			"category": "Networking and Firewall",
+			"description": "To avoid opening all ports for Allow rules, EC2 NetworkACL Entry Protocol should be either 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code).",
+			"description_id": "397e89de",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\resolve_references_no_change\\vpc.yml",
+					"similarity_id": "fda8decc41d4efc2b027e859d962fdbf8b98f645d7081aba4e75e9d7dea04665",
+					"line": 67,
+					"resource_type": "AWS::EC2::NetworkAclEntry",
+					"resource_name": "InboundNetworkAclEntrySSH",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.InboundNetworkAclEntrySSH.Properties.Protocol",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'Resources.InboundNetworkAclEntrySSH.Properties.Protocol' should be either 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)",
+					"actual_value": "'Resources.InboundNetworkAclEntrySSH.Properties.Protocol' is configured with a protocol different than 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)"
+				},
+				{
+					"file_name": "test\\fixtures\\resolve_references_no_change\\vpc.yml",
+					"similarity_id": "91e40e6e85e9a999d5b62ea9ed43d38cb31e4e77568f21048ff6a606322b032c",
+					"line": 80,
+					"resource_type": "AWS::EC2::NetworkAclEntry",
+					"resource_name": "OutboundNetworkAclEntryAll",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.OutboundNetworkAclEntryAll.Properties.Protocol",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'Resources.OutboundNetworkAclEntryAll.Properties.Protocol' should be either 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)",
+					"actual_value": "'Resources.OutboundNetworkAclEntryAll.Properties.Protocol' is configured with a protocol different than 6 (for TCP), 17 (for UDP), 1 (for ICMP), or 58 (for ICMPv6, which must include an IPv6 CIDR block, ICMP type, and code)"
+				}
+			]
+		},
+		{
+			"query_name": "RouterTable with Default Routing",
+			"query_id": "4f0908b9-eb66-433f-9145-134274e1e944",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route-table.html",
+			"severity": "MEDIUM",
+			"platform": "CloudFormation",
+			"cloud_provider": "AWS",
+			"category": "Insecure Defaults",
+			"description": "NAT gateways are recommended, and not the default route which permits all traffic, in Route Tables.",
+			"description_id": "1f341247",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\resolve_references_no_change\\vpc.yml",
+					"similarity_id": "801f53a8218989c78e6bf3a282b9fea359b98bff797b3d82f5f669db2f68b0bd",
+					"line": 49,
+					"resource_type": "AWS::EC2::Route",
+					"resource_name": "Route",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.Route.Properties.DestinationCidrBlock",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Resources.Route.Properties.DestinationCidrBlock should be different from the default value",
+					"actual_value": "Resources.Route.Properties.DestinationCidrBlock is 0.0.0.0/0"
+				},
+				{
+					"file_name": "test\\fixtures\\resolve_references_no_change\\vpc.yml",
+					"similarity_id": "b5b44886071d0127c4f82dcb3ee0a439451be7bf851c4ed98839190610a85b0c",
+					"line": 47,
+					"resource_type": "AWS::EC2::Route",
+					"resource_name": "Route",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.Route.Properties",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Resources.Route.Properties.NatGatewayId should be defined",
+					"actual_value": "Resources.Route.Properties.NatGatewayId is undefined"
+				}
+			]
+		},
+		{
+			"query_name": "VPC Without Network Firewall",
+			"query_id": "3e293410-d5b8-411f-85fd-7d26294f20c9",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-networkfirewall-firewall.html#cfn-networkfirewall-firewall-vpcid",
+			"severity": "MEDIUM",
+			"platform": "CloudFormation",
+			"cloud_provider": "AWS",
+			"category": "Networking and Firewall",
+			"description": "VPC should have a Network Firewall associated",
+			"description_id": "f090ffd2",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\resolve_references_no_change\\vpc.yml",
+					"similarity_id": "68a4041b80f4197c8ec899e0c9845723e4c0b5441e9c626639bdfd34c63db491",
+					"line": 14,
+					"resource_type": "AWS::EC2::VPC",
+					"resource_name": "eks-example",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.VPC",
+					"search_line": 14,
+					"search_value": "",
+					"expected_value": "'Resources.VPC' should be associated with a AWS Network Firewall",
+					"actual_value": "'Resources.VPC' is not associated with a AWS Network Firewall"
+				}
+			]
+		},
+		{
+			"query_name": "IAM Access Analyzer Not Enabled",
+			"query_id": "8d29754a-2a18-460d-a1ba-9509f8d359da",
+			"query_url": "https://docs.amazonaws.cn/en_us/AWSCloudFormation/latest/UserGuide/aws-resource-accessanalyzer-analyzer.html",
+			"severity": "LOW",
+			"platform": "CloudFormation",
+			"cloud_provider": "AWS",
+			"category": "Best Practices",
+			"description": "IAM Access Analyzer should be enabled and configured to continuously monitor resource permissions",
+			"description_id": "24a6978e",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\resolve_references_no_change\\vpc.yml",
+					"similarity_id": "304c64d5ddfd93593c8aa4e9f10b34fe7d2e7e3634c6e64465b3be292029775c",
+					"line": 12,
+					"resource_type": "n/a",
+					"resource_name": "n/a",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'AWS::AccessAnalyzer::Analyzer' should be set",
+					"actual_value": "'AWS::AccessAnalyzer::Analyzer' is undefined"
+				}
+			]
+		},
+		{
+			"query_name": "VPC FlowLogs Disabled",
+			"query_id": "f6d299d2-21eb-41cc-b1e1-fe12d857500b",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html",
+			"severity": "LOW",
+			"platform": "CloudFormation",
+			"cloud_provider": "AWS",
+			"category": "Observability",
+			"description": "Every VPC resource should have an associated Flow Log",
+			"description_id": "0fb02ca5",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\resolve_references_no_change\\vpc.yml",
+					"similarity_id": "394a32784bda3c52380e6cec242d3fd09bd5f6a498aa7b64dc03472ecd32843f",
+					"line": 14,
+					"resource_type": "AWS::EC2::VPC",
+					"resource_name": "eks-example",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.VPC",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Resources.VPC has a FlowLogs resource associated",
+					"actual_value": "Resources.VPC doesn't have a FlowLogs resource associated"
+				}
+			]
+		}
+	]
+}

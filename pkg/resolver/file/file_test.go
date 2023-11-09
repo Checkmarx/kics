@@ -2,6 +2,9 @@ package file
 
 import (
 	"encoding/json"
+	"fmt"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -155,6 +158,44 @@ func TestResolver_Resolve_Without_ResolveReferences(t *testing.T) {
 			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile), false); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
 				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
 			}
+		})
+	}
+}
+
+func Test_IsOpenApi(t *testing.T) {
+	err := test.ChangeCurrentDir("kics")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	tests := []struct {
+		name string
+		path string
+		want bool
+	}{
+		{
+			name: "yaml Open Api",
+			path: "test/fixtures/resolve_references/swagger.yaml",
+			want: true,
+		},
+		{
+			name: "json Open Api",
+			path: "test/fixtures/resolve_references_json/scan-2files.json",
+			want: true,
+		},
+		{
+			name: "yml not Open Api",
+			path: "test/fixtures/resolve_references_no_change/vpc.yml",
+			want: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			cont, err := getFileContent(tt.path)
+			require.NoError(t, err)
+			got := isOpenApi(cont)
+			assert.Equal(t, tt.want, got, fmt.Sprintf("Error: %s", tt.name))
 		})
 	}
 }
