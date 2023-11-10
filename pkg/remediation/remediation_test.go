@@ -111,7 +111,7 @@ func Test_RemediateFile(t *testing.T) {
 
 			tmpFileName := filepath.Join(os.TempDir(), "temporary-remediation"+utils.NextRandom()+filepath.Ext(filePathCopyFrom))
 			tmpFile := CreateTempFile(filePathCopyFrom, tmpFileName)
-			s.RemediateFile(tmpFile, tt.args.remediate, true)
+			s.RemediateFile(tmpFile, tt.args.remediate, false)
 
 			os.Remove(tmpFile)
 			require.Equal(t, s.ActualRemediationDoneNumber, tt.actualRemediationDoneNumber)
