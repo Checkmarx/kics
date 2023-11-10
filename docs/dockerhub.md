@@ -86,6 +86,7 @@ Flags:
       --config string                 path to configuration file
       --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
       --disable-secrets               disable secrets scanning
+      --enable-openapi-refs           resolve the file reference, on OpenAPI files (default [false]) 
       --exclude-categories strings    exclude categories by providing its name
                                       cannot be provided with query inclusion flags
                                       can be provided multiple times or as a comma separated string
@@ -129,7 +130,6 @@ Flags:
       --preview-lines int             number of lines to be display in CLI results (min: 1, max: 30) (default 3)
   -q, --queries-path strings          paths to directory with queries (default [./assets/queries])
       --report-formats strings        formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])
-      --enable-openapi-refs           resolve the file reference, on OpenAPI files (default [false]) 
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                  case insensitive list of platform types to scan
