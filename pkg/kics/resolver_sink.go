@@ -14,7 +14,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func (s *Service) resolverSink(ctx context.Context, filename, scanID string, resolveReferences bool) ([]string, error) {
+func (s *Service) resolverSink(ctx context.Context, filename, scanID string, openAPIResolveReferences bool) ([]string, error) {
 	kind := s.Resolver.GetType(filename)
 	if kind == model.KindCOMMON {
 		return []string{}, nil
@@ -30,7 +30,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, res
 		countLines := bytes.Count(rfile.Content, []byte{'\n'}) + 1
 		s.Tracker.TrackFileFoundCountLines(countLines)
 
-		documents, err := s.Parser.Parse(rfile.FileName, rfile.Content, resolveReferences)
+		documents, err := s.Parser.Parse(rfile.FileName, rfile.Content, openAPIResolveReferences)
 		if err != nil {
 			if documents.Kind == "break" {
 				return []string{}, nil

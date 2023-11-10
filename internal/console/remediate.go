@@ -78,7 +78,7 @@ func preRemediate(cmd *cobra.Command) error {
 func remediate() error {
 	resultsPath := flags.GetStrFlag(flags.Results)
 	include := flags.GetMultiStrFlag(flags.IncludeIds)
-	resolveReferences := flags.GetBoolFlag(flags.OpenAPIReferencesFlag)
+	openAPIResolveReferences := flags.GetBoolFlag(flags.OpenAPIReferencesFlag)
 
 	filepath.Clean(resultsPath)
 
@@ -106,7 +106,7 @@ func remediate() error {
 
 	for filePath := range remediationSets {
 		fix := remediationSets[filePath].(remediation.Set)
-		err = summary.RemediateFile(filePath, fix, resolveReferences)
+		err = summary.RemediateFile(filePath, fix, openAPIResolveReferences)
 		if err != nil {
 			return err
 		}

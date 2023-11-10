@@ -51,7 +51,7 @@ type Set struct {
 }
 
 // RemediateFile remediationSets the replacements first and secondly, the additions sorted down
-func (s *Summary) RemediateFile(filePath string, remediationSet Set, resolveReferences bool) error {
+func (s *Summary) RemediateFile(filePath string, remediationSet Set, openAPIResolveReferences bool) error {
 	filepath.Clean(filePath)
 	content, err := os.ReadFile(filePath)
 
@@ -67,7 +67,7 @@ func (s *Summary) RemediateFile(filePath string, remediationSet Set, resolveRefe
 		for i := range remediationSet.Replacement {
 			r := remediationSet.Replacement[i]
 			remediatedLines := replacement(&r, lines)
-			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &r, resolveReferences) {
+			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &r, openAPIResolveReferences) {
 				lines = s.writeRemediation(remediatedLines, lines, filePath, r.SimilarityID)
 			}
 		}
@@ -83,7 +83,7 @@ func (s *Summary) RemediateFile(filePath string, remediationSet Set, resolveRefe
 		for i := range remediationSet.Addition {
 			a := remediationSet.Addition[i]
 			remediatedLines := addition(&a, &lines)
-			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &a, resolveReferences) {
+			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &a, openAPIResolveReferences) {
 				lines = s.writeRemediation(remediatedLines, lines, filePath, a.SimilarityID)
 			}
 		}
