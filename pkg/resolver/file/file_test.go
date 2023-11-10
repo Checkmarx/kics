@@ -183,11 +183,16 @@ func Test_IsOpenApi(t *testing.T) {
 			path: "test/fixtures/resolve_references_json/scan-2files.json",
 			want: true,
 		},
-		/*{
+		{
 			name: "yml not Open Api",
-			path: "test/fixtures/resolve_references_no_change/vpc.yml",
+			path: "test/fixtures/resolve_references/paths/users/user.yaml",
 			want: false,
-		},*/
+		},
+		{
+			name: "json not Open Api",
+			path: "test/fixtures/resolve_references_json/definitions.json",
+			want: false,
+		},
 	}
 
 	for _, tt := range tests {
