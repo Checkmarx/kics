@@ -202,10 +202,10 @@
     "defaultValue": "false",
     "usage": "disables the exclusion of paths specified within .gitignore file"
   },
-  "resolve-references": {
+  "enable-openapi-refs": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
-    "usage": "resolve the file reference"
+    "usage": "resolve the file reference, on OpenAPI files"
   }
 }

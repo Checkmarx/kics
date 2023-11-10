@@ -11,7 +11,7 @@ func init() { //nolint
 					"--output-name", "E2E_CLI_072_RESULT",
 					"-p", "\"/path/test/fixtures/resolve_references\"",
 					"-i", "6c35d2c6-09f2-4e5c-a094-e0e91327071d,962fa01e-b791-4dcc-b04a-4a3e7389be5e",
-					"--resolve-references",
+					"--enable-openapi-refs",
 				},
 			},
 			ExpectedResult: []ResultsValidation{
