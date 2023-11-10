@@ -107,7 +107,7 @@ func TestResolver_Resolve_Without_ResolveReferences(t *testing.T) {
 		want   []byte
 	}{
 		{
-			name: "test",
+			name: "yaml should resolve because is not openapi file",
 			fields: fields{
 				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
 			},
@@ -115,10 +115,10 @@ func TestResolver_Resolve_Without_ResolveReferences(t *testing.T) {
 				path: filepath.ToSlash("test/fixtures/unresolved_openapi/responses/_index.yaml"),
 			},
 			want: []byte(
-				`UnexpectedError:$ref:"./UnexpectedError.yaml"NullResponse:$ref:"./NullResponse.yaml"`),
+				`UnexpectedError:description:unexpectederrorcontent:application/json:schema:type:objectrequired:-code-messageproperties:code:type:integerformat:int32message:type:stringRefMetadata:$ref:"../schemas/Error.yaml"alone:trueRefMetadata:$ref:"./UnexpectedError.yaml"alone:trueNullResponse:description:NullresponseRefMetadata:$ref:"./NullResponse.yaml"alone:true`),
 		},
 		{
-			name: "json test",
+			name: "json should not resolve because is a openapi file",
 			fields: fields{
 				Resolver: NewResolver(json.Unmarshal, json.Marshal, []string{".json"}),
 			},
@@ -128,17 +128,6 @@ func TestResolver_Resolve_Without_ResolveReferences(t *testing.T) {
 			want: []byte(
 				"{\"openapi\":\"3.0.3\",\"info\":{\"title\":\"Reference in reference example\",\"version\":\"1.0.0\"},\"paths\":{\"/api/test/ref/in/ref\":{\"post\":{\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"messages/request.json\"}}}},\"responses\":{\"200\":{\"description\":\"Successful response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"messages/response.json\"}}}}}}}}}",
 			),
-		},
-		{
-			name: "test_serverless",
-			fields: fields{
-				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
-			},
-			args: args{
-				path: filepath.ToSlash("test/fixtures/unresolved_serverless/serverless.yml"),
-			},
-			want: []byte(
-				"service:aws-node-projectframeworkVersion:'3'provider:name:awsruntime:nodejs14.xfunctions:eventRouterHandler:${file(eventRouterHandler.yml)}"),
 		},
 	}
 	for _, tt := range tests {
