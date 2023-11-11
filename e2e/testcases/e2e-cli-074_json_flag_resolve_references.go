@@ -9,7 +9,7 @@ func init() { //nolint
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
 					"--output-name", "E2E_CLI_074_RESULT",
-					"-p", "\"/path/test/fixtures/resolve_references\"",
+					"-p", "\"/path/test/fixtures/resolve_references_json\"",
 					"-i", "750b40be-4bac-4f59-bdc4-1ca0e6c3450e",
 					"--enable-openapi-refs",
 				},
