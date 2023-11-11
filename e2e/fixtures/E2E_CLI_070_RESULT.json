@@ -22,8 +22,8 @@
 	"start": "2023-10-27T16:46:52.5513995+01:00",
 	"end": "2023-10-27T16:46:52.8805179+01:00",
 	"paths": [
-		"/path/test/fixtures/experimental_test/sample",
-		"/path/test/fixtures/experimental_test/queries"
+    "/path/test/fixtures/experimental_test/queries",
+		"/path/test/fixtures/experimental_test/sample"
 	],
 	"queries": [
 		{
