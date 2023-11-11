@@ -1,0 +1,11 @@
+{
+  "id": "a5ed4c17-b939-4d8d-9f9a-9b287d8bcd25",
+  "queryName": "RDS Multi-AZ Deployment Disabled",
+  "severity": "MEDIUM",
+  "category": "Backup",
+  "descriptionText": "AWS RDS Instance should have a multi-az deployment",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/rds_instance_module.html#parameter-multi_az",
+  "platform": "Ansible",
+  "descriptionID": "688db315",
+  "cloudProvider": "aws"
+}

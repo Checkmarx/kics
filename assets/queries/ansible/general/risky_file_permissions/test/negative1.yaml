@@ -84,7 +84,7 @@
 
 ---
 - name: LINIINFILE_CREATE
-  tasks: 
+  tasks:
     - name: create is true 2x
       lineinfile:
         path: foo
