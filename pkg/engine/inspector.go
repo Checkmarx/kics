@@ -30,6 +30,7 @@ const (
 	UndetectedVulnerabilityLine = -1
 	DefaultQueryID              = "Undefined"
 	DefaultQueryName            = "Anonymous"
+	DefaultExperimental         = false
 	DefaultQueryDescription     = "Undefined"
 	DefaultQueryDescriptionID   = "Undefined"
 	DefaultQueryURI             = "https://github.com/Checkmarx/kics/"
