@@ -129,7 +129,7 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		)
 
 		if summary.Queries[idx].Experimental {
-			fmt.Println("Experimental")
+			fmt.Println("Note: this is an experimental query")
 		}
 
 		if !printer.minimal {
