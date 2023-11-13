@@ -30,7 +30,7 @@ jobs:
     - name: Copy queries to new branch
       run: |
           mkdir -p ../$REPO_NAME/kics-queries
-          rsync -av --exclude='*/test/*' --exclude='*/common/*' ./assets/queries/ ../$REPO_NAME/kics-queries/
+          rsync -av --exclude='*/test/*' --exclude='common/*' ./assets/queries/ ../$REPO_NAME/kics-queries/
 
     - name: Copy circle ci configuration to new branch
       run: |
