@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.databricks.com/clusters/cluster-config-best-practices.html",
   "descriptionID": "bb2e4c81",
   "platform": "Terraform",
-  "cloudProvider": "common"
+  "cloudProvider": "common",
+  "experimental": "true"
 }

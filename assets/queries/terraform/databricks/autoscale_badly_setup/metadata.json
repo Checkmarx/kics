@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/cluster",
   "descriptionID": "e6eabd3e",
   "platform": "Terraform",
-  "cloudProvider": "common"
+  "cloudProvider": "common",
+  "experimental": "true"
 }

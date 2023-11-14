@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/obo_token",
   "descriptionID": "df3aa7ed",
   "platform": "Terraform",
-  "cloudProvider": "common"
+  "cloudProvider": "common",
+  "experimental": "true"
 }

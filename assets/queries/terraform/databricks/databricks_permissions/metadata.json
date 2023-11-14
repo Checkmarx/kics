@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/resources/permissions",
   "platform": "Terraform",
   "descriptionID": "66b9bc6e",
-  "cloudProvider": "common"
+  "cloudProvider": "common",
+  "experimental": "true"
 }

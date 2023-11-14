@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/data-sources/spark_version",
   "descriptionID": "fdaa059f",
   "platform": "Terraform",
-  "cloudProvider": "common"
+  "cloudProvider": "common",
+  "experimental": "true"
 }
