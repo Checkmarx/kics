@@ -139,6 +139,10 @@
                     }
                 }
             }
+        },
+        "experimental": {
+            "type": "string",
+            "minLength": 4
         }
     }
 }
