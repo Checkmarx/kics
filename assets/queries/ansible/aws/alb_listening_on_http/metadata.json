@@ -8,5 +8,5 @@
   "platform": "Ansible",
   "descriptionID": "3a7576e5",
   "cloudProvider": "aws",
-  "experimental": true
+  "experimental": "true"
 }
