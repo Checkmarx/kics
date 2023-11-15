@@ -82,7 +82,9 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 </div>
 
 #### Beta Features
-Soon...
+<div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="Databricks" src="img/logo-databricks.png" width="200">&nbsp;&nbsp;&nbsp;
+</div>
 
 ## Getting Started
 
