@@ -496,6 +496,12 @@ func (c *converter) evalFunction(expression hclsyntax.Expression) (interface{}, 
 			return c.wrapExpr(expression)
 		}
 	}
+	if !expressionEvaluated.HasWhollyKnownType() {
+		// in some cases, the expression is evaluated with no error but the type is unknown.
+		// this causes the json marshaling of the Document later on to fail with an error, and the entire scan fails.
+		// Therefore, we prefer to wrap it as a string and continue the scan.
+		return c.wrapExpr(expression)
+	}
 	return ctyjson.SimpleJSONValue{Value: expressionEvaluated}, nil
 }
 
