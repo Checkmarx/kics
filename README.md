@@ -59,6 +59,8 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 #### Beta Features
 <img alt="Databricks" src="docs/img/logo-databricks.png" width="200">&nbsp;&nbsp;&nbsp;
 
+In order to run the Databricks queries, use the `--experimental-queries` flag when running KICS.
+
 ## Getting Started
 
 Setting up and using KICS is super-easy.
