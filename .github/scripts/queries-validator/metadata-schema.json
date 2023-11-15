@@ -140,6 +140,12 @@
                     }
                 }
             }
+        },
+        "experimental": {
+            "type": "string",
+            "enum": [
+                "true"
+            ]
         }
     }
 }
