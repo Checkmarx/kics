@@ -86,6 +86,8 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
         <img alt="Databricks" src="img/logo-databricks.png" width="200">&nbsp;&nbsp;&nbsp;
 </div>
 
+In order to run the Databricks queries, use the `--experimental-queries` flag when running KICS.
+
 ## Getting Started
 
 Setting up and using KICS is super-easy.
