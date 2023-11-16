@@ -2035,6 +2035,7 @@ var (
                 "aws":      "",
                 "azure":    "",
                 "gcp":      "",
+                "nifcloud": "",
         }
 )
 
@@ -2354,13 +2355,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2385,14 +2386,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov3" title="3">{
+        if math.IsNaN(metric) </span><span class="cov2" title="2">{
                 metric = 0
         }</span>
 
@@ -5124,7 +5125,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -6277,12 +6278,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="31005">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="31023">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="31005">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="30686">{
+                <span class="cov9" title="31023">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="30704">{
                         return skipFolder
                 }</span>
 
@@ -6354,27 +6355,27 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov6" title="318">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="31008">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="31026">{
         s.mu.RLock()
         defer s.mu.RUnlock()
-        if info.IsDir() </span><span class="cov8" title="6880">{
+        if info.IsDir() </span><span class="cov8" title="6886">{
                 if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="6879">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="6877">{
+                <span class="cov8" title="6885">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="6883">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="2">return false, nil</span>
         }
 
-        <span class="cov9" title="24128">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="24140">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="24128">ext := utils.GetExtension(path)
-        if !extensions.Include(ext) </span><span class="cov9" title="23810">{
+        <span class="cov9" title="24140">ext := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="23822">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
@@ -7230,7 +7231,7 @@ func ListSupportedPlatforms() []string <span class="cov1" title="1">{
 
 // ListSupportedCloudProviders returns a list of supported cloud providers
 func ListSupportedCloudProviders() []string <span class="cov1" title="1">{
-        return []string{"alicloud", "aws", "azure", "gcp"}
+        return []string{"alicloud", "aws", "azure", "gcp", "nifcloud"}
 }</span>
 
 func getLibraryInDir(platform, libraryDirPath string) string <span class="cov2" title="2">{
@@ -20762,15 +20763,15 @@ func StringifyStruct(v interface{}) (string, error) <span class="cov0" title="0"
 }
 
 // MapToStringSlice extract slice of keys from a map[string]string
-func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="5078">{
+func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="5081">{
         keys := make([]string, len(stringKeyMap))
 
         i := 0
-        for k := range stringKeyMap </span><span class="cov10" title="81248">{
+        for k := range stringKeyMap </span><span class="cov10" title="81296">{
                 keys[i] = k
                 i++
         }</span>
-        <span class="cov7" title="5078">return keys</span>
+        <span class="cov7" title="5081">return keys</span>
 }
 
 var queryHigh = model.QueryResult{
