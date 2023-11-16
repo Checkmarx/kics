@@ -79,14 +79,22 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 <div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="GitHub Workflows" src="img/logo-github-icon.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
 </div>
+<div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="OpenTofu" src="img/logo-opentofu.png"  width="130" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+</div>
 </div>
 
 #### Beta Features
+<div style="display:flex;flex:1;flex-wrap:wrap;align-items:center;justify-content:center">
 <div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="Databricks" src="img/logo-databricks.png" width="200">&nbsp;&nbsp;&nbsp;
 </div>
+<div style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="NIFCloud" src="img/logo-nifcloud.png" width="100">&nbsp;&nbsp;&nbsp;
+</div>
+</div>
 
-In order to run the Databricks queries, use the `--experimental-queries` flag when running KICS.
+In order to run the Databricks and NIFCloud queries, use the `--experimental-queries` flag when running KICS.
 
 ## Getting Started
 
