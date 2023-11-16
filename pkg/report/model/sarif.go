@@ -41,7 +41,7 @@ type ruleCISMetadata struct {
 }
 
 type sarifMessage struct {
-	Text string `json:"text"`
+	Text              string          `json:"text"`
 	MessageProperties sarifProperties `json:"properties,omitempty"`
 }
 
@@ -295,8 +295,8 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) {
 				ResultRuleID:    issue.QueryID,
 				ResultRuleIndex: ruleIndex,
 				ResultKind:      kind,
-				ResultMessage:   sarifMessage{
-					Text: issue.Files[idx].KeyActualValue, 
+				ResultMessage: sarifMessage{
+					Text:              issue.Files[idx].KeyActualValue,
 					MessageProperties: sarifProperties{"platform": issue.Platform},
 				},
 				ResultLocations: []sarifLocation{
