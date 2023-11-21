@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.10">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.4b4a2bd9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.fad675c6.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
@@ -538,49 +538,63 @@
       
         <li class="md-nav__item">
   <a href="#kics_command" class="md-nav__link">
-    KICS Command
+    <span class="md-ellipsis">
+      KICS Command
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#scan_command_options" class="md-nav__link">
-    Scan Command Options
+    <span class="md-ellipsis">
+      Scan Command Options
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#auto_remediate_command_options" class="md-nav__link">
-    Auto Remediate Command Options
+    <span class="md-ellipsis">
+      Auto Remediate Command Options
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#exclude_paths" class="md-nav__link">
-    Exclude Paths
+    <span class="md-ellipsis">
+      Exclude Paths
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#library_flag_usage" class="md-nav__link">
-    Library Flag Usage
+    <span class="md-ellipsis">
+      Library Flag Usage
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#profiling" class="md-nav__link">
-    Profiling
+    <span class="md-ellipsis">
+      Profiling
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#disable_crash_report" class="md-nav__link">
-    Disable Crash Report
+    <span class="md-ellipsis">
+      Disable Crash Report
+    </span>
   </a>
   
 </li>
@@ -1888,49 +1902,63 @@
       
         <li class="md-nav__item">
   <a href="#kics_command" class="md-nav__link">
-    KICS Command
+    <span class="md-ellipsis">
+      KICS Command
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#scan_command_options" class="md-nav__link">
-    Scan Command Options
+    <span class="md-ellipsis">
+      Scan Command Options
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#auto_remediate_command_options" class="md-nav__link">
-    Auto Remediate Command Options
+    <span class="md-ellipsis">
+      Auto Remediate Command Options
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#exclude_paths" class="md-nav__link">
-    Exclude Paths
+    <span class="md-ellipsis">
+      Exclude Paths
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#library_flag_usage" class="md-nav__link">
-    Library Flag Usage
+    <span class="md-ellipsis">
+      Library Flag Usage
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#profiling" class="md-nav__link">
-    Profiling
+    <span class="md-ellipsis">
+      Profiling
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#disable_crash_report" class="md-nav__link">
-    Disable Crash Report
+    <span class="md-ellipsis">
+      Disable Crash Report
+    </span>
   </a>
   
 </li>
@@ -1996,69 +2024,70 @@ content is displayed when kics is provided with the <code>--help</code> flag.</p
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>      --config string                 path to configuration file
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>      --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>      --disable-secrets               disable secrets scanning
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>      --exclude-categories strings    exclude categories by providing its name
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>                                      cannot be provided with query inclusion flags
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>                                      can be provided multiple times or as a comma separated string
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>                                      example: &#39;Access control,Best practices&#39;
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>      --exclude-gitignore             disables the exclusion of paths specified within .gitignore file                                
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>  -e, --exclude-paths strings         exclude paths from scan
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>                                      supports glob and can be provided multiple times or as a quoted comma separated string
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>                                      example: &#39;./shouldNotScan/*,somefile.txt&#39;
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>      --exclude-queries strings       exclude queries by providing the query ID
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>                                      cannot be provided with query inclusion flags
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>                                      can be provided multiple times or as a comma separated string
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>                                      example: &#39;e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db&#39;
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>  -x, --exclude-results strings       exclude results by providing the similarity ID of a result
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>                                      can be provided multiple times or as a comma separated string
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>                                      example: &#39;fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...&#39;
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>      --exclude-severities strings    exclude results by providing the severity of a result
-<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>                                      can be provided multiple times or as a comma separated string
-<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>                                      example: &#39;info,low&#39;
-<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>                                      possible values: &#39;high, medium, low, info, trace&#39;
-<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>      --experimental-queries          include experimental queries (queries not yet thoroughly reviewed) (default [false])
-<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>      --fail-on strings               which kind of results should return an exit code different from 0
-<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>                                      accepts: high, medium, low and info
-<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>                                      example: &quot;high,low&quot; (default [high,medium,low,info])
-<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>  -h, --help                          help for scan
-<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>      --ignore-on-exit string         defines which kind of non-zero exits code should be ignored
-<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>                                      accepts: all, results, errors, none
-<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>                                      example: if &#39;results&#39; is set, only engine errors will make KICS exit code different from 0 (default &quot;none&quot;)
-<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>  -i, --include-queries strings       include queries by providing the query ID
-<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>                                      cannot be provided with query exclusion flags
-<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>                                      can be provided multiple times or as a comma separated string
-<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>                                      example: &#39;e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db&#39;
-<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>      --input-data string             path to query input data files
-<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>  -b, --libraries-path string         path to directory with libraries (default &quot;./assets/libraries&quot;)
-<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>      --minimal-ui                    simplified version of CLI output
-<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>      --no-progress                   hides the progress bar
-<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>      --output-name string            name used on report creations (default &quot;results&quot;)
-<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>  -o, --output-path string            directory path to store reports
-<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>  -p, --path strings                  paths or directories to scan
-<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>                                      example: &quot;./somepath,somefile.txt&quot;
-<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>      --payload-lines                 adds line information inside the payload when printing the payload file
-<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>  -d, --payload-path string           path to store internal representation JSON file
-<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>      --preview-lines int             number of lines to be display in CLI results (min: 1, max: 30) (default 3)
-<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>  -q, --queries-path strings          paths to directory with queries (default [./assets/queries])
-<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>      --report-formats strings        formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])
-<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>  -r, --secrets-regexes-path string   path to secrets regex rules configuration file
-<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>      --terraform-vars-path           string path where terraform variables are present
-<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>      --timeout int                   number of seconds the query has to execute before being canceled (default 60)
-<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>  -t, --type strings                  case insensitive list of platform types to scan
-<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
-<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>                                      cannot be provided with type exclusion flags
-<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>      --exclude-type strings          case insensitive list of platform types not to scan
-<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
-<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>                                      cannot be provided with type inclusion flags
-<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>
-<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>Global Flags:
-<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>      --ci                  display only log messages to CLI output (mutually exclusive with silent)
-<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>  -f, --log-format string   determines log format (pretty,json) (default &quot;pretty&quot;)
-<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
-<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>      --log-path string     path to generate log file (info.log)
-<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>      --no-color            disable CLI color output
-<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
-<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
-<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>      --enable-openapi-refs           resolve the file reference, on OpenAPI files (default [false])
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>      --exclude-categories strings    exclude categories by providing its name
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>                                      cannot be provided with query inclusion flags
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>                                      can be provided multiple times or as a comma separated string
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>                                      example: &#39;Access control,Best practices&#39;
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>      --exclude-gitignore             disables the exclusion of paths specified within .gitignore file                                
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>  -e, --exclude-paths strings         exclude paths from scan
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>                                      supports glob and can be provided multiple times or as a quoted comma separated string
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>                                      example: &#39;./shouldNotScan/*,somefile.txt&#39;
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>      --exclude-queries strings       exclude queries by providing the query ID
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>                                      cannot be provided with query inclusion flags
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>                                      can be provided multiple times or as a comma separated string
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>                                      example: &#39;e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db&#39;
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>  -x, --exclude-results strings       exclude results by providing the similarity ID of a result
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>                                      can be provided multiple times or as a comma separated string
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>                                      example: &#39;fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...&#39;
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>      --exclude-severities strings    exclude results by providing the severity of a result
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>                                      can be provided multiple times or as a comma separated string
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>                                      example: &#39;info,low&#39;
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>                                      possible values: &#39;high, medium, low, info, trace&#39;
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>      --experimental-queries          include experimental queries (queries not yet thoroughly reviewed) (default [false])
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>      --fail-on strings               which kind of results should return an exit code different from 0
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>                                      accepts: high, medium, low and info
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>                                      example: &quot;high,low&quot; (default [high,medium,low,info])
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>  -h, --help                          help for scan
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>      --ignore-on-exit string         defines which kind of non-zero exits code should be ignored
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>                                      accepts: all, results, errors, none
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>                                      example: if &#39;results&#39; is set, only engine errors will make KICS exit code different from 0 (default &quot;none&quot;)
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>  -i, --include-queries strings       include queries by providing the query ID
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>                                      cannot be provided with query exclusion flags
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>                                      can be provided multiple times or as a comma separated string
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>                                      example: &#39;e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db&#39;
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>      --input-data string             path to query input data files
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>  -b, --libraries-path string         path to directory with libraries (default &quot;./assets/libraries&quot;)
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>      --minimal-ui                    simplified version of CLI output
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>      --no-progress                   hides the progress bar
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>      --output-name string            name used on report creations (default &quot;results&quot;)
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>  -o, --output-path string            directory path to store reports
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>  -p, --path strings                  paths or directories to scan
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>                                      example: &quot;./somepath,somefile.txt&quot;
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>      --payload-lines                 adds line information inside the payload when printing the payload file
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>  -d, --payload-path string           path to store internal representation JSON file
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>      --preview-lines int             number of lines to be display in CLI results (min: 1, max: 30) (default 3)
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>  -q, --queries-path strings          paths to directory with queries (default [./assets/queries])
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>      --report-formats strings        formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>  -r, --secrets-regexes-path string   path to secrets regex rules configuration file
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>      --terraform-vars-path           string path where terraform variables are present
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>      --timeout int                   number of seconds the query has to execute before being canceled (default 60)
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>  -t, --type strings                  case insensitive list of platform types to scan
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>                                      cannot be provided with type exclusion flags
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>      --exclude-type strings          case insensitive list of platform types not to scan
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>                                      cannot be provided with type inclusion flags
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>Global Flags:
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>      --ci                  display only log messages to CLI output (mutually exclusive with silent)
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>  -f, --log-format string   determines log format (pretty,json) (default &quot;pretty&quot;)
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>      --log-path string     path to generate log file (info.log)
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>      --no-color            disable CLI color output
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
 </code></pre></div>
 <h2 id="auto_remediate_command_options">Auto Remediate Command Options<a class="headerlink" href="#auto_remediate_command_options" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Auto remediates the project
@@ -2142,7 +2171,7 @@ to <code>0</code> or <code>false</code> e.g:</p>
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      <script src="../assets/javascripts/bundle.6c14ae12.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
