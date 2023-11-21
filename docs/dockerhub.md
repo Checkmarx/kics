@@ -86,6 +86,7 @@ Flags:
       --config string                 path to configuration file
       --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
       --disable-secrets               disable secrets scanning
+      --enable-openapi-refs           resolve the file reference, on OpenAPI files (default [false]) 
       --exclude-categories strings    exclude categories by providing its name
                                       cannot be provided with query inclusion flags
                                       can be provided multiple times or as a comma separated string
@@ -137,6 +138,7 @@ Flags:
       --exclude-type strings          case insensitive list of platform types not to scan
                                       (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
                                       cannot be provided with type inclusion flags                                         
+      
 ```
 
 ```txt
