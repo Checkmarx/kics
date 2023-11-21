@@ -141,7 +141,7 @@
 				
 				<option value="file42">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (77.5%)</option>
 				
-				<option value="file43">github.com/Checkmarx/kics/pkg/engine/vulnerability_utils.go (84.4%)</option>
+				<option value="file43">github.com/Checkmarx/kics/pkg/engine/vulnerability_utils.go (76.0%)</option>
 				
 				<option value="file44">github.com/Checkmarx/kics/pkg/kics/resolver_sink.go (0.0%)</option>
 				
@@ -209,13 +209,13 @@
 				
 				<option value="file76">github.com/Checkmarx/kics/pkg/printer/options.go (85.7%)</option>
 				
-				<option value="file77">github.com/Checkmarx/kics/pkg/printer/printer.go (82.5%)</option>
+				<option value="file77">github.com/Checkmarx/kics/pkg/printer/printer.go (82.8%)</option>
 				
 				<option value="file78">github.com/Checkmarx/kics/pkg/printer/utils.go (82.4%)</option>
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file80">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file80">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
 				
 				<option value="file81">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2355,13 +2355,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2386,14 +2386,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov3" title="3">{
+        if math.IsNaN(metric) </span><span class="cov2" title="2">{
                 metric = 0
         }</span>
 
@@ -4916,7 +4916,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -5125,7 +5125,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5364,6 +5364,7 @@ const (
         UndetectedVulnerabilityLine = -1
         DefaultQueryID              = "Undefined"
         DefaultQueryName            = "Anonymous"
+        DefaultExperimental         = false
         DefaultQueryDescription     = "Undefined"
         DefaultQueryDescriptionID   = "Undefined"
         DefaultQueryURI             = "https://github.com/Checkmarx/kics/"
@@ -7958,6 +7959,7 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext, tracker Tracker,
                 FileName:         linesVulne.ResolvedFile,
                 QueryName:        getStringFromMap("queryName", DefaultQueryName, overrideKey, vObj, &amp;logWithFields),
                 QueryID:          queryID,
+                Experimental:     getBoolFromMap("experimental", DefaultExperimental, overrideKey, vObj, &amp;logWithFields),
                 QueryURI:         getStringFromMap("descriptionUrl", DefaultQueryURI, overrideKey, vObj, &amp;logWithFields),
                 Category:         getStringFromMap("category", "", overrideKey, vObj, &amp;logWithFields),
                 Description:      getStringFromMap("descriptionText", "", overrideKey, vObj, &amp;logWithFields),
@@ -8104,9 +8106,9 @@ func mustMapKeyToString(m map[string]interface{}, key string) *string <span clas
         }</span>
         <span class="cov8" title="41">return res</span>
 }
-func mapKeyToString(m map[string]interface{}, key string, allowNil bool) (*string, error) <span class="cov10" title="103">{
+func mapKeyToString(m map[string]interface{}, key string, allowNil bool) (*string, error) <span class="cov10" title="108">{
         v, ok := m[key]
-        if !ok </span><span class="cov9" title="77">{
+        if !ok </span><span class="cov9" title="82">{
                 return nil, fmt.Errorf("key '%s' not found in map", key)
         }</span>
         <span class="cov7" title="26">switch vv := v.(type) </span>{
@@ -8140,7 +8142,7 @@ func stringToPtrString(v string) *string <span class="cov7" title="26">{
 }</span>
 
 // PtrStringToString - converts a pointer to string to a string
-func PtrStringToString(v *string) string <span class="cov8" title="37">{
+func PtrStringToString(v *string) string <span class="cov7" title="37">{
         if v == nil </span><span class="cov7" title="27">{
                 return ""
         }</span>
@@ -8175,6 +8177,28 @@ func getStringFromMap(vulnParam, defaultParam, overrideKey string, vObj map[stri
                 ts = overrideValue
         }</span>
         <span class="cov1" title="1">return *ts</span>
+}
+func getBoolFromMap(
+        vulnParam string,
+        defaultParam bool,
+        overrideKey string,
+        vObj map[string]interface{},
+        logWithFields *zerolog.Logger) bool <span class="cov4" title="5">{
+        ts, err := mapKeyToString(vObj, vulnParam, false)
+        if err != nil </span><span class="cov4" title="5">{
+                return defaultParam
+        }</span>
+        <span class="cov0" title="0">overrideValue := tryOverride(overrideKey, vulnParam, vObj)
+        if overrideValue != nil </span><span class="cov0" title="0">{
+                ts = overrideValue
+        }</span>
+        <span class="cov0" title="0">res, err := strconv.ParseBool(*ts)
+        if err != nil </span><span class="cov0" title="0">{
+                logWithFields.Err(err).
+                        Msgf("Saving result. failed to detect %s", vulnParam)
+                return defaultParam
+        }</span>
+        <span class="cov0" title="0">return res</span>
 }
 func getSeverity(severity string) model.Severity <span class="cov3" title="4">{
         for _, si := range model.AllSeverities </span><span class="cov5" title="13">{
@@ -9573,6 +9597,7 @@ type Vulnerability struct {
         QueryName        string      `db:"query_name" json:"queryName"`
         QueryURI         string      `json:"-"`
         Category         string      `json:"category"`
+        Experimental     bool        `json:"experimental"`
         Description      string      `json:"description"`
         DescriptionID    string      `json:"descriptionID"`
         Platform         string      `db:"platform" json:"platform"`
@@ -10163,6 +10188,7 @@ type QueryResult struct {
         Platform                    string           `json:"platform"`
         CloudProvider               string           `json:"cloud_provider,omitempty"`
         Category                    string           `json:"category"`
+        Experimental                bool             `json:"experimental"`
         Description                 string           `json:"description"`
         DescriptionID               string           `json:"description_id"`
         CISDescriptionIDFormatted   string           `json:"cis_description_id,omitempty"`
@@ -10315,6 +10341,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
                                 Severity:      item.Severity,
                                 QueryURI:      item.QueryURI,
                                 Platform:      item.Platform,
+                                Experimental:  item.Experimental,
                                 CloudProvider: strings.ToUpper(item.CloudProvider),
                                 Category:      item.Category,
                                 Description:   item.Description,
@@ -14674,7 +14701,7 @@ func WordWrap(s, indentation string, limit int) string <span class="cov3" title=
 }
 
 // PrintResult prints on output the summary results
-func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer, usingCustomQueries bool) error <span class="cov4" title="4">{
+func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer, usingCustomQueries bool) error <span class="cov5" title="6">{
         log.Debug().Msg("helpers.PrintResult()")
         fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
         fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
@@ -14686,37 +14713,42 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
                 fmt.Printf("%s", WordWrap(err.Error(), "\t\t", wordWrapCount))
         }</span>
 
-        <span class="cov4" title="4">fmt.Printf("------------------------------------\n\n")
-        for index := range summary.Queries </span><span class="cov6" title="8">{
+        <span class="cov5" title="6">fmt.Printf("------------------------------------\n\n")
+        for index := range summary.Queries </span><span class="cov6" title="12">{
                 idx := len(summary.Queries) - index - 1
                 if summary.Queries[idx].Severity == model.SeverityTrace </span><span class="cov0" title="0">{
                         continue</span>
                 }
 
-                <span class="cov6" title="8">fmt.Printf(
+                <span class="cov6" title="12">fmt.Printf(
                         "%s, Severity: %s, Results: %d\n",
                         printer.PrintBySev(summary.Queries[idx].QueryName, string(summary.Queries[idx].Severity)),
                         printer.PrintBySev(string(summary.Queries[idx].Severity), string(summary.Queries[idx].Severity)),
                         len(summary.Queries[idx].Files),
                 )
-                if !printer.minimal </span><span class="cov4" title="4">{
+
+                if summary.Queries[idx].Experimental </span><span class="cov2" title="2">{
+                        fmt.Println("Note: this is an experimental query")
+                }</span>
+
+                <span class="cov6" title="12">if !printer.minimal </span><span class="cov5" title="6">{
                         if summary.Queries[idx].CISDescriptionID != "" </span><span class="cov0" title="0">{
                                 fmt.Printf("%s %s\n", printer.Bold("Description ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
                                 fmt.Printf("%s %s\n", printer.Bold("Title:"), summary.Queries[idx].CISDescriptionTitle)
                                 fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].CISDescriptionTextFormatted)
-                        }</span> else<span class="cov4" title="4"> {
+                        }</span> else<span class="cov5" title="6"> {
                                 fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
                         }</span>
-                        <span class="cov4" title="4">fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+                        <span class="cov5" title="6">fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
 
                         queryCloudProvider := summary.Queries[idx].CloudProvider
-                        if queryCloudProvider != "" </span><span class="cov2" title="2">{
+                        if queryCloudProvider != "" </span><span class="cov3" title="3">{
                                 queryCloudProvider = strings.ToLower(queryCloudProvider) + "/"
                         }</span>
 
                         // checks if should print queries URL DOCS based on the use of custom queries and invalid ids
-                        <span class="cov4" title="4">if !usingCustomQueries </span><span class="cov2" title="2">{
-                                if validQueryID(summary.Queries[idx].QueryID) </span><span class="cov2" title="2">{
+                        <span class="cov5" title="6">if !usingCustomQueries </span><span class="cov4" title="4">{
+                                if validQueryID(summary.Queries[idx].QueryID) </span><span class="cov4" title="4">{
                                         fmt.Printf("%s %s\n\n",
                                                 printer.Bold("Learn more about this vulnerability:"),
                                                 fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s%s",
@@ -14726,9 +14758,9 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
                                 }</span>
                         }
                 }
-                <span class="cov6" title="8">printFiles(&amp;summary.Queries[idx], printer)</span>
+                <span class="cov6" title="12">printFiles(&amp;summary.Queries[idx], printer)</span>
         }
-        <span class="cov4" title="4">fmt.Printf("\nResults Summary:\n")
+        <span class="cov5" title="6">fmt.Printf("\nResults Summary:\n")
         printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
         printSeverityCounter(model.SeverityMedium, summary.SeveritySummary.SeverityCounters[model.SeverityMedium], printer.Medium)
         printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
@@ -14747,15 +14779,15 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
         return nil</span>
 }
 
-func printSeverityCounter(severity string, counter int, printColor color.RGBColor) <span class="cov8" title="16">{
+func printSeverityCounter(severity string, counter int, printColor color.RGBColor) <span class="cov8" title="24">{
         fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
 }</span>
 
-func printFiles(query *model.QueryResult, printer *Printer) <span class="cov6" title="8">{
-        for fileIdx := range query.Files </span><span class="cov7" title="12">{
+func printFiles(query *model.QueryResult, printer *Printer) <span class="cov6" title="12">{
+        for fileIdx := range query.Files </span><span class="cov7" title="18">{
                 fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", fileIdx+1), string(query.Severity)),
                         query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
-                if !printer.minimal </span><span class="cov5" title="6">{
+                if !printer.minimal </span><span class="cov6" title="9">{
                         fmt.Println()
                         for _, line := range *query.Files[fileIdx].VulnLines </span><span class="cov0" title="0">{
                                 if len(line.Line) &gt; charsLimitPerLine </span><span class="cov0" title="0">{
@@ -14767,7 +14799,7 @@ func printFiles(query *model.QueryResult, printer *Printer) <span class="cov6" t
                                         fmt.Printf("\t\t%03d: %s\n", line.Position, line.Line)
                                 }</span>
                         }
-                        <span class="cov5" title="6">fmt.Print("\n\n")</span>
+                        <span class="cov6" title="9">fmt.Print("\n\n")</span>
                 }
         }
 }
@@ -14780,13 +14812,13 @@ func SetupPrinter(flags *pflag.FlagSet) error <span class="cov1" title="1">{
         }</span>
 
         <span class="cov1" title="1">keys := make([]int, 0, len(optionsOrderMap))
-        for k := range optionsOrderMap </span><span class="cov6" title="8">{
+        for k := range optionsOrderMap </span><span class="cov5" title="8">{
                 keys = append(keys, k)
         }</span>
 
         <span class="cov1" title="1">sort.Ints(keys)
 
-        for _, key := range keys </span><span class="cov6" title="8">{
+        for _, key := range keys </span><span class="cov5" title="8">{
                 f := flags.Lookup(optionsOrderMap[key])
                 switch f.Value.Type() </span>{
                 case "string":<span class="cov3" title="3">
@@ -14795,12 +14827,12 @@ func SetupPrinter(flags *pflag.FlagSet) error <span class="cov1" title="1">{
                         if err != nil </span><span class="cov0" title="0">{
                                 return err
                         }</span>
-                case "bool":<span class="cov5" title="5">
+                case "bool":<span class="cov4" title="5">
                         value, errBool := strconv.ParseBool(f.Value.String())
                         if errBool != nil </span><span class="cov0" title="0">{
                                 return err
                         }</span>
-                        <span class="cov5" title="5">err = optionsMap[optionsOrderMap[key]](value, f.Changed)
+                        <span class="cov4" title="5">err = optionsMap[optionsOrderMap[key]](value, f.Changed)
                         if err != nil </span><span class="cov0" title="0">{
                                 return err
                         }</span>
@@ -14833,7 +14865,7 @@ func IsInitialized() bool <span class="cov1" title="1">{
 }</span>
 
 // NewPrinter initializes a new Printer
-func NewPrinter(minimal bool) *Printer <span class="cov5" title="5">{
+func NewPrinter(minimal bool) *Printer <span class="cov5" title="7">{
         return &amp;Printer{
                 Medium:              color.HEX("#ff7213"),
                 High:                color.HEX("#bb2124"),
@@ -14848,11 +14880,11 @@ func NewPrinter(minimal bool) *Printer <span class="cov5" title="5">{
 }</span>
 
 // PrintBySev will print the output with the specific severity color given the severity of the result
-func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" title="33">{
+func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" title="47">{
         switch strings.ToUpper(sev) </span>{
-        case model.SeverityHigh:<span class="cov8" title="17">
+        case model.SeverityHigh:<span class="cov8" title="25">
                 return p.High.Sprintf(content)</span>
-        case model.SeverityMedium:<span class="cov7" title="13">
+        case model.SeverityMedium:<span class="cov7" title="19">
                 return p.Medium.Sprintf(content)</span>
         case model.SeverityLow:<span class="cov1" title="1">
                 return p.Low.Sprintf(content)</span>
@@ -14863,14 +14895,14 @@ func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" tit
 }
 
 // Bold returns the output in a bold format
-func (p *Printer) Bold(content string) string <span class="cov6" title="10">{
+func (p *Printer) Bold(content string) string <span class="cov7" title="16">{
         return color.Bold.Sprintf(content)
 }</span>
 
-func validQueryID(queryID string) bool <span class="cov2" title="2">{
+func validQueryID(queryID string) bool <span class="cov4" title="4">{
         if queryID == "" </span><span class="cov0" title="0">{
                 return false
-        }</span> else<span class="cov2" title="2"> if queryID != "" </span><span class="cov2" title="2">{
+        }</span> else<span class="cov4" title="4"> if queryID != "" </span><span class="cov4" title="4">{
                 return utils.ValidateUUID(queryID)
         }</span>
         <span class="cov0" title="0">return true</span>
@@ -15025,7 +15057,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov3" title="2">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -15034,26 +15066,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov3" title="2">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov0" title="0">p.wg.Done()</span>
+                <span class="cov3" title="2">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file81" style="display: none">package progress
@@ -20878,6 +20910,40 @@ var queryInfo = model.QueryResult{
         Description: "AWS services resource tags are an essential part of managing components",
 }
 
+var queryHighExperimental = model.QueryResult{
+        QueryName:                   "ALB protocol is HTTP",
+        QueryID:                     "de7f5e83-da88-4046-871f-ea18504b1d43",
+        Description:                 "ALB protocol is HTTP Description",
+        DescriptionID:               "504b1d43",
+        CISDescriptionIDFormatted:   "testCISID",
+        CISDescriptionTitle:         "testCISTitle",
+        CISDescriptionTextFormatted: "testCISDescription",
+        Severity:                    model.SeverityHigh,
+        Experimental:                true,
+        Files: []model.VulnerableFile{
+                {
+                        FileName:         positive,
+                        Line:             25,
+                        IssueType:        "MissingAttribute",
+                        SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+                        KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+                        KeyActualValue:   "'default_action.redirect.protocol' is missing",
+                        Value:            nil,
+                        VulnLines:        &amp;[]model.CodeLine{},
+                },
+                {
+                        FileName:         positive,
+                        Line:             19,
+                        IssueType:        "IncorrectValue",
+                        SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+                        KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+                        KeyActualValue:   "'default_action.redirect.protocol' is equal 'HTTP'",
+                        Value:            nil,
+                        VulnLines:        &amp;[]model.CodeLine{},
+                },
+        },
+}
+
 // SummaryMock a summary to be used without running kics scan
 var SummaryMock = model.Summary{
         Counters: model.Counters{
@@ -20916,6 +20982,33 @@ var ComplexSummaryMock = model.Summary{
         },
         Queries: []model.QueryResult{
                 queryHigh,
+                queryMedium,
+        },
+        SeveritySummary: model.SeveritySummary{
+                ScanID: "console",
+                SeverityCounters: map[model.Severity]int{
+                        model.SeverityInfo:   0,
+                        model.SeverityLow:    0,
+                        model.SeverityMedium: 1,
+                        model.SeverityHigh:   2,
+                },
+                TotalCounter: 3,
+        },
+        LatestVersion: model.Version{
+                Latest: true,
+        },
+}
+
+var ComplexSummaryMockWithExperimental = model.Summary{
+        Counters: model.Counters{
+                ScannedFiles:           2,
+                ParsedFiles:            2,
+                FailedToScanFiles:      0,
+                TotalQueries:           2,
+                FailedToExecuteQueries: 0,
+        },
+        Queries: []model.QueryResult{
+                queryHighExperimental,
                 queryMedium,
         },
         SeveritySummary: model.SeveritySummary{
