@@ -32,6 +32,7 @@
 			"severity": "INFO",
 			"platform": "OpenAPI",
 			"category": "Structure and Semantics",
+			"experimental": false,
 			"description": "Every defined property must be unique throughout the whole API",
 			"description_id": "eb2e14e6",
 			"files": [

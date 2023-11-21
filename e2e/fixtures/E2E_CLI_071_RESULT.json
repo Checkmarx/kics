@@ -32,6 +32,7 @@
 			"severity": "INFO",
 			"platform": "OpenAPI",
 			"category": "Best Practices",
+			"experimental": false,
 			"description": "Components schemas definitions should be referenced or removed from Open API definition",
 			"description_id": "5cdc0f3b",
 			"files": [

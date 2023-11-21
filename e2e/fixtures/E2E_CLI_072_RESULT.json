@@ -32,6 +32,7 @@
 			"severity": "MEDIUM",
 			"platform": "OpenAPI",
 			"category": "Networking and Firewall",
+			"experimental": false,
 			"description": "500, 429 and 400 responses should be defined for all operations, except head operation. 415 response should be defined for the post, put, and patch operations. 404 response should be defined for the get, put, head, delete operations. 200 response should be defined for options operation. 401 and 403 response should be defined for all operations when the security field is defined.",
 			"description_id": "dbf15009",
 			"files": [
@@ -77,6 +78,7 @@
 			"severity": "INFO",
 			"platform": "OpenAPI",
 			"category": "Best Practices",
+			"experimental": false,
 			"description": "Components schemas definitions should be referenced or removed from Open API definition",
 			"description_id": "5cdc0f3b",
 			"files": [
