@@ -28,7 +28,7 @@ Azure Disk Encryption should be enabled<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Postitive test num. 1 - json file" hl_lines="30"
+```json title="Positive test num. 1 - json file" hl_lines="30"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -76,7 +76,7 @@ Azure Disk Encryption should be enabled<br>
 }
 
 ```
-```json title="Postitive test num. 2 - json file" hl_lines="19"
+```json title="Positive test num. 2 - json file" hl_lines="19"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -111,7 +111,7 @@ Azure Disk Encryption should be enabled<br>
 }
 
 ```
-```json title="Postitive test num. 3 - json file" hl_lines="32"
+```json title="Positive test num. 3 - json file" hl_lines="32"
 {
   "properties": {
     "template": {
@@ -168,7 +168,7 @@ Azure Disk Encryption should be enabled<br>
 }
 
 ```
-<details><summary>Postitive test num. 4 - json file</summary>
+<details><summary>Positive test num. 4 - json file</summary>
 
 ```json hl_lines="21"
 {
