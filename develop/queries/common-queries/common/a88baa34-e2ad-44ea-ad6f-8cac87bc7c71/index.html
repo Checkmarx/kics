@@ -1821,7 +1821,7 @@
 <a href="https://docs.kics.io/latest/secrets/">Documentation</a></p>
 <h3 id="code_samples">Code samples<a class="headerlink" href="#code_samples" title="Permanent link">&para;</a></h3>
 <h4 id="code_samples_with_security_vulnerabilities">Code samples with security vulnerabilities<a class="headerlink" href="#code_samples_with_security_vulnerabilities" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><span class="filename">Postitive test num. 1 - yaml file</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">#k8s test</span>
+<p><div class="highlight"><span class="filename">Positive test num. 1 - yaml file</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">#k8s test</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -1830,7 +1830,7 @@
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nt">stringData</span><span class="p">:</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="hll"><span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;root&quot;</span>
 </span></code></pre></div>
-<div class="highlight"><span class="filename">Postitive test num. 2 - yaml file</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">#cloud formation test</span>
+<div class="highlight"><span class="filename">Positive test num. 2 - yaml file</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">#cloud formation test</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">Resources</span><span class="p">:</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">RDSCluster1</span><span class="p">:</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">Type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;AWS::RDS::DBCluster&quot;</span>
@@ -1846,7 +1846,7 @@
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span><span class="nt">MaxCapacity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32</span>
 <a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="nt">SecondsUntilAutoPause</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Postitive test num. 3 - yaml file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">#ansible test</span>
+<div class="highlight"><span class="filename">Positive test num. 3 - yaml file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">#ansible test</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">create a cluster1</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">google.cloud.gcp_container_cluster</span><span class="p">:</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-cluster1</span>
@@ -1862,7 +1862,7 @@
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="nt">service_account_file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/tmp/auth.pem&quot;</span>
 <a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
 </code></pre></div></p>
-<details><summary>Postitive test num. 4 - tf file</summary>
+<details><summary>Positive test num. 4 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">#this is a problematic code where the query should report a result(s)</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;primary1&quot;</span><span class="w"> </span><span class="p">{</span>
@@ -1886,7 +1886,7 @@
 <a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 5 - tf file</summary>
+<details><summary>Positive test num. 5 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_secret_manager_secret_version&quot;</span><span class="w"> </span><span class="nv">&quot;secret-version-basic2&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="hll"><span class="w">  </span><span class="na">secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3gzcGokilvtw2HmCLuPx&quot;</span>
@@ -1895,7 +1895,7 @@
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 6 - dockerfile file</summary>
+<details><summary>Positive test num. 6 - dockerfile file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">baseImage</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
@@ -1906,7 +1906,7 @@
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="hll"><span class="k">ARG</span><span class="w"> </span><span class="nv">password</span><span class="o">=</span>pass!1213Fs
 </span></code></pre></div>
 </details>
-<details><summary>Postitive test num. 7 - tf file</summary>
+<details><summary>Positive test num. 7 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;primary2&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;marcellus-wallace&quot;</span>
@@ -1929,7 +1929,7 @@
 <a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 8 - json file</summary>
+<details><summary>Positive test num. 8 - json file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">{</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">&quot;service-1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -1941,7 +1941,7 @@
 <a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 9 - tf file</summary>
+<details><summary>Positive test num. 9 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;primary4&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;marcellus-wallace&quot;</span>
@@ -1964,7 +1964,7 @@
 <a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 10 - json file</summary>
+<details><summary>Positive test num. 10 - json file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">{</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">&quot;AWSTemplateFormatVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2010-09-09&quot;</span><span class="p">,</span>
@@ -2003,7 +2003,7 @@
 <a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 11 - yaml file</summary>
+<details><summary>Positive test num. 11 - yaml file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">openapi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0.0</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">info</span><span class="p">:</span>
@@ -2019,7 +2019,7 @@
 </span><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My API Server 3</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 12 - json file</summary>
+<details><summary>Positive test num. 12 - json file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">{</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="nt">&quot;openapi&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.0.0&quot;</span><span class="p">,</span>
@@ -2046,7 +2046,7 @@
 <a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 13 - tf file</summary>
+<details><summary>Positive test num. 13 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_transfer_ssh_key&quot;</span><span class="w"> </span><span class="nv">&quot;example&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="na">server_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_transfer_server.example.id</span>
@@ -2065,7 +2065,7 @@
 <a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 14 - tf file</summary>
+<details><summary>Positive test num. 14 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;aws&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-east-1&quot;</span>
@@ -2092,7 +2092,7 @@
 <a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 15 - tf file</summary>
+<details><summary>Positive test num. 15 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_instance&quot;</span><span class="w"> </span><span class="nv">&quot;web_host&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="c1">  # ec2 have plain text secrets in user data</span>
@@ -2355,7 +2355,7 @@
 <a id="__codelineno-14-259" name="__codelineno-14-259" href="#__codelineno-14-259"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 16 - yaml file</summary>
+<details><summary>Positive test num. 16 - yaml file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
@@ -2397,7 +2397,7 @@
 <a id="__codelineno-15-38" name="__codelineno-15-38" href="#__codelineno-15-38"></a><span class="w">              </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;userx&quot;</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 17 - tf file</summary>
+<details><summary>Positive test num. 17 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_sql_server&quot;</span><span class="w"> </span><span class="nv">&quot;example&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;kics-test&quot;</span>
@@ -2414,7 +2414,7 @@
 <a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 18 - tf file</summary>
+<details><summary>Positive test num. 18 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;auth0_connection&quot;</span><span class="w"> </span><span class="nv">&quot;google_oauth2&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Google-OAuth2-Connection&quot;</span>
@@ -2429,21 +2429,21 @@
 <a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 19 - tf file</summary>
+<details><summary>Positive test num. 19 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;slack&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="hll"><span class="w">  </span><span class="na">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;xoxp-121314151623-121314151623-121314151623-12131423121314151623121314151623&quot;</span>
 </span><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 20 - tf file</summary>
+<details><summary>Positive test num. 20 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;stripe&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="hll"><span class="w">  </span><span class="na">api_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sk_live_aSaDsEaSaDsEaSaDs29SaDsE&quot;</span>
 </span><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 21 - tf file</summary>
+<details><summary>Positive test num. 21 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_ecs_task_definition&quot;</span><span class="w"> </span><span class="nv">&quot;webapp&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span><span class="na">family</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;tomato-webapp&quot;</span>
@@ -2532,7 +2532,7 @@
 <a id="__codelineno-20-85" name="__codelineno-20-85" href="#__codelineno-20-85"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 22 - tf file</summary>
+<details><summary>Positive test num. 22 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;heroku&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span><span class="na">email</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ops@company.com&quot;</span>
@@ -2540,14 +2540,14 @@
 </span><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 23 - tf file</summary>
+<details><summary>Positive test num. 23 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;github&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">   </span><span class="na">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;we2323232g3hg2h3g2h3g2h3g2h3uh2h3ghg32h3&quot;</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="hll"><span class="p">}</span>
 </span></code></pre></div>
 </details>
-<details><summary>Postitive test num. 24 - tf file</summary>
+<details><summary>Positive test num. 24 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;cloudflare&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;~&gt; 2.0&quot;</span>
@@ -2556,7 +2556,7 @@
 </span><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 25 - dockerfile file</summary>
+<details><summary>Positive test num. 25 - dockerfile file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">baseImage</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
@@ -2571,7 +2571,7 @@
 <a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="hll"><span class="k">ARG</span><span class="w"> </span><span class="nv">sgApiK</span><span class="o">=</span>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
 </span></code></pre></div>
 </details>
-<details><summary>Postitive test num. 26 - yaml file</summary>
+<details><summary>Positive test num. 26 - yaml file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nt">Resources</span><span class="p">:</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">  </span><span class="nt">PinpointApp</span><span class="p">:</span>
@@ -2584,7 +2584,7 @@
 <a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="hll"><span class="w">      </span><span class="nt">PrivateKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b@d0@u7H70K3n</span>
 </span></code></pre></div>
 </details>
-<details><summary>Postitive test num. 27 - yaml file</summary>
+<details><summary>Positive test num. 27 - yaml file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nt">Resources</span><span class="p">:</span>
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">  </span><span class="nt">ElastiCacheReplicationGroup</span><span class="p">:</span>
@@ -2611,7 +2611,7 @@
 </span><a id="__codelineno-26-23" name="__codelineno-26-23" href="#__codelineno-26-23"></a><span class="w">      </span><span class="nt">ApplicationId</span><span class="p">:</span><span class="w"> </span><span class="kt">!Ref</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PinpointApp</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 28 - yaml file</summary>
+<details><summary>Positive test num. 28 - yaml file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Start a workflow in the Itential Automation Platform</span>
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">  </span><span class="nt">community.network.iap_start_workflow</span><span class="p">:</span>
@@ -2624,21 +2624,21 @@
 <a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">result</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 29 - tf file</summary>
+<details><summary>Positive test num. 29 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;mailgun&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="hll"><span class="w">  </span><span class="na">api_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;key-987ad62adwf1w2w2563adf2ef5323123&quot;</span>
 </span><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 30 - tf file</summary>
+<details><summary>Positive test num. 30 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;stripe&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="hll"><span class="w">  </span><span class="na">api_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;rk_live_aSaDsEaSaDsEaSaDs29SaDsE&quot;</span>
 </span><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 31 - yaml file</summary>
+<details><summary>Positive test num. 31 - yaml file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">  </span><span class="nt">remote_user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
@@ -2646,7 +2646,7 @@
 <a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="hll"><span class="w">    </span><span class="nt">twilio_api_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SKa7CF7acdcaf92Be4CCC52F4a2923BBB3</span>
 </span></code></pre></div>
 </details>
-<details><summary>Postitive test num. 32 - yaml file</summary>
+<details><summary>Positive test num. 32 - yaml file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
 <a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">  </span><span class="nt">remote_user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
@@ -2654,7 +2654,7 @@
 <a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="hll"><span class="w">    </span><span class="nt">paypal_access_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">access_token$production$1s2d3f4g5h6j7k8k$1b2b3c4a3a1b2b3c4a3a1b2b3c4a3a1b</span>
 </span></code></pre></div>
 </details>
-<details><summary>Postitive test num. 33 - yaml file</summary>
+<details><summary>Positive test num. 33 - yaml file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
@@ -2671,7 +2671,7 @@
 <a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a><span class="hll"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EAACEdEose0cBA1bad3afsf2aew&quot;</span>
 </span></code></pre></div>
 </details>
-<details><summary>Postitive test num. 34 - yaml file</summary>
+<details><summary>Positive test num. 34 - yaml file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
@@ -2688,7 +2688,7 @@
 <a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a><span class="hll"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sq0csp-0p9h7g6f4s3s3s3-4a3ardgwa6ADRDJDDKUFYDYDYDY&quot;</span>
 </span></code></pre></div>
 </details>
-<details><summary>Postitive test num. 35 - yaml file</summary>
+<details><summary>Positive test num. 35 - yaml file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Config</span>
@@ -2711,7 +2711,7 @@
 <a id="__codelineno-34-19" name="__codelineno-34-19" href="#__codelineno-34-19"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gcp</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 36 - tf file</summary>
+<details><summary>Positive test num. 36 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_transfer_ssh_key&quot;</span><span class="w"> </span><span class="nv">&quot;example2&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">    </span><span class="na">server_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_transfer_server.example.id</span>
@@ -2747,7 +2747,7 @@
 <a id="__codelineno-35-32" name="__codelineno-35-32" href="#__codelineno-35-32"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 37 - tf file</summary>
+<details><summary>Positive test num. 37 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_lambda_function&quot;</span><span class="w"> </span><span class="nv">&quot;analysis_lambda2&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="c1">  # lambda have plain text secrets in environment variables</span>
@@ -2768,7 +2768,7 @@
 <a id="__codelineno-36-17" name="__codelineno-36-17" href="#__codelineno-36-17"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 38 - yaml file</summary>
+<details><summary>Positive test num. 38 - yaml file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nt">Resources</span><span class="p">:</span>
 <a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">     </span><span class="nt">NewAmpApp2</span><span class="p">:</span>
@@ -2791,7 +2791,7 @@
 <a id="__codelineno-37-19" name="__codelineno-37-19" href="#__codelineno-37-19"></a><span class="w">            </span><span class="nt">ExcludeCharacters</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&quot;@/\&#39;</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 39 - tf file</summary>
+<details><summary>Positive test num. 39 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nb">locals</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">  </span><span class="nb">secrets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
@@ -2800,7 +2800,7 @@
 <a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 40 - tf file</summary>
+<details><summary>Positive test num. 40 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_instance&quot;</span><span class="w"> </span><span class="nv">&quot;web_host&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="c1">  # ec2 have plain text secrets in user data</span>
@@ -2831,7 +2831,7 @@
 <a id="__codelineno-39-27" name="__codelineno-39-27" href="#__codelineno-39-27"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 41 - tf file</summary>
+<details><summary>Positive test num. 41 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_transfer_ssh_key&quot;</span><span class="w"> </span><span class="nv">&quot;positive44&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">    </span><span class="na">server_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_transfer_server.example.id</span>
@@ -2853,7 +2853,7 @@
 <a id="__codelineno-40-18" name="__codelineno-40-18" href="#__codelineno-40-18"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 42 - tf file</summary>
+<details><summary>Positive test num. 42 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kr">data</span><span class="w"> </span><span class="nc">&quot;terraform_remote_state&quot;</span><span class="w"> </span><span class="nv">&quot;intnet&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">  </span><span class="na">backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;azurerm&quot;</span>
@@ -2867,7 +2867,7 @@
 <a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 43 - yaml file</summary>
+<details><summary>Positive test num. 43 - yaml file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="nt">Resources</span><span class="p">:</span>
 <a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">  </span><span class="nt">ElastiCacheReplicationGroup</span><span class="p">:</span>
@@ -2885,7 +2885,7 @@
 <a id="__codelineno-42-14" name="__codelineno-42-14" href="#__codelineno-42-14"></a><span class="w">      </span><span class="nt">TransitEncryptionEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 44 - yaml file</summary>
+<details><summary>Positive test num. 44 - yaml file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="nt">Transform</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;AWS::Serverless-2016-10-31&#39;</span>
 <a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="nt">Metadata</span><span class="p">:</span>
@@ -2907,7 +2907,7 @@
 </span><a id="__codelineno-43-18" name="__codelineno-43-18" href="#__codelineno-43-18"></a><span class="w">      </span><span class="nt">Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 45 - tf file</summary>
+<details><summary>Positive test num. 45 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="c1">#this is a problematic code where the query should report a result(s)</span>
 <a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;primary1&quot;</span><span class="w"> </span><span class="p">{</span>
@@ -2931,7 +2931,7 @@
 <a id="__codelineno-44-20" name="__codelineno-44-20" href="#__codelineno-44-20"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 46 - yaml file</summary>
+<details><summary>Positive test num. 46 - yaml file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.9&#39;</span>
 <a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="nt">services</span><span class="p">:</span>
@@ -2955,7 +2955,7 @@
 <a id="__codelineno-45-20" name="__codelineno-45-20" href="#__codelineno-45-20"></a><span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_PASSWORD=postgres</span>
 </span></code></pre></div>
 </details>
-<details><summary>Postitive test num. 47 - tf file</summary>
+<details><summary>Positive test num. 47 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;auth0_connection&quot;</span><span class="w"> </span><span class="nv">&quot;google_oauth2&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Google-OAuth2-Connection&quot;</span>
@@ -2970,7 +2970,7 @@
 <a id="__codelineno-46-11" name="__codelineno-46-11" href="#__codelineno-46-11"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Postitive test num. 48 - tf file</summary>
+<details><summary>Positive test num. 48 - tf file</summary>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;primary1&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;marcellus-wallace&quot;</span>
