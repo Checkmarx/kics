@@ -157,6 +157,7 @@ type Vulnerability struct {
 	QueryName        string      `db:"query_name" json:"queryName"`
 	QueryURI         string      `json:"-"`
 	Category         string      `json:"category"`
+	Experimental     bool        `json:"experimental"`
 	Description      string      `json:"description"`
 	DescriptionID    string      `json:"descriptionID"`
 	Platform         string      `db:"platform" json:"platform"`
