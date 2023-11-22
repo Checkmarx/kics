@@ -34,6 +34,7 @@
 			"platform": "Terraform",
 			"cloud_provider": "AWS",
 			"category": "Encryption",
+      "experimental": false,
 			"description": "ElastiCache should have Redis enabled, since it covers Compliance Certifications such as FedRAMP, HIPAA, and PCI DSS. For more information, take a look at 'https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/SelectEngine.html'",
 			"description_id": "68984bf2",
 			"files": [
