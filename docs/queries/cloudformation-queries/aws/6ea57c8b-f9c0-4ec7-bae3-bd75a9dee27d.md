@@ -28,7 +28,7 @@ SimpleDB Domain resource should not be declared<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="8"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="8"
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "SDB Domain declared"
 Resources:
@@ -42,7 +42,7 @@ Resources:
       Description: "Some information"
 
 ```
-```json title="Postitive test num. 2 - json file" hl_lines="11"
+```json title="Positive test num. 2 - json file" hl_lines="11"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "SDB Domain declared",
