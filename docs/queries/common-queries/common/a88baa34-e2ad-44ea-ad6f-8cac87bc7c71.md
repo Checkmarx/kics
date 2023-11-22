@@ -28,7 +28,7 @@ Query to find passwords and secrets in infrastructure code.<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="8"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="8"
 #k8s test
 apiVersion: v1
 kind: Secret
@@ -39,7 +39,7 @@ stringData:
   password: "root"
 
 ```
-```yaml title="Postitive test num. 2 - yaml file" hl_lines="6"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="6"
 #cloud formation test
 Resources:
   RDSCluster1:
@@ -57,7 +57,7 @@ Resources:
         SecondsUntilAutoPause: 1000
 
 ```
-```yaml title="Postitive test num. 3 - yaml file" hl_lines="7"
+```yaml title="Positive test num. 3 - yaml file" hl_lines="7"
 #ansible test
 - name: create a cluster1
   google.cloud.gcp_container_cluster:
@@ -75,7 +75,7 @@ Resources:
     state: present
 
 ```
-<details><summary>Postitive test num. 4 - tf file</summary>
+<details><summary>Positive test num. 4 - tf file</summary>
 
 ```tf hl_lines="9"
 #this is a problematic code where the query should report a result(s)
@@ -101,7 +101,7 @@ resource "google_container_cluster" "primary1" {
 
 ```
 </details>
-<details><summary>Postitive test num. 5 - tf file</summary>
+<details><summary>Positive test num. 5 - tf file</summary>
 
 ```tf hl_lines="2"
 resource "google_secret_manager_secret_version" "secret-version-basic2" {
@@ -112,7 +112,7 @@ resource "google_secret_manager_secret_version" "secret-version-basic2" {
 
 ```
 </details>
-<details><summary>Postitive test num. 6 - dockerfile file</summary>
+<details><summary>Positive test num. 6 - dockerfile file</summary>
 
 ```dockerfile hl_lines="3 7"
 FROM baseImage
@@ -125,7 +125,7 @@ ARG password=pass!1213Fs
 
 ```
 </details>
-<details><summary>Postitive test num. 7 - tf file</summary>
+<details><summary>Positive test num. 7 - tf file</summary>
 
 ```tf hl_lines="8"
 resource "google_container_cluster" "primary2" {
@@ -150,7 +150,7 @@ resource "google_container_cluster" "primary2" {
 
 ```
 </details>
-<details><summary>Postitive test num. 8 - json file</summary>
+<details><summary>Positive test num. 8 - json file</summary>
 
 ```json hl_lines="3 6"
 {
@@ -164,7 +164,7 @@ resource "google_container_cluster" "primary2" {
 
 ```
 </details>
-<details><summary>Postitive test num. 9 - tf file</summary>
+<details><summary>Positive test num. 9 - tf file</summary>
 
 ```tf hl_lines="8"
 resource "google_container_cluster" "primary4" {
@@ -189,7 +189,7 @@ resource "google_container_cluster" "primary4" {
 
 ```
 </details>
-<details><summary>Postitive test num. 10 - json file</summary>
+<details><summary>Positive test num. 10 - json file</summary>
 
 ```json hl_lines="17 27 7"
 {
@@ -230,7 +230,7 @@ resource "google_container_cluster" "primary4" {
 
 ```
 </details>
-<details><summary>Postitive test num. 11 - yaml file</summary>
+<details><summary>Positive test num. 11 - yaml file</summary>
 
 ```yaml hl_lines="9 11 7"
 openapi: 3.0.0
@@ -248,7 +248,7 @@ servers:
 
 ```
 </details>
-<details><summary>Postitive test num. 12 - json file</summary>
+<details><summary>Positive test num. 12 - json file</summary>
 
 ```json hl_lines="8 19 11 15"
 {
@@ -277,7 +277,7 @@ servers:
 
 ```
 </details>
-<details><summary>Postitive test num. 13 - tf file</summary>
+<details><summary>Positive test num. 13 - tf file</summary>
 
 ```tf hl_lines="6"
 resource "aws_transfer_ssh_key" "example" {
@@ -298,7 +298,7 @@ EOT
 
 ```
 </details>
-<details><summary>Postitive test num. 14 - tf file</summary>
+<details><summary>Positive test num. 14 - tf file</summary>
 
 ```tf hl_lines="17 18"
 
@@ -328,7 +328,7 @@ EOF
 
 ```
 </details>
-<details><summary>Postitive test num. 15 - tf file</summary>
+<details><summary>Positive test num. 15 - tf file</summary>
 
 ```tf hl_lines="14 15"
 resource "aws_instance" "web_host" {
@@ -593,7 +593,7 @@ output "public_subnet2" {
 
 ```
 </details>
-<details><summary>Postitive test num. 16 - yaml file</summary>
+<details><summary>Positive test num. 16 - yaml file</summary>
 
 ```yaml hl_lines="34 36"
 apiVersion: apps/v1
@@ -637,7 +637,7 @@ spec:
 
 ```
 </details>
-<details><summary>Postitive test num. 17 - tf file</summary>
+<details><summary>Positive test num. 17 - tf file</summary>
 
 ```tf hl_lines="7"
 resource "azurerm_sql_server" "example" {
@@ -656,7 +656,7 @@ resource "azurerm_sql_server" "example" {
 
 ```
 </details>
-<details><summary>Postitive test num. 18 - tf file</summary>
+<details><summary>Positive test num. 18 - tf file</summary>
 
 ```tf hl_lines="5"
 resource "auth0_connection" "google_oauth2" {
@@ -673,7 +673,7 @@ resource "auth0_connection" "google_oauth2" {
 
 ```
 </details>
-<details><summary>Postitive test num. 19 - tf file</summary>
+<details><summary>Positive test num. 19 - tf file</summary>
 
 ```tf hl_lines="2"
 provider "slack" {
@@ -682,7 +682,7 @@ provider "slack" {
 
 ```
 </details>
-<details><summary>Postitive test num. 20 - tf file</summary>
+<details><summary>Positive test num. 20 - tf file</summary>
 
 ```tf hl_lines="2"
 provider "stripe" {
@@ -691,7 +691,7 @@ provider "stripe" {
 
 ```
 </details>
-<details><summary>Postitive test num. 21 - tf file</summary>
+<details><summary>Positive test num. 21 - tf file</summary>
 
 ```tf hl_lines="50"
 resource "aws_ecs_task_definition" "webapp" {
@@ -782,7 +782,7 @@ EOF
 
 ```
 </details>
-<details><summary>Postitive test num. 22 - tf file</summary>
+<details><summary>Positive test num. 22 - tf file</summary>
 
 ```tf hl_lines="3"
 provider "heroku" {
@@ -792,7 +792,7 @@ provider "heroku" {
 
 ```
 </details>
-<details><summary>Postitive test num. 23 - tf file</summary>
+<details><summary>Positive test num. 23 - tf file</summary>
 
 ```tf hl_lines="3"
 
@@ -802,7 +802,7 @@ provider "github" {
 
 ```
 </details>
-<details><summary>Postitive test num. 24 - tf file</summary>
+<details><summary>Positive test num. 24 - tf file</summary>
 
 ```tf hl_lines="4"
 provider "cloudflare" {
@@ -813,7 +813,7 @@ provider "cloudflare" {
 
 ```
 </details>
-<details><summary>Postitive test num. 25 - dockerfile file</summary>
+<details><summary>Positive test num. 25 - dockerfile file</summary>
 
 ```dockerfile hl_lines="3 5 7 9 11"
 FROM baseImage
@@ -830,7 +830,7 @@ ARG sgApiK=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
 
 ```
 </details>
-<details><summary>Postitive test num. 26 - yaml file</summary>
+<details><summary>Positive test num. 26 - yaml file</summary>
 
 ```yaml hl_lines="9"
 Resources:
@@ -845,7 +845,7 @@ Resources:
 
 ```
 </details>
-<details><summary>Postitive test num. 27 - yaml file</summary>
+<details><summary>Positive test num. 27 - yaml file</summary>
 
 ```yaml hl_lines="5 22"
 Resources:
@@ -874,7 +874,7 @@ Resources:
 
 ```
 </details>
-<details><summary>Postitive test num. 28 - yaml file</summary>
+<details><summary>Positive test num. 28 - yaml file</summary>
 
 ```yaml hl_lines="5"
 - name: Start a workflow in the Itential Automation Platform
@@ -889,7 +889,7 @@ Resources:
 
 ```
 </details>
-<details><summary>Postitive test num. 29 - tf file</summary>
+<details><summary>Positive test num. 29 - tf file</summary>
 
 ```tf hl_lines="2"
 provider "mailgun" {
@@ -898,7 +898,7 @@ provider "mailgun" {
 
 ```
 </details>
-<details><summary>Postitive test num. 30 - tf file</summary>
+<details><summary>Positive test num. 30 - tf file</summary>
 
 ```tf hl_lines="2"
 provider "stripe" {
@@ -907,7 +907,7 @@ provider "stripe" {
 
 ```
 </details>
-<details><summary>Postitive test num. 31 - yaml file</summary>
+<details><summary>Positive test num. 31 - yaml file</summary>
 
 ```yaml hl_lines="4"
 - hosts: all
@@ -918,7 +918,7 @@ provider "stripe" {
 
 ```
 </details>
-<details><summary>Postitive test num. 32 - yaml file</summary>
+<details><summary>Positive test num. 32 - yaml file</summary>
 
 ```yaml hl_lines="4"
 - hosts: all
@@ -929,7 +929,7 @@ provider "stripe" {
 
 ```
 </details>
-<details><summary>Postitive test num. 33 - yaml file</summary>
+<details><summary>Positive test num. 33 - yaml file</summary>
 
 ```yaml hl_lines="13"
 apiVersion: v1
@@ -949,7 +949,7 @@ spec:
 
 ```
 </details>
-<details><summary>Postitive test num. 34 - yaml file</summary>
+<details><summary>Positive test num. 34 - yaml file</summary>
 
 ```yaml hl_lines="13"
 apiVersion: v1
@@ -969,7 +969,7 @@ spec:
 
 ```
 </details>
-<details><summary>Postitive test num. 35 - yaml file</summary>
+<details><summary>Positive test num. 35 - yaml file</summary>
 
 ```yaml hl_lines="13"
 apiVersion: v1
@@ -994,7 +994,7 @@ users:
 
 ```
 </details>
-<details><summary>Postitive test num. 36 - tf file</summary>
+<details><summary>Positive test num. 36 - tf file</summary>
 
 ```tf hl_lines="5"
 resource "aws_transfer_ssh_key" "example2" {
@@ -1032,7 +1032,7 @@ EOF
 
 ```
 </details>
-<details><summary>Postitive test num. 37 - tf file</summary>
+<details><summary>Positive test num. 37 - tf file</summary>
 
 ```tf hl_lines="14"
 resource "aws_lambda_function" "analysis_lambda2" {
@@ -1055,7 +1055,7 @@ resource "aws_lambda_function" "analysis_lambda2" {
 
 ```
 </details>
-<details><summary>Postitive test num. 38 - yaml file</summary>
+<details><summary>Positive test num. 38 - yaml file</summary>
 
 ```yaml hl_lines="16"
 Resources:
@@ -1080,7 +1080,7 @@ Resources:
 
 ```
 </details>
-<details><summary>Postitive test num. 39 - tf file</summary>
+<details><summary>Positive test num. 39 - tf file</summary>
 
 ```tf hl_lines="3"
 locals {
@@ -1091,7 +1091,7 @@ locals {
 
 ```
 </details>
-<details><summary>Postitive test num. 40 - tf file</summary>
+<details><summary>Positive test num. 40 - tf file</summary>
 
 ```tf hl_lines="14 15"
 resource "aws_instance" "web_host" {
@@ -1124,7 +1124,7 @@ EOF
 
 ```
 </details>
-<details><summary>Postitive test num. 41 - tf file</summary>
+<details><summary>Positive test num. 41 - tf file</summary>
 
 ```tf hl_lines="6"
 resource "aws_transfer_ssh_key" "positive44" {
@@ -1148,7 +1148,7 @@ EOT
 
 ```
 </details>
-<details><summary>Postitive test num. 42 - tf file</summary>
+<details><summary>Positive test num. 42 - tf file</summary>
 
 ```tf hl_lines="7"
 data "terraform_remote_state" "intnet" {
@@ -1164,7 +1164,7 @@ data "terraform_remote_state" "intnet" {
 
 ```
 </details>
-<details><summary>Postitive test num. 43 - yaml file</summary>
+<details><summary>Positive test num. 43 - yaml file</summary>
 
 ```yaml hl_lines="5"
 Resources:
@@ -1184,7 +1184,7 @@ Resources:
 
 ```
 </details>
-<details><summary>Postitive test num. 44 - yaml file</summary>
+<details><summary>Positive test num. 44 - yaml file</summary>
 
 ```yaml hl_lines="17"
 Transform: 'AWS::Serverless-2016-10-31'
@@ -1208,7 +1208,7 @@ Parameters:
 
 ```
 </details>
-<details><summary>Postitive test num. 45 - tf file</summary>
+<details><summary>Positive test num. 45 - tf file</summary>
 
 ```tf hl_lines="9"
 #this is a problematic code where the query should report a result(s)
@@ -1234,7 +1234,7 @@ resource "google_container_cluster" "primary1" {
 
 ```
 </details>
-<details><summary>Postitive test num. 46 - yaml file</summary>
+<details><summary>Positive test num. 46 - yaml file</summary>
 
 ```yaml hl_lines="20"
 version: '3.9'
@@ -1259,7 +1259,7 @@ services:
       - POSTGRES_PASSWORD=postgres
 ```
 </details>
-<details><summary>Postitive test num. 47 - tf file</summary>
+<details><summary>Positive test num. 47 - tf file</summary>
 
 ```tf hl_lines="5 6"
 resource "auth0_connection" "google_oauth2" {
@@ -1276,7 +1276,7 @@ resource "auth0_connection" "google_oauth2" {
 
 ```
 </details>
-<details><summary>Postitive test num. 48 - tf file</summary>
+<details><summary>Positive test num. 48 - tf file</summary>
 
 ```tf hl_lines="8"
 resource "google_container_cluster" "primary1" {

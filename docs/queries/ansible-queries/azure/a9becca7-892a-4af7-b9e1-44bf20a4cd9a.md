@@ -28,7 +28,7 @@ Ensure that Connection Throttling is set for the PostgreSQL server<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="37 7 13 19 25 31"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="37 7 13 19 25 31"
 ---
 - name: Update PostgreSQL Server setting
   azure.azcollection.azure_rm_postgresqlconfiguration:

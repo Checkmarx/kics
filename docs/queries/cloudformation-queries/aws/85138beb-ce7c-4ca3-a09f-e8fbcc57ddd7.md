@@ -28,7 +28,7 @@ Cross-Account IAM Assume Role Policy should require external ID or MFA to protec
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="6"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="6"
 AWSTemplateFormatVersion: "2010-09-09"
 Resources:
   RootRole:
@@ -51,7 +51,7 @@ Resources:
         }
 
 ```
-```json title="Postitive test num. 2 - json file" hl_lines="7"
+```json title="Positive test num. 2 - json file" hl_lines="7"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
@@ -79,7 +79,7 @@ Resources:
 }
 
 ```
-```yaml title="Postitive test num. 3 - yaml file" hl_lines="6"
+```yaml title="Positive test num. 3 - yaml file" hl_lines="6"
 AWSTemplateFormatVersion: "2010-09-09"
 Resources:
   RootRole:
@@ -105,7 +105,7 @@ Resources:
         }
 
 ```
-<details><summary>Postitive test num. 4 - json file</summary>
+<details><summary>Positive test num. 4 - json file</summary>
 
 ```json hl_lines="7"
 {
@@ -139,7 +139,7 @@ Resources:
 
 ```
 </details>
-<details><summary>Postitive test num. 5 - yaml file</summary>
+<details><summary>Positive test num. 5 - yaml file</summary>
 
 ```yaml hl_lines="6"
 AWSTemplateFormatVersion: "2010-09-09"
@@ -168,7 +168,7 @@ Resources:
 
 ```
 </details>
-<details><summary>Postitive test num. 6 - json file</summary>
+<details><summary>Positive test num. 6 - json file</summary>
 
 ```json hl_lines="7"
 {

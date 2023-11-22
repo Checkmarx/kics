@@ -28,7 +28,7 @@ Encoding Map Key should be set in schema defined properties<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Postitive test num. 1 - json file" hl_lines="70"
+```json title="Positive test num. 1 - json file" hl_lines="70"
 {
   "openapi": "3.0.0",
   "info": {
@@ -110,7 +110,7 @@ Encoding Map Key should be set in schema defined properties<br>
 }
 
 ```
-```json title="Postitive test num. 2 - json file" hl_lines="36"
+```json title="Positive test num. 2 - json file" hl_lines="36"
 {
   "openapi": "3.0.0",
   "info": {
@@ -162,7 +162,7 @@ Encoding Map Key should be set in schema defined properties<br>
 }
 
 ```
-```yaml title="Postitive test num. 3 - yaml file" hl_lines="42"
+```yaml title="Positive test num. 3 - yaml file" hl_lines="42"
 openapi: 3.0.0
 info:
   title: Simple API Overview
@@ -208,7 +208,7 @@ components:
               contentType: image/png, image/jpeg
 
 ```
-<details><summary>Postitive test num. 4 - yaml file</summary>
+<details><summary>Positive test num. 4 - yaml file</summary>
 
 ```yaml hl_lines="26"
 openapi: 3.0.0
