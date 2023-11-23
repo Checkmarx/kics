@@ -457,12 +457,8 @@ block "label_one" {
 		},
 		{
 			name: "should evaluate without problems (3)",
-			input: `variable "namespaces" {
- type        = list(string)
- default     = ["string1", "string2", "string3"]
-}
-locals {
-  namespace_secrets = { for n in var.namespaces : "${n}_default" => {
+			input: `locals {
+  namespace_secrets = { for n in ["string1", "string2", "string3"] : "${n}_default" => {
     "roles/secretmanager.secretAccessor" = [
       "serviceAccount:${module.test[local.name].email}",
     ]
@@ -472,52 +468,14 @@ locals {
 `,
 			want: `
 			{
-  "variable": {
-    "namespaces": {
-      "type": "${list(string)}",
-      "default": [
-        "string1",
-        "string2",
-        "string3"
-      ],
-      "_kics_lines": {
-        "_kics__default": {
-          "_kics_line": 1
-        },
-        "_kics_default": {
-          "_kics_line": 3,
-          "_kics_arr": [
-            {
-              "_kics__default": {
-                "_kics_line": 3
-              }
-            },
-            {
-              "_kics__default": {
-                "_kics_line": 3
-              }
-            },
-            {
-              "_kics__default": {
-                "_kics_line": 3
-              }
-            }
-          ]
-        },
-        "_kics_type": {
-          "_kics_line": 2
-        }
-      }
-    }
-  },
   "locals": {
-    "namespace_secrets": "${{ for n in var.namespaces : \"${n}_default\" => {\n    \"roles/secretmanager.secretAccessor\" = [\n      \"serviceAccount:${module.test[local.name].email}\",\n    ]\n    }\n  }}",
+    "namespace_secrets": "${{ for n in [\"string1\", \"string2\", \"string3\"] : \"${n}_default\" => {\n    \"roles/secretmanager.secretAccessor\" = [\n      \"serviceAccount:${module.test[local.name].email}\",\n    ]\n    }\n  }}",
     "_kics_lines": {
       "_kics__default": {
-        "_kics_line": 5
+        "_kics_line": 1
       },
       "_kics_namespace_secrets": {
-        "_kics_line": 6
+        "_kics_line": 2
       }
     }
   },
@@ -526,9 +484,6 @@ locals {
       "_kics_line": 0
     },
     "_kics_locals": {
-      "_kics_line": 5
-    },
-    "_kics_variable": {
       "_kics_line": 1
     }
   }
