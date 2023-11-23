@@ -1,7 +1,7 @@
 package testcases
 
 // E2E-CLI-075 - KICS  scan
-// should perform the scan successfully detect ansible and return result 20
+// should perform the scan successfully detect ansible and return result 40
 func init() { //nolint
 	testSample := TestCase{
 		Name: "should perform a valid scan and and detect ansible [E2E-CLI-075]",
@@ -20,7 +20,7 @@ func init() { //nolint
 				},
 			},
 		},
-		WantStatus: []int{20},
+		WantStatus: []int{40},
 	}
 
 	Tests = append(Tests, testSample)
