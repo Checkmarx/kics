@@ -8,7 +8,7 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
-					"--output-name", "E2E_CLI_074_RESULT",
+					"--output-name", "E2E_CLI_075_RESULT",
 					"-p", "\"/path/test/fixtures/analyzer_test_ansible_host/e2e\"",
 					"-i", "1b2bf3ff-31e9-460e-bbfb-45e48f4f20cc",
 				},
