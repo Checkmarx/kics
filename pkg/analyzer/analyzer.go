@@ -19,6 +19,7 @@ import (
 	yamlParser "gopkg.in/yaml.v3"
 )
 
+// move the openApi regex to public to be used on file.go
 // openAPIRegex - Regex that finds OpenAPI defining property "openapi" or "swagger"
 // openAPIRegexInfo - Regex that finds OpenAPI defining property "info"
 // openAPIRegexPath - Regex that finds OpenAPI defining property "paths", "components", or "webhooks" (from 3.1.0)
@@ -28,9 +29,9 @@ import (
 // k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
 // k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-	openAPIRegex                                    = regexp.MustCompile(`("(openapi|swagger)"|(openapi|swagger))\s*:`)
-	openAPIRegexInfo                                = regexp.MustCompile(`("info"|info)\s*:`)
-	openAPIRegexPath                                = regexp.MustCompile(`("(paths|components|webhooks)"|(paths|components|webhooks))\s*:`)
+	OpenAPIRegex                                    = regexp.MustCompile(`("(openapi|swagger)"|(openapi|swagger))\s*:`)
+	OpenAPIRegexInfo                                = regexp.MustCompile(`("info"|info)\s*:`)
+	OpenAPIRegexPath                                = regexp.MustCompile(`("(paths|components|webhooks)"|(paths|components|webhooks))\s*:`)
 	armRegexContentVersion                          = regexp.MustCompile(`"contentVersion"\s*:`)
 	armRegexResources                               = regexp.MustCompile(`"resources"\s*:`)
 	cloudRegex                                      = regexp.MustCompile(`("Resources"|Resources)\s*:`)
@@ -103,7 +104,9 @@ var (
 	listKeywordsAnsible = []string{"name", "gather_facts",
 		"hosts", "tasks", "become", "with_items", "with_dict",
 		"when", "become_pass", "become_exe", "become_flags"}
-	playBooks = "playbooks"
+	playBooks               = "playbooks"
+	ansibleHost             = "all"
+	listKeywordsAnsibleHots = []string{"hosts", "children"}
 )
 
 const (
@@ -152,9 +155,9 @@ type Analyzer struct {
 var types = map[string]regexSlice{
 	"openapi": {
 		regex: []*regexp.Regexp{
-			openAPIRegex,
-			openAPIRegexInfo,
-			openAPIRegexPath,
+			OpenAPIRegex,
+			OpenAPIRegexInfo,
+			OpenAPIRegexPath,
 		},
 	},
 	"kubernetes": {
@@ -551,6 +554,10 @@ func checkYamlPlatform(content []byte, path string) string {
 	if checkForAnsible(yamlContent) {
 		return ansible
 	}
+	// check if the file contains some keywords related with Ansible Host
+	if checkForAnsibleHost(yamlContent) {
+		return ansible
+	}
 	return ""
 }
 
@@ -566,6 +573,20 @@ func checkForAnsible(yamlContent model.Document) bool {
 							isAnsible = true
 						}
 					}
+				}
+			}
+		}
+	}
+	return isAnsible
+}
+
+func checkForAnsibleHost(yamlContent model.Document) bool {
+	isAnsible := false
+	if hosts := yamlContent[ansibleHost]; hosts != nil {
+		if listHosts, ok := hosts.(map[string]interface{}); ok {
+			for _, value := range listKeywordsAnsibleHots {
+				if host := listHosts[value]; host != nil {
+					isAnsible = true
 				}
 			}
 		}

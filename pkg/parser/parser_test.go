@@ -25,7 +25,7 @@ func TestParser_Parse(t *testing.T) {
 		"name": "CxBraga"
 	}
 }
-`))
+`), true)
 		require.NoError(t, err)
 		require.Len(t, docs.Docs, 1)
 		require.Contains(t, docs.Docs[0], "martin")
@@ -39,7 +39,7 @@ func TestParser_Parse(t *testing.T) {
 		docs, err := parser.Parse("test.yaml", []byte(`
 martin:
   name: CxBraga
-`))
+`), true)
 		require.NoError(t, err)
 		require.Len(t, docs.Docs, 1)
 		require.Contains(t, docs.Docs[0], "martin")
@@ -54,7 +54,7 @@ martin:
 FROM foo
 COPY . /
 RUN echo hello
-`))
+`), true)
 
 		require.NoError(t, err)
 		require.Len(t, docs.Docs, 1)
@@ -70,7 +70,7 @@ func TestParser_Empty(t *testing.T) {
 		t.Errorf("Error building parser: %s", err)
 	}
 	for _, parser := range p {
-		docs, err := parser.Parse("test.json", nil)
+		docs, err := parser.Parse("test.json", nil, true)
 		require.Nil(t, docs.Docs)
 		require.Equal(t, model.FileKind(""), docs.Kind)
 		require.Error(t, err)
