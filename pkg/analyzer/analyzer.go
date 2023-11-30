@@ -104,7 +104,9 @@ var (
 	listKeywordsAnsible = []string{"name", "gather_facts",
 		"hosts", "tasks", "become", "with_items", "with_dict",
 		"when", "become_pass", "become_exe", "become_flags"}
-	playBooks = "playbooks"
+	playBooks               = "playbooks"
+	ansibleHost             = "all"
+	listKeywordsAnsibleHots = []string{"hosts", "children"}
 )
 
 const (
@@ -552,6 +554,10 @@ func checkYamlPlatform(content []byte, path string) string {
 	if checkForAnsible(yamlContent) {
 		return ansible
 	}
+	// check if the file contains some keywords related with Ansible Host
+	if checkForAnsibleHost(yamlContent) {
+		return ansible
+	}
 	return ""
 }
 
@@ -567,6 +573,20 @@ func checkForAnsible(yamlContent model.Document) bool {
 							isAnsible = true
 						}
 					}
+				}
+			}
+		}
+	}
+	return isAnsible
+}
+
+func checkForAnsibleHost(yamlContent model.Document) bool {
+	isAnsible := false
+	if hosts := yamlContent[ansibleHost]; hosts != nil {
+		if listHosts, ok := hosts.(map[string]interface{}); ok {
+			for _, value := range listKeywordsAnsibleHots {
+				if host := listHosts[value]; host != nil {
+					isAnsible = true
 				}
 			}
 		}
