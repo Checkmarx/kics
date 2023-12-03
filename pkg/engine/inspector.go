@@ -5,7 +5,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"runtime"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/Checkmarx/kics/internal/metrics"
@@ -207,15 +209,72 @@ func (c *Inspector) Inspect(
 	}
 
 	astPayload, err := ast.InterfaceToValue(p)
+
 	if err != nil {
 		return vulnerabilities, err
 	}
 
 	queries := c.getQueriesByPlat(platforms)
-	for i, queryMeta := range queries {
+
+	numCpu := runtime.NumCPU() / 2
+	var chunkSize int
+	if len(queries) < numCpu {
+		chunkSize = len(queries)
+	} else {
+		chunkSize = len(queries) / numCpu
+	}
+
+	var wgChunk sync.WaitGroup
+	resultChan := make(chan []model.Vulnerability)
+
+	for i := 0; i < len(queries); i += chunkSize {
+		endOfChunk := i + chunkSize
+
+		if endOfChunk > len(queries) {
+			endOfChunk = len(queries)
+		}
+		chunkToProcess := queries[i:endOfChunk]
+		wgChunk.Add(1)
+		go processChunkOfQueries(
+			ctx,
+			scanID,
+			c,
+			chunkToProcess,
+			&wgChunk,
+			files,
+			baseScanPaths,
+			currentQuery, resultChan, astPayload)
+	}
+
+	go func() {
+		wgChunk.Wait()
+		close(resultChan)
+	}()
+
+	for results := range resultChan {
+		for _, result := range results {
+			vulnerabilities = append(vulnerabilities, result)
+		}
+	}
+
+	return vulnerabilities, nil
+}
+
+func processChunkOfQueries(
+	ctx context.Context,
+	scanID string,
+	c *Inspector,
+	chunkOfQueries []model.QueryMetadata,
+	wgChunk *sync.WaitGroup,
+	files model.FileMetadatas,
+	baseScanPaths []string,
+	currentQuery chan<- int64,
+	resultChan chan []model.Vulnerability, astPayload ast.Value) {
+	defer wgChunk.Done()
+	for i, queryMeta := range chunkOfQueries {
 		currentQuery <- 1
 
-		queryOpa, err := c.QueryLoader.LoadQuery(ctx, &queries[i])
+		queryOpa, err := c.QueryLoader.LoadQuery(ctx, &chunkOfQueries[i])
 		if err != nil {
 			continue
 		}
@@ -255,13 +314,9 @@ func (c *Inspector) Inspect(
 		}
 
 		log.Debug().Msgf("Finished to run query %s after %v", queryMeta.Query, time.Since(queryStartTime))
-
-		vulnerabilities = append(vulnerabilities, vuls...)
-
+		resultChan <- vuls
 		c.tracker.TrackQueryExecution(query.Metadata.Aggregation)
 	}
-
-	return vulnerabilities, nil
 }
 
 // LenQueriesByPlat returns the number of queries by platforms
