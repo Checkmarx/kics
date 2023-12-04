@@ -5,7 +5,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"runtime"
 	"strings"
 	"sync"
 	"time"
@@ -216,34 +215,22 @@ func (c *Inspector) Inspect(
 
 	queries := c.getQueriesByPlat(platforms)
 
-	numCpu := runtime.NumCPU() / 2
-	var chunkSize int
-	if len(queries) < numCpu {
-		chunkSize = len(queries)
-	} else {
-		chunkSize = len(queries) / numCpu
-	}
-
 	var wgChunk sync.WaitGroup
 	resultChan := make(chan []model.Vulnerability)
 
-	for i := 0; i < len(queries); i += chunkSize {
-		endOfChunk := i + chunkSize
-
-		if endOfChunk > len(queries) {
-			endOfChunk = len(queries)
-		}
-		chunkToProcess := queries[i:endOfChunk]
+	for _, query := range queries {
 		wgChunk.Add(1)
 		go processChunkOfQueries(
 			ctx,
 			scanID,
 			c,
-			chunkToProcess,
+			query,
 			&wgChunk,
 			files,
 			baseScanPaths,
-			currentQuery, resultChan, astPayload)
+			currentQuery,
+			resultChan,
+			astPayload)
 	}
 
 	go func() {
@@ -256,7 +243,6 @@ func (c *Inspector) Inspect(
 			vulnerabilities = append(vulnerabilities, result)
 		}
 	}
-
 	return vulnerabilities, nil
 }
 
@@ -264,59 +250,59 @@ func processChunkOfQueries(
 	ctx context.Context,
 	scanID string,
 	c *Inspector,
-	chunkOfQueries []model.QueryMetadata,
+	queryToLoad model.QueryMetadata,
 	wgChunk *sync.WaitGroup,
 	files model.FileMetadatas,
 	baseScanPaths []string,
 	currentQuery chan<- int64,
-	resultChan chan []model.Vulnerability, astPayload ast.Value) {
+	resultChan chan []model.Vulnerability,
+	astPayload ast.Value) {
 	defer wgChunk.Done()
-	for i, queryMeta := range chunkOfQueries {
-		currentQuery <- 1
 
-		queryOpa, err := c.QueryLoader.LoadQuery(ctx, &chunkOfQueries[i])
-		if err != nil {
-			continue
-		}
+	currentQuery <- 1
 
-		log.Debug().Msgf("Starting to run query %s", queryMeta.Query)
-		queryStartTime := time.Now()
-
-		query := &PreparedQuery{
-			OpaQuery: *queryOpa,
-			Metadata: queryMeta,
-		}
-
-		queryContext := &QueryContext{
-			Ctx:           ctx,
-			scanID:        scanID,
-			Files:         files.ToMap(),
-			Query:         query,
-			payload:       &astPayload,
-			BaseScanPaths: baseScanPaths,
-		}
-
-		vuls, err := c.doRun(queryContext)
-
-		if err != nil {
-			sentryReport.ReportSentry(&sentryReport.Report{
-				Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", query.Metadata.Query),
-				Err:      err,
-				Location: "func Inspect()",
-				Platform: query.Metadata.Platform,
-				Metadata: query.Metadata.Metadata,
-				Query:    query.Metadata.Query,
-			}, true)
-
-			c.failedQueries[query.Metadata.Query] = err
-
-			continue
-		}
-
-		log.Debug().Msgf("Finished to run query %s after %v", queryMeta.Query, time.Since(queryStartTime))
-		resultChan <- vuls
-		c.tracker.TrackQueryExecution(query.Metadata.Aggregation)
+	queryOpa, err := c.QueryLoader.LoadQuery(ctx, &queryToLoad)
+	if err != nil {
+		return
 	}
+
+	log.Debug().Msgf("Starting to run query %s", queryToLoad.Query)
+	queryStartTime := time.Now()
+
+	query := &PreparedQuery{
+		OpaQuery: *queryOpa,
+		Metadata: queryToLoad,
+	}
+
+	queryContext := &QueryContext{
+		Ctx:           ctx,
+		scanID:        scanID,
+		Files:         files.ToMap(),
+		Query:         query,
+		payload:       &astPayload,
+		BaseScanPaths: baseScanPaths,
+	}
+
+	vuls, err := c.doRun(queryContext)
+
+	if err != nil {
+		sentryReport.ReportSentry(&sentryReport.Report{
+			Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", query.Metadata.Query),
+			Err:      err,
+			Location: "func Inspect()",
+			Platform: query.Metadata.Platform,
+			Metadata: query.Metadata.Metadata,
+			Query:    query.Metadata.Query,
+		}, true)
+
+		c.failedQueries[query.Metadata.Query] = err
+
+		return
+	}
+
+	log.Debug().Msgf("Finished to run query %s after %v", queryToLoad.Query, time.Since(queryStartTime))
+	resultChan <- vuls
+	c.tracker.TrackQueryExecution(query.Metadata.Aggregation)
 }
 
 // LenQueriesByPlat returns the number of queries by platforms
