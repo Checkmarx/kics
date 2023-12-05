@@ -3,10 +3,10 @@ resource "aws_lambda_function" "negative3" {
   role          = "negative3_role"
 }
 
-resource "aws_iam_policy" "negative2policy" {
-  name        = "negative2policy"
+resource "aws_iam_policy" "negative3policy" {
+  name        = "negative3policy"
   path        = "/"
-  description = "negative2 Policy"
+  description = "negative3 Policy"
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
