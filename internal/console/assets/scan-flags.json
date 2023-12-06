@@ -60,11 +60,10 @@
     "usage": "include bill of materials (BoM) in results output"
   },
   "experimental-queries": {
-    "flagType": "multiStr",
+    "flagType": "bool",
     "shorthandFlag": "",
-    "defaultValue": null,
-    "usage": "include experimental queries (queries not yet thoroughly reviewed) by providing the path of the queries folder\ncan be provided multiple times or as a comma-separated string (platform/cloudProvider or platform)\nexample: 'terraform/databricks'\npossible values found in: '/assets/utils/experimental-queries.json'",
-    "validation": "validateMultiStr"
+    "defaultValue": "false",
+    "usage": "include experimental queries (queries not yet thoroughly reviewed)"
   },
   "fail-on": {
     "flagType": "multiStr",
@@ -202,5 +201,11 @@
     "shorthandFlag": "",
     "defaultValue": "false",
     "usage": "disables the exclusion of paths specified within .gitignore file"
+  },
+  "enable-openapi-refs": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "resolve the file reference, on OpenAPI files"
   }
 }

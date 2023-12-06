@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"path/filepath"
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -14,7 +13,6 @@ import (
 	"github.com/open-policy-agent/opa/topdown"
 
 	"github.com/Checkmarx/kics/internal/console/flags"
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/parser"
@@ -38,9 +36,9 @@ type runQueryInfo struct {
 }
 
 // scanTmpFile scans a temporary file against a specific query
-func scanTmpFile(tmpFile, queryID string, remediated []byte) ([]model.Vulnerability, error) {
+func scanTmpFile(tmpFile, queryID string, remediated []byte, openAPIResolveReferences bool) ([]model.Vulnerability, error) {
 	// get payload
-	files, err := getPayload(tmpFile, remediated)
+	files, err := getPayload(tmpFile, remediated, openAPIResolveReferences)
 
 	if err != nil {
 		log.Err(err)
@@ -83,7 +81,7 @@ func scanTmpFile(tmpFile, queryID string, remediated []byte) ([]model.Vulnerabil
 }
 
 // getPayload gets the payload of a file
-func getPayload(filePath string, content []byte) (model.FileMetadatas, error) {
+func getPayload(filePath string, content []byte, openAPIResolveReferences bool) (model.FileMetadatas, error) {
 	ext := utils.GetExtension(filePath)
 	var p []*parser.Parser
 	var err error
@@ -118,7 +116,7 @@ func getPayload(filePath string, content []byte) (model.FileMetadatas, error) {
 		return model.FileMetadatas{}, errors.New("failed to get parser")
 	}
 
-	documents, er := p[0].Parse(filePath, content)
+	documents, er := p[0].Parse(filePath, content, openAPIResolveReferences)
 
 	if er != nil {
 		log.Error().Msgf("failed to parse file '%s': %s", filePath, er)
@@ -187,12 +185,13 @@ func runQuery(r *runQueryInfo) []model.Vulnerability {
 
 func initScan(queryID string) (*engine.Inspector, error) {
 	scanParams := &scan.Parameters{
-		QueriesPath:      flags.GetMultiStrFlag(flags.QueriesPath),
-		Platform:         flags.GetMultiStrFlag(flags.TypeFlag),
-		CloudProvider:    flags.GetMultiStrFlag(flags.CloudProviderFlag),
-		LibrariesPath:    flags.GetStrFlag(flags.LibrariesPath),
-		PreviewLines:     flags.GetIntFlag(flags.PreviewLinesFlag),
-		QueryExecTimeout: flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+		QueriesPath:         flags.GetMultiStrFlag(flags.QueriesPath),
+		Platform:            flags.GetMultiStrFlag(flags.TypeFlag),
+		CloudProvider:       flags.GetMultiStrFlag(flags.CloudProviderFlag),
+		LibrariesPath:       flags.GetStrFlag(flags.LibrariesPath),
+		PreviewLines:        flags.GetIntFlag(flags.PreviewLinesFlag),
+		QueryExecTimeout:    flags.GetIntFlag(flags.QueryExecTimeoutFlag),
+		ExperimentalQueries: flags.GetBoolFlag(flags.ExperimentalQueriesFlag),
 	}
 
 	c := &scan.Client{
@@ -205,18 +204,12 @@ func initScan(queryID string) (*engine.Inspector, error) {
 		return &engine.Inspector{}, err
 	}
 
-	experimentalQueries, err := consoleHelpers.GetDefaultExperimentalPath(filepath.FromSlash("./assets/utils/experimental-queries.json"))
-	if err != nil {
-		log.Err(err)
-		return &engine.Inspector{}, err
-	}
-
 	queriesSource := source.NewFilesystemSource(
 		c.ScanParams.QueriesPath,
 		c.ScanParams.Platform,
 		c.ScanParams.CloudProvider,
 		c.ScanParams.LibrariesPath,
-		experimentalQueries)
+		c.ScanParams.ExperimentalQueries)
 
 	includeQueries := source.IncludeQueries{
 		ByIDs: []string{queryID},

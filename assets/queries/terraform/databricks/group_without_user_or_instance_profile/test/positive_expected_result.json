@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "Databricks Group Without User Or Instance Profile",
+		"severity": "LOW",
+		"line": 16,
+		"fileName": "positive1.tf"
+	},
+	{
+		"queryName": "Databricks Group Without User Or Instance Profile",
+		"severity": "LOW",
+		"line": 14,
+		"fileName": "positive2.tf"
+	}
+]

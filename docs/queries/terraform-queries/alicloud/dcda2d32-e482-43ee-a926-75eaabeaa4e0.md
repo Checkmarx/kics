@@ -28,7 +28,7 @@ RAM Security preferences should enforce MFA login for RAM users<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="11"
+```tf title="Positive test num. 1 - tf file" hl_lines="11"
 # Create a new RAM user.
 resource "alicloud_ram_user" "user1" {
   name         = "user_test"
@@ -45,7 +45,7 @@ resource "alicloud_ram_security_preference" "example1" {
 }
 
 ```
-```tf title="Postitive test num. 2 - tf file" hl_lines="14"
+```tf title="Positive test num. 2 - tf file" hl_lines="14"
 # Create a new RAM user.
 resource "alicloud_ram_user" "user2" {
   name         = "user_test"
@@ -63,7 +63,7 @@ resource "alicloud_ram_security_preference" "example2" {
 }
 
 ```
-```tf title="Postitive test num. 3 - tf file" 
+```tf title="Positive test num. 3 - tf file" 
 # this file does not return any result because inside the test folder exists at least one resource "alicloud_ram_security_preference" in the samples
 #resource "alicloud_ram_user" "user3" {
 #  name         = "user_test"

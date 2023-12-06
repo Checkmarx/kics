@@ -28,7 +28,7 @@ Cloud Storage Bucket is anonymously or publicly accessible<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="5"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="5"
 resources:
   - name: bucket-access-control
     type: storage.v1.bucketAccessControl
@@ -36,7 +36,7 @@ resources:
       entity: allUsers
 
 ```
-```yaml title="Postitive test num. 2 - yaml file" hl_lines="5"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="5"
 resources:
   - name: bucket-access-control
     type: storage.v1.bucketAccessControl

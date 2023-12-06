@@ -28,7 +28,7 @@ Always tag the version of an image explicitly<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```dockerfile title="Postitive test num. 1 - dockerfile file" hl_lines="1"
+```dockerfile title="Positive test num. 1 - dockerfile file" hl_lines="1"
 FROM alpine
 RUN apk add --update py2-pip
 RUN pip install --upgrade pip
@@ -38,6 +38,16 @@ COPY app.py /usr/src/app/
 COPY templates/index.html /usr/src/app/templates/
 EXPOSE 5000
 CMD ["python", "/usr/src/app/app.py"] 
+```
+```dockerfile title="Positive test num. 2 - dockerfile file" hl_lines="7"
+FROM ubuntu:22.04 AS test
+RUN echo "hello"
+
+FROM test AS build
+RUN echo "build"
+
+FROM construction AS final
+RUN echo "final"
 ```
 
 
@@ -55,4 +65,14 @@ ARG IMAGE=alpine:3.12
 FROM $IMAGE
 CMD ["python", "/usr/src/app/app.py"]
 
+```
+```dockerfile title="Negative test num. 2 - dockerfile file"
+FROM ubuntu:22.04 AS test
+RUN echo "hello"
+
+FROM test AS build
+RUN echo "build"
+
+FROM build AS final
+RUN echo "final"
 ```
