@@ -6,16 +6,16 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
-	"sync"
 	"time"
 
 	"github.com/Checkmarx/kics/internal/metrics"
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
-	"github.com/Checkmarx/kics/pkg/detector"
+	"github.com/Checkmarx/kics/pkg/detector" //nolint:depguard
 	"github.com/Checkmarx/kics/pkg/detector/docker"
 	"github.com/Checkmarx/kics/pkg/detector/helm"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/dgravesa/go-parallel/parallel"
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/cover"
 	"github.com/open-policy-agent/opa/rego"
@@ -215,34 +215,21 @@ func (c *Inspector) Inspect(
 
 	queries := c.getQueriesByPlat(platforms)
 
-	var wgChunk sync.WaitGroup
-	resultChan := make(chan []model.Vulnerability)
-
-	for _, query := range queries {
-		wgChunk.Add(1)
-		go processChunkOfQueries(
+	parallel.For(len(queries), func(i, _ int) {
+		aux := processChunkOfQueries(
 			ctx,
 			scanID,
 			c,
-			query,
-			&wgChunk,
+			queries[i],
 			files,
 			baseScanPaths,
 			currentQuery,
-			resultChan,
 			astPayload)
-	}
-
-	go func() {
-		wgChunk.Wait()
-		close(resultChan)
-	}()
-
-	for results := range resultChan {
-		for _, result := range results {
-			vulnerabilities = append(vulnerabilities, result)
+		if aux != nil {
+			vulnerabilities = append(vulnerabilities, aux...)
 		}
-	}
+	})
+
 	return vulnerabilities, nil
 }
 
@@ -250,28 +237,25 @@ func processChunkOfQueries(
 	ctx context.Context,
 	scanID string,
 	c *Inspector,
-	queryToLoad model.QueryMetadata,
-	wgChunk *sync.WaitGroup,
+	chunkOfQueries model.QueryMetadata,
 	files model.FileMetadatas,
 	baseScanPaths []string,
 	currentQuery chan<- int64,
-	resultChan chan []model.Vulnerability,
-	astPayload ast.Value) {
-	defer wgChunk.Done()
+	astPayload ast.Value) []model.Vulnerability {
 
 	currentQuery <- 1
 
-	queryOpa, err := c.QueryLoader.LoadQuery(ctx, &queryToLoad)
+	queryOpa, err := c.QueryLoader.LoadQuery(ctx, &chunkOfQueries)
 	if err != nil {
-		return
+		return nil
 	}
 
-	log.Debug().Msgf("Starting to run query %s", queryToLoad.Query)
+	log.Debug().Msgf("Starting to run query %s", chunkOfQueries.Query)
 	queryStartTime := time.Now()
 
 	query := &PreparedQuery{
 		OpaQuery: *queryOpa,
-		Metadata: queryToLoad,
+		Metadata: chunkOfQueries,
 	}
 
 	queryContext := &QueryContext{
@@ -297,12 +281,13 @@ func processChunkOfQueries(
 
 		c.failedQueries[query.Metadata.Query] = err
 
-		return
+		return nil
 	}
 
-	log.Debug().Msgf("Finished to run query %s after %v", queryToLoad.Query, time.Since(queryStartTime))
-	resultChan <- vuls
+	log.Debug().Msgf("Finished to run query %s after %v", chunkOfQueries.Query, time.Since(queryStartTime))
+
 	c.tracker.TrackQueryExecution(query.Metadata.Aggregation)
+	return vuls
 }
 
 // LenQueriesByPlat returns the number of queries by platforms
