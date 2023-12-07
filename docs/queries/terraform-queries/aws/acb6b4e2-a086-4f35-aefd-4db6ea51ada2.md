@@ -28,7 +28,7 @@ AWS Elasticsearch should have logs enabled<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="6"
+```tf title="Positive test num. 1 - tf file" hl_lines="6"
 resource "aws_elasticsearch_domain" "positive1" {
 
   log_publishing_options {
@@ -39,7 +39,7 @@ resource "aws_elasticsearch_domain" "positive1" {
 }
 
 ```
-```tf title="Postitive test num. 2 - tf file" hl_lines="1"
+```tf title="Positive test num. 2 - tf file" hl_lines="1"
 resource "aws_elasticsearch_domain" "positive2" {
   domain_name           = "example"
   elasticsearch_version = "1.5"

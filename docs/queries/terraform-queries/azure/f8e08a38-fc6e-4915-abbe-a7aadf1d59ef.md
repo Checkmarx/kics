@@ -28,7 +28,7 @@ Key Vault Secrets should have set Content Type<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="1"
+```tf title="Positive test num. 1 - tf file" hl_lines="1"
 resource "azurerm_key_vault_secret" "positive" {
   name         = "secret-sauce"
   value        = "szechuan"
