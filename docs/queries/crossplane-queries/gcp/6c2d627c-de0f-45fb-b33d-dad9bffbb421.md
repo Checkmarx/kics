@@ -28,7 +28,7 @@ Cloud storage bucket should have logging enabled<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="5"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="5"
 apiVersion: storage.gcp.crossplane.io/v1alpha3
 kind: Bucket
 metadata:

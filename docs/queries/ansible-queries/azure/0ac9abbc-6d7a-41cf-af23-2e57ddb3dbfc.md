@@ -28,7 +28,7 @@ A sensitive port, such as port 23 or port 110, is open for the whole network in 
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="130 99 69 41 13 142 113 85 55 27"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="130 99 69 41 13 142 113 85 55 27"
 ---
 - name: foo1
   azure_rm_securitygroup:
