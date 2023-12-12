@@ -3,10 +3,11 @@ Usage:
 
 Flags:
   -m, --bom                           include bill of materials (BoM) in results output
-      --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp)
+      --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp, nifcloud)
       --config string                 path to configuration file
       --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
       --disable-secrets               disable secrets scanning
+      --enable-openapi-refs           resolve the file reference, on OpenAPI files
       --exclude-categories strings    exclude categories by providing its name
                                       cannot be provided with query inclusion flags
                                       can be provided multiple times or as a comma separated string
@@ -25,13 +26,10 @@ Flags:
       --exclude-severities strings    exclude results by providing the severity of a result
                                       can be provided multiple times or as a comma separated string
                                       example: 'info,low'
-      --exclude-type strings           case insensitive list of platform types not to scan
-                                       (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerlessFW, Terraform)
-                                       cannot be provided with type inclusion flags
-      --experimental-queries strings   include experimental queries (queries not yet thoroughly reviewed) by providing the path of the queries folder
-                                       can be provided multiple times or as a comma-separated string (platform/cloudProvider or platform)
-                                       example: 'terraform/databricks'
-                                       possible values found in: '/assets/utils/experimental-queries.json'
+      --exclude-type strings          case insensitive list of platform types not to scan
+                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerlessFW, Terraform)
+                                      cannot be provided with type inclusion flags
+      --experimental-queries          include experimental queries (queries not yet thoroughly reviewed)
       --fail-on strings               which kind of results should return an exit code different from 0
                                       accepts: high, medium, low and info
                                       example: "high,low" (default [high,medium,low,info])
@@ -45,7 +43,7 @@ Flags:
                                       example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
       --input-data string             path to query input data files
   -b, --libraries-path string         path to directory with libraries (default "./assets/libraries")
-      --max-file-size int             max file size that allowed to scan in MB (default 5)
+      --max-file-size int             max file size that is allowed to be scanned, in MB (default 5)
       --minimal-ui                    simplified version of CLI output
       --no-progress                   hides the progress bar
       --output-name string            name used on report creations (default "results")
@@ -60,9 +58,9 @@ Flags:
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --terraform-vars-path string    path where terraform variables are present
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
- -t, --type strings                   case insensitive list of platform types to scan
-                                       (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerlessFW, Terraform)
-                                       cannot be provided with type exclusion flags
+  -t, --type strings                  case insensitive list of platform types to scan
+                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerlessFW, Terraform)
+                                      cannot be provided with type exclusion flags
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
