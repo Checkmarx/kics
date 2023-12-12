@@ -317,6 +317,7 @@ func TestInspect(t *testing.T) { //nolint
 				excludeResults:       tt.fields.excludeResults,
 				detector:             inspDetector,
 				queryExecTimeout:     time.Duration(60) * time.Second,
+				numWorkers:           1,
 			}
 			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files,
 				[]string{filepath.FromSlash("assets/queries/")}, []string{"Dockerfile"}, currentQuery)
@@ -403,6 +404,7 @@ func TestNewInspector(t *testing.T) { //nolint
 		excludeResults   map[string]bool
 		queryExecTimeout int
 		needsLog         bool
+		numWorkers       int
 	}
 	tests := []struct {
 		name    string
@@ -429,6 +431,7 @@ func TestNewInspector(t *testing.T) { //nolint
 				excludeResults:   map[string]bool{},
 				queryExecTimeout: 60,
 				needsLog:         true,
+				numWorkers:       1,
 			},
 			want: &Inspector{
 				vb:      vbs,
@@ -449,7 +452,8 @@ func TestNewInspector(t *testing.T) { //nolint
 				&tt.args.queryFilter,
 				tt.args.excludeResults,
 				tt.args.queryExecTimeout,
-				tt.args.needsLog)
+				tt.args.needsLog,
+				tt.args.numWorkers)
 
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NewInspector() error: got = %v,\n wantErr = %v", err, tt.wantErr)
@@ -689,7 +693,7 @@ func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {
 		vb,
 		&tracker.CITracker{},
 		&source.QueryInspectorParameters{},
-		map[string]bool{}, 60, true,
+		map[string]bool{}, 60, true, 1,
 	)
 	require.NoError(t, err)
 	return ins
