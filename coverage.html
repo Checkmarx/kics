@@ -195,7 +195,7 @@
 				
 				<option value="file69">github.com/Checkmarx/kics/pkg/parser/terraform/comment/comment.go (96.9%)</option>
 				
-				<option value="file70">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (77.8%)</option>
+				<option value="file70">github.com/Checkmarx/kics/pkg/parser/terraform/converter/default.go (78.2%)</option>
 				
 				<option value="file71">github.com/Checkmarx/kics/pkg/parser/terraform/data_source.go (76.8%)</option>
 				
@@ -215,7 +215,7 @@
 				
 				<option value="file79">github.com/Checkmarx/kics/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file80">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (90.9%)</option>
+				<option value="file80">github.com/Checkmarx/kics/pkg/progress/counter/counter_progress.go (95.5%)</option>
 				
 				<option value="file81">github.com/Checkmarx/kics/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2357,13 +2357,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="33">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2388,14 +2388,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov3" title="3">{
+        if math.IsNaN(metric) </span><span class="cov2" title="2">{
                 metric = 0
         }</span>
 
@@ -13004,11 +13004,11 @@ type converter struct {
         bytes []byte
 }
 
-func (c *converter) rangeSource(r hcl.Range) string <span class="cov8" title="36">{
+func (c *converter) rangeSource(r hcl.Range) string <span class="cov8" title="37">{
         return string(c.bytes[r.Start.Byte:r.End.Byte])
 }</span>
 
-func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Document, error) <span class="cov8" title="26">{
+func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Document, error) <span class="cov8" title="28">{
         var err error
         var v string
         countValue := body.Attributes["count"]
@@ -13031,19 +13031,19 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
                 }
         }
 
-        <span class="cov8" title="26">if count == 0 </span><span class="cov0" title="0">{
+        <span class="cov8" title="28">if count == 0 </span><span class="cov0" title="0">{
                 return nil, nil
         }</span>
 
-        <span class="cov8" title="26">out := make(model.Document)
+        <span class="cov8" title="28">out := make(model.Document)
         kicsS := make(map[string]model.LineObject)
         // set kics line for the body
         kicsS["_kics__default"] = model.LineObject{
                 Line: defLine,
         }
 
-        if body.Attributes != nil </span><span class="cov8" title="26">{
-                for key, value := range body.Attributes </span><span class="cov8" title="35">{
+        if body.Attributes != nil </span><span class="cov8" title="28">{
+                for key, value := range body.Attributes </span><span class="cov8" title="36">{
                         out[key], err = c.convertExpression(value.Expr)
                         // set kics line for the body value
                         kicsS["_kics_"+key] = model.LineObject{
@@ -13062,7 +13062,7 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
                 }
         }
 
-        <span class="cov8" title="26">for _, block := range body.Blocks </span><span class="cov7" title="17">{
+        <span class="cov8" title="28">for _, block := range body.Blocks </span><span class="cov7" title="18">{
                 // set kics line for block
                 kicsS["_kics_"+block.Type] = model.LineObject{
                         Line: block.TypeRange.Start.Line,
@@ -13079,13 +13079,13 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
                 }</span>
         }
 
-        <span class="cov8" title="26">out["_kics_lines"] = kicsS
+        <span class="cov8" title="28">out["_kics_lines"] = kicsS
 
         return out, nil</span>
 }
 
 // getArrLines will get line information for the array elements
-func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]*model.LineObject <span class="cov8" title="35">{
+func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]*model.LineObject <span class="cov8" title="36">{
         arr := make([]map[string]*model.LineObject, 0)
         if v, ok := expr.(*hclsyntax.TupleConsExpr); ok </span><span class="cov3" title="3">{
                 for _, ex := range v.Exprs </span><span class="cov5" title="8">{
@@ -13125,10 +13125,10 @@ func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]*model.L
                         <span class="cov5" title="8">arr = append(arr, arrEx)</span>
                 }
         }
-        <span class="cov8" title="35">return arr</span>
+        <span class="cov8" title="36">return arr</span>
 }
 
-func (c *converter) convertBlock(block *hclsyntax.Block, out model.Document, defLine int) error <span class="cov7" title="17">{
+func (c *converter) convertBlock(block *hclsyntax.Block, out model.Document, defLine int) error <span class="cov7" title="18">{
         var key = block.Type
         value, err := c.convertBody(block.Body, defLine)
 
@@ -13136,11 +13136,11 @@ func (c *converter) convertBlock(block *hclsyntax.Block, out model.Document, def
                 return err
         }</span>
 
-        <span class="cov7" title="17">if value == nil </span><span class="cov0" title="0">{
+        <span class="cov7" title="18">if value == nil </span><span class="cov0" title="0">{
                 return nil
         }</span>
 
-        <span class="cov7" title="17">for _, label := range block.Labels </span><span class="cov7" title="16">{
+        <span class="cov7" title="18">for _, label := range block.Labels </span><span class="cov7" title="16">{
                 if inner, exists := out[key]; exists </span><span class="cov2" title="2">{
                         var ok bool
                         out, ok = inner.(model.Document)
@@ -13155,23 +13155,23 @@ func (c *converter) convertBlock(block *hclsyntax.Block, out model.Document, def
                 <span class="cov7" title="16">key = label</span>
         }
 
-        <span class="cov7" title="17">if current, exists := out[key]; exists </span><span class="cov3" title="3">{
+        <span class="cov7" title="18">if current, exists := out[key]; exists </span><span class="cov3" title="3">{
                 if list, ok := current.([]interface{}); ok </span><span class="cov1" title="1">{
                         out[key] = append(list, value)
                 }</span> else<span class="cov2" title="2"> {
                         out[key] = []interface{}{current, value}
                 }</span>
-        } else<span class="cov6" title="14"> {
+        } else<span class="cov6" title="15"> {
                 out[key] = value
         }</span>
 
-        <span class="cov7" title="17">return nil</span>
+        <span class="cov7" title="18">return nil</span>
 }
 
-func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, error) <span class="cov10" title="63">{
+func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, error) <span class="cov10" title="64">{
         // assume it is hcl syntax (because, um, it is)
         switch value := expr.(type) </span>{
-        case *hclsyntax.LiteralValueExpr:<span class="cov6" title="10">
+        case *hclsyntax.LiteralValueExpr:<span class="cov5" title="10">
                 return ctyjson.SimpleJSONValue{Value: value.Val}, nil</span>
         case *hclsyntax.TemplateExpr:<span class="cov7" title="24">
                 return c.convertTemplate(value)</span>
@@ -13206,7 +13206,7 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
                         return c.wrapExpr(expr)
                 }</span>
                 <span class="cov0" title="0">return ctyjson.SimpleJSONValue{Value: expressionEvaluated}, nil</span>
-        default:<span class="cov6" title="12">
+        default:<span class="cov6" title="13">
                 // try to evaluate with variables and functions
                 valueConverted, _ := expr.Value(&amp;hcl.EvalContext{
                         Variables: inputVarMap,
@@ -13215,15 +13215,32 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
                 if !checkDynamicKnownTypes(valueConverted) </span><span class="cov4" title="6">{
                         return ctyjson.SimpleJSONValue{Value: valueConverted}, nil
                 }</span>
-                <span class="cov4" title="6">return c.wrapExpr(expr)</span>
+                <span class="cov5" title="7">return c.wrapExpr(expr)</span>
         }
 }
 
-func checkDynamicKnownTypes(valueConverted cty.Value) bool <span class="cov6" title="12">{
-        if !valueConverted.Type().HasDynamicTypes() &amp;&amp; valueConverted.IsKnown() </span><span class="cov5" title="7">{
-                if valueConverted.Type().FriendlyName() == "tuple" </span><span class="cov1" title="1">{
-                        for _, val := range valueConverted.AsValueSlice() </span><span class="cov1" title="1">{
-                                if val.Type().HasDynamicTypes() || !val.IsKnown() </span><span class="cov1" title="1">{
+func checkValue(val cty.Value) bool <span class="cov4" title="4">{
+        if val.Type().HasDynamicTypes() || !val.IsKnown() </span><span class="cov2" title="2">{
+                return true
+        }</span>
+        <span class="cov2" title="2">if !val.Type().IsPrimitiveType() &amp;&amp; checkDynamicKnownTypes(val) </span><span class="cov2" title="2">{
+                return true
+        }</span>
+        <span class="cov0" title="0">return false</span>
+}
+
+func checkDynamicKnownTypes(valueConverted cty.Value) bool <span class="cov6" title="15">{
+        if !valueConverted.Type().HasDynamicTypes() &amp;&amp; valueConverted.IsKnown() </span><span class="cov5" title="10">{
+                if valueConverted.Type().FriendlyName() == "tuple" </span><span class="cov2" title="2">{
+                        for _, val := range valueConverted.AsValueSlice() </span><span class="cov2" title="2">{
+                                if checkValue(val) </span><span class="cov2" title="2">{
+                                        return true
+                                }</span>
+                        }
+                }
+                <span class="cov5" title="8">if valueConverted.Type().FriendlyName() == "object" </span><span class="cov2" title="2">{
+                        for _, val := range valueConverted.AsValueMap() </span><span class="cov2" title="2">{
+                                if checkValue(val) </span><span class="cov2" title="2">{
                                         return true
                                 }</span>
                         }
@@ -13411,12 +13428,12 @@ func (c *converter) convertTemplateFor(expr *hclsyntax.ForExpr) (string, error) 
         return s, nil</span>
 }
 
-func (c *converter) wrapExpr(expr hclsyntax.Expression) (string, error) <span class="cov6" title="12">{
+func (c *converter) wrapExpr(expr hclsyntax.Expression) (string, error) <span class="cov6" title="13">{
         expression := c.rangeSource(expr.Range())
         if strings.HasPrefix(expression, "var.") </span><span class="cov3" title="3">{
                 log.Trace().Msgf("Variable ${%s} value not found", expression)
         }</span>
-        <span class="cov6" title="12">return "${" + expression + "}", nil</span>
+        <span class="cov6" title="13">return "${" + expression + "}", nil</span>
 }
 
 func (c *converter) evalFunction(expression hclsyntax.Expression) (interface{}, error) <span class="cov4" title="6">{
@@ -15092,7 +15109,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov1" title="1">{
+                close: func() error </span><span class="cov3" title="2">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -15101,26 +15118,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov1" title="1">{
+        defer func() </span><span class="cov3" title="2">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov0" title="0">p.wg.Done()</span>
+                <span class="cov3" title="2">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file81" style="display: none">package progress
