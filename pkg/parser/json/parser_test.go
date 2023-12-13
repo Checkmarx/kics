@@ -49,7 +49,7 @@ func TestParser_Parse(t *testing.T) {
 func Test_Resolve(t *testing.T) {
 	parser := &Parser{}
 
-	resolved, err := parser.Resolve([]byte(have), "test.json")
+	resolved, err := parser.Resolve([]byte(have), "test.json", true)
 	require.NoError(t, err)
 	require.Equal(t, have, string(resolved))
 }

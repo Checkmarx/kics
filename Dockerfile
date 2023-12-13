@@ -1,4 +1,4 @@
-FROM golang:1.21.0-alpine as build_env
+FROM golang:1.21.5-alpine as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -67,7 +67,6 @@ RUN wget https://github.com/GoogleCloudPlatform/terraformer/releases/download/0.
 COPY --from=build_env /app/bin/kics /app/bin/kics
 COPY --from=build_env /app/assets/queries /app/bin/assets/queries
 COPY --from=build_env /app/assets/libraries/* /app/bin/assets/libraries/
-COPY --from=build_env /app/assets/utils/* /app/bin/assets/utils/
 
 WORKDIR /app/bin
 

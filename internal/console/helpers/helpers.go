@@ -140,18 +140,6 @@ func GetDefaultQueryPath(queriesPath string) (string, error) {
 	return queriesDirectory, nil
 }
 
-// GetDefaultExperimentalPath returns the default Experimental path
-func GetDefaultExperimentalPath(experimentalQueriesPath string) (string, error) {
-	log.Debug().Msg("helpers.GetDefaultExperimentalPath()")
-	experimentalQueriesFile, err := GetFullPath(experimentalQueriesPath)
-	if err != nil {
-		return "", err
-	}
-
-	log.Debug().Msgf("Experimental Queries found in %s", experimentalQueriesFile)
-	return experimentalQueriesFile, nil
-}
-
 // GetFulPath returns the full path of a partial path used for queries or experimental queries json path
 func GetFullPath(partialPath string) (string, error) {
 	executableDirPath := GetExecutableDirectory()
