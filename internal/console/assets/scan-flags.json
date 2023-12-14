@@ -212,6 +212,6 @@
     "flagType": "int",
     "shorthandFlag": "",
     "defaultValue": "5",
-    "usage": "max file size that is allowed to be scanned, in MB"
+    "usage": "max file size permitted for scanning, in MB"
   }
 }
