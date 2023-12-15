@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html",
   "platform": "CloudFormation",
   "descriptionID": "cb7c8980",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "CWE": ""
 }

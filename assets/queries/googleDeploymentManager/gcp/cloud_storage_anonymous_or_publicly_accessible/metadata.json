@@ -7,5 +7,6 @@
   "descriptionUrl": "https://cloud.google.com/storage/docs/json_api/v1/buckets",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "2146c969",
-  "cloudProvider": "gcp"
+  "cloudProvider": "gcp",
+  "CWE": ""
 }

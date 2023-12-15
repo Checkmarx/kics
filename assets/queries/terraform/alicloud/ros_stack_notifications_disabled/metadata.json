@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ros_stack#notification_urls",
   "platform": "Terraform",
   "descriptionID": "9552bb69",
-  "cloudProvider": "alicloud"
+  "cloudProvider": "alicloud",
+  "CWE": ""
 }

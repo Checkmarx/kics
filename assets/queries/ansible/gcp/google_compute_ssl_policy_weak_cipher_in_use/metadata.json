@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_ssl_policy_module.html",
   "platform": "Ansible",
   "descriptionID": "bb785f44",
-  "cloudProvider": "gcp"
+  "cloudProvider": "gcp",
+  "CWE": ""
 }

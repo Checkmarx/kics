@@ -6,5 +6,6 @@
   "descriptionText": "The Body Parameter Object should only have the following properties defined - 'name', 'in', 'description', 'required', and 'schema'",
   "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
   "platform": "OpenAPI",
-  "descriptionID": "93b15115"
+  "descriptionID": "93b15115",
+  "CWE": ""
 }

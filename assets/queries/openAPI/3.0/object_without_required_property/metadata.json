@@ -6,5 +6,6 @@
   "descriptionText": "OpenAPI Object should contain all of its required fields",
   "descriptionUrl": "https://swagger.io/specification/",
   "platform": "OpenAPI",
-  "descriptionID": "a6b935a6"
+  "descriptionID": "a6b935a6",
+  "CWE": ""
 }

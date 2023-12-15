@@ -6,5 +6,6 @@
   "descriptionText": "Check if any Tiller Deployment container allows access from within the cluster.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/",
   "platform": "Kubernetes",
-  "descriptionID": "615614b8"
+  "descriptionID": "615614b8",
+  "CWE": ""
 }

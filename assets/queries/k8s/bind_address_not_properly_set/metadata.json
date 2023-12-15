@@ -6,5 +6,6 @@
   "descriptionText": "When using kube-controller-manager or kube-scheduler commands, the '--bind-address' should not be set to 127.0.0.1",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
-  "descriptionID": "b52844f2"
+  "descriptionID": "b52844f2",
+  "CWE": ""
 }

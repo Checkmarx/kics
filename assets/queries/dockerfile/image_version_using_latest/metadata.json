@@ -6,5 +6,6 @@
   "descriptionText": "When building images, always tag them with useful tags which codify version information, intended destination (prod or test, for instance), stability, or other information that is useful when deploying the application in different environments. Do not rely on the automatically-created latest tag",
   "descriptionUrl": "https://docs.docker.com/develop/dev-best-practices/",
   "platform": "Dockerfile",
-  "descriptionID": "22f535ec"
+  "descriptionID": "22f535ec",
+  "CWE": ""
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Ingress Controllers should not expose workload in order to avoid vulnerabilities and DoS attacks",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/",
   "platform": "Kubernetes",
-  "descriptionID": "7db90ca7"
+  "descriptionID": "7db90ca7",
+  "CWE": ""
 }

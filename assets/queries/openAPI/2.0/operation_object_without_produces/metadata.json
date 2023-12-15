@@ -6,5 +6,6 @@
   "descriptionText": "Operation Object should have 'produces' feild defined for 'GET'operation",
   "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
   "platform": "OpenAPI",
-  "descriptionID": "1736226c"
+  "descriptionID": "1736226c",
+  "CWE": ""
 }

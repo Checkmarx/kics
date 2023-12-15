@@ -6,5 +6,6 @@
   "descriptionText": "Reference to examples should point to #/components/examples",
   "descriptionUrl": "https://swagger.io/specification/#reference-object",
   "platform": "OpenAPI",
-  "descriptionID": "8984393e"
+  "descriptionID": "8984393e",
+  "CWE": ""
 }

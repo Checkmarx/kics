@@ -6,5 +6,6 @@
   "descriptionText": "The flag --streaming-connection-idle-timeout should not be set to 0",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/",
   "platform": "Kubernetes",
-  "descriptionID": "f0a2431d"
+  "descriptionID": "f0a2431d",
+  "CWE": ""
 }

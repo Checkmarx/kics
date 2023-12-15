@@ -6,5 +6,6 @@
   "descriptionText": "Do not allow pod to request execution as privileged.",
   "descriptionUrl": "https://www.pulumi.com/registry/packages/kubernetes/api-docs/policy/v1beta1/podsecuritypolicy/#privileged_yaml",
   "platform": "Pulumi",
-  "descriptionID": "7a6c8b70"
+  "descriptionID": "7a6c8b70",
+  "CWE": ""
 }

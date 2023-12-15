@@ -6,5 +6,6 @@
   "descriptionText": "PodSecurityPolicy should set 'readOnly' to true in every host path allowed",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/#volumes-and-file-systems",
   "platform": "Kubernetes",
-  "descriptionID": "fc4b7215"
+  "descriptionID": "fc4b7215",
+  "CWE": ""
 }

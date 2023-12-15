@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
   "platform": "CloudFormation",
   "descriptionID": "ba38e42e",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "CWE": ""
 }

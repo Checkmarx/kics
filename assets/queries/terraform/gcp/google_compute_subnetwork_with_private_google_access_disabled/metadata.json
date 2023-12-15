@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork#private_ip_google_access",
   "platform": "Terraform",
   "descriptionID": "87e8a4f7",
-  "cloudProvider": "gcp"
+  "cloudProvider": "gcp",
+  "CWE": ""
 }

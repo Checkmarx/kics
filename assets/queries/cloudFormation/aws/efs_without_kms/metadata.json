@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html",
   "platform": "CloudFormation",
   "descriptionID": "f5a9536a",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "CWE": ""
 }

@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/sagemaker/latest/dg/security_iam_id-based-policy-examples.html#sagemaker-condition-nbi-lockdown",
   "platform": "CloudFormation",
   "descriptionID": "6e8543a2",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "CWE": ""
 }

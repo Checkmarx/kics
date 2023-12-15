@@ -6,5 +6,6 @@
   "descriptionText": "Responses reference should exist on responses definition field",
   "descriptionUrl": "https://swagger.io/specification/v2/#responsesDefinitionsObject",
   "platform": "OpenAPI",
-  "descriptionID": "213a6df0"
+  "descriptionID": "213a6df0",
+  "CWE": ""
 }

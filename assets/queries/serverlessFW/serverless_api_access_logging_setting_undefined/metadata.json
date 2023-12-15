@@ -6,5 +6,6 @@
   "descriptionText": "Serverless FW API should have HTTP Access Logging enabled",
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml#logs",
   "platform": "ServerlessFW",
-  "descriptionID": "15262598"
+  "descriptionID": "15262598",
+  "CWE": ""
 }

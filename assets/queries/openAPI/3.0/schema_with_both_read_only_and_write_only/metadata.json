@@ -6,5 +6,6 @@
   "descriptionText": "Schema should not have both 'writeOnly' and 'readOnly' set to true",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
-  "descriptionID": "adb56e0b"
+  "descriptionID": "adb56e0b",
+  "CWE": ""
 }

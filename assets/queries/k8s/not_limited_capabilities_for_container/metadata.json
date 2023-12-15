@@ -6,5 +6,6 @@
   "descriptionText": "Limit the capabilities for a Container.",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
   "platform": "Kubernetes",
-  "descriptionID": "2d839019"
+  "descriptionID": "2d839019",
+  "CWE": ""
 }

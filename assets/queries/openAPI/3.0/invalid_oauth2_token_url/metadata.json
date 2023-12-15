@@ -6,5 +6,6 @@
   "descriptionText": "OAuth2 security scheme flow requires a valid URL in the tokenUrl field",
   "descriptionUrl": "https://swagger.io/specification/#oauth-flow-object",
   "platform": "OpenAPI",
-  "descriptionID": "78304c48"
+  "descriptionID": "78304c48",
+  "CWE": ""
 }

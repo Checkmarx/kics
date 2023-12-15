@@ -6,5 +6,6 @@
   "descriptionText": "Check if Readiness Probe is not configured.",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes",
   "platform": "Kubernetes",
-  "descriptionID": "28c0498a"
+  "descriptionID": "28c0498a",
+  "CWE": ""
 }

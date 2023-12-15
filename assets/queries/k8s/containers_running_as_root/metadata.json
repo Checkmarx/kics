@@ -6,5 +6,6 @@
   "descriptionText": "Containers should only run as non-root user. This limits the exploitability of security misconfigurations and restricts an attacker's possibilities in case of compromise",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
   "platform": "Kubernetes",
-  "descriptionID": "9d5b1d16"
+  "descriptionID": "9d5b1d16",
+  "CWE": ""
 }

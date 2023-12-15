@@ -6,5 +6,6 @@
   "descriptionText": "When using etcd commands, the '--peer-client-cert-auth' flag should be set to true",
   "descriptionUrl": "https://etcd.io/docs/v3.4/op-guide/security/",
   "platform": "Kubernetes",
-  "descriptionID": "00b0e7f2"
+  "descriptionID": "00b0e7f2",
+  "CWE": ""
 }

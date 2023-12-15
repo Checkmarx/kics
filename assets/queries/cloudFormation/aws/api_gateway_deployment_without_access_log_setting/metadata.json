@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html",
   "platform": "CloudFormation",
   "descriptionID": "9587628c",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "CWE": ""
 }

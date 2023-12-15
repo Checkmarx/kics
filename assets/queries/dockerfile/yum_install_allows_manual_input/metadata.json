@@ -3,8 +3,9 @@
   "queryName": "Yum Install Allows Manual Input",
   "severity": "MEDIUM",
   "category": "Supply-Chain",
-  "descriptionText": "Need to use -y to avoid manual input 'yum install -y <package>'",
+  "descriptionText": "Need to use -y to avoid manual input 'yum install -y \u003cpackage\u003e'",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
   "platform": "Dockerfile",
-  "descriptionID": "f17a245a"
+  "descriptionID": "f17a245a",
+  "CWE": ""
 }

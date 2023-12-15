@@ -6,5 +6,6 @@
   "descriptionText": "Check if any network policy is not targeting any pod.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
   "platform": "Kubernetes",
-  "descriptionID": "be3c67e3"
+  "descriptionID": "be3c67e3",
+  "CWE": ""
 }

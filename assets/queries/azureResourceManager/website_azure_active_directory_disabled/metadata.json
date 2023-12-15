@@ -6,6 +6,7 @@
   "descriptionText": "WebApp should have Azure Active Directory  enabled with 'identity.type' set to 'SystemAssigned' or 'userAssignedIdentities' set to 'true'",
   "descriptionUrl": "https://learn.microsoft.com/en-us/azure/templates/microsoft.web/sites?pivots=deployment-language-arm-template",
   "platform": "AzureResourceManager",
+  "descriptionID": "f50ec4cb",
   "cloudProvider": "azure",
-  "descriptionID": "f50ec4cb"
+  "CWE": ""
 }

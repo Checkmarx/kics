@@ -6,5 +6,6 @@
   "descriptionText": "Request Body reference must always point to '#/components/RequestBodies'",
   "descriptionUrl": "https://swagger.io/specification/#request-body-object",
   "platform": "OpenAPI",
-  "descriptionID": "1b450a4b"
+  "descriptionID": "1b450a4b",
+  "CWE": ""
 }

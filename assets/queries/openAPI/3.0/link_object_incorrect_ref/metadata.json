@@ -6,5 +6,6 @@
   "descriptionText": "Link object reference must always point to '#/components/links'",
   "descriptionUrl": "https://swagger.io/specification/#link-object",
   "platform": "OpenAPI",
-  "descriptionID": "d32809e9"
+  "descriptionID": "d32809e9",
+  "CWE": ""
 }

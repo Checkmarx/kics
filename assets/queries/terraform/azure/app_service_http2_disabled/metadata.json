@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#http2_enabled",
   "platform": "Terraform",
   "descriptionID": "dee0c164",
-  "cloudProvider": "azure"
+  "cloudProvider": "azure",
+  "CWE": ""
 }

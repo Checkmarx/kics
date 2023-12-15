@@ -6,5 +6,6 @@
   "descriptionText": "The Parameter Object should have the attribute 'schema' defined",
   "descriptionUrl": "https://swagger.io/specification/#parameter-object",
   "platform": "OpenAPI",
-  "descriptionID": "de40b141"
+  "descriptionID": "de40b141",
+  "CWE": ""
 }

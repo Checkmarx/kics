@@ -6,5 +6,6 @@
   "descriptionText": "Deployments targeted by HorizontalPodAutoscaler should not have a statically configured replica count set",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/",
   "platform": "Kubernetes",
-  "descriptionID": "3ccc5d6c"
+  "descriptionID": "3ccc5d6c",
+  "CWE": ""
 }

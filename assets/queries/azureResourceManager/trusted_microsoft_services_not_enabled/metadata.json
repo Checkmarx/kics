@@ -6,6 +6,7 @@
   "descriptionText": "Trusted Microsoft Services should be enabled for Storage Account access",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#networkruleset",
   "platform": "AzureResourceManager",
+  "descriptionID": "88ca11b3",
   "cloudProvider": "azure",
-  "descriptionID": "88ca11b3"
+  "CWE": ""
 }

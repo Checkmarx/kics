@@ -8,5 +8,6 @@
   "platform": "Terraform",
   "descriptionID": "66b9bc6e",
   "cloudProvider": "common",
-  "experimental": "true"
+  "experimental": "true",
+  "CWE": ""
 }

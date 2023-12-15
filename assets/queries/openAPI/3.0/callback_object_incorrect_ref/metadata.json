@@ -6,5 +6,6 @@
   "descriptionText": "Callback Object reference must always point to '#/components/callbacks'",
   "descriptionUrl": "https://swagger.io/specification/#callback-object",
   "platform": "OpenAPI",
-  "descriptionID": "ac521411"
+  "descriptionID": "ac521411",
+  "CWE": ""
 }

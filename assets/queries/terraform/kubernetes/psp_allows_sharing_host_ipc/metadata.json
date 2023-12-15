@@ -6,5 +6,6 @@
   "descriptionText": "Pod Security Policy allows containers to share the host IPC namespace",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#host_ipc",
   "platform": "Terraform",
-  "descriptionID": "45566e38"
+  "descriptionID": "45566e38",
+  "CWE": ""
 }

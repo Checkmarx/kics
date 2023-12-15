@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-minimumcompressionsize",
   "platform": "CloudFormation",
   "descriptionID": "745a11d2",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "CWE": ""
 }

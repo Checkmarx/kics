@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_password_policy_module.html",
   "platform": "Ansible",
   "descriptionID": "e229f4bd",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "CWE": ""
 }

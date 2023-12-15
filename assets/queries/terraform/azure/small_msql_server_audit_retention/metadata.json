@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_server",
   "platform": "Terraform",
   "descriptionID": "96124822",
-  "cloudProvider": "azure"
+  "cloudProvider": "azure",
+  "CWE": ""
 }

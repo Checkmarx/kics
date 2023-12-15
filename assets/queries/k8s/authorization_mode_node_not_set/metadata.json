@@ -6,5 +6,6 @@
   "descriptionText": "When using kube-apiserver command, the 'authorization-mode' flag should have 'Node' mode",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
-  "descriptionID": "1d944481"
+  "descriptionID": "1d944481",
+  "CWE": ""
 }

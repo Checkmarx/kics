@@ -6,5 +6,6 @@
   "descriptionText": "Check if the root container filesystem is not being mounted as read-only.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#read_only_root_filesystem",
   "platform": "Terraform",
-  "descriptionID": "b7afed50"
+  "descriptionID": "b7afed50",
+  "CWE": ""
 }

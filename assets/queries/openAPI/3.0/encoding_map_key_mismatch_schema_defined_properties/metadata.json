@@ -6,5 +6,6 @@
   "descriptionText": "Encoding Map Key should be set in schema defined properties",
   "descriptionUrl": "https://swagger.io/specification/#media-type-object",
   "platform": "OpenAPI",
-  "descriptionID": "f929aa5c"
+  "descriptionID": "f929aa5c",
+  "CWE": ""
 }

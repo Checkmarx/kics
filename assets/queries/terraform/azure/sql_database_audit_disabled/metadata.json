@@ -7,5 +7,6 @@
   "descriptionUrl": "https://www.terraform.io/docs/providers/azurerm/r/sql_database.html",
   "platform": "Terraform",
   "descriptionID": "8f1137db",
-  "cloudProvider": "azure"
+  "cloudProvider": "azure",
+  "CWE": ""
 }

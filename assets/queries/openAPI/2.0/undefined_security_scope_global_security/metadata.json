@@ -6,5 +6,6 @@
   "descriptionText": "Using an scope on global security field that is undefined on 'securityDefinitions' can be defined by an attacker",
   "descriptionUrl": "https://swagger.io/specification/v2/#security-scheme-object",
   "platform": "OpenAPI",
-  "descriptionID": "13115433"
+  "descriptionID": "13115433",
+  "CWE": ""
 }

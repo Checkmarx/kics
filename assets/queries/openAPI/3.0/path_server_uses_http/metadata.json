@@ -6,5 +6,6 @@
   "descriptionText": "The property 'url' in the Path Server Object should only allow 'HTTPS' protocols to ensure an encrypted connection",
   "descriptionUrl": "https://swagger.io/specification/#server-object",
   "platform": "OpenAPI",
-  "descriptionID": "da49b13c"
+  "descriptionID": "da49b13c",
+  "CWE": ""
 }

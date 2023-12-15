@@ -6,5 +6,6 @@
   "descriptionText": "Each namespace should have a LimitRange policy associated to ensure that resource allocations of Pods, Containers and PersistentVolumeClaims do not exceed the defined boundaries",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/limit-range/",
   "platform": "Kubernetes",
-  "descriptionID": "142ed21f"
+  "descriptionID": "142ed21f",
+  "CWE": ""
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Using an scope on security of operations that is undefined on 'securityDefinitions' can be defined by an attacker",
   "descriptionUrl": "https://swagger.io/specification/v2/#security-scheme-object",
   "platform": "OpenAPI",
-  "descriptionID": "c5094b21"
+  "descriptionID": "c5094b21",
+  "CWE": ""
 }

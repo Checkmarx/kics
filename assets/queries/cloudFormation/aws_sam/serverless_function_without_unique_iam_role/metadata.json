@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-role",
   "platform": "CloudFormation",
   "descriptionID": "50e760ce",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "CWE": ""
 }

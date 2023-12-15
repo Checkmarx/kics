@@ -6,5 +6,6 @@
   "descriptionText": "When using kube-apiserver command, the '--enable-admission-plugins' flag should have 'SecurityContextDeny' plugin and the plugin should be correctly configured in AdmissionControl Config file when 'PodSecurityPolicy' plugin is not set",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
-  "descriptionID": "571f15ee"
+  "descriptionID": "571f15ee",
+  "CWE": ""
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Operation object parameters should not have both 'body' and 'formatData' locations",
   "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
   "platform": "OpenAPI",
-  "descriptionID": "007c8e83"
+  "descriptionID": "007c8e83",
+  "CWE": ""
 }

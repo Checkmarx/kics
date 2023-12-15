@@ -6,5 +6,6 @@
   "descriptionText": "Roles and ClusterRoles with get/watch/list RBAC permissions on Kubernetes secrets are dangerous and should be avoided. In case of compromise, attackers could abuse these roles to access sensitive data, such as passwords, tokens and keys",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/role#rule",
   "platform": "Terraform",
-  "descriptionID": "a4fb7558"
+  "descriptionID": "a4fb7558",
+  "CWE": ""
 }

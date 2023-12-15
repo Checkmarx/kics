@@ -6,5 +6,6 @@
   "descriptionText": "Check if StatefulSet resources don't have a podAntiAffinity policy, which prevents multiple pods from being scheduled on the same node.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/",
   "platform": "Kubernetes",
-  "descriptionID": "f0d30dd9"
+  "descriptionID": "f0d30dd9",
+  "CWE": ""
 }

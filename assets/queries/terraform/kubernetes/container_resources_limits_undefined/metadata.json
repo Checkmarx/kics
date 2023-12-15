@@ -6,5 +6,6 @@
   "descriptionText": "Kubernetes container should have resource limitations defined such as CPU and memory",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod",
   "platform": "Terraform",
-  "descriptionID": "36651cdf"
+  "descriptionID": "36651cdf",
+  "CWE": ""
 }

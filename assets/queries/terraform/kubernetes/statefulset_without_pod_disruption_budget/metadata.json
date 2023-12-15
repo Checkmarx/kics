@@ -6,5 +6,6 @@
   "descriptionText": "StatefulSets should be assigned with a PodDisruptionBudget to ensure high availability",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/stateful_set#selector",
   "platform": "Terraform",
-  "descriptionID": "efa415db"
+  "descriptionID": "efa415db",
+  "CWE": ""
 }

@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/disk#encrypted",
   "platform": "Terraform",
   "descriptionID": "68bbdfee",
-  "cloudProvider": "alicloud"
+  "cloudProvider": "alicloud",
+  "CWE": ""
 }

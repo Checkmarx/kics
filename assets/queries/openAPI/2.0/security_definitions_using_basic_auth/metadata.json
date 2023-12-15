@@ -6,5 +6,6 @@
   "descriptionText": "Security Definition Object should not use basic authentication",
   "descriptionUrl": "https://swagger.io/specification/v2/#securitySchemeObject",
   "platform": "OpenAPI",
-  "descriptionID": "80ec8e6a"
+  "descriptionID": "80ec8e6a",
+  "CWE": ""
 }

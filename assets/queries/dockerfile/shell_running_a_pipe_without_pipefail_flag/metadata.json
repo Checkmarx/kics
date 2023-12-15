@@ -6,5 +6,6 @@
   "descriptionText": "Check if shell commands with pipes (except Powershell) have the pipefail flag set (-o).",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
   "platform": "Dockerfile",
-  "descriptionID": "26810b44"
+  "descriptionID": "26810b44",
+  "CWE": ""
 }

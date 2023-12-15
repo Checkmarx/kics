@@ -6,5 +6,6 @@
   "descriptionText": "When using kube-apiserver command, the '--insecure-port' flag should be defined and set to 0",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
-  "descriptionID": "d9e178b1"
+  "descriptionID": "d9e178b1",
+  "CWE": ""
 }

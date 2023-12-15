@@ -6,5 +6,6 @@
   "descriptionText": "Image tag must be defined and not be empty or equal to latest.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/#updating-images",
   "platform": "Kubernetes",
-  "descriptionID": "30154626"
+  "descriptionID": "30154626",
+  "CWE": ""
 }

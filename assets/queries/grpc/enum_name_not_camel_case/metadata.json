@@ -5,6 +5,7 @@
   "category": "Best Practices",
   "descriptionText": "All Enum Names should follow CamelCase and start with Capital Letter",
   "descriptionUrl": "https://developers.google.com/protocol-buffers/docs/reference/proto3-spec#enum_definition",
+  "platform": "GRPC",
   "descriptionID": "a780a54d",
-  "platform": "GRPC"
+  "CWE": ""
 }

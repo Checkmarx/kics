@@ -6,5 +6,6 @@
   "descriptionText": "When using kube-apiserver command, the --enable-admission-plugins flag should have 'EventRateLimit' plugin and the plugin should be correctly configured in AdmissionControl Config file",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
-  "descriptionID": "3cc9eca8"
+  "descriptionID": "3cc9eca8",
+  "CWE": ""
 }

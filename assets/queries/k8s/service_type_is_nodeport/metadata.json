@@ -6,5 +6,6 @@
   "descriptionText": "Service type should not be NodePort",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/service/",
   "platform": "Kubernetes",
-  "descriptionID": "4744714e"
+  "descriptionID": "4744714e",
+  "CWE": ""
 }

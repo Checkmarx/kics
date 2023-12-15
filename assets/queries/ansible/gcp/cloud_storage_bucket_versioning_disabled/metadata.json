@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-versioning",
   "platform": "Ansible",
   "descriptionID": "2d791672",
-  "cloudProvider": "gcp"
+  "cloudProvider": "gcp",
+  "CWE": ""
 }

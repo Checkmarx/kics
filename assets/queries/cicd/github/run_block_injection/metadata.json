@@ -7,5 +7,6 @@
   "descriptionUrl": "https://securitylab.github.com/research/github-actions-untrusted-input/",
   "platform": "CICD",
   "descriptionID": "02044a75",
-  "cloudProvider": "common"
+  "cloudProvider": "common",
+  "CWE": ""
 }

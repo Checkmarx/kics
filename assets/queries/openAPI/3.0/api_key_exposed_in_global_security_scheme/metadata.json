@@ -6,5 +6,6 @@
   "descriptionText": "API Keys should not be transported over network",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
   "platform": "OpenAPI",
-  "descriptionID": "bcb4b221"
+  "descriptionID": "bcb4b221",
+  "CWE": ""
 }

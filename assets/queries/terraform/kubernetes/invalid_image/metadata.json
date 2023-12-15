@@ -6,5 +6,6 @@
   "descriptionText": "Image must be defined and not be empty or equal to latest.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image",
   "platform": "Terraform",
-  "descriptionID": "56713716"
+  "descriptionID": "56713716",
+  "CWE": ""
 }

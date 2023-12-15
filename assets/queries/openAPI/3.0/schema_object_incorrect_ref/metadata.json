@@ -6,5 +6,6 @@
   "descriptionText": "Schema Object reference must always point to '#/components/schemas'",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
-  "descriptionID": "9f6a14ba"
+  "descriptionID": "9f6a14ba",
+  "CWE": ""
 }

@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/elasticache_module.html#parameter-cache_subnet_group",
   "platform": "Ansible",
   "descriptionID": "c9bde487",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "CWE": ""
 }

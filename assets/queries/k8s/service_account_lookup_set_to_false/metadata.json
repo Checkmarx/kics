@@ -6,5 +6,6 @@
   "descriptionText": "When using kube-apiserver command, the '--service-account-lookup' flag should be set to true",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
-  "descriptionID": "c957c855"
+  "descriptionID": "c957c855",
+  "CWE": ""
 }

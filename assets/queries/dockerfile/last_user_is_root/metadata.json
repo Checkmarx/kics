@@ -6,5 +6,6 @@
   "descriptionText": "Leaving the last user as root can cause security risks. Change to another user after running the commands the need privileges",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#user",
   "platform": "Dockerfile",
-  "descriptionID": "f445bd25"
+  "descriptionID": "f445bd25",
+  "CWE": ""
 }

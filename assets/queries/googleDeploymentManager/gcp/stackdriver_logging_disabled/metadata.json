@@ -7,5 +7,6 @@
   "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "ba92577c",
-  "cloudProvider": "gcp"
+  "cloudProvider": "gcp",
+  "CWE": ""
 }

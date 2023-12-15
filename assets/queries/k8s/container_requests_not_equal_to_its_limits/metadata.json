@@ -6,5 +6,6 @@
   "descriptionText": "Containers must have the same resource requests set as limits. This is recommended to avoid resource DDoS of the node during spikes and means that 'requests.memory' and 'requests.cpu' must equal 'limits.memory' and 'limits.cpu', respectively",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
   "platform": "Kubernetes",
-  "descriptionID": "39aeed84"
+  "descriptionID": "39aeed84",
+  "CWE": ""
 }

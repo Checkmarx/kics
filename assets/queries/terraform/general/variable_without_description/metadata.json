@@ -7,5 +7,6 @@
   "descriptionUrl": "https://www.terraform.io/docs/language/values/variables.html#input-variable-documentation",
   "platform": "Terraform",
   "descriptionID": "b44986be",
-  "cloudProvider": "common"
+  "cloudProvider": "common",
+  "CWE": ""
 }

@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteconfig-object",
   "platform": "AzureResourceManager",
   "descriptionID": "1a442064",
-  "cloudProvider": "azure"
+  "cloudProvider": "azure",
+  "CWE": ""
 }

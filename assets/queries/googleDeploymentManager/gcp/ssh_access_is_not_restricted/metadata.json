@@ -7,5 +7,6 @@
   "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/firewalls",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "10629ac9",
-  "cloudProvider": "gcp"
+  "cloudProvider": "gcp",
+  "CWE": ""
 }

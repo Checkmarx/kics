@@ -6,5 +6,6 @@
   "descriptionText": "Check if any network policy is not targeting any pod.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/network_policy#match_labels",
   "platform": "Terraform",
-  "descriptionID": "1598c368"
+  "descriptionID": "1598c368",
+  "CWE": ""
 }

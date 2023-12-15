@@ -6,5 +6,6 @@
   "descriptionText": "When using etcd commands, the '--auto-tls' should be set to false",
   "descriptionUrl": "https://etcd.io/docs/v3.4/op-guide/security/",
   "platform": "Kubernetes",
-  "descriptionID": "81883f01"
+  "descriptionID": "81883f01",
+  "CWE": ""
 }

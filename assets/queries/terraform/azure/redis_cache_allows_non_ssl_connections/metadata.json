@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache",
   "platform": "Terraform",
   "descriptionID": "b7160c8c",
-  "cloudProvider": "azure"
+  "cloudProvider": "azure",
+  "CWE": ""
 }

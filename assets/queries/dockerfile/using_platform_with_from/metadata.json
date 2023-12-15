@@ -6,5 +6,6 @@
   "descriptionText": "Don't use '--platform' flag with FROM",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#from",
   "platform": "Dockerfile",
-  "descriptionID": "5bd0baab"
+  "descriptionID": "5bd0baab",
+  "CWE": ""
 }

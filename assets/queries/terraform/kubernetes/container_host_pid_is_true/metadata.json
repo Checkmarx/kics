@@ -6,5 +6,6 @@
   "descriptionText": "Minimize the admission of containers wishing to share the host process ID namespace",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_pid",
   "platform": "Terraform",
-  "descriptionID": "74aa164e"
+  "descriptionID": "74aa164e",
+  "CWE": ""
 }

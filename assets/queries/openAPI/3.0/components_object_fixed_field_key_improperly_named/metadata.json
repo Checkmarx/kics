@@ -6,5 +6,6 @@
   "descriptionText": "Components object fixed fields (schemas, responses, parameters, examples, requestBodies, headers, securitySchemes, links, and callbacks) should use keys that match the following REGEX: `^[a-zA-Z0-9\\.\\-_]+$`",
   "descriptionUrl": "https://swagger.io/specification/#components-object",
   "platform": "OpenAPI",
-  "descriptionID": "a6f85ed4"
+  "descriptionID": "a6f85ed4",
+  "CWE": ""
 }

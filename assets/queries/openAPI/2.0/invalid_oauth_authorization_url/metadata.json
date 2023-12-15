@@ -6,5 +6,6 @@
   "descriptionText": "The field authorizationUrl on implicit or authorizationCode fields from OAuth must be a valid URL",
   "descriptionUrl": "https://swagger.io/specification/v2/#securitySchemeObject",
   "platform": "OpenAPI",
-  "descriptionID": "720629e5"
+  "descriptionID": "720629e5",
+  "CWE": ""
 }

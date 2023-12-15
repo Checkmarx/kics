@@ -6,5 +6,6 @@
   "descriptionText": "Containers need to have NET_RAW or All as drop capabilities",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#required_drop_capabilities",
   "platform": "Terraform",
-  "descriptionID": "631e9c61"
+  "descriptionID": "631e9c61",
+  "CWE": ""
 }

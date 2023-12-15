@@ -6,5 +6,6 @@
   "descriptionText": "Components' securityScheme field must have a valid scheme",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
   "platform": "OpenAPI",
-  "descriptionID": "61dba06b"
+  "descriptionID": "61dba06b",
+  "CWE": ""
 }

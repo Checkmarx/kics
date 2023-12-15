@@ -6,5 +6,6 @@
   "descriptionText": "Containers should be configured with AppArmor for any application to reduce its potential attack",
   "descriptionUrl": "https://www.pulumi.com/registry/packages/kubernetes/api-docs/core/v1/pod/#objectmeta",
   "platform": "Pulumi",
-  "descriptionID": "15676623"
+  "descriptionID": "15676623",
+  "CWE": ""
 }

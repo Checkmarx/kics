@@ -6,5 +6,6 @@
   "descriptionText": "Content Type should be set to 'multipart/form-data' in case of uploading an arbitrary number of files (array)",
   "descriptionUrl": "https://swagger.io/docs/specification/describing-request-body/file-upload/",
   "platform": "OpenAPI",
-  "descriptionID": "d74b6525"
+  "descriptionID": "d74b6525",
+  "CWE": ""
 }

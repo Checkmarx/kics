@@ -6,5 +6,6 @@
   "descriptionText": "Check if any label in the metadata is invalid.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
   "platform": "Kubernetes",
-  "descriptionID": "a6921416"
+  "descriptionID": "a6921416",
+  "CWE": ""
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Parameter reference should exists on components field",
   "descriptionUrl": "https://swagger.io/specification/#components-object",
   "platform": "OpenAPI",
-  "descriptionID": "a4f776da"
+  "descriptionID": "a4f776da",
+  "CWE": ""
 }

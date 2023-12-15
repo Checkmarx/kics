@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html",
   "platform": "CloudFormation",
   "descriptionID": "8fa43a9a",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "CWE": ""
 }

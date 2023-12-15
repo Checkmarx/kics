@@ -6,5 +6,6 @@
   "descriptionText": "Objects should accept 'additionalProperties' if it is allOf or an object with anyOf or oneOf",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
-  "descriptionID": "d470a878"
+  "descriptionID": "d470a878",
+  "CWE": ""
 }

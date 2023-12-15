@@ -6,5 +6,6 @@
   "descriptionText": "The header object should have schema defined",
   "descriptionUrl": "https://swagger.io/specification/#header-object",
   "platform": "OpenAPI",
-  "descriptionID": "c1c481e4"
+  "descriptionID": "c1c481e4",
+  "CWE": ""
 }

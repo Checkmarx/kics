@@ -6,5 +6,6 @@
   "descriptionText": "The Body Parameter Object should have the attribute 'schema' defined",
   "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
   "platform": "OpenAPI",
-  "descriptionID": "e135be5b"
+  "descriptionID": "e135be5b",
+  "CWE": ""
 }

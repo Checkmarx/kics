@@ -6,5 +6,6 @@
   "descriptionText": "Containers should be configured with a secure Seccomp profile to restrict potentially dangerous syscalls",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#annotations",
   "platform": "Terraform",
-  "descriptionID": "ad5436a1"
+  "descriptionID": "ad5436a1",
+  "CWE": ""
 }

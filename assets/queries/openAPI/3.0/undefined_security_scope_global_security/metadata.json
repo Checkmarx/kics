@@ -6,5 +6,6 @@
   "descriptionText": "Using an scope on global security field that is undefined on 'securityScheme' can be defined by an attacker",
   "descriptionUrl": "https://swagger.io/specification/#oauth-flow-object",
   "platform": "OpenAPI",
-  "descriptionID": "ef926b66"
+  "descriptionID": "ef926b66",
+  "CWE": ""
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Kubernetes Stateful Sets must have one Volume Claim template with the access mode 'ReadWriteOnce'",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/",
   "platform": "Kubernetes",
-  "descriptionID": "f4e48914"
+  "descriptionID": "f4e48914",
+  "CWE": ""
 }

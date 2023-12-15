@@ -6,5 +6,6 @@
   "descriptionText": "Only one body parameter is allowed on operation's parameters type field",
   "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
   "platform": "OpenAPI",
-  "descriptionID": "817fa38a"
+  "descriptionID": "817fa38a",
+  "CWE": ""
 }

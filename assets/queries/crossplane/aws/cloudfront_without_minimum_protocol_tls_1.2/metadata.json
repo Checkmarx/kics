@@ -7,5 +7,6 @@
   "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/cloudfront.aws.crossplane.io/Distribution/v1alpha1@v0.29.0#spec-forProvider-distributionConfig-viewerCertificate-minimumProtocolVersion",
   "platform": "Crossplane",
   "descriptionID": "11cca65a",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "CWE": ""
 }
