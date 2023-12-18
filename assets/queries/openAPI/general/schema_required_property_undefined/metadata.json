@@ -6,13 +6,15 @@
   "descriptionText": "Schema Object should not be have a required property that is not defined on properties",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
+  "descriptionID": "35016950",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "811762c8-2e99-4f70-88f9-a63875a953b1",
       "queryName": "Schema Has A Required Property Undefined (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "35016950"
+  "CWE": ""
 }

@@ -6,13 +6,15 @@
   "descriptionText": "Contact Object URL should be a valid URL",
   "descriptionUrl": "https://swagger.io/specification/#contact-object",
   "platform": "OpenAPI",
+  "descriptionID": "f3097573",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "c7000383-16d0-4509-8cd3-585e5ea2e2f2",
       "queryName": "Invalid Contact URL (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#contactObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#contactObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "f3097573"
+  "CWE": ""
 }

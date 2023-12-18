@@ -6,14 +6,15 @@
   "descriptionText": "Global security field should be defined to prevent API to have insecure paths and have this rules defined on securitySchemes",
   "descriptionUrl": "https://swagger.io/specification/#security-requirement-object",
   "platform": "OpenAPI",
+  "descriptionID": "25b129f1",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "74703c89-0ea2-49ab-a7db-bf04f19f5a57",
       "queryName": "Global Security Field Is Undefined (v2)",
-      "descriptionText": "Global security field should be defined to prevent API to have insecure paths and have this rules defined on securityDefinitions",
-      "descriptionUrl": "https://swagger.io/specification/v2/#securityRequirementObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#securityRequirementObject",
+      "descriptionText": "Global security field should be defined to prevent API to have insecure paths and have this rules defined on securityDefinitions"
     }
   },
-  "aggregation": 2,
-  "descriptionID": "25b129f1"
+  "CWE": ""
 }

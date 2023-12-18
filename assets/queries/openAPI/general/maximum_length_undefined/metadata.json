@@ -6,14 +6,15 @@
   "descriptionText": "String schema should have 'maxLength' defined.",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
+  "descriptionID": "e470e664",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "2ec86e48-ab90-4cb6-a131-0502afd1f442",
       "queryName": "Maximum Length Undefined (v2)",
-      "descriptionText": "String schema/parameter/header should have 'maxLength' defined.",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
+      "descriptionText": "String schema/parameter/header should have 'maxLength' defined."
     }
   },
-  "aggregation": 2,
-  "descriptionID": "e470e664"
+  "CWE": ""
 }

@@ -6,13 +6,15 @@
   "descriptionText": "Put should define at least one success response (200, 201, 202 or 204)",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
   "platform": "OpenAPI",
+  "descriptionID": "4929871f",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "965a043f-5f3c-4d0a-be72-d9ce12fdb4d6",
       "queryName": "Success Response Code Undefined for Put Operation (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object"
+      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "4929871f"
+  "CWE": ""
 }

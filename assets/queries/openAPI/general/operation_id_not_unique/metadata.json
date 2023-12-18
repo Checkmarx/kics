@@ -6,13 +6,15 @@
   "descriptionText": "OperationId should be unique when defined",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
   "platform": "OpenAPI",
+  "descriptionID": "940820bd",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "21245007-91c4-40e5-964e-40c85d1e5aa6",
       "queryName": "OperationId Not Unique (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operationObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#operationObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "940820bd"
+  "CWE": ""
 }

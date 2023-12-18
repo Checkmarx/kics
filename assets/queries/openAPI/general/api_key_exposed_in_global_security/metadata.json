@@ -6,13 +6,15 @@
   "descriptionText": "API Keys should not be transported over network",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
   "platform": "OpenAPI",
+  "descriptionID": "f7f6e7fb",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "533a0d13-6e89-4551-ae33-bce14e5849c1",
       "queryName": "API Key Exposed In Global Security (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#securityDefinitionsObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#securityDefinitionsObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "f7f6e7fb"
+  "CWE": ""
 }

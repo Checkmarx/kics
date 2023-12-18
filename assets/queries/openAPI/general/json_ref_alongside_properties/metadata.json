@@ -6,13 +6,15 @@
   "descriptionText": "Each field on Open API specification which accepts '$ref', infers that field is using a reference object, which has only '$ref' key",
   "descriptionUrl": "https://swagger.io/specification/#reference-object",
   "platform": "OpenAPI",
+  "descriptionID": "5616ac69",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "f34c1c68-4773-4df0-a103-6e2ca32e585f",
       "queryName": "JSON '$ref' alongside other properties (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#referenceObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#referenceObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "5616ac69"
+  "CWE": ""
 }

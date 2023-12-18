@@ -6,13 +6,15 @@
   "descriptionText": "Schema Object Property key should be unique through out the fields 'properties', 'allOf', 'additionalProperties'",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
+  "descriptionID": "898b0e0a",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "ded017bf-fb13-4f8d-868b-84aebcc572ad",
       "queryName": "Schema Object Properties With Duplicated Keys (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "898b0e0a"
+  "CWE": ""
 }

@@ -6,13 +6,15 @@
   "descriptionText": "Delete should define at least one success response (200, 201, 202 or 204)",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
   "platform": "OpenAPI",
+  "descriptionID": "b24ceff4",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "ad432855-b7fb-4429-92a3-93b5ce34f0b1",
       "queryName": "Success Response Code Undefined for Delete Operation (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object"
+      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "b24ceff4"
+  "CWE": ""
 }

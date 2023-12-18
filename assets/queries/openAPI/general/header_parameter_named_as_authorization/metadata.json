@@ -6,13 +6,15 @@
   "descriptionText": "The header Parameter should not be named as 'Authorization'. If so, it will be ignored.",
   "descriptionUrl": "https://swagger.io/specification/#parameter-object",
   "platform": "OpenAPI",
+  "descriptionID": "daeb6e7b",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "e2e00c97-7171-4fb4-b461-d631df9a711c",
       "queryName": "Header Parameter Named as 'Authorization' (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "daeb6e7b"
+  "CWE": ""
 }

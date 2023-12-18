@@ -6,13 +6,15 @@
   "descriptionText": "Paths object may be empty due to ACL constraints, meaning they are not exposed",
   "descriptionUrl": "https://swagger.io/specification/#paths-object",
   "platform": "OpenAPI",
+  "descriptionID": "0fee068b",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "3e6c7b1c-8a8d-43ab-98b9-65159f44db4a",
       "queryName": "Paths Object is Empty (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#pathsObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#pathsObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "0fee068b"
+  "CWE": ""
 }

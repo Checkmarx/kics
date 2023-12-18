@@ -6,13 +6,15 @@
   "descriptionText": "Security object need to have defined rules in its array and rules should be defined on securityScheme",
   "descriptionUrl": "https://swagger.io/specification/#security-requirement-object",
   "platform": "OpenAPI",
+  "descriptionID": "28d95589",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "da31d54b-ad54-41dc-95eb-8b3828629213",
       "queryName": "Global Security Field Has An Empty Array (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#security-requirement-object"
+      "descriptionUrl": "https://swagger.io/specification/v2/#security-requirement-object",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "28d95589"
+  "CWE": ""
 }

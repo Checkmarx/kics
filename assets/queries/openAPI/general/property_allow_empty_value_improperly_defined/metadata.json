@@ -6,13 +6,15 @@
   "descriptionText": "Property 'allowEmptyValue' should be only defined for query parameters and formData parameters",
   "descriptionUrl": "https://swagger.io/specification/#parameter-object",
   "platform": "OpenAPI",
+  "descriptionID": "37e0c585",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "0bc1477d-0922-478b-ae16-674a7634a1a8",
       "queryName": "Property 'allowEmptyValue' Improperly Defined (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "37e0c585"
+  "CWE": ""
 }

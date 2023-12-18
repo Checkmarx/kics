@@ -6,13 +6,15 @@
   "descriptionText": "Head should define at least one success response (200 or 202)",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
   "platform": "OpenAPI",
+  "descriptionID": "854a1fe4",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "4f0b30e3-a498-4dd7-b3f2-f4b6471a8d5a",
       "queryName": "Success Response Code Undefined for Head Operation (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object"
+      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "854a1fe4"
+  "CWE": ""
 }

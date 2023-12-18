@@ -6,13 +6,15 @@
   "descriptionText": "The format should be valid for the type defined. For integer type must be int32 or int64 and number type must be float or double",
   "descriptionUrl": "https://swagger.io/docs/specification/data-models/data-types/",
   "platform": "OpenAPI",
+  "descriptionID": "b8284333",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "caf1793e-95dd-4b18-8d90-8f3c0ab5bddf",
       "queryName": "Invalid Format (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/"
+      "descriptionUrl": "https://swagger.io/specification/v2/",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "b8284333"
+  "CWE": ""
 }

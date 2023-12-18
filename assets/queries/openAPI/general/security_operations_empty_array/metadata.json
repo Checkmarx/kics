@@ -6,13 +6,15 @@
   "descriptionText": "Security object for operations, if defined, must define a security scheme, otherwise it should be considered an error",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
   "platform": "OpenAPI",
+  "descriptionID": "f2d6f7fc",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "5d29effc-5d68-481f-9721-d74e5919226b",
       "queryName": "Security Field On Operations Has An Empty Array (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object"
+      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "f2d6f7fc"
+  "CWE": ""
 }

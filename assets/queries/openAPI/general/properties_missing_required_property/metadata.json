@@ -6,13 +6,15 @@
   "descriptionText": "Schema Object should have all required properties defined",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
+  "descriptionID": "c5c91b2f",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "71beb6ab-8b70-4816-a9ac-a0ff1fb22a62",
       "queryName": "Properties Missing Required Property (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "c5c91b2f"
+  "CWE": ""
 }

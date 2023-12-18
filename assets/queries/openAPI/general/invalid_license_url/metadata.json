@@ -6,13 +6,15 @@
   "descriptionText": "License Object URL should be a valid URL",
   "descriptionUrl": "https://swagger.io/specification/#license-object",
   "platform": "OpenAPI",
+  "descriptionID": "d5d073df",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "de2b4910-8484-46d6-a055-dc1e793ee3ff",
       "queryName": "Invalid License URL (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#licenseObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#licenseObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "d5d073df"
+  "CWE": ""
 }

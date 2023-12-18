@@ -6,13 +6,15 @@
   "descriptionText": "Schema External Documentation URL should be a valid URL",
   "descriptionUrl": "https://swagger.io/specification/#external-documentation-object",
   "platform": "OpenAPI",
+  "descriptionID": "1628e080",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "f7fa95b7-d819-484c-9a2b-665dd1bba25e",
       "queryName": "Invalid Schema External Documentation URL (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#externalDocumentationObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#externalDocumentationObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "1628e080"
+  "CWE": ""
 }

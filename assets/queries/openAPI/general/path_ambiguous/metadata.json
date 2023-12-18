@@ -6,13 +6,15 @@
   "descriptionText": "All path should be unique, if has more than one operation, all operations should be part of same Path Object",
   "descriptionUrl": "https://swagger.io/specification/#path-item-object",
   "platform": "OpenAPI",
+  "descriptionID": "41e6873a",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "b2468463-3ac4-4930-890c-f35b2bf4485d",
       "queryName": "Path Is Ambiguous (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#pathItemObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#pathItemObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "41e6873a"
+  "CWE": ""
 }

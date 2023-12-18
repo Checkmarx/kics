@@ -7,6 +7,7 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_securitygroup_module.html#parameter-rules",
   "platform": "Ansible",
   "descriptionID": "33745204",
+  "aggregation": 62,
   "cloudProvider": "azure",
-  "aggregation": 62
+  "CWE": ""
 }

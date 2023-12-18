@@ -6,14 +6,15 @@
   "descriptionText": "The field 'default' of Schema Object should be consistent with the schema's type",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
+  "descriptionID": "18b2fb98",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "78dfd8f0-a6ee-48ec-af8c-e4d9b3292a07",
       "queryName": "Default Invalid (v2)",
-      "descriptionText": "The field 'default' of Schema/Parameter/Header Object should be consistent with the schema's/parameter's/header's type",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
+      "descriptionText": "The field 'default' of Schema/Parameter/Header Object should be consistent with the schema's/parameter's/header's type"
     }
   },
-  "aggregation": 2,
-  "descriptionID": "18b2fb98"
+  "CWE": ""
 }

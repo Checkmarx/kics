@@ -6,13 +6,15 @@
   "descriptionText": "The template path must have a corresponding path parameter for a given operation",
   "descriptionUrl": "https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#pathTemplating",
   "platform": "OpenAPI",
+  "descriptionID": "e6368373",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "e7656d8d-7288-4bbe-b07b-22b389be75ce",
       "queryName": "Template Path With No Corresponding Path Parameter (v2)",
-      "descriptionUrl": "https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#path-templating"
+      "descriptionUrl": "https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#path-templating",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "e6368373"
+  "CWE": ""
 }

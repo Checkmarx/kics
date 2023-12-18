@@ -6,13 +6,15 @@
   "descriptionText": "The path parameter must have a corresponding template path for a given operation",
   "descriptionUrl": "https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#pathTemplating",
   "platform": "OpenAPI",
+  "descriptionID": "c005cfeb",
   "aggregation": 2,
   "override": {
     "2.0": {
       "id": "194ef1f8-360e-4c14-8ed2-e83e2bafa142",
       "queryName": "Path Parameter With No Corresponding Template Path (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#pathTemplating"
+      "descriptionUrl": "https://swagger.io/specification/v2/#pathTemplating",
+      "descriptionText": ""
     }
   },
-  "descriptionID": "c005cfeb"
+  "CWE": ""
 }
