@@ -10,7 +10,7 @@ func init() { //nolint
 				[]string{"scan", "-o", "/path/e2e/output",
 					"--output-name", "E2E_CLI_076_RESULT",
 					"-p", "\"/path/test/fixtures/max_file_size\"",
-					"--max-file-size", "4",
+					"--max-file-size", "3",
 				},
 			},
 			ExpectedResult: []ResultsValidation{
