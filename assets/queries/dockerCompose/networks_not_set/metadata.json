@@ -6,5 +6,6 @@
   "descriptionText": "Setting networks in services ensures you are not using dockers default bridge (docker0), which shares traffic bewteen all containers.",
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#networks",
   "platform": "DockerCompose",
-  "descriptionID": "3743a217"
+  "descriptionID": "3743a217",
+  "cwe": ""
 }
