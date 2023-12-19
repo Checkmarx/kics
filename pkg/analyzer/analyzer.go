@@ -123,11 +123,13 @@ const (
 	dockerfile = "dockerfile"
 	crossplane = "crossplane"
 	knative    = "knative"
+	MB_SIZE    = 1048576
 )
 
 type Parameters struct {
-	Results string
-	Path    []string
+	Results     string
+	Path        []string
+	MaxFileSize int
 }
 
 // regexSlice is a struct to contain a slice of regex
@@ -149,6 +151,7 @@ type Analyzer struct {
 	Exc               []string
 	GitIgnoreFileName string
 	ExcludeGitIgnore  bool
+	MaxFileSize       int
 }
 
 // types is a map that contains the regex by type
@@ -301,7 +304,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 			ext := utils.GetExtension(path)
 
-			if (hasGitIgnoreFile && gitIgnore.MatchesPath(path)) || isDeadSymlink(path) {
+			if (hasGitIgnoreFile && gitIgnore.MatchesPath(path)) || isDeadSymlink(path) || (a.MaxFileSize >= 0 && float64(info.Size())/float64(MB_SIZE) > float64(a.MaxFileSize)) {
 				ignoreFiles = append(ignoreFiles, path)
 				a.Exc = append(a.Exc, path)
 			}
