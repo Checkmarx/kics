@@ -1,10 +1,10 @@
 package testcases
 
-// E2E-CLI-075 - KICS  scan
-// should perform the scan successfully detect ansible and return result 40
+// E2E-CLI-076 - KICS  scan
+// should perform a scan without detecting anything since no files are scanned because of max file size
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should perform a valid scan and and detect ansible [E2E-CLI-075]",
+		Name: "should perform a scan without detecting anything since no files are scanned because of max file size [E2E-CLI-076]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
