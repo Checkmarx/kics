@@ -6,13 +6,15 @@
   "descriptionText": "All paths should have security scheme, if it is omitted, global security field should be defined",
   "descriptionUrl": "https://swagger.io/specification/#security-requirement-object",
   "platform": "OpenAPI",
+  "descriptionID": "8ecf5376",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "586abcee-9653-462d-ad7b-2638a32bd6e6",
       "queryName": "No Global And Operation Security Defined (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#security-requirement-object"
+      "descriptionUrl": "https://swagger.io/specification/v2/#security-requirement-object",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "8ecf5376"
+  "cwe": ""
 }

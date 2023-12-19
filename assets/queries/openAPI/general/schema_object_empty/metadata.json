@@ -6,13 +6,15 @@
   "descriptionText": "The Schema Object should not be empty to avoid accepting any JSON values",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
+  "descriptionID": "561c9140",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "967575e5-eb44-4c24-aadb-7e33608ed30a",
       "queryName": "Schema Object is Empty (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "561c9140"
+  "cwe": ""
 }

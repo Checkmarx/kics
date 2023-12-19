@@ -6,5 +6,6 @@
   "descriptionText": "COPY '--from' should not mention the current FROM alias, since it is impossible to copy from itself",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/multistage-build/",
   "platform": "Dockerfile",
-  "descriptionID": "a248d89e"
+  "descriptionID": "a248d89e",
+  "cwe": ""
 }
