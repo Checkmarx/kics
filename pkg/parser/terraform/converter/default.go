@@ -267,11 +267,28 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 	}
 }
 
+func checkValue(val cty.Value) bool {
+	if val.Type().HasDynamicTypes() || !val.IsKnown() {
+		return true
+	}
+	if !val.Type().IsPrimitiveType() && checkDynamicKnownTypes(val) {
+		return true
+	}
+	return false
+}
+
 func checkDynamicKnownTypes(valueConverted cty.Value) bool {
 	if !valueConverted.Type().HasDynamicTypes() && valueConverted.IsKnown() {
 		if valueConverted.Type().FriendlyName() == "tuple" {
 			for _, val := range valueConverted.AsValueSlice() {
-				if val.Type().HasDynamicTypes() || !val.IsKnown() {
+				if checkValue(val) {
+					return true
+				}
+			}
+		}
+		if valueConverted.Type().FriendlyName() == "object" {
+			for _, val := range valueConverted.AsValueMap() {
+				if checkValue(val) {
 					return true
 				}
 			}
