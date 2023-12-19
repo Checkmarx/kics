@@ -8,5 +8,5 @@
   "platform": "CICD",
   "descriptionID": "9cb8402d",
   "cloudProvider": "common",
-  "CWE": ""
+  "cwe": ""
 }

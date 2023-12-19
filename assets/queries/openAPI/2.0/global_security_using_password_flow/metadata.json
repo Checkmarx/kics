@@ -7,5 +7,5 @@
   "descriptionUrl": "https://swagger.io/specification/v2/#securityRequirementObject",
   "platform": "OpenAPI",
   "descriptionID": "14a00e4a",
-  "CWE": ""
+  "cwe": ""
 }

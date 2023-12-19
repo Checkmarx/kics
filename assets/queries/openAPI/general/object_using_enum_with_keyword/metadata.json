@@ -16,5 +16,5 @@
       "descriptionText": "Schema/Parameter/Header Object properties should not contain 'enum' and schema keywords"
     }
   },
-  "CWE": ""
+  "cwe": ""
 }

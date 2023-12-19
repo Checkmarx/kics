@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables",
   "platform": "Kubernetes",
   "descriptionID": "99365a7d",
-  "CWE": ""
+  "cwe": ""
 }

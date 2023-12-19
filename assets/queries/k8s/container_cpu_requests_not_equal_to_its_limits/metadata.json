@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
   "platform": "Kubernetes",
   "descriptionID": "3e1c6d16",
-  "CWE": ""
+  "cwe": ""
 }

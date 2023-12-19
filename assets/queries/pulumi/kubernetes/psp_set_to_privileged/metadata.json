@@ -7,5 +7,5 @@
   "descriptionUrl": "https://www.pulumi.com/registry/packages/kubernetes/api-docs/policy/v1beta1/podsecuritypolicy/#privileged_yaml",
   "platform": "Pulumi",
   "descriptionID": "7a6c8b70",
-  "CWE": ""
+  "cwe": ""
 }

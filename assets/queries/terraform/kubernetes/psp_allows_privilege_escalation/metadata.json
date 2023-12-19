@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#allow_privilege_escalation",
   "platform": "Terraform",
   "descriptionID": "1cdd3f21",
-  "CWE": ""
+  "cwe": ""
 }

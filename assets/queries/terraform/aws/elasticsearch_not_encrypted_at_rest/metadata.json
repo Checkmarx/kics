@@ -8,5 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "c402717e",
   "cloudProvider": "aws",
-  "CWE": ""
+  "cwe": ""
 }

@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#liveness_probe",
   "platform": "Terraform",
   "descriptionID": "e5105a57",
-  "CWE": ""
+  "cwe": ""
 }

@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cgroup_parent",
   "platform": "DockerCompose",
   "descriptionID": "b3657456",
-  "CWE": ""
+  "cwe": ""
 }

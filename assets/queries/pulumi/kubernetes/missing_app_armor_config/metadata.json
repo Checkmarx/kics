@@ -7,5 +7,5 @@
   "descriptionUrl": "https://www.pulumi.com/registry/packages/kubernetes/api-docs/core/v1/pod/#objectmeta",
   "platform": "Pulumi",
   "descriptionID": "15676623",
-  "CWE": ""
+  "cwe": ""
 }

@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles",
   "platform": "Kubernetes",
   "descriptionID": "567eee7e",
-  "CWE": ""
+  "cwe": ""
 }

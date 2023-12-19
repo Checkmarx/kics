@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#when-should-you-use-a-liveness-probe",
   "platform": "Kubernetes",
   "descriptionID": "f724fa60",
-  "CWE": ""
+  "cwe": ""
 }

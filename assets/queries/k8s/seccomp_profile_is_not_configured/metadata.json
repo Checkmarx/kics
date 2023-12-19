@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/tutorials/security/seccomp/#create-pod-that-uses-the-container-runtime-default-seccomp-profile",
   "platform": "Kubernetes",
   "descriptionID": "d943c7e7",
-  "CWE": ""
+  "cwe": ""
 }

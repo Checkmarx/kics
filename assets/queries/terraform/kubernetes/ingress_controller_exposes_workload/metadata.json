@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/ingress#http",
   "platform": "Terraform",
   "descriptionID": "88c1dfb2",
-  "CWE": ""
+  "cwe": ""
 }

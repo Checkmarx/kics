@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/",
   "platform": "Kubernetes",
   "descriptionID": "f0d30dd9",
-  "CWE": ""
+  "cwe": ""
 }

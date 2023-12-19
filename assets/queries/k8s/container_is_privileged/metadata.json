@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/pods/#privileged-mode-for-containers",
   "platform": "Kubernetes",
   "descriptionID": "55f59030",
-  "CWE": ""
+  "cwe": ""
 }

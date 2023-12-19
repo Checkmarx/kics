@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
   "platform": "Kubernetes",
   "descriptionID": "8182d7cf",
-  "CWE": ""
+  "cwe": ""
 }

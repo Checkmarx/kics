@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/",
   "platform": "Kubernetes",
   "descriptionID": "7db90ca7",
-  "CWE": ""
+  "cwe": ""
 }

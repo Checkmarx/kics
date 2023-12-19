@@ -7,5 +7,5 @@
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/functions#kms-keys",
   "platform": "ServerlessFW",
   "descriptionID": "d900c253",
-  "CWE": ""
+  "cwe": ""
 }

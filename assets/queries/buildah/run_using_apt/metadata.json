@@ -7,5 +7,5 @@
   "descriptionUrl": "https://github.com/containers/buildah/blob/main/docs/buildah-run.1.md",
   "platform": "Buildah",
   "descriptionID": "eb58fa0b",
-  "CWE": ""
+  "cwe": ""
 }

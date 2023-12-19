@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/organization_webhook",
   "platform": "Terraform",
   "descriptionID": "5def6580",
-  "CWE": ""
+  "cwe": ""
 }

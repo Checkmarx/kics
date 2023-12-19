@@ -147,7 +147,7 @@
                 "true"
             ]
         },
-        "CWE": {
+        "cwe": {
             "type": "string"
         }
     }

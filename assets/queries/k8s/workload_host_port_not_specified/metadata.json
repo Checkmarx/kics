@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#exposing-the-service",
   "platform": "Kubernetes",
   "descriptionID": "dba41ddb",
-  "CWE": ""
+  "cwe": ""
 }

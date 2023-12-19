@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes",
   "platform": "DockerCompose",
   "descriptionID": "1c7ca167",
-  "CWE": ""
+  "cwe": ""
 }

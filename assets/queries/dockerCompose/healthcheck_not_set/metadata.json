@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck",
   "platform": "DockerCompose",
   "descriptionID": "449b7c5c",
-  "CWE": ""
+  "cwe": ""
 }

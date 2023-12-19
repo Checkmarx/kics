@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
   "platform": "Kubernetes",
   "descriptionID": "a6921416",
-  "CWE": ""
+  "cwe": ""
 }

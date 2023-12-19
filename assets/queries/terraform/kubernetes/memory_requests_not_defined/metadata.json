@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#requests",
   "platform": "Terraform",
   "descriptionID": "a77e5da7",
-  "CWE": ""
+  "cwe": ""
 }

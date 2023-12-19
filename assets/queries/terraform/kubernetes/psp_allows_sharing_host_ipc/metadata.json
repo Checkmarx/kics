@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#host_ipc",
   "platform": "Terraform",
   "descriptionID": "45566e38",
-  "CWE": ""
+  "cwe": ""
 }

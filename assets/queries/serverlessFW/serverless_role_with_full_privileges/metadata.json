@@ -7,5 +7,5 @@
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/iam",
   "platform": "ServerlessFW",
   "descriptionID": "0907f0e7",
-  "CWE": ""
+  "cwe": ""
 }

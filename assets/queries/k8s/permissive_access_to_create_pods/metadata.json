@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/#privilege-escalation-prevention-and-bootstrapping",
   "platform": "Kubernetes",
   "descriptionID": "c78cb1a7",
-  "CWE": ""
+  "cwe": ""
 }

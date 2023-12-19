@@ -16,5 +16,5 @@
       "descriptionText": "String schema/parameter/header should have 'maxLength' defined."
     }
   },
-  "CWE": ""
+  "cwe": ""
 }

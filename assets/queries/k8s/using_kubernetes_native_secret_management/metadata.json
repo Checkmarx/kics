@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/secret/",
   "platform": "Kubernetes",
   "descriptionID": "3d7b569c",
-  "CWE": ""
+  "cwe": ""
 }

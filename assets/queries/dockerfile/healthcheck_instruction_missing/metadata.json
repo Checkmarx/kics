@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#healthcheck",
   "platform": "Dockerfile",
   "descriptionID": "426121ee",
-  "CWE": ""
+  "cwe": ""
 }

@@ -7,5 +7,5 @@
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/events/apigateway#aws-x-ray-tracing",
   "platform": "ServerlessFW",
   "descriptionID": "4af7c06f",
-  "CWE": ""
+  "cwe": ""
 }

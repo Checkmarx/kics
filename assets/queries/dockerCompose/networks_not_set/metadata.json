@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#networks",
   "platform": "DockerCompose",
   "descriptionID": "3743a217",
-  "CWE": ""
+  "cwe": ""
 }

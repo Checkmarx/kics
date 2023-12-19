@@ -8,5 +8,5 @@
   "platform": "Ansible",
   "descriptionID": "a99c1fe0",
   "cloudProvider": "aws",
-  "CWE": ""
+  "cwe": ""
 }

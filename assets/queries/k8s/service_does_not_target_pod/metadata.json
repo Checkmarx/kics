@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/service/",
   "platform": "Kubernetes",
   "descriptionID": "e7c26645",
-  "CWE": ""
+  "cwe": ""
 }

@@ -16,5 +16,5 @@
       "descriptionText": "Schema/Parameter/Header Object define type should not use a keyword of another type"
     }
   },
-  "CWE": ""
+  "cwe": ""
 }

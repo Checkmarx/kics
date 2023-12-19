@@ -7,5 +7,5 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service_account#automount_service_account_token",
   "platform": "Terraform",
   "descriptionID": "b0822187",
-  "CWE": ""
+  "cwe": ""
 }

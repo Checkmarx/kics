@@ -7,5 +7,5 @@
   "descriptionUrl": "https://etcd.io/docs/v3.4/op-guide/security/",
   "platform": "Kubernetes",
   "descriptionID": "00b0e7f2",
-  "CWE": ""
+  "cwe": ""
 }

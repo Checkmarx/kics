@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/limit-range/",
   "platform": "Kubernetes",
   "descriptionID": "142ed21f",
-  "CWE": ""
+  "cwe": ""
 }

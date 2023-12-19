@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/",
   "platform": "Kubernetes",
   "descriptionID": "3dcbd683",
-  "CWE": ""
+  "cwe": ""
 }

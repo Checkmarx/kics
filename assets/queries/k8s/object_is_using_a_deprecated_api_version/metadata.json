@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/reference/using-api/deprecation-guide/",
   "platform": "Kubernetes",
   "descriptionID": "d5c30c5b",
-  "CWE": ""
+  "cwe": ""
 }

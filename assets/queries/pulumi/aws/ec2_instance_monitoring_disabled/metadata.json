@@ -8,5 +8,5 @@
   "platform": "Pulumi",
   "descriptionID": "7f96d3ac",
   "cloudProvider": "aws",
-  "CWE": ""
+  "cwe": ""
 }

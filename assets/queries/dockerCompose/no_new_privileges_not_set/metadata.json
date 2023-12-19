@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/engine/reference/run/#security-configuration",
   "platform": "DockerCompose",
   "descriptionID": "be48e182",
-  "CWE": ""
+  "cwe": ""
 }

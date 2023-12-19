@@ -8,5 +8,5 @@
   "platform": "AzureResourceManager",
   "descriptionID": "67cfaa3b",
   "cloudProvider": "azure",
-  "CWE": ""
+  "cwe": ""
 }

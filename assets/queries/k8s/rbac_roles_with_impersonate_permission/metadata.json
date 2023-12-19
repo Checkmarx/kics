@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation",
   "platform": "Kubernetes",
   "descriptionID": "9f85c3f6",
-  "CWE": ""
+  "cwe": ""
 }

@@ -8,5 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "d23dc3f9",
   "cloudProvider": "alicloud",
-  "CWE": ""
+  "cwe": ""
 }

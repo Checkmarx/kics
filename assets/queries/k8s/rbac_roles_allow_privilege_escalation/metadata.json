@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/#restrictions-on-role-binding-creation-or-update",
   "platform": "Kubernetes",
   "descriptionID": "8320826e",
-  "CWE": ""
+  "cwe": ""
 }

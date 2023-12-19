@@ -16,5 +16,5 @@
       "descriptionText": "If a response is head or its code is 204 or 304, it shouldn't have a schema defined"
     }
   },
-  "CWE": ""
+  "cwe": ""
 }

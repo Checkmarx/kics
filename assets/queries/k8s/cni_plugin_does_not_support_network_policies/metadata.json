@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/",
   "platform": "Kubernetes",
   "descriptionID": "0e8d122c",
-  "CWE": ""
+  "cwe": ""
 }

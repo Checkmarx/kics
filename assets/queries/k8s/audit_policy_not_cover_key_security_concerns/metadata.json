@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/tasks/debug-application-cluster/audit/",
   "platform": "Kubernetes",
   "descriptionID": "4a720a0c",
-  "CWE": ""
+  "cwe": ""
 }
