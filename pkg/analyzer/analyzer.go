@@ -304,16 +304,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 			ext := utils.GetExtension(path)
 
-			exceededFileSize := a.MaxFileSize >= 0 && float64(info.Size())/float64(sizeMb) > float64(a.MaxFileSize)
-
-			if (hasGitIgnoreFile && gitIgnore.MatchesPath(path)) || isDeadSymlink(path) || exceededFileSize {
-				ignoreFiles = append(ignoreFiles, path)
-				a.Exc = append(a.Exc, path)
-
-				if exceededFileSize {
-					log.Error().Msgf("file %s exceeds maximum file size of %d Mb", path, a.MaxFileSize)
-				}
-			}
+			ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, ignoreFiles)
 
 			if isConfigFile(path, defaultConfigFiles) {
 				projectConfigFiles = append(projectConfigFiles, path)
@@ -333,13 +324,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	// unwanted is the channel shared by the workers that contains the unwanted files that the parser will ignore
 	unwanted := make(chan string, len(files))
 
-	for i := range a.Types {
-		a.Types[i] = strings.ToLower(a.Types[i])
-	}
-
-	for i := range a.ExcludeTypes {
-		a.ExcludeTypes[i] = strings.ToLower(a.ExcludeTypes[i])
-	}
+	a.Types, a.ExcludeTypes = typeLower(a.Types, a.ExcludeTypes)
 
 	// Start the workers
 	for _, file := range files {
@@ -733,4 +718,31 @@ func (a *analyzerInfo) isAvailableType(typeName string) bool {
 	}
 	// no valid behavior detected
 	return false
+}
+
+func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool, gitIgnore *ignore.GitIgnore, path string, ignoreFiles []string) []string {
+	exceededFileSize := a.MaxFileSize >= 0 && float64(fileSize)/float64(sizeMb) > float64(a.MaxFileSize)
+
+	if (hasGitIgnoreFile && gitIgnore.MatchesPath(path)) || isDeadSymlink(path) || exceededFileSize {
+		ignoreFiles = append(ignoreFiles, path)
+		a.Exc = append(a.Exc, path)
+
+		if exceededFileSize {
+			log.Error().Msgf("file %s exceeds maximum file size of %d Mb", path, a.MaxFileSize)
+		}
+	}
+	return ignoreFiles
+}
+
+func typeLower(types, exclTypes []string) ([]string, []string) {
+	for i := range types {
+		types[i] = strings.ToLower(types[i])
+	}
+
+	for i := range exclTypes {
+		exclTypes[i] = strings.ToLower(exclTypes[i])
+	}
+
+	return types, exclTypes
+
 }
