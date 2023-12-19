@@ -6,5 +6,6 @@
   "descriptionText": "Security Scheme HTTP scheme should be registered in the IANA Authentication Scheme registry",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
   "platform": "OpenAPI",
-  "descriptionID": "e8060d48"
+  "descriptionID": "e8060d48",
+  "cwe": ""
 }

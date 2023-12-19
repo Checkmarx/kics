@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html",
   "platform": "Terraform",
   "descriptionID": "09935963",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "cwe": ""
 }

@@ -6,5 +6,6 @@
   "descriptionText": "Workload is mounting a volume with sensitive OS Directory",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
   "platform": "Kubernetes",
-  "descriptionID": "73339cde"
+  "descriptionID": "73339cde",
+  "cwe": ""
 }

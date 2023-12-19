@@ -6,5 +6,6 @@
   "descriptionText": "Response Object reference must always point to '#/responses'",
   "descriptionUrl": "https://swagger.io/specification/v2/#responses-object",
   "platform": "OpenAPI",
-  "descriptionID": "7a486064"
+  "descriptionID": "7a486064",
+  "cwe": ""
 }

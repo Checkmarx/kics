@@ -146,6 +146,9 @@
             "enum": [
                 "true"
             ]
+        },
+        "cwe": {
+            "type": "string"
         }
     }
 }

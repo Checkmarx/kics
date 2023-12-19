@@ -6,5 +6,6 @@
   "descriptionText": "Ensure the use of CNI Plugin that support Network Policies. If the CNI Plugin in use does not support Network Policies it may not be possible to effectively restrict traffic in the cluster",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/",
   "platform": "Kubernetes",
-  "descriptionID": "0e8d122c"
+  "descriptionID": "0e8d122c",
+  "cwe": ""
 }
