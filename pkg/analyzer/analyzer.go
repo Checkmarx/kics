@@ -123,7 +123,7 @@ const (
 	dockerfile = "dockerfile"
 	crossplane = "crossplane"
 	knative    = "knative"
-	MB_SIZE    = 1048576
+	sizeMb     = 1048576
 )
 
 type Parameters struct {
@@ -304,9 +304,15 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 			ext := utils.GetExtension(path)
 
-			if (hasGitIgnoreFile && gitIgnore.MatchesPath(path)) || isDeadSymlink(path) || (a.MaxFileSize >= 0 && float64(info.Size())/float64(MB_SIZE) > float64(a.MaxFileSize)) {
+			exceededFileSize := a.MaxFileSize >= 0 && float64(info.Size())/float64(sizeMb) > float64(a.MaxFileSize)
+
+			if (hasGitIgnoreFile && gitIgnore.MatchesPath(path)) || isDeadSymlink(path) || exceededFileSize {
 				ignoreFiles = append(ignoreFiles, path)
 				a.Exc = append(a.Exc, path)
+
+				if exceededFileSize {
+					log.Err(err).Msgf("file %s exceeds maximum file size of %d Mb", path, a.MaxFileSize)
+				}
 			}
 
 			if isConfigFile(path, defaultConfigFiles) {
