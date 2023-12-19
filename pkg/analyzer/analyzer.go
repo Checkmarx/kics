@@ -311,7 +311,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 				a.Exc = append(a.Exc, path)
 
 				if exceededFileSize {
-					log.Err(err).Msgf("file %s exceeds maximum file size of %d Mb", path, a.MaxFileSize)
+					log.Error().Msgf("file %s exceeds maximum file size of %d Mb", path, a.MaxFileSize)
 				}
 			}
 
