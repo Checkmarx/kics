@@ -207,5 +207,11 @@
     "shorthandFlag": "",
     "defaultValue": "false",
     "usage": "resolve the file reference, on OpenAPI files"
+  },
+  "max-file-size": {
+    "flagType": "int",
+    "shorthandFlag": "",
+    "defaultValue": "5",
+    "usage": "max file size permitted for scanning, in MB"
   }
 }

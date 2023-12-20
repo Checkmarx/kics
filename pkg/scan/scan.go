@@ -258,6 +258,7 @@ func (c *Client) createService(
 				SecretsInspector: secretsInspector,
 				Tracker:          t,
 				Resolver:         combinedResolver,
+				MaxFileSize:      c.ScanParams.MaxFileSizeFlag,
 			},
 		)
 	}
