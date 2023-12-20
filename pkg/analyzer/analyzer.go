@@ -736,7 +736,7 @@ func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool,
 	return ignoreFiles
 }
 
-func typeLower(types, exclTypes []string) (typesRes []string, exclTypesRes []string) {
+func typeLower(types, exclTypes []string) (typesRes, exclTypesRes []string) {
 	for i := range types {
 		types[i] = strings.ToLower(types[i])
 	}
