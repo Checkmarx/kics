@@ -720,7 +720,9 @@ func (a *analyzerInfo) isAvailableType(typeName string) bool {
 	return false
 }
 
-func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool, gitIgnore *ignore.GitIgnore, path string, ignoreFiles []string) []string {
+func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool,
+	gitIgnore *ignore.GitIgnore,
+	path string, ignoreFiles []string) []string {
 	exceededFileSize := a.MaxFileSize >= 0 && float64(fileSize)/float64(sizeMb) > float64(a.MaxFileSize)
 
 	if (hasGitIgnoreFile && gitIgnore.MatchesPath(path)) || isDeadSymlink(path) || exceededFileSize {
@@ -734,7 +736,7 @@ func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool, gitIgnore 
 	return ignoreFiles
 }
 
-func typeLower(types, exclTypes []string) ([]string, []string) {
+func typeLower(types, exclTypes []string) (typesRes []string, exclTypesRes []string) {
 	for i := range types {
 		types[i] = strings.ToLower(types[i])
 	}
@@ -744,5 +746,4 @@ func typeLower(types, exclTypes []string) ([]string, []string) {
 	}
 
 	return types, exclTypes
-
 }
