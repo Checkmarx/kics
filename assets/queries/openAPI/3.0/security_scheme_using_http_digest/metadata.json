@@ -6,5 +6,6 @@
   "descriptionText": "Security Scheme HTTP should not be using digest authentication",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
   "platform": "OpenAPI",
-  "descriptionID": "2e962b5c"
+  "descriptionID": "2e962b5c",
+  "cwe": ""
 }

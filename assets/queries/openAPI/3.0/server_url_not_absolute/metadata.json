@@ -6,5 +6,6 @@
   "descriptionText": "The Server URL should be an absolute URL",
   "descriptionUrl": "https://swagger.io/specification/#server-object",
   "platform": "OpenAPI",
-  "descriptionID": "2dd5856c"
+  "descriptionID": "2dd5856c",
+  "cwe": ""
 }

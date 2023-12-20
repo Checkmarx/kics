@@ -6,5 +6,6 @@
   "descriptionText": "PodSecurityPolicy should not have added capabilities",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
   "platform": "Kubernetes",
-  "descriptionID": "2889da19"
+  "descriptionID": "2889da19",
+  "cwe": ""
 }

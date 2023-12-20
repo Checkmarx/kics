@@ -6,5 +6,6 @@
   "descriptionText": "Check if Pod Security Policies allow containers to share the host network namespace.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
   "platform": "Kubernetes",
-  "descriptionID": "4b468f08"
+  "descriptionID": "4b468f08",
+  "cwe": ""
 }
