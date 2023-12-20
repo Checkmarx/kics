@@ -6,5 +6,6 @@
   "descriptionText": "Seccomp offers a whitelist of common system calls, blocking all others. Having less kernel exposed to an app then increases security.",
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt",
   "platform": "DockerCompose",
-  "descriptionID": "3702d7fb"
+  "descriptionID": "3702d7fb",
+  "cwe": ""
 }

@@ -5,8 +5,9 @@
   "category": "Best Practices",
   "descriptionText": "Spark Version is not a Long-term Support",
   "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/data-sources/spark_version",
-  "descriptionID": "fdaa059f",
   "platform": "Terraform",
+  "descriptionID": "fdaa059f",
   "cloudProvider": "common",
-  "experimental": "true"
+  "experimental": "true",
+  "cwe": ""
 }

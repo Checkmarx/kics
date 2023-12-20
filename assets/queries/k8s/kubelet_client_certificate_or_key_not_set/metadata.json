@@ -6,5 +6,6 @@
   "descriptionText": "When using kube-apiserver command, the 'kubelet-client-key' and 'kubelet-client-certificate' flags should be set",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
-  "descriptionID": "0f0e2ae7"
+  "descriptionID": "0f0e2ae7",
+  "cwe": ""
 }

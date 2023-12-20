@@ -6,14 +6,15 @@
   "descriptionText": "Schema Object properties should not contain 'enum' and schema keywords",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
+  "descriptionID": "96b60dc9",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "7f15962a-d862-451c-ac9b-84ec13747aa6",
       "queryName": "Object Using Enum With Keyword (v2)",
-      "descriptionText": "Schema/Parameter/Header Object properties should not contain 'enum' and schema keywords",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
+      "descriptionText": "Schema/Parameter/Header Object properties should not contain 'enum' and schema keywords"
     }
   },
-  "aggregation": 2,
-  "descriptionID": "96b60dc9"
+  "cwe": ""
 }

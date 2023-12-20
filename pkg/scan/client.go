@@ -45,6 +45,7 @@ type Parameters struct {
 	BillOfMaterials             bool
 	ExcludeGitIgnore            bool
 	OpenAPIResolveReferences    bool
+	MaxFileSizeFlag             int
 }
 
 // Client represents a scan client

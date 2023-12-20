@@ -6,5 +6,6 @@
   "descriptionText": "A security context defines privilege and access control settings for a Pod or Container",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
   "platform": "Kubernetes",
-  "descriptionID": "68a1650b"
+  "descriptionID": "68a1650b",
+  "cwe": ""
 }

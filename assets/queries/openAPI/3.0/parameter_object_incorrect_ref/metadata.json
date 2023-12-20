@@ -6,5 +6,6 @@
   "descriptionText": "Parameter Object reference must always point to '#/components/parameters'",
   "descriptionUrl": "https://swagger.io/specification/#parameter-object",
   "platform": "OpenAPI",
-  "descriptionID": "52e1f1a5"
+  "descriptionID": "52e1f1a5",
+  "cwe": ""
 }

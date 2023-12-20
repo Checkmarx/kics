@@ -6,13 +6,15 @@
   "descriptionText": "The Header Response should not be named as 'Content-Type', 'Authorization' or 'Accept'. If so, it will be ignored.",
   "descriptionUrl": "https://swagger.io/specification/#response-object",
   "platform": "OpenAPI",
+  "descriptionID": "a92faac1",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "86733e01-a435-4bd5-a8b0-5108be9dc1e4",
       "queryName": "Header Response Name Is Invalid (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#response-object"
+      "descriptionUrl": "https://swagger.io/specification/v2/#response-object",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "a92faac1"
+  "cwe": ""
 }
