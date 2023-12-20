@@ -1880,6 +1880,35 @@
 
 <h2 id="pulumi_queries_list">Pulumi Queries List<a class="headerlink" href="#pulumi_queries_list" title="Permanent link">&para;</a></h2>
 <p>This page contains all queries from Pulumi.</p>
+<h3 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h3>
+<p>Bellow are listed queries related with Pulumi GCP:</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Severity</th>
+<th>Category</th>
+<th>Description</th>
+<th>Help</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>48f7e44d-d1d1-44c2-b336-9f11b65c4fb0</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Observability</td>
+<td>Cloud storage bucket should have logging enabled (<a href="../pulumi-queries/gcp/48f7e44d-d1d1-44c2-b336-9f11b65c4fb0" target="_blank">read more</a>)</td>
+<td><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/storage/bucket/#logging_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Google Compute SSL Policy Weak Cipher In Use<br/><sup><sub>965e8830-2bec-4b9b-a7f0-24dbc200a68f</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Encryption</td>
+<td>This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers (<a href="../pulumi-queries/gcp/965e8830-2bec-4b9b-a7f0-24dbc200a68f" target="_blank">read more</a>)</td>
+<td><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/compute/sslpolicy/#mintlsversion_yaml">Documentation</a><br/></td>
+</tr>
+</tbody>
+</table>
 <h3 id="kubernetes">KUBERNETES<a class="headerlink" href="#kubernetes" title="Permanent link">&para;</a></h3>
 <p>Bellow are listed queries related with Pulumi KUBERNETES:</p>
 <table>
@@ -2015,18 +2044,18 @@
 <td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/apigatewayv2/stage/#clientcertificateid_yaml">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Elasticsearch Logs Disabled<br/><sup><sub>a1120ee4-a712-42d9-8fb5-22595fed643b</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Observability</td>
-<td>AWS Elasticsearch should have logs enabled (<a href="../pulumi-queries/aws/a1120ee4-a712-42d9-8fb5-22595fed643b" target="_blank">read more</a>)</td>
-<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/elasticsearch/domain/#logpublishingoptions_yaml">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>API Gateway Access Logging Disabled<br/><sup><sub>bf4b48b9-fc1f-4552-984a-4becdb5bf503</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Observability</td>
 <td>API Gateway should have Access Log Settings defined (<a href="../pulumi-queries/aws/bf4b48b9-fc1f-4552-984a-4becdb5bf503" target="_blank">read more</a>)</td>
 <td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/apigatewayv2/stage/#accesslogsettings_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Elasticsearch Logs Disabled<br/><sup><sub>a1120ee4-a712-42d9-8fb5-22595fed643b</sub></sup></td>
+<td><span style="color:#C60">Medium</span></td>
+<td>Observability</td>
+<td>AWS Elasticsearch should have logs enabled (<a href="../pulumi-queries/aws/a1120ee4-a712-42d9-8fb5-22595fed643b" target="_blank">read more</a>)</td>
+<td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/elasticsearch/domain/#logpublishingoptions_yaml">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>DocDB Logging Is Disabled<br/><sup><sub>2ca87964-fe7e-4cdc-899c-427f0f3525f8</sub></sup></td>
@@ -2055,35 +2084,6 @@
 <td>Observability</td>
 <td>EC2 Instance should have detailed monitoring enabled. With detailed monitoring enabled data is available in 1-minute periods (<a href="../pulumi-queries/aws/daa581ef-731c-4121-832d-cf078f67759d" target="_blank">read more</a>)</td>
 <td><a href="https://www.pulumi.com/registry/packages/aws/api-docs/ec2/instance/#monitoring_yaml">Documentation</a><br/></td>
-</tr>
-</tbody>
-</table>
-<h3 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h3>
-<p>Bellow are listed queries related with Pulumi GCP:</p>
-<table>
-<thead>
-<tr>
-<th>Query</th>
-<th>Severity</th>
-<th>Category</th>
-<th>Description</th>
-<th>Help</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>48f7e44d-d1d1-44c2-b336-9f11b65c4fb0</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Observability</td>
-<td>Cloud storage bucket should have logging enabled (<a href="../pulumi-queries/gcp/48f7e44d-d1d1-44c2-b336-9f11b65c4fb0" target="_blank">read more</a>)</td>
-<td><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/storage/bucket/#logging_yaml">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Google Compute SSL Policy Weak Cipher In Use<br/><sup><sub>965e8830-2bec-4b9b-a7f0-24dbc200a68f</sub></sup></td>
-<td><span style="color:#C60">Medium</span></td>
-<td>Encryption</td>
-<td>This query confirms if Google Compute SSL Policy Weak Chyper Suits is Enabled, to do so we need to check if TLS is TLS_1_2, because other version have Weak Chypers (<a href="../pulumi-queries/gcp/965e8830-2bec-4b9b-a7f0-24dbc200a68f" target="_blank">read more</a>)</td>
-<td><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/compute/sslpolicy/#mintlsversion_yaml">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table>
