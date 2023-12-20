@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.1">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.45e1311d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -2120,36 +2120,37 @@ content is displayed when kics is provided with the <code>--help</code> flag.</p
 <a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>                                      example: &#39;e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db&#39;
 <a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>      --input-data string             path to query input data files
 <a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>  -b, --libraries-path string         path to directory with libraries (default &quot;./assets/libraries&quot;)
-<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>      --minimal-ui                    simplified version of CLI output
-<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>      --no-progress                   hides the progress bar
-<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>      --output-name string            name used on report creations (default &quot;results&quot;)
-<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>  -o, --output-path string            directory path to store reports
-<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>  -p, --path strings                  paths or directories to scan
-<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>                                      example: &quot;./somepath,somefile.txt&quot;
-<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>      --payload-lines                 adds line information inside the payload when printing the payload file
-<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>  -d, --payload-path string           path to store internal representation JSON file
-<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>      --preview-lines int             number of lines to be display in CLI results (min: 1, max: 30) (default 3)
-<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>  -q, --queries-path strings          paths to directory with queries (default [./assets/queries])
-<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>      --report-formats strings        formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])
-<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>  -r, --secrets-regexes-path string   path to secrets regex rules configuration file
-<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>      --terraform-vars-path           string path where terraform variables are present
-<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>      --timeout int                   number of seconds the query has to execute before being canceled (default 60)
-<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>  -t, --type strings                  case insensitive list of platform types to scan
-<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
-<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>                                      cannot be provided with type exclusion flags
-<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>      --exclude-type strings          case insensitive list of platform types not to scan
-<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
-<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>                                      cannot be provided with type inclusion flags
-<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>
-<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>Global Flags:
-<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>      --ci                  display only log messages to CLI output (mutually exclusive with silent)
-<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>  -f, --log-format string   determines log format (pretty,json) (default &quot;pretty&quot;)
-<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
-<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>      --log-path string     path to generate log file (info.log)
-<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>      --no-color            disable CLI color output
-<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
-<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
-<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>      --max-file-size int             max file size permitted for scanning, in MB (default 5)
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>      --minimal-ui                    simplified version of CLI output
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>      --no-progress                   hides the progress bar
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>      --output-name string            name used on report creations (default &quot;results&quot;)
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>  -o, --output-path string            directory path to store reports
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>  -p, --path strings                  paths or directories to scan
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>                                      example: &quot;./somepath,somefile.txt&quot;
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>      --payload-lines                 adds line information inside the payload when printing the payload file
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>  -d, --payload-path string           path to store internal representation JSON file
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>      --preview-lines int             number of lines to be display in CLI results (min: 1, max: 30) (default 3)
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>  -q, --queries-path strings          paths to directory with queries (default [./assets/queries])
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>      --report-formats strings        formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>  -r, --secrets-regexes-path string   path to secrets regex rules configuration file
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>      --terraform-vars-path           string path where terraform variables are present
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>      --timeout int                   number of seconds the query has to execute before being canceled (default 60)
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>  -t, --type strings                  case insensitive list of platform types to scan
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>                                      cannot be provided with type exclusion flags
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>      --exclude-type strings          case insensitive list of platform types not to scan
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>                                      cannot be provided with type inclusion flags
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>Global Flags:
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>      --ci                  display only log messages to CLI output (mutually exclusive with silent)
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>  -f, --log-format string   determines log format (pretty,json) (default &quot;pretty&quot;)
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default &quot;INFO&quot;)
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>      --log-path string     path to generate log file (info.log)
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>      --no-color            disable CLI color output
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
 </code></pre></div>
 <h2 id="auto_remediate_command_options">Auto Remediate Command Options<a class="headerlink" href="#auto_remediate_command_options" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Auto remediates the project
