@@ -554,6 +554,7 @@ func Test_AnalyzePaths(t *testing.T) {
 				Exc:               []string{},
 				GitIgnoreFileName: ".gitignore",
 				ExcludeGitIgnore:  false,
+				MaxFileSize:       -1,
 			},
 			expectedError: false,
 			expectedOutput: model.AnalyzedPaths{
