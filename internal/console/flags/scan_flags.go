@@ -36,4 +36,5 @@ const (
 	ExcludeGitIgnore        = "exclude-gitignore"
 	OpenAPIReferencesFlag   = "enable-openapi-refs"
 	ParallelFlag            = "parallel"
+	MaxFileSizeFlag         = "max-file-size"
 )
