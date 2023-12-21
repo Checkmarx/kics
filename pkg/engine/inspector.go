@@ -218,7 +218,7 @@ func (c *Inspector) Inspect(
 	queries := c.getQueriesByPlat(platforms)
 
 	numberOWorkers := flags.GetIntFlag(flags.ParallelFlag)
-	//verification -1 for tests reason
+	// verification -1 for tests reason
 	if numberOWorkers == 0 || numberOWorkers == -1 {
 		numberOWorkers = runtime.NumCPU()
 	}
