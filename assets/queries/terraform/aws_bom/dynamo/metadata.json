@@ -7,5 +7,6 @@
   "descriptionUrl": "https://kics.io",
   "platform": "Terraform",
   "descriptionID": "c9007e7c",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "cwe": ""
 }

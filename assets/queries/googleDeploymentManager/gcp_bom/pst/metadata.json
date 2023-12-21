@@ -7,5 +7,6 @@
   "descriptionUrl": "https://kics.io",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "e96debd4",
-  "cloudProvider": "gcp"
+  "cloudProvider": "gcp",
+  "cwe": ""
 }
