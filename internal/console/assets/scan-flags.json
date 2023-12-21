@@ -213,6 +213,7 @@
     "shorthandFlag": "",
     "defaultValue": "1",
     "usage": "set the number of workers enabled for parallel scanning, set 0 to auto-detect parallelism"
+  },
   "max-file-size": {
     "flagType": "int",
     "shorthandFlag": "",
