@@ -227,7 +227,7 @@ func (c *Inspector) Inspect(
 			ctx,
 			scanID,
 			c,
-			queries[i],
+			&queries[i],
 			files,
 			baseScanPaths,
 			currentQuery,
@@ -244,15 +244,14 @@ func processChunkOfQueries(
 	ctx context.Context,
 	scanID string,
 	c *Inspector,
-	chunkOfQueries model.QueryMetadata,
+	chunkOfQueries *model.QueryMetadata,
 	files model.FileMetadatas,
 	baseScanPaths []string,
 	currentQuery chan<- int64,
 	astPayload ast.Value) []model.Vulnerability {
-
 	currentQuery <- 1
 
-	queryOpa, err := c.QueryLoader.LoadQuery(ctx, &chunkOfQueries)
+	queryOpa, err := c.QueryLoader.LoadQuery(ctx, chunkOfQueries)
 	if err != nil {
 		return nil
 	}
@@ -262,7 +261,7 @@ func processChunkOfQueries(
 
 	query := &PreparedQuery{
 		OpaQuery: *queryOpa,
-		Metadata: chunkOfQueries,
+		Metadata: *chunkOfQueries,
 	}
 
 	queryContext := &QueryContext{
