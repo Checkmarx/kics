@@ -5,12 +5,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"runtime"
 	"strings"
 	"time"
 
+	"github.com/Checkmarx/kics/internal/console/flags"
 	"github.com/Checkmarx/kics/internal/metrics"
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
-	"github.com/Checkmarx/kics/pkg/detector" //nolint:depguard
+	"github.com/Checkmarx/kics/pkg/detector"
 	"github.com/Checkmarx/kics/pkg/detector/docker"
 	"github.com/Checkmarx/kics/pkg/detector/helm"
 	"github.com/Checkmarx/kics/pkg/engine/source"
@@ -215,7 +217,12 @@ func (c *Inspector) Inspect(
 
 	queries := c.getQueriesByPlat(platforms)
 
-	parallel.For(len(queries), func(i, _ int) {
+	numberOWorkers := flags.GetIntFlag(flags.ParallelFlag)
+	if numberOWorkers == 0 {
+		numberOWorkers = runtime.NumCPU()
+	}
+
+	parallel.WithNumGoroutines(numberOWorkers).For(len(queries), func(i, _ int) {
 		aux := processChunkOfQueries(
 			ctx,
 			scanID,
