@@ -1,13 +1,4 @@
-## Community Meetings
-Our community meetings are held virtually on the first Thursday of every month at 15:00 UTC(+0) by [Zoom](https://tinyurl.com/kics-community).
-
-Upcoming meetings:
-- March 2nd, 2023
-- April 6th, 2023
-
-You're welcome to join us.
-
-If want to see summary of previous meetings, have questions about them or want to add a topic to the agenda, you can join our [community thread](https://github.com/Checkmarx/kics/discussions/5675).
+## Community
 
 ## Hacktoberfest
 *"[Hacktoberfest](https://github.com/topics/hacktoberfest) is a month-long celebration of open source projects, their maintainers, and the entire community of contributors. Each October, open source maintainers give new contributors extra attention as they guide developers through their first pull requests on GitHub."*<br />
@@ -22,6 +13,7 @@ KICS is a true community project. It's built as an open source from day one, and
 
 ## Meet us at conferences
 
+-   [Blackhat ASIA 2023](https://www.blackhat.com/asia-23/arsenal/schedule/index.html#kics---your-iac-secure-now-31009) (video TBD)
 -   [AWS re:Invent 2021: AWS On Air](https://youtu.be/9ZKldJeBHl4) ([video](https://youtu.be/9ZKldJeBHl4))
 -   [OWASP Bristol & Suffolk Chapter - Meetup](https://www.meetup.com/OWASP-Bristol/events/281869377/) ([video](https://youtu.be/KKZJEJF6I0M))
 -   [OWASP Canberra Chapter - Meetup](https://www.meetup.com/OWASP-Canberra-Chapter/events/281946376/)
