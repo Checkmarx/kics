@@ -1,15 +1,19 @@
-## Community
+# Community
+
+## Contribution
+
+KICS is a true community project. It's built as an open source from day one, and everyone can find their own way to contribute to the project.
+[Check out how](CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
+
+<a href="https://github.com/checkmarx/kics/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=checkmarx/kics" />
+</a>
+
 
 ## Hacktoberfest
 *"[Hacktoberfest](https://github.com/topics/hacktoberfest) is a month-long celebration of open source projects, their maintainers, and the entire community of contributors. Each October, open source maintainers give new contributors extra attention as they guide developers through their first pull requests on GitHub."*<br />
 
 -   [Open Issues for the event](https://github.com/Checkmarx/kics/issues?q=is%3Aissue+is%3Aopen+label%3A%22hacktoberfest%22)
-
-
-## Contribution
-
-KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.
-[Check out how](https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
 ## Meet us at conferences
 

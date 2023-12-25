@@ -83,14 +83,29 @@ What makes KICS really powerful and popular is its built-in extensibility. This 
 -   Fully customizable and adjustable heuristics rules, called [queries](docs/queries.md). These can be easily edited, extended and added.
 -   Robust but yet simple [architecture](docs/architecture.md), which allows quick addition of support for new Infrastructure as Code solutions.
 
-## Contribution
-
-KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.
-[Check out how](docs/CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
+## Community
 
 You're welcome to join our [community](docs/community.md), talk with us on <a href="https://github.com/Checkmarx/kics/discussions" target="_blank">GitHub discussions</a> or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com).
 
+### KICS Contributors
 
+See our individual contributors in the [community](docs/community.md) page. You're welcome to join them by [contributing](docs/CONTRIBUTING.md) to KICS.
+
+We also like to thank the following organizations for their ongoing contribution:
+-   [Checkmarx](https://checkmarx.com/)
+-   [Bedrock Streaming](https://bedrockstreaming.com/) (since v1.4.8)
+-   [Dynatrace](https://www.dynatrace.com/) (since v1.5.1)
+-   [Orca Security](https://orca.security/) (since v1.5.10)
+
+### KICS Users
+KICS is used by various companies and organizations, some are listed below. If you would like to be included here please open a PR.
+
+-   [Checkmarx](https://checkmarx.com/) ([IaC Security](https://checkmarx.com/product/iac-security/))
+-   [GitLab](https://gitlab.com/) ([Infrastructure as Code scanning](https://docs.gitlab.com/ee/user/application_security/iac_scanning/))
+-   [Cisco](https://www.panoptica.app/) ([CI/CD Securitry](https://docs.panoptica.app/docs/ci-cd-security))
+-   [JIT](https://www.jit.io/) ([SAST for IaC](https://www.jit.io/security-tools/kics))
+-   [Redpanda](https://redpanda.com/)
+-   [Keptn](https://keptn.sh)
 
 **Keeping Infrastructure as Code Secure!**
 
