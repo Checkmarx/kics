@@ -104,6 +104,7 @@ KICS is used by various companies and organizations, some are listed below. If y
 -   [GitLab](https://gitlab.com/) ([Infrastructure as Code scanning](https://docs.gitlab.com/ee/user/application_security/iac_scanning/))
 -   [Cisco](https://www.panoptica.app/) ([CI/CD Securitry](https://docs.panoptica.app/docs/ci-cd-security))
 -   [JIT](https://www.jit.io/) ([SAST for IaC](https://www.jit.io/security-tools/kics))
+-   [Firefly](https://www.firefly.ai/)
 -   [Redpanda](https://redpanda.com/)
 -   [Keptn](https://keptn.sh)
 
