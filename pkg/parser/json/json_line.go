@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -133,6 +134,7 @@ func (j *jsonLineStruct) delimSetup(v json.Delim) {
 				j.noremoveidx[lenPathArr] = j.tmpParent
 			} else {
 				// the next close delimiter should not remove the last element from the pathArr
+				j.pathArr = append(j.pathArr, strconv.Itoa(lenPathArr))
 				j.noremoveidx[lenPathArr] = j.tmpParent
 			}
 		}
