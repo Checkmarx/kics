@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"sort"
-	"strconv"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -134,7 +133,6 @@ func (j *jsonLineStruct) delimSetup(v json.Delim) {
 				j.noremoveidx[lenPathArr] = j.tmpParent
 			} else {
 				// the next close delimiter should not remove the last element from the pathArr
-				j.pathArr = append(j.pathArr, strconv.Itoa(lenPathArr))
 				j.noremoveidx[lenPathArr] = j.tmpParent
 			}
 		}
@@ -194,7 +192,7 @@ func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, p
 	}
 
 	// iterate through the values of the object
-	for key, val := range val {
+	for key, v := range val {
 		// if the key with father path was not found ignore
 		if _, ok2 := j.LineInfo[key][father]; !ok2 {
 			continue
@@ -212,13 +210,13 @@ func (j *jsonLine) setLine(val map[string]interface{}, def int, father string, p
 			lineNr = line.(*fifo).pop()
 		}
 
-		switch v := val.(type) {
+		switch v := v.(type) {
 		// value is an array and must call func setSeqLines to set element lines
 		case []interface{}:
 			lineArr = j.setSeqLines(v, lineNr, father, key, lineArr)
 		// value is an object and must setLines for each element of the object
 		case map[string]interface{}:
-			v["_kics_lines"] = j.setLine(v, lineNr, fmt.Sprintf("%s.%s", father, key), false)
+			v["_kics_lines"] = j.setLine(v, lineNr, fmt.Sprintf("%s.%s", father, key), pop)
 		default:
 			// value as no childs
 			lineMap[fmt.Sprintf("_kics_%s", key)] = &model.LineObject{
@@ -244,12 +242,12 @@ func (j *jsonLine) setSeqLines(v []interface{}, def int, father, key string,
 	// update father path with key
 	fatherKey := father + "." + key
 
-	defaultLineArr := j.getMapDefaultLine(v, fatherKey)
-	if defaultLineArr == -1 {
-		defaultLineArr = def
-	}
 	// iterate over each element of the array
 	for _, contentEntry := range v {
+		defaultLineArr := j.getMapDefaultLine(v, fatherKey)
+		if defaultLineArr == -1 {
+			defaultLineArr = def
+		}
 		switch con := contentEntry.(type) {
 		// case element is a map/object call func setLine
 		case map[string]interface{}:
