@@ -22,7 +22,7 @@
   "start": "2023-12-27T09:48:54.183217Z",
   "end": "2023-12-27T09:48:57.0673037Z",
   "paths": [
-    "/path/test/fixtures/similarity_id/"
+    "/path/test/fixtures/similarity_id"
   ],
   "queries": [
     {
