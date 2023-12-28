@@ -46,6 +46,9 @@ func initializeJSONLine(doc []byte) *jsonLine {
 		parent:      "",
 	}
 
+	line := 1
+	prevInputOffset := 0
+
 	// for each token inside JSON
 	for {
 		tok, err := dec.Token()
@@ -80,15 +83,14 @@ func initializeJSONLine(doc []byte) *jsonLine {
 			continue
 		}
 
-		line := 1
 		// get the correct line based on byte offset
-		for i, val := range doc {
-			if i == int(dec.InputOffset()) {
-				break
-			} else if val == byte('\n') {
+		currentInputOffset := int(dec.InputOffset())
+		for i := prevInputOffset; i < currentInputOffset; i++ {
+			if doc[i] == byte('\n') {
 				line++
 			}
 		}
+		prevInputOffset = currentInputOffset
 
 		// insert into line information map
 		if _, ok := newMap[tokStringRepresentation]; !ok {
