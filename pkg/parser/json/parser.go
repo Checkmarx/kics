@@ -3,7 +3,6 @@ package json
 import (
 	"bytes"
 	"encoding/json"
-
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/resolver/file"
 	"github.com/mailru/easyjson"
