@@ -218,7 +218,8 @@ func InitCycloneDxReport() *CycloneDxReport {
 			},
 		},
 	}
-	//update cycloneDX version to 1.5 (from 1.3 to 1.5 nothing needed to change since we only create 1 bom at a time, more changes to come)
+	// Update cycloneDX version to 1.5 (from 1.3 to 1.5 nothing needed to change since we only create 1 bom at a time,
+	// more changes to come)
 	return &CycloneDxReport{
 		XMLNS:        "http://cyclonedx.org/schema/bom/1.5",
 		XMLNSV:       "http://cyclonedx.org/schema/ext/vulnerability/1.0",
