@@ -1,27 +1,23 @@
-## Community Meetings
-Our community meetings are held virtually on the first Thursday of every month at 15:00 UTC(+0) by [Zoom](https://tinyurl.com/kics-community).
+# Community
 
-Upcoming meetings:
-- March 2nd, 2023
-- April 6th, 2023
+## Contribution
 
-You're welcome to join us.
+KICS is a true community project. It's built as an open source from day one, and everyone can find their own way to contribute to the project.
+[Check out how](CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
-If want to see summary of previous meetings, have questions about them or want to add a topic to the agenda, you can join our [community thread](https://github.com/Checkmarx/kics/discussions/5675).
+<a href="https://github.com/checkmarx/kics/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=checkmarx/kics" />
+</a>
+
 
 ## Hacktoberfest
 *"[Hacktoberfest](https://github.com/topics/hacktoberfest) is a month-long celebration of open source projects, their maintainers, and the entire community of contributors. Each October, open source maintainers give new contributors extra attention as they guide developers through their first pull requests on GitHub."*<br />
 
 -   [Open Issues for the event](https://github.com/Checkmarx/kics/issues?q=is%3Aissue+is%3Aopen+label%3A%22hacktoberfest%22)
 
-
-## Contribution
-
-KICS is a true community project. It's built as an open source from day one, and anyone can find his own way to contribute to the project.
-[Check out how](https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md), within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
-
 ## Meet us at conferences
 
+-   [Blackhat ASIA 2023](https://www.blackhat.com/asia-23/arsenal/schedule/index.html#kics---your-iac-secure-now-31009) (video TBD)
 -   [AWS re:Invent 2021: AWS On Air](https://youtu.be/9ZKldJeBHl4) ([video](https://youtu.be/9ZKldJeBHl4))
 -   [OWASP Bristol & Suffolk Chapter - Meetup](https://www.meetup.com/OWASP-Bristol/events/281869377/) ([video](https://youtu.be/KKZJEJF6I0M))
 -   [OWASP Canberra Chapter - Meetup](https://www.meetup.com/OWASP-Canberra-Chapter/events/281946376/)
