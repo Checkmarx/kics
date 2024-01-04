@@ -174,7 +174,9 @@ func runQuery(r *runQueryInfo) []model.Vulnerability {
 		Files:         r.files.ToMap(),
 	}
 
-	decoded, err := r.inspector.DecodeQueryResults(queryCtx, results)
+	timeoutCtxToDecode, cancelDecode := context.WithTimeout(context.Background(), queryExecTimeout)
+	defer cancelDecode()
+	decoded, err := r.inspector.DecodeQueryResults(queryCtx, timeoutCtxToDecode, results)
 
 	if err != nil {
 		log.Err(err)
