@@ -89,7 +89,7 @@ var sarifTests = []sarifTest{
 							ResultRuleID:    "1",
 							ResultRuleIndex: 0,
 							ResultKind:      "fail",
-							ResultMessage:   sarifMessage{Text: "test", MessageProperties: sarifProperties{"platform": ""}},
+							ResultMessage:   sarifMessage{Text: "test", MessageProperties: sarifProperties{"platform": "", "cwe": ""}},
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
@@ -195,7 +195,8 @@ var sarifTests = []sarifTest{
 							ResultKind:      "fail",
 							ResultMessage: sarifMessage{
 								Text:              "test",
-								MessageProperties: sarifProperties{"platform": ""},
+								MessageProperties: sarifProperties{"platform": "", "cwe": ""},
+								CWE:               "",
 							},
 							ResultLocations: []sarifLocation{
 								{
@@ -212,7 +213,8 @@ var sarifTests = []sarifTest{
 							ResultKind:      "fail",
 							ResultMessage: sarifMessage{
 								Text:              "test",
-								MessageProperties: sarifProperties{"platform": ""},
+								MessageProperties: sarifProperties{"platform": "", "cwe": ""},
+								CWE:               "",
 							},
 							ResultLocations: []sarifLocation{
 								{
@@ -229,7 +231,8 @@ var sarifTests = []sarifTest{
 							ResultKind:      "informational",
 							ResultMessage: sarifMessage{
 								Text:              "test",
-								MessageProperties: sarifProperties{"platform": ""},
+								MessageProperties: sarifProperties{"platform": "", "cwe": ""},
+								CWE:               "",
 							},
 							ResultLocations: []sarifLocation{
 								{

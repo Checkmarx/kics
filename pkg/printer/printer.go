@@ -141,6 +141,7 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
 			}
 			fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+			fmt.Printf("%s %s\n", printer.Bold("CWE:"), summary.Queries[idx].CWE)
 
 			queryCloudProvider := summary.Queries[idx].CloudProvider
 			if queryCloudProvider != "" {

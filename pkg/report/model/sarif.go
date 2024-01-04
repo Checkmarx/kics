@@ -43,6 +43,7 @@ type ruleCISMetadata struct {
 type sarifMessage struct {
 	Text              string          `json:"text"`
 	MessageProperties sarifProperties `json:"properties,omitempty"`
+	CWE               string          `json:"cwe,omitempty"`
 }
 
 type sarifComponentReference struct {
@@ -267,6 +268,7 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 // BuildSarifIssue creates a new entries in Results (one for each file) and new entry in Rules and Taxonomy if necessary
 func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) {
 	if len(issue.Files) > 0 {
+
 		metadata := ruleMetadata{
 			queryID:          issue.QueryID,
 			queryName:        issue.QueryName,
@@ -286,18 +288,23 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) {
 		if severityLevelEquivalence[issue.Severity] == "none" {
 			kind = "informational"
 		}
+
 		for idx := range issue.Files {
 			line := issue.Files[idx].Line
 			if line < 1 {
 				line = 1
 			}
+
 			result := sarifResult{
 				ResultRuleID:    issue.QueryID,
 				ResultRuleIndex: ruleIndex,
 				ResultKind:      kind,
 				ResultMessage: sarifMessage{
-					Text:              issue.Files[idx].KeyActualValue,
-					MessageProperties: sarifProperties{"platform": issue.Platform},
+					Text: issue.Files[idx].KeyActualValue,
+					MessageProperties: sarifProperties{
+						"platform": issue.Platform,
+						"cwe":      issue.CWE,
+					},
 				},
 				ResultLocations: []sarifLocation{
 					{
