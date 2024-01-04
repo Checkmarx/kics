@@ -260,7 +260,6 @@ func (c *Inspector) Inspect(
 		vulnerabilities = append(vulnerabilities, vuls...)
 
 		c.tracker.TrackQueryExecution(query.Metadata.Aggregation)
-
 	}
 	return vulnerabilities, nil
 }
@@ -350,7 +349,10 @@ func (c *Inspector) doRun(ctx *QueryContext) (vulns []model.Vulnerability, err e
 }
 
 // DecodeQueryResults decodes the results into []model.Vulnerability
-func (c *Inspector) DecodeQueryResults(ctx *QueryContext, ctxTimeout context.Context, results rego.ResultSet) ([]model.Vulnerability, error) {
+func (c *Inspector) DecodeQueryResults(
+	ctx *QueryContext,
+	ctxTimeout context.Context,
+	results rego.ResultSet) ([]model.Vulnerability, error) {
 	if len(results) == 0 {
 		return nil, ErrNoResult
 	}
@@ -372,7 +374,10 @@ func (c *Inspector) DecodeQueryResults(ctx *QueryContext, ctxTimeout context.Con
 	for _, queryResultItem := range queryResultItems {
 		select {
 		case <-ctxTimeout.Done():
-			log.Err(ctxTimeout.Err()).Msgf("Timeout processing the results of the query: %s %s", ctx.Query.Metadata.Platform, ctx.Query.Metadata.Query)
+			log.Err(ctxTimeout.Err()).Msgf(
+				"Timeout processing the results of the query: %s %s",
+				ctx.Query.Metadata.Platform,
+				ctx.Query.Metadata.Query)
 			break
 		default:
 			vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
