@@ -268,7 +268,6 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 // BuildSarifIssue creates a new entries in Results (one for each file) and new entry in Rules and Taxonomy if necessary
 func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) {
 	if len(issue.Files) > 0 {
-
 		metadata := ruleMetadata{
 			queryID:          issue.QueryID,
 			queryName:        issue.QueryName,
@@ -288,13 +287,11 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) {
 		if severityLevelEquivalence[issue.Severity] == "none" {
 			kind = "informational"
 		}
-
 		for idx := range issue.Files {
 			line := issue.Files[idx].Line
 			if line < 1 {
 				line = 1
 			}
-
 			result := sarifResult{
 				ResultRuleID:    issue.QueryID,
 				ResultRuleIndex: ruleIndex,
