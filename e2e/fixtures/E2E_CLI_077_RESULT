@@ -1,0 +1,488 @@
+{
+	"$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+	"version": "2.1.0",
+	"runs": [
+		{
+			"tool": {
+				"driver": {
+					"name": "KICS",
+					"version": "development",
+					"fullName": "Keeping Infrastructure as Code Secure",
+					"informationUri": "https://www.kics.io/",
+					"rules": [
+						{
+							"id": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+							"name": "Run Block Injection",
+							"shortDescription": {
+								"text": "Run Block Injection"
+							},
+							"fullDescription": {
+								"text": "GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event."
+							},
+							"defaultConfiguration": {
+								"level": "error"
+							},
+							"helpUri": "https://securitylab.github.com/research/github-actions-untrusted-input/",
+							"relationships": [
+								{
+									"target": {
+										"id": "CAT007",
+										"index": 6,
+										"toolComponent": {
+											"name": "Categories",
+											"guid": "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
+											"index": 0
+										}
+									}
+								}
+							]
+						},
+						{
+							"id": "555ab8f9-2001-455e-a077-f2d0f41e2fb9",
+							"name": "Unpinned Actions Full Length Commit SHA",
+							"shortDescription": {
+								"text": "Unpinned Actions Full Length Commit SHA"
+							},
+							"fullDescription": {
+								"text": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork."
+							},
+							"defaultConfiguration": {
+								"level": "warning"
+							},
+							"helpUri": "https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions",
+							"relationships": [
+								{
+									"target": {
+										"id": "CAT013",
+										"index": 5,
+										"toolComponent": {
+											"name": "Categories",
+											"guid": "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
+											"index": 0
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			"results": [
+				{
+					"ruleId": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+					"ruleIndex": 0,
+					"kind": "fail",
+					"message": {
+						"text": "Run block contains dangerous input controlled by user.",
+						"properties": {
+							"cwe": "1234",
+							"platform": "CICD"
+						}
+					},
+					"locations": [
+						{
+							"physicalLocation": {
+								"artifactLocation": {
+									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive2.yaml"
+								},
+								"region": {
+									"startLine": 13
+								}
+							}
+						}
+					]
+				},
+				{
+					"ruleId": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+					"ruleIndex": 0,
+					"kind": "fail",
+					"message": {
+						"text": "Run block contains dangerous input controlled by user.",
+						"properties": {
+							"cwe": "1234",
+							"platform": "CICD"
+						}
+					},
+					"locations": [
+						{
+							"physicalLocation": {
+								"artifactLocation": {
+									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive4.yaml"
+								},
+								"region": {
+									"startLine": 13
+								}
+							}
+						}
+					]
+				},
+				{
+					"ruleId": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+					"ruleIndex": 0,
+					"kind": "fail",
+					"message": {
+						"text": "Run block contains dangerous input controlled by user.",
+						"properties": {
+							"cwe": "1234",
+							"platform": "CICD"
+						}
+					},
+					"locations": [
+						{
+							"physicalLocation": {
+								"artifactLocation": {
+									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive7.yaml"
+								},
+								"region": {
+									"startLine": 13
+								}
+							}
+						}
+					]
+				},
+				{
+					"ruleId": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+					"ruleIndex": 0,
+					"kind": "fail",
+					"message": {
+						"text": "Run block contains dangerous input controlled by user.",
+						"properties": {
+							"cwe": "1234",
+							"platform": "CICD"
+						}
+					},
+					"locations": [
+						{
+							"physicalLocation": {
+								"artifactLocation": {
+									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive6.yaml"
+								},
+								"region": {
+									"startLine": 13
+								}
+							}
+						}
+					]
+				},
+				{
+					"ruleId": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+					"ruleIndex": 0,
+					"kind": "fail",
+					"message": {
+						"text": "Run block contains dangerous input controlled by user.",
+						"properties": {
+							"cwe": "1234",
+							"platform": "CICD"
+						}
+					},
+					"locations": [
+						{
+							"physicalLocation": {
+								"artifactLocation": {
+									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive1.yaml"
+								},
+								"region": {
+									"startLine": 10
+								}
+							}
+						}
+					]
+				},
+				{
+					"ruleId": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+					"ruleIndex": 0,
+					"kind": "fail",
+					"message": {
+						"text": "Run block contains dangerous input controlled by user.",
+						"properties": {
+							"cwe": "1234",
+							"platform": "CICD"
+						}
+					},
+					"locations": [
+						{
+							"physicalLocation": {
+								"artifactLocation": {
+									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive1.yaml"
+								},
+								"region": {
+									"startLine": 10
+								}
+							}
+						}
+					]
+				},
+				{
+					"ruleId": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+					"ruleIndex": 0,
+					"kind": "fail",
+					"message": {
+						"text": "Run block contains dangerous input controlled by user.",
+						"properties": {
+							"cwe": "1234",
+							"platform": "CICD"
+						}
+					},
+					"locations": [
+						{
+							"physicalLocation": {
+								"artifactLocation": {
+									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive3.yaml"
+								},
+								"region": {
+									"startLine": 13
+								}
+							}
+						}
+					]
+				},
+				{
+					"ruleId": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+					"ruleIndex": 0,
+					"kind": "fail",
+					"message": {
+						"text": "Run block contains dangerous input controlled by user.",
+						"properties": {
+							"cwe": "1234",
+							"platform": "CICD"
+						}
+					},
+					"locations": [
+						{
+							"physicalLocation": {
+								"artifactLocation": {
+									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive5.yaml"
+								},
+								"region": {
+									"startLine": 13
+								}
+							}
+						}
+					]
+				},
+				{
+					"ruleId": "555ab8f9-2001-455e-a077-f2d0f41e2fb9",
+					"ruleIndex": 1,
+					"kind": "fail",
+					"message": {
+						"text": "Action is not pinned to a full length commit SHA.",
+						"properties": {
+							"cwe": "",
+							"platform": "CICD"
+						}
+					},
+					"locations": [
+						{
+							"physicalLocation": {
+								"artifactLocation": {
+									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive1.yaml"
+								},
+								"region": {
+									"startLine": 28
+								}
+							}
+						}
+					]
+				},
+				{
+					"ruleId": "555ab8f9-2001-455e-a077-f2d0f41e2fb9",
+					"ruleIndex": 1,
+					"kind": "fail",
+					"message": {
+						"text": "Action is not pinned to a full length commit SHA.",
+						"properties": {
+							"cwe": "",
+							"platform": "CICD"
+						}
+					},
+					"locations": [
+						{
+							"physicalLocation": {
+								"artifactLocation": {
+									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive1.yaml"
+								},
+								"region": {
+									"startLine": 34
+								}
+							}
+						}
+					]
+				}
+			],
+			"taxonomies": [
+				{
+					"guid": "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
+					"name": "Categories",
+					"fullDescription": {
+						"text": "This taxonomy contains the types an issue can assume"
+					},
+					"shortDescription": {
+						"text": "Vulnerabilities categories"
+					},
+					"taxa": [
+						{
+							"id": "CAT000",
+							"name": "Undefined Category",
+							"shortDescription": {
+								"text": "Category is not defined"
+							},
+							"fullDescription": {
+								"text": "Category is not defined"
+							}
+						},
+						{
+							"id": "CAT003",
+							"name": "Backup",
+							"shortDescription": {
+								"text": "Survivability and Recovery"
+							},
+							"fullDescription": {
+								"text": "Survivability and Recovery"
+							}
+						},
+						{
+							"id": "CAT004",
+							"name": "Best Practices",
+							"shortDescription": {
+								"text": "Metadata management"
+							},
+							"fullDescription": {
+								"text": "Metadata management"
+							}
+						},
+						{
+							"id": "CAT006",
+							"name": "Encryption",
+							"shortDescription": {
+								"text": "Data Security and Encryption configuration"
+							},
+							"fullDescription": {
+								"text": "Data Security and Encryption configuration"
+							}
+						},
+						{
+							"id": "CAT009",
+							"name": "Networking and Firewall",
+							"shortDescription": {
+								"text": "Network port exposure and firewall configuration"
+							},
+							"fullDescription": {
+								"text": "Network port exposure and firewall configuration"
+							}
+						},
+						{
+							"id": "CAT013",
+							"name": "Supply-Chain",
+							"shortDescription": {
+								"text": "Dependency version management"
+							},
+							"fullDescription": {
+								"text": "Dependency version management"
+							}
+						},
+						{
+							"id": "CAT007",
+							"name": "Insecure Configurations",
+							"shortDescription": {
+								"text": "Configurations which expose the application unnecessarily"
+							},
+							"fullDescription": {
+								"text": "Configurations which expose the application unnecessarily"
+							}
+						},
+						{
+							"id": "CAT015",
+							"name": "Bill Of Materials",
+							"shortDescription": {
+								"text": "List of resources provisioned"
+							},
+							"fullDescription": {
+								"text": "List of resources provisioned"
+							}
+						},
+						{
+							"id": "CAT001",
+							"name": "Access Control",
+							"shortDescription": {
+								"text": "Service permission and identity management"
+							},
+							"fullDescription": {
+								"text": "Service permission and identity management"
+							}
+						},
+						{
+							"id": "CAT010",
+							"name": "Observability",
+							"shortDescription": {
+								"text": "Logging and Monitoring"
+							},
+							"fullDescription": {
+								"text": "Logging and Monitoring"
+							}
+						},
+						{
+							"id": "CAT011",
+							"name": "Resource Management",
+							"shortDescription": {
+								"text": "Resource and privilege limit configuration"
+							},
+							"fullDescription": {
+								"text": "Resource and privilege limit configuration"
+							}
+						},
+						{
+							"id": "CAT002",
+							"name": "Availability",
+							"shortDescription": {
+								"text": "Reliability and Scalability"
+							},
+							"fullDescription": {
+								"text": "Reliability and Scalability"
+							}
+						},
+						{
+							"id": "CAT005",
+							"name": "Build Process",
+							"shortDescription": {
+								"text": "Insecure configurations when building/deploying"
+							},
+							"fullDescription": {
+								"text": "Insecure configurations when building/deploying"
+							}
+						},
+						{
+							"id": "CAT008",
+							"name": "Insecure Defaults",
+							"shortDescription": {
+								"text": "Configurations that are insecure by default"
+							},
+							"fullDescription": {
+								"text": "Configurations that are insecure by default"
+							}
+						},
+						{
+							"id": "CAT012",
+							"name": "Secret Management",
+							"shortDescription": {
+								"text": "Secret and Key management"
+							},
+							"fullDescription": {
+								"text": "Secret and Key management"
+							}
+						},
+						{
+							"id": "CAT014",
+							"name": "Structure and Semantics",
+							"shortDescription": {
+								"text": "Malformed document structure or inadequate semantics"
+							},
+							"fullDescription": {
+								"text": "Malformed document structure or inadequate semantics"
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

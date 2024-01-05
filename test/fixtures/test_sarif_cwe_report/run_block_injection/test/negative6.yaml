@@ -1,0 +1,14 @@
+name: Author Workflow
+
+on:
+  author:
+    types:
+      - created
+
+jobs:
+  process_author:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greet the New Author
+        run: |
+          echo "Hello, a new author has been created!"
