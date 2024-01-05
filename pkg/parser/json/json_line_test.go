@@ -586,7 +586,7 @@ var testsinitiateJSONLine = []struct {
 			`,
 	},
 	{
-		name: "my test",
+		name: "test arrays with objects",
 		args: args{
 			doc: []byte(`{
 				"resources": [
@@ -712,19 +712,20 @@ func Test_initializeJSONLine(t *testing.T) {
 func compareJSONLine(t *testing.T, test1 interface{}, test2 string) {
 	stringefiedJSON, err := json.Marshal(&test1)
 	require.NoError(t, err)
-	require.JSONEq(t, test2, string(stringefiedJSON))
+	aux := string(stringefiedJSON)
+	require.JSONEq(t, test2, aux)
 }
 
 func Test_jsonLine_setLineInfo(t *testing.T) {
 	for _, tt := range testsinitiateJSONLine {
-		t.Run(tt.name, func(t *testing.T) {
-			unmarshaledJSON := make(map[string]interface{})
-			err := json.Unmarshal(tt.args.doc, &unmarshaledJSON)
-			require.NoError(t, err)
-			j := initializeJSONLine(tt.args.doc)
-			got := j.setLineInfo(unmarshaledJSON)
-			compareJSONLine(t, got, tt.wantKicsLine)
-		})
+		//t.Run(tt.name, func(t *testing.T) {
+		unmarshaledJSON := make(map[string]interface{})
+		err := json.Unmarshal(tt.args.doc, &unmarshaledJSON)
+		require.NoError(t, err)
+		j := initializeJSONLine(tt.args.doc)
+		got := j.setLineInfo(unmarshaledJSON)
+		compareJSONLine(t, got, tt.wantKicsLine)
+		//})
 	}
 }
 
