@@ -45,7 +45,7 @@ type QueryResult struct {
 	QueryURI                    string           `json:"query_url"`
 	Severity                    Severity         `json:"severity"`
 	Platform                    string           `json:"platform"`
-	CWE                         string           `json:"cwe"`
+	CWE                         string           `json:"cwe,omitempty"`
 	CloudProvider               string           `json:"cloud_provider,omitempty"`
 	Category                    string           `json:"category"`
 	Experimental                bool             `json:"experimental"`
