@@ -6,5 +6,6 @@
   "descriptionText": "The Media Type Object should have the attribute 'schema' defined",
   "descriptionUrl": "https://swagger.io/specification/#media-type-object",
   "platform": "OpenAPI",
-  "descriptionID": "a7ffc444"
+  "descriptionID": "a7ffc444",
+  "cwe": ""
 }

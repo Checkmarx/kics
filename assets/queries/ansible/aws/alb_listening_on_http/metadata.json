@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html",
   "platform": "Ansible",
   "descriptionID": "3a7576e5",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "cwe": ""
 }
