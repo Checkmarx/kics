@@ -43,7 +43,6 @@ type ruleCISMetadata struct {
 type sarifMessage struct {
 	Text              string          `json:"text"`
 	MessageProperties sarifProperties `json:"properties,omitempty"`
-	CWE               string          `json:"cwe,omitempty"`
 }
 
 type sarifComponentReference struct {

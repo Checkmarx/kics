@@ -196,7 +196,6 @@ var sarifTests = []sarifTest{
 							ResultMessage: sarifMessage{
 								Text:              "test",
 								MessageProperties: sarifProperties{"platform": "", "cwe": ""},
-								CWE:               "",
 							},
 							ResultLocations: []sarifLocation{
 								{
@@ -214,7 +213,6 @@ var sarifTests = []sarifTest{
 							ResultMessage: sarifMessage{
 								Text:              "test",
 								MessageProperties: sarifProperties{"platform": "", "cwe": ""},
-								CWE:               "",
 							},
 							ResultLocations: []sarifLocation{
 								{
@@ -232,7 +230,6 @@ var sarifTests = []sarifTest{
 							ResultMessage: sarifMessage{
 								Text:              "test",
 								MessageProperties: sarifProperties{"platform": "", "cwe": ""},
-								CWE:               "",
 							},
 							ResultLocations: []sarifLocation{
 								{
