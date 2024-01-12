@@ -6,5 +6,6 @@
   "descriptionText": "StatefulSets should have an existing headless 'serviceName'. The headless service labels should also be implemented on StatefulSets labels.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/",
   "platform": "Kubernetes",
-  "descriptionID": "2ce554f2"
+  "descriptionID": "2ce554f2",
+  "cwe": ""
 }

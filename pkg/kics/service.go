@@ -58,10 +58,14 @@ type Service struct {
 	Tracker          Tracker
 	Resolver         *resolver.Resolver
 	files            model.FileMetadatas
+	MaxFileSize      int
 }
 
 // PrepareSources will prepare the sources to be scanned
-func (s *Service) PrepareSources(ctx context.Context, scanID string, wg *sync.WaitGroup, errCh chan<- error) {
+func (s *Service) PrepareSources(ctx context.Context,
+	scanID string,
+	openAPIResolveReferences bool,
+	wg *sync.WaitGroup, errCh chan<- error) {
 	defer wg.Done()
 	// CxSAST query under review
 	data := make([]byte, mbConst)
@@ -69,10 +73,10 @@ func (s *Service) PrepareSources(ctx context.Context, scanID string, wg *sync.Wa
 		ctx,
 		s.Parser.SupportedExtensions(),
 		func(ctx context.Context, filename string, rc io.ReadCloser) error {
-			return s.sink(ctx, filename, scanID, rc, data)
+			return s.sink(ctx, filename, scanID, rc, data, openAPIResolveReferences)
 		},
 		func(ctx context.Context, filename string) ([]string, error) { // Sink used for resolver files and templates
-			return s.resolverSink(ctx, filename, scanID)
+			return s.resolverSink(ctx, filename, scanID, openAPIResolveReferences)
 		},
 	); err != nil {
 		errCh <- errors.Wrap(err, "failed to read sources")
@@ -130,8 +134,7 @@ type Content struct {
 getContent will read the passed file 1MB at a time
 to prevent resource exhaustion and return its content
 */
-func getContent(rc io.Reader, data []byte) (*Content, error) {
-	maxSizeMB := 5 // Max size of file in MBs
+func getContent(rc io.Reader, data []byte, maxSizeMB int) (*Content, error) {
 	var content []byte
 	countLines := 0
 

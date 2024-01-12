@@ -141,7 +141,8 @@ type QueryMetadata struct {
 	Platform  string
 	// special field for generic queries
 	// represents how many queries are aggregated into a single rego file
-	Aggregation int
+	Aggregation  int
+	Experimental bool
 }
 
 // Vulnerability is a representation of a detected vulnerability in scanned files
@@ -156,6 +157,7 @@ type Vulnerability struct {
 	QueryName        string      `db:"query_name" json:"queryName"`
 	QueryURI         string      `json:"-"`
 	Category         string      `json:"category"`
+	Experimental     bool        `json:"experimental"`
 	Description      string      `json:"description"`
 	DescriptionID    string      `json:"descriptionID"`
 	Platform         string      `db:"platform" json:"platform"`

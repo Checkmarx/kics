@@ -6,13 +6,15 @@
   "descriptionText": "Schema of the JSON object should have 'type' defined.",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
+  "descriptionID": "1822e1a7",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "62d52544-82ef-4b75-8308-cad49d50212b",
       "queryName": "JSON Object Schema Without Type (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "1822e1a7"
+  "cwe": ""
 }
