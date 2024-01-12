@@ -29,8 +29,8 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 		s.Tracker.TrackFileFound()
 		countLines := bytes.Count(rfile.Content, []byte{'\n'}) + 1
 		s.Tracker.TrackFileFoundCountLines(countLines)
-
-		documents, err := s.Parser.Parse(rfile.FileName, rfile.Content, openAPIResolveReferences)
+		//burro aqui sff
+		documents, err := s.Parser.Parse(rfile.FileName, rfile.Content, openAPIResolveReferences, false)
 		if err != nil {
 			if documents.Kind == "break" {
 				return []string{}, nil

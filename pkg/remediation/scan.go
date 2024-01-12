@@ -115,8 +115,8 @@ func getPayload(filePath string, content []byte, openAPIResolveReferences bool) 
 		log.Info().Msg("failed to get parser")
 		return model.FileMetadatas{}, errors.New("failed to get parser")
 	}
-
-	documents, er := p[0].Parse(filePath, content, openAPIResolveReferences)
+	//aqui burro
+	documents, er := p[0].Parse(filePath, content, openAPIResolveReferences, false)
 
 	if er != nil {
 		log.Error().Msgf("failed to parse file '%s': %s", filePath, er)

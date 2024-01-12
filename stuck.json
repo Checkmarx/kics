@@ -1,0 +1,216 @@
+{
+	"document": [
+		{
+			"swagger": "2.0",
+			"file": "C:/CxKics/comunidade/mini/swagger.json",
+			"id": "17b6ea4e-08cb-447f-8064-5f172f3aa2fc",
+			"definitions": {},
+			"host": "apiapp-dev-lpd.azurewebsites.net",
+			"info": {
+				"title": "CCBCC.LAUNCHPAD.WebApi",
+				"version": "v1"
+			},
+			"paths": {
+				"/api/BlobFileDownload": {
+					"get": {
+						"consumes": [],
+						"operationId": "BlobFileDownload_GetBlobFileDownload",
+						"produces": [
+							"application/json",
+							"text/json",
+							"application/xml",
+							"text/xml"
+						],
+						"responses": {
+							"200": {
+								"description": "OK",
+								"schema": {
+									"type": "object"
+								}
+							}
+						},
+						"tags": [
+							"BlobFileDownload"
+						]
+					}
+				},
+				"/api/BlobFileDownload/{id}": {
+					"get": {
+						"consumes": [],
+						"operationId": "BlobFileDownload_Get",
+						"parameters": [
+							{
+								"format": "int32",
+								"in": "path",
+								"name": "id",
+								"required": true,
+								"type": "integer"
+							}
+						],
+						"produces": [
+							"application/json",
+							"text/json",
+							"application/xml",
+							"text/xml"
+						],
+						"responses": {
+							"200": {
+								"description": "OK",
+								"schema": {
+									"type": "object"
+								}
+							}
+						},
+						"tags": [
+							"BlobFileDownload"
+						]
+					}
+				}
+			},
+			"schemes": [
+				"https"
+			]
+		},
+		{
+			"file": "C:/CxKics/comunidade/mini/swagger_1.json",
+			"id": "e5f3635d-3131-47ab-8715-c671430035df",
+			"definitions": {},
+			"host": "apiapp-cds-qa.azurewebsites.net",
+			"info": {
+				"title": "CCBCC.CDS.Server.LaunchPadApi",
+				"version": "v1"
+			},
+			"paths": {
+				"/api/Document/GetAllLibraries": {
+					"get": {
+						"consumes": [],
+						"operationId": "Document_GetAllLibraries",
+						"parameters": [
+							{
+								"in": "query",
+								"name": "SecretKey",
+								"required": true,
+								"type": "string"
+							},
+							{
+								"in": "query",
+								"name": "exportCsv",
+								"required": false,
+								"type": "boolean"
+							}
+						],
+						"produces": [
+							"application/json",
+							"text/json",
+							"application/xml",
+							"text/xml"
+						],
+						"responses": {
+							"200": {
+								"description": "OK",
+								"schema": {
+									"type": "object"
+								}
+							}
+						},
+						"tags": [
+							"Document"
+						]
+					}
+				},
+				"/api/Document/GetDocumentDownload/{documentId}": {
+					"get": {
+						"consumes": [],
+						"operationId": "Document_GetDocumentDownload",
+						"parameters": [
+							{
+								"in": "query",
+								"name": "SecretKey",
+								"required": true,
+								"type": "string"
+							},
+							{
+								"in": "path",
+								"name": "documentId",
+								"required": true,
+								"type": "string"
+							}
+						],
+						"produces": [
+							"application/json",
+							"text/json",
+							"application/xml",
+							"text/xml"
+						],
+						"responses": {
+							"200": {
+								"description": "OK",
+								"schema": {
+									"type": "object"
+								}
+							}
+						},
+						"tags": [
+							"Document"
+						]
+					}
+				},
+				"/api/Document/GetDocumentsInLibrary": {
+					"get": {
+						"consumes": [],
+						"operationId": "Document_GetDocumentsInLibrary",
+						"parameters": [
+							{
+								"in": "query",
+								"name": "SecretKey",
+								"required": true,
+								"type": "string"
+							},
+							{
+								"in": "query",
+								"name": "libraryUrl",
+								"required": true,
+								"type": "string"
+							},
+							{
+								"format": "int32",
+								"in": "query",
+								"name": "modifiedSinceEpoch",
+								"required": false,
+								"type": "integer"
+							},
+							{
+								"format": "date-time",
+								"in": "query",
+								"name": "modifiedSince",
+								"required": false,
+								"type": "string"
+							}
+						],
+						"produces": [
+							"application/json",
+							"text/json",
+							"application/xml",
+							"text/xml"
+						],
+						"responses": {
+							"200": {
+								"description": "OK",
+								"schema": {
+									"type": "object"
+								}
+							}
+						},
+						"tags": [
+							"Document"
+						]
+					}
+				}
+			},
+			"schemes": [
+				"https"
+			],
+			"swagger": "2.0"
+		}
+	]
+}

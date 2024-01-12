@@ -42,7 +42,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string,
 	if err != nil {
 		return errors.Wrapf(err, "failed to get file content: %s", filename)
 	}
-	documents, err := s.Parser.Parse(filename, *content, openAPIResolveReferences)
+	documents, err := s.Parser.Parse(filename, *content, openAPIResolveReferences, c.IsMinified)
 	if err != nil {
 		log.Err(err).Msgf("failed to parse file content: %s", filename)
 		return nil
@@ -87,6 +87,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string,
 			LinesIgnore:       documents.IgnoreLines,
 			ResolvedFiles:     documents.ResolvedFiles,
 			LinesOriginalData: utils.SplitLines(documents.Content),
+			IsMinified:        documents.IsMinified,
 		}
 
 		s.saveToFile(ctx, &file)

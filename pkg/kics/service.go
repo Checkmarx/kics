@@ -1,10 +1,13 @@
 package kics
 
 import (
+	"bufio"
 	"bytes"
 	"context"
 	"encoding/json"
 	"io"
+	"regexp"
+	"strings"
 	"sync"
 
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -128,6 +131,7 @@ func (s *Service) StartScan(
 type Content struct {
 	Content    *[]byte
 	CountLines int
+	IsMinified bool
 }
 
 /*
@@ -161,8 +165,47 @@ func getContent(rc io.Reader, data []byte, maxSizeMB int) (*Content, error) {
 	}
 	c.Content = &content
 	c.CountLines = countLines
-
+	isMinified, err := isMinified(&content)
+	if err != nil {
+		return c, err
+	}
+	c.IsMinified = isMinified
 	return c, nil
+}
+
+// heuristic to try to find the minified files
+func isMinified(content *[]byte) (bool, error) {
+	file := bytes.NewReader(*content)
+	scanner := bufio.NewScanner(file)
+	lineCount := 0
+	nonEmptyLineCount := 0
+
+	// Define a regular expression to match common patterns in minified files
+	minifiedPattern := regexp.MustCompile(`[;{}()]`)
+
+	for scanner.Scan() {
+		lineCount++
+		line := scanner.Text()
+
+		// Skip empty lines
+		if strings.TrimSpace(line) == "" {
+			continue
+		}
+
+		nonEmptyLineCount++
+
+		// Check for common minification patterns
+		if minifiedPattern.MatchString(line) {
+			return true, nil
+		}
+	}
+
+	// Check if the majority of non-empty lines are short
+	if nonEmptyLineCount > 0 && float64(len(scanner.Text()))/float64(nonEmptyLineCount) < 30 {
+		return true, nil
+	}
+
+	return false, nil
 }
 
 // GetVulnerabilities returns a list of scan detected vulnerabilities
