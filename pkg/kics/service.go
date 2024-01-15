@@ -1,7 +1,6 @@
 package kics
 
 import (
-	"bufio"
 	"bytes"
 	"context"
 	"encoding/json"
@@ -138,7 +137,7 @@ type Content struct {
 getContent will read the passed file 1MB at a time
 to prevent resource exhaustion and return its content
 */
-func getContent(rc io.Reader, data []byte, maxSizeMB int) (*Content, error) {
+func getContent(rc io.Reader, data []byte, maxSizeMB int, filename string) (*Content, error) {
 	var content []byte
 	countLines := 0
 
@@ -165,47 +164,33 @@ func getContent(rc io.Reader, data []byte, maxSizeMB int) (*Content, error) {
 	}
 	c.Content = &content
 	c.CountLines = countLines
-	isMinified, err := isMinified(&content)
-	if err != nil {
-		return c, err
+
+	var isMinified bool
+	if strings.HasSuffix(filename, ".json") {
+		isMinified = isMinifiedJSON(string(content))
+	} else if strings.HasSuffix(filename, ".yaml") || strings.HasSuffix(filename, ".yml") {
+		isMinified = isMinifiedYAML(string(content))
 	}
 	c.IsMinified = isMinified
 	return c, nil
 }
 
-// heuristic to try to find the minified files
-func isMinified(content *[]byte) (bool, error) {
-	file := bytes.NewReader(*content)
-	scanner := bufio.NewScanner(file)
-	lineCount := 0
-	nonEmptyLineCount := 0
+func isMinifiedJSON(content string) bool {
+	// Define a regular expression to match common minification patterns
+	minifiedPattern := regexp.MustCompile(`\s+`)
 
-	// Define a regular expression to match common patterns in minified files
-	minifiedPattern := regexp.MustCompile(`[;{}()]`)
+	// Count the number of non-whitespace characters
+	nonWhitespaceCount := len(minifiedPattern.ReplaceAllString(content, ""))
 
-	for scanner.Scan() {
-		lineCount++
-		line := scanner.Text()
+	// 80% of non-whitespace characters
+	minifiedThreshold := 0.8
 
-		// Skip empty lines
-		if strings.TrimSpace(line) == "" {
-			continue
-		}
+	return float64(nonWhitespaceCount)/float64(len(content)) > minifiedThreshold
+}
 
-		nonEmptyLineCount++
-
-		// Check for common minification patterns
-		if minifiedPattern.MatchString(line) {
-			return true, nil
-		}
-	}
-
-	// Check if the majority of non-empty lines are short
-	if nonEmptyLineCount > 0 && float64(len(scanner.Text()))/float64(nonEmptyLineCount) < 30 {
-		return true, nil
-	}
-
-	return false, nil
+func isMinifiedYAML(content string) bool {
+	// Check for lack of indentation
+	return strings.Contains(content, "\n") && !strings.Contains(content, "\n  ")
 }
 
 // GetVulnerabilities returns a list of scan detected vulnerabilities
