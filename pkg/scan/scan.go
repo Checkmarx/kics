@@ -54,7 +54,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 	if len(extractedPaths.Path) == 0 {
 		return nil, nil
 	}
-	//aqui
+
 	querySource := source.NewFilesystemSource(
 		c.ScanParams.QueriesPath,
 		c.ScanParams.Platform,
@@ -135,8 +135,6 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) {
 		return nil, nil
 	}
 
-	//ver aqui
-	//aqui é preenchido o contexto
 	if err = scanner.PrepareAndScan(ctx, c.ScanParams.ScanID, c.ScanParams.OpenAPIResolveReferences, *c.ProBarBuilder,
 		executeScanParameters.services); err != nil {
 		log.Err(err)
