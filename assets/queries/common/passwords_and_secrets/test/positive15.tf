@@ -19,8 +19,8 @@ EOF
   tags = merge({
     Name = "${local.resource_prefix.value}-ec2"
     }, {
-    git_last_modified_by = "felipe.avelar@checkmarx.com"
-    git_modifiers        = "felipe.avelar"
+    git_last_modified_by = "email@email.com"
+    git_modifiers        = "foo.bar"
     git_org              = "checkmarx"
     git_repo             = "kics"
   })
@@ -34,8 +34,8 @@ resource "aws_ebs_volume" "web_host_storage" {
   tags = merge({
     Name = "${local.resource_prefix.value}-ebs"
     }, {
-    git_last_modified_by = "felipe.avelar@checkmarx.com"
-    git_modifiers        = "felipe.avelar"
+    git_last_modified_by = "email@email.com"
+    git_modifiers        = "foo.bar"
     git_org              = "checkmarx"
     git_repo             = "kics"
   })
@@ -48,8 +48,8 @@ resource "aws_ebs_snapshot" "example_snapshot" {
   tags = merge({
     Name = "${local.resource_prefix.value}-ebs-snapshot"
     }, {
-    git_last_modified_by = "felipe.avelar@checkmarx.com"
-    git_modifiers        = "felipe.avelar"
+    git_last_modified_by = "email@email.com"
+    git_modifiers        = "foo.bar"
     git_org              = "checkmarx"
     git_repo             = "kics"
   })
@@ -90,8 +90,8 @@ resource "aws_security_group" "web-node" {
   }
   depends_on = [aws_vpc.web_vpc]
   tags = {
-    git_last_modified_by = "felipe.avelar@checkmarx.com"
-    git_modifiers        = "felipe.avelar"
+    git_last_modified_by = "email@email.com"
+    git_modifiers        = "foo.bar"
     git_org              = "checkmarx"
     git_repo             = "kics"
   }
@@ -104,8 +104,8 @@ resource "aws_vpc" "web_vpc" {
   tags = merge({
     Name = "${local.resource_prefix.value}-vpc"
     }, {
-    git_last_modified_by = "felipe.avelar@checkmarx.com"
-    git_modifiers        = "felipe.avelar"
+    git_last_modified_by = "email@email.com"
+    git_modifiers        = "foo.bar"
     git_org              = "checkmarx"
     git_repo             = "kics"
   })
@@ -120,8 +120,8 @@ resource "aws_subnet" "web_subnet" {
   tags = merge({
     Name = "${local.resource_prefix.value}-subnet"
     }, {
-    git_last_modified_by = "felipe.avelar@checkmarx.com"
-    git_modifiers        = "felipe.avelar"
+    git_last_modified_by = "email@email.com"
+    git_modifiers        = "foo.bar"
     git_org              = "checkmarx"
     git_repo             = "kics"
   })
@@ -136,8 +136,8 @@ resource "aws_subnet" "web_subnet2" {
   tags = merge({
     Name = "${local.resource_prefix.value}-subnet2"
     }, {
-    git_last_modified_by = "felipe.avelar@checkmarx.com"
-    git_modifiers        = "felipe.avelar"
+    git_last_modified_by = "email@email.com"
+    git_modifiers        = "foo.bar"
     git_org              = "checkmarx"
     git_repo             = "kics"
   })
@@ -150,8 +150,8 @@ resource "aws_internet_gateway" "web_igw" {
   tags = merge({
     Name = "${local.resource_prefix.value}-igw"
     }, {
-    git_last_modified_by = "felipe.avelar@checkmarx.com"
-    git_modifiers        = "felipe.avelar"
+    git_last_modified_by = "email@email.com"
+    git_modifiers        = "foo.bar"
     git_org              = "checkmarx"
     git_repo             = "kics"
   })
@@ -163,8 +163,8 @@ resource "aws_route_table" "web_rtb" {
   tags = merge({
     Name = "${local.resource_prefix.value}-rtb"
     }, {
-    git_last_modified_by = "felipe.avelar@checkmarx.com"
-    git_modifiers        = "felipe.avelar"
+    git_last_modified_by = "email@email.com"
+    git_modifiers        = "foo.bar"
     git_org              = "checkmarx"
     git_repo             = "kics"
   })
@@ -198,8 +198,8 @@ resource "aws_network_interface" "web-eni" {
   tags = merge({
     Name = "${local.resource_prefix.value}-primary_network_interface"
     }, {
-    git_last_modified_by = "felipe.avelar@checkmarx.com"
-    git_modifiers        = "felipe.avelar"
+    git_last_modified_by = "email@email.com"
+    git_modifiers        = "foo.bar"
     git_org              = "checkmarx"
     git_repo             = "kics"
   })
@@ -216,8 +216,8 @@ resource "aws_flow_log" "vpcflowlogs" {
     Name        = "${local.resource_prefix.value}-flowlogs"
     Environment = local.resource_prefix.value
     }, {
-    git_last_modified_by = "felipe.avelar@checkmarx.com"
-    git_modifiers        = "felipe.avelar"
+    git_last_modified_by = "email@email.com"
+    git_modifiers        = "foo.bar"
     git_org              = "checkmarx"
     git_repo             = "kics"
   })
@@ -231,8 +231,8 @@ resource "aws_s3_bucket" "flowbucket" {
     Name        = "${local.resource_prefix.value}-flowlogs"
     Environment = local.resource_prefix.value
     }, {
-    git_last_modified_by = "felipe.avelar@checkmarx.com"
-    git_modifiers        = "felipe.avelar"
+    git_last_modified_by = "email@email.com"
+    git_modifiers        = "foo.bar"
     git_org              = "checkmarx"
     git_repo             = "kics"
   })
