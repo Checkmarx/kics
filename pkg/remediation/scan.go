@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"github.com/Checkmarx/kics/pkg/minified"
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -115,8 +116,9 @@ func getPayload(filePath string, content []byte, openAPIResolveReferences bool) 
 		log.Info().Msg("failed to get parser")
 		return model.FileMetadatas{}, errors.New("failed to get parser")
 	}
-	//aqui burro
-	documents, er := p[0].Parse(filePath, content, openAPIResolveReferences, false)
+
+	isMinified := minified.IsMinified(filePath, content)
+	documents, er := p[0].Parse(filePath, content, openAPIResolveReferences, isMinified)
 
 	if er != nil {
 		log.Error().Msgf("failed to parse file '%s': %s", filePath, er)
@@ -138,6 +140,7 @@ func getPayload(filePath string, content []byte, openAPIResolveReferences bool) 
 			Commands:          p[0].CommentsCommands(filePath, content),
 			OriginalData:      string(content),
 			LinesOriginalData: utils.SplitLines(string(content)),
+			IsMinified:        documents.IsMinified,
 		}
 
 		files = append(files, file)

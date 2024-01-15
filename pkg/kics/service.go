@@ -5,13 +5,12 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"regexp"
-	"strings"
 	"sync"
 
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/engine/secrets"
+	"github.com/Checkmarx/kics/pkg/minified"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	"github.com/Checkmarx/kics/pkg/resolver"
@@ -165,32 +164,8 @@ func getContent(rc io.Reader, data []byte, maxSizeMB int, filename string) (*Con
 	c.Content = &content
 	c.CountLines = countLines
 
-	var isMinified bool
-	if strings.HasSuffix(filename, ".json") {
-		isMinified = isMinifiedJSON(string(content))
-	} else if strings.HasSuffix(filename, ".yaml") || strings.HasSuffix(filename, ".yml") {
-		isMinified = isMinifiedYAML(string(content))
-	}
-	c.IsMinified = isMinified
+	c.IsMinified = minified.IsMinified(filename, content)
 	return c, nil
-}
-
-func isMinifiedJSON(content string) bool {
-	// Define a regular expression to match common minification patterns
-	minifiedPattern := regexp.MustCompile(`\s+`)
-
-	// Count the number of non-whitespace characters
-	nonWhitespaceCount := len(minifiedPattern.ReplaceAllString(content, ""))
-
-	// 80% of non-whitespace characters
-	minifiedThreshold := 0.8
-
-	return float64(nonWhitespaceCount)/float64(len(content)) > minifiedThreshold
-}
-
-func isMinifiedYAML(content string) bool {
-	// Check for lack of indentation
-	return strings.Contains(content, "\n") && !strings.Contains(content, "\n  ")
 }
 
 // GetVulnerabilities returns a list of scan detected vulnerabilities
