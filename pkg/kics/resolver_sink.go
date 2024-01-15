@@ -5,10 +5,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/Checkmarx/kics/pkg/minified"
 	"sort"
 
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
+	"github.com/Checkmarx/kics/pkg/minified"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/google/uuid"

@@ -4,11 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"github.com/Checkmarx/kics/pkg/minified"
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/kics"
+	"github.com/Checkmarx/kics/pkg/minified"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/scan"
 	"github.com/open-policy-agent/opa/topdown"
