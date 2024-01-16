@@ -379,48 +379,13 @@ func (c *Inspector) DecodeQueryResults(
 			timeOut = true
 			break
 		default:
-			vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
-			if err != nil && err.Error() == ErrNoResult.Error() {
-				// Ignoring bad results
-				continue
+			vulnerability, aux := getVulnerabilitiesFromQuery(ctx, c, queryResultItem)
+			if aux {
+				failedDetectLine = aux
 			}
-			if err != nil {
-				sentryReport.ReportSentry(&sentryReport.Report{
-					Message:  fmt.Sprintf("Inspector can't save vulnerability, query=%s", ctx.Query.Metadata.Query),
-					Err:      err,
-					Location: "func decodeQueryResults()",
-					Platform: ctx.Query.Metadata.Platform,
-					Metadata: ctx.Query.Metadata.Metadata,
-					Query:    ctx.Query.Metadata.Query,
-				}, true)
-
-				if _, ok := c.failedQueries[ctx.Query.Metadata.Query]; !ok {
-					c.failedQueries[ctx.Query.Metadata.Query] = err
-				}
-
-				continue
+			if vulnerability != nil && aux == false {
+				vulnerabilities = append(vulnerabilities, *vulnerability)
 			}
-			file := ctx.Files[vulnerability.FileID]
-			if ShouldSkipVulnerability(file.Commands, vulnerability.QueryID) {
-				log.Debug().Msgf("Skipping vulnerability in file %s for query '%s':%s", file.FilePath, vulnerability.QueryName, vulnerability.QueryID)
-				continue
-			}
-
-			if vulnerability.Line == UndetectedVulnerabilityLine {
-				failedDetectLine = true
-			}
-
-			if _, ok := c.excludeResults[vulnerability.SimilarityID]; ok {
-				log.Debug().
-					Msgf("Excluding result SimilarityID: %s", vulnerability.SimilarityID)
-				continue
-			} else if checkComment(vulnerability.Line, file.LinesIgnore) {
-				log.Debug().
-					Msgf("Excluding result Comment: %s", vulnerability.SimilarityID)
-				continue
-			}
-
-			vulnerabilities = append(vulnerabilities, *vulnerability)
 		}
 	}
 
@@ -437,6 +402,51 @@ func (c *Inspector) DecodeQueryResults(
 	}
 
 	return vulnerabilities, nil
+}
+
+func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultItem interface{}) (*model.Vulnerability, bool) {
+	vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
+	if err != nil && err.Error() == ErrNoResult.Error() {
+		// Ignoring bad results
+		return nil, false
+	}
+	if err != nil {
+		sentryReport.ReportSentry(&sentryReport.Report{
+			Message:  fmt.Sprintf("Inspector can't save vulnerability, query=%s", ctx.Query.Metadata.Query),
+			Err:      err,
+			Location: "func decodeQueryResults()",
+			Platform: ctx.Query.Metadata.Platform,
+			Metadata: ctx.Query.Metadata.Metadata,
+			Query:    ctx.Query.Metadata.Query,
+		}, true)
+
+		if _, ok := c.failedQueries[ctx.Query.Metadata.Query]; !ok {
+			c.failedQueries[ctx.Query.Metadata.Query] = err
+		}
+
+		return nil, false
+	}
+	file := ctx.Files[vulnerability.FileID]
+	if ShouldSkipVulnerability(file.Commands, vulnerability.QueryID) {
+		log.Debug().Msgf("Skipping vulnerability in file %s for query '%s':%s", file.FilePath, vulnerability.QueryName, vulnerability.QueryID)
+		return nil, false
+	}
+
+	if vulnerability.Line == UndetectedVulnerabilityLine {
+		return nil, true
+	}
+
+	if _, ok := c.excludeResults[vulnerability.SimilarityID]; ok {
+		log.Debug().
+			Msgf("Excluding result SimilarityID: %s", vulnerability.SimilarityID)
+		return nil, false
+	} else if checkComment(vulnerability.Line, file.LinesIgnore) {
+		log.Debug().
+			Msgf("Excluding result Comment: %s", vulnerability.SimilarityID)
+		return nil, false
+	}
+
+	return vulnerability, false
 }
 
 // checkComment checks if the vulnerability should be skipped from comment
