@@ -27,7 +27,9 @@ func isMinifiedJSON(content string) bool {
 	return float64(nonWhitespaceCount)/float64(len(content)) > minifiedThreshold
 }
 
+// minification is not a standard practice in yaml
+// heuristic, check for newline followed by whitespace
 func isMinifiedYAML(content string) bool {
 	// Check for lack of indentation
-	return strings.Contains(content, "\n") && !strings.Contains(content, "\n  ")
+	return !strings.Contains(content, "\n  ")
 }
