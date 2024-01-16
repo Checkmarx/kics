@@ -383,7 +383,7 @@ func (c *Inspector) DecodeQueryResults(
 			if aux {
 				failedDetectLine = aux
 			}
-			if vulnerability != nil && aux == false {
+			if vulnerability != nil && !aux {
 				vulnerabilities = append(vulnerabilities, *vulnerability)
 			}
 		}
