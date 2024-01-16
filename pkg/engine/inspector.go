@@ -241,6 +241,7 @@ func (c *Inspector) Inspect(
 		vuls, err := c.doRun(queryContext)
 
 		if err != nil {
+			fmt.Println()
 			sentryReport.ReportSentry(&sentryReport.Report{
 				Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", query.Metadata.Query),
 				Err:      err,
@@ -371,13 +372,11 @@ func (c *Inspector) DecodeQueryResults(
 
 	vulnerabilities := make([]model.Vulnerability, 0, len(queryResultItems))
 	failedDetectLine := false
+	timeOut := false
 	for _, queryResultItem := range queryResultItems {
 		select {
 		case <-ctxTimeout.Done():
-			log.Err(ctxTimeout.Err()).Msgf(
-				"Timeout processing the results of the query: %s %s",
-				ctx.Query.Metadata.Platform,
-				ctx.Query.Metadata.Query)
+			timeOut = true
 			break
 		default:
 			vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
@@ -423,6 +422,14 @@ func (c *Inspector) DecodeQueryResults(
 
 			vulnerabilities = append(vulnerabilities, *vulnerability)
 		}
+	}
+
+	if timeOut {
+		fmt.Println()
+		log.Err(ctxTimeout.Err()).Msgf(
+			"Timeout processing the results of the query: %s %s",
+			ctx.Query.Metadata.Platform,
+			ctx.Query.Metadata.Query)
 	}
 
 	if failedDetectLine {
