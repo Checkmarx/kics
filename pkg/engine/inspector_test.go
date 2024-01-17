@@ -679,29 +679,45 @@ func TestShouldSkipFile(t *testing.T) {
 	}
 }
 
-func TestInspector_DecodeQueryResults_ShouldNotFail_WhenTimeout(t *testing.T) {
-	//build inspector
-	c := newInspectorInstance(t, []string{
-		filepath.FromSlash("../../assets/queries/terraform/aws/alb_deletion_protection_disabled"),
-	})
+func TestInspector_DecodeQueryResults(t *testing.T) {
 
 	//context
-	myContext := context.Background()
+	contextToUSe := context.Background()
 
-	//build result set
-	myResultSet := newResultset()
+	//build inspector
+	c := newInspectorInstance(t, []string{})
 
-	//query context
-	myQueryContext := newQueryContext(myContext)
+	type args struct {
+		queryContext QueryContext
+		regoResult   rego.ResultSet
+		timeDuration string
+	}
+	tests := []struct {
+		name     string
+		args     args
+		expected int
+	}{
+		{
+			name: "should_not_fail_when_timeout",
+			args: args{
+				queryContext: newQueryContext(contextToUSe),
+				regoResult:   newResultset(),
+				timeDuration: "0s",
+			},
+			expected: 0,
+		},
+	}
 
-	//create a context with 0 second to timeout
-	timeoutDuration, _ := time.ParseDuration("0s")
-	myCtxTimeOut, _ := context.WithTimeout(myContext, timeoutDuration)
-
-	//call method
-	result, erro := c.DecodeQueryResults(&myQueryContext, myCtxTimeOut, myResultSet)
-	assert.Nil(t, erro, "Error not as expected")
-	assert.Equal(t, 0, len(result), "Array size is not as expected")
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			//create a context with 0 second to timeout
+			timeoutDuration, _ := time.ParseDuration(tt.args.timeDuration)
+			myCtxTimeOut, _ := context.WithTimeout(contextToUSe, timeoutDuration)
+			result, err := c.DecodeQueryResults(&tt.args.queryContext, myCtxTimeOut, tt.args.regoResult)
+			assert.Nil(t, err, "Error not as expected")
+			assert.Equal(t, 0, len(result), "Array size is not as expected")
+		})
+	}
 }
 
 func newResultset() rego.ResultSet {
