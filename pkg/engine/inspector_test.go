@@ -3,6 +3,8 @@ package engine
 import (
 	"context"
 	"fmt"
+	"github.com/open-policy-agent/opa/rego"
+	"github.com/stretchr/testify/assert"
 	"io"
 	"os"
 	"path/filepath"
@@ -675,6 +677,65 @@ func TestShouldSkipFile(t *testing.T) {
 			require.Equal(t, tt.expected, got)
 		})
 	}
+}
+
+func TestInspector_DecodeQueryResults_ShouldNotFail_WhenTimeout(t *testing.T) {
+	//build inspector
+	c := newInspectorInstance(t, []string{
+		filepath.FromSlash("../../assets/queries/terraform/aws/alb_deletion_protection_disabled"),
+	})
+
+	//context
+	myContext := context.Background()
+
+	//build result set
+	myResultSet := newResultset()
+
+	//query context
+	myQueryContext := newQueryContext(myContext)
+
+	//create a context with 0 second to timeout
+	timeoutDuration, _ := time.ParseDuration("0s")
+	myCtxTimeOut, _ := context.WithTimeout(myContext, timeoutDuration)
+
+	//call method
+	result, erro := c.DecodeQueryResults(&myQueryContext, myCtxTimeOut, myResultSet)
+	assert.Nil(t, erro, "Error not as expected")
+	assert.Equal(t, 0, len(result), "Array size is not as expected")
+}
+
+func newResultset() rego.ResultSet {
+	myValue := make(map[string]interface{})
+	myValue["documentId"] = "3a3be8f7-896e-4ef8-9db3-d6c19e60510b"
+	myValue["issueType"] = "IncorrectValue"
+	myValue["keyActualValue"] = "COPY --from referencesthe current FROM alias"
+	myValue["keyExpectedValue"] = "COPY --from should not references the current FROM alias"
+	myValue["searchKey"] = "{{ADD ${JAR_FILE} app.jar}}"
+
+	myBinding := make([]interface{}, 1)
+	myBinding[0] = myValue
+
+	myresult := rego.Result{
+		Bindings: map[string]interface{}{
+			"result": myBinding,
+		},
+	}
+	myResultSet := rego.ResultSet{myresult}
+	return myResultSet
+}
+
+func newQueryContext(ctx context.Context) QueryContext {
+	queryMetadata := model.QueryMetadata{
+		Platform: "myPlatform",
+		Query:    "myQuery"}
+	myQuery := PreparedQuery{
+		Metadata: queryMetadata,
+	}
+	queryContext := QueryContext{
+		Ctx:   ctx,
+		Query: &myQuery,
+	}
+	return queryContext
 }
 
 func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {
