@@ -130,6 +130,7 @@ type FileMetadata struct {
 	LinesIgnore       []int
 	ResolvedFiles     map[string]ResolvedFile
 	LinesOriginalData *[]string
+	IsMinified        bool
 }
 
 // QueryMetadata is a representation of general information about a query
