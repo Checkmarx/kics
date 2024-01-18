@@ -8,6 +8,7 @@ import (
 	"sort"
 
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
+	"github.com/Checkmarx/kics/pkg/minified"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/google/uuid"
@@ -30,7 +31,8 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 		countLines := bytes.Count(rfile.Content, []byte{'\n'}) + 1
 		s.Tracker.TrackFileFoundCountLines(countLines)
 
-		documents, err := s.Parser.Parse(rfile.FileName, rfile.Content, openAPIResolveReferences)
+		isMinified := minified.IsMinified(rfile.FileName, rfile.Content)
+		documents, err := s.Parser.Parse(rfile.FileName, rfile.Content, openAPIResolveReferences, isMinified)
 		if err != nil {
 			if documents.Kind == "break" {
 				return []string{}, nil
@@ -69,6 +71,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 				LinesIgnore:       documents.IgnoreLines,
 				ResolvedFiles:     documents.ResolvedFiles,
 				LinesOriginalData: utils.SplitLines(string(rfile.OriginalData)),
+				IsMinified:        documents.IsMinified,
 			}
 			s.saveToFile(ctx, &file)
 		}
