@@ -27,22 +27,16 @@ func Test_IsMinified(t *testing.T) {
 			args:     giantMinifiedJson,
 		},
 		{
-			name:     "File not json not yaml",
+			name:     "File not json",
 			nameFile: "test.tf",
 			want:     false,
 			args:     []byte(""),
 		},
 		{
-			name:     "Mini minified file yaml",
-			nameFile: "test.yml",
-			want:     true,
-			args:     []byte("[{name: my_elb_application, community.aws.elb_application_lb: {name: myelb, security_groups: [sg-12345678, my-sec-group], subnets: [subnet-012345678, subnet-abcdef000], listeners: [{Protocol: HTTP, Port: 80, SslPolicy: ELBSecurityPolicy-2015-05, Certificates: [{CertificateArn: 'arn:aws:iam::12345678987:server-certificate/test.domain.com'}], DefaultActions: [{Type: forward, TargetGroupName: targetname}]}], state: present}}, {name: my_elb_application2, community.aws.elb_application_lb: {name: myelb2, security_groups: [sg-12345678, my-sec-group], subnets: [subnet-012345678, subnet-abcdef000], listeners: {Port: 80, SslPolicy: ELBSecurityPolicy-2015-05, Certificates: [{CertificateArn: 'arn:aws:iam::12345678987:server-certificate/test.domain.com'}], DefaultActions: [{Type: forward, TargetGroupName: targetname}]}, state: present}}]"),
-		},
-		{
-			name:     "Not minified file yaml",
-			nameFile: "test.yml",
+			name:     "Json not minified",
+			nameFile: "test.json",
 			want:     false,
-			args:     []byte("- name: my_elb_application\n  community.aws.elb_application_lb:\n    name: myelb\n    security_groups:\n      - sg-12345678\n      - my-sec-group\n    subnets:\n      - subnet-012345678\n      - subnet-abcdef000\n    listeners:\n      - Protocol: HTTP\n        Port: 80\n        SslPolicy: ELBSecurityPolicy-2015-05\n        Certificates:\n          - CertificateArn: arn:aws:iam::12345678987:server-certificate/test.domain.com\n        DefaultActions:\n          - Type: forward\n            TargetGroupName: targetname\n    state: present\n- name: my_elb_application2\n  community.aws.elb_application_lb:\n    name: myelb2\n    security_groups:\n      - sg-12345678\n      - my-sec-group\n    subnets:\n      - subnet-012345678\n      - subnet-abcdef000\n    listeners:\n      Port: 80\n      SslPolicy: ELBSecurityPolicy-2015-05\n      Certificates:\n        - CertificateArn: arn:aws:iam::12345678987:server-certificate/test.domain.com\n      DefaultActions:\n        - Type: forward\n          TargetGroupName: targetname\n    state: present\n"),
+			args:     []byte("{\n    \"glossary\": {\n        \"title\": \"example glossary\",\n\t\t\"GlossDiv\": {\n            \"title\": \"S\",\n\t\t\t\"GlossList\": {\n                \"GlossEntry\": {\n                    \"ID\": \"SGML\",\n\t\t\t\t\t\"SortAs\": \"SGML\",\n\t\t\t\t\t\"GlossTerm\": \"Standard Generalized Markup Language\",\n\t\t\t\t\t\"Acronym\": \"SGML\",\n\t\t\t\t\t\"Abbrev\": \"ISO 8879:1986\",\n\t\t\t\t\t\"GlossDef\": {\n                        \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\",\n\t\t\t\t\t\t\"GlossSeeAlso\": [\"GML\", \"XML\"]\n                    },\n\t\t\t\t\t\"GlossSee\": \"markup\"\n                }\n            }\n        }\n    }\n}"),
 		},
 	}
 
