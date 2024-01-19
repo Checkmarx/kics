@@ -13,6 +13,9 @@
         "shortDescription": {
             "text": "The MITRE Common Weakness Enumeration"
         },
+        "fullDescription": {
+            "text": ""
+        },
         "taxa": []
     }
 }
