@@ -55,7 +55,7 @@ type ruleCISMetadata struct {
 }
 
 type sarifMessage struct {
-	Text              string          `json:"text,omitempty"`
+	Text              string          `json:"text"`
 	MessageProperties sarifProperties `json:"properties,omitempty"`
 }
 
@@ -261,10 +261,6 @@ func initCweCategories(cweIDs []string, guids map[string]string) []taxonomyDefin
 	return taxonomyList
 }
 
-func isEmptySarifMessage(msg sarifMessage) bool {
-	return msg.Text == "" && len(msg.MessageProperties) == 0
-}
-
 func initSarifTaxonomies() []sarifTaxonomy {
 	var taxonomies []sarifTaxonomy
 	// Categories
@@ -301,13 +297,9 @@ func initSarifTaxonomies() []sarifTaxonomy {
 			TaxonomyRealeaseDateUtc:                   cweInfo.TaxonomyRealeaseDateUtc,
 			TaxonomyMinRequiredLocDataSemanticVersion: cweInfo.TaxonomyMinRequiredLocDataSemanticVersion,
 			TaxonomyDownloadURI:                       cweInfo.TaxonomyDownloadURI,
+			TaxonomyFullDescription:                   sarifMessage{Text: cweInfo.TaxonomyFullDescription.Text},
 			TaxonomyShortDescription:                  sarifMessage{Text: cweInfo.TaxonomyShortDescription.Text},
 			TaxonomyDefinitions:                       []taxonomyDefinitions{},
-		}
-
-		// Condition to include TaxonomyFullDescription based if it has content or not
-		if !isEmptySarifMessage(cweInfo.TaxonomyFullDescription) {
-			cweTaxonomy.TaxonomyFullDescription = cweInfo.TaxonomyFullDescription
 		}
 		taxonomies = append(taxonomies, cweTaxonomy)
 	}
