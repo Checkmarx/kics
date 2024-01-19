@@ -215,7 +215,7 @@ func initSarifCategories() []taxonomyDefinitions {
 	return allCategories
 }
 
-// initCweCategories is responsible for building the CWE taxa field, inside taxonomies with id, guid, descriptions and helpUri
+// initCweCategories is responsible for building the CWE taxa field, inside taxonomies
 func initCweCategories(cweIDs []string, guids map[string]string) []taxonomyDefinitions {
 	absPath, err := filepath.Abs(".")
 	if err != nil {
@@ -363,7 +363,7 @@ func readCWEInfo(filePath string) (sarifTaxonomy, error) {
 	return wrapper.Taxonomies, nil
 }
 
-func generateGuid() string {
+func generateGUID() string {
 	id := uuid.New()
 	return id.String()
 }
@@ -396,7 +396,7 @@ func readCWECsvInfo(filePath string) ([]cweCsv, error) {
 				ShortDescription: cweMessage{
 					Text: record[4],
 				},
-				Guid:    generateGuid(),
+				Guid:    generateGUID(),
 				HelpUri: "https://cwe.mitre.org/data/definitions/" + record[0] + ".html",
 			}
 			cweEntries = append(cweEntries, cweEntry)
@@ -406,7 +406,7 @@ func readCWECsvInfo(filePath string) ([]cweCsv, error) {
 	return cweEntries, nil
 }
 
-// buildCweCategory builds the CWE category in taxonomies, with info from MITRE and CSV's related to the CWE item
+// buildCweCategory builds the CWE category in taxonomies, with info from ´MITRE´ and CSV's related to the CWE item
 func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
 	absPath, err := filepath.Abs(".")
 	if err != nil {
@@ -440,7 +440,7 @@ func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
 		return sarifDescriptorReference{}
 	}
 
-	newGUID := generateGuid()
+	newGUID := generateGUID()
 
 	cwe := sarifDescriptorReference{
 		ReferenceID:   matchingCweEntry.CweID,
@@ -544,7 +544,7 @@ func (sr *sarifReport) GetGUIDFromRelationships(idx int, cweID string) string {
 	return ""
 }
 
-// RebuildTaxonomies builds the taxonomies with the CWE's and the GUID's comming from each respective relationships field
+// RebuildTaxonomies builds the taxonomies with the CWEs and the GUIDs coming from each relationships field
 func (sr *sarifReport) RebuildTaxonomies(cwes []string, guids map[string]string) {
 	if len(cwes) > 0 {
 		result := initCweCategories(cwes, guids)
