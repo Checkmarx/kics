@@ -134,7 +134,6 @@
                                                                 "type": "object",
                                                                 "required": [
                                                                     "id",
-                                                                    "index",
                                                                     "toolComponent"
                                                                 ],
                                                                 "properties": {
@@ -145,6 +144,10 @@
                                                                     "index": {
                                                                         "type": "integer",
                                                                         "minimum": 0
+                                                                    },
+                                                                    "guid": {
+                                                                        "type": "string",
+                                                                        "minLenght": 1
                                                                     },
                                                                     "toolComponent": {
                                                                         "type": "object",
