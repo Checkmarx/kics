@@ -350,7 +350,7 @@ func (sr *sarifReport) findSarifCategory(category string) int {
 // readCWEInfo is responsible for reading the CWE taxonomy info from the json file
 func readCWEInfo(filePath string) (sarifTaxonomy, error) {
 	var wrapper cweTaxonomiesWrapper
-	fileContent, err := os.ReadFile(filePath)
+	fileContent, err := os.ReadFile(filepath.Clean(filePath))
 	if err != nil {
 		return sarifTaxonomy{}, err
 	}
@@ -370,7 +370,7 @@ func generateGuid() string {
 
 // readCWECsvInfo is responsible for reading the CWE taxonomy info from the corresponding csv file
 func readCWECsvInfo(filePath string) ([]cweCsv, error) {
-	file, err := os.Open(filePath)
+	file, err := os.Open(filepath.Clean(filePath))
 	if err != nil {
 		return nil, err
 	}
