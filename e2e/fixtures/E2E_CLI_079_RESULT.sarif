@@ -274,7 +274,7 @@
 					"guid": "1489b0c4-d7ce-4d31-af66-6382a01202e3",
 					"name": "CWE",
 					"fullDescription": {
-						"text": ""
+						"text": "The MITRE Common Weakness Enumeration"
 					},
 					"shortDescription": {
 						"text": "The MITRE Common Weakness Enumeration"
