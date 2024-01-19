@@ -29,7 +29,7 @@ var targetTemplate = sarifDescriptorReference{
 	},
 }
 
-var cweTemplate = cweDescriptorReference{
+var cweTemplate = cweDescriptorReference{ //nolint
 	ToolComponent: cweComponentReference{
 		ComponentReferenceGUID: "1489b0c4-d7ce-4d31-af66-6382a01202e3",
 		ComponentReferenceName: "CWE",
@@ -72,7 +72,7 @@ type cweComponentReference struct {
 
 type sarifDescriptorReference struct {
 	ReferenceID    string                  `json:"id"`
-	ReferenceGuid  string                  `json:"guid,omitempty"`
+	ReferenceGUID  string                  `json:"guid,omitempty"`
 	ReferenceIndex int                     `json:"index,omitempty"`
 	ToolComponent  sarifComponentReference `json:"toolComponent"`
 }
@@ -85,13 +85,13 @@ type cweCsv struct {
 	CweID            string     `json:"id"`
 	FullDescription  cweMessage `json:"fullDescription"`
 	ShortDescription cweMessage `json:"shortDescription"`
-	Guid             string     `json:"guid"`
-	HelpUri          string     `json:"helpUri"`
+	GUID             string     `json:"guid"`
+	HelpURI          string     `json:"helpUri"`
 }
 
 type cweDescriptorReference struct {
 	ReferenceID   string                `json:"id"`
-	ReferenceGuid string                `json:"guid"`
+	ReferenceGUID string                `json:"guid"`
 	ToolComponent cweComponentReference `json:"toolComponent"`
 }
 
@@ -153,7 +153,7 @@ type taxonomyDefinitions struct {
 	DefinitionID               string     `json:"id"`
 	DefinitionShortDescription cweMessage `json:"shortDescription"`
 	DefinitionFullDescription  cweMessage `json:"fullDescription"`
-	HelpUri                    string     `json:"helpUri,omitempty"`
+	HelpURI                    string     `json:"helpUri,omitempty"`
 }
 
 type cweTaxonomiesWrapper struct {
@@ -165,8 +165,8 @@ type sarifTaxonomy struct {
 	TaxonomyName                              string                `json:"name"`
 	TaxonomyFullDescription                   sarifMessage          `json:"fullDescription,omitempty"`
 	TaxonomyShortDescription                  sarifMessage          `json:"shortDescription"`
-	TaxonomyDownloadUri                       string                `json:"downloadUri,omitempty"`
-	TaxonomyInformationUri                    string                `json:"informationUri,omitempty"`
+	TaxonomyDownloadURI                       string                `json:"downloadUri,omitempty"`
+	TaxonomyInformationURI                    string                `json:"informationUri,omitempty"`
 	TaxonomyIsComprehensive                   bool                  `json:"isComprehensive,omitempty"`
 	TaxonomyLanguage                          string                `json:"language,omitempty"`
 	TaxonomyMinRequiredLocDataSemanticVersion string                `json:"minimumRequiredLocalizedDataSemanticVersion,omitempty"`
@@ -253,7 +253,7 @@ func initCweCategories(cweIDs []string, guids map[string]string) []taxonomyDefin
 			DefinitionGUID:             guid,
 			DefinitionFullDescription:  matchingCweEntry.FullDescription,
 			DefinitionShortDescription: matchingCweEntry.ShortDescription,
-			HelpUri:                    matchingCweEntry.HelpUri,
+			HelpURI:                    matchingCweEntry.HelpURI,
 		}
 		taxonomyList = append(taxonomyList, taxonomy)
 	}
@@ -294,13 +294,13 @@ func initSarifTaxonomies() []sarifTaxonomy {
 		cweTaxonomy := sarifTaxonomy{
 			TaxonomyGUID:                              cweInfo.TaxonomyGUID,
 			TaxonomyName:                              cweInfo.TaxonomyName,
-			TaxonomyInformationUri:                    cweInfo.TaxonomyInformationUri,
+			TaxonomyInformationURI:                    cweInfo.TaxonomyInformationURI,
 			TaxonomyIsComprehensive:                   cweInfo.TaxonomyIsComprehensive,
 			TaxonomyLanguage:                          cweInfo.TaxonomyLanguage,
 			TaxonomyOrganization:                      cweInfo.TaxonomyOrganization,
 			TaxonomyRealeaseDateUtc:                   cweInfo.TaxonomyRealeaseDateUtc,
 			TaxonomyMinRequiredLocDataSemanticVersion: cweInfo.TaxonomyMinRequiredLocDataSemanticVersion,
-			TaxonomyDownloadUri:                       cweInfo.TaxonomyDownloadUri,
+			TaxonomyDownloadURI:                       cweInfo.TaxonomyDownloadURI,
 			TaxonomyShortDescription:                  sarifMessage{Text: cweInfo.TaxonomyShortDescription.Text},
 			TaxonomyDefinitions:                       []taxonomyDefinitions{},
 		}
@@ -381,9 +381,10 @@ func readCWECsvInfo(filePath string) ([]cweCsv, error) {
 	}
 
 	var cweEntries []cweCsv
+	numRecords := 23
 
 	for _, record := range records {
-		if len(record) >= 23 {
+		if len(record) >= numRecords {
 			cweEntry := cweCsv{
 				CweID: record[0],
 				FullDescription: cweMessage{
@@ -392,8 +393,8 @@ func readCWECsvInfo(filePath string) ([]cweCsv, error) {
 				ShortDescription: cweMessage{
 					Text: record[4],
 				},
-				Guid:    generateGUID(),
-				HelpUri: "https://cwe.mitre.org/data/definitions/" + record[0] + ".html",
+				GUID:    generateGUID(),
+				HelpURI: "https://cwe.mitre.org/data/definitions/" + record[0] + ".html",
 			}
 			cweEntries = append(cweEntries, cweEntry)
 		}
@@ -440,7 +441,7 @@ func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
 
 	cwe := sarifDescriptorReference{
 		ReferenceID:   matchingCweEntry.CweID,
-		ReferenceGuid: newGUID,
+		ReferenceGUID: newGUID,
 		ToolComponent: sarifComponentReference{
 			ComponentReferenceGUID: "1489b0c4-d7ce-4d31-af66-6382a01202e3",
 			ComponentReferenceName: "CWE",
@@ -533,7 +534,7 @@ func (sr *sarifReport) GetGUIDFromRelationships(idx int, cweID string) string {
 
 		for _, target := range targets {
 			if target.ReferenceID == cweID {
-				return target.ReferenceGuid
+				return target.ReferenceGUID
 			}
 		}
 	}

@@ -85,7 +85,7 @@ var sarifTests = []sarifTest{
 												},
 												{
 													ReferenceID:   "",
-													ReferenceGuid: "",
+													ReferenceGUID: "",
 													ToolComponent: sarifComponentReference{
 														ComponentReferenceGUID:  "",
 														ComponentReferenceName:  "",
@@ -185,7 +185,7 @@ var sarifTests = []sarifTest{
 												},
 												{
 													ReferenceID:   "",
-													ReferenceGuid: "",
+													ReferenceGUID: "",
 													ToolComponent: sarifComponentReference{
 														ComponentReferenceGUID:  "",
 														ComponentReferenceName:  "",
@@ -219,7 +219,7 @@ var sarifTests = []sarifTest{
 												},
 												{
 													ReferenceID:   "",
-													ReferenceGuid: "",
+													ReferenceGUID: "",
 													ToolComponent: sarifComponentReference{
 														ComponentReferenceGUID:  "",
 														ComponentReferenceName:  "",
