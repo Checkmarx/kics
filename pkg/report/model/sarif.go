@@ -255,7 +255,6 @@ func initCweCategories(cweIDs []string, guids map[string]string) []taxonomyDefin
 			DefinitionShortDescription: matchingCweEntry.ShortDescription,
 			HelpUri:                    matchingCweEntry.HelpUri,
 		}
-
 		taxonomyList = append(taxonomyList, taxonomy)
 	}
 
@@ -288,12 +287,10 @@ func initSarifTaxonomies() []sarifTaxonomy {
 	cweInfoPath := filepath.Join(".", "assets", "cwe_csv", "cwe_taxonomies_latest.json")
 
 	if cweTemplate.ToolComponent.ComponentReferenceName == "CWE" {
-
 		cweInfo, err := readCWEInfo(cweInfoPath)
 		if err != nil {
 			return taxonomies
 		}
-
 		cweTaxonomy := sarifTaxonomy{
 			TaxonomyGUID:                              cweInfo.TaxonomyGUID,
 			TaxonomyName:                              cweInfo.TaxonomyName,
@@ -312,7 +309,6 @@ func initSarifTaxonomies() []sarifTaxonomy {
 		if !isEmptySarifMessage(cweInfo.TaxonomyFullDescription) {
 			cweTaxonomy.TaxonomyFullDescription = cweInfo.TaxonomyFullDescription
 		}
-
 		taxonomies = append(taxonomies, cweTaxonomy)
 	}
 
@@ -406,7 +402,7 @@ func readCWECsvInfo(filePath string) ([]cweCsv, error) {
 	return cweEntries, nil
 }
 
-// buildCweCategory builds the CWE category in taxonomies, with info from ´MITRE´ and CSV's related to the CWE item
+// buildCweCategory builds the CWE category in taxonomies, with info from CWE and CSV
 func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
 	absPath, err := filepath.Abs(".")
 	if err != nil {
