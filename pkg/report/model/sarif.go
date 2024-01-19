@@ -29,11 +29,8 @@ var targetTemplate = sarifDescriptorReference{
 	},
 }
 
-var cweTemplate = cweDescriptorReference{ //nolint
-	ToolComponent: cweComponentReference{
-		ComponentReferenceGUID: "1489b0c4-d7ce-4d31-af66-6382a01202e3",
-		ComponentReferenceName: "CWE",
-	},
+var cweTemplate = cweDescriptorReference{
+	ToolComponent: cweComponentReference{ComponentReferenceGUID: "1489b0c4-d7ce-4d31-af66-6382a01202e3", ComponentReferenceName: "CWE"},
 }
 
 type sarifProperties map[string]interface{}
