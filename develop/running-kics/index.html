@@ -1984,7 +1984,7 @@
 </ul>
 <p>Files and directories that are not local will be placed in a temporarily folder during KICS execution.</p>
 <h3 id="local_files">Local Files<a class="headerlink" href="#local_files" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker run -t -v {​​​​path_to_scan}​​​​:/path checkmarx/kics scan -p /path
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker run -t -v {path_to_scan}:/path checkmarx/kics scan -p /path
 </code></pre></div>
 <h3 id="archived_files">Archived Files<a class="headerlink" href="#archived_files" title="Permanent link">&para;</a></h3>
 <p>Available archive formats:</p>
@@ -1997,7 +1997,7 @@
 <li><code>bz2</code></li>
 <li><code>xz</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker run -t -v {​​​​path_to_scan_zip}​​​​:/path checkmarx/kics scan -p /path
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker run -t -v {path_to_scan_zip}:/path checkmarx/kics scan -p /path
 </code></pre></div>
 <p>More information can be seen <a href="https://github.com/hashicorp/go-getter#unarchiving">here</a></p>
 <h3 id="s3">S3<a class="headerlink" href="#s3" title="Permanent link">&para;</a></h3>
