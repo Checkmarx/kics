@@ -28,7 +28,7 @@
 									"target": [
 										{
 											"id": "CAT007",
-											"index": 14,
+											"index": 4,
 											"toolComponent": {
 												"name": "Categories",
 												"guid": "58cdcc6f-fe41-4724-bfb3-131a93df4c3f"
@@ -36,7 +36,7 @@
 										},
 										{
 											"id": "22",
-											"guid": "999c4d9e-af62-46cd-9956-3bb8d961e398",
+											"guid": "dd3457ba-cefe-42ef-b1f5-f65dec8aabf7",
 											"toolComponent": {
 												"name": "CWE",
 												"guid": "1489b0c4-d7ce-4d31-af66-6382a01202e3"
@@ -119,13 +119,23 @@
 							}
 						},
 						{
-							"name": "Bill Of Materials",
-							"id": "CAT015",
+							"name": "Networking and Firewall",
+							"id": "CAT009",
 							"shortDescription": {
-								"text": "List of resources provisioned"
+								"text": "Network port exposure and firewall configuration"
 							},
 							"fullDescription": {
-								"text": "List of resources provisioned"
+								"text": "Network port exposure and firewall configuration"
+							}
+						},
+						{
+							"name": "Access Control",
+							"id": "CAT001",
+							"shortDescription": {
+								"text": "Service permission and identity management"
+							},
+							"fullDescription": {
+								"text": "Service permission and identity management"
 							}
 						},
 						{
@@ -136,6 +146,26 @@
 							},
 							"fullDescription": {
 								"text": "Survivability and Recovery"
+							}
+						},
+						{
+							"name": "Insecure Configurations",
+							"id": "CAT007",
+							"shortDescription": {
+								"text": "Configurations which expose the application unnecessarily"
+							},
+							"fullDescription": {
+								"text": "Configurations which expose the application unnecessarily"
+							}
+						},
+						{
+							"name": "Insecure Defaults",
+							"id": "CAT008",
+							"shortDescription": {
+								"text": "Configurations that are insecure by default"
+							},
+							"fullDescription": {
+								"text": "Configurations that are insecure by default"
 							}
 						},
 						{
@@ -159,66 +189,6 @@
 							}
 						},
 						{
-							"name": "Secret Management",
-							"id": "CAT012",
-							"shortDescription": {
-								"text": "Secret and Key management"
-							},
-							"fullDescription": {
-								"text": "Secret and Key management"
-							}
-						},
-						{
-							"name": "Best Practices",
-							"id": "CAT004",
-							"shortDescription": {
-								"text": "Metadata management"
-							},
-							"fullDescription": {
-								"text": "Metadata management"
-							}
-						},
-						{
-							"name": "Build Process",
-							"id": "CAT005",
-							"shortDescription": {
-								"text": "Insecure configurations when building/deploying"
-							},
-							"fullDescription": {
-								"text": "Insecure configurations when building/deploying"
-							}
-						},
-						{
-							"name": "Encryption",
-							"id": "CAT006",
-							"shortDescription": {
-								"text": "Data Security and Encryption configuration"
-							},
-							"fullDescription": {
-								"text": "Data Security and Encryption configuration"
-							}
-						},
-						{
-							"name": "Networking and Firewall",
-							"id": "CAT009",
-							"shortDescription": {
-								"text": "Network port exposure and firewall configuration"
-							},
-							"fullDescription": {
-								"text": "Network port exposure and firewall configuration"
-							}
-						},
-						{
-							"name": "Structure and Semantics",
-							"id": "CAT014",
-							"shortDescription": {
-								"text": "Malformed document structure or inadequate semantics"
-							},
-							"fullDescription": {
-								"text": "Malformed document structure or inadequate semantics"
-							}
-						},
-						{
 							"name": "Supply-Chain",
 							"id": "CAT013",
 							"shortDescription": {
@@ -229,13 +199,13 @@
 							}
 						},
 						{
-							"name": "Access Control",
-							"id": "CAT001",
+							"name": "Bill Of Materials",
+							"id": "CAT015",
 							"shortDescription": {
-								"text": "Service permission and identity management"
+								"text": "List of resources provisioned"
 							},
 							"fullDescription": {
-								"text": "Service permission and identity management"
+								"text": "List of resources provisioned"
 							}
 						},
 						{
@@ -249,23 +219,53 @@
 							}
 						},
 						{
-							"name": "Insecure Configurations",
-							"id": "CAT007",
+							"name": "Build Process",
+							"id": "CAT005",
 							"shortDescription": {
-								"text": "Configurations which expose the application unnecessarily"
+								"text": "Insecure configurations when building/deploying"
 							},
 							"fullDescription": {
-								"text": "Configurations which expose the application unnecessarily"
+								"text": "Insecure configurations when building/deploying"
 							}
 						},
 						{
-							"name": "Insecure Defaults",
-							"id": "CAT008",
+							"name": "Secret Management",
+							"id": "CAT012",
 							"shortDescription": {
-								"text": "Configurations that are insecure by default"
+								"text": "Secret and Key management"
 							},
 							"fullDescription": {
-								"text": "Configurations that are insecure by default"
+								"text": "Secret and Key management"
+							}
+						},
+						{
+							"name": "Structure and Semantics",
+							"id": "CAT014",
+							"shortDescription": {
+								"text": "Malformed document structure or inadequate semantics"
+							},
+							"fullDescription": {
+								"text": "Malformed document structure or inadequate semantics"
+							}
+						},
+						{
+							"name": "Best Practices",
+							"id": "CAT004",
+							"shortDescription": {
+								"text": "Metadata management"
+							},
+							"fullDescription": {
+								"text": "Metadata management"
+							}
+						},
+						{
+							"name": "Encryption",
+							"id": "CAT006",
+							"shortDescription": {
+								"text": "Data Security and Encryption configuration"
+							},
+							"fullDescription": {
+								"text": "Data Security and Encryption configuration"
 							}
 						}
 					]
@@ -288,7 +288,7 @@
 					"releaseDateUtc": "2023-10-26",
 					"taxa": [
 						{
-							"guid": "999c4d9e-af62-46cd-9956-3bb8d961e398",
+							"guid": "dd3457ba-cefe-42ef-b1f5-f65dec8aabf7",
 							"id": "22",
 							"shortDescription": {
 								"text": "The product uses external input to construct a pathname that is intended to identify a file or directory that is located underneath a restricted parent directory, but the product does not properly neutralize special elements within the pathname that can cause the pathname to resolve to a location that is outside of the restricted directory."
