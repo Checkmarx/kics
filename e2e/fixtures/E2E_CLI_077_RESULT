@@ -25,15 +25,60 @@
 							"helpUri": "https://securitylab.github.com/research/github-actions-untrusted-input/",
 							"relationships": [
 								{
-									"target": {
-										"id": "CAT007",
-										"index": 6,
-										"toolComponent": {
-											"name": "Categories",
-											"guid": "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
-											"index": 0
+									"target": [
+										{
+											"id": "CAT007",
+											"index": 1,
+											"toolComponent": {
+												"name": "Categories",
+												"guid": "58cdcc6f-fe41-4724-bfb3-131a93df4c3f"
+											}
+										},
+										{
+											"id": "22",
+											"guid": "37b809ad-1e28-4868-a4cb-61e7b5f67901",
+											"toolComponent": {
+												"name": "CWE",
+												"guid": "1489b0c4-d7ce-4d31-af66-6382a01202e3"
+											}
 										}
-									}
+									]
+								}
+							]
+						},
+						{
+							"id": "62ff6823-927a-427f-acf9-f1ea2932d616",
+							"name": "Script Block Injection",
+							"shortDescription": {
+								"text": "Script Block Injection"
+							},
+							"fullDescription": {
+								"text": "GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event."
+							},
+							"defaultConfiguration": {
+								"level": "error"
+							},
+							"helpUri": "https://securitylab.github.com/research/github-actions-untrusted-input/",
+							"relationships": [
+								{
+									"target": [
+										{
+											"id": "CAT007",
+											"index": 1,
+											"toolComponent": {
+												"name": "Categories",
+												"guid": "58cdcc6f-fe41-4724-bfb3-131a93df4c3f"
+											}
+										},
+										{
+											"id": "41",
+											"guid": "5e1c0dcc-78f9-458b-8b52-78adcf761f35",
+											"toolComponent": {
+												"name": "CWE",
+												"guid": "1489b0c4-d7ce-4d31-af66-6382a01202e3"
+											}
+										}
+									]
 								}
 							]
 						},
@@ -52,15 +97,58 @@
 							"helpUri": "https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions",
 							"relationships": [
 								{
-									"target": {
-										"id": "CAT013",
-										"index": 5,
-										"toolComponent": {
-											"name": "Categories",
-											"guid": "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
-											"index": 0
+									"target": [
+										{
+											"id": "CAT013",
+											"index": 15,
+											"toolComponent": {
+												"name": "Categories",
+												"guid": "58cdcc6f-fe41-4724-bfb3-131a93df4c3f"
+											}
+										},
+										{
+											"id": "",
+											"toolComponent": {
+												"name": "",
+												"guid": ""
+											}
 										}
-									}
+									]
+								}
+							]
+						},
+						{
+							"id": "60fd272d-15f4-4d8f-afe4-77d9c6cc0453",
+							"name": "Unsecured Commands",
+							"shortDescription": {
+								"text": "Unsecured Commands"
+							},
+							"fullDescription": {
+								"text": "There are deprecated set-env and add-path commands that can be explicitly enabled by a user via setting the ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable as true. Depending on the use of the environment variable, this could enable an attacker to, at worst, modify the system path to run a different command than intended, resulting in arbitrary code execution."
+							},
+							"defaultConfiguration": {
+								"level": "warning"
+							},
+							"helpUri": "https://0xn3va.gitbook.io/cheat-sheets/ci-cd/github/actions#misuse-of-the-events-related-to-incoming-prs",
+							"relationships": [
+								{
+									"target": [
+										{
+											"id": "CAT007",
+											"index": 1,
+											"toolComponent": {
+												"name": "Categories",
+												"guid": "58cdcc6f-fe41-4724-bfb3-131a93df4c3f"
+											}
+										},
+										{
+											"id": "",
+											"toolComponent": {
+												"name": "",
+												"guid": ""
+											}
+										}
+									]
 								}
 							]
 						}
@@ -75,7 +163,6 @@
 					"message": {
 						"text": "Run block contains dangerous input controlled by user.",
 						"properties": {
-							"cwe": "1234",
 							"platform": "CICD"
 						}
 					},
@@ -83,103 +170,7 @@
 						{
 							"physicalLocation": {
 								"artifactLocation": {
-									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive2.yaml"
-								},
-								"region": {
-									"startLine": 13
-								}
-							}
-						}
-					]
-				},
-				{
-					"ruleId": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
-					"ruleIndex": 0,
-					"kind": "fail",
-					"message": {
-						"text": "Run block contains dangerous input controlled by user.",
-						"properties": {
-							"cwe": "1234",
-							"platform": "CICD"
-						}
-					},
-					"locations": [
-						{
-							"physicalLocation": {
-								"artifactLocation": {
-									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive4.yaml"
-								},
-								"region": {
-									"startLine": 13
-								}
-							}
-						}
-					]
-				},
-				{
-					"ruleId": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
-					"ruleIndex": 0,
-					"kind": "fail",
-					"message": {
-						"text": "Run block contains dangerous input controlled by user.",
-						"properties": {
-							"cwe": "1234",
-							"platform": "CICD"
-						}
-					},
-					"locations": [
-						{
-							"physicalLocation": {
-								"artifactLocation": {
-									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive7.yaml"
-								},
-								"region": {
-									"startLine": 13
-								}
-							}
-						}
-					]
-				},
-				{
-					"ruleId": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
-					"ruleIndex": 0,
-					"kind": "fail",
-					"message": {
-						"text": "Run block contains dangerous input controlled by user.",
-						"properties": {
-							"cwe": "1234",
-							"platform": "CICD"
-						}
-					},
-					"locations": [
-						{
-							"physicalLocation": {
-								"artifactLocation": {
-									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive6.yaml"
-								},
-								"region": {
-									"startLine": 13
-								}
-							}
-						}
-					]
-				},
-				{
-					"ruleId": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
-					"ruleIndex": 0,
-					"kind": "fail",
-					"message": {
-						"text": "Run block contains dangerous input controlled by user.",
-						"properties": {
-							"cwe": "1234",
-							"platform": "CICD"
-						}
-					},
-					"locations": [
-						{
-							"physicalLocation": {
-								"artifactLocation": {
-									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive1.yaml"
+									"uri": "test\\fixtures\\test_sarif_cwe_report\\cicd\\github\\run_block_injection\\test\\positive1.yaml"
 								},
 								"region": {
 									"startLine": 10
@@ -195,7 +186,6 @@
 					"message": {
 						"text": "Run block contains dangerous input controlled by user.",
 						"properties": {
-							"cwe": "1234",
 							"platform": "CICD"
 						}
 					},
@@ -203,7 +193,7 @@
 						{
 							"physicalLocation": {
 								"artifactLocation": {
-									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive1.yaml"
+									"uri": "test\\fixtures\\test_sarif_cwe_report\\cicd\\github\\run_block_injection\\test\\positive1.yaml"
 								},
 								"region": {
 									"startLine": 10
@@ -213,13 +203,12 @@
 					]
 				},
 				{
-					"ruleId": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
-					"ruleIndex": 0,
+					"ruleId": "62ff6823-927a-427f-acf9-f1ea2932d616",
+					"ruleIndex": 1,
 					"kind": "fail",
 					"message": {
-						"text": "Run block contains dangerous input controlled by user.",
+						"text": "Script block contains dangerous input controlled by user.",
 						"properties": {
-							"cwe": "1234",
 							"platform": "CICD"
 						}
 					},
@@ -227,34 +216,10 @@
 						{
 							"physicalLocation": {
 								"artifactLocation": {
-									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive3.yaml"
+									"uri": "test\\fixtures\\test_sarif_cwe_report\\cicd\\github\\script_block_injection\\test\\positive1.yaml"
 								},
 								"region": {
-									"startLine": 13
-								}
-							}
-						}
-					]
-				},
-				{
-					"ruleId": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
-					"ruleIndex": 0,
-					"kind": "fail",
-					"message": {
-						"text": "Run block contains dangerous input controlled by user.",
-						"properties": {
-							"cwe": "1234",
-							"platform": "CICD"
-						}
-					},
-					"locations": [
-						{
-							"physicalLocation": {
-								"artifactLocation": {
-									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive5.yaml"
-								},
-								"region": {
-									"startLine": 13
+									"startLine": 17
 								}
 							}
 						}
@@ -262,12 +227,11 @@
 				},
 				{
 					"ruleId": "555ab8f9-2001-455e-a077-f2d0f41e2fb9",
-					"ruleIndex": 1,
+					"ruleIndex": 2,
 					"kind": "fail",
 					"message": {
 						"text": "Action is not pinned to a full length commit SHA.",
 						"properties": {
-							"cwe": "",
 							"platform": "CICD"
 						}
 					},
@@ -275,7 +239,7 @@
 						{
 							"physicalLocation": {
 								"artifactLocation": {
-									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive1.yaml"
+									"uri": "test\\fixtures\\test_sarif_cwe_report\\cicd\\github\\run_block_injection\\test\\positive1.yaml"
 								},
 								"region": {
 									"startLine": 28
@@ -286,12 +250,11 @@
 				},
 				{
 					"ruleId": "555ab8f9-2001-455e-a077-f2d0f41e2fb9",
-					"ruleIndex": 1,
+					"ruleIndex": 2,
 					"kind": "fail",
 					"message": {
 						"text": "Action is not pinned to a full length commit SHA.",
 						"properties": {
-							"cwe": "",
 							"platform": "CICD"
 						}
 					},
@@ -299,10 +262,56 @@
 						{
 							"physicalLocation": {
 								"artifactLocation": {
-									"uri": "assets\\queries\\cicd\\github\\run_block_injection\\test\\positive1.yaml"
+									"uri": "test\\fixtures\\test_sarif_cwe_report\\cicd\\github\\run_block_injection\\test\\positive1.yaml"
 								},
 								"region": {
 									"startLine": 34
+								}
+							}
+						}
+					]
+				},
+				{
+					"ruleId": "555ab8f9-2001-455e-a077-f2d0f41e2fb9",
+					"ruleIndex": 2,
+					"kind": "fail",
+					"message": {
+						"text": "Action is not pinned to a full length commit SHA.",
+						"properties": {
+							"platform": "CICD"
+						}
+					},
+					"locations": [
+						{
+							"physicalLocation": {
+								"artifactLocation": {
+									"uri": "test\\fixtures\\test_sarif_cwe_report\\cicd\\github\\unpinned_actions_full_length_commit_sha\\test\\positive1.yaml"
+								},
+								"region": {
+									"startLine": 12
+								}
+							}
+						}
+					]
+				},
+				{
+					"ruleId": "60fd272d-15f4-4d8f-afe4-77d9c6cc0453",
+					"ruleIndex": 3,
+					"kind": "fail",
+					"message": {
+						"text": "ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable is set as true.",
+						"properties": {
+							"platform": "CICD"
+						}
+					},
+					"locations": [
+						{
+							"physicalLocation": {
+								"artifactLocation": {
+									"uri": "test\\fixtures\\test_sarif_cwe_report\\cicd\\github\\unsecured_commands\\test\\positive1.yaml"
+								},
+								"region": {
+									"startLine": 8
 								}
 							}
 						}
@@ -321,8 +330,8 @@
 					},
 					"taxa": [
 						{
-							"id": "CAT000",
 							"name": "Undefined Category",
+							"id": "CAT000",
 							"shortDescription": {
 								"text": "Category is not defined"
 							},
@@ -331,58 +340,8 @@
 							}
 						},
 						{
-							"id": "CAT003",
-							"name": "Backup",
-							"shortDescription": {
-								"text": "Survivability and Recovery"
-							},
-							"fullDescription": {
-								"text": "Survivability and Recovery"
-							}
-						},
-						{
-							"id": "CAT004",
-							"name": "Best Practices",
-							"shortDescription": {
-								"text": "Metadata management"
-							},
-							"fullDescription": {
-								"text": "Metadata management"
-							}
-						},
-						{
-							"id": "CAT006",
-							"name": "Encryption",
-							"shortDescription": {
-								"text": "Data Security and Encryption configuration"
-							},
-							"fullDescription": {
-								"text": "Data Security and Encryption configuration"
-							}
-						},
-						{
-							"id": "CAT009",
-							"name": "Networking and Firewall",
-							"shortDescription": {
-								"text": "Network port exposure and firewall configuration"
-							},
-							"fullDescription": {
-								"text": "Network port exposure and firewall configuration"
-							}
-						},
-						{
-							"id": "CAT013",
-							"name": "Supply-Chain",
-							"shortDescription": {
-								"text": "Dependency version management"
-							},
-							"fullDescription": {
-								"text": "Dependency version management"
-							}
-						},
-						{
-							"id": "CAT007",
 							"name": "Insecure Configurations",
+							"id": "CAT007",
 							"shortDescription": {
 								"text": "Configurations which expose the application unnecessarily"
 							},
@@ -391,8 +350,8 @@
 							}
 						},
 						{
-							"id": "CAT015",
 							"name": "Bill Of Materials",
+							"id": "CAT015",
 							"shortDescription": {
 								"text": "List of resources provisioned"
 							},
@@ -401,48 +360,8 @@
 							}
 						},
 						{
-							"id": "CAT001",
-							"name": "Access Control",
-							"shortDescription": {
-								"text": "Service permission and identity management"
-							},
-							"fullDescription": {
-								"text": "Service permission and identity management"
-							}
-						},
-						{
-							"id": "CAT010",
-							"name": "Observability",
-							"shortDescription": {
-								"text": "Logging and Monitoring"
-							},
-							"fullDescription": {
-								"text": "Logging and Monitoring"
-							}
-						},
-						{
-							"id": "CAT011",
-							"name": "Resource Management",
-							"shortDescription": {
-								"text": "Resource and privilege limit configuration"
-							},
-							"fullDescription": {
-								"text": "Resource and privilege limit configuration"
-							}
-						},
-						{
-							"id": "CAT002",
-							"name": "Availability",
-							"shortDescription": {
-								"text": "Reliability and Scalability"
-							},
-							"fullDescription": {
-								"text": "Reliability and Scalability"
-							}
-						},
-						{
-							"id": "CAT005",
 							"name": "Build Process",
+							"id": "CAT005",
 							"shortDescription": {
 								"text": "Insecure configurations when building/deploying"
 							},
@@ -451,8 +370,18 @@
 							}
 						},
 						{
-							"id": "CAT008",
+							"name": "Encryption",
+							"id": "CAT006",
+							"shortDescription": {
+								"text": "Data Security and Encryption configuration"
+							},
+							"fullDescription": {
+								"text": "Data Security and Encryption configuration"
+							}
+						},
+						{
 							"name": "Insecure Defaults",
+							"id": "CAT008",
 							"shortDescription": {
 								"text": "Configurations that are insecure by default"
 							},
@@ -461,8 +390,28 @@
 							}
 						},
 						{
-							"id": "CAT012",
+							"name": "Networking and Firewall",
+							"id": "CAT009",
+							"shortDescription": {
+								"text": "Network port exposure and firewall configuration"
+							},
+							"fullDescription": {
+								"text": "Network port exposure and firewall configuration"
+							}
+						},
+						{
+							"name": "Observability",
+							"id": "CAT010",
+							"shortDescription": {
+								"text": "Logging and Monitoring"
+							},
+							"fullDescription": {
+								"text": "Logging and Monitoring"
+							}
+						},
+						{
 							"name": "Secret Management",
+							"id": "CAT012",
 							"shortDescription": {
 								"text": "Secret and Key management"
 							},
@@ -471,14 +420,113 @@
 							}
 						},
 						{
-							"id": "CAT014",
+							"name": "Access Control",
+							"id": "CAT001",
+							"shortDescription": {
+								"text": "Service permission and identity management"
+							},
+							"fullDescription": {
+								"text": "Service permission and identity management"
+							}
+						},
+						{
+							"name": "Backup",
+							"id": "CAT003",
+							"shortDescription": {
+								"text": "Survivability and Recovery"
+							},
+							"fullDescription": {
+								"text": "Survivability and Recovery"
+							}
+						},
+						{
+							"name": "Best Practices",
+							"id": "CAT004",
+							"shortDescription": {
+								"text": "Metadata management"
+							},
+							"fullDescription": {
+								"text": "Metadata management"
+							}
+						},
+						{
 							"name": "Structure and Semantics",
+							"id": "CAT014",
 							"shortDescription": {
 								"text": "Malformed document structure or inadequate semantics"
 							},
 							"fullDescription": {
 								"text": "Malformed document structure or inadequate semantics"
 							}
+						},
+						{
+							"name": "Availability",
+							"id": "CAT002",
+							"shortDescription": {
+								"text": "Reliability and Scalability"
+							},
+							"fullDescription": {
+								"text": "Reliability and Scalability"
+							}
+						},
+						{
+							"name": "Resource Management",
+							"id": "CAT011",
+							"shortDescription": {
+								"text": "Resource and privilege limit configuration"
+							},
+							"fullDescription": {
+								"text": "Resource and privilege limit configuration"
+							}
+						},
+						{
+							"name": "Supply-Chain",
+							"id": "CAT013",
+							"shortDescription": {
+								"text": "Dependency version management"
+							},
+							"fullDescription": {
+								"text": "Dependency version management"
+							}
+						}
+					]
+				},
+				{
+					"guid": "1489b0c4-d7ce-4d31-af66-6382a01202e3",
+					"name": "CWE",
+					"fullDescription": {},
+					"shortDescription": {
+						"text": "The MITRE Common Weakness Enumeration"
+					},
+					"downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.13.xml.zip",
+					"informationUri": "https://cwe.mitre.org/data/published/cwe_v4.13.pdf",
+					"isComprehensive": true,
+					"language": "en",
+					"minimumRequiredLocalizedDataSemanticVersion": "4.13",
+					"organization": "MITRE",
+					"releaseDateUtc": "2023-10-26",
+					"taxa": [
+						{
+							"guid": "37b809ad-1e28-4868-a4cb-61e7b5f67901",
+							"id": "22",
+							"shortDescription": {
+								"text": "The product uses external input to construct a pathname that is intended to identify a file or directory that is located underneath a restricted parent directory, but the product does not properly neutralize special elements within the pathname that can cause the pathname to resolve to a location that is outside of the restricted directory."
+							},
+							"fullDescription": {
+								"text": "Many file operations are intended to take place within a restricted directory. By using special elements such as .. and / separators, attackers can escape outside of the restricted location to access files or directories that are elsewhere on the system. One of the most common special elements is the ../ sequence, which in most modern operating systems is interpreted as the parent directory of the current location. This is referred to as relative path traversal. Path traversal also covers the use of absolute pathnames such as /usr/local/bin, which may also be useful in accessing unexpected files. This is referred to as absolute path traversal. In many programming languages, the injection of a null byte (the 0 or NUL) may allow an attacker to truncate a generated filename to widen the scope of attack. For example, the product may add .txt to any pathname, thus limiting the attacker to text files, but a null injection may effectively remove this restriction."
+							},
+							"helpUri": "https://cwe.mitre.org/data/definitions/22.html"
+						},
+						{
+							"guid": "5e1c0dcc-78f9-458b-8b52-78adcf761f35",
+							"id": "41",
+							"shortDescription": {
+								"text": "The product is vulnerable to file system contents disclosure through path equivalence. Path equivalence involves the use of special characters in file and directory names. The associated manipulations are intended to generate multiple names for the same object."
+							},
+							"fullDescription": {
+								"text": "Path equivalence is usually employed in order to circumvent access controls expressed using an incomplete set of file name or file path representations. This is different from path traversal, wherein the manipulations are performed to generate a name for a different object."
+							},
+							"helpUri": "https://cwe.mitre.org/data/definitions/41.html"
 						}
 					]
 				}

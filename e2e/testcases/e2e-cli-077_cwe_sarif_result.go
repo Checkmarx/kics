@@ -1,10 +1,10 @@
 package testcases
 
 // E2E-CLI-077 - KICS  scan
-// should perform a scan saving the reports in sarif format, completing the cwe field when it has values
+// should perform a scan saving the reports in sarif format, completing the relationships and the taxonomies if the CWE has values
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should perform a scan saving the reports in sarif format, completing the cwe field when it has values [E2E-CLI-077]",
+		Name: "should perform a scan saving the reports in sarif format, completing the relationships and the taxonomies if the CWE has values [E2E-CLI-077]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",

@@ -71,12 +71,27 @@ var sarifTests = []sarifTest{
 										Level: "error",
 									},
 									HelpURI: "https://www.test.com",
-									RuleRelationships: []sarifDescriptorRelationship{
+									Relationships: []map[string]interface{}{
 										{
-											Target: sarifDescriptorReference{
-												ReferenceID:    "CAT000",
-												ReferenceIndex: 0,
-												ToolComponent:  targetTemplate.ToolComponent,
+											"target": []sarifDescriptorReference{
+												{
+													ReferenceID:    "CAT000",
+													ReferenceIndex: 0,
+													ToolComponent: sarifComponentReference{
+														ComponentReferenceGUID:  "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
+														ComponentReferenceName:  "Categories",
+														ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
+													},
+												},
+												{
+													ReferenceID:   "",
+													ReferenceGuid: "",
+													ToolComponent: sarifComponentReference{
+														ComponentReferenceGUID:  "",
+														ComponentReferenceName:  "",
+														ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
+													},
+												},
 											},
 										},
 									},
@@ -89,7 +104,7 @@ var sarifTests = []sarifTest{
 							ResultRuleID:    "1",
 							ResultRuleIndex: 0,
 							ResultKind:      "fail",
-							ResultMessage:   sarifMessage{Text: "test", MessageProperties: sarifProperties{"platform": "", "cwe": ""}},
+							ResultMessage:   sarifMessage{Text: "test", MessageProperties: sarifProperties{"platform": ""}},
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
@@ -156,12 +171,27 @@ var sarifTests = []sarifTest{
 										Level: "error",
 									},
 									HelpURI: "https://www.test.com",
-									RuleRelationships: []sarifDescriptorRelationship{
+									Relationships: []map[string]interface{}{
 										{
-											Target: sarifDescriptorReference{
-												ReferenceID:    "CAT000",
-												ReferenceIndex: 0,
-												ToolComponent:  targetTemplate.ToolComponent,
+											"target": []sarifDescriptorReference{
+												{
+													ReferenceID:    "CAT000",
+													ReferenceIndex: 0,
+													ToolComponent: sarifComponentReference{
+														ComponentReferenceGUID:  "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
+														ComponentReferenceName:  "Categories",
+														ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
+													},
+												},
+												{
+													ReferenceID:   "",
+													ReferenceGuid: "",
+													ToolComponent: sarifComponentReference{
+														ComponentReferenceGUID:  "",
+														ComponentReferenceName:  "",
+														ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
+													},
+												},
 											},
 										},
 									},
@@ -175,12 +205,27 @@ var sarifTests = []sarifTest{
 										Level: "none",
 									},
 									HelpURI: "https://www.test.com",
-									RuleRelationships: []sarifDescriptorRelationship{
+									Relationships: []map[string]interface{}{
 										{
-											Target: sarifDescriptorReference{
-												ReferenceID:    "CAT000",
-												ReferenceIndex: 0,
-												ToolComponent:  targetTemplate.ToolComponent,
+											"target": []sarifDescriptorReference{
+												{
+													ReferenceID:    "CAT000",
+													ReferenceIndex: 0,
+													ToolComponent: sarifComponentReference{
+														ComponentReferenceGUID:  "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
+														ComponentReferenceName:  "Categories",
+														ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
+													},
+												},
+												{
+													ReferenceID:   "",
+													ReferenceGuid: "",
+													ToolComponent: sarifComponentReference{
+														ComponentReferenceGUID:  "",
+														ComponentReferenceName:  "",
+														ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
+													},
+												},
 											},
 										},
 									},
@@ -195,7 +240,7 @@ var sarifTests = []sarifTest{
 							ResultKind:      "fail",
 							ResultMessage: sarifMessage{
 								Text:              "test",
-								MessageProperties: sarifProperties{"platform": "", "cwe": ""},
+								MessageProperties: sarifProperties{"platform": ""},
 							},
 							ResultLocations: []sarifLocation{
 								{
@@ -212,7 +257,7 @@ var sarifTests = []sarifTest{
 							ResultKind:      "fail",
 							ResultMessage: sarifMessage{
 								Text:              "test",
-								MessageProperties: sarifProperties{"platform": "", "cwe": ""},
+								MessageProperties: sarifProperties{"platform": ""},
 							},
 							ResultLocations: []sarifLocation{
 								{
@@ -229,7 +274,7 @@ var sarifTests = []sarifTest{
 							ResultKind:      "informational",
 							ResultMessage: sarifMessage{
 								Text:              "test",
-								MessageProperties: sarifProperties{"platform": "", "cwe": ""},
+								MessageProperties: sarifProperties{"platform": ""},
 							},
 							ResultLocations: []sarifLocation{
 								{
