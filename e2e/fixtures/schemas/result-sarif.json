@@ -319,7 +319,7 @@
                                     "minLenght": 1
                                 },
                                 "isComprehensive": {
-                                    "type": "bool",
+                                    "type": "boolean",
                                     "minLenght": 1
                                 },
                                 "language": {
