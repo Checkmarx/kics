@@ -29,7 +29,7 @@
               "Principal": {
                 "AWS": [
                   "arn:aws:iam::111122223333:user/Alice",
-                  "arn:aws:iam::111122223333:user/Fabio"
+                  "arn:aws:iam::111122223333:user/foo"
                 ]
               },
               "Action": "s3:GetObject",
