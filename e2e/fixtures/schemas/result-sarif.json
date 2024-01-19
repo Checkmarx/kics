@@ -139,11 +139,10 @@
                                                         ],
                                                         "properties": {
                                                             "target": {
-                                                                "type": "object",
+                                                                "type": "array",
                                                                 "additionalProperties": false,
                                                                 "required": [
                                                                     "id",
-                                                                    "index",
                                                                     "toolComponent"
                                                                 ],
                                                                 "properties": {
@@ -154,6 +153,10 @@
                                                                     "index": {
                                                                         "type": "integer",
                                                                         "minimum": 0
+                                                                    },
+                                                                    "guid": {
+                                                                        "type": "string",
+                                                                        "minLenght": 1
                                                                     },
                                                                     "toolComponent": {
                                                                         "type": "object",
@@ -293,7 +296,6 @@
                             "required": [
                                 "guid",
                                 "name",
-                                "fullDescription",
                                 "shortDescription",
                                 "taxa"
                             ],
@@ -308,6 +310,34 @@
                                 "shortDescription": {
                                     "$ref": "#/definitions/text_object"
                                 },
+                                "downloadUri": {
+                                    "type": "string",
+                                    "minLenght": 1
+                                },
+                                "informationUri": {
+                                    "type": "string",
+                                    "minLenght": 1
+                                },
+                                "isComprehensive": {
+                                    "type": "bool",
+                                    "minLenght": 1
+                                },
+                                "language": {
+                                    "type": "string",
+                                    "minLenght": 1
+                                },
+                                "minimumRequiredLocalizedDataSemanticVersion":{
+                                    "type": "string",
+                                    "minLenght": 1
+                                },
+                                "organization":{
+                                    "type": "string",
+                                    "minLenght": 1
+                                },
+                                "releaseDateUtc":{
+                                    "type": "string",
+                                    "minLenght": 1
+                                },
                                 "fullDescription": {
                                     "$ref": "#/definitions/text_object"
                                 },
@@ -318,7 +348,6 @@
                                         "additionalProperties": false,
                                         "required": [
                                             "id",
-                                            "name",
                                             "fullDescription",
                                             "shortDescription"
                                         ],
@@ -327,9 +356,17 @@
                                                 "type": "string",
                                                 "minLength": 1
                                             },
+                                            "guid": {
+                                                "type": "string",
+                                                "minLenght": 1
+                                            },
                                             "name": {
                                                 "type": "string",
                                                 "minLength": 1
+                                            },
+                                            "helpUri": {
+                                                "type": "string",
+                                                "minLenght": 1
                                             },
                                             "fullDescription": {
                                                 "$ref": "#/definitions/text_object"
