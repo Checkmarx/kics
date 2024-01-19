@@ -30,7 +30,6 @@ func PrintSarifReport(path, filename string, body interface{}) error {
 		}
 		sarifReport.RebuildTaxonomies(auxID, auxGUID)
 		body = sarifReport
-
 	}
 
 	return ExportJSONReport(path, filename, body)
