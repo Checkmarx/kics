@@ -64,7 +64,7 @@
 						{
 							"physicalLocation": {
 								"artifactLocation": {
-									"uri": "test\\fixtures\\test_sarif_cwe_report\\run_block_injection\\test\\positive1.yaml"
+									"uri": "path\\test\\fixtures\\test_sarif_cwe_report\\run_block_injection\\test\\positive1.yaml"
 								},
 								"region": {
 									"startLine": 10
@@ -87,7 +87,7 @@
 						{
 							"physicalLocation": {
 								"artifactLocation": {
-									"uri": "test\\fixtures\\test_sarif_cwe_report\\run_block_injection\\test\\positive1.yaml"
+									"uri": "path\\test\\fixtures\\test_sarif_cwe_report\\run_block_injection\\test\\positive1.yaml"
 								},
 								"region": {
 									"startLine": 10

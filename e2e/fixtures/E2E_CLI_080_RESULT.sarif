@@ -63,7 +63,7 @@
 						{
 							"physicalLocation": {
 								"artifactLocation": {
-									"uri": "test\\fixtures\\test_sarif_cwe_report\\script_block_injection\\test\\positive1.yaml"
+									"uri": "path\\test\\fixtures\\test_sarif_cwe_report\\script_block_injection\\test\\positive1.yaml"
 								},
 								"region": {
 									"startLine": 17
