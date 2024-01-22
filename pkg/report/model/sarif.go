@@ -537,7 +537,11 @@ func (sr *sarifReport) GetGUIDFromRelationships(idx int, cweID string) string {
 func (sr *sarifReport) RebuildTaxonomies(cwes []string, guids map[string]string) {
 	if len(cwes) > 0 {
 		result := initCweCategories(cwes, guids)
-		sr.Runs[0].Taxonomies[1].TaxonomyDefinitions = result
+		if len(sr.Runs) > 0 {
+			if len(sr.Runs[0].Taxonomies) == 2 {
+				sr.Runs[0].Taxonomies[1].TaxonomyDefinitions = result
+			}
+		}
 	}
 }
 
