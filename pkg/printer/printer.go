@@ -182,7 +182,7 @@ func printSeverityCounter(severity string, counter int, printColor color.RGBColo
 	fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
 }
 
-func printMessageSeverity(severity string, message string, printColor color.RGBColor) {
+func printMessageSeverity(severity, message string, printColor color.RGBColor) {
 	fmt.Printf("%s: %s\n", printColor.Sprint(severity), message)
 }
 
