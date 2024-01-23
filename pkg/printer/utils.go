@@ -1,7 +1,6 @@
 package printer
 
 import (
-	"fmt"
 	"time"
 
 	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
@@ -31,11 +30,9 @@ func validateFlags() error {
 func PrintScanDuration(elapsed time.Duration) {
 	if consoleFlags.GetBoolFlag(consoleFlags.CIFlag) {
 		elapsedStrFormat := "Scan duration: %vms\n"
-		fmt.Printf(elapsedStrFormat, elapsed.Milliseconds())
 		log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
 	} else {
 		elapsedStrFormat := "Scan duration: %v\n"
-		fmt.Printf(elapsedStrFormat, elapsed)
 		log.Info().Msgf(elapsedStrFormat, elapsed)
 	}
 }
