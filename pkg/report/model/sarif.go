@@ -99,15 +99,19 @@ type sarifConfiguration struct {
 	Level string `json:"level"`
 }
 
+type sarifRelationship struct {
+	Relationship sarifDescriptorReference `json:"target,omitempty"`
+}
+
 type sarifRule struct {
-	RuleID               string                   `json:"id"`
-	RuleName             string                   `json:"name"`
-	RuleShortDescription sarifMessage             `json:"shortDescription"`
-	RuleFullDescription  sarifMessage             `json:"fullDescription"`
-	DefaultConfiguration sarifConfiguration       `json:"defaultConfiguration"`
-	HelpURI              string                   `json:"helpUri"`
-	Relationships        []map[string]interface{} `json:"relationships"`
-	RuleProperties       sarifProperties          `json:"properties,omitempty"`
+	RuleID               string              `json:"id"`
+	RuleName             string              `json:"name"`
+	RuleShortDescription sarifMessage        `json:"shortDescription"`
+	RuleFullDescription  sarifMessage        `json:"fullDescription"`
+	DefaultConfiguration sarifConfiguration  `json:"defaultConfiguration"`
+	HelpURI              string              `json:"helpUri"`
+	Relationships        []sarifRelationship `json:"relationships"`
+	RuleProperties       sarifProperties     `json:"properties,omitempty"`
 }
 
 type sarifDriver struct {
@@ -485,10 +489,9 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 		target := sr.buildSarifCategory(queryMetadata.queryCategory)
 		cwe := sr.buildCweCategory(queryMetadata.queryCwe)
 
-		relationships := []map[string]interface{}{
-			{
-				"target": []sarifDescriptorReference{target, cwe},
-			},
+		relationships := []sarifRelationship{
+			{Relationship: target},
+			{Relationship: cwe},
 		}
 
 		rule := sarifRule{
@@ -519,15 +522,10 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 func (sr *sarifReport) GetGUIDFromRelationships(idx int, cweID string) string {
 	relationships := sr.Runs[0].Tool.Driver.Rules[idx].Relationships
 	for _, relationship := range relationships {
-		targets, ok := relationship["target"].([]sarifDescriptorReference)
-		if !ok {
-			continue
-		}
+		target := relationship.Relationship
 
-		for _, target := range targets {
-			if target.ReferenceID == cweID {
-				return target.ReferenceGUID
-			}
+		if target.ReferenceID == cweID {
+			return target.ReferenceGUID
 		}
 	}
 	return ""

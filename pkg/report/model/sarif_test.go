@@ -71,26 +71,26 @@ var sarifTests = []sarifTest{
 										Level: "error",
 									},
 									HelpURI: "https://www.test.com",
-									Relationships: []map[string]interface{}{
+									Relationships: []sarifRelationship{
 										{
-											"target": []sarifDescriptorReference{
-												{
-													ReferenceID:    "CAT000",
-													ReferenceIndex: 0,
-													ToolComponent: sarifComponentReference{
-														ComponentReferenceGUID:  "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
-														ComponentReferenceName:  "Categories",
-														ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
-													},
+											Relationship: sarifDescriptorReference{
+												ReferenceID:    "CAT000",
+												ReferenceIndex: 0,
+												ToolComponent: sarifComponentReference{
+													ComponentReferenceGUID:  "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
+													ComponentReferenceName:  "Categories",
+													ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
 												},
-												{
-													ReferenceID:   "",
-													ReferenceGUID: "",
-													ToolComponent: sarifComponentReference{
-														ComponentReferenceGUID:  "",
-														ComponentReferenceName:  "",
-														ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
-													},
+											},
+										},
+										{
+											Relationship: sarifDescriptorReference{
+												ReferenceID:   "",
+												ReferenceGUID: "",
+												ToolComponent: sarifComponentReference{
+													ComponentReferenceGUID:  "",
+													ComponentReferenceName:  "",
+													ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
 												},
 											},
 										},
@@ -171,26 +171,26 @@ var sarifTests = []sarifTest{
 										Level: "error",
 									},
 									HelpURI: "https://www.test.com",
-									Relationships: []map[string]interface{}{
+									Relationships: []sarifRelationship{
 										{
-											"target": []sarifDescriptorReference{
-												{
-													ReferenceID:    "CAT000",
-													ReferenceIndex: 0,
-													ToolComponent: sarifComponentReference{
-														ComponentReferenceGUID:  "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
-														ComponentReferenceName:  "Categories",
-														ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
-													},
+											Relationship: sarifDescriptorReference{
+												ReferenceID:    "CAT000",
+												ReferenceIndex: 0,
+												ToolComponent: sarifComponentReference{
+													ComponentReferenceGUID:  "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
+													ComponentReferenceName:  "Categories",
+													ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
 												},
-												{
-													ReferenceID:   "",
-													ReferenceGUID: "",
-													ToolComponent: sarifComponentReference{
-														ComponentReferenceGUID:  "",
-														ComponentReferenceName:  "",
-														ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
-													},
+											},
+										},
+										{
+											Relationship: sarifDescriptorReference{
+												ReferenceID:   "",
+												ReferenceGUID: "",
+												ToolComponent: sarifComponentReference{
+													ComponentReferenceGUID:  "",
+													ComponentReferenceName:  "",
+													ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
 												},
 											},
 										},
@@ -205,26 +205,26 @@ var sarifTests = []sarifTest{
 										Level: "none",
 									},
 									HelpURI: "https://www.test.com",
-									Relationships: []map[string]interface{}{
+									Relationships: []sarifRelationship{
 										{
-											"target": []sarifDescriptorReference{
-												{
-													ReferenceID:    "CAT000",
-													ReferenceIndex: 0,
-													ToolComponent: sarifComponentReference{
-														ComponentReferenceGUID:  "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
-														ComponentReferenceName:  "Categories",
-														ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
-													},
+											Relationship: sarifDescriptorReference{
+												ReferenceID:    "CAT000",
+												ReferenceIndex: 0,
+												ToolComponent: sarifComponentReference{
+													ComponentReferenceGUID:  "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
+													ComponentReferenceName:  "Categories",
+													ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
 												},
-												{
-													ReferenceID:   "",
-													ReferenceGUID: "",
-													ToolComponent: sarifComponentReference{
-														ComponentReferenceGUID:  "",
-														ComponentReferenceName:  "",
-														ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
-													},
+											},
+										},
+										{
+											Relationship: sarifDescriptorReference{
+												ReferenceID:   "",
+												ReferenceGUID: "",
+												ToolComponent: sarifComponentReference{
+													ComponentReferenceGUID:  "",
+													ComponentReferenceName:  "",
+													ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
 												},
 											},
 										},
@@ -233,6 +233,7 @@ var sarifTests = []sarifTest{
 							},
 						},
 					},
+
 					Results: []sarifResult{
 						{
 							ResultRuleID:    "1",

@@ -139,7 +139,7 @@
                                                         ],
                                                         "properties": {
                                                             "target": {
-                                                                "type": "array",
+                                                                "type": "object",
                                                                 "additionalProperties": false,
                                                                 "required": [
                                                                     "id",
