@@ -163,8 +163,7 @@
                                                                         "additionalProperties": false,
                                                                         "required": [
                                                                             "name",
-                                                                            "guid",
-                                                                            "index"
+                                                                            "guid"
                                                                         ],
                                                                         "properties": {
                                                                             "name": {
