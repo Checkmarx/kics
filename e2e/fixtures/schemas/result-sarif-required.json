@@ -147,7 +147,7 @@
                                                                     },
                                                                     "guid": {
                                                                         "type": "string",
-                                                                        "minLenght": 1
+                                                                        "minLenght": 0
                                                                     },
                                                                     "toolComponent": {
                                                                         "type": "object",
@@ -158,7 +158,7 @@
                                                                         "properties": {
                                                                             "name": {
                                                                                 "type": "string",
-                                                                                "minLength": 1
+                                                                                "minLength": 0
                                                                             },
                                                                             "guid": {
                                                                                 "$ref": "#/definitions/uuid_pattern"

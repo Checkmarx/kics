@@ -222,8 +222,8 @@ var sarifTests = []sarifTest{
 												ReferenceID:   "",
 												ReferenceGUID: "",
 												ToolComponent: sarifComponentReference{
-													ComponentReferenceGUID:  "",
-													ComponentReferenceName:  "",
+													ComponentReferenceGUID:  "1489b0c4-d7ce-4d31-af66-6382a01202e3",
+													ComponentReferenceName:  "CWE",
 													ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
 												},
 											},

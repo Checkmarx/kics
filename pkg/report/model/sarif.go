@@ -520,14 +520,19 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 
 // GetGUIDFromRelationships gets the GUID from the relationship for each CWE item
 func (sr *sarifReport) GetGUIDFromRelationships(idx int, cweID string) string {
-	relationships := sr.Runs[0].Tool.Driver.Rules[idx].Relationships
-	for _, relationship := range relationships {
-		target := relationship.Relationship
+	if len(sr.Runs) > 0 {
+		if len(sr.Runs[0].Tool.Driver.Rules) > 0 {
+			relationships := sr.Runs[0].Tool.Driver.Rules[idx].Relationships
+			for _, relationship := range relationships {
+				target := relationship.Relationship
 
-		if target.ReferenceID == cweID {
-			return target.ReferenceGUID
+				if target.ReferenceID == cweID {
+					return target.ReferenceGUID
+				}
+			}
 		}
 	}
+
 	return ""
 }
 
