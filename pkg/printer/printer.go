@@ -105,17 +105,6 @@ func WordWrap(s, indentation string, limit int) string {
 func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer, usingCustomQueries bool) error {
 	log.Debug().Msg("helpers.PrintResult()")
 
-	if consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) {
-		fmt.Printf("\n------------------------------------\n\n")
-	}
-	log.Info().Msgf("Queries failed to execute: %d", summary.FailedToExecuteQueries)
-	for queryName, err := range failedQueries {
-		log.Info().Msgf("\t- %s:%s", queryName, WordWrap(err.Error(), "\t", wordWrapCount))
-	}
-	if consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) {
-		fmt.Printf("------------------------------------\n\n")
-	}
-
 	for index := range summary.Queries {
 		idx := len(summary.Queries) - index - 1
 		if summary.Queries[idx].Severity == model.SeverityTrace {
@@ -169,6 +158,14 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	printSeverityCounter(model.SeverityInfo, summary.SeveritySummary.SeverityCounters[model.SeverityInfo], printer.Info)
 	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
 
+	printMessageSeverity("WRN", fmt.Sprintf("Queries failed to execute: %d", summary.FailedToExecuteQueries), printer.High)
+	if !consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) {
+		fmt.Println()
+	}
+	for queryName, err := range failedQueries {
+		log.Info().Msgf("\t- %s:%s", queryName, WordWrap(err.Error(), "\t", wordWrapCount))
+	}
+
 	log.Info().Msgf("Scanned Files: %d", summary.ScannedFiles)
 	log.Info().Msgf("Parsed Files: %d", summary.ParsedFiles)
 	log.Info().Msgf("Scanned Lines: %d", summary.ScannedFilesLines)
@@ -183,6 +180,10 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 
 func printSeverityCounter(severity string, counter int, printColor color.RGBColor) {
 	fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
+}
+
+func printMessageSeverity(severity string, message string, printColor color.RGBColor) {
+	fmt.Printf("%s: %s\n", printColor.Sprint(severity), message)
 }
 
 func printFiles(query *model.QueryResult, printer *Printer) {
