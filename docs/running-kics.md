@@ -33,7 +33,7 @@ Available archive formats:
 -   `xz`
 
 ```
-docker run -t -v {path_to_scan_zip}:/path checkmarx/kics scan -p /path
+docker run -t -v {path_to_zip}:/path checkmarx/kics scan -p /path/{name_of_zip_file}
 ```
 
 More information can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)
