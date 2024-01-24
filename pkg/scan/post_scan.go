@@ -2,6 +2,7 @@ package scan
 
 import (
 	_ "embed" // Embed kics CLI img and scan-flags
+	loggerwrapper "github.com/Checkmarx/kics/pkg/logger"
 	"os"
 	"path/filepath"
 	"sort"
@@ -133,7 +134,8 @@ func (c *Client) postScan(scanResults *Results) error {
 
 	deleteExtractionFolder(scanResults.ExtractedPaths.ExtractionMap)
 
-	consolePrinter.PrintScanDuration(time.Since(c.ScanStartTime))
+	logger := loggerwrapper.NewLogger(nil)
+	consolePrinter.PrintScanDuration(&logger, time.Since(c.ScanStartTime))
 
 	printVersionCheck(c.Printer, &summary)
 

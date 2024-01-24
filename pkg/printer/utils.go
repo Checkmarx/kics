@@ -4,7 +4,7 @@ import (
 	"time"
 
 	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
-	"github.com/rs/zerolog/log"
+	"github.com/rs/zerolog"
 )
 
 func validateFlags() error {
@@ -27,12 +27,12 @@ func validateFlags() error {
 }
 
 // PrintScanDuration prints the scan duration
-func PrintScanDuration(elapsed time.Duration) {
+func PrintScanDuration(logger *zerolog.Logger, elapsed time.Duration) {
 	if consoleFlags.GetBoolFlag(consoleFlags.CIFlag) {
 		elapsedStrFormat := "Scan duration: %vms\n"
-		log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
+		(*logger).Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
 	} else {
 		elapsedStrFormat := "Scan duration: %v\n"
-		log.Info().Msgf(elapsedStrFormat, elapsed)
+		(*logger).Info().Msgf(elapsedStrFormat, elapsed)
 	}
 }
