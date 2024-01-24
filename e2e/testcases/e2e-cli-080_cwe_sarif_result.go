@@ -1,10 +1,10 @@
 package testcases
 
 // E2E-CLI-080 - KICS  scan
-// should perform a scan saving the reports in sarif format, showing the cwe empty on results
+// should perform a scan saving the reports in sarif format, showing no cwe field on results
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should perform a scan saving the reports in sarif format, showing the cwe on the results [E2E-CLI-080]",
+		Name: "should perform a scan saving the reports in sarif format, showing no cwe field on results [E2E-CLI-080]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",

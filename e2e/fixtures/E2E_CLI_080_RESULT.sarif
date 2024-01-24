@@ -33,15 +33,6 @@
 											"guid": "58cdcc6f-fe41-4724-bfb3-131a93df4c3f"
 										}
 									}
-								},
-								{
-									"target": {
-										"id": "",
-										"toolComponent": {
-											"name": "",
-											"guid": ""
-										}
-									}
 								}
 							]
 						}
@@ -63,7 +54,7 @@
 						{
 							"physicalLocation": {
 								"artifactLocation": {
-									"uri": "path\\test\\fixtures\\test_sarif_cwe_report\\script_block_injection\\test\\positive1.yaml"
+									"uri": "test\\fixtures\\test_sarif_cwe_report\\script_block_injection\\test\\positive1.yaml"
 								},
 								"region": {
 									"startLine": 17
@@ -95,33 +86,13 @@
 							}
 						},
 						{
-							"name": "Insecure Defaults",
-							"id": "CAT008",
+							"name": "Availability",
+							"id": "CAT002",
 							"shortDescription": {
-								"text": "Configurations that are insecure by default"
+								"text": "Reliability and Scalability"
 							},
 							"fullDescription": {
-								"text": "Configurations that are insecure by default"
-							}
-						},
-						{
-							"name": "Networking and Firewall",
-							"id": "CAT009",
-							"shortDescription": {
-								"text": "Network port exposure and firewall configuration"
-							},
-							"fullDescription": {
-								"text": "Network port exposure and firewall configuration"
-							}
-						},
-						{
-							"name": "Bill Of Materials",
-							"id": "CAT015",
-							"shortDescription": {
-								"text": "List of resources provisioned"
-							},
-							"fullDescription": {
-								"text": "List of resources provisioned"
+								"text": "Reliability and Scalability"
 							}
 						},
 						{
@@ -132,6 +103,26 @@
 							},
 							"fullDescription": {
 								"text": "Insecure configurations when building/deploying"
+							}
+						},
+						{
+							"name": "Insecure Defaults",
+							"id": "CAT008",
+							"shortDescription": {
+								"text": "Configurations that are insecure by default"
+							},
+							"fullDescription": {
+								"text": "Configurations that are insecure by default"
+							}
+						},
+						{
+							"name": "Bill Of Materials",
+							"id": "CAT015",
+							"shortDescription": {
+								"text": "List of resources provisioned"
+							},
+							"fullDescription": {
+								"text": "List of resources provisioned"
 							}
 						},
 						{
@@ -155,33 +146,23 @@
 							}
 						},
 						{
-							"name": "Availability",
-							"id": "CAT002",
+							"name": "Resource Management",
+							"id": "CAT011",
 							"shortDescription": {
-								"text": "Reliability and Scalability"
+								"text": "Resource and privilege limit configuration"
 							},
 							"fullDescription": {
-								"text": "Reliability and Scalability"
+								"text": "Resource and privilege limit configuration"
 							}
 						},
 						{
-							"name": "Best Practices",
-							"id": "CAT004",
+							"name": "Supply-Chain",
+							"id": "CAT013",
 							"shortDescription": {
-								"text": "Metadata management"
+								"text": "Dependency version management"
 							},
 							"fullDescription": {
-								"text": "Metadata management"
-							}
-						},
-						{
-							"name": "Secret Management",
-							"id": "CAT012",
-							"shortDescription": {
-								"text": "Secret and Key management"
-							},
-							"fullDescription": {
-								"text": "Secret and Key management"
+								"text": "Dependency version management"
 							}
 						},
 						{
@@ -205,6 +186,26 @@
 							}
 						},
 						{
+							"name": "Best Practices",
+							"id": "CAT004",
+							"shortDescription": {
+								"text": "Metadata management"
+							},
+							"fullDescription": {
+								"text": "Metadata management"
+							}
+						},
+						{
+							"name": "Networking and Firewall",
+							"id": "CAT009",
+							"shortDescription": {
+								"text": "Network port exposure and firewall configuration"
+							},
+							"fullDescription": {
+								"text": "Network port exposure and firewall configuration"
+							}
+						},
+						{
 							"name": "Encryption",
 							"id": "CAT006",
 							"shortDescription": {
@@ -215,23 +216,13 @@
 							}
 						},
 						{
-							"name": "Resource Management",
-							"id": "CAT011",
+							"name": "Secret Management",
+							"id": "CAT012",
 							"shortDescription": {
-								"text": "Resource and privilege limit configuration"
+								"text": "Secret and Key management"
 							},
 							"fullDescription": {
-								"text": "Resource and privilege limit configuration"
-							}
-						},
-						{
-							"name": "Supply-Chain",
-							"id": "CAT013",
-							"shortDescription": {
-								"text": "Dependency version management"
-							},
-							"fullDescription": {
-								"text": "Dependency version management"
+								"text": "Secret and Key management"
 							}
 						},
 						{

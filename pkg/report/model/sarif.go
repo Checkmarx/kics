@@ -3,6 +3,7 @@ package model
 import (
 	"encoding/csv"
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 
@@ -60,8 +61,8 @@ type sarifMessage struct {
 }
 
 type sarifComponentReference struct {
-	ComponentReferenceName  string `json:"name"`
-	ComponentReferenceGUID  string `json:"guid"`
+	ComponentReferenceName  string `json:"name,omitempty"`
+	ComponentReferenceGUID  string `json:"guid,omitempty"`
 	ComponentReferenceIndex int    `json:"index,omitempty"`
 }
 
@@ -71,10 +72,10 @@ type cweComponentReference struct {
 }
 
 type sarifDescriptorReference struct {
-	ReferenceID    string                  `json:"id"`
+	ReferenceID    string                  `json:"id,omitempty"`
 	ReferenceGUID  string                  `json:"guid,omitempty"`
 	ReferenceIndex int                     `json:"index,omitempty"`
-	ToolComponent  sarifComponentReference `json:"toolComponent"`
+	ToolComponent  sarifComponentReference `json:"toolComponent,omitempty"`
 }
 
 type cweMessage struct {
@@ -110,7 +111,7 @@ type sarifRule struct {
 	RuleFullDescription  sarifMessage        `json:"fullDescription"`
 	DefaultConfiguration sarifConfiguration  `json:"defaultConfiguration"`
 	HelpURI              string              `json:"helpUri"`
-	Relationships        []sarifRelationship `json:"relationships"`
+	Relationships        []sarifRelationship `json:"relationships,omitempty"`
 	RuleProperties       sarifProperties     `json:"properties,omitempty"`
 }
 
@@ -489,10 +490,20 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 		target := sr.buildSarifCategory(queryMetadata.queryCategory)
 		cwe := sr.buildCweCategory(queryMetadata.queryCwe)
 
-		relationships := []sarifRelationship{
-			{Relationship: target},
-			{Relationship: cwe},
+		var relationships []sarifRelationship
+
+		if cwe.ReferenceID != "" {
+			relationships = []sarifRelationship{
+				{Relationship: target},
+				{Relationship: cwe},
+			}
+		} else {
+			relationships = []sarifRelationship{
+				{Relationship: target},
+			}
 		}
+
+		fmt.Printf("Debug: Created relationships: %+v\n", relationships)
 
 		rule := sarifRule{
 			RuleID:               queryMetadata.queryID,

@@ -143,12 +143,13 @@
                                                                 "additionalProperties": false,
                                                                 "required": [
                                                                     "id",
+                                                                    "name",
                                                                     "toolComponent"
                                                                 ],
                                                                 "properties": {
                                                                     "id": {
                                                                         "type": "string",
-                                                                        "minLength": 0
+                                                                        "minLength": 1
                                                                     },
                                                                     "index": {
                                                                         "type": "integer",
@@ -156,7 +157,7 @@
                                                                     },
                                                                     "guid": {
                                                                         "type": "string",
-                                                                        "minLenght": 0
+                                                                        "minLenght": 1
                                                                     },
                                                                     "toolComponent": {
                                                                         "type": "object",
@@ -168,7 +169,7 @@
                                                                         "properties": {
                                                                             "name": {
                                                                                 "type": "string",
-                                                                                "minLength": 0
+                                                                                "minLength": 1
                                                                             },
                                                                             "guid": {
                                                                                 "$ref": "#/definitions/uuid_pattern"

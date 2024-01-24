@@ -4,7 +4,7 @@ package testcases
 // should perform a scan saving the reports in sarif format, showing the cwe on results
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should perform a scan saving the reports in sarif format, showing the cwe on the results [E2E-CLI-079]",
+		Name: "should perform a scan saving the reports in sarif format, showing the cwe on results [E2E-CLI-079]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",

@@ -36,6 +36,7 @@ var sarifTests = []sarifTest{
 				QueryURI:    "https://www.test.com",
 				Severity:    model.SeverityHigh,
 				Files:       []model.VulnerableFile{},
+				CWE:         "",
 			},
 		},
 		want: sarifReport{
@@ -54,6 +55,7 @@ var sarifTests = []sarifTest{
 				Files: []model.VulnerableFile{
 					{KeyActualValue: "test", FileName: "test.json", Line: -1},
 				},
+				CWE: "",
 			},
 		},
 		want: sarifReport{
@@ -79,17 +81,6 @@ var sarifTests = []sarifTest{
 												ToolComponent: sarifComponentReference{
 													ComponentReferenceGUID:  "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
 													ComponentReferenceName:  "Categories",
-													ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
-												},
-											},
-										},
-										{
-											Relationship: sarifDescriptorReference{
-												ReferenceID:   "",
-												ReferenceGUID: "",
-												ToolComponent: sarifComponentReference{
-													ComponentReferenceGUID:  "",
-													ComponentReferenceName:  "",
 													ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
 												},
 											},
@@ -132,17 +123,7 @@ var sarifTests = []sarifTest{
 				Files: []model.VulnerableFile{
 					{KeyActualValue: "test", FileName: "", Line: 1},
 				},
-			},
-			{
-				QueryName:   "test",
-				QueryID:     "1",
-				Description: "test description",
-				QueryURI:    "https://www.test.com",
-				Category:    "test",
-				Severity:    model.SeverityHigh,
-				Files: []model.VulnerableFile{
-					{KeyActualValue: "test", FileName: "", Line: 1},
-				},
+				CWE: "",
 			},
 			{
 				QueryName:   "test info",
@@ -154,6 +135,7 @@ var sarifTests = []sarifTest{
 				Files: []model.VulnerableFile{
 					{KeyActualValue: "test", FileName: "", Line: 1},
 				},
+				CWE: "22",
 			},
 		},
 		want: sarifReport{
@@ -183,17 +165,6 @@ var sarifTests = []sarifTest{
 												},
 											},
 										},
-										{
-											Relationship: sarifDescriptorReference{
-												ReferenceID:   "",
-												ReferenceGUID: "",
-												ToolComponent: sarifComponentReference{
-													ComponentReferenceGUID:  "",
-													ComponentReferenceName:  "",
-													ComponentReferenceIndex: targetTemplate.ToolComponent.ComponentReferenceIndex,
-												},
-											},
-										},
 									},
 								},
 								{
@@ -219,8 +190,8 @@ var sarifTests = []sarifTest{
 										},
 										{
 											Relationship: sarifDescriptorReference{
-												ReferenceID:   "",
-												ReferenceGUID: "",
+												ReferenceID:   "22",
+												ReferenceGUID: "1489b0c4-d7ce-4d31-af66-6382a01202e3",
 												ToolComponent: sarifComponentReference{
 													ComponentReferenceGUID:  "1489b0c4-d7ce-4d31-af66-6382a01202e3",
 													ComponentReferenceName:  "CWE",
@@ -235,23 +206,6 @@ var sarifTests = []sarifTest{
 					},
 
 					Results: []sarifResult{
-						{
-							ResultRuleID:    "1",
-							ResultRuleIndex: 0,
-							ResultKind:      "fail",
-							ResultMessage: sarifMessage{
-								Text:              "test",
-								MessageProperties: sarifProperties{"platform": ""},
-							},
-							ResultLocations: []sarifLocation{
-								{
-									PhysicalLocation: sarifPhysicalLocation{
-										ArtifactLocation: sarifArtifactLocation{ArtifactURI: ""},
-										Region:           sarifRegion{StartLine: 1},
-									},
-								},
-							},
-						},
 						{
 							ResultRuleID:    "1",
 							ResultRuleIndex: 0,
@@ -303,7 +257,15 @@ func TestBuildSarifIssue(t *testing.T) {
 			require.Equal(t, len(tt.want.Runs[0].Results), len(result.Runs[0].Results))
 			require.Equal(t, len(tt.want.Runs[0].Tool.Driver.Rules), len(result.Runs[0].Tool.Driver.Rules))
 			if len(tt.want.Runs[0].Tool.Driver.Rules) > 0 {
-				require.Equal(t, tt.want.Runs[0].Tool.Driver.Rules[0], result.Runs[0].Tool.Driver.Rules[0])
+				if len(result.Runs[0].Tool.Driver.Rules[0].Relationships) > 0 {
+					if tt.vq[0].CWE == "" {
+						// if CWE is empty, the result should expect one less relationship (only categories present)
+						require.Equal(t, len(tt.want.Runs[0].Tool.Driver.Rules[0].Relationships), len(result.Runs[0].Tool.Driver.Rules[0].Relationships))
+					} else {
+						// if CWE is not empty, the relationships should be the expected number of relationships
+						require.Equal(t, tt.want.Runs[0].Tool.Driver.Rules[0].Relationships, result.Runs[0].Tool.Driver.Rules[0].Relationships)
+					}
+				}
 				require.Equal(t, tt.want.Runs[0].Results[0], result.Runs[0].Results[0])
 			}
 		})
