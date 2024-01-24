@@ -143,7 +143,6 @@
                                                                 "additionalProperties": false,
                                                                 "required": [
                                                                     "id",
-                                                                    "name",
                                                                     "toolComponent"
                                                                 ],
                                                                 "properties": {
