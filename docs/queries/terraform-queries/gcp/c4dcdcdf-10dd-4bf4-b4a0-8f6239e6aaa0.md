@@ -28,7 +28,7 @@ Google Firewall should not allow SSH access (port 22) from the Internet (public 
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="43 13 31"
+```tf title="Positive test num. 1 - tf file" hl_lines="43 13 31"
 resource "google_compute_firewall" "positive1" {
   name    = "test-firewall"
   network = google_compute_network.default.name

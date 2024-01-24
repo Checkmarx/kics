@@ -6,5 +6,6 @@
   "descriptionText": "When using kube-apiserver command, the '--disable-admission-plugins' flag should not have 'NamespaceLifecycle' plugin",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
-  "descriptionID": "13e94c89"
+  "descriptionID": "13e94c89",
+  "cwe": ""
 }

@@ -6,5 +6,6 @@
   "descriptionText": "A security scheme is allowing basic authentication credentials to be transported over network",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
   "platform": "OpenAPI",
-  "descriptionID": "f29b5719"
+  "descriptionID": "f29b5719",
+  "cwe": ""
 }

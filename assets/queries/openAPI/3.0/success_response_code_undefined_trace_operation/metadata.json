@@ -6,5 +6,6 @@
   "descriptionText": "Trace should define the '200' successful code",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
   "platform": "OpenAPI",
-  "descriptionID": "d3325ec2"
+  "descriptionID": "d3325ec2",
+  "cwe": ""
 }
