@@ -28,7 +28,7 @@ API Gateway should have X-Ray Tracing enabled<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="13"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="13"
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "BatchJobDefinition"
 Resources:
@@ -61,7 +61,7 @@ Resources:
           ThrottlingBurstLimit: '555'
 
 ```
-```yaml title="Postitive test num. 2 - yaml file" hl_lines="6"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="6"
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "BatchJobDefinition"
 Resources:
@@ -93,7 +93,7 @@ Resources:
           ThrottlingBurstLimit: '555'
 
 ```
-```json title="Postitive test num. 3 - json file" hl_lines="23"
+```json title="Positive test num. 3 - json file" hl_lines="23"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
@@ -145,7 +145,7 @@ Resources:
 }
 
 ```
-<details><summary>Postitive test num. 4 - json file</summary>
+<details><summary>Positive test num. 4 - json file</summary>
 
 ```json hl_lines="6"
 {

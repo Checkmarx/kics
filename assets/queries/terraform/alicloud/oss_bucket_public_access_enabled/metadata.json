@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#acl",
   "platform": "Terraform",
   "descriptionID": "d8096622",
-  "cloudProvider": "alicloud"
+  "cloudProvider": "alicloud",
+  "cwe": ""
 }

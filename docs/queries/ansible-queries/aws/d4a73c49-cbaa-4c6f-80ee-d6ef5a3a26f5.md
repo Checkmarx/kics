@@ -28,7 +28,7 @@ Checks if logging is enabled for CloudTrail.<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="5"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="5"
 - name: example
   community.aws.cloudtrail:
     state: present

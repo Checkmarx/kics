@@ -6,6 +6,7 @@
   "descriptionText": "Port 22 (SSH) is exposed to the Internet",
   "descriptionUrl": "https://learn.microsoft.com/en-us/azure/templates/microsoft.network/networksecuritygroups?pivots=deployment-language-bicep#securityrulepropertiesformat",
   "platform": "AzureResourceManager",
+  "descriptionID": "97b6233c",
   "cloudProvider": "azure",
-  "descriptionID": "97b6233c"
+  "cwe": ""
 }

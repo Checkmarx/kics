@@ -6,5 +6,6 @@
   "descriptionText": "The 'basePath' value format must match the pattern '^/'",
   "descriptionUrl": "https://swagger.io/specification/v2/#schema",
   "platform": "OpenAPI",
-  "descriptionID": "c97fafa0"
+  "descriptionID": "c97fafa0",
+  "cwe": ""
 }

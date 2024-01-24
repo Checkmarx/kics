@@ -79,7 +79,7 @@ You can enclose all your configurations in a file and use it in two different wa
 3. Pass the configuration file as argument:
 
 ```
-docker run -t -v {​​​​path_to_kics_config}​​​​:/kics -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p /path --config /kics/kics-config.json
+docker run -t -v {path_to_kics_config}:/kics -v {path_to_host_folder_to_scan}:/path checkmarx/kics scan -p /path --config /kics/kics-config.json
 ```
 
 #### Configuration as Code

@@ -1,4 +1,4 @@
-FROM golang:1.21.0-alpine as build_env
+FROM golang:1.21.5-alpine as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -44,19 +44,19 @@ Run apk update --no-cache \
     git~=2.40
 
 # Install Terraform and Terraform plugins
-RUN wget https://releases.hashicorp.com/terraform/1.3.9/terraform_1.3.9_linux_amd64.zip \
-    && unzip terraform_1.3.9_linux_amd64.zip && rm terraform_1.3.9_linux_amd64.zip \
+RUN wget https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_amd64.zip \
+    && unzip terraform_1.5.6_linux_amd64.zip && rm terraform_1.5.6_linux_amd64.zip \
     && mv terraform /usr/bin/terraform \
-    && wget https://releases.hashicorp.com/terraform-provider-azurerm/3.18.0/terraform-provider-azurerm_3.18.0_linux_amd64.zip \
+    && wget https://releases.hashicorp.com/terraform-provider-azurerm/3.71.0/terraform-provider-azurerm_3.71.0_linux_amd64.zip \
     && wget https://releases.hashicorp.com/terraform-provider-aws/3.72.0/terraform-provider-aws_3.72.0_linux_amd64.zip \
     && wget https://releases.hashicorp.com/terraform-provider-google/4.32.0/terraform-provider-google_4.32.0_linux_amd64.zip \
-    && unzip terraform-provider-azurerm_3.18.0_linux_amd64.zip && rm terraform-provider-azurerm_3.18.0_linux_amd64.zip\
+    && unzip terraform-provider-azurerm_3.71.0_linux_amd64.zip && rm terraform-provider-azurerm_3.71.0_linux_amd64.zip\
     && unzip terraform-provider-google_4.32.0_linux_amd64.zip && rm terraform-provider-google_4.32.0_linux_amd64.zip \
     && unzip terraform-provider-aws_3.72.0_linux_amd64.zip && rm terraform-provider-aws_3.72.0_linux_amd64.zip \
-    && mkdir ~/.terraform.d && mkdir ~/.terraform.d/plugins && mkdir ~/.terraform.d/plugins/linux_amd64 && mv terraform-provider-aws_v3.72.0_x5 terraform-provider-google_v4.32.0_x5 terraform-provider-azurerm_v3.18.0_x5 ~/.terraform.d/plugins/linux_amd64
+    && mkdir ~/.terraform.d && mkdir ~/.terraform.d/plugins && mkdir ~/.terraform.d/plugins/linux_amd64 && mv terraform-provider-aws_v3.72.0_x5 terraform-provider-google_v4.32.0_x5 terraform-provider-azurerm_v3.71.0_x5 ~/.terraform.d/plugins/linux_amd64
 
 # Install Terraformer
-RUN wget https://github.com/GoogleCloudPlatform/terraformer/releases/download/0.8.22/terraformer-all-linux-amd64 \
+RUN wget https://github.com/GoogleCloudPlatform/terraformer/releases/download/0.8.24/terraformer-all-linux-amd64 \
     && chmod +x terraformer-all-linux-amd64 \
     && mv terraformer-all-linux-amd64 /usr/bin/terraformer
 

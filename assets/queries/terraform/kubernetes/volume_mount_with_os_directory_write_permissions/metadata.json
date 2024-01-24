@@ -6,5 +6,6 @@
   "descriptionText": "Containers can mount sensitive folders from the hosts, giving them potentially dangerous access to critical host configurations and binaries.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#volume_mount",
   "platform": "Terraform",
-  "descriptionID": "48833ef2"
+  "descriptionID": "48833ef2",
+  "cwe": ""
 }

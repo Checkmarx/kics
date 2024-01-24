@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: kubelet-demo-container
-      image: joaodanielrufino/kubelet
+      image: foo/bar
       command: ["kubelet"]
       args: ["--read-only-port=0"]
   restartPolicy: OnFailure

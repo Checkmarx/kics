@@ -6,5 +6,6 @@
   "descriptionText": "Security Requirement Object should only have scopes defined for security schemes of type 'oauth2' and 'openIdConnect'",
   "descriptionUrl": "https://swagger.io/specification/#security-requirement-object",
   "platform": "OpenAPI",
-  "descriptionID": "34997c77"
+  "descriptionID": "34997c77",
+  "cwe": ""
 }
