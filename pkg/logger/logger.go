@@ -1,8 +1,9 @@
 package logger
 
 import (
-	"github.com/rs/zerolog"
 	"os"
+
+	zerolog "github.com/rs/zerolog"
 )
 
 type LogSink struct {
