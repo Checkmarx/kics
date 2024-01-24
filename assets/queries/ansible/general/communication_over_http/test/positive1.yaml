@@ -1,0 +1,12 @@
+- name: Verificar o status de um site usando o módulo uri
+  hosts: localhost
+  tasks:
+    - name: Verificar o status do site
+      ansible.builtin.uri:
+        url: "http://www.example.com"
+        method: GET
+      register: site_response
+
+    - name: Exibir resposta do site
+      debug:
+        var: site_response

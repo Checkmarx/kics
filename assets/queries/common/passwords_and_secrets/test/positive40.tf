@@ -19,8 +19,8 @@ EOF
   tags = merge({
     Name = "${local.resource_prefix.value}-ec2"
     }, {
-    git_last_modified_by = "felipe.avelar@checkmarx.com"
-    git_modifiers        = "felipe.avelar"
+    git_last_modified_by = "email@email.com"
+    git_modifiers        = "foo.bar"
     git_org              = "checkmarx"
     git_repo             = "kics"
   })

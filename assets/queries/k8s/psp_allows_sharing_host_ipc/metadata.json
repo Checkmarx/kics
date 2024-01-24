@@ -6,5 +6,6 @@
   "descriptionText": "Pod Security Policy allows containers to share the host IPC namespace",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
   "platform": "Kubernetes",
-  "descriptionID": "329be51b"
+  "descriptionID": "329be51b",
+  "cwe": ""
 }

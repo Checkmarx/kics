@@ -1,0 +1,20 @@
+[
+    {
+		"queryName": "Unsecured Commands",
+		"severity": "MEDIUM",
+		"line": 8,
+		"fileName": "positive1.yaml"
+	},
+    {
+		"queryName": "Unsecured Commands",
+		"severity": "MEDIUM",
+		"line": 11,
+		"fileName": "positive2.yaml"
+	},
+    {
+		"queryName": "Unsecured Commands",
+		"severity": "MEDIUM",
+		"line": 16,
+		"fileName": "positive3.yaml"
+	}
+]

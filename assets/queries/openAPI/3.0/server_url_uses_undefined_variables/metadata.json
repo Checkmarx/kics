@@ -6,5 +6,6 @@
   "descriptionText": "Any variable used in the Service URL should be defined in the Service Object through 'variables'.",
   "descriptionUrl": "https://swagger.io/specification/#server-object",
   "platform": "OpenAPI",
-  "descriptionID": "c8a70e31"
+  "descriptionID": "c8a70e31",
+  "cwe": ""
 }

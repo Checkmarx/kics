@@ -28,7 +28,7 @@ IAM Database Auth Enabled should be configured to true when using compatible eng
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="10"
+```tf title="Positive test num. 1 - tf file" hl_lines="10"
 resource "aws_db_instance" "positive1" {
   allocated_storage    = 20
   storage_type         = "gp2"
@@ -42,7 +42,7 @@ resource "aws_db_instance" "positive1" {
 }
 
 ```
-```tf title="Postitive test num. 2 - tf file" hl_lines="1"
+```tf title="Positive test num. 2 - tf file" hl_lines="1"
 resource "aws_db_instance" "positive1" {
   allocated_storage    = 20
   storage_type         = "gp2"
@@ -55,7 +55,7 @@ resource "aws_db_instance" "positive1" {
 }
 
 ```
-```tf title="Postitive test num. 3 - tf file" hl_lines="1"
+```tf title="Positive test num. 3 - tf file" hl_lines="1"
 module "db" {
   source  = "terraform-aws-modules/rds/aws"
   version = "~> 3.0"
@@ -130,7 +130,7 @@ module "db" {
 }
 
 ```
-<details><summary>Postitive test num. 4 - tf file</summary>
+<details><summary>Positive test num. 4 - tf file</summary>
 
 ```tf hl_lines="17"
 module "db" {
