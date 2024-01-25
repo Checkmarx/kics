@@ -1,6 +1,7 @@
 package model
 
 import (
+	"os"
 	"testing"
 
 	"github.com/Checkmarx/kics/internal/constants"
@@ -342,4 +343,38 @@ func TestBuildSarifIssue(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestInitCweCategories(t *testing.T) {
+	cweIDs := []string{"22", "41"}
+	guids := map[string]string{"22": "1489b0c4-d7ce-4d31-af66-6382a01202e3", "41": "1489b0c4-d7ce-4d31-af66-6382a01202e4"}
+	expectedShortDescription22 := "The product uses external input to construct a pathname that is intended to identify a file or directory that is located underneath a restricted parent directory, but the product does not properly neutralize special elements within the pathname that can cause the pathname to resolve to a location that is outside of the restricted directory."
+	expectedShortDescription41 := "The product is vulnerable to file system contents disclosure through path equivalence. Path equivalence involves the use of special characters in file and directory names. The associated manipulations are intended to generate multiple names for the same object."
+
+	currentDir, err := os.Getwd()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	defer os.Chdir(currentDir) // Change back to the original working directory when done
+
+	for i := 0; i < 3; i++ {
+		if err := os.Chdir(".."); err != nil {
+			t.Fatal(err)
+		}
+	}
+
+	result := initCweCategories(cweIDs, guids)
+
+	require.Len(t, result, 2)
+	// Test for CWE-ID 22
+	require.Equal(t, "22", result[0].DefinitionID)
+	require.Equal(t, "1489b0c4-d7ce-4d31-af66-6382a01202e3", result[0].DefinitionGUID)
+	require.Equal(t, expectedShortDescription22, result[0].DefinitionShortDescription.Text)
+	require.Equal(t, "https://cwe.mitre.org/data/definitions/22.html", result[0].HelpURI)
+	// Test for CWE-ID 41
+	require.Equal(t, "41", result[1].DefinitionID)
+	require.Equal(t, "1489b0c4-d7ce-4d31-af66-6382a01202e4", result[1].DefinitionGUID)
+	require.Equal(t, expectedShortDescription41, result[1].DefinitionShortDescription.Text)
+	require.Equal(t, "https://cwe.mitre.org/data/definitions/41.html", result[1].HelpURI)
 }
