@@ -1,10 +1,10 @@
 package logger
 
 import (
-	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
 	"io"
 	"os"
 
+	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
 	log "github.com/rs/zerolog"
 )
 
