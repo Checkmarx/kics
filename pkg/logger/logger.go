@@ -1,11 +1,11 @@
 package logger
 
 import (
-	"io"
-	"os"
-
 	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
 	log "github.com/rs/zerolog"
+	arroz "github.com/rs/zerolog/log"
+	"io"
+	"os"
 )
 
 type LogSink struct {
@@ -15,8 +15,10 @@ type LogSink struct {
 func NewLogger(logs *LogSink) log.Logger {
 	if logs == nil {
 		if !consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) {
+			arroz.Debug().Msgf("aqui joao")
 			return log.New(io.Discard).With().Timestamp().Logger()
 		}
+		arroz.Debug().Msgf("aqui joao 1234")
 		return log.New(os.Stderr).With().Timestamp().Logger().Output(log.ConsoleWriter{Out: os.Stderr})
 	}
 	return log.New(logs)
