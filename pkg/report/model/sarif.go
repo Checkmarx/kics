@@ -3,7 +3,6 @@ package model
 import (
 	"encoding/csv"
 	"encoding/json"
-	"fmt"
 	"os"
 	"path/filepath"
 
@@ -502,8 +501,6 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 				{Relationship: target},
 			}
 		}
-
-		fmt.Printf("Debug: Created relationships: %+v\n", relationships)
 
 		rule := sarifRule{
 			RuleID:               queryMetadata.queryID,
