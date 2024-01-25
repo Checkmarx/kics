@@ -17,7 +17,7 @@ func NewLogger(logs *LogSink) log.Logger {
 		if !consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) {
 			return log.New(io.Discard).With().Timestamp().Logger()
 		}
-		return log.New(os.Stdout).With().Timestamp().Logger().Output(log.ConsoleWriter{Out: os.Stderr})
+		return log.New(os.Stderr).With().Timestamp().Logger().Output(log.ConsoleWriter{Out: os.Stderr})
 	}
 	return log.New(logs)
 }

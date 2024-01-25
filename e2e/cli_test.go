@@ -92,8 +92,8 @@ func Test_E2E_CLI(t *testing.T) {
 					// Check log file
 					logData, _ := utils.ReadFixture(tt.Args.ExpectedLog.LogFile, "output")
 					validation := tt.Args.ExpectedLog.ValidationFunc(logData)
-					require.Truef(t, validation, "olha os logs %s",
-						logData)
+					require.Truef(t, validation, "The output log file 'output/%s' doesn't match the regex validation",
+						tt.Args.ExpectedLog.LogFile)
 				}
 
 				if tt.Args.ExpectedOut != nil {
