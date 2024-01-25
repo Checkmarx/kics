@@ -105,11 +105,9 @@ func Test_E2E_CLI(t *testing.T) {
 					formattedWant := loadTemplates(want, templates)
 
 					// Check number of Lines
-					/*require.Equal(t, len(formattedWant), len(out.Output),
-					"[fixtures/%s] Expected number lines: %d\n[CLI] Actual KICS output lines: %d",
-					tt.Args.ExpectedOut[arg], len(formattedWant), len(out.Output))*/
 					require.Equal(t, len(formattedWant), len(out.Output),
-						"Olha aqui o conteudo: %s", out.Output)
+						"[fixtures/%s] Expected number lines: %d\n[CLI] Actual KICS output lines: %d",
+						tt.Args.ExpectedOut[arg], len(formattedWant), len(out.Output))
 
 					// Check output lines
 					for idx := range formattedWant {

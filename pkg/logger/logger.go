@@ -1,20 +1,25 @@
 package logger
 
 import (
+	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
+	"io"
 	"os"
 
-	zerolog "github.com/rs/zerolog"
+	log "github.com/rs/zerolog"
 )
 
 type LogSink struct {
 	logs []string
 }
 
-func NewLogger(logs *LogSink) zerolog.Logger {
+func NewLogger(logs *LogSink) log.Logger {
 	if logs == nil {
-		return zerolog.New(os.Stdout).With().Timestamp().Logger().Output(zerolog.ConsoleWriter{Out: os.Stderr})
+		if !consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) {
+			return log.New(io.Discard).With().Timestamp().Logger()
+		}
+		return log.New(os.Stdout).With().Timestamp().Logger().Output(log.ConsoleWriter{Out: os.Stderr})
 	}
-	return zerolog.New(logs)
+	return log.New(logs)
 }
 
 func (l *LogSink) Write(p []byte) (n int, err error) {
