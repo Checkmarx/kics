@@ -14,7 +14,7 @@ func init() { //nolint
 		},
 		WantStatus: []int{50},
 		Validation: func(outputText string) bool {
-			match1, _ := regexp.MatchString(`Files scanned: \d+`, outputText)
+			match1, _ := regexp.MatchString(`Scanned Files: \d+`, outputText)
 			match2, _ := regexp.MatchString(`Parsed files: \d+`, outputText)
 			match3, _ := regexp.MatchString(`Queries loaded: \d+`, outputText)
 			match4, _ := regexp.MatchString(`Queries failed to execute: \d+`, outputText)

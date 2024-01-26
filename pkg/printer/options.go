@@ -138,3 +138,23 @@ func LogLevel(opt interface{}, changed bool) error {
 	}
 	return nil
 }
+
+type LogSink struct {
+	logs []string
+}
+
+func NewLogger(logs *LogSink) zerolog.Logger {
+	if logs == nil {
+		return log.Logger
+	}
+	return zerolog.New(logs)
+}
+
+func (l *LogSink) Write(p []byte) (n int, err error) {
+	l.logs = append(l.logs, string(p))
+	return len(p), nil
+}
+
+func (l *LogSink) Index(i int) string {
+	return l.logs[i]
+}

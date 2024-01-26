@@ -14,7 +14,7 @@ func init() { //nolint
 			},
 		},
 		Validation: func(outputText string) bool {
-			match, _ := regexp.MatchString(`Files scanned: 1`, outputText)
+			match, _ := regexp.MatchString(`Scanned Files: 1`, outputText)
 			return match
 		},
 		WantStatus: []int{40},

@@ -11,7 +11,6 @@ import (
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/pkg/descriptions"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
-	loggerwrapper "github.com/Checkmarx/kics/pkg/logger"
 	"github.com/Checkmarx/kics/pkg/model"
 	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
@@ -134,7 +133,7 @@ func (c *Client) postScan(scanResults *Results) error {
 
 	deleteExtractionFolder(scanResults.ExtractedPaths.ExtractionMap)
 
-	logger := loggerwrapper.NewLogger(nil)
+	logger := consolePrinter.NewLogger(nil)
 	consolePrinter.PrintScanDuration(&logger, time.Since(c.ScanStartTime))
 
 	printVersionCheck(c.Printer, &summary)
