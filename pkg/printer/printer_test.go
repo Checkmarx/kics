@@ -45,6 +45,14 @@ func TestPrinter(t *testing.T) {
 		want string
 	}{
 		{
+			name: "test_critical",
+			args: args{
+				content: "test_critical_content",
+				sev:     model.SeverityCricital,
+			},
+			want: "test_critical_content",
+		},
+		{
 			name: "test_high",
 			args: args{
 				content: "test_high_content",
@@ -121,6 +129,7 @@ var printTests = []struct {
 			"\t[1]: positive.tf:25\n" +
 			"\t[2]: positive.tf:19\n\n" +
 			"Results Summary:\n" +
+			"CRITICAL: 0\n" +
 			"HIGH: 2\n" +
 			"MEDIUM: 1\n" +
 			"LOW: 0\n" +
@@ -142,6 +151,7 @@ var printTests = []struct {
 			"\t[1]: positive.tf:25\n\n\n\n" +
 			"\t[2]: positive.tf:19\n\n\n\n\n" +
 			"Results Summary:\n" +
+			"CRITICAL: 0\n" +
 			"HIGH: 2\n" +
 			"MEDIUM: 1\n" +
 			"LOW: 0\n" +
@@ -162,6 +172,7 @@ var printTests = []struct {
 			"\t[1]: positive.tf:25\n" +
 			"\t[2]: positive.tf:19\n\n" +
 			"Results Summary:\n" +
+			"CRITICAL: 0\n" +
 			"HIGH: 2\n" +
 			"MEDIUM: 1\n" +
 			"LOW: 0\n" +
@@ -181,6 +192,7 @@ var printTests = []struct {
 			"\t[1]: positive.tf:25\n\n\n\n" +
 			"\t[2]: positive.tf:19\n\n\n\n\n" +
 			"Results Summary:\n" +
+			"CRITICAL: 0\n" +
 			"HIGH: 2\n" +
 			"MEDIUM: 1\n" +
 			"LOW: 0\n" +
@@ -202,6 +214,7 @@ var printTests = []struct {
 			"\t[1]: positive.tf:25\n" +
 			"\t[2]: positive.tf:19\n\n" +
 			"Results Summary:\n" +
+			"CRITICAL: 0\n" +
 			"HIGH: 2\n" +
 			"MEDIUM: 1\n" +
 			"LOW: 0\n" +
@@ -224,6 +237,7 @@ var printTests = []struct {
 			"\t[1]: positive.tf:25\n\n\n\n" +
 			"\t[2]: positive.tf:19\n\n\n\n\n" +
 			"Results Summary:\n" +
+			"CRITICAL: 0\n" +
 			"HIGH: 2\n" +
 			"MEDIUM: 1\n" +
 			"LOW: 0\n" +
