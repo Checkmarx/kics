@@ -89,7 +89,7 @@
           },
           "severity": {
             "type": "string",
-            "enum": ["HIGH", "MEDIUM", "LOW", "INFO"]
+            "enum": ["CRITICAL","HIGH", "MEDIUM", "LOW", "INFO"]
           },
           "platform": {
             "type": "string",
@@ -228,7 +228,7 @@
     },
     "severity_counters": {
       "type": "object",
-      "required": ["HIGH", "MEDIUM", "LOW", "INFO", "TRACE"],
+      "required": ["CRITICAL","HIGH", "MEDIUM", "LOW", "INFO", "TRACE"],
       "properties": {
         "HIGH": {
           "type": "integer",
