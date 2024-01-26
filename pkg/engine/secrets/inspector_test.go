@@ -64,12 +64,11 @@ var testCompileRegexesInput = []struct {
 				RegexStr: `['|"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\s*[:|=]\s*['|"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|"]?`,
 			},
 			{
-				ID:       "4b2b5fd3-364d-4093-bac2-17391b2a5297",
-				Name:     "K8s Environment Variable Password",
-				RegexStr: `apiVersion((.*)\s*)*env:((.*)\s*)*name:\s*\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\w*\s*(value):\s*(["|'].*["|'])`,
-				Multiline: MultilineResult{
-					DetectLineGroup: 7,
-				},
+				ID:          "4b2b5fd3-364d-4093-bac2-17391b2a5297",
+				Name:        "K8s Environment Variable Password",
+				RegexStr:    `apiVersion((.*)\s*)*env:((.*)\s*)*name:\s*\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\w*\s*(value):\s*(["|'].*["|'])`,
+				Multiline:   true,
+				GroupToMask: 7,
 			},
 			{
 				ID:       "c4d3b58a-e6d4-450f-9340-04f1e702eaae",
@@ -94,12 +93,11 @@ var testCompileRegexesInput = []struct {
 				RegexStr: `['|"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\s*[:|=]\s*['|"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|"]?`,
 			},
 			{
-				ID:       "4b2b5fd3-364d-4093-bac2-17391b2a5297",
-				Name:     "K8s Environment Variable Password",
-				RegexStr: `apiVersion((.*)\s*)*env:((.*)\s*)*name:\s*\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\w*\s*(value):\s*(["|'].*["|'])`,
-				Multiline: MultilineResult{
-					DetectLineGroup: 7,
-				},
+				ID:          "4b2b5fd3-364d-4093-bac2-17391b2a5297",
+				Name:        "K8s Environment Variable Password",
+				RegexStr:    `apiVersion((.*)\s*)*env:((.*)\s*)*name:\s*\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\w*\s*(value):\s*(["|'].*["|'])`,
+				Multiline:   true,
+				GroupToMask: 7,
 			},
 			{
 				ID:       "c4d3b58a-e6d4-450f-9340-04f1e702eaae",
@@ -124,12 +122,11 @@ var testCompileRegexesInput = []struct {
 				RegexStr: `['|"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\s*[:|=]\s*['|"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|"]?`,
 			},
 			{
-				ID:       "4b2b5fd3-364d-4093-bac2-17391b2a5297",
-				Name:     "K8s Environment Variable Password",
-				RegexStr: `apiVersion((.*)\s*)*env:((.*)\s*)*name:\s*\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\w*\s*(value):\s*(["|'].*["|'])`,
-				Multiline: MultilineResult{
-					DetectLineGroup: 7,
-				},
+				ID:          "4b2b5fd3-364d-4093-bac2-17391b2a5297",
+				Name:        "K8s Environment Variable Password",
+				RegexStr:    `apiVersion((.*)\s*)*env:((.*)\s*)*name:\s*\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\w*\s*(value):\s*(["|'].*["|'])`,
+				Multiline:   true,
+				GroupToMask: 7,
 			},
 			{
 				ID:       "c4d3b58a-e6d4-450f-9340-04f1e702eaae",

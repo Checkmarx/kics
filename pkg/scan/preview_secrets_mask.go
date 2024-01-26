@@ -3,6 +3,7 @@ package scan
 
 import (
 	"encoding/json"
+	"fmt"
 	"regexp"
 	"strings"
 
@@ -90,30 +91,7 @@ func hideSecret(lines *[]model.CodeLine, allowRules *[]secrets.AllowRule, rules 
 }
 
 func maskSecret(rule *secrets.RegexQuery, lines *[]model.CodeLine, idx int) {
-	if rule.SpecialMask == "all" {
-		(*lines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
-		return
-	}
-
-	regex := rule.RegexStr
-	line := (*lines)[idx]
-
-	if len(rule.SpecialMask) > 0 {
-		regex = "(.+)" + rule.SpecialMask
-	}
-
-	var re = regexp.MustCompile(regex)
-	match := re.FindString(line.Line)
-
-	if len(rule.SpecialMask) > 0 {
-		match = line.Line[len(match):]
-	}
-
-	if match != "" {
-		(*lines)[idx].Line = strings.Replace(line.Line, match, "<SECRET-MASKED-ON-PURPOSE>", 1)
-	} else {
-		(*lines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
-	}
+	(*lines)[idx].Line = rule.Regex.ReplaceAllString((*lines)[idx].Line, fmt.Sprintf("${%d:%s}", rule.GroupToMask, "<SECRET-MASKED-ON-PURPOSE>"))
 }
 
 // repurposed isSecret from inspector
@@ -128,8 +106,8 @@ func isSecret(line string, rule *secrets.RegexQuery, allowRules *[]secrets.Allow
 		splitedText := strings.Split(line, "\n")
 		max := -1
 		for i, splited := range splitedText {
-			if len(groups) < rule.Multiline.DetectLineGroup {
-				if strings.Contains(splited, group[rule.Multiline.DetectLineGroup]) && i > max {
+			if len(groups) < rule.GroupToMask {
+				if strings.Contains(splited, group[rule.GroupToMask]) && i > max {
 					max = i
 				}
 			}

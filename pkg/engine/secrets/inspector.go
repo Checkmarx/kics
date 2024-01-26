@@ -60,10 +60,6 @@ type Entropy struct {
 	Max   float64 `json:"max"`
 }
 
-type MultilineResult struct {
-	DetectLineGroup int `json:"detectLineGroup"`
-}
-
 type AllowRule struct {
 	Description string `json:"description"`
 	RegexStr    string `json:"regex"`
@@ -71,14 +67,14 @@ type AllowRule struct {
 }
 
 type RegexQuery struct {
-	ID          string          `json:"id"`
-	Name        string          `json:"name"`
-	Multiline   MultilineResult `json:"multiline"`
-	RegexStr    string          `json:"regex"`
-	SpecialMask string          `json:"specialMask"`
-	Entropies   []Entropy       `json:"entropies"`
-	AllowRules  []AllowRule     `json:"allowRules"`
+	ID          string      `json:"id"`
+	Name        string      `json:"name"`
+	Multiline   bool        `json:"multiline"`
+	RegexStr    string      `json:"regex"`
+	Entropies   []Entropy   `json:"entropies"`
+	AllowRules  []AllowRule `json:"allowRules"`
 	Regex       *regexp.Regexp
+	GroupToMask int `json:"groupMask"`
 }
 
 type RegexRuleStruct struct {
@@ -318,8 +314,8 @@ func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, gro
 		splitedText := strings.Split(s, "\n")
 		max := -1
 		for i, splited := range splitedText {
-			if len(groups) < query.Multiline.DetectLineGroup {
-				if strings.Contains(splited, group[query.Multiline.DetectLineGroup]) && i > max {
+			if len(groups) <= query.GroupToMask {
+				if strings.Contains(splited, group[query.GroupToMask]) && i > max {
 					max = i
 				}
 			}
@@ -383,7 +379,7 @@ func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file
 				file,
 				query,
 				lineVuln.lineNumber,
-				lineVuln.lineContent,
+				lineVuln.groups[0],
 			)
 		}
 
@@ -405,7 +401,7 @@ func (c *Inspector) checkFileContent(query *RegexQuery, basePaths []string, file
 						file,
 						query,
 						lineVuln.lineNumber,
-						lineVuln.lineContent,
+						lineVuln.groups[0],
 					)
 				}
 			}
@@ -425,13 +421,13 @@ func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadat
 			groups:      groups,
 		}
 
-		if len(groups) <= query.Multiline.DetectLineGroup {
-			log.Warn().Msgf("Unable to detect line in file %v Multiline group not found: %v", file.FilePath, query.Multiline.DetectLineGroup)
+		if len(groups) <= query.GroupToMask {
+			log.Warn().Msgf("Unable to detect line in file %v Group not found: %v", file.FilePath, query.GroupToMask)
 			lineVulneInfoSlice = append(lineVulneInfoSlice, lineVulneInfoObject)
 			continue
 		}
 
-		contentMatchRemoved := strings.Replace(content, groups[query.Multiline.DetectLineGroup], "", 1)
+		contentMatchRemoved := strings.Replace(content, groups[query.GroupToMask], "", 1)
 
 		text := strings.ReplaceAll(contentMatchRemoved, "\r", "")
 		contentMatchRemovedLines := strings.Split(text, "\n")
@@ -497,7 +493,7 @@ func (c *Inspector) checkLineByLine(wg *sync.WaitGroup, query *RegexQuery,
 	}
 }
 
-func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadata, query *RegexQuery, lineNumber int, issueLine string) {
+func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadata, query *RegexQuery, lineNumber int, matchContent string) {
 	if engine.ShouldSkipVulnerability(file.Commands, query.ID) {
 		log.Debug().Msgf("Skipping vulnerability in file %s for query '%s':%s", file.FilePath, query.Name, query.ID)
 		return
@@ -524,7 +520,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 				FileID:           file.ID,
 				FileName:         file.FilePath,
 				Line:             linesVuln.Line,
-				VulnLines:        hideSecret(&linesVuln, issueLine, query, &c.SecretTracker),
+				VulnLines:        hideSecret(&linesVuln, matchContent, query, &c.SecretTracker),
 				IssueType:        "RedundantAttribute",
 				Platform:         SecretsQueryMetadata["platform"],
 				Severity:         model.SeverityHigh,
@@ -616,7 +612,7 @@ func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.Fil
 
 	wg := &sync.WaitGroup{}
 	// check file content line by line
-	if c.regexQueries[i].Multiline == (MultilineResult{}) {
+	if !c.regexQueries[i].Multiline {
 		lines := (&files[idx]).LinesOriginalData
 		for lineNumber, currentLine := range *lines {
 			wg.Add(1)
@@ -656,45 +652,43 @@ func cleanFiles(files model.FileMetadatas) model.FileMetadatas {
 	return cleanFiles
 }
 
+func maskRegexByMatchGroup(groupToMask int, matchContent string, query *RegexQuery) string {
+	query.Regex = regexp.MustCompile(".*" + query.RegexStr) // add .* to match the last appearance
+	groups := query.Regex.FindAllStringSubmatch(matchContent, -1)
+	lastMatch := groups[len(groups)-1]
+	if len(lastMatch) < groupToMask {
+		return matchContent
+	}
+	return strings.Replace(matchContent, lastMatch[groupToMask], "<SECRET-MASKED-ON-PURPOSE>", 1)
+}
+
 func hideSecret(linesVuln *model.VulnerabilityLines,
-	issueLine string,
+	matchContent string,
 	query *RegexQuery,
 	secretTracker *[]SecretTracker) *[]model.CodeLine {
+
+	replacedString := maskRegexByMatchGroup(query.GroupToMask, matchContent, query)
+	replacedStringRemoved := strings.ReplaceAll(replacedString, "\r", "")
+	replacedStringLines := strings.Split(replacedStringRemoved, "\n")
 	for idx := range *linesVuln.VulnLines {
-		if query.SpecialMask == "all" && idx != 0 {
-			addToSecretTracker(secretTracker, linesVuln.ResolvedFile, linesVuln.Line, (*linesVuln.VulnLines)[idx].Line, "<SECRET-MASKED-ON-PURPOSE>")
-			(*linesVuln.VulnLines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
-			continue
-		}
-
-		if (*linesVuln.VulnLines)[idx].Line == issueLine {
-			regex := query.RegexStr
-
-			if len(query.SpecialMask) > 0 {
-				regex = "(.*)" + query.SpecialMask // get key
-			}
-
-			var re = regexp.MustCompile(regex)
-			match := re.FindString(issueLine)
-
-			if len(query.SpecialMask) > 0 {
-				match = issueLine[len(match):] // get value
-			}
-
-			if match != "" {
-				originalCntAux := (*linesVuln.VulnLines)[idx].Line
-				(*linesVuln.VulnLines)[idx].Line = strings.Replace(issueLine, match, "<SECRET-MASKED-ON-PURPOSE>", 1)
-				addToSecretTracker(secretTracker, linesVuln.ResolvedFile, linesVuln.Line, originalCntAux, (*linesVuln.VulnLines)[idx].Line)
-			} else {
-				addToSecretTracker(secretTracker,
-					linesVuln.ResolvedFile,
-					linesVuln.Line,
-					(*linesVuln.VulnLines)[idx].Line,
-					"<SECRET-MASKED-ON-PURPOSE>")
+		replacedIndex := (*linesVuln.VulnLines)[idx].Position - linesVuln.Line
+		if len(replacedStringLines) < idx && replacedIndex > 0 {
+			if query.Multiline {
 				(*linesVuln.VulnLines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
 			}
+			continue
+		}
+		if idx != 0 && replacedIndex >= 0 {
+			addToSecretTracker(
+				secretTracker,
+				linesVuln.ResolvedFile,
+				linesVuln.Line,
+				(*linesVuln.VulnLines)[idx].Line,
+				replacedStringLines[replacedIndex])
+			(*linesVuln.VulnLines)[idx].Line = replacedStringLines[replacedIndex]
 		}
 	}
+
 	return linesVuln.VulnLines
 }
 
