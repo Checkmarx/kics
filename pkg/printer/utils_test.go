@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/Checkmarx/kics/internal/console/flags"
-	loggerwrapper "github.com/Checkmarx/kics/pkg/logger"
 	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/assert"
 )
@@ -60,8 +59,8 @@ func Test_PrintScanDuration(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			flags.InitJSONFlags(test.cmd, test.flagsListContent, test.persintentFlag, test.supportedPlatforms, test.supportedCloudProviders)
 
-			myBuffer := loggerwrapper.LogSink{}
-			logger := loggerwrapper.NewLogger(&myBuffer)
+			myBuffer := LogSink{}
+			logger := NewLogger(&myBuffer)
 
 			PrintScanDuration(&logger, test.elapsed)
 			aux := myBuffer.Index(0)
