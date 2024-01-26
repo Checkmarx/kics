@@ -10,7 +10,7 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--exclude-paths", "/path/test/fixtures/test_swagger/swaggerFileWithoutAuthorizer.yaml",
-					"-p", "/path/test/fixtures/test_swagger/"},
+					"-p", "/path/test/fixtures/test_swagger/", "-v"},
 			},
 		},
 		Validation: func(outputText string) bool {
