@@ -449,9 +449,20 @@ func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadat
 	return lineVulneInfoSlice
 }
 
-func (c *Inspector) checkLineByLine(wg *sync.WaitGroup, query *RegexQuery,
-	basePaths []string, file *model.FileMetadata, lineNumber int, currentLine string) {
+func (c *Inspector) checkLines(wg *sync.WaitGroup, query *RegexQuery,
+	basePaths []string, file *model.FileMetadata, lines *[]string,
+	startLine, endLine int) {
 	defer wg.Done()
+	for lineNumber, currentLine := range *lines {
+		if lineNumber+startLine >= endLine {
+			return
+		}
+		c.checkLineByLine(query, basePaths, file, startLine+lineNumber, currentLine)
+	}
+}
+
+func (c *Inspector) checkLineByLine(query *RegexQuery,
+	basePaths []string, file *model.FileMetadata, lineNumber int, currentLine string) {
 	isSecret, groups := c.isSecret(currentLine, query)
 	if !isSecret {
 		return
@@ -608,15 +619,30 @@ func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
 func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) {
 	// lines ignore can have the lines from the resolved files
 	// since inspector secrets only looks to original data, the lines ignore should be replaced
+	numRoutines := 30
 	files[idx].LinesIgnore = model.GetIgnoreLines(&files[idx])
 
 	wg := &sync.WaitGroup{}
 	// check file content line by line
 	if !c.regexQueries[i].Multiline {
 		lines := (&files[idx]).LinesOriginalData
-		for lineNumber, currentLine := range *lines {
+		startLine := 0
+		totalLineNum := len(*lines)
+		numLinesPerRoutine := totalLineNum / numRoutines
+		if numLinesPerRoutine == 0 {
 			wg.Add(1)
-			go c.checkLineByLine(wg, &c.regexQueries[i], basePaths, &files[idx], lineNumber, currentLine)
+			go c.checkLines(wg, &c.regexQueries[i], basePaths, &files[idx], lines, startLine, totalLineNum)
+		} else {
+			for startLine < totalLineNum {
+				endLine := startLine + numLinesPerRoutine
+				if endLine > totalLineNum {
+					endLine = totalLineNum
+				}
+				routineLines := (*lines)[startLine:]
+				wg.Add(1)
+				go c.checkLines(wg, &c.regexQueries[i], basePaths, &files[idx], &routineLines, startLine, endLine)
+				startLine = endLine
+			}
 		}
 		wg.Wait()
 		return
