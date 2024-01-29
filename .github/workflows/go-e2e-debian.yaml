@@ -104,3 +104,4 @@ jobs:
         with:
           name: e2e-tests-report-$DOCKER_NAME
           path: e2e-report.html
+          # dummy
