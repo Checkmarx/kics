@@ -10,5 +10,11 @@
       "severity": "MEDIUM",
       "line": 6,
       "filename": "positive2.yaml"
+    },
+    {
+      "queryName": "Host Namespace is Shared",
+      "severity": "MEDIUM",
+      "line": 11,
+      "filename": "positive3.yaml"
     }
   ]
