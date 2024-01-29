@@ -3,6 +3,7 @@ package test
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io"
 	"os"
 	"path/filepath"
@@ -321,7 +322,7 @@ func diffActualExpectedVulnerabilities(actual, expected []model.Vulnerability) [
 	m := make(map[string]bool)
 	diff := make([]string, 0)
 	for i := range expected {
-		m[expected[i].QueryName+":"+expected[i].FileName+":"+strconv.Itoa(expected[i].Line)] = true
+		m[expected[i].QueryName+":"+filepath.Base(expected[i].FileName)+":"+strconv.Itoa(expected[i].Line)] = true
 	}
 	for i := range actual {
 		if _, ok := m[actual[i].QueryName+":"+filepath.Base(actual[i].FileName)+":"+strconv.Itoa(actual[i].Line)]; !ok {
@@ -341,8 +342,12 @@ func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnera
 	})
 
 	require.Len(tb, actual, len(expected),
-		"Count of actual issues and expected vulnerabilities doesn't match\n -- \n%+v",
-		strings.Join(diffActualExpectedVulnerabilities(actual, expected), ",\n"))
+		fmt.Sprintf(
+			"Count of actual issues and expected vulnerabilities doesn't match\n -- \n"+
+				"not present in expected and present in actual: %v\n"+
+				"not present in actual and present in expected: %v\n",
+			diffActualExpectedVulnerabilities(actual, expected),
+			diffActualExpectedVulnerabilities(expected, actual)))
 
 	for i := range expected {
 		if i > len(actual)-1 {

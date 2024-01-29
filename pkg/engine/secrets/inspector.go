@@ -338,6 +338,7 @@ func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, gro
 
 // IsAllowRule check if string matches any of the allow rules for the secret queries
 func IsAllowRule(s string, query *RegexQuery, allowRules []AllowRule) bool {
+	query.Regex = regexp.MustCompile(query.RegexStr)
 	regexMatch := query.Regex.FindStringIndex(s)
 	if regexMatch != nil {
 		allowRuleMatches := AllowRuleMatches(s, append(query.AllowRules, allowRules...))
@@ -359,7 +360,11 @@ func IsAllowRule(s string, query *RegexQuery, allowRules []AllowRule) bool {
 func AllowRuleMatches(s string, allowRules []AllowRule) [][]int {
 	allowRuleMatches := [][]int{}
 	for i := range allowRules {
-		allowRuleMatches = append(allowRuleMatches, allowRules[i].Regex.FindAllStringIndex(s, -1)...)
+		res := allowRules[i].Regex.FindAllStringIndex(s, -1)
+		if len(res) != 0 {
+			fmt.Println("debug")
+		}
+		allowRuleMatches = append(allowRuleMatches, res...)
 	}
 	return allowRuleMatches
 }
@@ -454,6 +459,9 @@ func (c *Inspector) checkLines(wg *sync.WaitGroup, query *RegexQuery,
 	startLine, endLine int) {
 	defer wg.Done()
 	for lineNumber, currentLine := range *lines {
+		if lineNumber == 4 && query.ID == "baee238e-1921-4801-9c3f-79ae1d7b2cbc" {
+			fmt.Println("debug")
+		}
 		if lineNumber+startLine >= endLine {
 			return
 		}
@@ -623,6 +631,10 @@ func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.Fil
 	files[idx].LinesIgnore = model.GetIgnoreLines(&files[idx])
 
 	wg := &sync.WaitGroup{}
+
+	if strings.Contains(files[idx].FilePath, "positive43.yaml") && c.regexQueries[i].ID == "baee238e-1921-4801-9c3f-79ae1d7b2cbc" {
+		fmt.Println("debug")
+	}
 	// check file content line by line
 	if !c.regexQueries[i].Multiline {
 		lines := (&files[idx]).LinesOriginalData
