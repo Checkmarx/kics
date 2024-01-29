@@ -38,7 +38,7 @@ FROM alpine:3.18
 ENV TERM xterm-256color
 
 # Install additional components from Alpine
-Run apk update --no-cache \
+RUN apk update --no-cache \
     && apk add --no-cache \
     gcompat~=1.1.0 \
     git~=2.40
