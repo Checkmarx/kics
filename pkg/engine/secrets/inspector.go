@@ -692,7 +692,6 @@ func hideSecret(linesVuln *model.VulnerabilityLines,
 	matchContent string,
 	query *RegexQuery,
 	secretTracker *[]SecretTracker) *[]model.CodeLine {
-
 	replacedString := maskRegexByMatchGroup(query.GroupToMask, matchContent, query)
 	replacedStringRemoved := strings.ReplaceAll(replacedString, "\r", "")
 	replacedStringLines := strings.Split(replacedStringRemoved, "\n")
