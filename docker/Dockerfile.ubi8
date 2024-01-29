@@ -91,7 +91,6 @@ USER ${KUSER}
 # Copy built binary to the runtime container
 COPY --chown=${KUSER}:${KGROUP} --from=build_env /build/bin/kics /app/bin/kics
 COPY --chown=${KUSER}:${KGROUP} --from=build_env /build/assets/ /app/bin/assets/
-COPY --chown=${KUSER}:${KGROUP} --from=build_env /build/assets/cwe_csv/* /app/bin/assets/cwe_csv
 
 ENV PATH $PATH:/app/bin
 
