@@ -1,0 +1,18 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "MyStage": {
+            "Type": "AWS::ApiGateway::Stage",
+            "Properties": {
+                "StageName": "Prod",
+                "Description": "Prod Stage",
+                "DeploymentId": {
+                    "Ref": "MyDeployment"
+                },
+                "RestApiId": {
+                    "Ref": "CFNWebSocket"
+                }
+            }
+        }
+    }
+}

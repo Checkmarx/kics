@@ -1,0 +1,12 @@
+{
+    "id": "999ecb35-10df-4d73-8f17-3f4b8c3beec5",
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "category": "Observability",
+    "descriptionText": "API Gateway should have Access Log Settings defined",
+    "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html",
+    "platform": "CloudFormation",
+    "descriptionID": "d7151524",
+    "cloudProvider": "aws",
+    "cwe": ""
+  }
