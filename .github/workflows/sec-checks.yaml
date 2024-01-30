@@ -22,7 +22,8 @@ jobs:
           severity: 'CRITICAL,HIGH,MEDIUM'
           exit-code: '1'
 
-      - name: Inspect action SARIF report
+      - name: Inspect action report
+        if: always()
         shell: bash
         run: cat ./trivy-results.json
   grype:
