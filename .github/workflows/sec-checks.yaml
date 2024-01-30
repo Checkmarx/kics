@@ -27,8 +27,12 @@ jobs:
         shell: bash
         run: cat ./trivy-results.json
   trivy-docker-image:
-    name: Build
+    name: Trivy docker image scan
     runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        kics-docker: [ "Dockerfile" ]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
