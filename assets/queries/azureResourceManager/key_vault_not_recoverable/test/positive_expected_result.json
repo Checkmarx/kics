@@ -26,13 +26,13 @@
   {
     "queryName": "Key Vault Not Recoverable",
     "severity": "HIGH",
-    "line": 28,
+    "line": 23,
     "fileName": "positive5.json"
   },
   {
     "queryName": "Key Vault Not Recoverable",
     "severity": "HIGH",
-    "line": 28,
+    "line": 23,
     "fileName": "positive5.json"
   }
 ]

@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' should have '%s' property defined", [fields[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' doesn't have '%s' property defined", [fields[x]]),
 		"searchLine": common_lib.build_search_line(path, ["properties"]),
-		 "searchValue": sprintf("%s",[fields[x]]),
+		"searchValue": sprintf("%s",[fields[x]]),
 	}
 }
 
