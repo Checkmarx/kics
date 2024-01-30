@@ -10,7 +10,7 @@ jobs:
     name: kics-github-action
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Mkdir results-dir
         # make sure results dir is created
         run: mkdir -p results-dir
