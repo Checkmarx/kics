@@ -59,10 +59,10 @@ jobs:
           vuln-type: 'os,library'
           output: './trivy-image-results.json'
           severity: 'CRITICAL,HIGH,MEDIUM'
-        - name: Inspect action report
-          if: always()
-          shell: bash
-          run: cat ./trivy-image-results.json
+      - name: Inspect action report
+        if: always()
+        shell: bash
+        run: cat ./trivy-image-results.json
   grype:
     name: Grype Scan
     runs-on: ubuntu-20.04
