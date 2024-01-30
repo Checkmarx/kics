@@ -33,6 +33,10 @@ jobs:
       matrix:
         kics-docker: [ "Dockerfile"]
     steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Build
