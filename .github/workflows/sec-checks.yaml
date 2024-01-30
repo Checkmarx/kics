@@ -17,16 +17,10 @@ jobs:
         with:
           scan-type: 'fs'
           ignore-unfixed: true
-          format: 'sarif'
+          format: 'table'
           output: 'trivy-results.sarif'
           severity: 'MEDIUM,HIGH,CRITICAL'
           exit-code: '1'
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
-        with:
-          sarif_file: 'trivy-results.sarif'
   grype:
     name: Grype Scan
     runs-on: ubuntu-20.04
