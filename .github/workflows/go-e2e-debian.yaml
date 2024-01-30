@@ -31,9 +31,9 @@ jobs:
       - name: Get Modules
         run: go mod vendor
       - name: Set up Node v14
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "14"
+          node-version: "20"
       - name: Install mock server
         run: npm ci
         working-directory: .github/scripts/server-mock
