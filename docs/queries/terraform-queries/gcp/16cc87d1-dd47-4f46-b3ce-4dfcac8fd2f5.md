@@ -28,7 +28,7 @@ KMS Crypto Key should not be publicly accessible. In other words, the KMS Crypto
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="24"
+```tf title="Positive test num. 1 - tf file" hl_lines="24"
 resource "google_kms_key_ring" "positive1" {
   name     = "keyring-example"
   location = "global"
@@ -56,7 +56,7 @@ resource "google_kms_crypto_key_iam_policy" "positive1" {
 }
 
 ```
-```tf title="Postitive test num. 2 - tf file" hl_lines="24"
+```tf title="Positive test num. 2 - tf file" hl_lines="24"
 resource "google_kms_key_ring" "positive2" {
   name     = "keyring-example"
   location = "global"

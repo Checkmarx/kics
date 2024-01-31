@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine#network_interface_ids",
   "platform": "Terraform",
   "descriptionID": "9f51f6b1",
-  "cloudProvider": "azure"
+  "cloudProvider": "azure",
+  "cwe": ""
 }

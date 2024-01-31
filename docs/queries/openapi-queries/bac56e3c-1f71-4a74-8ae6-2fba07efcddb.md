@@ -28,7 +28,7 @@ Reference to examples should point to #/components/examples<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Postitive test num. 1 - json file" hl_lines="77"
+```json title="Positive test num. 1 - json file" hl_lines="77"
 {
   "openapi": "3.0.0",
   "info": {
@@ -117,7 +117,7 @@ Reference to examples should point to #/components/examples<br>
 }
 
 ```
-```yaml title="Postitive test num. 2 - yaml file" hl_lines="51"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="51"
 openapi: 3.0.0
 info:
   title: Simple API overview

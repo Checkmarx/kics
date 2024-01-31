@@ -13,7 +13,7 @@ import (
 type Parser struct {
 }
 
-func (p *Parser) Resolve(fileContent []byte, _ string) ([]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, _ string, _ bool) ([]byte, error) {
 	return fileContent, nil
 }
 

@@ -7,5 +7,6 @@
   "descriptionUrl": "https://kics.io",
   "platform": "CloudFormation",
   "descriptionID": "a46851fb",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "cwe": ""
 }

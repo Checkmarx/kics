@@ -6,5 +6,6 @@
   "descriptionText": "Container should not share the host network namespace",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_network",
   "platform": "Terraform",
-  "descriptionID": "bf155ca7"
+  "descriptionID": "bf155ca7",
+  "cwe": ""
 }

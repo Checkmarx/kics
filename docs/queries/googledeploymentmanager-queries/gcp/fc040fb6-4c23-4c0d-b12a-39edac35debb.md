@@ -28,7 +28,7 @@ VM disks for critical VMs must be encrypted with Customer Supplied Encryption Ke
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="8 18"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="8 18"
 resources:
 - name: vm-template
   type: compute.v1.instance
@@ -51,7 +51,7 @@ resources:
     zone: us-east1-c
 
 ```
-```yaml title="Postitive test num. 2 - yaml file" hl_lines="14 23"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="14 23"
 resources:
 - name: vm-template2
   type: compute.v1.instance
@@ -78,7 +78,7 @@ resources:
       sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
 
 ```
-```yaml title="Postitive test num. 3 - yaml file" hl_lines="16 26"
+```yaml title="Positive test num. 3 - yaml file" hl_lines="16 26"
 resources:
 - name: vm-template3
   type: compute.v1.instance
