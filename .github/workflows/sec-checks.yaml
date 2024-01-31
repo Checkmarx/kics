@@ -106,6 +106,7 @@ jobs:
           output-format: sarif
       - name: Upload artifact
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: AnchoreReports
           path: ./anchore-reports/
