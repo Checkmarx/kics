@@ -1,6 +1,7 @@
 # KICS CLI
 
-KICS is a command line tool, and should be used in a terminal. The next section describes the usage, the same help content is displayed when kics is provided with the `--help` flag.
+KICS is a command line tool, and should be used in a terminal. The next section describes the usage, the same help
+content is displayed when kics is provided with the `--help` flag.
 
 ## KICS Command
 
@@ -48,6 +49,7 @@ Flags:
       --config string                 path to configuration file
       --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
       --disable-secrets               disable secrets scanning
+      --enable-openapi-refs           resolve the file reference, on OpenAPI files (default [false])
       --exclude-categories strings    exclude categories by providing its name
                                       cannot be provided with query inclusion flags
                                       can be provided multiple times or as a comma separated string
@@ -67,10 +69,7 @@ Flags:
                                       can be provided multiple times or as a comma separated string
                                       example: 'info,low'
                                       possible values: 'high, medium, low, info, trace'
-      --experimental-queries strings include experimental queries (queries not yet thoroughly reviewed) by providing the path of the queries folder
-                                      can be provided multiple times or as a comma-separated string (platform/cloudProvider or platform)
-                                      example: 'terraform/databricks'
-                                      possible values found in: '/assets/utils/experimental-queries.json'
+      --experimental-queries          include experimental queries (queries not yet thoroughly reviewed) (default [false])
       --fail-on strings               which kind of results should return an exit code different from 0
                                       accepts: high, medium, low and info
                                       example: "high,low" (default [high,medium,low,info])
@@ -84,6 +83,7 @@ Flags:
                                       example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
       --input-data string             path to query input data files
   -b, --libraries-path string         path to directory with libraries (default "./assets/libraries")
+      --max-file-size int             max file size permitted for scanning, in MB (default 5)
       --minimal-ui                    simplified version of CLI output
       --no-progress                   hides the progress bar
       --output-name string            name used on report creations (default "results")
@@ -104,7 +104,7 @@ Flags:
       --exclude-type strings          case insensitive list of platform types not to scan
                                       (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
                                       cannot be provided with type inclusion flags
-
+       
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)
   -f, --log-format string   determines log format (pretty,json) (default "pretty")
@@ -134,13 +134,22 @@ Flags:
 The other commands have no further options.
 
 ## Exclude Paths
-By default, KICS excludes paths specified in the .gitignore file in the root of the repository. To disable this behavior, use flag `--exclude-gitignore`.
+
+By default, KICS excludes paths specified in the .gitignore file in the root of the repository. To disable this
+behavior, use flag `--exclude-gitignore`.
 
 ## Library Flag Usage
 
-As mentioned above, the library flag (`-b` or `--libraries-path`) refers to the directory with libraries. The functions need to be grouped by platform and the library file name should follow the format: `<platform>.rego` to be loaded by KICS. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named `terraform.rego` wherever you want.
+As mentioned above, the library flag (`-b` or `--libraries-path`) refers to the directory with libraries. The functions 
+need to be grouped by platform and the library file name should follow the format: `<platform>.rego` to be loaded by
+KICS. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that 
+contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a
+file named `terraform.rego` wherever you want.
 
-This will merge the custom libraries found on the flag's path with KICS's default libraries. Note that any functions declared in a custom library with the same signature as an existing function in the [default libraries](https://github.com/Checkmarx/kics/tree/master/assets/libraries) will cause **the default library function to be overwritten by the custom definition provided**.
+This will merge the custom libraries found on the flag's path with KICS's default libraries. Note that any functions
+declared in a custom library with the same signature as an existing function in
+the [default libraries](https://github.com/Checkmarx/kics/tree/master/assets/libraries) will cause **the default library
+function to be overwritten by the custom definition provided**.
 
 ---
 
@@ -154,7 +163,8 @@ You can only enable one profiler at a time, CPU or MEM.
 
 ## Disable Crash Report
 
-You can disable KICS crash report to [sentry.io](https://sentry.io) with `DISABLE_CRASH_REPORT` environment variable set to `0` or `false` e.g:
+You can disable KICS crash report to [sentry.io](https://sentry.io) with `DISABLE_CRASH_REPORT` environment variable set
+to `0` or `false` e.g:
 
 ```sh
 DISABLE_CRASH_REPORT=0 ./bin/kics version

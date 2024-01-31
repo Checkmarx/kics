@@ -206,7 +206,15 @@
                                     ]
                                 },
                                 "message": {
-                                    "$ref": "#/definitions/text_object"
+                                  "type": "object",
+                                  "additionalProperties": true,
+                                  "required": ["text"],
+                                  "properties": {
+                                    "text": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    }
+                                  }
                                 },
                                 "locations": {
                                     "type": "array",

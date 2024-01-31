@@ -6,5 +6,6 @@
   "descriptionText": "Deployments should be assigned with a PodDisruptionBudget to ensure high availability",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/run-application/configure-pdb/",
   "platform": "Kubernetes",
-  "descriptionID": "df941cb9"
+  "descriptionID": "df941cb9",
+  "cwe": ""
 }

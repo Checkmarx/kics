@@ -267,11 +267,28 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 	}
 }
 
+func checkValue(val cty.Value) bool {
+	if val.Type().HasDynamicTypes() || !val.IsKnown() {
+		return true
+	}
+	if !val.Type().IsPrimitiveType() && checkDynamicKnownTypes(val) {
+		return true
+	}
+	return false
+}
+
 func checkDynamicKnownTypes(valueConverted cty.Value) bool {
 	if !valueConverted.Type().HasDynamicTypes() && valueConverted.IsKnown() {
 		if valueConverted.Type().FriendlyName() == "tuple" {
 			for _, val := range valueConverted.AsValueSlice() {
-				if val.Type().HasDynamicTypes() || !val.IsKnown() {
+				if checkValue(val) {
+					return true
+				}
+			}
+		}
+		if valueConverted.Type().FriendlyName() == "object" {
+			for _, val := range valueConverted.AsValueMap() {
+				if checkValue(val) {
 					return true
 				}
 			}
@@ -495,6 +512,12 @@ func (c *converter) evalFunction(expression hclsyntax.Expression) (interface{}, 
 		if err != nil {
 			return c.wrapExpr(expression)
 		}
+	}
+	if !expressionEvaluated.HasWhollyKnownType() {
+		// in some cases, the expression is evaluated with no error but the type is unknown.
+		// this causes the json marshaling of the Document later on to fail with an error, and the entire scan fails.
+		// Therefore, we prefer to wrap it as a string and continue the scan.
+		return c.wrapExpr(expression)
 	}
 	return ctyjson.SimpleJSONValue{Value: expressionEvaluated}, nil
 }

@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster#disk_encryption_set_id",
   "platform": "Terraform",
   "descriptionID": "4eddeb5c",
-  "cloudProvider": "azure"
+  "cloudProvider": "azure",
+  "cwe": ""
 }
