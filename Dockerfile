@@ -41,7 +41,7 @@ ENV TERM xterm-256color
 Run apk update --no-cache \
     && apk add --no-cache \
     gcompat~=1.1.0 \
-    git~=2.40
+    git~=2.43
 
 # Install Terraform and Terraform plugins
 RUN wget https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_amd64.zip \
