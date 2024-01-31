@@ -18,6 +18,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.ClusterSettings should be defined and have a ClusterSetting named containerInsights which value is 'enabled'", [key]),
 		"keyActualValue": sprintf("Resources.%s.Properties.ClusterSettings is not defined", [key]),
+		"searchLine": common_lib.build_search_line(["Resources", key, "Properties"], []),
 	}
 }
 
@@ -38,6 +39,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.ClusterSettings should have a ClusterSetting named 'containerInsights' which value is 'enabled'", [key]),
 		"keyActualValue": sprintf("Resources.%s.Properties.ClusterSettings hasn't got a ClusterSetting named 'containerInsights' which value is 'enabled'", [key]),
+		"searchLine": common_lib.build_search_line(["Resources", key, "Properties", "ClusterSettings"], []),
 	}
 }
 
