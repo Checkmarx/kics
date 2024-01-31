@@ -65,8 +65,9 @@ func analyze() error {
 
 func getAnalyzeParameters() *analyzer.Parameters {
 	analyzeParams := analyzer.Parameters{
-		Path:    flags.GetMultiStrFlag(flags.AnalyzePath),
-		Results: flags.GetStrFlag(flags.AnalyzeResults),
+		Path:        flags.GetMultiStrFlag(flags.AnalyzePath),
+		Results:     flags.GetStrFlag(flags.AnalyzeResults),
+		MaxFileSize: flags.GetIntFlag(flags.MaxFileSizeFlag),
 	}
 
 	return &analyzeParams
@@ -90,6 +91,7 @@ func executeAnalyze(analyzeParams *analyzer.Parameters) error {
 		Exc:               []string{""},
 		ExcludeGitIgnore:  false,
 		GitIgnoreFileName: "",
+		MaxFileSize:       analyzeParams.MaxFileSize,
 	}
 
 	analyzedPaths, err := analyzer.Analyze(analyzerStruct)

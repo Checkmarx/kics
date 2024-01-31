@@ -6,5 +6,6 @@
   "descriptionText": "Cronjobs must have a configured deadline, which means the attribute 'startingDeadlineSeconds' must be defined",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/",
   "platform": "Kubernetes",
-  "descriptionID": "285952e5"
+  "descriptionID": "285952e5",
+  "cwe": ""
 }

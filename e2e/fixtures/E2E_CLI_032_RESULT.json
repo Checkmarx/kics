@@ -33,6 +33,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Networking and Firewall",
+      "experimental": false,
 			"description": "AWS Application Load Balancer (alb) should not listen on HTTP",
 			"description_id": "55f05412",
 			"files": [
@@ -59,6 +60,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Insecure Configurations",
+      "experimental": false,
 			"description": "Network_Mode should be 'awsvpc' in ecs_task_definition. AWS VPCs provides the controls to facilitate a formal process for approving and testing all network connections and changes to the firewall and router configurations",
 			"description_id": "bded2e99",
 			"files": [
@@ -85,6 +87,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Networking and Firewall",
+      "experimental": false,
 			"description": "ECS Service's security group should not allow unrestricted access to all ports from all IPv4 addresses",
 			"description_id": "747f49ac",
 			"files": [
@@ -124,6 +127,7 @@
 			"platform": "Common",
 			"cloud_provider": "COMMON",
 			"category": "Secret Management",
+      "experimental": false,
 			"description": "Query to find passwords and secrets in infrastructure code.",
 			"description_id": "d69d8a89",
 			"files": [
@@ -148,6 +152,7 @@
 			"platform": "Common",
 			"cloud_provider": "COMMON",
 			"category": "Secret Management",
+      "experimental": false,
 			"description": "Query to find passwords and secrets in infrastructure code.",
 			"description_id": "d69d8a89",
 			"files": [
@@ -172,6 +177,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Networking and Firewall",
+      "experimental": false,
 			"description": "AWS Security Group Ingress CIDR should not be open to the world",
 			"description_id": "08256d31",
 			"files": [
@@ -211,6 +217,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Networking and Firewall",
+      "experimental": false,
 			"description": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
 			"description_id": "2cad71a7",
 			"files": [
@@ -237,6 +244,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Availability",
+      "experimental": false,
 			"description": "AWS Auto Scaling Groups must have associated ELBs to ensure high availability and improve application performance. This means the attribute 'LoadBalancerNames' must be defined and not empty.",
 			"description_id": "99966f58",
 			"files": [
@@ -263,6 +271,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Availability",
+      "experimental": false,
 			"description": "ECS Service should have at least 1 task running",
 			"description_id": "cd242bdd",
 			"files": [
@@ -289,6 +298,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Networking and Firewall",
+      "experimental": false,
 			"description": "An AWS Elastic Load Balancer (ELB) shouldn´t have security groups without outbound rules",
 			"description_id": "3ccdd7d2",
 			"files": [
@@ -315,6 +325,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Networking and Firewall",
+      "experimental": false,
 			"description": "An AWS Elastic Load Balancer (ELB) shouldn´t have security groups without outbound rules",
 			"description_id": "7b876844",
 			"files": [
@@ -341,6 +352,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Access Control",
+      "experimental": false,
 			"description": "Check if any ECS cluster has not defined proper roles for services' task definitions.",
 			"description_id": "b47b42b2",
 			"files": [
@@ -367,6 +379,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Secret Management",
+      "experimental": false,
 			"description": "Secrets Manager Secret should explicitly specify KmsKeyId, this will allow the secret to be shared cross-account",
 			"description_id": "d78bb871",
 			"files": [
@@ -393,6 +406,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Networking and Firewall",
+      "experimental": false,
 			"description": "AWS Security Group Ingress should have a single port",
 			"description_id": "5f2b65f3",
 			"files": [
@@ -445,6 +459,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Observability",
+      "experimental": false,
 			"description": "Amazon ECS must have the HealthCheck property defined to give more control over monitoring the health of tasks",
 			"description_id": "e2e3a50a",
 			"files": [
@@ -484,6 +499,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Best Practices",
+      "experimental": false,
 			"description": "IAM Access Analyzer should be enabled and configured to continuously monitor resource permissions",
 			"description_id": "24a6978e",
 			"files": [
@@ -510,6 +526,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Best Practices",
+      "experimental": false,
 			"description": "It's considered a best practice for AWS Security Group to have a description",
 			"description_id": "f7c62b11",
 			"files": [

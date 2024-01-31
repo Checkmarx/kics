@@ -4,6 +4,7 @@ import (
 	_ "embed" // Embed kics CLI img and scan-flags
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"time"
 
@@ -114,7 +115,7 @@ func (c *Client) postScan(scanResults *Results) error {
 			return err
 		}
 	}
-
+	sort.Strings(c.ScanParams.Path)
 	summary := c.getSummary(scanResults.Results, time.Now(), model.PathParameters{
 		ScannedPaths:      c.ScanParams.Path,
 		PathExtractionMap: scanResults.ExtractedPaths.ExtractionMap,

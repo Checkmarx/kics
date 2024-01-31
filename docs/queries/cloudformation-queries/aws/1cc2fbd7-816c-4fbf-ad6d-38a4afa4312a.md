@@ -28,7 +28,7 @@ AWS Security Group Egress CIDR should not be open to the world<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="27 4"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="27 4"
 Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -81,7 +81,7 @@ Resources:
         - TargetSG
         - GroupId
 ```
-```json title="Postitive test num. 2 - json file" hl_lines="34 5"
+```json title="Positive test num. 2 - json file" hl_lines="34 5"
 {
   "Resources": {
     "InstanceSecurityGroup": {
