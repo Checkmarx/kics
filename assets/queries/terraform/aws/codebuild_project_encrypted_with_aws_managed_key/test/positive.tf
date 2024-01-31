@@ -57,7 +57,7 @@ resource "aws_codebuild_project" "project-cloudrail-test" {
 
   source {
     type            = "GITHUB"
-    location        = "https://github.com/mitchellh/packer.git"
+    location        = "https://github.com/foo/bar.git"
     git_clone_depth = 1
   }
 }

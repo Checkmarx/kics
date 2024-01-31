@@ -1,0 +1,68 @@
+{
+  "Country": {
+    "type": "object",
+    "properties": {
+      "a2": {
+        "type": "string"
+      },
+      "a3": {
+        "type": "string"
+      },
+      "countryName": {
+        "type": "string"
+      },
+      "definition": {
+        "type": "string"
+      },
+      "displayName": {
+        "type": "string"
+      },
+      "gmtOffset": {
+        "type": "string"
+      },
+      "governmentForm": {
+        "type": "string",
+        "enum": [
+          "ARISTOCRACY",
+          "DEMOCRACY",
+          "MONARCHY",
+          "OLIGARCHY",
+          "OTHER",
+          "THEOCRACY",
+          "TIMOCRACY",
+          "TYRANNY"
+        ]
+      },
+      "id": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "phoneCode": {
+        "type": "string"
+      }
+    },
+    "title": "Country"
+  },
+  "User": {
+    "type": "object",
+    "properties": {
+      "email": {
+        "type": "string"
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "info": {
+        "type": "string"
+      },
+      "password": {
+        "type": "string"
+      }
+    },
+    "title": "User"
+  }
+}
