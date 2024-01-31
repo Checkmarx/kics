@@ -2,32 +2,10 @@ ignore:
   - package:
       name: anchore/scan-action
   - package:
-      name: stdlib
-      location: "/root/.terraform.d/plugins/linux_amd64/**"
+      location: "/root/.terraform.d/plugins/linux_amd64/terraform-provider-**"
   - package:
-      name: goloang.org/x/crypto
-      location: "/root/.terraform.d/plugins/linux_amd64/**"
+      location: "/usr/bin/terraformer"
   - package:
-      name: goloang.org/x/net
-      location: "/root/.terraform.d/plugins/linux_amd64/**"
+      location: "/usr/bin/terraform"
   - package:
-      name: goloang.org/x/text
-      location: "/root/.terraform.d/plugins/linux_amd64/**"
-  - package:
-      name: google.golang.org/grpc
-      location: "/root/.terraform.d/plugins/linux_amd64/**"
-  - package:
-      name: github.com/x/sys
-      location: "/root/.terraform.d/plugins/linux_amd64/**"
-  - package:
-      name: github.com/crewjam/saml
-      location: "/root/.terraform.d/plugins/linux_amd64/**"
-  - package:
-      name: github.com/hashicorp/vault
-      location: "/root/.terraform.d/plugins/linux_amd64/**"
-  - package:
-      name: github.com/dgrijalva/jwt-go
-      location: "/root/.terraform.d/plugins/linux_amd64/**"
-  - package:
-      name: github.com/hashicorp/terraform
-      location: "/root/.terraform.d/plugins/linux_amd64/**"
+      location: "/usr/local/bin/terraform"
