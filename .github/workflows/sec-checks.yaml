@@ -102,12 +102,10 @@ jobs:
         with:
           image: kics:sec-tests-${{ github.sha }}
           fail-build: true
-          severity-cutoff: critical
+          severity-cutoff: medium
       - name: upload Anchore scan SARIF report
-        if: always()
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
       - name: Inspect action SARIF report
-        if: always()
         run: cat ${{ steps.scan.outputs.sarif }}
