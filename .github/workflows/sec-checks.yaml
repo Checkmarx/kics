@@ -98,23 +98,18 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Scan image
+        id: grype-scan
         uses: anchore/scan-action@v3
         with:
           image: kics:sec-tests-${{ github.sha }}
           fail-build: true
           severity-cutoff: medium
           output-format: sarif
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: AnchoreReports
-          path: ./anchore-reports/
       - name: upload Anchore scan SARIF report
         uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
-          sarif_file: ${{ steps.scan.outputs.sarif }}
+          sarif_file: ${{ steps.grype-scan.outputs.sarif }}
       - name: Inspect action SARIF report
         if: always()
-        run: cat ${{ steps.scan.outputs.sarif }}
+        run: cat ${{ steps.grype-scan.outputs.sarif }}
