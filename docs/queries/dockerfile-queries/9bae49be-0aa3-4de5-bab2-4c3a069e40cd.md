@@ -28,7 +28,7 @@ Instruction 'RUN <package-manager> update' should always be followed by '<packag
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```dockerfile title="Postitive test num. 1 - dockerfile file" hl_lines="2 5"
+```dockerfile title="Positive test num. 1 - dockerfile file" hl_lines="2 5"
 FROM ubuntu:18.04
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends mysql-client \

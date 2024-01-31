@@ -6,5 +6,6 @@
   "descriptionText": "Example reference should exists on components field",
   "descriptionUrl": "https://swagger.io/specification/#components-object",
   "platform": "OpenAPI",
-  "descriptionID": "026db32d"
+  "descriptionID": "026db32d",
+  "cwe": ""
 }
