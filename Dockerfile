@@ -31,11 +31,11 @@ USER Checkmarx
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 
 # Runtime image
-# Ignore no User Cmd since KICS container is stopped afer scan
-# kics-scan ignore-line
 FROM alpine:3.19
 
 ENV TERM xterm-256color
+
+USER root
 
 # Install additional components from Alpine
 Run apk update --no-cache \
@@ -60,6 +60,8 @@ RUN wget https://github.com/GoogleCloudPlatform/terraformer/releases/download/0.
     && chmod +x terraformer-all-linux-amd64 \
     && mv terraformer-all-linux-amd64 /usr/bin/terraformer
 
+RUN adduser -u 1000 -h home/kics -s bin/bash -D kics
+
 
 # Copy built binary to the runtime container
 # Vulnerability fixed in latest version of KICS remove when gh actions version is updated
@@ -68,6 +70,10 @@ COPY --from=build_env /app/bin/kics /app/bin/kics
 COPY --from=build_env /app/assets/queries /app/bin/assets/queries
 COPY --from=build_env /app/assets/libraries/* /app/bin/assets/libraries/
 
+# Add permissions to the user
+RUN chown -R kics /app/bin
+
+USER kics
 WORKDIR /app/bin
 
 # Healthcheck the container
