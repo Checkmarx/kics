@@ -12,7 +12,7 @@ TARGET_BIN ?= bin/kics
 CONSTANTS_PATH = github.com/Checkmarx/kics/internal/constants
 
 .PHONY: clean
-clean: ## remove files created during build
+clean: ## remove files created during build process
 	$(call print-target)
 	rm -rf dist
 	rm -rf bin
