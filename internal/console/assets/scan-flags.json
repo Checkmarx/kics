@@ -69,7 +69,7 @@
     "flagType": "multiStr",
     "shorthandFlag": "",
     "defaultValue": "critical,high,medium,low,info",
-    "usage": "which kind of results should return an exit code different from 0\naccepts: critical, high, medium, low and info\nexample: \"high,low\"",
+    "usage": "which kind of results should return an exit code different from 0\naccepts: high, medium, low and info\nexample: \"high,low\"",
     "validation": "validateMultiStrEnum"
   },
   "ignore-on-exit": {
