@@ -6,5 +6,6 @@
   "descriptionText": "Exposing UNIX ports out of range from 0 to 65535",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#expose",
   "platform": "Dockerfile",
-  "descriptionID": "fed3d812"
+  "descriptionID": "fed3d812",
+  "cwe": ""
 }

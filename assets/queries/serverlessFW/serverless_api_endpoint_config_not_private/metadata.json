@@ -6,5 +6,6 @@
   "descriptionText": "Serverless should have endpointType set to 'PRIVATE'. This way, it's not exposed to the public internet",
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/events/apigateway#configuring-endpoint-types",
   "platform": "ServerlessFW",
-  "descriptionID": "7837a4b9"
+  "descriptionID": "7837a4b9",
+  "cwe": ""
 }

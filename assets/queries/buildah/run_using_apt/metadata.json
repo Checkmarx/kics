@@ -6,5 +6,6 @@
   "descriptionText": "apt is discouraged by the linux distributions as an unattended tool as its interface may suffer changes between versions. Better use the more stable apt-get and apt-cache",
   "descriptionUrl": "https://github.com/containers/buildah/blob/main/docs/buildah-run.1.md",
   "platform": "Buildah",
-  "descriptionID": "eb58fa0b"
+  "descriptionID": "eb58fa0b",
+  "cwe": ""
 }

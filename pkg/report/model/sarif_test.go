@@ -89,7 +89,7 @@ var sarifTests = []sarifTest{
 							ResultRuleID:    "1",
 							ResultRuleIndex: 0,
 							ResultKind:      "fail",
-							ResultMessage:   sarifMessage{Text: "test"},
+							ResultMessage:   sarifMessage{Text: "test", MessageProperties: sarifProperties{"platform": ""}},
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
@@ -193,7 +193,10 @@ var sarifTests = []sarifTest{
 							ResultRuleID:    "1",
 							ResultRuleIndex: 0,
 							ResultKind:      "fail",
-							ResultMessage:   sarifMessage{Text: "test"},
+							ResultMessage: sarifMessage{
+								Text:              "test",
+								MessageProperties: sarifProperties{"platform": ""},
+							},
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
@@ -207,7 +210,10 @@ var sarifTests = []sarifTest{
 							ResultRuleID:    "1",
 							ResultRuleIndex: 0,
 							ResultKind:      "fail",
-							ResultMessage:   sarifMessage{Text: "test"},
+							ResultMessage: sarifMessage{
+								Text:              "test",
+								MessageProperties: sarifProperties{"platform": ""},
+							},
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
@@ -221,7 +227,10 @@ var sarifTests = []sarifTest{
 							ResultRuleID:    "2",
 							ResultRuleIndex: 1,
 							ResultKind:      "informational",
-							ResultMessage:   sarifMessage{Text: "test"},
+							ResultMessage: sarifMessage{
+								Text:              "test",
+								MessageProperties: sarifProperties{"platform": ""},
+							},
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
