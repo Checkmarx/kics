@@ -7,10 +7,11 @@ import (
 
 // severitySonarQubeEquivalence maps the severity of the KICS to the SonarQube equivalent
 var severitySonarQubeEquivalence = map[model.Severity]string{
-	"INFO":   "INFO",
-	"LOW":    "MINOR",
-	"MEDIUM": "MAJOR",
-	"HIGH":   "CRITICAL",
+	"INFO":     "INFO",
+	"LOW":      "MINOR",
+	"MEDIUM":   "MAJOR",
+	"HIGH":     "CRITICAL",
+	"CRITICAL": "BLOCKER",
 }
 
 // categorySonarQubeEquivalence maps the category to the SonarQube equivalent
