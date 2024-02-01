@@ -1,4 +1,4 @@
-name: go-e2e
+name: go-e2e-debian
 
 on:
   pull_request:
