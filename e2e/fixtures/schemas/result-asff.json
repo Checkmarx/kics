@@ -119,6 +119,7 @@
                     "Label": {
                         "type": "string",
                         "enum": [
+                            "CRITICAL",
                             "HIGH",
                             "MEDIUM",
                             "LOW",

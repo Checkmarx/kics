@@ -92,7 +92,7 @@
                       },
                       "Message": {
                         "type": "string",
-                        "pattern": "^\\[Severity: (INFO|LOW|MEDIUM|HIGH), Query description: (.|\\n)+\\] Problem found on '(.)+' file in line \\d+\\. Expected value: (.)+\\. Actual value: (.)+\\.$"
+                        "pattern": "^\\[Severity: (INFO|LOW|MEDIUM|HIGH|CRITICAL), Query description: (.|\\n)+\\] Problem found on '(.)+' file in line \\d+\\. Expected value: (.)+\\. Actual value: (.)+\\.$"
                       }
                     }
                   }
