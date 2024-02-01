@@ -41,8 +41,6 @@ type executeScanParameters struct {
 	extractedPaths provider.ExtractedPath
 }
 
-const testFilePath = "./assets/test/test_file.txt"
-
 func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 	progressBar := c.ProBarBuilder.BuildCircle("Preparing Scan Assets: ")
 	go progressBar.Start()
@@ -56,16 +54,6 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 	if len(extractedPaths.Path) == 0 {
 		return nil, nil
 	}
-
-	//load a file and log its content
-	file, err := os.Open(testFilePath)
-	if err != nil {
-		log.Err(err)
-		return nil, err
-	}
-	defer file.Close()
-
-	log.Info().Msgf("File content: %s", file)
 
 	querySource := source.NewFilesystemSource(
 		c.ScanParams.QueriesPath,
