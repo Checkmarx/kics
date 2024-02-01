@@ -1,0 +1,8 @@
+[
+    {
+		"queryName": "Run Block Injection",
+		"severity": "CRITICAL",
+		"line": 10,
+		"fileName": "positive1.yaml"
+	}
+]
