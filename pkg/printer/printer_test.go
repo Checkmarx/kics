@@ -48,7 +48,7 @@ func TestPrinter(t *testing.T) {
 			name: "test_critical",
 			args: args{
 				content: "test_critical_content",
-				sev:     model.SeverityCricital,
+				sev:     model.SeverityCritical,
 			},
 			want: "test_critical_content",
 		},

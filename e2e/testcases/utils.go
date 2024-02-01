@@ -164,7 +164,7 @@ func generateReport(tmpFile, jsonPath, reportName string) { //nolint
 				model.SeverityLow:      0,
 				model.SeverityMedium:   4,
 				model.SeverityHigh:     1,
-				model.SeverityCricital: 0,
+				model.SeverityCritical: 0,
 			},
 			TotalCounter: 5,
 		},

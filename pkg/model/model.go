@@ -34,7 +34,7 @@ const (
 
 // Constants to describe vulnerability's severity
 const (
-	SeverityCricital = "CRITICAL"
+	SeverityCritical = "CRITICAL"
 	SeverityHigh     = "HIGH"
 	SeverityMedium   = "MEDIUM"
 	SeverityLow      = "LOW"
@@ -52,7 +52,7 @@ const (
 // Arrays to group all constants of one type
 var (
 	AllSeverities = []Severity{
-		SeverityCricital,
+		SeverityCritical,
 		SeverityHigh,
 		SeverityMedium,
 		SeverityLow,

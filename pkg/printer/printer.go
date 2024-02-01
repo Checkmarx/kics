@@ -163,7 +163,7 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		printFiles(&summary.Queries[idx], printer)
 	}
 	fmt.Printf("\nResults Summary:\n")
-	printSeverityCounter(model.SeverityCricital, summary.SeveritySummary.SeverityCounters[model.SeverityCricital], printer.Critical)
+	printSeverityCounter(model.SeverityCritical, summary.SeveritySummary.SeverityCounters[model.SeverityCritical], printer.Critical)
 	printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
 	printSeverityCounter(model.SeverityMedium, summary.SeveritySummary.SeverityCounters[model.SeverityMedium], printer.Medium)
 	printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
@@ -286,7 +286,7 @@ func NewPrinter(minimal bool) *Printer {
 // PrintBySev will print the output with the specific severity color given the severity of the result
 func (p *Printer) PrintBySev(content, sev string) string {
 	switch strings.ToUpper(sev) {
-	case model.SeverityCricital:
+	case model.SeverityCritical:
 		return p.Critical.Sprintf(content)
 	case model.SeverityHigh:
 		return p.High.Sprintf(content)

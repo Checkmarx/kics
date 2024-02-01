@@ -235,7 +235,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 	}
 
 	queries := make([]QueryResult, 0, len(q))
-	sevs := map[Severity]int{SeverityTrace: 0, SeverityInfo: 0, SeverityLow: 0, SeverityMedium: 0, SeverityHigh: 0, SeverityCricital: 0}
+	sevs := map[Severity]int{SeverityTrace: 0, SeverityInfo: 0, SeverityLow: 0, SeverityMedium: 0, SeverityHigh: 0, SeverityCritical: 0}
 	for idx := range q {
 		sevs[q[idx].Severity] += len(q[idx].Files)
 
@@ -253,7 +253,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 		SeverityLow:      3,
 		SeverityMedium:   2,
 		SeverityHigh:     1,
-		SeverityCricital: 0,
+		SeverityCritical: 0,
 	}
 	sort.Slice(queries, func(i, j int) bool {
 		if severityOrder[queries[i].Severity] == severityOrder[queries[j].Severity] {
