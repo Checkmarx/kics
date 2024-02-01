@@ -73,6 +73,7 @@ JSON reports are sorted by severity (from high to info) and should looks like as
     ],
     "scan_id": "console",
     "severity_counters": {
+        "CRITICAL": 0,
         "HIGH": 0,
         "INFO": 0,
         "LOW": 0,
