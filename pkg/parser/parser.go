@@ -99,7 +99,7 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
 				}
 				//aqui joao
 				/*if strings.HasSuffix(filePath, ".yaml") && strings.HasPrefix(line, "---") {
-					continue
+						continue
 				}*/
 				if !strings.HasPrefix(line, commentToken) {
 					break
