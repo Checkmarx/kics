@@ -15,7 +15,7 @@ func TestBuildCodeClimateReport(t *testing.T) {
 		want    []CodeClimateReport
 	}{
 		{
-			name:    "build code climate report",
+			name:    "build code climate report with high severity",
 			summary: test.SummaryMock,
 			want: []CodeClimateReport{
 				{
@@ -43,7 +43,7 @@ func TestBuildCodeClimateReport(t *testing.T) {
 			},
 		},
 		{
-			name:    "build code climate report with blocker",
+			name:    "build code climate report with critical severity",
 			summary: test.SummaryMockCritical,
 			want: []CodeClimateReport{
 				{
