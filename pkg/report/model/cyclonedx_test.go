@@ -144,6 +144,27 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		},
 	}
 
+	v4 := Vulnerability{
+		Ref: fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_brocker_encryption_disabled/test/negative.tf@0.0.0-%s316278b3-87ac-444c-8f8f-a733a28da60z", negativeSha[0:12]),
+		ID:  "316278b3-87ac-444c-8f8f-a733a28da60z",
+		Source: Source{
+			Name: "KICS",
+			URL:  "https://kics.io/",
+		},
+		Ratings: []Rating{
+			{
+				Severity: "Critical",
+				Method:   "Other",
+			},
+		},
+		Description: "AmazonMQ Broker should have Encryption Options defined",
+		Recommendations: []Recommendation{
+			{
+				Recommendation: "Problem found in line 1. Expected value: aws_guardduty_detector[{{negative1}}].tags is defined and not null. Actual value: aws_guardduty_detector[{{negative1}}].tags is undefined or null.",
+			},
+		},
+	}
+
 	vulnsC1 = append(vulnsC1, v1)
 	vulnsC1 = append(vulnsC1, v2)
 
@@ -163,6 +184,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	}
 
 	vulnsC2 = append(vulnsC2, v3)
+	vulnsC2 = append(vulnsC2, v4)
 
 	c2 := Component{
 		Type:    "file",
