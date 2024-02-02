@@ -40,6 +40,15 @@ func TestPrintCycloneDxReport(t *testing.T) {
 			},
 			wantErr: false,
 		},
+		{
+			name: "Test3 PrintCycloneDxReport", // Able to get sha-256: reports vulnerabilities
+			args: args{
+				path:     "./testdir",
+				filename: "testout",
+				body:     test.SummaryMockCritical,
+			},
+			wantErr: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

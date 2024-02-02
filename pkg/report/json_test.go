@@ -30,6 +30,14 @@ var jsonTests = []struct {
 		},
 		expectedResult: test.SummaryMock,
 	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCritical,
+			path:     "./testdir",
+			filename: "testout",
+		},
+		expectedResult: test.SummaryMockCritical,
+	},
 }
 
 // TestPrintJSONReport tests the functions [PrintJSONReport()] and all the methods called by them
@@ -50,8 +58,12 @@ func TestPrintJSONReport(t *testing.T) {
 			var resultSummary model.Summary
 			err = json.Unmarshal(jsonResult, &resultSummary)
 			require.NoError(t, err)
-			resultSummary.Queries[0].Files[0].VulnLines = &[]model.CodeLine{}
-			resultSummary.Queries[0].Files[1].VulnLines = &[]model.CodeLine{}
+			if len(resultSummary.Queries) > 0 {
+				resultSummary.Queries[0].Files[0].VulnLines = &[]model.CodeLine{}
+				if len(resultSummary.Queries[0].Files) > 1 {
+					resultSummary.Queries[0].Files[1].VulnLines = &[]model.CodeLine{}
+				}
+			}
 			require.Equal(t, test.expectedResult, resultSummary)
 			os.RemoveAll(test.caseTest.path)
 		})

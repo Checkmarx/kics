@@ -271,8 +271,8 @@ var queryCritical = model.QueryResult{
 
 var SummaryMockCritical = model.Summary{
 	Counters: model.Counters{
-		ScannedFiles:           1,
-		ParsedFiles:            1,
+		ScannedFiles:           2,
+		ParsedFiles:            2,
 		FailedToScanFiles:      0,
 		TotalQueries:           1,
 		FailedToExecuteQueries: 0,
@@ -287,9 +287,9 @@ var SummaryMockCritical = model.Summary{
 			model.SeverityLow:      0,
 			model.SeverityMedium:   0,
 			model.SeverityHigh:     0,
-			model.SeverityCritical: 2,
+			model.SeverityCritical: 1,
 		},
-		TotalCounter: 2,
+		TotalCounter: 1,
 	},
 	ScannedPaths: []string{
 		"./",
