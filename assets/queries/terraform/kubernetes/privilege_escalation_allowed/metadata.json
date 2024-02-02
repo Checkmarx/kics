@@ -6,5 +6,6 @@
   "descriptionText": "Containers should not run with allowPrivilegeEscalation in order to prevent them from gaining more privileges than their parent process",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#allow_privilege_escalation",
   "platform": "Terraform",
-  "descriptionID": "e693ddd6"
+  "descriptionID": "e693ddd6",
+  "cwe": ""
 }

@@ -26,7 +26,7 @@ jobs:
           curl -L \
             https://img.shields.io/badge/Queries-${{ steps.metrics.outputs.total_queries }}-blue.svg > queries.svg
           cat queries.svg
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }}-queries-badge-latest
           path: queries.svg
@@ -44,7 +44,7 @@ jobs:
           git config --global user.name "KICSBot"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Download Queries Badge SVG
-        uses: actions/download-artifact@master
+        uses: actions/download-artifact@v4
         with:
           name: ${{ runner.os }}-queries-badge-latest
           path: latest-metrics

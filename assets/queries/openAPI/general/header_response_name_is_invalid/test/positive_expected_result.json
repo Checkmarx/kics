@@ -20,7 +20,19 @@
   {
     "queryName": "Header Response Name Is Invalid (v2)",
     "severity": "INFO",
+    "line": 14,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Header Response Name Is Invalid (v2)",
+    "severity": "INFO",
     "line": 21,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Header Response Name Is Invalid (v2)",
+    "severity": "INFO",
+    "line": 12,
     "filename": "positive4.yaml"
   }
 ]

@@ -6,5 +6,6 @@
   "descriptionText": "When using kube-apiserver command, the 'basic-auth-file' flag should not be set",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
-  "descriptionID": "e021b84c"
+  "descriptionID": "e021b84c",
+  "cwe": ""
 }

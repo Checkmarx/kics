@@ -7,6 +7,7 @@ CxPolicy[result] {
 	command := resource.Value[0]
 
 	isValidUpdate(command)
+	not phpComposerPhar(command)
 	not updateFollowedByInstall(command)
 
 	result := {
@@ -36,6 +37,17 @@ isValidUpdate(command) {
 	array_split[len - 1] == update[j]
 }
 
+phpComposerPhar(command) {
+	php := {x | x := indexof_n(command, "php"); count(x) != 0}
+	count(php) > 0
+	composer := {x | x := indexof_n(command, "composer"); count(x) != 0}
+	count(composer) > 0
+	checkFollowedBy(php[_],composer)
+	update := {x | x := indexof_n(command, "update"); count(x) != 0}
+	count(update) > 0
+	checkFollowedBy(composer[_],update)
+}
+
 commandList := [
 	"install",
 	"source-install",
@@ -50,9 +62,9 @@ updateFollowedByInstall(command) {
 	count(update) > 0
 	install := {x | x := indexof_n(command, commandList[_]); count(x) != 0}
 	count(install) > 0
-	checkUpdateFollowedByInstall(update[_], install)
+	checkFollowedBy(update[_], install)
 }
 
-checkUpdateFollowedByInstall(updatePos, installArray) {
-	updatePos[_] < installArray[_][_]
+checkFollowedBy(first, after) {
+	first[_] < after[_][_]
 }

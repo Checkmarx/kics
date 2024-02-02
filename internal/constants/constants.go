@@ -14,7 +14,7 @@ var (
 	SCMCommit = "NOCOMMIT"
 	// SentryDSN - sentry DSN, unset for disabling
 	SentryDSN = ""
-	// BaseURL - CIS descriptions endpoint URL
+	// BaseURL - Descriptions endpoint URL
 	BaseURL = ""
 	// APIScanner - API scanner feature switch
 	APIScanner = ""
@@ -41,6 +41,7 @@ var (
 	// AvailablePlatforms - All platforms available
 	AvailablePlatforms = map[string]string{
 		"Ansible":                 "ansible",
+		"CICD":                    "cicd",
 		"CloudFormation":          "cloudFormation",
 		"Crossplane":              "crossplane",
 		"Dockerfile":              "dockerfile",
@@ -82,6 +83,7 @@ var (
 		"aws":      "",
 		"azure":    "",
 		"gcp":      "",
+		"nifcloud": "",
 	}
 )
 

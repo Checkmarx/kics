@@ -10,6 +10,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/engine/secrets"
+	"github.com/Checkmarx/kics/pkg/minified"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	"github.com/Checkmarx/kics/pkg/resolver"
@@ -43,6 +44,7 @@ type Tracker interface {
 	TrackFileParse()
 	TrackFileFoundCountLines(countLines int)
 	TrackFileParseCountLines(countLines int)
+	TrackFileIgnoreCountLines(countLines int)
 }
 
 // Service is a struct that contains a SourceProvider to receive sources, a storage to save and retrieve scanning informations
@@ -57,10 +59,14 @@ type Service struct {
 	Tracker          Tracker
 	Resolver         *resolver.Resolver
 	files            model.FileMetadatas
+	MaxFileSize      int
 }
 
 // PrepareSources will prepare the sources to be scanned
-func (s *Service) PrepareSources(ctx context.Context, scanID string, wg *sync.WaitGroup, errCh chan<- error) {
+func (s *Service) PrepareSources(ctx context.Context,
+	scanID string,
+	openAPIResolveReferences bool,
+	wg *sync.WaitGroup, errCh chan<- error) {
 	defer wg.Done()
 	// CxSAST query under review
 	data := make([]byte, mbConst)
@@ -68,10 +74,10 @@ func (s *Service) PrepareSources(ctx context.Context, scanID string, wg *sync.Wa
 		ctx,
 		s.Parser.SupportedExtensions(),
 		func(ctx context.Context, filename string, rc io.ReadCloser) error {
-			return s.sink(ctx, filename, scanID, rc, data)
+			return s.sink(ctx, filename, scanID, rc, data, openAPIResolveReferences)
 		},
 		func(ctx context.Context, filename string) ([]string, error) { // Sink used for resolver files and templates
-			return s.resolverSink(ctx, filename, scanID)
+			return s.resolverSink(ctx, filename, scanID, openAPIResolveReferences)
 		},
 	); err != nil {
 		errCh <- errors.Wrap(err, "failed to read sources")
@@ -123,14 +129,14 @@ func (s *Service) StartScan(
 type Content struct {
 	Content    *[]byte
 	CountLines int
+	IsMinified bool
 }
 
 /*
 getContent will read the passed file 1MB at a time
 to prevent resource exhaustion and return its content
 */
-func getContent(rc io.Reader, data []byte) (*Content, error) {
-	maxSizeMB := 5 // Max size of file in MBs
+func getContent(rc io.Reader, data []byte, maxSizeMB int, filename string) (*Content, error) {
 	var content []byte
 	countLines := 0
 
@@ -158,6 +164,7 @@ func getContent(rc io.Reader, data []byte) (*Content, error) {
 	c.Content = &content
 	c.CountLines = countLines
 
+	c.IsMinified = minified.IsMinified(filename, content)
 	return c, nil
 }
 

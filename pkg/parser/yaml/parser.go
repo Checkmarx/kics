@@ -18,10 +18,11 @@ type Parser struct {
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, filename string, resolveReferences bool) ([]byte, error) {
 	// Resolve files passed as arguments with file resolver (e.g. file://)
 	res := file.NewResolver(yaml.Unmarshal, yaml.Marshal, p.SupportedExtensions())
-	resolved := res.Resolve(fileContent, filename, 0)
+	resolvedFilesCache := make(map[string]file.ResolvedFile)
+	resolved := res.Resolve(fileContent, filename, 0, resolvedFilesCache, resolveReferences)
 	p.resolvedFiles = res.ResolvedFiles
 	if len(res.ResolvedFiles) == 0 {
 		return fileContent, nil
@@ -109,6 +110,7 @@ func (p *Parser) SupportedTypes() map[string]bool {
 		"dockercompose":           true,
 		"pulumi":                  true,
 		"serverlessfw":            true,
+		"cicd":                    true,
 	}
 }
 

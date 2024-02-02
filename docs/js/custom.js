@@ -170,6 +170,8 @@ function exportToCSV(filename) {
       } else if (headerArray[j] == "query") {
         var lastIndex = text.lastIndexOf(" ")
         text = `"${text.substring(lastIndex + 1)},${text.substring(0, lastIndex)}"`
+      } else if (headerArray[j] == "description") {
+        text = text.replace(/\(read more\)/i, '')
       }
       row.push(text)
     }

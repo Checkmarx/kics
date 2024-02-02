@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"regexp"
 	"sort"
 
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
@@ -25,12 +26,15 @@ var (
 	}
 )
 
-func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reader, data []byte) error {
+func (s *Service) sink(ctx context.Context, filename, scanID string,
+	rc io.Reader, data []byte,
+	openAPIResolveReferences bool) error {
 	s.Tracker.TrackFileFound()
 	log.Debug().Msgf("Starting to process file %s", filename)
 
-	c, err := getContent(rc, data)
+	c, err := getContent(rc, data, s.MaxFileSize, filename)
 
+	*c.Content = resolveCRLFFile(*c.Content)
 	content := c.Content
 
 	s.Tracker.TrackFileFoundCountLines(c.CountLines)
@@ -38,12 +42,19 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 	if err != nil {
 		return errors.Wrapf(err, "failed to get file content: %s", filename)
 	}
-
-	documents, err := s.Parser.Parse(filename, *content)
+	documents, err := s.Parser.Parse(filename, *content, openAPIResolveReferences, c.IsMinified)
 	if err != nil {
 		log.Err(err).Msgf("failed to parse file content: %s", filename)
 		return nil
 	}
+
+	linesResolved := 0
+	for _, ref := range documents.ResolvedFiles {
+		if ref.Path != filename {
+			linesResolved += len(*ref.LinesContent)
+		}
+	}
+	s.Tracker.TrackFileFoundCountLines(linesResolved)
 
 	fileCommands := s.Parser.CommentsCommands(filename, *content)
 
@@ -76,15 +87,24 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 			LinesIgnore:       documents.IgnoreLines,
 			ResolvedFiles:     documents.ResolvedFiles,
 			LinesOriginalData: utils.SplitLines(documents.Content),
+			IsMinified:        documents.IsMinified,
 		}
 
 		s.saveToFile(ctx, &file)
 	}
 	s.Tracker.TrackFileParse()
 	log.Debug().Msgf("Finished to process file %s", filename)
-	s.Tracker.TrackFileParseCountLines(documents.CountLines)
+
+	s.Tracker.TrackFileParseCountLines(documents.CountLines - len(documents.IgnoreLines))
+	s.Tracker.TrackFileIgnoreCountLines(len(documents.IgnoreLines))
 
 	return errors.Wrap(err, "failed to save file content")
+}
+
+func resolveCRLFFile(fileContent []byte) []byte {
+	regex := regexp.MustCompile(`\r\n`)
+	contentSTR := regex.ReplaceAllString(string(fileContent), "\n")
+	return []byte(contentSTR)
 }
 
 func resolveJSONFilter(jsonFilter string) string {

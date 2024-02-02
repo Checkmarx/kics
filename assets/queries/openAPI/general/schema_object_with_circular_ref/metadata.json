@@ -6,13 +6,15 @@
   "descriptionText": "Schema Object should not reference it self in 'allOf', 'oneOf', 'anyOf' and 'not' properties",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
+  "descriptionID": "f95d553b",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "cbff2508-85c9-4448-a8b3-770070edf5ca",
       "queryName": "Schema Object With Circular Ref (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#definitionsObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#definitionsObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "f95d553b"
+  "cwe": ""
 }

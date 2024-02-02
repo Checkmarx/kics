@@ -6,5 +6,6 @@
   "descriptionText": "Container should not use secrets as environment variables",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables",
   "platform": "Kubernetes",
-  "descriptionID": "99365a7d"
+  "descriptionID": "99365a7d",
+  "cwe": ""
 }

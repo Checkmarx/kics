@@ -15,13 +15,13 @@ import (
 // Parameters represents all available scan parameters
 type Parameters struct {
 	CloudProvider               []string
-	DisableCISDesc              bool
 	DisableFullDesc             bool
 	ExcludeCategories           []string
 	ExcludePaths                []string
 	ExcludeQueries              []string
 	ExcludeResults              []string
 	ExcludeSeverities           []string
+	ExperimentalQueries         bool
 	IncludeQueries              []string
 	InputData                   string
 	OutputName                  string
@@ -34,6 +34,7 @@ type Parameters struct {
 	ReportFormats               []string
 	Platform                    []string
 	ExcludePlatform             []string
+	TerraformVarsPath           string
 	QueryExecTimeout            int
 	LineInfoPayload             bool
 	DisableSecrets              bool
@@ -43,6 +44,8 @@ type Parameters struct {
 	ScanID                      string
 	BillOfMaterials             bool
 	ExcludeGitIgnore            bool
+	OpenAPIResolveReferences    bool
+	MaxFileSizeFlag             int
 }
 
 // Client represents a scan client

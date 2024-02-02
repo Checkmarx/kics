@@ -8,8 +8,20 @@
   {
     "queryName": "Required Property With Default Value (v3)",
     "severity": "INFO",
+    "line": 14,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Required Property With Default Value (v3)",
+    "severity": "INFO",
     "line": 25,
     "filename": "positive2.json"
+  },
+  {
+    "queryName": "Required Property With Default Value (v3)",
+    "severity": "INFO",
+    "line": 12,
+    "filename": "positive3.yaml"
   },
   {
     "queryName": "Required Property With Default Value (v3)",

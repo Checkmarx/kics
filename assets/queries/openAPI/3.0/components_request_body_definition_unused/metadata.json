@@ -6,5 +6,6 @@
   "descriptionText": "Components request bodies definitions should be referenced or removed from Open API definition",
   "descriptionUrl": "https://swagger.io/specification/#components-object",
   "platform": "OpenAPI",
-  "descriptionID": "f3414d1a"
+  "descriptionID": "f3414d1a",
+  "cwe": ""
 }

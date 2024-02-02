@@ -6,5 +6,6 @@
   "descriptionText": "Components parameters definitions should be referenced or removed from Open API definition",
   "descriptionUrl": "https://swagger.io/specification/#components-object",
   "platform": "OpenAPI",
-  "descriptionID": "09b78a83"
+  "descriptionID": "09b78a83",
+  "cwe": ""
 }

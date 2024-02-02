@@ -86,6 +86,7 @@ Flags:
       --config string                 path to configuration file
       --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
       --disable-secrets               disable secrets scanning
+      --enable-openapi-refs           resolve the file reference, on OpenAPI files (default [false]) 
       --exclude-categories strings    exclude categories by providing its name
                                       cannot be provided with query inclusion flags
                                       can be provided multiple times or as a comma separated string
@@ -104,6 +105,7 @@ Flags:
       --exclude-severities strings    exclude results by providing the severity of a result
                                       can be provided multiple times or as a comma separated string
                                       example: 'info,low'
+      --experimental-queries          include experimental queries (queries not yet thoroughly reviewed) (default [false])
       --fail-on strings               which kind of results should return an exit code different from 0
                                       accepts: high, medium, low and info
                                       example: "high,low" (default [high,medium,low,info])
@@ -131,11 +133,12 @@ Flags:
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                  case insensitive list of platform types to scan
-                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
                                       cannot be provided with type exclusion flags
       --exclude-type strings          case insensitive list of platform types not to scan
-                                      (Ansible, AzureResourceManager, Buildah, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
                                       cannot be provided with type inclusion flags                                         
+      
 ```
 
 ```txt

@@ -6,5 +6,6 @@
   "descriptionText": "Namespaces like 'default', 'kube-system' or 'kube-public' should not be used",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/",
   "platform": "Kubernetes",
-  "descriptionID": "29549ea9"
+  "descriptionID": "29549ea9",
+  "cwe": ""
 }

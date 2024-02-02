@@ -12,15 +12,6 @@
     "defaultValue": "",
     "usage": "path to configuration file"
   },
-  "disable-cis-descriptions": {
-    "flagType": "bool",
-    "shorthandFlag": "",
-    "defaultValue": "false",
-    "usage": "disable request for CIS descriptions and use default vulnerability descriptions",
-    "hidden": true,
-    "deprecated": true,
-    "deprecatedInfo": "use --disable-full-descriptions instead"
-  },
   "disable-full-descriptions": {
     "flagType": "bool",
     "shorthandFlag": "",
@@ -67,6 +58,12 @@
     "shorthandFlag": "m",
     "defaultValue": "false",
     "usage": "include bill of materials (BoM) in results output"
+  },
+  "experimental-queries": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "include experimental queries (queries not yet thoroughly reviewed)"
   },
   "fail-on": {
     "flagType": "multiStr",
@@ -193,10 +190,28 @@
     "usage": "case insensitive list of platform types not to scan\n(${supportedPlatforms})\ncannot be provided with type inclusion flags",
     "validation": "validateMultiStrEnum"
   },
+  "terraform-vars-path": {
+    "flagType": "str",
+    "shorthandFlag": "",
+    "defaultValue": "",
+    "usage": "path where terraform variables are present"
+  },
   "exclude-gitignore": {
     "flagType": "bool",
     "shorthandFlag": "",
     "defaultValue": "false",
     "usage": "disables the exclusion of paths specified within .gitignore file"
+  },
+  "enable-openapi-refs": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "resolve the file reference, on OpenAPI files"
+  },
+  "max-file-size": {
+    "flagType": "int",
+    "shorthandFlag": "",
+    "defaultValue": "5",
+    "usage": "max file size permitted for scanning, in MB"
   }
 }
