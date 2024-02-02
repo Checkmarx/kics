@@ -1,0 +1,114 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "cloudFrontDistribution": {
+            "Type": "AWS::CloudFront::Distribution",
+            "Properties": {
+                "DistributionConfig": {
+                    "CacheBehaviors": [
+                        {
+                            "AllowedMethods": [
+                                "GET",
+                                "HEAD",
+                                "OPTIONS"
+                            ],
+                            "CachedMethods": [
+                                "GET",
+                                "HEAD",
+                                "OPTIONS"
+                            ],
+                            "Compress": true,
+                            "DefaultTTL": 86400,
+                            "ForwardedValues": {
+                                "cookies": {
+                                    "forward": "none"
+                                },
+                                "headers": [
+                                    "Origin"
+                                ],
+                                "QueryString": false
+                            },
+                            "MaxTtl": 31536000,
+                            "MinTtl": 0,
+                            "PathPattern": "/content/immutable/*",
+                            "TargetOriginId": "${local.s3_origin_id}",
+                            "ViewerProtocolPolicy": "redirect-to-https"
+                        },
+                        {
+                            "AllowedMethods": [
+                                "GET",
+                                "HEAD",
+                                "OPTIONS"
+                            ],
+                            "CachedMethods": [
+                                "GET",
+                                "HEAD",
+                                "OPTIONS"
+                            ],
+                            "Compress": true,
+                            "DefaultTTL": 86400,
+                            "ForwardedValues": {
+                                "cookies": {
+                                    "forward": "none"
+                                },
+                                "headers": [
+                                    "Origin"
+                                ],
+                                "QueryString": false
+                            },
+                            "MaxTtl": 31536000,
+                            "MinTtl": 0,
+                            "PathPattern": "/content/immutable/*",
+                            "TargetOriginId": "${local.s3_origin_id}",
+                            "ViewerProtocolPolicy": "redirect-to-https1"
+                        }
+                    ],
+                    "DefaultCacheBehavior": {
+                        "LambdaFunctionAssociations": [
+                            {
+                                "EventType": "string-value",
+                                "LambdaFunctionARN": "string-value"
+                            }
+                        ]
+                    },
+                    "IPV6Enabled": false,
+                    "Origins": [
+                        {
+                            "CustomOriginConfig": {
+                                "OriginKeepaliveTimeout": 5000,
+                                "OriginReadTimeout": 5000
+                            }
+                        }
+                    ],
+                    "Restrictions": {
+                        "GeoRestriction": {
+                            "Locations": [
+                                "US",
+                                "CA",
+                                "GB",
+                                "DE"
+                            ],
+                            "RestrictionType": "none"
+                        }
+                    },
+                    "Logging": {
+                        "Bucket": "String1",
+                        "IncludeCookies": false,
+                        "Prefix": "String"
+                    },
+                    "ViewerCertificate": {
+                        "CloudFrontDefaultCertificate": false,
+                        "MinimumProtocolVersion": "TLSv1.0"
+                    },
+                    "WebACLId": ""
+                },
+                "Tags": [
+                    {
+                        "Key": "string-value",
+                        "Value": "string-value"
+                    }
+                ]
+            }
+        }
+    }
+}

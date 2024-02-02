@@ -10,8 +10,8 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFront::Distribution"
 	distributionConfig := resource.Properties.DistributionConfig
 
-	not cf_lib.isCloudFormationFalse(distributionConfig.Enabled)
-	not common_lib.valid_key(distributionConfig, "WebACLId")
+	isDistributionEnabled(distributionConfig)
+	noWebACLId(distributionConfig)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -23,3 +23,15 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId is undefined", [name]),
 	}
 }
+
+isDistributionEnabled(distributionConfig) {
+	not cf_lib.isCloudFormationFalse(distributionConfig.Enabled)
+} else {
+	not cf_lib.isCloudFormationFalse(distributionConfig.IPV6Enabled)
+}
+
+noWebACLId(distributionConfig) {
+	not common_lib.valid_key(distributionConfig, "WebACLId")
+} else {
+	distributionConfig.WebACLId == ""
+}	
