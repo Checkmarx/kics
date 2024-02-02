@@ -13,7 +13,7 @@ var severityLevelEquivalence = map[model.Severity]string{
 	"LOW":      "note",
 	"MEDIUM":   "warning",
 	"HIGH":     "error",
-	"CRITICAL": "critical",
+	"CRITICAL": "error",
 }
 
 var targetTemplate = sarifDescriptorReference{
