@@ -246,6 +246,56 @@ var queryHighExperimental = model.QueryResult{
 	},
 }
 
+var queryCritical = model.QueryResult{
+	QueryName:                   "AmazonMQ Broker Encryption Disabled",
+	QueryID:                     "316278b3-87ac-444c-8f8f-a733a28da60z",
+	Description:                 "AmazonMQ Broker should have Encryption Options defined",
+	DescriptionID:               "c5d562dz",
+	CISDescriptionIDFormatted:   "testCISID",
+	CISDescriptionTitle:         "testCISTitle",
+	CISDescriptionTextFormatted: "testCISDescription",
+	Severity:                    model.SeverityCritical,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         positive,
+			Line:             25,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is missing",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
+}
+
+var SummaryMockCritical = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           1,
+		ParsedFiles:            1,
+		FailedToScanFiles:      0,
+		TotalQueries:           1,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.QueryResult{
+		queryCritical,
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:     0,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   0,
+			model.SeverityHigh:     0,
+			model.SeverityCritical: 2,
+		},
+		TotalCounter: 2,
+	},
+	ScannedPaths: []string{
+		"./",
+	},
+}
+
 // SummaryMock a summary to be used without running kics scan
 var SummaryMock = model.Summary{
 	Counters: model.Counters{

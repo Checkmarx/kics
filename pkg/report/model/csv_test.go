@@ -52,6 +52,28 @@ func TestBuildCSVReport(t *testing.T) {
 				},
 			},
 		},
+		{
+			name:    "build csv report critical",
+			summary: test.SummaryMockCritical,
+			want: []CSVReport{
+				{
+					QueryName:                   "AmazonMQ Broker Encryption Disabled",
+					QueryID:                     "316278b3-87ac-444c-8f8f-a733a28da60z",
+					Severity:                    model.SeverityCritical,
+					DescriptionID:               "c5d562dz",
+					Description:                 "AmazonMQ Broker should have Encryption Options defined",
+					CISDescriptionIDFormatted:   "testCISID",
+					CISDescriptionTitle:         "testCISTitle",
+					CISDescriptionTextFormatted: "testCISDescription",
+					FileName:                    "positive.tf",
+					Line:                        25,
+					IssueType:                   "MissingAttribute",
+					SearchKey:                   "aws_alb_listener[front_end].default_action.redirect",
+					ExpectedValue:               "'default_action.redirect.protocol' is equal 'HTTPS'",
+					ActualValue:                 "'default_action.redirect.protocol' is missing",
+				},
+			},
+		},
 	}
 
 	for _, test := range tests {

@@ -42,6 +42,23 @@ func TestBuildCodeClimateReport(t *testing.T) {
 				},
 			},
 		},
+		{
+			name:    "build code climate report with blocker",
+			summary: test.SummaryMockCritical,
+			want: []CodeClimateReport{
+				{
+					Type:        "issue",
+					CheckName:   "AmazonMQ Broker Encryption Disabled",
+					Description: "AmazonMQ Broker should have Encryption Options defined",
+					Categories:  []string{"Security"},
+					Location: location{
+						Path:  "positive.tf",
+						Lines: lines{Begin: 25},
+					},
+					Severity: "blocker",
+				},
+			},
+		},
 	}
 
 	for _, test := range tests {
