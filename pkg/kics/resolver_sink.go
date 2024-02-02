@@ -41,7 +41,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 		}
 
 		if kind == model.KindHELM {
-			ignoreList, errorIL := s.getOriginalIgnoreLines(rfile.FileName, rfile.OriginalData)
+			ignoreList, errorIL := s.getOriginalIgnoreLines(rfile.FileName, rfile.OriginalData, openAPIResolveReferences, isMinified)
 			if errorIL == nil {
 				documents.IgnoreLines = ignoreList
 
@@ -98,11 +98,11 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 	return resFiles.Excluded, nil
 }
 
-func (s *Service) getOriginalIgnoreLines(filename string, originalFile []uint8) (ignoreLines []int, err error) {
+func (s *Service) getOriginalIgnoreLines(filename string, originalFile []uint8, openAPIResolveReferences, isMinified bool) (ignoreLines []int, err error) {
 	refactor := regexp.MustCompile(`.*\n?.*KICS\_HELM\_ID.+\n`).ReplaceAll(originalFile, []uint8{})
 	refactor = regexp.MustCompile(`{{-\s*(.*?)\s*}}`).ReplaceAll(refactor, []uint8{})
 
-	documentsOriginal, err := s.Parser.Parse(filename, refactor)
+	documentsOriginal, err := s.Parser.Parse(filename, refactor, openAPIResolveReferences, isMinified)
 	if err == nil {
 		ignoreLines = documentsOriginal.IgnoreLines
 	}
