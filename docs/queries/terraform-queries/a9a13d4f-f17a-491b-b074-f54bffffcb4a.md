@@ -28,7 +28,7 @@ Service Account Tokens are automatically mounted even if not necessary<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="88 25 162 144"
+```tf title="Positive test num. 1 - tf file" hl_lines="88 25 162 144"
 resource "kubernetes_deployment" "example" {
   metadata {
     name = "terraform-example"

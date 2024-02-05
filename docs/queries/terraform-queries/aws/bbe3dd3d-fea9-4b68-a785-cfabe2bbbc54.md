@@ -28,7 +28,7 @@ All policies, except IAM identity-based policies, should have the 'Principal' el
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="9"
+```tf title="Positive test num. 1 - tf file" hl_lines="9"
 provider "aws" {
   region = "us-east-1"
 }

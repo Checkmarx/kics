@@ -1,0 +1,30 @@
+version: '2.2'
+
+services:      
+  service-service-service:
+    build:
+      context: .
+      dockerfile: service.dockerfile
+    ports:
+      - "6969:8080"
+    networks:
+      - service-service-frontend
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+  
+  auth:
+    build:
+      context: .
+      dockerfile: docker_config/Dockerfile
+    restart: on-failure
+    pids_limit: 10
+    cpus: 0.25
+    mem_limit: 500M
+
+networks:
+  service-service-frontend:
+
+volumes:
+  front_build:
+

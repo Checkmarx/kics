@@ -6,5 +6,6 @@
   "descriptionText": "Operations file parameters consumes must be 'multipart/form-data', 'application/x-www-form-urlencoded' or both",
   "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
   "platform": "OpenAPI",
-  "descriptionID": "f6b7b31a"
+  "descriptionID": "f6b7b31a",
+  "cwe": ""
 }

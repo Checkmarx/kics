@@ -6,5 +6,6 @@
   "descriptionText": "Do not allow pod to request execution as privileged.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged",
   "platform": "Terraform",
-  "descriptionID": "5ca96212"
+  "descriptionID": "5ca96212",
+  "cwe": ""
 }

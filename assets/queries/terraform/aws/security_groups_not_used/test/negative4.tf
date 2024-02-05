@@ -93,8 +93,8 @@ resource "aws_instance" "cowrie_server" {
 
   tags = {
     Name    = "cowrie",
-    author  = "konstruktoid"
-    vcs-url = "https://github.com/konstruktoid/ansible-cowrie-rootless"
+    author  = "foo"
+    vcs-url = "https://github.com/foo/bar"
     purpose = "honeypot"
   }
 }
