@@ -58,9 +58,9 @@ func TestBuildCSVReport(t *testing.T) {
 			want: []CSVReport{
 				{
 					QueryName:                   "AmazonMQ Broker Encryption Disabled",
-					QueryID:                     "316278b3-87ac-444c-8f8f-a733a28da60z",
+					QueryID:                     "316278b3-87ac-444c-8f8f-a733a28da609",
 					Severity:                    model.SeverityCritical,
-					DescriptionID:               "c5d562dz",
+					DescriptionID:               "c5d562d9",
 					Description:                 "AmazonMQ Broker should have Encryption Options defined",
 					CISDescriptionIDFormatted:   "testCISID",
 					CISDescriptionTitle:         "testCISTitle",
