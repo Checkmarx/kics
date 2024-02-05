@@ -197,7 +197,7 @@ func getNodeLastLine(node *yaml.Node) (lastLine int) {
 func (c *comment) value() (value CommentCommand) {
 	comment := strings.ToLower(string(*c))
 	if isHelm(comment) {
-		res := mytest.FindString(comment)
+		res := KICSGetContentCommentRgxp.FindString(comment)
 		if len(res) > 0 {
 			comment = res
 		}
