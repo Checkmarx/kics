@@ -28,7 +28,7 @@ Cloud SQL instances should not be publicly accessible.<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="24 41 56 6"
+```tf title="Positive test num. 1 - tf file" hl_lines="24 41 56 6"
 resource "google_sql_database_instance" "positive1" {
   name             = "master-instance"
   database_version = "POSTGRES_11"

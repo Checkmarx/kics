@@ -28,7 +28,7 @@ IAM User LoginProfile Password must not be a plaintext string<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="9"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="9"
 AWSTemplateFormatVersion: "2010-09-09"
 Description: A sample template
 Resources:
@@ -56,7 +56,7 @@ Resources:
               - !GetAtt myqueue.Arn
 
 ```
-```json title="Postitive test num. 2 - json file" hl_lines="9"
+```json title="Positive test num. 2 - json file" hl_lines="9"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "A sample template",

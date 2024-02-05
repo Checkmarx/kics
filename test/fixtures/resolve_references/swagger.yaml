@@ -1,0 +1,18 @@
+---
+openapi: 3.0.0
+info:
+  description: my description
+  version: 1.8.8
+  title: my title
+servers:
+  - url: http://localhost:3000/
+tags:
+  - name: users
+    description: users tag description
+paths:
+  "/users/{userId}":
+    $ref: ./paths/users/user.yaml
+components:
+  schemas:
+    MyResponse:
+      $ref: ./schemas/MyResponse.yaml

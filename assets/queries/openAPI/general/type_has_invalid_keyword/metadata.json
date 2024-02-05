@@ -6,14 +6,15 @@
   "descriptionText": "Schema Object define type should not use a keyword of another type",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
+  "descriptionID": "d7b8c860",
+  "aggregation": 4,
   "override": {
     "2.0": {
       "id": "492c6cbb-f3f8-4807-aa4f-42b8b1c46b59",
       "queryName": "Type Has Invalid Keyword (v2)",
-      "descriptionText": "Schema/Parameter/Header Object define type should not use a keyword of another type",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
+      "descriptionText": "Schema/Parameter/Header Object define type should not use a keyword of another type"
     }
   },
-  "aggregation": 4,
-  "descriptionID": "d7b8c860"
+  "cwe": ""
 }

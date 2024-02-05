@@ -6,13 +6,15 @@
   "descriptionText": "All path templates should not be empty",
   "descriptionUrl": "https://swagger.io/specification/#paths-object",
   "platform": "OpenAPI",
+  "descriptionID": "f4529c1f",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "c201b7ad-6173-4598-a407-5edb04a1bcd7",
       "queryName": "Path Template is Empty (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#pathsObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#pathsObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "f4529c1f"
+  "cwe": ""
 }

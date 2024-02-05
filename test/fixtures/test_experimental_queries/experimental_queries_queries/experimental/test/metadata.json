@@ -1,0 +1,12 @@
+{
+    "id": "b47b98ab-e481-4a82-8bb1-1ab39fd36e33",
+    "queryName": "API Gateway Without SSL Certificate",
+    "severity": "MEDIUM",
+    "category": "Insecure Configurations",
+    "descriptionText": "SSL Client Certificate should be enabled",
+    "descriptionUrl": "https://docs.ansible.com/ansible/2.8/modules/aws_api_gateway_module.html",
+    "platform": "Ansible",
+    "descriptionID": "82608f36",
+    "cloudProvider": "aws",
+    "experimental": "true"
+  }

@@ -17,7 +17,7 @@ Files and directories that are not local will be placed in a temporarily folder 
 ### Local Files
 
 ```
-docker run -t -v {​​​​path_to_scan}​​​​:/path checkmarx/kics scan -p /path
+docker run -t -v {path_to_scan}:/path checkmarx/kics scan -p /path
 ```
 
 ### Archived Files
@@ -33,7 +33,7 @@ Available archive formats:
 -   `xz`
 
 ```
-docker run -t -v {​​​​path_to_scan_zip}​​​​:/path checkmarx/kics scan -p /path
+docker run -t -v {path_to_zip}:/path checkmarx/kics scan -p /path/{name_of_zip_file}
 ```
 
 More information can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)

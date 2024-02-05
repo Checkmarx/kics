@@ -28,7 +28,7 @@ ActionTrail Trail OSS Bucket should not be publicly accessible<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="3"
+```tf title="Positive test num. 1 - tf file" hl_lines="3"
 resource "alicloud_oss_bucket" "bucket_actiontrail3" {
   bucket = "bucket_actiontrail_3"
   acl    = "public-read"
@@ -44,7 +44,7 @@ resource "alicloud_actiontrail_trail" "actiontrail3" {
 
 
 ```
-```tf title="Postitive test num. 2 - tf file" hl_lines="3"
+```tf title="Positive test num. 2 - tf file" hl_lines="3"
 resource "alicloud_oss_bucket" "bucket_actiontrail4" {
   bucket = "bucket_actiontrail_4"
   acl    = "public-read-write"
