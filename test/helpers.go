@@ -248,9 +248,9 @@ var queryHighExperimental = model.QueryResult{
 
 var queryCritical = model.QueryResult{
 	QueryName:                   "AmazonMQ Broker Encryption Disabled",
-	QueryID:                     "316278b3-87ac-444c-8f8f-a733a28da60z",
+	QueryID:                     "316278b3-87ac-444c-8f8f-a733a28da609",
 	Description:                 "AmazonMQ Broker should have Encryption Options defined",
-	DescriptionID:               "c5d562dz",
+	DescriptionID:               "c5d562d9",
 	CISDescriptionIDFormatted:   "testCISID",
 	CISDescriptionTitle:         "testCISTitle",
 	CISDescriptionTextFormatted: "testCISDescription",
