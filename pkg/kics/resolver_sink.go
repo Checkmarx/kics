@@ -1,7 +1,6 @@
 package kics
 
 import (
-	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -39,19 +38,19 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 			log.Err(err).Msgf("failed to parse file content")
 			return []string{}, nil
 		}
+		/*
+			if kind == model.KindHELM {
+				ignoreList, errorIL := s.getOriginalIgnoreLines(rfile.FileName, rfile.OriginalData, openAPIResolveReferences, isMinified)
+				if errorIL == nil {
+					documents.IgnoreLines = ignoreList
 
-		if kind == model.KindHELM {
-			ignoreList, errorIL := s.getOriginalIgnoreLines(rfile.FileName, rfile.OriginalData, openAPIResolveReferences, isMinified)
-			if errorIL == nil {
-				documents.IgnoreLines = ignoreList
-
-				// Need to ignore #KICS_HELM_ID Line
-				documents.CountLines = bytes.Count(rfile.OriginalData, []byte{'\n'})
+					// Need to ignore #KICS_HELM_ID Line
+					documents.CountLines = bytes.Count(rfile.OriginalData, []byte{'\n'})
+				}
+			} else {
+				documents.CountLines = bytes.Count(rfile.OriginalData, []byte{'\n'}) + 1
 			}
-		} else {
-			documents.CountLines = bytes.Count(rfile.OriginalData, []byte{'\n'}) + 1
-		}
-
+		*/
 		fileCommands := s.Parser.CommentsCommands(rfile.FileName, rfile.OriginalData)
 
 		for _, document := range documents.Docs {
