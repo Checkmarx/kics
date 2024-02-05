@@ -4,7 +4,7 @@
     "severity": "MEDIUM",
     "category": "Observability",
     "descriptionText": "API Gateway should have Access Log Settings defined",
-    "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html",
+    "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html#cfn-apigateway-stage-accesslogsetting",
     "platform": "CloudFormation",
     "descriptionID": "d7151524",
     "cloudProvider": "aws",
