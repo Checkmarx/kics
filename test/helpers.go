@@ -18,7 +18,7 @@ const (
 	// ValidUUIDRegex is a constant representing a regular expression rule to validate UUID string
 	ValidUUIDRegex = `(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`
 	positive       = "positive.tf"
-	positiveYaml   = "positive1.yaml"
+	positiveYaml   = "test\\fixtures\\test_critical_custom_queries\\amazon_mq_broker_encryption_disabled\\test\\positive1.yaml"
 )
 
 type execute func() error
@@ -294,6 +294,33 @@ var SummaryMockCritical = model.Summary{
 	},
 	ScannedPaths: []string{
 		"./",
+	},
+}
+
+var SummaryMockCriticalFullPath = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           2,
+		ParsedFiles:            2,
+		FailedToScanFiles:      0,
+		TotalQueries:           1,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.QueryResult{
+		queryCritical,
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:     0,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   0,
+			model.SeverityHigh:     0,
+			model.SeverityCritical: 1,
+		},
+		TotalCounter: 1,
+	},
+	ScannedPaths: []string{
+		".\\test\\fixtures\\test_critical_custom_queries\\amazon_mq_broker_encryption_disabled\\test\\",
 	},
 }
 

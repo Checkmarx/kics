@@ -96,7 +96,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 				},
 			},
 			args: args{
-				summary: &test.SummaryMockCritical,
+				summary: &test.SummaryMockCriticalFullPath,
 			},
 			want: &SonarQubeReport{
 				Issues: []Issue{
