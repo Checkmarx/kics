@@ -1,4 +1,4 @@
-FROM golang:1.21.5-alpine as build_env
+FROM golang:1.21.6-alpine as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -33,7 +33,7 @@ HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM alpine:3.18
+FROM alpine:3.19
 
 ENV TERM xterm-256color
 
@@ -41,7 +41,7 @@ ENV TERM xterm-256color
 Run apk update --no-cache \
     && apk add --no-cache \
     gcompat~=1.1.0 \
-    git~=2.40
+    git~=2.43
 
 # Install Terraform and Terraform plugins
 RUN wget https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_amd64.zip \
