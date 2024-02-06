@@ -282,7 +282,6 @@ func TestBuildCycloneDxReport(t *testing.T) {
 					assert.Equal(t, got.Components.Components[idx].Vulnerabilities[idx2].Description, tt.want.Components.Components[idx].Vulnerabilities[idx2].Description, "Comparing Vulnerabilities Description of components")
 					assert.Equal(t, got.Components.Components[idx].Vulnerabilities[idx2].Ratings, tt.want.Components.Components[idx].Vulnerabilities[idx2].Ratings, "Comparing Vulnerabilities Ratings of components")
 					assert.Equal(t, got.Components.Components[idx].Vulnerabilities[idx2].Recommendations, tt.want.Components.Components[idx].Vulnerabilities[idx2].Recommendations, "Comparing Vulnerabilities Recommendations of components")
-
 				}
 			}
 		})
