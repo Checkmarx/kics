@@ -1,18 +1,17 @@
-name: go-e2e
+name: go-e2e-debian
 
 on:
   pull_request:
     branches: [master]
 
 jobs:
-  e2e-tests:
-    name: e2e-tests
+  e2e-debian-tests:
+    name: e2e-debian-tests
     strategy:
       fail-fast: false
       matrix:
         go-version: [1.21.x]
         os: [ubuntu-latest]
-        kics-docker: ["Dockerfile", "docker/Dockerfile.ubi8"]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Cancel Previous Runs
@@ -51,6 +50,9 @@ jobs:
           key: ${{ runner.os }}-buildx-${{ github.ref }}
           restore-keys: |
             ${{ runner.os }}-buildx-${{ github.ref }}
+      - name: Append Entrypoint in dockerfile
+        run: |
+          echo "ENTRYPOINT [\"/app/bin/kics\"]" >> docker/Dockerfile.debian
       - name: Get short SHA
         run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
       - name: Build
@@ -59,10 +61,10 @@ jobs:
         with:
           load: true
           context: ./
-          file: ./${{ matrix.kics-docker }}
+          file: ./docker/Dockerfile.debian
           builder: ${{ steps.buildx.outputs.name }}
           push: false
-          tags: kics:e2e-tests-${{ github.sha }}
+          tags: kics:e2e-debian-tests-${{ github.sha }}
           build-args: |
             VERSION=development
             COMMIT=${{ github.sha }}
@@ -79,14 +81,14 @@ jobs:
           sudo chmod -R 777 ./e2e
       - name: Run E2E Tests
         env:
-          E2E_KICS_DOCKER: kics:e2e-tests-${{ github.sha }}
+          E2E_KICS_DOCKER: kics:e2e-debian-tests-${{ github.sha }}
           E2E_KICS_QUERIES_PATH: ${{ steps.getbin.outputs.queries }}
         run: |
           go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -json > results.json
       - name: Generate E2E Report
         if: always()
         env:
-          E2E_KICS_DOCKERFILE: ${{ matrix.kics-docker }}
+          E2E_KICS_DOCKERFILE: docker/Dockerfile.debian
         run: |
           CWD=$(pwd)
           cd .github/scripts/report
@@ -95,10 +97,11 @@ jobs:
           ./e2e-report -test-path ${CWD} -test-name results.json -report-path ${CWD} -report-name e2e-report.html
       - name: Get docker name
         run: |
-          DOCKER_NAME=$(echo ${{ matrix.kics-docker }} | sed 's/\//-/')
+          DOCKER_NAME=$(echo docker/Dockerfile.debian | sed 's/\//-/')
       - name: Archive test report
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: e2e-tests-report-$DOCKER_NAME
           path: e2e-report.html
+          # dummy
