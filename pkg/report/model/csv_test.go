@@ -65,7 +65,7 @@ func TestBuildCSVReport(t *testing.T) {
 					CISDescriptionIDFormatted:   "testCISID",
 					CISDescriptionTitle:         "testCISTitle",
 					CISDescriptionTextFormatted: "testCISDescription",
-					FileName:                    "positive1.yaml",
+					FileName:                    "test\\fixtures\\test_critical_custom_queries\\amazon_mq_broker_encryption_disabled\\test\\positive1.yaml",
 					Line:                        6,
 					IssueType:                   "MissingAttribute",
 					SearchKey:                   "aws_alb_listener[front_end].default_action.redirect",
