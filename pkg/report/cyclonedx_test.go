@@ -35,7 +35,7 @@ func TestPrintCycloneDxReport(t *testing.T) {
 			name: "Test2 PrintCycloneDxReport", // Able to get sha-256: reports vulnerabilities
 			args: args{
 				path:     "./testdir",
-				filename: "testout",
+				filename: "testout2",
 				body:     test.ExampleSummaryMock,
 			},
 			wantErr: false,
@@ -44,8 +44,8 @@ func TestPrintCycloneDxReport(t *testing.T) {
 			name: "Test3 PrintCycloneDxReport", // Able to get sha-256: reports vulnerabilities
 			args: args{
 				path:     "./testdir",
-				filename: "testout",
-				body:     test.SummaryMockCritical,
+				filename: "testout3",
+				body:     test.SummaryMockCriticalFullPath,
 			},
 			wantErr: false,
 		},

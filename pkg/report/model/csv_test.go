@@ -62,6 +62,7 @@ func TestBuildCSVReport(t *testing.T) {
 					Severity:                    model.SeverityCritical,
 					DescriptionID:               "c5d562d9",
 					Description:                 "AmazonMQ Broker should have Encryption Options defined",
+					CloudProvider:               "AWS",
 					CISDescriptionIDFormatted:   "testCISID",
 					CISDescriptionTitle:         "testCISTitle",
 					CISDescriptionTextFormatted: "testCISDescription",

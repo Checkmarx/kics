@@ -35,7 +35,7 @@ func TestPrintSonarQubeReport(t *testing.T) {
 			args: args{
 				path:     "./testdir",
 				filename: "testout2",
-				body:     test.SummaryMockCritical,
+				body:     test.SummaryMockCriticalFullPath,
 			},
 			wantErr: false,
 		},
