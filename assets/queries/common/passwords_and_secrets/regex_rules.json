@@ -14,7 +14,6 @@
           "regex": "['\"]?AllowUsersToChangePassword['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?"
         }
       ],
-      "multiline": false,
       "groupMask": 1
     },
     {
@@ -46,7 +45,6 @@
           "regex": "['\"]?Description['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*${}+-.'\"]+)['\"]?"
         }
       ],
-      "multiline": false,
       "groupMask": 3
     },
     {
@@ -73,26 +71,22 @@
     {
       "id": "c4d3b58a-e6d4-450f-9340-04f1e702eaae",
       "name": "Password in URL",
-      "regex": "['\"]?[a-zA-Z]{3,10}://[^/\\s:@$]*?:[^/\\s:@$]*?@[^/\\s:@$]*['\"]?",
-      "multiline": false
+      "regex": "['\"]?[a-zA-Z]{3,10}://[^/\\s:@$]*?:[^/\\s:@$]*?@[^/\\s:@$]*['\"]?"
     },
     {
       "id": "76c0bcde-903d-456e-ac13-e58c34987852",
       "name": "AWS Access Key",
-      "regex": "(A3T[A-Z0-9]|AKIA|ASIA)[A-Z0-9]{16}",
-      "multiline": false
+      "regex": "(A3T[A-Z0-9]|AKIA|ASIA)[A-Z0-9]{16}"
     },
     {
       "id": "76c0bcde-903d-456e-ac13-e58c34987852",
       "name": "AWS Context-specific credential",
-      "regex": "(A3T[A-Z0-9]|ACCA)[A-Z0-9]{16}",
-      "multiline": false
+      "regex": "(A3T[A-Z0-9]|ACCA)[A-Z0-9]{16}"
     },
     {
       "id": "76c0bcde-903d-456e-ac13-e58c34987852",
       "name": "AWS Certificate",
-      "regex": "(A3T[A-Z0-9]|ASCA)[A-Z0-9]{16}",
-      "multiline": false
+      "regex": "(A3T[A-Z0-9]|ASCA)[A-Z0-9]{16}"
     },
     {
       "id": "83ab47ff-381d-48cd-bac5-fb32222f54af",
@@ -105,7 +99,6 @@
           "max": 7
         }
       ],
-      "multiline": false,
       "groupMask": 3
     },
     {
@@ -118,50 +111,42 @@
     {
       "id": "d651cca2-2156-4d17-8e76-423e68de5c8b",
       "name": "Google OAuth",
-      "regex": "['\"]?[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com['\"]?",
-      "multiline": false
+      "regex": "['\"]?[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com['\"]?"
     },
     {
       "id": "ccde326f-ebc7-4772-8ad5-de66e90a8cc3",
       "name": "Slack Webhook",
-      "regex": "['\"]?https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}['\"]?",
-      "multiline": false
+      "regex": "['\"]?https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}['\"]?"
     },
     {
       "id": "d6214dca-a31b-425f-bcf7-f4faa772a1c0",
       "name": "MSTeams Webhook",
-      "regex": "['\"]?https://[a-zA-Z0-9_]{1,24}.webhook.office.com/webhook(b2)?/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}@[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/IncomingWebhook/[a-z0-9]+/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}['\"]?",
-      "multiline": false
+      "regex": "['\"]?https://[a-zA-Z0-9_]{1,24}.webhook.office.com/webhook(b2)?/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}@[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/IncomingWebhook/[a-z0-9]+/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}['\"]?"
     },
     {
       "id": "7908a9e3-5cac-41b1-b514-5f6d82ce02d5",
       "name": "Slack Token",
-      "regex": "['\"]?(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})['\"]?",
-      "multiline": false
+      "regex": "['\"]?(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})['\"]?"
     },
     {
       "id": "6abcae17-b175-4698-a9a5-b07661974749",
       "name": "Stripe API Key",
-      "regex": "['\"]?sk_live_[0-9a-zA-Z]{24}[^0-9a-zA-Z]['\"]?",
-      "multiline": false
+      "regex": "['\"]?sk_live_[0-9a-zA-Z]{24}[^0-9a-zA-Z]['\"]?"
     },
     {
       "id": "0b1b2482-51e7-49d1-893d-522afa4a6bd0",
       "name": "Square Access Token",
-      "regex": "sq0atp-[0-9A-Za-z\\-_]{22}",
-      "multiline": false
+      "regex": "sq0atp-[0-9A-Za-z\\-_]{22}"
     },
     {
       "id": "6c54f9da-1a11-445a-8568-0d327e6af8be",
       "name": "MailChimp API Key",
-      "regex": "[0-9a-f]{32}-us[0-9]{1,2}",
-      "multiline": false
+      "regex": "[0-9a-f]{32}-us[0-9]{1,2}"
     },
     {
       "id": "e9856348-4069-4ac0-bd91-415f6a7b84a4",
       "name": "Google API Key",
-      "regex": "['\"]?AIza[0-9A-Za-z\\-_]{35}['\"]?",
-      "multiline": false
+      "regex": "['\"]?AIza[0-9A-Za-z\\-_]{35}['\"]?"
     },
     {
       "id": "9a3650af-5b88-48cd-ab89-cd77fd0b633f",
@@ -173,38 +158,32 @@
     {
       "id": "bb51eb1e-0357-44a2-86d7-dd5350cffd43",
       "name": "Square OAuth Secret",
-      "regex": "['\"]?sq0csp-[0-9A-Za-z\\-_]{43}['\"]?",
-      "multiline": false
+      "regex": "['\"]?sq0csp-[0-9A-Za-z\\-_]{43}['\"]?"
     },
     {
       "id": "ac8c8075-6ec0-4367-9e26-30ec8161d258",
       "name": "Amazon MWS Auth Token",
-      "regex": "amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
-      "multiline": false
+      "regex": "amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
     },
     {
       "id": "41a1ca8d-f466-4084-a8c9-50f8b22200d5",
       "name": "Google OAuth Access Token",
-      "regex": "ya29\\.[0-9A-Za-z\\-_]+",
-      "multiline": false
+      "regex": "ya29\\.[0-9A-Za-z\\-_]+"
     },
     {
       "id": "4919b847-e3da-402a-acf8-6cea8e529993",
       "name": "PayPal Braintree Access Token",
-      "regex": "access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32}",
-      "multiline": false
+      "regex": "access_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32}"
     },
     {
       "id": "54274b18-bfac-47ce-afd1-0f05bc3e3b59",
       "name": "Stripe Restricted API Key",
-      "regex": "['\"]?rk_live_[0-9a-zA-Z]{24}['\"]?",
-      "multiline": false
+      "regex": "['\"]?rk_live_[0-9a-zA-Z]{24}['\"]?"
     },
     {
       "id": "5176e805-0cda-44fa-ac96-c092c646180a",
       "name": "Facebook Access Token",
-      "regex": "['\"]?EAACEdEose0cBA[0-9A-Za-z]+['\"]?",
-      "multiline": false
+      "regex": "['\"]?EAACEdEose0cBA[0-9A-Za-z]+['\"]?"
     },
     {
       "id": "74736dd1-dd11-4139-beb6-41cd43a50317",
@@ -216,32 +195,27 @@
           "regex": "(?i)['\"]?api[_]?key['\"]?\\s*[:=]\\s*['\"]?(SK[0-9a-fA-F]{32})['\"]?"
         }
       ],
-      "multiline": false,
       "groupMask": 1
     },
     {
       "id": "62d0025d-9575-4eff-b60b-d3b4fcec0d04",
       "name": "Mailgun API Key",
-      "regex": "['\"]?key-[0-9a-zA-Z]{32}['\"]?",
-      "multiline": false
+      "regex": "['\"]?key-[0-9a-zA-Z]{32}['\"]?"
     },
     {
       "id": "50cc5f03-e686-4183-97e9-12f9b55d0f97",
       "name": "Picatic API Key",
-      "regex": "sk_live_[0-9a-z]{32}",
-      "multiline": false
+      "regex": "sk_live_[0-9a-z]{32}"
     },
     {
       "id": "e0f01838-b1c2-4669-b84b-981949ebe5ed",
       "name": "Twilio API Key",
-      "regex": "SK[0-9a-fA-F]{32}",
-      "multiline": false
+      "regex": "SK[0-9a-fA-F]{32}"
     },
     {
       "id": "7f370dd5-eea3-4e5f-8354-3cb2506f9f13",
       "name": "Generic Access Key",
       "regex": "(?i)^\\s*['\"]?(access)[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?",
-      "multiline": false,
       "groupMask": 2
     },
     {
@@ -254,7 +228,6 @@
           "regex": "(?i)['\"]?\\$\\s*\\{[^\\s\\}]+\\}['\"]?"
         }
       ],
-      "multiline": false,
       "groupMask": 1
     },
     {
@@ -319,14 +292,12 @@
           "regex": "(?i)['\"]?next(_)?token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
         }
       ],
-      "multiline": false,
       "groupMask": 3
     },
     {
       "id": "36b8f84d-df4e-4d49-b662-bcde71a8764f",
       "name": "CloudFormation Secret Template",
       "regex": "(?i)['\"]?SecretStringTemplate['\"]?\\s*:\\s*['\"]?{([\\\":A-Za-z0-9/~^_!@&%()=?*+-]{10,})}",
-      "multiline": false,
       "groupMask": 1
     },
     {
@@ -343,14 +314,12 @@
           "regex": "['\"]?EncryptionKey['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]+)['\"]?"
         }
       ],
-      "multiline": false,
       "groupMask": 1
     },
     {
       "id": "8a879bc7-6f82-40fd-bb48-74d25d557fe8",
       "name": "SendGrid API Key",
-      "regex": "(?i)SG\\.[a-zA-Z0-9\\-\\_]{22}\\.[a-zA-Z0-9\\-\\_]{43}\\s*",
-      "multiline": false
+      "regex": "(?i)SG\\.[a-zA-Z0-9\\-\\_]{22}\\.[a-zA-Z0-9\\-\\_]{43}\\s*"
     }
   ],
   "allowRules": [
