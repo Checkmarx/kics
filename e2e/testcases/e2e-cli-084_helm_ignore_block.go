@@ -4,7 +4,7 @@ package testcases
 // should perform a scan and return zero results ignoring the block
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should perform a scan and return three different similarity ids on the results [E2E-CLI-078]",
+		Name: "should perform a scan and return zero results ignoring the block [E2E-CLI-084]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
