@@ -297,6 +297,7 @@ var SummaryMockCritical = model.Summary{
 	},
 }
 
+// Critical test with full path to test file
 var SummaryMockCriticalFullPath = model.Summary{
 	Counters: model.Counters{
 		ScannedFiles:           2,

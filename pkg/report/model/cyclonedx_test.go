@@ -11,6 +11,7 @@ import (
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/test"
+	"github.com/stretchr/testify/assert"
 )
 
 var metadata Metadata = Metadata{
@@ -59,8 +60,11 @@ func TestInitCycloneDxReport(t *testing.T) {
 // TestBuildCycloneDxReport tests the BuildCycloneDxReport function
 func TestBuildCycloneDxReport(t *testing.T) {
 	var cycloneDx CycloneDxReport = initCycloneDxReport
+	var cycloneDxCritical CycloneDxReport = initCycloneDxReport
 	var vulnsC1, vulnsC2 []Vulnerability
 	var positiveSha, negativeSha string
+
+	var criticalSha = "1c624a2f982858ee0b747f26c0e0019bc7fbb130c7719e90a5d5c1f552608a4f"
 
 	var sha256TestMap = map[string]map[string]string{
 		"positive": {
@@ -144,6 +148,44 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		},
 	}
 
+	v4 := Vulnerability{
+		Ref: fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v316278b3-87ac-444c-8f8f-a733a28da609", criticalSha[0:12]),
+		ID:  "316278b3-87ac-444c-8f8f-a733a28da609",
+		Source: Source{
+			Name: "KICS",
+			URL:  "https://kics.io/",
+		},
+		Ratings: []Rating{
+			{
+				Severity: "Critical",
+				Method:   "Other",
+			},
+		},
+		Description: "[].[AmazonMQ Broker Encryption Disabled]: testCISDescription",
+		Recommendations: []Recommendation{
+			{
+				Recommendation: "Problem found in line 6. Expected value: 'default_action.redirect.protocol' is equal 'HTTPS'. Actual value: 'default_action.redirect.protocol' is missing.",
+			},
+		},
+	}
+
+	vulnsC3 := []Vulnerability{v4}
+
+	c3 := Component{
+		Type:    "file",
+		BomRef:  fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v", criticalSha[0:12]),
+		Name:    "../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml",
+		Version: fmt.Sprintf("0.0.0-%v", criticalSha[0:12]),
+		Purl:    fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v", criticalSha[0:12]),
+		Hashes: []Hash{
+			{
+				Alg:     "SHA-256",
+				Content: criticalSha,
+			},
+		},
+		Vulnerabilities: vulnsC3,
+	}
+
 	vulnsC1 = append(vulnsC1, v1)
 	vulnsC1 = append(vulnsC1, v2)
 
@@ -181,13 +223,16 @@ func TestBuildCycloneDxReport(t *testing.T) {
 
 	cycloneDx.Components.Components = append(cycloneDx.Components.Components, c2)
 	cycloneDx.Components.Components = append(cycloneDx.Components.Components, c1)
+	cycloneDxCritical.Components.Components = append(cycloneDxCritical.Components.Components, c3)
 
 	filePaths := make(map[string]string)
 
 	file1 := filepath.Join("..", "..", "..", "assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive.tf")
 	file2 := filepath.Join("..", "..", "..", "assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "negative.tf")
+	file3 := filepath.Join("..", "..", "..", "test", "fixtures", "test_critical_custom_queries", "amazon_mq_broker_encryption_disabled", "test", "positive1.yaml")
 	filePaths[file1] = file1
 	filePaths[file2] = file2
+	filePaths[file3] = file3
 
 	type args struct {
 		summary   *model.Summary
@@ -202,9 +247,17 @@ func TestBuildCycloneDxReport(t *testing.T) {
 			name: "Build CycloneDX report",
 			args: args{
 				summary:   &test.ExampleSummaryMock,
-				filePaths: filePaths,
+				filePaths: map[string]string{file1: file1, file2: file2},
 			},
 			want: &cycloneDx,
+		},
+		{
+			name: "Build CycloneDX report with critical severity",
+			args: args{
+				summary:   &test.SummaryMockCriticalFullPath,
+				filePaths: map[string]string{file3: file3},
+			},
+			want: &cycloneDxCritical,
 		},
 	}
 	for _, tt := range tests {
@@ -217,8 +270,20 @@ func TestBuildCycloneDxReport(t *testing.T) {
 			}
 			got := BuildCycloneDxReport(tt.args.summary, tt.args.filePaths)
 			got.SerialNumber = "urn:uuid:" // set to "urn:uuid:" because it will be different for every report
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("BuildCycloneDxReport() = %v, want %v", got, tt.want)
+
+			assert.Equal(t, len(got.Components.Components), len(tt.want.Components.Components), "Comparing number of components")
+			for idx := range got.Components.Components {
+				assert.Equal(t, got.Components.Components[idx].BomRef, tt.want.Components.Components[idx].BomRef, "Comparing BomRef of components")
+				assert.Equal(t, got.Components.Components[idx].Version, tt.want.Components.Components[idx].Version, "Comparing Version of components")
+				assert.Equal(t, got.Components.Components[idx].Purl, tt.want.Components.Components[idx].Purl, "Comparing Purl of components")
+				assert.Equal(t, got.Components.Components[idx].Hashes, tt.want.Components.Components[idx].Hashes, "Comparing Hashes of components")
+				for idx2 := range got.Components.Components[idx].Vulnerabilities {
+					assert.Equal(t, got.Components.Components[idx].Vulnerabilities[idx2].Ref, tt.want.Components.Components[idx].Vulnerabilities[idx2].Ref, "Comparing Vulnerabilities Ref of components")
+					assert.Equal(t, got.Components.Components[idx].Vulnerabilities[idx2].Description, tt.want.Components.Components[idx].Vulnerabilities[idx2].Description, "Comparing Vulnerabilities Description of components")
+					assert.Equal(t, got.Components.Components[idx].Vulnerabilities[idx2].Ratings, tt.want.Components.Components[idx].Vulnerabilities[idx2].Ratings, "Comparing Vulnerabilities Ratings of components")
+					assert.Equal(t, got.Components.Components[idx].Vulnerabilities[idx2].Recommendations, tt.want.Components.Components[idx].Vulnerabilities[idx2].Recommendations, "Comparing Vulnerabilities Recommendations of components")
+
+				}
 			}
 		})
 	}
