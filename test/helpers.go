@@ -18,6 +18,7 @@ const (
 	// ValidUUIDRegex is a constant representing a regular expression rule to validate UUID string
 	ValidUUIDRegex = `(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`
 	positive       = "positive.tf"
+	positiveYaml   = "test\\fixtures\\test_critical_custom_queries\\amazon_mq_broker_encryption_disabled\\test\\positive1.yaml"
 )
 
 type execute func() error
@@ -257,8 +258,8 @@ var queryCritical = model.QueryResult{
 	Severity:                    model.SeverityCritical,
 	Files: []model.VulnerableFile{
 		{
-			FileName:         positive,
-			Line:             25,
+			FileName:         positiveYaml,
+			Line:             6,
 			IssueType:        "MissingAttribute",
 			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
 			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
