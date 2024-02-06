@@ -18,7 +18,7 @@ const (
 	// ValidUUIDRegex is a constant representing a regular expression rule to validate UUID string
 	ValidUUIDRegex = `(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`
 	positive       = "positive.tf"
-	positiveYaml   = "test\\fixtures\\test_critical_custom_queries\\amazon_mq_broker_encryption_disabled\\test\\positive1.yaml"
+	positiveYaml   = "positive1.yaml"
 )
 
 type execute func() error

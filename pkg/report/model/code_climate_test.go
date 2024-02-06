@@ -52,8 +52,8 @@ func TestBuildCodeClimateReport(t *testing.T) {
 					Description: "AmazonMQ Broker should have Encryption Options defined",
 					Categories:  []string{"Security"},
 					Location: location{
-						Path:  "positive.tf",
-						Lines: lines{Begin: 25},
+						Path:  "positive1.yaml",
+						Lines: lines{Begin: 6},
 					},
 					Severity: "blocker",
 				},
