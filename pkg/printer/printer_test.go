@@ -120,9 +120,12 @@ var printTests = []struct {
 		caseTest: test.ComplexSummaryMock,
 		expectedResult: "Files scanned: 2\n" +
 			"Parsed files: 2\n" +
-			"Queries loaded: 2\n" +
+			"Queries loaded: 3\n" +
 			"Queries failed to execute: 0\n\n" +
 			"------------------------------------\n\n" +
+			"AMI Not Encrypted, Severity: HIGH, Results: 2\n" +
+			"\t[1]: positive.tf:30\n" +
+			"\t[2]: positive.tf:35\n" +
 			"AmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n" +
 			"\t[1]: positive.tf:1\n" +
 			"ALB protocol is HTTP, Severity: HIGH, Results: 2\n" +
@@ -134,12 +137,19 @@ var printTests = []struct {
 			"MEDIUM: 1\n" +
 			"LOW: 0\n" +
 			"INFO: 0\n" +
-			"TOTAL: 3\n\n",
+			"TOTAL: 5\n\n",
 		expectedResultFull: "Files scanned: 2\n" +
 			"Parsed files: 2\n" +
-			"Queries loaded: 2\n" +
+			"Queries loaded: 3\n" +
 			"Queries failed to execute: 0\n\n" +
 			"------------------------------------\n\n" +
+			"AMI Not Encrypted, Severity: HIGH, Results: 2\n" +
+			"Description: AWS AMI Encryption is not enabled\n" +
+			"Platform: \n" +
+			"CWE: 22\n" +
+			"Learn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/97707503-a22c-4cd7-b7c0-f088fa7cf830\n\n" +
+			"\t[1]: positive.tf:30\n\n\n\n" +
+			"\t[2]: positive.tf:35\n\n\n\n" +
 			"AmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n" +
 			"Description: AmazonMQ Broker should have Encryption Options defined\nPlatform: \n" +
 			"Learn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/aws/3db3f534-e3a3-487f-88c7-0a9fbf64b702\n\n" +
@@ -156,16 +166,19 @@ var printTests = []struct {
 			"MEDIUM: 1\n" +
 			"LOW: 0\n" +
 			"INFO: 0\n" +
-			"TOTAL: 3\n\n",
+			"TOTAL: 5\n\n",
 		customQueries: false,
 	},
 	{
 		caseTest: test.ComplexSummaryMock,
 		expectedResult: "Files scanned: 2\n" +
 			"Parsed files: 2\n" +
-			"Queries loaded: 2\n" +
+			"Queries loaded: 3\n" +
 			"Queries failed to execute: 0\n\n" +
 			"------------------------------------\n\n" +
+			"AMI Not Encrypted, Severity: HIGH, Results: 2\n" +
+			"\t[1]: positive.tf:30\n" +
+			"\t[2]: positive.tf:35\n" +
 			"AmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n" +
 			"\t[1]: positive.tf:1\n" +
 			"ALB protocol is HTTP, Severity: HIGH, Results: 2\n" +
@@ -177,12 +190,18 @@ var printTests = []struct {
 			"MEDIUM: 1\n" +
 			"LOW: 0\n" +
 			"INFO: 0\n" +
-			"TOTAL: 3\n\n",
+			"TOTAL: 5\n\n",
 		expectedResultFull: "Files scanned: 2\n" +
 			"Parsed files: 2\n" +
-			"Queries loaded: 2\n" +
+			"Queries loaded: 3\n" +
 			"Queries failed to execute: 0\n\n" +
 			"------------------------------------\n\n" +
+			"AMI Not Encrypted, Severity: HIGH, Results: 2\n" +
+			"Description: AWS AMI Encryption is not enabled\n" +
+			"Platform: \n" +
+			"CWE: 22\n" +
+			"\t[1]: positive.tf:30\n\n\n\n" +
+			"\t[2]: positive.tf:35\n\n\n\n" +
 			"AmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n" +
 			"Description: AmazonMQ Broker should have Encryption Options defined\nPlatform: \n" +
 			"\t[1]: positive.tf:1\n\n\n\n" +
@@ -197,7 +216,7 @@ var printTests = []struct {
 			"MEDIUM: 1\n" +
 			"LOW: 0\n" +
 			"INFO: 0\n" +
-			"TOTAL: 3\n\n",
+			"TOTAL: 5\n\n",
 		customQueries: true,
 	},
 	{
