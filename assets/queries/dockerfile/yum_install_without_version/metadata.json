@@ -6,5 +6,6 @@
   "descriptionText": "Not specifying the package version can cause failures due to unanticipated changes in required packages",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
   "platform": "Dockerfile",
-  "descriptionID": "19d4cfc7"
+  "descriptionID": "19d4cfc7",
+  "cwe": "1357"
 }

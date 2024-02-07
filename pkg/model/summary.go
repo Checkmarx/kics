@@ -45,8 +45,10 @@ type QueryResult struct {
 	QueryURI                    string           `json:"query_url"`
 	Severity                    Severity         `json:"severity"`
 	Platform                    string           `json:"platform"`
+	CWE                         string           `json:"cwe,omitempty"`
 	CloudProvider               string           `json:"cloud_provider,omitempty"`
 	Category                    string           `json:"category"`
+	Experimental                bool             `json:"experimental"`
 	Description                 string           `json:"description"`
 	DescriptionID               string           `json:"description_id"`
 	CISDescriptionIDFormatted   string           `json:"cis_description_id,omitempty"`
@@ -199,6 +201,8 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 				Severity:      item.Severity,
 				QueryURI:      item.QueryURI,
 				Platform:      item.Platform,
+				CWE:           item.CWE,
+				Experimental:  item.Experimental,
 				CloudProvider: strings.ToUpper(item.CloudProvider),
 				Category:      item.Category,
 				Description:   item.Description,

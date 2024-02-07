@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_cluster_module.html#parameter-node_config/service_account",
   "platform": "Ansible",
   "descriptionID": "d6e87258",
-  "cloudProvider": "gcp"
+  "cloudProvider": "gcp",
+  "cwe": ""
 }

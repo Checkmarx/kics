@@ -6,5 +6,6 @@
   "descriptionText": "Privileged containers lack essential security restrictions and should be avoided by removing the 'privileged' flag or by changing its value to false",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged",
   "platform": "Terraform",
-  "descriptionID": "e2be4ab9"
+  "descriptionID": "e2be4ab9",
+  "cwe": ""
 }

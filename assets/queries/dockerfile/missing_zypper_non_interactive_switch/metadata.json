@@ -6,5 +6,6 @@
   "descriptionText": "Omitting the non-interactive switch causes the command to fail during the build process, because zypper would expect manual input",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
   "platform": "Dockerfile",
-  "descriptionID": "b3efa689"
+  "descriptionID": "b3efa689",
+  "cwe": "710"
 }

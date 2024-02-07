@@ -1,0 +1,25 @@
+name: test-script-run
+
+on:
+  issue_comment:
+    types: [opened]
+
+jobs:
+  script-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run script
+        uses: actions/github-script@latest
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Thanks for reporting!'
+            })
+
+            return true;

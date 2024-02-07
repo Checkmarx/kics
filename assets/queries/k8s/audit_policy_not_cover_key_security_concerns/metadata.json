@@ -6,5 +6,6 @@
   "descriptionText": "Audit Policy should cover key security concerns about the sensitive data logged in Kubernetes audit policies",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/debug-application-cluster/audit/",
   "platform": "Kubernetes",
-  "descriptionID": "4a720a0c"
+  "descriptionID": "4a720a0c",
+  "cwe": ""
 }

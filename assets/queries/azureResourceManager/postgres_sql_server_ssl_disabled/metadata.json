@@ -6,6 +6,7 @@
   "descriptionText": "Microsoft.DBforPostgreSQL/servers sslEnforcement property should be set to 'Enabled'",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/2017-12-01/servers?tabs=json",
   "platform": "AzureResourceManager",
+  "descriptionID": "67cfaa3b",
   "cloudProvider": "azure",
-  "descriptionID": "67cfaa3b"
+  "cwe": ""
 }

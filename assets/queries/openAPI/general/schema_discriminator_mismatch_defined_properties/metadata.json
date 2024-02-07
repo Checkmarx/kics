@@ -6,13 +6,15 @@
   "descriptionText": "Schema discriminator values should match defined properties.",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
+  "descriptionID": "f075e83d",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "addc0eab-27f6-4c26-8526-d2ccd3732662",
       "queryName": "Schema Discriminator Mismatch Defined Properties (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schema-object"
+      "descriptionUrl": "https://swagger.io/specification/v2/#schema-object",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "f075e83d"
+  "cwe": ""
 }
