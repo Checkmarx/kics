@@ -246,6 +246,40 @@ var queryHighExperimental = model.QueryResult{
 	},
 }
 
+var queryHighCWE = model.QueryResult{
+	QueryName:                   "AMI Not Encrypted",
+	QueryID:                     "97707503-a22c-4cd7-b7c0-f088fa7cf830",
+	Description:                 "AWS AMI Encryption is not enabled",
+	DescriptionID:               "a4342f0",
+	CISDescriptionIDFormatted:   "testCISID",
+	CISDescriptionTitle:         "testCISTitle",
+	CISDescriptionTextFormatted: "testCISDescription",
+	Severity:                    model.SeverityHigh,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         positive,
+			Line:             30,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is missing",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+		{
+			FileName:         positive,
+			Line:             35,
+			IssueType:        "IncorrectValue",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is equal 'HTTP'",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
+	CWE: "22",
+}
+
 // SummaryMock a summary to be used without running kics scan
 var SummaryMock = model.Summary{
 	Counters: model.Counters{
@@ -280,12 +314,13 @@ var ComplexSummaryMock = model.Summary{
 		ScannedFiles:           2,
 		ParsedFiles:            2,
 		FailedToScanFiles:      0,
-		TotalQueries:           2,
+		TotalQueries:           3,
 		FailedToExecuteQueries: 0,
 	},
 	Queries: []model.QueryResult{
 		queryHigh,
 		queryMedium,
+		queryHighCWE,
 	},
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
@@ -296,7 +331,7 @@ var ComplexSummaryMock = model.Summary{
 			model.SeverityHigh:     2,
 			model.SeverityCritical: 0,
 		},
-		TotalCounter: 3,
+		TotalCounter: 5,
 	},
 	LatestVersion: model.Version{
 		Latest: true,
