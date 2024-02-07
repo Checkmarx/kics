@@ -107,7 +107,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 						Type:     "VULNERABILITY",
 						PrimaryLocation: &Location{
 							Message:  "AmazonMQ Broker should have Encryption Options defined",
-							FilePath: "test\\fixtures\\test_critical_custom_queries\\amazon_mq_broker_encryption_disabled\\test\\positive1.yaml",
+							FilePath: "test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml",
 							TextRange: &Range{
 								StartLine: 6,
 							},

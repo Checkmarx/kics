@@ -66,7 +66,7 @@ func TestBuildASFFReport(t *testing.T) {
 
 		Remediation: Remediation{
 			Recommendation: AsffRecommendation{
-				Text: *aws.String("Problem found on 'test\\fixtures\\test_critical_custom_queries\\amazon_mq_broker_encryption_disabled\\test\\positive1.yaml' file in line 6. Expected value: 'default_action.redirect.protocol' is equal 'HTTPS'. Actual value: 'default_action.redirect.protocol' is missing."),
+				Text: *aws.String("Problem found on 'test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml' file in line 6. Expected value: 'default_action.redirect.protocol' is equal 'HTTPS'. Actual value: 'default_action.redirect.protocol' is missing."),
 			},
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},

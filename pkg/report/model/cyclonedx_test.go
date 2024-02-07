@@ -72,7 +72,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		"negative": {
 			"Unix":     "cd10cef2b154363f32ca4018426982509efbc9e1a8ea6bca587e68ffaef09c37",
 			"Windows":  "68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29",
-			"Critical": "6fcb6534d60c722b0429a1f80ed66c1265470d8e69143fcad7ed3d4fc88248be",
+			"Critical": "04174a2b45ae406d5432590304b1773c9a46a95a2327b3cc164cb464dc57cef5",
 		},
 	}
 
