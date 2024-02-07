@@ -7,5 +7,6 @@
   "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/dynamodb/table/#pointintimerecovery_yaml",
   "platform": "Pulumi",
   "descriptionID": "6ff56c6e",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "cwe": ""
 }

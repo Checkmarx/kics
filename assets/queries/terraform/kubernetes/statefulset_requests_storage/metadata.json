@@ -6,5 +6,6 @@
   "descriptionText": "A StatefulSet requests volume storage.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/stateful_set#volume_claim_template",
   "platform": "Terraform",
-  "descriptionID": "3a82ccdb"
+  "descriptionID": "3a82ccdb",
+  "cwe": ""
 }

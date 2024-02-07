@@ -1,0 +1,14 @@
+---
+- name: Positive Example
+  hosts: localhost
+  tasks:
+    - name: One
+      ansible.builtin.template:
+        src: ../templates/foo.j2
+        dest: /etc/file.conf
+        mode: "0644"
+    - name: Two
+      ansible.builtin.copy:
+        src: ../files/foo.conf
+        dest: /etc/foo.conf
+        mode: "0644"

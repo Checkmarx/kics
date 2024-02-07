@@ -1,0 +1,78 @@
+---
+- name: PRESERVE_MODE
+  tasks:
+    - name: not preserve value
+      ansible.builtin.file:
+        path: foo
+        mode: preserve
+
+---
+- name: MISSING_PERMISSIONS_TOUCH
+  tasks:
+    - name: Permissions missing
+      file:
+        path: foo
+        state: touch
+    - name: Permissions missing 2x
+      ansible.builtin.file:
+        path: foo
+        state: touch
+
+---
+- name: MISSING_PERMISSIONS_DIRECTORY
+  tasks:
+    - name: Permissions missing 3x
+      file:
+        path: foo
+        state: directory
+    - name: create is true
+      ansible.builtin.lineinfile:
+        path: foo
+        create: true
+        line: some content here
+
+---
+- name: MISSING_PERMISSIONS_GET_URL
+  tasks:
+    - name: Permissions missing 4x
+      get_url:
+        url: http://foo
+        dest: foo
+
+---
+- name: LINEINFILE_CREATE
+  tasks:
+    - name: create is true 2x
+      ansible.builtin.lineinfile:
+        path: foo
+        create: true
+        line: some content here
+
+---
+- name: REPLACE_PRESERVE
+  tasks:
+    - name: not preserve mode 2x
+      replace:
+        path: foo
+        mode: preserve
+        regexp: foo
+
+---
+- name: NOT_PERMISSION
+  tasks:
+    - name: Not Permissions
+      file:
+        path: foo
+        owner: root
+        group: root
+        state: directory
+
+---
+- name: LINEINFILE_CREATE2
+  tasks:
+    - name: create_false
+      ansible.builtin.lineinfile:
+        path: foo
+        create: true
+        line: some content here
+        mode: preserve

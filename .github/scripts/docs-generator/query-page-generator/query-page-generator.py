@@ -138,7 +138,7 @@ def format_positive_tests(positive_tests : dict) -> str:
     for idx, x in enumerate(positive_tests):
         filename = x.get('fileName')
         extension = filename.split(".")[-1]
-        title = f'Postitive test num. {idx + 1} - {extension} file'
+        title = f'Positive test num. {idx + 1} - {extension} file'
         code = x.get('code')
 
         results_lines = ''

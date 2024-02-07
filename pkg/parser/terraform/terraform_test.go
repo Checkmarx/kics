@@ -178,7 +178,7 @@ func Test_namelessResource(t *testing.T) {
 func Test_Resolve(t *testing.T) {
 	parser := NewDefault()
 
-	resolved, err := parser.Resolve([]byte(have), "test.tf")
+	resolved, err := parser.Resolve([]byte(have), "test.tf", true)
 	require.NoError(t, err)
 	require.Equal(t, []byte(have), resolved)
 }

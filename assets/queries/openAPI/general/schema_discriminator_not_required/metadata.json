@@ -6,13 +6,15 @@
   "descriptionText": "The discriminator property in the Schema Object should be a required property",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
+  "descriptionID": "ad9474eb",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "be6a3722-af60-438c-b1b9-2a03e2958ab7",
       "queryName": "Schema Discriminator Not Required (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schema-object"
+      "descriptionUrl": "https://swagger.io/specification/v2/#schema-object",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "ad9474eb"
+  "cwe": ""
 }

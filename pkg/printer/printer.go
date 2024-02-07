@@ -127,6 +127,11 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 			printer.PrintBySev(string(summary.Queries[idx].Severity), string(summary.Queries[idx].Severity)),
 			len(summary.Queries[idx].Files),
 		)
+
+		if summary.Queries[idx].Experimental {
+			fmt.Println("Note: this is an experimental query")
+		}
+
 		if !printer.minimal {
 			if summary.Queries[idx].CISDescriptionID != "" {
 				fmt.Printf("%s %s\n", printer.Bold("Description ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
@@ -136,6 +141,10 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
 			}
 			fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+
+			if summary.Queries[idx].CWE != "" {
+				fmt.Printf("%s %s\n", printer.Bold("CWE:"), summary.Queries[idx].CWE)
+			}
 
 			queryCloudProvider := summary.Queries[idx].CloudProvider
 			if queryCloudProvider != "" {
