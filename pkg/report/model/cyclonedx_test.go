@@ -61,27 +61,29 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	var cycloneDx CycloneDxReport = initCycloneDxReport
 	var cycloneDxCritical CycloneDxReport = initCycloneDxReport
 	var vulnsC1, vulnsC2 []Vulnerability
-	var positiveSha, negativeSha string
-
-	var criticalSha = "1c624a2f982858ee0b747f26c0e0019bc7fbb130c7719e90a5d5c1f552608a4f"
+	var positiveSha, negativeSha, criticalSha string
 
 	var sha256TestMap = map[string]map[string]string{
 		"positive": {
-			"Unix":    "487d5879d7ec205b4dcd037d5ce0075ed4fedb9dd5b8e45390ffdfa3442f15f7",
-			"Windows": "bd4ac2f61e7c623477b5d200b3662fd7caac5e89e042960fd1adb008e0962635",
+			"Unix":     "487d5879d7ec205b4dcd037d5ce0075ed4fedb9dd5b8e45390ffdfa3442f15f7",
+			"Windows":  "bd4ac2f61e7c623477b5d200b3662fd7caac5e89e042960fd1adb008e0962635",
+			"Critical": "1c624a2f982858ee0b747f26c0e0019bc7fbb130c7719e90a5d5c1f552608a4f",
 		},
 		"negative": {
-			"Unix":    "cd10cef2b154363f32ca4018426982509efbc9e1a8ea6bca587e68ffaef09c37",
-			"Windows": "68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29",
+			"Unix":     "cd10cef2b154363f32ca4018426982509efbc9e1a8ea6bca587e68ffaef09c37",
+			"Windows":  "68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29",
+			"Critical": "6fcb6534d60c722b0429a1f80ed66c1265470d8e69143fcad7ed3d4fc88248be",
 		},
 	}
 
 	if runtime.GOOS == "windows" {
 		positiveSha = sha256TestMap["positive"]["Windows"]
 		negativeSha = sha256TestMap["negative"]["Windows"]
+		criticalSha = sha256TestMap["positive"]["Critical"]
 	} else {
 		positiveSha = sha256TestMap["positive"]["Unix"]
 		negativeSha = sha256TestMap["negative"]["Unix"]
+		criticalSha = sha256TestMap["negative"]["Critical"]
 	}
 
 	v1 := Vulnerability{
