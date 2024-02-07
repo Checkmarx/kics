@@ -2,27 +2,27 @@ package model
 
 const categoryIdentifier = "CAT"
 
-var noCategory = sarifTaxanomyDefinition{
+var noCategory = taxonomyDefinitions{
 	DefinitionID:               categoryIdentifier + "000",
 	DefinitionName:             "Undefined Category",
-	DefinitionShortDescription: sarifMessage{Text: "Category is not defined"},
-	DefinitionFullDescription:  sarifMessage{Text: "Category is not defined"},
+	DefinitionShortDescription: cweMessage{Text: "Category is not defined"},
+	DefinitionFullDescription:  cweMessage{Text: "Category is not defined"},
 }
 
-func createSarifCategory(identifier, name, description string) sarifTaxanomyDefinition {
-	return sarifTaxanomyDefinition{
+func createSarifCategory(identifier, name, description string) taxonomyDefinitions {
+	return taxonomyDefinitions{
 		DefinitionID:   identifier,
 		DefinitionName: name,
-		DefinitionShortDescription: sarifMessage{
+		DefinitionShortDescription: cweMessage{
 			Text: description,
 		},
-		DefinitionFullDescription: sarifMessage{
+		DefinitionFullDescription: cweMessage{
 			Text: description,
 		},
 	}
 }
 
-var categories = map[string]sarifTaxanomyDefinition{
+var categories = map[string]taxonomyDefinitions{
 	"Access Control": createSarifCategory(categoryIdentifier+"001", "Access Control", "Service permission and identity management"),
 	"Availability":   createSarifCategory(categoryIdentifier+"002", "Availability", "Reliability and Scalability"),
 	"Backup":         createSarifCategory(categoryIdentifier+"003", "Backup", "Survivability and Recovery"),
