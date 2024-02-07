@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-healthcheck.html",
   "platform": "CloudFormation",
   "descriptionID": "e2e3a50a",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "cwe": ""
 }

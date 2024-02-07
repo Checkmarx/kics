@@ -3,9 +3,10 @@
   "queryName": "SQL DB Instance With SSL Disabled",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "Cloud SQL Database Instance should have SLL enabled",
+  "descriptionText": "Cloud SQL Database Instance should have SSL enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#require_ssl",
   "platform": "Terraform",
   "descriptionID": "8983549e",
-  "cloudProvider": "gcp"
+  "cloudProvider": "gcp",
+  "cwe": ""
 }

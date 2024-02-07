@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_login_profile",
   "platform": "Terraform",
   "descriptionID": "28422817",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "cwe": ""
 }

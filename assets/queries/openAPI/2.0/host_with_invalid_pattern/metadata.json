@@ -6,5 +6,6 @@
   "descriptionText": "Host field should be an IP or a valid host name",
   "descriptionUrl": "https://swagger.io/specification/v2/#swagger-object",
   "platform": "OpenAPI",
-  "descriptionID": "d11c994c"
+  "descriptionID": "d11c994c",
+  "cwe": ""
 }

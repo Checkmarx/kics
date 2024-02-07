@@ -6,5 +6,6 @@
   "descriptionText": "Shouldn't use both 'wget' and 'curl' since they are two tools that have the same effect",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
   "platform": "Dockerfile",
-  "descriptionID": "22261deb"
+  "descriptionID": "22261deb",
+  "cwe": "1041"
 }

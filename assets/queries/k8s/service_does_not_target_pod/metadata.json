@@ -6,5 +6,6 @@
   "descriptionText": "Service should Target a Pod",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/service/",
   "platform": "Kubernetes",
-  "descriptionID": "e7c26645"
+  "descriptionID": "e7c26645",
+  "cwe": ""
 }

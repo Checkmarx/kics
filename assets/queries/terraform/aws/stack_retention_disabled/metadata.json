@@ -7,5 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack_set_instance#stack_set_name",
   "platform": "Terraform",
   "descriptionID": "fc66d737",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "cwe": ""
 }

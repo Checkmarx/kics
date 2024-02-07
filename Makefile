@@ -148,13 +148,13 @@ run-local: build
 .PHONY: generate-queries-docs
 generate-queries-docs: ## generate queries catalog md files
 	$(call print-target)
-	@pip3 install -r .github/generators/requirements.txt
-	@python3 -u .github/generators/docs_generator.py \
+	@pip3 install -r .github/scripts/docs-generator/requirements.txt
+	@python3 -u .github/scripts/docs-generator/docs-generator.py \
 		-p ./assets/queries/ \
 		-o ./docs/queries/ \
 		-f md \
-		-t .github/generators/templates
-	@python3 -u .github/scripts/docs-generator/query-page-generator/query-page-generator.py \
+		-t .github/scripts/docs-generator/templates
+	@python3 -u -B .github/scripts/docs-generator/query-page-generator/query-page-generator.py \
     	-p ./assets/queries/ \
         -o ./docs/queries/ \
         -f md \
