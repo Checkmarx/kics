@@ -103,7 +103,7 @@ func WordWrap(s, indentation string, limit int) string {
 // PrintResult prints on output the summary results
 func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bool) error {
 	log.Debug().Msg("helpers.PrintResult()")
-
+	fmt.Printf("\n\n")
 	for index := range summary.Queries {
 		idx := len(summary.Queries) - index - 1
 		if summary.Queries[idx].Severity == model.SeverityTrace {
