@@ -4,8 +4,8 @@
   "severity": "MEDIUM",
   "category": "Build Process",
   "descriptionText": "When using RUN command 'cd' should only be used for full path. For relative path make use of WORKDIR command instead.",
-  "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#workdir",
+  "descriptionUrl": "https://docs.docker.com/develop/develop-images/instructions/#workdir",
   "platform": "Dockerfile",
   "descriptionID": "edd9f7d3",
-  "cwe": ""
+  "cwe": "710"
 }
