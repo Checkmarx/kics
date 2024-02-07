@@ -52,6 +52,8 @@ type converter struct {
 	bytes []byte
 }
 
+const kicsLinesKey = "_kics_"
+
 func (c *converter) rangeSource(r hcl.Range) string {
 	return string(c.bytes[r.Start.Byte:r.End.Byte])
 }
@@ -94,7 +96,7 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
 		for key, value := range body.Attributes {
 			out[key], err = c.convertExpression(value.Expr)
 			// set kics line for the body value
-			kicsS["_kics_"+key] = model.LineObject{
+			kicsS[kicsLinesKey+key] = model.LineObject{
 				Line: value.SrcRange.Start.Line,
 				Arr:  c.getArrLines(value.Expr),
 			}
@@ -112,7 +114,7 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
 
 	for _, block := range body.Blocks {
 		// set kics line for block
-		kicsS["_kics_"+block.Type] = model.LineObject{
+		kicsS[kicsLinesKey+block.Type] = model.LineObject{
 			Line: block.TypeRange.Start.Line,
 		}
 		err = c.convertBlock(block, out, block.TypeRange.Start.Line)
@@ -159,7 +161,7 @@ func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]*model.L
 						}, false)
 						return nil
 					}
-					arrEx["_kics_"+key] = &model.LineObject{
+					arrEx[kicsLinesKey+key] = &model.LineObject{
 						Line: item.KeyExpr.Range().Start.Line,
 					}
 				}
