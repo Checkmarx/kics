@@ -6,5 +6,6 @@
   "descriptionText": "Kubernetes_role and Kubernetes_cluster_role when binded, should not use get, list or watch as verbs",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/role_binding#subject",
   "platform": "Terraform",
-  "descriptionID": "93294320"
+  "descriptionID": "93294320",
+  "cwe": ""
 }

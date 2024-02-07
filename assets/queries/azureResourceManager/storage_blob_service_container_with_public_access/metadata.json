@@ -6,6 +6,7 @@
   "descriptionText": "Storage Blob Service Container should not publicly accessible",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts/blobservices/containers?tabs=json#containerproperties-object",
   "platform": "AzureResourceManager",
+  "descriptionID": "49e52e15",
   "cloudProvider": "azure",
-  "descriptionID": "49e52e15"
+  "cwe": ""
 }

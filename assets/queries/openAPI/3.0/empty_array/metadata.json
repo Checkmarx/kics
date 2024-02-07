@@ -6,5 +6,6 @@
   "descriptionText": "All array fields should not be empty",
   "descriptionUrl": "https://swagger.io/specification/",
   "platform": "OpenAPI",
-  "descriptionID": "84f9722b"
+  "descriptionID": "84f9722b",
+  "cwe": ""
 }

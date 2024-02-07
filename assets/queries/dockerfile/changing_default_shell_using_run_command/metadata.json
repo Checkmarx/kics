@@ -6,5 +6,6 @@
   "descriptionText": "Using the command RUN to override the default shell instead of the SHELL command leads to inefficiencies. It also does not make sense since Docker provides the SHELL command for this exact purpose.",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#shell",
   "platform": "Dockerfile",
-  "descriptionID": "d859b2eb"
+  "descriptionID": "d859b2eb",
+  "cwe": "710"
 }

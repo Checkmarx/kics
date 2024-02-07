@@ -1,0 +1,565 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "API Endpoint Decoration",
+		"version": "1.0.0",
+		"title": "SANITY SCAN"
+	},
+	"host": "localhost:8080",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "country-controller",
+			"description": "Country Controller"
+		},
+		{
+			"name": "user-controller",
+			"description": "User Controller"
+		},
+		{
+			"name": "util-controller",
+			"description": "Util Controller"
+		}
+	],
+	"paths": {
+		"/country/get/byId/{id}": {
+			"get": {
+				"tags": [
+					"country-controller"
+				],
+				"summary": "getCountryById",
+				"operationId": "getCountryByIdUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int32"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "./definitions.json#/Country"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/country/get/governmentForm/{id}": {
+			"get": {
+				"tags": [
+					"country-controller"
+				],
+				"summary": "getGovernmentFormById",
+				"operationId": "getGovernmentFormByIdUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int32"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string",
+							"enum": [
+								"ARISTOCRACY",
+								"DEMOCRACY",
+								"MONARCHY",
+								"OLIGARCHY",
+								"OTHER",
+								"THEOCRACY",
+								"TIMOCRACY",
+								"TYRANNY"
+							]
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/runCommand/{cmd}": {
+			"get": {
+				"tags": [
+					"util-controller"
+				],
+				"summary": "runCommand",
+				"operationId": "runCommandUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "cmd",
+						"in": "path",
+						"description": "cmd",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/create/cart": {
+			"post": {
+				"tags": [
+					"user-controller"
+				],
+				"summary": "createUserCart",
+				"operationId": "createUserCartUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "product_ids",
+						"in": "query",
+						"description": "product_ids",
+						"required": true,
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"name": "quantities",
+						"in": "query",
+						"description": "quantities",
+						"required": true,
+						"type": "array",
+						"items": {
+							"type": "integer",
+							"format": "int32"
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"in": "body",
+						"name": "user",
+						"description": "user",
+						"required": true,
+						"schema": {
+							"$ref": "./definitions.json#/User"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/create/mapCart": {
+			"post": {
+				"tags": [
+					"user-controller"
+				],
+				"summary": "createUserMapCart",
+				"operationId": "createUserMapCartUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "mapCart",
+						"in": "query",
+						"description": "mapCart",
+						"required": true,
+						"items": {
+							"type": "object",
+							"additionalProperties": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"in": "body",
+						"name": "user",
+						"description": "user",
+						"required": true,
+						"schema": {
+							"$ref": "./definitions.json#/User"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/create/password": {
+			"post": {
+				"tags": [
+					"user-controller"
+				],
+				"summary": "createUserVar",
+				"operationId": "createUserVarUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "password",
+						"in": "query",
+						"description": "password",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "user",
+						"description": "user",
+						"required": true,
+						"schema": {
+							"$ref": "./definitions.json#/User"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "./definitions.json#/User"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/get/byEmail/{email}": {
+			"get": {
+				"tags": [
+					"user-controller"
+				],
+				"summary": "getUserByEmail",
+				"operationId": "getUserByEmailUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "email",
+						"in": "path",
+						"description": "email",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "./definitions.json#/User"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/get/byId/{id}": {
+			"get": {
+				"tags": [
+					"user-controller"
+				],
+				"summary": "getUserById",
+				"operationId": "getUserByIdUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "./definitions.json#/User"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/get/firstName/byEmail/{email}": {
+			"get": {
+				"tags": [
+					"user-controller"
+				],
+				"summary": "getUserFirstName",
+				"operationId": "getUserFirstNameUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "email",
+						"in": "path",
+						"description": "email",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/insert": {
+			"post": {
+				"tags": [
+					"user-controller"
+				],
+				"summary": "createUser",
+				"operationId": "createUserUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "user",
+						"description": "user",
+						"required": true,
+						"schema": {
+							"$ref": "./definitions.json#/User"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "./definitions.json#/User"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/update": {
+			"post": {
+				"tags": [
+					"user-controller"
+				],
+				"summary": "updateUser",
+				"operationId": "updateUserUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "user",
+						"description": "user",
+						"required": true,
+						"schema": {
+							"$ref": "./definitions.json#/User"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/users/findAll": {
+			"get": {
+				"tags": [
+					"user-controller"
+				],
+				"summary": "findAllUsers",
+				"operationId": "findAllUsersUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "./definitions.json#/User"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		}
+	},
+	"definitions" : {
+		"$ref": "./definitions.json"
+	}
+}

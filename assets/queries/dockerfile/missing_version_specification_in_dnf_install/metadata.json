@@ -6,5 +6,6 @@
   "descriptionText": "Specifying a package version allows to reduce failures due to unanticipated changes in required packages.",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
   "platform": "Dockerfile",
-  "descriptionID": "0ab4ed7e"
+  "descriptionID": "0ab4ed7e",
+  "cwe": "1357"
 }

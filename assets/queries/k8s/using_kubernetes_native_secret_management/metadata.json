@@ -6,5 +6,6 @@
   "descriptionText": "Kubernetes External Secret Storage and Management System usage should be considered if you have more complex secret management needs, rather than using Kubernetes Secrets directly. Additionally, ensure that access to secrets is carefully limited",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/secret/",
   "platform": "Kubernetes",
-  "descriptionID": "3d7b569c"
+  "descriptionID": "3d7b569c",
+  "cwe": ""
 }

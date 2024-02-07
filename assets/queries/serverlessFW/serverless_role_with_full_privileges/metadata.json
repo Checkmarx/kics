@@ -6,5 +6,6 @@
   "descriptionText": "Roles defined in Serverless files should not have policies granting full administrative privileges.",
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/iam",
   "platform": "ServerlessFW",
-  "descriptionID": "0907f0e7"
+  "descriptionID": "0907f0e7",
+  "cwe": ""
 }
