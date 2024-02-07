@@ -18,7 +18,7 @@ const (
 	// ValidUUIDRegex is a constant representing a regular expression rule to validate UUID string
 	ValidUUIDRegex = `(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`
 	positive       = "positive.tf"
-	positiveYaml   = "test\\fixtures\\test_critical_custom_queries\\amazon_mq_broker_encryption_disabled\\test\\positive1.yaml"
+	positiveYaml   = ".\\test\\fixtures\\test_critical_custom_queries\\amazon_mq_broker_encryption_disabled\\test\\positive1.yaml"
 )
 
 type execute func() error
@@ -247,30 +247,6 @@ var queryHighExperimental = model.QueryResult{
 	},
 }
 
-var queryCritical = model.QueryResult{
-	QueryName:                   "AmazonMQ Broker Encryption Disabled",
-	QueryID:                     "316278b3-87ac-444c-8f8f-a733a28da609",
-	Description:                 "AmazonMQ Broker should have Encryption Options defined",
-	DescriptionID:               "c5d562d9",
-	CISDescriptionIDFormatted:   "testCISID",
-	CISDescriptionTitle:         "testCISTitle",
-	CISDescriptionTextFormatted: "testCISDescription",
-	CloudProvider:               "AWS",
-	Severity:                    model.SeverityCritical,
-	Files: []model.VulnerableFile{
-		{
-			FileName:         positiveYaml,
-			Line:             6,
-			IssueType:        "MissingAttribute",
-			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
-			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
-			KeyActualValue:   "'default_action.redirect.protocol' is missing",
-			Value:            nil,
-			VulnLines:        &[]model.CodeLine{},
-		},
-	},
-}
-
 var queryHighCWE = model.QueryResult{
 	QueryName:                   "AMI Not Encrypted",
 	QueryID:                     "97707503-a22c-4cd7-b7c0-f088fa7cf830",
@@ -293,6 +269,30 @@ var queryHighCWE = model.QueryResult{
 		},
 	},
 	CWE: "22",
+}
+
+var queryCritical = model.QueryResult{
+	QueryName:                   "AmazonMQ Broker Encryption Disabled",
+	QueryID:                     "316278b3-87ac-444c-8f8f-a733a28da609",
+	Description:                 "AmazonMQ Broker should have Encryption Options defined",
+	DescriptionID:               "c5d562d9",
+	CISDescriptionIDFormatted:   "testCISID",
+	CISDescriptionTitle:         "testCISTitle",
+	CISDescriptionTextFormatted: "testCISDescription",
+	CloudProvider:               "AWS",
+	Severity:                    model.SeverityCritical,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         positiveYaml,
+			Line:             6,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is missing",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
 }
 
 var SummaryMockCritical = model.Summary{
