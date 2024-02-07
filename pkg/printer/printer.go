@@ -102,7 +102,7 @@ func WordWrap(s, indentation string, limit int) string {
 }
 
 // PrintResult prints on output the summary results
-func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer, usingCustomQueries bool) error {
+func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bool) error {
 	log.Debug().Msg("helpers.PrintResult()")
 
 	for index := range summary.Queries {
@@ -161,14 +161,6 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
 	printSeverityCounter(model.SeverityInfo, summary.SeveritySummary.SeverityCounters[model.SeverityInfo], printer.Info)
 	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
-
-	printMessageSeverity("WRN", fmt.Sprintf("Queries failed to execute: %d", summary.FailedToExecuteQueries), printer.High)
-	if !consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) {
-		fmt.Println()
-	}
-	for queryName, err := range failedQueries {
-		log.Info().Msgf("\t- %s:%s", queryName, WordWrap(err.Error(), "\t", wordWrapCount))
-	}
 
 	log.Info().Msgf("Scanned Files: %d", summary.ScannedFiles)
 	log.Info().Msgf("Parsed Files: %d", summary.ParsedFiles)
