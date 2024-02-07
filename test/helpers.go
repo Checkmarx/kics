@@ -212,6 +212,74 @@ var queryInfo = model.QueryResult{
 	Description: "AWS services resource tags are an essential part of managing components",
 }
 
+var queryHighExperimental = model.QueryResult{
+	QueryName:                   "ALB protocol is HTTP",
+	QueryID:                     "de7f5e83-da88-4046-871f-ea18504b1d43",
+	Description:                 "ALB protocol is HTTP Description",
+	DescriptionID:               "504b1d43",
+	CISDescriptionIDFormatted:   "testCISID",
+	CISDescriptionTitle:         "testCISTitle",
+	CISDescriptionTextFormatted: "testCISDescription",
+	Severity:                    model.SeverityHigh,
+	Experimental:                true,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         positive,
+			Line:             25,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is missing",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+		{
+			FileName:         positive,
+			Line:             19,
+			IssueType:        "IncorrectValue",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is equal 'HTTP'",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
+}
+
+var queryHighCWE = model.QueryResult{
+	QueryName:                   "AMI Not Encrypted",
+	QueryID:                     "97707503-a22c-4cd7-b7c0-f088fa7cf830",
+	Description:                 "AWS AMI Encryption is not enabled",
+	DescriptionID:               "a4342f0",
+	CISDescriptionIDFormatted:   "testCISID",
+	CISDescriptionTitle:         "testCISTitle",
+	CISDescriptionTextFormatted: "testCISDescription",
+	Severity:                    model.SeverityHigh,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         positive,
+			Line:             30,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is missing",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+		{
+			FileName:         positive,
+			Line:             35,
+			IssueType:        "IncorrectValue",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is equal 'HTTP'",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
+	CWE: "22",
+}
+
 // SummaryMock a summary to be used without running kics scan
 var SummaryMock = model.Summary{
 	Counters: model.Counters{
@@ -245,11 +313,39 @@ var ComplexSummaryMock = model.Summary{
 		ScannedFiles:           2,
 		ParsedFiles:            2,
 		FailedToScanFiles:      0,
-		TotalQueries:           2,
+		TotalQueries:           3,
 		FailedToExecuteQueries: 0,
 	},
 	Queries: []model.QueryResult{
 		queryHigh,
+		queryMedium,
+		queryHighCWE,
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:   0,
+			model.SeverityLow:    0,
+			model.SeverityMedium: 1,
+			model.SeverityHigh:   4,
+		},
+		TotalCounter: 5,
+	},
+	LatestVersion: model.Version{
+		Latest: true,
+	},
+}
+
+var ComplexSummaryMockWithExperimental = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           2,
+		ParsedFiles:            2,
+		FailedToScanFiles:      0,
+		TotalQueries:           2,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.QueryResult{
+		queryHighExperimental,
 		queryMedium,
 	},
 	SeveritySummary: model.SeveritySummary{

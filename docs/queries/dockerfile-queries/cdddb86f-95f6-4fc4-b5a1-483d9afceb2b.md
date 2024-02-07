@@ -28,7 +28,7 @@ COPY '--from' should not mention the current FROM alias, since it is impossible 
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```dockerfile title="Postitive test num. 1 - dockerfile file" hl_lines="2"
+```dockerfile title="Positive test num. 1 - dockerfile file" hl_lines="2"
 FROM myimage:tag as dep
 COPY --from=dep /binary /
 RUN dir c:\ 

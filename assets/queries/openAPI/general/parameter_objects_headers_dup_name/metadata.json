@@ -6,13 +6,15 @@
   "descriptionText": "Parameter Objects should not have duplicate names for 'header' location, since HTTP headers are not case sensitive.",
   "descriptionUrl": "https://swagger.io/specification/#parameter-object",
   "platform": "OpenAPI",
+  "descriptionID": "0e053155",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "bd2cbef5-62c4-40f1-af07-4b7f9ced6616",
       "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "0e053155"
+  "cwe": ""
 }

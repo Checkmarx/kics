@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/2.8/modules/aws_api_gateway_module.html",
   "platform": "Ansible",
   "descriptionID": "82608f36",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "cwe": ""
 }

@@ -6,13 +6,15 @@
   "descriptionText": "The field 'enum' of Schema Object should be consistent with the schema's type",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
+  "descriptionID": "b8ac8ff9",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "8fe6d18a-ad4c-4397-8884-e3a9da57f4c9",
       "queryName": "Schema Enum Invalid (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schema-object"
+      "descriptionUrl": "https://swagger.io/specification/v2/#schema-object",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "b8ac8ff9"
+  "cwe": ""
 }

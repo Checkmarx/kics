@@ -268,5 +268,6 @@ func BuildCycloneDxReport(summary *model.Summary, filePaths map[string]string) *
 
 		bom.Components.Components = append(bom.Components.Components, component)
 	}
+
 	return bom
 }

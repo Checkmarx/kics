@@ -6,5 +6,6 @@
   "descriptionText": "Containers should not have extra capabilities allowed",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
   "platform": "Kubernetes",
-  "descriptionID": "719acefd"
+  "descriptionID": "719acefd",
+  "cwe": ""
 }
