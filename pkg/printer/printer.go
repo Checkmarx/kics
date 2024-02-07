@@ -18,7 +18,6 @@ import (
 )
 
 const (
-	wordWrapCount     = 6
 	charsLimitPerLine = 255
 )
 
@@ -176,10 +175,6 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 
 func printSeverityCounter(severity string, counter int, printColor color.RGBColor) {
 	fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
-}
-
-func printMessageSeverity(severity, message string, printColor color.RGBColor) {
-	fmt.Printf("%s: %s\n", printColor.Sprint(severity), message)
 }
 
 func printFiles(query *model.QueryResult, printer *Printer) {
