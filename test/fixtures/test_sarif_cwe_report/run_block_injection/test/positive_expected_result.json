@@ -1,0 +1,14 @@
+[
+    {
+		"queryName": "Run Block Injection",
+		"severity": "HIGH",
+		"line": 10,
+		"fileName": "positive1.yaml"
+	},
+    {
+		"queryName": "Run Block Injection",
+		"severity": "HIGH",
+		"line": 10,
+		"fileName": "positive1.yaml"
+	}
+]
