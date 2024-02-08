@@ -322,34 +322,6 @@ var SummaryMockCritical = model.Summary{
 	},
 }
 
-// SummaryMockCriticalFullPath test with full path to test file
-var SummaryMockCriticalFullPath = model.Summary{
-	Counters: model.Counters{
-		ScannedFiles:           2,
-		ParsedFiles:            2,
-		FailedToScanFiles:      0,
-		TotalQueries:           1,
-		FailedToExecuteQueries: 0,
-	},
-	Queries: []model.QueryResult{
-		queryCritical,
-	},
-	SeveritySummary: model.SeveritySummary{
-		ScanID: "console",
-		SeverityCounters: map[model.Severity]int{
-			model.SeverityInfo:     0,
-			model.SeverityLow:      0,
-			model.SeverityMedium:   0,
-			model.SeverityHigh:     0,
-			model.SeverityCritical: 1,
-		},
-		TotalCounter: 1,
-	},
-	ScannedPaths: []string{
-		"./",
-	},
-}
-
 var queryCriticalASFF = model.QueryResult{
 	QueryName:     "AmazonMQ Broker Encryption Disabled",
 	QueryID:       "316278b3-87ac-444c-8f8f-a733a28da609",

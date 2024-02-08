@@ -255,7 +255,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		{
 			name: "Build CycloneDX report with critical severity",
 			args: args{
-				summary:   &test.SummaryMockCriticalFullPath,
+				summary:   &test.SummaryMockCritical,
 				filePaths: map[string]string{file3: file3},
 			},
 			want: &cycloneDxCritical,

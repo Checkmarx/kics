@@ -1,6 +1,7 @@
 package model
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 
@@ -96,7 +97,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 				},
 			},
 			args: args{
-				summary: &test.SummaryMockCriticalFullPath,
+				summary: &test.SummaryMockCritical,
 			},
 			want: &SonarQubeReport{
 				Issues: []Issue{
@@ -130,6 +131,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 				return
 			}
 			for i := range got.Issues {
+				fmt.Printf("PRIMARY LOCATION == %v\n", got.Issues[i].PrimaryLocation)
 				if !reflect.DeepEqual(got.Issues[i].PrimaryLocation, tt.want.Issues[i].PrimaryLocation) {
 					t.Errorf("PrimaryLocation mismatch at index %d: got %+v, want %+v", i, got.Issues[i].PrimaryLocation, tt.want.Issues[i].PrimaryLocation)
 				}

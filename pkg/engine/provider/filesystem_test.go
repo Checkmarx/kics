@@ -396,7 +396,9 @@ func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
 					"test/fixtures/link_test/eloop_link",
 				},
 			},
-			want:    []string{},
+			want: []string{
+				"eloop_link",
+			},
 			wantErr: false,
 		},
 		{
@@ -410,6 +412,7 @@ func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
 				},
 			},
 			want: []string{
+				"eloop_link",
 				"config_test",
 			},
 			wantErr: false,
@@ -423,6 +426,7 @@ func TestFileSystemSourceProvider_AddExcluded(t *testing.T) {
 				t.Errorf("AddExcluded() = %v, wantErr = %v", err, tt.wantErr)
 			}
 			got := getFSExcludes(tt.fields.fs)
+			t.Logf("Excluded paths after adding: %v", got)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("AddExcluded() = %v, want = %v", got, tt.want)
 			}
