@@ -114,4 +114,4 @@ KICS is used by various companies and organizations, some are listed below. If y
 
 ---
 
-&copy; 2023 Checkmarx Ltd. All Rights Reserved.
+&copy; 2024 Checkmarx Ltd. All Rights Reserved.

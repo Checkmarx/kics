@@ -24,9 +24,8 @@ var metadata Metadata = Metadata{
 	},
 }
 
-// Update XMLNS version to 1.5 from 1.3
 var initCycloneDxReport CycloneDxReport = CycloneDxReport{
-	XMLNS:        "http://cyclonedx.org/schema/bom/1.5",
+	XMLNS:        "http://cyclonedx.org/schema/bom/1.3",
 	XMLNSV:       "http://cyclonedx.org/schema/ext/vulnerability/1.0",
 	SerialNumber: "urn:uuid:", // set to "urn:uuid:" because it will be different for every report
 	Version:      1,
