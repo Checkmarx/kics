@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
 
@@ -97,7 +96,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 				},
 			},
 			args: args{
-				summary: &test.SummaryMockCritical,
+				summary: &test.SummaryMockCriticalSonar,
 			},
 			want: &SonarQubeReport{
 				Issues: []Issue{
@@ -108,7 +107,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 						Type:     "VULNERABILITY",
 						PrimaryLocation: &Location{
 							Message:  "AmazonMQ Broker should have Encryption Options defined",
-							FilePath: "test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml",
+							FilePath: "../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml",
 							TextRange: &Range{
 								StartLine: 6,
 							},
@@ -131,7 +130,6 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 				return
 			}
 			for i := range got.Issues {
-				fmt.Printf("PRIMARY LOCATION == %v\n", got.Issues[i].PrimaryLocation)
 				if !reflect.DeepEqual(got.Issues[i].PrimaryLocation, tt.want.Issues[i].PrimaryLocation) {
 					t.Errorf("PrimaryLocation mismatch at index %d: got %+v, want %+v", i, got.Issues[i].PrimaryLocation, tt.want.Issues[i].PrimaryLocation)
 				}
