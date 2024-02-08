@@ -346,7 +346,7 @@ var SummaryMockCriticalFullPath = model.Summary{
 		TotalCounter: 1,
 	},
 	ScannedPaths: []string{
-		"./test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/",
+		"./",
 	},
 }
 
@@ -394,7 +394,7 @@ var SummaryMockCriticalFullPathASFF = model.Summary{
 		TotalCounter: 1,
 	},
 	ScannedPaths: []string{
-		"./test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/",
+		"./",
 	},
 }
 
