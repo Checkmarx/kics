@@ -18,7 +18,6 @@ import (
 )
 
 const (
-	wordWrapCount     = 5
 	charsLimitPerLine = 255
 )
 
@@ -103,19 +102,9 @@ func WordWrap(s, indentation string, limit int) string {
 }
 
 // PrintResult prints on output the summary results
-func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer, usingCustomQueries bool) error {
+func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bool) error {
 	log.Debug().Msg("helpers.PrintResult()")
-	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
-	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
-	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
-
-	fmt.Printf("Queries failed to execute: %d\n\n", summary.FailedToExecuteQueries)
-	for queryName, err := range failedQueries {
-		fmt.Printf("\t- %s:\n", queryName)
-		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", wordWrapCount))
-	}
-
-	fmt.Printf("------------------------------------\n\n")
+	fmt.Printf("\n\n")
 	for index := range summary.Queries {
 		idx := len(summary.Queries) - index - 1
 		if summary.Queries[idx].Severity == model.SeverityTrace {
