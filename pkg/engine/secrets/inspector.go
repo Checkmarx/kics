@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"math"
 	"regexp"
+	"runtime"
 	"strings"
 	"sync"
 	"time"
@@ -621,7 +622,7 @@ func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
 func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) {
 	// lines ignore can have the lines from the resolved files
 	// since inspector secrets only looks to original data, the lines ignore should be replaced
-	numRoutines := 30
+	numRoutines := runtime.GOMAXPROCS(-1) //replace with numWorkers form parallel scanning pr in the future
 	files[idx].LinesIgnore = model.GetIgnoreLines(&files[idx])
 
 	wg := &sync.WaitGroup{}
@@ -632,6 +633,8 @@ func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.Fil
 		startLine := 0
 		totalLineNum := len(*lines)
 		numLinesPerRoutine := totalLineNum / numRoutines
+		//this check is necessary because the division of
+		//two integers returns 0 if the dividend is less than the divisor
 		if numLinesPerRoutine == 0 {
 			wg.Add(1)
 			go c.checkLines(wg, &c.regexQueries[i], basePaths, &files[idx], lines, startLine, totalLineNum)
