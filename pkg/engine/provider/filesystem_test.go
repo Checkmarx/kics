@@ -372,6 +372,22 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 			},
 		},
 		{
+			name: "check_condition_ignore_terragrunt_cache for .terragrunt-cache",
+			fields: fields{
+				paths:    []string{filepath.FromSlash(".terragrunt-cache")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash(".terragrunt-cache"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
 			name: "check_condition_ignore_terra_cache for terra, exclude by missing chart.yaml",
 			fields: fields{
 				paths:    []string{filepath.FromSlash("terra")},
@@ -436,6 +452,22 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 			},
 		},
 		{
+			name: "check_condition_ignore_terragrunt_cache for .terragrunt-cache/lalala",
+			fields: fields{
+				paths:    []string{filepath.FromSlash(".terragrunt-cache/lalala")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash(".terragrunt-cache/lalala"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
 			name: "check_condition_ignore_terra_cache for .terraform/lalala",
 			fields: fields{
 				paths:    []string{filepath.FromSlash(".terraform/lalala")},
@@ -484,6 +516,22 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 			},
 		},
 		{
+			name: "check_condition_ignore_terragrunt_cache for /.terragrunt-cache",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("/.terragrunt-cache")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("/.terragrunt-cache"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
 			name: "check_condition_ignore_terra_cache for /.terra/lalala",
 			fields: fields{
 				paths:    []string{filepath.FromSlash("/.terra/lalala")},
@@ -493,6 +541,22 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 				info:       infoTerraCache,
 				extensions: model.Extensions{},
 				path:       filepath.FromSlash("/.terra/lalala"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terragrunt_cache for /.terragrunt-cache/lalala",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("/.terragrunt-cache/lalala")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("/.terragrunt-cache/lalala"),
 			},
 			want: want{
 				got: true,
