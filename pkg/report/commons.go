@@ -62,7 +62,6 @@ func getCurrentTime() string {
 
 func fileCreationReport(path, filename string) {
 	log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
-	fmt.Printf("Results saved to file %s\n", path)
 }
 
 func closeFile(path, filename string, file *os.File) {
