@@ -6,6 +6,7 @@ import (
 	ioFs "io/fs"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"sync"
 	"syscall"
@@ -26,8 +27,11 @@ type FileSystemSourceProvider struct {
 	mu       sync.RWMutex
 }
 
-// ErrNotSupportedFile - error representing when a file format is not supported by KICS
-var ErrNotSupportedFile = errors.New("invalid file format")
+var (
+	queryRegexExcludeTerraCache = regexp.MustCompile(fmt.Sprintf(`^(.*?%s)?\.terra.*`, regexp.QuoteMeta(string(os.PathSeparator))))
+	// ErrNotSupportedFile - error representing when a file format is not supported by KICS
+	ErrNotSupportedFile = errors.New("invalid file format")
+)
 
 // NewFileSystemSourceProvider initializes a FileSystemSourceProvider with path and files that will be ignored
 func NewFileSystemSourceProvider(paths, excludes []string) (*FileSystemSourceProvider, error) {
@@ -231,8 +235,8 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 	if info.IsDir() {
-		// exlude terraform cache folders
-		if strings.Contains(info.Name(), ".terra") {
+		// exclude terraform cache folders
+		if queryRegexExcludeTerraCache.MatchString(path) {
 			log.Info().Msgf("Directory ignored: %s", path)
 			err := s.AddExcluded([]string{info.Name()})
 			if err != nil {
@@ -246,10 +250,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 		}
 
 		_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-		if errors.Is(err, os.ErrNotExist) {
-			return false, nil
-		} else if err != nil || resolved {
-			log.Error().Msgf("failed to check helm: %s", err)
+		if err != nil || resolved {
 			return true, nil
 		}
 		return false, nil
