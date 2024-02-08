@@ -1,0 +1,20 @@
+version: "3"
+services:
+  app:
+    build: app
+    ports:
+      - "0.0.0.0:80:80"
+    volumes:
+      - shared-volume:/app/uploads
+    depends_on:
+      - checker
+
+  checker:
+    build: checker
+    expose:
+      - 8080
+    volumes:
+      - shared-volume:/uploads
+
+volumes:
+  shared-volume:

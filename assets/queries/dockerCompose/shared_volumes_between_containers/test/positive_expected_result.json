@@ -1,0 +1,26 @@
+[
+    {
+      "queryName": "Shared Volumes Between Containers",
+      "severity": "INFO",
+      "line": 9,
+      "filename": "positive1.yaml"
+    },
+    {
+      "queryName": "Shared Volumes Between Containers",
+      "severity": "INFO",
+      "line": 16,
+      "filename": "positive1.yaml"
+    },
+    {
+      "queryName": "Shared Volumes Between Containers",
+      "severity": "INFO",
+      "line": 8,
+      "filename": "positive2.yaml"
+    },
+    {
+      "queryName": "Shared Volumes Between Containers",
+      "severity": "INFO",
+      "line": 17,
+      "filename": "positive2.yaml"
+    }
+]
