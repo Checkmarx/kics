@@ -7,5 +7,5 @@
   "descriptionUrl": "https://sysdig.com/blog/dockerfile-best-practices/",
   "platform": "Dockerfile",
   "descriptionID": "29bd3a34",
-  "cwe": ""
+  "cwe": "710"
 }

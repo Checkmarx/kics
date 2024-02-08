@@ -2,7 +2,7 @@ name: check-apache-license
 on:
   pull_request_target:
     types: [opened, synchronize, edited, reopened]
-    branches: 
+    branches:
       - master
 jobs:
   check-license:
@@ -11,7 +11,7 @@ jobs:
       BODY: ${{ github.event.pull_request.body }}
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         persist-credentials: false
         sparse-checkout: |
