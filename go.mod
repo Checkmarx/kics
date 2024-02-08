@@ -1,6 +1,6 @@
 module github.com/Checkmarx/kics
 
-go 1.20
+go 1.21
 
 require (
 	code.cloudfoundry.org/bytefmt v0.0.0-20211005130812-5bb3c17173e5
@@ -41,7 +41,7 @@ require (
 	github.com/yargevad/filepathx v1.0.0
 	github.com/zclconf/go-cty v1.13.1
 	golang.org/x/net v0.17.0
-	golang.org/x/text v0.13.0
+	golang.org/x/text v0.14.0
 	golang.org/x/tools v0.8.0
 	gopkg.in/yaml.v3 v3.0.1
 	helm.sh/helm/v3 v3.13.1
@@ -50,7 +50,9 @@ require (
 
 require (
 	cloud.google.com/go/compute/metadata v0.2.3 // indirect
-	github.com/Microsoft/go-winio v0.6.1 // indirect
+	github.com/Microsoft/hcsshim v0.11.1 // indirect
+	github.com/containerd/log v0.1.0 // indirect
+	github.com/containerd/typeurl/v2 v2.1.1 // indirect
 	github.com/evanphx/json-patch/v5 v5.6.0 // indirect
 	github.com/go-ini/ini v1.67.0 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
@@ -94,7 +96,6 @@ require (
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/chai2010/gettext-go v1.0.2 // indirect
 	github.com/containerd/containerd v1.7.7 // indirect
-	github.com/containerd/typeurl v1.0.2 // indirect
 	github.com/cyphar/filepath-securejoin v0.2.4 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/docker/cli v24.0.6+incompatible // indirect
@@ -138,8 +139,7 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/jung-kurt/gofpdf v1.16.2 // indirect
-	github.com/klauspost/compress v1.16.0 // indirect
-	github.com/kylelemons/godebug v1.1.0 // indirect
+	github.com/klauspost/compress v1.17.2 // indirect
 	github.com/lann/builder v0.0.0-20180802200727-47ae307949d0 // indirect
 	github.com/lann/ps v0.0.0-20150810152359-62de8c46ede0 // indirect
 	github.com/lib/pq v1.10.9 // indirect
@@ -198,8 +198,8 @@ require (
 	golang.org/x/crypto v0.14.0 // indirect
 	golang.org/x/oauth2 v0.11.0 // indirect
 	golang.org/x/sync v0.4.0 // indirect
-	golang.org/x/sys v0.13.0 // indirect
-	golang.org/x/term v0.13.0 // indirect
+	golang.org/x/sys v0.15.0 // indirect
+	golang.org/x/term v0.15.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	google.golang.org/api v0.126.0 // indirect
@@ -231,11 +231,13 @@ require (
 )
 
 replace (
-	github.com/containerd/containerd => github.com/containerd/containerd v1.6.18
+	github.com/containerd/containerd => github.com/containerd/containerd v1.6.26
 	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
+	github.com/docker/docker => github.com/docker/docker v24.0.7+incompatible
 	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.9.1
-	github.com/moby/buildkit => github.com/moby/buildkit v0.10.4
+	github.com/moby/buildkit => github.com/moby/buildkit v0.12.5
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
 	go.etcd.io/etcd/pkg/v3 => go.etcd.io/etcd/pkg/v3 v3.5.10
+	golang.org/x/crypto => golang.org/x/crypto v0.17.0 // indirect
 )

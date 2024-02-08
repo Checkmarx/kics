@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/develop/dev-best-practices/",
   "platform": "Dockerfile",
   "descriptionID": "22f535ec",
-  "cwe": ""
+  "cwe": "1357"
 }

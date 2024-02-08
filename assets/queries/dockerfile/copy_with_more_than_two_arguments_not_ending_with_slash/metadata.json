@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#copy",
   "platform": "Dockerfile",
   "descriptionID": "bab38efd",
-  "cwe": ""
+  "cwe": "628"
 }

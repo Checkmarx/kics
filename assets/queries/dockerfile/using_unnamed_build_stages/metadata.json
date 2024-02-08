@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/multistage-build/",
   "platform": "Dockerfile",
   "descriptionID": "dea09829",
-  "cwe": ""
+  "cwe": "710"
 }
