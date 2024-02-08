@@ -57,6 +57,7 @@ var (
 		"../assets/queries/openAPI/general/response_code_missing",
 		"../assets/queries/cicd/github/run_block_injection",
 		"../assets/queries/cicd/github/script_block_injection",
+		"../assets/queries/azureResourceManager/key_vault_not_recoverable",
 	}
 
 	// TODO uncomment this test once all metadata are fixed
