@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#maintainer-deprecated",
   "platform": "Dockerfile",
   "descriptionID": "9d9cbf83",
-  "cwe": ""
+  "cwe": "710"
 }
