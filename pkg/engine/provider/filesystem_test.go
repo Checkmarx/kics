@@ -372,6 +372,22 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 			},
 		},
 		{
+			name: "check_condition_ignore_terra_cache for terra, exclude by missing chart.yaml",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("terra")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("terra"),
+			},
+			want: want{
+				got: true,
+				err: nil,
+			},
+		},
+		{
 			name: "check_condition_ignore_terra_cache for .terraform",
 			fields: fields{
 				paths:    []string{filepath.FromSlash(".terraform")},
@@ -385,6 +401,22 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 			want: want{
 				got: true,
 				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terra_cache for .terraform, exclude by missing chart.yaml",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("terraform")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("terraform"),
+			},
+			want: want{
+				got: true,
+				err: nil,
 			},
 		},
 		{
