@@ -1,0 +1,5687 @@
+{
+	"schema": "https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v15.0.6/dist/sast-report-format.json",
+	"version": "15.0.6",
+	"scan": {
+		"analyzer": {
+			"id": "keeping-infrastructure-as-code-secure",
+			"name": "Keeping Infrastructure as Code Secure",
+			"version": "development",
+			"vendor": {
+				"name": "Checkmarx"
+			}
+		},
+		"start_time": "2024-02-07T10:51:01",
+		"end_time": "2024-02-07T10:51:19",
+		"status": "success",
+		"type": "sast",
+		"scanner": {
+			"id": "keeping-infrastructure-as-code-secure",
+			"name": "Keeping Infrastructure as Code Secure",
+			"url": "https://www.kics.io/",
+			"version": "development",
+			"vendor": {
+				"name": "Checkmarx"
+			}
+		}
+	},
+	"vulnerabilities": [
+		{
+			"id": "21e64d505e706106d8a9727000fda0da59a49778172cfbce991eec33a756b51f",
+			"severity": "High",
+			"name": "Missing User Instruction",
+			"links": [
+				{
+					"url": "https://docs.docker.com/engine/reference/builder/#user"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\tests\\Dockerfile",
+				"start_line": 1,
+				"end_line": 1
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "fd54f200-402c-4333-a5a4-36ef6709af2f"
+				}
+			]
+		},
+		{
+			"id": "3ea8d2b0976864dedbf7f846f444b45d668dfa475d196925c0841fc020e82c3a",
+			"severity": "High",
+			"name": "Missing User Instruction",
+			"links": [
+				{
+					"url": "https://docs.docker.com/engine/reference/builder/#user"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\vote\\Dockerfile",
+				"start_line": 24,
+				"end_line": 24
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "fd54f200-402c-4333-a5a4-36ef6709af2f"
+				}
+			]
+		},
+		{
+			"id": "90b163281ef5db034fd286cdccc24878687ab1ef2f95871ace40c15e0c5fafc5",
+			"severity": "High",
+			"name": "Missing User Instruction",
+			"links": [
+				{
+					"url": "https://docs.docker.com/engine/reference/builder/#user"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\seed-data\\Dockerfile",
+				"start_line": 1,
+				"end_line": 1
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "fd54f200-402c-4333-a5a4-36ef6709af2f"
+				}
+			]
+		},
+		{
+			"id": "b1f3cdd227b6664ef485956a49f28ef81d968bb9e8f412d08e9e75c79f4a7ab6",
+			"severity": "High",
+			"name": "Missing User Instruction",
+			"links": [
+				{
+					"url": "https://docs.docker.com/engine/reference/builder/#user"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\worker\\Dockerfile",
+				"start_line": 23,
+				"end_line": 23
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "fd54f200-402c-4333-a5a4-36ef6709af2f"
+				}
+			]
+		},
+		{
+			"id": "13c447483c359c449d5d0d2bb2faa47a61b59ed3bab48ad12784c50335255595",
+			"severity": "High",
+			"name": "Missing User Instruction",
+			"links": [
+				{
+					"url": "https://docs.docker.com/engine/reference/builder/#user"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\Dockerfile",
+				"start_line": 1,
+				"end_line": 1
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "fd54f200-402c-4333-a5a4-36ef6709af2f"
+				}
+			]
+		},
+		{
+			"id": "b4a32fa7e48dd5eb9734ddd4b524d4c74cb5b6cd1af777cc28df60f0c8aa0f61",
+			"severity": "High",
+			"name": "Passwords And Secrets - Generic Password",
+			"links": [
+				{
+					"url": "https://docs.kics.io/latest/secrets/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 51,
+				"end_line": 51
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/common-queries",
+					"value": "487f4be7-3fd9-4506-a07a-eae252180c08"
+				}
+			]
+		},
+		{
+			"id": "d6c6899bdf7609b359baf79aed11aa54fe17f559d12587dfaeae620cde840402",
+			"severity": "High",
+			"name": "Passwords And Secrets - Generic Password",
+			"links": [
+				{
+					"url": "https://docs.kics.io/latest/secrets/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 18,
+				"end_line": 18
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/common-queries",
+					"value": "487f4be7-3fd9-4506-a07a-eae252180c08"
+				}
+			]
+		},
+		{
+			"id": "e05b699d0834c3c93427ed62d281165ef380cec9a49cbf11333d743ca91c9406",
+			"severity": "High",
+			"name": "Passwords And Secrets - Generic Password",
+			"links": [
+				{
+					"url": "https://docs.kics.io/latest/secrets/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 68,
+				"end_line": 68
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/common-queries",
+					"value": "487f4be7-3fd9-4506-a07a-eae252180c08"
+				}
+			]
+		},
+		{
+			"id": "11ea5d1b8e7722066673bb9af6648870f938641e5a437153fa3f7a3216e6894f",
+			"severity": "High",
+			"name": "Passwords And Secrets - Generic Password",
+			"links": [
+				{
+					"url": "https://docs.kics.io/latest/secrets/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 54,
+				"end_line": 54
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/common-queries",
+					"value": "487f4be7-3fd9-4506-a07a-eae252180c08"
+				}
+			]
+		},
+		{
+			"id": "1218534e7a3498cbcffb20a98c36e041f675a669f617dc6d5c9894605d4d47ba",
+			"severity": "High",
+			"name": "Privilege Escalation Allowed",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "5572cc5e-1e4c-4113-92a6-7a8a3bd25e6d"
+				}
+			]
+		},
+		{
+			"id": "782e41c2fcb6fe70a42fcdfe7bf1581da5e9b15975791ad3ecb01f26e5e6b4cf",
+			"severity": "High",
+			"name": "Privilege Escalation Allowed",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "5572cc5e-1e4c-4113-92a6-7a8a3bd25e6d"
+				}
+			]
+		},
+		{
+			"id": "a5ce0ff7fe42d1a740ca83dd777bfcc9a37151e598191b57b140734893f5da7c",
+			"severity": "High",
+			"name": "Privilege Escalation Allowed",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "5572cc5e-1e4c-4113-92a6-7a8a3bd25e6d"
+				}
+			]
+		},
+		{
+			"id": "ed1ee32eca96528bda13a35596827a8798a16175f78d602b4d949bf5fd6bcc2e",
+			"severity": "High",
+			"name": "Privilege Escalation Allowed",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "5572cc5e-1e4c-4113-92a6-7a8a3bd25e6d"
+				}
+			]
+		},
+		{
+			"id": "316921c7bc6d2b546c667f667ff085a81272d87cf2c7f14d2dac2d2c897281b1",
+			"severity": "High",
+			"name": "Privilege Escalation Allowed",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "5572cc5e-1e4c-4113-92a6-7a8a3bd25e6d"
+				}
+			]
+		},
+		{
+			"id": "37059a2aa85a250ca5db391b32d2d3b6a5d00fd04f65e5329c2d040d2527dc17",
+			"severity": "Medium",
+			"name": "Add Instead of Copy",
+			"links": [
+				{
+					"url": "https://docs.docker.com/engine/reference/builder/#add"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\tests\\Dockerfile",
+				"start_line": 10,
+				"end_line": 10
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "9513a694-aa0d-41d8-be61-3271e056f36b"
+				}
+			]
+		},
+		{
+			"id": "3c5b2936563b2e636aecb1ab3ccecf56482452720550068d227993bbfdfc5fd3",
+			"severity": "Medium",
+			"name": "Apt Get Install Pin Version Not Defined",
+			"links": [
+				{
+					"url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\tests\\Dockerfile",
+				"start_line": 1,
+				"end_line": 1
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "965a08d7-ef86-4f14-8792-4a3b2098937e"
+				}
+			]
+		},
+		{
+			"id": "42c1004364c1d54780f353cd801f1a79e823d5f92928525170b2fc325ad90223",
+			"severity": "Medium",
+			"name": "Apt Get Install Pin Version Not Defined",
+			"links": [
+				{
+					"url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\Dockerfile",
+				"start_line": 4,
+				"end_line": 4
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "965a08d7-ef86-4f14-8792-4a3b2098937e"
+				}
+			]
+		},
+		{
+			"id": "f3c5ab177445a480c249d6371a6fa54abedbc2628c8ac238989c0ad33e545213",
+			"severity": "Medium",
+			"name": "Apt Get Install Pin Version Not Defined",
+			"links": [
+				{
+					"url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\tests\\Dockerfile",
+				"start_line": 1,
+				"end_line": 1
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "965a08d7-ef86-4f14-8792-4a3b2098937e"
+				}
+			]
+		},
+		{
+			"id": "0a1160ff06a093f8740bfbfb58caf71ae7d05535c05a9fc83d2f6523c4eaaaf3",
+			"severity": "Medium",
+			"name": "Apt Get Install Pin Version Not Defined",
+			"links": [
+				{
+					"url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\seed-data\\Dockerfile",
+				"start_line": 4,
+				"end_line": 4
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "965a08d7-ef86-4f14-8792-4a3b2098937e"
+				}
+			]
+		},
+		{
+			"id": "cec0e0a19c9c1a315211dc6494344459aa0418c8767fef758573c5c41f0a8bde",
+			"severity": "Medium",
+			"name": "Apt Get Install Pin Version Not Defined",
+			"links": [
+				{
+					"url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\tests\\Dockerfile",
+				"start_line": 1,
+				"end_line": 1
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "965a08d7-ef86-4f14-8792-4a3b2098937e"
+				}
+			]
+		},
+		{
+			"id": "7249b1b29d984bf4d4a05fa209a43b3af79214b3f44368d3d7a5c29ba6254012",
+			"severity": "Medium",
+			"name": "Apt Get Install Pin Version Not Defined",
+			"links": [
+				{
+					"url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\tests\\Dockerfile",
+				"start_line": 1,
+				"end_line": 1
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "965a08d7-ef86-4f14-8792-4a3b2098937e"
+				}
+			]
+		},
+		{
+			"id": "4b4494bc94c360bd2587a798cb9c308cf36b0705b820bc0115711286c294c11a",
+			"severity": "Medium",
+			"name": "Apt Get Install Pin Version Not Defined",
+			"links": [
+				{
+					"url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\Dockerfile",
+				"start_line": 4,
+				"end_line": 4
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "965a08d7-ef86-4f14-8792-4a3b2098937e"
+				}
+			]
+		},
+		{
+			"id": "7e25789240ae3a9437d2341df56f28419133a4190411ab0716b6aef53f1ff03f",
+			"severity": "Medium",
+			"name": "Apt Get Install Pin Version Not Defined",
+			"links": [
+				{
+					"url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\vote\\Dockerfile",
+				"start_line": 5,
+				"end_line": 5
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "965a08d7-ef86-4f14-8792-4a3b2098937e"
+				}
+			]
+		},
+		{
+			"id": "ffe0ff5ddc62c7967e53eedc9ab7b9b56702b1ed9718c37721385bc8914c4b9f",
+			"severity": "Medium",
+			"name": "CPU Limits Not Set",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "4ac0e2b7-d2d2-4af7-8799-e8de6721ccda"
+				}
+			]
+		},
+		{
+			"id": "841a6cc73b46a9cb9e2dfc109bf9e2d8ebcd4c3853b5a23f49db60327fd6f39d",
+			"severity": "Medium",
+			"name": "CPU Limits Not Set",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "4ac0e2b7-d2d2-4af7-8799-e8de6721ccda"
+				}
+			]
+		},
+		{
+			"id": "a0d705881861e134c84090da5970ee80b70333175327aa0a64b65a596434ad82",
+			"severity": "Medium",
+			"name": "CPU Limits Not Set",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "4ac0e2b7-d2d2-4af7-8799-e8de6721ccda"
+				}
+			]
+		},
+		{
+			"id": "4ee77bbdc604240dd326f7db519febe4e689ac5dc1aa4757b2926694fc49f768",
+			"severity": "Medium",
+			"name": "CPU Limits Not Set",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "4ac0e2b7-d2d2-4af7-8799-e8de6721ccda"
+				}
+			]
+		},
+		{
+			"id": "328bfc46c6f6d059e9c15fb412eae5191b23dfa4f8edcca0f0203b9a09d44151",
+			"severity": "Medium",
+			"name": "CPU Limits Not Set",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "4ac0e2b7-d2d2-4af7-8799-e8de6721ccda"
+				}
+			]
+		},
+		{
+			"id": "043a27a67d7971e34c1298b26fd667f157437a89803e3a2edbc6d21388fe94f6",
+			"severity": "Medium",
+			"name": "CPU Requests Not Set",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "ca469dd4-c736-448f-8ac1-30a642705e0a"
+				}
+			]
+		},
+		{
+			"id": "2ac9184e726f7252463af60d8c00f47b8ba001c1d69388b9742d8f534f25b8c2",
+			"severity": "Medium",
+			"name": "CPU Requests Not Set",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "ca469dd4-c736-448f-8ac1-30a642705e0a"
+				}
+			]
+		},
+		{
+			"id": "343d4f059ffbdf67203b30704d966149e4af3e7813a81932b092bd2e39222d21",
+			"severity": "Medium",
+			"name": "CPU Requests Not Set",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "ca469dd4-c736-448f-8ac1-30a642705e0a"
+				}
+			]
+		},
+		{
+			"id": "1b65723b7989e2f871a7ebecb6c97f66d77505ff1f0ad6f33dce486c72c0fa8e",
+			"severity": "Medium",
+			"name": "CPU Requests Not Set",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "ca469dd4-c736-448f-8ac1-30a642705e0a"
+				}
+			]
+		},
+		{
+			"id": "a4143b026bcba8d2264349092fca8aea32bd2716db139cd141854359decc8417",
+			"severity": "Medium",
+			"name": "CPU Requests Not Set",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "ca469dd4-c736-448f-8ac1-30a642705e0a"
+				}
+			]
+		},
+		{
+			"id": "61a6a4119cf45397c414e1c7616893c9de1effc330041b5085e19bc96726f555",
+			"severity": "Medium",
+			"name": "Container Running As Root",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "cf34805e-3872-4c08-bf92-6ff7bb0cfadb"
+				}
+			]
+		},
+		{
+			"id": "40b9f07dfeebc59d80acac2bf262aa245ee683065855f2f51a3dce93ba44c007",
+			"severity": "Medium",
+			"name": "Container Running As Root",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "cf34805e-3872-4c08-bf92-6ff7bb0cfadb"
+				}
+			]
+		},
+		{
+			"id": "39005a3e68b25f8e50c1c7005c8cce70dee49a102b8f148de5bf15354884e2ea",
+			"severity": "Medium",
+			"name": "Container Running As Root",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "cf34805e-3872-4c08-bf92-6ff7bb0cfadb"
+				}
+			]
+		},
+		{
+			"id": "134e021aafdc7afbc20f800c4e42e62cb08bb9e7b4adab5699e5ce90c0db44c5",
+			"severity": "Medium",
+			"name": "Container Running As Root",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "cf34805e-3872-4c08-bf92-6ff7bb0cfadb"
+				}
+			]
+		},
+		{
+			"id": "3b431678f807c7253f70b7f0b6bb18a9f0929a0e0341c344bda8958b506b29d5",
+			"severity": "Medium",
+			"name": "Container Running As Root",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "cf34805e-3872-4c08-bf92-6ff7bb0cfadb"
+				}
+			]
+		},
+		{
+			"id": "336bac5e5dbdcbcd4d0a962c3ff39462ce786573b0dcbf2d86356139925183d0",
+			"severity": "Medium",
+			"name": "Container Running With Low UID",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "02323c00-cdc3-4fdc-a310-4f2b3e7a1660"
+				}
+			]
+		},
+		{
+			"id": "bcb48c28f8c2b123f2e2cdb8cd7ab1e1f930a0c73055b7c8cb087069714b6b10",
+			"severity": "Medium",
+			"name": "Container Running With Low UID",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "02323c00-cdc3-4fdc-a310-4f2b3e7a1660"
+				}
+			]
+		},
+		{
+			"id": "4da693e69a6b6b197f63c07495619c45d73d16de01f5e28314cec233a650de74",
+			"severity": "Medium",
+			"name": "Container Running With Low UID",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "02323c00-cdc3-4fdc-a310-4f2b3e7a1660"
+				}
+			]
+		},
+		{
+			"id": "4fface6e322c9de5b8744c0be36186ce7d699845aa9ad3e50c5d17d443e5085e",
+			"severity": "Medium",
+			"name": "Container Running With Low UID",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "02323c00-cdc3-4fdc-a310-4f2b3e7a1660"
+				}
+			]
+		},
+		{
+			"id": "10cac58d171735f147f568d0e1e48c00d691de4231335f28322f7f5e1e0e90bc",
+			"severity": "Medium",
+			"name": "Container Running With Low UID",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "02323c00-cdc3-4fdc-a310-4f2b3e7a1660"
+				}
+			]
+		},
+		{
+			"id": "78dad1dc399fd7d6cfd7412064f98ad732c0905afeca99e20c53ecb076462250",
+			"severity": "Medium",
+			"name": "Container Traffic Not Bound To Host Interface",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#ports"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 16,
+				"end_line": 16
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "451d79dc-0588-476a-ad03-3c7f0320abb3"
+				}
+			]
+		},
+		{
+			"id": "d712deefc211ca71ba03fa188f22bb759b1231a22899944e98027d7eaa32e32f",
+			"severity": "Medium",
+			"name": "Container Traffic Not Bound To Host Interface",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#ports"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 21,
+				"end_line": 21
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "451d79dc-0588-476a-ad03-3c7f0320abb3"
+				}
+			]
+		},
+		{
+			"id": "4cf01e4fe39d111f0e3e2df10e67d5125f1fd6786228773917b25b56d4f5552b",
+			"severity": "Medium",
+			"name": "Container Traffic Not Bound To Host Interface",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#ports"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 13,
+				"end_line": 13
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "451d79dc-0588-476a-ad03-3c7f0320abb3"
+				}
+			]
+		},
+		{
+			"id": "9a96781f7bc385ccf747e00d0153b18616af960a20cc67efc117da0ec2ba5e2f",
+			"severity": "Medium",
+			"name": "Container Traffic Not Bound To Host Interface",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#ports"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 36,
+				"end_line": 36
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "451d79dc-0588-476a-ad03-3c7f0320abb3"
+				}
+			]
+		},
+		{
+			"id": "8316e8f7a305f88b507a9afe546d8fe79d697333ecd6a6e1a6b72fe70a844e78",
+			"severity": "Medium",
+			"name": "Container Traffic Not Bound To Host Interface",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#ports"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 26,
+				"end_line": 26
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "451d79dc-0588-476a-ad03-3c7f0320abb3"
+				}
+			]
+		},
+		{
+			"id": "80b7295e8bc788c5a5f5186a87a1b8a47d5d424a0d051c480bab6f8694cfcaa7",
+			"severity": "Medium",
+			"name": "Container Traffic Not Bound To Host Interface",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#ports"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 24,
+				"end_line": 24
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "451d79dc-0588-476a-ad03-3c7f0320abb3"
+				}
+			]
+		},
+		{
+			"id": "a50dfbb26841234cf974b10a1160165b8cc6552ef7c3c9a30a75f75fce86f67f",
+			"severity": "Medium",
+			"name": "Container Traffic Not Bound To Host Interface",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#ports"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 26,
+				"end_line": 26
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "451d79dc-0588-476a-ad03-3c7f0320abb3"
+				}
+			]
+		},
+		{
+			"id": "083d62fab790728149e7c6b70b6010bd8940eb17e65f46342b28e74d04309988",
+			"severity": "Medium",
+			"name": "Container Traffic Not Bound To Host Interface",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#ports"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 35,
+				"end_line": 35
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "451d79dc-0588-476a-ad03-3c7f0320abb3"
+				}
+			]
+		},
+		{
+			"id": "086ada1a2c7ff52bfcc96eb867f3ec4b7f363be877c2be2f2642dcac502ac230",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 27,
+				"end_line": 27
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "902892665a2b0bc22758fa397b3b69655b5e0e13b475201bd0e5acc11ddff084",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "89b97cc9ec5af3dc558e17ce1945c0fa54b2c2b1e06de04a713e46336b47602a",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 42,
+				"end_line": 42
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "efcd665247d9f55a28d7f5535f108d0cac5ee86a6df420b3e214adaf67f4253c",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 24,
+				"end_line": 24
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "7762bb051583795189c2ee2e7345cb7b812edfc177070c0c7aec8f3830616838",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 81,
+				"end_line": 81
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "e99acb06e703946ccb6f98367e9500cd67c066541e511e88a207da0f983de3c0",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 9,
+				"end_line": 9
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "e4f691ea55fe7e819f386fd13b6c71bf3cf4f57a23a369afc45972d5ac81192f",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 5,
+				"end_line": 5
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "b9d1c313db151378bf514e97f245a930ca6954ae1e7869f9c20153f1fc02560c",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 14,
+				"end_line": 14
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "5c232dbd34ff8996c2591acc1642ab80c28407c01c8a59e072f64568018ff8c5",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 43,
+				"end_line": 43
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "3a6d6267da2a7d2e0cb2edb30d0cbc0105dbe6e3127bd83840fe8e5f60cbc788",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 34,
+				"end_line": 34
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "833e47de1741bf84ae8cad261aad29a512508783bff064920a3b825c159a5092",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 24,
+				"end_line": 24
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "44371f23365e910b39c3c34bfe6f5773757ff06076bda73d1f635f8a5e2de0f5",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 14,
+				"end_line": 14
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "13c05e97d7a964988372425c71a522bc04ebf39a09d1689e6407a8d18cc026ca",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 47,
+				"end_line": 47
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "19865191e6673a62e9433058cd036cc58c600f110bf8ce4aa9203740085e032a",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 40,
+				"end_line": 40
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "f007ec61ed53f32cbae1b0af3ef34ee14243537f2fdda06ea91f3bbcb1499cd1",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 33,
+				"end_line": 33
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "26d93bfc12e39f1ca52462e37b4745b79c9031d6b68e12045c49cb7b2fe775d0",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 8,
+				"end_line": 8
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "5b73bd57abf93d735f0d75c41c33dd24528490c3c87cb9ff499194af69784769",
+			"severity": "Medium",
+			"name": "Healthcheck Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 30,
+				"end_line": 30
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "698ed579-b239-4f8f-a388-baa4bcb13ef8"
+				}
+			]
+		},
+		{
+			"id": "6463a91072b76b8c72a2cad558fbe1ec666e5f4d28214332155023e2dc3babc5",
+			"severity": "Medium",
+			"name": "Memory Limits Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "b14d1bc4-a208-45db-92f0-e21f8e2588e9"
+				}
+			]
+		},
+		{
+			"id": "890c12c86968446b7faece16b8b4c7b6bca048b5b9ae0b0506e2978771e5a302",
+			"severity": "Medium",
+			"name": "Memory Limits Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "b14d1bc4-a208-45db-92f0-e21f8e2588e9"
+				}
+			]
+		},
+		{
+			"id": "edbb31b35705275ee2ab651705461ea42e583e8a16201574294ec16b55151fde",
+			"severity": "Medium",
+			"name": "Memory Limits Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "b14d1bc4-a208-45db-92f0-e21f8e2588e9"
+				}
+			]
+		},
+		{
+			"id": "5e1617370d038e4720d903bdd57f66857e1c73655a54a9d58059625ec8e66131",
+			"severity": "Medium",
+			"name": "Memory Limits Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "b14d1bc4-a208-45db-92f0-e21f8e2588e9"
+				}
+			]
+		},
+		{
+			"id": "4c5e181462baa19a612783752bcdc6292fd185a2aeae20425ef92e8a152cd7dd",
+			"severity": "Medium",
+			"name": "Memory Limits Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "b14d1bc4-a208-45db-92f0-e21f8e2588e9"
+				}
+			]
+		},
+		{
+			"id": "d2f53741d07aec2ab50787533976b168914e96e12fa8aa5593908661a78eb0a4",
+			"severity": "Medium",
+			"name": "Memory Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 14,
+				"end_line": 14
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492"
+				}
+			]
+		},
+		{
+			"id": "71a49d490e1ff96d7a32e4fac9fde53fcc5582a7f6a7e9abd019770eb009dd4d",
+			"severity": "Medium",
+			"name": "Memory Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 9,
+				"end_line": 9
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492"
+				}
+			]
+		},
+		{
+			"id": "ec32066385375211516df5b03ebcbb4341e20df88e8bee9abed69beb16dcd0ae",
+			"severity": "Medium",
+			"name": "Memory Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 42,
+				"end_line": 42
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492"
+				}
+			]
+		},
+		{
+			"id": "52ae75c4712f0d18ee047bc32e0bf87d4af15ac9cfa06d24d1ae019f7ef98aec",
+			"severity": "Medium",
+			"name": "Memory Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 24,
+				"end_line": 24
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492"
+				}
+			]
+		},
+		{
+			"id": "17d2a4eaa0a7530767cee0b9477f5eb28fd4ca26b2e4ea411465a805688443e5",
+			"severity": "Medium",
+			"name": "Memory Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 5,
+				"end_line": 5
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492"
+				}
+			]
+		},
+		{
+			"id": "003dfb46d340ffd047e0fcf62f467414b81f73e232e6c93d8f9b34c432a2a3ff",
+			"severity": "Medium",
+			"name": "Memory Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 30,
+				"end_line": 30
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492"
+				}
+			]
+		},
+		{
+			"id": "12d7f7e4a90018dcb36c34b0d9c8504598821fd5747e1e084ad422c030d0c79e",
+			"severity": "Medium",
+			"name": "Memory Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 14,
+				"end_line": 14
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492"
+				}
+			]
+		},
+		{
+			"id": "a39a004b42da7a361362193038e90504ac878128dd0e9a9f1d9156e7b6dba621",
+			"severity": "Medium",
+			"name": "Memory Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 34,
+				"end_line": 34
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492"
+				}
+			]
+		},
+		{
+			"id": "18c946d7f51601a6827b9c0f87e30c644f07b6ffb3e7a1ebe463ae9a1d57ba0f",
+			"severity": "Medium",
+			"name": "Memory Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 45,
+				"end_line": 45
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492"
+				}
+			]
+		},
+		{
+			"id": "9bf45a51dc382ab8fccdc9785906d6c6929e3ed7f89afa9e92105a64c70b9cb1",
+			"severity": "Medium",
+			"name": "Memory Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 47,
+				"end_line": 47
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492"
+				}
+			]
+		},
+		{
+			"id": "48bf35e099dfdb1f5966776cf043fceea9239215d15e2ef163eee9b57faf079f",
+			"severity": "Medium",
+			"name": "Memory Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 33,
+				"end_line": 33
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492"
+				}
+			]
+		},
+		{
+			"id": "85f81eafe202b8b2133704c9a6f07873732e600c7bf0532f9943a7da106cb311",
+			"severity": "Medium",
+			"name": "Memory Requests Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "229588ef-8fde-40c8-8756-f4f2b5825ded"
+				}
+			]
+		},
+		{
+			"id": "850f4105f0ebee092b326359380cda4cfbdea0c9af11cc78b0df465b30ae464f",
+			"severity": "Medium",
+			"name": "Memory Requests Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "229588ef-8fde-40c8-8756-f4f2b5825ded"
+				}
+			]
+		},
+		{
+			"id": "dac27baff30a0769e128533489e95bdd4ca86cda2fcfb333cdfa680602907aa9",
+			"severity": "Medium",
+			"name": "Memory Requests Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "229588ef-8fde-40c8-8756-f4f2b5825ded"
+				}
+			]
+		},
+		{
+			"id": "c6f13907229cfd0eca6bd0ed7c703c94d8dbbbcef0745fb8ba30adf31e97ae94",
+			"severity": "Medium",
+			"name": "Memory Requests Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "229588ef-8fde-40c8-8756-f4f2b5825ded"
+				}
+			]
+		},
+		{
+			"id": "7f6edf58cd7ddc160ee6b00126420e2afdb4a1d7c6c51371c5c30f2bf1a570ec",
+			"severity": "Medium",
+			"name": "Memory Requests Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "229588ef-8fde-40c8-8756-f4f2b5825ded"
+				}
+			]
+		},
+		{
+			"id": "abc6778469507ddb79755391290a52b271874db4e3b4fd877e7b5a8235cf4d50",
+			"severity": "Medium",
+			"name": "NET_RAW Capabilities Not Being Dropped",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "dbbc6705-d541-43b0-b166-dd4be8208b54"
+				}
+			]
+		},
+		{
+			"id": "3b63f9f2f7781c813e41f1177d129c2d2834558be919b5ff1e759842f77491dd",
+			"severity": "Medium",
+			"name": "NET_RAW Capabilities Not Being Dropped",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "dbbc6705-d541-43b0-b166-dd4be8208b54"
+				}
+			]
+		},
+		{
+			"id": "5446a8c8fc4da282ed8fbd9218009d72a9af0aa50ac1608ceb747173416aa6e5",
+			"severity": "Medium",
+			"name": "NET_RAW Capabilities Not Being Dropped",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "dbbc6705-d541-43b0-b166-dd4be8208b54"
+				}
+			]
+		},
+		{
+			"id": "ec25793721f864158449929efdca3dee1987077362d28d1a9159405e182146f1",
+			"severity": "Medium",
+			"name": "NET_RAW Capabilities Not Being Dropped",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "dbbc6705-d541-43b0-b166-dd4be8208b54"
+				}
+			]
+		},
+		{
+			"id": "3162fedadceb5fb32c0d6165e8417db2e23e59fd50f4a5a9571c415761fd7182",
+			"severity": "Medium",
+			"name": "NET_RAW Capabilities Not Being Dropped",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "dbbc6705-d541-43b0-b166-dd4be8208b54"
+				}
+			]
+		},
+		{
+			"id": "d520e12e4d3bb3143b5a0dbbbb4f54d3d2bd82b553d9a0d7d1f6c9c8fbb48948",
+			"severity": "Medium",
+			"name": "NPM Install Command Without Pinned Version",
+			"links": [
+				{
+					"url": "https://docs.docker.com/engine/reference/builder/#run"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\Dockerfile",
+				"start_line": 11,
+				"end_line": 11
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "e36d8880-3f78-4546-b9a1-12f0745ca0d5"
+				}
+			]
+		},
+		{
+			"id": "b3e033edffcf904fc56d49a6cf14f1f43ab53052e5ee50eaf5be45f273754f69",
+			"severity": "Medium",
+			"name": "Not Using JSON In CMD And ENTRYPOINT Arguments",
+			"links": [
+				{
+					"url": "https://docs.docker.com/engine/reference/builder/#entrypoint"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\seed-data\\Dockerfile",
+				"start_line": 16,
+				"end_line": 16
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "b86987e1-6397-4619-81d5-8807f2387c79"
+				}
+			]
+		},
+		{
+			"id": "432ef4c106e2ee5f43dfb9c7d971f55d1e979bbd07c21f5af4d2de76c73925d9",
+			"severity": "Medium",
+			"name": "Pids Limit Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 42,
+				"end_line": 42
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "221e0658-cb2a-44e3-b08a-db96a341d6fa"
+				}
+			]
+		},
+		{
+			"id": "020b7056d1145a365be0bcfd3b39651bcd0a6f3313c211d4424fc9b5c676aec4",
+			"severity": "Medium",
+			"name": "Pids Limit Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 14,
+				"end_line": 14
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "221e0658-cb2a-44e3-b08a-db96a341d6fa"
+				}
+			]
+		},
+		{
+			"id": "2c14378d584a477ac8931734ee8c258fc57b689b2345f7c0037366874843dee6",
+			"severity": "Medium",
+			"name": "Pids Limit Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 47,
+				"end_line": 47
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "221e0658-cb2a-44e3-b08a-db96a341d6fa"
+				}
+			]
+		},
+		{
+			"id": "ab6ddcf68649da0048f20470ff19e2dfcca6e780253f4dc052c795e7a122b0e9",
+			"severity": "Medium",
+			"name": "Pids Limit Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 5,
+				"end_line": 5
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "221e0658-cb2a-44e3-b08a-db96a341d6fa"
+				}
+			]
+		},
+		{
+			"id": "a07b7d25c55f235d4ab87dd3a056f36dbf7c18c46bc5c700240cfa4b8c7ec7ff",
+			"severity": "Medium",
+			"name": "Pids Limit Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 34,
+				"end_line": 34
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "221e0658-cb2a-44e3-b08a-db96a341d6fa"
+				}
+			]
+		},
+		{
+			"id": "25350cf2c872ee597a7666d64536a52a5ada0dc73edb8c88576ed54364ae73ac",
+			"severity": "Medium",
+			"name": "Pids Limit Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 24,
+				"end_line": 24
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "221e0658-cb2a-44e3-b08a-db96a341d6fa"
+				}
+			]
+		},
+		{
+			"id": "41afa0364377a218101a0eed14fabf2316b2e2cd77bc2edfb491280bcfbe3354",
+			"severity": "Medium",
+			"name": "Pip install Keeping Cached Packages",
+			"links": [
+				{
+					"url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\vote\\Dockerfile",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "f2f903fb-b977-461e-98d7-b3e2185c6118"
+				}
+			]
+		},
+		{
+			"id": "314fd1f05581ea9aa8d282ee6d632af77c09b12a1a0dc2e606d97b3b2b741808",
+			"severity": "Medium",
+			"name": "Privileged Ports Mapped In Container",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 26,
+				"end_line": 26
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bc2908f3-f73c-40a9-8793-c1b7d5544f79"
+				}
+			]
+		},
+		{
+			"id": "15c7b8eb6c650eaf373e95aebd74a042205ed2f0ab125dd2cb723011f30b5a64",
+			"severity": "Medium",
+			"name": "Privileged Ports Mapped In Container",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 35,
+				"end_line": 35
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bc2908f3-f73c-40a9-8793-c1b7d5544f79"
+				}
+			]
+		},
+		{
+			"id": "f87528126bc3143847e1bf5be2964b8c3c0c2fde11f2264a3868c21eff6fe0cc",
+			"severity": "Medium",
+			"name": "Privileged Ports Mapped In Container",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 26,
+				"end_line": 26
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bc2908f3-f73c-40a9-8793-c1b7d5544f79"
+				}
+			]
+		},
+		{
+			"id": "d3e816f7b2fb063c9a545dde1cb185f417c29b988bafeac53af98101ae6dc99b",
+			"severity": "Medium",
+			"name": "Privileged Ports Mapped In Container",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 16,
+				"end_line": 16
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bc2908f3-f73c-40a9-8793-c1b7d5544f79"
+				}
+			]
+		},
+		{
+			"id": "d29cb946e339d06549f683d70970b3e2c4546bb0a2d93ad8c2919c1cbefaceea",
+			"severity": "Medium",
+			"name": "Privileged Ports Mapped In Container",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 24,
+				"end_line": 24
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bc2908f3-f73c-40a9-8793-c1b7d5544f79"
+				}
+			]
+		},
+		{
+			"id": "6ce228ab34e1078181aac05cc838fe3f2f623cc8f212b04a636b36bab0867d67",
+			"severity": "Medium",
+			"name": "Privileged Ports Mapped In Container",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 21,
+				"end_line": 21
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bc2908f3-f73c-40a9-8793-c1b7d5544f79"
+				}
+			]
+		},
+		{
+			"id": "d3fe471ff1b6380aa222d3a67531372595eb3d58ad1932a610d07e4474785644",
+			"severity": "Medium",
+			"name": "Privileged Ports Mapped In Container",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 13,
+				"end_line": 13
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bc2908f3-f73c-40a9-8793-c1b7d5544f79"
+				}
+			]
+		},
+		{
+			"id": "01008334d0045391d072d241a7b8fc8a2a244275edd592935348753f7ec68eea",
+			"severity": "Medium",
+			"name": "Privileged Ports Mapped In Container",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 36,
+				"end_line": 36
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "bc2908f3-f73c-40a9-8793-c1b7d5544f79"
+				}
+			]
+		},
+		{
+			"id": "adcfb40c67d82770501764b82851578768eb1042867e5b11b5821f01156b3693",
+			"severity": "Medium",
+			"name": "Readiness Probe Is Not Configured",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a659f3b5-9bf0-438a-bd9a-7d3a6427f1e3"
+				}
+			]
+		},
+		{
+			"id": "ef5c27309c879f579c3992b2528945e9f57638dd7fbe596a2c3a7d3c9d3abcc0",
+			"severity": "Medium",
+			"name": "Readiness Probe Is Not Configured",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a659f3b5-9bf0-438a-bd9a-7d3a6427f1e3"
+				}
+			]
+		},
+		{
+			"id": "4076f37eb70ec1d94d6d8f8366afebeb9becfeb28369e6e48a6eedc68d9c9c38",
+			"severity": "Medium",
+			"name": "Readiness Probe Is Not Configured",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a659f3b5-9bf0-438a-bd9a-7d3a6427f1e3"
+				}
+			]
+		},
+		{
+			"id": "20e35c05def64c15a29adbd0efcd1d03091af1fe3f52b01ec7904d11a30fff3c",
+			"severity": "Medium",
+			"name": "Readiness Probe Is Not Configured",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a659f3b5-9bf0-438a-bd9a-7d3a6427f1e3"
+				}
+			]
+		},
+		{
+			"id": "1a0879b40f20812ebfba11f47bfacb319b9e90eaf7a09ae53d2211d31ff0caee",
+			"severity": "Medium",
+			"name": "Readiness Probe Is Not Configured",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-readiness-probes"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a659f3b5-9bf0-438a-bd9a-7d3a6427f1e3"
+				}
+			]
+		},
+		{
+			"id": "ea678f8716ff791ecb078f740be4ac5ba595b9f2cec811190e38efd80be52946",
+			"severity": "Medium",
+			"name": "Seccomp Profile Is Not Configured",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tutorials/security/seccomp/#create-pod-that-uses-the-container-runtime-default-seccomp-profile"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "f377b83e-bd07-4f48-a591-60c82b14a78b"
+				}
+			]
+		},
+		{
+			"id": "b8fe264c6b13c88367ce0d589d72d1153e1ed1da9a942d91a7f448dc7618e8be",
+			"severity": "Medium",
+			"name": "Seccomp Profile Is Not Configured",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tutorials/security/seccomp/#create-pod-that-uses-the-container-runtime-default-seccomp-profile"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "f377b83e-bd07-4f48-a591-60c82b14a78b"
+				}
+			]
+		},
+		{
+			"id": "788eb031652cd093a288e2cf2d6cc0afe9cde345697e57ce7a0e1f69bcac5bf9",
+			"severity": "Medium",
+			"name": "Seccomp Profile Is Not Configured",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tutorials/security/seccomp/#create-pod-that-uses-the-container-runtime-default-seccomp-profile"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "f377b83e-bd07-4f48-a591-60c82b14a78b"
+				}
+			]
+		},
+		{
+			"id": "a4705710001042677ae8080b6f87189b395091ef60cf99154d4e2dc5c3b64993",
+			"severity": "Medium",
+			"name": "Seccomp Profile Is Not Configured",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tutorials/security/seccomp/#create-pod-that-uses-the-container-runtime-default-seccomp-profile"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "f377b83e-bd07-4f48-a591-60c82b14a78b"
+				}
+			]
+		},
+		{
+			"id": "ab89baaaccc9a5e3ef65d0d76a636bedf4297c204573f80a3066373b17e44756",
+			"severity": "Medium",
+			"name": "Seccomp Profile Is Not Configured",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tutorials/security/seccomp/#create-pod-that-uses-the-container-runtime-default-seccomp-profile"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "f377b83e-bd07-4f48-a591-60c82b14a78b"
+				}
+			]
+		},
+		{
+			"id": "46256bf0c05684d91354b73854cbd8cc0e854e7324e4840c68aad27cca195de2",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 24,
+				"end_line": 24
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "56b32f0c8fe53308c041f09b73545095c904eadb5cfbcd47113d27b35a6e925e",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 33,
+				"end_line": 33
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "f3b5b9c6ea3ed37c60ae6265363bee831734a90424cadb2dde81463a6f852332",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 42,
+				"end_line": 42
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "99d8ccfe9a461c085d64f91784e735c36c9bbd24b5aecf687a1d68c6b5636110",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 30,
+				"end_line": 30
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "a42bc95179e1959aff37991bfe2350f099413761167359d0298d00c5e771088d",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 24,
+				"end_line": 24
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "43a33d08c3edd71379d405beb5825d5ff5c12d7af3f2a9dd523888877e7a76a7",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 8,
+				"end_line": 8
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "0abd404274b7af20a1ee47b8ac82860762e105a833c4ecb9a8169d5a825a2b9b",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 43,
+				"end_line": 43
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "8ebfc48c8c905372ec24b919d3100c4ac1c34039fb7daa204d58af666f427c56",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 81,
+				"end_line": 81
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "d212a0b6142e85a2cf308fcaee7378032126eb89742ae046c9c178e6e9304a1d",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 34,
+				"end_line": 34
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "e0d6225ae51a3c216621530352a7059d61aabc12dea3e7489acf0926335f6517",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 14,
+				"end_line": 14
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "ba757afbab0bb239ea9afc9d18ad827062dface2775f6d47b5f7dae4e6c89aa4",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 40,
+				"end_line": 40
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "cd927b1856bc670068de98f687bb5d5ef076dfeb1e54a4248f68d917b4aa275c",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "88081d70f4cea36031f84394e9a35bb476b2fe1a46b038c9901e7cfc69cae4e5",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 5,
+				"end_line": 5
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "790e12082091f41c51bc4e0f6c9d3da8fee5cf13af1ca44e39ec27243d1144a9",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 9,
+				"end_line": 9
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "2d50e61025320faf3ef90d4f980239cec6292c6a5f2b959ae4eb188a62cd6c32",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "df7b6032ea056a1307ae5b7ff5d1ee9cc31132de88b18b3e904b39b4e8e23c1e",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 40,
+				"end_line": 40
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "0f3cf2c7d656a12cfabe1631cf13c7b98a66c2aea5aad3f0bfc7a0b27336db91",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 64,
+				"end_line": 64
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "6f51eda9633c204de29b566b5189b1a7d9ef83bfe1c75f28d55e0e24b3f6e7a8",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 50,
+				"end_line": 50
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "0955109b527a4b640aa91d74c2212e0cb9d589bb066cc59e2bffb3b81a8b8c36",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 54,
+				"end_line": 54
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "9b6903999a176d0862500306242ea8ed52dd22ac47f685cb19ac2b55ca4b7c69",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 47,
+				"end_line": 47
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "123ac74731283304769c4e6bbd174a6bd46b143a624f0d3b945935c6fbaf737e",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 27,
+				"end_line": 27
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "a71ea4216552fb1967079798b2d7a510d6d5086fbd9b6de29e99282c0c3daff4",
+			"severity": "Medium",
+			"name": "Security Opt Not Set",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 14,
+				"end_line": 14
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "610e266e-6c12-4bca-9925-1ed0cd29742b"
+				}
+			]
+		},
+		{
+			"id": "4be22c8152e45eadc73ed1c47df5316ab33045ad429d1631c6b1f1d3fffbf4ca",
+			"severity": "Medium",
+			"name": "Service Account Token Automount Not Disabled",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 16,
+				"end_line": 16
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "48471392-d4d0-47c0-b135-cdec95eb3eef"
+				}
+			]
+		},
+		{
+			"id": "0315e64783b450354876902f2798a6671d3097a624927780532d1972e83ad659",
+			"severity": "Medium",
+			"name": "Service Account Token Automount Not Disabled",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 16,
+				"end_line": 16
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "48471392-d4d0-47c0-b135-cdec95eb3eef"
+				}
+			]
+		},
+		{
+			"id": "04086b1c1d5e4892a3082ca622dbbb50ebae4ca2cf9399fd88776ea5399af2c2",
+			"severity": "Medium",
+			"name": "Service Account Token Automount Not Disabled",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 16,
+				"end_line": 16
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "48471392-d4d0-47c0-b135-cdec95eb3eef"
+				}
+			]
+		},
+		{
+			"id": "99dd57718c0599b80be0e75c9bcca5985c105057afc10a61db6820534424c885",
+			"severity": "Medium",
+			"name": "Service Account Token Automount Not Disabled",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 16,
+				"end_line": 16
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "48471392-d4d0-47c0-b135-cdec95eb3eef"
+				}
+			]
+		},
+		{
+			"id": "3d3bfab554ef28387aa4b5d23bc0dd025e8d48bdbd83566a0e317af2e38360d5",
+			"severity": "Medium",
+			"name": "Service Account Token Automount Not Disabled",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 16,
+				"end_line": 16
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "48471392-d4d0-47c0-b135-cdec95eb3eef"
+				}
+			]
+		},
+		{
+			"id": "9892432e1d8215182b7eb9b0f32fcdcea2c2772695aadbd5c5f65796fc3ad0e5",
+			"severity": "Medium",
+			"name": "Unpinned Package Version in Pip Install",
+			"links": [
+				{
+					"url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\vote\\Dockerfile",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "02d9c71f-3ee8-4986-9c27-1a20d0d19bfc"
+				}
+			]
+		},
+		{
+			"id": "ae0d0f35cf76b59cfc26f728d3a7bb7de3821d0108c1cf909ea50db7b847c89e",
+			"severity": "Medium",
+			"name": "Using Platform Flag with FROM Command",
+			"links": [
+				{
+					"url": "https://docs.docker.com/engine/reference/builder/#from"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\worker\\Dockerfile",
+				"start_line": 9,
+				"end_line": 9
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "b16e8501-ef3c-44e1-a543-a093238099c9"
+				}
+			]
+		},
+		{
+			"id": "ac83198d8852a68a9fcf509850d4a4fe0c74464beb6fa0370ca8d51b600b6485",
+			"severity": "Medium",
+			"name": "Using Unrecommended Namespace",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-service.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "611ab018-c4aa-4ba2-b0f6-a448337509a6"
+				}
+			]
+		},
+		{
+			"id": "cdcba452ddda3bcad8adb0a31c9bb0c7c274aa6870c68ce1ddd050f132fa7d5b",
+			"severity": "Medium",
+			"name": "Using Unrecommended Namespace",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-service.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "611ab018-c4aa-4ba2-b0f6-a448337509a6"
+				}
+			]
+		},
+		{
+			"id": "02d803b7e58c3b5b6d77704e27458088cdd40f56cbf947116cd534853ed0cf60",
+			"severity": "Medium",
+			"name": "Using Unrecommended Namespace",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "611ab018-c4aa-4ba2-b0f6-a448337509a6"
+				}
+			]
+		},
+		{
+			"id": "c48ab7532c9569dd615394f8638f94598cbea215647dbc3518b2476386627b46",
+			"severity": "Medium",
+			"name": "Using Unrecommended Namespace",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-service.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "611ab018-c4aa-4ba2-b0f6-a448337509a6"
+				}
+			]
+		},
+		{
+			"id": "dcb2267dd0db8dd2a460a243bf260564ce94f6a1949c876ab6cdc7b5b2f70d67",
+			"severity": "Medium",
+			"name": "Using Unrecommended Namespace",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "611ab018-c4aa-4ba2-b0f6-a448337509a6"
+				}
+			]
+		},
+		{
+			"id": "540497edc2bf3594f5fb582ba2247ea64217487173b115d7adbe881a2935c628",
+			"severity": "Medium",
+			"name": "Using Unrecommended Namespace",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "611ab018-c4aa-4ba2-b0f6-a448337509a6"
+				}
+			]
+		},
+		{
+			"id": "f454722d1a80193305298382da13d8ccac98e97441f381fce6e9621f03a7efd3",
+			"severity": "Medium",
+			"name": "Using Unrecommended Namespace",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "611ab018-c4aa-4ba2-b0f6-a448337509a6"
+				}
+			]
+		},
+		{
+			"id": "9a67f251e604f86ea128df7465e1458cfb738ad3e0d198843cd1f47bbf6064d7",
+			"severity": "Medium",
+			"name": "Using Unrecommended Namespace",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-service.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "611ab018-c4aa-4ba2-b0f6-a448337509a6"
+				}
+			]
+		},
+		{
+			"id": "50b7b076fea829b9d22b45c1a4baf00a68bdbd399f7428a568f86e7346a4a46f",
+			"severity": "Medium",
+			"name": "Using Unrecommended Namespace",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "611ab018-c4aa-4ba2-b0f6-a448337509a6"
+				}
+			]
+		},
+		{
+			"id": "08483c2cfa276f04d04e570e5bddfe215673239e7db5a71cd5780c738b640abe",
+			"severity": "Medium",
+			"name": "Volume Mount With OS Directory Write Permissions",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/storage/volumes/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 30,
+				"end_line": 30
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "b7652612-de4e-4466-a0bf-1cd81f0c6063"
+				}
+			]
+		},
+		{
+			"id": "f9754cae80d9cf44a685916e94a5c4fd3d8abd16d36aab848c0527bbd4f4dfb2",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 64,
+				"end_line": 64
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "975a64576e503bea664071fa7f7aecca0efb54c17efad83cf1f24c2fc68a9bfb",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 14,
+				"end_line": 14
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "41e269a3e5cc05e7d339ff56d108030b0a4534e337b9e06b2b0b1c20530d7199",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "8bcd906cc8387bc19c6a3826af2b8993624ebacdcd2434a1fa79cdcef60952a6",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 8,
+				"end_line": 8
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "e5ab02cdc4140ea0bda896b158ffb227f6072371133da65850db4372728e4496",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 14,
+				"end_line": 14
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "3c4c27c67ccdaec7dc6aa816405d576d99876fdd2aa5cfeb1870b53d65e51b31",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 5,
+				"end_line": 5
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "50b41d2c3bf7b160617c512854ad2bab446922c6e6aa55c0d6f744aef1f95ebc",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 27,
+				"end_line": 27
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "f785f1de3fe8a2be81de73c4d2ef519a33ff719940e5001ac5866c0c93a0f12e",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 47,
+				"end_line": 47
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "6b1e50179adbfbb154d5f7321254511980cf85d7fc63d5350f186d83a55f41e5",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 40,
+				"end_line": 40
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "a8b220cf9f89bdb70b311c8e05f2020b4a2ec5191d5068e325f1e6eca00ab227",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 40,
+				"end_line": 40
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "91688df420a91a9d4474292ddf32896253e5beb6331341a2a7ac9e67640e3e35",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 9,
+				"end_line": 9
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "7b940cbd0d158d23525385a481e4f73b72bdc1bd90deae9aa5fea5d16defc09e",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 34,
+				"end_line": 34
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "ee44f8da68e95bad419cecf788d3c9f384ddd345059d9f5f0b0c7fbd9bff7594",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 43,
+				"end_line": 43
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "a1e1ca5a4cbe7243cc2ac75b14dc5cc6402e4913028fbb1add4ab39f31dd0bbd",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 42,
+				"end_line": 42
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "db8188164c9ecd250f78e97fd3f02c765496e7274050b24e3d3328170a83fe2a",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 81,
+				"end_line": 81
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "07875b0dd3b658fad49f500465cd7ae564b70a021cf2f81781563033ce3268fe",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 33,
+				"end_line": 33
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "6990ba410ed96d4fb06f0da42497bc157a97ad2961e20c570df3edbe615c4453",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.yml",
+				"start_line": 54,
+				"end_line": 54
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "cf7dfa5d760a583c1398d022fa3062c63c3d58f260d5acbd286512e23aa8812f",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 24,
+				"end_line": 24
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "b4919daac6901b0ed18ee8053c619ae61c21917ffc88631db293631e4c1ae575",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 30,
+				"end_line": 30
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "7a4e1ea01a1a6c55c0ec76445142bd154585b00de074441c9eb9895e44da87e6",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 24,
+				"end_line": 24
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "9021ea213c12fb9816879bee47e854eb4c8cea2d1da9681f9b7962b5ddaab2e0",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "8445424730d25434eca98e3b8171272664545c62ef437f8ddda9210ed4f1f4a6",
+			"severity": "Low",
+			"name": "Container Capabilities Unrestricted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-compose.images.yml",
+				"start_line": 50,
+				"end_line": 50
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d"
+				}
+			]
+		},
+		{
+			"id": "759a0fb5a12d8cd7d2444333d2f6d16573c3eef494c7ee06e159df0c47fbfc44",
+			"severity": "Low",
+			"name": "Cpus Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 14,
+				"end_line": 14
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "6b610c50-99fb-4ef0-a5f3-e312fd945bc3"
+				}
+			]
+		},
+		{
+			"id": "5466397197ee4023ac6b0b2baf0c3667c407df16f9faaa79c72518bb12d66d22",
+			"severity": "Low",
+			"name": "Cpus Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 42,
+				"end_line": 42
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "6b610c50-99fb-4ef0-a5f3-e312fd945bc3"
+				}
+			]
+		},
+		{
+			"id": "0147a1e6e87f7f3dd6cd9f3fdfe5e9510d7af3806af0f542894882e943858c97",
+			"severity": "Low",
+			"name": "Cpus Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 14,
+				"end_line": 14
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "6b610c50-99fb-4ef0-a5f3-e312fd945bc3"
+				}
+			]
+		},
+		{
+			"id": "5729e914e655546e53dc2ea980ab72e54fc250a4f0b90ead77c405e497d9d97e",
+			"severity": "Low",
+			"name": "Cpus Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 45,
+				"end_line": 45
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "6b610c50-99fb-4ef0-a5f3-e312fd945bc3"
+				}
+			]
+		},
+		{
+			"id": "8eabc78520a618225f2f022ce65a80b0d1764d5532d506e3874cddd83cc015b4",
+			"severity": "Low",
+			"name": "Cpus Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 33,
+				"end_line": 33
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "6b610c50-99fb-4ef0-a5f3-e312fd945bc3"
+				}
+			]
+		},
+		{
+			"id": "734044ef7d8a6c9df386fb5940ab056443f68236b7cee346dd39eb324a24739d",
+			"severity": "Low",
+			"name": "Cpus Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 34,
+				"end_line": 34
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "6b610c50-99fb-4ef0-a5f3-e312fd945bc3"
+				}
+			]
+		},
+		{
+			"id": "cb14da07b9016cde1f0f56bb1f11f10388c30d8820eda47791849a17409f6521",
+			"severity": "Low",
+			"name": "Cpus Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 9,
+				"end_line": 9
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "6b610c50-99fb-4ef0-a5f3-e312fd945bc3"
+				}
+			]
+		},
+		{
+			"id": "f2f88e9a96a7974dd34c7d8f31eaaa0b0b9c9fe9076b462a82ccdc992dd679c1",
+			"severity": "Low",
+			"name": "Cpus Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 47,
+				"end_line": 47
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "6b610c50-99fb-4ef0-a5f3-e312fd945bc3"
+				}
+			]
+		},
+		{
+			"id": "a273d50e5059e139c1092b5ad1c7c9fddbfb48117f5cfa6368239798727c699b",
+			"severity": "Low",
+			"name": "Cpus Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 24,
+				"end_line": 24
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "6b610c50-99fb-4ef0-a5f3-e312fd945bc3"
+				}
+			]
+		},
+		{
+			"id": "286724b9e177b36bfe701a75ea3a9b38207a02de0ecef5e72b44e8480b99813c",
+			"severity": "Low",
+			"name": "Cpus Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\docker-compose.test.yml",
+				"start_line": 5,
+				"end_line": 5
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "6b610c50-99fb-4ef0-a5f3-e312fd945bc3"
+				}
+			]
+		},
+		{
+			"id": "1af71421da7037893ddb0760221210fc585d05eeda3fabaabbf26f397a989aaa",
+			"severity": "Low",
+			"name": "Cpus Not Limited",
+			"links": [
+				{
+					"url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\docker-stack.yml",
+				"start_line": 30,
+				"end_line": 30
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockercompose-queries",
+					"value": "6b610c50-99fb-4ef0-a5f3-e312fd945bc3"
+				}
+			]
+		},
+		{
+			"id": "d2bce86498cdaef2b36f0c1dfbef2b1e29caae70244c5a560b4f2dcbf7c11628",
+			"severity": "Low",
+			"name": "Healthcheck Instruction Missing",
+			"links": [
+				{
+					"url": "https://docs.docker.com/engine/reference/builder/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\tests\\Dockerfile",
+				"start_line": 1,
+				"end_line": 1
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "b03a748a-542d-44f4-bb86-9199ab4fd2d5"
+				}
+			]
+		},
+		{
+			"id": "27731778e0ed5c84f83b368d1007750ff19c72a9d1c2f9e97e99457bf16967c8",
+			"severity": "Low",
+			"name": "Healthcheck Instruction Missing",
+			"links": [
+				{
+					"url": "https://docs.docker.com/engine/reference/builder/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\seed-data\\Dockerfile",
+				"start_line": 1,
+				"end_line": 1
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "b03a748a-542d-44f4-bb86-9199ab4fd2d5"
+				}
+			]
+		},
+		{
+			"id": "fb0b13b7aae965709ac68bdad967bfd6888bd6265c31dc80a34079f62d34d92b",
+			"severity": "Low",
+			"name": "Healthcheck Instruction Missing",
+			"links": [
+				{
+					"url": "https://docs.docker.com/engine/reference/builder/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\Dockerfile",
+				"start_line": 1,
+				"end_line": 1
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "b03a748a-542d-44f4-bb86-9199ab4fd2d5"
+				}
+			]
+		},
+		{
+			"id": "f47f8ddc40129368acde969fb28f8ca9f648a931f84696eb9366398ca3e6b4f2",
+			"severity": "Low",
+			"name": "Healthcheck Instruction Missing",
+			"links": [
+				{
+					"url": "https://docs.docker.com/engine/reference/builder/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\vote\\Dockerfile",
+				"start_line": 24,
+				"end_line": 24
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "b03a748a-542d-44f4-bb86-9199ab4fd2d5"
+				}
+			]
+		},
+		{
+			"id": "5240b71912a84f0c6f20c638ab68f1b856621f6c52fb79944efa7652c9b2133a",
+			"severity": "Low",
+			"name": "Healthcheck Instruction Missing",
+			"links": [
+				{
+					"url": "https://docs.docker.com/engine/reference/builder/#healthcheck"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\worker\\Dockerfile",
+				"start_line": 23,
+				"end_line": 23
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "b03a748a-542d-44f4-bb86-9199ab4fd2d5"
+				}
+			]
+		},
+		{
+			"id": "f93b736ce02c9c5f736c38e9213075bf9ef1d2cfab06dd5cd38005d5763b2b47",
+			"severity": "Low",
+			"name": "Image Pull Policy Of The Container Is Not Set To Always",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/containers/images/#updating-images"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "caa3479d-885d-4882-9aac-95e5e78ef5c2"
+				}
+			]
+		},
+		{
+			"id": "85661ddffe97e1ecef5bab4f47b98510bc24907fa8bfe397be6842a88b5c8266",
+			"severity": "Low",
+			"name": "Image Pull Policy Of The Container Is Not Set To Always",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/containers/images/#updating-images"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "caa3479d-885d-4882-9aac-95e5e78ef5c2"
+				}
+			]
+		},
+		{
+			"id": "1d8c83f13953dce80f3284cb7a2263b4f4888bcee97e2aefb607d2799cdea095",
+			"severity": "Low",
+			"name": "Image Without Digest",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/containers/images/#updating-images"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "7c81d34c-8e5a-402b-9798-9f442630e678"
+				}
+			]
+		},
+		{
+			"id": "99edea7b4078f536e43aaa2da197924c69f3e459671eab9907420ddb812e2a33",
+			"severity": "Low",
+			"name": "Image Without Digest",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/containers/images/#updating-images"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "7c81d34c-8e5a-402b-9798-9f442630e678"
+				}
+			]
+		},
+		{
+			"id": "eb0c99ddc622d34ae5442eb0b94f2ad5bc680594322d05df4f54bfd0884a95f6",
+			"severity": "Low",
+			"name": "Image Without Digest",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/containers/images/#updating-images"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "7c81d34c-8e5a-402b-9798-9f442630e678"
+				}
+			]
+		},
+		{
+			"id": "4ab371aa95abd5bfd7e422ff8874b999b2001fdc6867a51a7c43a734533dc2fb",
+			"severity": "Low",
+			"name": "Image Without Digest",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/containers/images/#updating-images"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "7c81d34c-8e5a-402b-9798-9f442630e678"
+				}
+			]
+		},
+		{
+			"id": "dc0034c57c8f36b2052a5c19e075d25216d613aaa8a73d227c92cf84518392e6",
+			"severity": "Low",
+			"name": "Image Without Digest",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/containers/images/#updating-images"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "7c81d34c-8e5a-402b-9798-9f442630e678"
+				}
+			]
+		},
+		{
+			"id": "b2b48555952dd4ec5a71b8db5ed255dd49a1c4f02d432f33189004497bda9235",
+			"severity": "Low",
+			"name": "Invalid Image Tag",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/containers/images/#updating-images"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "583053b7-e632-46f0-b989-f81ff8045385"
+				}
+			]
+		},
+		{
+			"id": "01e5fc6496e4487b2f4c2797c6ba8a99f600358b5119122b92a11f3ebc59e8ae",
+			"severity": "Low",
+			"name": "Invalid Image Tag",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/containers/images/#updating-images"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "583053b7-e632-46f0-b989-f81ff8045385"
+				}
+			]
+		},
+		{
+			"id": "b08f4c60aa11890f832bcc027bf496f5eb9f0e3ee4f9421007d84200f89a0ea6",
+			"severity": "Low",
+			"name": "Invalid Image Tag",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/containers/images/#updating-images"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "583053b7-e632-46f0-b989-f81ff8045385"
+				}
+			]
+		},
+		{
+			"id": "f0fe0ccf2a81b333f3cde163b878e04b6ccb89f0e0dee0aff25281487244414c",
+			"severity": "Low",
+			"name": "Liveness Probe Is Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#when-should-you-use-a-liveness-probe"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "ade74944-a674-4e00-859e-c6eab5bde441"
+				}
+			]
+		},
+		{
+			"id": "103f7bc1cf1b6daab548fb853cf56560743c36e41ca98245777588105709bb7c",
+			"severity": "Low",
+			"name": "Liveness Probe Is Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#when-should-you-use-a-liveness-probe"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "ade74944-a674-4e00-859e-c6eab5bde441"
+				}
+			]
+		},
+		{
+			"id": "f488d71c15bfaf553bc738b37ec459410ef817df455ffe82af35f46b9812b181",
+			"severity": "Low",
+			"name": "Liveness Probe Is Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#when-should-you-use-a-liveness-probe"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "ade74944-a674-4e00-859e-c6eab5bde441"
+				}
+			]
+		},
+		{
+			"id": "24e9a7c03b4c4c8a2acec0fa3fd7a82363b91b6033aa6e733c982424e65f4a08",
+			"severity": "Low",
+			"name": "Liveness Probe Is Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#when-should-you-use-a-liveness-probe"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "ade74944-a674-4e00-859e-c6eab5bde441"
+				}
+			]
+		},
+		{
+			"id": "f4b787dd03f351221db09bf7b2cfd689da541776a1ff1b761ecb1d0cb5b3e4ec",
+			"severity": "Low",
+			"name": "Liveness Probe Is Not Defined",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#when-should-you-use-a-liveness-probe"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "ade74944-a674-4e00-859e-c6eab5bde441"
+				}
+			]
+		},
+		{
+			"id": "e2e39ec52cd727a13eec6fbf897973019ad67713a8c7e8518165e95732e5a1c2",
+			"severity": "Low",
+			"name": "Missing AppArmor Profile",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tutorials/clusters/apparmor/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 13,
+				"end_line": 13
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "8b36775e-183d-4d46-b0f7-96a6f34a723f"
+				}
+			]
+		},
+		{
+			"id": "83ec10dc2e5660b756dff24e937f69319e3a2db216968f0a07dddddb4b84fe86",
+			"severity": "Low",
+			"name": "Missing AppArmor Profile",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tutorials/clusters/apparmor/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 13,
+				"end_line": 13
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "8b36775e-183d-4d46-b0f7-96a6f34a723f"
+				}
+			]
+		},
+		{
+			"id": "f0a4a33f641c8b08a027f998110abbb100ca21859f49c0f6a96f1a425e15b13c",
+			"severity": "Low",
+			"name": "Missing AppArmor Profile",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tutorials/clusters/apparmor/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 13,
+				"end_line": 13
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "8b36775e-183d-4d46-b0f7-96a6f34a723f"
+				}
+			]
+		},
+		{
+			"id": "2662abcfbaf12bf40d9a019758ce16402a8ad97db035c30113ecaa7016cf58ff",
+			"severity": "Low",
+			"name": "Missing AppArmor Profile",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tutorials/clusters/apparmor/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 13,
+				"end_line": 13
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "8b36775e-183d-4d46-b0f7-96a6f34a723f"
+				}
+			]
+		},
+		{
+			"id": "3fba454971f80882cf58be732cbd6165dbe6196e0c43ea0f277b00b3f92c00e4",
+			"severity": "Low",
+			"name": "Missing AppArmor Profile",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tutorials/clusters/apparmor/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 13,
+				"end_line": 13
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "8b36775e-183d-4d46-b0f7-96a6f34a723f"
+				}
+			]
+		},
+		{
+			"id": "01b384cc15300f784ddc66c4e1b06ec2858fd4113d37406da0b1baadf1af3166",
+			"severity": "Low",
+			"name": "No Drop Capabilities for Containers",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/workloads/pods/init-containers/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "268ca686-7fb7-4ae9-b129-955a2a89064e"
+				}
+			]
+		},
+		{
+			"id": "8442a55944ffcf6e087835837d3c9f898bd3dc8dfe2ca54fa16eabf869810bcc",
+			"severity": "Low",
+			"name": "No Drop Capabilities for Containers",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/workloads/pods/init-containers/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "268ca686-7fb7-4ae9-b129-955a2a89064e"
+				}
+			]
+		},
+		{
+			"id": "b6c669982ea8efab459f18a9711f3661238c1dbc18d1a5f1011d4ff236795446",
+			"severity": "Low",
+			"name": "No Drop Capabilities for Containers",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/workloads/pods/init-containers/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "268ca686-7fb7-4ae9-b129-955a2a89064e"
+				}
+			]
+		},
+		{
+			"id": "6e4ca0b3fc08ae4087baab215a924cb4e1dc899e2da927abc690c3c447a09da2",
+			"severity": "Low",
+			"name": "No Drop Capabilities for Containers",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/workloads/pods/init-containers/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "268ca686-7fb7-4ae9-b129-955a2a89064e"
+				}
+			]
+		},
+		{
+			"id": "77b6bb0785aabf5dc5a37426bad526622989eb49fc9cfa4b985cbcd117b8623b",
+			"severity": "Low",
+			"name": "No Drop Capabilities for Containers",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/workloads/pods/init-containers/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "268ca686-7fb7-4ae9-b129-955a2a89064e"
+				}
+			]
+		},
+		{
+			"id": "d2546ffddcdd7cc9e0e4e87a9323f86679755436a0fb84dc500d766a60b1c2f5",
+			"severity": "Low",
+			"name": "Pod or Container Without LimitRange",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/policy/limit-range/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "4a20ebac-1060-4c81-95d1-1f7f620e983b"
+				}
+			]
+		},
+		{
+			"id": "d431bd1a701f4b346d46f435444885e766d350242dddf7409874a6fd180e655f",
+			"severity": "Low",
+			"name": "Pod or Container Without LimitRange",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/policy/limit-range/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "4a20ebac-1060-4c81-95d1-1f7f620e983b"
+				}
+			]
+		},
+		{
+			"id": "a64bf0c92364f160c7e3172f7e6ea71adaf77d4f6fedc6781782a02b50d5835d",
+			"severity": "Low",
+			"name": "Pod or Container Without LimitRange",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/policy/limit-range/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "4a20ebac-1060-4c81-95d1-1f7f620e983b"
+				}
+			]
+		},
+		{
+			"id": "f101e079167d84be799edafe87b92b65839a553db74aa07c95ce53ed7b84186e",
+			"severity": "Low",
+			"name": "Pod or Container Without LimitRange",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/policy/limit-range/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "4a20ebac-1060-4c81-95d1-1f7f620e983b"
+				}
+			]
+		},
+		{
+			"id": "9ba70709de55864ea8893d8c45ad7218445a7eaa9988406fc9af360ab724a700",
+			"severity": "Low",
+			"name": "Pod or Container Without LimitRange",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/policy/limit-range/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "4a20ebac-1060-4c81-95d1-1f7f620e983b"
+				}
+			]
+		},
+		{
+			"id": "990cfcfd64ede744e4417b971fa765c1d88fa188943da1eaa1eebf1a3e9beb6b",
+			"severity": "Low",
+			"name": "Pod or Container Without ResourceQuota",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/policy/resource-quotas/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "48a5beba-e4c0-4584-a2aa-e6894e4cf424"
+				}
+			]
+		},
+		{
+			"id": "2791511682748d1eb5f27ed505a7775f4324019ee610af23476e9d08ab9b19ed",
+			"severity": "Low",
+			"name": "Pod or Container Without ResourceQuota",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/policy/resource-quotas/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "48a5beba-e4c0-4584-a2aa-e6894e4cf424"
+				}
+			]
+		},
+		{
+			"id": "9f237845815a91e452cc8684ac43bf06da144929a1fa009b5593673d11a18cf3",
+			"severity": "Low",
+			"name": "Pod or Container Without ResourceQuota",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/policy/resource-quotas/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "48a5beba-e4c0-4584-a2aa-e6894e4cf424"
+				}
+			]
+		},
+		{
+			"id": "147d6fbe2d38db0e20861288f767023e99904e5fa0f2f696095b99befff7eed3",
+			"severity": "Low",
+			"name": "Pod or Container Without ResourceQuota",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/policy/resource-quotas/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "48a5beba-e4c0-4584-a2aa-e6894e4cf424"
+				}
+			]
+		},
+		{
+			"id": "5357e4f609e506ee483dcddcb88a4a2ff0af900fb31e88d9ebe1b83026a9670f",
+			"severity": "Low",
+			"name": "Pod or Container Without ResourceQuota",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/policy/resource-quotas/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 6,
+				"end_line": 6
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "48a5beba-e4c0-4584-a2aa-e6894e4cf424"
+				}
+			]
+		},
+		{
+			"id": "13d8c8e95dd349a565e027ad86c8b2cd573291d262bc607393955f9c9aef1fef",
+			"severity": "Low",
+			"name": "Pod or Container Without Security Context",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a97a340a-0063-418e-b3a1-3028941d0995"
+				}
+			]
+		},
+		{
+			"id": "716270a46519b755eaa89627316da5b7fc8cae7c1b17ce53be1788f59dab0f1e",
+			"severity": "Low",
+			"name": "Pod or Container Without Security Context",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a97a340a-0063-418e-b3a1-3028941d0995"
+				}
+			]
+		},
+		{
+			"id": "b9fb8bb95235de56237a08f96178031799b410d8791ceeea6040a2acff1e5872",
+			"severity": "Low",
+			"name": "Pod or Container Without Security Context",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a97a340a-0063-418e-b3a1-3028941d0995"
+				}
+			]
+		},
+		{
+			"id": "06d0adf16fd34c6ea0e4297afda4719eac2933c6c612951453f10b64e4da7de3",
+			"severity": "Low",
+			"name": "Pod or Container Without Security Context",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a97a340a-0063-418e-b3a1-3028941d0995"
+				}
+			]
+		},
+		{
+			"id": "550be727cb32aa09e45dcc44fa8d7974f643b46f0627899d79a687276ad83066",
+			"severity": "Low",
+			"name": "Pod or Container Without Security Context",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a97a340a-0063-418e-b3a1-3028941d0995"
+				}
+			]
+		},
+		{
+			"id": "d36754091cd4797f5be9cd998585b7cc2fe3577dfdb85b03473479f91553dc48",
+			"severity": "Low",
+			"name": "Root Container Not Mounted Read-only",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\db-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a9c2f49d-0671-4fc9-9ece-f4e261e128d0"
+				}
+			]
+		},
+		{
+			"id": "4072be2fbb7bed653a7da5ed420b7b7150763381bad467b493c134471296810c",
+			"severity": "Low",
+			"name": "Root Container Not Mounted Read-only",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\redis-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a9c2f49d-0671-4fc9-9ece-f4e261e128d0"
+				}
+			]
+		},
+		{
+			"id": "4033b53798221da5bbac08df6b0463eea4e994349fcf09e26bbd2e4cae59b2da",
+			"severity": "Low",
+			"name": "Root Container Not Mounted Read-only",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a9c2f49d-0671-4fc9-9ece-f4e261e128d0"
+				}
+			]
+		},
+		{
+			"id": "cfd50a88babf5dfac95c1c805d16a14dda51bf3f11754b13610e634dd03ce71d",
+			"severity": "Low",
+			"name": "Root Container Not Mounted Read-only",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\worker-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a9c2f49d-0671-4fc9-9ece-f4e261e128d0"
+				}
+			]
+		},
+		{
+			"id": "51e17c2e6d3c379a508eb272854e4688fa04914575d6635a1ca98f31512d24a0",
+			"severity": "Low",
+			"name": "Root Container Not Mounted Read-only",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-deployment.yaml",
+				"start_line": 19,
+				"end_line": 19
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "a9c2f49d-0671-4fc9-9ece-f4e261e128d0"
+				}
+			]
+		},
+		{
+			"id": "f67452c83e377138eee9e536ca2b89a901f0b5985070a53ddfea7ec5d9d9dfda",
+			"severity": "Low",
+			"name": "Service Type is NodePort",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\result-service.yaml",
+				"start_line": 8,
+				"end_line": 8
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "845acfbe-3e10-4b8e-b656-3b404d36dfb2"
+				}
+			]
+		},
+		{
+			"id": "934f1c4f46801e98f847e2c99966b51f2f86ddc85d2c482e66f7d6d5b30d9bc0",
+			"severity": "Low",
+			"name": "Service Type is NodePort",
+			"links": [
+				{
+					"url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\k8s-specifications\\vote-service.yaml",
+				"start_line": 8,
+				"end_line": 8
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/kubernetes-queries",
+					"value": "845acfbe-3e10-4b8e-b656-3b404d36dfb2"
+				}
+			]
+		},
+		{
+			"id": "c44f5db4c8cfd789c73b0471aac5591f20c391c4a9c6b5ad95768811c49141fe",
+			"severity": "Info",
+			"name": "Apt Get Install Lists Were Not Deleted",
+			"links": [
+				{
+					"url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
+				}
+			],
+			"location": {
+				"file": "git::https:\\\\github.com\\dockersamples\\example-voting-app\\result\\tests\\Dockerfile",
+				"start_line": 1,
+				"end_line": 1
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/dockerfile-queries",
+					"value": "df746b39-6564-4fed-bf85-e9c44382303c"
+				}
+			]
+		}
+	]
+}
