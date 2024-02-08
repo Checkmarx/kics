@@ -6,9 +6,7 @@ rules:
   indentation:
     indent-sequences: consistent
   comments-indentation: disable
-  new-line-at-end-of-file:
-    level: info
-  trailing-spaces:
-    level: info
+  new-line-at-end-of-file: disable
+  trailing-spaces: disable
 ignore: |
   **/kms_key_with_full_permissions/test/positive.yaml
