@@ -633,8 +633,8 @@ func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.Fil
 		startLine := 0
 		totalLineNum := len(*lines)
 		numLinesPerRoutine := totalLineNum / numRoutines
-		//this check is necessary because the division of
-		//two integers returns 0 if the dividend is less than the divisor
+		// this check is necessary because the division of
+		// two integers returns 0 if the dividend is less than the divisor
 		if numLinesPerRoutine == 0 {
 			wg.Add(1)
 			go c.checkLines(wg, &c.regexQueries[i], basePaths, &files[idx], lines, startLine, totalLineNum)
