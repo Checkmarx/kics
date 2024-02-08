@@ -16,7 +16,7 @@ jobs:
           go-version: 1.21.x
           cache: false
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v3.5.0
+        uses: golangci/golangci-lint-action@v3.7.1
         with:
           version: v1.55.2
           args: -c .golangci.yml --timeout 20m
