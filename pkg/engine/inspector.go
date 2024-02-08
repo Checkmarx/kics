@@ -309,6 +309,7 @@ func (c *Inspector) doRun(ctx *QueryContext) (vulns []model.Vulnerability, err e
 		if r := recover(); r != nil {
 			errMessage := fmt.Sprintf("Recovered from panic during query '%s' run. ", ctx.Query.Metadata.Query)
 			err = fmt.Errorf("panic: %v", r)
+			fmt.Println()
 			log.Err(err).Msg(errMessage)
 		}
 	}()
