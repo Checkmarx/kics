@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"math"
 	"regexp"
+	"runtime"
 	"strings"
 	"sync"
 	"time"
@@ -30,6 +31,19 @@ const (
 var (
 	SecretsQueryMetadata map[string]string
 )
+
+type CheckSecretLineJob struct {
+	LineNumber int
+	Line       string
+}
+
+type SecretLineResult struct {
+	BasePaths    []string
+	File         *model.FileMetadata
+	Query        *RegexQuery
+	LineNumber   int
+	MatchContent string
+}
 
 // SecretTracker is Struct created to keep track of the secrets found in the inspector
 // it used for masking all the secrets in the vulnerability preview in the different report formats
@@ -451,57 +465,49 @@ func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadat
 	return lineVulneInfoSlice
 }
 
-func (c *Inspector) checkLines(wg *sync.WaitGroup, query *RegexQuery,
-	basePaths []string, file *model.FileMetadata, lines *[]string,
-	startLine, endLine int) {
-	defer wg.Done()
-	for lineNumber, currentLine := range *lines {
-		if lineNumber+startLine >= endLine {
-			return
-		}
-		c.checkLineByLine(query, basePaths, file, startLine+lineNumber, currentLine)
-	}
-}
-
 func (c *Inspector) checkLineByLine(query *RegexQuery,
-	basePaths []string, file *model.FileMetadata, lineNumber int, currentLine string) {
-	isSecret, groups := c.isSecret(currentLine, query)
-	if !isSecret {
-		return
-	}
-
-	if len(query.Entropies) == 0 {
-		c.addVulnerability(
-			basePaths,
-			file,
-			query,
-			lineNumber,
-			currentLine,
-		)
-	}
-
-	for i := range query.Entropies {
-		entropy := query.Entropies[i]
-
-		// if matched group does not exist continue
-		if len(groups[0]) <= entropy.Group {
+	basePaths []string, file *model.FileMetadata, jobs <-chan CheckSecretLineJob, results chan<- SecretLineResult) {
+	for job := range jobs {
+		lineNumber := job.LineNumber
+		currentLine := job.Line
+		isSecret, groups := c.isSecret(currentLine, query)
+		if !isSecret {
 			return
 		}
 
-		isMatch, entropyFloat := CheckEntropyInterval(
-			entropy,
-			groups[0][entropy.Group],
-		)
-		log.Debug().Msgf("match: %v :: %v", isMatch, fmt.Sprint(entropyFloat))
-
-		if isMatch {
-			c.addVulnerability(
+		if len(query.Entropies) == 0 {
+			results <- SecretLineResult{
 				basePaths,
 				file,
 				query,
 				lineNumber,
 				currentLine,
+			}
+		}
+
+		for i := range query.Entropies {
+			entropy := query.Entropies[i]
+
+			// if matched group does not exist continue
+			if len(groups[0]) <= entropy.Group {
+				return
+			}
+
+			isMatch, entropyFloat := CheckEntropyInterval(
+				entropy,
+				groups[0][entropy.Group],
 			)
+			log.Debug().Msgf("match: %v :: %v", isMatch, fmt.Sprint(entropyFloat))
+
+			if isMatch {
+				results <- SecretLineResult{
+					basePaths,
+					file,
+					query,
+					lineNumber,
+					currentLine,
+				}
+			}
 		}
 	}
 }
@@ -618,36 +624,64 @@ func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
 	return nil
 }
 
+func (c *Inspector) createCheckSecretLineJobs(jobs chan<- CheckSecretLineJob, lines *[]string) {
+	for i, line := range *lines {
+		jobs <- CheckSecretLineJob{
+			LineNumber: i,
+			Line:       line,
+		}
+	}
+	close(jobs)
+}
+
 func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) {
 	// lines ignore can have the lines from the resolved files
 	// since inspector secrets only looks to original data, the lines ignore should be replaced
-	numRoutines := 30
+	numRoutines := runtime.GOMAXPROCS(-1)
 	files[idx].LinesIgnore = model.GetIgnoreLines(&files[idx])
-
-	wg := &sync.WaitGroup{}
+	totalLineNum := len((*files[idx].LinesOriginalData))
 
 	// check file content line by line
 	if !c.regexQueries[i].Multiline {
+		// Create a channel to collect the results
+		results := make(chan SecretLineResult, totalLineNum)
+
+		// Create a channel for inspection jobs
+		jobs := make(chan CheckSecretLineJob, totalLineNum)
 		lines := (&files[idx]).LinesOriginalData
-		startLine := 0
-		totalLineNum := len(*lines)
-		numLinesPerRoutine := totalLineNum / numRoutines
-		if numLinesPerRoutine == 0 {
+
+		var wg sync.WaitGroup
+
+		// Start a goroutine for each worker
+		for w := 0; w < numRoutines; w++ {
 			wg.Add(1)
-			go c.checkLines(wg, &c.regexQueries[i], basePaths, &files[idx], lines, startLine, totalLineNum)
-		} else {
-			for startLine < totalLineNum {
-				endLine := startLine + numLinesPerRoutine
-				if endLine > totalLineNum {
-					endLine = totalLineNum
-				}
-				routineLines := (*lines)[startLine:]
-				wg.Add(1)
-				go c.checkLines(wg, &c.regexQueries[i], basePaths, &files[idx], &routineLines, startLine, endLine)
-				startLine = endLine
-			}
+
+			go func() {
+				// Decrement the counter when the goroutine completes
+				defer wg.Done()
+				c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], jobs, results)
+			}()
 		}
-		wg.Wait()
+
+		// Start a goroutine to create check secret line jobs
+		go c.createCheckSecretLineJobs(jobs, lines)
+
+		go func() {
+			// Wait for all jobs to finish
+			wg.Wait()
+			// Then close the results channel
+			close(results)
+		}()
+
+		for result := range results {
+			c.addVulnerability(
+				result.BasePaths,
+				result.File,
+				result.Query,
+				result.LineNumber,
+				result.MatchContent,
+			)
+		}
 		return
 	}
 
