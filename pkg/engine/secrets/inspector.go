@@ -465,8 +465,9 @@ func (c *Inspector) secretsDetectLine(query *RegexQuery, file *model.FileMetadat
 	return lineVulneInfoSlice
 }
 
-func (c *Inspector) checkLineByLine(query *RegexQuery,
+func (c *Inspector) checkLineByLine(wg *sync.WaitGroup, query *RegexQuery,
 	basePaths []string, file *model.FileMetadata, jobs <-chan CheckSecretLineJob, results chan<- SecretLineResult) {
+	defer wg.Done()
 	for job := range jobs {
 		lineNumber := job.LineNumber
 		currentLine := job.Line
@@ -625,42 +626,36 @@ func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
 }
 
 func (c *Inspector) createCheckSecretLineJobs(jobs chan<- CheckSecretLineJob, lines *[]string) {
+	defer close(jobs)
 	for i, line := range *lines {
 		jobs <- CheckSecretLineJob{
 			LineNumber: i,
 			Line:       line,
 		}
 	}
-	close(jobs)
 }
 
 func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) {
 	// lines ignore can have the lines from the resolved files
 	// since inspector secrets only looks to original data, the lines ignore should be replaced
-	numRoutines := runtime.GOMAXPROCS(-1)
+	numRoutines := runtime.GOMAXPROCS(-1) //replace with c.numWorkers when orca pr enters
 	files[idx].LinesIgnore = model.GetIgnoreLines(&files[idx])
-	totalLineNum := len((*files[idx].LinesOriginalData))
+	lines := (&files[idx]).LinesOriginalData
 
 	// check file content line by line
 	if !c.regexQueries[i].Multiline {
 		// Create a channel to collect the results
-		results := make(chan SecretLineResult, totalLineNum)
+		results := make(chan SecretLineResult, len(*lines))
 
 		// Create a channel for inspection jobs
-		jobs := make(chan CheckSecretLineJob, totalLineNum)
-		lines := (&files[idx]).LinesOriginalData
+		jobs := make(chan CheckSecretLineJob, len(*lines))
 
 		var wg sync.WaitGroup
 
 		// Start a goroutine for each worker
 		for w := 0; w < numRoutines; w++ {
 			wg.Add(1)
-
-			go func() {
-				// Decrement the counter when the goroutine completes
-				defer wg.Done()
-				c.checkLineByLine(&c.regexQueries[i], basePaths, &files[idx], jobs, results)
-			}()
+			go c.checkLineByLine(&wg, &c.regexQueries[i], basePaths, &files[idx], jobs, results)
 		}
 
 		// Start a goroutine to create check secret line jobs
