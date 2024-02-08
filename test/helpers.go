@@ -295,58 +295,6 @@ var queryCritical = model.QueryResult{
 	},
 }
 
-/*
-var queryCriticalCycloneDX = model.QueryResult{
-	QueryName:                   "AmazonMQ Broker Encryption Disabled",
-	QueryID:                     "316278b3-87ac-444c-8f8f-a733a28da609",
-	Description:                 "AmazonMQ Broker should have Encryption Options defined",
-	DescriptionID:               "c5d562d9",
-	CISDescriptionIDFormatted:   "testCISID",
-	CISDescriptionTitle:         "testCISTitle",
-	CISDescriptionTextFormatted: "testCISDescription",
-	CloudProvider:               "AWS",
-	Severity:                    model.SeverityCritical,
-	Files: []model.VulnerableFile{
-		{
-			FileName:         positiveYamlCyclone,
-			Line:             6,
-			IssueType:        "MissingAttribute",
-			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
-			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
-			KeyActualValue:   "'default_action.redirect.protocol' is missing",
-			Value:            nil,
-			VulnLines:        &[]model.CodeLine{},
-		},
-	},
-}
-
-var SummaryMockCriticalCycloneDX = model.Summary{
-	Counters: model.Counters{
-		ScannedFiles:           2,
-		ParsedFiles:            2,
-		FailedToScanFiles:      0,
-		TotalQueries:           1,
-		FailedToExecuteQueries: 0,
-	},
-	Queries: []model.QueryResult{
-		queryCriticalCycloneDX,
-	},
-	SeveritySummary: model.SeveritySummary{
-		ScanID: "console",
-		SeverityCounters: map[model.Severity]int{
-			model.SeverityInfo:     0,
-			model.SeverityLow:      0,
-			model.SeverityMedium:   0,
-			model.SeverityHigh:     0,
-			model.SeverityCritical: 1,
-		},
-		TotalCounter: 1,
-	},
-	ScannedPaths: []string{
-		"./",
-	},
-}*/
-
 var SummaryMockCritical = model.Summary{
 	Counters: model.Counters{
 		ScannedFiles:           2,
@@ -446,7 +394,7 @@ var SummaryMockCriticalFullPathASFF = model.Summary{
 		TotalCounter: 1,
 	},
 	ScannedPaths: []string{
-		".\\test\\fixtures\\test_critical_custom_queries\\amazon_mq_broker_encryption_disabled\\test\\",
+		"./test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/",
 	},
 }
 
