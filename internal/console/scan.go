@@ -141,6 +141,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		ExcludeGitIgnore:            flags.GetBoolFlag(flags.ExcludeGitIgnore),
 		OpenAPIResolveReferences:    flags.GetBoolFlag(flags.OpenAPIReferencesFlag),
 		ParallelScanFlag:            flags.GetIntFlag(flags.ParallelScanFile),
+		MaxFileSizeFlag:             flags.GetIntFlag(flags.MaxFileSizeFlag),
 	}
 
 	return &scanParams

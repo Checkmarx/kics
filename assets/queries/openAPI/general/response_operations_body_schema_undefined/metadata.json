@@ -6,13 +6,15 @@
   "descriptionText": "If a response is not head or its code is not 204 or 304, it should have a schema defined",
   "descriptionUrl": "https://swagger.io/docs/specification/describing-responses/",
   "platform": "OpenAPI",
+  "descriptionID": "eaff445e",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "31afbcb7-70e0-48bb-a31a-3374f95cf859",
       "queryName": "Response on operations that should have a body has undefined schema (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#responses-object"
+      "descriptionUrl": "https://swagger.io/specification/v2/#responses-object",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "eaff445e"
+  "cwe": ""
 }

@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/get-set-up-for-amazon-ecs.html#create-a-base-security-group",
   "platform": "CloudFormation",
   "descriptionID": "747f49ac",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "cwe": ""
 }

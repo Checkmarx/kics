@@ -6,5 +6,6 @@
   "descriptionText": "When installing packages, use the '--no-cache' switch to avoid the need to use '--update' and remove '/var/cache/apk/*'",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
   "platform": "Dockerfile",
-  "descriptionID": "d44503b8"
+  "descriptionID": "d44503b8",
+  "cwe": "459"
 }

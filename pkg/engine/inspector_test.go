@@ -3,6 +3,8 @@ package engine
 import (
 	"context"
 	"fmt"
+	"github.com/open-policy-agent/opa/rego"
+	"github.com/stretchr/testify/assert"
 	"io"
 	"os"
 	"path/filepath"
@@ -679,6 +681,81 @@ func TestShouldSkipFile(t *testing.T) {
 			require.Equal(t, tt.expected, got)
 		})
 	}
+}
+
+func TestInspector_DecodeQueryResults(t *testing.T) {
+
+	//context
+	contextToUSe := context.Background()
+
+	//build inspector
+	c := newInspectorInstance(t, []string{})
+
+	type args struct {
+		queryContext QueryContext
+		regoResult   rego.ResultSet
+		timeDuration string
+	}
+	tests := []struct {
+		name     string
+		args     args
+		expected int
+	}{
+		{
+			name: "should_not_fail_when_timeout",
+			args: args{
+				queryContext: newQueryContext(contextToUSe),
+				regoResult:   newResultset(),
+				timeDuration: "0s",
+			},
+			expected: 0,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			//create a context with 0 second to timeout
+			timeoutDuration, _ := time.ParseDuration(tt.args.timeDuration)
+			myCtxTimeOut, _ := context.WithTimeout(contextToUSe, timeoutDuration)
+			result, err := c.DecodeQueryResults(&tt.args.queryContext, myCtxTimeOut, tt.args.regoResult)
+			assert.Nil(t, err, "Error not as expected")
+			assert.Equal(t, 0, len(result), "Array size is not as expected")
+		})
+	}
+}
+
+func newResultset() rego.ResultSet {
+	myValue := make(map[string]interface{})
+	myValue["documentId"] = "3a3be8f7-896e-4ef8-9db3-d6c19e60510b"
+	myValue["issueType"] = "IncorrectValue"
+	myValue["keyActualValue"] = "COPY --from referencesthe current FROM alias"
+	myValue["keyExpectedValue"] = "COPY --from should not references the current FROM alias"
+	myValue["searchKey"] = "{{ADD ${JAR_FILE} app.jar}}"
+
+	myBinding := make([]interface{}, 1)
+	myBinding[0] = myValue
+
+	myresult := rego.Result{
+		Bindings: map[string]interface{}{
+			"result": myBinding,
+		},
+	}
+	myResultSet := rego.ResultSet{myresult}
+	return myResultSet
+}
+
+func newQueryContext(ctx context.Context) QueryContext {
+	queryMetadata := model.QueryMetadata{
+		Platform: "myPlatform",
+		Query:    "myQuery"}
+	myQuery := PreparedQuery{
+		Metadata: queryMetadata,
+	}
+	queryContext := QueryContext{
+		Ctx:   ctx,
+		Query: &myQuery,
+	}
+	return queryContext
 }
 
 func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {

@@ -6,5 +6,6 @@
   "descriptionText": "Serverless Function should not share IAM Role to ensure it will have the minimum privileges needed to perform the required tasks",
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml#functions",
   "platform": "ServerlessFW",
-  "descriptionID": "071f8656"
+  "descriptionID": "071f8656",
+  "cwe": ""
 }

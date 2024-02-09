@@ -170,7 +170,7 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 	files := make(model.FileMetadatas, 0)
 
 	for _, parser := range combinedParser {
-		docs, err := parser.Parse(filePath, content, true)
+		docs, err := parser.Parse(filePath, content, true, false)
 		for _, document := range docs.Docs {
 			require.NoError(t, err)
 			files = append(files, model.FileMetadata{

@@ -6,5 +6,6 @@
   "descriptionText": "The MAINTAINER instruction sets the Author field of the generated images. The LABEL instruction is a much more flexible version of this and you should use it instead, as it enables setting any metadata you require, and can be viewed easily",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#maintainer-deprecated",
   "platform": "Dockerfile",
-  "descriptionID": "9d9cbf83"
+  "descriptionID": "9d9cbf83",
+  "cwe": "710"
 }

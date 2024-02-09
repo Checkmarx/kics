@@ -8,6 +8,7 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/kics"
+	"github.com/Checkmarx/kics/pkg/minified"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/scan"
 	"github.com/open-policy-agent/opa/topdown"
@@ -116,7 +117,8 @@ func getPayload(filePath string, content []byte, openAPIResolveReferences bool) 
 		return model.FileMetadatas{}, errors.New("failed to get parser")
 	}
 
-	documents, er := p[0].Parse(filePath, content, openAPIResolveReferences)
+	isMinified := minified.IsMinified(filePath, content)
+	documents, er := p[0].Parse(filePath, content, openAPIResolveReferences, isMinified)
 
 	if er != nil {
 		log.Error().Msgf("failed to parse file '%s': %s", filePath, er)
@@ -138,6 +140,7 @@ func getPayload(filePath string, content []byte, openAPIResolveReferences bool) 
 			Commands:          p[0].CommentsCommands(filePath, content),
 			OriginalData:      string(content),
 			LinesOriginalData: utils.SplitLines(string(content)),
+			IsMinified:        documents.IsMinified,
 		}
 
 		files = append(files, file)
@@ -174,7 +177,9 @@ func runQuery(r *runQueryInfo) []model.Vulnerability {
 		Files:         r.files.ToMap(),
 	}
 
-	decoded, err := r.inspector.DecodeQueryResults(queryCtx, results)
+	timeoutCtxToDecode, cancelDecode := context.WithTimeout(context.Background(), queryExecTimeout)
+	defer cancelDecode()
+	decoded, err := r.inspector.DecodeQueryResults(queryCtx, timeoutCtxToDecode, results)
 
 	if err != nil {
 		log.Err(err)

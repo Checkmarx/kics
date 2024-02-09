@@ -46,6 +46,7 @@ type Parameters struct {
 	ExcludeGitIgnore            bool
 	OpenAPIResolveReferences    bool
 	ParallelScanFlag            int
+	MaxFileSizeFlag             int
 }
 
 // Client represents a scan client

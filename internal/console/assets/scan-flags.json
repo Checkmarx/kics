@@ -213,5 +213,11 @@
     "shorthandFlag": "",
     "defaultValue": "1",
     "usage": "number of workers enabled for parallel scanning, set 0 to auto-detect parallelism"
+  },
+  "max-file-size": {
+    "flagType": "int",
+    "shorthandFlag": "",
+    "defaultValue": "5",
+    "usage": "max file size permitted for scanning, in MB"
   }
 }
