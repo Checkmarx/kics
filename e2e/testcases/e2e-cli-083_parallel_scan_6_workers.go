@@ -15,7 +15,7 @@ func init() { //nolint
 			},
 			ExpectedResult: []ResultsValidation{
 				{
-					ResultsFile:    "E2E_CLI_081_RESULT",
+					ResultsFile:    "E2E_CLI_083_RESULT",
 					ResultsFormats: []string{"json"},
 				},
 			},
