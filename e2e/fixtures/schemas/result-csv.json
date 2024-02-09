@@ -94,6 +94,10 @@
                     "Terraform"
                 ]
             },
+            "CWE": {
+                "type": "string",
+                "minLength": 0
+            },
             "CloudProvider": {
                 "type": "string",
                 "minLength": 1

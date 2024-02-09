@@ -99,6 +99,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 				Recommendation: "Problem found in line 1. Expected value: aws_guardduty_detector[{{positive1}}].tags is defined and not null. Actual value: aws_guardduty_detector[{{positive1}}].tags is undefined or null.",
 			},
 		},
+		CWE: "",
 	}
 
 	v2 := Vulnerability{
@@ -120,6 +121,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 				Recommendation: "Problem found in line 2. Expected value: GuardDuty Detector should be Enabled. Actual value: GuardDuty Detector is not Enabled.",
 			},
 		},
+		CWE: "",
 	}
 
 	v3 := Vulnerability{
@@ -141,6 +143,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 				Recommendation: "Problem found in line 1. Expected value: aws_guardduty_detector[{{negative1}}].tags is defined and not null. Actual value: aws_guardduty_detector[{{negative1}}].tags is undefined or null.",
 			},
 		},
+		CWE: "",
 	}
 
 	vulnsC1 = append(vulnsC1, v1)

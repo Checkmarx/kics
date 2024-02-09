@@ -33,6 +33,7 @@ type AwsSecurityFinding struct {
 	Title         string
 	Types         []string
 	UpdatedAt     string
+	CWE           string
 }
 
 // AsffRecommendation includes the recommendation to avoid the finding
@@ -143,6 +144,7 @@ func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.Vulner
 			},
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},
+		CWE:        "",
 	}
 
 	return finding

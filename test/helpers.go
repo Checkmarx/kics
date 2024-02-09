@@ -139,6 +139,7 @@ var queryHigh = model.QueryResult{
 			VulnLines:        &[]model.CodeLine{},
 		},
 	},
+	CWE: "",
 }
 
 var queryMedium = model.QueryResult{

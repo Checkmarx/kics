@@ -113,6 +113,9 @@
               "Terraform"
             ]
           },
+          "cwe": {
+            "type": "string"
+          },
           "files": {
             "type": "array",
             "items": {

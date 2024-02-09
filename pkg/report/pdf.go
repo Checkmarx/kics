@@ -35,6 +35,7 @@ const (
 	colEight        = 8
 	colNine         = 9
 	colTen          = 10
+	colEleven       = 11
 	colFullPage     = 12
 	colRuneSlitter  = 20
 	textSize        = 10
@@ -72,6 +73,7 @@ func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error {
 		resultsCount := fmt.Sprint(len(queries[i].Files))
 		severity := string(queries[i].Severity)
 		platform := queries[i].Platform
+		cwe := queries[i].CWE
 		category := queries[i].Category
 		description := queries[i].Description
 		var err error
@@ -111,13 +113,16 @@ func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error {
 		if err != nil {
 			return err
 		}
-		m.Row(colFour, func() {
+		m.Row(colFive, func() {
 			createQueryEntryMetadataField(m, "Severity", severity, textSize)
 		})
 		m.Row(colThree, func() {
 			createQueryEntryMetadataField(m, "Platform", platform, defaultTextSize)
 		})
-		m.Row(colFive, func() {
+		m.Row(colFour, func() {
+			createQueryEntryMetadataField(m, "Cwe", cwe, defaultTextSize)
+		})
+		m.Row(colSix, func() {
 			createQueryEntryMetadataField(m, "Category", category, defaultTextSize)
 		})
 		if queries[i].CISDescriptionID != "" {

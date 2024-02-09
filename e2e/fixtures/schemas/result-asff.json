@@ -136,6 +136,9 @@
                     }
                 }
             },
+            "CWE":{
+                "type":"string"
+            },
             "Title": {
                 "type": "string",
                 "minLength": 1

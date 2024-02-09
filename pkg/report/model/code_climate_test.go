@@ -28,6 +28,7 @@ func TestBuildCodeClimateReport(t *testing.T) {
 						Lines: lines{Begin: 25},
 					},
 					Severity: "critical",
+					CWE:      "",
 				},
 				{
 					Type:        "issue",
@@ -39,6 +40,7 @@ func TestBuildCodeClimateReport(t *testing.T) {
 						Lines: lines{Begin: 19},
 					},
 					Severity: "critical",
+					CWE:      "",
 				},
 			},
 		},

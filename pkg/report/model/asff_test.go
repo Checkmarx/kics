@@ -33,13 +33,13 @@ func TestBuildASFFReport(t *testing.T) {
 		Title:     *aws.String("AmazonMQ Broker Encryption Disabled"),
 		Types:     []string{*aws.String("Software and Configuration Checks/Vulnerabilities/KICS")},
 		UpdatedAt: *aws.String(time.Now().Format(time.RFC3339)),
-
 		Remediation: Remediation{
 			Recommendation: AsffRecommendation{
 				Text: *aws.String("Problem found on 'positive.tf' file in line 1. Expected value: resource.aws_mq_broker[positive1].encryption_options is defined. Actual value: resource.aws_mq_broker[positive1].encryption_options is not defined."),
 			},
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},
+		CWE:        "",
 	}
 
 	var awsSecurityFindings []AwsSecurityFinding

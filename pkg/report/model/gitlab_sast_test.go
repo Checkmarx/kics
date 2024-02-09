@@ -39,6 +39,7 @@ var tests = []gitlabSASTTest{
 		vq: model.QueryResult{
 			QueryName:   "test",
 			QueryID:     "1",
+			CWE:         "",
 			Description: "test description",
 			QueryURI:    "https://www.test.com",
 			Severity:    model.SeverityHigh,
@@ -91,6 +92,7 @@ var tests = []gitlabSASTTest{
 							Value:          "1",
 						},
 					},
+					CWE: "",
 				},
 			},
 		},

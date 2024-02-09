@@ -66,6 +66,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 						EngineID: "KICS " + constants.Version,
 						RuleID:   "de7f5e83-da88-4046-871f-ea18504b1d43",
 						Severity: "CRITICAL",
+						CWE:      "",
 						Type:     "",
 						PrimaryLocation: &Location{
 							Message:  "ALB protocol is HTTP Description",
