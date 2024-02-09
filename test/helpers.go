@@ -308,19 +308,44 @@ var SummaryMock = model.Summary{
 	},
 }
 
+var queryCriticalCLI = model.QueryResult{
+	QueryName:                   "Run Block Injection",
+	QueryID:                     "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+	Description:                 "GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event.",
+	DescriptionID:               "02044a75",
+	CISDescriptionIDFormatted:   "testCISID",
+	CISDescriptionTitle:         "testCISTitle",
+	CISDescriptionTextFormatted: "testCISDescription",
+	Severity:                    model.SeverityCritical,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         positive,
+			Line:             10,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is missing",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
+	CWE: "",
+}
+
 // ComplexSummaryMock a summary with more results to be used without running kics scan
 var ComplexSummaryMock = model.Summary{
 	Counters: model.Counters{
 		ScannedFiles:           2,
 		ParsedFiles:            2,
 		FailedToScanFiles:      0,
-		TotalQueries:           3,
+		TotalQueries:           4,
 		FailedToExecuteQueries: 0,
 	},
 	Queries: []model.QueryResult{
 		queryHigh,
 		queryMedium,
 		queryHighCWE,
+		queryCriticalCLI,
 	},
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
@@ -329,9 +354,9 @@ var ComplexSummaryMock = model.Summary{
 			model.SeverityLow:      0,
 			model.SeverityMedium:   1,
 			model.SeverityHigh:     4,
-			model.SeverityCritical: 0,
+			model.SeverityCritical: 1,
 		},
-		TotalCounter: 5,
+		TotalCounter: 6,
 	},
 	LatestVersion: model.Version{
 		Latest: true,
