@@ -1,0 +1,707 @@
+{
+	"kics_version": "development",
+	"files_scanned": 1,
+	"lines_scanned": 121,
+	"files_parsed": 1,
+	"lines_parsed": 119,
+	"lines_ignored": 2,
+	"files_failed_to_scan": 0,
+	"queries_total": 1045,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"HIGH": 10,
+		"INFO": 14,
+		"LOW": 2,
+		"MEDIUM": 6,
+		"TRACE": 0
+	},
+	"total_counter": 32,
+	"total_bom_resources": 0,
+	"start": "2024-02-09T18:00:41.6609138Z",
+	"end": "2024-02-09T18:01:44.7276323Z",
+	"paths": [
+		"C:\\Users\\julios\\Documents\\repos\\kics\\test\\fixtures\\test_output_path\\main.tf"
+	],
+	"queries": [
+		{
+			"query_name": "IAM Database Auth Not Enabled",
+			"query_id": "88fd05e0-ac0e-43d2-ba6d-fc0ba60ae1a6",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#iam_database_authentication_enabled",
+			"severity": "HIGH",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Encryption",
+			"experimental": false,
+			"description": "IAM Database Auth Enabled should be configured to true when using compatible engine and version",
+			"description_id": "12b1c8aa",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "71b7bea5c9c9cee96e13074e3a8e02023c14f12dd41b4b6d92a8b65dba225687",
+					"line": 45,
+					"resource_type": "aws_db_instance",
+					"resource_name": "km_db_${var.environment}",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_db_instance[km_db]",
+					"search_line": 45,
+					"search_value": "",
+					"expected_value": "'iam_database_authentication_enabled' should be set to true",
+					"actual_value": "'iam_database_authentication_enabled' is undefined or null",
+					"remediation": "iam_database_authentication_enabled = true",
+					"remediation_type": "addition"
+				}
+			]
+		},
+		{
+			"query_name": "KMS Key With Full Permissions",
+			"query_id": "7ebc9038-0bde-479a-acc4-6ed7b6758899",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key",
+			"severity": "HIGH",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Insecure Configurations",
+			"experimental": false,
+			"description": "The KMS key has a policy that is too permissive, as it provides the AWS account owner with access to all AWS KMS operations, therefore violating the principle of least privilege.",
+			"description_id": "32b2985e",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "4b645190ea61aa8262797dc39dd6372549c0837796cb6373038831c4b47cd86a",
+					"line": 35,
+					"resource_type": "aws_kms_key",
+					"resource_name": "km_db_kms_key",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_kms_key[km_db_kms_key]",
+					"search_line": 35,
+					"search_value": "",
+					"expected_value": "aws_kms_key[km_db_kms_key].policy should be defined and not null",
+					"actual_value": "aws_kms_key[km_db_kms_key].policy is undefined or null"
+				}
+			]
+		},
+		{
+			"query_name": "S3 Bucket Allows Public Policy",
+			"query_id": "1a4bc881-9f69-4d44-8c9a-d37d08f54c50",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
+			"severity": "HIGH",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Access Control",
+			"experimental": false,
+			"description": "S3 bucket allows public policy",
+			"description_id": "a8924b3b",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "25476a67c7f8ed62bf0999facaab5ac83a07374672a068d16e79a45ac163af10",
+					"line": 120,
+					"resource_type": "aws_s3_bucket_public_access_block",
+					"resource_name": "km_public_blob",
+					"issue_type": "IncorrectValue",
+					"search_key": "aws_s3_bucket_public_access_block[km_public_blob].block_public_policy",
+					"search_line": 120,
+					"search_value": "",
+					"expected_value": "'block_public_policy' should equal 'true'",
+					"actual_value": "'block_public_policy' is equal 'false'"
+				}
+			]
+		},
+		{
+			"query_name": "S3 Bucket SSE Disabled",
+			"query_id": "6726dcc0-5ff5-459d-b473-a780bef7665c",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#server_side_encryption_configuration",
+			"severity": "HIGH",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Encryption",
+			"experimental": false,
+			"description": "If algorithm is AES256 then the master key is null, empty or undefined, otherwise the master key is required",
+			"description_id": "b386c506",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "aba464a3fadf8ad9474db05cd833d0a985d92c3ce93703d04528873f9b6a3915",
+					"line": 112,
+					"resource_type": "aws_s3_bucket",
+					"resource_name": "km-public-blob",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_s3_bucket[km_public_blob]",
+					"search_line": 112,
+					"search_value": "",
+					"expected_value": "'aws_s3_bucket' to have 'server_side_encryption_configuration' associated",
+					"actual_value": "'aws_s3_bucket' does not have 'server_side_encryption_configuration' associated"
+				},
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "361b4efcb1cde4c96862ea869b204790fafd39f5df66ab792071043c0ff1d55b",
+					"line": 104,
+					"resource_type": "aws_s3_bucket",
+					"resource_name": "km-blob-storage-${var.environment}",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_s3_bucket[km_blob_storage]",
+					"search_line": 104,
+					"search_value": "",
+					"expected_value": "'aws_s3_bucket' to have 'server_side_encryption_configuration' associated",
+					"actual_value": "'aws_s3_bucket' does not have 'server_side_encryption_configuration' associated"
+				}
+			]
+		},
+		{
+			"query_name": "S3 Bucket Without Enabled MFA Delete",
+			"query_id": "c5b31ab9-0f26-4a49-b8aa-4cc064392f4d",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#mfa_delete",
+			"severity": "HIGH",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Insecure Configurations",
+			"experimental": false,
+			"description": "S3 bucket without MFA Delete Enabled. MFA delete cannot be enabled through Terraform, it can be done by adding a MFA device (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable.html) and enabling versioning and MFA delete by using AWS CLI: 'aws s3api put-bucket-versioning --versioning-configuration=Status=Enabled,MFADelete=Enabled --bucket=\u003cBUCKET_NAME\u003e --mfa=\u003cMFA_SERIAL_NUMBER\u003e'. Please, also notice that MFA delete can not be used with lifecycle configurations",
+			"description_id": "e1699d08",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "b1ae5517fdc518d0b9be575dd5b3e1c1e6ec912d134aa4904311221cf9717267",
+					"line": 104,
+					"resource_type": "aws_s3_bucket",
+					"resource_name": "km-blob-storage-${var.environment}",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_s3_bucket[km_blob_storage]",
+					"search_line": 104,
+					"search_value": "",
+					"expected_value": "versioning should be defined and not null",
+					"actual_value": "versioning is undefined or null"
+				},
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "d55ab96849a3abf381e2a72fb8dd5bd9928507bff009eab789dcc268e43c0a3c",
+					"line": 112,
+					"resource_type": "aws_s3_bucket",
+					"resource_name": "km-public-blob",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_s3_bucket[km_public_blob]",
+					"search_line": 112,
+					"search_value": "",
+					"expected_value": "versioning should be defined and not null",
+					"actual_value": "versioning is undefined or null"
+				}
+			]
+		},
+		{
+			"query_name": "S3 Bucket Without Restriction Of Public Bucket",
+			"query_id": "1ec253ab-c220-4d63-b2de-5b40e0af9293",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
+			"severity": "HIGH",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Insecure Configurations",
+			"experimental": false,
+			"description": "S3 bucket without restriction of public bucket",
+			"description_id": "a6e86c32",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "86358229d9bc37d9c656acdcc19623f66ffc0fec727e9d372033e3afe92812af",
+					"line": 116,
+					"resource_type": "aws_s3_bucket_public_access_block",
+					"resource_name": "km_public_blob",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_s3_bucket_public_access_block[km_public_blob].restrict_public_buckets",
+					"search_line": 116,
+					"search_value": "",
+					"expected_value": "'restrict_public_buckets' should equal 'true'",
+					"actual_value": "'restrict_public_buckets' is missing",
+					"remediation": "restrict_public_buckets = true",
+					"remediation_type": "addition"
+				}
+			]
+		},
+		{
+			"query_name": "Sensitive Port Is Exposed To Entire Network",
+			"query_id": "381c3f2a-ef6f-4eff-99f7-b169cda3422c",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
+			"severity": "HIGH",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Networking and Firewall",
+			"experimental": false,
+			"description": "A sensitive port, such as port 23 or port 110, is open for the whole network in either TCP or UDP protocol",
+			"description_id": "5be78364",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "355cc208d2b42fb9d3028cd68b559e1f7deb38b711c7594f6c3865c9a87b2690",
+					"line": 19,
+					"resource_type": "aws_security_group",
+					"resource_name": "km_rds_sg",
+					"issue_type": "IncorrectValue",
+					"search_key": "aws_security_group[km_rds_sg].ingress",
+					"search_line": -1,
+					"search_value": "TCP,5432",
+					"expected_value": "PostgreSQL (TCP:5432) should not be allowed",
+					"actual_value": "PostgreSQL (TCP:5432) is allowed"
+				}
+			]
+		},
+		{
+			"query_name": "Unrestricted Security Group Ingress",
+			"query_id": "4728cd65-a20c-49da-8b31-9c08b423e4db",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group.html",
+			"severity": "HIGH",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Networking and Firewall",
+			"experimental": false,
+			"description": "Security groups allow ingress from 0.0.0.0:0 and/or ::/0",
+			"description_id": "ce3ee5e0",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "c1da1442b08a56aaee6835ed501d9c41b2b716392d1a0a4210c584dd0d9ab945",
+					"line": 23,
+					"resource_type": "aws_security_group",
+					"resource_name": "km_rds_sg",
+					"issue_type": "IncorrectValue",
+					"search_key": "aws_security_group[km_rds_sg].ingress.cidr_blocks",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "One of 'ingress.cidr_blocks' not equal '0.0.0.0/0'",
+					"actual_value": "One of 'ingress.cidr_blocks' equal '0.0.0.0/0'"
+				}
+			]
+		},
+		{
+			"query_name": "RDS With Backup Disabled",
+			"query_id": "1dc73fb4-5b51-430c-8c5f-25dcf9090b02",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Backup",
+			"experimental": false,
+			"description": "Make sure the AWS RDS configuration has automatic backup configured. If the retention period is equal to 0 there is no backup",
+			"description_id": "73fdfe55",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "122c76208d2bcc6912df322620f6af41e053401f9c631fc4223397a408eb30bc",
+					"line": 45,
+					"resource_type": "aws_db_instance",
+					"resource_name": "km_db_${var.environment}",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_db_instance[km_db]",
+					"search_line": 45,
+					"search_value": "",
+					"expected_value": "'backup_retention_period' should be defined, and bigger than '0'",
+					"actual_value": "'backup_retention_period' is not defined",
+					"remediation": "backup_retention_period = 12",
+					"remediation_type": "addition"
+				}
+			]
+		},
+		{
+			"query_name": "S3 Bucket Allows Public ACL",
+			"query_id": "d0cc8694-fcad-43ff-ac86-32331d7e867f",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Access Control",
+			"experimental": false,
+			"description": "S3 bucket allows public ACL",
+			"description_id": "7b8886c1",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "9048dc30ba1c1fd9dc333b79a1c7d64f4248791936620ae1c2cd48c69073979c",
+					"line": 119,
+					"resource_type": "aws_s3_bucket_public_access_block",
+					"resource_name": "km_public_blob",
+					"issue_type": "IncorrectValue",
+					"search_key": "aws_s3_bucket_public_access_block[km_public_blob].block_public_acls",
+					"search_line": 119,
+					"search_value": "",
+					"expected_value": "'block_public_acls' should equal 'true'",
+					"actual_value": "'block_public_acls' is equal 'false'",
+					"remediation": "{\"after\":\"true\",\"before\":\"false\"}",
+					"remediation_type": "replacement"
+				}
+			]
+		},
+		{
+			"query_name": "S3 Bucket Logging Disabled",
+			"query_id": "f861041c-8c9f-4156-acfc-5e6e524f5884",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Observability",
+			"experimental": false,
+			"description": "Server Access Logging should be enabled on S3 Buckets so that all changes are logged and trackable",
+			"description_id": "fa5c7c72",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "5c063f15602837c91427457956f271b5edaac664e99b65c5b24a14a80ca8270f",
+					"line": 104,
+					"resource_type": "aws_s3_bucket",
+					"resource_name": "km-blob-storage-${var.environment}",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_s3_bucket[km_blob_storage]",
+					"search_line": 104,
+					"search_value": "",
+					"expected_value": "'logging' should be defined and not null",
+					"actual_value": "'logging' is undefined or null"
+				},
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "00780173256d4178dc4ac89bf9fd8b008831ac11038e346da1a9f1327fb3eeda",
+					"line": 112,
+					"resource_type": "aws_s3_bucket",
+					"resource_name": "km-public-blob",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_s3_bucket[km_public_blob]",
+					"search_line": 112,
+					"search_value": "",
+					"expected_value": "'logging' should be defined and not null",
+					"actual_value": "'logging' is undefined or null"
+				}
+			]
+		},
+		{
+			"query_name": "S3 Bucket Without Versioning",
+			"query_id": "568a4d22-3517-44a6-a7ad-6a7eed88722c",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#versioning",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Observability",
+			"experimental": false,
+			"description": "S3 bucket should have versioning enabled",
+			"description_id": "7614ce3b",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "509918461704df65abe817289305af202e497d40bfb89ad2956a9beb77cf3a22",
+					"line": 112,
+					"resource_type": "aws_s3_bucket",
+					"resource_name": "km-public-blob",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_s3_bucket[km_public_blob]",
+					"search_line": 112,
+					"search_value": "",
+					"expected_value": "'versioning' should be true",
+					"actual_value": "'versioning' is undefined or null"
+				},
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "38962cc6c948dd3fe0402f0d07e2f75578016100b30d2373d46e4ab4f7ce178c",
+					"line": 104,
+					"resource_type": "aws_s3_bucket",
+					"resource_name": "km-blob-storage-${var.environment}",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_s3_bucket[km_blob_storage]",
+					"search_line": 104,
+					"search_value": "",
+					"expected_value": "'versioning' should be true",
+					"actual_value": "'versioning' is undefined or null"
+				}
+			]
+		},
+		{
+			"query_name": "IAM Access Analyzer Not Enabled",
+			"query_id": "e592a0c5-5bdb-414c-9066-5dba7cdea370",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer",
+			"severity": "LOW",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Best Practices",
+			"experimental": false,
+			"description": "IAM Access Analyzer should be enabled and configured to continuously monitor resource permissions",
+			"description_id": "d03e85ae",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "aa346cd1642a83b40e221f96a43d88dbfacecdf1f8e5314c24145f8d35530197",
+					"line": 1,
+					"resource_type": "n/a",
+					"resource_name": "n/a",
+					"issue_type": "MissingAttribute",
+					"search_key": "resource",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'aws_accessanalyzer_analyzer' should be set",
+					"actual_value": "'aws_accessanalyzer_analyzer' is undefined"
+				}
+			]
+		},
+		{
+			"query_name": "S3 Bucket Without Ignore Public ACL",
+			"query_id": "4fa66806-0dd9-4f8d-9480-3174d39c7c91",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
+			"severity": "LOW",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Insecure Configurations",
+			"experimental": false,
+			"description": "S3 bucket without ignore public ACL",
+			"description_id": "28aa7150",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "b3adb608012771b9f48979ab7dc1ac8d2e10015f819a9747d2bfa9ce0605bcc2",
+					"line": 116,
+					"resource_type": "aws_s3_bucket_public_access_block",
+					"resource_name": "km_public_blob",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_s3_bucket_public_access_block[km_public_blob]",
+					"search_line": 116,
+					"search_value": "",
+					"expected_value": "'ignore_public_acls' should equal 'true'",
+					"actual_value": "'ignore_public_acls' is missing",
+					"remediation": "ignore_public_acls = true",
+					"remediation_type": "addition"
+				}
+			]
+		},
+		{
+			"query_name": "RDS Without Logging",
+			"query_id": "8d7f7b8c-6c7c-40f8-baa6-62006c6c7b56",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#enabled_cloudwatch_logs_exports",
+			"severity": "INFO",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Observability",
+			"experimental": false,
+			"description": "RDS does not have any kind of logger",
+			"description_id": "c499a58c",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "942cb2428c1404cf3dd69263b23e061188ad715ae1bdb208ffdee775748d7310",
+					"line": 45,
+					"resource_type": "aws_db_instance",
+					"resource_name": "km_db_${var.environment}",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_db_instance[km_db]",
+					"search_line": 45,
+					"search_value": "",
+					"expected_value": "'enabled_cloudwatch_logs_exports' should be defined",
+					"actual_value": "'enabled_cloudwatch_logs_exports' is undefined"
+				}
+			]
+		},
+		{
+			"query_name": "Resource Not Using Tags",
+			"query_id": "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging",
+			"severity": "INFO",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Best Practices",
+			"experimental": false,
+			"description": "AWS services resource tags are an essential part of managing components. As a best practice, the field 'tags' should have additional tags defined other than 'Name'",
+			"description_id": "09db2d52",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "e980255919ebad1fa6bf072826d10bdb114216242c4b799709b874cd6c01821a",
+					"line": 112,
+					"resource_type": "aws_s3_bucket",
+					"resource_name": "km_public_blob",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_s3_bucket[{{km_public_blob}}]",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "aws_s3_bucket[{{km_public_blob}}].tags should be defined and not null",
+					"actual_value": "aws_s3_bucket[{{km_public_blob}}].tags is undefined or null"
+				},
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "d0efbf94490b1c485e4e3beeba9a58b51ab430990201f77fa15f6dcfcc2b47cf",
+					"line": 14,
+					"resource_type": "aws_security_group",
+					"resource_name": "km_rds_sg",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_security_group[{{km_rds_sg}}].tags",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "aws_security_group[{{km_rds_sg}}].tags has additional tags defined other than 'Name'",
+					"actual_value": "aws_security_group[{{km_rds_sg}}].tags does not have additional tags defined other than 'Name'"
+				},
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "5c2ef181a7e9c643a05e1fd1933024c6127e6f684b9efa8eac31c731084e24cb",
+					"line": 81,
+					"resource_type": "aws_ssm_parameter",
+					"resource_name": "/km-${var.environment}/DB_PASSWORD",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_ssm_parameter[{{km_ssm_db_password}}].tags",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "aws_ssm_parameter[{{km_ssm_db_password}}].tags has additional tags defined other than 'Name'",
+					"actual_value": "aws_ssm_parameter[{{km_ssm_db_password}}].tags does not have additional tags defined other than 'Name'"
+				},
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "e2e2fdf18bc08f6e1e6c3eeb5ba41d048c64b9768d8fbde9fcdf4fb6135cd4c5",
+					"line": 5,
+					"resource_type": "aws_db_subnet_group",
+					"resource_name": "km_rds_subnet_grp_${var.environment}",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_db_subnet_group[{{km_rds_subnet_grp}}].tags",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "aws_db_subnet_group[{{km_rds_subnet_grp}}].tags has additional tags defined other than 'Name'",
+					"actual_value": "aws_db_subnet_group[{{km_rds_subnet_grp}}].tags does not have additional tags defined other than 'Name'"
+				},
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "12ed5c181348f8978b5420692df50488df2c443bc94d541e88da0ba3fa4859a3",
+					"line": 40,
+					"resource_type": "aws_kms_key",
+					"resource_name": "km_db_kms_key",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_kms_key[{{km_db_kms_key}}].tags",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "aws_kms_key[{{km_db_kms_key}}].tags has additional tags defined other than 'Name'",
+					"actual_value": "aws_kms_key[{{km_db_kms_key}}].tags does not have additional tags defined other than 'Name'"
+				},
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "576d47fedd6285ef04cb4ab8d878882285db3bac0b00014d3336ae515be6eecc",
+					"line": 99,
+					"resource_type": "aws_ssm_parameter",
+					"resource_name": "/km-${var.environment}/DB_NAME",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_ssm_parameter[{{km_ssm_db_name}}].tags",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "aws_ssm_parameter[{{km_ssm_db_name}}].tags has additional tags defined other than 'Name'",
+					"actual_value": "aws_ssm_parameter[{{km_ssm_db_name}}].tags does not have additional tags defined other than 'Name'"
+				},
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "a1a197eee9fb03c2c03efea430abaaa73cfc07558c1b83a4f75a6af5d07cf9ca",
+					"line": 90,
+					"resource_type": "aws_ssm_parameter",
+					"resource_name": "/km-${var.environment}/DB_USER",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_ssm_parameter[{{km_ssm_db_user}}].tags",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "aws_ssm_parameter[{{km_ssm_db_user}}].tags has additional tags defined other than 'Name'",
+					"actual_value": "aws_ssm_parameter[{{km_ssm_db_user}}].tags does not have additional tags defined other than 'Name'"
+				},
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "c761f7109a1e0e920c17cb03ac0bb4cf44a70e290f5c22aa266201add76a66d8",
+					"line": 61,
+					"resource_type": "aws_db_instance",
+					"resource_name": "km_db_${var.environment}",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_db_instance[{{km_db}}].tags",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "aws_db_instance[{{km_db}}].tags has additional tags defined other than 'Name'",
+					"actual_value": "aws_db_instance[{{km_db}}].tags does not have additional tags defined other than 'Name'"
+				},
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "cea4a498e30adf1eff0dabb58fff2bbd92916e63d414c30942945582072ab9e7",
+					"line": 107,
+					"resource_type": "aws_s3_bucket",
+					"resource_name": "km_blob_storage",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_s3_bucket[{{km_blob_storage}}].tags",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "aws_s3_bucket[{{km_blob_storage}}].tags has additional tags defined other than 'Name'",
+					"actual_value": "aws_s3_bucket[{{km_blob_storage}}].tags does not have additional tags defined other than 'Name'"
+				},
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "231c25c467fdf7b77e7cdef64dbb1d53a3f77300b0c37b89405ef3c39cdda320",
+					"line": 72,
+					"resource_type": "aws_ssm_parameter",
+					"resource_name": "/km-${var.environment}/DB_HOST",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_ssm_parameter[{{km_ssm_db_host}}].tags",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "aws_ssm_parameter[{{km_ssm_db_host}}].tags has additional tags defined other than 'Name'",
+					"actual_value": "aws_ssm_parameter[{{km_ssm_db_host}}].tags does not have additional tags defined other than 'Name'"
+				}
+			]
+		},
+		{
+			"query_name": "Security Group Rule Without Description",
+			"query_id": "cb3f5ed6-0d18-40de-a93d-b3538db31e8c",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group#description",
+			"severity": "INFO",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Best Practices",
+			"experimental": false,
+			"description": "It's considered a best practice for AWS Security Group to have a description",
+			"description_id": "bc535d27",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "a5adfd369cfe3afead396d040d83e0137d9d947ecb1f0173c4d6f5102f168398",
+					"line": 10,
+					"resource_type": "aws_security_group",
+					"resource_name": "km_rds_sg",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_security_group[{{km_rds_sg}}]",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "aws_security_group[{{km_rds_sg}}] description should be defined and not null",
+					"actual_value": "aws_security_group[{{km_rds_sg}}] description is undefined or null"
+				}
+			]
+		},
+		{
+			"query_name": "Security Group Rule Without Description",
+			"query_id": "68eb4bf3-f9bf-463d-b5cf-e029bb446d2e",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group#description",
+			"severity": "INFO",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Best Practices",
+			"experimental": false,
+			"description": "It's considered a best practice for all rules in AWS Security Group to have a description",
+			"description_id": "cee242dd",
+			"files": [
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "6763cdfa4cad76f841c28aa4c60469923df6a68cce301656290324d903e999a4",
+					"line": 27,
+					"resource_type": "aws_security_group",
+					"resource_name": "km_rds_sg",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_security_group[{{km_rds_sg}}].egress",
+					"search_line": 27,
+					"search_value": "",
+					"expected_value": "aws_security_group[{{km_rds_sg}}].egress description should be defined and not null",
+					"actual_value": "aws_security_group[{{km_rds_sg}}].egress description is undefined or null"
+				},
+				{
+					"file_name": "test\\fixtures\\test_output_path\\main.tf",
+					"similarity_id": "dfa5d4e0a388e6195eb3c6a93200ca268ad1f9eaf243fa083e8e1a4cc98342d0",
+					"line": 19,
+					"resource_type": "aws_security_group",
+					"resource_name": "km_rds_sg",
+					"issue_type": "MissingAttribute",
+					"search_key": "aws_security_group[{{km_rds_sg}}].ingress",
+					"search_line": 19,
+					"search_value": "",
+					"expected_value": "aws_security_group[{{km_rds_sg}}].ingress description should be defined and not null",
+					"actual_value": "aws_security_group[{{km_rds_sg}}].ingress description is undefined or null"
+				}
+			]
+		}
+	]
+}
