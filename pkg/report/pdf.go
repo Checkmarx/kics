@@ -35,7 +35,6 @@ const (
 	colEight        = 8
 	colNine         = 9
 	colTen          = 10
-	colEleven       = 11
 	colFullPage     = 12
 	colRuneSlitter  = 20
 	textSize        = 10

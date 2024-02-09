@@ -247,7 +247,7 @@ var queryHighExperimental = model.QueryResult{
 	},
 }
 
-var queryHighCWE = model.QueryResult{
+var queryHighCWE = model.QueryResult{ //nolint
 	QueryName:                   "AMI Not Encrypted",
 	QueryID:                     "97707503-a22c-4cd7-b7c0-f088fa7cf830",
 	Description:                 "AWS AMI Encryption is not enabled",
