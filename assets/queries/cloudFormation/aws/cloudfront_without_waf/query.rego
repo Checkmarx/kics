@@ -11,7 +11,7 @@ CxPolicy[result] {
 	distributionConfig := resource.Properties.DistributionConfig
 
 	not cf_lib.isCloudFormationFalse(distributionConfig.Enabled)
-	not common_lib.valid_key(distributionConfig, "WebACLId")
+	noWebACLId(distributionConfig)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -22,25 +22,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId should be defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId is undefined", [name]),
 	}
-}
+} 
 
-CxPolicy[result] {
-	docs := input.document[i]
-	[path, Resources] := walk(docs)
-	resource := Resources[name]
-	resource.Type == "AWS::CloudFront::Distribution"
-	distributionConfig := resource.Properties.DistributionConfig
-
-	not cf_lib.isCloudFormationFalse(distributionConfig.Enabled)
-	not regex.match(".*\\S.*",distributionConfig.WebACLId)
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": resource.Type,
-		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties.DistributionConfig.WebACLId", [cf_lib.getPath(path), name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId should match with `.*\\S.*` regex", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId doesn't match with `.*\\S.*` regex", [name]),
-	}
-}
+noWebACLId(distributionConfig) {
+	not common_lib.valid_key(distributionConfig, "WebACLId")
+} else {
+	distributionConfig.WebACLId == ""
+}	
