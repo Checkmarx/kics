@@ -277,6 +277,8 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 	}
 	infoHelm, errHelm := os.Stat(filepath.FromSlash("test/fixtures/test_helm"))
 	checkStatErr(t, errHelm)
+	infoHelmTerra, errHelmTerra := os.Stat(filepath.FromSlash("test/fixtures/terra/test_helm"))
+	checkStatErr(t, errHelmTerra)
 	infoTerraCache, errTerraCache := os.Stat(filepath.FromSlash("test/fixtures/test_terra_cache"))
 	checkStatErr(t, errTerraCache)
 	infoTerraCacheFolder, errTerraCacheFolder := os.Stat(filepath.FromSlash("test/fixtures/test_terra_cache/.terraform"))
@@ -329,6 +331,22 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 				info:       infoHelm,
 				extensions: model.Extensions{},
 				path:       filepath.FromSlash("test/fixtures/test_helm"),
+			},
+			want: want{
+				got: false,
+				err: nil,
+			},
+		},
+		{
+			name: "check_conditions_chart, with terra on path not skip",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("test/fixtures/terra/test_helm")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoHelmTerra,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("test/fixtures/terra/test_helm"),
 			},
 			want: want{
 				got: false,
