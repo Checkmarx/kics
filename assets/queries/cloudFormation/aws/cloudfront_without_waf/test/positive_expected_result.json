@@ -15,12 +15,12 @@
     "fileName": "positive3.yaml",
     "queryName": "CloudFront Without WAF",
     "severity": "LOW",
-    "line": 6
+    "line": 21
   },
   {
     "fileName": "positive4.json",
     "queryName": "CloudFront Without WAF",
     "severity": "LOW",
-    "line": 7
+    "line": 36
   }
 ]
