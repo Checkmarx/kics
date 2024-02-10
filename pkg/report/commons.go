@@ -85,15 +85,13 @@ func getPlatforms(queries model.QueryResultSlice) string {
 }
 
 func getCwe(queries model.QueryResultSlice) string {
-	cwe := make([]string, 0)
-	alreadyAdded := make(map[string]string)
-	for idx := range queries {
-		if _, ok := alreadyAdded[queries[idx].CWE]; !ok {
-			alreadyAdded[queries[idx].CWE] = ""
-			cwe = append(cwe, queries[idx].CWE)
+	cwes := make([]string, 0)
+	for _, query := range queries {
+		if query.CWE != "" {
+			cwes = append(cwes, "CWE: "+query.CWE)
 		}
 	}
-	return strings.Join(cwe, ", ")
+	return strings.Join(cwes, ", ")
 }
 
 // ExportJSONReport - encodes a given body to a JSON file in a given filepath
