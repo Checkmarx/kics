@@ -10,6 +10,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/engine"
 	"github.com/Checkmarx/kics/pkg/engine/provider"
 	"github.com/Checkmarx/kics/pkg/engine/secrets"
+	"github.com/Checkmarx/kics/pkg/minified"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
 	"github.com/Checkmarx/kics/pkg/resolver"
@@ -128,13 +129,14 @@ func (s *Service) StartScan(
 type Content struct {
 	Content    *[]byte
 	CountLines int
+	IsMinified bool
 }
 
 /*
 getContent will read the passed file 1MB at a time
 to prevent resource exhaustion and return its content
 */
-func getContent(rc io.Reader, data []byte, maxSizeMB int) (*Content, error) {
+func getContent(rc io.Reader, data []byte, maxSizeMB int, filename string) (*Content, error) {
 	var content []byte
 	countLines := 0
 
@@ -162,6 +164,7 @@ func getContent(rc io.Reader, data []byte, maxSizeMB int) (*Content, error) {
 	c.Content = &content
 	c.CountLines = countLines
 
+	c.IsMinified = minified.IsMinified(filename, content)
 	return c, nil
 }
 
