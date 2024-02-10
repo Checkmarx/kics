@@ -108,7 +108,7 @@ func MapToStringSlice(stringKeyMap map[string]string) []string {
 	return keys
 }
 
-var queryHigh = model.QueryResult{
+var queryHigh = model.QueryResult{ //nolint
 	QueryName:                   "ALB protocol is HTTP",
 	QueryID:                     "de7f5e83-da88-4046-871f-ea18504b1d43",
 	Description:                 "ALB protocol is HTTP Description",
