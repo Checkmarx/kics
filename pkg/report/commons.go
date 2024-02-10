@@ -84,16 +84,6 @@ func getPlatforms(queries model.QueryResultSlice) string {
 	return strings.Join(platforms, ", ")
 }
 
-func getCwe(queries model.QueryResultSlice) string {
-	cwes := make([]string, 0)
-	for _, query := range queries {
-		if query.CWE != "" {
-			cwes = append(cwes, "CWE: "+query.CWE)
-		}
-	}
-	return strings.Join(cwes, ", ")
-}
-
 // ExportJSONReport - encodes a given body to a JSON file in a given filepath
 func ExportJSONReport(path, filename string, body interface{}) error {
 	if !strings.Contains(filename, ".") {

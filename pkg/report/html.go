@@ -87,7 +87,6 @@ func PrintHTMLReport(path, filename string, body interface{}) error {
 	templateFuncs["includeJS"] = includeJS
 	templateFuncs["getPaths"] = getPaths
 	templateFuncs["getPlatforms"] = getPlatforms
-	templateFuncs["getCwe"] = getCwe
 	templateFuncs["getVersion"] = getVersion
 
 	fullPath := filepath.Join(path, filename)
