@@ -39,11 +39,11 @@ var tests = []gitlabSASTTest{
 		vq: model.QueryResult{
 			QueryName:   "test",
 			QueryID:     "1",
-			CWE:         "",
 			Description: "test description",
 			QueryURI:    "https://www.test.com",
 			Severity:    model.SeverityHigh,
 			Files:       []model.VulnerableFile{},
+			CWE:         "",
 		},
 		file: model.VulnerableFile{},
 		want: gitlabSASTReport{
@@ -61,6 +61,7 @@ var tests = []gitlabSASTTest{
 			Files: []model.VulnerableFile{
 				{KeyActualValue: "test", FileName: "test.json", Line: 1, SimilarityID: "similarity"},
 			},
+			CWE: "",
 		},
 		file: model.VulnerableFile{
 			KeyActualValue: "test",
@@ -93,6 +94,54 @@ var tests = []gitlabSASTTest{
 						},
 					},
 					CWE: "",
+				},
+			},
+		},
+	},
+	{
+		name: "Should create one occurrence with cwe field complete",
+		vq: model.QueryResult{
+			QueryName:   "test",
+			QueryID:     "1",
+			Description: "test description",
+			QueryURI:    "https://www.test.com",
+			Severity:    model.SeverityHigh,
+			Files: []model.VulnerableFile{
+				{KeyActualValue: "test", FileName: "test.json", Line: 1, SimilarityID: "similarity"},
+			},
+			CWE: "22",
+		},
+		file: model.VulnerableFile{
+			KeyActualValue: "test",
+			FileName:       "test.json",
+			Line:           1,
+			SimilarityID:   "similarity",
+		},
+		want: gitlabSASTReport{
+			Vulnerabilities: []gitlabSASTVulnerability{
+				{
+					ID:       "similarity",
+					Severity: "High",
+					Name:     "test",
+					Links: []gitlabSASTVulnerabilityLink{
+						{
+							URL: "https://www.test.com",
+						},
+					},
+					Location: gitlabSASTVulnerabilityLocation{
+						File:  "test.json",
+						Start: 1,
+						End:   1,
+					},
+					Identifiers: []gitlabSASTVulnerabilityIdentifier{
+						{
+							IdentifierType: "kics",
+							Name:           "Keeping Infrastructure as Code Secure",
+							URL:            "https://docs.kics.io/latest/queries/-queries",
+							Value:          "1",
+						},
+					},
+					CWE: "22",
 				},
 			},
 		},

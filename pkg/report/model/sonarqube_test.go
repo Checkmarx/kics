@@ -88,6 +88,45 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "Build Report with cwe field complete",
+			fields: fields{
+				version: "KICS " + constants.Version,
+				report: &SonarQubeReport{
+					Issues: make([]Issue, 0),
+				},
+			},
+			args: args{
+				summary: &test.SummaryMockCWE,
+			},
+			want: &SonarQubeReport{
+				Issues: []Issue{
+					{
+						EngineID: "KICS " + constants.Version,
+						RuleID:   "97707503-a22c-4cd7-b7c0-f088fa7cf830",
+						Severity: "CRITICAL",
+						CWE:      "22",
+						Type:     "",
+						PrimaryLocation: &Location{
+							Message:  "AWS AMI Encryption is not enabled",
+							FilePath: "positive.tf",
+							TextRange: &Range{
+								StartLine: 30,
+							},
+						},
+						SecondaryLocations: []*Location{
+							{
+								Message:  "AWS AMI Encryption is not enabled",
+								FilePath: "positive.tf",
+								TextRange: &Range{
+									StartLine: 35,
+								},
+							},
+						},
+					},
+				},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

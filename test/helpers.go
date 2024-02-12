@@ -247,6 +247,27 @@ var queryHighExperimental = model.QueryResult{
 	},
 }
 
+var queryMediumCycloneCWE = model.QueryResult{
+	QueryName: "GuardDuty Detector Disabled",
+	QueryID:   "704dadd3-54fc-48ac-b6a0-02f170011473",
+	Severity:  model.SeverityMedium,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive.tf"),
+			Line:             2,
+			IssueType:        "IncorrectValue",
+			SearchKey:        "aws_guardduty_detector[positive1].enable",
+			KeyExpectedValue: "GuardDuty Detector should be Enabled",
+			KeyActualValue:   "GuardDuty Detector is not Enabled",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
+	Platform:    "Terraform",
+	Description: "Make sure that Amazon GuardDuty is Enabled",
+	CWE:         "22",
+}
+
 var queryMediumCWE = model.QueryResult{
 	QueryName:     "AmazonMQ Broker Encryption Disabled",
 	Description:   "AmazonMQ Broker should have Encryption Options defined",
@@ -452,6 +473,34 @@ var ExampleSummaryMock = model.Summary{
 	Queries: []model.QueryResult{
 		queryInfo,
 		queryMedium2,
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:   2,
+			model.SeverityLow:    0,
+			model.SeverityMedium: 1,
+			model.SeverityHigh:   0,
+		},
+		TotalCounter: 3,
+	},
+	ScannedPaths: []string{
+		"./",
+	},
+}
+
+// ExampleSummaryMockCWE a summary with specific results to CycloneDX report tests with cwe field complete
+var ExampleSummaryMockCWE = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           2,
+		ParsedFiles:            2,
+		FailedToScanFiles:      0,
+		TotalQueries:           2,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.QueryResult{
+		queryInfo,
+		queryMediumCycloneCWE,
 	},
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
