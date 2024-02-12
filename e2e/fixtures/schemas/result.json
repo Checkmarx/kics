@@ -114,7 +114,8 @@
             ]
           },
           "cwe": {
-            "type": "string"
+            "type": "string",
+            "minLength": 0
           },
           "files": {
             "type": "array",
