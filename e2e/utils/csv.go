@@ -34,7 +34,7 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 	for _, row := range csvData[1:] {
 		line, lineErr := strconv.Atoi(row[15])
 		require.NoError(t, lineErr, "Error when converting CSV: %s", fullPath)
-		searchLine, searchErr := strconv.Atoi(row[17])
+		searchLine, searchErr := strconv.Atoi(row[18])
 		require.NoError(t, searchErr, "Error when converting CSV: %s", fullPath)
 
 		csvStruct.QueryName = row[0]
