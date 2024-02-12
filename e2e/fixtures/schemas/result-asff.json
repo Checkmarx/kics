@@ -136,7 +136,7 @@
                     }
                 }
             },
-            "Cwe":{
+            "CWE":{
                 "type":"string"
             },
             "Title": {
