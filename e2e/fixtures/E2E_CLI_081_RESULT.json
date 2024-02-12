@@ -19,10 +19,10 @@
 	},
 	"total_counter": 1,
 	"total_bom_resources": 0,
-	"start": "2024-02-12T11:21:19.8490877Z",
-	"end": "2024-02-12T11:21:22.8440655Z",
+	"start": "2024-02-12T12:34:07.3154393Z",
+	"end": "2024-02-12T12:34:25.658434Z",
 	"paths": [
-		"/test\\fixtures\\test_output_path"
+		"/path/test/fixtures/test_output_path"
 	],
 	"queries": [
 		{
@@ -37,7 +37,7 @@
 			"description_id": "98ba05ca",
 			"files": [
 				{
-					"file_name": "test\\fixtures\\test_output_path\\positive1.json",
+					"file_name": "..\\test\\fixtures\\test_output_path\\positive1.json",
 					"similarity_id": "42d73d5b2fa1fbcb1145ea43b7dc4ec20f92adda85c61161b6a7714b6cd86219",
 					"line": 53,
 					"resource_type": "Microsoft.Compute/virtualMachines",
