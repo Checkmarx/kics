@@ -161,6 +161,7 @@ var queryMedium = model.QueryResult{
 			VulnLines:        &[]model.CodeLine{},
 		},
 	},
+	CWE: "",
 }
 
 var queryMedium2 = model.QueryResult{
@@ -378,13 +379,13 @@ var SummaryMockCWE = model.Summary{
 	},
 }
 
-// ComplexSummaryMockAsff a summary with more results to be used with cwe field complete
-var ComplexSummaryMockAsff = model.Summary{
+// SimpleSummaryMockAsff a simple summary to be used with cwe field complete
+var SimpleSummaryMockAsff = model.Summary{
 	Counters: model.Counters{
-		ScannedFiles:           2,
-		ParsedFiles:            2,
+		ScannedFiles:           1,
+		ParsedFiles:            1,
 		FailedToScanFiles:      0,
-		TotalQueries:           3,
+		TotalQueries:           1,
 		FailedToExecuteQueries: 0,
 	},
 	Queries: []model.QueryResult{
@@ -396,9 +397,9 @@ var ComplexSummaryMockAsff = model.Summary{
 			model.SeverityInfo:   0,
 			model.SeverityLow:    0,
 			model.SeverityMedium: 1,
-			model.SeverityHigh:   4,
+			model.SeverityHigh:   0,
 		},
-		TotalCounter: 5,
+		TotalCounter: 1,
 	},
 	LatestVersion: model.Version{
 		Latest: true,

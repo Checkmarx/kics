@@ -144,7 +144,7 @@ func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.Vulner
 			},
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},
-		CWE:        "",
+		CWE:        *aws.String(query.CWE),
 	}
 
 	return finding
