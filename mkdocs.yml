@@ -21,6 +21,7 @@ theme:
   features:
     - navigation.tabs
     - navigation.tabs.sticky
+    - toc.integrate
   palette:
     - scheme: default
       toggle:
