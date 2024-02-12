@@ -1,2 +1,2 @@
-Error: The filename, directory name, or volume label syntax is incorrect. The directory name contains invalid characters.
+Error: the directory name contains invalid characters
 {{.ScanHelp}}
