@@ -182,6 +182,7 @@ var queryMedium2 = model.QueryResult{
 	},
 	Platform:    "Terraform",
 	Description: "Make sure that Amazon GuardDuty is Enabled",
+	CWE:         "",
 }
 
 var queryInfo = model.QueryResult{
@@ -254,10 +255,10 @@ var queryMediumCycloneCWE = model.QueryResult{
 	Severity:  model.SeverityMedium,
 	Files: []model.VulnerableFile{
 		{
-			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive.tf"),
+			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "negative.tf"),
 			Line:             2,
 			IssueType:        "IncorrectValue",
-			SearchKey:        "aws_guardduty_detector[positive1].enable",
+			SearchKey:        "aws_guardduty_detector[negative1].enable",
 			KeyExpectedValue: "GuardDuty Detector should be Enabled",
 			KeyActualValue:   "GuardDuty Detector is not Enabled",
 			Value:            nil,
@@ -493,25 +494,24 @@ var ExampleSummaryMock = model.Summary{
 // ExampleSummaryMockCWE a summary with specific results to CycloneDX report tests with cwe field complete
 var ExampleSummaryMockCWE = model.Summary{
 	Counters: model.Counters{
-		ScannedFiles:           2,
-		ParsedFiles:            2,
+		ScannedFiles:           1,
+		ParsedFiles:            1,
 		FailedToScanFiles:      0,
-		TotalQueries:           2,
+		TotalQueries:           1,
 		FailedToExecuteQueries: 0,
 	},
 	Queries: []model.QueryResult{
-		queryInfo,
 		queryMediumCycloneCWE,
 	},
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
 		SeverityCounters: map[model.Severity]int{
-			model.SeverityInfo:   2,
+			model.SeverityInfo:   0,
 			model.SeverityLow:    0,
 			model.SeverityMedium: 1,
 			model.SeverityHigh:   0,
 		},
-		TotalCounter: 3,
+		TotalCounter: 1,
 	},
 	ScannedPaths: []string{
 		"./",
