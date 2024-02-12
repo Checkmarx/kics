@@ -22,6 +22,14 @@ func TestPrintCodeClimateReport(t *testing.T) {
 				filename: "output",
 			},
 		},
+		{
+			name: "print code climate report with cwe field complete",
+			caseTest: jsonCaseTest{
+				summary:  test.SummaryMockCWE,
+				path:     filepath.Join(os.TempDir(), "testdir"),
+				filename: "output2",
+			},
+		},
 	}
 
 	for _, test := range tests {
