@@ -10,11 +10,11 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--exclude-paths", "/path/test/fixtures/test_swagger/swaggerFileWithoutAuthorizer.yaml",
-					"-p", "/path/test/fixtures/test_swagger/"},
+					"-p", "/path/test/fixtures/test_swagger/", "-v"},
 			},
 		},
 		Validation: func(outputText string) bool {
-			match, _ := regexp.MatchString(`Files scanned: 1`, outputText)
+			match, _ := regexp.MatchString(`Scanned Files: 1`, outputText)
 			return match
 		},
 		WantStatus: []int{40},
