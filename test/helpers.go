@@ -330,7 +330,7 @@ var SummaryMock = model.Summary{
 	},
 }
 
-// SummaryMock a summary to be used without running kics scan
+// SummaryMockCWE a summary to be used with cwe field complete
 var SummaryMockCWE = model.Summary{
 	Counters: model.Counters{
 		ScannedFiles:           1,
@@ -357,7 +357,7 @@ var SummaryMockCWE = model.Summary{
 	},
 }
 
-// ComplexSummaryMock a summary with more results to be used without running kics scan
+// ComplexSummaryMockAsff a summary with more results to be used with cwe field complete
 var ComplexSummaryMockAsff = model.Summary{
 	Counters: model.Counters{
 		ScannedFiles:           2,
