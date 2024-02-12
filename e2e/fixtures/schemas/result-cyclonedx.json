@@ -257,7 +257,7 @@
                                                 }
                                             }
                                         },
-                                        "CWE": {
+                                        "Cwe": {
                                             "type": "string",
                                             "minLength": 0
                                         }
