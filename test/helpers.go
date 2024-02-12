@@ -247,6 +247,28 @@ var queryHighExperimental = model.QueryResult{
 	},
 }
 
+var queryMediumCWE = model.QueryResult{
+	QueryName:     "AmazonMQ Broker Encryption Disabled",
+	Description:   "AmazonMQ Broker should have Encryption Options defined",
+	QueryID:       "3db3f534-e3a3-487f-88c7-0a9fbf64b702",
+	CloudProvider: "AWS",
+	Severity:      model.SeverityMedium,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         positive,
+			Line:             1,
+			IssueType:        "MissingAttribute",
+			SimilarityID:     "6b76f7a507e200bb2c73468ec9649b099da96a4efa0f49a3bdc88e12476d8ee7",
+			SearchKey:        "resource.aws_mq_broker[positive1]",
+			KeyExpectedValue: "resource.aws_mq_broker[positive1].encryption_options is defined",
+			KeyActualValue:   "resource.aws_mq_broker[positive1].encryption_options is not defined",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
+	CWE: "22",
+}
+
 var queryHighCWE = model.QueryResult{ //nolint
 	QueryName:                   "AMI Not Encrypted",
 	QueryID:                     "97707503-a22c-4cd7-b7c0-f088fa7cf830",
@@ -305,6 +327,60 @@ var SummaryMock = model.Summary{
 	},
 	ScannedPaths: []string{
 		"./",
+	},
+}
+
+// SummaryMock a summary to be used without running kics scan
+var SummaryMockCWE = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           1,
+		ParsedFiles:            1,
+		FailedToScanFiles:      0,
+		TotalQueries:           1,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.QueryResult{
+		queryHighCWE,
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:   0,
+			model.SeverityLow:    0,
+			model.SeverityMedium: 0,
+			model.SeverityHigh:   2,
+		},
+		TotalCounter: 2,
+	},
+	ScannedPaths: []string{
+		"./",
+	},
+}
+
+// ComplexSummaryMock a summary with more results to be used without running kics scan
+var ComplexSummaryMockAsff = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           2,
+		ParsedFiles:            2,
+		FailedToScanFiles:      0,
+		TotalQueries:           3,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.QueryResult{
+		queryMediumCWE,
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:   0,
+			model.SeverityLow:    0,
+			model.SeverityMedium: 1,
+			model.SeverityHigh:   4,
+		},
+		TotalCounter: 5,
+	},
+	LatestVersion: model.Version{
+		Latest: true,
 	},
 }
 

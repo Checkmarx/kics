@@ -44,6 +44,36 @@ func TestBuildCodeClimateReport(t *testing.T) {
 				},
 			},
 		},
+		{
+			name:    "build code climate report with cwe field complete",
+			summary: test.SummaryMockCWE,
+			want: []CodeClimateReport{
+				{
+					Type:        "issue",
+					CheckName:   "AMI Not Encrypted",
+					Description: "AWS AMI Encryption is not enabled",
+					Categories:  []string{"Security"},
+					Location: location{
+						Path:  "positive.tf",
+						Lines: lines{Begin: 30},
+					},
+					Severity: "critical",
+					CWE:      "22",
+				},
+				{
+					Type:        "issue",
+					CheckName:   "AMI Not Encrypted",
+					Description: "AWS AMI Encryption is not enabled",
+					Categories:  []string{"Security"},
+					Location: location{
+						Path:  "positive.tf",
+						Lines: lines{Begin: 35},
+					},
+					Severity: "critical",
+					CWE:      "22",
+				},
+			},
+		},
 	}
 
 	for _, test := range tests {
