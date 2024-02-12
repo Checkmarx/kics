@@ -31,14 +31,13 @@
     },
     "items": {
         "type": "object",
-        "additionalProperties": false,
+        "additionalProperties": true,
         "required": [
             "QueryName",
             "QueryID",
             "QueryURI",
             "Severity",
             "Platform",
-            "CWE",
             "CloudProvider",
             "Category",
             "DescriptionID",
