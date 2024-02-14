@@ -105,7 +105,7 @@ var (
 		"hosts", "tasks", "become", "with_items", "with_dict",
 		"when", "become_pass", "become_exe", "become_flags"}
 	playBooks               = "playbooks"
-	ansibleHost             = "all"
+	ansibleHost             = []string{"all", "ungrouped"}
 	listKeywordsAnsibleHots = []string{"hosts", "children"}
 )
 
@@ -576,11 +576,13 @@ func checkForAnsible(yamlContent model.Document) bool {
 
 func checkForAnsibleHost(yamlContent model.Document) bool {
 	isAnsible := false
-	if hosts := yamlContent[ansibleHost]; hosts != nil {
-		if listHosts, ok := hosts.(map[string]interface{}); ok {
-			for _, value := range listKeywordsAnsibleHots {
-				if host := listHosts[value]; host != nil {
-					isAnsible = true
+	for _, ansibleDefault := range ansibleHost {
+		if hosts := yamlContent[ansibleDefault]; hosts != nil {
+			if listHosts, ok := hosts.(map[string]interface{}); ok {
+				for _, value := range listKeywordsAnsibleHots {
+					if host := listHosts[value]; host != nil {
+						isAnsible = true
+					}
 				}
 			}
 		}
