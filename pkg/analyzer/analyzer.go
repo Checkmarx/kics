@@ -1,6 +1,7 @@
 package analyzer
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -65,6 +66,7 @@ var (
 	cicdOnRegex                                     = regexp.MustCompile(`\s*on:\s*`)
 	cicdJobsRegex                                   = regexp.MustCompile(`\s*jobs:\s*`)
 	cicdStepsRegex                                  = regexp.MustCompile(`\s*steps:\s*`)
+	queryRegexPathsAnsible                          = regexp.MustCompile(fmt.Sprintf(`^.*?%s(?:group|host)_vars%s.*$`, regexp.QuoteMeta(string(os.PathSeparator)), regexp.QuoteMeta(string(os.PathSeparator)))) //nolint:lll
 )
 
 var (
@@ -552,7 +554,15 @@ func checkYamlPlatform(content []byte, path string) string {
 	if checkForAnsibleHost(yamlContent) {
 		return ansible
 	}
+	// add for yaml files contained at paths (group_vars, host_vars) related with ansible
+	if checkForAnsibleByPaths(path) {
+		return ansible
+	}
 	return ""
+}
+
+func checkForAnsibleByPaths(path string) bool {
+	return queryRegexPathsAnsible.MatchString(path)
 }
 
 func checkForAnsible(yamlContent model.Document) bool {
