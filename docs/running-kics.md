@@ -33,7 +33,17 @@ Available archive formats:
 -   `xz`
 
 ```
-docker run -t -v {path_to_zip}:/path checkmarx/kics scan -p /path/{name_of_zip_file}
+To scan a file named "Example", we would use this instruction: 
+
+docker run -t -v "{path_to_file}/Example:/path/" checkmarx/kics:latest scan -p /path/
+
+**-t**: Docker command to allocate a pseudo-TTY, see more information [here](https://docs.docker.com/engine/reference/commandline/cli/).
+
+**-v "{path_to_file}/Example:/path/"**: Mounts the directory containing the file to be scanned, "Example", into the Docker container.
+
+**checkmarx/kics:latest**: Specifies the Docker image to use, which is the latest version of KICS available. 
+
+**scan -p /path/**: initiates a scan on the "Example" file we provided. 
 ```
 
 More information can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)
