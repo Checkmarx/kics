@@ -21,6 +21,7 @@ CxPolicy[result] {
 		"keyExpectedValue": "'maxLength' should be defined",
 		"keyActualValue": "'maxLength' is undefined",
 		"overrideKey": version,
+		"searchLine": common_lib.build_search_line(path,["type"]),
 	}
 }
 
@@ -41,6 +42,7 @@ CxPolicy[result] {
 		"keyExpectedValue": "'maxLength' should be defined",
 		"keyActualValue": "'maxLength' is undefined",
 		"overrideKey": version,
+		"searchLine": common_lib.build_search_line(path,["type"]),
 	}
 }
 
