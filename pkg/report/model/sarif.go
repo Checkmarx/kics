@@ -392,6 +392,12 @@ func readCWECsvInfo(filePath string) ([]cweCsv, error) {
 				GUID:    generateGUID(),
 				HelpURI: "https://cwe.mitre.org/data/definitions/" + record[0] + ".html",
 			}
+
+			// Check if Extended Description is empty, fill it with Description if so
+			if cweEntry.FullDescription.Text == "" {
+				cweEntry.FullDescription.Text = record[4]
+			}
+
 			cweEntries = append(cweEntries, cweEntry)
 		}
 	}

@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  frontend:
+    build: frontend
+    ports:
+      - "8000:80"
+    volumes:
+        - ./logic:/app
+
+  backend:
+    build: backend
+    expose:
+        - 8080
+    volumes:
+        - ./logic:/app
