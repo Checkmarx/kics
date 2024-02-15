@@ -1,14 +1,12 @@
 package provider
 
 import (
-	"bytes"
 	"context"
 	"fmt"
 	ioFs "io/fs"
 	"os"
 	"path/filepath"
 	"regexp"
-	"runtime/debug"
 	"strings"
 	"sync"
 	"syscall"
@@ -238,8 +236,6 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
-	gr := bytes.Fields(debug.Stack())[1]
-
 	err, exist := MapOfExclude[strings.ToLower(path)]
 	if exist {
 		return true, err
@@ -248,7 +244,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 	if info.IsDir() {
 		// exclude terraform cache folders
 		if queryRegexExcludeTerraCache.MatchString(path) {
-			log.Info().Msgf("Aqui 1 Directory ignored: %s com id. %s", path, string(gr))
+			log.Info().Msgf("Directory ignored: %s", path)
 
 			err := s.AddExcluded([]string{info.Name()})
 			if err != nil {
@@ -261,7 +257,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 		}
 		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
 			MapOfExclude[strings.ToLower(path)] = filepath.SkipDir
-			log.Info().Msgf("Aqui 2 Directory ignored: %s com id. %s", path, string(gr))
+			log.Info().Msgf("Directory ignored: %s", path)
 			return true, filepath.SkipDir
 		}
 
