@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#expose",
   "platform": "Dockerfile",
   "descriptionID": "fed3d812",
-  "cwe": ""
+  "cwe": "682"
 }

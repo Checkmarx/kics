@@ -1,0 +1,8 @@
+[
+    {
+		"queryName": "Script Block Injection",
+		"severity": "HIGH",
+		"line": 17,
+		"fileName": "positive1.yaml"
+	}
+]
