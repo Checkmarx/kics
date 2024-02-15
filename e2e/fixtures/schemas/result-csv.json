@@ -38,6 +38,7 @@
             "QueryURI",
             "Severity",
             "Platform",
+            "CWE",
             "CloudProvider",
             "Category",
             "DescriptionID",
