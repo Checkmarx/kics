@@ -1,12 +1,14 @@
 package provider
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	ioFs "io/fs"
 	"os"
 	"path/filepath"
 	"regexp"
+	"runtime/debug"
 	"strings"
 	"sync"
 	"syscall"
@@ -31,6 +33,7 @@ var (
 	queryRegexExcludeTerraCache = regexp.MustCompile(fmt.Sprintf(`^(.*?%s)?\.terra.*`, regexp.QuoteMeta(string(os.PathSeparator))))
 	// ErrNotSupportedFile - error representing when a file format is not supported by KICS
 	ErrNotSupportedFile = errors.New("invalid file format")
+	MapOfExclude        = make(map[string]error)
 )
 
 // NewFileSystemSourceProvider initializes a FileSystemSourceProvider with path and files that will be ignored
@@ -232,20 +235,33 @@ func closeFile(file *os.File, info os.FileInfo) {
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
 	path string, resolved bool) (bool, error) {
-	s.mu.RLock()
-	defer s.mu.RUnlock()
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	gr := bytes.Fields(debug.Stack())[1]
+
+	err, exist := MapOfExclude[strings.ToLower(path)]
+	if exist {
+		return true, err
+	}
+
 	if info.IsDir() {
 		// exclude terraform cache folders
 		if queryRegexExcludeTerraCache.MatchString(path) {
-			log.Info().Msgf("Directory ignored: %s", path)
+			log.Info().Msgf("Aqui 1 Directory ignored: %s com id. %s", path, string(gr))
+
 			err := s.AddExcluded([]string{info.Name()})
 			if err != nil {
+				MapOfExclude[path] = err
 				return true, err
 			}
+
+			MapOfExclude[strings.ToLower(path)] = filepath.SkipDir
 			return true, filepath.SkipDir
 		}
 		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
-			log.Info().Msgf("Directory ignored: %s", path)
+			MapOfExclude[strings.ToLower(path)] = filepath.SkipDir
+			log.Info().Msgf("Aqui 2 Directory ignored: %s com id. %s", path, string(gr))
 			return true, filepath.SkipDir
 		}
 
@@ -257,11 +273,13 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 	}
 
 	if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
+		MapOfExclude[strings.ToLower(path)] = nil
 		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}
 	ext := utils.GetExtension(path)
 	if !extensions.Include(ext) {
+		MapOfExclude[strings.ToLower(path)] = nil
 		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}
