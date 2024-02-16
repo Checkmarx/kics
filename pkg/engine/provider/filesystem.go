@@ -31,7 +31,6 @@ var (
 	queryRegexExcludeTerraCache = regexp.MustCompile(fmt.Sprintf(`^(.*?%s)?\.terra.*`, regexp.QuoteMeta(string(os.PathSeparator))))
 	// ErrNotSupportedFile - error representing when a file format is not supported by KICS
 	ErrNotSupportedFile = errors.New("invalid file format")
-	MapOfExclude        = make(map[string]error)
 )
 
 // NewFileSystemSourceProvider initializes a FileSystemSourceProvider with path and files that will be ignored
@@ -233,13 +232,8 @@ func closeFile(file *os.File, info os.FileInfo) {
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
 	path string, resolved bool) (bool, error) {
-	s.mu.Lock()
-	defer s.mu.Unlock()
-
-	err, exist := MapOfExclude[strings.ToLower(path)]
-	if exist {
-		return true, err
-	}
+	s.mu.RLock()
+	defer s.mu.RUnlock()
 
 	if info.IsDir() {
 		// exclude terraform cache folders
@@ -248,19 +242,14 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 
 			err := s.AddExcluded([]string{info.Name()})
 			if err != nil {
-				MapOfExclude[path] = err
 				return true, err
 			}
-
-			MapOfExclude[strings.ToLower(path)] = filepath.SkipDir
 			return true, filepath.SkipDir
 		}
 		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
-			MapOfExclude[strings.ToLower(path)] = filepath.SkipDir
 			log.Info().Msgf("Directory ignored: %s", path)
 			return true, filepath.SkipDir
 		}
-
 		_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
 		if err != nil || resolved {
 			return true, nil
@@ -269,13 +258,11 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 	}
 
 	if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
-		MapOfExclude[strings.ToLower(path)] = nil
 		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}
 	ext := utils.GetExtension(path)
 	if !extensions.Include(ext) {
-		MapOfExclude[strings.ToLower(path)] = nil
 		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}
