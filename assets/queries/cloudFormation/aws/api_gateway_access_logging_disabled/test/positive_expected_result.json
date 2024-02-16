@@ -2,7 +2,7 @@
   {
     "queryName": "API Gateway Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
-    "line": 4,
+    "line": 16,
     "fileName": "positive1.yaml"
   },
   {
@@ -14,25 +14,25 @@
   {
     "queryName": "API Gateway Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
-    "line": 15,
-    "fileName": "positive4.json"
+    "line": 21,
+    "fileName": "positive3.json"
   },
   {
     "queryName": "API Gateway Stage Access Logging Settings Not Defined",
     "severity": "MEDIUM",
-    "line": 17,
-    "fileName": "positive3.json"
+    "line": 19,
+    "fileName": "positive4.json"
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive1.json"
+    "filename": "positive5.json"
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
     "line": 6,
-    "filename": "positive2.json"
+    "filename": "positive6.json"
   }
 ]

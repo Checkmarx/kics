@@ -4,12 +4,10 @@
     "NewAmpApp-1": {
       "Type": "AWS::Amplify::App",
       "Properties": {
-        "OauthToken": "String",
         "Repository": "String",
         "BasicAuthConfig": {
           "Username": "admin",
-          "EnableBasicAuth": true,
-          "Password": "String"
+          "EnableBasicAuth": true
         },
         "CustomHeaders": "String",
         "Description": "String",
