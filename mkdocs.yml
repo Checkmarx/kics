@@ -16,21 +16,13 @@ extra:
 
 theme:
   name: material
-  logo: img/logo/Checkmarx_Kics_Logo_white_fit_to_content.png
+  logo: img/logo/Checkmarx_Kics_Logo_fit_to_content.png
   favicon: img/logo/kics-donkey.ico
   features:
     - navigation.tabs
-    - navigation.tabs.sticky
     - toc.integrate
   palette:
     - scheme: default
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-    - scheme: slate
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
 
 # Navigation
 nav:
@@ -113,6 +105,7 @@ google_analytics:
   - auto
 
 markdown_extensions:
+  - tables
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.superfences
