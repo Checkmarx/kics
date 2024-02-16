@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "ECS Cluster with Container Insights Disabled",
+    "severity": "LOW",
+    "line": 6,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ECS Cluster with Container Insights Disabled",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "ECS Cluster with Container Insights Disabled",
+    "severity": "LOW",
+    "line": 8,
+    "fileName": "positive3.yaml"
+  } 
+]
