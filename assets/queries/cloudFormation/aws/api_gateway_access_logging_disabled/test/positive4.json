@@ -6,6 +6,10 @@
       "Properties": {
         "StageName": "Prod",
         "Description": "Prod Stage",
+        "AccessLogSettings": {
+            "DestinationArn": "dest",
+            "Format": "format"
+        },
         "DeploymentId": {
           "Ref": "MyDeployment"
         },
