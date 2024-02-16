@@ -91,6 +91,14 @@ td a:hover {
   min-height: calc(100% - 50px);
 }
 
+.md-content__inner ul li a{
+  color: #1B2C7F;
+}
+
+.md-content__inner ul li a:hover{
+  color: #180C7d;
+}
+
 .md-sidebar {
   height: 100%;
   margin-bottom: 25px;
