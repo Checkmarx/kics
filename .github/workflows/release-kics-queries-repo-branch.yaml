@@ -14,7 +14,8 @@ jobs:
 
     - name: Set up Git credentials
       run: |
-          git config --global user.name "${{ github.actor }}"
+          git config --global user.name "KICSBot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global url."https://${{ secrets.CHECKMARXDEV_GIT_TOKEN }}@github.com".insteadOf "https://github.com"
 
     - name: Clone kics-queries-repo from CheckmarxDev
