@@ -22,7 +22,19 @@ func TestFlags_validatePathEnum(t *testing.T) {
 		{
 			name:      "should execute fine",
 			flagName:  "output-path",
-			flagValue: "C:\\Users\\user\\files",
+			flagValue: "/file",
+			wantErr:   false,
+		},
+		{
+			name:      "should execute fine",
+			flagName:  "output-path",
+			flagValue: "file",
+			wantErr:   false,
+		},
+		{
+			name:      "should execute fine",
+			flagName:  "output-path",
+			flagValue: "C:\\Users\\user\\.file",
 			wantErr:   false,
 		},
 		{
@@ -30,6 +42,36 @@ func TestFlags_validatePathEnum(t *testing.T) {
 			flagName:  "output-path",
 			flagValue: "/user/files",
 			wantErr:   false,
+		},
+		{
+			name:      "should execute fine",
+			flagName:  "output-path",
+			flagValue: "\\user\\file",
+			wantErr:   false,
+		},
+		{
+			name:      "should execute fine",
+			flagName:  "output-path",
+			flagValue: "user\\file",
+			wantErr:   false,
+		},
+		{
+			name:      "should execute fine",
+			flagName:  "output-path",
+			flagValue: "./user/files",
+			wantErr:   false,
+		},
+		{
+			name:      "should execute fine",
+			flagName:  "output-path",
+			flagValue: "../user/files",
+			wantErr:   false,
+		},
+		{
+			name:      "should return an error regarding invalid characters (*)",
+			flagName:  "output-path",
+			flagValue: "../user/fil*es",
+			wantErr:   true,
 		},
 		{
 			name:      "should return an error regarding invalid characters (|)",
@@ -50,6 +92,12 @@ func TestFlags_validatePathEnum(t *testing.T) {
 			wantErr:   true,
 		},
 		{
+			name:      "should return an error regarding invalid characters (?)",
+			flagName:  "output-path",
+			flagValue: "..\file?",
+			wantErr:   true,
+		},
+		{
 			name:      "should return an error regarding invalid characters (>)",
 			flagName:  "output-path",
 			flagValue: "C:/Users/user/files/>",
@@ -65,6 +113,12 @@ func TestFlags_validatePathEnum(t *testing.T) {
 			name:      "should return an error regarding invalid characters (*)",
 			flagName:  "output-path",
 			flagValue: "C:/Users/user/files/*",
+			wantErr:   true,
+		},
+		{
+			name:      "should return an error regarding invalid characters",
+			flagName:  "output-path",
+			flagValue: "c:/*<?>*/:??/folder",
 			wantErr:   true,
 		},
 	}
