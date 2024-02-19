@@ -6,6 +6,7 @@ import (
 	ioFs "io/fs"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"sync"
 	"syscall"
@@ -26,8 +27,11 @@ type FileSystemSourceProvider struct {
 	mu       sync.RWMutex
 }
 
-// ErrNotSupportedFile - error representing when a file format is not supported by KICS
-var ErrNotSupportedFile = errors.New("invalid file format")
+var (
+	queryRegexExcludeTerraCache = regexp.MustCompile(fmt.Sprintf(`^(.*?%s)?\.terra.*`, regexp.QuoteMeta(string(os.PathSeparator))))
+	// ErrNotSupportedFile - error representing when a file format is not supported by KICS
+	ErrNotSupportedFile = errors.New("invalid file format")
+)
 
 // NewFileSystemSourceProvider initializes a FileSystemSourceProvider with path and files that will be ignored
 func NewFileSystemSourceProvider(paths, excludes []string) (*FileSystemSourceProvider, error) {
@@ -230,7 +234,18 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 	path string, resolved bool) (bool, error) {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
+
 	if info.IsDir() {
+		// exclude terraform cache folders
+		if queryRegexExcludeTerraCache.MatchString(path) {
+			log.Info().Msgf("Directory ignored: %s", path)
+
+			err := s.AddExcluded([]string{info.Name()})
+			if err != nil {
+				return true, err
+			}
+			return true, filepath.SkipDir
+		}
 		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
 			log.Info().Msgf("Directory ignored: %s", path)
 			return true, filepath.SkipDir
