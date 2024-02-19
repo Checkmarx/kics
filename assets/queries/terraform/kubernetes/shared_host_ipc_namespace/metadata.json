@@ -2,7 +2,7 @@
   "id": "e94d3121-c2d1-4e34-a295-139bfeb73ea3",
   "queryName": "Shared Host IPC Namespace",
   "severity": "MEDIUM",
-  "old_severity": "MEDIUM",
+  "oldSeverity": "MEDIUM",
   "category": "Resource Management",
   "descriptionText": "Container should not share the host IPC namespace",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_ipc",

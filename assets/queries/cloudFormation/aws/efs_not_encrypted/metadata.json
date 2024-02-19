@@ -2,7 +2,7 @@
   "id": "2ff8e83c-90e1-4d68-a300-6d652112e622",
   "queryName": "EFS Not Encrypted",
   "severity": "HIGH",
-  "old_severity": "HIGH",
+  "oldSeverity": "HIGH",
   "category": "Encryption",
   "descriptionText": "Elastic File System (EFS) must be encrypted",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html",

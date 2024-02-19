@@ -2,7 +2,7 @@
   "id": "443488f5-c734-460b-a36d-5b3f330174dc",
   "queryName": "User Data Contains Encoded Private Key",
   "severity": "HIGH",
-  "old_severity": "HIGH",
+  "oldSeverity": "HIGH",
   "category": "Encryption",
   "descriptionText": "User Data should not contain a base64 encoded private key. If so, anyone can decode the private key easily",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#user_data_base64",

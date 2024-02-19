@@ -2,7 +2,7 @@
   "id": "abcb818b-5af7-4d72-aba9-6dd84956b451",
   "queryName": "Using Default Namespace",
   "severity": "MEDIUM",
-  "old_severity": "MEDIUM",
+  "oldSeverity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "The default namespace should not be used",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#namespace",

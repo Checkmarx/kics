@@ -2,7 +2,7 @@
   "id": "19ebaa28-fc86-4a58-bcfa-015c9e22fe40",
   "queryName": "Containers With Added Capabilities",
   "severity": "MEDIUM",
-  "old_severity": "MEDIUM",
+  "oldSeverity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Containers should not have extra capabilities allowed",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",

@@ -2,7 +2,7 @@
   "id": "5beacce3-4020-4a3d-9e1d-a36f953df630",
   "queryName": "RDS Storage Not Encrypted",
   "severity": "HIGH",
-  "old_severity": "HIGH",
+  "oldSeverity": "HIGH",
   "category": "Encryption",
   "descriptionText": "RDS Storage should be encrypted, which means the attribute 'StorageEncrypted' should be set to 'true'",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",

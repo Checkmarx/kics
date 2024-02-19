@@ -2,7 +2,7 @@
   "id": "cf34805e-3872-4c08-bf92-6ff7bb0cfadb",
   "queryName": "Container Running As Root",
   "severity": "MEDIUM",
-  "old_severity": "MEDIUM",
+  "oldSeverity": "MEDIUM",
   "category": "Best Practices",
   "descriptionText": "Containers should only run as non-root user. This limits the exploitability of security misconfigurations and restricts an attacker's possibilities in case of compromise",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",

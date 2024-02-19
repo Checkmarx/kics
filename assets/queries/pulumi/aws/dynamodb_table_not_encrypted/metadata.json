@@ -2,7 +2,7 @@
   "id": "b6a7e0ae-aed8-4a19-a993-a95760bf8836",
   "queryName": "DynamoDB Table Not Encrypted",
   "severity": "MEDIUM",
-  "old_severity": "MEDIUM",
+  "oldSeverity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "AWS DynamoDB Tables should have serverSideEncryption enabled",
   "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/dynamodb/table/#serversideencryption_yaml",

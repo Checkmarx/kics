@@ -2,7 +2,7 @@
   "id": "4b410d24-1cbe-4430-a632-62c9a931cf1c",
   "queryName": "Curl or Wget Instead of Add",
   "severity": "LOW",
-  "old_severity": "LOW",
+  "oldSeverity": "LOW",
   "category": "Best Practices",
   "descriptionText": "Use of Curl or Wget should be done instead of Add to fetch packages from remote URLs due to the use of Add being strongly discouraged",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",

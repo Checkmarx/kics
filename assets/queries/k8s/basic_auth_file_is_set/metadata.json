@@ -2,7 +2,7 @@
   "id": "5da47109-f8d6-4585-9e2b-96a8958a12f5",
   "queryName": "Basic Auth File Is Set",
   "severity": "HIGH",
-  "old_severity": "HIGH",
+  "oldSeverity": "HIGH",
   "category": "Access Control",
   "descriptionText": "When using kube-apiserver command, the 'basic-auth-file' flag should not be set",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",

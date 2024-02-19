@@ -2,7 +2,7 @@
   "id": "50cb6c3b-c878-4b88-b50e-d1421bada9e8",
   "queryName": "RDP Access Is Not Restricted",
   "severity": "MEDIUM",
-  "old_severity": "MEDIUM",
+  "oldSeverity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Check if the Google compute firewall allows unrestricted RDP access. Allowed ports should not contain RDP port 3389",
   "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/firewalls",

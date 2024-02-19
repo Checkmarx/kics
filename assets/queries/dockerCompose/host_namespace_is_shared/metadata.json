@@ -2,7 +2,7 @@
   "id": "4f31dd9f-2cc3-4751-9b53-67e4af83dac0",
   "queryName": "Host Namespace is Shared",
   "severity": "MEDIUM",
-  "old_severity": "MEDIUM",
+  "oldSeverity": "MEDIUM",
   "category": "Resource Management",
   "descriptionText": "The hosts process namespace should not be shared by containers",
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#pid",

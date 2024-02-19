@@ -2,7 +2,7 @@
   "id": "4bd21e68-38c1-4d58-acdc-6a14b203237f",
   "queryName": "DynamoDB Table Not Encrypted",
   "severity": "MEDIUM",
-  "old_severity": "MEDIUM",
+  "oldSeverity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "AWS DynamoDB Tables should have server-side encryption",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-ssespecification.html",

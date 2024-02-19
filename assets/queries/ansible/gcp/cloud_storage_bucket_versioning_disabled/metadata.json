@@ -2,7 +2,7 @@
   "id": "7814ddda-e758-4a56-8be3-289a81ded929",
   "queryName": "Cloud Storage Bucket Versioning Disabled",
   "severity": "HIGH",
-  "old_severity": "HIGH",
+  "oldSeverity": "HIGH",
   "category": "Observability",
   "descriptionText": "Cloud Storage Bucket should have versioning enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-versioning",

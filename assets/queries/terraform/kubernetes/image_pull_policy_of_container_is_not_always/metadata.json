@@ -2,7 +2,7 @@
   "id": "aa737abf-6b1d-4aba-95aa-5c160bd7f96e",
   "queryName": "Image Pull Policy Of The Container Is Not Set To Always",
   "severity": "LOW",
-  "old_severity": "LOW",
+  "oldSeverity": "LOW",
   "category": "Insecure Configurations",
   "descriptionText": "Image Pull Policy of the container must be defined and set to Always",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image_pull_policy",

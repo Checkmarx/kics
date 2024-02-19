@@ -2,7 +2,7 @@
   "id": "953b3cdb-ce13-428a-aa12-318726506661",
   "queryName": "IAM Policies With Full Privileges",
   "severity": "HIGH",
-  "old_severity": "HIGH",
+  "oldSeverity": "HIGH",
   "category": "Access Control",
   "descriptionText": "IAM policies shouldn't allow full administrative privileges (for all resources)",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html",

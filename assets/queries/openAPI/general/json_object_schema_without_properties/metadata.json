@@ -2,7 +2,7 @@
   "id": "9d967a2b-9d64-41a6-abea-dfc4960299bd",
   "queryName": "JSON Object Schema Without Properties (v3)",
   "severity": "MEDIUM",
-  "old_severity": "MEDIUM",
+  "oldSeverity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Schema of the JSON object should have properties defined and 'additionalProperties' set to false.",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",

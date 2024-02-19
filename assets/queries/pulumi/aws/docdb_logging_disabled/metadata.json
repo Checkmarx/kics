@@ -2,7 +2,7 @@
   "id": "2ca87964-fe7e-4cdc-899c-427f0f3525f8",
   "queryName": "DocDB Logging Is Disabled",
   "severity": "LOW",
-  "old_severity": "LOW",
+  "oldSeverity": "LOW",
   "category": "Observability",
   "descriptionText": "DocDB logging should be enabled",
   "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/docdb/cluster/#enabledcloudwatchlogsexports_yaml",

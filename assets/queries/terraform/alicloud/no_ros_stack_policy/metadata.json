@@ -2,7 +2,7 @@
   "id": "72ceb736-0aee-43ea-a191-3a69ab135681",
   "queryName": "No ROS Stack Policy",
   "severity": "MEDIUM",
-  "old_severity": "MEDIUM",
+  "oldSeverity": "MEDIUM",
   "category": "Resource Management",
   "descriptionText": "ROS Stack should have a stack policy in order to protect stack resources from and during update actions",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ros_stack",

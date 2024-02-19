@@ -2,7 +2,7 @@
   "id": "105e20dd-8449-4d71-95c6-d5dac96639af",
   "queryName": "Success Response Code Undefined for Trace Operation",
   "severity": "MEDIUM",
-  "old_severity": "MEDIUM",
+  "oldSeverity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Trace should define the '200' successful code",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",

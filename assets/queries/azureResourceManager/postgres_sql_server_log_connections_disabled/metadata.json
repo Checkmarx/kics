@@ -2,7 +2,7 @@
   "id": "e69bda39-e1e2-47ca-b9ee-b6531b23aedd",
   "queryName": "PostgreSQL Database Server Log Connections Disabled",
   "severity": "MEDIUM",
-  "old_severity": "MEDIUM",
+  "oldSeverity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' property set to 'on'",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/servers/configurations?tabs=json#configurationproperties-object",
