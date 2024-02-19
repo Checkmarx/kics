@@ -17,6 +17,7 @@
         "id",
         "queryName",
         "severity",
+        "oldSeverity",
         "category",
         "descriptionText",
         "descriptionUrl",
