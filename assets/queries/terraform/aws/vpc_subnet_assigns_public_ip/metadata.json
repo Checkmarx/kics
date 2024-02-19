@@ -2,6 +2,7 @@
   "id": "52f04a44-6bfa-4c41-b1d3-4ae99a2de05c",
   "queryName": "VPC Subnet Assigns Public IP",
   "severity": "MEDIUM",
+  "newSeverity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "VPC Subnet should not assign public IP",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet#map_public_ip_on_launch",

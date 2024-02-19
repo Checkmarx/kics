@@ -2,6 +2,7 @@
   "id": "d58c6f24-3763-4269-9f5b-86b2569a003b",
   "queryName": "Google Container Node Pool Auto Repair Disabled",
   "severity": "MEDIUM",
+  "newSeverity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Google Container Node Pool Auto Repair should be enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html",

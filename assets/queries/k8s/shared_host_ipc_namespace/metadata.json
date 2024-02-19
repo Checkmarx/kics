@@ -2,6 +2,7 @@
   "id": "cd290efd-6c82-4e9d-a698-be12ae31d536",
   "queryName": "Shared Host IPC Namespace",
   "severity": "MEDIUM",
+  "newSeverity": "MEDIUM",
   "category": "Resource Management",
   "descriptionText": "Container should not share the host IPC namespace",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",

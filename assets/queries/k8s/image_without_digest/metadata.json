@@ -2,6 +2,7 @@
   "id": "7c81d34c-8e5a-402b-9798-9f442630e678",
   "queryName": "Image Without Digest",
   "severity": "LOW",
+  "newSeverity": "LOW",
   "category": "Insecure Configurations",
   "descriptionText": "Images should be specified together with their digests to ensure integrity",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/#updating-images",

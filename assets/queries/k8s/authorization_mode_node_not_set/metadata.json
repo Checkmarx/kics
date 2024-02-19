@@ -2,6 +2,7 @@
   "id": "4d7ee40f-fc5d-427d-8cac-dffbe22d42d1",
   "queryName": "Authorization Mode Node Not Set",
   "severity": "MEDIUM",
+  "newSeverity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "When using kube-apiserver command, the 'authorization-mode' flag should have 'Node' mode",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",

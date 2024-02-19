@@ -2,6 +2,7 @@
   "id": "3199c26c-7871-4cb3-99c2-10a59244ce7f",
   "queryName": "RDS Storage Not Encrypted",
   "severity": "HIGH",
+  "newSeverity": "HIGH",
   "category": "Encryption",
   "descriptionText": "RDS Storage should be encrypted, which means the attribute 'storage_encrypted' should be set to 'true'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#storage_encrypted",

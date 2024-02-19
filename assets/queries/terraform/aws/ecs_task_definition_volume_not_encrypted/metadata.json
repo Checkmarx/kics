@@ -2,6 +2,7 @@
   "id": "4d46ff3b-7160-41d1-a310-71d6d370b08f",
   "queryName": "ECS Task Definition Volume Not Encrypted",
   "severity": "HIGH",
+  "newSeverity": "HIGH",
   "category": "Encryption",
   "descriptionText": "Amazon ECS Task Definition does not have encryption for data at transit enabled. To prevent such a scenario, enable the attribute 'transit_encryption'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#transit_encryption",

@@ -2,6 +2,7 @@
   "id": "66477506-6abb-49ed-803d-3fa174cd5f6a",
   "queryName": "Launch Configuration Is Not Encrypted",
   "severity": "HIGH",
+  "newSeverity": "HIGH",
   "category": "Encryption",
   "descriptionText": "Launch Configurations should have the data in the volumes encrypted. To encrypt the data, the 'encrypted' parameter should be set to true in each volume",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_lc_module.html",

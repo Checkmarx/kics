@@ -2,6 +2,7 @@
   "id": "0b93729a-d882-4803-bdc3-ac429a21f158",
   "queryName": "EC2 Instance Using API Keys",
   "severity": "LOW",
+  "newSeverity": "LOW",
   "category": "Access Control",
   "descriptionText": "EC2 instances should use roles to be granted access to other AWS services",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#iam_instance_profile",

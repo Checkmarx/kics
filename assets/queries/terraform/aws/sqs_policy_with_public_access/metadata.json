@@ -2,6 +2,7 @@
   "id": "730675f9-52ed-49b6-8ead-0acb5dd7df7f",
   "queryName": "SQS Policy With Public Access",
   "severity": "MEDIUM",
+  "newSeverity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Checks for dangerous permissions in Action statements in an SQS Queue Policy. This is deemed a potential security risk as it would allow various attacks to the queue",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue_policy",

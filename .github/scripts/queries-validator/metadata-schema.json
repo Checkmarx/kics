@@ -17,6 +17,7 @@
         "id",
         "queryName",
         "severity",
+        "newSeverity",
         "category",
         "descriptionText",
         "descriptionUrl",
@@ -32,6 +33,16 @@
             "minLength": 8
         },
         "severity": {
+            "type": "string",
+            "enum": [
+                "TRACE",
+                "HIGH",
+                "MEDIUM",
+                "LOW",
+                "INFO"
+            ]
+        },
+        "newSeverity": {
             "type": "string",
             "enum": [
                 "TRACE",

@@ -2,6 +2,7 @@
   "id": "a9228976-10cf-4b5f-b902-9e962aad037a",
   "queryName": "Type Has Invalid Keyword (v3)",
   "severity": "INFO",
+  "newSeverity": "INFO",
   "category": "Structure and Semantics",
   "descriptionText": "Schema Object define type should not use a keyword of another type",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",

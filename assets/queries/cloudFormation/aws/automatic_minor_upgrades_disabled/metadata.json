@@ -2,6 +2,7 @@
   "id": "f0104061-8bfc-4b45-8a7d-630eb502f281",
   "queryName": "Automatic Minor Upgrades Disabled",
   "severity": "LOW",
+  "newSeverity": "LOW",
   "category": "Best Practices",
   "descriptionText": "RDS instance should have automatic minor upgrades enabled, which means the attribute 'AutoMinorVersionUpgrade' must be set to true.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",

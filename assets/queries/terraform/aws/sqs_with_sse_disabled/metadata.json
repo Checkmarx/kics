@@ -2,6 +2,7 @@
   "id": "6e8849c1-3aa7-40e3-9063-b85ee300f29f",
   "queryName": "SQS With SSE Disabled",
   "severity": "MEDIUM",
+  "newSeverity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "Amazon Simple Queue Service (SQS) queue should protect the contents of their messages using Server-Side Encryption (SSE)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue",
