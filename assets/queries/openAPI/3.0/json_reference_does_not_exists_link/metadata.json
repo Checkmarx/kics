@@ -2,6 +2,7 @@
   "id": "801f0c6a-a834-4467-89c6-ddecffb46b5a",
   "queryName": "Link JSON Reference Does Not Exists",
   "severity": "INFO",
+  "old_severity": "INFO",
   "category": "Structure and Semantics",
   "descriptionText": "Link reference should exists on components field",
   "descriptionUrl": "https://swagger.io/specification/#components-object",

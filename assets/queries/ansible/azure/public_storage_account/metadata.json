@@ -2,6 +2,7 @@
   "id": "35e2f133-a395-40de-a79d-b260d973d1bd",
   "queryName": "Public Storage Account",
   "severity": "HIGH",
+  "old_severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Storage Account should not be public to grant the principle of least privileges",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_storageaccount_module.html#parameter-network_acls",

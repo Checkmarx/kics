@@ -2,6 +2,7 @@
   "id": "9ba198e0-fef4-464a-8a4d-75ea55300de7",
   "queryName": "Neptune Cluster Instance is Publicly Accessible",
   "severity": "HIGH",
+  "old_severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Neptune Cluster Instance should not be publicly accessible",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/neptune_cluster_instance#publicly_accessible",

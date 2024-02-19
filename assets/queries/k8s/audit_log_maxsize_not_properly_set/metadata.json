@@ -2,6 +2,7 @@
   "id": "35c0a471-f7c8-4993-aa2c-503a3c712a66",
   "queryName": "Audit Log Maxsize Not Properly Set",
   "severity": "LOW",
+  "old_severity": "LOW",
   "category": "Observability",
   "descriptionText": "When using kube-apiserver command, the '--audit-log-maxsize' flag should be defined and set to 100 or more MegaBytes",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",

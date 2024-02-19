@@ -2,6 +2,7 @@
   "id": "2ea04bef-c769-409e-9179-ee3a50b5c0ac",
   "queryName": "Numeric Schema Without Maximum (v3)",
   "severity": "MEDIUM",
+  "old_severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Numeric schema (type set to 'integer' or 'number') should have 'maximum' defined.",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",

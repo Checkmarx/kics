@@ -2,6 +2,7 @@
   "id": "9ef08939-ea40-489c-8851-667870b2ef50",
   "queryName": "ROS Stack Notifications Disabled",
   "severity": "MEDIUM",
+  "old_severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "The ROS Stack Notifications should be defined and populated to receive stack related events",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ros_stack#notification_urls",

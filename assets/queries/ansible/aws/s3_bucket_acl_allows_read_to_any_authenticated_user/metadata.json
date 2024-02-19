@@ -2,6 +2,7 @@
   "id": "75480b31-f349-4b9a-861f-bce19588e674",
   "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
   "severity": "HIGH",
+  "old_severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "S3 Buckets should not be readable to any authenticated user",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_s3_module.html#parameter-permission",

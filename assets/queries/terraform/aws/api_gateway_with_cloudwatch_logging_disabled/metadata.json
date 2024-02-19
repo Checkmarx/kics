@@ -2,6 +2,7 @@
   "id": "982aa526-6970-4c59-8b9b-2ce7e019fe36",
   "queryName": "API Gateway With CloudWatch Logging Disabled",
   "severity": "MEDIUM",
+  "old_severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "AWS CloudWatch Logs for APIs should be enabled and using the naming convention described in documentation",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage#managing-the-api-logging-cloudwatch-log-group",

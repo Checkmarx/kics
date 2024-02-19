@@ -2,6 +2,7 @@
   "id": "66f130d9-b81d-4e8e-9b08-da74b9c891df",
   "queryName": "Missing Cluster Log Types",
   "severity": "LOW",
+  "old_severity": "LOW",
   "category": "Observability",
   "descriptionText": "Amazon EKS control plane logging don't enabled for all log types",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster.html",

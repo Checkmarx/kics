@@ -2,6 +2,7 @@
   "id": "baa3890f-bed7-46f5-ab8f-1da8fc91c729",
   "queryName": "Shared Host IPC Namespace",
   "severity": "MEDIUM",
+  "old_severity": "MEDIUM",
   "category": "Resource Management",
   "descriptionText": "Container should not share the host IPC namespace",
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir",

@@ -2,6 +2,7 @@
   "id": "4c137350-7307-4803-8c04-17c09a7a9fcf",
   "queryName": "Root Account Has Active Access Keys",
   "severity": "HIGH",
+  "old_severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "The AWS Root Account must not have active access keys associated, which means if there are access keys associated to the Root Account, they must be inactive.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html",

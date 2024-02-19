@@ -2,6 +2,7 @@
   "id": "610e266e-6c12-4bca-9925-1ed0cd29742b",
   "queryName": "Security Opt Not Set",
   "severity": "MEDIUM",
+  "old_severity": "MEDIUM",
   "category": "Resource Management",
   "descriptionText": "Attribute 'security_opt' should be defined.",
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt",

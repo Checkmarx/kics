@@ -2,6 +2,7 @@
   "id": "c759d6f2-4dd3-4160-82d3-89202ef10d87",
   "queryName": "MySQL Instance With Local Infile On",
   "severity": "HIGH",
+  "old_severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "MySQL Instance should not have Local Infile On",
   "descriptionUrl": "https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/instances",

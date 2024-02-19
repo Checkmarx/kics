@@ -2,6 +2,7 @@
   "id": "d929c031-078f-4241-b802-e224656ad890",
   "queryName": "Invalid Format (v3)",
   "severity": "LOW",
+  "old_severity": "LOW",
   "category": "Insecure Configurations",
   "descriptionText": "The format should be valid for the type defined. For integer type must be int32 or int64 and number type must be float or double",
   "descriptionUrl": "https://swagger.io/docs/specification/data-models/data-types/",

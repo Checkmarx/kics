@@ -2,6 +2,7 @@
   "id": "17f75827-0684-48f4-8747-61129c7e4198",
   "queryName": "Public Storage Account",
   "severity": "HIGH",
+  "old_severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Storage Account should not be public to grant the principle of least privileges",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account",

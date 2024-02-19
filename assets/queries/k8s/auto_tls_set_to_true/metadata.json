@@ -2,6 +2,7 @@
   "id": "98ce8b81-7707-4734-aa39-627c6db3d84b",
   "queryName": "Auto TLS Set To True",
   "severity": "HIGH",
+  "old_severity": "HIGH",
   "category": "Secret Management",
   "descriptionText": "When using etcd commands, the '--auto-tls' should be set to false",
   "descriptionUrl": "https://etcd.io/docs/v3.4/op-guide/security/",

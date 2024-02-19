@@ -2,6 +2,7 @@
   "id": "ac1564a3-c324-4747-9fa1-9dfc234dace0",
   "queryName": "Shared Host Network Namespace",
   "severity": "MEDIUM",
+  "old_severity": "MEDIUM",
   "category": "Resource Management",
   "descriptionText": "Container should not share the host network namespace",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_network",

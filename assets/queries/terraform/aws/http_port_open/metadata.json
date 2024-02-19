@@ -2,6 +2,7 @@
   "id": "ffac8a12-322e-42c1-b9b9-81ff85c39ef7",
   "queryName": "HTTP Port Open To Internet",
   "severity": "HIGH",
+  "old_severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "The HTTP port is open to the internet in a Security Group",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
