@@ -12,6 +12,7 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]][c]
 	rec := {"requests", "limits"}
 
+    has_request_or_limits(container)
 	not common_lib.valid_key(container.resources[rec[t]], "memory")
 
 	result := {
@@ -47,4 +48,10 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("spec.%s[%s].resources.requests.memory is not equal to spec.%s[%s].resources.limits.memory", [types[x], container.name, types[x], container.name]),
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], c, "resources"])
 	}
+}
+
+has_request_or_limits(x){
+	valid_key(x.resources[rec["requests"]],"memory")
+}else{
+	valid_key(x.resources[rec["limits"]],"memory")
 }
