@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "ECS Cluster with Container Insights Disabled",
+    "severity": "LOW",
+    "line": 4,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive2.json",
+    "queryName": "ECS Cluster with Container Insights Disabled"
+  },
+  {
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive3.json",
+    "queryName": "ECS Cluster with Container Insights Disabled"
+  }
+]
