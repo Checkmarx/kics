@@ -1,7 +1,7 @@
 ## Queries List
 In this page you can download a .csv file containing all queries.
 
-<!-- |            Query            |Platform|Severity|Category|More info|
+ |            Query            |Platform|Severity|Category|More info|
 |-----------------------------|---|---|---|---|
 {%- for platform in data %}
 {%- for sub_platform in data[platform] -%}
@@ -13,4 +13,4 @@ In this page you can download a .csv file containing all queries.
     {%- endfor -%}
   {%- endfor -%}
 {%- endfor -%}
-{%- endfor -%} -->
+{%- endfor -%}
