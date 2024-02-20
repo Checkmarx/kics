@@ -7,7 +7,7 @@ import (
 
 func validatePath(flagName string) error {
 	relPath := `^(?:\.\.\\|\.\\|\.\.\/|\.\/|\\|\/)?(?:[^<>:"\/\\|?*]+[\\|\/])*[^<>:"\/\\|?*]+(\/|\\)?$`
-	absPath := `^[a-zA-Z]:[\\|\/](?:[^<>:"\/\\|?*]+[\\|\/])*[^<>:"\/\\|?*]+$`
+	absPath := `^[a-zA-Z]:[\\|\/](?:[^<>:"\/\\|?*]+[\\|\/])*[^<>:"\/\\|?*]+(?:\/|\\)?$`
 	regex := regexp.MustCompile(relPath + `|` + absPath)
 
 	path := GetStrFlag(flagName)
