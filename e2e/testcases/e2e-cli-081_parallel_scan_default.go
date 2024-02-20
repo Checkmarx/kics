@@ -10,6 +10,7 @@ func init() { //nolint
 				[]string{"scan", "-o", "/path/e2e/output",
 					"--output-name", "E2E_CLI_081_RESULT",
 					"-p", "\"/path/e2e/fixtures/samples/long_terraform.tf\"",
+					"--parallel", "0",
 				},
 			},
 			ExpectedResult: []ResultsValidation{
