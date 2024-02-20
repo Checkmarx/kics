@@ -124,8 +124,8 @@ CxPolicy[result] {
 CxPolicy[result] {
 	doc := input.document[i]
 	resource := doc.Resources[stage]
-	properties := resource.Properties
 	resource.Type == "AWS::ApiGatewayV2::Stage"
+	properties := resource.Properties
 
 	not properties.AccessLogSettings
 
@@ -143,8 +143,8 @@ CxPolicy[result] {
 CxPolicy[result] {
 	doc := input.document[i]
 	resource := doc.Resources[stage]
-	properties := resource.Properties
 	resource.Type == "AWS::ApiGateway::Stage"
+	properties := resource.Properties
 
 	not properties.AccessLogSetting
 
