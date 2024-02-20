@@ -1,5 +1,5 @@
 ## Queries List
-In this page you can download a .csv file containing all queries.
+This page contains all queries.
 
  |            Query            |Platform|Severity|Category|More info|
 |-----------------------------|---|---|---|---|
