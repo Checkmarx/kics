@@ -5,15 +5,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"regexp"
-	"sort"
-
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
 	"github.com/Checkmarx/kics/pkg/minified"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
+	"regexp"
+	"sort"
 )
 
 func (s *Service) resolverSink(ctx context.Context, filename, scanID string, openAPIResolveReferences bool) ([]string, error) {
@@ -28,7 +27,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 	}
 
 	for _, rfile := range resFiles.File {
-		s.Tracker.TrackFileFound()
+		s.Tracker.TrackFileFound(rfile.FileName)
 
 		isMinified := minified.IsMinified(rfile.FileName, rfile.Content)
 		documents, err := s.Parser.Parse(rfile.FileName, rfile.Content, openAPIResolveReferences, isMinified)
@@ -90,7 +89,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 			}
 			s.saveToFile(ctx, &file)
 		}
-		s.Tracker.TrackFileParse()
+		s.Tracker.TrackFileParse(rfile.FileName)
 		s.Tracker.TrackFileFoundCountLines(documents.CountLines)
 		s.Tracker.TrackFileParseCountLines(documents.CountLines - len(documents.IgnoreLines))
 		s.Tracker.TrackFileIgnoreCountLines(len(documents.IgnoreLines))
