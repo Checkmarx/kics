@@ -4,7 +4,8 @@ package testcases
 // should perform a scan successfully giving results with new severity metadata field and return exit code according to the severity
 func init() { //nolint
 	testSample01 := TestCase{
-		Name: "should perform a scans successfully giving results with new severity and return exit code according to new severity [E2E-CLI-08_1]",
+		Name: "should perform a scans successfully giving results with new severity and return exit code " +
+			"according to new severity [E2E-CLI-08_1]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
@@ -23,7 +24,8 @@ func init() { //nolint
 		WantStatus: []int{20},
 	}
 	testSample02 := TestCase{
-		Name: "should perform a scans successfully giving results with new severity and return exit code according to new severity [E2E-CLI-088_2]",
+		Name: "should perform a scans successfully giving results with new severity and return exit code " +
+			"according to new severity [E2E-CLI-088_2]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
@@ -42,7 +44,8 @@ func init() { //nolint
 		WantStatus: []int{30, 40, 50, 60},
 	}
 	testSample03 := TestCase{
-		Name: "should perform a scans successfully giving results with new severity and return exit code according to new severity [E2E-CLI-088_3]",
+		Name: "should perform a scans successfully giving results with new severity and return exit code " +
+			"according to new severity [E2E-CLI-088_3]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
@@ -61,7 +64,8 @@ func init() { //nolint
 		WantStatus: []int{40},
 	}
 	testSample04 := TestCase{
-		Name: "should perform a scans successfully giving results with new severity and return exit code according to new severity [E2E-CLI-088_4]",
+		Name: "should perform a scans successfully giving results with new severity and return exit code " +
+			"according to new severity [E2E-CLI-088_4]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
@@ -80,7 +84,8 @@ func init() { //nolint
 		WantStatus: []int{50},
 	}
 	testSample05 := TestCase{
-		Name: "should perform a scans successfully giving results with new severity and return exit code according to new severity [E2E-CLI-088_5]",
+		Name: "should perform a scans successfully giving results with new severity and return exit code " +
+			"according to new severity [E2E-CLI-088_5]",
 		Args: args{
 			Args: []cmdArgs{
 
