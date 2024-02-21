@@ -256,6 +256,10 @@
                                                     }
                                                 }
                                             }
+                                        },
+                                        "CWE": {
+                                            "type": "string",
+                                            "minLength": 0
                                         }
                                     }
                                 }

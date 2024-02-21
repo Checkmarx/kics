@@ -28,6 +28,7 @@ type junitTestSuite struct {
 
 type junitTestCase struct {
 	XMLName   xml.Name       `xml:"testcase"`
+	CWE       string         `xml:"cwe,attr,omitempty"`
 	Name      string         `xml:"name,attr"`
 	ClassName string         `xml:"classname,attr"`
 	Failures  []junitFailure `xml:"failure"`
@@ -68,6 +69,7 @@ func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) {
 		failedTestCase := junitTestCase{
 			Name:      fmt.Sprintf("%s: %s file in line %d", query.QueryName, query.Files[idx].FileName, query.Files[idx].Line),
 			ClassName: query.Platform,
+			CWE:       query.CWE,
 			Failures:  []junitFailure{},
 		}
 
