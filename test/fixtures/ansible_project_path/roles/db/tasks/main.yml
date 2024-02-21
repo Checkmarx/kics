@@ -1,0 +1,14 @@
+---
+# roles/db/tasks/main.yml
+- name: Ensure MySQL is installed
+  package:
+    name: mysql-server
+    state: present
+  become: yes
+
+- name: Ensure MySQL is running
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+  become: yes
