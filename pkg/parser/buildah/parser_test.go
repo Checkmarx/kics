@@ -93,7 +93,8 @@ func TestParser_Parse(t *testing.T) {
 			]`,
 			want1:   []int{1, 3, 5},
 			wantErr: false,
-		}, {
+		},
+		{
 			name: "Buildah with normal comments + kics-scan ignore-line parse",
 			p:    &Parser{},
 			args: args{
@@ -137,7 +138,8 @@ func TestParser_Parse(t *testing.T) {
 			]`,
 			want1:   []int{1, 3, 4, 6},
 			wantErr: false,
-		}, {
+		},
+		{
 			name: "Buildah with kics-scan ignore-block related to from parse",
 			p:    &Parser{},
 			args: args{
