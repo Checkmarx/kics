@@ -15,6 +15,7 @@ type location struct {
 type CodeClimateReport struct {
 	Type        string   `json:"type"`
 	CheckName   string   `json:"check_name"`
+	CWE         string   `json:"cwe,omitempty"`
 	Description string   `json:"description"`
 	Categories  []string `json:"categories"`
 	Location    location `json:"location"`
@@ -39,6 +40,7 @@ func BuildCodeClimateReport(summary *model.Summary) []CodeClimateReport {
 			codeClimateReport = append(codeClimateReport, CodeClimateReport{
 				Type:        "issue",
 				CheckName:   summary.Queries[i].QueryName,
+				CWE:         summary.Queries[i].CWE,
 				Description: summary.Queries[i].Description,
 				Categories:  []string{"Security"},
 				Location: location{
