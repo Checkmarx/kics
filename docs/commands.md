@@ -77,80 +77,6 @@ Use "kics [command] --help" for more information about a command.
 Usage:
   kics scan [flags]
 
-<<<<<<< HEAD
-Flags:
-  -m, --bom                           include bill of materials (BoM) in results output
-      --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp)
-      --config string                 path to configuration file
-      --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
-      --disable-secrets               disable secrets scanning
-      --enable-openapi-refs           resolve the file reference, on OpenAPI files (default [false])
-      --exclude-categories strings    exclude categories by providing its name
-                                      cannot be provided with query inclusion flags
-                                      can be provided multiple times or as a comma separated string
-                                      example: 'Access control,Best practices'
-      --exclude-gitignore             disables the exclusion of paths specified within .gitignore file                                
-  -e, --exclude-paths strings         exclude paths from scan
-                                      supports glob and can be provided multiple times or as a quoted comma separated string
-                                      example: './shouldNotScan/*,somefile.txt'
-      --exclude-queries strings       exclude queries by providing the query ID
-                                      cannot be provided with query inclusion flags
-                                      can be provided multiple times or as a comma separated string
-                                      example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
-  -x, --exclude-results strings       exclude results by providing the similarity ID of a result
-                                      can be provided multiple times or as a comma separated string
-                                      example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'
-      --exclude-severities strings    exclude results by providing the severity of a result
-                                      can be provided multiple times or as a comma separated string
-                                      example: 'info,low'
-                                      possible values: 'critical, high, medium, low, info, trace'
-      --experimental-queries          include experimental queries (queries not yet thoroughly reviewed) (default [false])
-      --fail-on strings               which kind of results should return an exit code different from 0
-                                      accepts: critical, high, medium, low and info
-                                      example: "high,low" (default [critical,high,medium,low,info])
-  -h, --help                          help for scan
-      --ignore-on-exit string         defines which kind of non-zero exits code should be ignored
-                                      accepts: all, results, errors, none
-                                      example: if 'results' is set, only engine errors will make KICS exit code different from 0 (default "none")
-  -i, --include-queries strings       include queries by providing the query ID
-                                      cannot be provided with query exclusion flags
-                                      can be provided multiple times or as a comma separated string
-                                      example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
-      --input-data string             path to query input data files
-  -b, --libraries-path string         path to directory with libraries (default "./assets/libraries")
-      --max-file-size int             max file size permitted for scanning, in MB (default 5)
-      --minimal-ui                    simplified version of CLI output
-      --no-progress                   hides the progress bar
-      --output-name string            name used on report creations (default "results")
-  -o, --output-path string            directory path to store reports
-  -p, --path strings                  paths or directories to scan
-                                      example: "./somepath,somefile.txt"
-      --payload-lines                 adds line information inside the payload when printing the payload file
-  -d, --payload-path string           path to store internal representation JSON file
-      --preview-lines int             number of lines to be display in CLI results (min: 1, max: 30) (default 3)
-  -q, --queries-path strings          paths to directory with queries (default [./assets/queries])
-      --report-formats strings        formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])
-  -r, --secrets-regexes-path string   path to secrets regex rules configuration file
-      --terraform-vars-path           string path where terraform variables are present
-      --timeout int                   number of seconds the query has to execute before being canceled (default 60)
-  -t, --type strings                  case insensitive list of platform types to scan
-                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
-                                      cannot be provided with type exclusion flags
-      --exclude-type strings          case insensitive list of platform types not to scan
-                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
-                                      cannot be provided with type inclusion flags
-       
-Global Flags:
-      --ci                  display only log messages to CLI output (mutually exclusive with silent)
-  -f, --log-format string   determines log format (pretty,json) (default "pretty")
-      --log-level string    determines log level (TRACE,DEBUG,INFO,WARN,ERROR,FATAL) (default "INFO")
-      --log-path string     path to generate log file (info.log)
-      --no-color            disable CLI color output
-      --profiling string    enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM)
-  -s, --silent              silence stdout messages (mutually exclusive with verbose and ci)
-  -v, --verbose             write logs to stdout too (mutually exclusive with silent)
-```
-=======
 | Global flags | Description |
 |---|---|
 | --ci | display only log messages to CLI output (mutually exclusive with silent) |
@@ -161,7 +87,6 @@ Global Flags:
 | --profiling string | enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM) |
 | -s, --silent | silence stdout messages (mutually exclusive with verbose and ci) |
 | -v, --verbose | write logs to stdout too (mutually exclusive with silent) |
->>>>>>> 8aba17d6b32b10a521e16ce22e896533e56b1ad9
 
 ## Auto Remediate Command Options
 
