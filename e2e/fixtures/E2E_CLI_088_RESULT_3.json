@@ -38,28 +38,28 @@
 			"description": "GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event.",
 			"description_id": "02044a75",
 			"files": [
-				{
-					"file_name": "path\\test\\fixtures\\test_critical_severity\\run_block_injection\\test\\positive1.yaml",
-					"similarity_id": "2197922dab336742ff58010e01218006c9b2c930a840018ef8b42fb1284f2a45",
-					"line": 10,
-					"issue_type": "IncorrectValue",
-					"search_key": "run={{if [ \"${{ github.event.issue.body }}\" ]; then\n  if [[ \"${{ github.event.issue.title }}\" =~ ^\\[Auto\\]* ]]; then\n    :\n  else\n    echo \"This issue does not need to generate a markdown file.\" 1\u003e\u00262\n    exit 1;\n  fi;\nelse\n  echo \"The description of the issue is empty.\" 1\u003e\u00262\n  exit 1;\nfi;\n}}",
-					"search_line": 10,
-					"search_value": "github.event.issue.body",
-					"expected_value": "Run block does not contain dangerous input controlled by user.",
-					"actual_value": "Run block contains dangerous input controlled by user."
-				},
-				{
-					"file_name": "path\\test\\fixtures\\test_critical_severity\\run_block_injection\\test\\positive1.yaml",
-					"similarity_id": "efac914cab5fb466570dd3a71ee3edd8197a15928c56c2aabff00f54d05c5e6d",
-					"line": 10,
-					"issue_type": "IncorrectValue",
-					"search_key": "run={{if [ \"${{ github.event.issue.body }}\" ]; then\n  if [[ \"${{ github.event.issue.title }}\" =~ ^\\[Auto\\]* ]]; then\n    :\n  else\n    echo \"This issue does not need to generate a markdown file.\" 1\u003e\u00262\n    exit 1;\n  fi;\nelse\n  echo \"The description of the issue is empty.\" 1\u003e\u00262\n  exit 1;\nfi;\n}}",
-					"search_line": 10,
-					"search_value": "github.event.issue.title",
-					"expected_value": "Run block does not contain dangerous input controlled by user.",
-					"actual_value": "Run block contains dangerous input controlled by user."
-				}
+        {
+          "file_name": "path\\test\\fixtures\\test_new_severities\\test\\positive1.yaml",
+          "similarity_id": "2197922dab336742ff58010e01218006c9b2c930a840018ef8b42fb1284f2a45",
+          "line": 10,
+          "issue_type": "IncorrectValue",
+          "search_key": "run={{if [ \"${{ github.event.issue.body }}\" ]; then\n  if [[ \"${{ github.event.issue.title }}\" =~ ^\\[Auto\\]* ]]; then\n    :\n  else\n    echo \"This issue does not need to generate a markdown file.\" 1\u003e\u00262\n    exit 1;\n  fi;\nelse\n  echo \"The description of the issue is empty.\" 1\u003e\u00262\n  exit 1;\nfi;\n}}",
+          "search_line": 10,
+          "search_value": "github.event.issue.body",
+          "expected_value": "Run block does not contain dangerous input controlled by user.",
+          "actual_value": "Run block contains dangerous input controlled by user."
+        },
+        {
+          "file_name": "path\\test\\fixtures\\test_new_severities\\test\\positive1.yaml",
+          "similarity_id": "efac914cab5fb466570dd3a71ee3edd8197a15928c56c2aabff00f54d05c5e6d",
+          "line": 10,
+          "issue_type": "IncorrectValue",
+          "search_key": "run={{if [ \"${{ github.event.issue.body }}\" ]; then\n  if [[ \"${{ github.event.issue.title }}\" =~ ^\\[Auto\\]* ]]; then\n    :\n  else\n    echo \"This issue does not need to generate a markdown file.\" 1\u003e\u00262\n    exit 1;\n  fi;\nelse\n  echo \"The description of the issue is empty.\" 1\u003e\u00262\n  exit 1;\nfi;\n}}",
+          "search_line": 10,
+          "search_value": "github.event.issue.title",
+          "expected_value": "Run block does not contain dangerous input controlled by user.",
+          "actual_value": "Run block contains dangerous input controlled by user."
+        }
 			]
 		}
 	]
