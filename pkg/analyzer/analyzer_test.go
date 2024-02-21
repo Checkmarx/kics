@@ -414,6 +414,19 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			excludeGitIgnore:     false,
 			MaxFileSize:          3,
 		},
+		{
+			name:                 "analyze_ansible_by_path",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/ansible_project_path")},
+			wantTypes:            []string{"ansible"},
+			wantExclude:          []string{},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantLOC:              54,
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+			MaxFileSize:          -1,
+		},
 	}
 
 	for _, tt := range tests {
