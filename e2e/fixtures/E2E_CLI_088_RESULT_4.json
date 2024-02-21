@@ -11,8 +11,8 @@
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
-		"CRITICAL": 2,
-		"HIGH": 0,
+		"CRITICAL": 0,
+		"HIGH": 2,
 		"INFO": 0,
 		"LOW": 0,
 		"MEDIUM": 0,
@@ -23,8 +23,8 @@
 	"start": "2024-01-31T15:46:25.2714687Z",
 	"end": "2024-01-31T15:46:25.5747871Z",
 	"paths": [
-		"/path/test/fixtures/test_critical_severity/run_block_injection/test",
-		"/path/test/fixtures/test_critical_severity/run_block_injection/query"
+    "/path/test/fixtures/test_new_severity/test",
+    "/path/test/fixtures/test_new_severity/high"
 	],
 	"queries": [
 		{
