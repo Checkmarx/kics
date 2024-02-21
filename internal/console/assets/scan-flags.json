@@ -213,5 +213,11 @@
     "shorthandFlag": "",
     "defaultValue": "5",
     "usage": "max file size permitted for scanning, in MB"
+  },
+  "new-severities": {
+  "flagType": "bool",
+  "shorthandFlag": "",
+  "defaultValue": "false",
+  "usage": "use new severities in query results"
   }
 }

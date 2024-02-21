@@ -36,4 +36,5 @@ const (
 	ExcludeGitIgnore        = "exclude-gitignore"
 	OpenAPIReferencesFlag   = "enable-openapi-refs"
 	MaxFileSizeFlag         = "max-file-size"
+	UseNewSeveritiesFlag    = "new-severities"
 )

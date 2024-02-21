@@ -405,6 +405,7 @@ func TestNewInspector(t *testing.T) { //nolint
 		excludeResults   map[string]bool
 		queryExecTimeout int
 		needsLog         bool
+		useNewSeverities bool
 	}
 	tests := []struct {
 		name    string
@@ -451,6 +452,7 @@ func TestNewInspector(t *testing.T) { //nolint
 				&tt.args.queryFilter,
 				tt.args.excludeResults,
 				tt.args.queryExecTimeout,
+				tt.args.useNewSeverities,
 				tt.args.needsLog)
 
 			if (err != nil) != tt.wantErr {
@@ -757,7 +759,7 @@ func newQueryContext(ctx context.Context) QueryContext {
 func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {
 	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"), true)
 	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},
-		detector *detector.DetectLine) (*model.Vulnerability, error) {
+		detector *detector.DetectLine, useNewSeverity bool) (*model.Vulnerability, error) {
 		return &model.Vulnerability{}, nil
 	}
 	ins, err := NewInspector(
@@ -766,7 +768,7 @@ func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {
 		vb,
 		&tracker.CITracker{},
 		&source.QueryInspectorParameters{},
-		map[string]bool{}, 60, true,
+		map[string]bool{}, 60, false, true,
 	)
 	require.NoError(t, err)
 	return ins
