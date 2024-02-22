@@ -114,13 +114,13 @@
     "filename": "positive8.json"
   },
   {
-    "queryName": "Maximum Length Undefined (v2)",
+    "queryName": "Maximum Length Undefined (v3)",
     "severity": "MEDIUM",
     "line": 46,
     "filename": "positive9.json"
   },
   {
-    "queryName": "Maximum Length Undefined (v2)",
+    "queryName": "Maximum Length Undefined (v3)",
     "severity": "MEDIUM",
     "line": 55,
     "filename": "positive9.json"
