@@ -1,0 +1,14 @@
+---
+# roles/web/tasks/main.yml
+- name: Ensure Apache is installed
+  package:
+    name: apache2
+    state: present
+  become: yes
+
+- name: Ensure Apache is running
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+  become: yes

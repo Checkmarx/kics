@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "Nifcloud RDB Has Backup Retention Less Than 2 Day",
+		"severity": "MEDIUM",
+		"line": 1,
+		"fileName": "positive1.tf"
+	},
+	{
+		"queryName": "Nifcloud RDB Has Backup Retention Less Than 2 Day",
+		"severity": "MEDIUM",
+		"line": 1,
+		"fileName": "positive2.tf"
+	}
+]

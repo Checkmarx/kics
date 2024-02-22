@@ -71,6 +71,7 @@ type CycloneSchema struct {
 			Vulnerabilities []struct {
 				Ref    string `xml:"ref,attr"`
 				ID     string `xml:"id"`
+				CWE    string `xml:"cwe"`
 				Source struct {
 					Name string `xml:"name"`
 					URL  string `xml:"url"`

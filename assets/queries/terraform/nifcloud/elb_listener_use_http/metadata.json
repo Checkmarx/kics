@@ -1,0 +1,13 @@
+{
+  "id": "afcb0771-4f94-44ed-ad4a-9f73f11ce6e0",
+  "queryName": "Nifcloud ELB Listener Use HTTP Protocol",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "The elb listener use http protocol",
+  "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/elb_listener#protocol",
+  "platform": "Terraform",
+  "descriptionID": "5a3b83e8",
+  "cloudProvider": "nifcloud",
+  "experimental": "true",
+  "cwe": ""
+}

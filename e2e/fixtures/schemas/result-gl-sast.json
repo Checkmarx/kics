@@ -152,6 +152,10 @@
                         "minLength": 1,
                         "maxLength": 255
                     },
+                    "cwe":{
+                        "type": "string",
+                        "minLength": 0
+                    },
                     "links": {
                         "type": "array",
                         "items": {
