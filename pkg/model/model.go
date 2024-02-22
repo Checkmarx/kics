@@ -69,7 +69,9 @@ var (
 
 var (
 	// KICSCommentRgxp is the regexp to identify if a comment is a KICS comment
-	KICSCommentRgxp = regexp.MustCompile(`^((/{2})|#|;)*\s*kics-scan\s*`)
+	KICSCommentRgxp = regexp.MustCompile(`(^|\n)((/{2})|#|;)*\s*kics-scan\s*`)
+	// KICSGetContentCommentRgxp to gets the kics comment on the hel case
+	KICSGetContentCommentRgxp = regexp.MustCompile(`(^|\n)((/{2})|#|;)*\s*kics-scan([^\n]*)\n`)
 	// KICSCommentRgxpYaml is the regexp to identify if the comment has KICS comment at the end of the comment in YAML
 	KICSCommentRgxpYaml = regexp.MustCompile(`((/{2})|#)*\s*kics-scan\s*(ignore-line|ignore-block)\s*\n*$`)
 )
