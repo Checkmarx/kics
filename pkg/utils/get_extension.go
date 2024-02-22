@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/rs/zerolog/log"
 	"golang.org/x/tools/godoc/util"
@@ -16,16 +17,24 @@ func GetExtension(path string) string {
 	ext := filepath.Ext(path)
 
 	if ext == "" {
-		base := filepath.Base(path)
-
-		if Contains(base, targets) {
-			ext = base
+		ok, resp := containsIgnoreCase(filepath.Base(path), targets)
+		if ok {
+			ext = resp
 		} else if isTextFile(path) {
 			ext = "possibleDockerfile"
 		}
 	}
 
 	return ext
+}
+
+func containsIgnoreCase(str string, targets []string) (bool, string) {
+	for _, s := range targets {
+		if strings.EqualFold(s, str) {
+			return true, s
+		}
+	}
+	return false, ""
 }
 
 func isTextFile(path string) bool {

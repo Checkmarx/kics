@@ -1,0 +1,120 @@
+{
+  "kics_version": "development",
+  "files_scanned": 3,
+  "lines_scanned": 13,
+  "files_parsed": 3,
+  "lines_parsed": 13,
+  "lines_ignored": 0,
+  "files_failed_to_scan": 0,
+  "queries_total": 1,
+  "queries_failed_to_execute": 0,
+  "queries_failed_to_compute_similarity_id": 0,
+  "scan_id": "console",
+  "severity_counters": {
+    "HIGH": 0,
+    "INFO": 0,
+    "LOW": 0,
+    "MEDIUM": 7,
+    "TRACE": 0
+  },
+  "total_counter": 7,
+  "total_bom_resources": 0,
+  "start": "2024-02-22T15:19:55.5760083Z",
+  "end": "2024-02-22T15:20:00.2560909Z",
+  "paths": [
+    "/path/test/fixtures/DockerfileCaseInsensitive"
+  ],
+  "queries": [
+    {
+      "query_name": "APT-GET Missing '-y' To Avoid Manual Input",
+      "query_id": "77783205-c4ca-4f80-bb80-c777f267c547",
+      "query_url": "https://docs.docker.com/engine/reference/builder/#run",
+      "severity": "MEDIUM",
+      "platform": "Dockerfile",
+      "cwe": "710",
+      "category": "Supply-Chain",
+      "experimental": false,
+      "description": "Check if apt-get calls use the flag -y to avoid user manual input.",
+      "description_id": "2064113b",
+      "files": [
+        {
+          "file_name": "..\\test\\fixtures\\DockerfileCaseInsensitive\\test\\Dockerfile",
+          "similarity_id": "4ccba0d465cd8e5402b1d45121edfdfe51085e979f0d601af88021c71135a4ae",
+          "line": 3,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{node:12}}.{{RUN apt-get install apt-utils}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "{{RUN apt-get install apt-utils}} sould avoid manual input",
+          "actual_value": "{{RUN apt-get install apt-utils}} doesn't avoid manual input"
+        },
+        {
+          "file_name": "..\\test\\fixtures\\DockerfileCaseInsensitive\\test\\Dockerfile",
+          "similarity_id": "41ceb6a68a590d20f1605c2ead05f7b95bbd433b14a9392f3334c697dd2e4550",
+          "line": 2,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{node:12}}.{{RUN apt-get install python=2.7}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "{{RUN apt-get install python=2.7}} sould avoid manual input",
+          "actual_value": "{{RUN apt-get install python=2.7}} doesn't avoid manual input"
+        },
+        {
+          "file_name": "..\\test\\fixtures\\DockerfileCaseInsensitive\\teste1\\DockerFile",
+          "similarity_id": "d287474c2c0695017d41b12ea5243bac6c433eda1481611e5bd18b8ce6c3d8bc",
+          "line": 4,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{node:12}}.{{RUN [\"sudo\", \"apt-get\", \"install\", \"apt-utils\"]}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "{{RUN [\"sudo\", \"apt-get\", \"install\", \"apt-utils\"]}} should avoid manual input",
+          "actual_value": "{{RUN [\"sudo\", \"apt-get\", \"install\", \"apt-utils\"]}} doesn't avoid manual input"
+        },
+        {
+          "file_name": "..\\test\\fixtures\\DockerfileCaseInsensitive\\teste1\\DockerFile",
+          "similarity_id": "5f41309abb5d0cfd40b9a0a677a07f137d165097b11aff82c575b538b036d7f5",
+          "line": 3,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{node:12}}.{{RUN sudo apt-get install apt-utils}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "{{RUN sudo apt-get install apt-utils}} sould avoid manual input",
+          "actual_value": "{{RUN sudo apt-get install apt-utils}} doesn't avoid manual input"
+        },
+        {
+          "file_name": "..\\test\\fixtures\\DockerfileCaseInsensitive\\teste1\\DockerFile",
+          "similarity_id": "7f8c123151fdcfb03ed8a9524b922c1f632b187cbee0a783aa75e98f26db7052",
+          "line": 2,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{node:12}}.{{RUN sudo apt-get install python=2.7}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "{{RUN sudo apt-get install python=2.7}} sould avoid manual input",
+          "actual_value": "{{RUN sudo apt-get install python=2.7}} doesn't avoid manual input"
+        },
+        {
+          "file_name": "..\\test\\fixtures\\DockerfileCaseInsensitive\\teste2\\dockerFile",
+          "similarity_id": "bf569915260fa7b1ea63371e648e7f116c2e1843048127f3a9a7bb4288c8b642",
+          "line": 2,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{node:12}}.{{RUN DUMMY=test apt-get install python=2.7}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "{{RUN DUMMY=test apt-get install python=2.7}} sould avoid manual input",
+          "actual_value": "{{RUN DUMMY=test apt-get install python=2.7}} doesn't avoid manual input"
+        },
+        {
+          "file_name": "..\\test\\fixtures\\DockerfileCaseInsensitive\\test\\Dockerfile",
+          "similarity_id": "60da7abed5b48139586275315cb3279b732c034b0b725127bb4280fa84bcdc45",
+          "line": 4,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{node:12}}.{{RUN [\"apt-get\", \"install\", \"apt-utils\"]}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "{{RUN [\"apt-get\", \"install\", \"apt-utils\"]}} should avoid manual input",
+          "actual_value": "{{RUN [\"apt-get\", \"install\", \"apt-utils\"]}} doesn't avoid manual input"
+        }
+      ]
+    }
+  ]
+}
