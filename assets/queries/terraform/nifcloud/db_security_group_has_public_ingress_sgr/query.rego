@@ -6,7 +6,7 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 
 	dbSecurityGroupRule := input.document[i].resource.nifcloud_db_security_group[name]
-	cidr := split(dbSecurityGroupRule.rule[_].cidr_ip, "/")
+	cidr := split(getRules(dbSecurityGroupRule.rule)[_].cidr_ip, "/")
 	to_number(cidr[1]) < 1
 
 	result := {
@@ -18,4 +18,11 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'nifcloud_db_security_group[%s]' set a more restrictive cidr range", [name]),
 		"keyActualValue": sprintf("'nifcloud_db_security_group[%s]' allows traffic from /0", [name]),
 	}
+}
+
+getRules (rule) = output {
+	not is_array(rule) 
+	output := [rule]
+} else = output {
+	output := rule
 }
