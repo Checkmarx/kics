@@ -1,6 +1,7 @@
 package analyzer
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -65,6 +66,7 @@ var (
 	cicdOnRegex                                     = regexp.MustCompile(`\s*on:\s*`)
 	cicdJobsRegex                                   = regexp.MustCompile(`\s*jobs:\s*`)
 	cicdStepsRegex                                  = regexp.MustCompile(`\s*steps:\s*`)
+	queryRegexPathsAnsible                          = regexp.MustCompile(fmt.Sprintf(`^.*?%s(?:group|host)_vars%s.*$`, regexp.QuoteMeta(string(os.PathSeparator)), regexp.QuoteMeta(string(os.PathSeparator)))) //nolint:lll
 )
 
 var (
@@ -105,7 +107,7 @@ var (
 		"hosts", "tasks", "become", "with_items", "with_dict",
 		"when", "become_pass", "become_exe", "become_flags"}
 	playBooks               = "playbooks"
-	ansibleHost             = "all"
+	ansibleHost             = []string{"all", "ungrouped"}
 	listKeywordsAnsibleHots = []string{"hosts", "children"}
 )
 
@@ -552,7 +554,15 @@ func checkYamlPlatform(content []byte, path string) string {
 	if checkForAnsibleHost(yamlContent) {
 		return ansible
 	}
+	// add for yaml files contained at paths (group_vars, host_vars) related with ansible
+	if checkForAnsibleByPaths(path) {
+		return ansible
+	}
 	return ""
+}
+
+func checkForAnsibleByPaths(path string) bool {
+	return queryRegexPathsAnsible.MatchString(path)
 }
 
 func checkForAnsible(yamlContent model.Document) bool {
@@ -576,11 +586,13 @@ func checkForAnsible(yamlContent model.Document) bool {
 
 func checkForAnsibleHost(yamlContent model.Document) bool {
 	isAnsible := false
-	if hosts := yamlContent[ansibleHost]; hosts != nil {
-		if listHosts, ok := hosts.(map[string]interface{}); ok {
-			for _, value := range listKeywordsAnsibleHots {
-				if host := listHosts[value]; host != nil {
-					isAnsible = true
+	for _, ansibleDefault := range ansibleHost {
+		if hosts := yamlContent[ansibleDefault]; hosts != nil {
+			if listHosts, ok := hosts.(map[string]interface{}); ok {
+				for _, value := range listKeywordsAnsibleHots {
+					if host := listHosts[value]; host != nil {
+						isAnsible = true
+					}
 				}
 			}
 		}
