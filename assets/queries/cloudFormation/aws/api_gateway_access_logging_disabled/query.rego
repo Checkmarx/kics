@@ -9,13 +9,13 @@ CxPolicy[result] {
 	resource.Type == "AWS::ApiGatewayV2::Stage"
 
 	properties := resource.Properties
-	not common_lib.valid_key(properties, "DefaultRouteSettings")
+	searchKeyValid := validNonEmptyKey(properties, "DefaultRouteSettings")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties", [name]),
+		"searchKey": sprintf("Resources.%s.Properties%s", [name, searchKeyValid]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DefaultRouteSettings should be defined and not null", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DefaultRouteSettings are undefined or null", [name]),
@@ -29,13 +29,13 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	defaultRouteSettings := properties.DefaultRouteSettings
-	not common_lib.valid_key(defaultRouteSettings, "LoggingLevel")
+	searchKeyValid := validNonEmptyKey(defaultRouteSettings, "LoggingLevel")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties.DefaultRouteSettings", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.DefaultRouteSettings%s", [name, searchKeyValid]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DefaultRouteSettings.LoggingLevel should be defined and not null", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DefaultRouteSettings.LoggingLevel are undefined or null", [name]),
@@ -68,13 +68,13 @@ CxPolicy[result] {
 	resource.Type == "AWS::ApiGateway::Stage"
 
 	properties := resource.Properties
-	not common_lib.valid_key(properties, "MethodSettings")
+	searchKeyValid := validNonEmptyKey(properties, "MethodSettings")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties", [name]),
+		"searchKey": sprintf("Resources.%s.Properties%s", [name, searchKeyValid]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.MethodSettings should be defined and not null", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.MethodSettings are undefined or null", [name]),
@@ -88,13 +88,13 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	methodSettings := properties.MethodSettings
-	not common_lib.valid_key(methodSettings, "LoggingLevel")
+	searchKeyValid := validNonEmptyKey(methodSettings, "LoggingLevel")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties.MethodSettings", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.MethodSettings%s", [name, searchKeyValid]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.MethodSettings.LoggingLevel should be defined and not null", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.MethodSettings.LoggingLevel are undefined or null", [name]),
@@ -157,4 +157,14 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, stage),
 		"searchKey": sprintf("Resources.%s.Properties", [stage]),
 	}
+}
+
+validNonEmptyKey(field, key) = output {
+	not common_lib.valid_key(field, key)
+	output = ""
+} else = output {
+	keyObj := field[key]
+	is_object(keyObj)
+	count(keyObj) == 0
+	output := concat(".", ["", key])
 }
