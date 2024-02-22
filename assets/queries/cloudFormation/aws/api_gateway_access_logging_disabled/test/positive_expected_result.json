@@ -34,5 +34,89 @@
     "severity": "MEDIUM",
     "line": 6,
     "filename": "positive6.json"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive7.json"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive8.json"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive9.json"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 19,
+    "filename": "positive10.json"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 19,
+    "filename": "positive10.json"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive11.json"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive11.json"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive12.json"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive13.json"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive13.json"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive14.json"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive15.json"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive16.json"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive17.json"
   }
 ]
