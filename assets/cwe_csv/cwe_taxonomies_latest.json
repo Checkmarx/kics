@@ -1,0 +1,21 @@
+{
+"taxonomies": 
+    {
+        "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.13.xml.zip",
+        "guid": "1489b0c4-d7ce-4d31-af66-6382a01202e3",
+        "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.13.pdf",
+        "isComprehensive": true,
+        "language": "en",
+        "minimumRequiredLocalizedDataSemanticVersion": "4.13",
+        "name": "CWE",
+        "organization": "MITRE",
+        "releaseDateUtc": "2023-10-26",
+        "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+        },
+        "fullDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+        },
+        "taxa": []
+    }
+}

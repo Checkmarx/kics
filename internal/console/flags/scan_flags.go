@@ -34,4 +34,6 @@ const (
 	DisableSecretsFlag      = "disable-secrets"
 	SecretsRegexesPathFlag  = "secrets-regexes-path" //nolint:gosec
 	ExcludeGitIgnore        = "exclude-gitignore"
+	OpenAPIReferencesFlag   = "enable-openapi-refs"
+	MaxFileSizeFlag         = "max-file-size"
 )

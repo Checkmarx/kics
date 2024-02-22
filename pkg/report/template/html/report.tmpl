@@ -72,6 +72,7 @@
               <span class="query-name">{{- .QueryName -}}</span>
             </h2>
             <span><strong>Platform:</strong> <span class="query-info-platform">{{ .Platform }}</span></span>
+            {{ if .CWE }}<span><strong>CWE:</strong> {{ .CWE }}</span>{{ end }}
             <span><strong>Category:</strong> <span class="query-info-category">{{ .Category }}</span></span>
           </div>
           <div class="query-details">

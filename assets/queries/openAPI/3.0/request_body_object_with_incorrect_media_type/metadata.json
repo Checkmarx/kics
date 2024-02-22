@@ -6,5 +6,6 @@
   "descriptionText": "The field 'content' of the request body object should be set to 'multipart' or 'application/x-www-form-urlencoded' when field 'encoding' is set.",
   "descriptionUrl": "https://swagger.io/specification/#media-type-object",
   "platform": "OpenAPI",
-  "descriptionID": "0963c67c"
+  "descriptionID": "0963c67c",
+  "cwe": ""
 }

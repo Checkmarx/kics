@@ -6,13 +6,15 @@
   "descriptionText": "Responses Object should not be empty",
   "descriptionUrl": "https://swagger.io/specification/#responses-object",
   "platform": "OpenAPI",
+  "descriptionID": "5c40b3e8",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "6172e7ab-d2b7-45f8-a7db-1603931d8ba3",
       "queryName": "Responses Object Is Empty (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#responsesObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#responsesObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "5c40b3e8"
+  "cwe": ""
 }

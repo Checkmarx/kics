@@ -6,13 +6,15 @@
   "descriptionText": "Operation Object should have at least one successful HTTP status code defined",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
   "platform": "OpenAPI",
+  "descriptionID": "a452c68a",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "a1ee6ebe-3877-42ec-b9a6-e524e7d06aa2",
       "queryName": "Operation Without Successful HTTP Status Code (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operationObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#operationObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "a452c68a"
+  "cwe": ""
 }

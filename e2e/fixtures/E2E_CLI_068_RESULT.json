@@ -31,7 +31,9 @@
       "query_url": "https://docs.docker.com/engine/reference/builder/#user",
       "severity": "HIGH",
       "platform": "Dockerfile",
+      "cwe": "250",
       "category": "Build Process",
+      "experimental": false,
       "description": "A user should be specified in the dockerfile, otherwise the image will run as root",
       "description_id": "eb49caf6",
       "files": [
@@ -54,7 +56,9 @@
       "query_url": "https://docs.docker.com/develop/dev-best-practices/",
       "severity": "MEDIUM",
       "platform": "Dockerfile",
+      "cwe": "1357",
       "category": "Supply-Chain",
+      "experimental": false,
       "description": "When building images, always tag them with useful tags which codify version information, intended destination (prod or test, for instance), stability, or other information that is useful when deploying the application in different environments. Do not rely on the automatically-created latest tag",
       "description_id": "22f535ec",
       "files": [
@@ -77,7 +81,9 @@
       "query_url": "https://docs.docker.com/engine/reference/builder/#healthcheck",
       "severity": "LOW",
       "platform": "Dockerfile",
+      "cwe": "710",
       "category": "Insecure Configurations",
+      "experimental": false,
       "description": "Ensure that HEALTHCHECK is being used. The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working",
       "description_id": "426121ee",
       "files": [
