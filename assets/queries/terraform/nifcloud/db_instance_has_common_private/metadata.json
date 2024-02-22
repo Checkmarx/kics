@@ -2,6 +2,7 @@
   "id": "9bf57c23-fbab-4222-85f3-3f207a53c6a8",
   "queryName": "Nifcloud RDB Has Common Private Network",
   "severity": "LOW",
+  "newSeverity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "The rdb has common private network",
   "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/db_instance#network_id",
