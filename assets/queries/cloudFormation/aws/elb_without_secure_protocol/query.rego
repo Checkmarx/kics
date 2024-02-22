@@ -25,8 +25,9 @@ CxPolicy[result] {
 	}
 }
 
-
 is_secure(listener, protocol) {
 	secureProtocols := {"SSL", "HTTPS"}
-	listener[protocol] == secureProtocols[_]
+	count([x | y := listener[protocol] == secureProtocols[x]; y == true]) > 0
+} else{
+	not common_lib.valid_key(listener, protocol)
 }
