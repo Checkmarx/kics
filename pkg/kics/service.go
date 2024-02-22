@@ -40,8 +40,8 @@ type Storage interface {
 // TrackFileFound should increment the number of files to be scanned
 // TrackFileParse should increment the number of files parsed successfully to be scanned
 type Tracker interface {
-	TrackFileFound()
-	TrackFileParse()
+	TrackFileFound(path string)
+	TrackFileParse(path string)
 	TrackFileFoundCountLines(countLines int)
 	TrackFileParseCountLines(countLines int)
 	TrackFileIgnoreCountLines(countLines int)
