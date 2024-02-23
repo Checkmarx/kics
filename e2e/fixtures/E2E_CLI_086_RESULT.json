@@ -22,7 +22,7 @@
   "start": "2024-02-22T15:19:55.5760083Z",
   "end": "2024-02-22T15:20:00.2560909Z",
   "paths": [
-    "/path/test/fixtures/DockerfileCaseInsensitive"
+    "/path/test/fixtures/dockerfile_case_insensitive"
   ],
   "queries": [
     {
