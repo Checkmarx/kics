@@ -38,7 +38,7 @@
       "description_id": "2064113b",
       "files": [
         {
-          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\test\\Dockerfile",
+          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\test\\dockerfile",
           "similarity_id": "4ccba0d465cd8e5402b1d45121edfdfe51085e979f0d601af88021c71135a4ae",
           "line": 3,
           "issue_type": "IncorrectValue",
@@ -49,7 +49,7 @@
           "actual_value": "{{RUN apt-get install apt-utils}} doesn't avoid manual input"
         },
         {
-          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\test\\Dockerfile",
+          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\test\\dockerfile",
           "similarity_id": "41ceb6a68a590d20f1605c2ead05f7b95bbd433b14a9392f3334c697dd2e4550",
           "line": 2,
           "issue_type": "IncorrectValue",
@@ -104,7 +104,7 @@
           "actual_value": "{{RUN DUMMY=test apt-get install python=2.7}} doesn't avoid manual input"
         },
         {
-          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\test\\Dockerfile",
+          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\test\\dockerfile",
           "similarity_id": "60da7abed5b48139586275315cb3279b732c034b0b725127bb4280fa84bcdc45",
           "line": 4,
           "issue_type": "IncorrectValue",
