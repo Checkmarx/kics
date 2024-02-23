@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "DynamoDB Table Point In Time Recovery Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "DynamoDB Table Point In Time Recovery Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "DynamoDB Table Point In Time Recovery Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "DynamoDB Table Point In Time Recovery Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive4.json"
+  },
+  {
+    "queryName": "DynamoDB Table Point In Time Recovery Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "DynamoDB Table Point In Time Recovery Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive6.json"
+  }
+]

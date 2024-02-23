@@ -1,8 +1,0 @@
-- name: Basic example
-  community.aws.elasticache:
-    name: test-please-delete
-    state: present
-    engine: memcached
-    cache_engine_version: 5.1.10
-    node_type: cache.m1.small
-    num_nodes: 1

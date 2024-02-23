@@ -83,6 +83,7 @@ type Vulnerability struct {
 
 	// vulnerability body information
 	ID              string           `xml:"v:id"`
+	CWE             string           `xml:"v:cwe"`
 	Source          Source           `xml:"v:source"`
 	Ratings         []Rating         `xml:"v:ratings>v:rating"`
 	Description     string           `xml:"v:description"`
@@ -169,6 +170,7 @@ func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) [
 			vuln := Vulnerability{
 				Ref: purl + query.QueryID,
 				ID:  query.QueryID,
+				CWE: query.CWE,
 				Source: Source{
 					Name: "KICS",
 					URL:  "https://kics.io/",
@@ -218,10 +220,9 @@ func InitCycloneDxReport() *CycloneDxReport {
 			},
 		},
 	}
-	// Update cycloneDX version to 1.5 (from 1.3 to 1.5 nothing needed to change since we only create 1 bom at a time,
-	// more changes to come)
+
 	return &CycloneDxReport{
-		XMLNS:        "http://cyclonedx.org/schema/bom/1.5",
+		XMLNS:        "http://cyclonedx.org/schema/bom/1.3",
 		XMLNSV:       "http://cyclonedx.org/schema/ext/vulnerability/1.0",
 		SerialNumber: "urn:uuid:" + uuid.New().String(),
 		Version:      1,
