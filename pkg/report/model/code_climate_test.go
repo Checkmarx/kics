@@ -55,7 +55,7 @@ func TestBuildCodeClimateReport(t *testing.T) {
 					Categories:  []string{"Security"},
 					Location: location{
 						Path:  "positive.tf",
-						Lines: lines{Begin: 30},
+						Lines: lines{Begin: 35},
 					},
 					Severity: "critical",
 					CWE:      "22",
@@ -67,7 +67,7 @@ func TestBuildCodeClimateReport(t *testing.T) {
 					Categories:  []string{"Security"},
 					Location: location{
 						Path:  "positive.tf",
-						Lines: lines{Begin: 35},
+						Lines: lines{Begin: 30},
 					},
 					Severity: "critical",
 					CWE:      "22",
