@@ -26,6 +26,10 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 
 #### Supported Platforms
 
+
+
+
+
 <img alt="Terraform" src="docs/img/logo-terraform.png" width="100" >&nbsp;&nbsp;&nbsp;
 <img alt="Kubernetes" src="docs/img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="Docker" src="docs/img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
