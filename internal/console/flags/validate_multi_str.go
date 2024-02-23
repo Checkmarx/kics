@@ -9,7 +9,6 @@ import (
 	"github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/utils"
-	"github.com/rs/zerolog/log"
 )
 
 var validMultiStrEnums = map[string]map[string]string{
@@ -22,7 +21,7 @@ var validMultiStrEnums = map[string]map[string]string{
 	ExcludeTypeFlag:       constants.AvailablePlatforms,
 }
 
-func sliceFlagsShouldNotStartWithFlags(flagName string) error {
+func sliceFlagsShouldNotStartWithFlags(warnings *[]string, flagName string) error {
 	values := GetMultiStrFlag(flagName)
 	re := regexp.MustCompile(`^--[a-z-]+$`)
 	if len(values) > 0 {
@@ -34,7 +33,7 @@ func sliceFlagsShouldNotStartWithFlags(flagName string) error {
 	return nil
 }
 
-func allQueriesID(flagName string) error {
+func allQueriesID(warnings *[]string, flagName string) error {
 	queriesID := GetMultiStrFlag(flagName)
 	for _, queryID := range queriesID {
 		if !isQueryID(queryID) {
@@ -44,7 +43,7 @@ func allQueriesID(flagName string) error {
 	return nil
 }
 
-func validateMultiStrEnum(flagName string) error {
+func validateMultiStrEnum(warnings *[]string, flagName string) error {
 	enums := GetMultiStrFlag(flagName)
 	invalidEnum := make([]string, 0)
 	caseInsensitiveMap := make(map[string]string)
@@ -68,13 +67,13 @@ func validateMultiStrEnum(flagName string) error {
 	return nil
 }
 
-func validateWorkersFlag(flagName string) error {
+func validateWorkersFlag(warnings *[]string, flagName string) error {
 	workers := GetIntFlag(flagName)
 	if workers < 0 {
 		return fmt.Errorf("invalid argument --%s: value must be greater or equal to 0", flagName)
 	}
 	if workers > runtime.GOMAXPROCS(-1) {
-		log.Warn().Msg("Warning: number of workers is greater than the number of logical CPUs")
+		(*warnings) = append((*warnings), "Number of workers is greater than the number of logical CPUs, this can cause errors")
 		return nil
 	}
 	return nil

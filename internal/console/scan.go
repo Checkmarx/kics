@@ -150,10 +150,6 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 func executeScan(scanParams *scan.Parameters) error {
 	log.Debug().Msg("console.scan()")
 
-	for _, warn := range warnings {
-		log.Warn().Msgf(warn)
-	}
-
 	console := newConsole()
 
 	console.preScan()

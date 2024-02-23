@@ -2,7 +2,7 @@ package flags
 
 import "regexp"
 
-type flagValidationFuncsMap map[string]func(flagName string) error
+type flagValidationFuncsMap map[string]func(warnings *[]string, flagName string) error
 
 var flagValidationFuncs = flagValidationFuncsMap{
 	"sliceFlagsShouldNotStartWithFlags": sliceFlagsShouldNotStartWithFlags,
@@ -26,11 +26,11 @@ func convertSliceToDummyMap(slice []string) map[string]string {
 }
 
 // Validate validate if flag values are ok, if not, returns an error
-func Validate() error {
+func Validate(warnings *[]string) error {
 	for validation, validationFuncs := range validations {
 		for _, validationFunc := range validationFuncs {
 			if function, ok := flagValidationFuncs[validationFunc]; ok {
-				if err := function(validation); err != nil {
+				if err := function(warnings, validation); err != nil {
 					return err
 				}
 			}
