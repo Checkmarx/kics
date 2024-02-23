@@ -16,23 +16,14 @@ func PrintJSONReport(path, filename string, body interface{}) error {
 			return err
 		}
 
-		queries := summary.Queries
-		sort.SliceStable(queries, func(i, j int) bool {
-			if queries[i].Severity == queries[j].Severity {
-				return queries[i].QueryID < queries[j].QueryID
-			}
+		for idx := range summary.Queries {
+			summary.Queries[idx].CISBenchmarkName = ""
+			summary.Queries[idx].CISBenchmarkVersion = ""
+			summary.Queries[idx].CISDescriptionID = ""
+			summary.Queries[idx].CISDescriptionText = ""
+			summary.Queries[idx].CISRationaleText = ""
 
-			return false
-		})
-
-		for idx := range queries {
-			queries[idx].CISBenchmarkName = ""
-			queries[idx].CISBenchmarkVersion = ""
-			queries[idx].CISDescriptionID = ""
-			queries[idx].CISDescriptionText = ""
-			queries[idx].CISRationaleText = ""
-
-			files := queries[idx].Files
+			files := summary.Queries[idx].Files
 			sort.Slice(files, func(i, j int) bool {
 				if files[i].FileName != files[j].FileName {
 					return files[i].FileName < files[j].FileName
@@ -49,8 +40,7 @@ func PrintJSONReport(path, filename string, body interface{}) error {
 				return files[i].KeyExpectedValue < files[j].KeyExpectedValue
 			})
 
-			queries[idx].Files = files
-			summary.Queries = queries
+			summary.Queries[idx].Files = files
 		}
 		summary.Version = constants.Version
 		body = summary
