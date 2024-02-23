@@ -60,7 +60,7 @@ checkmarx/kics:latest: Specifies the Docker image to use, which is the latest ve
 scan -p /path/Example: initiates a scan on the "Example" file we provided, considering it's folder path.
 ```
 
-More information on KICS CLI can be seen [here](https://docs.docker.com/engine/reference/commandline/cli/)   
+More information on Docker CLI can be seen [here](https://docs.docker.com/engine/reference/commandline/cli/)   
 
 More information on Go getter can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)   
 
