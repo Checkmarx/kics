@@ -28,6 +28,7 @@ func TestParser_SupportedTypes(t *testing.T) {
 	p := &Parser{}
 	require.Equal(t, map[string]bool{
 		"ansible":                 true,
+		"cicd":                    true,
 		"cloudformation":          true,
 		"kubernetes":              true,
 		"crossplane":              true,
@@ -388,7 +389,7 @@ func Test_Resolve(t *testing.T) {
 	`
 	parser := &Parser{}
 
-	resolved, err := parser.Resolve([]byte(have), "test.yaml")
+	resolved, err := parser.Resolve([]byte(have), "test.yaml", true)
 	require.NoError(t, err)
 	require.Equal(t, []byte(have), resolved)
 }

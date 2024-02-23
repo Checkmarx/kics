@@ -6,5 +6,6 @@
   "descriptionText": "When installing packages with pip, the '--no-cache-dir' flag should be set to make Docker images smaller",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
   "platform": "Dockerfile",
-  "descriptionID": "a6eb5f34"
+  "descriptionID": "a6eb5f34",
+  "cwe": "459"
 }

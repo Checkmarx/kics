@@ -9,6 +9,8 @@ queries_basepath = 'assets/queries'
 queries_path = {
     'ansible': os.path.join(queries_basepath, 'ansible', '**', '*'),
     'azureresourcemanager': os.path.join(queries_basepath, 'azureResourceManager', '*'),
+    'buildah': os.path.join(queries_basepath, 'buildah', '*'),
+    'cicd': os.path.join(queries_basepath, 'cicd', '**', '*'),
     'cloudformation': os.path.join(queries_basepath, 'cloudFormation', '**', '*'),
     'openapi': os.path.join(queries_basepath, 'openAPI', '**', '*'),
     'crossplane': os.path.join(queries_basepath, 'crossplane',"**" ,'*'),
@@ -22,10 +24,12 @@ queries_path = {
     'dockerCompose': os.path.join(queries_basepath, 'dockerCompose', '*'),
     'pulumi': os.path.join(queries_basepath, 'pulumi', "**", '*'),
     'serverlessFW': os.path.join(queries_basepath, 'serverlessFW', '*'),
-
 }
+
 samples_ext = {
     'azureresourcemanager': ['json'],
+    'buildah': ['sh'],
+    'cicd': ['yaml'],
     'cloudformation': ['yaml', 'json'],
     'crossplane': ['yaml'],
     'openapi': ['yaml', 'json'],

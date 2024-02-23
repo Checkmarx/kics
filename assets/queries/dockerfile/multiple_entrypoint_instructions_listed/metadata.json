@@ -6,5 +6,6 @@
   "descriptionText": "There can only be one ENTRYPOINT instruction in a Dockerfile. Only the last ENTRYPOINT instruction in the Dockerfile will have an effect",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#entrypoint",
   "platform": "Dockerfile",
-  "descriptionID": "03be1867"
+  "descriptionID": "03be1867",
+  "cwe": "1041"
 }

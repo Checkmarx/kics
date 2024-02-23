@@ -28,7 +28,7 @@ It is not advisable for AWS Lambda Functions to have privileged permissions.<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="4 23"
+```tf title="Positive test num. 1 - tf file" hl_lines="4 23"
 resource "aws_lambda_function" "positivefunction1" {
   filename      = "lambda_function_payload.zip"
   function_name = "lambda_function_name"

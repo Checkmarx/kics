@@ -28,7 +28,7 @@ AWS Security Group Ingress CIDR should not be /32 in case of IPV4 or /128 in cas
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="43 13"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="43 13"
 Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -81,7 +81,7 @@ Resources:
         - TargetSG
         - GroupId
 ```
-```json title="Postitive test num. 2 - json file" hl_lines="44 69"
+```json title="Positive test num. 2 - json file" hl_lines="44 69"
 {
   "Resources": {
     "OutboundRule": {

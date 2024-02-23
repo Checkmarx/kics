@@ -6,5 +6,6 @@
   "descriptionText": "Check if containers are running with low UID, which might cause conflicts with the host's user table.",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
   "platform": "Kubernetes",
-  "descriptionID": "fc2c11f9"
+  "descriptionID": "fc2c11f9",
+  "cwe": ""
 }

@@ -28,7 +28,7 @@ Operations file parameters consumes must be 'multipart/form-data', 'application/
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Postitive test num. 1 - json file" hl_lines="12"
+```json title="Positive test num. 1 - json file" hl_lines="12"
 {
   "swagger": "2.0",
   "info": {
@@ -79,7 +79,7 @@ Operations file parameters consumes must be 'multipart/form-data', 'application/
 }
 
 ```
-```yaml title="Postitive test num. 2 - yaml file" hl_lines="10"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="10"
 swagger: '2.0'
 info:
   title: Simple API Overview

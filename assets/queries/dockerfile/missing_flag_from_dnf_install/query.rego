@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
-		"keyActualValue": sprintf("Command `FROM={{%s}}.RUN={{%s}}` doesn't have the `-y` or `--assumeyes` switch set", [name, trim_space(commands[k])]),
+		"keyActualValue": sprintf("Command `RUN={{%s}}` doesn't have the `-y` or `--assumeyes` switch set", [trim_space(commands[k])]),
 	}
 }
 

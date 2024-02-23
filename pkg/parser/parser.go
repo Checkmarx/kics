@@ -17,7 +17,7 @@ type kindParser interface {
 	SupportedExtensions() []string
 	SupportedTypes() map[string]bool
 	Parse(filePath string, fileContent []byte) ([]model.Document, []int, error)
-	Resolve(fileContent []byte, filename string) ([]byte, error)
+	Resolve(fileContent []byte, filename string, _ bool) ([]byte, error)
 	StringifyContent(content []byte) (string, error)
 	GetResolvedFiles() map[string]model.ResolvedFile
 }
@@ -82,6 +82,7 @@ type ParsedDocument struct {
 	IgnoreLines   []int
 	CountLines    int
 	ResolvedFiles map[string]model.ResolvedFile
+	IsMinified    bool
 }
 
 // CommentsCommands gets commands on comments in the file beginning, before the code starts
@@ -96,9 +97,14 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
 				if line == "" {
 					continue
 				}
+				if strings.HasSuffix(filePath, ".yaml") && strings.HasPrefix(line, "---") {
+					continue
+				}
+
 				if !strings.HasPrefix(line, commentToken) {
 					break
 				}
+
 				fields := strings.Fields(strings.TrimSpace(strings.TrimPrefix(line, commentToken)))
 				if len(fields) > 1 && fields[0] == "kics-scan" && fields[1] != "" {
 					commandParameters := strings.SplitN(fields[1], "=", 2)
@@ -117,11 +123,11 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
 
 // Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and
 // an error, if an error has occurred
-func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, error) {
+func (c *Parser) Parse(filePath string, fileContent []byte, openAPIResolveReferences, isMinified bool) (ParsedDocument, error) {
 	fileContent = utils.DecryptAnsibleVault(fileContent, os.Getenv("ANSIBLE_VAULT_PASSWORD_FILE"))
 
 	if c.isValidExtension(filePath) {
-		resolved, err := c.parsers.Resolve(fileContent, filePath)
+		resolved, err := c.parsers.Resolve(fileContent, filePath, openAPIResolveReferences)
 		if err != nil {
 			return ParsedDocument{}, err
 		}
@@ -143,6 +149,7 @@ func (c *Parser) Parse(filePath string, fileContent []byte) (ParsedDocument, err
 			IgnoreLines:   igLines,
 			CountLines:    bytes.Count(resolved, []byte{'\n'}) + 1,
 			ResolvedFiles: c.parsers.GetResolvedFiles(),
+			IsMinified:    isMinified,
 		}, nil
 	}
 	return ParsedDocument{

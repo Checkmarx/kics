@@ -28,7 +28,7 @@ Responses reference should exist on responses definition field<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Postitive test num. 1 - json file" hl_lines="14"
+```json title="Positive test num. 1 - json file" hl_lines="14"
 {
   "swagger": "2.0",
   "info": {
@@ -77,7 +77,7 @@ Responses reference should exist on responses definition field<br>
 }
 
 ```
-```yaml title="Postitive test num. 2 - yaml file" hl_lines="12"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="12"
 swagger: '2.0'
 info:
   title: Simple API Overview

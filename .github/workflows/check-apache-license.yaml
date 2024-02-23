@@ -2,7 +2,7 @@ name: check-apache-license
 on:
   pull_request_target:
     types: [opened, synchronize, edited, reopened]
-    branches: 
+    branches:
       - master
 jobs:
   check-license:
@@ -12,7 +12,7 @@ jobs:
       USERNAME: ${{ github.event.pull_request.user.login }}
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         persist-credentials: false
         sparse-checkout: |
@@ -33,7 +33,7 @@ jobs:
         fi
     - name: Delete comment if license is fixed
       if: env.TAG_EXISTS == 'true'
-      uses: thollander/actions-comment-pull-request@v2
+      uses: thollander/actions-comment-pull-request@b07c7f86be67002023e6cb13f57df3f21cdd3411
       with:
         message: |
           Deleting comment...
@@ -42,7 +42,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
     - name: Add comment if no license
       if: env.CHECK_FAILED == 'true'
-      uses: thollander/actions-comment-pull-request@v2
+      uses: thollander/actions-comment-pull-request@b07c7f86be67002023e6cb13f57df3f21cdd3411
       with:
         filePath: .github/scripts/pr-issue-info/apache-check.md
         comment_tag: apache_license

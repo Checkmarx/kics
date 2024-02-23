@@ -21,10 +21,11 @@ import (
 // Source is the path to the queries
 // Types are the types given by the flag --type for query selection mechanism
 type FilesystemSource struct {
-	Source         []string
-	Types          []string
-	CloudProviders []string
-	Library        string
+	Source              []string
+	Types               []string
+	CloudProviders      []string
+	Library             string
+	ExperimentalQueries bool
 }
 
 const (
@@ -43,7 +44,7 @@ const (
 )
 
 // NewFilesystemSource initializes a NewFilesystemSource with source to queries and types of queries to load
-func NewFilesystemSource(source, types, cloudProviders []string, libraryPath string) *FilesystemSource {
+func NewFilesystemSource(source, types, cloudProviders []string, libraryPath string, experimentalQueries bool) *FilesystemSource {
 	log.Debug().Msg("source.NewFilesystemSource()")
 
 	if len(types) == 0 {
@@ -59,10 +60,11 @@ func NewFilesystemSource(source, types, cloudProviders []string, libraryPath str
 	}
 
 	return &FilesystemSource{
-		Source:         source,
-		Types:          types,
-		CloudProviders: cloudProviders,
-		Library:        filepath.FromSlash(libraryPath),
+		Source:              source,
+		Types:               types,
+		CloudProviders:      cloudProviders,
+		Library:             filepath.FromSlash(libraryPath),
+		ExperimentalQueries: experimentalQueries,
 	}
 }
 
@@ -80,7 +82,7 @@ func ListSupportedPlatforms() []string {
 
 // ListSupportedCloudProviders returns a list of supported cloud providers
 func ListSupportedCloudProviders() []string {
-	return []string{"alicloud", "aws", "azure", "gcp"}
+	return []string{"alicloud", "aws", "azure", "gcp", "nifcloud"}
 }
 
 func getLibraryInDir(platform, libraryDirPath string) string {
@@ -246,11 +248,21 @@ func checkQueryExclude(metadata map[string]interface{}, queryParameters *QueryIn
 // GetQueries walks a given filesource path returns all queries found in an array of
 // QueryMetadata struct
 func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters) ([]model.QueryMetadata, error) {
+	queryDirs, err := s.iterateSources()
+	if err != nil {
+		return nil, err
+	}
+
+	queries := s.iterateQueryDirs(queryDirs, queryParameters)
+
+	return queries, nil
+}
+
+func (s *FilesystemSource) iterateSources() ([]string, error) {
 	queryDirs := make([]string, 0)
-	var err error
 
 	for _, source := range s.Source {
-		err = filepath.Walk(source,
+		err := filepath.Walk(source,
 			func(p string, f os.FileInfo, err error) error {
 				if err != nil {
 					return err
@@ -260,7 +272,14 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 					return nil
 				}
 
-				queryDirs = append(queryDirs, filepath.Dir(p))
+				querypathDir := filepath.Dir(p)
+
+				if err == nil {
+					queryDirs = append(queryDirs, querypathDir)
+				} else if err != nil {
+					return errors.Wrap(err, "Failed to get query relative path")
+				}
+
 				return nil
 			})
 		if err != nil {
@@ -268,7 +287,13 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 		}
 	}
 
+	return queryDirs, nil
+}
+
+// iterateQueryDirs iterates all query directories and reads the respective queries
+func (s *FilesystemSource) iterateQueryDirs(queryDirs []string, queryParameters *QueryInspectorParameters) []model.QueryMetadata {
 	queries := make([]model.QueryMetadata, 0, len(queryDirs))
+
 	for _, queryDir := range queryDirs {
 		query, errRQ := ReadQuery(queryDir)
 		if errRQ != nil {
@@ -278,6 +303,10 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 				Location: "func GetQueries()",
 				FileName: path.Base(queryDir),
 			}, true)
+			continue
+		}
+
+		if query.Experimental && !queryParameters.ExperimentalQueries {
 			continue
 		}
 
@@ -318,8 +347,7 @@ func (s *FilesystemSource) GetQueries(queryParameters *QueryInspectorParameters)
 			queries = append(queries, query)
 		}
 	}
-
-	return queries, err
+	return queries
 }
 
 // validateMetadata prevents panics when KICS queries metadata fields are missing
@@ -366,13 +394,16 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 		aggregation = int(agg.(float64))
 	}
 
+	experimental := getExperimental(metadata["experimental"])
+
 	return model.QueryMetadata{
-		Query:       path.Base(filepath.ToSlash(queryDir)),
-		Content:     string(queryContent),
-		Metadata:    metadata,
-		Platform:    platform,
-		InputData:   inputData,
-		Aggregation: aggregation,
+		Query:        path.Base(filepath.ToSlash(queryDir)),
+		Content:      string(queryContent),
+		Metadata:     metadata,
+		Platform:     platform,
+		InputData:    inputData,
+		Aggregation:  aggregation,
+		Experimental: experimental,
 	}, nil
 }
 
@@ -430,6 +461,7 @@ var supPlatforms = &supportedPlatforms{
 	"Buildah":                 "buildah",
 	"Pulumi":                  "pulumi",
 	"ServerlessFW":            "serverlessFW",
+	"CICD":                    "cicd",
 }
 
 func getPlatform(metadataPlatform string) string {
@@ -437,6 +469,15 @@ func getPlatform(metadataPlatform string) string {
 		return p
 	}
 	return "unknown"
+}
+
+func getExperimental(experimental interface{}) bool {
+	readExperimental, _ := experimental.(string)
+	if readExperimental == "true" {
+		return true
+	} else {
+		return false
+	}
 }
 
 func readInputData(inputDataPath string) (string, error) {
