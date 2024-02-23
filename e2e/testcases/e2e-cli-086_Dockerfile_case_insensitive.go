@@ -9,7 +9,7 @@ func init() { //nolint
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
 					"--output-name", "E2E_CLI_086_RESULT",
-					"-p", "\"/path/test/fixtures/helm_disable_query\"",
+					"-p", "\"/path/test/fixtures/dockerfile_case_insensitive\"",
 					"-i", "77783205-c4ca-4f80-bb80-c777f267c547",
 				},
 			},

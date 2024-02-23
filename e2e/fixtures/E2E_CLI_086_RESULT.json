@@ -38,7 +38,7 @@
       "description_id": "2064113b",
       "files": [
         {
-          "file_name": "..\\test\\fixtures\\DockerfileCaseInsensitive\\test\\Dockerfile",
+          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\test\\Dockerfile",
           "similarity_id": "4ccba0d465cd8e5402b1d45121edfdfe51085e979f0d601af88021c71135a4ae",
           "line": 3,
           "issue_type": "IncorrectValue",
@@ -49,7 +49,7 @@
           "actual_value": "{{RUN apt-get install apt-utils}} doesn't avoid manual input"
         },
         {
-          "file_name": "..\\test\\fixtures\\DockerfileCaseInsensitive\\test\\Dockerfile",
+          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\test\\Dockerfile",
           "similarity_id": "41ceb6a68a590d20f1605c2ead05f7b95bbd433b14a9392f3334c697dd2e4550",
           "line": 2,
           "issue_type": "IncorrectValue",
@@ -60,7 +60,7 @@
           "actual_value": "{{RUN apt-get install python=2.7}} doesn't avoid manual input"
         },
         {
-          "file_name": "..\\test\\fixtures\\DockerfileCaseInsensitive\\teste1\\DockerFile",
+          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\teste1\\DockerFile",
           "similarity_id": "d287474c2c0695017d41b12ea5243bac6c433eda1481611e5bd18b8ce6c3d8bc",
           "line": 4,
           "issue_type": "IncorrectValue",
@@ -71,7 +71,7 @@
           "actual_value": "{{RUN [\"sudo\", \"apt-get\", \"install\", \"apt-utils\"]}} doesn't avoid manual input"
         },
         {
-          "file_name": "..\\test\\fixtures\\DockerfileCaseInsensitive\\teste1\\DockerFile",
+          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\teste1\\DockerFile",
           "similarity_id": "5f41309abb5d0cfd40b9a0a677a07f137d165097b11aff82c575b538b036d7f5",
           "line": 3,
           "issue_type": "IncorrectValue",
@@ -82,7 +82,7 @@
           "actual_value": "{{RUN sudo apt-get install apt-utils}} doesn't avoid manual input"
         },
         {
-          "file_name": "..\\test\\fixtures\\DockerfileCaseInsensitive\\teste1\\DockerFile",
+          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\teste1\\DockerFile",
           "similarity_id": "7f8c123151fdcfb03ed8a9524b922c1f632b187cbee0a783aa75e98f26db7052",
           "line": 2,
           "issue_type": "IncorrectValue",
@@ -93,7 +93,7 @@
           "actual_value": "{{RUN sudo apt-get install python=2.7}} doesn't avoid manual input"
         },
         {
-          "file_name": "..\\test\\fixtures\\DockerfileCaseInsensitive\\teste2\\dockerFile",
+          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\teste2\\dockerFile",
           "similarity_id": "bf569915260fa7b1ea63371e648e7f116c2e1843048127f3a9a7bb4288c8b642",
           "line": 2,
           "issue_type": "IncorrectValue",
@@ -104,7 +104,7 @@
           "actual_value": "{{RUN DUMMY=test apt-get install python=2.7}} doesn't avoid manual input"
         },
         {
-          "file_name": "..\\test\\fixtures\\DockerfileCaseInsensitive\\test\\Dockerfile",
+          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\test\\Dockerfile",
           "similarity_id": "60da7abed5b48139586275315cb3279b732c034b0b725127bb4280fa84bcdc45",
           "line": 4,
           "issue_type": "IncorrectValue",

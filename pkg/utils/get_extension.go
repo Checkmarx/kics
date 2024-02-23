@@ -28,7 +28,7 @@ func GetExtension(path string) string {
 	return ext
 }
 
-func containsIgnoreCase(str string, targets []string) (bool, string) {
+func containsIgnoreCase(str string, targets []string) (found bool, target string) {
 	for _, s := range targets {
 		if strings.EqualFold(s, str) {
 			return true, s
