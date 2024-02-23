@@ -5,6 +5,7 @@ import (
 	"regexp"
 	"runtime"
 	"strings"
+	"time"
 
 	"github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/constants"
@@ -73,7 +74,9 @@ func validateWorkersFlag(warnings *[]string, flagName string) error {
 		return fmt.Errorf("invalid argument --%s: value must be greater or equal to 0", flagName)
 	}
 	if workers > runtime.GOMAXPROCS(-1) {
-		(*warnings) = append((*warnings), "Number of workers is greater than the number of logical CPUs, this can cause errors")
+		now := time.Now()
+		timeStr := now.Format("03:04PM")
+		fmt.Println("\x1b[90m" + timeStr + " \x1b[31mWRN\x1b[0m Number of workers is greater than the number of logical CPUs")
 		return nil
 	}
 	return nil
