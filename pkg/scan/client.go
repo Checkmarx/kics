@@ -21,7 +21,7 @@ type Parameters struct {
 	ExcludeQueries              []string
 	ExcludeResults              []string
 	ExcludeSeverities           []string
-	ExperimentalQueries         []string
+	ExperimentalQueries         bool
 	IncludeQueries              []string
 	InputData                   string
 	OutputName                  string
@@ -44,6 +44,8 @@ type Parameters struct {
 	ScanID                      string
 	BillOfMaterials             bool
 	ExcludeGitIgnore            bool
+	OpenAPIResolveReferences    bool
+	MaxFileSizeFlag             int
 }
 
 // Client represents a scan client

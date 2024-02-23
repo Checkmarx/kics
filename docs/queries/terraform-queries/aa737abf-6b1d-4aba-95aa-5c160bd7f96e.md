@@ -28,7 +28,7 @@ Image Pull Policy of the container must be defined and set to Always<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="12"
+```tf title="Positive test num. 1 - tf file" hl_lines="12"
 resource "kubernetes_pod" "busybox" {
   metadata {
     name = "busybox-tf"
@@ -48,7 +48,7 @@ resource "kubernetes_pod" "busybox" {
 }
 
 ```
-```tf title="Postitive test num. 2 - tf file" hl_lines="30"
+```tf title="Positive test num. 2 - tf file" hl_lines="30"
 
 resource "kubernetes_deployment" "example" {
   metadata {

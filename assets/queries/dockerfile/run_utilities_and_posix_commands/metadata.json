@@ -6,5 +6,6 @@
   "descriptionText": "Some POSIX commands and interactive utilities shouldn't run inside a Docker Container",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
   "platform": "Dockerfile",
-  "descriptionID": "677fa9a6"
+  "descriptionID": "677fa9a6",
+  "cwe": "710"
 }

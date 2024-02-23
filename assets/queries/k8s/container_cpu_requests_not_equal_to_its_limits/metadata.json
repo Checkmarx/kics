@@ -6,5 +6,6 @@
   "descriptionText": "A Pod's Containers should have the same CPU requests as limits set, which is recommended to avoid resource DDOS of the node during spikes. This means the 'requests.cpu' should equal 'limits.cpu', and both be defined.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
   "platform": "Kubernetes",
-  "descriptionID": "3e1c6d16"
+  "descriptionID": "3e1c6d16",
+  "cwe": ""
 }

@@ -6,13 +6,15 @@
   "descriptionText": "Parameters properties 'name' and 'in' should have unique combinations",
   "descriptionUrl": "https://swagger.io/specification/#parameters-object",
   "platform": "OpenAPI",
+  "descriptionID": "c55d0bc8",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "ab871897-ec02-4835-9818-702536ee1dda",
       "queryName": "Parameters Name In Combination Not Unique (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "c55d0bc8"
+  "cwe": ""
 }

@@ -28,7 +28,7 @@ All global parameters definitions  should be in use<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Postitive test num. 1 - json file" hl_lines="26"
+```json title="Positive test num. 1 - json file" hl_lines="26"
 {
   "swagger": "2.0",
   "info": {
@@ -67,7 +67,7 @@ All global parameters definitions  should be in use<br>
 }
 
 ```
-```yaml title="Postitive test num. 2 - yaml file" hl_lines="16"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="16"
 swagger: "2.0"
 info:
   title: Simple API Overview

@@ -6,5 +6,6 @@
   "descriptionText": "Check if Deployment resources don't have a podAntiAffinity policy, which prevents multiple pods from being scheduled on the same node.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment#affinity",
   "platform": "Terraform",
-  "descriptionID": "4a5ad90d"
+  "descriptionID": "4a5ad90d",
+  "cwe": ""
 }

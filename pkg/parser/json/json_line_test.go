@@ -21,482 +21,417 @@ var testsinitiateJSONLine = []struct {
 		name: "test array of ints",
 		args: args{
 			doc: []byte(`{
-				"father": {
-					"son" : [
-						1,
-						2,
-						3,
-						0
-					]
+					"father": {
+						"son" : [
+							1,
+							2,
+							3,
+							0
+						]
+					}
 				}
-			}
-			`),
+				`),
 		},
 		want: `{
-			"LineInfo": {
-			  "0": {
-				".father.son": {
-				  "Value": [
-					7
-				  ]
-				}
-			  },
-			  "1": {
-				".father.son": {
-				  "Value": [
-					4
-				  ]
-				}
-			  },
-			  "2": {
-				".father.son": {
-				  "Value": [
-					5
-				  ]
-				}
-			  },
-			  "3": {
-				".father.son": {
-				  "Value": [
-					6
-				  ]
-				}
-			  },
-			  "father": {
-				"": {
-				  "Value": [
-					2
-				  ]
-				}
-			  },
-			  "son": {
-				".father": {
-				  "Value": [
-					3
-				  ]
-				}
-			  }
-			}
-		  }
-		  `,
-		wantKicsLine: `{
-			"_kics_lines": {
-			  "_kics__default": {
-				"_kics_line": 0
-			  },
-			  "_kics_father": {
-				"_kics_line": 2
-			  }
-			},
-			"father": {
-			  "_kics_lines": {
-				"_kics__default": {
-				  "_kics_line": 2
-				},
-				"_kics_son": {
-				  "_kics_arr": [
-					{
-					  "_kics__default": {
-						"_kics_line": 4
-					  }
-					},
-					{
-					  "_kics__default": {
-						"_kics_line": 5
-					  }
-					},
-					{
-					  "_kics__default": {
-						"_kics_line": 6
-					  }
-					},
-					{
-					  "_kics__default": {
-						"_kics_line": 7
-					  }
+				"LineInfo": {
+				  "0": {
+					".father.son": {
+					  "Value": [
+						7
+					  ]
 					}
-				  ],
-				  "_kics_line": 3
+				  },
+				  "1": {
+					".father.son": {
+					  "Value": [
+						4
+					  ]
+					}
+				  },
+				  "2": {
+					".father.son": {
+					  "Value": [
+						5
+					  ]
+					}
+				  },
+				  "3": {
+					".father.son": {
+					  "Value": [
+						6
+					  ]
+					}
+				  },
+				  "father": {
+					"": {
+					  "Value": [
+						2
+					  ]
+					}
+				  },
+				  "son": {
+					".father": {
+					  "Value": [
+						3
+					  ]
+					}
+				  }
 				}
-			  },
-			  "son": [
-				1,
-				2,
-				3,
-				0
-			  ]
-			}
-		  }`,
+			  }
+			  `,
+		wantKicsLine: `{
+				"_kics_lines": {
+				  "_kics__default": {
+					"_kics_line": 0
+				  },
+				  "_kics_father": {
+					"_kics_line": 2
+				  }
+				},
+				"father": {
+				  "_kics_lines": {
+					"_kics__default": {
+					  "_kics_line": 2
+					},
+					"_kics_son": {
+					  "_kics_arr": [
+						{
+						  "_kics__default": {
+							"_kics_line": 4
+						  }
+						},
+						{
+						  "_kics__default": {
+							"_kics_line": 5
+						  }
+						},
+						{
+						  "_kics__default": {
+							"_kics_line": 6
+						  }
+						},
+						{
+						  "_kics__default": {
+							"_kics_line": 7
+						  }
+						}
+					  ],
+					  "_kics_line": 3
+					}
+				  },
+				  "son": [
+					1,
+					2,
+					3,
+					0
+				  ]
+				}
+			  }`,
 	},
 	{
 		name: "test array objects line",
 		args: args{
 			doc: []byte(`{
-				"father": [
-					{
-						"key": "value"
-					}
-				]
-			}
-			`),
+					"father": [
+						{
+							"key": "value"
+						}
+					]
+				}
+				`),
 		},
 		wantKicsLine: `
-		{
-			"_kics_lines": {
-			  "_kics__default": {
-				"_kics_line": 0
-			  },
-			  "_kics_father": {
-				"_kics_arr": [
+			{
+				"_kics_lines": {
+				  "_kics__default": {
+					"_kics_line": 0
+				  },
+				  "_kics_father": {
+					"_kics_arr": [
+					  {
+						"_kics__default": {
+						  "_kics_line": 4
+						},
+						"_kics_key": {
+						  "_kics_line": 4
+						}
+					  }
+					],
+					"_kics_line": 2
+				  }
+				},
+				"father": [
 				  {
-					"_kics__default": {
-					  "_kics_line": 4
-					},
-					"_kics_key": {
-					  "_kics_line": 4
+					"key": "value"
+				  }
+				]
+			  }
+			  `,
+		want: `
+			{
+				"LineInfo": {
+				  "father": {
+					"": {
+					  "Value": [
+						2
+					  ]
+					}
+				  },
+				  "key": {
+					".father": {
+					  "Value": [
+						4
+					  ]
+					}
+				  },
+				  "value": {
+					".father": {
+					  "Value": [
+						4
+					  ]
 					}
 				  }
-				],
-				"_kics_line": 2
-			  }
-			},
-			"father": [
-			  {
-				"key": "value"
-			  }
-			]
-		  }
-		  `,
-		want: `
-		{
-			"LineInfo": {
-			  "father": {
-				"": {
-				  "Value": [
-					2
-				  ]
-				}
-			  },
-			  "key": {
-				".father": {
-				  "Value": [
-					4
-				  ]
-				}
-			  },
-			  "value": {
-				".father": {
-				  "Value": [
-					4
-				  ]
 				}
 			  }
-			}
-		  }
-		`,
+			`,
 	},
 	{
 		name: "test initiate json line",
 		args: args{
 			doc: []byte(`{
-				"parameters": "simple test"
-			}
-			`),
+					"parameters": "simple test"
+				}
+				`),
 		},
 		wantKicsLine: `
-		{
-			"_kics_lines": {
-				"_kics__default": {
-					"_kics_line": 0
-				},
-				"_kics_parameters": {
-					"_kics_line": 2
-				}
-			},
-			"parameters":"simple test"
-		}`,
-		want: `
-		{
-			"LineInfo": {
-				"parameters": {
-					"": {
-						"Value": [
-							2
-						]
+			{
+				"_kics_lines": {
+					"_kics__default": {
+						"_kics_line": 0
+					},
+					"_kics_parameters": {
+						"_kics_line": 2
 					}
 				},
-				"simple test": {
-					"": {
-					"Value": [
-							2
-						]
+				"parameters":"simple test"
+			}`,
+		want: `
+			{
+				"LineInfo": {
+					"parameters": {
+						"": {
+							"Value": [
+								2
+							]
+						}
+					},
+					"simple test": {
+						"": {
+						"Value": [
+								2
+							]
+						}
 					}
 				}
 			}
-		}
-		`,
+			`,
 	},
 	{
 		name: "test initiate special close json line",
 		args: args{
 			doc: []byte(`{
-				"father": {
-					"close": [
-						"value"
-					]
+					"father": {
+						"close": [
+							"value"
+						]
+					}
 				}
-			}
-			`),
+				`),
 		},
 		wantKicsLine: `
-		{
-			"_kics_lines": {
-			  "_kics__default": {
-				"_kics_line": 0
-			  },
-			  "_kics_father": {
-				"_kics_line": 2
-			  }
-			},
-			"father": {
-			  "_kics_lines": {
-				"_kics__default": {
-				  "_kics_line": 2
+			{
+				"_kics_lines": {
+				  "_kics__default": {
+					"_kics_line": 0
+				  },
+				  "_kics_father": {
+					"_kics_line": 2
+				  }
 				},
-				"_kics_close": {
-				  "_kics_arr": [
-					{
-					  "_kics__default": {
-						"_kics_line": 4
-					  }
+				"father": {
+				  "_kics_lines": {
+					"_kics__default": {
+					  "_kics_line": 2
+					},
+					"_kics_close": {
+					  "_kics_arr": [
+						{
+						  "_kics__default": {
+							"_kics_line": 4
+						  }
+						}
+					  ],
+					  "_kics_line": 3
 					}
-				  ],
-				  "_kics_line": 3
-				}
-			  },
-			  "close": [
-				"value"
-			  ]
-			}
-		  }
-		  `,
-		want: `
-		{
-			"LineInfo": {
-			  "close": {
-				".father": {
-				  "Value": [
-					3
-				  ]
-				}
-			  },
-			  "father": {
-				"": {
-				  "Value": [
-					2
-				  ]
-				}
-			  },
-			  "value": {
-				".father.close": {
-				  "Value": [
-					4
+				  },
+				  "close": [
+					"value"
 				  ]
 				}
 			  }
-			}
-		  }
-		`,
+			  `,
+		want: `
+			{
+				"LineInfo": {
+				  "close": {
+					".father": {
+					  "Value": [
+						3
+					  ]
+					}
+				  },
+				  "father": {
+					"": {
+					  "Value": [
+						2
+					  ]
+					}
+				  },
+				  "value": {
+					".father.close": {
+					  "Value": [
+						4
+					  ]
+					}
+				  }
+				}
+			  }
+			`,
 	},
 	{
 		name: "test same key different path json line",
 		args: args{
 			doc: []byte(`{
-				"father1": {
-					"key": "value"
-				},
-				"father2": {
-					"key": "value"
+					"father1": {
+						"key": "value"
+					},
+					"father2": {
+						"key": "value"
+					}
 				}
-			}
-			`),
+				`),
 		},
 		wantKicsLine: `{
-			"_kics_lines": {
-			  "_kics__default": {
-				"_kics_line": 0
-			  },
-			  "_kics_father1": {
-				"_kics_line": 2
-			  },
-			  "_kics_father2": {
-				"_kics_line": 5
-			  }
-			},
-			"father1": {
-			  "_kics_lines": {
-				"_kics__default": {
-				  "_kics_line": 2
+				"_kics_lines": {
+				  "_kics__default": {
+					"_kics_line": 0
+				  },
+				  "_kics_father1": {
+					"_kics_line": 2
+				  },
+				  "_kics_father2": {
+					"_kics_line": 5
+				  }
 				},
-				"_kics_key": {
-				  "_kics_line": 3
-				}
-			  },
-			  "key": "value"
-			},
-			"father2": {
-			  "_kics_lines": {
-				"_kics__default": {
-				  "_kics_line": 5
-				},
-				"_kics_key": {
-				  "_kics_line": 6
-				}
-			  },
-			  "key": "value"
-			}
-		  }`,
-		want: `
-		{
-			"LineInfo": {
 				"father1": {
-					"": {
-						"Value": [
-							2
-						]
+				  "_kics_lines": {
+					"_kics__default": {
+					  "_kics_line": 2
+					},
+					"_kics_key": {
+					  "_kics_line": 3
 					}
+				  },
+				  "key": "value"
 				},
 				"father2": {
-					"": {
-						"Value": [
-							5
-						]
-					}
-				},
-				"key": {
-					".father1": {
-						"Value": [
-							3
-						]
+				  "_kics_lines": {
+					"_kics__default": {
+					  "_kics_line": 5
 					},
-					".father2": {
-						"Value": [
-							6
-						]
+					"_kics_key": {
+					  "_kics_line": 6
 					}
-				},
-				"value": {
-					".father1": {
-						"Value": [
-							3
-						]
+				  },
+				  "key": "value"
+				}
+			  }`,
+		want: `
+			{
+				"LineInfo": {
+					"father1": {
+						"": {
+							"Value": [
+								2
+							]
+						}
 					},
-					".father2": {
-						"Value": [
-							6
-						]
+					"father2": {
+						"": {
+							"Value": [
+								5
+							]
+						}
+					},
+					"key": {
+						".father1": {
+							"Value": [
+								3
+							]
+						},
+						".father2": {
+							"Value": [
+								6
+							]
+						}
+					},
+					"value": {
+						".father1": {
+							"Value": [
+								3
+							]
+						},
+						".father2": {
+							"Value": [
+								6
+							]
+						}
 					}
 				}
-			}
-		}`,
+			}`,
 	},
 	{
 		name: "test with parent json line",
 		args: args{
 			doc: []byte(`{
-			"father": {
-				"son": "this is a son"
-			}
-		}
-		`),
-		},
-		wantKicsLine: `
-		{
-			"_kics_lines": {
-				"_kics__default": {
-					"_kics_line": 0
-				},
-				"_kics_father":{
-					"_kics_line": 2
+				"father": {
+					"son": "this is a son"
 				}
-			},
-			"father": {
-				"_kics_lines": {
-					"_kics__default": {
-						"_kics_line": 2
-					},
-					"_kics_son": {
-						"_kics_line": 3
-					}
-				},
-				"son": "this is a son"
-				}
-		}`,
-		want: `
-	{
-		"LineInfo": {
-			"father": {
-				"": {
-					"Value": [
-						2
-					]
-				}
-			},
-			"son": {
-				".father": {
-					"Value": [
-						3
-					]
-				}
-			},
-			"this is a son": {
-				".father": {
-					"Value": [
-						3
-					]
-				}
-			}
-		}
-	}
-	`},
-	{
-		name: "test with array string json line",
-		args: args{
-			doc: []byte(`{
-				"father": [
-					"testing1",
-					"testing2"
-				]
 			}
 			`),
 		},
 		wantKicsLine: `
-		{
-			"_kics_lines": {
-				"_kics__default": {
-					"_kics_line": 0
+			{
+				"_kics_lines": {
+					"_kics__default": {
+						"_kics_line": 0
+					},
+					"_kics_father":{
+						"_kics_line": 2
+					}
 				},
-				"_kics_father": {
-					"_kics_arr": [
-						{
-							"_kics__default": {
-								"_kics_line": 3
-							}
+				"father": {
+					"_kics_lines": {
+						"_kics__default": {
+							"_kics_line": 2
 						},
-						{
-							"_kics__default": {
-								"_kics_line": 4
-							}
+						"_kics_son": {
+							"_kics_line": 3
 						}
-					],
-					"_kics_line":2
-				}
-			},
-			"father": [
-				"testing1",
-				"testing2"
-			]
-		}`,
+					},
+					"son": "this is a son"
+					}
+			}`,
 		want: `
 		{
 			"LineInfo": {
@@ -507,83 +442,261 @@ var testsinitiateJSONLine = []struct {
 						]
 					}
 				},
-				"testing1": {
+				"son": {
 					".father": {
 						"Value": [
 							3
 						]
 					}
 				},
-				"testing2": {
+				"this is a son": {
 					".father": {
 						"Value": [
-							4
+							3
 						]
 					}
 				}
 			}
 		}
-		`,
+		`},
+	{
+		name: "test with array string json line",
+		args: args{
+			doc: []byte(`{
+					"father": [
+						"testing1",
+						"testing2"
+					]
+				}
+				`),
+		},
+		wantKicsLine: `
+			{
+				"_kics_lines": {
+					"_kics__default": {
+						"_kics_line": 0
+					},
+					"_kics_father": {
+						"_kics_arr": [
+							{
+								"_kics__default": {
+									"_kics_line": 3
+								}
+							},
+							{
+								"_kics__default": {
+									"_kics_line": 4
+								}
+							}
+						],
+						"_kics_line":2
+					}
+				},
+				"father": [
+					"testing1",
+					"testing2"
+				]
+			}`,
+		want: `
+			{
+				"LineInfo": {
+					"father": {
+						"": {
+							"Value": [
+								2
+							]
+						}
+					},
+					"testing1": {
+						".father": {
+							"Value": [
+								3
+							]
+						}
+					},
+					"testing2": {
+						".father": {
+							"Value": [
+								4
+							]
+						}
+					}
+				}
+			}
+			`,
 	},
 	{
 		name: "test with equal string json line",
 		args: args{
 			doc: []byte(`{
-				"father": [
+					"father": [
+						"testing",
+						"testing"
+					]
+				}
+				`),
+		},
+		wantKicsLine: `
+			{
+				"_kics_lines": {
+					"_kics__default": {
+						"_kics_line": 0
+					},
+					"_kics_father": {
+						"_kics_arr":[
+							{
+								"_kics__default": {
+									"_kics_line": 3
+								}
+							},
+							{
+								"_kics__default": {
+									"_kics_line": 4
+								}
+							}
+						],
+						"_kics_line": 2
+					}
+				},
+				"father":[
 					"testing",
 					"testing"
+				]
+			}`,
+		want: `
+			{
+				"LineInfo": {
+					"father": {
+						"": {
+							"Value": [
+								2
+							]
+						}
+					},
+					"testing": {
+						".father": {
+							"Value": [
+								3,
+								4
+							]
+						}
+					}
+				}
+			}
+			`,
+	},
+	{
+		name: "test arrays with objects",
+		args: args{
+			doc: []byte(`{
+				"resources": [
+					{
+						"properties": {
+							"httpsOnly": false
+						}
+					},
+					{
+						"properties": {
+							"httpsOnly": false
+						}
+					}
 				]
 			}
 			`),
 		},
 		wantKicsLine: `
-		{
-			"_kics_lines": {
-				"_kics__default": {
-					"_kics_line": 0
-				},
-				"_kics_father": {
+			{
+				"_kics_lines":{
+					"_kics__default":{
+						"_kics_line":0
+					},
+					"_kics_resources":{
+						"_kics_line":2,
 					"_kics_arr":[
 						{
-							"_kics__default": {
-								"_kics_line": 3
+							"_kics__default":{
+								"_kics_line":4
+							},
+							"_kics_properties":{
+								"_kics_line":4
 							}
 						},
 						{
-							"_kics__default": {
-								"_kics_line": 4
+							"_kics__default":{
+								"_kics_line":9
+							},
+							"_kics_properties":{
+								"_kics_line":9
 							}
 						}
-					],
-					"_kics_line": 2
+					]
 				}
 			},
-			"father":[
-				"testing",
-				"testing"
+			"resources":[
+				{
+					"properties":{
+						"_kics_lines":{
+							"_kics__default":{
+								"_kics_line":4
+							},
+							"_kics_httpsOnly":{
+								"_kics_line":5
+							}
+						},
+						"httpsOnly":false
+					}
+				},
+				{
+					"properties":{
+						"_kics_lines":{
+							"_kics__default":{
+								"_kics_line":9
+							},
+							"_kics_httpsOnly":{
+								"_kics_line":10
+							}
+						},
+						"httpsOnly":false
+					}
+				}
 			]
 		}`,
 		want: `
 		{
-			"LineInfo": {
-				"father": {
-					"": {
-						"Value": [
-							2
-						]
-					}
-				},
-				"testing": {
-					".father": {
-						"Value": [
-							3,
-							4
-						]
+			"LineInfo":	{
+					"false": {
+						".resources.properties": {
+							"Value": [
+								5,
+								10
+							]
+						}
+					},
+					"httpsOnly": {
+						".resources.properties": {
+							"Value": [
+								5,
+								10
+							]
+						}
+					},
+					"properties": {
+						".resources": {
+							"Value": [
+								4,
+								9
+							]
+						}
+					},
+					"resources": {
+						"": {
+							"Value": [
+								2
+							]
+						}
 					}
 				}
-			}
-		}
-		`,
+			}`,
 	},
 }
 
@@ -599,19 +712,20 @@ func Test_initializeJSONLine(t *testing.T) {
 func compareJSONLine(t *testing.T, test1 interface{}, test2 string) {
 	stringefiedJSON, err := json.Marshal(&test1)
 	require.NoError(t, err)
-	require.JSONEq(t, test2, string(stringefiedJSON))
+	aux := string(stringefiedJSON)
+	require.JSONEq(t, test2, aux)
 }
 
 func Test_jsonLine_setLineInfo(t *testing.T) {
 	for _, tt := range testsinitiateJSONLine {
-		t.Run(tt.name, func(t *testing.T) {
-			unmarshaledJSON := make(map[string]interface{})
-			err := json.Unmarshal(tt.args.doc, &unmarshaledJSON)
-			require.NoError(t, err)
-			j := initializeJSONLine(tt.args.doc)
-			got := j.setLineInfo(unmarshaledJSON)
-			compareJSONLine(t, got, tt.wantKicsLine)
-		})
+		//t.Run(tt.name, func(t *testing.T) {
+		unmarshaledJSON := make(map[string]interface{})
+		err := json.Unmarshal(tt.args.doc, &unmarshaledJSON)
+		require.NoError(t, err)
+		j := initializeJSONLine(tt.args.doc)
+		got := j.setLineInfo(unmarshaledJSON)
+		compareJSONLine(t, got, tt.wantKicsLine)
+		//})
 	}
 }
 

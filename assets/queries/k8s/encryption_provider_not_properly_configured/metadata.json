@@ -6,5 +6,6 @@
   "descriptionText": "The EncryptionConfiguration should be configured to have at least one 'aescbc', 'kms' or 'secretbox' provider",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/#understanding-the-encryption-at-rest-configuration",
   "platform": "Kubernetes",
-  "descriptionID": "c60a5ece"
+  "descriptionID": "c60a5ece",
+  "cwe": ""
 }

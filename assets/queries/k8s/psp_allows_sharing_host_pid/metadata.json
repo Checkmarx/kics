@@ -6,5 +6,6 @@
   "descriptionText": "Pod Security Policy allows containers to share the host process ID namespace",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
   "platform": "Kubernetes",
-  "descriptionID": "980c2b40"
+  "descriptionID": "980c2b40",
+  "cwe": ""
 }

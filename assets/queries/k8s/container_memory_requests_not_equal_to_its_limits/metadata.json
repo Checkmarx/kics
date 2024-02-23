@@ -6,5 +6,6 @@
   "descriptionText": "A Pod's Containers should have the same Memory requests as limits set, which is recommended to avoid resource DDOS of the node during spikes. This means the 'requests.memory' should equal 'limits.memory', and both be defined.",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
   "platform": "Kubernetes",
-  "descriptionID": "0c15063c"
+  "descriptionID": "0c15063c",
+  "cwe": ""
 }

@@ -157,6 +157,8 @@ func (console *console) preScan() {
 	cpu := consoleHelpers.GetNumCPU()
 	log.Info().Msgf("CPU: %.1f", cpu)
 
+	log.Info().Msgf("Max file size permitted for scanning: %d MB", flags.GetIntFlag(flags.MaxFileSizeFlag))
+
 	noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
 	if strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") {
 		noProgress = true
