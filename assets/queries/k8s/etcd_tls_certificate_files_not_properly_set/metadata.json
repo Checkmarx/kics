@@ -6,5 +6,6 @@
   "descriptionText": "When using etcd commands, the '--cert-file' and '--key-file' should be defined",
   "descriptionUrl": "https://etcd.io/docs/v3.4/op-guide/security/",
   "platform": "Kubernetes",
-  "descriptionID": "3c8aae35"
+  "descriptionID": "3c8aae35",
+  "cwe": ""
 }

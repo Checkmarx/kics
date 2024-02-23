@@ -72,6 +72,16 @@ func TestProvider_GetSources(t *testing.T) {
 			wantErr: true,
 			want:    "",
 		},
+		{
+			name: "broken_sym_link",
+			args: args{
+				source: []string{
+					"test/fixtures/link_test/broken_symlink",
+				},
+			},
+			wantErr: false,
+			want:    "",
+		},
 	}
 
 	for _, tt := range tests {

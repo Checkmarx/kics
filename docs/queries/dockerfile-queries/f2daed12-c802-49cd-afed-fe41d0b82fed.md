@@ -28,7 +28,7 @@ Different FROMS cant have the same alias defined<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```dockerfile title="Postitive test num. 1 - dockerfile file" hl_lines="4"
+```dockerfile title="Positive test num. 1 - dockerfile file" hl_lines="4"
 FROM baseImage
 RUN Test
 

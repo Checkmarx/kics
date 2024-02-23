@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.ansible.com/ansible/2.10/collections/community/aws/aws_acm_module.html",
   "platform": "Ansible",
   "descriptionID": "97dc7eba",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "cwe": ""
 }

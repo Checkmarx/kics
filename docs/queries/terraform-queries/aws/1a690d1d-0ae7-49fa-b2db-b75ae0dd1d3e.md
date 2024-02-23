@@ -28,7 +28,7 @@ Amazon Aurora does not have encryption for data at rest enabled. To prevent such
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="16"
+```tf title="Positive test num. 1 - tf file" hl_lines="16"
 provider "aws" {
   region = "us-west-2"  # Replace with your desired AWS region
 }
@@ -61,7 +61,7 @@ output "cluster_endpoint" {
 }
 
 ```
-```tf title="Postitive test num. 2 - tf file" hl_lines="5"
+```tf title="Positive test num. 2 - tf file" hl_lines="5"
 provider "aws" {
   region = "us-west-2"  # Replace with your desired AWS region
 }
