@@ -72,7 +72,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 							Message:  "ALB protocol is HTTP Description",
 							FilePath: "positive.tf",
 							TextRange: &Range{
-								StartLine: 25,
+								StartLine: 19,
 							},
 						},
 						SecondaryLocations: []*Location{
@@ -80,7 +80,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 								Message:  "ALB protocol is HTTP Description",
 								FilePath: "positive.tf",
 								TextRange: &Range{
-									StartLine: 19,
+									StartLine: 25,
 								},
 							},
 						},
@@ -111,7 +111,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 							Message:  "AWS AMI Encryption is not enabled",
 							FilePath: "positive.tf",
 							TextRange: &Range{
-								StartLine: 30,
+								StartLine: 35,
 							},
 						},
 						SecondaryLocations: []*Location{
@@ -119,7 +119,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 								Message:  "AWS AMI Encryption is not enabled",
 								FilePath: "positive.tf",
 								TextRange: &Range{
-									StartLine: 35,
+									StartLine: 30,
 								},
 							},
 						},
