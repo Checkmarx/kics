@@ -19,8 +19,8 @@
   },
   "total_counter": 7,
   "total_bom_resources": 0,
-  "start": "2024-02-22T15:19:55.5760083Z",
-  "end": "2024-02-22T15:20:00.2560909Z",
+  "start": "2024-02-23T12:38:59.6749552Z",
+  "end": "2024-02-23T12:39:08.541983Z",
   "paths": [
     "/path/test/fixtures/dockerfile_case_insensitive"
   ],
@@ -38,8 +38,30 @@
       "description_id": "2064113b",
       "files": [
         {
+          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\teste2\\dockerFile",
+          "similarity_id": "bf569915260fa7b1ea63371e648e7f116c2e1843048127f3a9a7bb4288c8b642",
+          "line": 2,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{node:12}}.{{RUN DUMMY=test apt-get install python=2.7}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "{{RUN DUMMY=test apt-get install python=2.7}} sould avoid manual input",
+          "actual_value": "{{RUN DUMMY=test apt-get install python=2.7}} doesn't avoid manual input"
+        },
+        {
           "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\test\\dockerfile",
-          "similarity_id": "4ccba0d465cd8e5402b1d45121edfdfe51085e979f0d601af88021c71135a4ae",
+          "similarity_id": "99aa2abd914593b6c796c8d2ae63cd17a55bcf02b8868c4d42c0100460c91e5a",
+          "line": 4,
+          "issue_type": "IncorrectValue",
+          "search_key": "FROM={{node:12}}.{{RUN [\"apt-get\", \"install\", \"apt-utils\"]}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "{{RUN [\"apt-get\", \"install\", \"apt-utils\"]}} should avoid manual input",
+          "actual_value": "{{RUN [\"apt-get\", \"install\", \"apt-utils\"]}} doesn't avoid manual input"
+        },
+        {
+          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\test\\dockerfile",
+          "similarity_id": "a5d6eb4c5740589a1f6e90b036e592ed1c35e18ecd8a2fec33529764369e7c53",
           "line": 3,
           "issue_type": "IncorrectValue",
           "search_key": "FROM={{node:12}}.{{RUN apt-get install apt-utils}}",
@@ -50,7 +72,7 @@
         },
         {
           "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\test\\dockerfile",
-          "similarity_id": "41ceb6a68a590d20f1605c2ead05f7b95bbd433b14a9392f3334c697dd2e4550",
+          "similarity_id": "4deadfe9604e2d154b65de298864693714d6edb84c976d8a13b5b3a4f1f118ba",
           "line": 2,
           "issue_type": "IncorrectValue",
           "search_key": "FROM={{node:12}}.{{RUN apt-get install python=2.7}}",
@@ -91,28 +113,6 @@
           "search_value": "",
           "expected_value": "{{RUN sudo apt-get install python=2.7}} sould avoid manual input",
           "actual_value": "{{RUN sudo apt-get install python=2.7}} doesn't avoid manual input"
-        },
-        {
-          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\teste2\\dockerFile",
-          "similarity_id": "bf569915260fa7b1ea63371e648e7f116c2e1843048127f3a9a7bb4288c8b642",
-          "line": 2,
-          "issue_type": "IncorrectValue",
-          "search_key": "FROM={{node:12}}.{{RUN DUMMY=test apt-get install python=2.7}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "{{RUN DUMMY=test apt-get install python=2.7}} sould avoid manual input",
-          "actual_value": "{{RUN DUMMY=test apt-get install python=2.7}} doesn't avoid manual input"
-        },
-        {
-          "file_name": "..\\test\\fixtures\\dockerfile_case_insensitive\\test\\dockerfile",
-          "similarity_id": "60da7abed5b48139586275315cb3279b732c034b0b725127bb4280fa84bcdc45",
-          "line": 4,
-          "issue_type": "IncorrectValue",
-          "search_key": "FROM={{node:12}}.{{RUN [\"apt-get\", \"install\", \"apt-utils\"]}}",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "{{RUN [\"apt-get\", \"install\", \"apt-utils\"]}} should avoid manual input",
-          "actual_value": "{{RUN [\"apt-get\", \"install\", \"apt-utils\"]}} doesn't avoid manual input"
         }
       ]
     }
