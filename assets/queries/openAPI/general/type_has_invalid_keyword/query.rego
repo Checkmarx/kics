@@ -33,10 +33,12 @@ check_keywords(value) = names {
     typeName := get_value_type(value.type)
     type != typeName
 
-    names := {key |
+    unique_keys := {key |
         key := value[_]
         common_lib.inArray(keywords, key)
     }
+
+	names := unique_keys
 }
 
 
