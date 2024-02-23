@@ -33,6 +33,20 @@ Available archive formats:
 -   `xz`
 
 ```
+To scan a zip file, we would use this instruction: 
+
+docker run -t -v {path_to_zip}:/path checkmarx/kics:latest scan -p /path/{name_of_zip_file}
+
+**-t**: Docker command to allocate a pseudo-TTY, see more information [here](https://docs.docker.com/engine/reference/commandline/cli/).
+
+**-v "{path_to_file}:/path/"**: Mounts the directory containing the zip file to be scanned into the Docker container.
+
+**checkmarx/kics:latest**: Specifies the Docker image to use, which is the latest version of KICS available. 
+
+**scan -p /path/{name_of_zip_file}**: initiates a scan on the zip file we provided.
+```
+
+```
 To scan a file named "Example", we would use this instruction: 
 
 docker run -t -v "{path_to_file}/Example:/path/" checkmarx/kics:latest scan -p /path/
@@ -43,7 +57,7 @@ docker run -t -v "{path_to_file}/Example:/path/" checkmarx/kics:latest scan -p /
 
 **checkmarx/kics:latest**: Specifies the Docker image to use, which is the latest version of KICS available. 
 
-**scan -p /path/**: initiates a scan on the "Example" file we provided. 
+**scan -p /path/**: initiates a scan on the "Example" file we provided.
 ```
 
 More information can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)
