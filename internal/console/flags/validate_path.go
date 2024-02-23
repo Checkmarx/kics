@@ -5,7 +5,7 @@ import (
 	"regexp"
 )
 
-func validatePath(warnings *[]string, flagName string) error {
+func validatePath(_ *[]string, flagName string) error {
 	relPath := `^(?:\.\.\\|\.\\|\.\.\/|\.\/|\\|\/)?(?:[^<>:"\/\\|?*]+[\\\/])*[^<>:"\/\\|?*]+(\/|\\)?$`
 	absPath := `^[a-zA-Z]:[\\\/](?:[^<>:"\/\\|?*]+[\\\/])*[^<>:"\/\\|?*]+(?:\/|\\)?$`
 	regex := regexp.MustCompile(relPath + `|` + absPath)
