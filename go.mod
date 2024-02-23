@@ -44,7 +44,7 @@ require (
 	golang.org/x/text v0.14.0
 	golang.org/x/tools v0.12.0
 	gopkg.in/yaml.v3 v3.0.1
-	helm.sh/helm/v3 v3.14.1
+	helm.sh/helm/v3 v3.14.2
 	mvdan.cc/sh/v3 v3.6.0
 )
 
