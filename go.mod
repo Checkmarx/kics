@@ -41,7 +41,7 @@ require (
 	github.com/open-policy-agent/opa v0.58.0
 	github.com/pkg/errors v0.9.1
 	github.com/relex/aini v1.6.0
-	github.com/rs/zerolog v1.29.0
+	github.com/rs/zerolog v1.32.0
 	github.com/sosedoff/ansible-vault-go v0.1.1
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/pflag v1.0.5
@@ -160,7 +160,7 @@ require (
 	github.com/liggitt/tabwriter v0.0.0-20181228230101-89fcab3d43de // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
-	github.com/mattn/go-isatty v0.0.17 // indirect
+	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/mattn/go-runewidth v0.0.12 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
