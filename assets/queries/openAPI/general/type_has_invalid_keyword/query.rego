@@ -28,14 +28,17 @@ CxPolicy[result] {
 	}
 }
 
-check_keywords(value) = name {
-	keywords := specificKeywords[type]
-	typeName := get_value_type(value.type)
-	type != typeName
-	value[key]
-	common_lib.inArray(keywords, key)
-	name := key
+check_keywords(value) = names {
+    keywords := specificKeywords[type]
+    typeName := get_value_type(value.type)
+    type != typeName
+
+    names := {key |
+        key := value[_]
+        common_lib.inArray(keywords, key)
+    }
 }
+
 
 get_value_type(type) = typeName {
 	openapi_lib.is_numeric_type(type)
