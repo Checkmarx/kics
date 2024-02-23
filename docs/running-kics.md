@@ -35,29 +35,29 @@ Available archive formats:
 ```
 To scan a zip file, we would use this instruction: 
 
-docker run -t -v {path_to_zip}:/path checkmarx/kics:latest scan -p /path/{name_of_zip_file}
+docker run -t -v {path_to_folder_of_zip}:/path checkmarx/kics:latest scan -p /path/{name_of_zip_file}
 
 -t: Docker command to allocate a pseudo-TTY.
 
--v "{path_to_file}:/path/": Mounts the directory containing the zip file to be scanned into the Docker container.
+-v "{path_to_folder_of_zip}:/path/": Mounts the directory containing the zip file to be scanned into the Docker container.
 
 checkmarx/kics:latest: Specifies the Docker image to use, which is the latest version of KICS available. 
 
-scan -p /path/{name_of_zip_file}: initiates a scan on the zip file we provided.
+scan -p /path/{name_of_zip_file}: initiates a scan on the zip file we provided, considering it's folder path.
 ```
 
 ```
 To scan a file named "Example", we would use this instruction: 
 
-docker run -t -v "{path_to_file}/Example:/path/" checkmarx/kics:latest scan -p /path/
+docker run -t -v "{path_to_folder_of_file_Example}:/path/" checkmarx/kics:latest scan -p /path/Example
 
 -t: Docker command to allocate a pseudo-TTY.
 
--v "{path_to_file}/Example:/path/": Mounts the directory containing the file to be scanned, "Example", into the Docker container.
+-v "{path_to_folder_of_file_Example}:/path/": Mounts the directory containing the file to be scanned into the Docker container.
 
 checkmarx/kics:latest: Specifies the Docker image to use, which is the latest version of KICS available. 
 
-scan -p /path/: initiates a scan on the "Example" file we provided.
+scan -p /path/Example: initiates a scan on the "Example" file we provided, considering it's folder path.
 ```
 
 More information on KICS CLI can be seen [here](https://docs.docker.com/engine/reference/commandline/cli/)   
