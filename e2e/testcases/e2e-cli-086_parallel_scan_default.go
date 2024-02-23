@@ -1,21 +1,21 @@
 package testcases
 
-// E2E-CLI-082 - KICS  scan
+// E2E-CLI-086 - KICS  scan
 // should perform a scan, finishing successfully and return exit code 0
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should perform a scan and finish successfully [E2E-CLI-082]",
+		Name: "should perform a scan and finish successfully [E2E-CLI-086]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
-					"--output-name", "E2E_CLI_082_RESULT",
+					"--output-name", "E2E_CLI_086_RESULT",
 					"-p", "\"/path/e2e/fixtures/samples/long_terraform.tf\"",
-					"--parallel", "1",
+					"--parallel", "0",
 				},
 			},
 			ExpectedResult: []ResultsValidation{
 				{
-					ResultsFile:    "E2E_CLI_082_RESULT",
+					ResultsFile:    "E2E_CLI_086_RESULT",
 					ResultsFormats: []string{"json"},
 				},
 			},
