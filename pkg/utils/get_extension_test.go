@@ -18,6 +18,16 @@ func TestGetExtension(t *testing.T) {
 			filePath: "../../Dockerfile",
 		},
 		{
+			name:     "Get extension from a file named as dockerfile and without extension defined ('Dockerfile')",
+			want:     "Dockerfile",
+			filePath: "../../dockerfile",
+		},
+		{
+			name:     "Get extension from a file named as DockerFile and without extension defined ('Dockerfile')",
+			want:     "Dockerfile",
+			filePath: "../../DockerFile",
+		},
+		{
 			name:     "Get extension from a file not named as Dockerfile and without extension defined ('Dockerfile-example')",
 			want:     "possibleDockerfile",
 			filePath: "../../test/fixtures/dockerfile/Dockerfile-example",
