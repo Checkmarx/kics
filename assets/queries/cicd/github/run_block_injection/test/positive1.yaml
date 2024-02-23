@@ -21,7 +21,7 @@ jobs:
           fi;
         shell: bash
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
       - name: Crawl pages and generate Markdown files

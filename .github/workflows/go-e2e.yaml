@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        go-version: [1.20.x]
+        go-version: [1.21.x]
         os: [ubuntu-latest]
         kics-docker: ["Dockerfile", "docker/Dockerfile.ubi8"]
     runs-on: ${{ matrix.os }}
@@ -20,10 +20,10 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Set up Go 1.20.x
+      - name: Set up Go 1.21.x
         uses: actions/setup-go@v4
         with:
           go-version: ${{ matrix.go-version }}
@@ -32,9 +32,9 @@ jobs:
       - name: Get Modules
         run: go mod vendor
       - name: Set up Node v14
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "14"
+          node-version: "20"
       - name: Install mock server
         run: npm ci
         working-directory: .github/scripts/server-mock
@@ -43,7 +43,7 @@ jobs:
         working-directory: .github/scripts/server-mock
       - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
       - name: Cache Docker layers
         uses: actions/cache@v3
         with:
@@ -55,7 +55,7 @@ jobs:
         run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)" >> $GITHUB_ENV
       - name: Build
         id: docker_build
-        uses: docker/build-push-action@v4.0.0
+        uses: docker/build-push-action@v5.0.0
         with:
           load: true
           context: ./
