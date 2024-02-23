@@ -50,7 +50,6 @@ func PrintJSONReport(path, filename string, body interface{}) error {
 			})
 
 			queries[idx].Files = files
-
 			summary.Queries = queries
 
 		}
