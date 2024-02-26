@@ -2,9 +2,12 @@ package console
 
 import (
 	"fmt"
+	"github.com/stretchr/testify/require"
 	"os"
 	"path/filepath"
+	"runtime"
 	"testing"
+	"time"
 )
 
 func TestConsole_Execute(t *testing.T) { //nolint
@@ -244,6 +247,66 @@ func TestConsole_Execute(t *testing.T) { //nolint
 				}
 
 			}
+		})
+	}
+}
+
+func TestScanPerformance(t *testing.T) { //nolint
+
+	tests := []struct {
+		name           string
+		firstExecArgs  []string
+		secondExecArgs []string
+	}{
+		{
+			name: "test_kics",
+			firstExecArgs: []string{"kics",
+				"scan",
+				"--disable-secrets", "-s",
+				"--path", filepath.FromSlash("../../e2e/fixtures/samples/long_terraform.tf"),
+				"-q",
+				filepath.FromSlash("../../assets/queries/"),
+				"--ignore-on-exit", "all",
+			},
+			secondExecArgs: []string{"kics",
+				"scan",
+				"--disable-secrets", "-s",
+				"--path", filepath.FromSlash("../../e2e/fixtures/samples/long_terraform.tf"),
+				"-q",
+				filepath.FromSlash("../../assets/queries/"),
+				"--ignore-on-exit", "all",
+				"--parallel", "0",
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		//check the number of cpus available - if it's 1, then skip this test
+		numCPUs := runtime.GOMAXPROCS(-1)
+		if numCPUs == 1 {
+			t.Skip("Skipping test since only 1 cpu available")
+		}
+		t.Run(tt.name, func(t *testing.T) {
+			//calling the command with a silent mode would nullify the standard output
+			tmpStdout := os.Stdout
+			defer func() { os.Stdout = tmpStdout }()
+			os.Args = tt.firstExecArgs
+			startTime1Worker := time.Now()
+			err := Execute()
+			elapsedTime1Worker := time.Since(startTime1Worker)
+			t.Logf("Time taken with numWorkers=1: %s\n", elapsedTime1Worker)
+			if err != nil {
+				t.Errorf("Execute() = %v", err)
+			}
+			os.Args = tt.secondExecArgs
+			startTime2Workers := time.Now()
+			err = Execute()
+			elapsedTimeMultiWorkers := time.Since(startTime2Workers)
+			t.Logf("Time taken with numWorkers=%d: %s\n", numCPUs, elapsedTimeMultiWorkers)
+			if err != nil {
+				t.Errorf("Execute() = %v", err)
+			}
+			require.Greater(t, elapsedTime1Worker, elapsedTimeMultiWorkers)
 		})
 	}
 }
