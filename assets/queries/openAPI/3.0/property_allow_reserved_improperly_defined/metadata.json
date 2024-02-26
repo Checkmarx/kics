@@ -6,5 +6,6 @@
   "descriptionText": "Property 'allowReserved' should be only defined for query parameters",
   "descriptionUrl": "https://swagger.io/specification/#parameter-object",
   "platform": "OpenAPI",
-  "descriptionID": "a23029a8"
+  "descriptionID": "a23029a8",
+  "cwe": ""
 }

@@ -83,6 +83,7 @@ type Vulnerability struct {
 
 	// vulnerability body information
 	ID              string           `xml:"v:id"`
+	CWE             string           `xml:"v:cwe"`
 	Source          Source           `xml:"v:source"`
 	Ratings         []Rating         `xml:"v:ratings>v:rating"`
 	Description     string           `xml:"v:description"`
@@ -169,6 +170,7 @@ func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) [
 			vuln := Vulnerability{
 				Ref: purl + query.QueryID,
 				ID:  query.QueryID,
+				CWE: query.CWE,
 				Source: Source{
 					Name: "KICS",
 					URL:  "https://kics.io/",
@@ -268,5 +270,6 @@ func BuildCycloneDxReport(summary *model.Summary, filePaths map[string]string) *
 
 		bom.Components.Components = append(bom.Components.Components, component)
 	}
+
 	return bom
 }

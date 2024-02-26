@@ -28,7 +28,7 @@ Container should not share the host process ID namespace<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="9 6"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="9 6"
 apiVersion: v1
 kind: Pod
 metadata:

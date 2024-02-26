@@ -1,0 +1,38 @@
+[
+	{
+		"queryName": "Privilege Escalation Using Become Plugin",
+		"severity": "MEDIUM",
+		"line": 4,
+		"fileName": "positive1.yaml"
+	},
+    {
+		"queryName": "Privilege Escalation Using Become Plugin",
+		"severity": "MEDIUM",
+		"line": 15,
+		"fileName": "positive1.yaml"
+	},
+    {
+		"queryName": "Privilege Escalation Using Become Plugin",
+		"severity": "MEDIUM",
+		"line": 31,
+		"fileName": "positive1.yaml"
+	},
+	{
+		"queryName": "Privilege Escalation Using Become Plugin",
+		"severity": "MEDIUM",
+		"line": 44,
+		"fileName": "positive1.yaml"
+	},
+	{
+		"queryName": "Privilege Escalation Using Become Plugin",
+		"severity": "MEDIUM",
+		"line": 53,
+		"fileName": "positive1.yaml"
+	},
+	{
+		"queryName": "Privilege Escalation Using Become Plugin",
+		"severity": "MEDIUM",
+		"line": 61,
+		"fileName": "positive1.yaml"
+	}
+]

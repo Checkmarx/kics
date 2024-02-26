@@ -6,5 +6,6 @@
   "descriptionText": "Package version pinning reduces the range of versions that can be installed, reducing the chances of failure due to unanticipated changes",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
   "platform": "Dockerfile",
-  "descriptionID": "37db3a53"
+  "descriptionID": "37db3a53",
+  "cwe": "1357"
 }

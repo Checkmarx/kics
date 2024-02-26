@@ -1,0 +1,14 @@
+name: Author Workflow
+
+on:
+  author:
+    types:
+      - created
+
+jobs:
+  process_author:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Author's Username
+        run: |
+          echo "Author's Name: ${{ github.event.authors.name }}"
