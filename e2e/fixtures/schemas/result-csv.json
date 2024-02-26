@@ -31,7 +31,7 @@
     },
     "items": {
         "type": "object",
-        "additionalProperties": false,
+        "additionalProperties": true,
         "required": [
             "QueryName",
             "QueryID",
@@ -94,6 +94,10 @@
                     "OpenAPI",
                     "Terraform"
                 ]
+            },
+            "CWE": {
+                "type": "string",
+                "minLength": 0
             },
             "CloudProvider": {
                 "type": "string",

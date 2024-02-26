@@ -60,7 +60,8 @@ func TestInitCycloneDxReport(t *testing.T) {
 func TestBuildCycloneDxReport(t *testing.T) {
 	var cycloneDx CycloneDxReport = initCycloneDxReport
 	var cycloneDxCritical CycloneDxReport = initCycloneDxReport
-	var vulnsC1, vulnsC2 []Vulnerability
+	var cycloneDxCWE CycloneDxReport = initCycloneDxReport
+	var vulnsC1, vulnsC2, vulnsC3, vulnsC4 []Vulnerability
 	var positiveSha, negativeSha, criticalSha string
 
 	var sha256TestMap = map[string]map[string]string{
@@ -89,6 +90,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	v1 := Vulnerability{
 		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-%se38a8e0a-b88b-4902-b3fe-b0fcb17d5c10", positiveSha[0:12]),
 		ID:  "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+		CWE: "",
 		Source: Source{
 			Name: "KICS",
 			URL:  "https://kics.io/",
@@ -110,6 +112,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	v2 := Vulnerability{
 		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-%s704dadd3-54fc-48ac-b6a0-02f170011473", positiveSha[0:12]),
 		ID:  "704dadd3-54fc-48ac-b6a0-02f170011473",
+		CWE: "",
 		Source: Source{
 			Name: "KICS",
 			URL:  "https://kics.io/",
@@ -131,6 +134,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	v3 := Vulnerability{
 		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%se38a8e0a-b88b-4902-b3fe-b0fcb17d5c10", negativeSha[0:12]),
 		ID:  "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+		CWE: "",
 		Source: Source{
 			Name: "KICS",
 			URL:  "https://kics.io/",
@@ -150,6 +154,28 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	}
 
 	v4 := Vulnerability{
+		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%s704dadd3-54fc-48ac-b6a0-02f170011473", negativeSha[0:12]),
+		ID:  "704dadd3-54fc-48ac-b6a0-02f170011473",
+		CWE: "22",
+		Source: Source{
+			Name: "KICS",
+			URL:  "https://kics.io/",
+		},
+		Ratings: []Rating{
+			{
+				Severity: "Medium",
+				Method:   "Other",
+			},
+		},
+		Description: "[Terraform].[GuardDuty Detector Disabled]: Make sure that Amazon GuardDuty is Enabled",
+		Recommendations: []Recommendation{
+			{
+				Recommendation: "Problem found in line 2. Expected value: GuardDuty Detector should be Enabled. Actual value: GuardDuty Detector is not Enabled.",
+			},
+		},
+	}
+
+	v5 := Vulnerability{
 		Ref: fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v316278b3-87ac-444c-8f8f-a733a28da609", criticalSha[0:12]),
 		ID:  "316278b3-87ac-444c-8f8f-a733a28da609",
 		Source: Source{
@@ -170,9 +196,9 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		},
 	}
 
-	vulnsC3 := []Vulnerability{v4}
+	vulnsC4 = append(vulnsC4, v5)
 
-	c3 := Component{
+	c4 := Component{
 		Type:    "file",
 		BomRef:  fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v", criticalSha[0:12]),
 		Name:    "../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml",
@@ -184,7 +210,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 				Content: criticalSha,
 			},
 		},
-		Vulnerabilities: vulnsC3,
+		Vulnerabilities: vulnsC4,
 	}
 
 	vulnsC1 = append(vulnsC1, v1)
@@ -222,9 +248,27 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		Vulnerabilities: vulnsC2,
 	}
 
+	vulnsC3 = append(vulnsC3, v4)
+
+	c3 := Component{
+		Type:    "file",
+		BomRef:  fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%s", negativeSha[0:12]),
+		Name:    "../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf",
+		Version: fmt.Sprintf("0.0.0-%s", negativeSha[0:12]),
+		Purl:    fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%s", negativeSha[0:12]),
+		Hashes: []Hash{
+			{
+				Alg:     "SHA-256",
+				Content: negativeSha,
+			},
+		},
+		Vulnerabilities: vulnsC3,
+	}
+
 	cycloneDx.Components.Components = append(cycloneDx.Components.Components, c2)
 	cycloneDx.Components.Components = append(cycloneDx.Components.Components, c1)
 	cycloneDxCritical.Components.Components = append(cycloneDxCritical.Components.Components, c3)
+	cycloneDxCWE.Components.Components = append(cycloneDxCWE.Components.Components, c4)
 
 	filePaths := make(map[string]string)
 
@@ -260,6 +304,14 @@ func TestBuildCycloneDxReport(t *testing.T) {
 			},
 			want: &cycloneDxCritical,
 		},
+		{
+			name: "Build CycloneDX report with cwe field complete",
+			args: args{
+				summary:   &test.ExampleSummaryMockCWE,
+				filePaths: map[string]string{file2: file2},
+			},
+			want: &cycloneDxCWE,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -271,7 +323,6 @@ func TestBuildCycloneDxReport(t *testing.T) {
 			}
 			got := BuildCycloneDxReport(tt.args.summary, tt.args.filePaths)
 			got.SerialNumber = "urn:uuid:" // set to "urn:uuid:" because it will be different for every report
-
 			assert.Equal(t, len(got.Components.Components), len(tt.want.Components.Components), "Comparing number of components")
 			for idx := range got.Components.Components {
 				assert.Equal(t, got.Components.Components[idx].BomRef, tt.want.Components.Components[idx].BomRef, "Comparing BomRef of components")

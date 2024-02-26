@@ -25,9 +25,16 @@ var pdfTests = []reportTestCase{
 	},
 	{
 		caseTest: jsonCaseTest{
-			summary:  test.SummaryMockCritical,
+			summary:  test.SummaryMockCWE,
 			path:     "./testdir/newdir",
 			filename: "testpdf3",
+		},
+	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCritical,
+			path:     "./testdir/newdir",
+			filename: "testpdf4",
 		},
 	},
 }

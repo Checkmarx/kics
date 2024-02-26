@@ -31,6 +31,15 @@ func TestPrintSonarQubeReport(t *testing.T) {
 			wantErr: false,
 		},
 		{
+			name: "Test PrintSonarQubeReport with cwe field",
+			args: args{
+				path:     "./testdir",
+				filename: "testout2",
+				body:     test.SummaryMockCWE,
+			},
+			wantErr: false,
+		},
+		{
 			name: "Test PrintSonarQubeReport Critical Severity",
 			args: args{
 				path:     "./testdir",

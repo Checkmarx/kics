@@ -33,16 +33,46 @@ func TestBuildASFFReport(t *testing.T) {
 		Title:     *aws.String("AmazonMQ Broker Encryption Disabled"),
 		Types:     []string{*aws.String("Software and Configuration Checks/Vulnerabilities/KICS")},
 		UpdatedAt: *aws.String(time.Now().Format(time.RFC3339)),
-
 		Remediation: Remediation{
 			Recommendation: AsffRecommendation{
 				Text: *aws.String("Problem found on 'positive.tf' file in line 1. Expected value: resource.aws_mq_broker[positive1].encryption_options is defined. Actual value: resource.aws_mq_broker[positive1].encryption_options is not defined."),
 			},
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},
+		CWE:        "",
 	}
 
 	awsSecurityFinding2 := AwsSecurityFinding{
+		AwsAccountID: *aws.String("AWS_ACCOUNT_ID"),
+		CreatedAt:    *aws.String(time.Now().Format(time.RFC3339)),
+		Description:  *aws.String("AmazonMQ Broker should have Encryption Options defined"),
+		GeneratorID:  *aws.String("3db3f534-e3a3-487f-88c7-0a9fbf64b702"),
+		ID:           *aws.String("AWS_REGION/AWS_ACCOUNT_ID/6b76f7a507e200bb2c73468ec9649b099da96a4efa0f49a3bdc88e12476d8ee7"),
+		ProductArn:   *aws.String("arn:aws:securityhub:AWS_REGION:AWS_ACCOUNT_ID:product/AWS_ACCOUNT_ID/default"),
+		Resources: []Resource{
+			{
+				ID:   *aws.String("3db3f534-e3a3-487f-88c7-0a9fbf64b702"),
+				Type: *aws.String("Other"),
+			},
+		},
+		SchemaVersion: *aws.String("2018-10-08"),
+		Severity: Severity{
+			Original: *aws.String("MEDIUM"),
+			Label:    *aws.String("MEDIUM"),
+		},
+		Title:     *aws.String("AmazonMQ Broker Encryption Disabled"),
+		Types:     []string{*aws.String("Software and Configuration Checks/Vulnerabilities/KICS")},
+		UpdatedAt: *aws.String(time.Now().Format(time.RFC3339)),
+		Remediation: Remediation{
+			Recommendation: AsffRecommendation{
+				Text: *aws.String("Problem found on 'positive.tf' file in line 1. Expected value: resource.aws_mq_broker[positive1].encryption_options is defined. Actual value: resource.aws_mq_broker[positive1].encryption_options is not defined."),
+			},
+		},
+		Compliance: Compliance{Status: *aws.String("FAILED")},
+		CWE:        "22",
+	}
+
+	awsSecurityFinding3 := AwsSecurityFinding{
 		AwsAccountID: *aws.String("AWS_ACCOUNT_ID"),
 		CreatedAt:    *aws.String(time.Now().Format(time.RFC3339)),
 		Description:  *aws.String("AmazonMQ Broker should have Encryption Options defined"),
@@ -71,6 +101,13 @@ func TestBuildASFFReport(t *testing.T) {
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},
 	}
+	var awsSecurityFindings []AwsSecurityFinding
+	var awsSecurityFindings2 []AwsSecurityFinding
+	var awsSecurityFindings3 []AwsSecurityFinding
+
+	awsSecurityFindings = append(awsSecurityFindings, awsSecurityFinding)
+	awsSecurityFindings2 = append(awsSecurityFindings2, awsSecurityFinding2)
+	awsSecurityFindings3 = append(awsSecurityFindings3, awsSecurityFinding3)
 
 	type args struct {
 		summary *model.Summary
@@ -85,20 +122,27 @@ func TestBuildASFFReport(t *testing.T) {
 			args: args{
 				summary: &test.SimpleSummaryMock,
 			},
-			want: []AwsSecurityFinding{awsSecurityFinding},
+			want: awsSecurityFindings,
 		},
 		{
 			name: "Build ASFF with critical severity",
 			args: args{
 				summary: &test.SummaryMockCriticalFullPathASFF,
 			},
-			want: []AwsSecurityFinding{awsSecurityFinding2},
+			want: awsSecurityFindings3,
+		},
+		{
+			name: "Build ASFF with CWE",
+			args: args{
+				summary: &test.SimpleSummaryMockAsff,
+			},
+			want: awsSecurityFindings2,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if tt.name == "Build ASFF" {
+			if tt.name == "Build ASFF" || tt.name == "Build ASFF with CWE" {
 				got := BuildASFF(tt.args.summary)
 
 				if len(got) == 0 {

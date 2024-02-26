@@ -23,11 +23,19 @@ func TestPrintASFFReport(t *testing.T) {
 			},
 		},
 		{
-			name: "asff report",
+			name: "asff report with cwe field complete",
+			caseTest: jsonCaseTest{
+				summary:  test.SimpleSummaryMockAsff,
+				path:     filepath.Join(os.TempDir(), "testdir"),
+				filename: "output2",
+			},
+		},
+		{
+			name: "asff report critical severity",
 			caseTest: jsonCaseTest{
 				summary:  test.SummaryMockCritical,
 				path:     filepath.Join(os.TempDir(), "testdir"),
-				filename: "output2",
+				filename: "output3",
 			},
 		},
 	}

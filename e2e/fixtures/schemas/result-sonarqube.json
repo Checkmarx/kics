@@ -35,6 +35,10 @@
                             "BLOCKER"
                         ]
                     },
+                    "cwe": {
+                        "type": "string",
+                        "minLength": 0
+                    },
                     "type": {
                         "type": "string",
                         "enum": [

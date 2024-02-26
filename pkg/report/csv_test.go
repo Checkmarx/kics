@@ -23,11 +23,19 @@ func TestPrintCSVReport(t *testing.T) {
 			},
 		},
 		{
+			name: "print csv report with cwe field complete",
+			caseTest: jsonCaseTest{
+				summary:  test.SummaryMockCWE,
+				path:     filepath.Join(os.TempDir(), "testdir"),
+				filename: "output2",
+			},
+		},
+		{
 			name: "print csv report critical",
 			caseTest: jsonCaseTest{
 				summary:  test.SummaryMockCritical,
 				path:     filepath.Join(os.TempDir(), "testdir"),
-				filename: "output2",
+				filename: "output3",
 			},
 		},
 	}

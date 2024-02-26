@@ -48,6 +48,7 @@ type Issue struct {
 	EngineID           string      `json:"engineId"`
 	RuleID             string      `json:"ruleId"`
 	Severity           string      `json:"severity"`
+	CWE                string      `json:"cwe,omitempty"`
 	Type               string      `json:"type"`
 	PrimaryLocation    *Location   `json:"primaryLocation"`
 	SecondaryLocations []*Location `json:"secondaryLocations,omitempty"`
@@ -89,6 +90,7 @@ func (s *SonarQubeReportBuilder) buildIssue(query *model.QueryResult) {
 		EngineID:           s.version,
 		RuleID:             query.QueryID,
 		Severity:           severitySonarQubeEquivalence[query.Severity],
+		CWE:                query.CWE,
 		Type:               categorySonarQubeEquivalence[query.Category],
 		PrimaryLocation:    buildLocation(0, query),
 		SecondaryLocations: buildSecondaryLocation(query),

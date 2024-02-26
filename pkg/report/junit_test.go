@@ -31,6 +31,14 @@ var junitTests = []struct {
 		},
 		expectedResult: test.SummaryMockCritical,
 	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCWE,
+			path:     "./testdir",
+			filename: "test3",
+		},
+		expectedResult: test.SummaryMockCWE,
+	},
 }
 
 // TestPrintJUnitReport tests the functions [PrintJUnitReport()] and all the methods called by them

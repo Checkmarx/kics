@@ -119,7 +119,8 @@
     "flagType": "str",
     "shorthandFlag": "o",
     "defaultValue": "",
-    "usage": "directory path to store reports"
+    "usage": "directory path to store reports",
+    "validation": "validatePath"
   },
   "path": {
     "flagType": "multiStr",
