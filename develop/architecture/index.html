@@ -1934,12 +1934,14 @@
 <img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/arch/exec-flow-2.png"></p>
 <hr />
 <h2 id="concurrent_scans">Concurrent Scans<a class="headerlink" href="#concurrent_scans" title="Permanent link">&para;</a></h2>
-<p>KICS creates multiple services, each containing a unique parser. All the services will then concurrently generate a payload and run queries on it according to its containing parser. When a vulnerability is found, it is saved inside the Storage which is shared amongst all the services.</p>
+<p>KICS creates multiple services, each containing a unique parser. All the services will then concurrently generate a payload and run queries on it according to its containing parser. </p>
+<p>Concurrency exists on both the services representing each platform as well as the queries of each service. Each platform detected will run their queries concurrently with one another and the queries of each platform will themselves run concurrently using the number of workers passed on th. </p>
+<p>When a vulnerability is found, it is saved inside the Storage which is shared amongst all the services.</p>
 <ul>
-<li>Paths =&gt; create services based on types of IaC files.</li>
-<li>Service =&gt; contains a unique parser and shares other resources with other services</li>
-<li>Start Scan =&gt; Services will concurrently create payloads based on its parser, inspect for vulnerabilities and save them on the shared storage</li>
-<li>Results =&gt; when all services have finished their execution all the results will be gathered from the storage</li>
+<li>Paths =&gt; create services based on types of IaC files;</li>
+<li>Service =&gt; contains a unique parser and shares other resources with other services;</li>
+<li>Start Scan =&gt; Services will concurrently create payloads based on its parser, inspect for vulnerabilities and save them on the shared storage;</li>
+<li>Results =&gt; when all services have finished their execution all the results will be gathered from the storage.</li>
 </ul>
 
 
