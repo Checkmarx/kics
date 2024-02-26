@@ -30,7 +30,7 @@ import (
 
 var (
 	queriesPaths = map[string]model.QueryConfig{
-		/* "../assets/queries/terraform/aws_bom":               {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/aws_bom":               {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/aws":                   {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/azure":                 {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/databricks":            {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
@@ -48,9 +48,9 @@ var (
 		"../assets/queries/pulumi/gcp":                      {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
 		"../assets/queries/pulumi/kubernetes":               {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
 		"../assets/queries/pulumi/azure":                    {FileKind: []model.FileKind{model.KindYAML}, Platform: "pulumi"},
-		"../assets/queries/k8s":                             {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "k8s"}, */
-		"../assets/queries/cloudFormation/aws/api_gateway_access_logging_disabled": {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
-		/* "../assets/queries/cloudFormation/aws_bom":          {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
+		"../assets/queries/k8s":                             {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "k8s"},
+		"../assets/queries/cloudFormation/aws":              {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
+		"../assets/queries/cloudFormation/aws_bom":          {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "cloudFormation"},
 		"../assets/queries/cloudFormation/aws_sam":          {FileKind: []model.FileKind{model.KindYAML}, Platform: "cloudFormation"},
 		"../assets/queries/ansible/aws":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/ansible/gcp":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
@@ -70,7 +70,7 @@ var (
 		"../assets/queries/buildah":                         {FileKind: []model.FileKind{model.KindBUILDAH}, Platform: "buildah"},
 		"../assets/queries/serverlessFW":                    {FileKind: []model.FileKind{model.KindYAML, model.KindYML}, Platform: "serverlessFW"},
 		"../assets/queries/knative":                         {FileKind: []model.FileKind{model.KindYAML}, Platform: "knative"},
-		"../assets/queries/cicd/github":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "cicd"}, */
+		"../assets/queries/cicd/github":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "cicd"},
 	}
 
 	issueTypes = map[string]string{
