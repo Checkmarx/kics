@@ -17,7 +17,10 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	common_lib.valid_key(value, "type")
-	invalidKey := check_keywords(value)
+	invalidKeys := { invalidKey |
+        check_keywords(key, value)
+        invalidKey := key
+    }
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), invalidKey]),
@@ -28,17 +31,11 @@ CxPolicy[result] {
 	}
 }
 
-check_keywords(value) = names {
-    keywords := specificKeywords[type]
-    typeName := get_value_type(value.type)
-    type != typeName
+check_keywords(key, value) = name {
+    keywords := specificKeywords[value.type]
+    common_lib.inArray(keywords, key)
+	name := key
 
-    unique_keys := {key |
-        key := value[_]
-        common_lib.inArray(keywords, key)
-    }
-
-	names := unique_keys
 }
 
 
