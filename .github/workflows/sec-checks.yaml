@@ -1,0 +1,121 @@
+name: security-checks
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  trivy-file-system:
+    name: Trivy Scan
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner in repo mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'json'
+          output: './trivy-results.json'
+          severity: 'CRITICAL,HIGH,MEDIUM'
+          exit-code: '1'
+
+      - name: Inspect action report
+        if: always()
+        shell: bash
+        run: cat ./trivy-results.json
+  trivy-docker-image:
+    name: Trivy docker image scan
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        kics-docker: [ "Dockerfile" ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build
+        id: docker_build
+        uses: docker/build-push-action@v5.0.0
+        with:
+          load: true
+          context: ./
+          file: ./${{ matrix.kics-docker }}
+          builder: ${{ steps.buildx.outputs.name }}
+          push: false
+          tags: kics:sec-trivy-tests-${{ github.sha }}
+          build-args: |
+            VERSION=development
+            COMMIT=${{ github.sha }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: kics:sec-trivy-tests-${{ github.sha }}
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          output: './trivy-image-results.json'
+          severity: 'CRITICAL,HIGH,MEDIUM'
+          ignore-policy: './trivy-ignore.rego'
+      - name: Inspect action report
+        if: always()
+        shell: bash
+        run: cat ./trivy-image-results.json
+  #grype:
+  #  name: Grype Scan
+  #  runs-on: ubuntu-20.04
+  #  strategy:
+  #    fail-fast: false
+  #    matrix:
+  #      kics-docker: [ "Dockerfile"]
+  #  steps:
+  #    - name: Check out code
+  #      uses: actions/checkout@v4
+  #      with:
+  #        persist-credentials: false
+  #    - name: Set up Docker Buildx
+  #      uses: docker/setup-buildx-action@v3
+  #    - name: Build
+  #      id: docker_build
+  #      uses: docker/build-push-action@v5.0.0
+  #      with:
+  #        load: true
+  #        context: ./
+  #        file: ./${{ matrix.kics-docker }}
+  #        builder: ${{ steps.buildx.outputs.name }}
+  #        push: false
+  #        tags: kics:sec-tests-${{ github.sha }}
+  #        build-args: |
+  #          VERSION=development
+  #          COMMIT=${{ github.sha }}
+  #        cache-from: type=local,src=/tmp/.buildx-cache
+  #        cache-to: type=local,dest=/tmp/.buildx-cache
+  #    - name: Scan image
+  #      id: grype-scan
+  #      uses: anchore/scan-action@v3
+  #      with:
+  #        image: kics:sec-tests-${{ github.sha }}
+  #        fail-build: true
+  #        severity-cutoff: medium
+  #        output-format: sarif
+  #    - name: upload Anchore scan SARIF report
+  #      uses: github/codeql-action/upload-sarif@v3
+  #      if: always()
+  #      with:
+  #        sarif_file: ${{ steps.grype-scan.outputs.sarif }}
+  #    - name: upload artifact
+  #      uses: actions/upload-artifact@v4
+  #      if: always()
+  #      with:
+  #        name: grype-scan-results
+  #        path: ${{ steps.grype-scan.outputs.sarif }}
+  #    - name: Inspect action SARIF report
+  #      if: always()
+  #      run: cat ${{ steps.grype-scan.outputs.sarif }}

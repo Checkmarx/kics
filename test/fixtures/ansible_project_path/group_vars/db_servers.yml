@@ -1,0 +1,3 @@
+---
+# group_vars/db_servers.yml
+db_port: 3306

@@ -102,15 +102,16 @@ KICS is used by various companies and organizations, some are listed below. If y
 
 -   [Checkmarx](https://checkmarx.com/) ([IaC Security](https://checkmarx.com/product/iac-security/))
 -   [GitLab](https://gitlab.com/) ([Infrastructure as Code scanning](https://docs.gitlab.com/ee/user/application_security/iac_scanning/))
+-   [Bedrock Streaming](https://bedrockstreaming.com/)
 -   [Cisco](https://www.panoptica.app/) ([CI/CD Securitry](https://docs.panoptica.app/docs/ci-cd-security))
 -   [Orca Security](https://orca.security/)
 -   [JIT](https://www.jit.io/) ([SAST for IaC](https://www.jit.io/security-tools/kics))
 -   [Firefly](https://www.firefly.ai/)
 -   [Redpanda](https://redpanda.com/)
--   [Keptn](https://keptn.sh)
+-   [Keptn](https://github.com/keptn) / [Keptn Lifecycle Toolkit](https://keptn.sh)
 
 **Keeping Infrastructure as Code Secure!**
 
 ---
 
-&copy; 2023 Checkmarx Ltd. All Rights Reserved.
+&copy; 2024 Checkmarx Ltd. All Rights Reserved.

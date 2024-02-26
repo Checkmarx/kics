@@ -50,7 +50,7 @@ steps:
       path: 'terraform'
       output_path: results-dir
   - name: Upload SARIF file
-    uses: github/codeql-action/upload-sarif@v2
+    uses: github/codeql-action/upload-sarif@v3
     with:
       sarif_file: results-dir/results.sarif
 ```
@@ -202,7 +202,7 @@ jobs:
           cat results-dir/results.sarif
           cat results-dir/results.json
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results-dir/results.sarif
 ```
@@ -253,7 +253,7 @@ jobs:
           path: 'terraform'
           config_path: ./kics.config
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results-dir/results.sarif
 ```

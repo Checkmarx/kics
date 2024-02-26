@@ -67,7 +67,9 @@ var (
 
 var (
 	// KICSCommentRgxp is the regexp to identify if a comment is a KICS comment
-	KICSCommentRgxp = regexp.MustCompile(`^((/{2})|#|;)*\s*kics-scan\s*`)
+	KICSCommentRgxp = regexp.MustCompile(`(^|\n)((/{2})|#|;)*\s*kics-scan\s*`)
+	// KICSGetContentCommentRgxp to gets the kics comment on the hel case
+	KICSGetContentCommentRgxp = regexp.MustCompile(`(^|\n)((/{2})|#|;)*\s*kics-scan([^\n]*)\n`)
 	// KICSCommentRgxpYaml is the regexp to identify if the comment has KICS comment at the end of the comment in YAML
 	KICSCommentRgxpYaml = regexp.MustCompile(`((/{2})|#)*\s*kics-scan\s*(ignore-line|ignore-block)\s*\n*$`)
 )
@@ -130,6 +132,7 @@ type FileMetadata struct {
 	LinesIgnore       []int
 	ResolvedFiles     map[string]ResolvedFile
 	LinesOriginalData *[]string
+	IsMinified        bool
 }
 
 // QueryMetadata is a representation of general information about a query
@@ -139,6 +142,7 @@ type QueryMetadata struct {
 	Content   string
 	Metadata  map[string]interface{}
 	Platform  string
+	CWE       string
 	// special field for generic queries
 	// represents how many queries are aggregated into a single rego file
 	Aggregation  int
@@ -161,6 +165,7 @@ type Vulnerability struct {
 	Description      string      `json:"description"`
 	DescriptionID    string      `json:"descriptionID"`
 	Platform         string      `db:"platform" json:"platform"`
+	CWE              string      `db:"cwe" json:"cwe"`
 	Severity         Severity    `json:"severity"`
 	Line             int         `json:"line"`
 	VulnLines        *[]CodeLine `json:"vulnLines"`

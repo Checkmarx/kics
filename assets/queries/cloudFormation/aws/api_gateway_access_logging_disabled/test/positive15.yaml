@@ -1,0 +1,15 @@
+Resources:
+  Prod:
+    Type: AWS::ApiGatewayV2::Stage
+    Properties:
+      StageName: Prod
+      Description: Prod Stage
+      AccessLogSettings: 
+        DestinationArn: "dest"
+        Format: "format"
+      RestApiId: !Ref MyRestApi
+      DeploymentId: !Ref TestDeployment
+      DocumentationVersion: ""
+      ApiId: "teste"
+      DefaultRouteSettings:
+        LoggingLevel: "OFF"

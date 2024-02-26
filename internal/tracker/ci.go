@@ -29,6 +29,9 @@ type CITracker struct {
 	ParsedCountLines   int
 	IgnoreCountLines   int
 	Version            model.Version
+	BagOfFilesParse    map[string]int
+	BagOfFilesFound    map[string]int
+	syncFileMutex      sync.Mutex
 }
 
 // NewTracker will create a new instance of a tracker with the number of lines to display in results output
@@ -39,7 +42,9 @@ func NewTracker(previewLines int) (*CITracker, error) {
 			fmt.Errorf("output lines minimum is %v and maximum is %v", constants.MinimumPreviewLines, constants.MaximumPreviewLines)
 	}
 	return &CITracker{
-		lines: previewLines,
+		lines:           previewLines,
+		BagOfFilesParse: make(map[string]int),
+		BagOfFilesFound: make(map[string]int),
 	}, nil
 }
 
@@ -66,13 +71,29 @@ func (c *CITracker) TrackQueryExecution(queryAggregation int) {
 }
 
 // TrackFileFound adds a found file to be scanned
-func (c *CITracker) TrackFileFound() {
-	c.FoundFiles++
+func (c *CITracker) TrackFileFound(path string) {
+	c.syncFileMutex.Lock()
+	defer c.syncFileMutex.Unlock()
+	count, value := c.BagOfFilesFound[path]
+	if !value {
+		c.BagOfFilesFound[path] = 1
+		c.FoundFiles++
+	} else {
+		c.BagOfFilesFound[path] = count + 1
+	}
 }
 
 // TrackFileParse adds a successful parsed file to be scanned
-func (c *CITracker) TrackFileParse() {
-	c.ParsedFiles++
+func (c *CITracker) TrackFileParse(path string) {
+	c.syncFileMutex.Lock()
+	defer c.syncFileMutex.Unlock()
+	count, value := c.BagOfFilesParse[path]
+	if !value {
+		c.BagOfFilesParse[path] = 1
+		c.ParsedFiles++
+	} else {
+		c.BagOfFilesParse[path] = count + 1
+	}
 }
 
 // FailedDetectLine - queries that fail to detect line are counted as failed to execute queries
