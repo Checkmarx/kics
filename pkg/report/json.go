@@ -19,7 +19,7 @@ func PrintJSONReport(path, filename string, body interface{}) error {
 		queries := summary.Queries
 		sort.SliceStable(queries, func(i, j int) bool {
 			if queries[i].Severity == queries[j].Severity {
-				return queries[i].QueryID < queries[j].QueryID
+				return queries[i].QueryName < queries[j].QueryName
 			}
 
 			return false
