@@ -9,7 +9,7 @@ func init() { //nolint
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
 					"--output-name", "E2E_CLI_087_RESULT",
-					"-p", "\"/path/e2e/fixtures/samples/long_terraform.tf\"",
+					"-p", "\"/path/e2e/fixtures/samples/terraform.tf\"",
 					"--parallel", "1",
 				},
 			},
