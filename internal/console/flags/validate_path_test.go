@@ -122,11 +122,10 @@ func TestFlags_validatePathEnum(t *testing.T) {
 			wantErr:   true,
 		},
 	}
-	warnings := []string{}
 	for _, test := range tests {
 		flagsStrReferences[test.flagName] = &test.flagValue
 		t.Run(test.name, func(t *testing.T) {
-			gotErr := validatePath(&warnings, test.flagName)
+			gotErr := validatePath(test.flagName)
 			if !test.wantErr {
 				require.NoError(t, gotErr)
 			} else {

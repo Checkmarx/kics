@@ -33,11 +33,10 @@ func TestFlags_sliceFlagsShouldNotStartWithFlags(t *testing.T) {
 			wantErr:   true,
 		},
 	}
-	warnings := []string{}
 	for _, test := range tests {
 		flagsMultiStrReferences[test.flagName] = test.flagValue
 		t.Run(test.name, func(t *testing.T) {
-			gotErr := sliceFlagsShouldNotStartWithFlags(&warnings, test.flagName)
+			gotErr := sliceFlagsShouldNotStartWithFlags(test.flagName)
 			if !test.wantErr {
 				require.NoError(t, gotErr)
 			} else {
@@ -79,11 +78,10 @@ func TestFlags_validateMultiStrEnum(t *testing.T) {
 			wantErr:   true,
 		},
 	}
-	warnings := []string{}
 	for _, test := range tests {
 		flagsMultiStrReferences[test.flagName] = test.flagValue
 		t.Run(test.name, func(t *testing.T) {
-			gotErr := validateMultiStrEnum(&warnings, test.flagName)
+			gotErr := validateMultiStrEnum(test.flagName)
 			if !test.wantErr {
 				require.NoError(t, gotErr)
 			} else {
@@ -113,11 +111,10 @@ func TestFlags_allQueriesID(t *testing.T) {
 			wantErr:   true,
 		},
 	}
-	warnings := []string{}
 	for _, test := range tests {
 		flagsMultiStrReferences[test.flagName] = test.flagValue
 		t.Run(test.name, func(t *testing.T) {
-			gotErr := allQueriesID(&warnings, test.flagName)
+			gotErr := allQueriesID(test.flagName)
 			if !test.wantErr {
 				require.NoError(t, gotErr)
 			} else {

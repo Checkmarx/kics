@@ -12,7 +12,7 @@ var validStrEnums = map[string]map[string]string{
 	LogLevelFlag: convertSliceToDummyMap(constants.AvailableLogLevels),
 }
 
-func validateStrEnum(_ *[]string, flagName string) error {
+func validateStrEnum(flagName string) error {
 	value := GetStrFlag(flagName)
 	caseInsensitiveMap := make(map[string]string)
 	for key, value := range validStrEnums[flagName] {

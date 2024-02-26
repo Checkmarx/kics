@@ -22,7 +22,7 @@ var validMultiStrEnums = map[string]map[string]string{
 	ExcludeTypeFlag:       constants.AvailablePlatforms,
 }
 
-func sliceFlagsShouldNotStartWithFlags(_ *[]string, flagName string) error {
+func sliceFlagsShouldNotStartWithFlags(flagName string) error {
 	values := GetMultiStrFlag(flagName)
 	re := regexp.MustCompile(`^--[a-z-]+$`)
 	if len(values) > 0 {
@@ -34,7 +34,7 @@ func sliceFlagsShouldNotStartWithFlags(_ *[]string, flagName string) error {
 	return nil
 }
 
-func allQueriesID(_ *[]string, flagName string) error {
+func allQueriesID(flagName string) error {
 	queriesID := GetMultiStrFlag(flagName)
 	for _, queryID := range queriesID {
 		if !isQueryID(queryID) {
@@ -44,7 +44,7 @@ func allQueriesID(_ *[]string, flagName string) error {
 	return nil
 }
 
-func validateMultiStrEnum(_ *[]string, flagName string) error {
+func validateMultiStrEnum(flagName string) error {
 	enums := GetMultiStrFlag(flagName)
 	invalidEnum := make([]string, 0)
 	caseInsensitiveMap := make(map[string]string)
@@ -68,7 +68,7 @@ func validateMultiStrEnum(_ *[]string, flagName string) error {
 	return nil
 }
 
-func validateWorkersFlag(_ *[]string, flagName string) error {
+func validateWorkersFlag(flagName string) error {
 	workers := GetIntFlag(flagName)
 	if workers < 0 {
 		return fmt.Errorf("invalid argument --%s: value must be greater or equal to 0", flagName)

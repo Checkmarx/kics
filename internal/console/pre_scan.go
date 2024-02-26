@@ -28,7 +28,7 @@ func preRun(cmd *cobra.Command) error {
 		return errors.New(initError + err.Error())
 	}
 
-	err = flags.Validate(&warnings)
+	err = flags.Validate()
 	if err != nil {
 		return err
 	}

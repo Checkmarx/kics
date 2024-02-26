@@ -59,7 +59,7 @@ func initRemediateCmd(remediateCmd *cobra.Command) error {
 }
 
 func preRemediate(cmd *cobra.Command) error {
-	err := flags.Validate(&warnings)
+	err := flags.Validate()
 	if err != nil {
 		return err
 	}
