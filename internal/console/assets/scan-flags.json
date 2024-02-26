@@ -119,7 +119,8 @@
     "flagType": "str",
     "shorthandFlag": "o",
     "defaultValue": "",
-    "usage": "directory path to store reports"
+    "usage": "directory path to store reports",
+    "validation": "validatePath"
   },
   "path": {
     "flagType": "multiStr",
@@ -207,6 +208,13 @@
     "shorthandFlag": "",
     "defaultValue": "false",
     "usage": "resolve the file reference, on OpenAPI files"
+  },
+  "parallel": {
+    "flagType": "int",
+    "shorthandFlag": "",
+    "defaultValue": "1",
+    "usage": "number of workers per platform enabled for parallel scanning, set 0 to auto-detect parallelism",
+    "validation": "validateWorkersFlag"
   },
   "max-file-size": {
     "flagType": "int",

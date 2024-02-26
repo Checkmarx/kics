@@ -9,6 +9,8 @@ var flagValidationFuncs = flagValidationFuncsMap{
 	"validateMultiStrEnum":              validateMultiStrEnum,
 	"validateStrEnum":                   validateStrEnum,
 	"allQueriesID":                      allQueriesID,
+	"validateWorkersFlag":               validateWorkersFlag,
+	"validatePath":                      validatePath,
 }
 
 func isQueryID(id string) bool {
