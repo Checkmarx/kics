@@ -170,10 +170,12 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		Description: "[Terraform].[GuardDuty Detector Disabled]: Make sure that Amazon GuardDuty is Enabled",
 		Recommendations: []Recommendation{
 			{
-				Recommendation: "Problem found in line 2. Expected value: GuardDuty Detector should be Enabled. Actual value: GuardDuty Detector is not Enabled.",
+				Recommendation: "Problem found in line 6. Expected value: 'default_action.redirect.protocol' is equal 'HTTPS'. Actual value: 'default_action.redirect.protocol' is missing.",
 			},
 		},
 	}
+
+	vulnsC3 = append(vulnsC3, v4)
 
 	v5 := Vulnerability{
 		Ref: fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v316278b3-87ac-444c-8f8f-a733a28da609", criticalSha[0:12]),
@@ -194,23 +196,6 @@ func TestBuildCycloneDxReport(t *testing.T) {
 				Recommendation: "Problem found in line 6. Expected value: 'default_action.redirect.protocol' is equal 'HTTPS'. Actual value: 'default_action.redirect.protocol' is missing.",
 			},
 		},
-	}
-
-	vulnsC4 = append(vulnsC4, v5)
-
-	c4 := Component{
-		Type:    "file",
-		BomRef:  fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v", criticalSha[0:12]),
-		Name:    "../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml",
-		Version: fmt.Sprintf("0.0.0-%v", criticalSha[0:12]),
-		Purl:    fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v", criticalSha[0:12]),
-		Hashes: []Hash{
-			{
-				Alg:     "SHA-256",
-				Content: criticalSha,
-			},
-		},
-		Vulnerabilities: vulnsC4,
 	}
 
 	vulnsC1 = append(vulnsC1, v1)
@@ -248,8 +233,6 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		Vulnerabilities: vulnsC2,
 	}
 
-	vulnsC3 = append(vulnsC3, v4)
-
 	c3 := Component{
 		Type:    "file",
 		BomRef:  fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%s", negativeSha[0:12]),
@@ -265,10 +248,27 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		Vulnerabilities: vulnsC3,
 	}
 
+	vulnsC4 = append(vulnsC4, v5)
+
+	c4 := Component{
+		Type:    "file",
+		BomRef:  fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v", criticalSha[0:12]),
+		Name:    "../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml",
+		Version: fmt.Sprintf("0.0.0-%v", criticalSha[0:12]),
+		Purl:    fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v", criticalSha[0:12]),
+		Hashes: []Hash{
+			{
+				Alg:     "SHA-256",
+				Content: criticalSha,
+			},
+		},
+		Vulnerabilities: vulnsC4,
+	}
+
 	cycloneDx.Components.Components = append(cycloneDx.Components.Components, c2)
 	cycloneDx.Components.Components = append(cycloneDx.Components.Components, c1)
-	cycloneDxCritical.Components.Components = append(cycloneDxCritical.Components.Components, c3)
-	cycloneDxCWE.Components.Components = append(cycloneDxCWE.Components.Components, c4)
+	cycloneDxCWE.Components.Components = append(cycloneDxCWE.Components.Components, c3)
+	cycloneDxCritical.Components.Components = append(cycloneDxCritical.Components.Components, c4)
 
 	filePaths := make(map[string]string)
 

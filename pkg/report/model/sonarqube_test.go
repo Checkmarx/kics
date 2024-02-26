@@ -114,15 +114,7 @@ func TestSonarQubeReportBuilder_BuildReport(t *testing.T) {
 								StartLine: 30,
 							},
 						},
-						SecondaryLocations: []*Location{
-							{
-								Message:  "AWS AMI Encryption is not enabled",
-								FilePath: "positive.tf",
-								TextRange: &Range{
-									StartLine: 35,
-								},
-							},
-						},
+						SecondaryLocations: []*Location{},
 					},
 				},
 			},

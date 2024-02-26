@@ -110,7 +110,7 @@ func MapToStringSlice(stringKeyMap map[string]string) []string {
 	return keys
 }
 
-var queryHigh = model.QueryResult{ //nolint
+var queryHigh = model.QueryResult{
 	QueryName:                   "ALB protocol is HTTP",
 	QueryID:                     "de7f5e83-da88-4046-871f-ea18504b1d43",
 	Description:                 "ALB protocol is HTTP Description",
@@ -294,7 +294,7 @@ var queryMediumCWE = model.QueryResult{
 	CWE: "22",
 }
 
-var queryHighCWE = model.QueryResult{ //nolint
+var queryHighCWE = model.QueryResult{
 	QueryName:                   "AMI Not Encrypted",
 	QueryID:                     "97707503-a22c-4cd7-b7c0-f088fa7cf830",
 	Description:                 "AWS AMI Encryption is not enabled",
