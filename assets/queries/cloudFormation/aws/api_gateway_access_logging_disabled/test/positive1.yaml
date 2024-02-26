@@ -4,6 +4,9 @@ Resources:
     Properties:
       StageName: Prod
       Description: Prod Stage
+      AccessLogSetting: 
+        DestinationArn: "dest"
+        Format: "format"
       RestApiId: !Ref MyRestApi
       DeploymentId: !Ref TestDeployment
       DocumentationVersion: ""
