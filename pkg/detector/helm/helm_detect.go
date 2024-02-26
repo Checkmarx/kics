@@ -39,7 +39,10 @@ const (
 func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	outputLines int, logWithFields *zerolog.Logger) model.VulnerabilityLines {
 	searchKey = fmt.Sprintf("%s.%s", strings.TrimRight(strings.TrimLeft(file.HelmID, "# "), ":"), searchKey)
-	lines := *file.LinesOriginalData
+
+	lines := make([]string, len(*file.LinesOriginalData))
+	copy(lines, *file.LinesOriginalData)
+
 	curLineRes := detectCurlLine{
 		foundRes: false,
 		lineRes:  0,
