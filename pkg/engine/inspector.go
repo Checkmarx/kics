@@ -5,7 +5,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+
+	"runtime"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/Checkmarx/kics/internal/metrics"
@@ -76,6 +79,7 @@ type Inspector struct {
 	enableCoverageReport bool
 	coverageReport       cover.Report
 	queryExecTimeout     time.Duration
+	numWorkers           int
 }
 
 // QueryContext contains the context where the query is executed, which scan it belongs, basic information of query,
@@ -96,6 +100,15 @@ var (
 	}
 )
 
+func adjustNumWorkers(workers int) int {
+	// for the case in which the end user decides to use num workers as "auto-detected"
+	// we will set the number of workers to the number of CPUs available based on GOMAXPROCS value
+	if workers == 0 {
+		return runtime.GOMAXPROCS(-1)
+	}
+	return workers
+}
+
 // NewInspector initializes a inspector, compiling and loading queries for scan and its tracker
 func NewInspector(
 	ctx context.Context,
@@ -105,7 +118,8 @@ func NewInspector(
 	queryParameters *source.QueryInspectorParameters,
 	excludeResults map[string]bool,
 	queryTimeout int,
-	needsLog bool) (*Inspector, error) {
+	needsLog bool,
+	numWorkers int) (*Inspector, error) {
 	log.Debug().Msg("engine.NewInspector()")
 
 	metrics.Metric.Start("get_queries")
@@ -156,6 +170,7 @@ func NewInspector(
 		excludeResults:   excludeResults,
 		detector:         lineDetector,
 		queryExecTimeout: queryExecTimeout,
+		numWorkers:       adjustNumWorkers(numWorkers),
 	}, nil
 }
 
@@ -181,7 +196,62 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
 	return platformLibraries
 }
 
-// Inspect scan files and return the a list of vulnerabilities found on the process
+type InspectionJob struct {
+	queryID int
+}
+
+type QueryResult struct {
+	vulnerabilities []model.Vulnerability
+	err             error
+	queryID         int
+}
+
+// This function creates an inspection task and sends it to the jobs channel
+func (c *Inspector) createInspectionJobs(jobs chan<- InspectionJob, queries []model.QueryMetadata) {
+	defer close(jobs)
+	for i := range queries {
+		jobs <- InspectionJob{queryID: i}
+	}
+}
+
+// This function performs an inspection job and sends the result to the results channel
+func (c *Inspector) performInspection(ctx context.Context, scanID string, files model.FileMetadatas,
+	astPayload ast.Value, baseScanPaths []string, currentQuery chan<- int64,
+	jobs <-chan InspectionJob, results chan<- QueryResult, queries []model.QueryMetadata) {
+	for job := range jobs {
+		currentQuery <- 1
+
+		queryOpa, err := c.QueryLoader.LoadQuery(ctx, &queries[job.queryID])
+		if err != nil {
+			continue
+		}
+
+		log.Debug().Msgf("Starting to run query %s", queries[job.queryID].Query)
+		queryStartTime := time.Now()
+
+		query := &PreparedQuery{
+			OpaQuery: *queryOpa,
+			Metadata: queries[job.queryID],
+		}
+
+		queryContext := &QueryContext{
+			Ctx:           ctx,
+			scanID:        scanID,
+			Files:         files.ToMap(),
+			Query:         query,
+			payload:       &astPayload,
+			BaseScanPaths: baseScanPaths,
+		}
+
+		vuls, err := c.doRun(queryContext)
+		if err == nil {
+			log.Debug().Msgf("Finished to run query %s after %v", queries[job.queryID].Query, time.Since(queryStartTime))
+			c.tracker.TrackQueryExecution(query.Metadata.Aggregation)
+		}
+		results <- QueryResult{vulnerabilities: vuls, err: err, queryID: job.queryID}
+	}
+}
+
 func (c *Inspector) Inspect(
 	ctx context.Context,
 	scanID string,
@@ -213,54 +283,52 @@ func (c *Inspector) Inspect(
 
 	queries := c.getQueriesByPlat(platforms)
 
-	for i, queryMeta := range queries {
-		currentQuery <- 1
+	// Create a channel to collect the results
+	results := make(chan QueryResult, len(queries))
 
-		queryOpa, err := c.QueryLoader.LoadQuery(ctx, &queries[i])
-		if err != nil {
-			continue
-		}
+	// Create a channel for inspection jobs
+	jobs := make(chan InspectionJob, len(queries))
 
-		log.Debug().Msgf("Starting to run query %s", queryMeta.Query)
-		queryStartTime := time.Now()
+	var wg sync.WaitGroup
 
-		query := &PreparedQuery{
-			OpaQuery: *queryOpa,
-			Metadata: queryMeta,
-		}
+	// Start a goroutine for each worker
+	for w := 0; w < c.numWorkers; w++ {
+		wg.Add(1)
 
-		queryContext := &QueryContext{
-			Ctx:           ctx,
-			scanID:        scanID,
-			Files:         files.ToMap(),
-			Query:         query,
-			payload:       &astPayload,
-			BaseScanPaths: baseScanPaths,
-		}
+		go func() {
+			// Decrement the counter when the goroutine completes
+			defer wg.Done()
+			c.performInspection(ctx, scanID, files, astPayload, baseScanPaths, currentQuery, jobs, results, queries)
+		}()
+	}
+	// Start a goroutine to create inspection jobs
+	go c.createInspectionJobs(jobs, queries)
 
-		vuls, err := c.doRun(queryContext)
+	go func() {
+		// Wait for all jobs to finish
+		wg.Wait()
+		// Then close the results channel
+		close(results)
+	}()
 
-		if err != nil {
+	// Collect all the results
+	for result := range results {
+		if result.err != nil {
 			fmt.Println()
 			sentryReport.ReportSentry(&sentryReport.Report{
-				Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", query.Metadata.Query),
-				Err:      err,
+				Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", queries[result.queryID].Query),
+				Err:      result.err,
 				Location: "func Inspect()",
-				Platform: query.Metadata.Platform,
-				Metadata: query.Metadata.Metadata,
-				Query:    query.Metadata.Query,
+				Platform: queries[result.queryID].Platform,
+				Metadata: queries[result.queryID].Metadata,
+				Query:    queries[result.queryID].Query,
 			}, true)
 
-			c.failedQueries[query.Metadata.Query] = err
+			c.failedQueries[queries[result.queryID].Query] = result.err
 
 			continue
 		}
-
-		log.Debug().Msgf("Finished to run query %s after %v", queryMeta.Query, time.Since(queryStartTime))
-
-		vulnerabilities = append(vulnerabilities, vuls...)
-
-		c.tracker.TrackQueryExecution(query.Metadata.Aggregation)
+		vulnerabilities = append(vulnerabilities, result.vulnerabilities...)
 	}
 	return vulnerabilities, nil
 }

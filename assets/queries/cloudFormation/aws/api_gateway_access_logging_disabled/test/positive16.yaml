@@ -1,0 +1,11 @@
+Resources:
+  Prod:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      StageName: Prod
+      Description: Prod Stage
+      RestApiId: !Ref MyRestApi
+      DeploymentId: !Ref TestDeployment
+      DocumentationVersion: ""
+      MethodSettings:
+        LoggingLevel: "ON"
