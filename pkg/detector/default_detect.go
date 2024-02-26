@@ -61,7 +61,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 		}
 	}
 
-	logwithfields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
+	logwithfields.Warn().Msgf("Failed to detect line associated with identified result in file %s\n", file.FilePath)
 
 	return model.VulnerabilityLines{
 		Line:         undetectedVulnerabilityLine,
