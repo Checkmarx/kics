@@ -1,13 +1,14 @@
 package scan
 
 import (
+	"strings"
+	"testing"
+
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/stretchr/testify/require"
-	"strings"
-	"testing"
 )
 
 func Test_maskSecrets(t *testing.T) {
@@ -28,6 +29,7 @@ func Test_maskSecrets(t *testing.T) {
 				FoundFiles:         1,
 				FoundCountLines:    9,
 				ParsedCountLines:   9,
+				IgnoreCountLines:   0,
 				ParsedFiles:        1,
 				LoadedQueries:      146,
 				ExecutingQueries:   146,
@@ -102,6 +104,7 @@ func Test_maskSecretsEntropies(t *testing.T) {
 				FoundFiles:         1,
 				FoundCountLines:    9,
 				ParsedCountLines:   9,
+				IgnoreCountLines:   0,
 				ParsedFiles:        1,
 				LoadedQueries:      146,
 				ExecutingQueries:   146,

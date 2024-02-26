@@ -6,5 +6,6 @@
   "descriptionText": "The Horizontal Pod Autoscaler must target a valid object",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/",
   "platform": "Kubernetes",
-  "descriptionID": "450f7251"
+  "descriptionID": "450f7251",
+  "cwe": ""
 }

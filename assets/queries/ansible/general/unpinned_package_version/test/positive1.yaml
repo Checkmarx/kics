@@ -1,0 +1,149 @@
+---
+- name: Example playbook
+  hosts: localhost
+  tasks:
+    - name: Install Ansible
+      ansible.builtin.yum:
+        name: ansible
+        state: latest
+
+    - name: Install Ansible-lint
+      ansible.builtin.pip:
+        name: ansible-lint
+        state: latest
+
+    - name: Install some-package
+      ansible.builtin.package:
+        name: some-package
+        state: latest
+
+    - name: Install Ansible with update_only to false
+      ansible.builtin.yum:
+        name: sudo
+        state: latest
+        update_only: false
+
+    - name: Install nmap
+      community.general.zypper:
+        name: nmap
+        state: latest
+
+    - name: Install package without using cache
+      community.general.apk:
+        name: foo
+        state: latest
+        no_cache: true
+
+    - name: Install apache httpd
+      ansible.builtin.apt:
+        name: apache2
+        state: latest
+
+    - name: Update Gemfile in another directory
+      community.general.bundler:
+        state: latest
+        chdir: ~/rails_project
+
+    - name: Install a modularity appstream with defined profile
+      ansible.builtin.dnf:
+        name: "@postgresql/client"
+        state: latest
+
+    - name: Install rake
+      community.general.gem:
+        name: rake
+        state: latest
+
+    - name: Install formula foo with 'brew' from cask
+      community.general.homebrew:
+        name: homebrew/cask/foo
+        state: latest
+
+    - name: Install Green Balls plugin
+      community.general.jenkins_plugin:
+        name: greenballs
+        state: latest
+        url: http://host_jenkins:8080
+        username: user_jenkins
+        password: userpass_jenkins
+      register: result
+
+    - name: Install packages based on package.json
+      community.general.npm:
+        path: /app/location
+        state: latest
+
+    - name: Install nmap
+      community.general.openbsd_pkg:
+        name: nmap
+        state: latest
+
+    - name: Install ntpdate
+      ansible.builtin.package:
+        name: ntpdate
+        state: latest
+
+    - name: Install package bar from file
+      community.general.pacman:
+        name: ~/bar-1.0-1-any.pkg.tar.xz
+        state: latest
+
+    - name: Install finger daemon
+      community.general.pkg5:
+        name: service/network/finger
+        state: latest
+
+    - name: Install several packages
+      community.general.pkgutil:
+        name:
+          - CSWsudo
+          - CSWtop
+        state: latest
+
+    - name: Install package foo
+      community.general.portage:
+        package: foo
+        state: latest
+
+    - name: Make sure that it is the most updated package
+      community.general.slackpkg:
+        name: foo
+        state: latest
+
+    - name: Make sure spell foo is installed
+      community.general.sorcery:
+        spell: foo
+        state: latest
+
+    - name: Install package unzip
+      community.general.swdepot:
+        name: unzip
+        state: latest
+        depot: "repository:/path"
+
+    - name: Install multiple packages
+      win_chocolatey:
+        name:
+          - procexp
+          - putty
+          - windirstat
+        state: latest
+
+    - name: Install "imagemin" node.js package globally.
+      community.general.yarn:
+        name: imagemin
+        global: true
+        state: latest
+
+    - name: Install a list of packages (suitable replacement for 2.11 loop deprecation warning)
+      ansible.builtin.yum:
+        name:
+          - nginx
+          - postgresql
+          - postgresql-server
+        state: latest
+
+    - name: Install local rpm file
+      community.general.zypper:
+        name: /tmp/fancy-software.rpm
+        state: latest

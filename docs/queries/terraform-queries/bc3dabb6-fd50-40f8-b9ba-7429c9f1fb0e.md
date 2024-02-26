@@ -28,7 +28,7 @@ Check if any label in the metadata is invalid.<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="5"
+```tf title="Positive test num. 1 - tf file" hl_lines="5"
 resource "kubernetes_pod" "test" {
   metadata {
     name = "terraform-example"

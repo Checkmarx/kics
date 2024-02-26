@@ -14,7 +14,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("paths.{{%s}}.{{%s}}.security", [path, operation]),
+		"searchKey": sprintf("paths.{{%s}}.{{%s}}", [path, operation]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "A security schema should be used",
 		"keyActualValue": "No security schema is used",

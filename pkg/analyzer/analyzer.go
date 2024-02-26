@@ -1,6 +1,7 @@
 package analyzer
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -19,6 +20,7 @@ import (
 	yamlParser "gopkg.in/yaml.v3"
 )
 
+// move the openApi regex to public to be used on file.go
 // openAPIRegex - Regex that finds OpenAPI defining property "openapi" or "swagger"
 // openAPIRegexInfo - Regex that finds OpenAPI defining property "info"
 // openAPIRegexPath - Regex that finds OpenAPI defining property "paths", "components", or "webhooks" (from 3.1.0)
@@ -28,9 +30,9 @@ import (
 // k8sRegexMetadata - Regex that finds Kubernetes defining property "metadata"
 // k8sRegexSpec - Regex that finds Kubernetes defining property "spec"
 var (
-	openAPIRegex                                    = regexp.MustCompile(`("(openapi|swagger)"|(openapi|swagger))\s*:`)
-	openAPIRegexInfo                                = regexp.MustCompile(`("info"|info)\s*:`)
-	openAPIRegexPath                                = regexp.MustCompile(`("(paths|components|webhooks)"|(paths|components|webhooks))\s*:`)
+	OpenAPIRegex                                    = regexp.MustCompile(`("(openapi|swagger)"|(openapi|swagger))\s*:`)
+	OpenAPIRegexInfo                                = regexp.MustCompile(`("info"|info)\s*:`)
+	OpenAPIRegexPath                                = regexp.MustCompile(`("(paths|components|webhooks)"|(paths|components|webhooks))\s*:`)
 	armRegexContentVersion                          = regexp.MustCompile(`"contentVersion"\s*:`)
 	armRegexResources                               = regexp.MustCompile(`"resources"\s*:`)
 	cloudRegex                                      = regexp.MustCompile(`("Resources"|Resources)\s*:`)
@@ -53,15 +55,18 @@ var (
 	blueprintpRegexTargetScope                      = regexp.MustCompile(`("targetScope"|targetScope)\s*:`)
 	blueprintpRegexProperties                       = regexp.MustCompile(`("properties"|properties)\s*:`)
 	buildahRegex                                    = regexp.MustCompile(`buildah\s*from\s*\w+`)
-	dockerComposeVersionRegex                       = regexp.MustCompile(`version\s*:`)
-	dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:`)
+	dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:[\w\W]+(image|build)\s*:`)
 	crossPlaneRegex                                 = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
 	knativeRegex                                    = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+knative\.dev/v\w+\s*`)
 	pulumiNameRegex                                 = regexp.MustCompile(`name\s*:`)
 	pulumiRuntimeRegex                              = regexp.MustCompile(`runtime\s*:`)
 	pulumiResourcesRegex                            = regexp.MustCompile(`resources\s*:`)
 	serverlessServiceRegex                          = regexp.MustCompile(`service\s*:`)
-	serverlessProviderRegex                         = regexp.MustCompile(`provider\s*:`)
+	serverlessProviderRegex                         = regexp.MustCompile(`(^|\n)provider\s*:`)
+	cicdOnRegex                                     = regexp.MustCompile(`\s*on:\s*`)
+	cicdJobsRegex                                   = regexp.MustCompile(`\s*jobs:\s*`)
+	cicdStepsRegex                                  = regexp.MustCompile(`\s*steps:\s*`)
+	queryRegexPathsAnsible                          = regexp.MustCompile(fmt.Sprintf(`^.*?%s(?:group|host)_vars%s.*$`, regexp.QuoteMeta(string(os.PathSeparator)), regexp.QuoteMeta(string(os.PathSeparator)))) //nolint:lll
 )
 
 var (
@@ -80,10 +85,14 @@ var (
 		"tfvars":             true,
 		".proto":             true,
 		".sh":                true,
+		".cfg":               true,
+		".conf":              true,
+		".ini":               true,
 	}
 	supportedRegexes = map[string][]string{
 		"azureresourcemanager": append(armRegexTypes, arm),
 		"buildah":              {"buildah"},
+		"cicd":                 {"cicd"},
 		"cloudformation":       {"cloudformation"},
 		"crossplane":           {"crossplane"},
 		"dockercompose":        {"dockercompose"},
@@ -94,6 +103,12 @@ var (
 		"pulumi":               {"pulumi"},
 		"serverlessfw":         {"serverlessfw"},
 	}
+	listKeywordsAnsible = []string{"name", "gather_facts",
+		"hosts", "tasks", "become", "with_items", "with_dict",
+		"when", "become_pass", "become_exe", "become_flags"}
+	playBooks               = "playbooks"
+	ansibleHost             = []string{"all", "ungrouped"}
+	listKeywordsAnsibleHots = []string{"hosts", "children"}
 )
 
 const (
@@ -110,7 +125,14 @@ const (
 	dockerfile = "dockerfile"
 	crossplane = "crossplane"
 	knative    = "knative"
+	sizeMb     = 1048576
 )
+
+type Parameters struct {
+	Results     string
+	Path        []string
+	MaxFileSize int
+}
 
 // regexSlice is a struct to contain a slice of regex
 type regexSlice struct {
@@ -131,15 +153,16 @@ type Analyzer struct {
 	Exc               []string
 	GitIgnoreFileName string
 	ExcludeGitIgnore  bool
+	MaxFileSize       int
 }
 
 // types is a map that contains the regex by type
 var types = map[string]regexSlice{
 	"openapi": {
 		regex: []*regexp.Regexp{
-			openAPIRegex,
-			openAPIRegexInfo,
-			openAPIRegexPath,
+			OpenAPIRegex,
+			OpenAPIRegexInfo,
+			OpenAPIRegexPath,
 		},
 	},
 	"kubernetes": {
@@ -223,7 +246,6 @@ var types = map[string]regexSlice{
 	},
 	"dockercompose": {
 		[]*regexp.Regexp{
-			dockerComposeVersionRegex,
 			dockerComposeServicesRegex,
 		},
 	},
@@ -238,6 +260,13 @@ var types = map[string]regexSlice{
 		[]*regexp.Regexp{
 			serverlessServiceRegex,
 			serverlessProviderRegex,
+		},
+	},
+	"cicd": {
+		[]*regexp.Regexp{
+			cicdOnRegex,
+			cicdJobsRegex,
+			cicdStepsRegex,
 		},
 	},
 }
@@ -277,10 +306,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 			ext := utils.GetExtension(path)
 
-			if hasGitIgnoreFile && gitIgnore.MatchesPath(path) {
-				ignoreFiles = append(ignoreFiles, path)
-				a.Exc = append(a.Exc, path)
-			}
+			ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, ignoreFiles)
 
 			if isConfigFile(path, defaultConfigFiles) {
 				projectConfigFiles = append(projectConfigFiles, path)
@@ -300,13 +326,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	// unwanted is the channel shared by the workers that contains the unwanted files that the parser will ignore
 	unwanted := make(chan string, len(files))
 
-	for i := range a.Types {
-		a.Types[i] = strings.ToLower(a.Types[i])
-	}
-
-	for i := range a.ExcludeTypes {
-		a.ExcludeTypes[i] = strings.ToLower(a.ExcludeTypes[i])
-	}
+	a.Types, a.ExcludeTypes = typeLower(a.Types, a.ExcludeTypes)
 
 	// Start the workers
 	for _, file := range files {
@@ -379,7 +399,14 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 			results <- grpc
 			locCount <- linesCount
 		}
-	// Cloud Formation, Ansible, OpenAPI, Buildah
+	// It could be Ansible Config or Ansible Inventory
+	case ".cfg", ".conf", ".ini":
+		if a.isAvailableType(ansible) {
+			results <- ansible
+			locCount <- linesCount
+		}
+	/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
+	Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager*/
 	case yaml, yml, json, sh:
 		a.checkContent(results, unwanted, locCount, linesCount, ext)
 	}
@@ -413,7 +440,7 @@ func isDockerfile(path string) bool {
 func needsOverride(check bool, returnType, key, ext string) bool {
 	if check && returnType == kubernetes && key == arm && ext == json {
 		return true
-	} else if check && returnType == kubernetes && (key == knative || key == crossplane) && ext == yaml {
+	} else if check && returnType == kubernetes && (key == knative || key == crossplane) && (ext == yaml || ext == yml) {
 		return true
 	}
 	return false
@@ -519,9 +546,58 @@ func checkYamlPlatform(content []byte, path string) string {
 		}
 	}
 
-	// Since Ansible has no defining property
-	// and no other type matched for YAML file extension, assume the file type is Ansible
-	return ansible
+	// check if the file contains some keywords related with Ansible
+	if checkForAnsible(yamlContent) {
+		return ansible
+	}
+	// check if the file contains some keywords related with Ansible Host
+	if checkForAnsibleHost(yamlContent) {
+		return ansible
+	}
+	// add for yaml files contained at paths (group_vars, host_vars) related with ansible
+	if checkForAnsibleByPaths(path) {
+		return ansible
+	}
+	return ""
+}
+
+func checkForAnsibleByPaths(path string) bool {
+	return queryRegexPathsAnsible.MatchString(path)
+}
+
+func checkForAnsible(yamlContent model.Document) bool {
+	isAnsible := false
+	if play := yamlContent[playBooks]; play != nil {
+		if listOfPlayBooks, ok := play.([]interface{}); ok {
+			for _, value := range listOfPlayBooks {
+				castingValue, ok := value.(map[string]interface{})
+				if ok {
+					for _, keyword := range listKeywordsAnsible {
+						if _, ok := castingValue[keyword]; ok {
+							isAnsible = true
+						}
+					}
+				}
+			}
+		}
+	}
+	return isAnsible
+}
+
+func checkForAnsibleHost(yamlContent model.Document) bool {
+	isAnsible := false
+	for _, ansibleDefault := range ansibleHost {
+		if hosts := yamlContent[ansibleDefault]; hosts != nil {
+			if listHosts, ok := hosts.(map[string]interface{}); ok {
+				for _, value := range listKeywordsAnsibleHots {
+					if host := listHosts[value]; host != nil {
+						isAnsible = true
+					}
+				}
+			}
+		}
+	}
+	return isAnsible
 }
 
 // computeValues computes expected Lines of Code to be scanned from locCount channel
@@ -591,6 +667,11 @@ func isExcludedFile(path string, exc []string) bool {
 	return false
 }
 
+func isDeadSymlink(path string) bool {
+	fileInfo, _ := os.Stat(path)
+	return fileInfo == nil
+}
+
 func isConfigFile(path string, exc []string) bool {
 	for i := range exc {
 		exclude, err := provider.GetExcludePaths(exc[i])
@@ -599,7 +680,7 @@ func isConfigFile(path string, exc []string) bool {
 		}
 		for j := range exclude {
 			fileInfo, _ := os.Stat(path)
-			if fileInfo.IsDir() {
+			if fileInfo != nil && fileInfo.IsDir() {
 				continue
 			}
 
@@ -617,7 +698,7 @@ func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bo
 	gitIgnorePath := filepath.ToSlash(filepath.Join(path, gitIgnore))
 	_, err := os.Stat(gitIgnorePath)
 
-	if !excludeGitIgnoreFile && err == nil {
+	if !excludeGitIgnoreFile && err == nil && gitIgnore != "" {
 		gitIgnore, _ := ignore.CompileIgnoreFile(gitIgnorePath)
 		if gitIgnore != nil {
 			log.Info().Msgf(".gitignore file was found in '%s' and it will be used to automatically exclude paths", path)
@@ -649,4 +730,32 @@ func (a *analyzerInfo) isAvailableType(typeName string) bool {
 	}
 	// no valid behavior detected
 	return false
+}
+
+func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool,
+	gitIgnore *ignore.GitIgnore,
+	path string, ignoreFiles []string) []string {
+	exceededFileSize := a.MaxFileSize >= 0 && float64(fileSize)/float64(sizeMb) > float64(a.MaxFileSize)
+
+	if (hasGitIgnoreFile && gitIgnore.MatchesPath(path)) || isDeadSymlink(path) || exceededFileSize {
+		ignoreFiles = append(ignoreFiles, path)
+		a.Exc = append(a.Exc, path)
+
+		if exceededFileSize {
+			log.Error().Msgf("file %s exceeds maximum file size of %d Mb", path, a.MaxFileSize)
+		}
+	}
+	return ignoreFiles
+}
+
+func typeLower(types, exclTypes []string) (typesRes, exclTypesRes []string) {
+	for i := range types {
+		types[i] = strings.ToLower(types[i])
+	}
+
+	for i := range exclTypes {
+		exclTypes[i] = strings.ToLower(exclTypes[i])
+	}
+
+	return types, exclTypes
 }

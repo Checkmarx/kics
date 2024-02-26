@@ -5,16 +5,18 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"regexp"
 	"sort"
 
 	sentryReport "github.com/Checkmarx/kics/internal/sentry"
+	"github.com/Checkmarx/kics/pkg/minified"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 )
 
-func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]string, error) {
+func (s *Service) resolverSink(ctx context.Context, filename, scanID string, openAPIResolveReferences bool) ([]string, error) {
 	kind := s.Resolver.GetType(filename)
 	if kind == model.KindCOMMON {
 		return []string{}, nil
@@ -26,11 +28,10 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 	}
 
 	for _, rfile := range resFiles.File {
-		s.Tracker.TrackFileFound()
-		countLines := bytes.Count(rfile.Content, []byte{'\n'}) + 1
-		s.Tracker.TrackFileFoundCountLines(countLines)
+		s.Tracker.TrackFileFound(rfile.FileName)
 
-		documents, err := s.Parser.Parse(rfile.FileName, rfile.Content)
+		isMinified := minified.IsMinified(rfile.FileName, rfile.Content)
+		documents, err := s.Parser.Parse(rfile.FileName, rfile.Content, openAPIResolveReferences, isMinified)
 		if err != nil {
 			if documents.Kind == "break" {
 				return []string{}, nil
@@ -38,6 +39,21 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 			log.Err(err).Msgf("failed to parse file content")
 			return []string{}, nil
 		}
+
+		if kind == model.KindHELM {
+			ignoreList, errorIL := s.getOriginalIgnoreLines(rfile.FileName, rfile.OriginalData, openAPIResolveReferences, isMinified)
+			if errorIL == nil {
+				documents.IgnoreLines = ignoreList
+
+				// Need to ignore #KICS_HELM_ID Line
+				documents.CountLines = bytes.Count(rfile.OriginalData, []byte{'\n'})
+			}
+		} else {
+			documents.CountLines = bytes.Count(rfile.OriginalData, []byte{'\n'}) + 1
+		}
+
+		fileCommands := s.Parser.CommentsCommands(rfile.FileName, rfile.OriginalData)
+
 		for _, document := range documents.Docs {
 			_, err = json.Marshal(document)
 			if err != nil {
@@ -65,15 +81,32 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string) ([]
 				FilePath:          rfile.FileName,
 				Content:           string(rfile.Content),
 				HelmID:            rfile.SplitID,
+				Commands:          fileCommands,
 				IDInfo:            rfile.IDInfo,
 				LinesIgnore:       documents.IgnoreLines,
 				ResolvedFiles:     documents.ResolvedFiles,
 				LinesOriginalData: utils.SplitLines(string(rfile.OriginalData)),
+				IsMinified:        documents.IsMinified,
 			}
 			s.saveToFile(ctx, &file)
 		}
-		s.Tracker.TrackFileParse()
-		s.Tracker.TrackFileParseCountLines(documents.CountLines)
+		s.Tracker.TrackFileParse(rfile.FileName)
+		s.Tracker.TrackFileFoundCountLines(documents.CountLines)
+		s.Tracker.TrackFileParseCountLines(documents.CountLines - len(documents.IgnoreLines))
+		s.Tracker.TrackFileIgnoreCountLines(len(documents.IgnoreLines))
 	}
 	return resFiles.Excluded, nil
+}
+
+func (s *Service) getOriginalIgnoreLines(filename string,
+	originalFile []uint8,
+	openAPIResolveReferences, isMinified bool) (ignoreLines []int, err error) {
+	refactor := regexp.MustCompile(`.*\n?.*KICS\_HELM\_ID.+\n`).ReplaceAll(originalFile, []uint8{})
+	refactor = regexp.MustCompile(`{{-\s*(.*?)\s*}}`).ReplaceAll(refactor, []uint8{})
+
+	documentsOriginal, err := s.Parser.Parse(filename, refactor, openAPIResolveReferences, isMinified)
+	if err == nil {
+		ignoreLines = documentsOriginal.IgnoreLines
+	}
+	return
 }

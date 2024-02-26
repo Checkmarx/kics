@@ -22,6 +22,14 @@ func TestPrintASFFReport(t *testing.T) {
 				filename: "output",
 			},
 		},
+		{
+			name: "asff report with cwe field complete",
+			caseTest: jsonCaseTest{
+				summary:  test.SimpleSummaryMockAsff,
+				path:     filepath.Join(os.TempDir(), "testdir"),
+				filename: "output2",
+			},
+		},
 	}
 
 	for _, test := range tests {

@@ -6,5 +6,6 @@
   "descriptionText": "OAuth2 password flow insecurely exposes the credentials of the resource owner to the client",
   "descriptionUrl": "https://swagger.io/specification/#oauth-flows-object",
   "platform": "OpenAPI",
-  "descriptionID": "dd7818af"
+  "descriptionID": "dd7818af",
+  "cwe": ""
 }

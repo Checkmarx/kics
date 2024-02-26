@@ -2,6 +2,9 @@ package file
 
 import (
 	"encoding/json"
+	"fmt"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -13,7 +16,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func TestResolver_Resolve(t *testing.T) {
+func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 	err := test.ChangeCurrentDir("kics")
 	if err != nil {
 		t.Fatal(err)
@@ -39,23 +42,7 @@ func TestResolver_Resolve(t *testing.T) {
 				path: filepath.ToSlash("test/fixtures/unresolved_openapi/responses/_index.yaml"),
 			},
 			want: []byte(
-				`UnexpectedError:
-					description: unexpected error
-					content:
-					application/json:
-						schema:
-							type: object
-							required:
-							- code
-							- message
-							properties:
-							code:
-								type: integer
-								format: int32
-							message:
-								type: string		
-		NullResponse:
-            description: Null response`),
+				`UnexpectedError:description:unexpectederrorcontent:application/json:schema:type:objectrequired:-code-messageproperties:code:type:integerformat:int32message:type:stringRefMetadata:$ref:"../schemas/Error.yaml"alone:trueRefMetadata:$ref:"./UnexpectedError.yaml"alone:trueNullResponse:description:NullresponseRefMetadata:$ref:"./NullResponse.yaml"alone:true`),
 		},
 		{
 			name: "json test",
@@ -66,7 +53,7 @@ func TestResolver_Resolve(t *testing.T) {
 				path: filepath.ToSlash("test/fixtures/unresolved_openapi_json/openapi.json"),
 			},
 			want: []byte(
-				"{\"info\":{\"title\":\"Reference in reference example\",\"version\":\"1.0.0\"},\"openapi\":\"3.0.3\",\"paths\":{\"/api/test/ref/in/ref\":{\"post\":{\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"definition_reference\":{\"$ref\":\"definitions.json#/definitions/External\"}},\"required\":[\"definition_reference\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"id\":{\"format\":\"int32\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}}}}}}",
+				"{\"info\":{\"title\":\"Reference in reference example\",\"version\":\"1.0.0\"},\"openapi\":\"3.0.3\",\"paths\":{\"/api/test/ref/in/ref\":{\"post\":{\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"RefMetadata\":{\"$ref\":\"messages/request.json\",\"alone\":true},\"properties\":{\"definition_reference\":{\"RefMetadata\":{\"$ref\":\"definitions.json#/definitions/External\",\"alone\":true},\"type\":\"string\"}},\"required\":[\"definition_reference\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"RefMetadata\":{\"$ref\":\"messages/response.json\",\"alone\":true},\"properties\":{\"id\":{\"format\":\"int32\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}}}}}}",
 			),
 		},
 		{
@@ -95,9 +82,114 @@ func TestResolver_Resolve(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile)); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
+			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile), true); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
 				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
 			}
+		})
+	}
+}
+
+func TestResolver_Resolve_Without_ResolveReferences(t *testing.T) {
+	err := test.ChangeCurrentDir("kics")
+	if err != nil {
+		t.Fatal(err)
+	}
+	type fields struct {
+		*Resolver
+	}
+	type args struct {
+		path string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   []byte
+	}{
+		{
+			name: "yaml should resolve because is not openapi file",
+			fields: fields{
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
+			},
+			args: args{
+				path: filepath.ToSlash("test/fixtures/unresolved_openapi/responses/_index.yaml"),
+			},
+			want: []byte(
+				`UnexpectedError:description:unexpectederrorcontent:application/json:schema:type:objectrequired:-code-messageproperties:code:type:integerformat:int32message:type:stringRefMetadata:$ref:"../schemas/Error.yaml"alone:trueRefMetadata:$ref:"./UnexpectedError.yaml"alone:trueNullResponse:description:NullresponseRefMetadata:$ref:"./NullResponse.yaml"alone:true`),
+		},
+		{
+			name: "json should not resolve because is a openapi file",
+			fields: fields{
+				Resolver: NewResolver(json.Unmarshal, json.Marshal, []string{".json"}),
+			},
+			args: args{
+				path: filepath.ToSlash("test/fixtures/unresolved_openapi_json/openapi.json"),
+			},
+			want: []byte(
+				"{\"openapi\":\"3.0.3\",\"info\":{\"title\":\"Reference in reference example\",\"version\":\"1.0.0\"},\"paths\":{\"/api/test/ref/in/ref\":{\"post\":{\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"messages/request.json\"}}}},\"responses\":{\"200\":{\"description\":\"Successful response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"messages/response.json\"}}}}}}}}}",
+			),
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			r := &Resolver{
+				unmarshler:    tt.fields.unmarshler,
+				marshler:      tt.fields.marshler,
+				ResolvedFiles: tt.fields.ResolvedFiles,
+				Extension:     tt.fields.Extension,
+			}
+
+			cont, err := getFileContent(tt.args.path)
+			if err != nil {
+				t.Fatal(err)
+			}
+
+			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile), false); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
+				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
+			}
+		})
+	}
+}
+
+func Test_IsOpenApi(t *testing.T) {
+	err := test.ChangeCurrentDir("kics")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	tests := []struct {
+		name string
+		path string
+		want bool
+	}{
+		{
+			name: "yaml Open Api",
+			path: "test/fixtures/resolve_references/swagger.yaml",
+			want: true,
+		},
+		{
+			name: "json Open Api",
+			path: "test/fixtures/resolve_references_json/scan-2files.json",
+			want: true,
+		},
+		{
+			name: "yml not Open Api",
+			path: "test/fixtures/resolve_references/paths/users/user.yaml",
+			want: false,
+		},
+		{
+			name: "json not Open Api",
+			path: "test/fixtures/resolve_references_json/definitions.json",
+			want: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			cont, err := getFileContent(tt.path)
+			require.NoError(t, err)
+			got := isOpenAPI(cont)
+			assert.Equal(t, tt.want, got, fmt.Sprintf("Error: %s", tt.name))
 		})
 	}
 }
@@ -114,6 +206,7 @@ func getFileContent(path string) ([]byte, error) {
 func prepareString(content string) string {
 	content = strings.Replace(content, "\n", "", -1)
 	content = strings.Replace(content, "\t", "", -1)
+	content = strings.Replace(content, "\r", "", -1)
 	content = strings.Replace(content, " ", "", -1)
 	return content
 }

@@ -12,6 +12,7 @@ import (
 
 /*
 TestCITracker tests the functions [TrackQueryLoad(),TrackQueryExecution(),TrackFileFound(),
+
 	TrackFileParse(),TrackFileParse(),FailedDetectLine(),FailedComputeSimilarityID()]
 */
 func TestCITracker(t *testing.T) {
@@ -27,6 +28,7 @@ func TestCITracker(t *testing.T) {
 		Version            model.Version
 		FoundCountLines    int
 		ParsedCountLines   int
+		IgnoreCountLines   int
 		lines              int
 	}
 	tests := []struct {
@@ -47,6 +49,7 @@ func TestCITracker(t *testing.T) {
 				Version:            model.Version{},
 				FoundCountLines:    2,
 				ParsedCountLines:   1,
+				IgnoreCountLines:   4,
 				lines:              3,
 			},
 		},
@@ -65,7 +68,10 @@ func TestCITracker(t *testing.T) {
 			Version:            tt.fields.Version,
 			FoundCountLines:    tt.fields.FoundCountLines,
 			ParsedCountLines:   tt.fields.ParsedCountLines,
+			IgnoreCountLines:   tt.fields.IgnoreCountLines,
 			lines:              tt.fields.lines,
+			BagOfFilesParse:    make(map[string]int),
+			BagOfFilesFound:    make(map[string]int),
 		}
 		t.Run(fmt.Sprintf(tt.name+"_LoadedQueries"), func(t *testing.T) {
 			c.TrackQueryLoad(1)
@@ -78,12 +84,12 @@ func TestCITracker(t *testing.T) {
 		})
 
 		t.Run(fmt.Sprintf(tt.name+"_TrackFileFound"), func(t *testing.T) {
-			c.TrackFileFound()
+			c.TrackFileFound(tt.name)
 			require.Equal(t, 1, c.FoundFiles)
 		})
 
 		t.Run(fmt.Sprintf(tt.name+"_TrackFileParse"), func(t *testing.T) {
-			c.TrackFileParse()
+			c.TrackFileParse(tt.name)
 			require.Equal(t, 1, c.ParsedFiles)
 		})
 		t.Run(fmt.Sprintf(tt.name+"_TrackQueryExecuting"), func(t *testing.T) {
@@ -118,6 +124,10 @@ func TestCITracker(t *testing.T) {
 			c.TrackFileParseCountLines(2)
 			require.Equal(t, 3, c.ParsedCountLines)
 		})
+		t.Run(fmt.Sprintf(tt.name+"TrackFileIgnoreCountLines"), func(t *testing.T) {
+			c.TrackFileIgnoreCountLines(2)
+			require.Equal(t, 6, c.IgnoreCountLines)
+		})
 		t.Run(fmt.Sprintf(tt.name+"_GetOutputLines"), func(t *testing.T) {
 			got := c.GetOutputLines()
 			if !reflect.DeepEqual(got, 3) {
@@ -144,7 +154,9 @@ func TestNewTracker(t *testing.T) {
 				outputLines: 3,
 			},
 			want: CITracker{
-				lines: 3,
+				lines:           3,
+				BagOfFilesFound: make(map[string]int),
+				BagOfFilesParse: make(map[string]int),
 			},
 			wantErr: false,
 		},

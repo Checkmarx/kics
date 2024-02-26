@@ -26,6 +26,7 @@ func TestParser_SupportedExtensions(t *testing.T) {
 func TestParser_SupportedTypes(t *testing.T) {
 	p := &Parser{}
 	require.Equal(t, map[string]bool{
+		"ansible":              true,
 		"cloudformation":       true,
 		"openapi":              true,
 		"azureresourcemanager": true,
@@ -48,7 +49,7 @@ func TestParser_Parse(t *testing.T) {
 func Test_Resolve(t *testing.T) {
 	parser := &Parser{}
 
-	resolved, err := parser.Resolve([]byte(have), "test.json")
+	resolved, err := parser.Resolve([]byte(have), "test.json", true)
 	require.NoError(t, err)
 	require.Equal(t, have, string(resolved))
 }

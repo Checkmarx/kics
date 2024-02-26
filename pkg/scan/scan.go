@@ -13,6 +13,8 @@ import (
 	"github.com/Checkmarx/kics/pkg/kics"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser"
+	ansibleConfigParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/config"
+	ansibleHostsParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/hosts"
 	buildahParser "github.com/Checkmarx/kics/pkg/parser/buildah"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"
@@ -22,7 +24,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/Checkmarx/kics/pkg/scanner"
-
 	"github.com/rs/zerolog/log"
 )
 
@@ -58,7 +59,8 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		c.ScanParams.QueriesPath,
 		c.ScanParams.Platform,
 		c.ScanParams.CloudProvider,
-		c.ScanParams.LibrariesPath)
+		c.ScanParams.LibrariesPath,
+		c.ScanParams.ExperimentalQueries)
 
 	queryFilter := c.createQueryFilter()
 
@@ -133,7 +135,8 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) {
 		return nil, nil
 	}
 
-	if err = scanner.PrepareAndScan(ctx, c.ScanParams.ScanID, *c.ProBarBuilder, executeScanParameters.services); err != nil {
+	if err = scanner.PrepareAndScan(ctx, c.ScanParams.ScanID, c.ScanParams.OpenAPIResolveReferences, *c.ProBarBuilder,
+		executeScanParameters.services); err != nil {
 		log.Err(err)
 		return nil, err
 	}
@@ -198,10 +201,11 @@ func (c *Client) createQueryFilter() *source.QueryInspectorParameters {
 	}
 
 	queryFilter := source.QueryInspectorParameters{
-		IncludeQueries: includeQueries,
-		ExcludeQueries: excludeQueries,
-		InputDataPath:  c.ScanParams.InputData,
-		BomQueries:     c.ScanParams.BillOfMaterials,
+		IncludeQueries:      includeQueries,
+		ExcludeQueries:      excludeQueries,
+		ExperimentalQueries: c.ScanParams.ExperimentalQueries,
+		InputDataPath:       c.ScanParams.InputData,
+		BomQueries:          c.ScanParams.BillOfMaterials,
 	}
 
 	return &queryFilter
@@ -222,10 +226,12 @@ func (c *Client) createService(
 	combinedParser, err := parser.NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
-		Add(terraformParser.NewDefault()).
+		Add(terraformParser.NewDefaultWithVarsPath(c.ScanParams.TerraformVarsPath)).
 		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).
 		Add(&buildahParser.Parser{}).
+		Add(&ansibleConfigParser.Parser{}).
+		Add(&ansibleHostsParser.Parser{}).
 		Build(querySource.Types, querySource.CloudProviders)
 	if err != nil {
 		return nil, err
@@ -252,6 +258,7 @@ func (c *Client) createService(
 				SecretsInspector: secretsInspector,
 				Tracker:          t,
 				Resolver:         combinedResolver,
+				MaxFileSize:      c.ScanParams.MaxFileSizeFlag,
 			},
 		)
 	}

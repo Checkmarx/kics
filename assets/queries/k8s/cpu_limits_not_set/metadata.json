@@ -6,5 +6,6 @@
   "descriptionText": "CPU limits should be set because if the system has CPU time free, a container is guaranteed to be allocated as much CPU as it requests",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
   "platform": "Kubernetes",
-  "descriptionID": "9a2ef763"
+  "descriptionID": "9a2ef763",
+  "cwe": ""
 }

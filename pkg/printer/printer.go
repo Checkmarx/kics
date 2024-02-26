@@ -18,7 +18,6 @@ import (
 )
 
 const (
-	wordWrapCount     = 5
 	charsLimitPerLine = 255
 )
 
@@ -102,19 +101,9 @@ func WordWrap(s, indentation string, limit int) string {
 }
 
 // PrintResult prints on output the summary results
-func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer, usingCustomQueries bool) error {
+func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bool) error {
 	log.Debug().Msg("helpers.PrintResult()")
-	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
-	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
-	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
-
-	fmt.Printf("Queries failed to execute: %d\n\n", summary.FailedToExecuteQueries)
-	for queryName, err := range failedQueries {
-		fmt.Printf("\t- %s:\n", queryName)
-		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", wordWrapCount))
-	}
-
-	fmt.Printf("------------------------------------\n\n")
+	fmt.Printf("\n\n")
 	for index := range summary.Queries {
 		idx := len(summary.Queries) - index - 1
 		if summary.Queries[idx].Severity == model.SeverityTrace {
@@ -127,6 +116,11 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 			printer.PrintBySev(string(summary.Queries[idx].Severity), string(summary.Queries[idx].Severity)),
 			len(summary.Queries[idx].Files),
 		)
+
+		if summary.Queries[idx].Experimental {
+			fmt.Println("Note: this is an experimental query")
+		}
+
 		if !printer.minimal {
 			if summary.Queries[idx].CISDescriptionID != "" {
 				fmt.Printf("%s %s\n", printer.Bold("Description ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
@@ -136,6 +130,10 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
 			}
 			fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+
+			if summary.Queries[idx].CWE != "" {
+				fmt.Printf("%s %s\n", printer.Bold("CWE:"), summary.Queries[idx].CWE)
+			}
 
 			queryCloudProvider := summary.Queries[idx].CloudProvider
 			if queryCloudProvider != "" {
@@ -163,10 +161,11 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 	printSeverityCounter(model.SeverityInfo, summary.SeveritySummary.SeverityCounters[model.SeverityInfo], printer.Info)
 	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
 
-	log.Info().Msgf("Files scanned: %d", summary.ScannedFiles)
-	log.Info().Msgf("Lines scanned: %d", summary.ScannedFilesLines)
-	log.Info().Msgf("Parsed files: %d", summary.ParsedFiles)
-	log.Info().Msgf("Lines parsed: %d", summary.ParsedFilesLines)
+	log.Info().Msgf("Scanned Files: %d", summary.ScannedFiles)
+	log.Info().Msgf("Parsed Files: %d", summary.ParsedFiles)
+	log.Info().Msgf("Scanned Lines: %d", summary.ScannedFilesLines)
+	log.Info().Msgf("Parsed Lines: %d", summary.ParsedFilesLines)
+	log.Info().Msgf("Ignored Lines: %d", summary.IgnoredFilesLines)
 	log.Info().Msgf("Queries loaded: %d", summary.TotalQueries)
 	log.Info().Msgf("Queries failed to execute: %d", summary.FailedToExecuteQueries)
 	log.Info().Msg("Inspector stopped")

@@ -1,0 +1,13 @@
+---
+- name: Positive Playbook
+  hosts: localhost
+  tasks:
+    - name: bar
+      ansible.builtin.user:
+        name: john_doe
+        comment: John Doe
+        uid: 1040
+        group: admin
+        password: "{{ item }}"
+      with_items:
+        - wow

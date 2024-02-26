@@ -6,5 +6,6 @@
   "descriptionText": "Ensure that we are using JSON in the CMD and ENTRYPOINT Arguments",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#entrypoint",
   "platform": "Dockerfile",
-  "descriptionID": "070b84da"
+  "descriptionID": "070b84da",
+  "cwe": "573"
 }

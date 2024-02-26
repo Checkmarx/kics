@@ -23,6 +23,13 @@ var pdfTests = []reportTestCase{
 			filename: "testpdf2",
 		},
 	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCWE,
+			path:     "./testdir/newdir",
+			filename: "testpdf3",
+		},
+	},
 }
 
 // TestPrintPdfReport tests the functions [PrintPdfReport()] and all the methods called by them

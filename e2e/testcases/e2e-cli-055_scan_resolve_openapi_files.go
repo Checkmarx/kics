@@ -3,7 +3,7 @@ package testcases
 import "regexp"
 
 // E2E-CLI-055 - Kics scan command with openapi files that are not resolved
-// should resolve openapi files and return results in different files
+// should resolve openapi files and return results in same file
 func init() { //nolint
 	testSample := TestCase{
 		Name: "should resolve openapi files and return results in different files [E2E-CLI-055]",
@@ -14,9 +14,8 @@ func init() { //nolint
 		},
 		WantStatus: []int{50},
 		Validation: func(outputText string) bool {
-			matchQueryPath1, _ := regexp.MatchString(`UnexpectedError.yaml`, outputText)
-			matchQueryPath2, _ := regexp.MatchString(`petId.yaml`, outputText)
-			return matchQueryPath1 && matchQueryPath2
+			matchQueryPath1, _ := regexp.MatchString(`openapi.yaml`, outputText)
+			return matchQueryPath1
 		},
 	}
 

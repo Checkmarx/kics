@@ -1,6 +1,7 @@
 package model
 
 import (
+	"github.com/stretchr/testify/assert"
 	"sort"
 	"testing"
 
@@ -548,6 +549,116 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "test_6: ignore_multiple_#",
+			want: []int{2, 3, 4},
+			args: args{
+				&yaml.Node{
+					Kind: yaml.MappingNode,
+					Content: []*yaml.Node{
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "key",
+							Line:  1,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "false",
+							Tag:   "!!bool",
+						},
+						{
+							Kind:        yaml.ScalarNode,
+							HeadComment: "################################\n#####      SomeTitle       #####\n################################",
+							Value:       "seq_object",
+							Line:        5,
+						},
+						{
+							Kind: yaml.SequenceNode,
+							Line: 6,
+							Content: []*yaml.Node{
+								{
+									Kind: yaml.MappingNode,
+									Line: 6,
+									Content: []*yaml.Node{
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "key_seq",
+											Line:  6,
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "key_val",
+											Tag:   " !!str",
+											Line:  6,
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "key_seq_2",
+											Line:  7,
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "key_val_2",
+											Tag:   " !!str",
+											Line:  7,
+										},
+									},
+								},
+								{
+									Kind: yaml.MappingNode,
+									Content: []*yaml.Node{
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "second_key",
+											Line:  8,
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "second_val",
+											Tag:   " !!str",
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "second_key_2",
+											Line:  9,
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "second_val_2",
+											Tag:   " !!str",
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		{
+			name: "test_7: ignore_multiline_string",
+			want: []int{4, 5, 6, 7, 8, 9},
+			args: args{
+				&yaml.Node{
+					Kind: yaml.MappingNode,
+					Content: []*yaml.Node{
+						{
+							Kind:        yaml.ScalarNode,
+							Value:       "deploy.yml",
+							HeadComment: "# kics-scan ignore-block",
+							Line:        5,
+							Column:      3,
+						},
+						{
+							Kind:   yaml.ScalarNode,
+							Value:  "---\nfoo\n  bar: abc\nuploader-token: my-awesome-token\n",
+							Line:   5,
+							Column: 15,
+						},
+					},
+				},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -558,6 +669,32 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 				sort.Ints(ignoreLines)
 			}
 			require.Equal(t, tt.want, ignoreLines)
+		})
+	}
+}
+
+func Test_value(t *testing.T) {
+	tests := []struct {
+		name  string
+		input comment
+		want  string
+	}{
+		{
+			name:  "Should return ignore-block",
+			input: comment("# source: test/templates/deployment.yaml\n# kics-scan ignore-block\n# kics_helm_id_2:"),
+			want:  "ignore-block",
+		},
+		{
+			name:  "Should Not return ignore-block",
+			input: comment("# source: test/templates/deployment.yaml\n# kics ignore-block\n# kics_helm_id_2:"),
+			want:  "# source: test/templates/deployment.yaml\n# kics ignore-block\n# kics_helm_id_2:",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			res := tt.input.value()
+			assert.Equal(t, string(res), tt.want)
 		})
 	}
 }

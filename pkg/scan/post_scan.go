@@ -4,6 +4,7 @@ import (
 	_ "embed" // Embed kics CLI img and scan-flags
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"time"
 
@@ -23,6 +24,7 @@ func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathPa
 		ScannedFilesLines:      c.Tracker.FoundCountLines,
 		ParsedFilesLines:       c.Tracker.ParsedCountLines,
 		ParsedFiles:            c.Tracker.ParsedFiles,
+		IgnoredFilesLines:      c.Tracker.IgnoreCountLines,
 		TotalQueries:           c.Tracker.LoadedQueries,
 		FailedToExecuteQueries: c.Tracker.ExecutingQueries - c.Tracker.ExecutedQueries,
 		FailedSimilarityID:     c.Tracker.FailedSimilarityID,
@@ -50,14 +52,13 @@ func (c *Client) getSummary(results []model.Vulnerability, end time.Time, pathPa
 func (c *Client) resolveOutputs(
 	summary *model.Summary,
 	documents model.Documents,
-	failedQueries map[string]error,
 	printer *consolePrinter.Printer,
 	proBarBuilder progress.PbBuilder,
 ) error {
 	log.Debug().Msg("console.resolveOutputs()")
 
 	usingCustomQueries := usingCustomQueries(c.ScanParams.QueriesPath)
-	if err := consolePrinter.PrintResult(summary, failedQueries, printer, usingCustomQueries); err != nil {
+	if err := consolePrinter.PrintResult(summary, printer, usingCustomQueries); err != nil {
 		return err
 	}
 	if c.ScanParams.PayloadPath != "" {
@@ -113,7 +114,7 @@ func (c *Client) postScan(scanResults *Results) error {
 			return err
 		}
 	}
-
+	sort.Strings(c.ScanParams.Path)
 	summary := c.getSummary(scanResults.Results, time.Now(), model.PathParameters{
 		ScannedPaths:      c.ScanParams.Path,
 		PathExtractionMap: scanResults.ExtractedPaths.ExtractionMap,
@@ -122,7 +123,6 @@ func (c *Client) postScan(scanResults *Results) error {
 	if err := c.resolveOutputs(
 		&summary,
 		scanResults.Files.Combine(c.ScanParams.LineInfoPayload),
-		scanResults.FailedQueries,
 		c.Printer,
 		*c.ProBarBuilder); err != nil {
 		log.Err(err)
@@ -131,7 +131,8 @@ func (c *Client) postScan(scanResults *Results) error {
 
 	deleteExtractionFolder(scanResults.ExtractedPaths.ExtractionMap)
 
-	consolePrinter.PrintScanDuration(time.Since(c.ScanStartTime))
+	logger := consolePrinter.NewLogger(nil)
+	consolePrinter.PrintScanDuration(&logger, time.Since(c.ScanStartTime))
 
 	printVersionCheck(c.Printer, &summary)
 

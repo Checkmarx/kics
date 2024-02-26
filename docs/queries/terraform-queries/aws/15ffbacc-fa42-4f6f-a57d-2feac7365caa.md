@@ -28,7 +28,7 @@ Make sure Logging is enabled for Redshift Cluster<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="9 13"
+```tf title="Positive test num. 1 - tf file" hl_lines="9 13"
 resource "aws_redshift_cluster" "positive1" {
   cluster_identifier = "tf-redshift-cluster"
   database_name      = "mydb"

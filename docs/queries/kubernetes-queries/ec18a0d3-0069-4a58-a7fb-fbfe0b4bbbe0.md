@@ -28,7 +28,7 @@ When using kube-apiserver command, the 'kubelet-certificate-authority' flag shou
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="11"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="11"
 apiVersion: v1
 kind: Pod
 metadata:

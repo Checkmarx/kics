@@ -52,6 +52,8 @@ type converter struct {
 	bytes []byte
 }
 
+const kicsLinesKey = "_kics_"
+
 func (c *converter) rangeSource(r hcl.Range) string {
 	return string(c.bytes[r.Start.Byte:r.End.Byte])
 }
@@ -94,7 +96,7 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
 		for key, value := range body.Attributes {
 			out[key], err = c.convertExpression(value.Expr)
 			// set kics line for the body value
-			kicsS["_kics_"+key] = model.LineObject{
+			kicsS[kicsLinesKey+key] = model.LineObject{
 				Line: value.SrcRange.Start.Line,
 				Arr:  c.getArrLines(value.Expr),
 			}
@@ -112,7 +114,7 @@ func (c *converter) convertBody(body *hclsyntax.Body, defLine int) (model.Docume
 
 	for _, block := range body.Blocks {
 		// set kics line for block
-		kicsS["_kics_"+block.Type] = model.LineObject{
+		kicsS[kicsLinesKey+block.Type] = model.LineObject{
 			Line: block.TypeRange.Start.Line,
 		}
 		err = c.convertBlock(block, out, block.TypeRange.Start.Line)
@@ -159,7 +161,7 @@ func (c *converter) getArrLines(expr hclsyntax.Expression) []map[string]*model.L
 						}, false)
 						return nil
 					}
-					arrEx["_kics_"+key] = &model.LineObject{
+					arrEx[kicsLinesKey+key] = &model.LineObject{
 						Line: item.KeyExpr.Range().Start.Line,
 					}
 				}
@@ -260,11 +262,42 @@ func (c *converter) convertExpression(expr hclsyntax.Expression) (interface{}, e
 			Variables: inputVarMap,
 			Functions: functions.TerraformFuncs,
 		})
-		if !valueConverted.Type().HasDynamicTypes() && valueConverted.IsKnown() {
+		if !checkDynamicKnownTypes(valueConverted) {
 			return ctyjson.SimpleJSONValue{Value: valueConverted}, nil
 		}
 		return c.wrapExpr(expr)
 	}
+}
+
+func checkValue(val cty.Value) bool {
+	if val.Type().HasDynamicTypes() || !val.IsKnown() {
+		return true
+	}
+	if !val.Type().IsPrimitiveType() && checkDynamicKnownTypes(val) {
+		return true
+	}
+	return false
+}
+
+func checkDynamicKnownTypes(valueConverted cty.Value) bool {
+	if !valueConverted.Type().HasDynamicTypes() && valueConverted.IsKnown() {
+		if valueConverted.Type().FriendlyName() == "tuple" {
+			for _, val := range valueConverted.AsValueSlice() {
+				if checkValue(val) {
+					return true
+				}
+			}
+		}
+		if valueConverted.Type().FriendlyName() == "object" {
+			for _, val := range valueConverted.AsValueMap() {
+				if checkValue(val) {
+					return true
+				}
+			}
+		}
+		return false
+	}
+	return true
 }
 
 func (c *converter) objectConsExpr(value *hclsyntax.ObjectConsExpr) (model.Document, error) {
@@ -481,6 +514,12 @@ func (c *converter) evalFunction(expression hclsyntax.Expression) (interface{}, 
 		if err != nil {
 			return c.wrapExpr(expression)
 		}
+	}
+	if !expressionEvaluated.HasWhollyKnownType() {
+		// in some cases, the expression is evaluated with no error but the type is unknown.
+		// this causes the json marshaling of the Document later on to fail with an error, and the entire scan fails.
+		// Therefore, we prefer to wrap it as a string and continue the scan.
+		return c.wrapExpr(expression)
 	}
 	return ctyjson.SimpleJSONValue{Value: expressionEvaluated}, nil
 }

@@ -8,6 +8,12 @@ KICS supports scanning Ansible files with `.yaml` extension.
 
 KICS can decrypt Ansible Vault files on the fly. For that, you need to define the environment variable `ANSIBLE_VAULT_PASSWORD_FILE`.
 
+## Ansible Config
+KICS supports scanning Ansible Configuration files with `.cfg` or `.conf` extension.
+
+## Ansible Inventory
+KICS supports scanning Ansible Inventory files with `.ini`, `.json` or `.yaml` extension.
+
 ## Azure Resource Manager
 
 KICS supports scanning Azure Resource Manager (ARM) templates with `.json` extension. To build ARM JSON templates from Bicep code check the [official ARM documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build) and [here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax) to understand the differences between ARM JSON templates and Bicep.
@@ -49,6 +55,10 @@ cdk synth > cfn-stack.yaml
 ```bash
 docker run -t -v $PWD/cfn-stack.yaml:/path/cfn-stack.yaml -it checkmarx/kics:latest scan -p /path/cfn-stack.yaml
 ```
+
+## CICD
+
+KICS supports scanning Github Workflows CICD files with `.yaml` or `.yml` extension.
 
 ## CloudFormation
 
@@ -161,6 +171,24 @@ cdktf synth
 ```
 
 You can also run the command `cdktf synth --json` to display it in the terminal.
+
+### Terraform variables path
+
+When using vars in a terraform file there are 2 ways of passing the file in which a variable's value is present.
+
+If none of these options are used kics will only resolve variables coming from the `*.auto.tfvars` files and the default variable values.
+
+#### Option 1 - Comment on tf file
+By adding, as the first line in a TF file, a rule that follows the logic below:
+```
+// kics_terraform_vars: path/to/terraform/vars.tf
+```
+This line is a comment that Kics will look for when trying to decypher the variables used in that file.
+
+#### Option 2 - Flag when calling the scan
+By adding the flag `--terraform-vars-path` to the scan command it is possible to input the path of the variables fiel that will be used for all the files in the project.
+
+**_NOTE:_** when using both options the flag option will take precedence and therefore define the variables.
 
 ### Limitations
 

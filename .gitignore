@@ -34,6 +34,7 @@ kics.config
 
 # Results
 results.*
+platforms.json
 gl-sast-results.json
 sonarqube-results.json
 cyclonedx-results.xml
@@ -41,6 +42,8 @@ junit-results.xml
 
 # Sarif files
 *.sarif
+!e2e/fixtures/E2E_CLI_079_RESULT.sarif
+!e2e/fixtures/E2E_CLI_080_RESULT.sarif
 
 # coverage report
 coverage.html

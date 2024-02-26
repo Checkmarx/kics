@@ -23,6 +23,14 @@ var gitlabSASTTests = []struct {
 		},
 		expectedResult: test.SummaryMock,
 	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCWE,
+			path:     "./testdir",
+			filename: "test2",
+		},
+		expectedResult: test.SummaryMockCWE,
+	},
 }
 
 // TestPrintGitlabSASTReport tests the functions [PrintGitlabSASTReport()] and all the methods called by them
