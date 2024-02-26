@@ -47,6 +47,7 @@ type gitlabSASTVulnerability struct {
 	ID          string                              `json:"id"`
 	Severity    string                              `json:"severity"`
 	Name        string                              `json:"name"`
+	CWE         string                              `json:"cwe,omitempty"`
 	Links       []gitlabSASTVulnerabilityLink       `json:"links"`
 	Location    gitlabSASTVulnerabilityLocation     `json:"location"`
 	Identifiers []gitlabSASTVulnerabilityIdentifier `json:"identifiers"`
@@ -125,6 +126,7 @@ func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryRes
 			ID:       file.SimilarityID,
 			Severity: cases.Title(language.Und).String(strings.ToLower(string(issue.Severity))),
 			Name:     issue.QueryName,
+			CWE:      issue.CWE,
 			Links: []gitlabSASTVulnerabilityLink{
 				{
 					URL: issue.QueryURI,
