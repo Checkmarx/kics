@@ -33,10 +33,36 @@ Available archive formats:
 -   `xz`
 
 ```
-docker run -t -v {path_to_zip}:/path checkmarx/kics scan -p /path/{name_of_zip_file}
+To scan a zip file, we would use this instruction: 
+
+docker run -t -v "{path_to_folder_of_zip}:/path" checkmarx/kics:latest scan -p /path/{name_of_zip_file}
+
+-t: Docker command to allocate a pseudo-TTY.
+
+-v "{path_to_folder_of_zip}:/path": Mounts the directory containing the zip file to be scanned into the Docker container.
+
+checkmarx/kics:latest: Specifies the Docker image to use, which is the latest version of KICS available. 
+
+scan -p /path/{name_of_zip_file}: initiates a scan on the zip file we provided, considering it's folder path.
 ```
 
-More information can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)
+```
+To scan a file named "Example", we would use this instruction: 
+
+docker run -t -v "{path_to_folder_of_file_Example}:/path" checkmarx/kics:latest scan -p /path/Example
+
+-t: Docker command to allocate a pseudo-TTY.
+
+-v "{path_to_folder_of_file_Example}:/path": Mounts the directory containing the file to be scanned into the Docker container.
+
+checkmarx/kics:latest: Specifies the Docker image to use, which is the latest version of KICS available. 
+
+scan -p /path/Example: initiates a scan on the "Example" file we provided, considering it's folder path.
+```
+
+More information on Docker CLI can be seen [here](https://docs.docker.com/engine/reference/commandline/cli/)   
+
+More information on Go getter can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)   
 
 ### S3
 
