@@ -170,7 +170,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		Description: "[Terraform].[GuardDuty Detector Disabled]: Make sure that Amazon GuardDuty is Enabled",
 		Recommendations: []Recommendation{
 			{
-				Recommendation: "Problem found in line 6. Expected value: 'default_action.redirect.protocol' is equal 'HTTPS'. Actual value: 'default_action.redirect.protocol' is missing.",
+				Recommendation: "Problem found in line 2. Expected value: GuardDuty Detector should be Enabled. Actual value: GuardDuty Detector is not Enabled.",
 			},
 		},
 	}
