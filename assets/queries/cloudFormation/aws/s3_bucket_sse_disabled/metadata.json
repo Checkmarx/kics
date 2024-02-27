@@ -3,7 +3,7 @@
   "queryName": "S3 Bucket SSE Disabled",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "If algorithm is AES256 then the master key is null, empty or undefined, otherwise the master key is required",
+  "descriptionText": "If master key is null, empty of undefined, then SSE algorithm should be AES25. Conversely, if SSE algorithm is AES256, then master key should be null, empty or undefined.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionbydefault.html",
   "platform": "CloudFormation",
   "descriptionID": "42fd2930",
