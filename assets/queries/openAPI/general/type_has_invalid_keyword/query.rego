@@ -17,31 +17,19 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	common_lib.valid_key(value, "type")
-	invalidKeys := { invalidKey |
-        check_keywords(key, value)
-        invalidKey := key
+	invalidKeys := { invalidKeyword |
+        keywords := specificKeywords[value.type]
+        key := value[_]
+        invalidKeyword := key
+        not common_lib.inArray(keywords, key)
     }
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), invalidKeys]),
+		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), invalidKeys[_]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "There shouldn't be any invalid keywords",
-		"keyActualValue": sprintf("Keyword %s is not valid for type %s", [invalidKeys, value.type]),
+		"keyActualValue": sprintf("Keyword %s is not valid for type %s", [invalidKeys[_], value.type]),
 		"overrideKey": version,
 	}
 }
 
-check_keywords(key, value) = name {
-    keywords := specificKeywords[value.type]
-    common_lib.inArray(keywords, key)
-	name := key
-
-}
-
-
-get_value_type(type) = typeName {
-	openapi_lib.is_numeric_type(type)
-	typeName := "numeric"
-} else = typeName {
-	typeName := type
-}
