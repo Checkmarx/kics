@@ -1,0 +1,15 @@
+openapi: "3.0.2"
+info:
+  title: POI Search
+  version: "1.0.1"
+servers:
+  - url: https://api.server.test/v1
+paths:
+  /test:
+    summary: test test
+components:
+  schemas:
+    PointGenre:
+      type: string
+      minimum: 13
+      maximum: 13
