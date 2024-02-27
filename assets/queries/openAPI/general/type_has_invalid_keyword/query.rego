@@ -19,9 +19,9 @@ CxPolicy[result] {
 	common_lib.valid_key(value, "type")
 	invalidKeys := { invalidKeyword |
         keywords := specificKeywords[value.type]
-        key := value
-        invalidKeyword := key
+		value[key]
         not common_lib.inArray(keywords, key)
+        invalidKeyword := key
     }
 	result := {
 		"documentId": doc.id,
