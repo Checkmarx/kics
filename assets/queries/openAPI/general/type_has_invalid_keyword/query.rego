@@ -17,14 +17,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	common_lib.valid_key(value, "type")
-	invalidKeys := { invalidKeyword |
-        keywords := specificKeywords[type]
-		typeName := get_value_type(value.type)
-		type != typeName
-		value[key]
-        common_lib.inArray(keywords, key)
-        invalidKeyword := key
-    }
+	invalidKeys := check_keywords(value)
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), invalidKeys[a]]),
@@ -33,6 +26,17 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("Keyword %s is not valid for type %s", [invalidKeys[a], value.type]),
 		"overrideKey": version,
 	}
+}
+
+check_keywords(value) = invalidKeys {
+	invalidKeys := { invalidKeyword |
+        keywords := specificKeywords[type]
+		typeName := get_value_type(value.type)
+		type != typeName
+		value[key]
+		common_lib.inArray(keywords, key)
+		invalidKeyword := key
+    }
 }
 
 get_value_type(type) = typeName {
