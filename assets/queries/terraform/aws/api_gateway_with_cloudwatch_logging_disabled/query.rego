@@ -19,6 +19,7 @@ CxPolicy[result] {
 
 haveLogs(stageName) {
 	log := input.document[i].resource.aws_cloudwatch_log_group[_]
-	regexPattern := sprintf("API-Gateway-Execution-Logs_\\${aws_api_gateway_rest_api\\.\\w+\\.id}/%s$", [stageName])	
+	stageName_escaped := replace(replace(stageName, "$", "\\$"), ".", "\\.")
+	regexPattern := sprintf("API-Gateway-Execution-Logs_\\${aws_api_gateway_rest_api\\.\\w+\\.id}/%s$", [stageName_escaped])
 	regex.match(regexPattern, log.name)
 }
