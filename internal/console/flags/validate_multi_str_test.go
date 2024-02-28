@@ -123,3 +123,42 @@ func TestFlags_allQueriesID(t *testing.T) {
 		})
 	}
 }
+
+func TestFlags_ValidateWorkersFlag(t *testing.T) {
+	tests := []struct {
+		name      string
+		flagName  string
+		flagValue int
+		wantErr   bool
+	}{
+		{
+			name:      "should execute fine",
+			flagName:  "parallel",
+			flagValue: 1,
+			wantErr:   false,
+		},
+		{
+			name:      "should execute fine",
+			flagName:  "parallel",
+			flagValue: 0,
+			wantErr:   false,
+		},
+		{
+			name:      "should return an error when an the number of workers is less than 0",
+			flagName:  "parallel",
+			flagValue: -1,
+			wantErr:   true,
+		},
+	}
+	for _, test := range tests {
+		flagsIntReferences[test.flagName] = &test.flagValue
+		t.Run(test.name, func(t *testing.T) {
+			gotErr := validateWorkersFlag(test.flagName)
+			if !test.wantErr {
+				require.NoError(t, gotErr)
+			} else {
+				require.Error(t, gotErr)
+			}
+		})
+	}
+}
