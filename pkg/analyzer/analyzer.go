@@ -292,7 +292,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	ignoreFiles := make([]string, 0)
 	projectConfigFiles := make([]string, 0)
 	done := make(chan bool)
-	hasGitIgnoreFile, gitIgnore, gitIgnorePath := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
+	hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
 	// get all the files inside the given paths
 	for _, path := range a.Paths {
 		if _, err := os.Stat(path); err != nil {
@@ -305,7 +305,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 			ext := utils.GetExtension(path)
 
-			trimmedPath := strings.ReplaceAll(path, gitIgnorePath, filepath.Base(gitIgnorePath))
+			trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
 			ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
 
 			if isConfigFile(path, defaultConfigFiles) {
@@ -695,7 +695,7 @@ func isConfigFile(path string, exc []string) bool {
 
 // shouldConsiderGitIgnoreFile verifies if the scan should exclude the files according to the .gitignore file
 func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bool) (hasGitIgnoreFileRes bool,
-	gitIgnoreRes *ignore.GitIgnore, pathRes string) {
+	gitIgnoreRes *ignore.GitIgnore) {
 	gitIgnorePath := filepath.ToSlash(filepath.Join(path, gitIgnore))
 	_, err := os.Stat(gitIgnorePath)
 
@@ -703,10 +703,10 @@ func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bo
 		gitIgnore, _ := ignore.CompileIgnoreFile(gitIgnorePath)
 		if gitIgnore != nil {
 			log.Info().Msgf(".gitignore file was found in '%s' and it will be used to automatically exclude paths", path)
-			return true, gitIgnore, path
+			return true, gitIgnore
 		}
 	}
-	return false, nil, ""
+	return false, nil
 }
 
 func multiPlatformTypeCheck(typesSelected *[]string) {
