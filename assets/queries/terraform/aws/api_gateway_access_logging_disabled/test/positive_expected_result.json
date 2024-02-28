@@ -8,7 +8,79 @@
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
-    "line": 6,
+    "line": 10,
     "filename": "positive1.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 22,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 23,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive6.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive6.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive6.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 21,
+    "filename": "positive6.tf"
   }
 ]
