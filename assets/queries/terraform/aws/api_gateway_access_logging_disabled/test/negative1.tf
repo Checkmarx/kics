@@ -5,6 +5,11 @@ resource "aws_api_gateway_stage" "negative1" {
   access_log_settings {
     destination_arn = "dest"
   }
+
+  settings {
+    metrics_enabled = true
+    logging_level   = "ERROR"
+  }
 }
 
 resource "aws_apigatewayv2_stage" "negative2" {
@@ -13,6 +18,10 @@ resource "aws_apigatewayv2_stage" "negative2" {
 
   access_log_settings {
     destination_arn = "dest"
+  }
+
+  default_route_settings {
+    logging_level   = "ERROR"
   }
 }
 
