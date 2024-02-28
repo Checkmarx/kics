@@ -130,9 +130,12 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 <div class="card"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="NIFCloud" src="img/logo-nifcloud.png" width="70">&nbsp;&nbsp;&nbsp;
 </div>
+<div class="card"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="TencentCloud" src="img/logo-tencentcloud.png" width="120">&nbsp;&nbsp;&nbsp;
+</div>
 </div>
 
-In order to run the Databricks and NIFCloud queries, use the `--experimental-queries` flag when running KICS.
+In order to run the Databricks, NIFCloud and TencentCloud queries, use the `--experimental-queries` flag when running KICS.
 
 ## Getting Started
 
