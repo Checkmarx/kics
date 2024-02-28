@@ -1,4 +1,4 @@
-resource "tencentcloud_cbs_storage" "storage" {
+resource "tencentcloud_cbs_storage" "encrytion_negative1" {
   storage_name      = "cbs-test"
   storage_type      = "CLOUD_SSD"
   storage_size      = 100

@@ -17,11 +17,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("[%s] has encryption set to true", [name]),
 		"keyActualValue": sprintf("[%s] has encryption set to false", [name]),
         "searchLine":common_lib.build_search_line(["resource", "tencentcloud_cbs_storage", name, "encrypt"], []),
-		"remediation": json.marshal({
-			"before": "false",
-			"after": "true"
-		}),
-		"remediationType": "replacement",
 	}
 }
 
@@ -39,8 +34,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("[%s] has encryption enabled",[name]),
 		"keyActualValue": sprintf("[%s] does not have encryption enabled",[name]),
         "searchLine":common_lib.build_search_line(["resource", "tencentcloud_cbs_storage", name], []),
-		"remediation": "encrypted = true",
-		"remediationType": "addition",
 	}
 }
 
