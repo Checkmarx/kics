@@ -3,7 +3,7 @@ Usage:
 
 Flags:
   -m, --bom                           include bill of materials (BoM) in results output
-      --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp, nifcloud)
+      --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp, nifcloud, tencentcloud)
       --config string                 path to configuration file
       --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
       --disable-secrets               disable secrets scanning
@@ -48,6 +48,7 @@ Flags:
       --no-progress                   hides the progress bar
       --output-name string            name used on report creations (default "results")
   -o, --output-path string            directory path to store reports
+      --parallel int                  number of workers per platform enabled for parallel scanning, set 0 to auto-detect parallelism (default 1)
   -p, --path strings                  paths or directories to scan
                                       example: "./somepath,somefile.txt"
       --payload-lines                 adds line information inside the payload when printing the payload file
