@@ -27,6 +27,11 @@ func TestGetExtension(t *testing.T) {
 			want:     ".tf",
 			filePath: "../../test/fixtures/all_auth_users_get_read_access/test/positive.tf",
 		},
+		{
+			name:     "Get extension from an empty file",
+			want:     "",
+			filePath: "../../test/fixtures/invalidfiles/join7-0-8f82881057bec4abf5a4d770a6f35838",
+		},
 	}
 
 	for _, test := range tests {

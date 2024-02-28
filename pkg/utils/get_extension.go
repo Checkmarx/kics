@@ -45,6 +45,10 @@ func isTextFile(path string) bool {
 		return false
 	}
 
+	if len(content) == 0 {
+		return false
+	}
+
 	content = bytes.Replace(content, []byte("\r"), []byte(""), -1)
 
 	isText := util.IsText(content)
