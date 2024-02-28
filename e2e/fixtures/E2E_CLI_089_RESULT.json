@@ -23,8 +23,8 @@
 	"start": "2024-02-26T16:32:34.7508686Z",
 	"end": "2024-02-26T16:32:35.1060554Z",
 	"paths": [
-		"/path/test/fixtures/test_critical_severity/run_block_injection/query",
-		"/path/test/fixtures/test_critical_severity/run_block_injection/test"
+		"/path/test/fixtures/test_critical_severity/run_block_injection/test",
+		"/path/test/fixtures/test_critical_severity/run_block_injection/query"
 	],
 	"queries": [
 		{
