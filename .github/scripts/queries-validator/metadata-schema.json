@@ -88,7 +88,8 @@
                 "azure",
                 "common",
                 "gcp",
-                "nifcloud"
+                "nifcloud",
+                "tencentcloud"
             ]
         },
         "platform": {
