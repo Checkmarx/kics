@@ -1,0 +1,8 @@
+name: aws-ssm
+runtime: yaml
+description: SSM PARAMETER NOT ENCRYPTED
+resources:
+  default:
+    type: aws:ssm:Parameter
+    properties:
+      type: SecureString
