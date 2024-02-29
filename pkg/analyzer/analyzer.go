@@ -293,7 +293,6 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	projectConfigFiles := make([]string, 0)
 	done := make(chan bool)
 	hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
-
 	// get all the files inside the given paths
 	for _, path := range a.Paths {
 		if _, err := os.Stat(path); err != nil {
@@ -306,7 +305,8 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 			ext := utils.GetExtension(path)
 
-			ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, ignoreFiles)
+			trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
+			ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
 
 			if isConfigFile(path, defaultConfigFiles) {
 				projectConfigFiles = append(projectConfigFiles, path)
@@ -694,7 +694,8 @@ func isConfigFile(path string, exc []string) bool {
 }
 
 // shouldConsiderGitIgnoreFile verifies if the scan should exclude the files according to the .gitignore file
-func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bool) (bool, *ignore.GitIgnore) {
+func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bool) (hasGitIgnoreFileRes bool,
+	gitIgnoreRes *ignore.GitIgnore) {
 	gitIgnorePath := filepath.ToSlash(filepath.Join(path, gitIgnore))
 	_, err := os.Stat(gitIgnorePath)
 
@@ -734,15 +735,15 @@ func (a *analyzerInfo) isAvailableType(typeName string) bool {
 
 func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool,
 	gitIgnore *ignore.GitIgnore,
-	path string, ignoreFiles []string) []string {
+	fullPath string, trimmedPath string, ignoreFiles []string) []string {
 	exceededFileSize := a.MaxFileSize >= 0 && float64(fileSize)/float64(sizeMb) > float64(a.MaxFileSize)
 
-	if (hasGitIgnoreFile && gitIgnore.MatchesPath(path)) || isDeadSymlink(path) || exceededFileSize {
-		ignoreFiles = append(ignoreFiles, path)
-		a.Exc = append(a.Exc, path)
+	if (hasGitIgnoreFile && gitIgnore.MatchesPath(trimmedPath)) || isDeadSymlink(fullPath) || exceededFileSize {
+		ignoreFiles = append(ignoreFiles, fullPath)
+		a.Exc = append(a.Exc, fullPath)
 
 		if exceededFileSize {
-			log.Error().Msgf("file %s exceeds maximum file size of %d Mb", path, a.MaxFileSize)
+			log.Error().Msgf("file %s exceeds maximum file size of %d Mb", fullPath, a.MaxFileSize)
 		}
 	}
 	return ignoreFiles
