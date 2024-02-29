@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "SSM Parameter Encrypted With Default Key",
+    "severity": "INFO",
+    "line": 17,
+    "fileName": "positive1.tf"
+  }
+]
