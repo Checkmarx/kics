@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.12">
     
     
       
@@ -1827,45 +1827,40 @@
 <h2 id="cicd_queries_list">CICD Queries List<a class="headerlink" href="#cicd_queries_list" title="Permanent link">&para;</a></h2>
 <p>This page contains all queries from CICD.</p>
 <h3 id="github">GITHUB<a class="headerlink" href="#github" title="Permanent link">&para;</a></h3>
-<p>Bellow are listed queries related with CICD GITHUB:</p>
+<p>Below are listed queries related to CICD GITHUB:</p>
 <table>
 <thead>
 <tr>
 <th>Query</th>
 <th>Severity</th>
 <th>Category</th>
-<th>Description</th>
-<th>Help</th>
+<th>More info</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Run Block Injection<br/><sup><sub>20f14e1a-a899-4e79-9f09-b6a84cd4649b</sub></sup></td>
-<td><span style="color:#C00">High</span></td>
-<td>Insecure Configurations</td>
-<td>GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event. (<a href="../cicd-queries/common/20f14e1a-a899-4e79-9f09-b6a84cd4649b" target="_blank">read more</a>)</td>
-<td><a href="https://securitylab.github.com/research/github-actions-untrusted-input/">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Script Block Injection<br/><sup><sub>62ff6823-927a-427f-acf9-f1ea2932d616</sub></sup></td>
 <td><span style="color:#C00">High</span></td>
 <td>Insecure Configurations</td>
-<td>GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event. (<a href="../cicd-queries/common/62ff6823-927a-427f-acf9-f1ea2932d616" target="_blank">read more</a>)</td>
-<td><a href="https://securitylab.github.com/research/github-actions-untrusted-input/">Documentation</a><br/></td>
+<td><a href="../cicd-queries/common/62ff6823-927a-427f-acf9-f1ea2932d616" target="_blank">Query details</a><br><a href="https://securitylab.github.com/research/github-actions-untrusted-input/">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Run Block Injection<br/><sup><sub>20f14e1a-a899-4e79-9f09-b6a84cd4649b</sub></sup></td>
+<td><span style="color:#C00">High</span></td>
+<td>Insecure Configurations</td>
+<td><a href="../cicd-queries/common/20f14e1a-a899-4e79-9f09-b6a84cd4649b" target="_blank">Query details</a><br><a href="https://securitylab.github.com/research/github-actions-untrusted-input/">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Unsecured Commands<br/><sup><sub>60fd272d-15f4-4d8f-afe4-77d9c6cc0453</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Insecure Configurations</td>
-<td>There are deprecated set-env and add-path commands that can be explicitly enabled by a user via setting the ACTIONS_ALLOW_UNSECURE_COMMANDS environment variable as true. Depending on the use of the environment variable, this could enable an attacker to, at worst, modify the system path to run a different command than intended, resulting in arbitrary code execution. (<a href="../cicd-queries/common/60fd272d-15f4-4d8f-afe4-77d9c6cc0453" target="_blank">read more</a>)</td>
-<td><a href="https://0xn3va.gitbook.io/cheat-sheets/ci-cd/github/actions#misuse-of-the-events-related-to-incoming-prs">Documentation</a><br/></td>
+<td><a href="../cicd-queries/common/60fd272d-15f4-4d8f-afe4-77d9c6cc0453" target="_blank">Query details</a><br><a href="https://0xn3va.gitbook.io/cheat-sheets/ci-cd/github/actions#misuse-of-the-events-related-to-incoming-prs">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Unpinned Actions Full Length Commit SHA<br/><sup><sub>555ab8f9-2001-455e-a077-f2d0f41e2fb9</sub></sup></td>
 <td><span style="color:#C60">Medium</span></td>
 <td>Supply-Chain</td>
-<td>Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork. (<a href="../cicd-queries/common/555ab8f9-2001-455e-a077-f2d0f41e2fb9" target="_blank">read more</a>)</td>
-<td><a href="https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions">Documentation</a><br/></td>
+<td><a href="../cicd-queries/common/555ab8f9-2001-455e-a077-f2d0f41e2fb9" target="_blank">Query details</a><br><a href="https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table>
@@ -1922,7 +1917,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "toc.integrate"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
       
         <script src="../../js/version-mike.js"></script>
       
