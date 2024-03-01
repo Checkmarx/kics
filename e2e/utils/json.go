@@ -16,6 +16,8 @@ import (
 	"github.com/xeipuuv/gojsonschema"
 )
 
+var filekey = "file"
+
 type logMsg struct {
 	Level    string `json:"level"`
 	ErrorMgs string `json:"error"`
@@ -143,7 +145,6 @@ func CheckLine(t *testing.T, expec, want string, line int) {
 }
 
 func setFields(t *testing.T, expect, actual []string, expectFileName, actualFileName, location string) {
-	filekey := "file"
 	switch location {
 	case "payload":
 		var actualI model.Documents
