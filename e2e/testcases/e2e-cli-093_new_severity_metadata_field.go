@@ -5,7 +5,7 @@ package testcases
 func init() { //nolint
 	testSample01 := TestCase{
 		Name: "should perform a scans successfully giving results with new severity and return exit code " +
-			"according to new severity [E2E-CLI-08_1]",
+			"according to new severity [E2E-CLI-093_1]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
