@@ -61,7 +61,7 @@ Use "kics [command] --help" for more information about a command.
 |      --no-progress                 |  hides the progress bar|
 |      --output-name string          |  name used on report creations (default "results")|
 |  -o, --output-path string          |  directory path to store reports|
-|      --parallel                    |  number of workers per platform enabled for parallel scanning, set 0 to auto-detect parallelism (default 1)|
+|      --parallel int                |  number of workers per platform enabled for parallel scanning, set 0 to auto-detect parallelism (default 1)|
 |  -p, --path strings                |  paths or directories to scan<br>example: "./somepath,somefile.txt"|
 |      --payload-lines               |  adds line information inside the payload when printing the payload file|
 |  -d, --payload-path string         |  path to store internal representation JSON file|
