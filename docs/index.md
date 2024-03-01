@@ -114,11 +114,15 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
                 <img alt="Azure Blueprints" src="img/logo-azure-blueprints.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
-<div class="card"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="GitHub Workflows" src="img/logo-github-icon.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+<div class="card card-interactable"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <a href="platforms/#cicd">
+                <img alt="GitHub Workflows" src="img/logo-github-icon.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+        </a>
 </div>
-<div class="card"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="OpenTofu" src="img/logo-opentofu.png"  width="130" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+<div class="card card-interactable"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <a href="platforms/#terraform">
+                <img alt="OpenTofu" src="img/logo-opentofu.png"  width="130" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+        </a>
 </div>
 </div>
 
