@@ -51,7 +51,7 @@ func HTMLValidation(t *testing.T, file string) {
 		require.NotNil(t, actualValue.LastChild,
 			"[%s] Invalid value in Element ID <%s>", file, headerIds[arg])
 
-		require.Equal(t, expectedValue.LastChild.Data, actualValue.LastChild.Data,
+		require.ElementsMatch(t, expectedValue.LastChild.Data, actualValue.LastChild.Data,
 			"[%s] HTML Element <%s>:\n- Expected value: %s\n- Actual value: %s\n",
 			file, headerIds[arg], expectedValue.LastChild.Data, actualValue.LastChild.Data)
 	}

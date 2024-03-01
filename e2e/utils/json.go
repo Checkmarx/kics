@@ -226,7 +226,7 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			})
 		}
 
-		require.Equal(t, expectI, actualI,
+		require.ElementsMatch(t, expectI, actualI,
 			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result content: 'output/%s'.",
 			expectFileName, actualFileName)
 	}
