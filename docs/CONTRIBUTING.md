@@ -139,3 +139,7 @@ Join the [GitHub discussions](https://github.com/Checkmarx/kics/discussions).
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
 
 And become one of our top contributors!
+
+---
+
+Special thanks to  **[Lior Kaplan](https://github.com/kaplanlior)** from **_Kaplan Open Source Consulting_** for his assistance in creating KICS. 
