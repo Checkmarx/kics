@@ -12,7 +12,11 @@ import (
 	"golang.org/x/net/html"
 )
 
-var availablePlatforms = initPlatforms()
+var (
+	availablePlatforms = initPlatforms()
+	severityIds        = []string{"info", "low", "medium", "high", "total"}
+	headerIds          = []string{"scan-paths", "scan-platforms"}
+)
 
 func initPlatforms() map[string]string {
 	platforms := make(map[string]string)
@@ -38,14 +42,13 @@ func HTMLValidation(t *testing.T, file string) {
 	require.NoError(t, errAct, "Opening Actual HTML File should not yield an error")
 
 	// Compare Header Data (Paths, Platforms)
-	headerIds := []string{"scan-paths", "scan-platforms"}
-	sliceOfExpected := make([]html.Node, 0, len(headerIds))
-	sliceOfActual := make([]html.Node, 0, len(headerIds))
+	sliceOfExpected := make([]string, 0, len(headerIds))
+	sliceOfActual := make([]string, 0, len(headerIds))
 	for _, header := range headerIds {
 		expectedValue := getElementByID(expectedHTML, header)
-		sliceOfExpected = append(sliceOfExpected, *expectedValue)
+		sliceOfExpected = append(sliceOfExpected, expectedValue.LastChild.Data)
 		actualValue := getElementByID(actualHTML, header)
-		sliceOfActual = append(sliceOfActual, *actualValue)
+		sliceOfActual = append(sliceOfActual, actualValue.LastChild.Data)
 
 		// Adapt path if running locally (dev)
 		if GetKICSDockerImageName() == "" {
@@ -57,7 +60,7 @@ func HTMLValidation(t *testing.T, file string) {
 		"[%s] HTML Element :\n- Expected value: %s\n- Actual value: %s\n",
 		file, sliceOfExpected, sliceOfActual)
 	// Compare Severity Values (High, Medium, Total...)
-	severityIds := []string{"info", "low", "medium", "high", "total"}
+
 	for arg := range severityIds {
 		nodeIdentificator := "severity-count-" + severityIds[arg]
 		expectedSeverityValue := getElementByID(expectedHTML, nodeIdentificator)
