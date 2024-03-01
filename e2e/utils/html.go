@@ -39,23 +39,23 @@ func HTMLValidation(t *testing.T, file string) {
 
 	// Compare Header Data (Paths, Platforms)
 	headerIds := []string{"scan-paths", "scan-platforms"}
-	for arg := range headerIds {
-		expectedValue := getElementByID(expectedHTML, headerIds[arg])
-		actualValue := getElementByID(actualHTML, headerIds[arg])
+	sliceOfExpected := make([]html.Node, 0, len(headerIds))
+	sliceOfActual := make([]html.Node, 0, len(headerIds))
+	for _, header := range headerIds {
+		expectedValue := getElementByID(expectedHTML, header)
+		sliceOfExpected = append(sliceOfExpected, *expectedValue)
+		actualValue := getElementByID(actualHTML, header)
+		sliceOfActual = append(sliceOfActual, *actualValue)
 
 		// Adapt path if running locally (dev)
 		if GetKICSDockerImageName() == "" {
 			expectedValue.LastChild.Data = KicsDevPathAdapter(expectedValue.LastChild.Data)
 		}
-
-		require.NotNil(t, actualValue.LastChild,
-			"[%s] Invalid value in Element ID <%s>", file, headerIds[arg])
-
-		require.ElementsMatch(t, expectedValue.LastChild.Data, actualValue.LastChild.Data,
-			"[%s] HTML Element <%s>:\n- Expected value: %s\n- Actual value: %s\n",
-			file, headerIds[arg], expectedValue.LastChild.Data, actualValue.LastChild.Data)
+		require.NotNil(t, actualValue.LastChild, "[%s] Invalid value in Element ID <%s>", file, header)
 	}
-
+	require.ElementsMatch(t, sliceOfExpected, sliceOfActual,
+		"[%s] HTML Element :\n- Expected value: %s\n- Actual value: %s\n",
+		file, sliceOfExpected, sliceOfActual)
 	// Compare Severity Values (High, Medium, Total...)
 	severityIds := []string{"info", "low", "medium", "high", "total"}
 	for arg := range severityIds {
