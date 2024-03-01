@@ -209,6 +209,13 @@
     "defaultValue": "false",
     "usage": "resolve the file reference, on OpenAPI files"
   },
+  "parallel": {
+    "flagType": "int",
+    "shorthandFlag": "",
+    "defaultValue": "1",
+    "usage": "number of workers per platform enabled for parallel scanning, set 0 to auto-detect parallelism",
+    "validation": "validateWorkersFlag"
+  },
   "max-file-size": {
     "flagType": "int",
     "shorthandFlag": "",

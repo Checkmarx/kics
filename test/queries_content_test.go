@@ -268,6 +268,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 		60,
 		true,
 		true,
+		1,
 	)
 	require.Nil(t, err)
 	require.NotNil(t, inspector)

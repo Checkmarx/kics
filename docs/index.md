@@ -11,8 +11,8 @@
     </div>
     <div class="col-6 text-center">
         <br/><br/>
-        <h4>Version 1.7.12</h4>
-        <p style="font-size:8pt">2023.12.20<p>
+        <h4>Version 1.7.13</h4>
+        <p style="font-size:8pt">2024.02.29<p>
         <a class="btn btn-outline-success"  href="https://docs.kics.io/latest/CONTRIBUTING">Contribute!</a>
     </div>
 </div>
@@ -130,9 +130,12 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 <div class="card"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="NIFCloud" src="img/logo-nifcloud.png" width="70">&nbsp;&nbsp;&nbsp;
 </div>
+<div class="card"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="TencentCloud" src="img/logo-tencentcloud.png" width="120">&nbsp;&nbsp;&nbsp;
+</div>
 </div>
 
-In order to run the Databricks and NIFCloud queries, use the `--experimental-queries` flag when running KICS.
+In order to run the Databricks, NIFCloud and TencentCloud queries, use the `--experimental-queries` flag when running KICS.
 
 ## Getting Started
 

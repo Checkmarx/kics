@@ -73,6 +73,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		c.ScanParams.QueryExecTimeout,
 		c.ScanParams.UseNewSeverities,
 		true,
+		c.ScanParams.ParallelScanFlag,
 	)
 	if err != nil {
 		return nil, err

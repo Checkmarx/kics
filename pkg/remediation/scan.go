@@ -241,6 +241,7 @@ func initScan(queryID string) (*engine.Inspector, error) {
 		c.ScanParams.QueryExecTimeout,
 		c.ScanParams.UseNewSeverities,
 		false,
+		c.ScanParams.ParallelScanFlag,
 	)
 
 	return inspector, err
