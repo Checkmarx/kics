@@ -1,0 +1,40 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "DBInstanceSample1":{
+            "Type": "AWS::RDS::DBInstance",
+            "Properties": {
+                "Engine": "oracle-ee",
+                "DBSubnetGroupName": "DBSubnetGroupSample1",
+                "StorageEncrypted": false
+            }
+        },
+        "VPCGatewayAttachmentSample1": {
+            "Type": "AWS::EC2::VPCGatewayAttachment",
+            "Properties": {
+                "InternetGatewayId": "",
+                "VpcId": "VPCSample1",
+                "VpnGatewayId": ""
+            }
+        },
+        "SubnetSample1": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "CidrBlock": "172.16.1.0/24",
+                "VpcId": {
+                    "Ref": "VPCSample1"
+                }
+            }
+        },
+        "DBSubnetGroupSample1": {
+            "Type": "AWS::RDS::DBSubnetGroup",
+            "Properties": {
+                "SubnetIds": [
+                    {
+                        "Ref": "SubnetSample1"
+                    }
+                ]
+            }
+        }
+    }
+}
