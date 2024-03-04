@@ -56,8 +56,8 @@ func HTMLValidation(t *testing.T, file string) {
 			file, headerIds[arg], expectedValue.LastChild.Data, actualValue.LastChild.Data)
 	}
 
-	// Compare Severity Values (High, Medium, Total...)
-	severityIds := []string{"info", "low", "medium", "high", "total"}
+	// Compare Severity Values (Critical, High, Medium, Total...)
+	severityIds := []string{"info", "low", "medium", "high", "critical", "total"}
 	for arg := range severityIds {
 		nodeIdentificator := "severity-count-" + severityIds[arg]
 		expectedSeverityValue := getElementByID(expectedHTML, nodeIdentificator)
