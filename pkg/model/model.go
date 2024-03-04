@@ -18,6 +18,7 @@ const (
 	KindYML       FileKind = "YML"
 	KindDOCKER    FileKind = "DOCKERFILE"
 	KindPROTO     FileKind = "PROTO"
+	KindBICEP     FileKind = "BICEP"
 	KindCOMMON    FileKind = "*"
 	KindHELM      FileKind = "HELM"
 	KindBUILDAH   FileKind = "SH"

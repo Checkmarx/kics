@@ -73,6 +73,7 @@ var (
 	listKeywordsGoogleDeployment = []string{"resources"}
 	armRegexTypes                = []string{"blueprint", "templateArtifact", "roleAssignmentArtifact", "policyAssignmentArtifact"}
 	possibleFileTypes            = map[string]bool{
+		".bicep":             true,
 		".yml":               true,
 		".yaml":              true,
 		".json":              true,
@@ -119,6 +120,7 @@ const (
 	arm        = "azureresourcemanager"
 	kubernetes = "kubernetes"
 	terraform  = "terraform"
+	bicep      = "bicep"
 	gdm        = "googledeploymentmanager"
 	ansible    = "ansible"
 	grpc       = "grpc"
@@ -391,6 +393,13 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 	case ".tf", "tfvars":
 		if a.isAvailableType(terraform) {
 			results <- terraform
+			locCount <- linesCount
+		}
+	// BICEP
+	case ".bicep":
+		if a.isAvailableType(bicep) {
+			fmt.Println("BICEP BICEP BICEP")
+			results <- bicep
 			locCount <- linesCount
 		}
 	// GRPC
