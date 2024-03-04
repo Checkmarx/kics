@@ -6,6 +6,10 @@
       "Type": "AWS::ApiGatewayV2::Stage",
       "Properties": {
         "Description": "Prod Stage",
+        "AccessLogSettings": {
+            "DestinationArn": "dest",
+            "Format": "format"
+        },
         "DeploymentId": "MyDeployment",
         "ApiId": "CFNWebSocket",
         "StageName": "Prod"

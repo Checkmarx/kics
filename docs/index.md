@@ -11,8 +11,8 @@
     </div>
     <div class="col-6 text-center">
         <br/><br/>
-        <h4>Version 1.7.12</h4>
-        <p style="font-size:8pt">2023.12.20<p>
+        <h4>Version 1.7.13</h4>
+        <p style="font-size:8pt">2024.02.29<p>
         <a class="btn btn-outline-success"  href="https://docs.kics.io/latest/CONTRIBUTING">Contribute!</a>
     </div>
 </div>
@@ -25,100 +25,104 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 
 <div style="display:flex;flex:1;flex-wrap:wrap;align-items:center;justify-content:center">
 <div class="card card-interactable" style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#terraform">
+        <a href="platforms/#terraform">
                 <img alt="Terraform" src="img/logo-terraform.png" width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#kubernetes">
+        <a href="platforms/#kubernetes">
                 <img alt="Kubernetes" src="img/logo-k8s.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#docker">
+        <a href="platforms/#docker">
                 <img alt="Docker" src="img/logo-docker.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#cloudformation">
+        <a href="platforms/#cloudformation">
                 <img alt="CloudFormation" src="img/logo-cf.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#ansible">
+        <a href="platforms/#ansible">
                 <img alt="Ansible" src="img/logo-ansible.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#openapi">
+        <a href="platforms/#openapi">
                 <img alt="OpenAPI" src="img/logo-openapi.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#helm">
+        <a href="platforms/#helm">
                 <img alt="Helm" src="img/logo-helm.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:120;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#grpc">
+        <a href="platforms/#grpc">
                 <img alt="gRPC" src="img/logo-grpc.png"  width="120" style="min-width:120px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:150;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#cdk">
+        <a href="platforms/#cdk">
                 <img alt="Cloud Deployment Kit" src="img/logo-cdk.png"  width="150" style="min-width:150px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#crossplane">
+        <a href="platforms/#crossplane">
                 <img alt="Crossplane" src="img/logo-crossplane.png"  width="170" style="min-width:170px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#pulumi">
+        <a href="platforms/#pulumi">
                 <img alt="Pulumi" src="img/logo-pulumi.png"  width="170" style="min-width:170px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#serverlessfw">
+        <a href="platforms/#serverlessfw">
                 <img alt="ServerlessFW" src="img/logo-serverlessfw.png"  width="170" style="min-width:170px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:55;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#google_deployment_manager">
+        <a href="platforms/#google_deployment_manager">
                 <img alt="Google Deployment Manager" src="img/logo-gdm.png"  width="55" style="min-width:55px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:55;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#azure_resource_manager">
+        <a href="platforms/#azure_resource_manager">
                 <img alt="Azure Resource Manager" src="img/logo-arm.png"  width="55" style="min-width:55px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:55;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#sam">
+        <a href="platforms/#sam">
                 <img alt="SAM" src="img/logo-sam.png"  width="55" style="min-width:55px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#docker_compose">
+        <a href="platforms/#docker_compose">
                 <img alt="Docker Compose" src="img/logo-dockercompose.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#knative">
+        <a href="platforms/#knative">
                 <img alt="Knative" src="img/logo-knative.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
 <div class="card card-interactable"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <a href="/platforms/#azure_blueprints">
+        <a href="platforms/#azure_blueprints">
                 <img alt="Azure Blueprints" src="img/logo-azure-blueprints.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
-<div class="card"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="GitHub Workflows" src="img/logo-github-icon.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+<div class="card card-interactable"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <a href="platforms/#cicd">
+                <img alt="GitHub Workflows" src="img/logo-github-icon.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+        </a>
 </div>
-<div class="card"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="OpenTofu" src="img/logo-opentofu.png"  width="130" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+<div class="card card-interactable"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <a href="platforms/#terraform">
+                <img alt="OpenTofu" src="img/logo-opentofu.png"  width="130" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+        </a>
 </div>
 </div>
 
@@ -130,9 +134,12 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 <div class="card"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="NIFCloud" src="img/logo-nifcloud.png" width="70">&nbsp;&nbsp;&nbsp;
 </div>
+<div class="card"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <img alt="TencentCloud" src="img/logo-tencentcloud.png" width="120">&nbsp;&nbsp;&nbsp;
+</div>
 </div>
 
-In order to run the Databricks and NIFCloud queries, use the `--experimental-queries` flag when running KICS.
+In order to run the Databricks, NIFCloud and TencentCloud queries, use the `--experimental-queries` flag when running KICS.
 
 ## Getting Started
 
