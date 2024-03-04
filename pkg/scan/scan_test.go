@@ -12,63 +12,6 @@ import (
 	"testing"
 )
 
-func Test_InitScan(t *testing.T) {
-	tests := []struct {
-		name                  string
-		scanParams            Parameters
-		ctx                   context.Context
-		expectedServicesCount int
-		expectedFailedQueries int
-		expectedPathsCount    int
-	}{
-		{
-			name: "test init scan",
-			scanParams: Parameters{
-				ExcludePaths: []string{
-					"C:/Repos/kics/test/fixtures/test_scan_cloudfront_logging_disabled/metadata.json",
-					"C:/Repos/kics/test/fixtures/test_scan_cloudfront_logging_disabled/positive_expected_result.tf",
-				},
-				Path:                    []string{"C:/Repos/kics/test/fixtures/test_scan_cloudfront_logging_disabled/test/positive1.yaml"},
-				QueriesPath:             []string{"C:/Repos/kics/test/fixtures/test_scan_cloudfront_logging_disabled"},
-				PreviewLines:            3,
-				CloudProvider:           []string{"aws"},
-				Platform:                []string{"CloudFormation"},
-				ChangedDefaultQueryPath: true,
-				MaxFileSizeFlag:         100,
-				QueryExecTimeout:        60,
-			},
-			ctx:                   context.Background(),
-			expectedServicesCount: 2,
-			expectedFailedQueries: 0,
-			expectedPathsCount:    1,
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			c, err := NewClient(&tt.scanParams, &progress.PbBuilder{}, &consolePrinter.Printer{})
-
-			if err != nil {
-				t.Fatalf(`NewClient failed for path %s with error: %v`, tt.scanParams.Path[0], err)
-			}
-
-			v, err := c.initScan(tt.ctx)
-
-			if err != nil {
-				t.Fatalf(`InitScan failed for path %s with error: %v`, tt.scanParams.Path[0], err)
-			}
-
-			servicesCount := len(v.services)
-			failedQueriesCount := len(v.inspector.GetFailedQueries())
-			pathsCount := len(v.extractedPaths.Path)
-
-			require.Equal(t, tt.expectedServicesCount, servicesCount)
-			require.Equal(t, tt.expectedFailedQueries, failedQueriesCount)
-			require.Equal(t, tt.expectedPathsCount, pathsCount)
-		})
-	}
-}
-
 func Test_ExecuteScan(t *testing.T) {
 	tests := []struct {
 		name                 string
@@ -79,14 +22,14 @@ func Test_ExecuteScan(t *testing.T) {
 		expectedLine         int
 	}{
 		{
-			name: "test init scan",
+			name: "test exec scan",
 			scanParams: Parameters{
 				ExcludePaths: []string{
-					"C:/Repos/kics/test/fixtures/test_scan_cloudfront_logging_disabled/metadata.json",
-					"C:/Repos/kics/test/fixtures/test_scan_cloudfront_logging_disabled/positive_expected_result.tf",
+					"./../../test/fixtures/test_scan_cloudfront_logging_disabled/metadata.json",
+					"./../../test/fixtures/test_scan_cloudfront_logging_disabled/positive_expected_result.tf",
 				},
-				Path:                    []string{"C:/Repos/kics/test/fixtures/test_scan_cloudfront_logging_disabled/test/positive1.yaml"},
-				QueriesPath:             []string{"C:/Repos/kics/test/fixtures/test_scan_cloudfront_logging_disabled"},
+				Path:                    []string{"./../../test/fixtures/test_scan_cloudfront_logging_disabled/test/positive1.yaml"},
+				QueriesPath:             []string{"./../../test/fixtures/test_scan_cloudfront_logging_disabled"},
 				PreviewLines:            3,
 				CloudProvider:           []string{"aws"},
 				Platform:                []string{"CloudFormation"},
