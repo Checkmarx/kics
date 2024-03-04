@@ -1,0 +1,8 @@
+name: aws-eks
+runtime: yaml
+description: An EKS cluster
+resources:
+  foo:
+    type: aws:ecs:Cluster
+    properties:
+      description: example

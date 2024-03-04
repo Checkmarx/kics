@@ -76,7 +76,9 @@
                 "aws",
                 "azure",
                 "common",
-                "gcp"
+                "gcp",
+                "nifcloud",
+                "tencentcloud"
             ]
         },
         "platform": {
@@ -139,6 +141,15 @@
                     }
                 }
             }
+        },
+        "experimental": {
+            "type": "string",
+            "enum": [
+                "true"
+            ]
+        },
+        "cwe": {
+            "type": "string"
         }
     }
 }

@@ -6,6 +6,7 @@
   "descriptionText": "Microsoft.ContainerService/managedClusters should have enableRBAC set to true",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json",
   "platform": "AzureResourceManager",
+  "descriptionID": "b07ac0d6",
   "cloudProvider": "azure",
-  "descriptionID": "b07ac0d6"
+  "cwe": ""
 }

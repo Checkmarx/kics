@@ -9,13 +9,13 @@ func init() { //nolint
 		Name: "should perform a simple scan [E2E-CLI-007]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-p", "/path/e2e/fixtures/samples/positive.yaml"},
+				[]string{"scan", "-p", "/path/e2e/fixtures/samples/positive.yaml", "-v"},
 			},
 		},
 		WantStatus: []int{50},
 		Validation: func(outputText string) bool {
-			match1, _ := regexp.MatchString(`Files scanned: \d+`, outputText)
-			match2, _ := regexp.MatchString(`Parsed files: \d+`, outputText)
+			match1, _ := regexp.MatchString(`Scanned Files: \d+`, outputText)
+			match2, _ := regexp.MatchString(`Parsed Files: \d+`, outputText)
 			match3, _ := regexp.MatchString(`Queries loaded: \d+`, outputText)
 			match4, _ := regexp.MatchString(`Queries failed to execute: \d+`, outputText)
 			match5, _ := regexp.MatchString(`Results Summary:`, outputText)

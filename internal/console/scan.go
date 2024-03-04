@@ -116,7 +116,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		ExcludeQueries:              flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),
 		ExcludeResults:              flags.GetMultiStrFlag(flags.ExcludeResultsFlag),
 		ExcludeSeverities:           flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag),
-		ExperimentalQueries:         flags.GetMultiStrFlag(flags.ExperimentalQueriesFlag),
+		ExperimentalQueries:         flags.GetBoolFlag(flags.ExperimentalQueriesFlag),
 		IncludeQueries:              flags.GetMultiStrFlag(flags.IncludeQueriesFlag),
 		InputData:                   flags.GetStrFlag(flags.InputDataFlag),
 		OutputName:                  flags.GetStrFlag(flags.OutputNameFlag),
@@ -139,6 +139,9 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		ChangedDefaultQueryPath:     changedDefaultQueryPath,
 		BillOfMaterials:             flags.GetBoolFlag(flags.BomFlag),
 		ExcludeGitIgnore:            flags.GetBoolFlag(flags.ExcludeGitIgnore),
+		OpenAPIResolveReferences:    flags.GetBoolFlag(flags.OpenAPIReferencesFlag),
+		ParallelScanFlag:            flags.GetIntFlag(flags.ParallelScanFile),
+		MaxFileSizeFlag:             flags.GetIntFlag(flags.MaxFileSizeFlag),
 	}
 
 	return &scanParams
@@ -146,10 +149,6 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 
 func executeScan(scanParams *scan.Parameters) error {
 	log.Debug().Msg("console.scan()")
-
-	for _, warn := range warnings {
-		log.Warn().Msgf(warn)
-	}
 
 	console := newConsole()
 

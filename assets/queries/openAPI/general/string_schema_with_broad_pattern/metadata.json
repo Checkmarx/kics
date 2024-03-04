@@ -6,13 +6,15 @@
   "descriptionText": "String schema should restrict the pattern",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
+  "descriptionID": "b1ea7a03",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "e4a019f0-9af3-49c8-bf68-1939a6ff240d",
       "queryName": "String Schema with Broad Pattern (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schema-object"
+      "descriptionUrl": "https://swagger.io/specification/v2/#schema-object",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "b1ea7a03"
+  "cwe": ""
 }

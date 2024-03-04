@@ -6,5 +6,6 @@
   "descriptionText": "Check if apt-get calls use the flag -y to avoid user manual input.",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
   "platform": "Dockerfile",
-  "descriptionID": "2064113b"
+  "descriptionID": "2064113b",
+  "cwe": "710"
 }
