@@ -14,7 +14,8 @@ jobs:
 
     - name: Set up Git credentials
       run: |
-          git config --global user.name "${{ github.actor }}"
+          git config --global user.name "KICSBot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global url."https://${{ secrets.CHECKMARXDEV_GIT_TOKEN }}@github.com".insteadOf "https://github.com"
 
     - name: Clone kics-queries-repo from CheckmarxDev
@@ -32,11 +33,9 @@ jobs:
           mkdir -p ../$REPO_NAME/kics-queries
           rsync -av --exclude='*/test/*' --exclude='common/*' ./assets/queries/ ../$REPO_NAME/kics-queries/
 
-    - name: Copy circle ci configuration to new branch
+    - name: Modify circleci configuration
       run: |
-          mkdir -p ../$REPO_NAME/.circleci
-          sed 's/branch_name_template_to_replace/${{ github.event.release.name }}/g' .github/scripts/kics-queries-repo-branch-creation/config-template/config.yml > .github/scripts/kics-queries-repo-branch-creation/config.yml
-          cp .github/scripts/kics-queries-repo-branch-creation/config.yml ../$REPO_NAME/.circleci/
+          sed -i 's/branch_name_template_to_replace/${{ github.event.release.name }}/g' ../$REPO_NAME/.circleci/config.yml
 
     - name: Push branch
       run: |
