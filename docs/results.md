@@ -682,7 +682,7 @@ PDF reports are sorted by severity (from high to info), the results will have qu
 
 ## CycloneDX
 
-Now, the CycloneDX report is only available in XML format since the vulnerability schema extension is not currently available in JSON. The guidelines used to build the CycloneDX report were the [bom schema 1.3](http://cyclonedx.org/schema/bom/1.5) and [vulnerability schema 1.0](https://github.com/CycloneDX/specification/blob/master/schema/ext/vulnerability-1.0.xsd).                                                                                               
+Now, the CycloneDX report is only available in XML format since the vulnerability schema extension is not currently available in JSON. The guidelines used to build the CycloneDX report were the [bom schema 1.5](http://cyclonedx.org/schema/bom/1.5) and [vulnerability schema 1.0](https://github.com/CycloneDX/specification/blob/master/schema/ext/vulnerability-1.0.xsd).                                                                                               
 **Note:** As of the latest update, the CycloneDX version utilized in the report is 1.5. However, it's important to clarify that no additional features or fields introduced in version 1.5 are currently utilized. The functionality remains consistent with the version 1.3 for KICS. Future updates will leverage the new features introduced in CycloneDX version 1.5.
 
 
