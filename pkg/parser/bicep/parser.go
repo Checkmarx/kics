@@ -1,6 +1,8 @@
 package bicep
 
 import (
+	"encoding/json"
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -8,45 +10,51 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 )
 
-// Parser - parser for Proto files
+// Parser - parser for Bicep files
 type Parser struct {
 }
 
-// armFile := filepath.Join(tmp, fmt.Sprintf("%s_%s.json", filename, uuid.New().String()))
 // Parse - parses bicep to ARM template (json file)
-func (p *Parser) Parse(bicepPath string, fileContent []byte) ([]model.Document, []int, error) {
+func (p *Parser) Parse(bicepPath string, _ []byte) ([]model.Document, []int, error) {
 
-	tmp := os.TempDir()
-	var cmd *exec.Cmd
+	doc := model.Document{}
 
-	armFile := filepath.Join(tmp, "arm.json")
+	fileContent, err := convertBicepToArm(bicepPath)
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	err = json.Unmarshal(fileContent, &doc)
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return []model.Document{doc}, []int{}, nil
+
+}
+
+func convertBicepToArm(bicepPath string) ([]byte, error) {
+
+	armPath := filepath.Join("./teste", "arm.json")
+	//tmp := os.TempDir()
+	// armFile := filepath.Join(tmp, fmt.Sprintf("%s_%s.json", filename, uuid.New().String()))
+
 	//creates an ARM template from the bicep file
-	cmd = exec.Command("bicep", "build", bicepPath, "--outfile", armFile)
+	cmd := exec.Command("bicep", "build", bicepPath, "--outfile", armPath)
+	err := cmd.Run()
+	if err != nil {
+		fmt.Printf("ERROR CMD %v", err)
+		return nil, err
+	}
 
-	/*
-		reader := bytes.NewReader(fileContent)
-		parserBicep := bicep.NewParser(reader)
-		bicepFile, err := parserBicep.Parse()
-		if err != nil {
-			return nil, nil, err
-		}
+	fileContent, err := os.ReadFile(filepath.Clean(armPath))
+	if err != nil {
+		return nil, err
+	}
 
-		var doc model.Document
-
-		armFile, linesIgnore := converter.Convert(bicepFile)
-
-		armBytes, err := json.Marshal(armFile)
-		if err != nil {
-			return nil, nil, err
-		}
-
-		err = json.Unmarshal(armBytes, &doc)
-		if err != nil {
-			return nil, nil, err
-		}
-
-		return []model.Document{doc}, linesIgnore, nil
-	*/
+	return fileContent, nil
 }
 
 // GetKind returns the kind of the parser
@@ -65,8 +73,8 @@ func (p *Parser) SupportedTypes() map[string]bool {
 }
 
 // GetCommentToken return the comment token of Bicep files - #
-func (p *Parser) GetCommentToken() []string {
-	return []string{"//", "/*", "*/"}
+func (p *Parser) GetCommentToken() string {
+	return "//"
 }
 
 // StringifyContent converts original content into string formatted version

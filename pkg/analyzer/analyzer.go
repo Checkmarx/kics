@@ -398,7 +398,6 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 	// BICEP
 	case ".bicep":
 		if a.isAvailableType(bicep) {
-			fmt.Println("BICEP BICEP BICEP")
 			results <- bicep
 			locCount <- linesCount
 		}
