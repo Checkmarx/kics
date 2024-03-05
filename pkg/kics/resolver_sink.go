@@ -24,7 +24,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 	resFiles, err := s.Resolver.Resolve(filename, kind)
 	if err != nil {
 		log.Err(err).Msgf("failed to render file content")
-		return []string{}, nil
+		return []string{}, err
 	}
 
 	for _, rfile := range resFiles.File {
