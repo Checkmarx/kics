@@ -1,0 +1,7 @@
+---
+# roles/common/tasks/main.yml
+- name: Update packages
+  package:
+    name: "*"
+    state: latest
+  become: yes

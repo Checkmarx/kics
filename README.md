@@ -60,8 +60,9 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 #### Beta Features
 <img alt="Databricks" src="docs/img/logo-databricks.png" width="200">&nbsp;&nbsp;&nbsp;
 <img alt="NIFCloud" src="docs/img/logo-nifcloud.png" width="110">&nbsp;&nbsp;&nbsp;
+<img alt="TencentCloud" src="docs/img/logo-tencentcloud.png" width="180">&nbsp;&nbsp;&nbsp;
 
-In order to run the Databricks and NIFCloud queries, use the `--experimental-queries` flag when running KICS.
+In order to run the Databricks, NIFCloud and TencentCloud queries, use the `--experimental-queries` flag when running KICS.
 
 ## Getting Started
 
@@ -108,7 +109,7 @@ KICS is used by various companies and organizations, some are listed below. If y
 -   [JIT](https://www.jit.io/) ([SAST for IaC](https://www.jit.io/security-tools/kics))
 -   [Firefly](https://www.firefly.ai/)
 -   [Redpanda](https://redpanda.com/)
--   [Keptn](https://keptn.sh)
+-   [Keptn](https://github.com/keptn) / [Keptn Lifecycle Toolkit](https://keptn.sh)
 
 **Keeping Infrastructure as Code Secure!**
 

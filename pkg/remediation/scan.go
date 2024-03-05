@@ -240,6 +240,7 @@ func initScan(queryID string) (*engine.Inspector, error) {
 		make(map[string]bool),
 		c.ScanParams.QueryExecTimeout,
 		false,
+		c.ScanParams.ParallelScanFlag,
 	)
 
 	return inspector, err
