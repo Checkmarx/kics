@@ -16,6 +16,8 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s should have a ConfigRule defining rotation period on AccessKeys.", [name]),
 		"keyActualValue": sprintf("Resources.%s doesn't have a ConfigRule defining rotation period on AccessKeys.", [name]),
+	    #"remediation": "\"Type\": \"AWS::Config::ConfigRule\"",
+        #"remediationType": "addition",
 	}
 }
 
@@ -35,6 +37,13 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.InputParameters should be defined and contain 'maxAccessKeyAge' key.", [name]),
 		"keyActualValue": sprintf("Resources.%s.InputParameters is undefined.", [name]),
+		"searchLine": common_lib.build_search_line(["Resources",name,"Properties"], []),
+	    "remediation": json.marshal({
+                            "InputParameters": {
+                                "maxAccessKeyAge": "90"
+                            }
+        }),
+        "remediationType": "addition",
 	}
 }
 
@@ -58,7 +67,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("Resources.%s.InputParameters.maxAccessKeyAge is more than 90 (days).", [name]),
 		"searchLine": common_lib.build_search_line(["Resources",name,"Properties","InputParameters","maxAccessKeyAge"], []),
         "remediation": json.marshal({
-                       			"before": sprintf("%s",[maxDays]),
+                       			"before": sprintf("%d",[maxDays]),
                        			"after": "90"
                        		}),
         "remediationType": "replacement",

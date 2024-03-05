@@ -2,6 +2,7 @@ package remediation
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"sort"
@@ -80,9 +81,11 @@ func (s *Summary) RemediateFile(filePath string, remediationSet Set, openAPIReso
 			return remediationSet.Addition[i].Line > remediationSet.Addition[j].Line
 		})
 
+		//vamos fazer aqui o fix joao
 		for i := range remediationSet.Addition {
 			a := remediationSet.Addition[i]
-			remediatedLines := addition(&a, &lines)
+			extension := fileExtension(filePath)
+			remediatedLines := addition(&a, &lines, extension)
 			if len(remediatedLines) > 0 && willRemediate(remediatedLines, filePath, &a, openAPIResolveReferences) {
 				lines = s.writeRemediation(remediatedLines, lines, filePath, a.SimilarityID)
 			}
@@ -90,6 +93,20 @@ func (s *Summary) RemediateFile(filePath string, remediationSet Set, openAPIReso
 	}
 
 	return nil
+}
+
+func fileExtension(filepath string) string {
+	extract := strings.Split(filepath, ".")
+	if len(extract) > 0 {
+		switch extract[len(extract)-1] {
+		case "json":
+			return "json"
+		default:
+			return "Dockerfile"
+		}
+	}
+	return "Dockerfile"
+
 }
 
 // ReplacementInfo presents the relevant information to do the replacement
@@ -121,12 +138,20 @@ func replacement(r *Remediation, lines []string) []string {
 	return lines
 }
 
-func addition(r *Remediation, lines *[]string) []string {
+func addition(r *Remediation, lines *[]string, extension string) []string {
 	fatherNumberLine := r.Line - 1
 
 	if len(*lines) <= fatherNumberLine+1 {
 		return []string{}
 	}
+	var data map[string]interface{}
+	err := json.Unmarshal([]byte(r.Remediation), &data)
+	if err != nil {
+		return []string{}
+	}
+	lol := map[string]interface{}(data)
+
+	fmt.Println(lol[""])
 
 	firstLine := strings.Split(r.Remediation, "\n")[0]
 
