@@ -25,6 +25,12 @@ func (p *Parser) Parse(bicepPath string, _ []byte) ([]model.Document, []int, err
 		return nil, nil, err
 	}
 
+	BicepSyntax, err := teste(bicepPath)
+	if err != nil {
+		return nil, nil, err
+	}
+	fmt.Println(BicepSyntax)
+
 	err = json.Unmarshal(fileContent, &doc)
 
 	if err != nil {
