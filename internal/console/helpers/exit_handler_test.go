@@ -60,7 +60,7 @@ var resultsExitCodeTests = []struct {
 				"info":     {},
 			},
 		},
-		expectedResult: 50,
+		expectedResult: 60,
 	},
 }
 

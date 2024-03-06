@@ -110,7 +110,7 @@ func MapToStringSlice(stringKeyMap map[string]string) []string {
 	return keys
 }
 
-var queryHigh = model.QueryResult{
+var queryHigh = model.QueryResult{ //nolint
 	QueryName:                   "ALB protocol is HTTP",
 	QueryID:                     "de7f5e83-da88-4046-871f-ea18504b1d43",
 	Description:                 "ALB protocol is HTTP Description",
@@ -294,7 +294,7 @@ var queryMediumCWE = model.QueryResult{
 	CWE: "22",
 }
 
-var queryHighCWE = model.QueryResult{
+var queryHighCWE = model.QueryResult{ //nolint
 	QueryName:                   "AMI Not Encrypted",
 	QueryID:                     "97707503-a22c-4cd7-b7c0-f088fa7cf830",
 	Description:                 "AWS AMI Encryption is not enabled",
@@ -311,6 +311,16 @@ var queryHighCWE = model.QueryResult{
 			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
 			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
 			KeyActualValue:   "'default_action.redirect.protocol' is missing",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+		{
+			FileName:         positive,
+			Line:             35,
+			IssueType:        "IncorrectValue",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is equal 'HTTP'",
 			Value:            nil,
 			VulnLines:        &[]model.CodeLine{},
 		},
@@ -439,6 +449,7 @@ var queryCriticalASFF = model.QueryResult{
 			VulnLines:        &[]model.CodeLine{},
 		},
 	},
+	CWE: "22",
 }
 
 var SummaryMockCriticalFullPathASFF = model.Summary{
@@ -496,6 +507,30 @@ var SummaryMock = model.Summary{
 	},
 }
 
+var queryCriticalCLI = model.QueryResult{
+	QueryName:                   "Run Block Injection",
+	QueryID:                     "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+	Description:                 "GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event.", //nolint
+	DescriptionID:               "02044a75",
+	CISDescriptionIDFormatted:   "testCISID",
+	CISDescriptionTitle:         "testCISTitle",
+	CISDescriptionTextFormatted: "testCISDescription",
+	Severity:                    model.SeverityCritical,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         positive,
+			Line:             10,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is missing",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
+	CWE: "",
+}
+
 // SummaryMockCWE a summary to be used with cwe field complete
 var SummaryMockCWE = model.Summary{
 	Counters: model.Counters{
@@ -538,10 +573,11 @@ var SimpleSummaryMockAsff = model.Summary{
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
 		SeverityCounters: map[model.Severity]int{
-			model.SeverityInfo:   0,
-			model.SeverityLow:    0,
-			model.SeverityMedium: 1,
-			model.SeverityHigh:   0,
+			model.SeverityInfo:     0,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   1,
+			model.SeverityHigh:     2,
+			model.SeverityCritical: 0,
 		},
 		TotalCounter: 1,
 	},

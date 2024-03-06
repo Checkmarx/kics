@@ -56,6 +56,7 @@ JSON reports are sorted by severity (from high to info) and should looks like as
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
+		"CRITICAL": 0,
 		"HIGH": 10,
 		"INFO": 0,
 		"LOW": 0,
