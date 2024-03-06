@@ -999,5 +999,6 @@ KICS displays the results in CLI. For detailed information, you can use `-v --lo
 
 | Code  | Description      |
 | ----- | ---------------- |
+| `70`  | Remediation Error|
 | `126` | Engine Error     |
 | `130` | Signal-Interrupt |
