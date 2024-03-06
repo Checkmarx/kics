@@ -120,3 +120,26 @@ func Test_BuildArgs(t *testing.T) {
 		})
 	}
 }
+
+func Test_SaveTerraformerOutput(t *testing.T) {
+
+	tests := []struct {
+		name           string
+		output         string
+		destination    string
+		expectedOutput error
+	}{
+		{
+			name:           "test aws build",
+			output:         "Some Output",
+			destination:    "./../../test/fixtures/terraformer_output_save_test",
+			expectedOutput: nil,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			v := saveTerraformerOutput(tt.destination, tt.output)
+			require.Equal(t, tt.expectedOutput, v)
+		})
+	}
+}
