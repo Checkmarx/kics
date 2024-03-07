@@ -546,10 +546,11 @@ var SummaryMockCWE = model.Summary{
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
 		SeverityCounters: map[model.Severity]int{
-			model.SeverityInfo:   0,
-			model.SeverityLow:    0,
-			model.SeverityMedium: 0,
-			model.SeverityHigh:   2,
+			model.SeverityInfo:     0,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   0,
+			model.SeverityHigh:     2,
+			model.SeverityCritical: 0,
 		},
 		TotalCounter: 2,
 	},
