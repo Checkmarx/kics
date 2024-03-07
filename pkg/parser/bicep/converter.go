@@ -1,13 +1,6 @@
 package bicep
 
 import (
-	"bufio"
-	"encoding/json"
-	"fmt"
-	"os"
-	"regexp"
-	"strings"
-
 	"github.com/Checkmarx/kics/pkg/model"
 )
 
@@ -18,7 +11,7 @@ MultiLineDescriptions string `json:"multiDescriptions"`
 linesToIgnore    []int                       `json:"-"`
 linesNotToIgnore []int                       `json:"-"`
 */
-type BicepSyntax struct {
+type JsonBicep struct {
 	Name      string                      `json:"name"`
 	Param     Param                       `json:"param"`
 	Variables []Variable                  `json:"variables"`
@@ -29,44 +22,8 @@ type BicepSyntax struct {
 	Lines     map[string]model.LineObject `json:"_kics_lines"`
 }
 
-type Metadata struct {
-	Description string `json:"description"`
-	Name        string `json:"name"`
-}
-
-type Param struct {
-	Name         string    `json:"paramName"`
-	Type         string    `json:"paramType"`
-	DefaultValue string    `json:"paramDefaultValue"`
-	Metadata     *Metadata `json:"paramMetadata"`
-}
-
-type Variable struct {
-	Name        string `json:"varName"`
-	Type        string `json:"varType"`
-	Description string `json:"varDescription"`
-}
-
-type Resource struct {
-	Name        string `json:"resName"`
-	Type        string `json:"resType"`
-	Description string `json:"resDescription"`
-}
-
-type Output struct {
-	Name        string `json:"outName"`
-	Type        string `json:"outType"`
-	Description string `json:"outDescription"`
-}
-
-type Module struct {
-	Name        string `json:"modName"`
-	Path        string `json:"modPath"`
-	Description string `json:"modDescription"`
-}
-
-func newBicepSyntax() *BicepSyntax {
-	return &BicepSyntax{
+func newJsonBicep() *JsonBicep {
+	return &JsonBicep{
 		Name:      "",
 		Param:     Param{},
 		Variables: []Variable{},
@@ -76,6 +33,30 @@ func newBicepSyntax() *BicepSyntax {
 		Metadata:  &Metadata{},
 		Lines:     map[string]model.LineObject{},
 	}
+}
+
+// Convert - converts Bicep file to JSON Bicep template
+func Convert(elems []ElemBicep) (file *JsonBicep, err error) {
+
+	var jBicep *JsonBicep = newJsonBicep()
+
+	//modules := []Module{}
+	resources := []Resource{}
+
+	for _, elem := range elems {
+		switch elem.Type {
+		case "resource":
+			resource := elem.Resource
+			if resource.Name != "" {
+				resources = append(resources, resource)
+				continue
+			}
+		}
+	}
+
+	jBicep.Resources = resources
+
+	return jBicep, nil
 }
 
 //const kicsLinesKey = "_kics_"
@@ -109,29 +90,7 @@ func Convert(bicep *BicepSyntax) (file *BicepSyntax) {
 }
 */
 
-func parserFiles(bicepFile, armFile string) (*BicepSyntax, error) {
-
-	var err error
-	var bicepSyntax *BicepSyntax = newBicepSyntax()
-
-	//parse Bicep file
-	bicepSyntax.Modules, bicepSyntax.Resources, err = parserBicepFile(bicepFile)
-	if err != nil {
-		return nil, err
-	}
-
-	//parse ARM file
-	bicepSyntax, err = parserArmFile(armFile, bicepSyntax)
-	if err != nil {
-		return nil, err
-	}
-
-	fmt.Println("BYCEP SYNTAX:", bicepSyntax)
-	fmt.Println("RESOURCES:", bicepSyntax.Resources)
-
-	return bicepSyntax, nil
-}
-
+/*
 func parserArmFile(armFile string, bicepSyntax *BicepSyntax) (*BicepSyntax, error) {
 	file, err := os.Open(armFile)
 	if err != nil {
@@ -148,65 +107,12 @@ func parserArmFile(armFile string, bicepSyntax *BicepSyntax) (*BicepSyntax, erro
 
 	return bicepSyntax, nil
 }
+*/
 
-func parserBicepFile(bicepFile string) ([]Module, []Resource, error) {
-
-	file, err := os.Open(bicepFile)
-	if err != nil {
-		return []Module{}, []Resource{}, err
-	}
-
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	modules := []Module{}
-	resources := []Resource{}
-
-	for scanner.Scan() {
-		line := scanner.Text()
-
-		if line == "" {
-			continue
-		}
-
-		resource := parseResource(line)
-		if resource != nil {
-			resources = append(resources, *resource)
-			continue
-		}
-
-	}
-
-	if err := scanner.Err(); err != nil {
-		return []Module{}, []Resource{}, err
-	}
-
-	return modules, resources, nil
-}
-
-func parseResource(line string) *Resource {
-
-	resourceRegex := regexp.MustCompile(`^resource\s+(\S+)\s+'(\S+)'`)
-	matches := resourceRegex.FindStringSubmatch(line)
-	if matches != nil {
-		resourceType := strings.Split(matches[2], "@")[0]
-		resourceType = strings.ReplaceAll(resourceType, "'", "")
-		return &Resource{
-			Name:        matches[1],
-			Type:        resourceType,
-			Description: "Description",
-		}
-	}
-
-	return nil
-}
-
-func teste(bicepPath string) (*BicepSyntax, error) {
-
-	bicepSyntax, err := parserFiles(bicepPath, "./teste/arm.json")
+//parse ARM file
+/*
+	bicepSyntax, err = parserArmFile(armFile, bicepSyntax)
 	if err != nil {
 		return nil, err
 	}
-
-	return bicepSyntax, nil
-}
+*/
