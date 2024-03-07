@@ -4,6 +4,7 @@ package scan
 import (
 	"context"
 	"os"
+	"slices"
 
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -56,9 +57,14 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		return nil, nil
 	}
 
+	platform := c.ScanParams.Platform
+	if slices.Contains(platform, "bicep") && !slices.Contains(platform, "azureresourcemanager") {
+		platform = append(platform, "azureresourcemanager")
+	}
+
 	querySource := source.NewFilesystemSource(
 		c.ScanParams.QueriesPath,
-		c.ScanParams.Platform,
+		platform,
 		c.ScanParams.CloudProvider,
 		c.ScanParams.LibrariesPath,
 		c.ScanParams.ExperimentalQueries)

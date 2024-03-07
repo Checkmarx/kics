@@ -123,13 +123,7 @@ func NewInspector(
 	log.Debug().Msg("engine.NewInspector()")
 
 	metrics.Metric.Start("get_queries")
-	tempQuerySource := source.NewFilesystemSource(
-		[]string{".\\assets\\queries"},
-		[]string{"azureresourcemanager"},
-		[]string{""},
-		".\\assets\\libraries",
-		false)
-	queries, err := tempQuerySource.GetQueries(queryParameters)
+	queries, err := queriesSource.GetQueries(queryParameters)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to get queries")
 	}
