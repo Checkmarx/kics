@@ -10,5 +10,12 @@
         "shorthandFlag": "",
         "defaultValue": "platforms.json",
         "usage": "points to the JSON results file of analyzer"
+    },
+    "parallel": {
+      "flagType": "int",
+      "shorthandFlag": "",
+      "defaultValue": "1",
+      "usage": "number of workers used for parallel analyzing, set 0 to auto-detect parallelism",
+      "validation": "validateWorkersFlag"
     }
 }
