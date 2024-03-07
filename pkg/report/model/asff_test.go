@@ -100,6 +100,7 @@ func TestBuildASFFReport(t *testing.T) {
 			},
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},
+		CWE:        "22",
 	}
 	var awsSecurityFindings []AwsSecurityFinding
 	var awsSecurityFindings2 []AwsSecurityFinding
