@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.12">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
     
     
       
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#running_kics_with_terraformer" class="md-skip">
+        <a href="#running_kics_with_terraformer_deprecated_after_1713" class="md-skip">
           Skip to content
         </a>
       
@@ -1594,7 +1594,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#running_kics_with_terraformer_1" class="md-nav__link">
+  <a href="#running_kics_with_terraformer" class="md-nav__link">
     <span class="md-ellipsis">
       Running KICS with Terraformer
     </span>
@@ -1918,7 +1918,7 @@
   
 
 
-<h1 id="running_kics_with_terraformer">Running KICS with Terraformer<a class="headerlink" href="#running_kics_with_terraformer" title="Permanent link">&para;</a></h1>
+<h1 id="running_kics_with_terraformer_deprecated_after_1713">Running KICS with Terraformer (Deprecated after 1.7.13)<a class="headerlink" href="#running_kics_with_terraformer_deprecated_after_1713" title="Permanent link">&para;</a></h1>
 <p>From version 1.5, KICS integrates with Terraformer to scan resources deployed in the Cloud. The runtime information of the resources is obtained by providing a Terraformer path to KICS, via <code>-p</code> flag. The scan happens immediately after this information is obtained. In the end, results are shown as for any other KICS scan.</p>
 <p><strong>Cloud providers supported:</strong>
 - AWS
@@ -2008,7 +2008,7 @@ You can find a complete list of possible values in the links below:
 <p>To import all resources please use: <code>*</code></p>
 <p><strong>Regions</strong>: A slash-separated list of the regions to import from. <strong>It is only required for AWS and GCP</strong>.</p>
 <p><strong>Projects</strong>: A slash-separated list of the projects ids to import from. <strong>It is only required for GCP</strong>.</p>
-<h2 id="running_kics_with_terraformer_1">Running KICS with Terraformer<a class="headerlink" href="#running_kics_with_terraformer_1" title="Permanent link">&para;</a></h2>
+<h2 id="running_kics_with_terraformer">Running KICS with Terraformer<a class="headerlink" href="#running_kics_with_terraformer" title="Permanent link">&para;</a></h2>
 <p>When Running KICS using a terraformer path, resources are imported using the credentials set as environment variables in terraform format to the current working directory in a new folder named <code>kics-extract-terraformer</code> following the above-described structure.
 KICS will then run a scan on these local files.</p>
 <p>If the flag <code>-o, --output-path</code> is passed the folder <code>kics-extract-terraformer</code> will be generated in the reports directory instead.</p>
