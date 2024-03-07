@@ -599,6 +599,7 @@ var ComplexSummaryMock = model.Summary{
 		queryHigh,
 		queryMedium,
 		queryHighCWE,
+		queryCriticalCLI,
 	},
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
