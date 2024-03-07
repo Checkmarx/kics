@@ -608,7 +608,7 @@ var ComplexSummaryMock = model.Summary{
 			model.SeverityLow:      0,
 			model.SeverityMedium:   1,
 			model.SeverityHigh:     2,
-			model.SeverityCritical: 0,
+			model.SeverityCritical: 2,
 		},
 		TotalCounter: 5,
 	},
