@@ -1,142 +1,78 @@
 package bicep
 
 import (
+	"bufio"
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"regexp"
+	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser/bicep/converter"
 )
 
 // Parser - parser for Bicep files
 type Parser struct {
 }
 
-type ElemBicep struct {
-	Type     string
-	Param    Param
-	Metadata *Metadata
-	Variable Variable
-	Resource Resource
-	Output   Output
-	Module   Module
-}
-
-type Metadata struct {
-	Description string `json:"description"`
-	Name        string `json:"name"`
-}
-
-type Param struct {
-	Name         string    `json:"paramName"`
-	Type         string    `json:"paramType"`
-	DefaultValue string    `json:"paramDefaultValue"`
-	Metadata     *Metadata `json:"paramMetadata"`
-}
-
-type Variable struct {
-	Name        string `json:"varName"`
-	Type        string `json:"varType"`
-	Description string `json:"varDescription"`
-}
-
-type Resource struct {
-	Name        string `json:"resName"`
-	Type        string `json:"resType"`
-	Description string `json:"resDescription"`
-}
-
-type Output struct {
-	Name        string `json:"outName"`
-	Type        string `json:"outType"`
-	Description string `json:"outDescription"`
-}
-
-type Module struct {
-	Name        string `json:"modName"`
-	Path        string `json:"modPath"`
-	Description string `json:"modDescription"`
-}
-
 // Parse - parses bicep to JSON_Bicep template (json file)
-func (p *Parser) Parse(bicepPath string, fileContent []byte) ([]model.Document, []int, error) {
+func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, error) {
 
 	doc := model.Document{}
-	//reader := bytes.NewReader(fileContent)
-	//scanner := bufio.NewScanner(reader)
-	//elems, err := parserBicepFile(bicepPath)
-	elems := []ElemBicep{
-		{
-			Resource: Resource{
-				Name:        "test_resource",
-				Type:        "Microsoft.Web/sites",
-				Description: "Description",
-			},
-			Type:     "resource",
-			Param:    Param{},
-			Metadata: &Metadata{},
-			Variable: Variable{},
-			Output:   Output{},
-			Module:   Module{},
-		},
-	}
-
-	jBicep, err := Convert(elems)
-	if err != nil {
-		return nil, nil, err
-	}
-	fmt.Println("jBicep:", jBicep)
-
-	bicepBytes, err := json.Marshal(jBicep)
-
+	elems, err := parserBicepFile(fileContent)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	err = json.Unmarshal(bicepBytes, &doc)
+	jElem, _ := converter.Convert(elems)
 
+	elemListBytes, err := json.Marshal(jElem)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	return []model.Document{doc}, []int{}, nil
+	err = json.Unmarshal(elemListBytes, &doc)
+	if err != nil {
+		return nil, nil, err
+	}
 
+	return []model.Document{doc}, nil, nil
 }
 
-/*
-func parseResource(line string) *Resource {
+// parse Resource syntax from bicep file
+func parseResource(line string) *converter.Resource {
 
 	resourceRegex := regexp.MustCompile(`^resource\s+(\S+)\s+'(\S+)'`)
 	matches := resourceRegex.FindStringSubmatch(line)
 	if matches != nil {
 		resourceType := strings.Split(matches[2], "@")[0]
 		resourceType = strings.ReplaceAll(resourceType, "'", "")
-		return &Resource{
-			Name:        matches[1],
-			Type:        resourceType,
-			Description: "Description",
+		return &converter.Resource{
+			ApiVersion: "2023-01-01",
+			Kind:       "StorageV2",
+			Location:   "westus",
+			Name:       "test",
+			Type:       resourceType,
+			Metadata:   &converter.Metadata{Description: "Description", Name: "test"},
 		}
 	}
 
 	return nil
 }
-*/
 
-/*
-func parserBicepFile(bicepFile string) ([]ElemBicep, error) {
+// parse the bicep file returning a list of elemBicep struct and an error
+func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 
-	file, err := os.Open(bicepFile)
-	if err != nil {
-		return []ElemBicep{}, err
-	}
-
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	//modules := []Module{}
-	resources := []Resource{}
+	reader := bytes.NewReader(bicepContent)
+	elems := []converter.ElemBicep{}
+	scanner := bufio.NewScanner(reader)
 
 	for scanner.Scan() {
+		elem := converter.ElemBicep{}
 		line := scanner.Text()
+
+		fmt.Println("------------LINES:", line)
 
 		if line == "" {
 			continue
@@ -144,43 +80,21 @@ func parserBicepFile(bicepFile string) ([]ElemBicep, error) {
 
 		resource := parseResource(line)
 		if resource != nil {
-			resources = append(resources, *resource)
+			elem.Resource = *resource
+			elem.Type = "resource"
+			elems = append(elems, elem)
 			continue
 		}
+		fmt.Println("-----------------ELEMS:", elems)
 
 	}
 
 	if err := scanner.Err(); err != nil {
-		return []ElemBicep{}, err
+		return []converter.ElemBicep{}, err
 	}
 
-	return []ElemBicep{}, nil
+	return elems, nil
 }
-*/
-
-/*
-func convertBicepToArm(bicepPath string) ([]byte, error) {
-
-	armPath := filepath.Join("./teste", "arm.json")
-	//tmp := os.TempDir()
-	// armFile := filepath.Join(tmp, fmt.Sprintf("%s_%s.json", filename, uuid.New().String()))
-
-	//creates an ARM template from the bicep file
-	cmd := exec.Command("bicep", "build", bicepPath, "--outfile", armPath)
-	err := cmd.Run()
-	if err != nil {
-		fmt.Printf("ERROR CMD %v", err)
-		return nil, err
-	}
-
-	fileContent, err := os.ReadFile(filepath.Clean(armPath))
-	if err != nil {
-		return nil, err
-	}
-
-	return fileContent, nil
-}
-*/
 
 // GetKind returns the kind of the parser
 func (p *Parser) GetKind() model.FileKind {
