@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"regexp"
 	"strings"
 
@@ -72,8 +71,6 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		elem := converter.ElemBicep{}
 		line := scanner.Text()
 
-		fmt.Println("------------LINES:", line)
-
 		if line == "" {
 			continue
 		}
@@ -85,7 +82,6 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			elems = append(elems, elem)
 			continue
 		}
-		fmt.Println("-----------------ELEMS:", elems)
 
 	}
 
@@ -108,7 +104,7 @@ func (p *Parser) SupportedExtensions() []string {
 
 // SupportedTypes returns types supported by this parser, which are bicep files
 func (p *Parser) SupportedTypes() map[string]bool {
-	return map[string]bool{"bicep": true}
+	return map[string]bool{"bicep": true, "azureresourcemanager": true}
 }
 
 // GetCommentToken return the comment token of Bicep files - #
