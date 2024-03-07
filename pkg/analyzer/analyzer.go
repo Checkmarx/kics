@@ -132,6 +132,7 @@ type Parameters struct {
 	Results     string
 	Path        []string
 	MaxFileSize int
+	NumWorkers  int
 }
 
 // regexSlice is a struct to contain a slice of regex
@@ -154,6 +155,7 @@ type Analyzer struct {
 	GitIgnoreFileName string
 	ExcludeGitIgnore  bool
 	MaxFileSize       int
+	NumWorkers        int
 }
 
 // types is a map that contains the regex by type
@@ -289,6 +291,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	// results is the channel shared by the workers that contains the types found
 	results := make(chan string)
 	locCount := make(chan int)
+	jobsChannel := make(chan analyzerInfo)
 	ignoreFiles := make([]string, 0)
 	projectConfigFiles := make([]string, 0)
 	done := make(chan bool)
@@ -328,17 +331,19 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 
 	a.Types, a.ExcludeTypes = typeLower(a.Types, a.ExcludeTypes)
 
-	// Start the workers
-	for _, file := range files {
+	// Start a goroutine for each worker
+	for w := 0; w < a.NumWorkers; w++ {
 		wg.Add(1)
-		// analyze the files concurrently
-		a := &analyzerInfo{
-			typesFlag:        a.Types,
-			excludeTypesFlag: a.ExcludeTypes,
-			filePath:         file,
-		}
-		go a.worker(results, unwanted, locCount, &wg)
+
+		go func() {
+			// Decrement the counter when the goroutine completes
+			defer wg.Done()
+			analyzeFileWorker(results, unwanted, locCount, jobsChannel)
+		}()
 	}
+
+	// create the jobs for the workers
+	go createAnalyzeJobs(files, a, jobsChannel)
 
 	go func() {
 		// close channel results when the worker has finished writing into it
@@ -363,52 +368,64 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	return returnAnalyzedPaths, nil
 }
 
+// createAnalyzeJobs for parallel worker processing
+func createAnalyzeJobs(files []string, a *Analyzer, jobsChannel chan<- analyzerInfo) {
+	defer close(jobsChannel)
+	for _, file := range files {
+		jobsChannel <- analyzerInfo{
+			typesFlag:        a.Types,
+			excludeTypesFlag: a.ExcludeTypes,
+			filePath:         file,
+		}
+	}
+}
+
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, wg *sync.WaitGroup) {
-	defer wg.Done()
+func analyzeFileWorker(results, unwanted chan<- string, locCount chan<- int, jobsChannel <-chan analyzerInfo) {
+	for a := range jobsChannel {
+		ext := utils.GetExtension(a.filePath)
+		linesCount, _ := utils.LineCounter(a.filePath)
 
-	ext := utils.GetExtension(a.filePath)
-	linesCount, _ := utils.LineCounter(a.filePath)
-
-	switch ext {
-	// Dockerfile (direct identification)
-	case ".dockerfile", "Dockerfile":
-		if a.isAvailableType(dockerfile) {
-			results <- dockerfile
-			locCount <- linesCount
+		switch ext {
+		// Dockerfile (direct identification)
+		case ".dockerfile", "Dockerfile":
+			if a.isAvailableType(dockerfile) {
+				results <- dockerfile
+				locCount <- linesCount
+			}
+		// Dockerfile (indirect identification)
+		case "possibleDockerfile", ".ubi8", ".debian":
+			if a.isAvailableType(dockerfile) && isDockerfile(a.filePath) {
+				results <- dockerfile
+				locCount <- linesCount
+			} else {
+				unwanted <- a.filePath
+			}
+		// Terraform
+		case ".tf", "tfvars":
+			if a.isAvailableType(terraform) {
+				results <- terraform
+				locCount <- linesCount
+			}
+		// GRPC
+		case ".proto":
+			if a.isAvailableType(grpc) {
+				results <- grpc
+				locCount <- linesCount
+			}
+		// It could be Ansible Config or Ansible Inventory
+		case ".cfg", ".conf", ".ini":
+			if a.isAvailableType(ansible) {
+				results <- ansible
+				locCount <- linesCount
+			}
+		/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
+		Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager*/
+		case yaml, yml, json, sh:
+			a.checkContent(results, unwanted, locCount, linesCount, ext)
 		}
-	// Dockerfile (indirect identification)
-	case "possibleDockerfile", ".ubi8", ".debian":
-		if a.isAvailableType(dockerfile) && isDockerfile(a.filePath) {
-			results <- dockerfile
-			locCount <- linesCount
-		} else {
-			unwanted <- a.filePath
-		}
-	// Terraform
-	case ".tf", "tfvars":
-		if a.isAvailableType(terraform) {
-			results <- terraform
-			locCount <- linesCount
-		}
-	// GRPC
-	case ".proto":
-		if a.isAvailableType(grpc) {
-			results <- grpc
-			locCount <- linesCount
-		}
-	// It could be Ansible Config or Ansible Inventory
-	case ".cfg", ".conf", ".ini":
-		if a.isAvailableType(ansible) {
-			results <- ansible
-			locCount <- linesCount
-		}
-	/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
-	Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager*/
-	case yaml, yml, json, sh:
-		a.checkContent(results, unwanted, locCount, linesCount, ext)
 	}
 }
 
