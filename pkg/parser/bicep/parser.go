@@ -33,6 +33,8 @@ func (p *Parser) Parse(bicepPath string, _ []byte) ([]model.Document, []int, err
 
 	err = json.Unmarshal(fileContent, &doc)
 
+	fmt.Println("Parser function doc:", doc)
+
 	if err != nil {
 		return nil, nil, err
 	}

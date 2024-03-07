@@ -9,7 +9,6 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/utils"
 )
 
 // map[string]interface{}
@@ -75,11 +74,13 @@ func newBicepSyntax() *BicepSyntax {
 		Outputs:   Output{},
 		Modules:   []Module{},
 		Metadata:  &Metadata{},
+		Lines:     map[string]model.LineObject{},
 	}
 }
 
-const kicsLinesKey = "_kics_"
+//const kicsLinesKey = "_kics_"
 
+/*
 func Convert(bicep *BicepSyntax) (file *BicepSyntax) {
 	bicepSyntax := newBicepSyntax()
 	// handle panic during conversion process
@@ -90,25 +91,23 @@ func Convert(bicep *BicepSyntax) (file *BicepSyntax) {
 		}
 	}()
 	fmt.Printf("Bicep file conversion started %v", kicsLinesKey)
-	//paramLines := make(map[string]model.LineObject)
-	/*
-		variableLines := make(map[string]model.LineObject)
-		resourceLines := make(map[string]model.LineObject)
-		outputLines := make(map[string]model.LineObject)
-		moduleLines := make(map[string]model.LineObject)
 
-		for _, line := range lines {
-			switch line.Type {
-			case ParamType:
-				bicepSyntax.Param = convertARMParamToBicep(line)
-				paramLines[bicepLinesKey+line.Name] = model.LineObject{
-					Line: line.LineNumber,
-				}
+	resourceLinesBicep := []Resource{}
+	resourceLinesArm := []Resource{}
+
+	for _, line := range bicep.Lines {
+		switch line {
+		case bicep.Resources:
+			bicepSyntax.Resources = convertARMResourceToBicep(line)
+			paramLines[kicsLinesKey+line.Name] = model.LineObject{
+				Line: line.LineNumber,
 			}
 		}
-	*/
+	}
+
 	return bicepSyntax
 }
+*/
 
 func parserFiles(bicepFile, armFile string) (*BicepSyntax, error) {
 
