@@ -27,9 +27,8 @@ jobs:
           TOTAL_TESTS=$(cat test-results | grep -v TestQueriesContent/ | grep -v TestQueriesMetadata/ | grep -v TestQueries/ | grep PASS | wc -l)
           echo "Total Tests :: ${TOTAL_TESTS}"
           echo "::set-output name=total_tests::${TOTAL_TESTS}"
-          echo "coverage=${{ steps.testcov.outputs.coverage }}" >> $GITHUB_ENV
       - name: Checks if Go coverage is at least 74%
-        if: env.coverage < 74
+        if: steps.testcov.outputs.coverage < 74
         run: |
-          echo "Go coverage is lower than 74%: ${{ env.coverage }}%"
+          echo "Go coverage is lower than 74%: ${{ steps.testcov.outputs.coverage }}%"
           exit 1
