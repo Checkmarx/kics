@@ -26,7 +26,7 @@ func Test_ExecuteScan(t *testing.T) {
 			scanParams: Parameters{
 				ExcludePaths: []string{
 					"./../../test/fixtures/test_scan_cloudfront_logging_disabled/metadata.json",
-					"./../../test/fixtures/test_scan_cloudfront_logging_disabled/positive_expected_result.tf",
+					"./../../test/fixtures/test_scan_cloudfront_logging_disabled/test/positive_expected_result.tf",
 				},
 				Path:                    []string{"./../../test/fixtures/test_scan_cloudfront_logging_disabled/test/positive1.yaml"},
 				QueriesPath:             []string{"./../../test/fixtures/test_scan_cloudfront_logging_disabled"},
