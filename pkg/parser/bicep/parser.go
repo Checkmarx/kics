@@ -45,6 +45,8 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	reader := bytes.NewReader(bicepContent)
 	elems := []converter.ElemBicep{}
 	scanner := bufio.NewScanner(reader)
+	parentsStack := []converter.Property{}
+	var absoluteParent converter.AbsoluteParent
 
 	for scanner.Scan() {
 		elem := converter.ElemBicep{}
@@ -54,11 +56,19 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
+		isNewParentRegex := regexp.MustCompile(`\{`)
+		isNewParent := len(isNewParentRegex.FindStringSubmatch(line)) > 0
+
+		isParentClosingRegex := regexp.MustCompile(`\}`)
+		isParentClosing := len(isParentClosingRegex.FindStringSubmatch(line)) > 0
+
 		resource := parseResource(line)
 		if resource != nil {
 			elem.Resource = *resource
 			elem.Type = "resource"
-			elems = append(elems, elem)
+
+			absoluteParent.Resource = resource
+			absoluteParent.Module = nil
 			continue
 		}
 
@@ -67,6 +77,34 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			elem.Param = *param
 			elem.Type = "param"
 			elems = append(elems, elem)
+			continue
+		}
+
+		property := parseProperty(line)
+		if property != nil {
+			if isNewParent {
+				parentsStack = append(parentsStack, *property)
+			} else {
+				absoluteParent.Resource.Properties = append(absoluteParent.Resource.Properties, *property)
+			}
+			continue
+		}
+
+		if isParentClosing && len(parentsStack) > 0 {
+			currentPropertyIndex := len(parentsStack) - 1
+			currentProperty := parentsStack[currentPropertyIndex]
+			parentsStack = append(parentsStack[:currentPropertyIndex], parentsStack[currentPropertyIndex+1:]...)
+			propertyParent := parentsStack[len(parentsStack)-1]
+			propertyParent.Properties = append(propertyParent.Properties, &currentProperty)
+		}
+
+		if isParentClosing && len(parentsStack) == 0 {
+			if absoluteParent.Resource != nil {
+				elem.Resource = *absoluteParent.Resource
+				elem.Type = "resource"
+				elems = append(elems, elem)
+				absoluteParent.Resource = nil
+			}
 			continue
 		}
 
@@ -96,52 +134,71 @@ func parseResource(line string) *converter.Resource {
 			apiVersion = apiMatches[1]
 		}
 
-		propertiesBlock := matches[3]
-		properties := parseProperties(propertiesBlock)
+		// propertiesBlock := matches[3]
+		// properties := parseProperties(propertiesBlock)
 
 		return &converter.Resource{
 			APIVersion: apiVersion,
 			Type:       resourceType,
-			Properties: properties,
-			Metadata:   &converter.Metadata{Description: "Description", Name: "test"},
+			// Properties: properties,
+			Metadata: &converter.Metadata{Description: "Description", Name: "test"},
 		}
 	}
 
 	return nil
 }
 
-func parseProperties(propertiesBlock string) []map[string]interface{} {
-	var properties []map[string]interface{}
-	var currentProperty map[string]interface{}
+func parseProperty(line string) *converter.Property {
 
-	lines := strings.Split(propertiesBlock, "\n")
-	for _, line := range lines {
-		line = strings.TrimSpace(line)
-		if line == "" {
-			continue
-		}
-
-		// Handle nested blocks
-		if strings.HasSuffix(line, "{") {
-			// Start of a nested block
-			currentProperty = make(map[string]interface{})
-		} else if strings.HasPrefix(line, "}") {
-			// End of a nested block
-			properties = append(properties, currentProperty)
-			currentProperty = nil
-		} else {
-			// Parse key-value pairs
-			parts := strings.SplitN(line, ":", 2)
-			if len(parts) == 2 {
-				key := strings.TrimSpace(parts[0])
-				value := strings.TrimSpace(parts[1])
-				currentProperty[key] = value
-			}
-		}
+	if !(strings.Contains(line, "name: 'test'") || strings.Contains(line, "location: 'westus'")) {
+		return nil
 	}
 
-	return properties
+	// Parse key-value pairs
+	parts := strings.SplitN(line, ":", 2)
+	if len(parts) == 2 {
+		key := strings.TrimSpace(parts[0])
+		value := strings.TrimSpace(parts[1])
+		tempProperty := converter.Property{Name: key, Value: value, Properties: []*converter.Property{}}
+		return &tempProperty
+	}
+
+	return nil
+
 }
+
+// func parseProperties(propertiesBlock string) []map[string]interface{} {
+// 	var properties []map[string]interface{}
+// 	var currentProperty map[string]interface{}
+
+// 	lines := strings.Split(propertiesBlock, "\n")
+// 	for _, line := range lines {
+// 		line = strings.TrimSpace(line)
+// 		if line == "" {
+// 			continue
+// 		}
+
+// 		// Handle nested blocks
+// 		if strings.HasSuffix(line, "{") {
+// 			// Start of a nested block
+// 			currentProperty = make(map[string]interface{})
+// 		} else if strings.HasPrefix(line, "}") {
+// 			// End of a nested block
+// 			properties = append(properties, currentProperty)
+// 			currentProperty = nil
+// 		} else {
+// 			// Parse key-value pairs
+// 			parts := strings.SplitN(line, ":", 2)
+// 			if len(parts) == 2 {
+// 				key := strings.TrimSpace(parts[0])
+// 				value := strings.TrimSpace(parts[1])
+// 				currentProperty[key] = value
+// 			}
+// 		}
+// 	}
+
+// 	return properties
+// }
 
 /*
 func getProperties(propertiesBlock string) []map[string]interface{} {

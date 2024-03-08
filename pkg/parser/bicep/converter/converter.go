@@ -51,10 +51,10 @@ type Variable struct {
 }
 
 type Resource struct {
-	APIVersion string                   `json:"apiVersion"`
-	Type       string                   `json:"type"`
-	Metadata   *Metadata                `json:"metadata"`
-	Properties []map[string]interface{} `json:"properties"`
+	APIVersion string     `json:"apiVersion"`
+	Type       string     `json:"type"`
+	Metadata   *Metadata  `json:"metadata"`
+	Properties []Property `json:"properties"`
 }
 
 type Output struct {
@@ -67,6 +67,17 @@ type Module struct {
 	Name        string `json:"name"`
 	Path        string `json:"path"`
 	Description string `json:"description"`
+}
+
+type Property struct {
+	Name       string
+	Value      interface{}
+	Properties []*Property
+}
+
+type AbsoluteParent struct {
+	Resource *Resource
+	Module   *Module
 }
 
 func newJSONBicep() *JSONBicep {
