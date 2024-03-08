@@ -48,7 +48,7 @@ func parseResource(line string) *converter.Resource {
 		resourceType := strings.Split(matches[2], "@")[0]
 		resourceType = strings.ReplaceAll(resourceType, "'", "")
 		return &converter.Resource{
-			ApiVersion: "2023-01-01",
+			APIVersion: "2023-01-01",
 			Kind:       "StorageV2",
 			Location:   "westus",
 			Name:       "test",

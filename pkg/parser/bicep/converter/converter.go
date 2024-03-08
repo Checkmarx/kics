@@ -11,7 +11,7 @@ MultiLineDescriptions string `json:"multiDescriptions"`
 linesToIgnore    []int                       `json:"-"`
 linesNotToIgnore []int                       `json:"-"`
 */
-type JsonBicep struct {
+type JSONBicep struct {
 	Name           string                      `json:"name"`
 	Param          Param                       `json:"param"`
 	Variables      []Variable                  `json:"variables"`
@@ -55,7 +55,7 @@ type Property struct {
 }
 
 type Resource struct {
-	ApiVersion string    `json:"apiVersion"`
+	APIVersion string    `json:"apiVersion"`
 	Kind       string    `json:"kind"`
 	Location   string    `json:"location"`
 	Name       string    `json:"name"`
@@ -75,8 +75,8 @@ type Module struct {
 	Description string `json:"modDescription"`
 }
 
-func newJsonBicep() *JsonBicep {
-	return &JsonBicep{
+func newJSONBicep() *JSONBicep {
+	return &JSONBicep{
 		Name:           "",
 		Param:          Param{},
 		Variables:      []Variable{},
@@ -90,11 +90,10 @@ func newJsonBicep() *JsonBicep {
 }
 
 // Convert - converts Bicep file to JSON Bicep template
-func Convert(elems []ElemBicep) (file *JsonBicep, err error) {
+func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
+	var jBicep *JSONBicep = newJSONBicep()
 
-	var jBicep *JsonBicep = newJsonBicep()
-
-	//modules := []Module{}
+	// modules := []Module{}
 	resources := []Resource{}
 
 	for _, elem := range elems {
@@ -113,7 +112,7 @@ func Convert(elems []ElemBicep) (file *JsonBicep, err error) {
 	return jBicep, nil
 }
 
-//const kicsLinesKey = "_kics_"
+// const kicsLinesKey = "_kics_"
 
 /*
 func Convert(bicep *BicepSyntax) (file *BicepSyntax) {
