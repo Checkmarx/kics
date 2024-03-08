@@ -83,11 +83,11 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 func parseResource(line string) *converter.Resource {
 
 	resourceRegex := regexp.MustCompile(`^resource\s+(\S+)\s+'(\S+)'\s+=\s+\{\s*`)
+
 	matches := resourceRegex.FindStringSubmatch(line)
 	if matches != nil {
 		resourceType := strings.Split(matches[2], "@")[0]
 		resourceType = strings.ReplaceAll(resourceType, "'", "")
-		resourceName := matches[1]
 
 		apiVersion := ""
 		apiVersionRegex := regexp.MustCompile(`@(\S+)`)
@@ -95,18 +95,72 @@ func parseResource(line string) *converter.Resource {
 		if len(apiMatches) > 1 {
 			apiVersion = apiMatches[1]
 		}
+
+		propertiesBlock := matches[3]
+		properties := parseProperties(propertiesBlock)
+
 		return &converter.Resource{
 			APIVersion: apiVersion,
-			Kind:       "StorageV2",
-			Location:   "westus",
-			Name:       resourceName,
 			Type:       resourceType,
+			Properties: properties,
 			Metadata:   &converter.Metadata{Description: "Description", Name: "test"},
 		}
 	}
 
 	return nil
 }
+
+func parseProperties(propertiesBlock string) []map[string]interface{} {
+	var properties []map[string]interface{}
+	var currentProperty map[string]interface{}
+
+	lines := strings.Split(propertiesBlock, "\n")
+	for _, line := range lines {
+		line = strings.TrimSpace(line)
+		if line == "" {
+			continue
+		}
+
+		// Handle nested blocks
+		if strings.HasSuffix(line, "{") {
+			// Start of a nested block
+			currentProperty = make(map[string]interface{})
+		} else if strings.HasPrefix(line, "}") {
+			// End of a nested block
+			properties = append(properties, currentProperty)
+			currentProperty = nil
+		} else {
+			// Parse key-value pairs
+			parts := strings.SplitN(line, ":", 2)
+			if len(parts) == 2 {
+				key := strings.TrimSpace(parts[0])
+				value := strings.TrimSpace(parts[1])
+				currentProperty[key] = value
+			}
+		}
+	}
+
+	return properties
+}
+
+/*
+func getProperties(propertiesBlock string) []map[string]interface{} {
+	var properties []map[string]interface{}
+
+	fmt.Println(propertiesBlock)
+	propertyRegex := regexp.MustCompile(`\s*(\S+):\s+(.+)`)
+	line := ""
+	propertyMatches := propertyRegex.FindAllStringSubmatch(line, -1)
+
+	for _, match := range propertyMatches {
+		property := make(map[string]interface{})
+		property[match[1]] = match[2]
+		properties = append(properties, property)
+	}
+
+	return properties
+}
+*/
 
 // parse Param syntax from bicep file
 func parseParam(line string) *converter.Param {

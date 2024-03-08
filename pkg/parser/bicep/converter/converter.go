@@ -12,7 +12,7 @@ linesToIgnore    []int                       `json:"-"`
 linesNotToIgnore []int                       `json:"-"`
 */
 type JSONBicep struct {
-	Param          []Param                     `json:"param"`
+	Param          []Param                     `json:"parameters"`
 	Variables      []Variable                  `json:"variables"`
 	Resources      []Resource                  `json:"resources"`
 	Outputs        Output                      `json:"outputs"`
@@ -38,40 +38,35 @@ type Metadata struct {
 }
 
 type Param struct {
-	Name         string    `json:"paramName"`
-	Type         string    `json:"paramType"`
-	DefaultValue string    `json:"paramDefaultValue"`
-	Metadata     *Metadata `json:"paramMetadata"`
+	Name         string    `json:"name"`
+	Type         string    `json:"type"`
+	DefaultValue string    `json:"defaultValue"`
+	Metadata     *Metadata `json:"metadata"`
 }
 
 type Variable struct {
-	Name        string `json:"varName"`
-	Type        string `json:"varType"`
-	Description string `json:"varDescription"`
-}
-
-type Property struct {
+	Name        string `json:"name"`
+	Type        string `json:"type"`
+	Description string `json:"description"`
 }
 
 type Resource struct {
-	APIVersion string    `json:"apiVersion"`
-	Kind       string    `json:"kind"`
-	Location   string    `json:"location"`
-	Name       string    `json:"name"`
-	Type       string    `json:"type"`
-	Metadata   *Metadata `json:"metadata"`
+	APIVersion string                   `json:"apiVersion"`
+	Type       string                   `json:"type"`
+	Metadata   *Metadata                `json:"metadata"`
+	Properties []map[string]interface{} `json:"properties"`
 }
 
 type Output struct {
-	Name        string `json:"outName"`
-	Type        string `json:"outType"`
-	Description string `json:"outDescription"`
+	Type     string    `json:"type"`
+	Metadata *Metadata `json:"metadata"`
+	Value    string    `json:"value"`
 }
 
 type Module struct {
-	Name        string `json:"modName"`
-	Path        string `json:"modPath"`
-	Description string `json:"modDescription"`
+	Name        string `json:"name"`
+	Path        string `json:"path"`
+	Description string `json:"description"`
 }
 
 func newJSONBicep() *JSONBicep {
@@ -95,7 +90,7 @@ func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 	param := []Param{}
 
 	for _, elem := range elems {
-		if elem.Type == "resource" && elem.Resource.Name != "" {
+		if elem.Type == "resource" {
 			resources = append(resources, elem.Resource)
 		}
 		if elem.Type == "param" && elem.Param.Name != "" {
