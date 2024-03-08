@@ -28,7 +28,7 @@ jobs:
           echo "Total Tests :: ${TOTAL_TESTS}"
           echo "::set-output name=total_tests::${TOTAL_TESTS}"
       - name: Checks if Go coverage is at least 74%
-        if: steps.testcov.outputs.coverage < 75
+        if: steps.testcov.outputs.coverage < 74
         run: |
-          echo "Go coverage is lower than 75%: ${{ steps.testcov.outputs.coverage }}%"
+          echo "Go coverage is lower than 74%: ${{ steps.testcov.outputs.coverage }}%"
           exit 1
