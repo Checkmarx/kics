@@ -143,6 +143,7 @@ func MockService(paths []string,
 		&queryFilter,
 		map[string]bool{},
 		queryExecTimeout,
+		false,
 		true,
 		1,
 	)
