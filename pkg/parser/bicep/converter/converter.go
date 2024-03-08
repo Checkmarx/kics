@@ -12,8 +12,7 @@ linesToIgnore    []int                       `json:"-"`
 linesNotToIgnore []int                       `json:"-"`
 */
 type JSONBicep struct {
-	Name           string                      `json:"name"`
-	Param          Param                       `json:"param"`
+	Param          []Param                     `json:"param"`
 	Variables      []Variable                  `json:"variables"`
 	Resources      []Resource                  `json:"resources"`
 	Outputs        Output                      `json:"outputs"`
@@ -77,8 +76,7 @@ type Module struct {
 
 func newJSONBicep() *JSONBicep {
 	return &JSONBicep{
-		Name:           "",
-		Param:          Param{},
+		Param:          []Param{},
 		Variables:      []Variable{},
 		Resources:      []Resource{},
 		Outputs:        Output{},
@@ -91,54 +89,24 @@ func newJSONBicep() *JSONBicep {
 
 // Convert - converts Bicep file to JSON Bicep template
 func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
-	var jBicep *JSONBicep = newJSONBicep()
+	var jBicep = newJSONBicep()
 
-	// modules := []Module{}
 	resources := []Resource{}
+	param := []Param{}
 
 	for _, elem := range elems {
-		switch elem.Type {
-		case "resource":
-			resource := elem.Resource
-			if resource.Name != "" {
-				resources = append(resources, resource)
-				continue
-			}
+		if elem.Type == "resource" && elem.Resource.Name != "" {
+			resources = append(resources, elem.Resource)
+		}
+		if elem.Type == "param" && elem.Param.Name != "" {
+			param = append(param, elem.Param)
 		}
 	}
 
 	jBicep.Resources = resources
+	jBicep.Param = param
 
 	return jBicep, nil
 }
 
 // const kicsLinesKey = "_kics_"
-
-/*
-func Convert(bicep *BicepSyntax) (file *BicepSyntax) {
-	bicepSyntax := newBicepSyntax()
-	// handle panic during conversion process
-	defer func() {
-		if r := recover(); r != nil {
-			errMessage := "Recovered from panic during conversion of Bicep file " + file.Name
-			utils.HandlePanic(r, errMessage)
-		}
-	}()
-	fmt.Printf("Bicep file conversion started %v", kicsLinesKey)
-
-	resourceLinesBicep := []Resource{}
-	resourceLinesArm := []Resource{}
-
-	for _, line := range bicep.Lines {
-		switch line {
-		case bicep.Resources:
-			bicepSyntax.Resources = convertARMResourceToBicep(line)
-			paramLines[kicsLinesKey+line.Name] = model.LineObject{
-				Line: line.LineNumber,
-			}
-		}
-	}
-
-	return bicepSyntax
-}
-*/

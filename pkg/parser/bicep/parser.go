@@ -39,27 +39,6 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 	return []model.Document{doc}, nil, nil
 }
 
-// parse Resource syntax from bicep file
-func parseResource(line string) *converter.Resource {
-
-	resourceRegex := regexp.MustCompile(`^resource\s+(\S+)\s+'(\S+)'`)
-	matches := resourceRegex.FindStringSubmatch(line)
-	if matches != nil {
-		resourceType := strings.Split(matches[2], "@")[0]
-		resourceType = strings.ReplaceAll(resourceType, "'", "")
-		return &converter.Resource{
-			APIVersion: "2023-01-01",
-			Kind:       "StorageV2",
-			Location:   "westus",
-			Name:       "test",
-			Type:       resourceType,
-			Metadata:   &converter.Metadata{Description: "Description", Name: "test"},
-		}
-	}
-
-	return nil
-}
-
 // parse the bicep file returning a list of elemBicep struct and an error
 func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 
@@ -83,6 +62,14 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
+		param := parseParam(line)
+		if param != nil {
+			elem.Param = *param
+			elem.Type = "param"
+			elems = append(elems, elem)
+			continue
+		}
+
 	}
 
 	if err := scanner.Err(); err != nil {
@@ -90,6 +77,55 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	}
 
 	return elems, nil
+}
+
+// parse Resource syntax from bicep file
+func parseResource(line string) *converter.Resource {
+
+	resourceRegex := regexp.MustCompile(`^resource\s+(\S+)\s+'(\S+)'\s+=\s+\{\s*`)
+	matches := resourceRegex.FindStringSubmatch(line)
+	if matches != nil {
+		resourceType := strings.Split(matches[2], "@")[0]
+		resourceType = strings.ReplaceAll(resourceType, "'", "")
+		resourceName := matches[1]
+
+		apiVersion := ""
+		apiVersionRegex := regexp.MustCompile(`@(\S+)`)
+		apiMatches := apiVersionRegex.FindStringSubmatch(matches[2])
+		if len(apiMatches) > 1 {
+			apiVersion = apiMatches[1]
+		}
+		return &converter.Resource{
+			APIVersion: apiVersion,
+			Kind:       "StorageV2",
+			Location:   "westus",
+			Name:       resourceName,
+			Type:       resourceType,
+			Metadata:   &converter.Metadata{Description: "Description", Name: "test"},
+		}
+	}
+
+	return nil
+}
+
+// parse Param syntax from bicep file
+func parseParam(line string) *converter.Param {
+
+	paramRegex := regexp.MustCompile(`^param\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
+	matches := paramRegex.FindStringSubmatch(line)
+	if matches != nil {
+		paramName := matches[1]
+		paramType := matches[2]
+		paramDefaultValue := matches[3]
+		return &converter.Param{
+			Name:         paramName,
+			Type:         paramType,
+			DefaultValue: paramDefaultValue,
+			Metadata:     &converter.Metadata{Description: "Description", Name: "test"},
+		}
+	}
+
+	return nil
 }
 
 // GetKind returns the kind of the parser
