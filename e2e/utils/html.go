@@ -47,13 +47,14 @@ func HTMLValidation(t *testing.T, file string) {
 	for _, header := range headerIds {
 		expectedValue := getElementByID(expectedHTML, header)
 		actualValue := getElementByID(actualHTML, header)
-		sliceOfActual = append(sliceOfActual, actualValue.LastChild.Data)
+		newDataActual := strings.Split(actualValue.LastChild.Data, ",")
+		sliceOfActual = append(sliceOfActual, newDataActual...)
 		// Adapt path if running locally (dev)
 		if GetKICSDockerImageName() == "" {
 			expectedValue.LastChild.Data = KicsDevPathAdapter(expectedValue.LastChild.Data)
 		}
-		newData := strings.Split(expectedValue.LastChild.Data, ",")
-		sliceOfExpected = append(sliceOfExpected, newData...)
+		newDataExpected := strings.Split(expectedValue.LastChild.Data, ",")
+		sliceOfExpected = append(sliceOfExpected, newDataExpected...)
 		require.NotNil(t, actualValue.LastChild, "[%s] Invalid value in Element ID <%s>", file, header)
 	}
 	require.ElementsMatch(t, sliceOfExpected, sliceOfActual,
