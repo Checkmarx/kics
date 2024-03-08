@@ -159,9 +159,9 @@
 				
 				<option value="file51">github.com/Checkmarx/kics/pkg/engine/vulnerability_utils.go (76.0%)</option>
 				
-				<option value="file52">github.com/Checkmarx/kics/pkg/kics/resolver_sink.go (0.0%)</option>
+				<option value="file52">github.com/Checkmarx/kics/pkg/kics/resolver_sink.go (83.7%)</option>
 				
-				<option value="file53">github.com/Checkmarx/kics/pkg/kics/service.go (40.3%)</option>
+				<option value="file53">github.com/Checkmarx/kics/pkg/kics/service.go (44.4%)</option>
 				
 				<option value="file54">github.com/Checkmarx/kics/pkg/kics/sink.go (38.2%)</option>
 				
@@ -375,14 +375,14 @@ var SecretsQueryMetadataJSON string
 var SecretsQueryRegexRulesJSON string
 
 // GetEmbeddedLibrary returns the embedded library.rego for the platform passed in the argument
-func GetEmbeddedLibrary(platform string) (string, error) <span class="cov10" title="11268">{
+func GetEmbeddedLibrary(platform string) (string, error) <span class="cov10" title="11271">{
         content, err := embeddedLibraries.ReadFile("libraries/" + platform + ".rego")
 
         return string(content), err
 }</span>
 
 // GetEmbeddedLibrary returns the embedded library.rego for the platform passed in the argument
-func GetEmbeddedLibraryData(platform string) (string, error) <span class="cov9" title="11262">{
+func GetEmbeddedLibraryData(platform string) (string, error) <span class="cov9" title="11265">{
         content, err := embeddedLibraryData.ReadFile("libraries/" + platform + ".json")
 
         return string(content), err
@@ -2565,13 +2565,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="32">total += v
+                <span class="cov8" title="34">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2596,14 +2596,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov3" title="3">{
+        if math.IsNaN(metric) </span><span class="cov2" title="2">{
                 metric = 0
         }</span>
 
@@ -5650,7 +5650,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -8933,18 +8933,18 @@ import (
         "github.com/rs/zerolog/log"
 )
 
-func (s *Service) resolverSink(ctx context.Context, filename, scanID string, openAPIResolveReferences bool) ([]string, error) <span class="cov0" title="0">{
+func (s *Service) resolverSink(ctx context.Context, filename, scanID string, openAPIResolveReferences bool) ([]string, error) <span class="cov10" title="3">{
         kind := s.Resolver.GetType(filename)
-        if kind == model.KindCOMMON </span><span class="cov0" title="0">{
+        if kind == model.KindCOMMON </span><span class="cov1" title="1">{
                 return []string{}, nil
         }</span>
-        <span class="cov0" title="0">resFiles, err := s.Resolver.Resolve(filename, kind)
-        if err != nil </span><span class="cov0" title="0">{
+        <span class="cov6" title="2">resFiles, err := s.Resolver.Resolve(filename, kind)
+        if err != nil </span><span class="cov1" title="1">{
                 log.Err(err).Msgf("failed to render file content")
-                return []string{}, nil
+                return []string{}, err
         }</span>
 
-        <span class="cov0" title="0">for _, rfile := range resFiles.File </span><span class="cov0" title="0">{
+        <span class="cov1" title="1">for _, rfile := range resFiles.File </span><span class="cov10" title="3">{
                 s.Tracker.TrackFileFound(rfile.FileName)
 
                 isMinified := minified.IsMinified(rfile.FileName, rfile.Content)
@@ -8957,9 +8957,9 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
                         return []string{}, nil</span>
                 }
 
-                <span class="cov0" title="0">if kind == model.KindHELM </span><span class="cov0" title="0">{
+                <span class="cov10" title="3">if kind == model.KindHELM </span><span class="cov10" title="3">{
                         ignoreList, errorIL := s.getOriginalIgnoreLines(rfile.FileName, rfile.OriginalData, openAPIResolveReferences, isMinified)
-                        if errorIL == nil </span><span class="cov0" title="0">{
+                        if errorIL == nil </span><span class="cov6" title="2">{
                                 documents.IgnoreLines = ignoreList
 
                                 // Need to ignore #KICS_HELM_ID Line
@@ -8969,9 +8969,9 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
                         documents.CountLines = bytes.Count(rfile.OriginalData, []byte{'\n'}) + 1
                 }</span>
 
-                <span class="cov0" title="0">fileCommands := s.Parser.CommentsCommands(rfile.FileName, rfile.OriginalData)
+                <span class="cov10" title="3">fileCommands := s.Parser.CommentsCommands(rfile.FileName, rfile.OriginalData)
 
-                for _, document := range documents.Docs </span><span class="cov0" title="0">{
+                for _, document := range documents.Docs </span><span class="cov10" title="3">{
                         _, err = json.Marshal(document)
                         if err != nil </span><span class="cov0" title="0">{
                                 sentryReport.ReportSentry(&amp;sentryReport.Report{
@@ -8984,11 +8984,11 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
                                 continue</span>
                         }
 
-                        <span class="cov0" title="0">if len(documents.IgnoreLines) &gt; 0 </span><span class="cov0" title="0">{
+                        <span class="cov10" title="3">if len(documents.IgnoreLines) &gt; 0 </span><span class="cov1" title="1">{
                                 sort.Ints(documents.IgnoreLines)
                         }</span>
 
-                        <span class="cov0" title="0">file := model.FileMetadata{
+                        <span class="cov10" title="3">file := model.FileMetadata{
                                 ID:                uuid.New().String(),
                                 ScanID:            scanID,
                                 Document:          PrepareScanDocument(document, kind),
@@ -9007,25 +9007,25 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
                         }
                         s.saveToFile(ctx, &amp;file)</span>
                 }
-                <span class="cov0" title="0">s.Tracker.TrackFileParse(rfile.FileName)
+                <span class="cov10" title="3">s.Tracker.TrackFileParse(rfile.FileName)
                 s.Tracker.TrackFileFoundCountLines(documents.CountLines)
                 s.Tracker.TrackFileParseCountLines(documents.CountLines - len(documents.IgnoreLines))
                 s.Tracker.TrackFileIgnoreCountLines(len(documents.IgnoreLines))</span>
         }
-        <span class="cov0" title="0">return resFiles.Excluded, nil</span>
+        <span class="cov1" title="1">return resFiles.Excluded, nil</span>
 }
 
 func (s *Service) getOriginalIgnoreLines(filename string,
         originalFile []uint8,
-        openAPIResolveReferences, isMinified bool) (ignoreLines []int, err error) <span class="cov0" title="0">{
-        refactor := regexp.MustCompile(`.*\n?.*KICS\_HELM\_ID.+\n`).ReplaceAll(originalFile, []uint8{})
+        openAPIResolveReferences, isMinified bool) (ignoreLines []int, err error) <span class="cov10" title="3">{
+        refactor := regexp.MustCompile(`.*\n?.*KICS_HELM_ID.+\n`).ReplaceAll(originalFile, []uint8{})
         refactor = regexp.MustCompile(`{{-\s*(.*?)\s*}}`).ReplaceAll(refactor, []uint8{})
 
         documentsOriginal, err := s.Parser.Parse(filename, refactor, openAPIResolveReferences, isMinified)
-        if err == nil </span><span class="cov0" title="0">{
+        if err == nil </span><span class="cov6" title="2">{
                 ignoreLines = documentsOriginal.IgnoreLines
         }</span>
-        <span class="cov0" title="0">return</span>
+        <span class="cov10" title="3">return</span>
 }
 </pre>
 		
@@ -9121,7 +9121,7 @@ func (s *Service) StartScan(
         scanID string,
         errCh chan&lt;- error,
         wg *sync.WaitGroup,
-        currentQuery chan&lt;- int64) <span class="cov6" title="4">{
+        currentQuery chan&lt;- int64) <span class="cov3" title="4">{
         log.Debug().Msg("service.StartScan()")
         defer wg.Done()
 
@@ -9135,7 +9135,7 @@ func (s *Service) StartScan(
                 errCh &lt;- errors.Wrap(err, "failed to inspect secrets")
         }</span>
 
-        <span class="cov6" title="4">vulnerabilities, err := s.Inspector.Inspect(
+        <span class="cov3" title="4">vulnerabilities, err := s.Inspector.Inspect(
                 ctx,
                 scanID,
                 s.files,
@@ -9146,7 +9146,7 @@ func (s *Service) StartScan(
         if err != nil </span><span class="cov0" title="0">{
                 errCh &lt;- errors.Wrap(err, "failed to inspect files")
         }</span>
-        <span class="cov6" title="4">vulnerabilities = append(vulnerabilities, secretsVulnerabilities...)
+        <span class="cov3" title="4">vulnerabilities = append(vulnerabilities, secretsVulnerabilities...)
 
         updateMaskedSecrets(&amp;vulnerabilities, s.SecretsInspector.SecretTracker)
 
@@ -9200,41 +9200,41 @@ func getContent(rc io.Reader, data []byte, maxSizeMB int, filename string) (*Con
 }
 
 // GetVulnerabilities returns a list of scan detected vulnerabilities
-func (s *Service) GetVulnerabilities(ctx context.Context, scanID string) ([]model.Vulnerability, error) <span class="cov6" title="4">{
+func (s *Service) GetVulnerabilities(ctx context.Context, scanID string) ([]model.Vulnerability, error) <span class="cov3" title="4">{
         return s.Storage.GetVulnerabilities(ctx, scanID)
 }</span>
 
 // GetScanSummary returns how many vulnerabilities of each severity was found
-func (s *Service) GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error) <span class="cov6" title="4">{
+func (s *Service) GetScanSummary(ctx context.Context, scanIDs []string) ([]model.SeveritySummary, error) <span class="cov3" title="4">{
         return s.Storage.GetScanSummary(ctx, scanIDs)
 }</span>
 
-func (s *Service) saveToFile(ctx context.Context, file *model.FileMetadata) <span class="cov0" title="0">{
+func (s *Service) saveToFile(ctx context.Context, file *model.FileMetadata) <span class="cov3" title="3">{
         err := s.Storage.SaveFile(ctx, file)
-        if err == nil </span><span class="cov0" title="0">{
+        if err == nil </span><span class="cov3" title="3">{
                 s.files = append(s.files, *file)
         }</span>
 }
 
 // PrepareScanDocument removes _kics_lines from payload and parses json filters
-func PrepareScanDocument(body map[string]interface{}, kind model.FileKind) map[string]interface{} <span class="cov1" title="1">{
+func PrepareScanDocument(body map[string]interface{}, kind model.FileKind) map[string]interface{} <span class="cov3" title="4">{
         var bodyMap map[string]interface{}
         j, err := json.Marshal(body)
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("failed to remove kics line information")
                 return body
         }</span>
-        <span class="cov1" title="1">if err := json.Unmarshal(j, &amp;bodyMap); err != nil </span><span class="cov0" title="0">{
+        <span class="cov3" title="4">if err := json.Unmarshal(j, &amp;bodyMap); err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("failed to remove kics line information: '%s'", err)
                 return body
         }</span>
-        <span class="cov1" title="1">prepareScanDocumentRoot(bodyMap, kind)
+        <span class="cov3" title="4">prepareScanDocumentRoot(bodyMap, kind)
         return bodyMap</span>
 }
 
-func prepareScanDocumentRoot(body interface{}, kind model.FileKind) <span class="cov7" title="6">{
+func prepareScanDocumentRoot(body interface{}, kind model.FileKind) <span class="cov8" title="37">{
         switch bodyType := body.(type) </span>{
-        case map[string]interface{}:<span class="cov7" title="6">
+        case map[string]interface{}:<span class="cov8" title="37">
                 prepareScanDocumentValue(bodyType, kind)</span>
         case []interface{}:<span class="cov0" title="0">
                 for _, indx := range bodyType </span><span class="cov0" title="0">{
@@ -9243,17 +9243,17 @@ func prepareScanDocumentRoot(body interface{}, kind model.FileKind) <span class=
         }
 }
 
-func prepareScanDocumentValue(bodyType map[string]interface{}, kind model.FileKind) <span class="cov7" title="6">{
+func prepareScanDocumentValue(bodyType map[string]interface{}, kind model.FileKind) <span class="cov8" title="37">{
         delete(bodyType, "_kics_lines")
-        for key, v := range bodyType </span><span class="cov10" title="11">{
+        for key, v := range bodyType </span><span class="cov10" title="93">{
                 switch value := v.(type) </span>{
-                case map[string]interface{}:<span class="cov6" title="4">
+                case map[string]interface{}:<span class="cov7" title="27">
                         prepareScanDocumentRoot(value, kind)</span>
-                case []interface{}:<span class="cov1" title="1">
-                        for _, indx := range value </span><span class="cov1" title="1">{
+                case []interface{}:<span class="cov4" title="6">
+                        for _, indx := range value </span><span class="cov4" title="6">{
                                 prepareScanDocumentRoot(indx, kind)
                         }</span>
-                case string:<span class="cov7" title="6">
+                case string:<span class="cov8" title="56">
                         if field, ok := lines[kind]; ok &amp;&amp; utils.Contains(key, field) </span><span class="cov1" title="1">{
                                 bodyType[key] = resolveJSONFilter(value)
                         }</span>
@@ -9261,7 +9261,7 @@ func prepareScanDocumentValue(bodyType map[string]interface{}, kind model.FileKi
         }
 }
 
-func updateMaskedSecrets(vulnerabilities *[]model.Vulnerability, maskedSecretsTracked []secrets.SecretTracker) <span class="cov6" title="4">{
+func updateMaskedSecrets(vulnerabilities *[]model.Vulnerability, maskedSecretsTracked []secrets.SecretTracker) <span class="cov3" title="4">{
         for idx := range *vulnerabilities </span><span class="cov0" title="0">{
                 for _, secretT := range maskedSecretsTracked </span><span class="cov0" title="0">{
                         updateMaskedSecretLine(&amp;(*vulnerabilities)[idx], secretT)
@@ -22712,7 +22712,7 @@ func (r *Resolver) Resolve(filePath string, kind model.FileKind) (model.Resolved
         if r, ok := r.resolvers[kind]; ok </span><span class="cov1" title="1">{
                 obj, err := r.Resolve(filePath)
                 if err != nil </span><span class="cov0" title="0">{
-                        return model.ResolvedFiles{}, nil
+                        return model.ResolvedFiles{}, err
                 }</span>
                 <span class="cov1" title="1">log.Debug().Msgf("resolver.Resolve() rendered file: %s", filePath)
                 return obj, nil</span>
