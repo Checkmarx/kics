@@ -2565,13 +2565,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="35">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov8" title="35">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2603,7 +2603,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov2" title="2">{
+        if math.IsNaN(metric) </span><span class="cov3" title="3">{
                 metric = 0
         }</span>
 
@@ -5650,7 +5650,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -6949,12 +6949,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="31509">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="31511">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="31509">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="31162">{
+                <span class="cov9" title="31511">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="31164">{
                         return skipFolder
                 }</span>
 
@@ -7026,7 +7026,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov6" title="346">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="31528">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="31530">{
         s.mu.RLock()
         defer s.mu.RUnlock()
 
@@ -7052,12 +7052,12 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="3">return false, nil</span>
         }
 
-        <span class="cov9" title="24520">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="24522">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="24520">ext := utils.GetExtension(path)
-        if !extensions.Include(ext) </span><span class="cov9" title="24174">{
+        <span class="cov9" title="24522">ext := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="24176">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
@@ -7351,7 +7351,7 @@ func compileRegexQueries(
                         return regexQueries, err
                 }</span>
                 <span class="cov7" title="289">regexQueries[i].Regex = compiledRegexp
-                for j := range regexQueries[i].AllowRules </span><span class="cov6" title="192">{
+                for j := range regexQueries[i].AllowRules </span><span class="cov6" title="200">{
                         regexQueries[i].AllowRules[j].Regex = regexp.MustCompile(regexQueries[i].AllowRules[j].RegexStr)
                 }</span>
         }
@@ -7438,7 +7438,7 @@ func IsAllowRule(s string, query *RegexQuery, allowRules []AllowRule) bool <span
 // AllowRuleMatches return all the allow rules matches for the secret queries
 func AllowRuleMatches(s string, allowRules []AllowRule) [][]int <span class="cov3" title="6">{
         allowRuleMatches := [][]int{}
-        for i := range allowRules </span><span class="cov6" title="132">{
+        for i := range allowRules </span><span class="cov6" title="136">{
                 allowRuleMatches = append(allowRuleMatches, allowRules[i].Regex.FindAllStringIndex(s, -1)...)
         }</span>
         <span class="cov3" title="6">return allowRuleMatches</span>
@@ -23038,7 +23038,7 @@ func compileRegexQueries(allRegexQueries []secrets.RegexQuery) ([]secrets.RegexQ
                 }</span>
                 <span class="cov8" title="70">allRegexQueries[i].Regex = compiledRegexp
 
-                for j := range allRegexQueries[i].AllowRules </span><span class="cov8" title="48">{
+                for j := range allRegexQueries[i].AllowRules </span><span class="cov8" title="50">{
                         allRegexQueries[i].AllowRules[j].Regex = regexp.MustCompile(allRegexQueries[i].AllowRules[j].RegexStr)
                 }</span>
         }
