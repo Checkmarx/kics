@@ -52,7 +52,8 @@ func HTMLValidation(t *testing.T, file string) {
 		if GetKICSDockerImageName() == "" {
 			expectedValue.LastChild.Data = KicsDevPathAdapter(expectedValue.LastChild.Data)
 		}
-		sliceOfExpected = append(sliceOfExpected, expectedValue.LastChild.Data)
+		newData := strings.Split(expectedValue.LastChild.Data, ",")
+		sliceOfExpected = append(sliceOfExpected, newData...)
 		require.NotNil(t, actualValue.LastChild, "[%s] Invalid value in Element ID <%s>", file, header)
 	}
 	require.ElementsMatch(t, sliceOfExpected, sliceOfActual,
