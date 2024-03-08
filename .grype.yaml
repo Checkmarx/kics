@@ -4,8 +4,6 @@ ignore:
   - package:
       location: "/root/.terraform.d/plugins/linux_amd64/terraform-provider-**"
   - package:
-      location: "/usr/bin/terraformer"
-  - package:
       location: "/usr/bin/terraform"
   - package:
       location: "/usr/local/bin/terraform"
