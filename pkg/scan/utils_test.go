@@ -240,48 +240,35 @@ func Test_LogLoadingQueriesType(t *testing.T) {
 
 func Test_ExtractPathType(t *testing.T) {
 	tests := []struct {
-		name                string
-		paths               []string
-		expectedTerraformer []string
-		expectedKuberneter  []string
-		expectedPaths       []string
+		name               string
+		paths              []string
+		expectedKuberneter []string
+		expectedPaths      []string
 	}{
 		{
-			name:                "terraformer",
-			paths:               []string{"terraformer::*:*:*"},
-			expectedTerraformer: []string{"*:*:*"},
-			expectedKuberneter:  []string(nil),
-			expectedPaths:       []string(nil),
-		},
-
-		{
-			name:                "kuberneter",
-			paths:               []string{"kuberneter::*:*:*"},
-			expectedTerraformer: []string(nil),
-			expectedKuberneter:  []string{"*:*:*"},
-			expectedPaths:       []string(nil),
+			name:               "kuberneter",
+			paths:              []string{"kuberneter::*:*:*"},
+			expectedKuberneter: []string{"*:*:*"},
+			expectedPaths:      []string(nil),
 		},
 		{
-			name:                "count progress and utils folder files",
-			paths:               []string{filepath.Join("..", "..", "pkg", "progress"), filepath.Join("..", "..", "pkg", "utils")},
-			expectedTerraformer: []string(nil),
-			expectedKuberneter:  []string(nil),
-			expectedPaths:       []string{filepath.Join("..", "..", "pkg", "progress"), filepath.Join("..", "..", "pkg", "utils")},
+			name:               "count progress and utils folder files",
+			paths:              []string{filepath.Join("..", "..", "pkg", "progress"), filepath.Join("..", "..", "pkg", "utils")},
+			expectedKuberneter: []string(nil),
+			expectedPaths:      []string{filepath.Join("..", "..", "pkg", "progress"), filepath.Join("..", "..", "pkg", "utils")},
 		},
 		{
-			name:                "empty",
-			paths:               []string{},
-			expectedTerraformer: []string(nil),
-			expectedKuberneter:  []string(nil),
-			expectedPaths:       []string(nil),
+			name:               "empty",
+			paths:              []string{},
+			expectedKuberneter: []string(nil),
+			expectedPaths:      []string(nil),
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 
-			vPaths, vTerraformer, vKuberneter := extractPathType(tt.paths)
+			vPaths, vKuberneter := extractPathType(tt.paths)
 
-			require.Equal(t, tt.expectedTerraformer, vTerraformer)
 			require.Equal(t, tt.expectedKuberneter, vKuberneter)
 			require.Equal(t, tt.expectedPaths, vPaths)
 
@@ -292,34 +279,10 @@ func Test_ExtractPathType(t *testing.T) {
 func Test_CombinePaths(t *testing.T) {
 	tests := []struct {
 		name           string
-		terraformer    provider.ExtractedPath
 		kuberneter     provider.ExtractedPath
 		regular        provider.ExtractedPath
 		expectedOutput provider.ExtractedPath
 	}{
-		{
-			name: "terraformer ExtractedPath",
-			terraformer: provider.ExtractedPath{
-				Path: []string{""},
-				ExtractionMap: map[string]model.ExtractedPathObject{
-					"": {
-						Path:      "",
-						LocalPath: true,
-					},
-				},
-			},
-			kuberneter: provider.ExtractedPath{},
-			regular:    provider.ExtractedPath{},
-			expectedOutput: provider.ExtractedPath{
-				Path: []string{""},
-				ExtractionMap: map[string]model.ExtractedPathObject{
-					"": {
-						Path:      "",
-						LocalPath: true,
-					},
-				},
-			},
-		},
 		{
 			name: "kuberneter ExtractedPath",
 			kuberneter: provider.ExtractedPath{
@@ -331,8 +294,7 @@ func Test_CombinePaths(t *testing.T) {
 					},
 				},
 			},
-			terraformer: provider.ExtractedPath{},
-			regular:     provider.ExtractedPath{},
+			regular: provider.ExtractedPath{},
 			expectedOutput: provider.ExtractedPath{
 				Path: []string{""},
 				ExtractionMap: map[string]model.ExtractedPathObject{
@@ -354,8 +316,7 @@ func Test_CombinePaths(t *testing.T) {
 					},
 				},
 			},
-			terraformer: provider.ExtractedPath{},
-			kuberneter:  provider.ExtractedPath{},
+			kuberneter: provider.ExtractedPath{},
 			expectedOutput: provider.ExtractedPath{
 				Path: []string{"kics/assets/queries/terraform/alicloud/action_trail_logging_all_regions_disabled"},
 				ExtractionMap: map[string]model.ExtractedPathObject{
@@ -385,8 +346,7 @@ func Test_CombinePaths(t *testing.T) {
 				},
 			},
 
-			terraformer: provider.ExtractedPath{},
-			kuberneter:  provider.ExtractedPath{},
+			kuberneter: provider.ExtractedPath{},
 			expectedOutput: provider.ExtractedPath{
 				Path: []string{
 					"/home/miguel/cx/kics/assets/queries/terraform/alicloud/action_trail_logging_all_regions_disabled",
@@ -411,7 +371,7 @@ func Test_CombinePaths(t *testing.T) {
 				Path:          []string{},
 				ExtractionMap: make(map[string]model.ExtractedPathObject),
 			}
-			v := combinePaths(tt.terraformer, tt.kuberneter, tt.regular, extPath, extPath)
+			v := combinePaths(tt.kuberneter, tt.regular, extPath, extPath)
 
 			require.Equal(t, tt.expectedOutput, v)
 		})
