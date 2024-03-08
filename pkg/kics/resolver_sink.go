@@ -24,7 +24,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 	resFiles, err := s.Resolver.Resolve(filename, kind)
 	if err != nil {
 		log.Err(err).Msgf("failed to render file content")
-		return []string{}, nil
+		return []string{}, err
 	}
 
 	for _, rfile := range resFiles.File {
@@ -101,7 +101,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 func (s *Service) getOriginalIgnoreLines(filename string,
 	originalFile []uint8,
 	openAPIResolveReferences, isMinified bool) (ignoreLines []int, err error) {
-	refactor := regexp.MustCompile(`.*\n?.*KICS\_HELM\_ID.+\n`).ReplaceAll(originalFile, []uint8{})
+	refactor := regexp.MustCompile(`.*\n?.*KICS_HELM_ID.+\n`).ReplaceAll(originalFile, []uint8{})
 	refactor = regexp.MustCompile(`{{-\s*(.*?)\s*}}`).ReplaceAll(refactor, []uint8{})
 
 	documentsOriginal, err := s.Parser.Parse(filename, refactor, openAPIResolveReferences, isMinified)
