@@ -28,7 +28,7 @@ IAM password should have the required symbols<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="9 5"
+```tf title="Positive test num. 1 - tf file" hl_lines="9 5"
 resource "aws_iam_account_password_policy" "positive1" {
   require_lowercase_characters   = true
   require_numbers                = true

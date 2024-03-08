@@ -6,6 +6,8 @@
   "descriptionText": "If a response is head or its code is 204 or 304, it shouldn't have a content defined",
   "descriptionUrl": "https://swagger.io/docs/specification/describing-responses/",
   "platform": "OpenAPI",
+  "descriptionID": "309e8e76",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "268defd2-2839-4e15-8cbc-de86eb38c231",
@@ -14,6 +16,5 @@
       "descriptionText": "If a response is head or its code is 204 or 304, it shouldn't have a schema defined"
     }
   },
-  "aggregation": 2,
-  "descriptionID": "309e8e76"
+  "cwe": ""
 }

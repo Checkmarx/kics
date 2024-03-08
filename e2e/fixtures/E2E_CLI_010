@@ -3,6 +3,7 @@ valid arguments:
   Ansible
   AzureResourceManager
   Buildah
+  CICD
   CloudFormation
   Crossplane
   DockerCompose

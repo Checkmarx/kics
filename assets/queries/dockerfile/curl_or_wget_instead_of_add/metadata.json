@@ -6,5 +6,6 @@
   "descriptionText": "Use of Curl or Wget should be done instead of Add to fetch packages from remote URLs due to the use of Add being strongly discouraged",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
   "platform": "Dockerfile",
-  "descriptionID": "29e8216b"
+  "descriptionID": "29e8216b",
+  "cwe": "610"
 }

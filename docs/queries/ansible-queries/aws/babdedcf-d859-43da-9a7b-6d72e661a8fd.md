@@ -28,7 +28,7 @@ IAM role allows all services or principals to assume it<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="17 4"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="17 4"
 - name: Create IAM Managed Policy
   community.aws.iam_managed_policy:
     policy_name: "ManagedPolicy"

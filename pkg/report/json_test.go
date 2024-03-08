@@ -30,6 +30,14 @@ var jsonTests = []struct {
 		},
 		expectedResult: test.SummaryMock,
 	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCWE,
+			path:     "./testdir",
+			filename: "testout2",
+		},
+		expectedResult: test.SummaryMockCWE,
+	},
 }
 
 // TestPrintJSONReport tests the functions [PrintJSONReport()] and all the methods called by them

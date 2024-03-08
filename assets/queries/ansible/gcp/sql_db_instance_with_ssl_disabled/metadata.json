@@ -3,9 +3,10 @@
   "queryName": "SQL DB Instance With SSL Disabled",
   "severity": "HIGH",
   "category": "Encryption",
-  "descriptionText": "Cloud SQL Database Instance should have SLL enabled",
+  "descriptionText": "Cloud SQL Database Instance should have SSL enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_sql_instance_module.html#parameter-settings/ip_configuration/require_ssl",
   "platform": "Ansible",
   "descriptionID": "50bb06d6",
-  "cloudProvider": "gcp"
+  "cloudProvider": "gcp",
+  "cwe": ""
 }

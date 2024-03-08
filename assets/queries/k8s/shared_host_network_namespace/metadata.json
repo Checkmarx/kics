@@ -6,5 +6,6 @@
   "descriptionText": "Container should not share the host network namespace",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
   "platform": "Kubernetes",
-  "descriptionID": "50e5de80"
+  "descriptionID": "50e5de80",
+  "cwe": ""
 }

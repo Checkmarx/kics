@@ -76,7 +76,9 @@
                 "aws",
                 "azure",
                 "common",
-                "gcp"
+                "gcp",
+                "nifcloud",
+                "tencentcloud"
             ]
         },
         "platform": {
@@ -85,6 +87,7 @@
                 "Ansible",
                 "AzureResourceManager",
                 "Buildah",
+                "CICD",
                 "CloudFormation",
                 "Crossplane",
                 "Common",
@@ -138,6 +141,15 @@
                     }
                 }
             }
+        },
+        "experimental": {
+            "type": "string",
+            "enum": [
+                "true"
+            ]
+        },
+        "cwe": {
+            "type": "string"
         }
     }
 }

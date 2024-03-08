@@ -33,6 +33,7 @@
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
 			"category": "Networking and Firewall",
+      "experimental": false,
 			"description": "AWS Security Group Ingress should have a single port",
 			"description_id": "5f2b65f3",
 			"files": [

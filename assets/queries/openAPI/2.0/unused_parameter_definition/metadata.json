@@ -6,5 +6,6 @@
   "descriptionText": "All global parameters definitions  should be in use",
   "descriptionUrl": "https://swagger.io/specification/v2/#parametersDefinitionsObject",
   "platform": "OpenAPI",
-  "descriptionID": "9850673a"
+  "descriptionID": "9850673a",
+  "cwe": ""
 }

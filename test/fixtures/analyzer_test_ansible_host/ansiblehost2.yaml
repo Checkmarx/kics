@@ -1,0 +1,22 @@
+---
+all:
+  children:
+    webservers:
+      hosts:
+        webserver1: null
+        webserver2: null
+      databases:
+        hosts:
+          dbserver1:
+            ansible_host: 192.168.1.103
+            ansible_user: postgres
+          dbserver2:
+            ansible_host: 192.168.1.104
+            ansible_user: mysql
+  hosts:
+    webserver1:
+      ansible_host: 192.168.1.101
+      ansible_user: ubuntu
+    webserver2:
+      ansible_host: 192.168.1.102
+      ansible_user: centos
