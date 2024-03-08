@@ -1,13 +1,17 @@
+//go:build !parallelScans
+// +build !parallelScans
+
 package console
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/require"
 	"os"
 	"path/filepath"
 	"runtime"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestConsole_Execute(t *testing.T) { //nolint
