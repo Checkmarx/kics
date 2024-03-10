@@ -1,6 +1,10 @@
 package report
 
-import "github.com/Checkmarx/kics/internal/constants"
+import (
+	"sort"
+
+	"github.com/Checkmarx/kics/internal/constants"
+)
 
 const jsonExtension = ".json"
 
@@ -11,12 +15,42 @@ func PrintJSONReport(path, filename string, body interface{}) error {
 		if err != nil {
 			return err
 		}
-		for idx := range summary.Queries {
-			summary.Queries[idx].CISBenchmarkName = ""
-			summary.Queries[idx].CISBenchmarkVersion = ""
-			summary.Queries[idx].CISDescriptionID = ""
-			summary.Queries[idx].CISDescriptionText = ""
-			summary.Queries[idx].CISRationaleText = ""
+
+		queries := summary.Queries
+		sort.SliceStable(queries, func(i, j int) bool {
+			if queries[i].Severity == queries[j].Severity {
+				return queries[i].QueryName < queries[j].QueryName
+			}
+
+			return false
+		})
+
+		for idx := range queries {
+			queries[idx].CISBenchmarkName = ""
+			queries[idx].CISBenchmarkVersion = ""
+			queries[idx].CISDescriptionID = ""
+			queries[idx].CISDescriptionText = ""
+			queries[idx].CISRationaleText = ""
+
+			files := queries[idx].Files
+			sort.Slice(files, func(i, j int) bool {
+				if files[i].FileName != files[j].FileName {
+					return files[i].FileName < files[j].FileName
+				}
+
+				if files[i].SimilarityID != files[j].SimilarityID {
+					return files[i].SimilarityID < files[j].SimilarityID
+				}
+
+				if files[i].IssueType != files[j].IssueType {
+					return files[i].IssueType < files[j].IssueType
+				}
+
+				return files[i].KeyExpectedValue < files[j].KeyExpectedValue
+			})
+
+			queries[idx].Files = files
+			summary.Queries = queries
 		}
 		summary.Version = constants.Version
 		body = summary
