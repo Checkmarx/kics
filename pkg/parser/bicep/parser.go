@@ -17,7 +17,6 @@ type Parser struct {
 
 // Parse - parses bicep to JSON_Bicep template (json file)
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, error) {
-
 	doc := model.Document{}
 	elems, err := parserBicepFile(fileContent)
 	if err != nil {
@@ -41,7 +40,6 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 
 // parse the bicep file returning a list of elemBicep struct and an error
 func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
-
 	reader := bytes.NewReader(bicepContent)
 	elems := []converter.ElemBicep{}
 	scanner := bufio.NewScanner(reader)
@@ -80,6 +78,14 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
+		output := parseOutput(line)
+		if output != nil {
+			elem.Output = *output
+			elem.Type = "output"
+			elems = append(elems, elem)
+			continue
+		}
+
 		property := parseProperty(line)
 		if property != nil {
 			if isNewParent {
@@ -107,7 +113,6 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			}
 			continue
 		}
-
 	}
 
 	if err := scanner.Err(); err != nil {
@@ -119,7 +124,6 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 
 // parse Resource syntax from bicep file
 func parseResource(line string) *converter.Resource {
-
 	resourceRegex := regexp.MustCompile(`^resource\s+(\S+)\s+'(\S+)'\s+=\s+\{\s*`)
 
 	matches := resourceRegex.FindStringSubmatch(line)
@@ -134,14 +138,10 @@ func parseResource(line string) *converter.Resource {
 			apiVersion = apiMatches[1]
 		}
 
-		// propertiesBlock := matches[3]
-		// properties := parseProperties(propertiesBlock)
-
 		return &converter.Resource{
 			APIVersion: apiVersion,
 			Type:       resourceType,
-			// Properties: properties,
-			Metadata: &converter.Metadata{Description: "Description", Name: "test"},
+			Metadata:   &converter.Metadata{Description: "Description", Name: "test"},
 		}
 	}
 
@@ -149,11 +149,6 @@ func parseResource(line string) *converter.Resource {
 }
 
 func parseProperty(line string) *converter.Property {
-
-	if !(strings.Contains(line, "name: 'test'") || strings.Contains(line, "location: 'westus'")) {
-		return nil
-	}
-
 	// Parse key-value pairs
 	parts := strings.SplitN(line, ":", 2)
 	if len(parts) == 2 {
@@ -164,64 +159,10 @@ func parseProperty(line string) *converter.Property {
 	}
 
 	return nil
-
 }
-
-// func parseProperties(propertiesBlock string) []map[string]interface{} {
-// 	var properties []map[string]interface{}
-// 	var currentProperty map[string]interface{}
-
-// 	lines := strings.Split(propertiesBlock, "\n")
-// 	for _, line := range lines {
-// 		line = strings.TrimSpace(line)
-// 		if line == "" {
-// 			continue
-// 		}
-
-// 		// Handle nested blocks
-// 		if strings.HasSuffix(line, "{") {
-// 			// Start of a nested block
-// 			currentProperty = make(map[string]interface{})
-// 		} else if strings.HasPrefix(line, "}") {
-// 			// End of a nested block
-// 			properties = append(properties, currentProperty)
-// 			currentProperty = nil
-// 		} else {
-// 			// Parse key-value pairs
-// 			parts := strings.SplitN(line, ":", 2)
-// 			if len(parts) == 2 {
-// 				key := strings.TrimSpace(parts[0])
-// 				value := strings.TrimSpace(parts[1])
-// 				currentProperty[key] = value
-// 			}
-// 		}
-// 	}
-
-// 	return properties
-// }
-
-/*
-func getProperties(propertiesBlock string) []map[string]interface{} {
-	var properties []map[string]interface{}
-
-	fmt.Println(propertiesBlock)
-	propertyRegex := regexp.MustCompile(`\s*(\S+):\s+(.+)`)
-	line := ""
-	propertyMatches := propertyRegex.FindAllStringSubmatch(line, -1)
-
-	for _, match := range propertyMatches {
-		property := make(map[string]interface{})
-		property[match[1]] = match[2]
-		properties = append(properties, property)
-	}
-
-	return properties
-}
-*/
 
 // parse Param syntax from bicep file
 func parseParam(line string) *converter.Param {
-
 	paramRegex := regexp.MustCompile(`^param\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
 	matches := paramRegex.FindStringSubmatch(line)
 	if matches != nil {
@@ -233,6 +174,26 @@ func parseParam(line string) *converter.Param {
 			Type:         paramType,
 			DefaultValue: paramDefaultValue,
 			Metadata:     &converter.Metadata{Description: "Description", Name: "test"},
+		}
+	}
+
+	return nil
+}
+
+// parse Output syntax from bicep file
+func parseOutput(line string) *converter.Output {
+
+	outputRegex := regexp.MustCompile(`^output\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
+	matches := outputRegex.FindStringSubmatch(line)
+	if matches != nil {
+		outputName := matches[1]
+		outputType := matches[2]
+		outputValue := matches[3]
+		return &converter.Output{
+			Name:     outputName,
+			Type:     outputType,
+			Value:    outputValue,
+			Metadata: &converter.Metadata{Description: "Description", Name: "test"},
 		}
 	}
 

@@ -15,7 +15,7 @@ type JSONBicep struct {
 	Param          []Param                     `json:"parameters"`
 	Variables      []Variable                  `json:"variables"`
 	Resources      []Resource                  `json:"resources"`
-	Outputs        Output                      `json:"outputs"`
+	Outputs        []Output                    `json:"outputs"`
 	Modules        []Module                    `json:"modules"`
 	Metadata       *Metadata                   `json:"metadata"`
 	Lines          map[string]model.LineObject `json:"_kics_lines"`
@@ -58,6 +58,7 @@ type Resource struct {
 }
 
 type Output struct {
+	Name     string    `json:"name"`
 	Type     string    `json:"type"`
 	Metadata *Metadata `json:"metadata"`
 	Value    string    `json:"value"`
@@ -85,7 +86,7 @@ func newJSONBicep() *JSONBicep {
 		Param:          []Param{},
 		Variables:      []Variable{},
 		Resources:      []Resource{},
-		Outputs:        Output{},
+		Outputs:        []Output{},
 		Modules:        []Module{},
 		Metadata:       &Metadata{},
 		Lines:          map[string]model.LineObject{},
@@ -98,19 +99,24 @@ func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 	var jBicep = newJSONBicep()
 
 	resources := []Resource{}
-	param := []Param{}
+	params := []Param{}
+	outputs := []Output{}
 
 	for _, elem := range elems {
 		if elem.Type == "resource" {
 			resources = append(resources, elem.Resource)
 		}
 		if elem.Type == "param" && elem.Param.Name != "" {
-			param = append(param, elem.Param)
+			params = append(params, elem.Param)
+		}
+		if elem.Type == "output" && elem.Output.Name != "" {
+			outputs = append(outputs, elem.Output)
 		}
 	}
 
 	jBicep.Resources = resources
-	jBicep.Param = param
+	jBicep.Param = params
+	jBicep.Outputs = outputs
 
 	return jBicep, nil
 }
