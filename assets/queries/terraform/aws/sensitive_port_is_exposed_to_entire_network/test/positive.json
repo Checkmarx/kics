@@ -1,0 +1,274 @@
+{
+  "format_version": "0.2",
+  "terraform_version": "1.0.5",
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "aws_security_group.invalid",
+          "mode": "managed",
+          "type": "aws_security_group",
+          "name": "invalid",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 1,
+          "values": {
+            "description": "invalid",
+            "egress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 0,
+                "ipv6_cidr_blocks": [
+                  "::/0"
+                ],
+                "prefix_list_ids": [],
+                "protocol": "-1",
+                "security_groups": [],
+                "self": false,
+                "to_port": 0
+              }
+            ],
+            "ingress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "invalid",
+                "from_port": 443,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 443
+              }
+            ],
+            "name": "invalid",
+            "revoke_rules_on_delete": false,
+            "tags": {
+              "Name": "invalid"
+            },
+            "tags_all": {
+              "Name": "invalid"
+            },
+            "timeouts": null
+          },
+          "sensitive_values": {
+            "egress": [
+              {
+                "cidr_blocks": [
+                  false
+                ],
+                "ipv6_cidr_blocks": [
+                  false
+                ],
+                "prefix_list_ids": [],
+                "security_groups": []
+              }
+            ],
+            "ingress": [
+              {
+                "cidr_blocks": [
+                  false
+                ],
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "security_groups": []
+              }
+            ],
+            "tags": {},
+            "tags_all": {}
+          }
+        }
+      ]
+    }
+  },
+  "resource_changes": [
+    {
+      "address": "aws_security_group.invalid",
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "invalid",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "description": "invalid",
+          "egress": [
+            {
+              "cidr_blocks": [
+                "0.0.0.0/0"
+              ],
+              "description": "",
+              "from_port": 0,
+              "ipv6_cidr_blocks": [
+                "::/0"
+              ],
+              "prefix_list_ids": [],
+              "protocol": "-1",
+              "security_groups": [],
+              "self": false,
+              "to_port": 0
+            }
+          ],
+          "ingress": [
+            {
+              "cidr_blocks": [
+                "0.0.0.0/0"
+              ],
+              "description": "invalid",
+              "from_port": 443,
+              "ipv6_cidr_blocks": [],
+              "prefix_list_ids": [],
+              "protocol": "tcp",
+              "security_groups": [],
+              "self": false,
+              "to_port": 443
+            }
+          ],
+          "name": "invalid",
+          "revoke_rules_on_delete": false,
+          "tags": {
+            "Name": "invalid"
+          },
+          "tags_all": {
+            "Name": "invalid"
+          },
+          "timeouts": null
+        },
+        "after_unknown": {
+          "arn": true,
+          "egress": [
+            {
+              "cidr_blocks": [
+                false
+              ],
+              "ipv6_cidr_blocks": [
+                false
+              ],
+              "prefix_list_ids": [],
+              "security_groups": []
+            }
+          ],
+          "id": true,
+          "ingress": [
+            {
+              "cidr_blocks": [
+                false
+              ],
+              "ipv6_cidr_blocks": [],
+              "prefix_list_ids": [],
+              "security_groups": []
+            }
+          ],
+          "name_prefix": true,
+          "owner_id": true,
+          "tags": {},
+          "tags_all": {},
+          "vpc_id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "egress": [
+            {
+              "cidr_blocks": [
+                false
+              ],
+              "ipv6_cidr_blocks": [
+                false
+              ],
+              "prefix_list_ids": [],
+              "security_groups": []
+            }
+          ],
+          "ingress": [
+            {
+              "cidr_blocks": [
+                false
+              ],
+              "ipv6_cidr_blocks": [],
+              "prefix_list_ids": [],
+              "security_groups": []
+            }
+          ],
+          "tags": {},
+          "tags_all": {}
+        }
+      }
+    }
+  ],
+  "configuration": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "aws_security_group.invalid",
+          "mode": "managed",
+          "type": "aws_security_group",
+          "name": "invalid",
+          "provider_config_key": "aws",
+          "expressions": {
+            "description": {
+              "constant_value": "invalid"
+            },
+            "egress": {
+              "constant_value": [
+                {
+                  "cidr_blocks": [
+                    "0.0.0.0/0"
+                  ],
+                  "description": null,
+                  "from_port": 0,
+                  "ipv6_cidr_blocks": [
+                    "::/0"
+                  ],
+                  "prefix_list_ids": null,
+                  "protocol": "-1",
+                  "security_groups": null,
+                  "self": null,
+                  "to_port": 0
+                }
+              ]
+            },
+            "ingress": {
+              "constant_value": [
+                {
+                  "cidr_blocks": [
+                    "0.0.0.0/0"
+                  ],
+                  "description": "invalid",
+                  "from_port": 443,
+                  "ipv6_cidr_blocks": null,
+                  "prefix_list_ids": null,
+                  "protocol": "tcp",
+                  "security_groups": null,
+                  "self": null,
+                  "to_port": 443
+                }
+              ]
+            },
+            "name": {
+              "constant_value": "invalid"
+            },
+            "tags": {
+              "constant_value": {
+                "Name": "invalid"
+              }
+            },
+            "vpc_id": {
+              "references": [
+                "aws_vpc.vpc-a.id",
+                "aws_vpc.vpc-a"
+              ]
+            }
+          },
+          "schema_version": 1
+        }
+      ]
+    }
+  }
+}
