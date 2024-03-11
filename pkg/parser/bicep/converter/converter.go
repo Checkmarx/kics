@@ -106,10 +106,10 @@ func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 		if elem.Type == "resource" {
 			resources = append(resources, elem.Resource)
 		}
-		if elem.Type == "param" && elem.Param.Name != "" {
+		if elem.Type == "param" {
 			params = append(params, elem.Param)
 		}
-		if elem.Type == "output" && elem.Output.Name != "" {
+		if elem.Type == "output" {
 			outputs = append(outputs, elem.Output)
 		}
 	}
