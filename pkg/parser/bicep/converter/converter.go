@@ -32,16 +32,26 @@ type ElemBicep struct {
 	Module   Module
 }
 
+type Decorator struct {
+	Allowed   []string    `json:"allowedValues,omitempty"`
+	MaxLength string      `json:"maxLength,omitempty"`
+	MinLength string      `json:"minLength,omitempty"`
+	MaxValue  string      `json:"maxValue,omitempty"`
+	MinValue  string      `json:"minValue,omitempty"`
+	Metadata  []*Property `json:"metadata,omitempty"`
+}
+
 type Metadata struct {
 	Description string `json:"description,omitempty"`
 	Name        string `json:"name,omitempty"`
 }
 
 type Param struct {
-	Name         string    `json:"name"`
-	Type         string    `json:"type"`
-	DefaultValue string    `json:"defaultValue"`
-	Metadata     *Metadata `json:"metadata"`
+	Name         string       `json:"name"`
+	Type         string       `json:"type"`
+	DefaultValue string       `json:"defaultValue"`
+	Metadata     *Metadata    `json:"metadata"`
+	Decorator    []*Decorator `json:"decorators,omitempty"`
 }
 
 type Variable struct {
@@ -51,29 +61,31 @@ type Variable struct {
 }
 
 type Resource struct {
-	APIVersion string     `json:"apiVersion"`
-	Type       string     `json:"type"`
-	Metadata   *Metadata  `json:"metadata"`
-	Properties []Property `json:"properties"`
+	APIVersion string       `json:"apiVersion"`
+	Type       string       `json:"type"`
+	Metadata   *Metadata    `json:"metadata"`
+	Properties []Property   `json:"properties"`
+	Decorator  []*Decorator `json:"decorators,omitempty"`
 }
 
 type Output struct {
-	Name     string    `json:"name"`
-	Type     string    `json:"type"`
-	Metadata *Metadata `json:"metadata"`
-	Value    string    `json:"value"`
+	Name      string       `json:"name"`
+	Type      string       `json:"type"`
+	Metadata  *Metadata    `json:"metadata"`
+	Value     string       `json:"value"`
+	Decorator []*Decorator `json:"decorators,omitempty"`
 }
 
 type Module struct {
-	Name        string `json:"name"`
-	Path        string `json:"path"`
-	Description string `json:"description"`
+	Name        string       `json:"name"`
+	Path        string       `json:"path"`
+	Description string       `json:"description"`
+	Decorator   []*Decorator `json:"decorators,omitempty"`
 }
 
 type Property struct {
-	Name       string
-	Value      interface{}
-	Properties []*Property
+	Description map[string]interface{} `json:"description,omitempty"`
+	Properties []*Property `json:"properties,omitempty"`
 }
 
 type AbsoluteParent struct {
