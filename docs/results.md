@@ -988,13 +988,14 @@ KICS displays the results in CLI. For detailed information, you can use `-v --lo
 
 ## Results Status Code
 
-| Code | Description                |
-| ---- | -------------------------- |
-| `0`  | No Results were Found      |
-| `50` | Found any `HIGH` Results   |
-| `40` | Found any `MEDIUM` Results |
-| `30` | Found any `LOW` Results    |
-| `20` | Found any `INFO` Results   |
+| Code | Description                 |
+| ---- | ----------------------------|
+| `0`  | No Results were Found       |
+| `60` | Found any `CRITICAL` Results|
+| `50` | Found any `HIGH` Results    |
+| `40` | Found any `MEDIUM` Results  |
+| `30` | Found any `LOW` Results     |
+| `20` | Found any `INFO` Results    |
 
 ## Error Status Code
 
