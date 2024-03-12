@@ -45,7 +45,9 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	elems := []converter.ElemBicep{}
 	scanner := bufio.NewScanner(reader)
 	parentsStack := []converter.Property{}
-	decorators := []*converter.Decorator{}
+	decorators := map[string]interface{}{}
+	tempMap := map[string]string{}
+	tempProp := converter.Prop{}
 	var absoluteParent converter.AbsoluteParent
 
 	for scanner.Scan() {
@@ -56,11 +58,15 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
-		decorator, isSecure := parseDecorator(line)
-		if decorator != nil {
-			decorators = append(decorators, decorator)
+		metadata := parseMetadata(line)
+		if metadata != nil {
+			elem.Metadata = *metadata
+			elem.Type = "metadata"
+			elems = append(elems, elem)
+			continue
 		}
 
+		isSecure := parseDecorator(decorators, line)
 		if isSecure {
 			fmt.Println("Is Secure?", isSecure)
 		}
@@ -70,7 +76,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			elem.Resource = *resource
 			elem.Type = "resource"
 
-			decorators = []*converter.Decorator{}
+			decorators = map[string]interface{}{}
 			absoluteParent.Resource = resource
 			absoluteParent.Module = nil
 			continue
@@ -78,7 +84,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 
 		param := parseParam(decorators, line)
 		if param != nil {
-			decorators = []*converter.Decorator{}
+			decorators = map[string]interface{}{}
 			elem.Param = *param
 			elem.Type = "param"
 			elems = append(elems, elem)
@@ -87,7 +93,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 
 		output := parseOutput(decorators, line)
 		if output != nil {
-			decorators = []*converter.Decorator{}
+			decorators = map[string]interface{}{}
 			elem.Output = *output
 			elem.Type = "output"
 			elems = append(elems, elem)
@@ -101,11 +107,15 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		isParentClosing := len(isParentClosingRegex.FindStringSubmatch(line)) > 0
 
 		property := parseProperty(line)
-		if property != nil {
+		prop := parseProp(line)
+
+		if prop != nil {
 			if isNewParent {
 				parentsStack = append(parentsStack, *property)
 			} else {
-				absoluteParent.Resource.Properties = append(absoluteParent.Resource.Properties, *property)
+				for k, v := range prop {
+					tempMap[k] = v
+				}
 			}
 			continue
 		}
@@ -120,6 +130,8 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 
 		if isParentClosing && len(parentsStack) == 0 {
 			if absoluteParent.Resource != nil {
+				tempProp.Prop = tempMap
+				absoluteParent.Resource.Prop = tempMap
 				elem.Resource = *absoluteParent.Resource
 				elem.Type = "resource"
 				elems = append(elems, elem)
@@ -136,14 +148,28 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	return elems, nil
 }
 
+// parse Metadata syntax from bicep file
+func parseMetadata(line string) *converter.Metadata {
+	metadataRegex := regexp.MustCompile(`metadata ([^ ]*) * = *'?([^']*)'`)
+	matches := metadataRegex.FindStringSubmatch(line)
+
+	if matches != nil {
+		name := matches[1]
+		value := matches[2]
+		return &converter.Metadata{Name: name, Description: value}
+	}
+
+	return nil
+}
+
 // parse Decorator syntax from bicep file
-func parseDecorator(line string) (*converter.Decorator, bool) {
+func parseDecorator(decorators map[string]interface{}, line string) bool {
 	singleDecoratorRegex := regexp.MustCompile(`@(?:sys\.)?([^()]+)\('?([^')]*)'?\)`)
-	metadataDecoratorRegex := regexp.MustCompile(`^param\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
-	allowedDecoratorRegex := regexp.MustCompile(`^param\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
+	// metadataDecoratorRegex := regexp.MustCompile(`^param\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
+	// allowedDecoratorRegex := regexp.MustCompile(`^param\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
 	matchesSingle := singleDecoratorRegex.FindStringSubmatch(line)
-	matchesMetadata := metadataDecoratorRegex.FindStringSubmatch(line)
-	matchesAllowed := allowedDecoratorRegex.FindStringSubmatch(line)
+	// matchesMetadata := metadataDecoratorRegex.FindStringSubmatch(line)
+	// matchesAllowed := allowedDecoratorRegex.FindStringSubmatch(line)
 
 	// match single line decorators
 	if matchesSingle != nil {
@@ -152,64 +178,59 @@ func parseDecorator(line string) (*converter.Decorator, bool) {
 
 		switch name {
 		case "secure":
-			return nil, true
+			return true
 		case "description":
 			var description = make(map[string]interface{})
 			description[name] = value
-			property := converter.Property{Description: description, Properties: []*converter.Property{}}
-			return &converter.Decorator{
-				Metadata: []*converter.Property{&property},
-			}, false
+			//property := converter.Property{Description: description, Properties: []*converter.Property{}}
+			decorators["metadata"] = map[string]interface{}{name: value}
+			return false
 		case "maxLength":
-			return &converter.Decorator{
-				MaxLength: value,
-			}, false
+			decorators[name] = value
+			return false
 		case "minLength":
-			return &converter.Decorator{
-				MinLength: value,
-			}, false
+			decorators[name] = value
+			return false
 		case "maxValue":
-			return &converter.Decorator{
-				MaxValue: value,
-			}, false
+			decorators[name] = value
+			return false
 		case "minValue":
-			return &converter.Decorator{
-				MinValue: value,
-			}, false
+			decorators[name] = value
+			return false
 		}
 	}
 
-	// match metadata decorators
-	if matchesMetadata != nil {
+	// // match metadata decorators
+	// if matchesMetadata != nil {
 
-		return &converter.Decorator{
-			Allowed:   []string{},
-			MaxLength: "",
-			MinLength: "",
-			MaxValue:  "",
-			MinValue:  "",
-			Metadata:  nil,
-		}, false
-	}
+	// 	return &converter.Decorator{
+	// 		Allowed:   []string{},
+	// 		MaxLength: "",
+	// 		MinLength: "",
+	// 		MaxValue:  "",
+	// 		MinValue:  "",
+	// 		Metadata:  nil,
+	// 	}, false
+	// }
 
-	// match allowed decorators
-	if matchesAllowed != nil {
+	// // match allowed decorators
+	// if matchesAllowed != nil {
 
-		return &converter.Decorator{
-			Allowed:   []string{},
-			MaxLength: "",
-			MinLength: "",
-			MaxValue:  "",
-			MinValue:  "",
-			Metadata:  nil,
-		}, false
-	}
+	// 	return &converter.Decorator{
+	// 		Allowed:   []string{},
+	// 		MaxLength: "",
+	// 		MinLength: "",
+	// 		MaxValue:  "",
+	// 		MinValue:  "",
+	// 		Metadata:  nil,
+	// 	}, false
+	// }
 
-	return nil, false
+	return false
 }
 
 // parse Resource syntax from bicep file
-func parseResource(decorators []*converter.Decorator, line string) *converter.Resource {
+func parseResource(decorators map[string]interface{}, line string) *converter.Resource {
 	resourceRegex := regexp.MustCompile(`^resource\s+(\S+)\s+'(\S+)'\s+=\s+\{\s*`)
 
 	matches := resourceRegex.FindStringSubmatch(line)
@@ -227,8 +248,8 @@ func parseResource(decorators []*converter.Decorator, line string) *converter.Re
 		return &converter.Resource{
 			APIVersion: apiVersion,
 			Type:       resourceType,
-			Decorator:  decorators,
-			Metadata:   &converter.Metadata{Description: "Description", Name: "test"},
+			Decorators: decorators,
+			// Metadata:   &converter.Metadata{Description: "Description", Name: "test"},
 		}
 	}
 
@@ -236,10 +257,10 @@ func parseResource(decorators []*converter.Decorator, line string) *converter.Re
 }
 
 // parse Param syntax from bicep file
-func parseParam(decorators []*converter.Decorator, line string) *converter.Param {
+func parseParam(decorators map[string]interface{}, line string) *converter.Param {
 	paramRegex := regexp.MustCompile(`^param\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
 	matches := paramRegex.FindStringSubmatch(line)
-	
+
 	if matches != nil {
 		paramName := matches[1]
 		paramType := matches[2]
@@ -248,8 +269,8 @@ func parseParam(decorators []*converter.Decorator, line string) *converter.Param
 			Name:         paramName,
 			Type:         paramType,
 			DefaultValue: paramDefaultValue,
-			Decorator:    decorators,
-			Metadata:     &converter.Metadata{Description: "Description", Name: "test"},
+			Decorators:   decorators,
+			// Metadata:     &converter.Metadata{Description: "Description", Name: "test"},
 		}
 	}
 
@@ -257,7 +278,7 @@ func parseParam(decorators []*converter.Decorator, line string) *converter.Param
 }
 
 // parse Output syntax from bicep file
-func parseOutput(decorators []*converter.Decorator, line string) *converter.Output {
+func parseOutput(decorators map[string]interface{}, line string) *converter.Output {
 
 	outputRegex := regexp.MustCompile(`^output\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
 	matches := outputRegex.FindStringSubmatch(line)
@@ -265,12 +286,13 @@ func parseOutput(decorators []*converter.Decorator, line string) *converter.Outp
 		outputName := matches[1]
 		outputType := matches[2]
 		outputValue := matches[3]
+
 		return &converter.Output{
-			Name:      outputName,
-			Type:      outputType,
-			Value:     outputValue,
-			Decorator: decorators,
-			Metadata:  &converter.Metadata{Description: "Description", Name: "test"},
+			Name:       outputName,
+			Type:       outputType,
+			Value:      outputValue,
+			Decorators: decorators,
+			// Metadata:   &converter.Metadata{Description: "Description", Name: "test"},
 		}
 	}
 
@@ -287,6 +309,20 @@ func parseProperty(line string) *converter.Property {
 		description[key] = value
 		tempProperty := converter.Property{Description: description, Properties: []*converter.Property{}}
 		return &tempProperty
+	}
+
+	return nil
+}
+
+func parseProp(line string) map[string]string {
+	// Parse key-value pairs
+	parts := strings.SplitN(line, ":", 2)
+	if len(parts) == 2 {
+		key := strings.TrimSpace(parts[0])
+		value := strings.TrimSpace(parts[1])
+		var description = make(map[string]string)
+		description[key] = value
+		return description
 	}
 
 	return nil

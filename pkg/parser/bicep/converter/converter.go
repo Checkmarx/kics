@@ -12,12 +12,12 @@ linesToIgnore    []int                       `json:"-"`
 linesNotToIgnore []int                       `json:"-"`
 */
 type JSONBicep struct {
-	Param          []Param                     `json:"parameters"`
-	Variables      []Variable                  `json:"variables"`
-	Resources      []Resource                  `json:"resources"`
-	Outputs        []Output                    `json:"outputs"`
-	Modules        []Module                    `json:"modules"`
-	Metadata       *Metadata                   `json:"metadata"`
+	Params         map[string]Param            `json:"parameters,omitempty"`
+	Variables      []Variable                  `json:"variables,omitempty"`
+	Resources      []Resource                  `json:"resources,omitempty"`
+	Outputs        map[string]Output           `json:"outputs,omitempty"`
+	Modules        []Module                    `json:"modules,omitempty"`
+	Metadata       map[string]string           `json:"metadata,omitempty"`
 	Lines          map[string]model.LineObject `json:"_kics_lines"`
 	ContentVersion string                      `json:"contentVersion"`
 }
@@ -42,16 +42,16 @@ type Decorator struct {
 }
 
 type Metadata struct {
-	Description string `json:"description,omitempty"`
 	Name        string `json:"name,omitempty"`
+	Description string `json:"description,omitempty"`
 }
 
 type Param struct {
-	Name         string       `json:"name"`
-	Type         string       `json:"type"`
-	DefaultValue string       `json:"defaultValue"`
-	Metadata     *Metadata    `json:"metadata"`
-	Decorator    []*Decorator `json:"decorators,omitempty"`
+	Name         string                 `json:"-"`
+	Type         string                 `json:"type"`
+	DefaultValue string                 `json:"defaultValue"`
+	Metadata     *Metadata              `json:"metadata,omitempty"`
+	Decorators   map[string]interface{} `json:"decorators,omitempty"`
 }
 
 type Variable struct {
@@ -61,31 +61,36 @@ type Variable struct {
 }
 
 type Resource struct {
-	APIVersion string       `json:"apiVersion"`
-	Type       string       `json:"type"`
-	Metadata   *Metadata    `json:"metadata"`
-	Properties []Property   `json:"properties"`
-	Decorator  []*Decorator `json:"decorators,omitempty"`
+	APIVersion string    `json:"apiVersion"`
+	Type       string    `json:"type"`
+	Metadata   *Metadata `json:"metadata,omitempty"`
+	// Properties []Property   `json:"properties"`
+	Prop       map[string]string      `json:"location"`
+	Decorators map[string]interface{} `json:"decorators,omitempty"`
+}
+
+type Prop struct {
+	Prop map[string]string
 }
 
 type Output struct {
-	Name      string       `json:"name"`
-	Type      string       `json:"type"`
-	Metadata  *Metadata    `json:"metadata"`
-	Value     string       `json:"value"`
-	Decorator []*Decorator `json:"decorators,omitempty"`
+	Name       string                 `json:"-"`
+	Type       string                 `json:"type"`
+	Metadata   *Metadata              `json:"metadata,omitempty"`
+	Value      string                 `json:"value"`
+	Decorators map[string]interface{} `json:"decorators,omitempty"`
 }
 
 type Module struct {
-	Name        string       `json:"name"`
-	Path        string       `json:"path"`
-	Description string       `json:"description"`
-	Decorator   []*Decorator `json:"decorators,omitempty"`
+	Name        string                 `json:"name"`
+	Path        string                 `json:"path"`
+	Description string                 `json:"description"`
+	Decorators  map[string]interface{} `json:"decorators,omitempty"`
 }
 
 type Property struct {
 	Description map[string]interface{} `json:"description,omitempty"`
-	Properties []*Property `json:"properties,omitempty"`
+	Properties  []*Property            `json:"properties,omitempty"`
 }
 
 type AbsoluteParent struct {
@@ -95,12 +100,12 @@ type AbsoluteParent struct {
 
 func newJSONBicep() *JSONBicep {
 	return &JSONBicep{
-		Param:          []Param{},
+		Params:         map[string]Param{},
 		Variables:      []Variable{},
 		Resources:      []Resource{},
-		Outputs:        []Output{},
+		Outputs:        map[string]Output{},
 		Modules:        []Module{},
-		Metadata:       &Metadata{},
+		Metadata:       map[string]string{},
 		Lines:          map[string]model.LineObject{},
 		ContentVersion: "1.0.0.0",
 	}
@@ -110,25 +115,30 @@ func newJSONBicep() *JSONBicep {
 func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 	var jBicep = newJSONBicep()
 
+	metadata := map[string]string{}
 	resources := []Resource{}
-	params := []Param{}
-	outputs := []Output{}
+	params := map[string]Param{}
+	outputs := map[string]Output{}
 
 	for _, elem := range elems {
 		if elem.Type == "resource" {
 			resources = append(resources, elem.Resource)
 		}
 		if elem.Type == "param" {
-			params = append(params, elem.Param)
+			params[elem.Param.Name] = elem.Param
 		}
 		if elem.Type == "output" {
-			outputs = append(outputs, elem.Output)
+			outputs[elem.Output.Name] = elem.Output
+		}
+		if elem.Type == "metadata" {
+			metadata[elem.Metadata.Name] = elem.Metadata.Description
 		}
 	}
 
 	jBicep.Resources = resources
-	jBicep.Param = params
+	jBicep.Params = params
 	jBicep.Outputs = outputs
+	jBicep.Metadata = metadata
 
 	return jBicep, nil
 }
