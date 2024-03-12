@@ -679,7 +679,7 @@ HTML reports are sorted by severity (from high to info), the results will have q
 You can export a pdf report by using `--report-formats "pdf"`.
 PDF reports are sorted by severity (from high to info), the results will have query information and a list of files alongside the line where the result was found.
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/pdf-report.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/514878ea3fbf98042def0b12cca475062321d36d/docs/img/pdf_report.png" width="850">
 
 ## CycloneDX
 
