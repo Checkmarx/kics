@@ -44,9 +44,9 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	reader := bytes.NewReader(bicepContent)
 	elems := []converter.ElemBicep{}
 	scanner := bufio.NewScanner(reader)
-	parentsStack := []converter.Property{}
+	parentsStack := []converter.SuperProp{}
 	decorators := map[string]interface{}{}
-	tempMap := map[string]string{}
+	tempMap := map[string]interface{}{}
 	tempProp := converter.Prop{}
 	var absoluteParent converter.AbsoluteParent
 
@@ -106,26 +106,71 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		isParentClosingRegex := regexp.MustCompile(`\}`)
 		isParentClosing := len(isParentClosingRegex.FindStringSubmatch(line)) > 0
 
-		property := parseProperty(line)
+		// property := parseProperty(line)
 		prop := parseProp(line)
 
 		if prop != nil {
 			if isNewParent {
-				parentsStack = append(parentsStack, *property)
+				newProp := converter.SuperProp{}
+				newPropValues := converter.SuperProp{}
+
+				for k := range prop {
+					newProp[k] = newPropValues
+				}
+
+				parentsStack = append(parentsStack, newProp)
 			} else {
-				for k, v := range prop {
-					tempMap[k] = v
+				if len(parentsStack) > 0 {
+					parent := parentsStack[len(parentsStack)-1]
+					var siblings converter.SuperProp
+					for k, _ := range parent {
+						siblings = parent[k].(converter.SuperProp)
+					}
+					for k, v := range prop {
+						siblings[k] = v
+					}
+					for k, _ := range parent {
+						parent[k] = siblings
+					}
+				} else {
+					for k, v := range prop {
+						tempMap[k] = v
+					}
 				}
 			}
 			continue
 		}
 
-		if isParentClosing && len(parentsStack) > 0 {
+		if isParentClosing && len(parentsStack) > 1 {
 			currentPropertyIndex := len(parentsStack) - 1
 			currentProperty := parentsStack[currentPropertyIndex]
 			parentsStack = append(parentsStack[:currentPropertyIndex], parentsStack[currentPropertyIndex+1:]...)
-			propertyParent := parentsStack[len(parentsStack)-1]
-			propertyParent.Properties = append(propertyParent.Properties, &currentProperty)
+
+			parent := parentsStack[len(parentsStack)-1]
+			var siblings converter.SuperProp
+			for k := range parent {
+				siblings = parent[k].(converter.SuperProp)
+			}
+			for k, v := range currentProperty {
+				siblings[k] = v
+			}
+			for k := range parent {
+				parent[k] = siblings
+			}
+
+			continue
+		}
+
+		if isParentClosing && len(parentsStack) == 1 {
+			currentPropertyIndex := len(parentsStack) - 1
+			currentProperty := parentsStack[currentPropertyIndex]
+			parentsStack = append(parentsStack[:currentPropertyIndex], parentsStack[currentPropertyIndex+1:]...)
+
+			for k, v := range currentProperty {
+				tempMap[k] = v
+			}
+
+			continue
 		}
 
 		if isParentClosing && len(parentsStack) == 0 {
@@ -300,11 +345,18 @@ func parseOutput(decorators map[string]interface{}, line string) *converter.Outp
 }
 
 func parseProperty(line string) *converter.Property {
+
 	// Parse key-value pairs
-	parts := strings.SplitN(line, ":", 2)
-	if len(parts) == 2 {
-		key := strings.TrimSpace(parts[0])
-		value := strings.TrimSpace(parts[1])
+
+	// parts := strings.SplitN(line, ":", 2)
+	// if len(parts) == 2 {
+
+	propRegex := regexp.MustCompile(`([^: ]*) *: '?([^']*)'?`)
+	matches := propRegex.FindStringSubmatch(line)
+
+	if matches != nil {
+		key := strings.TrimSpace(matches[1])
+		value := strings.TrimSpace(matches[2])
 		var description = make(map[string]interface{})
 		description[key] = value
 		tempProperty := converter.Property{Description: description, Properties: []*converter.Property{}}
@@ -316,10 +368,16 @@ func parseProperty(line string) *converter.Property {
 
 func parseProp(line string) map[string]string {
 	// Parse key-value pairs
-	parts := strings.SplitN(line, ":", 2)
-	if len(parts) == 2 {
-		key := strings.TrimSpace(parts[0])
-		value := strings.TrimSpace(parts[1])
+
+	// parts := strings.SplitN(line, ":", 2)
+	// if len(parts) == 2 {
+
+	propRegex := regexp.MustCompile(`([^: ]*) *: '?([^']*)'?`)
+	matches := propRegex.FindStringSubmatch(line)
+
+	if matches != nil {
+		key := strings.TrimSpace(matches[1])
+		value := strings.TrimSpace(matches[2])
 		var description = make(map[string]string)
 		description[key] = value
 		return description

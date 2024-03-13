@@ -1,6 +1,8 @@
 package converter
 
 import (
+	"encoding/json"
+
 	"github.com/Checkmarx/kics/pkg/model"
 )
 
@@ -20,6 +22,15 @@ type JSONBicep struct {
 	Metadata       map[string]string           `json:"metadata,omitempty"`
 	Lines          map[string]model.LineObject `json:"_kics_lines"`
 	ContentVersion string                      `json:"contentVersion"`
+}
+
+func (res *Resource) MarshalJSON() ([]byte, error) {
+	resourceMap := res.Prop
+	resourceMap["apiVersion"] = res.APIVersion
+	resourceMap["type"] = res.Type
+	resourceMap["metadata"] = res.Metadata
+
+	return json.Marshal(resourceMap)
 }
 
 type ElemBicep struct {
@@ -65,12 +76,12 @@ type Resource struct {
 	Type       string    `json:"type"`
 	Metadata   *Metadata `json:"metadata,omitempty"`
 	// Properties []Property   `json:"properties"`
-	Prop       map[string]string      `json:"location"`
-	Decorators map[string]interface{} `json:"decorators,omitempty"`
+	Prop       map[string]interface{} `json:"-"`
+	Decorators map[string]interface{} `json:"-"`
 }
 
 type Prop struct {
-	Prop map[string]string
+	Prop map[string]interface{}
 }
 
 type Output struct {
@@ -78,15 +89,17 @@ type Output struct {
 	Type       string                 `json:"type"`
 	Metadata   *Metadata              `json:"metadata,omitempty"`
 	Value      string                 `json:"value"`
-	Decorators map[string]interface{} `json:"decorators,omitempty"`
+	Decorators map[string]interface{} `json:"-"`
 }
 
 type Module struct {
 	Name        string                 `json:"name"`
 	Path        string                 `json:"path"`
 	Description string                 `json:"description"`
-	Decorators  map[string]interface{} `json:"decorators,omitempty"`
+	Decorators  map[string]interface{} `json:"-"`
 }
+
+type SuperProp map[string]interface{}
 
 type Property struct {
 	Description map[string]interface{} `json:"description,omitempty"`
@@ -117,8 +130,9 @@ func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 
 	metadata := map[string]string{}
 	resources := []Resource{}
-	params := map[string]Param{}
 	outputs := map[string]Output{}
+	params := map[string]Param{}
+	//outputs := map[string]Output{}
 
 	for _, elem := range elems {
 		if elem.Type == "resource" {
