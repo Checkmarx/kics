@@ -1,0 +1,14 @@
+swagger: "2.0"
+info:
+  title: Simple API
+  version: 1.0.0
+paths:
+  "/item":
+    patch:
+      operationId: patchItem
+      summary: patch item
+      responses:
+        "2XX":
+          description: Item patched successfully
+        default:
+          description: Error
