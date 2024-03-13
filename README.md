@@ -107,7 +107,7 @@ KICS is used by various companies and organizations, some are listed below. If y
 -   [Cisco](https://www.panoptica.app/) ([CI/CD Securitry](https://docs.panoptica.app/docs/ci-cd-security))
 -   [Orca Security](https://orca.security/)
 -   [JIT](https://www.jit.io/) ([SAST for IaC](https://www.jit.io/security-tools/kics))
--   [Firefly](https://www.firefly.ai/)
+-   [Firefly](https://www.firefly.ai/) ([Firefly Integrates With Checkmarx's KICS](https://www.firefly.ai/blog/firefly-integrates-with-checkmarxs-kics-to-enable-seamless-cloud-governance-from-code-to-cloud))
 -   [Redpanda](https://redpanda.com/)
 -   [Keptn](https://github.com/keptn) / [Keptn Lifecycle Toolkit](https://keptn.sh)
 
