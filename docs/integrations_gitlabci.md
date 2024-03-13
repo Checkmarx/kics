@@ -50,7 +50,7 @@ When your pipeline executes, it will run this job. If KICS finds any issues, it 
 
 #### Download Artifact
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_artifact.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/8bc382c83cca0f65de8d069a506baf60c2ccd862/docs/img/kics_gitlab_pipeline_artifact.png" width="850">
 
 ## Using GitLab SAST Reports
 
