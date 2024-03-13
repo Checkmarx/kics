@@ -102,12 +102,16 @@ body {
   top: 50%;
 }
 
+.kics-black {
+  color: #000000;
+}
+
 .kics-red {
-  color: #f00;
+  color: #EE3F3F;
 }
 
 .kics-red > svg {
-  fill: #f00;
+  fill: #EE3F3F;
 }
 
 .kics-red ~ .badge{
