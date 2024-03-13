@@ -34,7 +34,7 @@
 			"cloud_provider": "COMMON",
 			"category": "Secret Management",
 			"experimental": false,
-			"description": "Query to find passwords and secrets in infrastructure code.",
+			"description": "Password and Secrets shouldn't be displayed in plain text on IaC files.",
 			"description_id": "d69d8a89",
 			"files": [
 				{
