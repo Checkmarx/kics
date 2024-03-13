@@ -1,4 +1,4 @@
-# KICS auto Remediation
+# KICS Auto Remediation
 
 With this new feature, KICS provides auto remediation for simple replacements and simple additions in a single line.
 
