@@ -12,6 +12,7 @@ replace (
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
 	go.etcd.io/etcd/pkg/v3 => go.etcd.io/etcd/pkg/v3 v3.5.10
 	golang.org/x/crypto => golang.org/x/crypto v0.17.0 // indirect
+	google.golang.org/protobuf => google.golang.org/protobuf v1.33.0 // indirect
 )
 
 require (
