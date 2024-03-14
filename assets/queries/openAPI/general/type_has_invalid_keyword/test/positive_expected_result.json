@@ -106,5 +106,17 @@
     "severity": "INFO",
     "line": 17,
     "filename": "positive10.yaml"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 14,
+    "filename": "positive11.yaml"
+  },
+  {
+    "queryName": "Type Has Invalid Keyword (v3)",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive11.yaml"
   }
 ]
