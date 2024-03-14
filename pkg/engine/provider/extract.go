@@ -13,7 +13,6 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/kuberneter"
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/terraformer"
 	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog/log"
 
@@ -42,32 +41,6 @@ type getterStruct struct {
 	opts        []getter.ClientOption
 	destination string
 	source      string
-}
-
-// GetTerraformerSources uses Terraformer to download runtime resources from AWS provider
-// to terraform.
-// After Downloaded files kics scan the files as normal local files
-func GetTerraformerSources(source []string, destinationPath string) (ExtractedPath, error) {
-	extrStruct := ExtractedPath{
-		Path:          []string{},
-		ExtractionMap: make(map[string]model.ExtractedPathObject),
-	}
-
-	for _, path := range source {
-		exportedPath, err := terraformer.Import(path, destinationPath)
-		if err != nil {
-			log.Error().Msgf("failed to import %s: %s", path, err)
-		}
-
-		extrStruct.ExtractionMap[exportedPath] = model.ExtractedPathObject{
-			Path:      exportedPath,
-			LocalPath: true,
-		}
-
-		extrStruct.Path = append(extrStruct.Path, exportedPath)
-	}
-
-	return extrStruct, nil
 }
 
 // GetKuberneterSources uses Kubernetes API to download runtime resources
