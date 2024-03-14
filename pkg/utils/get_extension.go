@@ -10,6 +10,10 @@ import (
 	"golang.org/x/tools/godoc/util"
 )
 
+const (
+	FINAL_ASCII = 165
+)
+
 // GetExtension gets the extension of a file path
 func GetExtension(path string) string {
 	targets := []string{"Dockerfile", "tfvars"}
@@ -47,7 +51,7 @@ func isTextFile(path string) bool {
 	}
 
 	invalidChars := slices.ContainsFunc[byte](content, func(b byte) bool {
-		return b > 165 // character after which it is not a regular file character
+		return b > FINAL_ASCII // character after which it is not a regular file character
 	})
 
 	if len(content) == 0 || invalidChars {
