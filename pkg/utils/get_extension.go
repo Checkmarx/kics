@@ -46,10 +46,11 @@ func isTextFile(path string) bool {
 		return false
 	}
 
-	if len(content) == 0 ||
-		slices.ContainsFunc[byte](content, func(b byte) bool {
-			return b > 165 //character after which it is not a regular text file
-		}) {
+	invalidChars := slices.ContainsFunc[byte](content, func(b byte) bool {
+		return b > 165 // character after which it is not a regular file character
+	})
+
+	if len(content) == 0 || invalidChars {
 		return false
 	}
 

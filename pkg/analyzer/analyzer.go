@@ -459,11 +459,12 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 		return
 	}
 
+	invalidChars := slices.ContainsFunc[byte](content, func(b byte) bool {
+		return b > 165 // character after which it is not a regular file character
+	})
+
 	returnType := ""
-	if len(content) != 0 &&
-		!slices.ContainsFunc[byte](content, func(b byte) bool {
-			return b > 165 //character after which it is not a regular file character
-		}) {
+	if len(content) != 0 && !invalidChars {
 
 		// Sort map so that CloudFormation (type that as less requireds) goes last
 		keys := make([]string, 0, len(types))
