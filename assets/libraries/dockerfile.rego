@@ -13,7 +13,7 @@ getPackages(commands, command) = output {
 	packages := split(trim_space(commandWithAllSplit[0]), " ")
 
 	output = packages
-}output {
+}else = output {
 	index := indexof(commands, command[0])
 	len := count(command[0])
 
@@ -25,7 +25,7 @@ getPackages(commands, command) = output {
 	packages := split(commandWithAllSplit[0], " ")
 
 	output = packages
-}else = else = output {
+}else = output {
 	index := indexof(commands, command[0])
 	len := count(command[0])
 
