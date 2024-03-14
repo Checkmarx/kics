@@ -1,10 +1,12 @@
 package testcases
 
+var stringToTest = "should perform a scans successfully giving results with new severity and return exit code "
+
 // E2E-CLI-093 - KICS scan with new severity metadata field
 // should perform a scan successfully giving results with new severity metadata field and return exit code according to the severity
 func init() { //nolint
 	testSample01 := TestCase{
-		Name: "should perform a scans successfully giving results with new severity and return exit code " +
+		Name: stringToTest +
 			"according to new severity [E2E-CLI-093_1]",
 		Args: args{
 			Args: []cmdArgs{
@@ -24,7 +26,7 @@ func init() { //nolint
 		WantStatus: []int{20},
 	}
 	testSample02 := TestCase{
-		Name: "should perform a scans successfully giving results with new severity and return exit code " +
+		Name: stringToTest +
 			"according to new severity [E2E-CLI-093_2]",
 		Args: args{
 			Args: []cmdArgs{
@@ -44,7 +46,7 @@ func init() { //nolint
 		WantStatus: []int{30, 40, 50, 60},
 	}
 	testSample03 := TestCase{
-		Name: "should perform a scans successfully giving results with new severity and return exit code " +
+		Name: stringToTest +
 			"according to new severity [E2E-CLI-093_3]",
 		Args: args{
 			Args: []cmdArgs{
@@ -64,7 +66,7 @@ func init() { //nolint
 		WantStatus: []int{40},
 	}
 	testSample04 := TestCase{
-		Name: "should perform a scans successfully giving results with new severity and return exit code " +
+		Name: stringToTest +
 			"according to new severity [E2E-CLI-093_4]",
 		Args: args{
 			Args: []cmdArgs{
@@ -84,7 +86,7 @@ func init() { //nolint
 		WantStatus: []int{50},
 	}
 	testSample05 := TestCase{
-		Name: "should perform a scans successfully giving results with new severity and return exit code " +
+		Name: stringToTest +
 			"according to new severity [E2E-CLI-093_5]",
 		Args: args{
 			Args: []cmdArgs{
@@ -107,5 +109,4 @@ func init() { //nolint
 	}
 
 	Tests = append(Tests, testSample01, testSample02, testSample03, testSample04, testSample05)
-
 }
