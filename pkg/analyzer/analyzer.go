@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"sort"
 	"strings"
 	"sync"
@@ -459,42 +460,47 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 	}
 
 	returnType := ""
+	if len(content) != 0 &&
+		!slices.ContainsFunc[byte](content, func(b byte) bool {
+			return b > 165 //character after which it is not a regular file character
+		}) {
 
-	// Sort map so that CloudFormation (type that as less requireds) goes last
-	keys := make([]string, 0, len(types))
-	for k := range types {
-		keys = append(keys, k)
-	}
+		// Sort map so that CloudFormation (type that as less requireds) goes last
+		keys := make([]string, 0, len(types))
+		for k := range types {
+			keys = append(keys, k)
+		}
 
-	if typesFlag[0] != "" {
-		keys = getKeysFromTypesFlag(typesFlag)
-	} else if excludeTypesFlag[0] != "" {
-		keys = getKeysFromExcludeTypesFlag(excludeTypesFlag)
-	}
+		if typesFlag[0] != "" {
+			keys = getKeysFromTypesFlag(typesFlag)
+		} else if excludeTypesFlag[0] != "" {
+			keys = getKeysFromExcludeTypesFlag(excludeTypesFlag)
+		}
 
-	sort.Sort(sort.Reverse(sort.StringSlice(keys)))
+		sort.Sort(sort.Reverse(sort.StringSlice(keys)))
 
-	for _, key := range keys {
-		check := true
-		for _, typeRegex := range types[key].regex {
-			if !typeRegex.Match(content) {
-				check = false
-				break
+		for _, key := range keys {
+			check := true
+			for _, typeRegex := range types[key].regex {
+				if !typeRegex.Match(content) {
+					check = false
+					break
+				}
+			}
+			// If all regexs passed and there wasn't a type already assigned
+			if check && returnType == "" {
+				returnType = key
+			} else if needsOverride(check, returnType, key, ext) {
+				returnType = key
 			}
 		}
-		// If all regexs passed and there wasn't a type already assigned
-		if check && returnType == "" {
-			returnType = key
-		} else if needsOverride(check, returnType, key, ext) {
-			returnType = key
-		}
-	}
-	returnType = checkReturnType(a.filePath, returnType, ext, content)
-	if returnType != "" {
-		if a.isAvailableType(returnType) {
-			results <- returnType
-			locCount <- linesCount
-			return
+		returnType = checkReturnType(a.filePath, returnType, ext, content)
+		if returnType != "" {
+			if a.isAvailableType(returnType) {
+				results <- returnType
+				locCount <- linesCount
+				return
+			}
 		}
 	}
 	// No type was determined (ignore on parser)
