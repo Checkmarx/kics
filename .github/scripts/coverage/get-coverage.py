@@ -140,9 +140,9 @@ def main():
     if os.environ.get('GITHUB_RUN_ID'):
         if total >= 90:
             color = 'brightgreen'
-        elif total >= 80:
+        elif total >= 70:
             color = 'green'
-        elif total >= 75:
+        elif total >= 50:
             color = 'orange'
         else:
             color = 'red'
