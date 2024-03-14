@@ -1,11 +1,12 @@
 Usage:
-  kics remediate [flags]
+  kics analyze [flags]
 
 Flags:
-  -h, --help                  help for analyze
-      --analyze-path strings          paths or directories to scan
-                                      example: "./somepath,somefile.txt"
-      --analyze-results string        points to the JSON results file of analyzer (default "platforms.json")
+      --analyze-path strings     paths or directories to scan
+                                 example: "./somepath,somefile.txt"
+      --analyze-results string   points to the JSON results file of analyzer (default "platforms.json")
+  -h, --help                     help for analyze
+      --parallel int             number of workers used for parallel analyzing, set 0 to auto-detect parallelism (default 1)
 
 Global Flags:
       --ci                  display only log messages to CLI output (mutually exclusive with silent)

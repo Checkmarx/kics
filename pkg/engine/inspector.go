@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"runtime"
 	"strings"
 	"sync"
 	"time"
@@ -18,6 +17,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/detector/helm"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/cover"
 	"github.com/open-policy-agent/opa/rego"
@@ -100,15 +100,6 @@ var (
 	}
 )
 
-func adjustNumWorkers(workers int) int {
-	// for the case in which the end user decides to use num workers as "auto-detected"
-	// we will set the number of workers to the number of CPUs available based on GOMAXPROCS value
-	if workers == 0 {
-		return runtime.GOMAXPROCS(-1)
-	}
-	return workers
-}
-
 // NewInspector initializes a inspector, compiling and loading queries for scan and its tracker
 func NewInspector(
 	ctx context.Context,
@@ -170,7 +161,7 @@ func NewInspector(
 		excludeResults:   excludeResults,
 		detector:         lineDetector,
 		queryExecTimeout: queryExecTimeout,
-		numWorkers:       adjustNumWorkers(numWorkers),
+		numWorkers:       utils.AdjustNumWorkers(numWorkers),
 	}, nil
 }
 

@@ -11,6 +11,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/analyzer"
 	"github.com/Checkmarx/kics/pkg/engine/source"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
@@ -68,6 +69,7 @@ func getAnalyzeParameters() *analyzer.Parameters {
 		Path:        flags.GetMultiStrFlag(flags.AnalyzePath),
 		Results:     flags.GetStrFlag(flags.AnalyzeResults),
 		MaxFileSize: flags.GetIntFlag(flags.MaxFileSizeFlag),
+		NumWorkers:  flags.GetIntFlag(flags.ParallelScanFile),
 	}
 
 	return &analyzeParams
@@ -92,6 +94,7 @@ func executeAnalyze(analyzeParams *analyzer.Parameters) error {
 		ExcludeGitIgnore:  false,
 		GitIgnoreFileName: "",
 		MaxFileSize:       analyzeParams.MaxFileSize,
+		NumWorkers:        utils.AdjustNumWorkers(analyzeParams.NumWorkers),
 	}
 
 	analyzedPaths, err := analyzer.Analyze(analyzerStruct)
