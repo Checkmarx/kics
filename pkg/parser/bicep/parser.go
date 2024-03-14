@@ -71,6 +71,22 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			fmt.Println("Is Secure?", isSecure)
 		}
 
+		variable, isSingle := parseVariable(line)
+		if variable != nil {
+			if isSingle {
+				elem.Variable = *variable
+				elem.Type = "variable"
+				elems = append(elems, elem)
+			} else {
+				decorators = map[string]interface{}{}
+				tempMap = map[string]interface{}{}
+				absoluteParent.Variable = variable
+				absoluteParent.Module = nil
+				absoluteParent.Resource = nil
+			}
+			continue
+		}
+
 		resource := parseResource(decorators, line)
 		if resource != nil {
 			elem.Resource = *resource
@@ -79,6 +95,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			decorators = map[string]interface{}{}
 			absoluteParent.Resource = resource
 			absoluteParent.Module = nil
+			absoluteParent.Variable = nil
 			continue
 		}
 
@@ -182,6 +199,14 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 				elems = append(elems, elem)
 				absoluteParent.Resource = nil
 			}
+			if absoluteParent.Variable != nil {
+				tempProp.Prop = tempMap
+				absoluteParent.Variable.Prop = tempMap
+				elem.Variable = *absoluteParent.Variable
+				elem.Type = "variable"
+				elems = append(elems, elem)
+				absoluteParent.Variable = nil
+			}
 			continue
 		}
 	}
@@ -191,6 +216,29 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	}
 
 	return elems, nil
+}
+
+// parse Variable syntax from bicep file
+func parseVariable(line string) (*converter.Variable, bool) {
+	singleLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +'?([^' {][^' ]*)'?`)
+	multiLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +{`)
+	//forLineVarRegex := regexp.MustCompile(`for`)
+	matchesSingle := singleLineVarRegex.FindStringSubmatch(line)
+	matchesMulti := multiLineVarRegex.FindStringSubmatch(line)
+	//matchFor := forLineVarRegex.FindStringSubmatch(line)
+
+	if matchesSingle != nil {
+		name := matchesSingle[1]
+		value := matchesSingle[2]
+		return &converter.Variable{Name: name, Value: value}, true
+	}
+
+	if matchesMulti != nil {
+		name := matchesMulti[1]
+		return &converter.Variable{Name: name}, false
+	}
+
+	return nil, false
 }
 
 // parse Metadata syntax from bicep file
