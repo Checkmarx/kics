@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/rs/zerolog/log"
+	"golang.org/x/exp/slices"
 	"golang.org/x/tools/godoc/util"
 )
 
@@ -45,7 +46,10 @@ func isTextFile(path string) bool {
 		return false
 	}
 
-	if len(content) == 0 {
+	if len(content) == 0 ||
+		slices.ContainsFunc[byte](content, func(b byte) bool {
+			return b > 165 //character after which it is not a regular text file
+		}) {
 		return false
 	}
 
