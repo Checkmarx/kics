@@ -1,0 +1,1775 @@
+swagger: "2.0"
+info:
+  x-ibm-name: sirene-apigw
+  title: Sirene
+  description: '{reflex-name:DIALOG/APFR}{contacts:J594670}'
+  version: 1.0.0
+  contact:
+    email: mickael.masse@mpsa.com
+    name: MICKAEL MASSE
+schemes:
+- https
+basePath: /partners/dialog-apfr/sirene/v1
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Basic Authentication:
+    description: The user name and password provided by PSA Group.
+    type: basic
+    x-ibm-authentication-registry: ldap
+  Client ID:
+    description: The client ID provided by PSA Group when you register your application.
+    in: header
+    name: X-IBM-Client-Id
+    type: apiKey
+security:
+- Client ID: []
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  assembly:
+    execute:
+    - parse:
+        version: 2.0.0
+        use-content-type: true
+        warn-on-empty-input: true
+    - gatewayscript:
+        title: set target url
+        version: 1.0.0
+    - invoke:
+        title: invoke
+        verb: keep
+        target-url: $(target-url)$(api.operation.path)
+        version: 1.5.0
+        final-action: true
+  gateway: datapower-api-gateway
+  properties:
+    mock-proxy-user:
+      value: mzpamt66
+      description: ""
+      encoded: false
+    mock-proxy-password:
+      value: testpwd
+      description: ""
+      encoded: false
+    mock-target-url:
+      value: https://api.insee.fr/entreprises/sirene/V3
+      description: ""
+      encoded: false
+    dev-proxy-user:
+      value: mzpamt66
+      description: ""
+      encoded: false
+    dev-proxy-password:
+      value: testpwd
+      description: ""
+      encoded: false
+    dev-target-url:
+      value: https://api.insee.fr/entreprises/sirene/V3
+      description: ""
+      encoded: false
+    preprod-target-url:
+      value: REPLACE_PREPROD_URL
+      description: ""
+      encoded: false
+    prod-target-url:
+      value: REPLACE_PROD_URL
+      description: ""
+      encoded: false
+  phase: realized
+  type: rest
+  compatibility:
+    wrapper-policies:
+      allow-chunked-uploads: false
+    enforce-required-params: false
+    request-headers: true
+    allow-trailing-slash: true
+    migrated-api: true
+  buffering: true
+paths:
+  /siren:
+    get:
+      tags:
+      - UniteLegale
+      summary: Recherche multicritère d'unités légales
+      description: ""
+      operationId: findSirenByQ
+      produces:
+      - application/json
+      - text/csv
+      parameters:
+      - name: q
+        in: query
+        description: Contenu de la requête multicritères, voir la documentation pour
+          plus de précisions
+        required: false
+        type: string
+      - name: date
+        in: query
+        description: Date à laquelle s'appliqueront les critères de recherche sur
+          les champs historisés, format AAAA-MM-JJ
+        required: false
+        type: string
+      - name: champs
+        in: query
+        description: Liste des champs demandés, séparés par des virgules
+        required: false
+        type: string
+      - name: masquerValeursNulles
+        in: query
+        description: Masque (true) ou affiche (false, par défaut) les attributs qui
+          n'ont pas de valeur
+        required: false
+        type: boolean
+      - name: facette.champ
+        in: query
+        description: Liste des champs sur lesquels des comptages seront effectués,
+          séparés par des virgules
+        required: false
+        type: string
+      - name: tri
+        in: query
+        description: Champs sur lesquels des tris seront effectués, séparés par des
+          virgules. Tri sur siren par défaut
+        required: false
+        type: string
+      - name: nombre
+        in: query
+        description: Nombre d'éléments demandés dans la réponse, défaut 20
+        required: false
+        type: integer
+        maximum: 100000
+        minimum: 0
+      - name: debut
+        in: query
+        description: Rang du premier élément demandé dans la réponse, défaut 0
+        required: false
+        type: integer
+        maximum: 1000000
+        minimum: 0
+      - name: curseur
+        in: query
+        description: Paramètre utilisé pour la pagination profonde, voir la documentation
+          pour plus de précisions
+        required: false
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReponseUnitesLegales'
+        "301":
+          description: Entreprise doublon
+        "400":
+          description: Nombre incorrect de paramètres ou les paramètres sont mal formatés
+        "401":
+          description: Jeton d'accès manquant ou invalide
+        "404":
+          description: Entreprise non trouvée dans la base Sirene (si le paramètre
+            date n'a pas été utilisé, cela peut signifier que le numéro de 9 chiffres
+            ne correspond pas à un Siren présent dans la base ; si le paramètre a
+            été utilisé, le Siren peut exister mais la date de création est postérieure
+            au paramètre date)
+        "406":
+          description: Le paramètre 'Accept' de l'en-tête HTTP contient une valeur
+            non prévue
+        "414":
+          description: Requête trop longue
+        "429":
+          description: Quota d'interrogations de l'API dépassé
+        "500":
+          description: Erreur interne du serveur
+        "503":
+          description: Service indisponible
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    post:
+      tags:
+      - UniteLegale
+      summary: Recherche multicritère d'unités légales
+      description: ""
+      operationId: findSirenByQPost
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      - text/csv
+      parameters:
+      - name: q
+        in: formData
+        description: Contenu de la requête multicritères, voir la documentation pour
+          plus de précisions
+        required: false
+        type: string
+      - name: date
+        in: formData
+        description: Date à laquelle s'appliqueront les critères de recherche sur
+          les champs historisés, format AAAA-MM-JJ
+        required: false
+        type: string
+      - name: champs
+        in: formData
+        description: Liste des champs demandés, séparés par des virgules
+        required: false
+        type: string
+      - name: masquerValeursNulles
+        in: formData
+        description: Masque (true) ou affiche (false, par défaut) les attributs qui
+          n'ont pas de valeur
+        required: false
+        type: boolean
+      - name: facette.champ
+        in: formData
+        description: Liste des champs sur lesquels des comptages seront effectués,
+          séparés par des virgules
+        required: false
+        type: string
+      - name: tri
+        in: formData
+        description: Champs sur lesquels des tris seront effectués, séparés par des
+          virgules. Tri sur siren par défaut
+        required: false
+        type: string
+      - name: nombre
+        in: formData
+        description: Nombre d'éléments demandés dans la réponse, défaut 20
+        required: false
+        type: integer
+        maximum: 100000
+        minimum: 0
+      - name: debut
+        in: formData
+        description: Rang du premier élément demandé dans la réponse, défaut 0
+        required: false
+        type: integer
+        maximum: 1000000
+        minimum: 0
+      - name: curseur
+        in: formData
+        description: Paramètre utilisé pour la pagination profonde, voir la documentation
+          pour plus de précisions
+        required: false
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReponseUnitesLegales'
+        "301":
+          description: Entreprise doublon
+        "400":
+          description: Nombre incorrect de paramètres ou les paramètres sont mal formatés
+        "401":
+          description: Jeton d'accès manquant ou invalide
+        "404":
+          description: Entreprise non trouvée dans la base Sirene (si le paramètre
+            date n'a pas été utilisé, cela peut signifier que le numéro de 9 chiffres
+            ne correspond pas à un Siren présent dans la base ; si le paramètre a
+            été utilisé, le Siren peut exister mais la date de création est postérieure
+            au paramètre date)
+        "406":
+          description: Le paramètre 'Accept' de l'en-tête HTTP contient une valeur
+            non prévue
+        "414":
+          description: Requête trop longue
+        "429":
+          description: Quota d'interrogations de l'API dépassé
+        "500":
+          description: Erreur interne du serveur
+        "503":
+          description: Service indisponible
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /siren/{siren}:
+    get:
+      tags:
+      - UniteLegale
+      summary: Recherche d'une unité légale par son numéro Siren (9 chiffres)
+      description: ""
+      operationId: findBySiren
+      produces:
+      - application/json
+      parameters:
+      - name: siren
+        in: path
+        description: Identifiant de l'unité légale (9 chiffres)
+        required: true
+        type: string
+      - name: date
+        in: query
+        description: Date à laquelle on veut obtenir les valeurs des données historisées
+        required: false
+        type: string
+        format: AAAA-MM-JJ
+      - name: champs
+        in: query
+        description: Liste des champs demandés, séparés par des virgules
+        required: false
+        type: string
+      - name: masquerValeursNulles
+        in: query
+        description: Masque (true) ou affiche (false, par défaut) les attributs qui
+          n'ont pas de valeur
+        required: false
+        type: boolean
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReponseUniteLegale'
+        "301":
+          description: Unité légale fermée pour cause de doublon
+        "400":
+          description: Nombre incorrect de paramètres ou les paramètres sont mal formatés
+        "401":
+          description: Jeton d'accès manquant ou invalide
+        "403":
+          description: Droits insuffisants pour consulter les données de cette unité
+        "404":
+          description: Entreprise non trouvée dans la base Sirene (si le paramètre
+            date n'a pas été utilisé, cela peut signifier que le numéro de 9 chiffres
+            ne correspond pas à un Siren présent dans la base ; si le paramètre a
+            été utilisé, le Siren peut exister mais la date de création est postérieure
+            au paramètre date)
+        "406":
+          description: Le paramètre 'Accept' de l'en-tête HTTP contient une valeur
+            non prévue
+        "429":
+          description: Quota d'interrogations de l'API dépassé
+        "500":
+          description: Erreur interne du serveur
+        "503":
+          description: Service indisponible
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /siren/nonDiffusibles:
+    get:
+      tags:
+      - UniteLegale
+      summary: Recherche sur les non diffusibles
+      description: ""
+      operationId: findNonDiffusiblesByQ1
+      produces:
+      - application/json
+      - text/csv
+      parameters:
+      - name: q
+        in: query
+        description: Contenu de la requête multicritères, voir la documentation pour
+          plus de précisions
+        required: false
+        type: string
+      - name: nombre
+        in: query
+        description: Nombre d'éléments demandés dans la réponse, défaut 20
+        required: false
+        type: integer
+      - name: debut
+        in: query
+        description: Rang du premier élément demandé dans la réponse, défaut 0
+        required: false
+        type: integer
+      - name: curseur
+        in: query
+        description: Paramètre utilisé pour la pagination profonde, voir la documentation
+          pour plus de précisions
+        required: false
+        type: string
+      - name: champs
+        in: query
+        description: Liste des champs demandés, séparés par des virgules
+        required: false
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReponseUnitesLegalesNonDiffusibles'
+        "301":
+          description: Entreprise doublon
+        "400":
+          description: Nombre incorrect de paramètres ou les paramètres sont mal formatés
+        "401":
+          description: Jeton d'accès manquant ou invalide
+        "404":
+          description: Entreprise non trouvée dans la base Sirene (si le paramètre
+            date n'a pas été utilisé, cela peut signifier que le numéro de 9 chiffres
+            ne correspond pas à un Siren présent dans la base ; si le paramètre a
+            été utilisé, le Siren peut exister mais la date de création est postérieure
+            au paramètre date)
+        "406":
+          description: Le paramètre 'Accept' de l'en-tête HTTP contient une valeur
+            non prévue
+        "414":
+          description: Requête trop longue
+        "429":
+          description: Quota d'interrogations de l'API dépassé
+        "500":
+          description: Erreur interne du serveur
+        "503":
+          description: Service indisponible
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /siren/refusImmatriculationRcs:
+    get:
+      tags:
+      - UniteLegale
+      summary: Recherche sur les refus d'immatriculation au RCS
+      description: ""
+      operationId: findRefusImmatriculationRCSByQ
+      produces:
+      - application/json
+      - text/csv
+      parameters:
+      - name: q
+        in: query
+        description: Contenu de la requête multicritères, voir la documentation pour
+          plus de précisions
+        required: false
+        type: string
+      - name: nombre
+        in: query
+        description: Nombre d'éléments demandés dans la réponse, défaut 20
+        required: false
+        type: integer
+      - name: debut
+        in: query
+        description: Rang du premier élément demandé dans la réponse, défaut 0
+        required: false
+        type: integer
+      - name: curseur
+        in: query
+        description: Paramètre utilisé pour la pagination profonde, voir la documentation
+          pour plus de précisions
+        required: false
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReponseRefusImmatriculationRCS'
+        "301":
+          description: Entreprise doublon
+        "400":
+          description: Nombre incorrect de paramètres ou les paramètres sont mal formatés
+        "401":
+          description: Jeton d'accès manquant ou invalide
+        "404":
+          description: Entreprise non trouvée dans la base Sirene (si le paramètre
+            date n'a pas été utilisé, cela peut signifier que le numéro de 9 chiffres
+            ne correspond pas à un Siren présent dans la base ; si le paramètre a
+            été utilisé, le Siren peut exister mais la date de création est postérieure
+            au paramètre date)
+        "406":
+          description: Le paramètre 'Accept' de l'en-tête HTTP contient une valeur
+            non prévue
+        "429":
+          description: Quota d'interrogations de l'API dépassé
+        "500":
+          description: Erreur interne du serveur
+        "503":
+          description: Service indisponible
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /siret:
+    get:
+      tags:
+      - Etablissement
+      summary: Recherche multicritère d'établissements
+      description: ""
+      operationId: findSiretByQ
+      produces:
+      - application/json
+      - text/csv
+      parameters:
+      - name: q
+        in: query
+        description: Contenu de la requête multicritères, voir la documentation pour
+          plus de précisions
+        required: false
+        type: string
+      - name: date
+        in: query
+        description: Date à laquelle s'appliqueront les critères de recherche sur
+          les champs historisés, format AAAA-MM-JJ
+        required: false
+        type: string
+      - name: champs
+        in: query
+        description: Liste des champs demandés, séparés par des virgules
+        required: false
+        type: string
+      - name: masquerValeursNulles
+        in: query
+        description: Masque (true) ou affiche (false, par défaut) les attributs qui
+          n'ont pas de valeur
+        required: false
+        type: boolean
+      - name: facette.champ
+        in: query
+        description: Liste des champs sur lesquels des comptages seront effectués,
+          séparés par des virgules
+        required: false
+        type: string
+      - name: tri
+        in: query
+        description: Champs sur lesquels des tris seront effectués, séparés par des
+          virgules. Tri sur siret par défaut
+        required: false
+        type: string
+      - name: nombre
+        in: query
+        description: Nombre d'éléments demandés dans la réponse, défaut 20
+        required: false
+        type: integer
+        maximum: 100000
+        minimum: 0
+      - name: debut
+        in: query
+        description: Rang du premier élément demandé dans la réponse, défaut 0
+        required: false
+        type: integer
+        maximum: 1000000
+        minimum: 0
+      - name: curseur
+        in: query
+        description: Paramètre utilisé pour la pagination profonde, voir la documentation
+          pour plus de précisions
+        required: false
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReponseEtablissements'
+        "301":
+          description: L'entreprise de l'établissement est un doublon
+        "400":
+          description: Nombre incorrect de paramètres ou les paramètres sont mal formatés
+        "401":
+          description: Jeton d'accès manquant ou invalide
+        "404":
+          description: Entreprise non trouvée dans la base Sirene (si le paramètre
+            date n'a pas été utilisé, cela peut signifier que le numéro de 14 chiffres
+            ne correspond pas à un Siret présent dans la base ; si le paramètre date
+            a été utilisé, le Siret peut exister mais la date de création est postérieure
+            au paramètre date)
+        "406":
+          description: Le paramètre 'Accept' de l'en-tête HTTP contient une valeur
+            non prévue
+        "414":
+          description: Requête trop longue
+        "429":
+          description: Quota d'interrogations de l'API dépassé
+        "500":
+          description: Erreur interne du serveur
+        "503":
+          description: Service indisponible
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    post:
+      tags:
+      - Etablissement
+      summary: Recherche multicritère d'établissements
+      description: ""
+      operationId: findSiretByQPost
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      - text/csv
+      parameters:
+      - name: q
+        in: formData
+        description: Contenu de la requête multicritères, voir la documentation pour
+          plus de précisions
+        required: false
+        type: string
+      - name: date
+        in: formData
+        description: Date à laquelle s'appliqueront les critères de recherche sur
+          les champs historisés, format AAAA-MM-JJ
+        required: false
+        type: string
+      - name: champs
+        in: formData
+        description: Liste des champs demandés, séparés par des virgules
+        required: false
+        type: string
+      - name: masquerValeursNulles
+        in: formData
+        description: Masque (true) ou affiche (false, par défaut) les attributs qui
+          n'ont pas de valeur
+        required: false
+        type: boolean
+      - name: facette.champ
+        in: formData
+        description: Liste des champs sur lesquels des comptages seront effectués,
+          séparés par des virgules
+        required: false
+        type: string
+      - name: tri
+        in: formData
+        description: Champs sur lesquels des tris seront effectués, séparés par des
+          virgules. Tri sur siret par défaut
+        required: false
+        type: string
+      - name: nombre
+        in: formData
+        description: Nombre d'éléments demandés dans la réponse, défaut 20
+        required: false
+        type: integer
+        maximum: 100000
+        minimum: 0
+      - name: debut
+        in: formData
+        description: Rang du premier élément demandé dans la réponse, défaut 0
+        required: false
+        type: integer
+        maximum: 1000000
+        minimum: 0
+      - name: curseur
+        in: formData
+        description: Paramètre utilisé pour la pagination profonde, voir la documentation
+          pour plus de précisions
+        required: false
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReponseEtablissements'
+        "301":
+          description: L'entreprise de l'établissement est un doublon
+        "400":
+          description: Nombre incorrect de paramètres ou les paramètres sont mal formatés
+        "401":
+          description: Jeton d'accès manquant ou invalide
+        "404":
+          description: Entreprise non trouvée dans la base Sirene (si le paramètre
+            date n'a pas été utilisé, cela peut signifier que le numéro de 14 chiffres
+            ne correspond pas à un Siret présent dans la base ; si le paramètre date
+            a été utilisé, le Siret peut exister mais la date de création est postérieure
+            au paramètre date)
+        "406":
+          description: Le paramètre 'Accept' de l'en-tête HTTP contient une valeur
+            non prévue
+        "414":
+          description: Requête trop longue
+        "429":
+          description: Quota d'interrogations de l'API dépassé
+        "500":
+          description: Erreur interne du serveur
+        "503":
+          description: Service indisponible
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /siret/{siret}:
+    get:
+      tags:
+      - Etablissement
+      summary: Recherche d'un établissement par son numéro Siret
+      description: ""
+      operationId: findBySiret
+      produces:
+      - application/json
+      parameters:
+      - name: siret
+        in: path
+        description: Identifiant de l'établissement (14 chiffres)
+        required: true
+        type: string
+      - name: date
+        in: query
+        description: Date à laquelle on veut obtenir les valeurs des données historisées
+        required: false
+        type: string
+        format: AAAA-MM-JJ
+      - name: champs
+        in: query
+        description: Liste des champs demandés, séparés par des virgules
+        required: false
+        type: string
+      - name: masquerValeursNulles
+        in: query
+        description: Masque (true) ou affiche (false, par défaut) les attributs qui
+          n'ont pas de valeur
+        required: false
+        type: boolean
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReponseEtablissement'
+        "301":
+          description: Établissement d'une unité légale fermée pour cause de doublon
+        "400":
+          description: Nombre incorrect de paramètres ou les paramètres sont mal formatés
+        "401":
+          description: Jeton d'accès manquant ou invalide
+        "403":
+          description: Droits insuffisants pour consulter les données de cette unité
+        "404":
+          description: Entreprise non trouvée dans la base Sirene (si le paramètre
+            date n'a pas été utilisé, cela peut signifier que le numéro de 14 chiffres
+            ne correspond pas à un Siret présent dans la base ; si le paramètre date
+            a été utilisé, le Siret peut exister mais la date de création est postérieure
+            au paramètre date)
+        "406":
+          description: Le paramètre 'Accept' de l'en-tête HTTP contient une valeur
+            non prévue
+        "429":
+          description: Quota d'interrogations de l'API dépassé
+        "500":
+          description: Erreur interne du serveur
+        "503":
+          description: Service indisponible
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /siret/liensSuccession:
+    get:
+      tags:
+      - Etablissement
+      summary: Recherche multicritère sur les liens de succession
+      description: ""
+      operationId: findLiensSuccessionByQ
+      produces:
+      - application/json
+      - text/csv
+      parameters:
+      - name: q
+        in: query
+        description: Contenu de la requête multicritères, voir la documentation pour
+          plus de précisions
+        required: false
+        type: string
+      - name: tri
+        in: query
+        description: Permet de trier sur la variable siretEtablissementSuccesseur
+          au lieu de siretEtablissementPredecesseur
+        required: false
+        type: string
+        enum:
+        - successeur
+      - name: nombre
+        in: query
+        description: Nombre d'éléments demandés dans la réponse, défaut 20
+        required: false
+        type: integer
+        maximum: 100000
+        minimum: 0
+      - name: debut
+        in: query
+        description: Rang du premier élément demandé dans la réponse, défaut 0
+        required: false
+        type: integer
+        maximum: 1000000
+        minimum: 0
+      - name: curseur
+        in: query
+        description: Paramètre utilisé pour la pagination profonde, voir la documentation
+          pour plus de précisions
+        required: false
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReponseLienSuccession'
+        "301":
+          description: L'entreprise de l'établissement est un doublon
+        "400":
+          description: Nombre incorrect de paramètres ou les paramètres sont mal formatés
+        "401":
+          description: Jeton d'accès manquant ou invalide
+        "404":
+          description: Entreprise non trouvée dans la base Sirene (si le paramètre
+            date n'a pas été utilisé, cela peut signifier que le numéro de 14 chiffres
+            ne correspond pas à un Siret présent dans la base ; si le paramètre date
+            a été utilisé, le Siret peut exister mais la date de création est postérieure
+            au paramètre date)
+        "406":
+          description: Le paramètre 'Accept' de l'en-tête HTTP contient une valeur
+            non prévue
+        "414":
+          description: Requête trop longue
+        "429":
+          description: Quota d'interrogations de l'API dépassé
+        "500":
+          description: Erreur interne du serveur
+        "503":
+          description: Service indisponible
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /siret/nonDiffusibles:
+    get:
+      tags:
+      - Etablissement
+      summary: Recherche sur les non diffusibles
+      description: ""
+      operationId: findNonDiffusiblesByQ
+      produces:
+      - application/json
+      - text/csv
+      parameters:
+      - name: q
+        in: query
+        description: Contenu de la requête multicritères, voir la documentation pour
+          plus de précisions
+        required: false
+        type: string
+      - name: nombre
+        in: query
+        description: Nombre d'éléments demandés dans la réponse, défaut 20
+        required: false
+        type: integer
+      - name: debut
+        in: query
+        description: Rang du premier élément demandé dans la réponse, défaut 0
+        required: false
+        type: integer
+      - name: curseur
+        in: query
+        description: Paramètre utilisé pour la pagination profonde, voir la documentation
+          pour plus de précisions
+        required: false
+        type: string
+      - name: champs
+        in: query
+        description: Liste des champs demandés, séparés par des virgules
+        required: false
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReponseEtablissementsNonDiffusibles'
+        "301":
+          description: L'entreprise de l'établissement est un doublon
+        "400":
+          description: Nombre incorrect de paramètres ou les paramètres sont mal formatés
+        "401":
+          description: Jeton d'accès manquant ou invalide
+        "404":
+          description: Entreprise non trouvée dans la base Sirene (si le paramètre
+            date n'a pas été utilisé, cela peut signifier que le numéro de 14 chiffres
+            ne correspond pas à un Siret présent dans la base ; si le paramètre date
+            a été utilisé, le Siret peut exister mais la date de création est postérieure
+            au paramètre date)
+        "406":
+          description: Le paramètre 'Accept' de l'en-tête HTTP contient une valeur
+            non prévue
+        "414":
+          description: Requête trop longue
+        "429":
+          description: Quota d'interrogations de l'API dépassé
+        "500":
+          description: Erreur interne du serveur
+        "503":
+          description: Service indisponible
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /informations:
+    get:
+      tags:
+      - Informations
+      summary: État du service, dates de mise à jour et numéro de version
+      description: ""
+      operationId: informations
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReponseInformations'
+        "503":
+          description: Service indisponible
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+definitions:
+  Adresse:
+    type: object
+    properties:
+      complementAdresseEtablissement:
+        type: string
+        description: Complément d'adresse de l'établissement
+      numeroVoieEtablissement:
+        type: string
+        description: Numéro dans la voie
+      indiceRepetitionEtablissement:
+        type: string
+        description: Indice de répétition dans la voie
+      typeVoieEtablissement:
+        type: string
+        description: Type de la voie
+      libelleVoieEtablissement:
+        type: string
+        description: Libellé de la voie
+      codePostalEtablissement:
+        type: string
+        description: Code postal
+      libelleCommuneEtablissement:
+        type: string
+        description: Libellé de la commune pour les adresses en France
+      libelleCommuneEtrangerEtablissement:
+        type: string
+        description: Libellé complémentaire pour une adresse à l'étranger
+      distributionSpecialeEtablissement:
+        type: string
+        description: Distribution spéciale (BP par ex)
+      codeCommuneEtablissement:
+        type: string
+        description: Code commune de localisation de l’établissement hors établissements
+          situés à l’étranger (Le code commune est défini dans le <a href='https://www.insee.fr/fr/information/2028028'>code
+          officiel géographique (COG)</a>)
+      codeCedexEtablissement:
+        type: string
+        description: Numéro de Cedex
+      libelleCedexEtablissement:
+        type: string
+        description: Libellé correspondant au numéro de Cedex (variable codeCedexEtablissement)
+      codePaysEtrangerEtablissement:
+        type: string
+        description: Code pays pour les établissements situés à l’étranger
+      libellePaysEtrangerEtablissement:
+        type: string
+        description: Libellé du pays pour les adresses à l’étranger
+    description: Ensemble des variables d'adresse d'un établissement
+  AdresseComplementaire:
+    type: object
+    properties:
+      complementAdresse2Etablissement:
+        type: string
+        description: Complément d'adresse de l'établissement
+      numeroVoie2Etablissement:
+        type: string
+        description: Numéro dans la voie
+      indiceRepetition2Etablissement:
+        type: string
+        description: Indice de répétition dans la voie
+      typeVoie2Etablissement:
+        type: string
+        description: Type de la voie
+      libelleVoie2Etablissement:
+        type: string
+        description: Libellé de la voie
+      codePostal2Etablissement:
+        type: string
+        description: Code postal
+      libelleCommune2Etablissement:
+        type: string
+        description: Libellé de la commune pour les adresses en France
+      libelleCommuneEtranger2Etablissement:
+        type: string
+        description: Libellé complémentaire pour une adresse à l'étranger
+      distributionSpeciale2Etablissement:
+        type: string
+        description: Distribution spéciale (BP par ex)
+      codeCommune2Etablissement:
+        type: string
+        description: Code commune de localisation de l’établissement hors établissements
+          situés à l’étranger (Le code commune est défini dans le <a href='https://www.insee.fr/fr/information/2028028'>code
+          officiel géographique (COG)</a>)
+      codeCedex2Etablissement:
+        type: string
+        description: Numéro de Cedex
+      libelleCedex2Etablissement:
+        type: string
+        description: Libellé correspondant au numéro de Cedex (variable codeCedexEtablissement)
+      codePaysEtranger2Etablissement:
+        type: string
+        description: Code pays pour les établissements situés à l’étranger
+      libellePaysEtranger2Etablissement:
+        type: string
+        description: Libellé du pays pour les adresses à l’étranger
+    description: Ensemble des variables d'adresse complémentaire d'un établissement
+  Comptage:
+    type: object
+    properties:
+      valeur:
+        type: object
+        description: Modalité comptée
+        properties: {}
+      nombre:
+        type: integer
+        format: int64
+        description: Nombre d'éléments correspondant à la modalité comptée
+      facettes:
+        type: array
+        items:
+          $ref: '#/definitions/Facette'
+    description: Objet représentant un comptage particulier à l'intérieur d'une facette
+  Etablissement:
+    type: object
+    properties:
+      score:
+        type: number
+        format: float
+        description: Score de l'élément parmi l'ensemble des éléments répondant à
+          la requête, plus le score est élevé, plus l'élément est haut placé. Le score
+          n'a pas de signification en dehors de la requête et n'est pas comparable
+          aux score d'autres requêtes
+      siren:
+        type: string
+        description: Numéro Siren de l'entreprise à laquelle appartient l'établissement
+      nic:
+        type: string
+        description: Numéro interne de classement de l'établissement
+      siret:
+        type: string
+        description: Numéro Siret de l’établissement (toujours renseigné)
+      statutDiffusionEtablissement:
+        type: string
+        description: Statut de diffusion de l'établissement
+      dateCreationEtablissement:
+        type: string
+        description: Date de création de l'établissement, format AAAA-MM-JJ
+      trancheEffectifsEtablissement:
+        type: string
+        description: Tranche d’effectif salarié de l’établissement, valorisée uniquement
+          si l’année correspondante est supérieure ou égale à l’année d’interrogation
+          -3 (sinon, NN)
+      anneeEffectifsEtablissement:
+        type: string
+        description: Année de la tranche d’effectif salarié de l’établissement, valorisée
+          uniquement si l'année est supérieure ou égale à l’année d’interrogation
+          -3 (sinon, null)
+      activitePrincipaleRegistreMetiersEtablissement:
+        type: string
+        description: Code de l’activité exercée par l’artisan inscrit au registre
+          des métiers. L’APRM est codifiée selon la nomenclature d’Activités Française
+          de l’Artisanat (NAFA)
+      dateDernierTraitementEtablissement:
+        type: string
+        description: Date de la dernière mise à jour effectuée au répertoire Sirene
+          sur le Siret concerné (AAAA-MM-JJTHH:MM:SS)
+      etablissementSiege:
+        type: boolean
+        description: Indicatrice précisant si le Siret est celui de l’établissement
+          siège ou non
+      nombrePeriodesEtablissement:
+        type: integer
+        format: int32
+        description: Nombre de périodes dans la vie de l'établissement
+      uniteLegale:
+        $ref: '#/definitions/UniteLegaleEtablissement'
+      adresseEtablissement:
+        $ref: '#/definitions/Adresse'
+      adresse2Etablissement:
+        $ref: '#/definitions/AdresseComplementaire'
+      periodesEtablissement:
+        type: array
+        items:
+          $ref: '#/definitions/PeriodeEtablissement'
+    description: Objet représentant un établissement et son historique
+  Facette:
+    type: object
+    properties:
+      nom:
+        type: string
+        description: Nom de la facette
+      manquants:
+        type: integer
+        format: int32
+        description: Nombre d'éléments pour lesquels la facette vaut null
+      total:
+        type: integer
+        format: int64
+        description: Nombre total d'éléments ayant une valeur non nulle pour la facette
+      modalites:
+        type: integer
+        format: int32
+        description: Nombre de valeurs distinctes pour la facette
+      avant:
+        type: integer
+        format: int32
+        description: Nombre d'éléments dont la valeur est inférieure au premier intervalle,
+          uniquement pour les facettes de type intervalle
+      apres:
+        type: integer
+        format: int32
+        description: Nombre d'éléments dont la valeur est supérieure au dernier intervalle,
+          uniquement pour les facettes de type intervalle
+      entre:
+        type: integer
+        format: int32
+        description: Nombre d'élements compris entre la borne inférieure du premier
+          intervalle et la borne supérieure du dernier intervalle, uniquement pour
+          les facettes de type intervalle
+      comptages:
+        type: array
+        items:
+          $ref: '#/definitions/Comptage'
+      facettes:
+        type: array
+        items:
+          $ref: '#/definitions/Facette'
+    description: Objet représentant une facette (un ensemble de comptages selon un
+      champ, une requête ou une série d'intervalles)
+  Header:
+    type: object
+    properties:
+      statut:
+        type: integer
+        format: int32
+        description: Égal au status de la réponse HTTP
+      message:
+        type: string
+        description: En cas d'erreur, message indiquant la cause de l'erreur. OK sinon
+      total:
+        type: integer
+        format: int32
+        description: Nombre total des éléments répondant à la requête
+      debut:
+        type: integer
+        format: int32
+        description: Numéro du premier élément fourni, défaut à 0, commence à 0
+      nombre:
+        type: integer
+        format: int32
+        description: Nombre d'éléments fournis, défaut à 20
+      curseur:
+        type: string
+        description: Curseur passé en argument dans la requête de l'utilisateur, utilisé
+          pour la pagination profonde
+      curseurSuivant:
+        type: string
+        description: Curseur suivant pour accéder à la suite des résultat lorsqu'on
+          utilise la pagination profonde
+    description: Informations générales sur le résultat de la requête
+  PeriodeEtablissement:
+    type: object
+    properties:
+      dateFin:
+        type: string
+        format: date
+        description: Date de fin de la période, null pour la dernière période, format
+          AAAA-MM-DD
+      dateDebut:
+        type: string
+        format: date
+        description: Date de début de la période, format AAAA-MM-DD
+      etatAdministratifEtablissement:
+        type: string
+        description: État administratif de l'établissement pendant la période (A=
+          établissement actif ; F= établissement fermé)
+      changementEtatAdministratifEtablissement:
+        type: boolean
+        description: Indicatrice de changement de l'état administratif de l'établissement
+          par rapport à la période précédente
+      enseigne1Etablissement:
+        type: string
+        description: Première ligne d'enseigne
+      enseigne2Etablissement:
+        type: string
+        description: Deuxième ligne d'enseigne
+      enseigne3Etablissement:
+        type: string
+        description: Troisième ligne d'enseigne
+      changementEnseigneEtablissement:
+        type: boolean
+        description: Indicatrice de changement de l'enseigne de l'établissement par
+          rapport à la période précédente (un seul indicateur pour les trois variables
+          Enseigne1, Enseigne2 et Enseigne3)
+      denominationUsuelleEtablissement:
+        type: string
+        description: 'Nom sous lequel l’activité de l’établissement est connu du public '
+      changementDenominationUsuelleEtablissement:
+        type: boolean
+        description: Indicatrice de changement de la dénomination usuelle de l’établissement
+          par rapport à la période précédente
+      activitePrincipaleEtablissement:
+        type: string
+        description: Activité principale de l'établissement pendant la période (l'APE
+          est codifiée selon la <a href='https://www.insee.fr/fr/information/2406147'>nomenclature
+          d'Activités Française (NAF)</a>
+      nomenclatureActivitePrincipaleEtablissement:
+        type: string
+        description: Nomenclature de l'activité, permet de savoir à partir de quelle
+          nomenclature est codifiée ActivitePrincipaleEtablissement
+        enum:
+        - NAP
+        - NAFRev1
+        - NAFRev2
+        - NAF1993
+      changementActivitePrincipaleEtablissement:
+        type: boolean
+        description: Indicatrice de changement de l'activité principale de l'établissement
+          par rapport à la période précédente
+      caractereEmployeurEtablissement:
+        type: string
+        description: Caractère employeur de l'établissement (O=oui ; N=non ; null=sans
+          objet)
+      changementCaractereEmployeurEtablissement:
+        type: boolean
+        description: Indicatrice de changement du caractère employeur de l'établissement
+          par rapport à la période précédente
+    description: Ensemble des variables historisées de l'établissement entre dateDebut
+      et dateFin
+  PeriodeUniteLegale:
+    type: object
+    properties:
+      dateFin:
+        type: string
+        format: date
+        description: Date de fin de la période, null pour la dernière période, format
+          AAAA-MM-DD
+      dateDebut:
+        type: string
+        format: date
+        description: Date de début de la période, format AAAA-MM-DD
+      etatAdministratifUniteLegale:
+        type: string
+        description: État de l'entreprise pendant la période (A= entreprise active,
+          C= entreprise cessée)
+        enum:
+        - A
+        - C
+      changementEtatAdministratifUniteLegale:
+        type: boolean
+        description: Indicatrice de changement d'état par rapport à la période précédente
+      nomUniteLegale:
+        type: string
+        description: Nom de naissance pour les personnes physiques pour la période
+          (null pour les personnes morales)
+      changementNomUniteLegale:
+        type: boolean
+        description: Indicatrice de changement du nom par rapport à la période précédente
+      nomUsageUniteLegale:
+        type: string
+        description: Nom d’usage pour les personnes physiques si celui-ci existe,
+          null pour les personnes morales
+      changementNomUsageUniteLegale:
+        type: boolean
+        description: Indicatrice de changement du nom d'usage par rapport à la période
+          précédente
+      denominationUniteLegale:
+        type: string
+        description: Raison sociale (personnes morales)
+      changementDenominationUniteLegale:
+        type: boolean
+        description: Indicatrice de changement de la dénomination par rapport à la
+          période précédente
+      denominationUsuelle1UniteLegale:
+        type: string
+        description: Premier nom sous lequel l’entreprise est connue du public
+      denominationUsuelle2UniteLegale:
+        type: string
+        description: Deuxième nom sous lequel l’entreprise est connue du public
+      denominationUsuelle3UniteLegale:
+        type: string
+        description: Troisième nom sous lequel l’entreprise est connue du public
+      changementDenominationUsuelleUniteLegale:
+        type: boolean
+        description: Indicatrice de changement de la dénomination usuelle de l'unité
+          légale par rapport à la période précédente (un seul indicateur pour les
+          trois variables denominationUsuelle1UniteLegale, denominationUsuelle2UniteLegale
+          et denominationUsuelle3UniteLegale)
+      categorieJuridiqueUniteLegale:
+        type: string
+        description: Catégorie juridique de l'entreprise (variable Null pour les personnes
+          physiques. (<a href='https://www.insee.fr/fr/information/2028129'>la nomenclature
+          sur insee.fr</a>))
+      changementCategorieJuridiqueUniteLegale:
+        type: boolean
+        description: Indicatrice de changement de la catégorie juridique par rapport
+          à la période précédente
+      activitePrincipaleUniteLegale:
+        type: string
+        description: Activité principale de l'entreprise pendant la période (l'APE
+          est codifiée selon la <a href='https://www.insee.fr/fr/information/2406147'>nomenclature
+          d'Activités Française (NAF)</a>
+      nomenclatureActivitePrincipaleUniteLegale:
+        type: string
+        description: Nomenclature de l'activité, permet de savoir à partir de quelle
+          nomenclature est codifiée ActivitePrincipale
+        enum:
+        - NAP
+        - NAFRev1
+        - NAFRev2
+        - NAF1993
+      changementActivitePrincipaleUniteLegale:
+        type: boolean
+        description: Indicatrice de changement de l'activité principale par rapport
+          à la période précédente
+      nicSiegeUniteLegale:
+        type: string
+        description: Identifiant du siège pour la période (le Siret du siège est obtenu
+          en concaténant le numéro Siren et le Nic)
+      changementNicSiegeUniteLegale:
+        type: boolean
+        description: Indicatrice de changement du NIC du siège par rapport à la période
+          précédente
+      economieSocialeSolidaireUniteLegale:
+        type: string
+        description: Appartenance de l’unité légale au champ de l’économie sociale
+          et solidaire (ESS)
+      changementEconomieSocialeSolidaireUniteLegale:
+        type: boolean
+        description: Indicatrice de changement de l'ESS par rapport à la période précédente
+      caractereEmployeurUniteLegale:
+        type: string
+        description: Caractère employeur de l'entreprise. Valeur courante=O si au
+          moins l'un des établissements actifs de l'unité légale emploie des salariés
+        enum:
+        - O
+        - "N"
+        - "null"
+      changementCaractereEmployeurUniteLegale:
+        type: boolean
+        description: Indicatrice de changement du caractère employeur par rapport
+          à la période précédente
+    description: Ensemble des variables historisées de l'unité légale entre dateDebut
+      et dateFin
+  Reponse:
+    type: object
+    properties:
+      header:
+        $ref: '#/definitions/Header'
+  ReponseEtablissement:
+    allOf:
+    - $ref: '#/definitions/Reponse'
+    - type: object
+      properties:
+        etablissement:
+          $ref: '#/definitions/Etablissement'
+      description: Objet renvoyé en cas de succès sur une requête demandant un établissement
+  ReponseEtablissements:
+    allOf:
+    - $ref: '#/definitions/Reponse'
+    - type: object
+      properties:
+        etablissements:
+          type: array
+          items:
+            $ref: '#/definitions/Etablissement'
+        facettes:
+          type: array
+          items:
+            $ref: '#/definitions/Facette'
+      description: Objet renvoyé en cas de succès sur une requête demandant des établissements
+  ReponseUniteLegale:
+    allOf:
+    - $ref: '#/definitions/Reponse'
+    - type: object
+      properties:
+        uniteLegale:
+          $ref: '#/definitions/UniteLegale'
+      description: Objet renvoyé en cas de succès sur une requête demandant un ou
+        unité légale
+  ReponseUnitesLegales:
+    allOf:
+    - $ref: '#/definitions/Reponse'
+    - type: object
+      properties:
+        unitesLegales:
+          type: array
+          items:
+            $ref: '#/definitions/UniteLegale'
+        facettes:
+          type: array
+          items:
+            $ref: '#/definitions/Facette'
+      description: Objet renvoyé en cas de succès sur une requête demandant des unités
+        légales
+  UniteLegale:
+    type: object
+    properties:
+      score:
+        type: number
+        format: float
+        description: Score de l'élément parmi l'ensemble des éléments répondant à
+          la requête, plus le score est élevé, plus l'élément est haut placé. Le score
+          n'a pas de signification en dehors de la requête et n'est pas comparable
+          aux score d'autres requêtes
+      siren:
+        type: string
+        description: Numéro Siren de l'entreprise, toujours renseigné
+      statutDiffusionUniteLegale:
+        type: string
+        description: Statut de diffusion de l’unité légale
+      unitePurgeeUniteLegale:
+        type: boolean
+        description: True si l'unité est une unité purgée
+      dateCreationUniteLegale:
+        type: string
+        description: Date de création de l'unité légale, au format AAAA-MM-JJ
+      sigleUniteLegale:
+        type: string
+        description: Sigle de l'unité légale
+      sexeUniteLegale:
+        type: string
+        description: Sexe pour les personnes physiques sinon null
+        enum:
+        - M
+        - F
+        - "null"
+      prenom1UniteLegale:
+        type: string
+        description: Premier prénom déclaré pour une personne physique, peut être
+          null dans le cas d'une unité purgée
+      prenom2UniteLegale:
+        type: string
+        description: Deuxième prénom déclaré pour une personne physique
+      prenom3UniteLegale:
+        type: string
+        description: Troisième prénom déclaré pour une personne physique
+      prenom4UniteLegale:
+        type: string
+        description: Quatrième prénom déclaré pour une personne physique
+      prenomUsuelUniteLegale:
+        type: string
+        description: Prénom usuel pour les personne physiques, correspond généralement
+          au Prenom1
+      pseudonymeUniteLegale:
+        type: string
+        description: Pseudonyme pour les personnes physiques
+      identifiantAssociationUniteLegale:
+        type: string
+        description: Numéro au Répertoire National des Associations
+      trancheEffectifsUniteLegale:
+        type: string
+        description: Tranche d'effectif salarié de l'unité légale, valorisé uniquement
+          si l'année correspondante est supérieure ou égale à l'année d'interrogation-3
+          (sinon, NN)
+      anneeEffectifsUniteLegale:
+        type: string
+        description: Année de validité de la tranche d'effectif salarié de l'unité
+          légale, valorisée uniquement si l'année est supérieure ou égale à l'année
+          d'interrogation-3 (sinon, null)
+      dateDernierTraitementUniteLegale:
+        type: string
+        description: Date de la dernière mise à jour effectuée au répertoire Sirene
+          sur le Siren concerné, format AAAA-MM-JJTHH:MM:SS
+      nombrePeriodesUniteLegale:
+        type: integer
+        format: int32
+        description: Nombre de périodes dans la vie de l'unité légale
+      categorieEntreprise:
+        type: string
+        description: 'Catégorie à laquelle appartient l''entreprise : Petite ou moyenne
+          entreprise, Entreprise de taille intermédiaire, Grande entreprise'
+        enum:
+        - PME
+        - ETI
+        - GE
+        - "null"
+      anneeCategorieEntreprise:
+        type: string
+        description: Année de validité de la catégorie d'entreprise
+      periodesUniteLegale:
+        type: array
+        items:
+          $ref: '#/definitions/PeriodeUniteLegale'
+    description: Objet représentant une unité légale et son historique
+  UniteLegaleEtablissement:
+    type: object
+    properties:
+      statutDiffusionUniteLegale:
+        type: string
+        description: Statut de diffusion de l’unité légale
+      unitePurgeeUniteLegale:
+        type: boolean
+        description: True si l'unité est une unité purgée
+      dateCreationUniteLegale:
+        type: string
+        description: Date de création de l'unité légale, au format AAAA-MM-JJ
+      sigleUniteLegale:
+        type: string
+        description: Sigle de l'unité légale
+      sexeUniteLegale:
+        type: string
+        description: Sexe pour les personnes physiques sinon null
+        enum:
+        - M
+        - F
+        - "null"
+      prenom1UniteLegale:
+        type: string
+        description: Premier prénom déclaré pour une personne physique, peut être
+          null dans le cas d'une unité purgée
+      prenom2UniteLegale:
+        type: string
+        description: Deuxième prénom déclaré pour une personne physique
+      prenom3UniteLegale:
+        type: string
+        description: Troisième prénom déclaré pour une personne physique
+      prenom4UniteLegale:
+        type: string
+        description: Quatrième prénom déclaré pour une personne physique
+      prenomUsuelUniteLegale:
+        type: string
+        description: Prénom usuel pour les personne physiques, correspond généralement
+          au Prenom1
+      pseudonymeUniteLegale:
+        type: string
+        description: Pseudonyme pour les personnes physiques
+      identifiantAssociationUniteLegale:
+        type: string
+        description: Numéro au Répertoire National des Associations
+      trancheEffectifsUniteLegale:
+        type: string
+        description: Tranche d'effectif salarié de l'unité légale, valorisé uniquement
+          si l'année correspondante est supérieure ou égale à l'année d'interrogation-3
+          (sinon, NN)
+      anneeEffectifsUniteLegale:
+        type: string
+        description: Année de validité de la tranche d'effectif salarié de l'unité
+          légale, valorisée uniquement si l'année est supérieure ou égale à l'année
+          d'interrogation-3 (sinon, null)
+      dateDernierTraitementUniteLegale:
+        type: string
+        description: Date de la dernière mise à jour effectuée au répertoire Sirene
+          sur le Siren concerné, format AAAA-MM-JJTHH:MM:SS
+      nombrePeriodesUniteLegale:
+        type: integer
+        format: int32
+        description: Nombre de périodes dans la vie de l'unité légale
+      categorieEntreprise:
+        type: string
+        description: 'Catégorie à laquelle appartient l''entreprise : Petite ou moyenne
+          entreprise, Entreprise de taille intermédiaire, Grande entreprise'
+        enum:
+        - PME
+        - ETI
+        - GE
+        - "null"
+      anneeCategorieEntreprise:
+        type: string
+        description: Année de validité de la catégorie d'entreprise
+      etatAdministratifUniteLegale:
+        type: string
+        description: État de l'entreprise pendant la période (A= entreprise active,
+          C= entreprise cessée)
+        enum:
+        - A
+        - C
+      nomUniteLegale:
+        type: string
+        description: Nom de naissance pour les personnes physiques pour la période
+          (null pour les personnes morales)
+      denominationUniteLegale:
+        type: string
+        description: Raison sociale (personnes morales)
+      denominationUsuelle1UniteLegale:
+        type: string
+        description: Premier nom sous lequel l’entreprise est connue du public
+      denominationUsuelle2UniteLegale:
+        type: string
+        description: Deuxième nom sous lequel l’entreprise est connue du public
+      denominationUsuelle3UniteLegale:
+        type: string
+        description: Troisième nom sous lequel l’entreprise est connue du public
+      activitePrincipaleUniteLegale:
+        type: string
+        description: Activité principale de l'entreprise pendant la période (l'APE
+          est codifiée selon la <a href='https://www.insee.fr/fr/information/2406147'>nomenclature
+          d'Activités Française (NAF)</a>
+      categorieJuridiqueUniteLegale:
+        type: string
+        description: Catégorie juridique de l’entreprise (=1000 pour les personnes
+          physiques)
+      nicSiegeUniteLegale:
+        type: string
+        description: Identifiant du siège pour la période (le Siret du siège est obtenu
+          en concaténant le numéro Siren et le NIC)
+      nomenclatureActivitePrincipaleUniteLegale:
+        type: string
+        description: Nomenclature de l'activité, permet de savoir à partir de quelle
+          nomenclature est codifiée ActivitePrincipale
+        enum:
+        - NAP
+        - NAFRev1
+        - NAFRev2
+        - NAF1993
+      nomUsageUniteLegale:
+        type: string
+        description: Nom d’usage pour les personnes physiques sinon null
+      economieSocialeSolidaireUniteLegale:
+        type: string
+        description: Appartenance de l’unité légale au champ de l’économie sociale
+          et solidaire (ESS)
+      caractereEmployeurUniteLegale:
+        type: string
+        description: Caractère employeur de l'entreprise. Valeur courante=O si au
+          moins l'un des établissements actifs de l'unité légale emploie des salariés
+        enum:
+        - O
+        - "N"
+        - "null"
+    description: Objet représentant les valeurs courante de l'unité légale de l'établissement
+  ReponseUnitesLegalesNonDiffusibles:
+    type: object
+    properties:
+      header:
+        $ref: '#/definitions/Header'
+      unitesLegalesNonDiffusibles:
+        type: array
+        items:
+          $ref: '#/definitions/UniteLegaleNonDiffusible'
+    description: Objet renvoyé en cas de succès sur une requête demandant des unités
+      légales non diffusibles
+  UniteLegaleNonDiffusible:
+    type: object
+    properties:
+      siren:
+        type: string
+        description: Numéro Siren de l'entreprise, toujours renseigné
+      statutDiffusionUniteLegale:
+        type: string
+        description: Statut de diffusion de l'unité légale
+      dateDernierTraitementUniteLegale:
+        type: string
+        description: Date de la dernière mise à jour effectuée au répertoire Sirene
+          sur le Siren concerné, format AAAA-MM-JJTHH:MM:SS
+    description: Objet représentant une unité légale non diffusible
+  LienSuccession:
+    type: object
+    properties:
+      siretEtablissementPredecesseur:
+        type: string
+        description: Numéro Siret de l'établissement prédécesseur
+      siretEtablissementSuccesseur:
+        type: string
+        description: Numéro Siret de l'établissement successeur
+      dateLienSuccession:
+        type: string
+        description: Date d'effet du lien de succession, au format AAAA-MM-JJ
+      transfertSiege:
+        type: boolean
+        description: Indicatrice de transfert de siège
+      continuiteEconomique:
+        type: boolean
+        description: Indicatrice de continuité économique entre les deux établissements
+      dateDernierTraitementLienSuccession:
+        type: string
+        description: Date de traitement du lien de succession, au format AAAA-MM-JJTHH:MM:SS
+        readOnly: true
+  ReponseLienSuccession:
+    type: object
+    properties:
+      header:
+        $ref: '#/definitions/Header'
+      liensSuccession:
+        type: array
+        items:
+          $ref: '#/definitions/LienSuccession'
+  RefusImmatriculationRCS:
+    type: object
+    properties:
+      siren:
+        type: string
+        description: Numéro Siren de l'entreprise
+      dateSuppressionUniteLegale:
+        type: string
+        description: Date de traitement au répertoire Sirene du refus d'immatriculation
+          au RCS, au format AAAA-MM-JJTHH:MM:SS
+  ReponseRefusImmatriculationRCS:
+    type: object
+    properties:
+      header:
+        $ref: '#/definitions/Header'
+      unitesLegalesRefuseesRcs:
+        type: array
+        items:
+          $ref: '#/definitions/RefusImmatriculationRCS'
+  EtablissementNonDiffusible:
+    type: object
+    properties:
+      siren:
+        type: string
+        description: Numéro Siren de l'entreprise à laquelle appartient l'établissement
+      nic:
+        type: string
+        description: Numéro interne de classement de l'établissement
+      siret:
+        type: string
+        description: Numéro Siret de l’établissement (toujours renseigné)
+      statutDiffusionEtablissement:
+        type: string
+        description: Statut de diffusion de l'établissement
+      dateDernierTraitementEtablissement:
+        type: string
+        description: Date de la dernière mise à jour effectuée au répertoire Sirene
+          sur le Siret concerné (AAAA-MM-JJTHH:MM:SS)
+    description: Objet représentant un établissement non diffusible
+  ReponseEtablissementsNonDiffusibles:
+    type: object
+    properties:
+      header:
+        $ref: '#/definitions/Header'
+      etablissementsNonDiffusibles:
+        type: array
+        items:
+          $ref: '#/definitions/EtablissementNonDiffusible'
+    description: Objet renvoyé en cas de succès sur une requête demandant des établissements
+      non diffusibles
+  DatesMiseAJourDonnees:
+    type: object
+    properties:
+      collection:
+        type: string
+        description: Nom de la collection
+        enum:
+        - Unités Légales
+        - Établissements
+      dateDerniereMiseADisposition:
+        type: string
+        description: Date et heure (aaaa-mm-jjThh:mm:ss) de la dernière mise à disposition
+          des données de la collection
+      dateDernierTraitementMaximum:
+        type: string
+        description: Date (aaaa-mm-jj) correspondant à la date de validité des données
+          consultées
+      dateDernierTraitementDeMasse:
+        type: string
+        description: Date (aaaa-mm-jj) du dernier traitement de masse sur la collection.
+          À cette date plusieurs centaines de milliers de documents ont pu être mis
+          à jour. Il est conseillé de traiter cette date d'une manière spécifique
+    description: Dates des dernières mises à jour de chaque collection de données
+  EtatCollection:
+    type: object
+    properties:
+      Collection:
+        type: string
+        description: Collection
+      etatCollection:
+        type: string
+        description: Etat du service
+        enum:
+        - UP
+        - DOWN
+  ReponseInformations:
+    type: object
+    properties:
+      etatService:
+        type: string
+        description: État actuel du service
+        enum:
+        - UP
+        - DOWN
+      etatsDesServices:
+        type: array
+        description: Etats des services
+        items:
+          $ref: '#/definitions/EtatCollection'
+      versionService:
+        type: string
+        description: Numéro de la version
+      journalDesModifications:
+        type: string
+        description: Historique des versions de l'API Sirene
+      datesDernieresMisesAJourDesDonnees:
+        type: array
+        description: Dates des dernières mises à jour de chaque collection de données
+        items:
+          $ref: '#/definitions/DatesMiseAJourDonnees'
+    description: Objet renvoyé en cas de requête demandant les informations sur le
+      service
+tags: []
