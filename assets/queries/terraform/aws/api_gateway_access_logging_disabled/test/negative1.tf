@@ -5,6 +5,11 @@ resource "aws_api_gateway_stage" "negative1" {
   access_log_settings {
     destination_arn = "dest"
   }
+}
+
+resource "aws_api_gateway_method_settings" "all" {
+  stage_name  = aws_api_gateway_stage.negative1.stage_name
+  method_path = "*/*"
 
   settings {
     metrics_enabled = true

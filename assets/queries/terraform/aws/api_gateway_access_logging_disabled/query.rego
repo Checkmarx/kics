@@ -55,7 +55,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	_ := input.document[i].resource.aws_api_gateway_stage[name]
+	api := input.document[i].resource.aws_api_gateway_stage[name]
 
 	x := [methodSettings | methodSettings := input.document[i].resource.aws_api_gateway_method_settings[_];
     		split(methodSettings.stage_name,".")[1]==name]
@@ -64,6 +64,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_api_gateway_stage",
+        "resourceName": tf_lib.get_resource_name(api, name),
 		"searchKey": sprintf("aws_api_gateway_stage[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_api_gateway_stage[%s]'s corresponding aws_api_gateway_method_settings should be defined and not null", [name]),
