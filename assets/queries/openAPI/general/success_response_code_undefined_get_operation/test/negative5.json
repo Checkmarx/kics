@@ -1,0 +1,33 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Simple API",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/item": {
+        "get": {
+          "operationId": "getItem",
+          "summary": "get item",
+          "responses": {
+            "2XX": {
+              "description": "Item getd successfully"
+            },
+            "default": {
+              "description": "Error"
+            }
+          }
+        },
+        "patch": {
+          "operationId": "updateItem",
+          "summary": "Update item",
+          "responses": {
+            "default": {
+              "description": "Error"
+            }
+          }
+        }
+      }
+    }
+  }
+  
