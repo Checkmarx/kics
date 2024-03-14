@@ -672,7 +672,7 @@ SonarQube reports, follow [SonarQube Import Format](https://docs.sonarqube.org/l
 You can export html report by using `--report-formats "html"`.
 HTML reports are sorted by severity (from high to info), the results will have query information, a list of files which vulnerability was found and a code snippet where the problem was detected as you can see in following example:
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/2eef04427dad4e160f81fd597259daa92fa4e5cc/docs/img/html_report.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/fc93fd1fa4ed3572b0732c787be61d4c82fff2e5/docs/img/html_report.png" width="850">
 
 ## PDF
 
