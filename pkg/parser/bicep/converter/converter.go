@@ -2,6 +2,7 @@ package converter
 
 import (
 	"encoding/json"
+	"fmt"
 
 	"github.com/Checkmarx/kics/pkg/model"
 )
@@ -14,10 +15,10 @@ linesToIgnore    []int                       `json:"-"`
 linesNotToIgnore []int                       `json:"-"`
 */
 type JSONBicep struct {
-	Params         map[string]Param            `json:"parameters,omitempty"`
+	Params         map[string]Param            `json:"-"`
 	Variables      []Variable                  `json:"variables,omitempty"`
 	Resources      []Resource                  `json:"resources,omitempty"`
-	Outputs        map[string]Output           `json:"outputs,omitempty"`
+	Outputs        []Output                    `json:"-"`
 	Modules        []Module                    `json:"modules,omitempty"`
 	Metadata       map[string]string           `json:"metadata,omitempty"`
 	Lines          map[string]model.LineObject `json:"_kics_lines"`
@@ -31,6 +32,56 @@ func (res *Resource) MarshalJSON() ([]byte, error) {
 	resourceMap["metadata"] = res.Metadata
 
 	return json.Marshal(resourceMap)
+}
+
+func (jsonBicep *JSONBicep) MarshalJSON() ([]byte, error) {
+
+	outputs := map[string]map[string]interface{}{}
+	params := map[string]map[string]interface{}{}
+
+	for _, output := range jsonBicep.Outputs {
+		tempOutput := map[string]interface{}{}
+		tempOutput["type"] = output.Type
+		tempOutput["metadata"] = output.Metadata
+		tempOutput["value"] = output.Value
+
+		for decorator, value := range output.Decorators {
+			if !(value == "" || value == nil) {
+				tempOutput[decorator] = value
+			}
+		}
+
+		tempOutput["type"] = output.Type
+
+		outputs[output.Name] = tempOutput
+	}
+
+	for _, param := range jsonBicep.Params {
+		tempParam := map[string]interface{}{}
+		tempParam["type"] = param.Type
+		tempParam["defaultValue"] = param.DefaultValue
+		tempParam["metadata"] = param.Metadata
+
+		for decorator, value := range param.Decorators {
+			fmt.Println(value)
+			if !(value == "" || value == nil) {
+				tempParam[decorator] = value
+			}
+		}
+
+		params[param.Name] = tempParam
+	}
+
+	type JSONBicepAlias JSONBicep
+	return json.Marshal(&struct {
+		*JSONBicepAlias
+		Outputs map[string]map[string]interface{} `json:"outputs"`
+		Params  map[string]map[string]interface{} `json:"parameters"`
+	}{
+		JSONBicepAlias: (*JSONBicepAlias)(jsonBicep),
+		Outputs:        outputs,
+		Params:         params,
+	})
 }
 
 type ElemBicep struct {
@@ -116,7 +167,7 @@ func newJSONBicep() *JSONBicep {
 		Params:         map[string]Param{},
 		Variables:      []Variable{},
 		Resources:      []Resource{},
-		Outputs:        map[string]Output{},
+		Outputs:        []Output{},
 		Modules:        []Module{},
 		Metadata:       map[string]string{},
 		Lines:          map[string]model.LineObject{},
@@ -130,7 +181,7 @@ func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 
 	metadata := map[string]string{}
 	resources := []Resource{}
-	outputs := map[string]Output{}
+	outputs := []Output{}
 	params := map[string]Param{}
 	//outputs := map[string]Output{}
 
@@ -142,7 +193,8 @@ func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 			params[elem.Param.Name] = elem.Param
 		}
 		if elem.Type == "output" {
-			outputs[elem.Output.Name] = elem.Output
+			// outputs[elem.Output.Name] = elem.Output
+			outputs = append(outputs, elem.Output)
 		}
 		if elem.Type == "metadata" {
 			metadata[elem.Metadata.Name] = elem.Metadata.Description

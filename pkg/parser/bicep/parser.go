@@ -123,13 +123,13 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 				if len(parentsStack) > 0 {
 					parent := parentsStack[len(parentsStack)-1]
 					var siblings converter.SuperProp
-					for k, _ := range parent {
+					for k := range parent {
 						siblings = parent[k].(converter.SuperProp)
 					}
 					for k, v := range prop {
 						siblings[k] = v
 					}
-					for k, _ := range parent {
+					for k := range parent {
 						parent[k] = siblings
 					}
 				} else {
