@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	api := input.document[i].resource.aws_apigatewayv2_stage[name]
 
-	searchKeyValid := validNonEmptyKey(api, "default_route_settings")
+	searchKeyValid := common_lib.valid_non_empty_key(api, "default_route_settings")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -23,7 +23,7 @@ CxPolicy[result] {
 	api := input.document[i].resource.aws_apigatewayv2_stage[name]
 
 	defaultRouteSettings := api.default_route_settings
-	searchKeyValid := validNonEmptyKey(defaultRouteSettings, "logging_level")
+	searchKeyValid := common_lib.valid_non_empty_key(defaultRouteSettings, "logging_level")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -81,7 +81,7 @@ CxPolicy[result] {
 
     settingName := split(methodSettings.stage_name,".")[1]
     settingName == name
-	searchKeyValid := validNonEmptyKey(methodSettings, "settings")
+	searchKeyValid := common_lib.valid_non_empty_key(methodSettings, "settings")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -103,7 +103,7 @@ CxPolicy[result] {
     settingName := split(methodSettings.stage_name,".")[1]
     settingName == name
 	settings := methodSettings.settings
-	searchKeyValid := validNonEmptyKey(settings, "logging_level")
+	searchKeyValid := common_lib.valid_non_empty_key(settings, "logging_level")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -170,18 +170,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'access_log_settings' should be defined",
 		"keyActualValue": "'access_log_settings' is not defined",
 	}
-}
-
-validNonEmptyKey(field, key) = output {
-	not common_lib.valid_key(field, key)
-	output = ""
-} else = output {
-	keyObj := field[key]
-	is_object(keyObj)
-	count(keyObj) == 0
-	output := concat(".", ["", key])
-} else = output {
-	keyObj := field[key]
-	keyObj == ""
-	output := concat(".", ["", key])
 }
