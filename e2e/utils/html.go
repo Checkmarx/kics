@@ -14,7 +14,7 @@ import (
 
 var (
 	availablePlatforms = initPlatforms()
-	severityIds        = []string{"info", "low", "medium", "high", "total"}
+	severityIds        = []string{"info", "low", "medium", "high", "critical", "total"}
 	headerIds          = []string{"scan-paths", "scan-platforms"}
 )
 
@@ -55,10 +55,10 @@ func HTMLValidation(t *testing.T, file string) {
 		sliceOfExpected = append(sliceOfExpected, expectedValue.LastChild.Data)
 		require.NotNil(t, actualValue.LastChild, "[%s] Invalid value in Element ID <%s>", file, header)
 	}
+
 	require.ElementsMatch(t, sliceOfExpected, sliceOfActual,
 		"[%s] HTML Element :\n- Expected value: %s\n- Actual value: %s\n",
 		file, sliceOfExpected, sliceOfActual)
-	// Compare Severity Values (High, Medium, Total...)
 
 	for arg := range severityIds {
 		nodeIdentificator := "severity-count-" + severityIds[arg]
