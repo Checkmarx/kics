@@ -2,6 +2,8 @@ package kics
 
 import (
 	"context"
+	"testing"
+
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -15,7 +17,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
-	"testing"
 )
 
 func Test_ResolverSink(t *testing.T) {
@@ -143,6 +144,7 @@ func MockService(paths []string,
 		&queryFilter,
 		map[string]bool{},
 		queryExecTimeout,
+		false,
 		true,
 		1,
 	)
