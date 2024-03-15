@@ -8,5 +8,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#required_drop_capabilities",
   "platform": "Terraform",
   "descriptionID": "c42b1890",
-  "cwe": ""
+  "cwe": "",
+  "cloudProvider": "common"
 }

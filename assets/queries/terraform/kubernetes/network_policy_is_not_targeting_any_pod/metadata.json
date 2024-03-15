@@ -8,5 +8,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/network_policy#match_labels",
   "platform": "Terraform",
   "descriptionID": "1598c368",
-  "cwe": ""
+  "cwe": "",
+  "cloudProvider": "common"
 }
