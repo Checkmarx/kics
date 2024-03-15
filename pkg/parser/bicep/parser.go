@@ -47,6 +47,8 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	parentsStack := []converter.SuperProp{}
 	decorators := map[string]interface{}{}
 	tempMap := map[string]interface{}{}
+	var arrayArray []interface{}
+	arrayArray = nil
 	tempProp := converter.Prop{}
 	var absoluteParent converter.AbsoluteParent
 
@@ -117,14 +119,90 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
+		inlineArray := parseInlineArray(line)
+		if inlineArray != nil {
+			if len(parentsStack) > 0 {
+				parent := parentsStack[len(parentsStack)-1]
+				var siblings converter.SuperProp
+				for k := range parent {
+					siblings = parent[k].(converter.SuperProp)
+				}
+				for k, v := range inlineArray {
+					siblings[k] = v
+				}
+				for k := range parent {
+					parent[k] = siblings
+				}
+			} else {
+				for k, v := range inlineArray {
+					tempMap[k] = v
+				}
+			}
+			continue
+		}
+
 		isNewParentRegex := regexp.MustCompile(`\{`)
 		isNewParent := len(isNewParentRegex.FindStringSubmatch(line)) > 0
 
 		isParentClosingRegex := regexp.MustCompile(`\}`)
 		isParentClosing := len(isParentClosingRegex.FindStringSubmatch(line)) > 0
 
+		isOpeningArrayRegex := regexp.MustCompile(`\[`)
+		isOpeningArray := len(isOpeningArrayRegex.FindStringSubmatch(line)) > 0
+
+		isClosingArrayRegex := regexp.MustCompile(`\]`)
+		isClosingArray := len(isClosingArrayRegex.FindStringSubmatch(line)) > 0
+
+		if arrayArray != nil && !isClosingArray {
+			arrayElementRegex := regexp.MustCompile(`^[ ]*'?([^']*)`)
+			arrayElement := arrayElementRegex.FindStringSubmatch(line)[1]
+			arrayArray = append(arrayArray, arrayElement)
+			continue
+		}
+
+		fmt.Println(line)
+
+		if isClosingArray {
+			currentPropertyIndex := len(parentsStack) - 1
+			currentProperty := parentsStack[currentPropertyIndex]
+			parentsStack = append(parentsStack[:currentPropertyIndex], parentsStack[currentPropertyIndex+1:]...)
+			if len(parentsStack) > 1 {
+				parent := parentsStack[len(parentsStack)-1]
+				var siblings converter.SuperProp
+				for k := range parent {
+					siblings = parent[k].(converter.SuperProp)
+				}
+				for k := range currentProperty {
+					siblings[k] = arrayArray
+				}
+				for k := range parent {
+					parent[k] = siblings
+				}
+			} else {
+				for k := range currentProperty {
+					tempMap[k] = arrayArray
+				}
+			}
+
+			arrayArray = nil
+			continue
+		}
+
 		// property := parseProperty(line)
 		prop := parseProp(line)
+
+		if isOpeningArray {
+			arrayArray = []interface{}{}
+			newProp := converter.SuperProp{}
+			var newPropValues []interface{} = nil
+
+			for k := range prop {
+				newProp[k] = newPropValues
+			}
+
+			parentsStack = append(parentsStack, newProp)
+			continue
+		}
 
 		if prop != nil {
 			if isNewParent {
@@ -198,6 +276,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 				elem.Type = "resource"
 				elems = append(elems, elem)
 				absoluteParent.Resource = nil
+				tempMap = map[string]interface{}{}
 			}
 			if absoluteParent.Variable != nil {
 				tempProp.Prop = tempMap
@@ -206,6 +285,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 				elem.Type = "variable"
 				elems = append(elems, elem)
 				absoluteParent.Variable = nil
+				tempMap = map[string]interface{}{}
 			}
 			continue
 		}
@@ -250,6 +330,23 @@ func parseMetadata(line string) *converter.Metadata {
 		name := matches[1]
 		value := matches[2]
 		return &converter.Metadata{Name: name, Description: value}
+	}
+
+	return nil
+}
+
+// parse Inline Array syntax from bicep file
+func parseInlineArray(line string) map[string]interface{} {
+	metadataRegex := regexp.MustCompile(` *([^ :']*): *\[(?:'?([^' ]*)'?)]`)
+	matches := metadataRegex.FindStringSubmatch(line)
+
+	if matches != nil {
+		name := matches[1]
+		value := matches[2]
+
+		values := []string{value}
+
+		return map[string]interface{}{name: values}
 	}
 
 	return nil
