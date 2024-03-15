@@ -279,7 +279,7 @@
 				
 				<option value="file111">github.com/Checkmarx/kics/pkg/report/model/csv.go (100.0%)</option>
 				
-				<option value="file112">github.com/Checkmarx/kics/pkg/report/model/cyclonedx.go (91.4%)</option>
+				<option value="file112">github.com/Checkmarx/kics/pkg/report/model/cyclonedx.go (93.1%)</option>
 				
 				<option value="file113">github.com/Checkmarx/kics/pkg/report/model/gitlab_sast.go (85.7%)</option>
 				
@@ -2568,13 +2568,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov9" title="37">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2599,7 +2599,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -5653,7 +5653,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -6041,7 +6041,7 @@ func NewInspector(
 
 func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries <span class="cov4" title="5">{
         supportedPlatforms := make(map[string]string)
-        for _, query := range queries </span><span class="cov9" title="38">{
+        for _, query := range queries </span><span class="cov9" title="42">{
                 supportedPlatforms[query.Platform] = ""
         }</span>
         <span class="cov4" title="5">platformLibraries := make(map[string]source.RegoLibraries)
@@ -6201,7 +6201,7 @@ func (c *Inspector) Inspect(
 // LenQueriesByPlat returns the number of queries by platforms
 func (c *Inspector) LenQueriesByPlat(platforms []string) int <span class="cov2" title="2">{
         count := 0
-        for _, query := range c.QueryLoader.QueriesMetadata </span><span class="cov8" title="19">{
+        for _, query := range c.QueryLoader.QueriesMetadata </span><span class="cov8" title="21">{
                 if contains(platforms, query.Platform) </span><span class="cov4" title="5">{
                         c.tracker.TrackQueryExecuting(query.Aggregation)
                         count++
@@ -6395,19 +6395,19 @@ func checkComment(line int, ignoreLines []int) bool <span class="cov3" title="3"
 
 // contains is a simple method to check if a slice
 // contains an entry
-func contains(s []string, e string) bool <span class="cov8" title="25">{
+func contains(s []string, e string) bool <span class="cov8" title="27">{
         if e == "common" </span><span class="cov2" title="2">{
                 return true
         }</span>
-        <span class="cov8" title="23">if e == "k8s" </span><span class="cov1" title="1">{
+        <span class="cov8" title="25">if e == "k8s" </span><span class="cov1" title="1">{
                 e = "kubernetes"
         }</span>
-        <span class="cov8" title="23">for _, a := range s </span><span class="cov8" title="24">{
-                if strings.EqualFold(a, e) </span><span class="cov6" title="8">{
+        <span class="cov8" title="25">for _, a := range s </span><span class="cov8" title="26">{
+                if strings.EqualFold(a, e) </span><span class="cov5" title="8">{
                         return true
                 }</span>
         }
-        <span class="cov7" title="15">return false</span>
+        <span class="cov7" title="17">return false</span>
 }
 
 func isDisabled(queries, queryID string, output bool) bool <span class="cov4" title="4">{
@@ -6435,7 +6435,7 @@ func prepareQueries(queries []model.QueryMetadata, commonLibrary source.RegoLibr
         platformLibraries map[string]source.RegoLibraries, tracker Tracker) QueryLoader <span class="cov5" title="6">{
         // track queries loaded
         sum := 0
-        for _, metadata := range queries </span><span class="cov10" title="39">{
+        for _, metadata := range queries </span><span class="cov10" title="43">{
                 tracker.TrackQueryLoad(metadata.Aggregation)
                 sum += metadata.Aggregation
         }</span>
@@ -17985,8 +17985,8 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
                         }</span>
 
                         // checks if should print queries URL DOCS based on the use of custom queries and invalid ids
-                        <span class="cov5" title="10">if !usingCustomQueries </span><span class="cov5" title="10">{
-                                if validQueryID(summary.Queries[idx].QueryID) </span><span class="cov5" title="10">{
+                        <span class="cov5" title="10">if !usingCustomQueries </span><span class="cov4" title="6">{
+                                if validQueryID(summary.Queries[idx].QueryID) </span><span class="cov4" title="6">{
                                         fmt.Printf("%s %s\n\n",
                                                 printer.Bold("Learn more about this vulnerability:"),
                                                 fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s%s",
@@ -18137,14 +18137,14 @@ func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" tit
 }
 
 // Bold returns the output in a bold format
-func (p *Printer) Bold(content string) string <span class="cov8" title="32">{
+func (p *Printer) Bold(content string) string <span class="cov7" title="28">{
         return color.Bold.Sprintf(content)
 }</span>
 
-func validQueryID(queryID string) bool <span class="cov5" title="10">{
+func validQueryID(queryID string) bool <span class="cov4" title="6">{
         if queryID == "" </span><span class="cov0" title="0">{
                 return false
-        }</span> else<span class="cov5" title="10"> if queryID != "" </span><span class="cov5" title="10">{
+        }</span> else<span class="cov4" title="6"> if queryID != "" </span><span class="cov4" title="6">{
                 return utils.ValidateUUID(queryID)
         }</span>
         <span class="cov0" title="0">return true</span>
@@ -19042,20 +19042,20 @@ import (
 )
 
 // PrintASFFReport prints the ASFF report in the given path and filename with the given body
-func PrintASFFReport(path, filename string, body interface{}) error <span class="cov10" title="2">{
-        if !strings.HasPrefix(filename, "asff-") </span><span class="cov10" title="2">{
+func PrintASFFReport(path, filename string, body interface{}) error <span class="cov10" title="3">{
+        if !strings.HasPrefix(filename, "asff-") </span><span class="cov10" title="3">{
                 filename = "asff-" + filename
         }</span>
-        <span class="cov10" title="2">if body != "" </span><span class="cov10" title="2">{
+        <span class="cov10" title="3">if body != "" </span><span class="cov10" title="3">{
                 summary, err := getSummary(body)
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov10" title="2">body = reportModel.BuildASFF(&amp;summary)</span>
+                <span class="cov10" title="3">body = reportModel.BuildASFF(&amp;summary)</span>
         }
 
-        <span class="cov10" title="2">return ExportJSONReport(path, filename, body)</span>
+        <span class="cov10" title="3">return ExportJSONReport(path, filename, body)</span>
 }
 </pre>
 		
@@ -19068,21 +19068,21 @@ import (
 )
 
 // PrintCodeClimateReport prints the code climate report in the given path and filename with the given body
-func PrintCodeClimateReport(path, filename string, body interface{}) error <span class="cov10" title="2">{
-        if !strings.HasPrefix(filename, "codeclimate") </span><span class="cov10" title="2">{
+func PrintCodeClimateReport(path, filename string, body interface{}) error <span class="cov10" title="3">{
+        if !strings.HasPrefix(filename, "codeclimate") </span><span class="cov10" title="3">{
                 filename = "codeclimate-" + filename
         }</span>
 
-        <span class="cov10" title="2">if body != "" </span><span class="cov10" title="2">{
+        <span class="cov10" title="3">if body != "" </span><span class="cov10" title="3">{
                 summary, err := getSummary(body)
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov10" title="2">body = reportModel.BuildCodeClimateReport(&amp;summary)</span>
+                <span class="cov10" title="3">body = reportModel.BuildCodeClimateReport(&amp;summary)</span>
         }
 
-        <span class="cov10" title="2">return ExportJSONReport(path, filename, body)</span>
+        <span class="cov10" title="3">return ExportJSONReport(path, filename, body)</span>
 }
 </pre>
 		
@@ -19124,13 +19124,13 @@ var (
         }
 )
 
-func toString(value interface{}) string <span class="cov3" title="2">{
+func toString(value interface{}) string <span class="cov3" title="3">{
         switch v := value.(type) </span>{
         case string:<span class="cov0" title="0">
                 return v</span>
         case int:<span class="cov0" title="0">
                 return strconv.Itoa(v)</span>
-        default:<span class="cov3" title="2">
+        default:<span class="cov3" title="3">
                 return fmt.Sprintf("%v", v)</span>
         }
 }
@@ -19139,53 +19139,53 @@ func trimSpaces(value string) string <span class="cov0" title="0">{
         return strings.TrimPrefix(value, " ")
 }</span>
 
-func getSeverities(severity string) model.Severity <span class="cov7" title="8">{
+func getSeverities(severity string) model.Severity <span class="cov7" title="15">{
         return stringsSeverity[severity]
 }</span>
 
-func getCurrentTime() string <span class="cov3" title="2">{
+func getCurrentTime() string <span class="cov3" title="3">{
         dt := time.Now()
         return dt.Format("01/02/2006 15:04")
 }</span>
 
-func fileCreationReport(path, filename string) <span class="cov10" title="22">{
+func fileCreationReport(path, filename string) <span class="cov10" title="33">{
         log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
 }</span>
 
-func closeFile(path, filename string, file *os.File) <span class="cov9" title="19">{
+func closeFile(path, filename string, file *os.File) <span class="cov9" title="29">{
         err := file.Close()
         if err != nil </span><span class="cov0" title="0">{
                 log.Err(err).Msgf("Failed to close file %s", path)
         }</span>
 
-        <span class="cov9" title="19">fileCreationReport(path, filename)</span>
+        <span class="cov9" title="29">fileCreationReport(path, filename)</span>
 }
 
-func getPlatforms(queries model.QueryResultSlice) string <span class="cov5" title="5">{
+func getPlatforms(queries model.QueryResultSlice) string <span class="cov6" title="7">{
         platforms := make([]string, 0)
         alreadyAdded := make(map[string]string)
-        for idx := range queries </span><span class="cov5" title="5">{
-                if _, ok := alreadyAdded[queries[idx].Platform]; !ok </span><span class="cov5" title="5">{
+        for idx := range queries </span><span class="cov6" title="7">{
+                if _, ok := alreadyAdded[queries[idx].Platform]; !ok </span><span class="cov6" title="7">{
                         alreadyAdded[queries[idx].Platform] = ""
                         platforms = append(platforms, queries[idx].Platform)
                 }</span>
         }
-        <span class="cov5" title="5">return strings.Join(platforms, ", ")</span>
+        <span class="cov6" title="7">return strings.Join(platforms, ", ")</span>
 }
 
 // ExportJSONReport - encodes a given body to a JSON file in a given filepath
-func ExportJSONReport(path, filename string, body interface{}) error <span class="cov7" title="11">{
-        if !strings.Contains(filename, ".") </span><span class="cov6" title="6">{
+func ExportJSONReport(path, filename string, body interface{}) error <span class="cov8" title="17">{
+        if !strings.Contains(filename, ".") </span><span class="cov6" title="9">{
                 filename += jsonExtension
         }</span>
-        <span class="cov7" title="11">fullPath := filepath.Join(path, filename)
+        <span class="cov8" title="17">fullPath := filepath.Join(path, filename)
 
         f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov7" title="11">defer closeFile(fullPath, filename, f)
+        <span class="cov8" title="17">defer closeFile(fullPath, filename, f)
 
         encoder := json.NewEncoder(f)
         encoder.SetIndent("", "\t")
@@ -19193,47 +19193,47 @@ func ExportJSONReport(path, filename string, body interface{}) error <span class
         return encoder.Encode(body)</span>
 }
 
-func getSummary(body interface{}) (sum model.Summary, err error) <span class="cov9" title="17">{
+func getSummary(body interface{}) (sum model.Summary, err error) <span class="cov9" title="26">{
         var summary model.Summary
         result, err := json.Marshal(body)
         if err != nil </span><span class="cov0" title="0">{
                 return model.Summary{}, err
         }</span>
-        <span class="cov9" title="17">if err := json.Unmarshal(result, &amp;summary); err != nil </span><span class="cov0" title="0">{
+        <span class="cov9" title="26">if err := json.Unmarshal(result, &amp;summary); err != nil </span><span class="cov0" title="0">{
                 return model.Summary{}, err
         }</span>
 
-        <span class="cov9" title="17">return summary, nil</span>
+        <span class="cov9" title="26">return summary, nil</span>
 }
 
-func exportXMLReport(path, filename string, body interface{}) error <span class="cov5" title="4">{
-        if !strings.HasSuffix(filename, ".xml") </span><span class="cov5" title="4">{
+func exportXMLReport(path, filename string, body interface{}) error <span class="cov5" title="6">{
+        if !strings.HasSuffix(filename, ".xml") </span><span class="cov5" title="6">{
                 filename += ".xml"
         }</span>
 
-        <span class="cov5" title="4">fullPath := filepath.Join(path, filename)
+        <span class="cov5" title="6">fullPath := filepath.Join(path, filename)
         f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov5" title="4">defer closeFile(fullPath, filename, f)
+        <span class="cov5" title="6">defer closeFile(fullPath, filename, f)
         if _, err = f.WriteString(xml.Header); err != nil </span><span class="cov0" title="0">{
                 log.Debug().Err(err).Msg("Failed to write XML header")
         }</span>
-        <span class="cov5" title="4">encoder := xml.NewEncoder(f)
+        <span class="cov5" title="6">encoder := xml.NewEncoder(f)
         encoder.Indent("", "\t")
 
         return encoder.Encode(body)</span>
 }
 
-func exportCSVReport(path, filename string, body []reportModel.CSVReport) error <span class="cov3" title="2">{
+func exportCSVReport(path, filename string, body []reportModel.CSVReport) error <span class="cov3" title="3">{
         fullPath := filepath.Join(path, filename)
         f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov3" title="2">defer closeFile(fullPath, filename, f)
+        <span class="cov3" title="3">defer closeFile(fullPath, filename, f)
 
         return gocsv.MarshalFile(&amp;body, f)</span>
 }
@@ -19248,22 +19248,22 @@ import (
 )
 
 // PrintCSVReport prints the CSV report in the given path and filename with the given body
-func PrintCSVReport(path, filename string, body interface{}) error <span class="cov10" title="2">{
-        if !strings.HasSuffix(filename, ".csv") </span><span class="cov10" title="2">{
+func PrintCSVReport(path, filename string, body interface{}) error <span class="cov10" title="3">{
+        if !strings.HasSuffix(filename, ".csv") </span><span class="cov10" title="3">{
                 filename += ".csv"
         }</span>
 
-        <span class="cov10" title="2">var report []reportModel.CSVReport
-        if body != "" </span><span class="cov10" title="2">{
+        <span class="cov10" title="3">var report []reportModel.CSVReport
+        if body != "" </span><span class="cov10" title="3">{
                 summary, err := getSummary(body)
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov10" title="2">report = reportModel.BuildCSVReport(&amp;summary)</span>
+                <span class="cov10" title="3">report = reportModel.BuildCSVReport(&amp;summary)</span>
         }
 
-        <span class="cov10" title="2">return exportCSVReport(path, filename, report)</span>
+        <span class="cov10" title="3">return exportCSVReport(path, filename, report)</span>
 }
 </pre>
 		
@@ -19277,26 +19277,26 @@ import (
 )
 
 // PrintCycloneDxReport prints the CycloneDX report in the given path and filename with the given body
-func PrintCycloneDxReport(path, filename string, body interface{}) error <span class="cov10" title="2">{
+func PrintCycloneDxReport(path, filename string, body interface{}) error <span class="cov10" title="3">{
         filePaths := make(map[string]string)
 
-        if !strings.HasPrefix(filename, "cyclonedx-") </span><span class="cov10" title="2">{
+        if !strings.HasPrefix(filename, "cyclonedx-") </span><span class="cov10" title="3">{
                 filename = "cyclonedx-" + filename
         }</span>
 
-        <span class="cov10" title="2">if body != "" </span><span class="cov10" title="2">{
+        <span class="cov10" title="3">if body != "" </span><span class="cov10" title="3">{
                 if s, ok := body.(*model.Summary); ok </span><span class="cov0" title="0">{
                         filePaths = s.FilePaths
                 }</span>
-                <span class="cov10" title="2">summary, err := getSummary(body)
+                <span class="cov10" title="3">summary, err := getSummary(body)
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov10" title="2">body = reportModel.BuildCycloneDxReport(&amp;summary, filePaths)</span>
+                <span class="cov10" title="3">body = reportModel.BuildCycloneDxReport(&amp;summary, filePaths)</span>
         }
 
-        <span class="cov10" title="2">return exportXMLReport(path, filename, body)</span>
+        <span class="cov10" title="3">return exportXMLReport(path, filename, body)</span>
 }
 </pre>
 		
@@ -19309,31 +19309,31 @@ import (
 )
 
 // PrintGitlabSASTReport creates a report file on sarif format
-func PrintGitlabSASTReport(path, filename string, body interface{}) error <span class="cov5" title="2">{
+func PrintGitlabSASTReport(path, filename string, body interface{}) error <span class="cov7" title="3">{
         filename = strings.ReplaceAll(filename, ".glsast", "")
-        if !strings.HasSuffix(filename, jsonExtension) </span><span class="cov5" title="2">{
+        if !strings.HasSuffix(filename, jsonExtension) </span><span class="cov7" title="3">{
                 filename += jsonExtension
         }</span>
-        <span class="cov5" title="2">if !strings.HasPrefix(filename, "gl-sast-") </span><span class="cov5" title="2">{
+        <span class="cov7" title="3">if !strings.HasPrefix(filename, "gl-sast-") </span><span class="cov7" title="3">{
                 filename = "gl-sast-" + filename
         }</span>
-        <span class="cov5" title="2">if body != "" </span><span class="cov5" title="2">{
+        <span class="cov7" title="3">if body != "" </span><span class="cov7" title="3">{
                 summary, err := getSummary(body)
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov5" title="2">gitlabSASTReport := reportModel.NewGitlabSASTReport(summary.Times.Start, summary.Times.End)
+                <span class="cov7" title="3">gitlabSASTReport := reportModel.NewGitlabSASTReport(summary.Times.Start, summary.Times.End)
 
-                for idxQuery := range summary.Queries </span><span class="cov5" title="2">{
-                        for idxFile := range summary.Queries[idxQuery].Files </span><span class="cov10" title="4">{
+                for idxQuery := range summary.Queries </span><span class="cov7" title="3">{
+                        for idxFile := range summary.Queries[idxQuery].Files </span><span class="cov10" title="5">{
                                 gitlabSASTReport.BuildGitlabSASTVulnerability(&amp;summary.Queries[idxQuery], &amp;summary.Queries[idxQuery].Files[idxFile])
                         }</span>
                 }
-                <span class="cov5" title="2">body = gitlabSASTReport</span>
+                <span class="cov7" title="3">body = gitlabSASTReport</span>
         }
 
-        <span class="cov5" title="2">return ExportJSONReport(path, filename, body)</span>
+        <span class="cov7" title="3">return ExportJSONReport(path, filename, body)</span>
 }
 </pre>
 		
@@ -19383,45 +19383,45 @@ var svgMap = map[string]string{
         "vulnerability_out.svg":  vulnerabilityOutSVG,
 }
 
-func includeSVG(name string) template.HTML <span class="cov10" title="14">{
+func includeSVG(name string) template.HTML <span class="cov10" title="23">{
         return template.HTML(svgMap[name]) //nolint
 }</span>
 
-func includeCSS(name string) template.HTML <span class="cov3" title="2">{
+func includeCSS(name string) template.HTML <span class="cov4" title="3">{
         minifier := minify.New()
         minifier.AddFunc("text/css", minifyCSS.Minify)
         cssMinified, err := minifier.String("text/css", cssTemplate)
         if err != nil </span><span class="cov0" title="0">{
                 return ""
         }</span>
-        <span class="cov3" title="2">return template.HTML("&lt;style&gt;" + cssMinified + "&lt;/style&gt;")</span> //nolint
+        <span class="cov4" title="3">return template.HTML("&lt;style&gt;" + cssMinified + "&lt;/style&gt;")</span> //nolint
 }
 
-func includeJS(name string) template.HTML <span class="cov3" title="2">{
+func includeJS(name string) template.HTML <span class="cov4" title="3">{
         minifier := minify.New()
         minifier.AddFunc("text/javascript", minifyJS.Minify)
         jsMinified, err := minifier.String("text/javascript", jsTemplate)
         if err != nil </span><span class="cov0" title="0">{
                 return ""
         }</span>
-        <span class="cov3" title="2">return template.HTML("&lt;script&gt;" + jsMinified + "&lt;/script&gt;")</span> //nolint
+        <span class="cov4" title="3">return template.HTML("&lt;script&gt;" + jsMinified + "&lt;/script&gt;")</span> //nolint
 }
 
-func getPaths(paths []string) string <span class="cov3" title="2">{
+func getPaths(paths []string) string <span class="cov4" title="3">{
         return strings.Join(paths, ", ")
 }</span>
 
-func getVersion() string <span class="cov3" title="2">{
+func getVersion() string <span class="cov4" title="3">{
         return constants.Version
 }</span>
 
 // PrintHTMLReport creates a report file on HTML format
-func PrintHTMLReport(path, filename string, body interface{}) error <span class="cov3" title="2">{
-        if !strings.HasSuffix(filename, ".html") </span><span class="cov3" title="2">{
+func PrintHTMLReport(path, filename string, body interface{}) error <span class="cov4" title="3">{
+        if !strings.HasSuffix(filename, ".html") </span><span class="cov4" title="3">{
                 filename += ".html"
         }</span>
 
-        <span class="cov3" title="2">templateFuncs["includeSVG"] = includeSVG
+        <span class="cov4" title="3">templateFuncs["includeSVG"] = includeSVG
         templateFuncs["includeCSS"] = includeCSS
         templateFuncs["includeJS"] = includeJS
         templateFuncs["getPaths"] = getPaths
@@ -19435,14 +19435,14 @@ func PrintHTMLReport(path, filename string, body interface{}) error <span class=
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov3" title="2">defer closeFile(fullPath, filename, f)
+        <span class="cov4" title="3">defer closeFile(fullPath, filename, f)
         var buffer bytes.Buffer
 
         err = t.Execute(&amp;buffer, body)
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
-        <span class="cov3" title="2">minifier := minify.New()
+        <span class="cov4" title="3">minifier := minify.New()
         minifier.AddFunc(textHTML, minifyHtml.Minify)
         minifier.Add(textHTML, &amp;minifyHtml.Minifier{
                 KeepDocumentTags: true,
@@ -19451,13 +19451,13 @@ func PrintHTMLReport(path, filename string, body interface{}) error <span class=
         })
 
         minifierWriter := minifier.Writer(textHTML, f)
-        defer func() </span><span class="cov3" title="2">{
+        defer func() </span><span class="cov4" title="3">{
                 if closeErr := minifierWriter.Close(); closeErr != nil </span><span class="cov0" title="0">{
                         log.Err(closeErr).Msg("Error closing file")
                 }</span>
         }()
 
-        <span class="cov3" title="2">_, err = minifierWriter.Write(buffer.Bytes())
+        <span class="cov4" title="3">_, err = minifierWriter.Write(buffer.Bytes())
         return err</span>
 }
 </pre>
@@ -19469,24 +19469,24 @@ import "github.com/Checkmarx/kics/internal/constants"
 const jsonExtension = ".json"
 
 // PrintJSONReport prints on JSON file the summary results
-func PrintJSONReport(path, filename string, body interface{}) error <span class="cov10" title="2">{
-        if body != "" </span><span class="cov10" title="2">{
+func PrintJSONReport(path, filename string, body interface{}) error <span class="cov10" title="3">{
+        if body != "" </span><span class="cov10" title="3">{
                 summary, err := getSummary(body)
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
-                <span class="cov10" title="2">for idx := range summary.Queries </span><span class="cov10" title="2">{
+                <span class="cov10" title="3">for idx := range summary.Queries </span><span class="cov10" title="3">{
                         summary.Queries[idx].CISBenchmarkName = ""
                         summary.Queries[idx].CISBenchmarkVersion = ""
                         summary.Queries[idx].CISDescriptionID = ""
                         summary.Queries[idx].CISDescriptionText = ""
                         summary.Queries[idx].CISRationaleText = ""
                 }</span>
-                <span class="cov10" title="2">summary.Version = constants.Version
+                <span class="cov10" title="3">summary.Version = constants.Version
                 body = summary</span>
         }
 
-        <span class="cov10" title="2">return ExportJSONReport(path, filename, body)</span>
+        <span class="cov10" title="3">return ExportJSONReport(path, filename, body)</span>
 }
 </pre>
 		
@@ -19500,14 +19500,14 @@ import (
 )
 
 // PrintJUnitReport prints the JUnit report in the given path and filename with the given body
-func PrintJUnitReport(path, filename string, body interface{}) error <span class="cov10" title="2">{
-        if !strings.HasPrefix(filename, "junit-") </span><span class="cov10" title="2">{
+func PrintJUnitReport(path, filename string, body interface{}) error <span class="cov10" title="3">{
+        if !strings.HasPrefix(filename, "junit-") </span><span class="cov10" title="3">{
                 filename = "junit-" + filename
         }</span>
 
-        <span class="cov10" title="2">summary := model.Summary{}
+        <span class="cov10" title="3">summary := model.Summary{}
 
-        if body != "" </span><span class="cov10" title="2">{
+        if body != "" </span><span class="cov10" title="3">{
                 var err error
                 summary, err = getSummary(body)
                 if err != nil </span><span class="cov0" title="0">{
@@ -19515,12 +19515,12 @@ func PrintJUnitReport(path, filename string, body interface{}) error <span class
                 }</span>
         }
 
-        <span class="cov10" title="2">jUnitReport := reportModel.NewJUnitReport(summary.Times.End.Sub(summary.Times.Start).String())
-        for idx := range summary.Queries </span><span class="cov10" title="2">{
+        <span class="cov10" title="3">jUnitReport := reportModel.NewJUnitReport(summary.Times.End.Sub(summary.Times.Start).String())
+        for idx := range summary.Queries </span><span class="cov10" title="3">{
                 jUnitReport.GenerateTestEntry(&amp;summary.Queries[idx])
         }</span>
 
-        <span class="cov10" title="2">jUnitReport.FinishReport()
+        <span class="cov10" title="3">jUnitReport.FinishReport()
 
         return exportXMLReport(path, filename, jUnitReport)</span>
 }
@@ -19592,7 +19592,7 @@ type Compliance struct {
 }
 
 // BuildASFF builds the ASFF report
-func BuildASFF(summary *model.Summary) []AwsSecurityFinding <span class="cov5" title="2">{
+func BuildASFF(summary *model.Summary) []AwsSecurityFinding <span class="cov6" title="3">{
         findings := []AwsSecurityFinding{}
 
         awsAccountInfo := getAwsAccountInfo()
@@ -19602,29 +19602,29 @@ func BuildASFF(summary *model.Summary) []AwsSecurityFinding <span class="cov5" t
                 log.Debug().Msg(fmt.Sprintf("failed to get AWS account information: check your environment variables (%s)", variables))
         }</span>
 
-        <span class="cov5" title="2">for idx := range summary.Queries </span><span class="cov5" title="2">{
+        <span class="cov6" title="3">for idx := range summary.Queries </span><span class="cov6" title="3">{
                 query := summary.Queries[idx]
 
                 findingPerQuery := awsAccountInfo.getFindingsPerQuery(&amp;query)
                 findings = append(findings, findingPerQuery...)
         }</span>
 
-        <span class="cov5" title="2">return findings</span>
+        <span class="cov6" title="3">return findings</span>
 }
 
-func (a *AwsAccountInfo) getFindingsPerQuery(query *model.QueryResult) []AwsSecurityFinding <span class="cov5" title="2">{
+func (a *AwsAccountInfo) getFindingsPerQuery(query *model.QueryResult) []AwsSecurityFinding <span class="cov6" title="3">{
         var findings []AwsSecurityFinding
-        if query.CloudProvider == "AWS" </span><span class="cov5" title="2">{
-                for i := range query.Files </span><span class="cov5" title="2">{
+        if query.CloudProvider == "AWS" </span><span class="cov6" title="3">{
+                for i := range query.Files </span><span class="cov6" title="3">{
                         finding := a.getFinding(query, &amp;query.Files[i])
                         findings = append(findings, finding)
                 }</span>
         }
 
-        <span class="cov5" title="2">return findings</span>
+        <span class="cov6" title="3">return findings</span>
 }
 
-func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.VulnerableFile) AwsSecurityFinding <span class="cov5" title="2">{
+func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.VulnerableFile) AwsSecurityFinding <span class="cov6" title="3">{
         awsAccountID := a.AwsAccountID
         awsRegion := a.AwsRegion
 
@@ -19638,7 +19638,7 @@ func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.Vulner
                 severity = "INFORMATIONAL"
         }</span>
 
-        <span class="cov5" title="2">finding := AwsSecurityFinding{
+        <span class="cov6" title="3">finding := AwsSecurityFinding{
                 AwsAccountID: *aws.String(awsAccountID),
                 CreatedAt:    *aws.String(timeFormatted),
                 Description:  *aws.String(getDescription(query, "asff")),
@@ -19678,15 +19678,15 @@ func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.Vulner
         return finding</span>
 }
 
-func getEnv(env string) string <span class="cov10" title="4">{
+func getEnv(env string) string <span class="cov10" title="6">{
         if len(os.Getenv(env)) &gt; 0 </span><span class="cov0" title="0">{
                 return os.Getenv(env)
         }</span>
 
-        <span class="cov10" title="4">return env</span>
+        <span class="cov10" title="6">return env</span>
 }
 
-func getAwsAccountInfo() *AwsAccountInfo <span class="cov5" title="2">{
+func getAwsAccountInfo() *AwsAccountInfo <span class="cov6" title="3">{
         awsAccountInfo := AwsAccountInfo{
                 AwsAccountID: getEnv("AWS_ACCOUNT_ID"),
                 AwsRegion:    getEnv("AWS_REGION"),
@@ -19695,12 +19695,12 @@ func getAwsAccountInfo() *AwsAccountInfo <span class="cov5" title="2">{
         return &amp;awsAccountInfo
 }</span>
 
-func (a *AwsAccountInfo) incompleteAwsAccountInfo() bool <span class="cov5" title="2">{
+func (a *AwsAccountInfo) incompleteAwsAccountInfo() bool <span class="cov6" title="3">{
         if a.AwsAccountID == "" || a.AwsRegion == "" </span><span class="cov0" title="0">{
                 return true
         }</span>
 
-        <span class="cov5" title="2">return false</span>
+        <span class="cov6" title="3">return false</span>
 }
 </pre>
 		
@@ -19730,19 +19730,20 @@ type CodeClimateReport struct {
 }
 
 var severityMap = map[string]string{
-        model.SeverityTrace:  "info",
-        model.SeverityInfo:   "info",
-        model.SeverityLow:    "minor",
-        model.SeverityMedium: "major",
-        model.SeverityHigh:   "critical",
+        model.SeverityTrace:    "info",
+        model.SeverityInfo:     "info",
+        model.SeverityLow:      "minor",
+        model.SeverityMedium:   "major",
+        model.SeverityHigh:     "critical",
+        model.SeverityCritical: "blocker",
 }
 
 // BuildCodeClimateReport builds the code climate report
-func BuildCodeClimateReport(summary *model.Summary) []CodeClimateReport <span class="cov5" title="2">{
+func BuildCodeClimateReport(summary *model.Summary) []CodeClimateReport <span class="cov7" title="3">{
         var codeClimateReport []CodeClimateReport
 
-        for i := range summary.Queries </span><span class="cov5" title="2">{
-                for j := range summary.Queries[i].Files </span><span class="cov10" title="4">{
+        for i := range summary.Queries </span><span class="cov7" title="3">{
+                for j := range summary.Queries[i].Files </span><span class="cov10" title="5">{
                         codeClimateReport = append(codeClimateReport, CodeClimateReport{
                                 Type:        "issue",
                                 CheckName:   summary.Queries[i].QueryName,
@@ -19759,7 +19760,7 @@ func BuildCodeClimateReport(summary *model.Summary) []CodeClimateReport <span cl
                 }</span>
         }
 
-        <span class="cov5" title="2">return codeClimateReport</span>
+        <span class="cov7" title="3">return codeClimateReport</span>
 }
 </pre>
 		
@@ -19794,11 +19795,11 @@ type CSVReport struct {
 }
 
 // BuildCSVReport builds the CSV report
-func BuildCSVReport(summary *model.Summary) []CSVReport <span class="cov5" title="2">{
+func BuildCSVReport(summary *model.Summary) []CSVReport <span class="cov7" title="3">{
         csvReport := []CSVReport{}
 
-        for i := range summary.Queries </span><span class="cov5" title="2">{
-                for j := range summary.Queries[i].Files </span><span class="cov10" title="4">{
+        for i := range summary.Queries </span><span class="cov7" title="3">{
+                for j := range summary.Queries[i].Files </span><span class="cov10" title="5">{
                         csvReport = append(csvReport, CSVReport{
                                 QueryName:                   summary.Queries[i].QueryName,
                                 QueryID:                     summary.Queries[i].QueryID,
@@ -19826,7 +19827,7 @@ func BuildCSVReport(summary *model.Summary) []CSVReport <span class="cov5" title
                 }</span>
         }
 
-        <span class="cov5" title="2">return csvReport</span>
+        <span class="cov7" title="3">return csvReport</span>
 }
 </pre>
 		
@@ -19849,10 +19850,11 @@ import (
 )
 
 var cycloneDxSeverityLevelEquivalence = map[model.Severity]string{
-        "INFO":   "None",
-        "LOW":    "Low",
-        "MEDIUM": "Medium",
-        "HIGH":   "High",
+        "INFO":     "None",
+        "LOW":      "Low",
+        "MEDIUM":   "Medium",
+        "HIGH":     "High",
+        "CRITICAL": "Critical",
 }
 
 // CycloneDxReport includes all the properties considered relevant for the CycloneDX Report
@@ -19939,29 +19941,29 @@ type Recommendation struct {
         Recommendation string `xml:""`
 }
 
-func match(fileNames []model.VulnerableFile, fileName string) bool <span class="cov7" title="4">{
-        for i := range fileNames </span><span class="cov6" title="3">{
+func match(fileNames []model.VulnerableFile, fileName string) bool <span class="cov7" title="5">{
+        for i := range fileNames </span><span class="cov5" title="3">{
                 if fileNames[i].FileName == fileName </span><span class="cov1" title="1">{
                         return true
                 }</span>
         }
-        <span class="cov6" title="3">return false</span>
+        <span class="cov7" title="4">return false</span>
 }
 
-func getAllFiles(summary *model.Summary) []model.VulnerableFile <span class="cov4" title="2">{
+func getAllFiles(summary *model.Summary) []model.VulnerableFile <span class="cov5" title="3">{
         var fileNames []model.VulnerableFile
-        for i := range summary.Queries </span><span class="cov6" title="3">{
+        for i := range summary.Queries </span><span class="cov7" title="4">{
                 files := summary.Queries[i].Files
-                for idx := range files </span><span class="cov7" title="4">{
-                        if !match(fileNames, files[idx].FileName) </span><span class="cov6" title="3">{
+                for idx := range files </span><span class="cov7" title="5">{
+                        if !match(fileNames, files[idx].FileName) </span><span class="cov7" title="4">{
                                 fileNames = append(fileNames, files[idx])
                         }</span>
                 }
         }
-        <span class="cov4" title="2">return fileNames</span>
+        <span class="cov5" title="3">return fileNames</span>
 }
 
-func generateSha256(filePath string, filePaths map[string]string) string <span class="cov6" title="3">{
+func generateSha256(filePath string, filePaths map[string]string) string <span class="cov7" title="4">{
         file := filePaths[filePath]
         content, err := os.ReadFile(filepath.Clean(file))
 
@@ -19970,35 +19972,35 @@ func generateSha256(filePath string, filePaths map[string]string) string <span c
                 return ""
         }</span>
 
-        <span class="cov6" title="3">hashSum := sha256.Sum256(content)
+        <span class="cov7" title="4">hashSum := sha256.Sum256(content)
         return hex.EncodeToString(hashSum[:])</span>
 }
 
-func getPurl(filePath, version string) string <span class="cov6" title="3">{
+func getPurl(filePath, version string) string <span class="cov7" title="4">{
         return fmt.Sprintf("pkg:generic/%s@%s", filePath, version)
 }</span>
 
-func getDescription(query *model.QueryResult, format string) string <span class="cov9" title="6">{
+func getDescription(query *model.QueryResult, format string) string <span class="cov10" title="8">{
         queryDescription := query.Description
 
-        if query.CISDescriptionTextFormatted != "" </span><span class="cov0" title="0">{
+        if query.CISDescriptionTextFormatted != "" </span><span class="cov1" title="1">{
                 queryDescription = query.CISDescriptionTextFormatted
         }</span>
 
-        <span class="cov9" title="6">if format == "asff" </span><span class="cov4" title="2">{
+        <span class="cov10" title="8">if format == "asff" </span><span class="cov5" title="3">{
                 return queryDescription
         }</span>
 
-        <span class="cov7" title="4">description := fmt.Sprintf("[%s].[%s]: %s", query.Platform, query.QueryName, queryDescription)
+        <span class="cov7" title="5">description := fmt.Sprintf("[%s].[%s]: %s", query.Platform, query.QueryName, queryDescription)
 
         return description</span>
 }
 
-func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) []Vulnerability <span class="cov8" title="5">{
+func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) []Vulnerability <span class="cov8" title="6">{
         vulns := make([]Vulnerability, 0)
-        for idx := range query.Files </span><span class="cov10" title="7">{
+        for idx := range query.Files </span><span class="cov10" title="8">{
                 file := query.Files[idx]
-                if fileName == file.FileName </span><span class="cov7" title="4">{
+                if fileName == file.FileName </span><span class="cov7" title="5">{
                         vuln := Vulnerability{
                                 Ref: purl + query.QueryID,
                                 ID:  query.QueryID,
@@ -20028,20 +20030,20 @@ func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) [
                         vulns = append(vulns, vuln)
                 }</span>
         }
-        <span class="cov8" title="5">return vulns</span>
+        <span class="cov8" title="6">return vulns</span>
 }
 
-func getVulnerabilities(fileName, purl string, summary *model.Summary) []Vulnerability <span class="cov6" title="3">{
+func getVulnerabilities(fileName, purl string, summary *model.Summary) []Vulnerability <span class="cov7" title="4">{
         vulns := make([]Vulnerability, 0)
-        for i := range summary.Queries </span><span class="cov8" title="5">{
+        for i := range summary.Queries </span><span class="cov8" title="6">{
                 query := summary.Queries[i]
                 vulns = append(vulns, getVulnerabilitiesByFile(&amp;query, fileName, purl)...)
         }</span>
-        <span class="cov6" title="3">return vulns</span>
+        <span class="cov7" title="4">return vulns</span>
 }
 
 // InitCycloneDxReport inits the CycloneDx report with no components (consequently, no vulnerabilities)
-func InitCycloneDxReport() *CycloneDxReport <span class="cov6" title="3">{
+func InitCycloneDxReport() *CycloneDxReport <span class="cov7" title="4">{
         metadata := Metadata{
                 Timestamp: time.Now().Format(time.RFC3339),
                 Tools: &amp;[]Tool{
@@ -20063,7 +20065,7 @@ func InitCycloneDxReport() *CycloneDxReport <span class="cov6" title="3">{
 }</span>
 
 // BuildCycloneDxReport builds the CycloneDX report
-func BuildCycloneDxReport(summary *model.Summary, filePaths map[string]string) *CycloneDxReport <span class="cov4" title="2">{
+func BuildCycloneDxReport(summary *model.Summary, filePaths map[string]string) *CycloneDxReport <span class="cov5" title="3">{
         var component Component
         var vuln []Vulnerability
         var version, sha, purl, filePath string
@@ -20071,7 +20073,7 @@ func BuildCycloneDxReport(summary *model.Summary, filePaths map[string]string) *
         bom := InitCycloneDxReport()
         files := getAllFiles(summary)
 
-        for i := range files </span><span class="cov6" title="3">{
+        for i := range files </span><span class="cov7" title="4">{
                 filePath = strings.Replace(files[i].FileName, "\\", "/", -1)
                 sha = generateSha256(files[i].FileName, filePaths)
 
@@ -20081,7 +20083,7 @@ func BuildCycloneDxReport(summary *model.Summary, filePaths map[string]string) *
                         continue</span>
                 }
 
-                <span class="cov6" title="3">version = fmt.Sprintf("0.0.0-%s", sha[0:12])
+                <span class="cov7" title="4">version = fmt.Sprintf("0.0.0-%s", sha[0:12])
                 purl = getPurl(filePath, version)
                 vuln = getVulnerabilities(files[i].FileName, purl, summary)
 
@@ -20103,7 +20105,7 @@ func BuildCycloneDxReport(summary *model.Summary, filePaths map[string]string) *
                 bom.Components.Components = append(bom.Components.Components, component)</span>
         }
 
-        <span class="cov4" title="2">return bom</span>
+        <span class="cov5" title="3">return bom</span>
 }
 </pre>
 		
@@ -20193,7 +20195,7 @@ type GitlabSASTReport interface {
 }
 
 // NewGitlabSASTReport initializes a new instance of GitlabSASTReport to be used
-func NewGitlabSASTReport(start, end time.Time) GitlabSASTReport <span class="cov10" title="4">{
+func NewGitlabSASTReport(start, end time.Time) GitlabSASTReport <span class="cov10" title="5">{
         return &amp;gitlabSASTReport{
                 Schema:          "https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v15.0.6/dist/sast-report-format.json",
                 SchemaVersion:   "15.0.6",
@@ -20202,7 +20204,7 @@ func NewGitlabSASTReport(start, end time.Time) GitlabSASTReport <span class="cov
         }
 }</span>
 
-func initGitlabSASTScan(start, end time.Time) gitlabSASTScan <span class="cov10" title="4">{
+func initGitlabSASTScan(start, end time.Time) gitlabSASTScan <span class="cov10" title="5">{
         return gitlabSASTScan{
                 Analyzer: gitlabSASTAnalyzer{
                         ID:      "keeping-infrastructure-as-code-secure",
@@ -20229,8 +20231,8 @@ func initGitlabSASTScan(start, end time.Time) gitlabSASTScan <span class="cov10"
 }</span>
 
 // BuildGitlabSASTVulnerability adds a new vulnerability struct to vulnerability slice
-func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryResult, file *model.VulnerableFile) <span class="cov8" title="3">{
-        if len(issue.Files) &gt; 0 </span><span class="cov5" title="2">{
+func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryResult, file *model.VulnerableFile) <span class="cov8" title="4">{
+        if len(issue.Files) &gt; 0 </span><span class="cov7" title="3">{
                 vulnerability := gitlabSASTVulnerability{
                         ID:       file.SimilarityID,
                         Severity: cases.Title(language.Und).String(strings.ToLower(string(issue.Severity))),
@@ -20261,7 +20263,7 @@ func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryRes
                                 "cisId":    issue.CISDescriptionIDFormatted,
                         }
                 }</span>
-                <span class="cov5" title="2">glsr.Vulnerabilities = append(glsr.Vulnerabilities, vulnerability)</span>
+                <span class="cov7" title="3">glsr.Vulnerabilities = append(glsr.Vulnerabilities, vulnerability)</span>
         }
 }
 </pre>
@@ -20315,7 +20317,7 @@ type JUnitReport interface {
 }
 
 // NewJUnitReport creates a new JUnit report instance
-func NewJUnitReport(time string) JUnitReport <span class="cov10" title="4">{
+func NewJUnitReport(time string) JUnitReport <span class="cov10" title="5">{
         return &amp;junitTestSuites{
                 Name:       fmt.Sprintf("KICS %s", constants.Version),
                 Time:       time,
@@ -20325,15 +20327,15 @@ func NewJUnitReport(time string) JUnitReport <span class="cov10" title="4">{
 }</span>
 
 // GenerateTestEntry generates a new test entry for failed tests on KICS scan
-func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) <span class="cov5" title="2">{
+func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) <span class="cov7" title="3">{
         queryDescription := query.Description
         if query.CISDescriptionTextFormatted != "" </span><span class="cov0" title="0">{
                 queryDescription = query.CISDescriptionTextFormatted
         }</span>
 
-        <span class="cov5" title="2">failedTestCases := []junitTestCase{}
+        <span class="cov7" title="3">failedTestCases := []junitTestCase{}
 
-        for idx := range query.Files </span><span class="cov5" title="2">{
+        for idx := range query.Files </span><span class="cov7" title="3">{
                 failedTestCase := junitTestCase{
                         Name:      fmt.Sprintf("%s: %s file in line %d", query.QueryName, query.Files[idx].FileName, query.Files[idx].Line),
                         ClassName: query.Platform,
@@ -20358,7 +20360,7 @@ func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) <span 
                 failedTestCases = append(failedTestCases, failedTestCase)
         }</span>
 
-        <span class="cov5" title="2">newTestSuite := junitTestSuite{
+        <span class="cov7" title="3">newTestSuite := junitTestSuite{
                 Name:      query.Platform,
                 Failures:  "",
                 Tests:     "",
@@ -20370,14 +20372,14 @@ func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) <span 
 }
 
 // FinishReport finishes the report, adding the total number of failed tests for each platform and the total number of failed tests
-func (jUnit *junitTestSuites) FinishReport() <span class="cov8" title="3">{
+func (jUnit *junitTestSuites) FinishReport() <span class="cov8" title="4">{
         failsCount := 0
-        for idx := range jUnit.TestSuites </span><span class="cov5" title="2">{
+        for idx := range jUnit.TestSuites </span><span class="cov7" title="3">{
                 failsCount += jUnit.TestSuites[idx].failCount
                 jUnit.TestSuites[idx].Failures = fmt.Sprintf("%d", jUnit.TestSuites[idx].failCount)
                 jUnit.TestSuites[idx].Tests = fmt.Sprintf("%d", jUnit.TestSuites[idx].failCount)
         }</span>
-        <span class="cov8" title="3">jUnit.Failures = fmt.Sprintf("%d", failsCount)</span>
+        <span class="cov8" title="4">jUnit.Failures = fmt.Sprintf("%d", failsCount)</span>
 }
 </pre>
 		
@@ -20398,10 +20400,11 @@ import (
 var categoriesNotFound = make(map[string]bool)
 
 var severityLevelEquivalence = map[model.Severity]string{
-        "INFO":   "none",
-        "LOW":    "note",
-        "MEDIUM": "warning",
-        "HIGH":   "error",
+        "INFO":     "none",
+        "LOW":      "note",
+        "MEDIUM":   "warning",
+        "HIGH":     "error",
+        "CRITICAL": "error",
 }
 
 var targetTemplate = sarifDescriptorReference{
@@ -21076,10 +21079,11 @@ import (
 
 // severitySonarQubeEquivalence maps the severity of the KICS to the SonarQube equivalent
 var severitySonarQubeEquivalence = map[model.Severity]string{
-        "INFO":   "INFO",
-        "LOW":    "MINOR",
-        "MEDIUM": "MAJOR",
-        "HIGH":   "CRITICAL",
+        "INFO":     "INFO",
+        "LOW":      "MINOR",
+        "MEDIUM":   "MAJOR",
+        "HIGH":     "CRITICAL",
+        "CRITICAL": "BLOCKER",
 }
 
 // categorySonarQubeEquivalence maps the category to the SonarQube equivalent
@@ -21145,15 +21149,15 @@ func NewSonarQubeRepory() *SonarQubeReportBuilder <span class="cov1" title="1">{
 }</span>
 
 // BuildReport builds the SonarQubeReport from the given QueryResults
-func (s *SonarQubeReportBuilder) BuildReport(summary *model.Summary) *SonarQubeReport <span class="cov5" title="2">{
-        for i := range summary.Queries </span><span class="cov5" title="2">{
+func (s *SonarQubeReportBuilder) BuildReport(summary *model.Summary) *SonarQubeReport <span class="cov7" title="3">{
+        for i := range summary.Queries </span><span class="cov7" title="3">{
                 s.buildIssue(&amp;summary.Queries[i])
         }</span>
-        <span class="cov5" title="2">return s.report</span>
+        <span class="cov7" title="3">return s.report</span>
 }
 
 // buildIssue builds the issue from the given QueryResult and adds it to the SonarQubeReport
-func (s *SonarQubeReportBuilder) buildIssue(query *model.QueryResult) <span class="cov5" title="2">{
+func (s *SonarQubeReportBuilder) buildIssue(query *model.QueryResult) <span class="cov7" title="3">{
         issue := Issue{
                 EngineID:           s.version,
                 RuleID:             query.QueryID,
@@ -21167,21 +21171,21 @@ func (s *SonarQubeReportBuilder) buildIssue(query *model.QueryResult) <span clas
 }</span>
 
 // buildSecondaryLocation builds the secondary location for the SonarQube Report
-func buildSecondaryLocation(query *model.QueryResult) []*Location <span class="cov5" title="2">{
+func buildSecondaryLocation(query *model.QueryResult) []*Location <span class="cov7" title="3">{
         locations := make([]*Location, 0)
-        for i := range query.Files[1:] </span><span class="cov5" title="2">{
+        for i := range query.Files[1:] </span><span class="cov4" title="2">{
                 locations = append(locations, buildLocation(i+1, query))
         }</span>
-        <span class="cov5" title="2">return locations</span>
+        <span class="cov7" title="3">return locations</span>
 }
 
 // buildLocation builds the location for the SonarQube Report
-func buildLocation(index int, query *model.QueryResult) *Location <span class="cov10" title="4">{
+func buildLocation(index int, query *model.QueryResult) *Location <span class="cov10" title="5">{
         message := query.Description
         if query.CISDescriptionID != "" </span><span class="cov0" title="0">{
                 message = query.CISDescriptionID
         }</span>
-        <span class="cov10" title="4">return &amp;Location{
+        <span class="cov10" title="5">return &amp;Location{
                 Message:  message,
                 FilePath: query.Files[index].FileName,
                 TextRange: &amp;Range{
@@ -21241,15 +21245,15 @@ var (
         checkmarxLogo string
 )
 
-func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize int) <span class="cov9" title="12">{
-        m.Col(colTwo, func() </span><span class="cov9" title="12">{
+func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize int) <span class="cov9" title="16">{
+        m.Col(colTwo, func() </span><span class="cov9" title="16">{
                 m.Text(label, props.Text{
                         Size:        float64(textSize),
                         Align:       consts.Left,
                         Extrapolate: false,
                 })
         }</span>)
-        <span class="cov9" title="12">m.Col(colTwo, func() </span><span class="cov9" title="12">{
+        <span class="cov9" title="16">m.Col(colTwo, func() </span><span class="cov9" title="16">{
                 m.Text(value, props.Text{
                         Size:        float64(textSize),
                         Align:       consts.Left,
@@ -21258,8 +21262,8 @@ func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize i
         }</span>)
 }
 
-func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error <span class="cov4" title="3">{
-        for i := range queries </span><span class="cov4" title="3">{
+func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error <span class="cov5" title="4">{
+        for i := range queries </span><span class="cov5" title="4">{
                 m.SetBackgroundColor(color.NewWhite())
                 queryName := queries[i].QueryName
                 resultsCount := fmt.Sprint(len(queries[i].Files))
@@ -21269,15 +21273,15 @@ func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error <span c
                 category := queries[i].Category
                 description := queries[i].Description
                 var err error
-                m.Row(rowLarge, func() </span><span class="cov4" title="3">{
-                        m.Col(colOne, func() </span><span class="cov4" title="3">{
+                m.Row(rowLarge, func() </span><span class="cov5" title="4">{
+                        m.Col(colOne, func() </span><span class="cov5" title="4">{
                                 err = m.Base64Image(vulnImageBase64, consts.Png, props.Rect{
                                         Center:  false,
                                         Percent: 50,
                                         Left:    2,
                                 })
                         }</span>)
-                        <span class="cov4" title="3">m.Col(colNine, func() </span><span class="cov4" title="3">{
+                        <span class="cov5" title="4">m.Col(colNine, func() </span><span class="cov5" title="4">{
                                 m.Text(queryName, props.Text{
                                         Size:        11,
                                         Style:       consts.Bold,
@@ -21285,7 +21289,7 @@ func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error <span c
                                         Extrapolate: false,
                                 })
                         }</span>)
-                        <span class="cov4" title="3">m.Col(colOne, func() </span><span class="cov4" title="3">{
+                        <span class="cov5" title="4">m.Col(colOne, func() </span><span class="cov5" title="4">{
                                 m.Text("Results", props.Text{
                                         Size:        8,
                                         Style:       consts.Bold,
@@ -21293,7 +21297,7 @@ func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error <span c
                                         Extrapolate: false,
                                 })
                         }</span>)
-                        <span class="cov4" title="3">m.Col(colOne, func() </span><span class="cov4" title="3">{
+                        <span class="cov5" title="4">m.Col(colOne, func() </span><span class="cov5" title="4">{
                                 m.Text(resultsCount, props.Text{
                                         Size:        8,
                                         Style:       consts.Bold,
@@ -21302,34 +21306,34 @@ func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error <span c
                                 })
                         }</span>)
                 })
-                <span class="cov4" title="3">if err != nil </span><span class="cov0" title="0">{
+                <span class="cov5" title="4">if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
-                <span class="cov4" title="3">m.Row(colFive, func() </span><span class="cov4" title="3">{
+                <span class="cov5" title="4">m.Row(colFive, func() </span><span class="cov5" title="4">{
                         createQueryEntryMetadataField(m, "Severity", severity, textSize)
                 }</span>)
-                <span class="cov4" title="3">m.Row(colThree, func() </span><span class="cov4" title="3">{
+                <span class="cov5" title="4">m.Row(colThree, func() </span><span class="cov5" title="4">{
                         createQueryEntryMetadataField(m, "Platform", platform, defaultTextSize)
                 }</span>)
-                <span class="cov4" title="3">m.Row(colFour, func() </span><span class="cov4" title="3">{
+                <span class="cov5" title="4">m.Row(colFour, func() </span><span class="cov5" title="4">{
                         createQueryEntryMetadataField(m, "Cwe", cwe, defaultTextSize)
                 }</span>)
-                <span class="cov4" title="3">m.Row(colSix, func() </span><span class="cov4" title="3">{
+                <span class="cov5" title="4">m.Row(colSix, func() </span><span class="cov5" title="4">{
                         createQueryEntryMetadataField(m, "Category", category, defaultTextSize)
                 }</span>)
-                <span class="cov4" title="3">if queries[i].CISDescriptionID != "" </span><span class="cov0" title="0">{
+                <span class="cov5" title="4">if queries[i].CISDescriptionID != "" </span><span class="cov0" title="0">{
                         createCISRows(m, &amp;queries[i])
-                }</span> else<span class="cov4" title="3"> {
+                }</span> else<span class="cov5" title="4"> {
                         createDescription(m, description)
                 }</span>
-                <span class="cov4" title="3">createResultsTable(m, &amp;queries[i])</span>
+                <span class="cov5" title="4">createResultsTable(m, &amp;queries[i])</span>
         }
-        <span class="cov4" title="3">return nil</span>
+        <span class="cov5" title="4">return nil</span>
 }
 
-func createDescription(m pdf.Maroto, description string) <span class="cov4" title="3">{
-        m.Row(colFive, func() </span><span class="cov4" title="3">{
-                m.Col(colTwo, func() </span><span class="cov4" title="3">{
+func createDescription(m pdf.Maroto, description string) <span class="cov5" title="4">{
+        m.Row(colFive, func() </span><span class="cov5" title="4">{
+                m.Col(colTwo, func() </span><span class="cov5" title="4">{
                         m.Text("Description", props.Text{
                                 Size:        float64(textSize),
                                 Align:       consts.Left,
@@ -21338,8 +21342,8 @@ func createDescription(m pdf.Maroto, description string) <span class="cov4" titl
                         })
                 }</span>)
         })
-        <span class="cov4" title="3">m.Row(getRowLength(description), func() </span><span class="cov4" title="3">{
-                m.Col(colFullPage, func() </span><span class="cov4" title="3">{
+        <span class="cov5" title="4">m.Row(getRowLength(description), func() </span><span class="cov5" title="4">{
+                m.Col(colFullPage, func() </span><span class="cov5" title="4">{
                         m.Text(description, props.Text{
                                 Size:        float64(defaultTextSize),
                                 Align:       consts.Left,
@@ -21347,7 +21351,7 @@ func createDescription(m pdf.Maroto, description string) <span class="cov4" titl
                         })
                 }</span>)
         })
-        <span class="cov4" title="3">m.Row(colFive, func() </span><span class="cov4" title="3">{
+        <span class="cov5" title="4">m.Row(colFive, func() </span><span class="cov5" title="4">{
                 m.ColSpace(0)
         }</span>)
 }
@@ -21394,25 +21398,25 @@ func createCISRows(m pdf.Maroto, query *model.QueryResult) <span class="cov0" ti
         <span class="cov0" title="0">createDescription(m, description)</span>
 }
 
-func getRowLength(value string) float64 <span class="cov4" title="3">{
+func getRowLength(value string) float64 <span class="cov5" title="4">{
         length := float64(len(value))
         x := 2.5
         result := ((length / x) / colRuneSlitter) + 1
         return result
 }</span>
 
-func createResultsTable(m pdf.Maroto, query *model.QueryResult) <span class="cov4" title="3">{
-        for idx := range query.Files </span><span class="cov6" title="6">{
-                if idx%2 == 0 </span><span class="cov4" title="3">{
+func createResultsTable(m pdf.Maroto, query *model.QueryResult) <span class="cov5" title="4">{
+        for idx := range query.Files </span><span class="cov6" title="7">{
+                if idx%2 == 0 </span><span class="cov5" title="4">{
                         m.SetBackgroundColor(grayColor)
                 }</span> else<span class="cov4" title="3"> {
                         m.SetBackgroundColor(color.NewWhite())
                 }</span>
 
-                <span class="cov6" title="6">filePath := query.Files[idx].FileName
+                <span class="cov6" title="7">filePath := query.Files[idx].FileName
                 fileLine := fmt.Sprintf("%s:%s", filePath, fmt.Sprint(query.Files[idx].Line))
-                m.Row(colFive, func() </span><span class="cov6" title="6">{
-                        m.Col(colFullPage, func() </span><span class="cov6" title="6">{
+                m.Row(colFive, func() </span><span class="cov6" title="7">{
+                        m.Col(colFullPage, func() </span><span class="cov6" title="7">{
                                 m.Text(fileLine, props.Text{
                                         Size:        defaultTextSize,
                                         Align:       consts.Left,
@@ -21420,9 +21424,9 @@ func createResultsTable(m pdf.Maroto, query *model.QueryResult) <span class="cov
                                 })
                         }</span>)
                 })
-                <span class="cov6" title="6">expectedValue := fmt.Sprintf("Expected: %s", query.Files[idx].KeyExpectedValue)
-                m.Row(colFive, func() </span><span class="cov6" title="6">{
-                        m.Col(colFullPage, func() </span><span class="cov6" title="6">{
+                <span class="cov6" title="7">expectedValue := fmt.Sprintf("Expected: %s", query.Files[idx].KeyExpectedValue)
+                m.Row(colFive, func() </span><span class="cov6" title="7">{
+                        m.Col(colFullPage, func() </span><span class="cov6" title="7">{
                                 m.Text(expectedValue, props.Text{
                                         Size:        smallTextSize,
                                         Align:       consts.Left,
@@ -21431,22 +21435,22 @@ func createResultsTable(m pdf.Maroto, query *model.QueryResult) <span class="cov
                         }</span>)
                 })
         }
-        <span class="cov4" title="3">m.SetBackgroundColor(color.NewWhite())
+        <span class="cov5" title="4">m.SetBackgroundColor(color.NewWhite())
         m.Line(1.0)</span>
 }
 
-func createHeaderArea(m pdf.Maroto) <span class="cov4" title="3">{
-        m.Row(rowLarge, func() </span><span class="cov4" title="3">{
-                m.Col(colSix, func() </span><span class="cov4" title="3">{
+func createHeaderArea(m pdf.Maroto) <span class="cov5" title="4">{
+        m.Row(rowLarge, func() </span><span class="cov5" title="4">{
+                m.Col(colSix, func() </span><span class="cov5" title="4">{
                         _ = m.Base64Image(checkmarxLogo, consts.Png, props.Rect{})
                 }</span>)
         })
-        <span class="cov4" title="3">m.Row(colFive, func() </span><span class="cov4" title="3">{
+        <span class="cov5" title="4">m.Row(colFive, func() </span><span class="cov5" title="4">{
                 m.ColSpace(0)
         }</span>)
-        <span class="cov4" title="3">m.SetBackgroundColor(getPurpleColor())
-        m.Row(rowXLarge, func() </span><span class="cov4" title="3">{
-                m.Col(colSix, func() </span><span class="cov4" title="3">{
+        <span class="cov5" title="4">m.SetBackgroundColor(getPurpleColor())
+        m.Row(rowXLarge, func() </span><span class="cov5" title="4">{
+                m.Col(colSix, func() </span><span class="cov5" title="4">{
                         m.Text(" KICS REPORT", props.Text{
                                 Size:        25,
                                 Style:       consts.Bold,
@@ -21455,7 +21459,7 @@ func createHeaderArea(m pdf.Maroto) <span class="cov4" title="3">{
                                 Color:       color.NewWhite(),
                         })
                 }</span>)
-                <span class="cov4" title="3">m.Col(colSix, func() </span><span class="cov4" title="3">{
+                <span class="cov5" title="4">m.Col(colSix, func() </span><span class="cov5" title="4">{
                         m.Text(fmt.Sprintf("%s ", constants.Version), props.Text{
                                 Size:        25,
                                 Style:       consts.Bold,
@@ -21465,22 +21469,22 @@ func createHeaderArea(m pdf.Maroto) <span class="cov4" title="3">{
                         })
                 }</span>)
         })
-        <span class="cov4" title="3">m.SetBackgroundColor(color.NewWhite())
-        m.Row(rowXSmall, func() </span><span class="cov4" title="3">{
+        <span class="cov5" title="4">m.SetBackgroundColor(color.NewWhite())
+        m.Row(rowXSmall, func() </span><span class="cov5" title="4">{
                 m.ColSpace(colFullPage)
         }</span>)
 }
 
-func createFooterArea(m pdf.Maroto) <span class="cov6" title="6">{
-        m.Row(rowMedium, func() </span><span class="cov4" title="3">{
-                m.Col(colOne, func() </span><span class="cov4" title="3">{
+func createFooterArea(m pdf.Maroto) <span class="cov7" title="8">{
+        m.Row(rowMedium, func() </span><span class="cov5" title="4">{
+                m.Col(colOne, func() </span><span class="cov5" title="4">{
                         m.Text("https://kics.io")
                 }</span>)
         })
 }
 
 // PrintPdfReport creates a report file on the PDF format
-func PrintPdfReport(path, filename string, body interface{}) error <span class="cov4" title="3">{
+func PrintPdfReport(path, filename string, body interface{}) error <span class="cov5" title="4">{
         startTime := time.Now()
         log.Info().Msg("Started generating pdf report")
 
@@ -21492,14 +21496,14 @@ func PrintPdfReport(path, filename string, body interface{}) error <span class="
         m.SetFirstPageNb(1)
         m.SetAliasNbPages("{total}")
 
-        m.RegisterHeader(func() </span><span class="cov4" title="3">{
+        m.RegisterHeader(func() </span><span class="cov5" title="4">{
                 createHeaderArea(m)
         }</span>)
-        <span class="cov4" title="3">m.RegisterFooter(func() </span><span class="cov6" title="6">{
+        <span class="cov5" title="4">m.RegisterFooter(func() </span><span class="cov7" title="8">{
                 createFooterArea(m)
         }</span>)
 
-        <span class="cov4" title="3">m.SetBackgroundColor(color.NewWhite())
+        <span class="cov5" title="4">m.SetBackgroundColor(color.NewWhite())
 
         createFirstPageHeader(m, summary)
 
@@ -21510,28 +21514,28 @@ func PrintPdfReport(path, filename string, body interface{}) error <span class="
                 return err
         }</span>
 
-        <span class="cov4" title="3">err = m.OutputFileAndClose(filepath.Join(path, fmt.Sprintf("%s.pdf", filename)))
+        <span class="cov5" title="4">err = m.OutputFileAndClose(filepath.Join(path, fmt.Sprintf("%s.pdf", filename)))
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
 
-        <span class="cov4" title="3">log.Info().Msgf("Generate report duration: %v", time.Since(startTime))
+        <span class="cov5" title="4">log.Info().Msgf("Generate report duration: %v", time.Since(startTime))
 
         fileCreationReport(filepath.Join(path, filename+".pdf"), filename)
 
         return err</span>
 }
 
-func createDateField(m pdf.Maroto, label string, scanTime time.Time) <span class="cov6" title="6">{
-        m.Row(colFour, func() </span><span class="cov6" title="6">{
-                m.Col(colTwo, func() </span><span class="cov6" title="6">{
+func createDateField(m pdf.Maroto, label string, scanTime time.Time) <span class="cov7" title="8">{
+        m.Row(colFour, func() </span><span class="cov7" title="8">{
+                m.Col(colTwo, func() </span><span class="cov7" title="8">{
                         m.Text(label, props.Text{
                                 Size:        defaultTextSize,
                                 Align:       consts.Left,
                                 Extrapolate: false,
                         })
                 }</span>)
-                <span class="cov6" title="6">m.Col(colTwo, func() </span><span class="cov6" title="6">{
+                <span class="cov7" title="8">m.Col(colTwo, func() </span><span class="cov7" title="8">{
                         m.Text(scanTime.Format("15:04:05, Jan 02 2006"), props.Text{
                                 Size:        defaultTextSize,
                                 Align:       consts.Left,
@@ -21541,21 +21545,21 @@ func createDateField(m pdf.Maroto, label string, scanTime time.Time) <span class
         })
 }
 
-func createDateArea(m pdf.Maroto, summary *model.Summary) <span class="cov4" title="3">{
+func createDateArea(m pdf.Maroto, summary *model.Summary) <span class="cov5" title="4">{
         createDateField(m, "START TIME", summary.Start)
         createDateField(m, "END TIME", summary.End)
 }</span>
 
-func createPlatformsArea(m pdf.Maroto, summary *model.Summary) <span class="cov4" title="3">{
-        m.Row(rowSmall, func() </span><span class="cov4" title="3">{
-                m.Col(colTwo, func() </span><span class="cov4" title="3">{
+func createPlatformsArea(m pdf.Maroto, summary *model.Summary) <span class="cov5" title="4">{
+        m.Row(rowSmall, func() </span><span class="cov5" title="4">{
+                m.Col(colTwo, func() </span><span class="cov5" title="4">{
                         m.Text("PLATFORMS", props.Text{
                                 Size:        defaultTextSize,
                                 Align:       consts.Left,
                                 Extrapolate: false,
                         })
                 }</span>)
-                <span class="cov4" title="3">m.Col(colTen, func() </span><span class="cov4" title="3">{
+                <span class="cov5" title="4">m.Col(colTen, func() </span><span class="cov5" title="4">{
                         m.Text(getPlatforms(summary.Queries), props.Text{
                                 Size:        defaultTextSize,
                                 Align:       consts.Left,
@@ -21565,8 +21569,8 @@ func createPlatformsArea(m pdf.Maroto, summary *model.Summary) <span class="cov4
         })
 }
 
-func createSummaryResultsField(m pdf.Maroto, label, value string, mColor color.Color) <span class="cov10" title="15">{
-        m.Col(colOne, func() </span><span class="cov10" title="15">{
+func createSummaryResultsField(m pdf.Maroto, label, value string, mColor color.Color) <span class="cov10" title="20">{
+        m.Col(colOne, func() </span><span class="cov10" title="20">{
                 m.Text(label, props.Text{
                         Size:        defaultTextSize,
                         Align:       consts.Left,
@@ -21575,7 +21579,7 @@ func createSummaryResultsField(m pdf.Maroto, label, value string, mColor color.C
                         Color:       mColor,
                 })
         }</span>)
-        <span class="cov10" title="15">m.Col(colOne, func() </span><span class="cov10" title="15">{
+        <span class="cov10" title="20">m.Col(colOne, func() </span><span class="cov10" title="20">{
                 m.Text(value, props.Text{
                         Size:        defaultTextSize,
                         Align:       consts.Left,
@@ -21586,7 +21590,7 @@ func createSummaryResultsField(m pdf.Maroto, label, value string, mColor color.C
         }</span>)
 }
 
-func createSummaryArea(m pdf.Maroto, summary *model.Summary) <span class="cov4" title="3">{
+func createSummaryArea(m pdf.Maroto, summary *model.Summary) <span class="cov5" title="4">{
         criticalSeverityCount := fmt.Sprint(summary.SeverityCounters["CRITICAL"])
         highSeverityCount := fmt.Sprint(summary.SeverityCounters["HIGH"])
         mediumSeverityCount := fmt.Sprint(summary.SeverityCounters["MEDIUM"])
@@ -21594,27 +21598,28 @@ func createSummaryArea(m pdf.Maroto, summary *model.Summary) <span class="cov4" 
         infoSeverityCount := fmt.Sprint(summary.SeverityCounters["INFO"])
         totalCount := fmt.Sprint(summary.TotalCounter)
 
-        m.Row(rowMedium, func() </span><span class="cov4" title="3">{
+        m.Row(rowMedium, func() </span><span class="cov5" title="4">{
                 createSummaryResultsField(m, "CRITICAL", criticalSeverityCount, getPureRedColor())
                 createSummaryResultsField(m, "HIGH", highSeverityCount, getRedColor())
                 createSummaryResultsField(m, "MEDIUM", mediumSeverityCount, getOrangeColor())
                 createSummaryResultsField(m, "LOW", lowSeverityCount, getYellowColor())
                 createSummaryResultsField(m, "INFO", infoSeverityCount, getBlueColor())
 
-                m.ColSpace(colTwo)
+                m.ColSpace(colOne)
 
-                m.Col(colOne, func() </span><span class="cov4" title="3">{
+                m.Col(colOne, func() </span><span class="cov5" title="4">{
                         m.Text("TOTAL", props.Text{
                                 Size:        defaultTextSize,
+                                Right:       10.0,
                                 Align:       consts.Right,
                                 Style:       consts.Bold,
                                 Extrapolate: false,
                         })
                 }</span>)
-                <span class="cov4" title="3">m.Col(colOne, func() </span><span class="cov4" title="3">{
+                <span class="cov5" title="4">m.Col(colOne, func() </span><span class="cov5" title="4">{
                         m.Text(totalCount, props.Text{
                                 Size:        defaultTextSize,
-                                Align:       consts.Right,
+                                Align:       consts.Left,
                                 Style:       consts.Bold,
                                 Extrapolate: false,
                         })
@@ -21622,12 +21627,12 @@ func createSummaryArea(m pdf.Maroto, summary *model.Summary) <span class="cov4" 
         })
 }
 
-func createFirstPageHeader(m pdf.Maroto, summary *model.Summary) <span class="cov4" title="3">{
+func createFirstPageHeader(m pdf.Maroto, summary *model.Summary) <span class="cov5" title="4">{
         createSummaryArea(m, summary)
         createPlatformsArea(m, summary)
         createDateArea(m, summary)
-        m.Row(rowSmall, func() </span><span class="cov4" title="3">{
-                m.Col(colTwo, func() </span><span class="cov4" title="3">{
+        m.Row(rowSmall, func() </span><span class="cov5" title="4">{
+                m.Col(colTwo, func() </span><span class="cov5" title="4">{
                         m.Text("SCANNED PATHS:", props.Text{
                                 Size:        defaultTextSize,
                                 Align:       consts.Left,
@@ -21635,10 +21640,10 @@ func createFirstPageHeader(m pdf.Maroto, summary *model.Summary) <span class="co
                         })
                 }</span>)
         })
-        <span class="cov4" title="3">for i := range summary.ScannedPaths </span><span class="cov4" title="3">{
+        <span class="cov5" title="4">for i := range summary.ScannedPaths </span><span class="cov5" title="4">{
                 scannedPaths := summary.ScannedPaths[i]
-                m.Row(rowSmall, func() </span><span class="cov4" title="3">{
-                        m.Col(colFullPage, func() </span><span class="cov4" title="3">{
+                m.Row(rowSmall, func() </span><span class="cov5" title="4">{
+                        m.Col(colFullPage, func() </span><span class="cov5" title="4">{
                                 m.Text(fmt.Sprintf("- %s", scannedPaths), props.Text{
                                         Size:        defaultTextSize,
                                         Align:       consts.Left,
@@ -21647,7 +21652,7 @@ func createFirstPageHeader(m pdf.Maroto, summary *model.Summary) <span class="co
                         }</span>)
                 })
         }
-        <span class="cov4" title="3">m.Row(rowXSmall, func() </span><span class="cov4" title="3">{
+        <span class="cov5" title="4">m.Row(rowXSmall, func() </span><span class="cov5" title="4">{
                 m.ColSpace(colFullPage)
         }</span>)
 }
@@ -21660,7 +21665,7 @@ func getGrayColor() color.Color <span class="cov1" title="1">{
         }
 }</span>
 
-func getPureRedColor() color.Color <span class="cov4" title="3">{
+func getPureRedColor() color.Color <span class="cov5" title="4">{
         return color.Color{
                 Red:   250,
                 Green: 0,
@@ -21668,7 +21673,7 @@ func getPureRedColor() color.Color <span class="cov4" title="3">{
         }
 }</span>
 
-func getRedColor() color.Color <span class="cov4" title="3">{
+func getRedColor() color.Color <span class="cov5" title="4">{
         return color.Color{
                 Red:   200,
                 Green: 0,
@@ -21676,7 +21681,7 @@ func getRedColor() color.Color <span class="cov4" title="3">{
         }
 }</span>
 
-func getYellowColor() color.Color <span class="cov4" title="3">{
+func getYellowColor() color.Color <span class="cov5" title="4">{
         return color.Color{
                 Red:   206,
                 Green: 182,
@@ -21684,7 +21689,7 @@ func getYellowColor() color.Color <span class="cov4" title="3">{
         }
 }</span>
 
-func getOrangeColor() color.Color <span class="cov4" title="3">{
+func getOrangeColor() color.Color <span class="cov5" title="4">{
         return color.Color{
                 Red:   255,
                 Green: 165,
@@ -21692,7 +21697,7 @@ func getOrangeColor() color.Color <span class="cov4" title="3">{
         }
 }</span>
 
-func getBlueColor() color.Color <span class="cov4" title="3">{
+func getBlueColor() color.Color <span class="cov5" title="4">{
         return color.Color{
                 Red:   0,
                 Green: 0,
@@ -21700,7 +21705,7 @@ func getBlueColor() color.Color <span class="cov4" title="3">{
         }
 }</span>
 
-func getPurpleColor() color.Color <span class="cov4" title="3">{
+func getPurpleColor() color.Color <span class="cov5" title="4">{
         return color.Color{
                 Red:   80,
                 Green: 62,
@@ -21718,20 +21723,20 @@ import (
 )
 
 // PrintSarifReport creates a report file on sarif format, fetching the ID and GUID from relationships to be inputted to taxonomies field
-func PrintSarifReport(path, filename string, body interface{}) error <span class="cov8" title="1">{
-        if !strings.HasSuffix(filename, ".sarif") </span><span class="cov8" title="1">{
+func PrintSarifReport(path, filename string, body interface{}) error <span class="cov10" title="2">{
+        if !strings.HasSuffix(filename, ".sarif") </span><span class="cov10" title="2">{
                 filename += ".sarif"
         }</span>
-        <span class="cov8" title="1">if body != "" </span><span class="cov8" title="1">{
+        <span class="cov10" title="2">if body != "" </span><span class="cov10" title="2">{
                 summary, err := getSummary(body)
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov8" title="1">sarifReport := reportModel.NewSarifReport()
+                <span class="cov10" title="2">sarifReport := reportModel.NewSarifReport()
                 auxID := []string{}
                 auxGUID := map[string]string{}
-                for idx := range summary.Queries </span><span class="cov8" title="1">{
+                for idx := range summary.Queries </span><span class="cov10" title="2">{
                         x := sarifReport.BuildSarifIssue(&amp;summary.Queries[idx])
                         if len(x) &gt; 0 </span><span class="cov0" title="0">{
                                 auxID = append(auxID, x)
@@ -21739,11 +21744,11 @@ func PrintSarifReport(path, filename string, body interface{}) error <span class
                                 auxGUID[x] = guid
                         }</span>
                 }
-                <span class="cov8" title="1">sarifReport.RebuildTaxonomies(auxID, auxGUID)
+                <span class="cov10" title="2">sarifReport.RebuildTaxonomies(auxID, auxGUID)
                 body = sarifReport</span>
         }
 
-        <span class="cov8" title="1">return ExportJSONReport(path, filename, body)</span>
+        <span class="cov10" title="2">return ExportJSONReport(path, filename, body)</span>
 }
 </pre>
 		
@@ -21756,26 +21761,26 @@ import (
 )
 
 // PrintSonarQubeReport prints the SonarQube report in the given path and filename with the given body
-func PrintSonarQubeReport(path, filename string, body interface{}) error <span class="cov10" title="2">{
-        if !strings.HasSuffix(filename, ".json") </span><span class="cov10" title="2">{
+func PrintSonarQubeReport(path, filename string, body interface{}) error <span class="cov10" title="3">{
+        if !strings.HasSuffix(filename, ".json") </span><span class="cov10" title="3">{
                 filename += ".json"
         }</span>
 
-        <span class="cov10" title="2">if !strings.HasPrefix(filename, "sonarqube-") </span><span class="cov10" title="2">{
+        <span class="cov10" title="3">if !strings.HasPrefix(filename, "sonarqube-") </span><span class="cov10" title="3">{
                 filename = "sonarqube-" + filename
         }</span>
 
-        <span class="cov10" title="2">if body != "" </span><span class="cov10" title="2">{
+        <span class="cov10" title="3">if body != "" </span><span class="cov10" title="3">{
                 summary, err := getSummary(body)
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov10" title="2">SonarQubeReport := reportModel.NewSonarQubeRepory()
+                <span class="cov10" title="3">SonarQubeReport := reportModel.NewSonarQubeRepory()
                 body = SonarQubeReport.BuildReport(&amp;summary)</span>
         }
 
-        <span class="cov10" title="2">return ExportJSONReport(path, filename, body)</span>
+        <span class="cov10" title="3">return ExportJSONReport(path, filename, body)</span>
 }
 </pre>
 		
@@ -24119,8 +24124,10 @@ import (
 
 const (
         // ValidUUIDRegex is a constant representing a regular expression rule to validate UUID string
-        ValidUUIDRegex = `(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`
-        positive       = "positive.tf"
+        ValidUUIDRegex    = `(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`
+        positive          = "positive.tf"
+        positiveYamlSonar = "../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml"
+        positiveYaml      = "test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml"
 )
 
 type execute func() error
@@ -24429,6 +24436,157 @@ var queryHighCWE = model.QueryResult{ //nolint
         CWE: "22",
 }
 
+var queryCritical = model.QueryResult{
+        QueryName:                   "AmazonMQ Broker Encryption Disabled",
+        QueryID:                     "316278b3-87ac-444c-8f8f-a733a28da609",
+        Description:                 "AmazonMQ Broker should have Encryption Options defined",
+        DescriptionID:               "c5d562d9",
+        CISDescriptionIDFormatted:   "testCISID",
+        CISDescriptionTitle:         "testCISTitle",
+        CISDescriptionTextFormatted: "testCISDescription",
+        CloudProvider:               "AWS",
+        Severity:                    model.SeverityCritical,
+        Files: []model.VulnerableFile{
+                {
+                        FileName:         positiveYaml,
+                        Line:             6,
+                        IssueType:        "MissingAttribute",
+                        SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+                        KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+                        KeyActualValue:   "'default_action.redirect.protocol' is missing",
+                        Value:            nil,
+                        VulnLines:        &amp;[]model.CodeLine{},
+                },
+        },
+}
+
+var queryCriticalSonar = model.QueryResult{
+        QueryName:                   "AmazonMQ Broker Encryption Disabled",
+        QueryID:                     "316278b3-87ac-444c-8f8f-a733a28da609",
+        Description:                 "AmazonMQ Broker should have Encryption Options defined",
+        DescriptionID:               "c5d562d9",
+        CISDescriptionIDFormatted:   "testCISID",
+        CISDescriptionTitle:         "testCISTitle",
+        CISDescriptionTextFormatted: "testCISDescription",
+        CloudProvider:               "AWS",
+        Severity:                    model.SeverityCritical,
+        Files: []model.VulnerableFile{
+                {
+                        FileName:         positiveYamlSonar,
+                        Line:             6,
+                        IssueType:        "MissingAttribute",
+                        SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+                        KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+                        KeyActualValue:   "'default_action.redirect.protocol' is missing",
+                        Value:            nil,
+                        VulnLines:        &amp;[]model.CodeLine{},
+                },
+        },
+}
+
+var SummaryMockCriticalSonar = model.Summary{
+        Counters: model.Counters{
+                ScannedFiles:           2,
+                ParsedFiles:            2,
+                FailedToScanFiles:      0,
+                TotalQueries:           1,
+                FailedToExecuteQueries: 0,
+        },
+        Queries: []model.QueryResult{
+                queryCriticalSonar,
+        },
+        SeveritySummary: model.SeveritySummary{
+                ScanID: "console",
+                SeverityCounters: map[model.Severity]int{
+                        model.SeverityInfo:     0,
+                        model.SeverityLow:      0,
+                        model.SeverityMedium:   0,
+                        model.SeverityHigh:     0,
+                        model.SeverityCritical: 1,
+                },
+                TotalCounter: 1,
+        },
+        ScannedPaths: []string{
+                "./",
+        },
+}
+
+var SummaryMockCritical = model.Summary{
+        Counters: model.Counters{
+                ScannedFiles:           2,
+                ParsedFiles:            2,
+                FailedToScanFiles:      0,
+                TotalQueries:           1,
+                FailedToExecuteQueries: 0,
+        },
+        Queries: []model.QueryResult{
+                queryCritical,
+        },
+        SeveritySummary: model.SeveritySummary{
+                ScanID: "console",
+                SeverityCounters: map[model.Severity]int{
+                        model.SeverityInfo:     0,
+                        model.SeverityLow:      0,
+                        model.SeverityMedium:   0,
+                        model.SeverityHigh:     0,
+                        model.SeverityCritical: 1,
+                },
+                TotalCounter: 1,
+        },
+        ScannedPaths: []string{
+                "./",
+        },
+}
+
+var queryCriticalASFF = model.QueryResult{
+        QueryName:     "AmazonMQ Broker Encryption Disabled",
+        QueryID:       "316278b3-87ac-444c-8f8f-a733a28da609",
+        Description:   "AmazonMQ Broker should have Encryption Options defined",
+        DescriptionID: "c5d562d9",
+        CloudProvider: "AWS",
+        Severity:      model.SeverityCritical,
+        Files: []model.VulnerableFile{
+                {
+                        FileName:         positiveYaml,
+                        Line:             6,
+                        IssueType:        "MissingAttribute",
+                        SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+                        KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+                        KeyActualValue:   "'default_action.redirect.protocol' is missing",
+                        Value:            nil,
+                        VulnLines:        &amp;[]model.CodeLine{},
+                },
+        },
+        CWE: "22",
+}
+
+var SummaryMockCriticalFullPathASFF = model.Summary{
+        Counters: model.Counters{
+                ScannedFiles:           2,
+                ParsedFiles:            2,
+                FailedToScanFiles:      0,
+                TotalQueries:           1,
+                FailedToExecuteQueries: 0,
+        },
+        Queries: []model.QueryResult{
+                queryCriticalASFF,
+        },
+        SeveritySummary: model.SeveritySummary{
+                ScanID: "console",
+                SeverityCounters: map[model.Severity]int{
+                        model.SeverityInfo:     0,
+                        model.SeverityLow:      0,
+                        model.SeverityMedium:   0,
+                        model.SeverityHigh:     0,
+                        model.SeverityCritical: 1,
+                },
+                TotalCounter: 1,
+        },
+        ScannedPaths: []string{
+                "./",
+        },
+}
+
 // SummaryMock a summary to be used without running kics scan
 var SummaryMock = model.Summary{
         Counters: model.Counters{
@@ -24496,10 +24654,11 @@ var SummaryMockCWE = model.Summary{
         SeveritySummary: model.SeveritySummary{
                 ScanID: "console",
                 SeverityCounters: map[model.Severity]int{
-                        model.SeverityInfo:   0,
-                        model.SeverityLow:    0,
-                        model.SeverityMedium: 0,
-                        model.SeverityHigh:   2,
+                        model.SeverityInfo:     0,
+                        model.SeverityLow:      0,
+                        model.SeverityMedium:   0,
+                        model.SeverityHigh:     2,
+                        model.SeverityCritical: 0,
                 },
                 TotalCounter: 2,
         },
@@ -24523,10 +24682,11 @@ var SimpleSummaryMockAsff = model.Summary{
         SeveritySummary: model.SeveritySummary{
                 ScanID: "console",
                 SeverityCounters: map[model.Severity]int{
-                        model.SeverityInfo:   0,
-                        model.SeverityLow:    0,
-                        model.SeverityMedium: 1,
-                        model.SeverityHigh:   0,
+                        model.SeverityInfo:     0,
+                        model.SeverityLow:      0,
+                        model.SeverityMedium:   1,
+                        model.SeverityHigh:     2,
+                        model.SeverityCritical: 0,
                 },
                 TotalCounter: 1,
         },
@@ -24541,7 +24701,7 @@ var ComplexSummaryMock = model.Summary{
                 ScannedFiles:           2,
                 ParsedFiles:            2,
                 FailedToScanFiles:      0,
-                TotalQueries:           4,
+                TotalQueries:           3,
                 FailedToExecuteQueries: 0,
         },
         Queries: []model.QueryResult{
@@ -24556,10 +24716,10 @@ var ComplexSummaryMock = model.Summary{
                         model.SeverityInfo:     0,
                         model.SeverityLow:      0,
                         model.SeverityMedium:   1,
-                        model.SeverityHigh:     4,
-                        model.SeverityCritical: 1,
+                        model.SeverityHigh:     2,
+                        model.SeverityCritical: 2,
                 },
-                TotalCounter: 6,
+                TotalCounter: 5,
         },
         LatestVersion: model.Version{
                 Latest: true,
