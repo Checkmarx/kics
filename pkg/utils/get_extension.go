@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	FINAL_ASCII = 165
+	FinalASCII = 165
 )
 
 // GetExtension gets the extension of a file path
@@ -51,7 +51,7 @@ func isTextFile(path string) bool {
 	}
 
 	invalidChars := slices.ContainsFunc[byte](content, func(b byte) bool {
-		return b > FINAL_ASCII // character after which it is not a regular file character
+		return b > FinalASCII // character after which it is not a regular file character
 	})
 
 	if len(content) == 0 || invalidChars {

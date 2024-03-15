@@ -461,7 +461,7 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 	}
 
 	invalidChars := slices.ContainsFunc[byte](content, func(b byte) bool {
-		return b > utils.FINAL_ASCII // character after which it is not a regular file character
+		return b > utils.FinalASCII // character after which it is not a regular file character
 	})
 
 	returnType := ""
