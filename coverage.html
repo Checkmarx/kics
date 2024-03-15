@@ -155,7 +155,7 @@
 				
 				<option value="file49">github.com/Checkmarx/kics/pkg/engine/source/source.go (67.9%)</option>
 				
-				<option value="file50">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (76.9%)</option>
+				<option value="file50">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (77.9%)</option>
 				
 				<option value="file51">github.com/Checkmarx/kics/pkg/engine/vulnerability_utils.go (76.0%)</option>
 				
@@ -239,7 +239,7 @@
 				
 				<option value="file91">github.com/Checkmarx/kics/pkg/printer/options.go (85.5%)</option>
 				
-				<option value="file92">github.com/Checkmarx/kics/pkg/printer/printer.go (83.8%)</option>
+				<option value="file92">github.com/Checkmarx/kics/pkg/printer/printer.go (84.1%)</option>
 				
 				<option value="file93">github.com/Checkmarx/kics/pkg/printer/utils.go (80.0%)</option>
 				
@@ -291,7 +291,7 @@
 				
 				<option value="file117">github.com/Checkmarx/kics/pkg/report/model/sonarqube.go (92.9%)</option>
 				
-				<option value="file118">github.com/Checkmarx/kics/pkg/report/pdf.go (89.3%)</option>
+				<option value="file118">github.com/Checkmarx/kics/pkg/report/pdf.go (89.5%)</option>
 				
 				<option value="file119">github.com/Checkmarx/kics/pkg/report/sarif.go (77.8%)</option>
 				
@@ -959,7 +959,7 @@ func isQueryID(id string) bool <span class="cov5" title="5">{
 
 func convertSliceToDummyMap(slice []string) map[string]string <span class="cov5" title="5">{
         returnMap := make(map[string]string, len(slice))
-        for _, element := range slice </span><span class="cov10" title="30">{
+        for _, element := range slice </span><span class="cov10" title="32">{
                 returnMap[element] = ""
         }</span>
         <span class="cov5" title="5">return returnMap</span>
@@ -1163,14 +1163,14 @@ var shouldFail map[string]struct{}
 // ResultsExitCode calculate exit code base on severity of results, returns 0 if no results was reported
 func ResultsExitCode(summary *model.Summary) int <span class="cov5" title="4">{
         // severityArr is needed to make sure 'for' cycle is made in an ordered fashion
-        severityArr := []model.Severity{"HIGH", "MEDIUM", "LOW", "INFO", "TRACE"}
-        codeMap := map[model.Severity]int{"HIGH": 50, "MEDIUM": 40, "LOW": 30, "INFO": 20, "TRACE": 0}
+        severityArr := []model.Severity{"CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO", "TRACE"}
+        codeMap := map[model.Severity]int{"CRITICAL": 60, "HIGH": 50, "MEDIUM": 40, "LOW": 30, "INFO": 20, "TRACE": 0}
         exitMap := summary.SeveritySummary.SeverityCounters
-        for _, severity := range severityArr </span><span class="cov8" title="9">{
-                if _, reportSeverity := shouldFail[strings.ToLower(string(severity))]; !reportSeverity </span><span class="cov6" title="5">{
+        for _, severity := range severityArr </span><span class="cov9" title="12">{
+                if _, reportSeverity := shouldFail[strings.ToLower(string(severity))]; !reportSeverity </span><span class="cov7" title="7">{
                         continue</span>
                 }
-                <span class="cov5" title="4">if exitMap[severity] &gt; 0 </span><span class="cov4" title="3">{
+                <span class="cov6" title="5">if exitMap[severity] &gt; 0 </span><span class="cov4" title="3">{
                         return codeMap[severity]
                 }</span>
         }
@@ -1192,10 +1192,11 @@ func InitShouldIgnoreArg(arg string) error <span class="cov7" title="7">{
 // InitShouldFailArg initializes which kind of vulnerability severity should changes exit code
 func InitShouldFailArg(args []string) error <span class="cov5" title="4">{
         possibleArgs := map[string]struct{}{
-                "high":   {},
-                "medium": {},
-                "low":    {},
-                "info":   {},
+                "critical": {},
+                "high":     {},
+                "medium":   {},
+                "low":      {},
+                "info":     {},
         }
         if len(args) == 0 </span><span class="cov1" title="1">{
                 shouldFail = possibleArgs
@@ -1203,12 +1204,12 @@ func InitShouldFailArg(args []string) error <span class="cov5" title="4">{
         }</span>
 
         <span class="cov4" title="3">argsConverted := make(map[string]struct{})
-        for _, arg := range args </span><span class="cov6" title="6">{
+        for _, arg := range args </span><span class="cov7" title="7">{
                 if _, ok := possibleArgs[strings.ToLower(arg)]; !ok </span><span class="cov1" title="1">{
-                        validArgs := []string{"high", "medium", "low", "info"}
+                        validArgs := []string{"critical", "high", "medium", "low", "info"}
                         return fmt.Errorf("unknown argument for --fail-on: %s\nvalid arguments:\n  %s", arg, strings.Join(validArgs, "\n  "))
                 }</span>
-                <span class="cov6" title="5">argsConverted[strings.ToLower(arg)] = struct{}{}</span>
+                <span class="cov6" title="6">argsConverted[strings.ToLower(arg)] = struct{}{}</span>
         }
 
         <span class="cov3" title="2">shouldFail = argsConverted
@@ -2092,6 +2093,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
                 OpenAPIResolveReferences:    flags.GetBoolFlag(flags.OpenAPIReferencesFlag),
                 ParallelScanFlag:            flags.GetIntFlag(flags.ParallelScanFile),
                 MaxFileSizeFlag:             flags.GetIntFlag(flags.MaxFileSizeFlag),
+                UseNewSeverities:            flags.GetBoolFlag(flags.UseNewSeveritiesFlag),
         }
 
         return &amp;scanParams
@@ -2221,6 +2223,7 @@ var (
 
         // AvailableSeverities - All severities available
         AvailableSeverities = []string{
+                "critical",
                 "high",
                 "medium",
                 "low",
@@ -2596,7 +2599,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="25">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -5650,7 +5653,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5917,7 +5920,7 @@ type QueryLoader struct {
 
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
-        detector *detector.DetectLine) (*model.Vulnerability, error)
+        detector *detector.DetectLine, useNewSeverities bool) (*model.Vulnerability, error)
 
 // PreparedQuery includes the opaQuery and its metadata
 type PreparedQuery struct {
@@ -5938,6 +5941,7 @@ type Inspector struct {
         enableCoverageReport bool
         coverageReport       cover.Report
         queryExecTimeout     time.Duration
+        useNewSeverities     bool
         numWorkers           int
 }
 
@@ -5959,13 +5963,13 @@ var (
         }
 )
 
-func adjustNumWorkers(workers int) int <span class="cov5" title="5">{
+func adjustNumWorkers(workers int) int <span class="cov4" title="5">{
         // for the case in which the end user decides to use num workers as "auto-detected"
         // we will set the number of workers to the number of CPUs available based on GOMAXPROCS value
         if workers == 0 </span><span class="cov0" title="0">{
                 return runtime.GOMAXPROCS(-1)
         }</span>
-        <span class="cov5" title="5">return workers</span>
+        <span class="cov4" title="5">return workers</span>
 }
 
 // NewInspector initializes a inspector, compiling and loading queries for scan and its tracker
@@ -5977,8 +5981,9 @@ func NewInspector(
         queryParameters *source.QueryInspectorParameters,
         excludeResults map[string]bool,
         queryTimeout int,
+        useNewSeverities bool,
         needsLog bool,
-        numWorkers int) (*Inspector, error) <span class="cov5" title="5">{
+        numWorkers int) (*Inspector, error) <span class="cov4" title="5">{
         log.Debug().Msg("engine.NewInspector()")
 
         metrics.Metric.Start("get_queries")
@@ -5987,7 +5992,7 @@ func NewInspector(
                 return nil, errors.Wrap(err, "failed to get queries")
         }</span>
 
-        <span class="cov5" title="5">commonLibrary, err := queriesSource.GetQueryLibrary("common")
+        <span class="cov4" title="5">commonLibrary, err := queriesSource.GetQueryLibrary("common")
         if err != nil </span><span class="cov0" title="0">{
                 sentryReport.ReportSentry(&amp;sentryReport.Report{
                         Message:  fmt.Sprintf("Inspector failed to get library for %s platform", "common"),
@@ -5997,7 +6002,7 @@ func NewInspector(
                 }, true)
                 return nil, errors.Wrap(err, "failed to get library")
         }</span>
-        <span class="cov5" title="5">platformLibraries := getPlatformLibraries(queriesSource, queries)
+        <span class="cov4" title="5">platformLibraries := getPlatformLibraries(queriesSource, queries)
 
         queryLoader := prepareQueries(queries, commonLibrary, platformLibraries, tracker)
 
@@ -6005,23 +6010,23 @@ func NewInspector(
 
         metrics.Metric.Stop()
 
-        if needsLog </span><span class="cov5" title="5">{
+        if needsLog </span><span class="cov4" title="5">{
                 log.Info().
                         Msgf("Inspector initialized, number of queries=%d", queryLoader.querySum)
         }</span>
 
-        <span class="cov5" title="5">lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
+        <span class="cov4" title="5">lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
                 Add(helm.DetectKindLine{}, model.KindHELM).
                 Add(docker.DetectKindLine{}, model.KindDOCKER).
                 Add(docker.DetectKindLine{}, model.KindBUILDAH)
 
         queryExecTimeout := time.Duration(queryTimeout) * time.Second
 
-        if needsLog </span><span class="cov5" title="5">{
+        if needsLog </span><span class="cov4" title="5">{
                 log.Info().Msgf("Query execution timeout=%v", queryExecTimeout)
         }</span>
 
-        <span class="cov5" title="5">return &amp;Inspector{
+        <span class="cov4" title="5">return &amp;Inspector{
                 QueryLoader:      &amp;queryLoader,
                 vb:               vb,
                 tracker:          tracker,
@@ -6029,17 +6034,18 @@ func NewInspector(
                 excludeResults:   excludeResults,
                 detector:         lineDetector,
                 queryExecTimeout: queryExecTimeout,
+                useNewSeverities: useNewSeverities,
                 numWorkers:       adjustNumWorkers(numWorkers),
         }, nil</span>
 }
 
-func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries <span class="cov5" title="5">{
+func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries <span class="cov4" title="5">{
         supportedPlatforms := make(map[string]string)
-        for _, query := range queries </span><span class="cov9" title="26">{
+        for _, query := range queries </span><span class="cov9" title="38">{
                 supportedPlatforms[query.Platform] = ""
         }</span>
-        <span class="cov5" title="5">platformLibraries := make(map[string]source.RegoLibraries)
-        for platform := range supportedPlatforms </span><span class="cov8" title="15">{
+        <span class="cov4" title="5">platformLibraries := make(map[string]source.RegoLibraries)
+        for platform := range supportedPlatforms </span><span class="cov7" title="15">{
                 platformLibrary, errLoadingPlatformLib := queriesSource.GetQueryLibrary(platform)
                 if errLoadingPlatformLib != nil </span><span class="cov2" title="2">{
                         sentryReport.ReportSentry(&amp;sentryReport.Report{
@@ -6050,9 +6056,9 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
                         }, true)
                         continue</span>
                 }
-                <span class="cov8" title="13">platformLibraries[platform] = platformLibrary</span>
+                <span class="cov7" title="13">platformLibraries[platform] = platformLibrary</span>
         }
-        <span class="cov5" title="5">return platformLibraries</span>
+        <span class="cov4" title="5">return platformLibraries</span>
 }
 
 type InspectionJob struct {
@@ -6195,8 +6201,8 @@ func (c *Inspector) Inspect(
 // LenQueriesByPlat returns the number of queries by platforms
 func (c *Inspector) LenQueriesByPlat(platforms []string) int <span class="cov2" title="2">{
         count := 0
-        for _, query := range c.QueryLoader.QueriesMetadata </span><span class="cov8" title="13">{
-                if contains(platforms, query.Platform) </span><span class="cov5" title="5">{
+        for _, query := range c.QueryLoader.QueriesMetadata </span><span class="cov8" title="19">{
+                if contains(platforms, query.Platform) </span><span class="cov4" title="5">{
                         c.tracker.TrackQueryExecuting(query.Aggregation)
                         count++
                 }</span>
@@ -6281,27 +6287,27 @@ func (c *Inspector) doRun(ctx *QueryContext) (vulns []model.Vulnerability, err e
 func (c *Inspector) DecodeQueryResults(
         ctx *QueryContext,
         ctxTimeout context.Context,
-        results rego.ResultSet) ([]model.Vulnerability, error) <span class="cov4" title="3">{
+        results rego.ResultSet) ([]model.Vulnerability, error) <span class="cov3" title="3">{
         if len(results) == 0 </span><span class="cov0" title="0">{
                 return nil, ErrNoResult
         }</span>
 
-        <span class="cov4" title="3">result := results[0].Bindings
+        <span class="cov3" title="3">result := results[0].Bindings
 
         queryResult, ok := result["result"]
         if !ok </span><span class="cov0" title="0">{
                 return nil, ErrNoResult
         }</span>
 
-        <span class="cov4" title="3">queryResultItems, ok := queryResult.([]interface{})
+        <span class="cov3" title="3">queryResultItems, ok := queryResult.([]interface{})
         if !ok </span><span class="cov0" title="0">{
                 return nil, ErrInvalidResult
         }</span>
 
-        <span class="cov4" title="3">vulnerabilities := make([]model.Vulnerability, 0, len(queryResultItems))
+        <span class="cov3" title="3">vulnerabilities := make([]model.Vulnerability, 0, len(queryResultItems))
         failedDetectLine := false
         timeOut := false
-        for _, queryResultItem := range queryResultItems </span><span class="cov4" title="3">{
+        for _, queryResultItem := range queryResultItems </span><span class="cov3" title="3">{
                 select </span>{
                 case &lt;-ctxTimeout.Done():<span class="cov1" title="1">
                         timeOut = true
@@ -6317,7 +6323,7 @@ func (c *Inspector) DecodeQueryResults(
                 }
         }
 
-        <span class="cov4" title="3">if timeOut </span><span class="cov1" title="1">{
+        <span class="cov3" title="3">if timeOut </span><span class="cov1" title="1">{
                 fmt.Println()
                 log.Err(ctxTimeout.Err()).Msgf(
                         "Timeout processing the results of the query: %s %s",
@@ -6325,15 +6331,15 @@ func (c *Inspector) DecodeQueryResults(
                         ctx.Query.Metadata.Query)
         }</span>
 
-        <span class="cov4" title="3">if failedDetectLine </span><span class="cov0" title="0">{
+        <span class="cov3" title="3">if failedDetectLine </span><span class="cov0" title="0">{
                 c.tracker.FailedDetectLine()
         }</span>
 
-        <span class="cov4" title="3">return vulnerabilities, nil</span>
+        <span class="cov3" title="3">return vulnerabilities, nil</span>
 }
 
 func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultItem interface{}) (*model.Vulnerability, bool) <span class="cov2" title="2">{
-        vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
+        vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector, c.useNewSeverities)
         if err != nil &amp;&amp; err.Error() == ErrNoResult.Error() </span><span class="cov0" title="0">{
                 // Ignoring bad results
                 return nil, false
@@ -6378,8 +6384,8 @@ func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultIte
 }
 
 // checkComment checks if the vulnerability should be skipped from comment
-func checkComment(line int, ignoreLines []int) bool <span class="cov4" title="3">{
-        for _, ignoreLine := range ignoreLines </span><span class="cov7" title="9">{
+func checkComment(line int, ignoreLines []int) bool <span class="cov3" title="3">{
+        for _, ignoreLine := range ignoreLines </span><span class="cov6" title="9">{
                 if line == ignoreLine </span><span class="cov1" title="1">{
                         return true
                 }</span>
@@ -6389,19 +6395,19 @@ func checkComment(line int, ignoreLines []int) bool <span class="cov4" title="3"
 
 // contains is a simple method to check if a slice
 // contains an entry
-func contains(s []string, e string) bool <span class="cov9" title="19">{
+func contains(s []string, e string) bool <span class="cov8" title="25">{
         if e == "common" </span><span class="cov2" title="2">{
                 return true
         }</span>
-        <span class="cov8" title="17">if e == "k8s" </span><span class="cov1" title="1">{
+        <span class="cov8" title="23">if e == "k8s" </span><span class="cov1" title="1">{
                 e = "kubernetes"
         }</span>
-        <span class="cov8" title="17">for _, a := range s </span><span class="cov8" title="18">{
+        <span class="cov8" title="23">for _, a := range s </span><span class="cov8" title="24">{
                 if strings.EqualFold(a, e) </span><span class="cov6" title="8">{
                         return true
                 }</span>
         }
-        <span class="cov7" title="9">return false</span>
+        <span class="cov7" title="15">return false</span>
 }
 
 func isDisabled(queries, queryID string, output bool) bool <span class="cov4" title="4">{
@@ -6415,21 +6421,21 @@ func isDisabled(queries, queryID string, output bool) bool <span class="cov4" ti
 }
 
 // ShouldSkipVulnerability verifies if the vulnerability in question should be ignored through comment commands
-func ShouldSkipVulnerability(command model.CommentsCommands, queryID string) bool <span class="cov6" title="7">{
+func ShouldSkipVulnerability(command model.CommentsCommands, queryID string) bool <span class="cov5" title="7">{
         if queries, ok := command["enable"]; ok </span><span class="cov2" title="2">{
                 return isDisabled(queries, queryID, false)
         }</span>
-        <span class="cov5" title="5">if queries, ok := command["disable"]; ok </span><span class="cov2" title="2">{
+        <span class="cov4" title="5">if queries, ok := command["disable"]; ok </span><span class="cov2" title="2">{
                 return isDisabled(queries, queryID, true)
         }</span>
-        <span class="cov4" title="3">return false</span>
+        <span class="cov3" title="3">return false</span>
 }
 
 func prepareQueries(queries []model.QueryMetadata, commonLibrary source.RegoLibraries,
         platformLibraries map[string]source.RegoLibraries, tracker Tracker) QueryLoader <span class="cov5" title="6">{
         // track queries loaded
         sum := 0
-        for _, metadata := range queries </span><span class="cov10" title="27">{
+        for _, metadata := range queries </span><span class="cov10" title="39">{
                 tracker.TrackQueryLoad(metadata.Aggregation)
                 sum += metadata.Aggregation
         }</span>
@@ -8482,23 +8488,23 @@ const (
         searchKeyMinLen = 3
 )
 
-func modifyVulSearchKeyReference(doc interface{}, originalSearchKey string, stringVulList []string) (string, bool) <span class="cov10" title="5">{
-        for index, vulSplit := range stringVulList </span><span class="cov10" title="5">{
+func modifyVulSearchKeyReference(doc interface{}, originalSearchKey string, stringVulList []string) (string, bool) <span class="cov10" title="6">{
+        for index, vulSplit := range stringVulList </span><span class="cov10" title="6">{
                 switch docTyped := doc.(type) </span>{
-                case map[string]interface{}:<span class="cov10" title="5">
+                case map[string]interface{}:<span class="cov10" title="6">
                         if strings.HasPrefix(vulSplit, "{{") &amp;&amp; strings.HasSuffix(vulSplit, "}}") </span><span class="cov0" title="0">{
                                 vulSplit = vulSplit[2 : len(vulSplit)-2]
                         }</span>
-                        <span class="cov10" title="5">if vulSplitEqual := strings.Split(vulSplit, "="); len(vulSplitEqual) != 1 </span><span class="cov0" title="0">{
+                        <span class="cov10" title="6">if vulSplitEqual := strings.Split(vulSplit, "="); len(vulSplitEqual) != 1 </span><span class="cov0" title="0">{
                                 vulSplit = vulSplitEqual[0]
                         }</span>
-                        <span class="cov10" title="5">newDoc, foundEntry := docTyped[vulSplit]
+                        <span class="cov10" title="6">newDoc, foundEntry := docTyped[vulSplit]
                         if metadataRefDoc, ok := docTyped["RefMetadata"]; ok &amp;&amp; foundEntry &amp;&amp; index &lt; len(stringVulList) </span><span class="cov0" title="0">{
                                 newSearchKey := strings.Join(stringVulList[:index], ".") + ".$ref=" + (metadataRefDoc.(map[string]interface{})["$ref"].(string))
                                 return newSearchKey, true
-                        }</span> else<span class="cov10" title="5"> if foundEntry </span><span class="cov0" title="0">{
+                        }</span> else<span class="cov10" title="6"> if foundEntry </span><span class="cov0" title="0">{
                                 doc = newDoc
-                        }</span> else<span class="cov10" title="5"> {
+                        }</span> else<span class="cov10" title="6"> {
                                 return originalSearchKey, false
                         }</span>
                 case []interface{}:<span class="cov0" title="0">
@@ -8521,13 +8527,13 @@ func modifyVulSearchKeyReference(doc interface{}, originalSearchKey string, stri
 var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
         tracker Tracker,
         v interface{},
-        detector *dec.DetectLine) (*model.Vulnerability, error) <span class="cov10" title="5">{
+        detector *dec.DetectLine, useNewSeverities bool) (*model.Vulnerability, error) <span class="cov10" title="6">{
         vObj, ok := v.(map[string]interface{})
         if !ok </span><span class="cov0" title="0">{
                 return &amp;model.Vulnerability{}, ErrInvalidResult
         }</span>
 
-        <span class="cov10" title="5">vObj = mergeWithMetadata(vObj, ctx.Query.Metadata.Metadata)
+        <span class="cov10" title="6">vObj = mergeWithMetadata(vObj, ctx.Query.Metadata.Metadata)
 
         var err error
         var output []byte
@@ -8537,19 +8543,19 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
                 return &amp;model.Vulnerability{}, errors.Wrap(err, "failed to marshall query output")
         }</span>
 
-        <span class="cov10" title="5">var fileID *string
+        <span class="cov10" title="6">var fileID *string
 
         fileID, err = mapKeyToString(vObj, "documentId", false)
         if err != nil </span><span class="cov0" title="0">{
                 return &amp;model.Vulnerability{}, errors.Wrap(err, "failed to recognize file id")
         }</span>
 
-        <span class="cov10" title="5">file, ok := ctx.Files[*fileID]
+        <span class="cov10" title="6">file, ok := ctx.Files[*fileID]
         if !ok </span><span class="cov0" title="0">{
                 return &amp;model.Vulnerability{}, errors.New("failed to find file from query response")
         }</span>
 
-        <span class="cov10" title="5">logWithFields := log.With().
+        <span class="cov10" title="6">logWithFields := log.With().
                 Str("scanID", ctx.scanID).
                 Str("fileName", file.FilePath).
                 Str("queryName", ctx.Query.Metadata.Query).
@@ -8564,7 +8570,7 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
 
         similarityIDLineInfo := ""
         searchKey := ""
-        if s, ok := vObj["searchKey"]; ok </span><span class="cov10" title="5">{
+        if s, ok := vObj["searchKey"]; ok </span><span class="cov10" title="6">{
                 searchKey = s.(string)
                 similarityIDLineInfo = searchKey
                 intDoc := file.LineInfoDocument
@@ -8574,20 +8580,20 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
                         vulsSplit, searchKey = sanitizeINIKey(vulsSplit)
                 }</span>
 
-                <span class="cov10" title="5">if strings.Contains(vulsSplit[len(vulsSplit)-1], "RefMetadata") </span><span class="cov0" title="0">{
+                <span class="cov10" title="6">if strings.Contains(vulsSplit[len(vulsSplit)-1], "RefMetadata") </span><span class="cov0" title="0">{
                         return &amp;model.Vulnerability{}, ErrNoResult
                 }</span>
 
                 // modify the search key in cases where it should be referencing a ref instead of part of the resolved object
-                <span class="cov10" title="5">searchKey, _ = modifyVulSearchKeyReference(intDoc, searchKey, vulsSplit)
+                <span class="cov10" title="6">searchKey, _ = modifyVulSearchKeyReference(intDoc, searchKey, vulsSplit)
                 vObj["searchKey"] = searchKey
                 linesVulne = detector.DetectLine(&amp;file, searchKey, &amp;logWithFields)</span>
         } else<span class="cov0" title="0"> {
                 logWithFields.Error().Msg("Saving result. failed to detect line")
         }</span>
 
-        <span class="cov10" title="5">lineNumber := 0
-        if file.Kind != model.KindHELM &amp;&amp; len(file.ResolvedFiles) == 0 </span><span class="cov10" title="5">{
+        <span class="cov10" title="6">lineNumber := 0
+        if file.Kind != model.KindHELM &amp;&amp; len(file.ResolvedFiles) == 0 </span><span class="cov10" title="6">{
                 searchLineCalc := &amp;searchLineCalculator{
                         lineNr:               -1,
                         vObj:                 vObj,
@@ -8600,37 +8606,37 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
                 lineNumber, similarityIDLineInfo, linesVulne = calculeSearchLine(searchLineCalc)
         }</span>
 
-        <span class="cov10" title="5">if linesVulne.Line == -1 </span><span class="cov10" title="5">{
+        <span class="cov10" title="6">if linesVulne.Line == -1 </span><span class="cov10" title="6">{
                 logWithFields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
                 linesVulne.Line = 1
         }</span>
 
-        <span class="cov10" title="5">searchValue := ""
+        <span class="cov10" title="6">searchValue := ""
         if s, ok := vObj["searchValue"]; ok </span><span class="cov0" title="0">{
                 searchValue = s.(string)
         }</span>
 
-        <span class="cov10" title="5">overrideKey := ""
+        <span class="cov10" title="6">overrideKey := ""
         if s, ok := vObj["overrideKey"]; ok </span><span class="cov4" title="2">{
                 overrideKey = s.(string)
         }</span>
 
-        <span class="cov10" title="5">queryID := getStringFromMap("id", DefaultQueryID, overrideKey, vObj, &amp;logWithFields)
+        <span class="cov10" title="6">queryID := getStringFromMap("id", DefaultQueryID, overrideKey, vObj, &amp;logWithFields)
 
-        severity := getResolvedSeverity(vObj, &amp;logWithFields, overrideKey)
+        severity := getResolvedSeverity(vObj, &amp;logWithFields, overrideKey, useNewSeverities)
 
         issueType := DefaultIssueType
-        if v := mustMapKeyToString(vObj, "issueType"); v != nil </span><span class="cov10" title="5">{
+        if v := mustMapKeyToString(vObj, "issueType"); v != nil </span><span class="cov10" title="6">{
                 issueType = model.IssueType(*v)
         }</span>
-        <span class="cov10" title="5">similarityID, err := buildSimilarityID(ctx, linesVulne.ResolvedFile, queryID, searchKey, similarityIDLineInfo, searchValue)
+        <span class="cov10" title="6">similarityID, err := buildSimilarityID(ctx, linesVulne.ResolvedFile, queryID, searchKey, similarityIDLineInfo, searchValue)
 
         if err != nil </span><span class="cov0" title="0">{
                 logWithFields.Err(err).Send()
                 tracker.FailedComputeSimilarityID()
         }</span>
 
-        <span class="cov10" title="5">platform := getStringFromMap("platform", "", overrideKey, vObj, &amp;logWithFields)
+        <span class="cov10" title="6">platform := getStringFromMap("platform", "", overrideKey, vObj, &amp;logWithFields)
 
         return &amp;model.Vulnerability{
                 ID:               0,
@@ -8672,35 +8678,35 @@ func buildSimilarityID(
         queryID,
         searchKey,
         similarityIDLineInfo,
-        searchValue string) (*string, error) <span class="cov10" title="5">{
+        searchValue string) (*string, error) <span class="cov10" title="6">{
         if checkMinified(ctx, resolvedFile) </span><span class="cov0" title="0">{
                 return similarity.ComputeSimilarityID(ctx.BaseScanPaths, resolvedFile, queryID, searchKey, searchValue)
-        }</span> else<span class="cov10" title="5"> {
+        }</span> else<span class="cov10" title="6"> {
                 return similarity.ComputeSimilarityID(ctx.BaseScanPaths, resolvedFile, queryID, similarityIDLineInfo, searchValue)
         }</span>
 }
 
-func checkMinified(ctx *QueryContext, resolvedFile string) bool <span class="cov10" title="5">{
-        for i := range ctx.Files </span><span class="cov10" title="5">{
-                if ctx.Files[i].FilePath == resolvedFile </span><span class="cov10" title="5">{
+func checkMinified(ctx *QueryContext, resolvedFile string) bool <span class="cov10" title="6">{
+        for i := range ctx.Files </span><span class="cov10" title="6">{
+                if ctx.Files[i].FilePath == resolvedFile </span><span class="cov10" title="6">{
                         return ctx.Files[i].IsMinified
                 }</span>
         }
         <span class="cov0" title="0">return false</span>
 }
 
-func getCloudProvider(platform, overrideKey string, vObj map[string]interface{}, logWithFields *zerolog.Logger) string <span class="cov10" title="5">{
+func getCloudProvider(platform, overrideKey string, vObj map[string]interface{}, logWithFields *zerolog.Logger) string <span class="cov10" title="6">{
         cloudProvider := ""
         if platform == "Terraform" || platform == "CloudFormation" || platform == "Ansible" </span><span class="cov0" title="0">{
                 cloudProvider = getStringFromMap("cloudProvider", "", overrideKey, vObj, logWithFields)
         }</span>
 
-        <span class="cov10" title="5">return cloudProvider</span>
+        <span class="cov10" title="6">return cloudProvider</span>
 }
 
 // calculate search Line if possible (default uses values of search key)
 func calculeSearchLine(searchLineCalc *searchLineCalculator) (lineNumber int,
-        similarityIDLineInfo string, linesVulne model.VulnerabilityLines) <span class="cov10" title="5">{
+        similarityIDLineInfo string, linesVulne model.VulnerabilityLines) <span class="cov10" title="6">{
         searchLineCalc.calculate()
         lineNumber = searchLineCalc.lineNr
         similarityIDLineInfo = searchLineCalc.similarityIDLineInfo
@@ -8709,14 +8715,16 @@ func calculeSearchLine(searchLineCalc *searchLineCalculator) (lineNumber int,
         return lineNumber, similarityIDLineInfo, linesVulne
 }</span>
 
-func getResolvedSeverity(vObj map[string]interface{}, logWithFields *zerolog.Logger, overrideKey string) model.Severity <span class="cov10" title="5">{
+func getResolvedSeverity(vObj map[string]interface{}, logWithFields *zerolog.Logger,
+        overrideKey string, useNewSeverities bool) model.Severity <span class="cov10" title="6">{
         var severity model.Severity = model.SeverityInfo
         s, err := mapKeyToString(vObj, "severity", false)
-        if err == nil </span><span class="cov7" title="3">{
+
+        if err == nil </span><span class="cov7" title="4">{
                 sev := getSeverity(strings.ToUpper(*s))
                 if sev == "" </span><span class="cov0" title="0">{
                         logWithFields.Warn().Str("severity", *s).Msg("Saving result. invalid severity constant value")
-                }</span> else<span class="cov7" title="3"> {
+                }</span> else<span class="cov7" title="4"> {
                         severity = sev
                         overrideValue := tryOverride(overrideKey, "severity", vObj)
                         if overrideValue != nil </span><span class="cov1" title="1">{
@@ -8724,20 +8732,26 @@ func getResolvedSeverity(vObj map[string]interface{}, logWithFields *zerolog.Log
                                 if sev != "" </span><span class="cov1" title="1">{
                                         severity = sev
                                 }</span>
+                        } else<span class="cov6" title="3"> if useNewSeverities </span><span class="cov1" title="1">{
+                                oldS, errOld := mapKeyToString(vObj, "newSeverity", false)
+                                if errOld == nil </span><span class="cov1" title="1">{
+                                        oldSev := getSeverity(strings.ToUpper(*oldS))
+                                        severity = oldSev
+                                }</span>
                         }
                 }
         } else<span class="cov4" title="2"> {
                 logWithFields.Info().Msg("Saving result. failed to detect severity")
         }</span>
 
-        <span class="cov10" title="5">return severity</span>
+        <span class="cov10" title="6">return severity</span>
 }
 
 // sanitizeINIKey removes useless searchkey elements like "all" and "children"
-func sanitizeINIKey(vulsSplit []string) (vulsRefact []string, searchKey string) <span class="cov8" title="4">{
+func sanitizeINIKey(vulsSplit []string) (vulsRefact []string, searchKey string) <span class="cov7" title="4">{
         length := len(vulsSplit)
         vulsRefact = vulsSplit
-        if length &gt;= searchKeyMinLen </span><span class="cov7" title="3">{
+        if length &gt;= searchKeyMinLen </span><span class="cov6" title="3">{
                 vulsRefact = []string{"[" + vulsSplit[2] + "]"}
 
                 if length &gt;= searchKeyMinLen+2 </span><span class="cov1" title="1">{
@@ -8748,7 +8762,7 @@ func sanitizeINIKey(vulsSplit []string) (vulsRefact []string, searchKey string) 
                         }</span>
                 }
         }
-        <span class="cov8" title="4">return vulsRefact, strings.Join(vulsRefact, ".")</span>
+        <span class="cov7" title="4">return vulsRefact, strings.Join(vulsRefact, ".")</span>
 }
 </pre>
 		
@@ -8775,7 +8789,7 @@ type searchLineCalculator struct {
         linesVulne           model.VulnerabilityLines
 }
 
-func (s *searchLineCalculator) calculate() <span class="cov4" title="7">{
+func (s *searchLineCalculator) calculate() <span class="cov4" title="8">{
         if searchLine, ok := s.vObj["searchLine"]; ok </span><span class="cov1" title="1">{
                 line := make([]string, 0, len(searchLine.([]interface{})))
                 for _, strElement := range searchLine.([]interface{}) </span><span class="cov3" title="3">{
@@ -8792,34 +8806,34 @@ func (s *searchLineCalculator) calculate() <span class="cov4" title="7">{
                 }</span>
         }
 }
-func mergeWithMetadata(base, additional map[string]interface{}) map[string]interface{} <span class="cov4" title="7">{
-        for k, v := range additional </span><span class="cov6" title="19">{
+func mergeWithMetadata(base, additional map[string]interface{}) map[string]interface{} <span class="cov4" title="8">{
+        for k, v := range additional </span><span class="cov6" title="26">{
                 if _, ok := base[k]; ok </span><span class="cov1" title="1">{
                         continue</span>
                 }
-                <span class="cov6" title="18">base[k] = v</span>
+                <span class="cov6" title="25">base[k] = v</span>
         }
-        <span class="cov4" title="7">return base</span>
+        <span class="cov4" title="8">return base</span>
 }
-func mustMapKeyToString(m map[string]interface{}, key string) *string <span class="cov8" title="41">{
+func mustMapKeyToString(m map[string]interface{}, key string) *string <span class="cov8" title="49">{
         res, err := mapKeyToString(m, key, true)
         excludedFields := []string{"value", "resourceName", "resourceType", "remediation", "remediationType"}
-        if err != nil &amp;&amp; !utils.Contains(key, excludedFields) </span><span class="cov4" title="6">{
+        if err != nil &amp;&amp; !utils.Contains(key, excludedFields) </span><span class="cov4" title="8">{
                 log.Warn().
                         Str("reason", err.Error()).
                         Msgf("Failed to get key %s in map", key)
         }</span>
-        <span class="cov8" title="41">return res</span>
+        <span class="cov8" title="49">return res</span>
 }
-func mapKeyToString(m map[string]interface{}, key string, allowNil bool) (*string, error) <span class="cov10" title="113">{
+func mapKeyToString(m map[string]interface{}, key string, allowNil bool) (*string, error) <span class="cov10" title="134">{
         v, ok := m[key]
-        if !ok </span><span class="cov9" title="87">{
+        if !ok </span><span class="cov9" title="103">{
                 return nil, fmt.Errorf("key '%s' not found in map", key)
         }</span>
-        <span class="cov7" title="26">switch vv := v.(type) </span>{
+        <span class="cov7" title="31">switch vv := v.(type) </span>{
         case json.Number:<span class="cov0" title="0">
                 return stringToPtrString(vv.String()), nil</span>
-        case string:<span class="cov6" title="21">
+        case string:<span class="cov6" title="26">
                 return stringToPtrString(vv), nil</span>
         case int, int32, int64:<span class="cov2" title="2">
                 return stringToPtrString(fmt.Sprintf("%d", vv)), nil</span>
@@ -8842,18 +8856,18 @@ func mapKeyToString(m map[string]interface{}, key string, allowNil bool) (*strin
         }</span>
         <span class="cov0" title="0">return stringToPtrString(""), nil</span>
 }
-func stringToPtrString(v string) *string <span class="cov7" title="26">{
+func stringToPtrString(v string) *string <span class="cov7" title="31">{
         return &amp;v
 }</span>
 
 // PtrStringToString - converts a pointer to string to a string
-func PtrStringToString(v *string) string <span class="cov7" title="37">{
-        if v == nil </span><span class="cov7" title="27">{
+func PtrStringToString(v *string) string <span class="cov7" title="44">{
+        if v == nil </span><span class="cov7" title="33">{
                 return ""
         }</span>
-        <span class="cov5" title="10">return *v</span>
+        <span class="cov5" title="11">return *v</span>
 }
-func tryOverride(overrideKey, vulnParam string, vObj map[string]interface{}) *string <span class="cov3" title="4">{
+func tryOverride(overrideKey, vulnParam string, vObj map[string]interface{}) *string <span class="cov4" title="6">{
         if overrideKey != "" </span><span class="cov3" title="3">{
                 if override, ok := vObj["override"].(map[string]interface{}); ok </span><span class="cov3" title="3">{
                         if overrideObject, ok := override[overrideKey].(map[string]interface{}); ok </span><span class="cov3" title="3">{
@@ -8868,29 +8882,29 @@ func tryOverride(overrideKey, vulnParam string, vObj map[string]interface{}) *st
                         }
                 }
         }
-        <span class="cov2" title="2">return nil</span>
+        <span class="cov3" title="4">return nil</span>
 }
-func getStringFromMap(vulnParam, defaultParam, overrideKey string, vObj map[string]interface{}, logWithFields *zerolog.Logger) string <span class="cov8" title="45">{
+func getStringFromMap(vulnParam, defaultParam, overrideKey string, vObj map[string]interface{}, logWithFields *zerolog.Logger) string <span class="cov8" title="54">{
         ts, err := mapKeyToString(vObj, vulnParam, false)
-        if err != nil </span><span class="cov8" title="44">{
+        if err != nil </span><span class="cov8" title="52">{
                 logWithFields.Err(err).
                         Msgf("Saving result. failed to detect %s", vulnParam)
                 return defaultParam
         }</span>
-        <span class="cov1" title="1">overrideValue := tryOverride(overrideKey, vulnParam, vObj)
+        <span class="cov2" title="2">overrideValue := tryOverride(overrideKey, vulnParam, vObj)
         if overrideValue != nil </span><span class="cov1" title="1">{
                 ts = overrideValue
         }</span>
-        <span class="cov1" title="1">return *ts</span>
+        <span class="cov2" title="2">return *ts</span>
 }
 func getBoolFromMap(
         vulnParam string,
         defaultParam bool,
         overrideKey string,
         vObj map[string]interface{},
-        logWithFields *zerolog.Logger) bool <span class="cov4" title="5">{
+        logWithFields *zerolog.Logger) bool <span class="cov4" title="6">{
         ts, err := mapKeyToString(vObj, vulnParam, false)
-        if err != nil </span><span class="cov4" title="5">{
+        if err != nil </span><span class="cov4" title="6">{
                 return defaultParam
         }</span>
         <span class="cov0" title="0">overrideValue := tryOverride(overrideKey, vulnParam, vObj)
@@ -8905,9 +8919,9 @@ func getBoolFromMap(
         }</span>
         <span class="cov0" title="0">return res</span>
 }
-func getSeverity(severity string) model.Severity <span class="cov3" title="4">{
-        for _, si := range model.AllSeverities </span><span class="cov5" title="13">{
-                if severity == string(si) </span><span class="cov3" title="4">{
+func getSeverity(severity string) model.Severity <span class="cov4" title="6">{
+        for _, si := range model.AllSeverities </span><span class="cov6" title="23">{
+                if severity == string(si) </span><span class="cov4" title="6">{
                         return si
                 }</span>
         }
@@ -10262,11 +10276,12 @@ const (
 
 // Constants to describe vulnerability's severity
 const (
-        SeverityHigh   = "HIGH"
-        SeverityMedium = "MEDIUM"
-        SeverityLow    = "LOW"
-        SeverityInfo   = "INFO"
-        SeverityTrace  = "TRACE"
+        SeverityCritical = "CRITICAL"
+        SeverityHigh     = "HIGH"
+        SeverityMedium   = "MEDIUM"
+        SeverityLow      = "LOW"
+        SeverityInfo     = "INFO"
+        SeverityTrace    = "TRACE"
 )
 
 // Constants to describe issue's type
@@ -10279,6 +10294,7 @@ const (
 // Arrays to group all constants of one type
 var (
         AllSeverities = []Severity{
+                SeverityCritical,
                 SeverityHigh,
                 SeverityMedium,
                 SeverityLow,
@@ -11171,7 +11187,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
         }
 
         <span class="cov4" title="2">queries := make([]QueryResult, 0, len(q))
-        sevs := map[Severity]int{SeverityTrace: 0, SeverityInfo: 0, SeverityLow: 0, SeverityMedium: 0, SeverityHigh: 0}
+        sevs := map[Severity]int{SeverityTrace: 0, SeverityInfo: 0, SeverityLow: 0, SeverityMedium: 0, SeverityHigh: 0, SeverityCritical: 0}
         for idx := range q </span><span class="cov1" title="1">{
                 sevs[q[idx].Severity] += len(q[idx].Files)
 
@@ -11183,7 +11199,14 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
                 severitySummary.TotalCounter += len(q[idx].Files)</span>
         }
 
-        <span class="cov4" title="2">severityOrder := map[Severity]int{SeverityTrace: 4, SeverityInfo: 3, SeverityLow: 2, SeverityMedium: 1, SeverityHigh: 0}
+        <span class="cov4" title="2">severityOrder := map[Severity]int{
+                SeverityTrace:    5,
+                SeverityInfo:     4,
+                SeverityLow:      3,
+                SeverityMedium:   2,
+                SeverityHigh:     1,
+                SeverityCritical: 0,
+        }
         sort.Slice(queries, func(i, j int) bool </span><span class="cov0" title="0">{
                 if severityOrder[queries[i].Severity] == severityOrder[queries[j].Severity] </span><span class="cov0" title="0">{
                         return queries[i].QueryName &lt; queries[j].QueryName
@@ -17889,6 +17912,7 @@ var (
 // Line is the color to print the line with the vulnerability
 // minVersion is a bool that if true will print the results output in a minimum version
 type Printer struct {
+        Critical            color.RGBColor
         Medium              color.RGBColor
         High                color.RGBColor
         Low                 color.RGBColor
@@ -17924,13 +17948,13 @@ func WordWrap(s, indentation string, limit int) string <span class="cov3" title=
 func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bool) error <span class="cov4" title="6">{
         log.Debug().Msg("helpers.PrintResult()")
         fmt.Printf("\n\n")
-        for index := range summary.Queries </span><span class="cov7" title="16">{
+        for index := range summary.Queries </span><span class="cov7" title="20">{
                 idx := len(summary.Queries) - index - 1
                 if summary.Queries[idx].Severity == model.SeverityTrace </span><span class="cov0" title="0">{
                         continue</span>
                 }
 
-                <span class="cov7" title="16">fmt.Printf(
+                <span class="cov7" title="20">fmt.Printf(
                         "%s, Severity: %s, Results: %d\n",
                         printer.PrintBySev(summary.Queries[idx].QueryName, string(summary.Queries[idx].Severity)),
                         printer.PrintBySev(string(summary.Queries[idx].Severity), string(summary.Queries[idx].Severity)),
@@ -17941,28 +17965,28 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
                         fmt.Println("Note: this is an experimental query")
                 }</span>
 
-                <span class="cov7" title="16">if !printer.minimal </span><span class="cov5" title="8">{
+                <span class="cov7" title="20">if !printer.minimal </span><span class="cov5" title="10">{
                         if summary.Queries[idx].CISDescriptionID != "" </span><span class="cov0" title="0">{
                                 fmt.Printf("%s %s\n", printer.Bold("Description ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
                                 fmt.Printf("%s %s\n", printer.Bold("Title:"), summary.Queries[idx].CISDescriptionTitle)
                                 fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].CISDescriptionTextFormatted)
-                        }</span> else<span class="cov5" title="8"> {
+                        }</span> else<span class="cov5" title="10"> {
                                 fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
                         }</span>
-                        <span class="cov5" title="8">fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+                        <span class="cov5" title="10">fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
 
                         if summary.Queries[idx].CWE != "" </span><span class="cov2" title="2">{
                                 fmt.Printf("%s %s\n", printer.Bold("CWE:"), summary.Queries[idx].CWE)
                         }</span>
 
-                        <span class="cov5" title="8">queryCloudProvider := summary.Queries[idx].CloudProvider
+                        <span class="cov5" title="10">queryCloudProvider := summary.Queries[idx].CloudProvider
                         if queryCloudProvider != "" </span><span class="cov3" title="3">{
                                 queryCloudProvider = strings.ToLower(queryCloudProvider) + "/"
                         }</span>
 
                         // checks if should print queries URL DOCS based on the use of custom queries and invalid ids
-                        <span class="cov5" title="8">if !usingCustomQueries </span><span class="cov4" title="5">{
-                                if validQueryID(summary.Queries[idx].QueryID) </span><span class="cov4" title="5">{
+                        <span class="cov5" title="10">if !usingCustomQueries </span><span class="cov5" title="10">{
+                                if validQueryID(summary.Queries[idx].QueryID) </span><span class="cov5" title="10">{
                                         fmt.Printf("%s %s\n\n",
                                                 printer.Bold("Learn more about this vulnerability:"),
                                                 fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s%s",
@@ -17972,9 +17996,10 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
                                 }</span>
                         }
                 }
-                <span class="cov7" title="16">printFiles(&amp;summary.Queries[idx], printer)</span>
+                <span class="cov7" title="20">printFiles(&amp;summary.Queries[idx], printer)</span>
         }
         <span class="cov4" title="6">fmt.Printf("\nResults Summary:\n")
+        printSeverityCounter(model.SeverityCritical, summary.SeveritySummary.SeverityCounters[model.SeverityCritical], printer.Critical)
         printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
         printSeverityCounter(model.SeverityMedium, summary.SeveritySummary.SeverityCounters[model.SeverityMedium], printer.Medium)
         printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
@@ -17993,15 +18018,15 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
         return nil</span>
 }
 
-func printSeverityCounter(severity string, counter int, printColor color.RGBColor) <span class="cov7" title="24">{
+func printSeverityCounter(severity string, counter int, printColor color.RGBColor) <span class="cov8" title="30">{
         fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
 }</span>
 
-func printFiles(query *model.QueryResult, printer *Printer) <span class="cov7" title="16">{
-        for fileIdx := range query.Files </span><span class="cov8" title="26">{
+func printFiles(query *model.QueryResult, printer *Printer) <span class="cov7" title="20">{
+        for fileIdx := range query.Files </span><span class="cov8" title="30">{
                 fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", fileIdx+1), string(query.Severity)),
                         query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
-                if !printer.minimal </span><span class="cov6" title="13">{
+                if !printer.minimal </span><span class="cov6" title="15">{
                         fmt.Println()
                         for _, line := range *query.Files[fileIdx].VulnLines </span><span class="cov0" title="0">{
                                 if len(line.Line) &gt; charsLimitPerLine </span><span class="cov0" title="0">{
@@ -18013,7 +18038,7 @@ func printFiles(query *model.QueryResult, printer *Printer) <span class="cov7" t
                                         fmt.Printf("\t\t%03d: %s\n", line.Position, line.Line)
                                 }</span>
                         }
-                        <span class="cov6" title="13">fmt.Print("\n\n")</span>
+                        <span class="cov6" title="15">fmt.Print("\n\n")</span>
                 }
         }
 }
@@ -18081,6 +18106,7 @@ func IsInitialized() bool <span class="cov1" title="1">{
 // NewPrinter initializes a new Printer
 func NewPrinter(minimal bool) *Printer <span class="cov5" title="7">{
         return &amp;Printer{
+                Critical:            color.HEX("#ff0000"),
                 Medium:              color.HEX("#ff7213"),
                 High:                color.HEX("#bb2124"),
                 Low:                 color.HEX("#edd57e"),
@@ -18094,9 +18120,11 @@ func NewPrinter(minimal bool) *Printer <span class="cov5" title="7">{
 }</span>
 
 // PrintBySev will print the output with the specific severity color given the severity of the result
-func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" title="63">{
+func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" title="76">{
         switch strings.ToUpper(sev) </span>{
-        case model.SeverityHigh:<span class="cov9" title="41">
+        case model.SeverityCritical:<span class="cov6" title="13">
+                return p.Critical.Sprintf(content)</span>
+        case model.SeverityHigh:<span class="cov8" title="41">
                 return p.High.Sprintf(content)</span>
         case model.SeverityMedium:<span class="cov7" title="19">
                 return p.Medium.Sprintf(content)</span>
@@ -18109,14 +18137,14 @@ func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" tit
 }
 
 // Bold returns the output in a bold format
-func (p *Printer) Bold(content string) string <span class="cov7" title="23">{
+func (p *Printer) Bold(content string) string <span class="cov8" title="32">{
         return color.Bold.Sprintf(content)
 }</span>
 
-func validQueryID(queryID string) bool <span class="cov4" title="5">{
+func validQueryID(queryID string) bool <span class="cov5" title="10">{
         if queryID == "" </span><span class="cov0" title="0">{
                 return false
-        }</span> else<span class="cov4" title="5"> if queryID != "" </span><span class="cov4" title="5">{
+        }</span> else<span class="cov5" title="10"> if queryID != "" </span><span class="cov5" title="10">{
                 return utils.ValidateUUID(queryID)
         }</span>
         <span class="cov0" title="0">return true</span>
@@ -18757,6 +18785,7 @@ func initScan(queryID string) (*engine.Inspector, error) <span class="cov10" tit
                 &amp;queryFilter,
                 make(map[string]bool),
                 c.ScanParams.QueryExecTimeout,
+                c.ScanParams.UseNewSeverities,
                 false,
                 c.ScanParams.ParallelScanFlag,
         )
@@ -19078,10 +19107,11 @@ import (
 
 var (
         stringsSeverity = map[string]model.Severity{
-                "high":   model.AllSeverities[0],
-                "medium": model.AllSeverities[1],
-                "low":    model.AllSeverities[2],
-                "info":   model.AllSeverities[3],
+                "critical": model.AllSeverities[0],
+                "high":     model.AllSeverities[1],
+                "medium":   model.AllSeverities[2],
+                "low":      model.AllSeverities[3],
+                "info":     model.AllSeverities[4],
         }
 
         templateFuncs = template.FuncMap{
@@ -21211,15 +21241,15 @@ var (
         checkmarxLogo string
 )
 
-func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize int) <span class="cov10" title="12">{
-        m.Col(colTwo, func() </span><span class="cov10" title="12">{
+func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize int) <span class="cov9" title="12">{
+        m.Col(colTwo, func() </span><span class="cov9" title="12">{
                 m.Text(label, props.Text{
                         Size:        float64(textSize),
                         Align:       consts.Left,
                         Extrapolate: false,
                 })
         }</span>)
-        <span class="cov10" title="12">m.Col(colTwo, func() </span><span class="cov10" title="12">{
+        <span class="cov9" title="12">m.Col(colTwo, func() </span><span class="cov9" title="12">{
                 m.Text(value, props.Text{
                         Size:        float64(textSize),
                         Align:       consts.Left,
@@ -21372,17 +21402,17 @@ func getRowLength(value string) float64 <span class="cov4" title="3">{
 }</span>
 
 func createResultsTable(m pdf.Maroto, query *model.QueryResult) <span class="cov4" title="3">{
-        for idx := range query.Files </span><span class="cov7" title="6">{
+        for idx := range query.Files </span><span class="cov6" title="6">{
                 if idx%2 == 0 </span><span class="cov4" title="3">{
                         m.SetBackgroundColor(grayColor)
                 }</span> else<span class="cov4" title="3"> {
                         m.SetBackgroundColor(color.NewWhite())
                 }</span>
 
-                <span class="cov7" title="6">filePath := query.Files[idx].FileName
+                <span class="cov6" title="6">filePath := query.Files[idx].FileName
                 fileLine := fmt.Sprintf("%s:%s", filePath, fmt.Sprint(query.Files[idx].Line))
-                m.Row(colFive, func() </span><span class="cov7" title="6">{
-                        m.Col(colFullPage, func() </span><span class="cov7" title="6">{
+                m.Row(colFive, func() </span><span class="cov6" title="6">{
+                        m.Col(colFullPage, func() </span><span class="cov6" title="6">{
                                 m.Text(fileLine, props.Text{
                                         Size:        defaultTextSize,
                                         Align:       consts.Left,
@@ -21390,9 +21420,9 @@ func createResultsTable(m pdf.Maroto, query *model.QueryResult) <span class="cov
                                 })
                         }</span>)
                 })
-                <span class="cov7" title="6">expectedValue := fmt.Sprintf("Expected: %s", query.Files[idx].KeyExpectedValue)
-                m.Row(colFive, func() </span><span class="cov7" title="6">{
-                        m.Col(colFullPage, func() </span><span class="cov7" title="6">{
+                <span class="cov6" title="6">expectedValue := fmt.Sprintf("Expected: %s", query.Files[idx].KeyExpectedValue)
+                m.Row(colFive, func() </span><span class="cov6" title="6">{
+                        m.Col(colFullPage, func() </span><span class="cov6" title="6">{
                                 m.Text(expectedValue, props.Text{
                                         Size:        smallTextSize,
                                         Align:       consts.Left,
@@ -21441,7 +21471,7 @@ func createHeaderArea(m pdf.Maroto) <span class="cov4" title="3">{
         }</span>)
 }
 
-func createFooterArea(m pdf.Maroto) <span class="cov7" title="6">{
+func createFooterArea(m pdf.Maroto) <span class="cov6" title="6">{
         m.Row(rowMedium, func() </span><span class="cov4" title="3">{
                 m.Col(colOne, func() </span><span class="cov4" title="3">{
                         m.Text("https://kics.io")
@@ -21465,7 +21495,7 @@ func PrintPdfReport(path, filename string, body interface{}) error <span class="
         m.RegisterHeader(func() </span><span class="cov4" title="3">{
                 createHeaderArea(m)
         }</span>)
-        <span class="cov4" title="3">m.RegisterFooter(func() </span><span class="cov7" title="6">{
+        <span class="cov4" title="3">m.RegisterFooter(func() </span><span class="cov6" title="6">{
                 createFooterArea(m)
         }</span>)
 
@@ -21492,16 +21522,16 @@ func PrintPdfReport(path, filename string, body interface{}) error <span class="
         return err</span>
 }
 
-func createDateField(m pdf.Maroto, label string, scanTime time.Time) <span class="cov7" title="6">{
-        m.Row(colFour, func() </span><span class="cov7" title="6">{
-                m.Col(colTwo, func() </span><span class="cov7" title="6">{
+func createDateField(m pdf.Maroto, label string, scanTime time.Time) <span class="cov6" title="6">{
+        m.Row(colFour, func() </span><span class="cov6" title="6">{
+                m.Col(colTwo, func() </span><span class="cov6" title="6">{
                         m.Text(label, props.Text{
                                 Size:        defaultTextSize,
                                 Align:       consts.Left,
                                 Extrapolate: false,
                         })
                 }</span>)
-                <span class="cov7" title="6">m.Col(colTwo, func() </span><span class="cov7" title="6">{
+                <span class="cov6" title="6">m.Col(colTwo, func() </span><span class="cov6" title="6">{
                         m.Text(scanTime.Format("15:04:05, Jan 02 2006"), props.Text{
                                 Size:        defaultTextSize,
                                 Align:       consts.Left,
@@ -21535,8 +21565,8 @@ func createPlatformsArea(m pdf.Maroto, summary *model.Summary) <span class="cov4
         })
 }
 
-func createSummaryResultsField(m pdf.Maroto, label, value string, mColor color.Color) <span class="cov10" title="12">{
-        m.Col(colOne, func() </span><span class="cov10" title="12">{
+func createSummaryResultsField(m pdf.Maroto, label, value string, mColor color.Color) <span class="cov10" title="15">{
+        m.Col(colOne, func() </span><span class="cov10" title="15">{
                 m.Text(label, props.Text{
                         Size:        defaultTextSize,
                         Align:       consts.Left,
@@ -21545,7 +21575,7 @@ func createSummaryResultsField(m pdf.Maroto, label, value string, mColor color.C
                         Color:       mColor,
                 })
         }</span>)
-        <span class="cov10" title="12">m.Col(colOne, func() </span><span class="cov10" title="12">{
+        <span class="cov10" title="15">m.Col(colOne, func() </span><span class="cov10" title="15">{
                 m.Text(value, props.Text{
                         Size:        defaultTextSize,
                         Align:       consts.Left,
@@ -21557,6 +21587,7 @@ func createSummaryResultsField(m pdf.Maroto, label, value string, mColor color.C
 }
 
 func createSummaryArea(m pdf.Maroto, summary *model.Summary) <span class="cov4" title="3">{
+        criticalSeverityCount := fmt.Sprint(summary.SeverityCounters["CRITICAL"])
         highSeverityCount := fmt.Sprint(summary.SeverityCounters["HIGH"])
         mediumSeverityCount := fmt.Sprint(summary.SeverityCounters["MEDIUM"])
         lowSeverityCount := fmt.Sprint(summary.SeverityCounters["LOW"])
@@ -21564,6 +21595,7 @@ func createSummaryArea(m pdf.Maroto, summary *model.Summary) <span class="cov4" 
         totalCount := fmt.Sprint(summary.TotalCounter)
 
         m.Row(rowMedium, func() </span><span class="cov4" title="3">{
+                createSummaryResultsField(m, "CRITICAL", criticalSeverityCount, getPureRedColor())
                 createSummaryResultsField(m, "HIGH", highSeverityCount, getRedColor())
                 createSummaryResultsField(m, "MEDIUM", mediumSeverityCount, getOrangeColor())
                 createSummaryResultsField(m, "LOW", lowSeverityCount, getYellowColor())
@@ -21625,6 +21657,14 @@ func getGrayColor() color.Color <span class="cov1" title="1">{
                 Red:   200,
                 Green: 200,
                 Blue:  200,
+        }
+}</span>
+
+func getPureRedColor() color.Color <span class="cov4" title="3">{
+        return color.Color{
+                Red:   250,
+                Green: 0,
+                Blue:  0,
         }
 }</span>
 
@@ -22780,6 +22820,7 @@ type Parameters struct {
         OpenAPIResolveReferences    bool
         ParallelScanFlag            int
         MaxFileSizeFlag             int
+        UseNewSeverities            bool
 }
 
 // Client represents a scan client
@@ -23214,6 +23255,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) <
                 queryFilter,
                 c.ExcludeResultsMap,
                 c.ScanParams.QueryExecTimeout,
+                c.ScanParams.UseNewSeverities,
                 true,
                 c.ScanParams.ParallelScanFlag,
         )
@@ -24402,16 +24444,41 @@ var SummaryMock = model.Summary{
         SeveritySummary: model.SeveritySummary{
                 ScanID: "console",
                 SeverityCounters: map[model.Severity]int{
-                        model.SeverityInfo:   0,
-                        model.SeverityLow:    0,
-                        model.SeverityMedium: 0,
-                        model.SeverityHigh:   2,
+                        model.SeverityInfo:     0,
+                        model.SeverityLow:      0,
+                        model.SeverityMedium:   0,
+                        model.SeverityHigh:     2,
+                        model.SeverityCritical: 0,
                 },
                 TotalCounter: 2,
         },
         ScannedPaths: []string{
                 "./",
         },
+}
+
+var queryCriticalCLI = model.QueryResult{
+        QueryName:                   "Run Block Injection",
+        QueryID:                     "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+        Description:                 "GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event.", //nolint
+        DescriptionID:               "02044a75",
+        CISDescriptionIDFormatted:   "testCISID",
+        CISDescriptionTitle:         "testCISTitle",
+        CISDescriptionTextFormatted: "testCISDescription",
+        Severity:                    model.SeverityCritical,
+        Files: []model.VulnerableFile{
+                {
+                        FileName:         positive,
+                        Line:             10,
+                        IssueType:        "MissingAttribute",
+                        SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+                        KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+                        KeyActualValue:   "'default_action.redirect.protocol' is missing",
+                        Value:            nil,
+                        VulnLines:        &amp;[]model.CodeLine{},
+                },
+        },
+        CWE: "",
 }
 
 // SummaryMockCWE a summary to be used with cwe field complete
@@ -24474,23 +24541,25 @@ var ComplexSummaryMock = model.Summary{
                 ScannedFiles:           2,
                 ParsedFiles:            2,
                 FailedToScanFiles:      0,
-                TotalQueries:           3,
+                TotalQueries:           4,
                 FailedToExecuteQueries: 0,
         },
         Queries: []model.QueryResult{
                 queryHigh,
                 queryMedium,
                 queryHighCWE,
+                queryCriticalCLI,
         },
         SeveritySummary: model.SeveritySummary{
                 ScanID: "console",
                 SeverityCounters: map[model.Severity]int{
-                        model.SeverityInfo:   0,
-                        model.SeverityLow:    0,
-                        model.SeverityMedium: 1,
-                        model.SeverityHigh:   4,
+                        model.SeverityInfo:     0,
+                        model.SeverityLow:      0,
+                        model.SeverityMedium:   1,
+                        model.SeverityHigh:     4,
+                        model.SeverityCritical: 1,
                 },
-                TotalCounter: 5,
+                TotalCounter: 6,
         },
         LatestVersion: model.Version{
                 Latest: true,
@@ -24512,10 +24581,11 @@ var ComplexSummaryMockWithExperimental = model.Summary{
         SeveritySummary: model.SeveritySummary{
                 ScanID: "console",
                 SeverityCounters: map[model.Severity]int{
-                        model.SeverityInfo:   0,
-                        model.SeverityLow:    0,
-                        model.SeverityMedium: 1,
-                        model.SeverityHigh:   2,
+                        model.SeverityInfo:     0,
+                        model.SeverityLow:      0,
+                        model.SeverityMedium:   1,
+                        model.SeverityHigh:     2,
+                        model.SeverityCritical: 0,
                 },
                 TotalCounter: 3,
         },
@@ -24540,10 +24610,11 @@ var ExampleSummaryMock = model.Summary{
         SeveritySummary: model.SeveritySummary{
                 ScanID: "console",
                 SeverityCounters: map[model.Severity]int{
-                        model.SeverityInfo:   2,
-                        model.SeverityLow:    0,
-                        model.SeverityMedium: 1,
-                        model.SeverityHigh:   0,
+                        model.SeverityInfo:     2,
+                        model.SeverityLow:      0,
+                        model.SeverityMedium:   1,
+                        model.SeverityHigh:     0,
+                        model.SeverityCritical: 0,
                 },
                 TotalCounter: 3,
         },
@@ -24594,10 +24665,11 @@ var SimpleSummaryMock = model.Summary{
         SeveritySummary: model.SeveritySummary{
                 ScanID: "console",
                 SeverityCounters: map[model.Severity]int{
-                        model.SeverityInfo:   0,
-                        model.SeverityLow:    0,
-                        model.SeverityMedium: 1,
-                        model.SeverityHigh:   0,
+                        model.SeverityInfo:     0,
+                        model.SeverityLow:      0,
+                        model.SeverityMedium:   1,
+                        model.SeverityHigh:     0,
+                        model.SeverityCritical: 0,
                 },
                 TotalCounter: 1,
         },
