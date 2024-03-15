@@ -31,8 +31,8 @@ Flags:
                                       cannot be provided with type inclusion flags
       --experimental-queries          include experimental queries (queries not yet thoroughly reviewed)
       --fail-on strings               which kind of results should return an exit code different from 0
-                                      accepts: high, medium, low and info
-                                      example: "high,low" (default [high,medium,low,info])
+                                      accepts: critical, high, medium, low and info
+                                      example: "high,low" (default [critical,high,medium,low,info])
   -h, --help                          help for scan
       --ignore-on-exit string         defines which kind of non-zero exits code should be ignored
                                       accepts: all, results, errors, none
@@ -45,6 +45,7 @@ Flags:
   -b, --libraries-path string         path to directory with libraries (default "./assets/libraries")
       --max-file-size int             max file size permitted for scanning, in MB (default 5)
       --minimal-ui                    simplified version of CLI output
+      --new-severities                use new severities in query results
       --no-progress                   hides the progress bar
       --output-name string            name used on report creations (default "results")
   -o, --output-path string            directory path to store reports

@@ -73,7 +73,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			fmt.Println("Is Secure?", isSecure)
 		}
 
-		variable, isSingle := parseVariable(line)
+		variable, isSingle := parseVariable(line, elems)
 		if variable != nil {
 			if isSingle {
 				elem.Variable = *variable
@@ -298,8 +298,19 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	return elems, nil
 }
 
+func getParams(elems []converter.ElemBicep) []converter.Param {
+	params := []converter.Param{}
+	for _, elem := range elems {
+		if elem.Type == "param" {
+			params = append(params, elem.Param)
+		}
+	}
+	return params
+
+}
+
 // parse Variable syntax from bicep file
-func parseVariable(line string) (*converter.Variable, bool) {
+func parseVariable(line string, elems []converter.ElemBicep) (*converter.Variable, bool) {
 	singleLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +'?([^' {][^' ]*)'?`)
 	multiLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +{`)
 	//forLineVarRegex := regexp.MustCompile(`for`)
@@ -310,6 +321,19 @@ func parseVariable(line string) (*converter.Variable, bool) {
 	if matchesSingle != nil {
 		name := matchesSingle[1]
 		value := matchesSingle[2]
+		hasParam, paramName := checkVariableParams(value, getParams(elems))
+		if hasParam {
+			start := strings.Index(value, "${")
+            end := strings.Index(value, "}")
+            if start != -1 && end != -1 && start < end {
+                // extract the middle part of the string, relative to the param on variable
+				middlePart := value[start+2 : end]
+				// remove middle part from value
+                value = strings.Replace(value, "${"+middlePart+"}", "", 1)
+				// concatenate the values from the parameter with the last part of the string, removing the middle part effectivly
+				value = fmt.Sprintf("parameters('%s'),%s", paramName, value)
+            }
+		}
 		return &converter.Variable{Name: name, Value: value}, true
 	}
 
@@ -319,6 +343,15 @@ func parseVariable(line string) (*converter.Variable, bool) {
 	}
 
 	return nil, false
+}
+
+func checkVariableParams(value string, params []converter.Param) (bool, string) {
+	for _, param := range params {
+		if strings.Contains(value, param.Name) {
+			return true, param.Name
+		}
+	}
+	return false, ""
 }
 
 // parse Metadata syntax from bicep file
@@ -484,28 +517,6 @@ func parseOutput(decorators map[string]interface{}, line string) *converter.Outp
 			Decorators: decorators,
 			// Metadata:   &converter.Metadata{Description: "Description", Name: "test"},
 		}
-	}
-
-	return nil
-}
-
-func parseProperty(line string) *converter.Property {
-
-	// Parse key-value pairs
-
-	// parts := strings.SplitN(line, ":", 2)
-	// if len(parts) == 2 {
-
-	propRegex := regexp.MustCompile(`([^: ]*) *: '?([^']*)'?`)
-	matches := propRegex.FindStringSubmatch(line)
-
-	if matches != nil {
-		key := strings.TrimSpace(matches[1])
-		value := strings.TrimSpace(matches[2])
-		var description = make(map[string]interface{})
-		description[key] = value
-		tempProperty := converter.Property{Description: description, Properties: []*converter.Property{}}
-		return &tempProperty
 	}
 
 	return nil
