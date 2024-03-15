@@ -147,6 +147,57 @@ var junitTests = []junitTest{
 			},
 		},
 	},
+	{
+		name: "Should create one occurrence with critical severity",
+		vq: []model.QueryResult{
+			{
+				QueryName:   "test",
+				QueryID:     "1",
+				Description: "test description",
+				QueryURI:    "https://www.test.com",
+				Severity:    model.SeverityCritical,
+				Category:    "junit",
+				Platform:    "Terraform",
+				Files: []model.VulnerableFile{
+					{KeyActualValue: "actual", KeyExpectedValue: "expected", FileName: "test.tf", Line: 1, SimilarityID: "similarity"},
+				},
+			},
+		},
+		file: model.VulnerableFile{
+			KeyActualValue: "test",
+			FileName:       "test.xml",
+			Line:           1,
+			SimilarityID:   "similarity",
+		},
+		want: &junitTestSuites{
+			XMLName:  xml.Name{Space: "", Local: ""},
+			Name:     "KICS " + constants.Version,
+			Time:     now,
+			Failures: "1",
+			TestSuites: []junitTestSuite{
+				{
+					XMLName:   xml.Name{Space: "", Local: ""},
+					failCount: 1,
+					Name:      "Terraform",
+					Failures:  "1",
+					Tests:     "1",
+					TestCases: []junitTestCase{
+						{
+							XMLName:   xml.Name{Space: "", Local: ""},
+							Name:      "test: test.tf file in line 1",
+							ClassName: "Terraform",
+							Failures: []junitFailure{
+								{
+									Type:    "test description",
+									Message: "[Severity: CRITICAL, Query description: test description] Problem found on 'test.tf' file in line 1. Expected value: expected. Actual value: actual.",
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	},
 }
 
 func TestJUnitReport(t *testing.T) {

@@ -107,6 +107,5 @@ func init() { //nolint
 		},
 		WantStatus: []int{60},
 	}
-
 	Tests = append(Tests, testSample01, testSample02, testSample03, testSample04, testSample05)
 }
