@@ -145,6 +145,7 @@ func MockService(paths []string,
 		queryExecTimeout,
 		false,
 		true,
+		false,
 		1,
 	)
 	if err != nil {
