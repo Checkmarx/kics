@@ -121,7 +121,7 @@
 		},
 		{
 			"query_name": "Passwords And Secrets - CloudFormation Secret Template",
-			"query_id": "e0f01838-b1c2-4669-b84b-981949ebe5ed",
+			"query_id": "36b8f84d-df4e-4d49-b662-bcde71a8764f",
 			"query_url": "https://docs.kics.io/latest/secrets/",
 			"severity": "HIGH",
 			"platform": "Common",
@@ -133,7 +133,7 @@
 			"files": [
 				{
 					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
-					"similarity_id": "5f948e5c0c97f3e7c43cd531de50c6c54a2cec221a45f113a34a571165d30553",
+					"similarity_id": "a7e6db3c5be444e0af7143587415cc60a7ecb2f5881442f1eccd01d2378f72b0",
 					"line": 273,
 					"issue_type": "RedundantAttribute",
 					"search_key": "",

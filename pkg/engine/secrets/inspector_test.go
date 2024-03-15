@@ -3,6 +3,7 @@ package secrets
 import (
 	"context"
 	"path/filepath"
+	"regexp"
 	"sync"
 	"testing"
 
@@ -64,12 +65,11 @@ var testCompileRegexesInput = []struct {
 				RegexStr: `['|"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\s*[:|=]\s*['|"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|"]?`,
 			},
 			{
-				ID:       "4b2b5fd3-364d-4093-bac2-17391b2a5297",
-				Name:     "K8s Environment Variable Password",
-				RegexStr: `apiVersion((.*)\s*)*env:((.*)\s*)*name:\s*\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\w*\s*(value):\s*(["|'].*["|'])`,
-				Multiline: MultilineResult{
-					DetectLineGroup: 7,
-				},
+				ID:          "4b2b5fd3-364d-4093-bac2-17391b2a5297",
+				Name:        "K8s Environment Variable Password",
+				RegexStr:    `apiVersion((.*)\s*)*env:((.*)\s*)*name:\s*\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\w*\s*(value):\s*(["|'].*["|'])`,
+				Multiline:   true,
+				GroupToMask: 7,
 			},
 			{
 				ID:       "c4d3b58a-e6d4-450f-9340-04f1e702eaae",
@@ -94,12 +94,11 @@ var testCompileRegexesInput = []struct {
 				RegexStr: `['|"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\s*[:|=]\s*['|"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|"]?`,
 			},
 			{
-				ID:       "4b2b5fd3-364d-4093-bac2-17391b2a5297",
-				Name:     "K8s Environment Variable Password",
-				RegexStr: `apiVersion((.*)\s*)*env:((.*)\s*)*name:\s*\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\w*\s*(value):\s*(["|'].*["|'])`,
-				Multiline: MultilineResult{
-					DetectLineGroup: 7,
-				},
+				ID:          "4b2b5fd3-364d-4093-bac2-17391b2a5297",
+				Name:        "K8s Environment Variable Password",
+				RegexStr:    `apiVersion((.*)\s*)*env:((.*)\s*)*name:\s*\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\w*\s*(value):\s*(["|'].*["|'])`,
+				Multiline:   true,
+				GroupToMask: 7,
 			},
 			{
 				ID:       "c4d3b58a-e6d4-450f-9340-04f1e702eaae",
@@ -124,12 +123,11 @@ var testCompileRegexesInput = []struct {
 				RegexStr: `['|"]?[p|P][a|A][s|S][s|S][w|W][o|O][r|R][d|D]['|\"]?\s*[:|=]\s*['|"]?([A-Za-z0-9/~^_!@&%()=?*+-]{4,})['|"]?`,
 			},
 			{
-				ID:       "4b2b5fd3-364d-4093-bac2-17391b2a5297",
-				Name:     "K8s Environment Variable Password",
-				RegexStr: `apiVersion((.*)\s*)*env:((.*)\s*)*name:\s*\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\w*\s*(value):\s*(["|'].*["|'])`,
-				Multiline: MultilineResult{
-					DetectLineGroup: 7,
-				},
+				ID:          "4b2b5fd3-364d-4093-bac2-17391b2a5297",
+				Name:        "K8s Environment Variable Password",
+				RegexStr:    `apiVersion((.*)\s*)*env:((.*)\s*)*name:\s*\w+[P|p][A|a][S|s][S|s]([W|w][O|o][R|r][D|d])?\w*\s*(value):\s*(["|'].*["|'])`,
+				Multiline:   true,
+				GroupToMask: 7,
 			},
 			{
 				ID:       "c4d3b58a-e6d4-450f-9340-04f1e702eaae",
@@ -549,6 +547,122 @@ var testNewInspectorInputs = []struct {
 	},
 }
 
+var testHideSecretVulnLines = [][]model.CodeLine{
+	{
+		{
+			Line:     "    environment:",
+			Position: 18,
+		},
+		{
+			Line:     "      - POSTGRES_USER=postgres",
+			Position: 19,
+		},
+		{
+			Line:     "      - POSTGRES_PASSWORD=postgres",
+			Position: 20,
+		},
+	},
+	{
+		{
+			Line:     "\tbody      = <<EOF",
+			Position: 4,
+		},
+		{
+			Line:     "\"PuTTY-User-Key-File-2: ssh-rsa",
+			Position: 5,
+		},
+		{
+			Line:     "Encryption: none",
+			Position: 6,
+		},
+	},
+}
+
+var testHideSecret = []struct {
+	linesVuln    *model.VulnerabilityLines
+	matchContent string
+	query        *RegexQuery
+}{
+	{
+		linesVuln: &model.VulnerabilityLines{
+			Line:                  20,
+			ResolvedFile:          "../../assets/queries/common/passwords_and_secrets/test/positive46.yaml",
+			VulnLines:             &testHideSecretVulnLines[0],
+			LineWithVulnerability: "",
+		},
+		matchContent: "      - POSTGRES_PASSWORD=postgres",
+		query: &RegexQuery{
+			ID:        "487f4be7-3fd9-4506-a07a-eae252180c08",
+			Name:      "Generic Password",
+			Multiline: false,
+			RegexStr:  "(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-. ]{4,})['\"]?",
+			AllowRules: []AllowRule{
+				{
+					Description: "Avoiding TF resource access",
+					RegexStr:    "(?i)['\"]?password['\"]?\\s*=\\s*(([a-zA-z_]+(.))?[a-zA-z_]+\\s*(.)\\s*[a-zA-z_]+(.)[a-zA-z_]+)?(\\s*:\\s*null|null)$",
+					Regex:       regexp.MustCompile("(?i)['\"]?password['\"]?\\s*=\\s*(([a-zA-z_]+(.))?[a-zA-z_]+\\s*(.)\\s*[a-zA-z_]+(.)[a-zA-z_]+)?(\\s*:\\s*null|null)$"),
+				},
+				{
+					Description: "Avoiding CF AllowUsersToChangePassword",
+					RegexStr:    "['\"]?AllowUsersToChangePassword['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?",
+					Regex:       regexp.MustCompile("['\"]?AllowUsersToChangePassword['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?"),
+				},
+			},
+			Regex:       regexp.MustCompile("(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-. ]{4,})['\"]?"),
+			GroupToMask: 1,
+		},
+	},
+	{
+		linesVuln: &model.VulnerabilityLines{
+			Line:                  5,
+			ResolvedFile:          "../../assets/queries/common/passwords_and_secrets/test/positive36.tf",
+			VulnLines:             &testHideSecretVulnLines[1],
+			LineWithVulnerability: "",
+		},
+		matchContent: "\"PuTTY-User-Key-File-2: ssh-rsa\nEncryption: none\nComment: rsa-key-20200108\nPublic-Lines: 6\nAAAAB3NzaC1yc2EAAAABJQAAAQEAqAqCgv1dG+bcrnuqj39WYgCCGT8lYNe31Ak1\nnIyZ38Nocz4YRQ6dRizmr4SSO7J1+py1aOLttCI50gZjtqXl2ZhItkihETdWW4Sw\n8WirLI1s8RdycWu4pwidUabiOEiOfP5Bh+1kwWXrC/BX0Fxjl0RNSKTTT4jJZLDy\nio5INi8NXmrTTc3rzy90uQrip3nVBSwuQtCJSAr8yrXSf5hJ9plKUt2iC5TCKXdS\n1nnF4DddNM5wjTX24NXsF1JFsI1qpXYoGSF7mHDzreNS70Vn75sOk3HwQ7MtZWyy\n+kR2ZewwtUaODj4xLNGawERjpwbOtdaJdHtmh0sP6MCdopd3RQ==\nPrivate-Lines: 14\nAAABAGz/5fQZ9zSxbIzamCW6YYutTXgo9aaZw1kauv3C/AbD8Ll0YsUCj4d3Eiyp\nBOhzwiYEyLK8tdyglDU0k7S+ou4B6fmykf1UU7D8H78vIux3aUJwEuHJVS4TbPax\ncCSCFzxR5VFACgDoKcKOD3JlcQgsTc5BZnjHbeByxtZqIQCMK5KGq+dHP/oYLWwr\nmtxU3GiMr/qiLUwh9C7Lgo+ZmsbYxxGUf4wx2W26sPsNW9AVZT7hGSW/KxpzufZW\nlcF5b+WOt1LtnJKKqj1HiSTxPFIED1iEpppo4+HW6ikiZcEsGNU0pPK8T4C/l045\n8Ff7cAzSuEoWdQ9zxHS6SM8ngK0AAACBANvnhGzvvVkpSdz2hRGGPVuZAXexIU7P\nR8E7Fdut3x5Slly1mwxcZ1lp/92ZSXStJyPjEerSj/1Hhs4qSDbLKiBpfA1CY2Jo\nFaePO7J8dxySMwurE8dMzoZjFNsmAkYLONuWY7yarmBzE5hvdcrOyljQmAih0YrC\nSZp2wzDpxmd9AAAAgQDDn6wdWYK6rwBRu8KXuDmloFHR70qJ+LmNx3uNiaxdBsoQ\nDNL7tws5i6JPD3u4/O89O3bUSx9B0IdfO+89Wx1oZL4VjDpyeRrbAC6tBIUOXvcV\n6pGoHi2dBiyEKi0o0OSu1jGofVgrfev5DYqbpe4pJs76CxyR99mmk148eXQpaQAA\nAIEAld+qxTyO3unJrAg8JOnFLoLZ7wk0lyN0UyzuRp7c6HYPqrrdOWktGAVHPXVP\nolYDB4PYZoNtjJgLvZhVIFtUEVk5y6swaRA6jde+363UXZZEKS5ZIi7Acgownv4Z\n7nPANzK0ZdsZELEVR9kSB/Z690LV2IKovh9bAbmhveEcMLQ=\nPrivate-MAC: 8d9cbf92b0e8f23309a9ebea525aae27d4fdbbdd\"",
+		query: &RegexQuery{
+			ID:          "a007a85e-a2a7-4a81-803a-7a2ca0c65abb",
+			Name:        "Putty User Key File Content",
+			Multiline:   true,
+			RegexStr:    "['\"]?PuTTY-User-Key-File-\\d: ([\\w\\d-:\\n\\s+/=]+Private-MAC: [\\d\\w\"]+)['\"]?",
+			AllowRules:  []AllowRule{},
+			Regex:       regexp.MustCompile("['\"]?PuTTY-User-Key-File-\\d: ([\\w\\d-:\\n\\s+/=]+Private-MAC: [\\d\\w\"]+)['\"]?"),
+			GroupToMask: 1,
+		},
+	},
+}
+
+var testHideSecretExpected = [][]model.CodeLine{
+	{
+		{
+			Line:     "    environment:",
+			Position: 18,
+		},
+		{
+			Line:     "      - POSTGRES_USER=postgres",
+			Position: 19,
+		},
+		{
+			Line:     "      - POSTGRES_PASSWORD=<SECRET-MASKED-ON-PURPOSE>",
+			Position: 20,
+		},
+	},
+	{
+		{
+			Line:     "\tbody      = <<EOF",
+			Position: 4,
+		},
+		{
+			Line:     "\"PuTTY-User-Key-File-2: <SECRET-MASKED-ON-PURPOSE>",
+			Position: 5,
+		},
+		{
+			Line:     "<SECRET-MASKED-ON-PURPOSE>",
+			Position: 6,
+		},
+	},
+}
+
 func TestEntropyInterval(t *testing.T) {
 	inputs := []struct {
 		name    string
@@ -765,5 +879,15 @@ func TestInspect(t *testing.T) {
 				close(currentQuery)
 			}()
 		}()
+	}
+}
+
+func Test_HideSecret(t *testing.T) {
+	emptySecretTracker := []SecretTracker{}
+	for testIndex, testData := range testHideSecret {
+		codelines := hideSecret(testData.linesVuln, testData.matchContent, testData.query, &emptySecretTracker)
+		for index, codeline := range *codelines {
+			require.Equal(t, testHideSecretExpected[testIndex][index].Line, codeline.Line, "test[%d] HideSecret() should return line %s", testIndex, testHideSecretExpected[testIndex][index].Line)
+		}
 	}
 }

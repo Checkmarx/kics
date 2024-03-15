@@ -18,7 +18,7 @@
           "regex": "['\"]?update_password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?"
         }
       ],
-      "specialMask": "(?i)['\"]?password['\"]?\\s*[:=]\\s*"
+      "groupMask": 1
     },
     {
       "id": "3e2d3b2f-c22a-4df1-9cc6-a7a0aebb0c99",
@@ -49,15 +49,13 @@
           "regex": "['\"]?Description['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*${}+-.'\"]+)['\"]?"
         }
       ],
-      "specialMask": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*"
+      "groupMask": 3
     },
     {
       "id": "51b5b840-cd0c-4556-98a7-fe5f4def80cf",
       "name": "Asymmetric private key",
-      "regex": "-----BEGIN ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----\\s*(([A-Za-z0-9+,:\\-\\/=\\n\\r]+\\s*)+)-----END ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----",
-      "multiline": {
-        "detectLineGroup": 4
-      },
+      "regex": "-----BEGIN ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----\\s*(([A-Za-z0-9+,:\\-\\/=\\n\\r]+\\s*)+)\n-----END ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----",
+      "multiline": true,
       "entropies": [
         {
           "group": 5,
@@ -65,16 +63,14 @@
           "max": 12
         }
       ],
-      "specialMask": "all"
+      "groupMask": 4
     },
     {
       "id": "a007a85e-a2a7-4a81-803a-7a2ca0c65abb",
       "name": "Putty User Key File Content",
       "regex": "['\"]?PuTTY-User-Key-File-\\d: ([\\w\\d-:\\n\\s+/=]+Private-MAC: [\\d\\w\"]+)['\"]?",
-      "multiline": {
-        "detectLineGroup": 1
-      },
-      "specialMask": "all"
+      "multiline": true,
+      "groupMask": 1
     },
     {
       "id": "c4d3b58a-e6d4-450f-9340-04f1e702eaae",
@@ -107,16 +103,14 @@
           "max": 7
         }
       ],
-      "specialMask": "(?i)AWS_SECRET(_ACCESS)?(_KEY)?\\s*[:=]\\s*"
+      "groupMask": 3
     },
     {
       "id": "4b2b5fd3-364d-4093-bac2-17391b2a5297",
       "name": "K8s Environment Variable Password",
       "regex": "apiVersion((.*)\\s*)*env:((.*)\\s*)*name:\\s*\\w+(?i)pass((?i)word)?\\w*\\s*(value):\\s*([\"|'].*[\"|'])",
-      "multiline": {
-        "detectLineGroup": 7
-      },
-      "specialMask": "\\s*(value):\\s*"
+      "multiline": true,
+      "groupMask": 7
     },
     {
       "id": "d651cca2-2156-4d17-8e76-423e68de5c8b",
@@ -162,10 +156,8 @@
       "id": "9a3650af-5b88-48cd-ab89-cd77fd0b633f",
       "name": "Heroku API Key",
       "regex": "['\"]?(?i)heroku((.|\\n)*)\\b([0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})\\b['\"]?",
-      "multiline": {
-        "detectLineGroup": 3
-      },
-      "specialMask": "['\"]?(?i)api_key[^\\w\"']+"
+      "multiline": true,
+      "groupMask": 3
     },
     {
       "id": "bb51eb1e-0357-44a2-86d7-dd5350cffd43",
@@ -207,7 +199,7 @@
           "regex": "(?i)['\"]?api[_]?key['\"]?\\s*[:=]\\s*['\"]?(SK[0-9a-fA-F]{32})['\"]?"
         }
       ],
-      "specialMask": "(?i)['\"]?api[_]?key['\"]?\\s*[:=]\\s*"
+      "groupMask": 1
     },
     {
       "id": "62d0025d-9575-4eff-b60b-d3b4fcec0d04",
@@ -227,25 +219,25 @@
     {
       "id": "7f370dd5-eea3-4e5f-8354-3cb2506f9f13",
       "name": "Generic Access Key",
-      "regex": "(?i)^\\s*['\"]?(access)[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9\/~^_!@&%()=?*+-]+)['\"]?",
-      "specialMask": "(?i)['\"]?access[_]?key['\"]?\\s*[:=]\\s*"
+      "regex": "(?i)^\\s*['\"]?(access)[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?",
+      "groupMask": 2
     },
     {
       "id": "2f665079-c383-4b33-896e-88268c1fa258",
       "name": "Generic Private Key",
       "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?",
-      "specialMask": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*",
       "allowRules": [
         {
           "description": "Avoiding bash variables",
           "regex": "(?i)['\"]?\\$\\s*\\{[^\\s\\}]+\\}['\"]?"
         }
-      ]
+      ],
+      "groupMask": 1
     },
     {
       "id": "baee238e-1921-4801-9c3f-79ae1d7b2cbc",
       "name": "Generic Token",
-      "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?",
+      "regex": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-:]+)['\"]?",
       "allowRules": [
         {
           "description": "Avoiding Amazon MWS Auth Token",
@@ -304,14 +296,13 @@
           "regex": "(?i)['\"]?next(_)?token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
         }
       ],
-      "specialMask": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*"
-
+      "groupMask": 3
     },
     {
-      "id": "e0f01838-b1c2-4669-b84b-981949ebe5ed",
+      "id": "36b8f84d-df4e-4d49-b662-bcde71a8764f",
       "name": "CloudFormation Secret Template",
       "regex": "(?i)['\"]?SecretStringTemplate['\"]?\\s*:\\s*['\"]?{([\\\":A-Za-z0-9/~^_!@&%()=?*+-]{10,})}",
-      "specialMask": "(?i)['\"]?SecretStringTemplate['\"]?\\s*:\\s*"
+      "groupMask": 1
     },
     {
       "id": "9fb1cd65-7a07-4531-9bcf-47589d0f82d6",
@@ -327,7 +318,7 @@
           "regex": "['\"]?EncryptionKey['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]+)['\"]?"
         }
       ],
-      "specialMask": "(?i)['\"]?encryption[_]?key['\"]?\\s*[:=]\\s*"
+      "groupMask": 1
     },
     {
       "id": "8a879bc7-6f82-40fd-bb48-74d25d557fe8",
