@@ -2046,6 +2046,10 @@ content is displayed when kics is provided with the <code>--help</code> flag.</p
 <td>path to configuration file</td>
 </tr>
 <tr>
+<td>--new-severities</td>
+<td>use new severities in query results</td>
+</tr>
+<tr>
 <td>--disable-full-descriptions</td>
 <td>disable request for full descriptions and use default vulnerability descriptions</td>
 </tr>
@@ -2079,7 +2083,7 @@ content is displayed when kics is provided with the <code>--help</code> flag.</p
 </tr>
 <tr>
 <td>--exclude-severities strings</td>
-<td>exclude results by providing the severity of a result<br>can be provided multiple times or as a comma separated string<br>example: 'info,low'<br>possible values: 'high, medium, low, info, trace'</td>
+<td>exclude results by providing the severity of a result<br>can be provided multiple times or as a comma separated string<br>example: 'info,low'<br>possible values: 'critical, high, medium, low, info, trace'</td>
 </tr>
 <tr>
 <td>--experimental-queries</td>
@@ -2087,7 +2091,7 @@ content is displayed when kics is provided with the <code>--help</code> flag.</p
 </tr>
 <tr>
 <td>--fail-on strings</td>
-<td>which kind of results should return an exit code different from 0<br>accepts: high, medium, low and info<br>example: "high,low" (default [high,medium,low,info])</td>
+<td>which kind of results should return an exit code different from 0<br>accepts: critical, high, medium, low and info<br>example: "high,low" (default [critical,high,medium,low,info])</td>
 </tr>
 <tr>
 <td>-h, --help</td>
