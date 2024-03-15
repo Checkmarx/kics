@@ -37,4 +37,5 @@ const (
 	OpenAPIReferencesFlag   = "enable-openapi-refs"
 	ParallelScanFile        = "parallel"
 	MaxFileSizeFlag         = "max-file-size"
+	UseNewSeveritiesFlag    = "new-severities"
 )
