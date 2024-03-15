@@ -27,9 +27,17 @@ var htmlTests = []struct {
 	},
 	{
 		caseTest: jsonCaseTest{
-			summary:  test.SummaryMockCWE,
+			summary:  test.SummaryMockCritical,
 			path:     "./testdir",
 			filename: "testout2",
+		},
+		expectedResult: test.SummaryMockCritical,
+	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCWE,
+			path:     "./testdir",
+			filename: "testout3",
 		},
 		expectedResult: test.SummaryMockCWE,
 	},
