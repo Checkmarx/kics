@@ -725,3 +725,17 @@ get_version(name) = version {
 	splited := split(val, ".")
 	version := concat(".", [splited[0],splited[1]])
 }
+
+valid_non_empty_key(field, key) = output {
+	not valid_key(field, key)
+	output = ""
+} else = output {
+	keyObj := field[key]
+	is_object(keyObj)
+	count(keyObj) == 0
+	output := concat(".", ["", key])
+} else = output {
+	keyObj := field[key]
+	keyObj == ""
+	output := concat(".", ["", key])
+}
