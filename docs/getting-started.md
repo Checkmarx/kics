@@ -9,4 +9,4 @@ docker run -t -v {path_to_host_folder}:/path checkmarx/kics:latest scan -p /path
 ```
 
 ## Scan Example
-[![](https://user-images.githubusercontent.com/111127232/206156696-283f9d43-1ff1-4cf4-8fa6-6bf37a282360.gif)](https://user-images.githubusercontent.com/111127232/206156696-283f9d43-1ff1-4cf4-8fa6-6bf37a282360.gif)
+[![](https://raw.githubusercontent.com/Checkmarx/kics/23c62655308523e1bf6aa8ae5852848deb263651/docs/img/faster.gif)](https://raw.githubusercontent.com/Checkmarx/kics/23c62655308523e1bf6aa8ae5852848deb263651/docs/img/faster.gif)

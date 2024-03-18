@@ -60,6 +60,7 @@ var (
 
 	// AvailableSeverities - All severities available
 	AvailableSeverities = []string{
+		"critical",
 		"high",
 		"medium",
 		"low",
