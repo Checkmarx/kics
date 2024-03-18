@@ -408,7 +408,7 @@ func parseInlineArray(line string) map[string]interface{} {
 func parseDecorator(decorators map[string]interface{}, line string) bool {
 	singleDecoratorRegex := regexp.MustCompile(`@(?:sys\.)?([^()]+)\('?([^')]*)'?\)`)
 	// metadataDecoratorRegex := regexp.MustCompile(`^param\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
-	// allowedDecoratorRegex := regexp.MustCompile(`^param\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
+	//allowedDecoratorRegex := regexp.MustCompile(`@(?:sys\.)?([^()]+)\('?([^')]*)'?\)`)
 	matchesSingle := singleDecoratorRegex.FindStringSubmatch(line)
 	// matchesMetadata := metadataDecoratorRegex.FindStringSubmatch(line)
 	// matchesAllowed := allowedDecoratorRegex.FindStringSubmatch(line)
