@@ -16,7 +16,7 @@ linesNotToIgnore []int                       `json:"-"`
 type JSONBicep struct {
 	Scope          string                      `json:"targetScope,omitempty"`
 	Func           map[string]interface{}      `json:"func,omitempty"`
-	Type           map[string]interface{}      `json:"type,omitempty"`
+	Type           map[string]Type             `json:"definitions,omitempty"`
 	Params         map[string]Param            `json:"-"`
 	Variables      []Variable                  `json:"variables,omitempty"`
 	Resources      []Resource                  `json:"resources,omitempty"`
@@ -74,10 +74,6 @@ type Resource struct {
 	Decorators map[string]interface{} `json:"-"`
 }
 
-type Prop struct {
-	Prop map[string]interface{}
-}
-
 type Output struct {
 	Name       string                 `json:"-"`
 	Type       string                 `json:"type"`
@@ -93,6 +89,10 @@ type Module struct {
 	Decorators  map[string]interface{} `json:"-"`
 }
 
+type Prop struct {
+	Prop map[string]interface{}
+}
+
 type SuperProp map[string]interface{}
 
 type Property struct {
@@ -106,8 +106,16 @@ type AbsoluteParent struct {
 	Variable *Variable
 }
 
+type Type struct {
+	Name          string        `json:"-"`
+	Type          string        `json:"type"`
+	AllowedValues []interface{} `json:"allowedValues,omitempty"`
+	Items         []interface{} `json:"items,omitempty"`
+}
+
 func newJSONBicep() *JSONBicep {
 	return &JSONBicep{
+		Type:      map[string]Type{},
 		Scope:     "",
 		Params:    map[string]Param{},
 		Variables: []Variable{},
@@ -167,12 +175,14 @@ func (jsonBicep *JSONBicep) MarshalJSON() ([]byte, error) {
 	}
 
 	for _, variable := range jsonBicep.Variables {
+		tempVar := map[string]interface{}{}
 		if variable.Prop != nil {
 			for prop, value := range variable.Prop {
 				if !(value == "" || value == nil) {
-					variables[prop] = value
+					tempVar[prop] = value
 				}
 			}
+			variables[variable.Name] = tempVar
 		} else {
 			variables[variable.Name] = variable.Value
 		}
