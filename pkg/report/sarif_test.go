@@ -34,6 +34,14 @@ var sarifTests = []reportTestCase{
 		},
 		expectedResult: test.SummaryMock,
 	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCritical,
+			path:     "./testdir",
+			filename: "testout2",
+		},
+		expectedResult: test.SummaryMockCritical,
+	},
 }
 
 // TestPrintSarifReport tests the functions [PrintSarifReport()] and all the methods called by them

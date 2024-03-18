@@ -24,11 +24,12 @@ type CodeClimateReport struct {
 }
 
 var severityMap = map[string]string{
-	model.SeverityTrace:  "info",
-	model.SeverityInfo:   "info",
-	model.SeverityLow:    "minor",
-	model.SeverityMedium: "major",
-	model.SeverityHigh:   "critical",
+	model.SeverityTrace:    "info",
+	model.SeverityInfo:     "info",
+	model.SeverityLow:      "minor",
+	model.SeverityMedium:   "major",
+	model.SeverityHigh:     "critical",
+	model.SeverityCritical: "blocker",
 }
 
 // BuildCodeClimateReport builds the code climate report
