@@ -120,7 +120,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		}
 
 		inlineArray := parseInlineArray(line)
-		if inlineArray != nil {
+		if inlineArray != nil && absoluteParent.Resource != nil {
 			if len(parentsStack) > 0 {
 				parent := parentsStack[len(parentsStack)-1]
 				var siblings converter.SuperProp
@@ -148,10 +148,10 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		isParentClosing := len(isParentClosingRegex.FindStringSubmatch(line)) > 0
 
 		isOpeningArrayRegex := regexp.MustCompile(`\[`)
-		isOpeningArray := len(isOpeningArrayRegex.FindStringSubmatch(line)) > 0
+		isOpeningArray := len(isOpeningArrayRegex.FindStringSubmatch(line)) > 0 && absoluteParent.Resource != nil
 
 		isClosingArrayRegex := regexp.MustCompile(`\]`)
-		isClosingArray := len(isClosingArrayRegex.FindStringSubmatch(line)) > 0
+		isClosingArray := len(isClosingArrayRegex.FindStringSubmatch(line)) > 0 && absoluteParent.Resource != nil
 
 		if arrayArray != nil && !isClosingArray {
 			arrayElementRegex := regexp.MustCompile(`^[ ]*'?([^']*)`)
@@ -324,15 +324,15 @@ func parseVariable(line string, elems []converter.ElemBicep) (*converter.Variabl
 		hasParam, paramName := checkVariableParams(value, getParams(elems))
 		if hasParam {
 			start := strings.Index(value, "${")
-            end := strings.Index(value, "}")
-            if start != -1 && end != -1 && start < end {
-                // extract the middle part of the string, relative to the param on variable
+			end := strings.Index(value, "}")
+			if start != -1 && end != -1 && start < end {
+				// extract the middle part of the string, relative to the param on variable
 				middlePart := value[start+2 : end]
 				// remove middle part from value
-                value = strings.Replace(value, "${"+middlePart+"}", "", 1)
+				value = strings.Replace(value, "${"+middlePart+"}", "", 1)
 				// concatenate the values from the parameter with the last part of the string, removing the middle part effectivly
 				value = fmt.Sprintf("parameters('%s'),%s", paramName, value)
-            }
+			}
 		}
 		return &converter.Variable{Name: name, Value: value}, true
 	}
