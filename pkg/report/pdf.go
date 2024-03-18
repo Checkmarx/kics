@@ -408,11 +408,12 @@ func createSummaryArea(m pdf.Maroto, summary *model.Summary) {
 		createSummaryResultsField(m, "LOW", lowSeverityCount, getYellowColor())
 		createSummaryResultsField(m, "INFO", infoSeverityCount, getBlueColor())
 
-		m.ColSpace(colTwo)
+		m.ColSpace(colOne)
 
 		m.Col(colOne, func() {
 			m.Text("TOTAL", props.Text{
 				Size:        defaultTextSize,
+				Right:       10.0,
 				Align:       consts.Right,
 				Style:       consts.Bold,
 				Extrapolate: false,
@@ -421,7 +422,7 @@ func createSummaryArea(m pdf.Maroto, summary *model.Summary) {
 		m.Col(colOne, func() {
 			m.Text(totalCount, props.Text{
 				Size:        defaultTextSize,
-				Align:       consts.Right,
+				Align:       consts.Left,
 				Style:       consts.Bold,
 				Extrapolate: false,
 			})

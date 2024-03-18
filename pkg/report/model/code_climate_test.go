@@ -15,7 +15,7 @@ func TestBuildCodeClimateReport(t *testing.T) {
 		want    []CodeClimateReport
 	}{
 		{
-			name:    "build code climate report",
+			name:    "build code climate report with high severity",
 			summary: test.SummaryMock,
 			want: []CodeClimateReport{
 				{
@@ -63,14 +63,32 @@ func TestBuildCodeClimateReport(t *testing.T) {
 				{
 					Type:        "issue",
 					CheckName:   "AMI Not Encrypted",
+					CWE:         "22",
 					Description: "AWS AMI Encryption is not enabled",
 					Categories:  []string{"Security"},
 					Location: location{
 						Path:  "positive.tf",
 						Lines: lines{Begin: 35},
 					},
-					Severity: "critical",
-					CWE:      "22",
+					Severity:    "critical",
+					Fingerprint: "",
+				},
+			},
+		},
+		{
+			name:    "build code climate report with critical severity",
+			summary: test.SummaryMockCritical,
+			want: []CodeClimateReport{
+				{
+					Type:        "issue",
+					CheckName:   "AmazonMQ Broker Encryption Disabled",
+					Description: "AmazonMQ Broker should have Encryption Options defined",
+					Categories:  []string{"Security"},
+					Location: location{
+						Path:  "test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml",
+						Lines: lines{Begin: 6},
+					},
+					Severity: "blocker",
 				},
 			},
 		},
