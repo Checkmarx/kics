@@ -28,12 +28,12 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 
 	elemListBytes, err := json.Marshal(jElem)
 	if err != nil {
-		return nil, nil, fmt.Errorf("error marshalling bicep file on parse function: %w", err)
+		return nil, nil, fmt.Errorf("error marshaling bicep file on parse function: %w", err)
 	}
 
 	err = json.Unmarshal(elemListBytes, &doc)
 	if err != nil {
-		return nil, nil, fmt.Errorf("error unmarshalling bicep file on parse function: %w", err)
+		return nil, nil, fmt.Errorf("error unmarshaling bicep file on parse function: %w", err)
 	}
 
 	return []model.Document{doc}, nil, nil
@@ -350,7 +350,7 @@ func parseVariable(line string, elems []converter.ElemBicep) (*converter.Variabl
 				middlePart := value[start+2 : end]
 				// remove middle part from value
 				value = strings.Replace(value, "${"+middlePart+"}", "", 1)
-				// concatenate the values from the parameter with the last part of the string, removing the middle part effectivly
+				// concatenate the values from the parameter with the last part of the string, removing the middle part effectively
 				value = fmt.Sprintf("parameters('%s'),%s", paramName, value)
 			}
 		}

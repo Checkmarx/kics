@@ -137,7 +137,6 @@ func (res *Resource) MarshalJSON() ([]byte, error) {
 }
 
 func (jsonBicep *JSONBicep) MarshalJSON() ([]byte, error) {
-
 	outputs := map[string]map[string]interface{}{}
 	params := map[string]map[string]interface{}{}
 	variables := map[string]interface{}{}
