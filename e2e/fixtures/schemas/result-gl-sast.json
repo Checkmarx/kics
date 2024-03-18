@@ -141,6 +141,7 @@
                     "severity": {
                         "type": "string",
                         "enum": [
+                            "Critical",
                             "High",
                             "Medium",
                             "Low",

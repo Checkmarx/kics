@@ -60,6 +60,14 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
+		targetScope := parseTargetScope(line)
+		if targetScope != "" {
+			elem.TargetScope = targetScope
+			elem.Type = "targetScope"
+			elems = append(elems, elem)
+			continue
+		}
+
 		metadata := parseMetadata(line)
 		if metadata != nil {
 			elem.Metadata = *metadata
@@ -188,7 +196,6 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
-		// property := parseProperty(line)
 		prop := parseProp(line)
 
 		if isOpeningArray {
@@ -309,9 +316,22 @@ func getParams(elems []converter.ElemBicep) []converter.Param {
 
 }
 
+// parse targetScope syntax from bicep file
+func parseTargetScope(line string) string {
+	targetScopeRegex := regexp.MustCompile(`targetScope * = * *'?([^']*)'`)
+	matches := targetScopeRegex.FindStringSubmatch(line)
+
+	if matches != nil {
+		targetScope := matches[1]
+		return targetScope
+	}
+
+	return ""
+}
+
 // parse Variable syntax from bicep file
 func parseVariable(line string, elems []converter.ElemBicep) (*converter.Variable, bool) {
-	singleLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +'?([^' {][^' ]*)'?`)
+	singleLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +'?([^' {][^']*)'?`)
 	multiLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +{`)
 	//forLineVarRegex := regexp.MustCompile(`for`)
 	matchesSingle := singleLineVarRegex.FindStringSubmatch(line)

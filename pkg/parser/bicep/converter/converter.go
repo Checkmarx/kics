@@ -28,13 +28,14 @@ type JSONBicep struct {
 }
 
 type ElemBicep struct {
-	Type     string
-	Param    Param
-	Metadata Metadata
-	Variable Variable
-	Resource Resource
-	Output   Output
-	Module   Module
+	TargetScope string
+	Type        string
+	Param       Param
+	Metadata    Metadata
+	Variable    Variable
+	Resource    Resource
+	Output      Output
+	Module      Module
 }
 
 type Decorator struct {
@@ -60,10 +61,9 @@ type Param struct {
 }
 
 type Variable struct {
-	Name        string                 `json:"-"`
-	Value       string                 `json:"value"`
-	Description string                 `json:"description"`
-	Prop        map[string]interface{} `json:"prop"`
+	Name  string                 `json:"-"`
+	Value string                 `json:"value,omitempty"`
+	Prop  map[string]interface{} `json:"prop"`
 }
 
 type Resource struct {
@@ -108,14 +108,14 @@ type AbsoluteParent struct {
 
 func newJSONBicep() *JSONBicep {
 	return &JSONBicep{
-		Params:         map[string]Param{},
-		Variables:      []Variable{},
-		Resources:      []Resource{},
-		Outputs:        []Output{},
-		Modules:        []Module{},
-		Metadata:       map[string]string{},
-		Lines:          map[string]model.LineObject{},
-		ContentVersion: "1.0.0.0",
+		Scope:     "",
+		Params:    map[string]Param{},
+		Variables: []Variable{},
+		Resources: []Resource{},
+		Outputs:   []Output{},
+		Modules:   []Module{},
+		Metadata:  map[string]string{},
+		Lines:     map[string]model.LineObject{},
 	}
 }
 
@@ -132,7 +132,7 @@ func (jsonBicep *JSONBicep) MarshalJSON() ([]byte, error) {
 
 	outputs := map[string]map[string]interface{}{}
 	params := map[string]map[string]interface{}{}
-	variables := map[string]map[string]interface{}{}
+	variables := map[string]interface{}{}
 
 	for _, output := range jsonBicep.Outputs {
 		tempOutput := map[string]interface{}{}
@@ -167,16 +167,15 @@ func (jsonBicep *JSONBicep) MarshalJSON() ([]byte, error) {
 	}
 
 	for _, variable := range jsonBicep.Variables {
-		tempVar := map[string]interface{}{}
-		tempVar["value"] = variable.Value
-
-		for prop, value := range variable.Prop {
-			if !(value == "" || value == nil) {
-				tempVar[prop] = value
+		if variable.Prop != nil {
+			for prop, value := range variable.Prop {
+				if !(value == "" || value == nil) {
+					variables[prop] = value
+				}
 			}
+		} else {
+			variables[variable.Name] = variable.Value
 		}
-
-		variables[variable.Name] = tempVar
 	}
 
 	type JSONBicepAlias JSONBicep
@@ -184,7 +183,7 @@ func (jsonBicep *JSONBicep) MarshalJSON() ([]byte, error) {
 		*JSONBicepAlias
 		Outputs   map[string]map[string]interface{} `json:"outputs"`
 		Params    map[string]map[string]interface{} `json:"parameters"`
-		Variables map[string]map[string]interface{} `json:"variables"`
+		Variables map[string]interface{}            `json:"variables"`
 	}{
 		JSONBicepAlias: (*JSONBicepAlias)(jsonBicep),
 		Variables:      variables,
@@ -202,6 +201,7 @@ func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 	outputs := []Output{}
 	params := map[string]Param{}
 	variables := []Variable{}
+	var targetScope string
 
 	for _, elem := range elems {
 		if elem.Type == "resource" {
@@ -211,7 +211,6 @@ func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 			params[elem.Param.Name] = elem.Param
 		}
 		if elem.Type == "output" {
-			// outputs[elem.Output.Name] = elem.Output
 			outputs = append(outputs, elem.Output)
 		}
 		if elem.Type == "metadata" {
@@ -220,6 +219,9 @@ func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 		if elem.Type == "variable" {
 			variables = append(variables, elem.Variable)
 		}
+		if elem.Type == "targetScope" {
+			targetScope = elem.TargetScope
+		}
 	}
 
 	jBicep.Resources = resources
@@ -227,6 +229,7 @@ func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 	jBicep.Outputs = outputs
 	jBicep.Metadata = metadata
 	jBicep.Variables = variables
+	jBicep.Scope = targetScope
 
 	return jBicep, nil
 }
