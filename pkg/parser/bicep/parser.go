@@ -313,7 +313,6 @@ func getParams(elems []converter.ElemBicep) []converter.Param {
 		}
 	}
 	return params
-
 }
 
 // parse targetScope syntax from bicep file
@@ -521,7 +520,6 @@ func parseParam(decorators map[string]interface{}, line string) *converter.Param
 
 // parse Output syntax from bicep file
 func parseOutput(decorators map[string]interface{}, line string) *converter.Output {
-
 	outputRegex := regexp.MustCompile(`^output\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
 	matches := outputRegex.FindStringSubmatch(line)
 	if matches != nil {
