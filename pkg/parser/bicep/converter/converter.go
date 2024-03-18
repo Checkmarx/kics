@@ -101,6 +101,7 @@ type Property struct {
 }
 
 type AbsoluteParent struct {
+	Allowed  []string
 	Resource *Resource
 	Module   *Module
 	Variable *Variable

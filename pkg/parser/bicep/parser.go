@@ -76,9 +76,16 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
-		isSecure := parseDecorator(decorators, line)
+		isSecure, isAllowed := parseDecorator(decorators, line)
 		if isSecure {
 			fmt.Println("Is Secure?", isSecure)
+		} else if isAllowed {
+			absoluteParent.Allowed = decorators["allowed"].([]string)
+			absoluteParent.Variable = nil
+			absoluteParent.Module = nil
+			absoluteParent.Resource = nil
+		} else {
+			fmt.Println("Is Allowed?", isAllowed)
 		}
 
 		variable, isSingle := parseVariable(line, elems)
@@ -91,6 +98,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 				decorators = map[string]interface{}{}
 				tempMap = map[string]interface{}{}
 				absoluteParent.Variable = variable
+				absoluteParent.Allowed = nil
 				absoluteParent.Module = nil
 				absoluteParent.Resource = nil
 			}
@@ -104,6 +112,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 
 			decorators = map[string]interface{}{}
 			absoluteParent.Resource = resource
+			absoluteParent.Allowed = nil
 			absoluteParent.Module = nil
 			absoluteParent.Variable = nil
 			continue
@@ -128,7 +137,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		}
 
 		inlineArray := parseInlineArray(line)
-		if inlineArray != nil && absoluteParent.Resource != nil {
+		if inlineArray != nil {
 			if len(parentsStack) > 0 {
 				parent := parentsStack[len(parentsStack)-1]
 				var siblings converter.SuperProp
@@ -156,10 +165,10 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		isParentClosing := len(isParentClosingRegex.FindStringSubmatch(line)) > 0
 
 		isOpeningArrayRegex := regexp.MustCompile(`\[`)
-		isOpeningArray := len(isOpeningArrayRegex.FindStringSubmatch(line)) > 0 && absoluteParent.Resource != nil
+		isOpeningArray := len(isOpeningArrayRegex.FindStringSubmatch(line)) > 0
 
 		isClosingArrayRegex := regexp.MustCompile(`\]`)
-		isClosingArray := len(isClosingArrayRegex.FindStringSubmatch(line)) > 0 && absoluteParent.Resource != nil
+		isClosingArray := len(isClosingArrayRegex.FindStringSubmatch(line)) > 0
 
 		if arrayArray != nil && !isClosingArray {
 			arrayElementRegex := regexp.MustCompile(`^ *'?([^']*)`)
@@ -171,24 +180,28 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		fmt.Println(line)
 
 		if isClosingArray {
-			currentPropertyIndex := len(parentsStack) - 1
-			currentProperty := parentsStack[currentPropertyIndex]
-			parentsStack = append(parentsStack[:currentPropertyIndex], parentsStack[currentPropertyIndex+1:]...)
-			if len(parentsStack) > 1 {
-				parent := parentsStack[len(parentsStack)-1]
-				var siblings converter.SuperProp
-				for k := range parent {
-					siblings = parent[k].(converter.SuperProp)
-				}
-				for k := range currentProperty {
-					siblings[k] = arrayArray
-				}
-				for k := range parent {
-					parent[k] = siblings
-				}
+			if absoluteParent.Allowed != nil {
+				decorators["allowed"] = arrayArray
 			} else {
-				for k := range currentProperty {
-					tempMap[k] = arrayArray
+				currentPropertyIndex := len(parentsStack) - 1
+				currentProperty := parentsStack[currentPropertyIndex]
+				parentsStack = append(parentsStack[:currentPropertyIndex], parentsStack[currentPropertyIndex+1:]...)
+				if len(parentsStack) > 1 {
+					parent := parentsStack[len(parentsStack)-1]
+					var siblings converter.SuperProp
+					for k := range parent {
+						siblings = parent[k].(converter.SuperProp)
+					}
+					for k := range currentProperty {
+						siblings[k] = arrayArray
+					}
+					for k := range parent {
+						parent[k] = siblings
+					}
+				} else {
+					for k := range currentProperty {
+						tempMap[k] = arrayArray
+					}
 				}
 			}
 
@@ -405,13 +418,13 @@ func parseInlineArray(line string) map[string]interface{} {
 }
 
 // parse Decorator syntax from bicep file
-func parseDecorator(decorators map[string]interface{}, line string) bool {
+func parseDecorator(decorators map[string]interface{}, line string) (bool, bool) {
 	singleDecoratorRegex := regexp.MustCompile(`@(?:sys\.)?([^()]+)\('?([^')]*)'?\)`)
 	// metadataDecoratorRegex := regexp.MustCompile(`^param\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
-	//allowedDecoratorRegex := regexp.MustCompile(`@(?:sys\.)?([^()]+)\('?([^')]*)'?\)`)
+	allowedDecoratorRegex := regexp.MustCompile(`@(?:sys\.)?allowed:?\(\[`)
 	matchesSingle := singleDecoratorRegex.FindStringSubmatch(line)
 	// matchesMetadata := metadataDecoratorRegex.FindStringSubmatch(line)
-	// matchesAllowed := allowedDecoratorRegex.FindStringSubmatch(line)
+	matchesAllowed := allowedDecoratorRegex.FindStringSubmatch(line)
 
 	// match single line decorators
 	if matchesSingle != nil {
@@ -420,28 +433,28 @@ func parseDecorator(decorators map[string]interface{}, line string) bool {
 
 		switch name {
 		case "secure":
-			return true
+			return true, false
 		case "description":
 			var description = make(map[string]interface{})
 			description[name] = value
 			decorators["metadata"] = map[string]interface{}{name: value}
-			return false
+			return false, false
 		case "maxLength":
 			decorators[name] = value
-			return false
+			return false, false
 		case "minLength":
 			decorators[name] = value
-			return false
+			return false, false
 		case "maxValue":
 			decorators[name] = value
-			return false
+			return false, false
 		case "minValue":
 			decorators[name] = value
-			return false
+			return false, false
 		}
 	}
 
-	// // match metadata decorators
+	// match metadata decorators
 	// if matchesMetadata != nil {
 
 	// 	return &converter.Decorator{
@@ -454,20 +467,15 @@ func parseDecorator(decorators map[string]interface{}, line string) bool {
 	// 	}, false
 	// }
 
-	// // match allowed decorators
-	// if matchesAllowed != nil {
+	// match allowed decorators
+	if matchesAllowed != nil {
+		tempAllowed := []string{}
 
-	// 	return &converter.Decorator{
-	// 		Allowed:   []string{},
-	// 		MaxLength: "",
-	// 		MinLength: "",
-	// 		MaxValue:  "",
-	// 		MinValue:  "",
-	// 		Metadata:  nil,
-	// 	}, false
-	// }
+		decorators["allowed"] = tempAllowed
+		return false, true
+	}
 
-	return false
+	return false, false
 }
 
 // parse Resource syntax from bicep file
