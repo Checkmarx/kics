@@ -21,19 +21,19 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 	doc := model.Document{}
 	elems, err := parserBicepFile(fileContent)
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, fmt.Errorf("error parsing bicep file on parse function: %w", err)
 	}
 
 	jElem, _ := converter.Convert(elems)
 
 	elemListBytes, err := json.Marshal(jElem)
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, fmt.Errorf("error marshalling bicep file on parse function: %w", err)
 	}
 
 	err = json.Unmarshal(elemListBytes, &doc)
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, fmt.Errorf("error unmarshalling bicep file on parse function: %w", err)
 	}
 
 	return []model.Document{doc}, nil, nil
@@ -162,7 +162,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		isClosingArray := len(isClosingArrayRegex.FindStringSubmatch(line)) > 0 && absoluteParent.Resource != nil
 
 		if arrayArray != nil && !isClosingArray {
-			arrayElementRegex := regexp.MustCompile(`^[ ]*'?([^']*)`)
+			arrayElementRegex := regexp.MustCompile(`^ *'?([^']*)`)
 			arrayElement := arrayElementRegex.FindStringSubmatch(line)[1]
 			arrayArray = append(arrayArray, arrayElement)
 			continue
@@ -299,7 +299,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	}
 
 	if err := scanner.Err(); err != nil {
-		return []converter.ElemBicep{}, err
+		return []converter.ElemBicep{}, fmt.Errorf("error reading bicep file on parserBicepFile function: %w", err)
 	}
 
 	return elems, nil
@@ -333,10 +333,10 @@ func parseTargetScope(line string) string {
 func parseVariable(line string, elems []converter.ElemBicep) (*converter.Variable, bool) {
 	singleLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +'?([^' {][^']*)'?`)
 	multiLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +{`)
-	//forLineVarRegex := regexp.MustCompile(`for`)
+	// forLineVarRegex := regexp.MustCompile(`for`)
 	matchesSingle := singleLineVarRegex.FindStringSubmatch(line)
 	matchesMulti := multiLineVarRegex.FindStringSubmatch(line)
-	//matchFor := forLineVarRegex.FindStringSubmatch(line)
+	// matchFor := forLineVarRegex.FindStringSubmatch(line)
 
 	if matchesSingle != nil {
 		name := matchesSingle[1]
@@ -425,7 +425,6 @@ func parseDecorator(decorators map[string]interface{}, line string) bool {
 		case "description":
 			var description = make(map[string]interface{})
 			description[name] = value
-			//property := converter.Property{Description: description, Properties: []*converter.Property{}}
 			decorators["metadata"] = map[string]interface{}{name: value}
 			return false
 		case "maxLength":

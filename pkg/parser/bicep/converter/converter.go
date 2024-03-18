@@ -214,22 +214,18 @@ func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 	var targetScope string
 
 	for _, elem := range elems {
-		if elem.Type == "resource" {
+		switch elem.Type {
+		case "resource":
 			resources = append(resources, elem.Resource)
-		}
-		if elem.Type == "param" {
+		case "param":
 			params[elem.Param.Name] = elem.Param
-		}
-		if elem.Type == "output" {
+		case "output":
 			outputs = append(outputs, elem.Output)
-		}
-		if elem.Type == "metadata" {
+		case "metadata":
 			metadata[elem.Metadata.Name] = elem.Metadata.Description
-		}
-		if elem.Type == "variable" {
+		case "variable":
 			variables = append(variables, elem.Variable)
-		}
-		if elem.Type == "targetScope" {
+		case "targetScope":
 			targetScope = elem.TargetScope
 		}
 	}
