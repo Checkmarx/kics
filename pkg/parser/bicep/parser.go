@@ -47,9 +47,9 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	parentsStack := []converter.SuperProp{}
 	decorators := map[string]interface{}{}
 	tempMap := map[string]interface{}{}
+	tempProp := map[string]interface{}{}
 	var arrayArray []interface{}
 	arrayArray = nil
-	tempProp := converter.Prop{}
 	var absoluteParent converter.AbsoluteParent
 
 	for scanner.Scan() {
@@ -85,7 +85,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			absoluteParent.Module = nil
 			absoluteParent.Resource = nil
 		} else {
-			continue
+
 		}
 
 		variable, isSingle := parseVariable(line, elems)
@@ -139,17 +139,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		inlineArray := parseInlineArray(line)
 		if inlineArray != nil {
 			if len(parentsStack) > 0 {
-				parent := parentsStack[len(parentsStack)-1]
-				var siblings converter.SuperProp
-				for k := range parent {
-					siblings = parent[k].(converter.SuperProp)
-				}
-				for k, v := range inlineArray {
-					siblings[k] = v
-				}
-				for k := range parent {
-					parent[k] = siblings
-				}
+				addPropToParent(parentsStack, inlineArray)
 			} else {
 				for k, v := range inlineArray {
 					tempMap[k] = v
@@ -170,7 +160,15 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		isClosingArrayRegex := regexp.MustCompile(`\]`)
 		isClosingArray := len(isClosingArrayRegex.FindStringSubmatch(line)) > 0
 
-		if arrayArray != nil && !isClosingArray {
+		if isParentClosing && arrayArray != nil {
+			arrayArray = append(arrayArray, tempProp)
+			tempProp = map[string]interface{}{}
+			continue
+		}
+
+		prop := parseProp(line)
+
+		if arrayArray != nil && !isClosingArray && !isNewParent && !isParentClosing && prop == nil {
 			arrayElementRegex := regexp.MustCompile(`^ *'?([^']*)`)
 			arrayElement := arrayElementRegex.FindStringSubmatch(line)[1]
 			arrayArray = append(arrayArray, arrayElement)
@@ -209,15 +207,13 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
-		prop := parseProp(line)
-
 		if isOpeningArray {
+			//inicializar array e adicionar ao parentstack no caso de line estar a abrir array
 			arrayArray = []interface{}{}
 			newProp := converter.SuperProp{}
-			var newPropValues []interface{} = nil
 
 			for k := range prop {
-				newProp[k] = newPropValues
+				newProp[k] = []interface{}{}
 			}
 
 			parentsStack = append(parentsStack, newProp)
@@ -227,27 +223,24 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		if prop != nil {
 			if isNewParent {
 				newProp := converter.SuperProp{}
-				newPropValues := converter.SuperProp{}
 
 				for k := range prop {
-					newProp[k] = newPropValues
+					newProp[k] = converter.SuperProp{}
 				}
 
 				parentsStack = append(parentsStack, newProp)
 			} else {
 				if len(parentsStack) > 0 {
-					parent := parentsStack[len(parentsStack)-1]
-					var siblings converter.SuperProp
-					for k := range parent {
-						siblings = parent[k].(converter.SuperProp)
-					}
-					for k, v := range prop {
-						siblings[k] = v
-					}
-					for k := range parent {
-						parent[k] = siblings
+					//adicionar prop ao parent se o parentstack não estiver vazio
+					if arrayArray == nil {
+						addPropToParent(parentsStack, prop)
+					} else {
+						for k, v := range prop {
+							tempProp[k] = v
+						}
 					}
 				} else {
+					// adicionar o prop ao temparray se o parentstack estiver vazio
 					for k, v := range prop {
 						tempMap[k] = v
 					}
@@ -261,25 +254,14 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			currentProperty := parentsStack[currentPropertyIndex]
 			parentsStack = append(parentsStack[:currentPropertyIndex], parentsStack[currentPropertyIndex+1:]...)
 
-			parent := parentsStack[len(parentsStack)-1]
-			var siblings converter.SuperProp
-			for k := range parent {
-				siblings = parent[k].(converter.SuperProp)
-			}
-			for k, v := range currentProperty {
-				siblings[k] = v
-			}
-			for k := range parent {
-				parent[k] = siblings
-			}
+			addPropToParent(parentsStack, currentProperty)
 
 			continue
 		}
 
 		if isParentClosing && len(parentsStack) == 1 {
-			currentPropertyIndex := len(parentsStack) - 1
-			currentProperty := parentsStack[currentPropertyIndex]
-			parentsStack = append(parentsStack[:currentPropertyIndex], parentsStack[currentPropertyIndex+1:]...)
+			currentProperty := parentsStack[0]
+			parentsStack = append(parentsStack[:0], parentsStack[1:]...)
 
 			for k, v := range currentProperty {
 				tempMap[k] = v
@@ -290,7 +272,6 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 
 		if isParentClosing && len(parentsStack) == 0 {
 			if absoluteParent.Resource != nil {
-				tempProp.Prop = tempMap
 				absoluteParent.Resource.Prop = tempMap
 				elem.Resource = *absoluteParent.Resource
 				elem.Type = "resource"
@@ -299,7 +280,6 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 				tempMap = map[string]interface{}{}
 			}
 			if absoluteParent.Variable != nil {
-				tempProp.Prop = tempMap
 				absoluteParent.Variable.Prop = tempMap
 				elem.Variable = *absoluteParent.Variable
 				elem.Type = "variable"
@@ -318,6 +298,20 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	return elems, nil
 }
 
+func addPropToParent(parentsStack []converter.SuperProp, prop map[string]interface{}) {
+	parent := parentsStack[len(parentsStack)-1]
+	var siblings converter.SuperProp
+	for k := range parent {
+		siblings = parent[k].(converter.SuperProp)
+	}
+	for k, v := range prop {
+		siblings[k] = v
+	}
+	for k := range parent {
+		parent[k] = siblings
+	}
+}
+
 func getParams(elems []converter.ElemBicep) []converter.Param {
 	params := []converter.Param{}
 	for _, elem := range elems {
@@ -326,6 +320,14 @@ func getParams(elems []converter.ElemBicep) []converter.Param {
 		}
 	}
 	return params
+}
+
+func is_slice(str interface{}) bool {
+	isSlice := false
+	if _, ok := str.([]interface{}); ok {
+		isSlice = true
+	}
+	return isSlice
 }
 
 // parse targetScope syntax from bicep file
@@ -402,7 +404,7 @@ func parseMetadata(line string) *converter.Metadata {
 
 // parse Inline Array syntax from bicep file
 func parseInlineArray(line string) map[string]interface{} {
-	metadataRegex := regexp.MustCompile(` *([^ :']*): *\[(?:'?([^' ]*)'?)]`)
+	metadataRegex := regexp.MustCompile(` *([^ :']*): *\[ *(?:'?([^' ]*)'?) *]`)
 	matches := metadataRegex.FindStringSubmatch(line)
 
 	if matches != nil {
@@ -547,19 +549,19 @@ func parseOutput(decorators map[string]interface{}, line string) *converter.Outp
 	return nil
 }
 
-func parseProp(line string) map[string]string {
+func parseProp(line string) map[string]interface{} {
 	// Parse key-value pairs
 
 	// parts := strings.SplitN(line, ":", 2)
 	// if len(parts) == 2 {
 
-	propRegex := regexp.MustCompile(`([^: ]*) *: '?([^']*)'?`)
+	propRegex := regexp.MustCompile(`([^: ]*) *: *'?([^']*)'?`)
 	matches := propRegex.FindStringSubmatch(line)
 
 	if matches != nil {
 		key := strings.TrimSpace(matches[1])
 		value := strings.TrimSpace(matches[2])
-		var description = make(map[string]string)
+		var description = make(map[string]interface{})
 		description[key] = value
 		return description
 	}
