@@ -85,7 +85,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			absoluteParent.Module = nil
 			absoluteParent.Resource = nil
 		} else {
-			fmt.Println("Is Allowed?", isAllowed)
+			continue
 		}
 
 		variable, isSingle := parseVariable(line, elems)
@@ -343,7 +343,7 @@ func parseTargetScope(line string) string {
 
 // parse Variable syntax from bicep file
 func parseVariable(line string, elems []converter.ElemBicep) (*converter.Variable, bool) {
-	singleLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +'?([^' {][^']*)'?`)
+	singleLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +'?([^' [{][^']*)'?`)
 	multiLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +{`)
 	// forLineVarRegex := regexp.MustCompile(`for`)
 	matchesSingle := singleLineVarRegex.FindStringSubmatch(line)
