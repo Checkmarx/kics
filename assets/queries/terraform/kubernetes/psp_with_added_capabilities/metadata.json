@@ -1,11 +1,12 @@
 {
-  "id": "48388bd2-7201-4dcc-b56d-e8a9efa58fad",
-  "queryName": "PSP With Added Capabilities",
-  "severity": "MEDIUM",
-  "category": "Insecure Configurations",
-  "descriptionText": "PodSecurityPolicy should not have added capabilities",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#allowed_capabilities",
-  "platform": "Terraform",
-  "descriptionID": "f3ad2d09",
-  "cwe": ""
+    "id": "48388bd2-7201-4dcc-b56d-e8a9efa58fad",
+    "queryName": "PSP With Added Capabilities",
+    "severity": "MEDIUM",
+    "category": "Insecure Configurations",
+    "descriptionText": "PodSecurityPolicy should not have added capabilities",
+    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#allowed_capabilities",
+    "platform": "Terraform",
+    "descriptionID": "f3ad2d09",
+    "cwe": "",
+    "cloudProvider": "common"
 }

@@ -10,6 +10,7 @@
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
+		"CRITICAL": 0,
 		"HIGH": 1,
 		"INFO": 0,
 		"LOW": 0,

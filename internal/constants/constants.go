@@ -60,6 +60,7 @@ var (
 
 	// AvailableSeverities - All severities available
 	AvailableSeverities = []string{
+		"critical",
 		"high",
 		"medium",
 		"low",
@@ -79,11 +80,12 @@ var (
 
 	// AvailableCloudProviders - All cloud providers available
 	AvailableCloudProviders = map[string]string{
-		"alicloud": "",
-		"aws":      "",
-		"azure":    "",
-		"gcp":      "",
-		"nifcloud": "",
+		"alicloud":     "",
+		"aws":          "",
+		"azure":        "",
+		"gcp":          "",
+		"nifcloud":     "",
+		"tencentcloud": "",
 	}
 )
 

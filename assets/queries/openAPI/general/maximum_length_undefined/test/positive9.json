@@ -1,0 +1,74 @@
+{
+  "components": {
+    "securitySchemes": {
+      "Basic1": {
+        "scheme": "basic",
+        "type": "http"
+      },
+      "JWT1": {
+        "scheme": "basic",
+        "type": "http"
+      },
+      "JWT1-1": {
+        "bearerFormat": "JWT",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Swagger auto-generated from learnt schema for ves-io-demo-app-waap-sentence-api",
+    "title": "ves-io-demo-app-waap-sentence-api",
+    "version": "2023-06-21 13:26:46"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/api/adjectives": {
+      "get": {
+        "description": "Swagger auto-generated from learnt schema",
+        "parameters": [
+          {
+            "description": "IPv4 Address",
+            "in": "header",
+            "name": "xff",
+            "schema": {
+              "pattern": "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)",
+              "type": "string",
+              "x-pii": {}
+            }
+          },
+          {
+            "description": "Word",
+            "in": "header",
+            "name": "x-f5-request-id",
+            "schema": {
+              "pattern": "[a-z0-9-]+",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Word",
+            "in": "cookie",
+            "name": "_imp_apg_r_",
+            "schema": {
+              "pattern": "[a-z0-9-]+",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT1": []
+          }
+        ]
+      }
+    }
+  },
+  "servers": [
+  ]
+}

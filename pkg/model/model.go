@@ -34,11 +34,12 @@ const (
 
 // Constants to describe vulnerability's severity
 const (
-	SeverityHigh   = "HIGH"
-	SeverityMedium = "MEDIUM"
-	SeverityLow    = "LOW"
-	SeverityInfo   = "INFO"
-	SeverityTrace  = "TRACE"
+	SeverityCritical = "CRITICAL"
+	SeverityHigh     = "HIGH"
+	SeverityMedium   = "MEDIUM"
+	SeverityLow      = "LOW"
+	SeverityInfo     = "INFO"
+	SeverityTrace    = "TRACE"
 )
 
 // Constants to describe issue's type
@@ -51,6 +52,7 @@ const (
 // Arrays to group all constants of one type
 var (
 	AllSeverities = []Severity{
+		SeverityCritical,
 		SeverityHigh,
 		SeverityMedium,
 		SeverityLow,
@@ -67,7 +69,9 @@ var (
 
 var (
 	// KICSCommentRgxp is the regexp to identify if a comment is a KICS comment
-	KICSCommentRgxp = regexp.MustCompile(`^((/{2})|#|;)*\s*kics-scan\s*`)
+	KICSCommentRgxp = regexp.MustCompile(`(^|\n)((/{2})|#|;)*\s*kics-scan\s*`)
+	// KICSGetContentCommentRgxp to gets the kics comment on the hel case
+	KICSGetContentCommentRgxp = regexp.MustCompile(`(^|\n)((/{2})|#|;)*\s*kics-scan([^\n]*)\n`)
 	// KICSCommentRgxpYaml is the regexp to identify if the comment has KICS comment at the end of the comment in YAML
 	KICSCommentRgxpYaml = regexp.MustCompile(`((/{2})|#)*\s*kics-scan\s*(ignore-line|ignore-block)\s*\n*$`)
 )

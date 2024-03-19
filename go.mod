@@ -2,6 +2,19 @@ module github.com/Checkmarx/kics
 
 go 1.21
 
+replace (
+	github.com/containerd/containerd => github.com/containerd/containerd v1.6.26
+	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
+	github.com/docker/docker => github.com/docker/docker v24.0.7+incompatible
+	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.9.1
+	github.com/moby/buildkit => github.com/moby/buildkit v0.12.5
+	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
+	github.com/spf13/afero => github.com/spf13/afero v1.2.2
+	go.etcd.io/etcd/pkg/v3 => go.etcd.io/etcd/pkg/v3 v3.5.10
+	golang.org/x/crypto => golang.org/x/crypto v0.17.0 // indirect
+	google.golang.org/protobuf => google.golang.org/protobuf v1.33.0 // indirect
+)
+
 require (
 	code.cloudfoundry.org/bytefmt v0.0.0-20211005130812-5bb3c17173e5
 	github.com/BurntSushi/toml v1.3.2
@@ -25,7 +38,7 @@ require (
 	github.com/johnfercher/maroto v0.40.0
 	github.com/mackerelio/go-osstat v0.2.4
 	github.com/mailru/easyjson v0.7.7
-	github.com/moby/buildkit v0.10.4
+	github.com/moby/buildkit v0.12.5
 	github.com/open-policy-agent/opa v0.58.0
 	github.com/pkg/errors v0.9.1
 	github.com/relex/aini v1.6.0
@@ -44,7 +57,7 @@ require (
 	golang.org/x/text v0.14.0
 	golang.org/x/tools v0.12.0
 	gopkg.in/yaml.v3 v3.0.1
-	helm.sh/helm/v3 v3.14.1
+	helm.sh/helm/v3 v3.14.2
 	mvdan.cc/sh/v3 v3.6.0
 )
 
@@ -208,7 +221,7 @@ require (
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20230822172742-b8732ec3820d // indirect
 	google.golang.org/grpc v1.59.0 // indirect
-	google.golang.org/protobuf v1.31.0 // indirect
+	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
@@ -230,16 +243,4 @@ require (
 	sigs.k8s.io/kustomize/kyaml v0.14.3-0.20230601165947-6ce0bf390ce3 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1 // indirect
 	sigs.k8s.io/yaml v1.4.0 // indirect
-)
-
-replace (
-	github.com/containerd/containerd => github.com/containerd/containerd v1.6.26
-	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
-	github.com/docker/docker => github.com/docker/docker v24.0.7+incompatible
-	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.9.1
-	github.com/moby/buildkit => github.com/moby/buildkit v0.12.5
-	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
-	github.com/spf13/afero => github.com/spf13/afero v1.2.2
-	go.etcd.io/etcd/pkg/v3 => go.etcd.io/etcd/pkg/v3 v3.5.10
-	golang.org/x/crypto => golang.org/x/crypto v0.17.0 // indirect
 )
