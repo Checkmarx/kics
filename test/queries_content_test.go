@@ -201,7 +201,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 	inspector, err := engine.NewInspector(
 		ctx,
 		queriesSource,
-		func(ctx *engine.QueryContext, trk engine.Tracker, v interface{}, detector *detector.DetectLine, useNewSeverities bool) (*model.Vulnerability, error) {
+		func(ctx *engine.QueryContext, trk engine.Tracker, v interface{}, detector *detector.DetectLine, useOldSeverities bool) (*model.Vulnerability, error) {
 			m, ok := v.(map[string]interface{})
 			require.True(t, ok)
 
