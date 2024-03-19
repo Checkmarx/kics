@@ -7,7 +7,7 @@ CxPolicy[result] {
 	uses := input.document[i].jobs[j].steps[k].uses
 	not isAllowed(uses)
 	not isPinned(uses)
-	not isLocal(uses)
+	not isRelative(uses)
 	
 	result := {
 		"documentId": input.document[i].id,
