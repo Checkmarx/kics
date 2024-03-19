@@ -42,6 +42,17 @@
                 "INFO"
             ]
         },
+        "oldSeverity": {
+            "type": "string",
+            "enum": [
+                "TRACE",
+                "CRITICAL",
+                "HIGH",
+                "MEDIUM",
+                "LOW",
+                "INFO"
+            ]
+        },
         "category": {
             "type": "string",
             "enum": [
