@@ -1,8 +1,8 @@
 {
   "id": "acfdbec6-4a17-471f-b412-169d77553332",
   "queryName": "Google Container Node Pool Auto Repair Disabled",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Google Container Node Pool Auto Repair should be enabled. This service periodically checks for failing nodes and repairs them to ensure a smooth running state.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool",

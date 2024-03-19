@@ -1,8 +1,8 @@
 {
   "id": "dc1ab429-1481-4540-9b1d-280e3f15f1f8",
   "queryName": "Serverless Function Without X-Ray Tracing",
+  "oldSeverity": "LOW",
   "severity": "LOW",
-  "newSeverity": "LOW",
   "category": "Observability",
   "descriptionText": "AWS Serverless Function should have Tracing enabled. For this, property 'Tracing' should have the value 'Active'",
   "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-tracing",

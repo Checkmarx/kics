@@ -1,8 +1,8 @@
 {
   "id": "a21c8da9-41bf-40cf-941d-330cf0d11fc7",
   "queryName": "Azure Active Directory Authentication",
+  "oldSeverity": "LOW",
   "severity": "LOW",
-  "newSeverity": "LOW",
   "category": "Access Control",
   "descriptionText": "Azure Active Directory must be used for authentication for Service Fabric",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/service_fabric_cluster#tenant_id",

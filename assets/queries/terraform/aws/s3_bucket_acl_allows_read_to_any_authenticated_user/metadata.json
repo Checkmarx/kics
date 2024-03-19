@@ -1,8 +1,8 @@
 {
   "id": "57b9893d-33b1-4419-bcea-a717ea87e139",
   "queryName": "S3 Bucket ACL Allows Read to Any Authenticated User",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Access Control",
   "descriptionText": "S3 Buckets should not be readable to any authenticated user",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#acl",

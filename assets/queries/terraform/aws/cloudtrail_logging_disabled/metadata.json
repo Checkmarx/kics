@@ -1,8 +1,8 @@
 {
   "id": "4bb76f17-3d63-4529-bdca-2b454529d774",
   "queryName": "CloudTrail Logging Disabled",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Observability",
   "descriptionText": "Checks if logging is enabled for CloudTrail.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#enable_logging",

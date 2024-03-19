@@ -1,8 +1,8 @@
 {
   "id": "a1defcb6-55e8-4511-8c2a-30b615b0e057",
   "queryName": "Nifcloud DNS Has Verified Record",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "Removing verified record of TXT auth the risk that If the authentication record remains, anyone can register the zone",
   "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/dns_record#record",

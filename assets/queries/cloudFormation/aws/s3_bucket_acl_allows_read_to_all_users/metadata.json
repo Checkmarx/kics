@@ -1,8 +1,8 @@
 {
   "id": "219f4c95-aa50-44e0-97de-cf71f4641170",
   "queryName": "S3 Bucket ACL Allows Read to All Users",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Access Control",
   "descriptionText": "S3 Buckets should not be readable to all users",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html",

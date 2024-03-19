@@ -1,8 +1,8 @@
 {
   "id": "1c8eef02-17b1-4a3e-b01d-dcc3292d2c38",
   "queryName": "GKE Using Default Service Account",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Insecure Defaults",
   "descriptionText": "Kubernetes Engine Clusters should not be configured to use the default service account",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#node_config",

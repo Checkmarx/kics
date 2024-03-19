@@ -1,8 +1,8 @@
 {
   "id": "de92dd34-1b88-43e8-b825-6e02d73c4549",
   "queryName": "IAM Password Without Lowercase Letter",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Best Practices",
   "descriptionText": "IAM Password should have at least one lowercase letter",
   "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/iam/accountpasswordpolicy/#requirelowercasecharacters_yaml",

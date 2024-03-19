@@ -1,8 +1,8 @@
 {
   "id": "66cd88ac-9ddf-424a-b77e-e55e17630bee",
   "queryName": "Batch Job Definition With Privileged Container Properties",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "Batch Job Definition should not have Privileged Container Properties",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/batch_job_definition",

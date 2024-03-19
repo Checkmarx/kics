@@ -1,8 +1,8 @@
 {
   "id": "63ebcb19-2739-4d3f-aa5c-e8bbb9b85281",
   "queryName": "EKS Cluster Encryption Disabled",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Encryption",
   "descriptionText": "EKS Cluster should be encrypted",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster#encryption_config",

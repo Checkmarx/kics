@@ -1,8 +1,8 @@
 {
   "id": "e055285c-bc01-48b4-8aa5-8a54acdd29df",
   "queryName": "SQL Server Database Without Auditing",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Every 'Microsoft.Sql/servers/databases' resource should have Auditing Enabled",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/auditingsettings",

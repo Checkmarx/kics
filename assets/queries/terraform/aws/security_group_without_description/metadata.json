@@ -1,8 +1,8 @@
 {
   "id": "cb3f5ed6-0d18-40de-a93d-b3538db31e8c",
   "queryName": "Security Group Rule Without Description",
+  "oldSeverity": "INFO",
   "severity": "INFO",
-  "newSeverity": "INFO",
   "category": "Best Practices",
   "descriptionText": "It's considered a best practice for AWS Security Group to have a description",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group#description",

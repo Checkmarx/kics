@@ -1,8 +1,8 @@
 {
   "id": "4d522e7b-f938-4d51-a3b1-974ada528bd3",
   "queryName": "Log Profile Incorrect Category",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Log Profile Categories should be set to 'Write', 'Delete', and/or 'Action'",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.insights/2016-03-01/logprofiles?tabs=json#logprofileproperties-object",

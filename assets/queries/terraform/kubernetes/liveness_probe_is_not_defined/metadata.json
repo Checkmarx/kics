@@ -1,8 +1,8 @@
 {
   "id": "5b6d53dd-3ba3-4269-b4d7-f82e880e43c3",
   "queryName": "Liveness Probe Is Not Defined",
+  "oldSeverity": "LOW",
   "severity": "LOW",
-  "newSeverity": "LOW",
   "category": "Availability",
   "descriptionText": "In case of an unresponsive container, a Liveness Probe can help your application become more available since it restarts the container. However, it can lead to cascading failures. Define one if you really need it",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#liveness_probe",

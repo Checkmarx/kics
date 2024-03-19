@@ -1,8 +1,8 @@
 {
   "id": "4b801c38-ebb4-4c81-984b-1ba525d43adf",
   "queryName": "Nifcloud NAS Has Common Private Network",
+  "oldSeverity": "LOW",
   "severity": "LOW",
-  "newSeverity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "The nas has common private network",
   "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/nas_instance#network_id",

@@ -1,8 +1,8 @@
 {
   "id": "0c79e50e-b3cf-490c-b8f6-587c644d4d0c",
   "queryName": "Operation Object Without 'consumes'",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Operation Object should have 'consumes' feild defined for 'POST', 'PUT' and 'PATCH' operations",
   "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",

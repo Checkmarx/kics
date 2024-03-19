@@ -1,8 +1,8 @@
 {
   "id": "b592ffd4-0577-44b6-bd35-8c5ee81b5918",
   "queryName": "No Password Policy Enabled",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "IAM password policies should be set through the password minimum length and reset password attributes",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_login_profile",

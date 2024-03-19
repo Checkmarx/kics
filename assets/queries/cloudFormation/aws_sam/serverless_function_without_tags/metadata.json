@@ -1,8 +1,8 @@
 {
   "id": "a71ecabe-03b6-456a-b3bc-d1a39aa20c98",
   "queryName": "Serverless Function Without Tags",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "AWS Serverless Function should have associated tags",
   "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-tags",

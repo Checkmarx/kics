@@ -1,8 +1,8 @@
 {
   "id": "d4e43db5-54d8-4dda-b3c2-0dc6f31a46bd",
   "queryName": "Header Response Name Is Invalid (v3)",
+  "oldSeverity": "INFO",
   "severity": "INFO",
-  "newSeverity": "INFO",
   "category": "Best Practices",
   "descriptionText": "The Header Response should not be named as 'Content-Type', 'Authorization' or 'Accept'. If so, it will be ignored.",
   "descriptionUrl": "https://swagger.io/specification/#response-object",

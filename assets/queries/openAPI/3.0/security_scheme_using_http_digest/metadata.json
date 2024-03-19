@@ -1,8 +1,8 @@
 {
   "id": "a4247b11-890b-45df-bf42-350a7a3af9be",
   "queryName": "Security Scheme Using HTTP Digest",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Security Scheme HTTP should not be using digest authentication",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",

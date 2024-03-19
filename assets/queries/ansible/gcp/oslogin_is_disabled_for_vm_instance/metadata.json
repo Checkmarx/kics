@@ -1,8 +1,8 @@
 {
   "id": "66dae697-507b-4aef-be18-eec5bd707f33",
   "queryName": "OSLogin Is Disabled In VM Instance",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "VM instance should have OSLogin enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_instance_module.html",

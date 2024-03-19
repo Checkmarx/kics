@@ -1,8 +1,8 @@
 {
   "id": "881a6e71-c2a7-4fe2-b9c3-dfcf08895331",
   "queryName": "Example Not Compliant With Schema Type (v3)",
+  "oldSeverity": "INFO",
   "severity": "INFO",
-  "newSeverity": "INFO",
   "category": "Best Practices",
   "descriptionText": "Examples values and fields should be compliant with the schema type",
   "descriptionUrl": "https://swagger.io/specification/#example-object",

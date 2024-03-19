@@ -1,8 +1,8 @@
 {
   "id": "b9380fd3-5ffe-4d10-9290-13e18e71eee1",
   "queryName": "Insecure Bind Address Set",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "When using kube-apiserver command, the '--insecure-bind-address' flag should not be set",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",

@@ -1,8 +1,8 @@
 {
   "id": "40abce54-95b1-478c-8e5f-ea0bf0bb0e33",
   "queryName": "Google Compute Network Using Default Firewall Rule",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Google Compute Network should not use default firewall rule",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall#name",

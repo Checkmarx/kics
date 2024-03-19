@@ -1,8 +1,8 @@
 {
   "id": "1b6799eb-4a7a-4b04-9001-8cceb9999326",
   "queryName": "API Gateway Access Logging Disabled",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "API Gateway Stage should have Access Logging Settings defined",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_stage#access_log_settings",

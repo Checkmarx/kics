@@ -43,7 +43,7 @@
                 "INFO"
             ]
         },
-        "newSeverity": {
+        "oldSeverity": {
             "type": "string",
             "enum": [
                 "TRACE",

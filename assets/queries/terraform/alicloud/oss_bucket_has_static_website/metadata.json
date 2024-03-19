@@ -1,8 +1,8 @@
 {
   "id": "2b13c6ff-b87a-484d-86fd-21ef6e97d426",
   "queryName": "OSS Bucket Has Static Website",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "Checks if any static websties are hosted on buckets. Be aware of any website you are running.",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#website",

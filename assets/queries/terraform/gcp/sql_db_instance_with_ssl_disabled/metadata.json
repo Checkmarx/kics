@@ -1,8 +1,8 @@
 {
   "id": "02474449-71aa-40a1-87ae-e14497747b00",
   "queryName": "SQL DB Instance With SSL Disabled",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Encryption",
   "descriptionText": "Cloud SQL Database Instance should have SSL enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#require_ssl",

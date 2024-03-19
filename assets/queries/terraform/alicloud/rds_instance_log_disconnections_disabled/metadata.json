@@ -1,8 +1,8 @@
 {
   "id": "d53f4123-f8d8-4224-8cb3-f920b151cc98",
   "queryName": "RDS Instance Log Disconnections Disabled",
+  "oldSeverity": "LOW",
   "severity": "LOW",
-  "newSeverity": "LOW",
   "category": "Observability",
   "descriptionText": "log_disconnections parameter should be set to ON for RDS instances",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#parameters",

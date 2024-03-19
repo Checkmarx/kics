@@ -1,8 +1,8 @@
 {
   "id": "0e75052f-cc02-41b8-ac39-a78017527e95",
   "queryName": "Privilege Escalation Using Become Plugin",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "In order to perform an action as a different user with the become_user, 'become' must be defined and set to 'true'",
   "descriptionUrl": "https://ansible.readthedocs.io/projects/lint/rules/partial-become/#problematic-code",

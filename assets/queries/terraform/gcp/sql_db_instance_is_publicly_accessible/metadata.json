@@ -1,8 +1,8 @@
 {
   "id": "b187edca-b81e-4fdc-aff4-aab57db45edb",
   "queryName": "SQL DB Instance Publicly Accessible",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "Cloud SQL instances should not be publicly accessible.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance",

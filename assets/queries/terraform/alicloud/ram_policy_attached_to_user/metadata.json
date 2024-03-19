@@ -1,8 +1,8 @@
 {
   "id": "66505003-7aba-45a1-8d83-5162d5706ef5",
   "queryName": "Ram Policy Attached to User",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Ram policies should not be attached to users",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_user_policy_attachment",

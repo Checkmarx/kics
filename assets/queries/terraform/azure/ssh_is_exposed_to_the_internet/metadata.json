@@ -1,8 +1,8 @@
 {
   "id": "3e3c175e-aadf-4e2b-a464-3fdac5748d24",
   "queryName": "SSH Is Exposed To The Internet",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "Port 22 (SSH) is exposed to the internet",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_rule",

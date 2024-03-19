@@ -1,8 +1,8 @@
 {
   "id": "e0e00aba-5f1c-4981-a542-9a9563c0ee20",
   "queryName": "Client Certificate Authentication Not Setup Properly",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Client Certificate Authentication should be Setup with a .pem or .crt file",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/",

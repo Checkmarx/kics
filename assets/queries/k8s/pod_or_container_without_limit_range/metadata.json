@@ -1,8 +1,8 @@
 {
   "id": "4a20ebac-1060-4c81-95d1-1f7f620e983b",
   "queryName": "Pod or Container Without LimitRange",
+  "oldSeverity": "LOW",
   "severity": "LOW",
-  "newSeverity": "LOW",
   "category": "Insecure Configurations",
   "descriptionText": "Each namespace should have a LimitRange policy associated to ensure that resource allocations of Pods, Containers and PersistentVolumeClaims do not exceed the defined boundaries",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/limit-range/",

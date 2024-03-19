@@ -1,8 +1,8 @@
 {
   "id": "4eb5f791-c861-4afd-9f94-f2a6a3fe49cb",
   "queryName": "MQ Broker Is Publicly Accessible",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Check if any MQ Broker is not publicly accessible",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/mq_broker",

@@ -1,8 +1,8 @@
 {
   "id": "17e52ca3-ddd0-4610-9d56-ce107442e110",
   "queryName": "HPA Targets Invalid Object",
+  "oldSeverity": "LOW",
   "severity": "LOW",
-  "newSeverity": "LOW",
   "category": "Availability",
   "descriptionText": "The Horizontal Pod Autoscaler must target a valid object",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/horizontal_pod_autoscaler#metric",

@@ -1,8 +1,8 @@
 {
   "id": "42bb6b7f-6d54-4428-b707-666f669d94fb",
   "queryName": "S3 Static Website Host Enabled",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "Checks if any static websites are hosted on buckets. Even static websites can be a liability when poorly configured.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#website",

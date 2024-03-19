@@ -1,8 +1,8 @@
 {
   "id": "e69890e6-fce5-461d-98ad-cb98318dfc96",
   "queryName": "RDS With Backup Disabled",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Backup",
   "descriptionText": "Make sure the AWS RDS configuration has automatic backup configured. If the retention period is equal to 0 there is no backup",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-backup_retention_period",

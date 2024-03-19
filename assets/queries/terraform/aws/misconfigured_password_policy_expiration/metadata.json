@@ -1,8 +1,8 @@
 {
   "id": "ce60d060-efb8-4bfd-9cf7-ff8945d00d90",
   "queryName": "Misconfigured Password Policy Expiration",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Best Practices",
   "descriptionText": "No password expiration policy",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy",

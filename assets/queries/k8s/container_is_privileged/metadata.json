@@ -1,8 +1,8 @@
 {
   "id": "dd29336b-fe57-445b-a26e-e6aa867ae609",
   "queryName": "Container Is Privileged",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "Privileged containers lack essential security restrictions and should be avoided by removing the 'privileged' flag or by changing its value to false",
   "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/pods/#privileged-mode-for-containers",

@@ -1,8 +1,8 @@
 {
   "id": "5c666ed9-b586-49ab-9873-c495a833b705",
   "queryName": "Elasticsearch Without IAM Authentication",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "AWS Elasticsearch should ensure IAM Authentication",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-accesspolicies",

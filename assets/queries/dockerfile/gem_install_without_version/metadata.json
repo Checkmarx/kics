@@ -1,8 +1,8 @@
 {
   "id": "22cd11f7-9c6c-4f6e-84c0-02058120b341",
   "queryName": "Gem Install Without Version",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Supply-Chain",
   "descriptionText": "Instead of 'gem install \u003cgem\u003e' we should use 'gem install \u003cgem\u003e:\u003cversion\u003e'",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",

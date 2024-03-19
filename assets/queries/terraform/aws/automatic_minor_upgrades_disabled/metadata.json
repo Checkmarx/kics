@@ -1,8 +1,8 @@
 {
   "id": "3b6d777b-76e3-4133-80a3-0d6f667ade7f",
   "queryName": "Automatic Minor Upgrades Disabled",
+  "oldSeverity": "LOW",
   "severity": "LOW",
-  "newSeverity": "LOW",
   "category": "Best Practices",
   "descriptionText": "RDS instance should have automatic minor upgrades enabled, which means the attribute 'auto_minor_version_upgrade' must be set to true.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#auto_minor_version_upgrade",

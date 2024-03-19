@@ -1,8 +1,8 @@
 {
   "id": "d39761d7-94ab-45b0-ab5e-27c44e381d58",
   "queryName": "Stack Notifications Disabled",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "AWS CloudFormation should have stack notifications enabled to be notified when an event occurs",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/cloudformation_module.html#parameter-notification_arns",

@@ -1,8 +1,8 @@
 {
   "id": "6a68bebe-c021-492e-8ddb-55b0567fb768",
   "queryName": "Security Context Deny Admission Control Plugin Not Set",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "When using kube-apiserver command, the '--enable-admission-plugins' flag should have 'SecurityContextDeny' plugin and the plugin should be correctly configured in AdmissionControl Config file when 'PodSecurityPolicy' plugin is not set",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",

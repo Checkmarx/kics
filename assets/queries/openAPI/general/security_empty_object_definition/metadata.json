@@ -1,8 +1,8 @@
 {
   "id": "543e38f4-1eee-479e-8eb0-15257013aa0a",
   "queryName": "Global security field has an empty object (v3)",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Global security definition must not have empty objects",
   "descriptionUrl": "https://swagger.io/specification/#security-requirement-object",

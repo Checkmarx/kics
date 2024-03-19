@@ -1,8 +1,8 @@
 {
   "id": "df58dd45-8009-43c2-90f7-c90eb9d53ed9",
   "queryName": "Nifcloud Computing Has Common Private Network",
+  "oldSeverity": "LOW",
   "severity": "LOW",
-  "newSeverity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "The instance has common private network",
   "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/instance#network_id",

@@ -1,8 +1,8 @@
 {
   "id": "a6d27cf7-61dc-4bde-ae08-3b353b609f76",
   "queryName": "Cloudfront Viewer Protocol Policy Allows HTTP",
+  "oldSeverity": "HIGH",
   "severity": "HIGH",
-  "newSeverity": "HIGH",
   "category": "Encryption",
   "descriptionText": "Checks if the connection between CloudFront and the viewer is encrypted",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html",

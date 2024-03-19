@@ -1,8 +1,8 @@
 {
   "id": "571254d8-aa6a-432e-9725-535d3ef04d69",
   "queryName": "Group With Privilege Escalation By Actions 'lambda:UpdateFunctionCode'",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Group with privilege escalation by actions 'lambda:UpdateFunctionCode' and Resource set to '*'. For more information see https://rhinosecuritylabs.com/aws/aws-privilege-escalation-methods-mitigation/.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy#policy",

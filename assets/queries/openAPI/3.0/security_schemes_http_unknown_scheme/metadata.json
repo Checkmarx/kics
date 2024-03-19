@@ -1,8 +1,8 @@
 {
   "id": "06764426-3c56-407e-981f-caa25db1c149",
   "queryName": "Security Scheme HTTP Unknown Scheme",
+  "oldSeverity": "MEDIUM",
   "severity": "MEDIUM",
-  "newSeverity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Security Scheme HTTP scheme should be registered in the IANA Authentication Scheme registry",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
