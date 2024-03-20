@@ -77,16 +77,22 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
-		isSecure, isAllowed := parseDecorator(decorators, line)
+		isMetadata, isSecure, isAllowed := parseDecorator(decorators, line)
+		if isMetadata {
+			continue
+		}
 		if isSecure {
-			fmt.Println("Is Secure?", isSecure)
+			decorators["secure"] = true
+			continue
 		} else if isAllowed {
-			absoluteParent.Allowed = decorators["allowed"].([]string)
+			allowed := map[string]interface{}{}
+			values := map[string]interface{}{"values": []interface{}{}}
+			parentsStack = append(parentsStack, values)
+			absoluteParent.Allowed = allowed
 			absoluteParent.Variable = nil
 			absoluteParent.Module = nil
 			absoluteParent.Resource = nil
-		} else {
-
+			continue
 		}
 
 		variable, isSingle := parseVariable(line, elems)
@@ -161,6 +167,9 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		isClosingArrayRegex := regexp.MustCompile(`\]`)
 		isClosingArray := len(isClosingArrayRegex.FindStringSubmatch(line)) > 0
 
+		isClosingAllowedRegex := regexp.MustCompile(`\)`)
+		isClosingAllowed := len(isClosingAllowedRegex.FindStringSubmatch(line)) > 0
+
 		if len(parentsStack) > 1 {
 			parent := parentsStack[len(parentsStack)-2]
 			added := false
@@ -196,23 +205,17 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		}
 
 		if isClosingArray {
-			if absoluteParent.Allowed != nil {
-				// decorators["allowed"] = arrayArray
+			var currentProperty map[string]interface{}
+			parentsStack, currentProperty = popParentsStack(parentsStack)
+
+			if len(parentsStack) > 0 {
+				addPropToParent(parentsStack, currentProperty)
+
 			} else {
-				var currentProperty map[string]interface{}
-				parentsStack, currentProperty = popParentsStack(parentsStack)
-
-				if len(parentsStack) > 0 {
-					addPropToParent(parentsStack, currentProperty)
-
-				} else {
-					for k, v := range currentProperty {
-						tempMap[k] = v
-					}
+				for k, v := range currentProperty {
+					tempMap[k] = v
 				}
 			}
-
-			continue
 		}
 
 		if isOpeningArray {
@@ -308,7 +311,14 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 				absoluteParent.Variable = nil
 				tempMap = map[string]interface{}{}
 			}
+
 			continue
+		}
+
+		if absoluteParent.Allowed != nil && isClosingAllowed {
+			absoluteParent.Allowed = nil
+			decorators["allowed"] = tempMap["values"]
+			tempMap = map[string]interface{}{}
 		}
 	}
 
@@ -464,12 +474,12 @@ func parseInlineArray(line string) map[string]interface{} {
 }
 
 // parse Decorator syntax from bicep file
-func parseDecorator(decorators map[string]interface{}, line string) (bool, bool) {
+func parseDecorator(decorators map[string]interface{}, line string) (bool, bool, bool) {
 	singleDecoratorRegex := regexp.MustCompile(`@(?:sys\.)?([^()]+)\('?([^')]*)'?\)`)
-	// metadataDecoratorRegex := regexp.MustCompile(`^param\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
+	metadataDecoratorRegex := regexp.MustCompile(`@(?:sys\.)?[description]([^()]+)\('?([^')]*)'?\)`)
 	allowedDecoratorRegex := regexp.MustCompile(`@(?:sys\.)?allowed:?\(\[`)
 	matchesSingle := singleDecoratorRegex.FindStringSubmatch(line)
-	// matchesMetadata := metadataDecoratorRegex.FindStringSubmatch(line)
+	matchesMetadata := metadataDecoratorRegex.FindStringSubmatch(line)
 	matchesAllowed := allowedDecoratorRegex.FindStringSubmatch(line)
 
 	// match single line decorators
@@ -479,49 +489,45 @@ func parseDecorator(decorators map[string]interface{}, line string) (bool, bool)
 
 		switch name {
 		case "secure":
-			return true, false
+			return false, true, false
 		case "description":
 			var description = make(map[string]interface{})
 			description[name] = value
 			decorators["metadata"] = map[string]interface{}{name: value}
-			return false, false
+			return true, false, false
 		case "maxLength":
 			decorators[name] = value
-			return false, false
+			return true, false, false
 		case "minLength":
 			decorators[name] = value
-			return false, false
+			return true, false, false
 		case "maxValue":
 			decorators[name] = value
-			return false, false
+			return true, false, false
 		case "minValue":
 			decorators[name] = value
-			return false, false
+			return true, false, false
 		}
 	}
 
 	// match metadata decorators
-	// if matchesMetadata != nil {
+	if matchesMetadata != nil {
+		tempMetadata := map[string]string{}
+		tempMetadata["description"] = matchesMetadata[2]
 
-	// 	return &converter.Decorator{
-	// 		Allowed:   []string{},
-	// 		MaxLength: "",
-	// 		MinLength: "",
-	// 		MaxValue:  "",
-	// 		MinValue:  "",
-	// 		Metadata:  nil,
-	// 	}, false
-	// }
+		decorators["metadata"] = tempMetadata
+		return true, false, false
+	}
 
 	// match allowed decorators
 	if matchesAllowed != nil {
 		tempAllowed := []string{}
 
 		decorators["allowed"] = tempAllowed
-		return false, true
+		return false, false, true
 	}
 
-	return false, false
+	return false, false, false
 }
 
 // parse Resource syntax from bicep file

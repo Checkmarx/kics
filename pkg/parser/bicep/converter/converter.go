@@ -38,12 +38,12 @@ type ElemBicep struct {
 }
 
 type Decorator struct {
-	Allowed   []string    `json:"allowedValues,omitempty"`
-	MaxLength string      `json:"maxLength,omitempty"`
-	MinLength string      `json:"minLength,omitempty"`
-	MaxValue  string      `json:"maxValue,omitempty"`
-	MinValue  string      `json:"minValue,omitempty"`
-	Metadata  []*Property `json:"metadata,omitempty"`
+	Allowed   map[string]interface{} `json:"allowedValues,omitempty"`
+	MaxLength string                 `json:"maxLength,omitempty"`
+	MinLength string                 `json:"minLength,omitempty"`
+	MaxValue  string                 `json:"maxValue,omitempty"`
+	MinValue  string                 `json:"minValue,omitempty"`
+	Metadata  []*Property            `json:"metadata,omitempty"`
 }
 
 type Metadata struct {
@@ -100,7 +100,7 @@ type Property struct {
 }
 
 type AbsoluteParent struct {
-	Allowed  []string
+	Allowed  map[string]interface{}
 	Resource *Resource
 	Module   *Module
 	Variable *Variable
@@ -130,10 +130,19 @@ func newJSONBicep() *JSONBicep {
 func (res *Resource) MarshalJSON() ([]byte, error) {
 	resourceMap := res.Prop
 	resourceMap["apiVersion"] = res.APIVersion
-	resourceMap["type"] = res.Type
+
 	if res.Metadata != nil {
 		resourceMap["metadata"] = res.Metadata
 	}
+
+	resourceMap["type"] = res.Type
+	if res.Decorators["secure"] != nil {
+		isSecure := res.Decorators["secure"].(bool)
+		if isSecure {
+			resourceMap["type"] = "secure" + res.Type
+		}
+	}
+	res.Decorators["secure"] = nil
 
 	return json.Marshal(resourceMap)
 }
@@ -146,6 +155,13 @@ func (jsonBicep *JSONBicep) MarshalJSON() ([]byte, error) {
 	for _, output := range jsonBicep.Outputs {
 		tempOutput := map[string]interface{}{}
 		tempOutput["type"] = output.Type
+		if output.Decorators["secure"] != nil {
+			isSecure := output.Decorators["secure"].(bool)
+			if isSecure {
+				tempOutput["type"] = "secure" + output.Type
+			}
+		}
+		output.Decorators["secure"] = nil
 		tempOutput["metadata"] = output.Metadata
 		tempOutput["value"] = output.Value
 
@@ -155,14 +171,19 @@ func (jsonBicep *JSONBicep) MarshalJSON() ([]byte, error) {
 			}
 		}
 
-		tempOutput["type"] = output.Type
-
 		outputs[output.Name] = tempOutput
 	}
 
 	for _, param := range jsonBicep.Params {
 		tempParam := map[string]interface{}{}
 		tempParam["type"] = param.Type
+		if param.Decorators["secure"] != nil {
+			isSecure := param.Decorators["secure"].(bool)
+			if isSecure {
+				tempParam["type"] = "secure" + param.Type
+			}
+		}
+		param.Decorators["secure"] = nil
 		tempParam["defaultValue"] = param.DefaultValue
 		tempParam["metadata"] = param.Metadata
 
