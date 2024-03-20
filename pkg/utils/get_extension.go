@@ -6,7 +6,12 @@ import (
 	"path/filepath"
 
 	"github.com/rs/zerolog/log"
+	"golang.org/x/exp/slices"
 	"golang.org/x/tools/godoc/util"
+)
+
+const (
+	FinalASCII = 165
 )
 
 // GetExtension gets the extension of a file path
@@ -42,6 +47,14 @@ func isTextFile(path string) bool {
 	content, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
 		log.Error().Msgf("failed to analyze file: %s", err)
+		return false
+	}
+
+	invalidChars := slices.ContainsFunc[byte](content, func(b byte) bool {
+		return b > FinalASCII // character after which it is not a regular file character
+	})
+
+	if len(content) == 0 || invalidChars {
 		return false
 	}
 
