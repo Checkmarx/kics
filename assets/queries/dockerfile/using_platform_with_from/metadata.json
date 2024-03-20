@@ -3,7 +3,7 @@
   "queryName": "Using Platform Flag with FROM Command",
   "severity": "INFO",
   "category": "Best Practices",
-  "descriptionText": "Dockerfile must have to use '--platform' flag with FROM, with multi-stage build",
+  "descriptionText": "Dockerfile must use '--platform' flag with FROM, with multi-stage build",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#from",
   "platform": "Dockerfile",
   "descriptionID": "5bd0baab",
