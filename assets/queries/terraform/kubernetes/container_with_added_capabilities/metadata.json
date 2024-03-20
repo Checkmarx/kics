@@ -1,11 +1,12 @@
 {
-  "id": "fe771ff7-ba15-4f8f-ad7a-8aa232b49a28",
-  "queryName": "Containers With Added Capabilities",
-  "severity": "MEDIUM",
-  "category": "Insecure Configurations",
-  "descriptionText": "Containers should not have extra capabilities allowed",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#capabilities-1",
-  "platform": "Terraform",
-  "descriptionID": "4422c052",
-  "cwe": ""
+    "id": "fe771ff7-ba15-4f8f-ad7a-8aa232b49a28",
+    "queryName": "Containers With Added Capabilities",
+    "severity": "MEDIUM",
+    "category": "Insecure Configurations",
+    "descriptionText": "Containers should not have extra capabilities allowed",
+    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#capabilities-1",
+    "platform": "Terraform",
+    "descriptionID": "4422c052",
+    "cwe": "",
+    "cloudProvider": "common"
 }
