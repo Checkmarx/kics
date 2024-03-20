@@ -35,5 +35,7 @@ const (
 	SecretsRegexesPathFlag  = "secrets-regexes-path" //nolint:gosec
 	ExcludeGitIgnore        = "exclude-gitignore"
 	OpenAPIReferencesFlag   = "enable-openapi-refs"
+	ParallelScanFile        = "parallel"
 	MaxFileSizeFlag         = "max-file-size"
+	UseNewSeveritiesFlag    = "new-severities"
 )

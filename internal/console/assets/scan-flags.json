@@ -68,8 +68,8 @@
   "fail-on": {
     "flagType": "multiStr",
     "shorthandFlag": "",
-    "defaultValue": "high,medium,low,info",
-    "usage": "which kind of results should return an exit code different from 0\naccepts: high, medium, low and info\nexample: \"high,low\"",
+    "defaultValue": "critical,high,medium,low,info",
+    "usage": "which kind of results should return an exit code different from 0\naccepts: critical, high, medium, low and info\nexample: \"high,low\"",
     "validation": "validateMultiStrEnum"
   },
   "ignore-on-exit": {
@@ -119,7 +119,8 @@
     "flagType": "str",
     "shorthandFlag": "o",
     "defaultValue": "",
-    "usage": "directory path to store reports"
+    "usage": "directory path to store reports",
+    "validation": "validatePath"
   },
   "path": {
     "flagType": "multiStr",
@@ -208,10 +209,23 @@
     "defaultValue": "false",
     "usage": "resolve the file reference, on OpenAPI files"
   },
+  "parallel": {
+    "flagType": "int",
+    "shorthandFlag": "",
+    "defaultValue": "1",
+    "usage": "number of workers per platform enabled for parallel scanning, set 0 to auto-detect parallelism",
+    "validation": "validateWorkersFlag"
+  },
   "max-file-size": {
     "flagType": "int",
     "shorthandFlag": "",
     "defaultValue": "5",
     "usage": "max file size permitted for scanning, in MB"
+  },
+  "new-severities": {
+  "flagType": "bool",
+  "shorthandFlag": "",
+  "defaultValue": "false",
+  "usage": "use new severities in query results"
   }
 }
