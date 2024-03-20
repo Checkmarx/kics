@@ -319,6 +319,21 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	return elems, nil
 }
 
+func convertToInitialType(val string) interface{} {
+	boolVal, err := strconv.ParseBool(val)
+	if err == nil {
+		return boolVal
+	}
+
+	intVal, err := strconv.Atoi(val)
+	if err == nil {
+		return intVal
+	}
+
+	return val
+
+}
+
 func popParentsStack(parentsStack []converter.SuperProp) ([]converter.SuperProp, map[string]interface{}) {
 	currentPropertyIndex := len(parentsStack) - 1
 	currentProperty := parentsStack[currentPropertyIndex]
@@ -590,8 +605,9 @@ func parseProp(line string) map[string]interface{} {
 	if matches != nil {
 		key := strings.TrimSpace(matches[1])
 		value := strings.TrimSpace(matches[2])
+		convertedValue := convertToInitialType(value)
 		var description = make(map[string]interface{})
-		description[key] = value
+		description[key] = convertedValue
 		return description
 	}
 

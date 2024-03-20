@@ -14,17 +14,16 @@ linesToIgnore    []int                       `json:"-"`
 linesNotToIgnore []int                       `json:"-"`
 */
 type JSONBicep struct {
-	Scope          string                      `json:"targetScope,omitempty"`
-	Func           map[string]interface{}      `json:"func,omitempty"`
-	Type           map[string]Type             `json:"definitions,omitempty"`
-	Params         map[string]Param            `json:"-"`
-	Variables      []Variable                  `json:"variables,omitempty"`
-	Resources      []Resource                  `json:"resources,omitempty"`
-	Outputs        []Output                    `json:"-"`
-	Modules        []Module                    `json:"modules,omitempty"`
-	Metadata       map[string]string           `json:"metadata,omitempty"`
-	Lines          map[string]model.LineObject `json:"_kics_lines"`
-	ContentVersion string                      `json:"contentVersion"`
+	Scope     string                      `json:"targetScope,omitempty"`
+	Func      map[string]interface{}      `json:"func,omitempty"`
+	Type      map[string]Type             `json:"definitions,omitempty"`
+	Params    map[string]Param            `json:"-"`
+	Variables []Variable                  `json:"variables,omitempty"`
+	Resources []Resource                  `json:"resources,omitempty"`
+	Outputs   []Output                    `json:"-"`
+	Modules   []Module                    `json:"modules,omitempty"`
+	Metadata  map[string]string           `json:"metadata,omitempty"`
+	Lines     map[string]model.LineObject `json:"_kics_lines"`
 }
 
 type ElemBicep struct {
@@ -132,7 +131,9 @@ func (res *Resource) MarshalJSON() ([]byte, error) {
 	resourceMap := res.Prop
 	resourceMap["apiVersion"] = res.APIVersion
 	resourceMap["type"] = res.Type
-	resourceMap["metadata"] = res.Metadata
+	if res.Metadata != nil {
+		resourceMap["metadata"] = res.Metadata
+	}
 
 	return json.Marshal(resourceMap)
 }
