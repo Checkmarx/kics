@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
@@ -42,15 +43,13 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
 // parse the bicep file returning a list of elemBicep struct and an error
 func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	reader := bytes.NewReader(bicepContent)
-	elems := []converter.ElemBicep{}
 	scanner := bufio.NewScanner(reader)
+
+	var absoluteParent converter.AbsoluteParent
+	elems := []converter.ElemBicep{}
 	parentsStack := []converter.SuperProp{}
 	decorators := map[string]interface{}{}
 	tempMap := map[string]interface{}{}
-	tempProp := map[string]interface{}{}
-	var arrayArray []interface{}
-	arrayArray = nil
-	var absoluteParent converter.AbsoluteParent
 
 	for scanner.Scan() {
 		elem := converter.ElemBicep{}
@@ -59,6 +58,8 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		if line == "" {
 			continue
 		}
+
+		fmt.Println(line)
 
 		targetScope := parseTargetScope(line)
 		if targetScope != "" {
@@ -160,56 +161,62 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		isClosingArrayRegex := regexp.MustCompile(`\]`)
 		isClosingArray := len(isClosingArrayRegex.FindStringSubmatch(line)) > 0
 
-		if isParentClosing && arrayArray != nil {
-			arrayArray = append(arrayArray, tempProp)
-			tempProp = map[string]interface{}{}
-			continue
+		if len(parentsStack) > 1 {
+			parent := parentsStack[len(parentsStack)-2]
+			added := false
+			for index, array := range parent {
+				if isParentClosing && array != nil && is_slice(array) {
+					var newProp map[string]interface{}
+					parentsStack, newProp = popParentsStack(parentsStack)
+					for _, val := range newProp {
+						array = append(array.([]interface{}), val)
+						parentsStack[len(parentsStack)-1][index] = array
+					}
+					added = true
+				}
+			}
+			if added {
+				continue
+			}
 		}
 
 		prop := parseProp(line)
 
-		if arrayArray != nil && !isClosingArray && !isNewParent && !isParentClosing && prop == nil {
-			arrayElementRegex := regexp.MustCompile(`^ *'?([^']*)`)
-			arrayElement := arrayElementRegex.FindStringSubmatch(line)[1]
-			arrayArray = append(arrayArray, arrayElement)
-			continue
+		if len(parentsStack) > 0 {
+			currentParent := parentsStack[len(parentsStack)-1]
+			for k, v := range currentParent {
+				if is_slice(v) && !isClosingArray && !isNewParent && !isParentClosing && prop == nil {
+					arrayElementRegex := regexp.MustCompile(`^ *'?([^']*)`)
+					arrayElement := arrayElementRegex.FindStringSubmatch(line)[1]
+					temp := append(v.([]interface{}), arrayElement)
+					currentParent[k] = temp
+					continue
+				}
+			}
 		}
-
-		fmt.Println(line)
 
 		if isClosingArray {
 			if absoluteParent.Allowed != nil {
-				decorators["allowed"] = arrayArray
+				// decorators["allowed"] = arrayArray
 			} else {
-				currentPropertyIndex := len(parentsStack) - 1
-				currentProperty := parentsStack[currentPropertyIndex]
-				parentsStack = append(parentsStack[:currentPropertyIndex], parentsStack[currentPropertyIndex+1:]...)
-				if len(parentsStack) > 1 {
-					parent := parentsStack[len(parentsStack)-1]
-					var siblings converter.SuperProp
-					for k := range parent {
-						siblings = parent[k].(converter.SuperProp)
-					}
-					for k := range currentProperty {
-						siblings[k] = arrayArray
-					}
-					for k := range parent {
-						parent[k] = siblings
-					}
+				var currentProperty map[string]interface{}
+				parentsStack, currentProperty = popParentsStack(parentsStack)
+
+				if len(parentsStack) > 0 {
+					addPropToParent(parentsStack, currentProperty)
+
 				} else {
-					for k := range currentProperty {
-						tempMap[k] = arrayArray
+					for k, v := range currentProperty {
+						tempMap[k] = v
 					}
 				}
 			}
 
-			arrayArray = nil
 			continue
 		}
 
 		if isOpeningArray {
 			//inicializar array e adicionar ao parentstack no caso de line estar a abrir array
-			arrayArray = []interface{}{}
 			newProp := converter.SuperProp{}
 
 			for k := range prop {
@@ -232,11 +239,17 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			} else {
 				if len(parentsStack) > 0 {
 					//adicionar prop ao parent se o parentstack não estiver vazio
-					if arrayArray == nil {
-						addPropToParent(parentsStack, prop)
-					} else {
-						for k, v := range prop {
-							tempProp[k] = v
+					parent := parentsStack[len(parentsStack)-1]
+					for name, val := range parent {
+						if is_slice(val) {
+							tempArr := append(val.([]interface{}), prop)
+							parentsStack[len(parentsStack)-1] = map[string]interface{}{name: tempArr}
+						} else {
+							jigajoga := converter.SuperProp{}
+							for k, v := range prop {
+								jigajoga[k] = v
+							}
+							addPropToParent(parentsStack, jigajoga)
 						}
 					}
 				} else {
@@ -249,13 +262,21 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
+		if isNewParent {
+			parent := parentsStack[len(parentsStack)-1]
+			var propID string
+			for _, arr := range parent {
+				propID = strconv.Itoa(len(arr.([]interface{})))
+			}
+
+			newParent := map[string]interface{}{propID: converter.SuperProp{}}
+			parentsStack = append(parentsStack, newParent)
+		}
+
 		if isParentClosing && len(parentsStack) > 1 {
-			currentPropertyIndex := len(parentsStack) - 1
-			currentProperty := parentsStack[currentPropertyIndex]
-			parentsStack = append(parentsStack[:currentPropertyIndex], parentsStack[currentPropertyIndex+1:]...)
-
+			var currentProperty map[string]interface{}
+			parentsStack, currentProperty = popParentsStack(parentsStack)
 			addPropToParent(parentsStack, currentProperty)
-
 			continue
 		}
 
@@ -296,6 +317,14 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	}
 
 	return elems, nil
+}
+
+func popParentsStack(parentsStack []converter.SuperProp) ([]converter.SuperProp, map[string]interface{}) {
+	currentPropertyIndex := len(parentsStack) - 1
+	currentProperty := parentsStack[currentPropertyIndex]
+	parentsStack = append(parentsStack[:currentPropertyIndex], parentsStack[currentPropertyIndex+1:]...)
+
+	return parentsStack, currentProperty
 }
 
 func addPropToParent(parentsStack []converter.SuperProp, prop map[string]interface{}) {
