@@ -1909,7 +1909,7 @@
 <li>Archived Files</li>
 <li>S3</li>
 <li>Git</li>
-<li>GSC</li>
+<li>GCS</li>
 </ul>
 <p>Files and directories that are not local will be placed in a temporarily folder during KICS execution.</p>
 <h3 id="local_files">Local Files<a class="headerlink" href="#local_files" title="Permanent link">&para;</a></h3>
@@ -1974,10 +1974,10 @@
 </code></pre></div>
 <p>Please make sure you have SSH private key configured with your github account</p>
 <p>More information can be seen <a href="https://github.com/hashicorp/go-getter#git-git">here</a></p>
-<h3 id="gsc">GSC<a class="headerlink" href="#gsc" title="Permanent link">&para;</a></h3>
+<h3 id="gcs">GCS<a class="headerlink" href="#gcs" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker run -t checkmarx/kics scan -p &quot;gcs::https://www.googleapis.com/storage/v1/bucket&quot;
 </code></pre></div>
-<p>Please make sure you have set GSC authentication credentials to your application code by environment variables</p>
+<p>Please make sure you have set authentication credentials to your application code by environment variables</p>
 <p>More information can be seen <a href="https://github.com/hashicorp/go-getter#gcs-gcs">here</a></p>
 <h2 id="using_custom_input_data">Using custom input data<a class="headerlink" href="#using_custom_input_data" title="Permanent link">&para;</a></h2>
 <p>Since from v1.3.5, KICS supports using custom input data to replace data on queries that have this feature supported. To see if a query supports overwriting, check if the query's folder contains a <code>data.json</code> file, this file will contain all keys that can be overwritten.
