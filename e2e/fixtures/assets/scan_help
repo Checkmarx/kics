@@ -46,7 +46,7 @@ Flags:
       --max-file-size int             max file size permitted for scanning, in MB (default 5)
       --minimal-ui                    simplified version of CLI output
       --no-progress                   hides the progress bar
-      --old-severities                use old severities in query results (excludes critical severity)
+      --old-severities                uses old severities in query results
       --output-name string            name used on report creations (default "results")
   -o, --output-path string            directory path to store reports
       --parallel int                  number of workers per platform enabled for parallel scanning (default set to 0 to auto-detect optimal number of workers)
