@@ -418,21 +418,8 @@ func parseTargetScope(line string) string {
 }
 
 // parse Variable syntax from bicep file
-/*
-	start := strings.Index(value, "${")
-	end := strings.Index(value, "}")
-	if start != -1 && end != -1 && start < end {
-		// extract the middle part of the string, relative to the param on variable
-		middlePart := value[start+2 : end]
-		// remove middle part from value
-		value = strings.Replace(value, "${"+middlePart+"}", "", 1)
-		// concatenate the values from the parameter with the last part of the string, removing the middle part effectively
-		value = fmt.Sprintf("parameters('%s'),%s", paramName, value)
-	}
-*/
 func parseVariable(line string, elems []converter.ElemBicep) (*converter.Variable, bool) {
 	singleLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +'?(?:([^']*)|(?:\${([^}]*)}))'?`)
-	//singleLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +'?(.*?)'?(\${[^}]+})?'?$`)
 	multiLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +{`)
 	// forLineVarRegex := regexp.MustCompile(`for`)
 	matchesSingle := singleLineVarRegex.FindStringSubmatch(line)
