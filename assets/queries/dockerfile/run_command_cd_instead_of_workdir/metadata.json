@@ -1,12 +1,11 @@
 {
   "id": "f4a6bcd3-e231-4acf-993c-aa027be50d2e",
   "queryName": "RUN Instruction Using 'cd' Instead of WORKDIR",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Build Process",
   "descriptionText": "When using RUN command 'cd' should only be used for full path. For relative path make use of WORKDIR command instead.",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/instructions/#workdir",
   "platform": "Dockerfile",
   "descriptionID": "edd9f7d3",
-  "cwe": "710",
-  "oldSeverity": "MEDIUM"
+  "cwe": "710"
 }

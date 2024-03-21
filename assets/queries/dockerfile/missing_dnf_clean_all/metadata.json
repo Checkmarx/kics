@@ -1,12 +1,11 @@
 {
   "id": "295acb63-9246-4b21-b441-7c1f1fb62dc0",
   "queryName": "Missing Dnf Clean All",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Supply-Chain",
   "descriptionText": "Cached package data should be cleaned after installation to reduce image size",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
   "platform": "Dockerfile",
   "descriptionID": "8f8497d7",
-  "cwe": "459",
-  "oldSeverity": "MEDIUM"
+  "cwe": "459"
 }

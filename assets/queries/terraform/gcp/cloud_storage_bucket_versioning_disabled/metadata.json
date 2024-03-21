@@ -1,13 +1,12 @@
 {
   "id": "e7e961ac-d17e-4413-84bc-8a1fbe242944",
   "queryName": "Cloud Storage Bucket Versioning Disabled",
-  "severity": "LOW",
+  "severity": "HIGH",
   "category": "Observability",
   "descriptionText": "Cloud Storage Bucket should have versioning enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#enabled",
   "platform": "Terraform",
   "descriptionID": "9fda4554",
   "cloudProvider": "gcp",
-  "cwe": "",
-  "oldSeverity": "HIGH"
+  "cwe": ""
 }
