@@ -200,7 +200,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			}
 		}
 
-		prop := parseProp(line)
+		prop := parseProp(line, elems)
 
 		if len(parentsStack) > 0 {
 			currentParent := parentsStack[len(parentsStack)-1]
@@ -340,7 +340,26 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	return elems, nil
 }
 
-func convertToInitialType(val string) interface{} {
+func isParamOrVariable(val string, elems []converter.ElemBicep) string {
+	paramValueRegex := regexp.MustCompile(`([^(]*)\(([^\)]*)\)(.*)`)
+	paramValue := paramValueRegex.FindStringSubmatch(val)
+	if paramValue != nil {
+		return paramValue[1] + "(" + isParamOrVariable(paramValue[2], elems) + ")" + paramValue[3]
+	}
+
+	for _, param := range elems {
+		if param.Type == "param" {
+			if param.Param.Name == val {
+				return fmt.Sprintf("parameters('%s')", val)
+			}
+		}
+	}
+
+	return strings.ReplaceAll(val, "'", "")
+
+}
+
+func convertToInitialType(val string, elems []converter.ElemBicep) interface{} {
 	boolVal, err := strconv.ParseBool(val)
 	if err == nil {
 		return boolVal
@@ -351,7 +370,7 @@ func convertToInitialType(val string) interface{} {
 		return intVal
 	}
 
-	return val
+	return isParamOrVariable(val, elems)
 
 }
 
@@ -377,16 +396,6 @@ func addPropToParent(parentsStack []converter.SuperProp, prop map[string]interfa
 	}
 }
 
-func getParams(elems []converter.ElemBicep) []converter.Param {
-	params := []converter.Param{}
-	for _, elem := range elems {
-		if elem.Type == "param" {
-			params = append(params, elem.Param)
-		}
-	}
-	return params
-}
-
 func is_slice(str interface{}) bool {
 	isSlice := false
 	if _, ok := str.([]interface{}); ok {
@@ -409,8 +418,21 @@ func parseTargetScope(line string) string {
 }
 
 // parse Variable syntax from bicep file
+/*
+	start := strings.Index(value, "${")
+	end := strings.Index(value, "}")
+	if start != -1 && end != -1 && start < end {
+		// extract the middle part of the string, relative to the param on variable
+		middlePart := value[start+2 : end]
+		// remove middle part from value
+		value = strings.Replace(value, "${"+middlePart+"}", "", 1)
+		// concatenate the values from the parameter with the last part of the string, removing the middle part effectively
+		value = fmt.Sprintf("parameters('%s'),%s", paramName, value)
+	}
+*/
 func parseVariable(line string, elems []converter.ElemBicep) (*converter.Variable, bool) {
-	singleLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +'?([^' [{][^']*)'?`)
+	singleLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +'?(?:([^']*)|(?:\${([^}]*)}))'?`)
+	//singleLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +'?(.*?)'?(\${[^}]+})?'?$`)
 	multiLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +{`)
 	// forLineVarRegex := regexp.MustCompile(`for`)
 	matchesSingle := singleLineVarRegex.FindStringSubmatch(line)
@@ -420,20 +442,39 @@ func parseVariable(line string, elems []converter.ElemBicep) (*converter.Variabl
 	if matchesSingle != nil {
 		name := matchesSingle[1]
 		value := matchesSingle[2]
-		hasParam, paramName := checkVariableParams(value, getParams(elems))
-		if hasParam {
-			start := strings.Index(value, "${")
-			end := strings.Index(value, "}")
-			if start != -1 && end != -1 && start < end {
-				// extract the middle part of the string, relative to the param on variable
-				middlePart := value[start+2 : end]
-				// remove middle part from value
-				value = strings.Replace(value, "${"+middlePart+"}", "", 1)
-				// concatenate the values from the parameter with the last part of the string, removing the middle part effectively
-				value = fmt.Sprintf("parameters('%s'),%s", paramName, value)
+		checkParamRegex := regexp.MustCompile(`(\${[^}]*}|-[^-]*-)`)
+		matchesCheckParam := checkParamRegex.FindAllStringSubmatch(value, -1)
+		var resultVar string
+		depoisvesse := []string{}
+		var count int
+
+		for _, varElem := range matchesCheckParam {
+			for index, elem := range varElem {
+				if index%2 != 0 {
+					if strings.Contains(elem, "${") {
+						newVal := strings.Replace(elem, "${", "", 1)
+						newVal = strings.Replace(newVal, "}", "", 1)
+						newVal = isParamOrVariable(newVal, elems)
+						resultVar = resultVar + ", " + newVal
+						depoisvesse = append(depoisvesse, "{"+strconv.Itoa(count)+"}")
+						count++
+					} else {
+						depoisvesse = append(depoisvesse, elem)
+					}
+				}
 			}
 		}
-		return &converter.Variable{Name: name, Value: value}, true
+		resultVar = resultVar + ")]"
+
+		coisos2 := "[format('"
+		for _, coisos := range depoisvesse {
+			coisos2 = coisos2 + coisos
+		}
+		coisos2 = coisos2 + "'"
+
+		resultVar = coisos2 + resultVar
+
+		return &converter.Variable{Name: name, Value: resultVar}, true
 	}
 
 	if matchesMulti != nil {
@@ -442,15 +483,6 @@ func parseVariable(line string, elems []converter.ElemBicep) (*converter.Variabl
 	}
 
 	return nil, false
-}
-
-func checkVariableParams(value string, params []converter.Param) (bool, string) {
-	for _, param := range params {
-		if strings.Contains(value, param.Name) {
-			return true, param.Name
-		}
-	}
-	return false, ""
 }
 
 // parse Metadata syntax from bicep file
@@ -610,7 +642,7 @@ func parseOutput(decorators map[string]interface{}, line string) *converter.Outp
 	return nil
 }
 
-func parseProp(line string) map[string]interface{} {
+func parseProp(line string, elems []converter.ElemBicep) map[string]interface{} {
 	// Parse key-value pairs
 
 	// parts := strings.SplitN(line, ":", 2)
@@ -622,7 +654,7 @@ func parseProp(line string) map[string]interface{} {
 	if matches != nil {
 		key := strings.TrimSpace(matches[1])
 		value := strings.TrimSpace(matches[2])
-		convertedValue := convertToInitialType(value)
+		convertedValue := convertToInitialType(value, elems)
 		var description = make(map[string]interface{})
 		description[key] = convertedValue
 		return description
