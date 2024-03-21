@@ -226,6 +226,6 @@
   "flagType": "bool",
   "shorthandFlag": "",
   "defaultValue": "false",
-  "usage": "use old severities in query results (excludes critical severity)"
+  "usage": "uses old severities in query results"
   }
 }
