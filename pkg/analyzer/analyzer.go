@@ -303,6 +303,10 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 				return err
 			}
 
+			if info.IsDir() { //Skip directories checking
+				return nil
+			}
+
 			ext := utils.GetExtension(path)
 
 			trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
