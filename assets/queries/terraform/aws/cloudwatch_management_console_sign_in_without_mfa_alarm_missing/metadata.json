@@ -1,12 +1,13 @@
 {
   "id": "44ceb4fa-0897-4fd2-b676-30e7a58f2933",
   "queryName": "CloudWatch Console Sign-in Without MFA Alarm Missing",
-  "severity": "HIGH",
+  "severity": "LOW",
   "category": "Observability",
   "descriptionText": "Ensure a log metric filter and alarm exist for management console sign-in without MFA",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern",
   "platform": "Terraform",
   "descriptionID": "901439fb",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

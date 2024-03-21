@@ -1,12 +1,13 @@
 {
   "id": "73fb21a1-b19a-45b1-b648-b47b1678681e",
   "queryName": "Legacy Client Certificate Auth Enabled",
-  "severity": "HIGH",
+  "severity": "LOW",
   "category": "Insecure Configurations",
   "descriptionText": "Kubernetes Clusters must use the default OAuth authentication, which means 'master_auth' must either be undefined or have 'client_certificate_config' with the attribute 'issue_client_certificate' equal to false",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster",
   "platform": "Terraform",
   "descriptionID": "94728b0c",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

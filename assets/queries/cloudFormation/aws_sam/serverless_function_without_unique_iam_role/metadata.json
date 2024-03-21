@@ -1,12 +1,13 @@
 {
   "id": "4ba74f01-aba5-4be2-83bc-be79ff1a3b92",
   "queryName": "Serverless Function Without Unique IAM Role",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "AWS Serverless Function should not share IAM Role to ensure it will have the minimum privileges needed to perform the required tasks",
   "descriptionUrl": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-role",
   "platform": "CloudFormation",
   "descriptionID": "50e760ce",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

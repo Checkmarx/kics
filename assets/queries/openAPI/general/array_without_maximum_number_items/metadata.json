@@ -1,7 +1,7 @@
 {
   "id": "6998389e-66b2-473d-8d05-c8d71ac4d04d",
   "queryName": "Array Without Maximum Number of Items (v3)",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Array schema should have the field 'maxItems' set",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
@@ -16,5 +16,6 @@
       "descriptionText": "Array schema/parameter should have the field 'maxItems' set"
     }
   },
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }
