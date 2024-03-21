@@ -1,11 +1,12 @@
 {
   "id": "b16e8501-ef3c-44e1-a543-a093238099c9",
   "queryName": "Using Platform Flag with FROM Command",
-  "severity": "INFO",
+  "severity": "LOW",
   "category": "Best Practices",
   "descriptionText": "Dockerfile must use '--platform' flag with FROM, with multi-stage build",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#from",
   "platform": "Dockerfile",
   "descriptionID": "5bd0baab",
-  "cwe": "695"
+  "cwe": "695",
+  "oldSeverity": "INFO"
 }

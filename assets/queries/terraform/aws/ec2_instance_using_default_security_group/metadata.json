@@ -1,12 +1,13 @@
 {
   "id": "f1adc521-f79a-4d71-b55b-a68294687432",
   "queryName": "EC2 Instance Using Default Security Group",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "EC2 instances should not use default security group(s)",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#security_groups",
   "platform": "Terraform",
   "descriptionID": "d263cf13",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

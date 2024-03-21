@@ -1,12 +1,13 @@
 {
   "id": "9564406d-e761-4e61-b8d7-5926e3ab8e79",
   "queryName": "DB Security Group With Public Scope",
-  "severity": "HIGH",
+  "severity": "CRITICAL",
   "category": "Networking and Firewall",
   "descriptionText": "The IP address in a DB Security Group should not be '0.0.0.0/0' (IPv4) or '::/0' (IPv6). If so, any IP can access it",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
   "platform": "CloudFormation",
   "descriptionID": "3ddca0cc",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }
