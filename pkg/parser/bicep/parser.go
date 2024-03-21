@@ -61,6 +61,21 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 
 		fmt.Println(line)
 
+		isNewParentRegex := regexp.MustCompile(`\{`)
+		isNewParent := len(isNewParentRegex.FindStringSubmatch(line)) > 0
+
+		isParentClosingRegex := regexp.MustCompile(`\}`)
+		isParentClosing := len(isParentClosingRegex.FindStringSubmatch(line)) > 0
+
+		isOpeningArrayRegex := regexp.MustCompile(`\[`)
+		isOpeningArray := len(isOpeningArrayRegex.FindStringSubmatch(line)) > 0
+
+		isClosingArrayRegex := regexp.MustCompile(`\]`)
+		isClosingArray := len(isClosingArrayRegex.FindStringSubmatch(line)) > 0
+
+		isClosingAllowedRegex := regexp.MustCompile(`\)`)
+		isClosingAllowed := len(isClosingAllowedRegex.FindStringSubmatch(line)) > 0
+
 		targetScope := parseTargetScope(line)
 		if targetScope != "" {
 			elem.TargetScope = targetScope
@@ -86,12 +101,23 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		} else if isAllowed {
 			allowed := map[string]interface{}{}
-			values := map[string]interface{}{"values": []interface{}{}}
+			var values map[string]interface{}
+
+			if isClosingArray {
+				vals := strings.Replace(line, "@allowed(", "", 1)
+				vals = strings.Replace(vals, "[", "", 1)
+				vals = strings.Replace(vals, "]", "", 1)
+				decorators["allowed"] = strings.Split(vals, ",")
+				continue
+			}
+
+			values = map[string]interface{}{"values": []interface{}{}}
 			parentsStack = append(parentsStack, values)
 			absoluteParent.Allowed = allowed
 			absoluteParent.Variable = nil
 			absoluteParent.Module = nil
 			absoluteParent.Resource = nil
+
 			continue
 		}
 
@@ -154,21 +180,6 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			}
 			continue
 		}
-
-		isNewParentRegex := regexp.MustCompile(`\{`)
-		isNewParent := len(isNewParentRegex.FindStringSubmatch(line)) > 0
-
-		isParentClosingRegex := regexp.MustCompile(`\}`)
-		isParentClosing := len(isParentClosingRegex.FindStringSubmatch(line)) > 0
-
-		isOpeningArrayRegex := regexp.MustCompile(`\[`)
-		isOpeningArray := len(isOpeningArrayRegex.FindStringSubmatch(line)) > 0
-
-		isClosingArrayRegex := regexp.MustCompile(`\]`)
-		isClosingArray := len(isClosingArrayRegex.FindStringSubmatch(line)) > 0
-
-		isClosingAllowedRegex := regexp.MustCompile(`\)`)
-		isClosingAllowed := len(isClosingAllowedRegex.FindStringSubmatch(line)) > 0
 
 		if len(parentsStack) > 1 {
 			parent := parentsStack[len(parentsStack)-2]
