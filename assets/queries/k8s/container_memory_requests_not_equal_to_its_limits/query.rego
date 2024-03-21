@@ -4,14 +4,15 @@ import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
 
 types := {"initContainers", "containers"}
+rec := {"requests", "limits"}
 
 CxPolicy[result] {
 	document := input.document[i]
 	document.kind == k8sLib.valid_pod_spec_kind_list[_]
 	specInfo := k8sLib.getSpecInfo(document)
 	container := specInfo.spec[types[x]][c]
-	rec := {"requests", "limits"}
 
+    has_request_or_limits(container)
 	not common_lib.valid_key(container.resources[rec[t]], "memory")
 
 	result := {
@@ -47,4 +48,10 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("spec.%s[%s].resources.requests.memory is not equal to spec.%s[%s].resources.limits.memory", [types[x], container.name, types[x], container.name]),
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], c, "resources"])
 	}
+}
+
+has_request_or_limits(x){
+	common_lib.valid_key(x.resources[rec["requests"]],"memory")
+}else{
+	common_lib.valid_key(x.resources[rec["limits"]],"memory")
 }
