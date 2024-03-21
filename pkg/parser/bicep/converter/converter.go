@@ -60,9 +60,10 @@ type Param struct {
 }
 
 type Variable struct {
-	Name  string                 `json:"-"`
-	Value string                 `json:"value,omitempty"`
-	Prop  map[string]interface{} `json:"prop"`
+	Name    string                 `json:"-"`
+	IsArray bool                   `json:"-"`
+	Value   string                 `json:"value,omitempty"`
+	Prop    map[string]interface{} `json:"prop"`
 }
 
 type Resource struct {

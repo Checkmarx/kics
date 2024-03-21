@@ -121,7 +121,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
-		variable, isSingle := parseVariable(line, elems)
+		variable, isSingle, isArray := parseVariable(line, elems)
 		if variable != nil {
 			if isSingle {
 				elem.Variable = *variable
@@ -130,6 +130,10 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			} else {
 				decorators = map[string]interface{}{}
 				tempMap = map[string]interface{}{}
+				if isArray {
+					varProp := map[string]interface{}{"values": []interface{}{}}
+					parentsStack = append(parentsStack, varProp)
+				}
 				absoluteParent.Variable = variable
 				absoluteParent.Allowed = nil
 				absoluteParent.Module = nil
@@ -216,6 +220,20 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		}
 
 		if isClosingArray {
+
+			if len(parentsStack) == 1 && absoluteParent.Variable != nil && absoluteParent.Variable.IsArray {
+				var varProp map[string]interface{}
+				parentsStack, varProp = popParentsStack(parentsStack)
+				absoluteParent.Variable.Prop = varProp
+				elem.Variable = *absoluteParent.Variable
+				elem.Type = "variable"
+				elems = append(elems, elem)
+				absoluteParent.Variable = nil
+				tempMap = map[string]interface{}{}
+
+				continue
+			}
+
 			var currentProperty map[string]interface{}
 			parentsStack, currentProperty = popParentsStack(parentsStack)
 
@@ -243,6 +261,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 
 		if prop != nil {
 			if isNewParent {
+				// if !isParentClosing {
 				newProp := converter.SuperProp{}
 
 				for k := range prop {
@@ -250,6 +269,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 				}
 
 				parentsStack = append(parentsStack, newProp)
+				// }
 			} else {
 				if len(parentsStack) > 0 {
 					//adicionar prop ao parent se o parentstack não estiver vazio
@@ -409,12 +429,14 @@ func parseTargetScope(line string) string {
 }
 
 // parse Variable syntax from bicep file
-func parseVariable(line string, elems []converter.ElemBicep) (*converter.Variable, bool) {
+func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *converter.Variable, isSingle bool, isArray bool) {
 	singleLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +'?([^' [{][^']*)'?`)
 	multiLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +{`)
+	arrayVarRegex := regexp.MustCompile(`var +([^ ]*) += +\[`)
 	// forLineVarRegex := regexp.MustCompile(`for`)
 	matchesSingle := singleLineVarRegex.FindStringSubmatch(line)
 	matchesMulti := multiLineVarRegex.FindStringSubmatch(line)
+	matchesArrayVar := arrayVarRegex.FindStringSubmatch(line)
 	// matchFor := forLineVarRegex.FindStringSubmatch(line)
 
 	if matchesSingle != nil {
@@ -433,15 +455,20 @@ func parseVariable(line string, elems []converter.ElemBicep) (*converter.Variabl
 				value = fmt.Sprintf("parameters('%s'),%s", paramName, value)
 			}
 		}
-		return &converter.Variable{Name: name, Value: value}, true
+		return &converter.Variable{Name: name, Value: value, IsArray: false}, true, false
 	}
 
 	if matchesMulti != nil {
 		name := matchesMulti[1]
-		return &converter.Variable{Name: name}, false
+		return &converter.Variable{Name: name, IsArray: false}, false, false
 	}
 
-	return nil, false
+	if matchesArrayVar != nil {
+		name := matchesArrayVar[1]
+		return &converter.Variable{Name: name, IsArray: true}, false, true
+	}
+
+	return nil, false, false
 }
 
 func checkVariableParams(value string, params []converter.Param) (bool, string) {
@@ -469,7 +496,8 @@ func parseMetadata(line string) *converter.Metadata {
 
 // parse Inline Array syntax from bicep file
 func parseInlineArray(line string) map[string]interface{} {
-	metadataRegex := regexp.MustCompile(` *([^ :']*): *\[ *(?:'?([^' ]*)'?) *]`)
+	// metadataRegex := regexp.MustCompile(` *([^ :']*): *\[ *(?:'?([^' ]*)'?) *]`)
+	metadataRegex := regexp.MustCompile(` *([^ :']*): *\[(.*?)\]`)
 	matches := metadataRegex.FindStringSubmatch(line)
 
 	if matches != nil {
