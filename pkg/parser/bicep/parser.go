@@ -448,6 +448,16 @@ func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *convert
 	matchesArrayVar := arrayVarRegex.FindStringSubmatch(line)
 	// matchFor := forLineVarRegex.FindStringSubmatch(line)
 
+	if matchesMulti != nil {
+		name := matchesMulti[1]
+		return &converter.Variable{Name: name, IsArray: false}, false, false
+	}
+
+	if matchesArrayVar != nil {
+		name := matchesArrayVar[1]
+		return &converter.Variable{Name: name, IsArray: true}, false, true
+	}
+
 	if matchesSingle != nil {
 		name := matchesSingle[1]
 		value := matchesSingle[2]
@@ -492,18 +502,9 @@ func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *convert
 				return &converter.Variable{Name: name, Value: value, IsArray: false}, false, false
 			}
 			// matchesCheckParam == nil, simple regex, isSimple is true
-			return &converter.Variable{Name: name, Value: value, IsArray: false}, true, false
+			newVal := isParamOrVariable(value, elems)
+			return &converter.Variable{Name: name, Value: newVal, IsArray: false}, true, false
 		}
-	}
-
-	if matchesMulti != nil {
-		name := matchesMulti[1]
-		return &converter.Variable{Name: name, IsArray: false}, false, false
-	}
-
-	if matchesArrayVar != nil {
-		name := matchesArrayVar[1]
-		return &converter.Variable{Name: name, IsArray: true}, false, true
 	}
 
 	return nil, false, false
