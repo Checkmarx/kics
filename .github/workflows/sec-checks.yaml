@@ -15,12 +15,7 @@ jobs:
       - name: Run Trivy vulnerability scanner in repo mode
         uses: aquasecurity/trivy-action@master
         with:
-          scan-type: 'fs'
-          ignore-unfixed: true
-          format: 'json'
-          output: './trivy-results.json'
-          severity: 'CRITICAL,HIGH,MEDIUM'
-          exit-code: '1'
+          trivy-config: trivy.yaml
 
       - name: Inspect action report
         if: always()
@@ -57,13 +52,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: kics:sec-trivy-tests-${{ github.sha }}
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          output: './trivy-image-results.json'
-          severity: 'CRITICAL,HIGH,MEDIUM'
-          ignore-policy: './trivy-ignore.rego'
+          trivy-config: trivy.yaml
       - name: Inspect action report
         if: always()
         shell: bash
