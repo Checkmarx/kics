@@ -198,7 +198,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			}
 		}
 
-		prop := parseProp(line, elems)
+		prop, isVar := parseProp(line, elems)
 
 		if len(parentsStack) > 0 {
 			currentParent := parentsStack[len(parentsStack)-1]
@@ -279,6 +279,9 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 						} else {
 							jigajoga := converter.SuperProp{}
 							for k, v := range prop {
+								if isVar {
+									v = "[" + v.(string) + "]"
+								}
 								jigajoga[k] = v
 							}
 							addPropToParent(parentsStack, jigajoga)
@@ -287,6 +290,9 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 				} else {
 					// adicionar o prop ao temparray se o parentstack estiver vazio
 					for k, v := range prop {
+						if isVar {
+							v = "[" + v.(string) + "]"
+						}
 						tempMap[k] = v
 					}
 				}
@@ -371,7 +377,7 @@ func isVariable(val string, elems []converter.ElemBicep) string {
 	for _, elem := range elems {
 		if elem.Type == "param" {
 			if elem.Param.Name == val {
-				return fmt.Sprintf("[parameters('%s')]", val)
+				return fmt.Sprintf("parameters('%s')", val)
 			}
 		}
 		if elem.Type == "variable" {
@@ -676,25 +682,26 @@ func parseOutput(decorators map[string]interface{}, line string, elems []convert
 	return nil
 }
 
-func parseProp(line string, elems []converter.ElemBicep) map[string]interface{} {
+func parseProp(line string, elems []converter.ElemBicep) (map[string]interface{}, bool) {
 	// Parse key-value pairs
 
 	// parts := strings.SplitN(line, ":", 2)
 	// if len(parts) == 2 {
-
+	isVar := false
 	propRegex := regexp.MustCompile(`([^: ]*) *: *(.*)`)
 	matches := propRegex.FindStringSubmatch(line)
 
 	if matches != nil {
 		key := strings.TrimSpace(matches[1])
 		value := strings.TrimSpace(matches[2])
-		convertedValue, _ := convertToInitialType(value, elems)
+		var convertedValue interface{}
+		convertedValue, isVar = convertToInitialType(value, elems)
 		var description = make(map[string]interface{})
 		description[key] = convertedValue
-		return description
+		return description, isVar
 	}
 
-	return nil
+	return nil, isVar
 }
 
 // GetKind returns the kind of the parser
