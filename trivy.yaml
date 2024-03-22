@@ -1,5 +1,16 @@
+# tightening the previous options:
+#
+# trivy fs  --format json --exit-code  1 --ignore-unfixed --vuln-type  os,library --severity  CRITICAL,HIGH,MEDIUM --output  ./trivy-results.json .
+#
+# to stop ignoting unfixed and broaden security scope to all severities:
+
+exit:
+  code: 1
+format: json
+output: /trivy-results.json
 report: all
 ignorefile: .trivyignore
+ignore-policy: './trivy-ignore.rego'
 severity:
   - UNKNOWN
   - LOW
