@@ -46,7 +46,6 @@
             "type": "string",
             "enum": [
                 "TRACE",
-                "CRITICAL",
                 "HIGH",
                 "MEDIUM",
                 "LOW",
