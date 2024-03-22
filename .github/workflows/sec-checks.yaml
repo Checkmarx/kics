@@ -15,6 +15,7 @@ jobs:
       - name: Run Trivy vulnerability scanner in repo mode
         uses: aquasecurity/trivy-action@master
         with:
+          scan-type: 'fs'
           trivy-config: trivy.yaml
 
       - name: Inspect action report
