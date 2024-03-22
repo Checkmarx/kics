@@ -1,0 +1,26 @@
+report: all
+ignorefile: .trivyignore
+severity:
+  - UNKNOWN
+  - LOW
+  - MEDIUM
+  - HIGH
+  - CRITICAL
+scan:
+  # Same as '--scanners'
+  # Default depends on subcommand
+  scanners:
+    - vuln
+    - misconfig
+    - secret
+  # - license
+vulnerability:
+  # Same as '--vuln-type'
+  # Default is 'os,library'
+  type:
+    - os
+    - library
+
+  # Same as '--ignore-unfixed'
+  # Default is false
+  ignore-unfixed: false

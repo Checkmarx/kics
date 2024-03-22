@@ -1,6 +1,6 @@
 module github.com/Checkmarx/kics
 
-go 1.22.1
+go 1.22
 
 replace (
 	github.com/containerd/containerd => github.com/containerd/containerd v1.6.26
