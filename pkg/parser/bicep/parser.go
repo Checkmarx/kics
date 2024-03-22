@@ -475,13 +475,13 @@ func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *convert
 				}
 			}
 
-			formattedVar = formattedVar + ")]"
+			formattedVar += ")]"
 
 			formatString := "[format('"
 			for _, placeHollderValue := range placeholderValues {
-				formatString = formatString + placeHollderValue
+				formatString += placeHollderValue
 			}
-			formatString = formatString + "'"
+			formatString += "'"
 
 			formattedVar = formatString + formattedVar
 
