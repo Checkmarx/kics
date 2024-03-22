@@ -206,7 +206,10 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 				if is_slice(v) && !isClosingArray && !isNewParent && !isParentClosing && prop == nil {
 					arrayElementRegex := regexp.MustCompile(`^ *(.*)`)
 					arrayElement := arrayElementRegex.FindStringSubmatch(line)[1]
-					convertedElement := convertToInitialType(arrayElement, elems)
+					convertedElement, isVar := convertToInitialType(arrayElement, elems)
+					if isVar {
+						convertedElement = "[" + convertedElement.(string) + "]"
+					}
 					temp := append(v.([]interface{}), convertedElement)
 					currentParent[k] = temp
 					continue
@@ -359,8 +362,9 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 func isVariable(val string, elems []converter.ElemBicep) string {
 	hasArgumentRegex := regexp.MustCompile(`([^(]*)\(([^\)]*)\)(.*)`)
 	hasArgument := hasArgumentRegex.FindStringSubmatch(val)
+
 	if hasArgument != nil {
-		convertedArgument := convertToInitialType(hasArgument[2], elems)
+		convertedArgument, _ := convertToInitialType(hasArgument[2], elems)
 		return hasArgument[1] + "(" + convertedArgument.(string) + ")" + hasArgument[3]
 	}
 
@@ -381,24 +385,28 @@ func isVariable(val string, elems []converter.ElemBicep) string {
 
 }
 
-func convertToInitialType(val string, elems []converter.ElemBicep) interface{} {
-	boolVal, err := strconv.ParseBool(val)
-	if err == nil {
-		return boolVal
+func convertToInitialType(val string, elems []converter.ElemBicep) (interface{}, bool) {
+	if val == "" {
+		return val, false
 	}
 
 	intVal, err := strconv.Atoi(val)
 	if err == nil {
-		return intVal
+		return intVal, false
 	}
 
-	isStringRegex := regexp.MustCompile(`'([^']*)'`)
+	boolVal, err := strconv.ParseBool(val)
+	if err == nil {
+		return boolVal, false
+	}
+
+	isStringRegex := regexp.MustCompile(`^'([^']*)'$`)
 	isString := isStringRegex.FindStringSubmatch(val)
 	if isString != nil {
-		return isString[1]
+		return isString[1], false
 	}
 
-	return isVariable(val, elems)
+	return isVariable(val, elems), true
 
 }
 
@@ -493,7 +501,7 @@ func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *convert
 			return &converter.Variable{Name: name, Value: formattedVar, IsArray: false}, true, false
 		} else {
 			// matchesCheckParam == nil, simple regex, isSimple is true
-			convertedValue := convertToInitialType(value, elems)
+			convertedValue, _ := convertToInitialType(value, elems)
 			return &converter.Variable{Name: name, Value: convertedValue, IsArray: false}, true, false
 		}
 	}
@@ -509,7 +517,7 @@ func parseMetadata(line string, elems []converter.ElemBicep) *converter.Metadata
 	if matches != nil {
 		name := matches[1]
 		value := matches[2]
-		convertedValue := convertToInitialType(value, elems)
+		convertedValue, _ := convertToInitialType(value, elems)
 		return &converter.Metadata{Name: name, Description: convertedValue.(string)}
 	}
 
@@ -547,7 +555,7 @@ func parseDecorator(decorators map[string]interface{}, line string, elems []conv
 	if matchesSingle != nil {
 		name := matchesSingle[1]
 		value := matchesSingle[2]
-		convertedValue := convertToInitialType(value, elems)
+		convertedValue, _ := convertToInitialType(value, elems)
 
 		switch name {
 		case "secure":
@@ -575,7 +583,7 @@ func parseDecorator(decorators map[string]interface{}, line string, elems []conv
 	// match metadata decorators
 	if matchesMetadata != nil {
 		tempMetadata := map[string]string{}
-		convertedMetadata := convertToInitialType(matchesMetadata[2], elems)
+		convertedMetadata, _ := convertToInitialType(matchesMetadata[2], elems)
 		tempMetadata["description"] = convertedMetadata.(string)
 
 		decorators["metadata"] = tempMetadata
@@ -629,7 +637,11 @@ func parseParam(decorators map[string]interface{}, line string, elems []converte
 		paramName := matches[1]
 		paramType := matches[2]
 		paramDefaultValue := matches[3]
-		convertedValue := convertToInitialType(paramDefaultValue, elems)
+		convertedValue, isVar := convertToInitialType(paramDefaultValue, elems)
+		if isVar {
+			convertedValue = "[" + convertedValue.(string) + "]"
+		}
+
 		return &converter.Param{
 			Name:         paramName,
 			Type:         paramType,
@@ -650,7 +662,7 @@ func parseOutput(decorators map[string]interface{}, line string, elems []convert
 		outputName := matches[1]
 		outputType := matches[2]
 		outputValue := matches[3]
-		convertedValue := convertToInitialType(outputValue, elems)
+		convertedValue, _ := convertToInitialType(outputValue, elems)
 
 		return &converter.Output{
 			Name:       outputName,
@@ -676,7 +688,7 @@ func parseProp(line string, elems []converter.ElemBicep) map[string]interface{} 
 	if matches != nil {
 		key := strings.TrimSpace(matches[1])
 		value := strings.TrimSpace(matches[2])
-		convertedValue := convertToInitialType(value, elems)
+		convertedValue, _ := convertToInitialType(value, elems)
 		var description = make(map[string]interface{})
 		description[key] = convertedValue
 		return description
