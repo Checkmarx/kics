@@ -24,15 +24,15 @@ jobs:
     name: go-generate
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version-file: go.mod
       - name: Check out code
         uses: actions/checkout@v3
         with:
           persist-credentials: false
           fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
       - name: Generate mocks and marshall/unmarshall code
         run: make generate
   unit-tests:
