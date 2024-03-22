@@ -277,14 +277,14 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 							tempArr := append(val.([]interface{}), prop)
 							parentsStack[len(parentsStack)-1] = map[string]interface{}{name: tempArr}
 						} else {
-							jigajoga := converter.SuperProp{}
+							tempValue := converter.SuperProp{}
 							for k, v := range prop {
 								if isVar {
 									v = "[" + v.(string) + "]"
 								}
-								jigajoga[k] = v
+								tempValue[k] = v
 							}
-							addPropToParent(parentsStack, jigajoga)
+							addPropToParent(parentsStack, tempValue)
 						}
 					}
 				} else {
