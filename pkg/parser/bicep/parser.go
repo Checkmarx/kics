@@ -17,6 +17,9 @@ import (
 type Parser struct {
 }
 
+const stringVariable = "variable"
+const stringSecure = "secure"
+
 // Parse - parses bicep to JSON_Bicep template (json file)
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, error) {
 	doc := model.Document{}
@@ -125,7 +128,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		if variable != nil {
 			if isSingle {
 				elem.Variable = *variable
-				elem.Type = "variable"
+				elem.Type = stringVariable
 				elems = append(elems, elem)
 			} else {
 				decorators = map[string]interface{}{}
@@ -226,7 +229,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 				parentsStack, varProp = popParentsStack(parentsStack)
 				absoluteParent.Variable.Prop = varProp
 				elem.Variable = *absoluteParent.Variable
-				elem.Type = "variable"
+				elem.Type = stringVariable
 				elems = append(elems, elem)
 				absoluteParent.Variable = nil
 				tempMap = map[string]interface{}{}
@@ -248,7 +251,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		}
 
 		if isOpeningArray {
-			//inicializar array e adicionar ao parentstack no caso de line estar a abrir array
+			// inicializar array e adicionar ao parentstack no caso de line estar a abrir array
 			newProp := converter.SuperProp{}
 
 			for k := range prop {
@@ -272,7 +275,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 				// }
 			} else {
 				if len(parentsStack) > 0 {
-					//adicionar prop ao parent se o parentstack não estiver vazio
+					// adicionar prop ao parent se o parentstack não estiver vazio
 					parent := parentsStack[len(parentsStack)-1]
 					for name, val := range parent {
 						if is_slice(val) {
@@ -337,7 +340,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			if absoluteParent.Variable != nil {
 				absoluteParent.Variable.Prop = tempMap
 				elem.Variable = *absoluteParent.Variable
-				elem.Type = "variable"
+				elem.Type = stringVariable
 				elems = append(elems, elem)
 				absoluteParent.Variable = nil
 				tempMap = map[string]interface{}{}
@@ -485,13 +488,13 @@ func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *convert
 				}
 			}
 
-			formattedVar = formattedVar + ")]"
+			formattedVar += ")]"
 
 			formatString := "[format('"
 			for _, placeHollderValue := range placeholderValues {
-				formatString = formatString + placeHollderValue
+				formatString += placeHollderValue
 			}
-			formatString = formatString + "'"
+			formatString += "'"
 
 			formattedVar = formatString + formattedVar
 
@@ -557,7 +560,7 @@ func parseDecorator(decorators map[string]interface{}, line string) (bool, bool,
 		value := matchesSingle[2]
 
 		switch name {
-		case "secure":
+		case stringSecure:
 			return false, true, false
 		case "description":
 			var description = make(map[string]interface{})
