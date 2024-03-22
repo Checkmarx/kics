@@ -367,7 +367,7 @@ func isVariable(val string, elems []converter.ElemBicep) string {
 	for _, elem := range elems {
 		if elem.Type == "param" {
 			if elem.Param.Name == val {
-				return fmt.Sprintf("parameters('%s')", val)
+				return fmt.Sprintf("[parameters('%s')]", val)
 			}
 		}
 		if elem.Type == "variable" {

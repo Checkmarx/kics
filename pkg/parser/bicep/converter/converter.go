@@ -2,6 +2,7 @@ package converter
 
 import (
 	"encoding/json"
+	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
 )
@@ -140,7 +141,7 @@ func (res *Resource) MarshalJSON() ([]byte, error) {
 	if res.Decorators[stringSecure] != nil {
 		isSecure := res.Decorators[stringSecure].(bool)
 		if isSecure {
-			resourceMap["type"] = stringSecure + res.Type
+			resourceMap["type"] = stringSecure + strings.ToUpper(res.Type[:1]) + res.Type[1:]
 		}
 	}
 	res.Decorators[stringSecure] = nil
@@ -159,7 +160,7 @@ func (jsonBicep *JSONBicep) MarshalJSON() ([]byte, error) {
 		if output.Decorators[stringSecure] != nil {
 			isSecure := output.Decorators[stringSecure].(bool)
 			if isSecure {
-				tempOutput["type"] = stringSecure + output.Type
+				tempOutput["type"] = stringSecure + strings.ToUpper(output.Type[:1]) + output.Type[1:]
 			}
 		}
 		output.Decorators[stringSecure] = nil
@@ -181,7 +182,7 @@ func (jsonBicep *JSONBicep) MarshalJSON() ([]byte, error) {
 		if param.Decorators[stringSecure] != nil {
 			isSecure := param.Decorators[stringSecure].(bool)
 			if isSecure {
-				tempParam["type"] = stringSecure + param.Type
+				tempParam["type"] = stringSecure + strings.ToUpper(param.Type[:1]) + param.Type[1:]
 			}
 		}
 		param.Decorators[stringSecure] = nil
