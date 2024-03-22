@@ -35,6 +35,8 @@ FROM cgr.dev/chainguard/git:latest
 
 ENV TERM xterm-256color
 
+USER root
+
 # Copy built binary to the runtime container
 # Vulnerability fixed in latest version of KICS remove when gh actions version is updated
 # kics-scan ignore-line
