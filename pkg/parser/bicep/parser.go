@@ -451,7 +451,7 @@ func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *convert
 	if matchesSingle != nil {
 		name := matchesSingle[1]
 		value := matchesSingle[2]
-		checkParamRegex := regexp.MustCompile(`(\${[^}]*}|-[^-]*-)`)
+		checkParamRegex := regexp.MustCompile(`(\${[^}]*}|-[^-]*-?)`)
 		matchesCheckParam := checkParamRegex.FindAllStringSubmatch(value, -1)
 		var formattedVar string
 		placeholderValues := []string{}
