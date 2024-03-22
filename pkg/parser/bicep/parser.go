@@ -18,7 +18,6 @@ type Parser struct {
 }
 
 const stringVariable = "variable"
-const stringSecure = "secure"
 
 // Parse - parses bicep to JSON_Bicep template (json file)
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, error) {
@@ -79,15 +78,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 		isClosingAllowedRegex := regexp.MustCompile(`\)`)
 		isClosingAllowed := len(isClosingAllowedRegex.FindStringSubmatch(line)) > 0
 
-		targetScope := parseTargetScope(line)
-		if targetScope != "" {
-			elem.TargetScope = targetScope
-			elem.Type = "targetScope"
-			elems = append(elems, elem)
-			continue
-		}
-
-		metadata := parseMetadata(line)
+		metadata := parseMetadata(line, elems)
 		if metadata != nil {
 			elem.Metadata = *metadata
 			elem.Type = "metadata"
@@ -95,7 +86,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
-		isMetadata, isSecure, isAllowed := parseDecorator(decorators, line)
+		isMetadata, isSecure, isAllowed := parseDecorator(decorators, line, elems)
 		if isMetadata {
 			continue
 		}
@@ -158,7 +149,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
-		param := parseParam(decorators, line)
+		param := parseParam(decorators, line, elems)
 		if param != nil {
 			decorators = map[string]interface{}{}
 			elem.Param = *param
@@ -167,7 +158,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
-		output := parseOutput(decorators, line)
+		output := parseOutput(decorators, line, elems)
 		if output != nil {
 			decorators = map[string]interface{}{}
 			elem.Output = *output
@@ -213,9 +204,10 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			currentParent := parentsStack[len(parentsStack)-1]
 			for k, v := range currentParent {
 				if is_slice(v) && !isClosingArray && !isNewParent && !isParentClosing && prop == nil {
-					arrayElementRegex := regexp.MustCompile(`^ *'?([^']*)`)
+					arrayElementRegex := regexp.MustCompile(`^ *(.*)`)
 					arrayElement := arrayElementRegex.FindStringSubmatch(line)[1]
-					temp := append(v.([]interface{}), arrayElement)
+					convertedElement := convertToInitialType(arrayElement, elems)
+					temp := append(v.([]interface{}), convertedElement)
 					currentParent[k] = temp
 					continue
 				}
@@ -363,22 +355,29 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 	return elems, nil
 }
 
-func isParamOrVariable(val string, elems []converter.ElemBicep) string {
-	paramValueRegex := regexp.MustCompile(`([^(]*)\(([^\)]*)\)(.*)`)
-	paramValue := paramValueRegex.FindStringSubmatch(val)
-	if paramValue != nil {
-		return paramValue[1] + "(" + isParamOrVariable(paramValue[2], elems) + ")" + paramValue[3]
+// isVariable - check if the value is a param, variable or just a string
+func isVariable(val string, elems []converter.ElemBicep) string {
+	hasArgumentRegex := regexp.MustCompile(`([^(]*)\(([^\)]*)\)(.*)`)
+	hasArgument := hasArgumentRegex.FindStringSubmatch(val)
+	if hasArgument != nil {
+		convertedArgument := convertToInitialType(hasArgument[2], elems)
+		return hasArgument[1] + "(" + convertedArgument.(string) + ")" + hasArgument[3]
 	}
 
-	for _, param := range elems {
-		if param.Type == "param" {
-			if param.Param.Name == val {
+	for _, elem := range elems {
+		if elem.Type == "param" {
+			if elem.Param.Name == val {
 				return fmt.Sprintf("parameters('%s')", val)
+			}
+		}
+		if elem.Type == "variable" {
+			if elem.Variable.Name == val {
+				return fmt.Sprintf("variables('%s')", val)
 			}
 		}
 	}
 
-	return strings.ReplaceAll(val, "'", "")
+	return val
 
 }
 
@@ -393,7 +392,13 @@ func convertToInitialType(val string, elems []converter.ElemBicep) interface{} {
 		return intVal
 	}
 
-	return isParamOrVariable(val, elems)
+	isStringRegex := regexp.MustCompile(`'([^']*)'`)
+	isString := isStringRegex.FindStringSubmatch(val)
+	if isString != nil {
+		return isString[1]
+	}
+
+	return isVariable(val, elems)
 
 }
 
@@ -427,24 +432,11 @@ func is_slice(str interface{}) bool {
 	return isSlice
 }
 
-// parse targetScope syntax from bicep file
-func parseTargetScope(line string) string {
-	targetScopeRegex := regexp.MustCompile(`targetScope * = * *'?([^']*)'`)
-	matches := targetScopeRegex.FindStringSubmatch(line)
-
-	if matches != nil {
-		targetScope := matches[1]
-		return targetScope
-	}
-
-	return ""
-}
-
 // parse Variable syntax from bicep file
 func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *converter.Variable, isSingle bool, isArray bool) {
-	singleLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +'?(?:([^']*)|(?:\${([^}]*)}))'?`)
-	multiLineVarRegex := regexp.MustCompile(`var +([^ ]*) += +{`)
-	arrayVarRegex := regexp.MustCompile(`var +([^ ]*) += +\[`)
+	singleLineVarRegex := regexp.MustCompile(`var *([^ ]*) *= *(?:(.*))`)
+	multiLineVarRegex := regexp.MustCompile(`var *([^ ]*) *= *{`)
+	arrayVarRegex := regexp.MustCompile(`var *([^ ]*) *= *\[`)
 	// forLineVarRegex := regexp.MustCompile(`for`)
 	matchesSingle := singleLineVarRegex.FindStringSubmatch(line)
 	matchesMulti := multiLineVarRegex.FindStringSubmatch(line)
@@ -464,7 +456,7 @@ func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *convert
 	if matchesSingle != nil {
 		name := matchesSingle[1]
 		value := matchesSingle[2]
-		checkParamRegex := regexp.MustCompile(`(\${[^}]*}|-[^-]*-?)`)
+		checkParamRegex := regexp.MustCompile(`(\${[^}]*}|-[^'-]*-?)`)
 		matchesCheckParam := checkParamRegex.FindAllStringSubmatch(value, -1)
 		var formattedVar string
 		placeholderValues := []string{}
@@ -477,7 +469,7 @@ func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *convert
 						if strings.Contains(elem, "${") {
 							newVal := strings.Replace(elem, "${", "", 1)
 							newVal = strings.Replace(newVal, "}", "", 1)
-							newVal = isParamOrVariable(newVal, elems)
+							newVal = isVariable(newVal, elems)
 							formattedVar = formattedVar + ", " + newVal
 							placeholderValues = append(placeholderValues, "{"+strconv.Itoa(placeHolderCount)+"}")
 							placeHolderCount++
@@ -500,13 +492,9 @@ func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *convert
 
 			return &converter.Variable{Name: name, Value: formattedVar, IsArray: false}, true, false
 		} else {
-			// matchesCheckParam == nil, object parsing, isSimple is false
-			if strings.Contains(value, "{") {
-				return &converter.Variable{Name: name, Value: value, IsArray: false}, false, false
-			}
 			// matchesCheckParam == nil, simple regex, isSimple is true
-			newVal := isParamOrVariable(value, elems)
-			return &converter.Variable{Name: name, Value: newVal, IsArray: false}, true, false
+			convertedValue := convertToInitialType(value, elems)
+			return &converter.Variable{Name: name, Value: convertedValue, IsArray: false}, true, false
 		}
 	}
 
@@ -514,14 +502,15 @@ func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *convert
 }
 
 // parse Metadata syntax from bicep file
-func parseMetadata(line string) *converter.Metadata {
-	metadataRegex := regexp.MustCompile(`metadata ([^ ]*) * = *'?([^']*)'`)
+func parseMetadata(line string, elems []converter.ElemBicep) *converter.Metadata {
+	metadataRegex := regexp.MustCompile(`metadata ([^ ]*) * = *(.*)`)
 	matches := metadataRegex.FindStringSubmatch(line)
 
 	if matches != nil {
 		name := matches[1]
 		value := matches[2]
-		return &converter.Metadata{Name: name, Description: value}
+		convertedValue := convertToInitialType(value, elems)
+		return &converter.Metadata{Name: name, Description: convertedValue.(string)}
 	}
 
 	return nil
@@ -546,9 +535,9 @@ func parseInlineArray(line string) map[string]interface{} {
 }
 
 // parse Decorator syntax from bicep file
-func parseDecorator(decorators map[string]interface{}, line string) (bool, bool, bool) {
-	singleDecoratorRegex := regexp.MustCompile(`@(?:sys\.)?([^()]+)\('?([^')]*)'?\)`)
-	metadataDecoratorRegex := regexp.MustCompile(`@(?:sys\.)?[description]([^()]+)\('?([^')]*)'?\)`)
+func parseDecorator(decorators map[string]interface{}, line string, elems []converter.ElemBicep) (bool, bool, bool) {
+	singleDecoratorRegex := regexp.MustCompile(`@(?:sys\.)?([^()]+)\(([^)]*)\)`)
+	metadataDecoratorRegex := regexp.MustCompile(`@(?:sys\.)?description\(([^)]*)\)`)
 	allowedDecoratorRegex := regexp.MustCompile(`@(?:sys\.)?allowed:?\(\[`)
 	matchesSingle := singleDecoratorRegex.FindStringSubmatch(line)
 	matchesMetadata := metadataDecoratorRegex.FindStringSubmatch(line)
@@ -558,26 +547,27 @@ func parseDecorator(decorators map[string]interface{}, line string) (bool, bool,
 	if matchesSingle != nil {
 		name := matchesSingle[1]
 		value := matchesSingle[2]
+		convertedValue := convertToInitialType(value, elems)
 
 		switch name {
-		case stringSecure:
+		case "secure":
 			return false, true, false
 		case "description":
 			var description = make(map[string]interface{})
-			description[name] = value
-			decorators["metadata"] = map[string]interface{}{name: value}
+			description[name] = convertedValue
+			decorators["metadata"] = map[string]interface{}{name: convertedValue}
 			return true, false, false
 		case "maxLength":
-			decorators[name] = value
+			decorators[name] = convertedValue
 			return true, false, false
 		case "minLength":
-			decorators[name] = value
+			decorators[name] = convertedValue
 			return true, false, false
 		case "maxValue":
-			decorators[name] = value
+			decorators[name] = convertedValue
 			return true, false, false
 		case "minValue":
-			decorators[name] = value
+			decorators[name] = convertedValue
 			return true, false, false
 		}
 	}
@@ -585,7 +575,8 @@ func parseDecorator(decorators map[string]interface{}, line string) (bool, bool,
 	// match metadata decorators
 	if matchesMetadata != nil {
 		tempMetadata := map[string]string{}
-		tempMetadata["description"] = matchesMetadata[2]
+		convertedMetadata := convertToInitialType(matchesMetadata[2], elems)
+		tempMetadata["description"] = convertedMetadata.(string)
 
 		decorators["metadata"] = tempMetadata
 		return true, false, false
@@ -630,18 +621,19 @@ func parseResource(decorators map[string]interface{}, line string) *converter.Re
 }
 
 // parse Param syntax from bicep file
-func parseParam(decorators map[string]interface{}, line string) *converter.Param {
-	paramRegex := regexp.MustCompile(`^param\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
+func parseParam(decorators map[string]interface{}, line string, elems []converter.ElemBicep) *converter.Param {
+	paramRegex := regexp.MustCompile(`param *([^ ]*) *([^ ]*)(?: *= *(.*))?`)
 	matches := paramRegex.FindStringSubmatch(line)
 
 	if matches != nil {
 		paramName := matches[1]
 		paramType := matches[2]
 		paramDefaultValue := matches[3]
+		convertedValue := convertToInitialType(paramDefaultValue, elems)
 		return &converter.Param{
 			Name:         paramName,
 			Type:         paramType,
-			DefaultValue: paramDefaultValue,
+			DefaultValue: convertedValue,
 			Decorators:   decorators,
 			// Metadata:     &converter.Metadata{Description: "Description", Name: "test"},
 		}
@@ -651,18 +643,19 @@ func parseParam(decorators map[string]interface{}, line string) *converter.Param
 }
 
 // parse Output syntax from bicep file
-func parseOutput(decorators map[string]interface{}, line string) *converter.Output {
-	outputRegex := regexp.MustCompile(`^output\s+(\S+)\s+(\S+)\s+=\s+'(.+)'`)
+func parseOutput(decorators map[string]interface{}, line string, elems []converter.ElemBicep) *converter.Output {
+	outputRegex := regexp.MustCompile(`output *([^ ]*) *([^ ]*) *= *(.*)`)
 	matches := outputRegex.FindStringSubmatch(line)
 	if matches != nil {
 		outputName := matches[1]
 		outputType := matches[2]
 		outputValue := matches[3]
+		convertedValue := convertToInitialType(outputValue, elems)
 
 		return &converter.Output{
 			Name:       outputName,
 			Type:       outputType,
-			Value:      outputValue,
+			Value:      convertedValue,
 			Decorators: decorators,
 			// Metadata:   &converter.Metadata{Description: "Description", Name: "test"},
 		}
@@ -677,7 +670,7 @@ func parseProp(line string, elems []converter.ElemBicep) map[string]interface{} 
 	// parts := strings.SplitN(line, ":", 2)
 	// if len(parts) == 2 {
 
-	propRegex := regexp.MustCompile(`([^: ]*) *: *'?([^']*)'?`)
+	propRegex := regexp.MustCompile(`([^: ]*) *: *(.*)`)
 	matches := propRegex.FindStringSubmatch(line)
 
 	if matches != nil {

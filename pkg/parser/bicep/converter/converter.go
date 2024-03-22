@@ -13,8 +13,10 @@ MultiLineDescriptions string `json:"multiDescriptions"`
 linesToIgnore    []int                       `json:"-"`
 linesNotToIgnore []int                       `json:"-"`
 */
+
+const stringSecure = "secure"
+
 type JSONBicep struct {
-	Scope     string                      `json:"targetScope,omitempty"`
 	Func      map[string]interface{}      `json:"func,omitempty"`
 	Type      map[string]Type             `json:"definitions,omitempty"`
 	Params    map[string]Param            `json:"-"`
@@ -27,14 +29,13 @@ type JSONBicep struct {
 }
 
 type ElemBicep struct {
-	TargetScope string
-	Type        string
-	Param       Param
-	Metadata    Metadata
-	Variable    Variable
-	Resource    Resource
-	Output      Output
-	Module      Module
+	Type     string
+	Param    Param
+	Metadata Metadata
+	Variable Variable
+	Resource Resource
+	Output   Output
+	Module   Module
 }
 
 type Decorator struct {
@@ -54,7 +55,7 @@ type Metadata struct {
 type Param struct {
 	Name         string                 `json:"-"`
 	Type         string                 `json:"type"`
-	DefaultValue string                 `json:"defaultValue"`
+	DefaultValue interface{}            `json:"defaultValue,omitempty"`
 	Metadata     *Metadata              `json:"metadata,omitempty"`
 	Decorators   map[string]interface{} `json:"decorators,omitempty"`
 }
@@ -62,7 +63,7 @@ type Param struct {
 type Variable struct {
 	Name    string                 `json:"-"`
 	IsArray bool                   `json:"-"`
-	Value   string                 `json:"value,omitempty"`
+	Value   interface{}            `json:"value,omitempty"`
 	Prop    map[string]interface{} `json:"prop"`
 }
 
@@ -78,7 +79,7 @@ type Output struct {
 	Name       string                 `json:"-"`
 	Type       string                 `json:"type"`
 	Metadata   *Metadata              `json:"metadata,omitempty"`
-	Value      string                 `json:"value"`
+	Value      interface{}            `json:"value"`
 	Decorators map[string]interface{} `json:"-"`
 }
 
@@ -117,7 +118,6 @@ type Type struct {
 func newJSONBicep() *JSONBicep {
 	return &JSONBicep{
 		Type:      map[string]Type{},
-		Scope:     "",
 		Params:    map[string]Param{},
 		Variables: []Variable{},
 		Resources: []Resource{},
@@ -137,13 +137,13 @@ func (res *Resource) MarshalJSON() ([]byte, error) {
 	}
 
 	resourceMap["type"] = res.Type
-	if res.Decorators["secure"] != nil {
-		isSecure := res.Decorators["secure"].(bool)
+	if res.Decorators[stringSecure] != nil {
+		isSecure := res.Decorators[stringSecure].(bool)
 		if isSecure {
-			resourceMap["type"] = "secure" + res.Type
+			resourceMap["type"] = stringSecure + res.Type
 		}
 	}
-	res.Decorators["secure"] = nil
+	res.Decorators[stringSecure] = nil
 
 	return json.Marshal(resourceMap)
 }
@@ -156,13 +156,13 @@ func (jsonBicep *JSONBicep) MarshalJSON() ([]byte, error) {
 	for _, output := range jsonBicep.Outputs {
 		tempOutput := map[string]interface{}{}
 		tempOutput["type"] = output.Type
-		if output.Decorators["secure"] != nil {
-			isSecure := output.Decorators["secure"].(bool)
+		if output.Decorators[stringSecure] != nil {
+			isSecure := output.Decorators[stringSecure].(bool)
 			if isSecure {
-				tempOutput["type"] = "secure" + output.Type
+				tempOutput["type"] = stringSecure + output.Type
 			}
 		}
-		output.Decorators["secure"] = nil
+		output.Decorators[stringSecure] = nil
 		tempOutput["metadata"] = output.Metadata
 		tempOutput["value"] = output.Value
 
@@ -178,14 +178,16 @@ func (jsonBicep *JSONBicep) MarshalJSON() ([]byte, error) {
 	for _, param := range jsonBicep.Params {
 		tempParam := map[string]interface{}{}
 		tempParam["type"] = param.Type
-		if param.Decorators["secure"] != nil {
-			isSecure := param.Decorators["secure"].(bool)
+		if param.Decorators[stringSecure] != nil {
+			isSecure := param.Decorators[stringSecure].(bool)
 			if isSecure {
-				tempParam["type"] = "secure" + param.Type
+				tempParam["type"] = stringSecure + param.Type
 			}
 		}
-		param.Decorators["secure"] = nil
-		tempParam["defaultValue"] = param.DefaultValue
+		param.Decorators[stringSecure] = nil
+		if param.DefaultValue != "" {
+			tempParam["defaultValue"] = param.DefaultValue
+		}
 		tempParam["metadata"] = param.Metadata
 
 		for decorator, value := range param.Decorators {
@@ -234,7 +236,6 @@ func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 	outputs := []Output{}
 	params := map[string]Param{}
 	variables := []Variable{}
-	var targetScope string
 
 	for _, elem := range elems {
 		switch elem.Type {
@@ -248,8 +249,6 @@ func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 			metadata[elem.Metadata.Name] = elem.Metadata.Description
 		case "variable":
 			variables = append(variables, elem.Variable)
-		case "targetScope":
-			targetScope = elem.TargetScope
 		}
 	}
 
@@ -258,7 +257,6 @@ func Convert(elems []ElemBicep) (file *JSONBicep, err error) {
 	jBicep.Outputs = outputs
 	jBicep.Metadata = metadata
 	jBicep.Variables = variables
-	jBicep.Scope = targetScope
 
 	return jBicep, nil
 }
