@@ -1,24 +1,24 @@
 [
   {
-    "queryName": "Container Memory Requests Not Equal To It's Limits",
+    "queryName": "Container Memory Requests Not Equal To Its Limits",
     "severity": "LOW",
     "line": 11,
     "fileName": "positive.yaml"
   },
   {
-    "queryName": "Container Memory Requests Not Equal To It's Limits",
+    "queryName": "Container Memory Requests Not Equal To Its Limits",
     "severity": "LOW",
     "line": 22,
     "fileName": "positive.yaml"
   },
   {
-    "queryName": "Container Memory Requests Not Equal To It's Limits",
+    "queryName": "Container Memory Requests Not Equal To Its Limits",
     "severity": "LOW",
     "line": 26,
     "fileName": "positive.yaml"
   },
   {
-    "queryName": "Container Memory Requests Not Equal To It's Limits",
+    "queryName": "Container Memory Requests Not Equal To Its Limits",
     "severity": "LOW",
     "line": 11,
     "fileName": "positive2.yaml"

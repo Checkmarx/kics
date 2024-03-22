@@ -726,6 +726,16 @@ get_version(name) = version {
 	version := concat(".", [splited[0],splited[1]])
 }
 
+contains_element(arr, element) {
+    element == arr[_]
+}
+
+contains_with_size(arr, element){
+	count(arr)>0
+    test := arr[j]
+	contains(test, element)
+}
+
 valid_non_empty_key(field, key) = output {
 	not valid_key(field, key)
 	output = ""
