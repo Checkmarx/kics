@@ -9,6 +9,8 @@
 # format: json
 # output: /trivy-results.json
 # report: all
+# vex:
+#   trivy.vex
 # ignorefile: .trivyignore
 # ignore-policy: './trivy-ignore.rego'
 # severity:
