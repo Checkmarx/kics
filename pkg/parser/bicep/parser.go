@@ -453,9 +453,9 @@ func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *convert
 		value := matchesSingle[2]
 		checkParamRegex := regexp.MustCompile(`(\${[^}]*}|-[^-]*-)`)
 		matchesCheckParam := checkParamRegex.FindAllStringSubmatch(value, -1)
-		var resultVar string
-		depoisvesse := []string{}
-		var count int
+		var formattedVar string
+		placeholderValues := []string{}
+		var placeHolderCount int
 
 		for _, varElem := range matchesCheckParam {
 			for index, elem := range varElem {
@@ -464,27 +464,27 @@ func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *convert
 						newVal := strings.Replace(elem, "${", "", 1)
 						newVal = strings.Replace(newVal, "}", "", 1)
 						newVal = isParamOrVariable(newVal, elems)
-						resultVar = resultVar + ", " + newVal
-						depoisvesse = append(depoisvesse, "{"+strconv.Itoa(count)+"}")
-						count++
+						formattedVar = formattedVar + ", " + newVal
+						placeholderValues = append(placeholderValues, "{"+strconv.Itoa(placeHolderCount)+"}")
+						placeHolderCount++
 					} else {
-						depoisvesse = append(depoisvesse, elem)
+						placeholderValues = append(placeholderValues, elem)
 					}
 				}
 			}
 		}
 
-		resultVar = resultVar + ")]"
+		formattedVar = formattedVar + ")]"
 
-		coisos2 := "[format('"
-		for _, coisos := range depoisvesse {
-			coisos2 = coisos2 + coisos
+		formatString := "[format('"
+		for _, placeHollderValue := range placeholderValues {
+			formatString = formatString + placeHollderValue
 		}
-		coisos2 = coisos2 + "'"
+		formatString = formatString + "'"
 
-		resultVar = coisos2 + resultVar
+		formattedVar = formatString + formattedVar
 
-		return &converter.Variable{Name: name, Value: resultVar, IsArray: false}, true, false
+		return &converter.Variable{Name: name, Value: formattedVar, IsArray: false}, true, false
 	}
 
 	if matchesMulti != nil {
