@@ -21,6 +21,7 @@ jobs:
           output: './trivy-results.json'
           severity: 'CRITICAL,HIGH,MEDIUM'
           exit-code: '1'
+        # trivy-config: trivy.yaml
 
       - name: Inspect action report
         if: always()
@@ -64,6 +65,7 @@ jobs:
           output: './trivy-image-results.json'
           severity: 'CRITICAL,HIGH,MEDIUM'
           ignore-policy: './trivy-ignore.rego'
+        # trivy-config: trivy.image.yaml
       - name: Inspect action report
         if: always()
         shell: bash

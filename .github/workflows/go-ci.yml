@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Go 1.21.x
-        uses: actions/setup-go@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
-          go-version: 1.21.x
+          go-version-file: go.mod
           cache: false
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3.5.0
@@ -24,27 +24,27 @@ jobs:
     name: go-generate
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go 1.21.x
-        uses: actions/setup-go@v4
-        with:
-          go-version: 1.21.x
       - name: Check out code
         uses: actions/checkout@v3
         with:
           persist-credentials: false
           fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
       - name: Generate mocks and marshall/unmarshall code
         run: make generate
   unit-tests:
     name: unit-tests
     strategy:
       matrix:
-        go-version: [1.21.x]
+        go-version: [1.22.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Set up Go 1.21.x
-        uses: actions/setup-go@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go-version }}
       - name: Check out code into the Go module directory
