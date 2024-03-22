@@ -457,34 +457,43 @@ func parseVariable(line string, elems []converter.ElemBicep) (parsedVar *convert
 		placeholderValues := []string{}
 		var placeHolderCount int
 
-		for _, varElem := range matchesCheckParam {
-			for index, elem := range varElem {
-				if index%2 != 0 {
-					if strings.Contains(elem, "${") {
-						newVal := strings.Replace(elem, "${", "", 1)
-						newVal = strings.Replace(newVal, "}", "", 1)
-						newVal = isParamOrVariable(newVal, elems)
-						formattedVar = formattedVar + ", " + newVal
-						placeholderValues = append(placeholderValues, "{"+strconv.Itoa(placeHolderCount)+"}")
-						placeHolderCount++
-					} else {
-						placeholderValues = append(placeholderValues, elem)
+		if matchesCheckParam != nil {
+			for _, varElem := range matchesCheckParam {
+				for index, elem := range varElem {
+					if index%2 != 0 {
+						if strings.Contains(elem, "${") {
+							newVal := strings.Replace(elem, "${", "", 1)
+							newVal = strings.Replace(newVal, "}", "", 1)
+							newVal = isParamOrVariable(newVal, elems)
+							formattedVar = formattedVar + ", " + newVal
+							placeholderValues = append(placeholderValues, "{"+strconv.Itoa(placeHolderCount)+"}")
+							placeHolderCount++
+						} else {
+							placeholderValues = append(placeholderValues, elem)
+						}
 					}
 				}
 			}
+
+			formattedVar = formattedVar + ")]"
+
+			formatString := "[format('"
+			for _, placeHollderValue := range placeholderValues {
+				formatString = formatString + placeHollderValue
+			}
+			formatString = formatString + "'"
+
+			formattedVar = formatString + formattedVar
+
+			return &converter.Variable{Name: name, Value: formattedVar, IsArray: false}, true, false
+		} else {
+			// matchesCheckParam == nil, object parsing, isSimple is false
+			if strings.Contains(value, "{") {
+				return &converter.Variable{Name: name, Value: value, IsArray: false}, false, false
+			}
+			// matchesCheckParam == nil, simple regex, isSimple is true
+			return &converter.Variable{Name: name, Value: value, IsArray: false}, true, false
 		}
-
-		formattedVar = formattedVar + ")]"
-
-		formatString := "[format('"
-		for _, placeHollderValue := range placeholderValues {
-			formatString = formatString + placeHollderValue
-		}
-		formatString = formatString + "'"
-
-		formattedVar = formatString + formattedVar
-
-		return &converter.Variable{Name: name, Value: formattedVar, IsArray: false}, true, false
 	}
 
 	if matchesMulti != nil {
