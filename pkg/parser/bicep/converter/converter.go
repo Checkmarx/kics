@@ -217,7 +217,7 @@ func (jsonBicep *JSONBicep) MarshalJSON() ([]byte, error) {
 	type JSONBicepAlias JSONBicep
 	return json.Marshal(&struct {
 		*JSONBicepAlias
-		Outputs   map[string]map[string]interface{} `json:"outputs"`
+		Outputs   map[string]map[string]interface{} `json:"outputs,omitempty"`
 		Params    map[string]map[string]interface{} `json:"parameters"`
 		Variables map[string]interface{}            `json:"variables"`
 	}{

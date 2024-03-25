@@ -387,15 +387,20 @@ func isVariable(val string, elems []converter.ElemBicep) string {
 		return hasArgument[1] + "(" + convertedArgument.(string) + ")" + hasArgument[3]
 	}
 
-	for _, elem := range elems {
-		if elem.Type == "param" {
-			if elem.Param.Name == val {
-				return fmt.Sprintf("parameters('%s')", val)
+	vals := strings.Split(val, ", ")
+	for _, splitVal := range vals {
+		for _, elem := range elems {
+			if elem.Type == "param" {
+				if elem.Param.Name == splitVal {
+					finalVar := strings.Replace(val, splitVal, fmt.Sprintf("parameters('%s')", splitVal), 1)
+					return finalVar
+				}
 			}
-		}
-		if elem.Type == "variable" {
-			if elem.Variable.Name == val {
-				return fmt.Sprintf("variables('%s')", val)
+			if elem.Type == "variable" {
+				if elem.Variable.Name == splitVal {
+					finalVar := strings.Replace(val, splitVal, fmt.Sprintf("variables('%s')", splitVal), 1)
+					return finalVar
+				}
 			}
 		}
 	}
