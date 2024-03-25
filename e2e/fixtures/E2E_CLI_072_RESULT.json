@@ -39,7 +39,7 @@
 			"files": [
 				{
 					"file_name": "path\\test\\fixtures\\resolve_references\\swagger.yaml",
-					"similarity_id": "0e9d0a90c2069babcc7d07b581105ebda5dba82dc83c0ef588103f8805662c8c",
+					"similarity_id": "11cd9bca9fd9364c0586511b39a28a991624d39dcc31281d75b0d13ef3402409",
 					"line": 14,
 					"issue_type": "MissingAttribute",
 					"search_key": "paths.{{/users/{userId}}}.$ref=./paths/users/user.yaml",
@@ -50,7 +50,7 @@
 				},
 				{
 					"file_name": "path\\test\\fixtures\\resolve_references\\swagger.yaml",
-					"similarity_id": "21b4b94761ab17c403b6455c8b88f295729ed9e98fd3101b2bb5cf5373fba1e6",
+					"similarity_id": "a1739545d655f5d34ead0ad1e9aad1c6c138902d77416130b79fb21e522e22cb",
 					"line": 14,
 					"issue_type": "MissingAttribute",
 					"search_key": "paths.{{/users/{userId}}}.$ref=./paths/users/user.yaml",

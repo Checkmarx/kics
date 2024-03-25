@@ -2,6 +2,7 @@ package utils
 
 import (
 	"encoding/json"
+	"github.com/stretchr/testify/assert"
 	"io"
 	"os"
 	"path/filepath"
@@ -12,7 +13,6 @@ import (
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/xeipuuv/gojsonschema"
 )
@@ -195,6 +195,8 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			}
 		}
 
+		assert.True(t, assertUnique(&actualI.Queries), "Expected all similarity id to be unique")
+
 		for i := range actualI.Queries {
 			actualQuery := actualI.Queries[i]
 			expectQuery := expectI.Queries[i]
@@ -221,8 +223,6 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 				return expectQuery.Files[a].SimilarityID < expectQuery.Files[b].SimilarityID
 			})
 		}
-
-		assert.True(t, assertUnique(&actualI.Queries), "Expected all similarity id to be unique")
 
 		require.ElementsMatch(t, expectI.ScannedPaths, actualI.ScannedPaths,
 			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result Scanned Paths content: 'output/%s'.",
