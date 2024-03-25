@@ -9,8 +9,7 @@ func init() { //nolint
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
 					"--output-name", "E2E_CLI_094_RESULT",
-					"-p", "\"/path/test/fixtures/test_critical_severity/run_block_injection/test\"",
-					"-q", "\"/path/test/fixtures/test_critical_severity/run_block_injection/query\"",
+					"-p", "\"/path/test/fixtures/new_similarity_id\"",
 					"-i", "bb9ac4f7-e13b-423d-a010-c74a1bfbe492",
 				},
 			},
@@ -20,7 +19,7 @@ func init() { //nolint
 				},
 			},
 		},
-		WantStatus: []int{60},
+		WantStatus: []int{40},
 	}
 
 	Tests = append(Tests, testSample)
