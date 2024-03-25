@@ -173,7 +173,8 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 				addPropToParent(parentsStack, inlineArray)
 			} else {
 				for k, v := range inlineArray {
-					tempMap[k] = v
+					convertedVal, _ := convertToInitialType(v.(string), elems)
+					tempMap[k] = convertedVal
 				}
 			}
 			continue
@@ -552,7 +553,8 @@ func parseInlineArray(line string) map[string]interface{} {
 		name := matches[1]
 		value := matches[2]
 
-		values := []string{value}
+		convertedValue, _ := convertToInitialType(value, []converter.ElemBicep{})
+		values := []string{convertedValue.(string)}
 
 		return map[string]interface{}{name: values}
 	}
