@@ -247,11 +247,13 @@ func checkDocuments(t *testing.T, actualI *model.Documents) {
 }
 
 func assertUnique(slice *model.QueryResultSlice) bool {
-	mapSimilarityIdCounter := make(map[string]int)
+	mapSimilarityIDCounter := make(map[string]int)
 	for i := range *slice {
-		for _, vulnerabilitiesFiles := range (*slice)[i].Files {
-			if _, ok := mapSimilarityIdCounter[vulnerabilitiesFiles.SimilarityID]; ok {
+		for x := range (*slice)[i].Files {
+			if _, ok := mapSimilarityIDCounter[(*slice)[i].Files[x].SimilarityID]; ok {
 				return false // Duplicate found
+			} else {
+				mapSimilarityIDCounter[(*slice)[i].Files[x].SimilarityID] = 1
 			}
 		}
 	}
