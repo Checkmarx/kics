@@ -2,6 +2,7 @@ package utils
 
 import (
 	"encoding/json"
+	"github.com/stretchr/testify/assert"
 	"io"
 	"os"
 	"path/filepath"
@@ -219,6 +220,9 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 				actualQuery.Files[j].FileName = ""
 				expectQuery.Files[j].FileName = ""
 			}
+
+			assert.True(t, assertUnique(actualQuery.Files), "Expected all similarity id to be unique")
+
 			sort.Slice(actualQuery.Files, func(a, b int) bool {
 				return actualQuery.Files[a].SimilarityID < actualQuery.Files[b].SimilarityID
 			})
@@ -236,4 +240,16 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result content: 'output/%s'.",
 			expectFileName, actualFileName)
 	}
+}
+
+func assertUnique(slice []model.VulnerableFile) bool {
+	mapSimilarityIdCounter := make(map[string]int)
+
+	for _, v := range slice {
+		if _, ok := mapSimilarityIdCounter[v.SimilarityID]; ok {
+			return false // Duplicate found
+		}
+	}
+
+	return true // No duplicates found
 }
