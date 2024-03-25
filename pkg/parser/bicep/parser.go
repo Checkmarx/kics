@@ -63,20 +63,23 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 
 		fmt.Println(line)
 
+		tempLineRegex := regexp.MustCompile(`\$\{([^}]*)\}`)
+		tempLine := tempLineRegex.ReplaceAllString(line, "")
+
 		isNewParentRegex := regexp.MustCompile(`\{`)
-		isNewParent := len(isNewParentRegex.FindStringSubmatch(line)) > 0
+		isNewParent := len(isNewParentRegex.FindStringSubmatch(tempLine)) > 0
 
 		isParentClosingRegex := regexp.MustCompile(`\}`)
-		isParentClosing := len(isParentClosingRegex.FindStringSubmatch(line)) > 0
+		isParentClosing := len(isParentClosingRegex.FindStringSubmatch(tempLine)) > 0
 
 		isOpeningArrayRegex := regexp.MustCompile(`\[`)
-		isOpeningArray := len(isOpeningArrayRegex.FindStringSubmatch(line)) > 0
+		isOpeningArray := len(isOpeningArrayRegex.FindStringSubmatch(tempLine)) > 0
 
 		isClosingArrayRegex := regexp.MustCompile(`\]`)
-		isClosingArray := len(isClosingArrayRegex.FindStringSubmatch(line)) > 0
+		isClosingArray := len(isClosingArrayRegex.FindStringSubmatch(tempLine)) > 0
 
 		isClosingAllowedRegex := regexp.MustCompile(`\)`)
-		isClosingAllowed := len(isClosingAllowedRegex.FindStringSubmatch(line)) > 0
+		isClosingAllowed := len(isClosingAllowedRegex.FindStringSubmatch(tempLine)) > 0
 
 		metadata := parseMetadata(line, elems)
 		if metadata != nil {
@@ -196,7 +199,7 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			parent := parentsStack[len(parentsStack)-2]
 			added := false
 			for index, array := range parent {
-				if isParentClosing && array != nil && is_slice(array) {
+				if !isNewParent && isParentClosing && array != nil && is_slice(array) {
 					var newProp map[string]interface{}
 					parentsStack, newProp = popParentsStack(parentsStack)
 					for _, val := range newProp {
@@ -272,15 +275,15 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 
 		if prop != nil {
 			if isNewParent {
-				// if !isParentClosing {
-				newProp := converter.SuperProp{}
+				if !isParentClosing {
+					newProp := converter.SuperProp{}
 
-				for k := range prop {
-					newProp[k] = converter.SuperProp{}
+					for k := range prop {
+						newProp[k] = converter.SuperProp{}
+					}
+
+					parentsStack = append(parentsStack, newProp)
 				}
-
-				parentsStack = append(parentsStack, newProp)
-				// }
 			} else {
 				if len(parentsStack) > 0 {
 					// adicionar prop ao parent se o parentstack não estiver vazio
