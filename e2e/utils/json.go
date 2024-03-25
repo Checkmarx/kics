@@ -157,14 +157,7 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		require.NoError(t, errW,
 			"[output/%s] Actual Payload - Unmarshaling JSON file should not yield an error", actualFileName)
 
-		idKey := "id"
-		for _, docs := range actualI.Documents {
-			// Here additional checks may be added as length of id, or contains in file
-			require.NotNil(t, docs[idKey])
-			require.NotNil(t, docs[filekey])
-			docs[idKey] = "0"
-			docs[filekey] = filekey
-		}
+		checkDocuments(t, &actualI)
 
 		require.Equal(t, expectI, actualI,
 			"Expected Payload content: 'fixtures/%s' doesn't match the Actual Payload content: 'output/%s'.",
@@ -242,10 +235,21 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 	}
 }
 
+func checkDocuments(t *testing.T, actualI *model.Documents) {
+	idKey := "id"
+	for _, docs := range actualI.Documents {
+		// Here additional checks may be added as length of id, or contains in file
+		require.NotNil(t, docs[idKey])
+		require.NotNil(t, docs[filekey])
+		docs[idKey] = "0"
+		docs[filekey] = filekey
+	}
+}
+
 func assertUnique(slice *model.QueryResultSlice) bool {
 	mapSimilarityIdCounter := make(map[string]int)
-	for _, queryResults := range *slice {
-		for _, vulnerabilitiesFiles := range queryResults.Files {
+	for i := range *slice {
+		for _, vulnerabilitiesFiles := range (*slice)[i].Files {
 			if _, ok := mapSimilarityIdCounter[vulnerabilitiesFiles.SimilarityID]; ok {
 				return false // Duplicate found
 			}
