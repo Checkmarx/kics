@@ -179,6 +179,18 @@ func parserBicepFile(bicepContent []byte) ([]converter.ElemBicep, error) {
 			continue
 		}
 
+		inlineObject := parseInlineObject(line)
+		if inlineObject != nil {
+			if len(parentsStack) > 0 {
+				addPropToParent(parentsStack, inlineObject)
+			} else {
+				for k, v := range inlineObject {
+					tempMap[k] = v
+				}
+			}
+			continue
+		}
+
 		if len(parentsStack) > 1 {
 			parent := parentsStack[len(parentsStack)-2]
 			added := false
@@ -541,6 +553,27 @@ func parseInlineArray(line string) map[string]interface{} {
 		value := matches[2]
 
 		values := []string{value}
+
+		return map[string]interface{}{name: values}
+	}
+
+	return nil
+}
+
+// parse Inline Array syntax from bicep file
+func parseInlineObject(line string) map[string]interface{} {
+	metadataRegex := regexp.MustCompile(` *([^ :']*): *\{(.*?)\}`)
+	matches := metadataRegex.FindStringSubmatch(line)
+
+	if matches != nil {
+		name := matches[1]
+		value := matches[2]
+
+		var values map[string]interface{}
+		values = nil
+		if value != "" {
+			values = map[string]interface{}{value: value}
+		}
 
 		return map[string]interface{}{name: values}
 	}
