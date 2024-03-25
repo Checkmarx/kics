@@ -17,7 +17,11 @@ import (
 	"github.com/xeipuuv/gojsonschema"
 )
 
-var filekey = "file"
+var (
+	filekey             = "file"
+	expectedSearchValue = []string{}
+	actualSearchValue   = []string{}
+)
 
 type logMsg struct {
 	Level    string `json:"level"`
@@ -212,6 +216,10 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 				actualQuery.QueryName, expectFileName, actualFileName)
 
 			for j := range actualI.Queries[i].Files {
+				expectedSearchValue = append(expectedSearchValue, expectQuery.Files[j].SearchValue)
+				actualSearchValue = append(actualSearchValue, expectQuery.Files[j].SearchValue)
+				actualQuery.Files[j].SearchValue = ""
+				expectQuery.Files[j].SearchValue = ""
 				actualQuery.Files[j].FileName = ""
 				expectQuery.Files[j].FileName = ""
 			}
@@ -223,6 +231,10 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 				return expectQuery.Files[a].SimilarityID < expectQuery.Files[b].SimilarityID
 			})
 		}
+
+		require.ElementsMatch(t, expectedSearchValue, actualSearchValue,
+			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result Search Value content: 'output/%s'.",
+			expectFileName, actualFileName)
 
 		require.ElementsMatch(t, expectI.ScannedPaths, actualI.ScannedPaths,
 			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result Scanned Paths content: 'output/%s'.",
