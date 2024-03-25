@@ -2,7 +2,6 @@ package utils
 
 import (
 	"encoding/json"
-	"github.com/stretchr/testify/assert"
 	"io"
 	"os"
 	"path/filepath"
@@ -13,6 +12,7 @@ import (
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/xeipuuv/gojsonschema"
 )
@@ -221,8 +221,6 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 				expectQuery.Files[j].FileName = ""
 			}
 
-			assert.True(t, assertUnique(actualQuery.Files), "Expected all similarity id to be unique")
-
 			sort.Slice(actualQuery.Files, func(a, b int) bool {
 				return actualQuery.Files[a].SimilarityID < actualQuery.Files[b].SimilarityID
 			})
@@ -230,6 +228,8 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 				return expectQuery.Files[a].SimilarityID < expectQuery.Files[b].SimilarityID
 			})
 		}
+
+		assert.True(t, assertUnique(&actualI.Queries), "Expected all similarity id to be unique")
 
 		require.ElementsMatch(t, expectI.ScannedPaths, actualI.ScannedPaths,
 			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result Scanned Paths content: 'output/%s'.",
@@ -242,14 +242,14 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 	}
 }
 
-func assertUnique(slice []model.VulnerableFile) bool {
+func assertUnique(slice *model.QueryResultSlice) bool {
 	mapSimilarityIdCounter := make(map[string]int)
-
-	for _, v := range slice {
-		if _, ok := mapSimilarityIdCounter[v.SimilarityID]; ok {
-			return false // Duplicate found
+	for _, queryResults := range *slice {
+		for _, vulnerabilitiesFiles := range queryResults.Files {
+			if _, ok := mapSimilarityIdCounter[vulnerabilitiesFiles.SimilarityID]; ok {
+				return false // Duplicate found
+			}
 		}
 	}
-
 	return true // No duplicates found
 }
