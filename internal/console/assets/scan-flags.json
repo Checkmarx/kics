@@ -212,8 +212,8 @@
   "parallel": {
     "flagType": "int",
     "shorthandFlag": "",
-    "defaultValue": "1",
-    "usage": "number of workers per platform enabled for parallel scanning, set 0 to auto-detect parallelism",
+    "defaultValue": "0",
+    "usage": "number of workers per platform enabled for parallel scanning (default set to 0 to auto-detect optimal number of workers)",
     "validation": "validateWorkersFlag"
   },
   "max-file-size": {
@@ -222,10 +222,10 @@
     "defaultValue": "5",
     "usage": "max file size permitted for scanning, in MB"
   },
-  "new-severities": {
+  "old-severities": {
   "flagType": "bool",
   "shorthandFlag": "",
   "defaultValue": "false",
-  "usage": "use new severities in query results"
+  "usage": "uses old severities in query results"
   }
 }
