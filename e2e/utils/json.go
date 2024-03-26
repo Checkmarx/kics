@@ -216,9 +216,9 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 	}
 }
 
-func checkQueries(t *testing.T, actualI, expectI *model.Summary, expectFileName, actualFileName string) ([]string, []string) {
-	expectedSearchValue := []string{}
-	actualSearchValue := []string{}
+func checkQueries(t *testing.T, actualI, expectI *model.Summary, expectFileName, actualFileName string) (expectedSearchValue []string, actualSearchValue []string) {
+	expectedSearchValue = []string{}
+	actualSearchValue = []string{}
 	for i := range actualI.Queries {
 		actualQuery := actualI.Queries[i]
 		expectQuery := expectI.Queries[i]
