@@ -4,6 +4,7 @@ package scan
 import (
 	"context"
 	"os"
+	"slices"
 
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/pkg/engine"
@@ -15,6 +16,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/parser"
 	ansibleConfigParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/config"
 	ansibleHostsParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/hosts"
+	bicepParser "github.com/Checkmarx/kics/pkg/parser/bicep"
 	buildahParser "github.com/Checkmarx/kics/pkg/parser/buildah"
 	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
 	protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"
@@ -55,9 +57,14 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		return nil, nil
 	}
 
+	platform := c.ScanParams.Platform
+	if slices.Contains(platform, "bicep") && !slices.Contains(platform, "azureresourcemanager") {
+		platform = append(platform, "azureresourcemanager")
+	}
+
 	querySource := source.NewFilesystemSource(
 		c.ScanParams.QueriesPath,
-		c.ScanParams.Platform,
+		platform,
 		c.ScanParams.CloudProvider,
 		c.ScanParams.LibrariesPath,
 		c.ScanParams.ExperimentalQueries)
@@ -234,6 +241,7 @@ func (c *Client) createService(
 		Add(&buildahParser.Parser{}).
 		Add(&ansibleConfigParser.Parser{}).
 		Add(&ansibleHostsParser.Parser{}).
+		Add(&bicepParser.Parser{}).
 		Build(querySource.Types, querySource.CloudProviders)
 	if err != nil {
 		return nil, err
