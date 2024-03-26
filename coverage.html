@@ -2093,7 +2093,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
                 OpenAPIResolveReferences:    flags.GetBoolFlag(flags.OpenAPIReferencesFlag),
                 ParallelScanFlag:            flags.GetIntFlag(flags.ParallelScanFile),
                 MaxFileSizeFlag:             flags.GetIntFlag(flags.MaxFileSizeFlag),
-                UseNewSeverities:            flags.GetBoolFlag(flags.UseNewSeveritiesFlag),
+                UseOldSeverities:            flags.GetBoolFlag(flags.UseOldSeveritiesFlag),
         }
 
         return &amp;scanParams
@@ -2568,13 +2568,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov8" title="34">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="38">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov8" title="34">total += v
+                <span class="cov9" title="38">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2599,14 +2599,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov3" title="3">{
+        if math.IsNaN(metric) </span><span class="cov2" title="2">{
                 metric = 0
         }</span>
 
@@ -5655,7 +5655,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5922,7 +5922,7 @@ type QueryLoader struct {
 
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
-        detector *detector.DetectLine, useNewSeverities bool) (*model.Vulnerability, error)
+        detector *detector.DetectLine, useOldSeverities bool) (*model.Vulnerability, error)
 
 // PreparedQuery includes the opaQuery and its metadata
 type PreparedQuery struct {
@@ -5943,7 +5943,7 @@ type Inspector struct {
         enableCoverageReport bool
         coverageReport       cover.Report
         queryExecTimeout     time.Duration
-        useNewSeverities     bool
+        useOldSeverities     bool
         numWorkers           int
 }
 
@@ -5983,7 +5983,7 @@ func NewInspector(
         queryParameters *source.QueryInspectorParameters,
         excludeResults map[string]bool,
         queryTimeout int,
-        useNewSeverities bool,
+        useOldSeverities bool,
         needsLog bool,
         numWorkers int) (*Inspector, error) <span class="cov4" title="5">{
         log.Debug().Msg("engine.NewInspector()")
@@ -6036,7 +6036,7 @@ func NewInspector(
                 excludeResults:   excludeResults,
                 detector:         lineDetector,
                 queryExecTimeout: queryExecTimeout,
-                useNewSeverities: useNewSeverities,
+                useOldSeverities: useOldSeverities,
                 numWorkers:       adjustNumWorkers(numWorkers),
         }, nil</span>
 }
@@ -6341,7 +6341,7 @@ func (c *Inspector) DecodeQueryResults(
 }
 
 func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultItem interface{}) (*model.Vulnerability, bool) <span class="cov2" title="2">{
-        vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector, c.useNewSeverities)
+        vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector, c.useOldSeverities)
         if err != nil &amp;&amp; err.Error() == ErrNoResult.Error() </span><span class="cov0" title="0">{
                 // Ignoring bad results
                 return nil, false
@@ -8529,7 +8529,7 @@ func modifyVulSearchKeyReference(doc interface{}, originalSearchKey string, stri
 var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
         tracker Tracker,
         v interface{},
-        detector *dec.DetectLine, useNewSeverities bool) (*model.Vulnerability, error) <span class="cov10" title="6">{
+        detector *dec.DetectLine, useOldSeverities bool) (*model.Vulnerability, error) <span class="cov10" title="6">{
         vObj, ok := v.(map[string]interface{})
         if !ok </span><span class="cov0" title="0">{
                 return &amp;model.Vulnerability{}, ErrInvalidResult
@@ -8625,7 +8625,7 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
 
         <span class="cov10" title="6">queryID := getStringFromMap("id", DefaultQueryID, overrideKey, vObj, &amp;logWithFields)
 
-        severity := getResolvedSeverity(vObj, &amp;logWithFields, overrideKey, useNewSeverities)
+        severity := getResolvedSeverity(vObj, &amp;logWithFields, overrideKey, useOldSeverities)
 
         issueType := DefaultIssueType
         if v := mustMapKeyToString(vObj, "issueType"); v != nil </span><span class="cov10" title="6">{
@@ -8718,7 +8718,7 @@ func calculeSearchLine(searchLineCalc *searchLineCalculator) (lineNumber int,
 }</span>
 
 func getResolvedSeverity(vObj map[string]interface{}, logWithFields *zerolog.Logger,
-        overrideKey string, useNewSeverities bool) model.Severity <span class="cov10" title="6">{
+        overrideKey string, useOldSeverities bool) model.Severity <span class="cov10" title="6">{
         var severity model.Severity = model.SeverityInfo
         s, err := mapKeyToString(vObj, "severity", false)
 
@@ -8734,8 +8734,8 @@ func getResolvedSeverity(vObj map[string]interface{}, logWithFields *zerolog.Log
                                 if sev != "" </span><span class="cov1" title="1">{
                                         severity = sev
                                 }</span>
-                        } else<span class="cov6" title="3"> if useNewSeverities </span><span class="cov1" title="1">{
-                                oldS, errOld := mapKeyToString(vObj, "newSeverity", false)
+                        } else<span class="cov6" title="3"> if useOldSeverities </span><span class="cov1" title="1">{
+                                oldS, errOld := mapKeyToString(vObj, "oldSeverity", false)
                                 if errOld == nil </span><span class="cov1" title="1">{
                                         oldSev := getSeverity(strings.ToUpper(*oldS))
                                         severity = oldSev
@@ -18787,7 +18787,7 @@ func initScan(queryID string) (*engine.Inspector, error) <span class="cov10" tit
                 &amp;queryFilter,
                 make(map[string]bool),
                 c.ScanParams.QueryExecTimeout,
-                c.ScanParams.UseNewSeverities,
+                c.ScanParams.UseOldSeverities,
                 false,
                 c.ScanParams.ParallelScanFlag,
         )
@@ -22827,7 +22827,7 @@ type Parameters struct {
         OpenAPIResolveReferences    bool
         ParallelScanFlag            int
         MaxFileSizeFlag             int
-        UseNewSeverities            bool
+        UseOldSeverities            bool
 }
 
 // Client represents a scan client
@@ -23262,7 +23262,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) <
                 queryFilter,
                 c.ExcludeResultsMap,
                 c.ScanParams.QueryExecTimeout,
-                c.ScanParams.UseNewSeverities,
+                c.ScanParams.UseOldSeverities,
                 true,
                 c.ScanParams.ParallelScanFlag,
         )
