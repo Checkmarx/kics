@@ -40,7 +40,7 @@ Use "kics [command] --help" for more information about a command.
 |-m, --bom                           |include bill of materials (BoM) in results output|
 |      --cloud-provider strings      |  list of cloud providers to scan (alicloud, aws, azure, gcp, nifcloud, tencentcloud)|
 |      --config string               |  path to configuration file|
-|      --new-severities              |  use new severities in query results |
+|      --old-severities              |  uses old severities in query results|
 |      --disable-full-descriptions   |  disable request for full descriptions and use default vulnerability descriptions|
 |      --disable-secrets             |  disable secrets scanning|
 |      --enable-openapi-refs         |  resolve the file reference, on OpenAPI files (default [false])|
@@ -62,7 +62,7 @@ Use "kics [command] --help" for more information about a command.
 |      --no-progress                 |  hides the progress bar|
 |      --output-name string          |  name used on report creations (default "results")|
 |  -o, --output-path string          |  directory path to store reports|
-|      --parallel                    |  number of workers per platform enabled for parallel scanning, set 0 to auto-detect parallelism (default 1)|
+|      --parallel                    |  number of workers per platform enabled for parallel scanning (default set to 0 to auto-detect optimal number of workers)|
 |  -p, --path strings                |  paths or directories to scan<br>example: "./somepath,somefile.txt"|
 |      --payload-lines               |  adds line information inside the payload when printing the payload file|
 |  -d, --payload-path string         |  path to store internal representation JSON file|

@@ -23,8 +23,8 @@
   "start": "2024-01-31T15:46:25.2714687Z",
   "end": "2024-01-31T15:46:25.5747871Z",
   "paths": [
-    "/path/test/fixtures/test_new_severity/test",
-    "/path/test/fixtures/test_new_severity/info"
+    "/path/test/fixtures/test_old_severity/test",
+    "/path/test/fixtures/test_old_severity/info"
   ],
   "queries": [
     {
@@ -39,7 +39,7 @@
       "description_id": "02044a75",
       "files": [
         {
-          "file_name": "path\\test\\fixtures\\test_new_severities\\test\\positive1.yaml",
+          "file_name": "path\\test\\fixtures\\test_old_severities\\test\\positive1.yaml",
           "similarity_id": "2197922dab336742ff58010e01218006c9b2c930a840018ef8b42fb1284f2a45",
           "line": 10,
           "issue_type": "IncorrectValue",
@@ -50,7 +50,7 @@
           "actual_value": "Run block contains dangerous input controlled by user."
         },
         {
-          "file_name": "path\\test\\fixtures\\test_new_severities\\test\\positive1.yaml",
+          "file_name": "path\\test\\fixtures\\test_old_severities\\test\\positive1.yaml",
           "similarity_id": "efac914cab5fb466570dd3a71ee3edd8197a15928c56c2aabff00f54d05c5e6d",
           "line": 10,
           "issue_type": "IncorrectValue",
