@@ -47,7 +47,7 @@ type Parameters struct {
 	OpenAPIResolveReferences    bool
 	ParallelScanFlag            int
 	MaxFileSizeFlag             int
-	UseNewSeverities            bool
+	UseOldSeverities            bool
 }
 
 // Client represents a scan client
