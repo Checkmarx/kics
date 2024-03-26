@@ -29,7 +29,7 @@ import (
 
 var (
 	validUUID    = regexp.MustCompile(ValidUUIDRegex)
-	severityList = []string{model.SeverityHigh, model.SeverityMedium, model.SeverityLow, model.SeverityInfo, model.SeverityTrace}
+	severityList = []string{model.SeverityCritical, model.SeverityHigh, model.SeverityMedium, model.SeverityLow, model.SeverityInfo, model.SeverityTrace}
 
 	requiredQueryResultProperties = []string{
 		"documentId",
