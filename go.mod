@@ -5,7 +5,7 @@ go 1.21
 replace (
 	github.com/containerd/containerd => github.com/containerd/containerd v1.6.26
 	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
-	github.com/docker/docker => github.com/docker/docker v24.0.7+incompatible
+	github.com/docker/docker => github.com/docker/docker v24.0.9+incompatible
 	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.9.1
 	github.com/moby/buildkit => github.com/moby/buildkit v0.12.5
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
