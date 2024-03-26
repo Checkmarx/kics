@@ -20,8 +20,8 @@
   },
   "total_counter": 2,
   "total_bom_resources": 0,
-  "start": "2024-03-25T12:33:17.8640827Z",
-  "end": "2024-03-25T12:33:20.8977979Z",
+  "start": "2024-03-26T14:46:52.4090749Z",
+  "end": "2024-03-26T14:46:55.6257816Z",
   "paths": [
     "/path/test/fixtures/new_similarity_id"
   ],
@@ -39,7 +39,7 @@
       "files": [
         {
           "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
-          "similarity_id": "d961aaad4a5f76c10bbb5af77b2ee8bd88dd2f977d6af847bd03d12b54569820",
+          "similarity_id": "7a2fb2748dcebcb8a4169e65b71a5f51dff8b3dabca853847b9f7568485c5e37",
           "line": 4,
           "issue_type": "MissingAttribute",
           "search_key": "services.api.deploy",
@@ -50,7 +50,7 @@
         },
         {
           "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
-          "similarity_id": "d961aaad4a5f76c10bbb5af77b2ee8bd88dd2f977d6af847bd03d12b54569820",
+          "similarity_id": "074e833d4a971ef74dcaca53f1af93c15f90ea6627fded399529a4b7c2e8ce59",
           "line": 4,
           "issue_type": "MissingAttribute",
           "search_key": "services.ui.deploy",

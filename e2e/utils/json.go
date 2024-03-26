@@ -18,9 +18,7 @@ import (
 )
 
 var (
-	filekey             = "file"
-	expectedSearchValue = []string{}
-	actualSearchValue   = []string{}
+	filekey = "file"
 )
 
 type logMsg struct {
@@ -201,36 +199,7 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 
 		assert.True(t, assertUnique(&actualI.Queries), "Expected all similarity id to be unique")
 
-		for i := range actualI.Queries {
-			actualQuery := actualI.Queries[i]
-			expectQuery := expectI.Queries[i]
-
-			require.Equal(t, actualQuery.QueryName, expectQuery.QueryName,
-				"Expected Result queries doesn't match the actual result queries [in the index: %d]."+
-					"\nExpected File: 'fixtures/%s'.\nActual File: 'output/%s'.",
-				i, expectFileName, actualFileName)
-
-			require.Equal(t, len(actualQuery.Files), len(expectQuery.Files),
-				"Expected query results doesn't match the actual query results [query: %s]."+
-					"\nExpected File: 'fixtures/%s'.\nActual File: 'output/%s'.",
-				actualQuery.QueryName, expectFileName, actualFileName)
-
-			for j := range actualI.Queries[i].Files {
-				expectedSearchValue = append(expectedSearchValue, expectQuery.Files[j].SearchValue)
-				actualSearchValue = append(actualSearchValue, expectQuery.Files[j].SearchValue)
-				actualQuery.Files[j].SearchValue = ""
-				expectQuery.Files[j].SearchValue = ""
-				actualQuery.Files[j].FileName = ""
-				expectQuery.Files[j].FileName = ""
-			}
-
-			sort.Slice(actualQuery.Files, func(a, b int) bool {
-				return actualQuery.Files[a].SimilarityID < actualQuery.Files[b].SimilarityID
-			})
-			sort.Slice(expectQuery.Files, func(a, b int) bool {
-				return expectQuery.Files[a].SimilarityID < expectQuery.Files[b].SimilarityID
-			})
-		}
+		expectedSearchValue, actualSearchValue := checkQueries(t, &actualI, &expectI, expectFileName, actualFileName)
 
 		require.ElementsMatch(t, expectedSearchValue, actualSearchValue,
 			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result Search Value content: 'output/%s'.",
@@ -245,6 +214,42 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result content: 'output/%s'.",
 			expectFileName, actualFileName)
 	}
+}
+
+func checkQueries(t *testing.T, actualI, expectI *model.Summary, expectFileName, actualFileName string) ([]string, []string) {
+	expectedSearchValue := []string{}
+	actualSearchValue := []string{}
+	for i := range actualI.Queries {
+		actualQuery := actualI.Queries[i]
+		expectQuery := expectI.Queries[i]
+
+		require.Equal(t, actualQuery.QueryName, expectQuery.QueryName,
+			"Expected Result queries doesn't match the actual result queries [in the index: %d]."+
+				"\nExpected File: 'fixtures/%s'.\nActual File: 'output/%s'.",
+			i, expectFileName, actualFileName)
+
+		require.Equal(t, len(actualQuery.Files), len(expectQuery.Files),
+			"Expected query results doesn't match the actual query results [query: %s]."+
+				"\nExpected File: 'fixtures/%s'.\nActual File: 'output/%s'.",
+			actualQuery.QueryName, expectFileName, actualFileName)
+
+		for j := range actualI.Queries[i].Files {
+			expectedSearchValue = append(expectedSearchValue, expectQuery.Files[j].SearchValue)
+			actualSearchValue = append(actualSearchValue, expectQuery.Files[j].SearchValue)
+			actualQuery.Files[j].SearchValue = ""
+			expectQuery.Files[j].SearchValue = ""
+			actualQuery.Files[j].FileName = ""
+			expectQuery.Files[j].FileName = ""
+		}
+
+		sort.Slice(actualQuery.Files, func(a, b int) bool {
+			return actualQuery.Files[a].SimilarityID < actualQuery.Files[b].SimilarityID
+		})
+		sort.Slice(expectQuery.Files, func(a, b int) bool {
+			return expectQuery.Files[a].SimilarityID < expectQuery.Files[b].SimilarityID
+		})
+	}
+	return expectedSearchValue, actualSearchValue
 }
 
 func checkDocuments(t *testing.T, actualI *model.Documents) {

@@ -20,8 +20,8 @@
   },
   "total_counter": 2,
   "total_bom_resources": 0,
-  "start": "2023-12-27T09:48:54.183217Z",
-  "end": "2023-12-27T09:48:57.0673037Z",
+  "start": "2024-03-26T10:00:10.9102987Z",
+  "end": "2024-03-26T10:00:14.7683127Z",
   "paths": [
     "/path/test/fixtures/similarity_id"
   ],
@@ -39,12 +39,12 @@
       "files": [
         {
           "file_name": "path\\test\\fixtures\\similarity_id\\1_general_deployment.json",
-          "similarity_id": "ce5fe80b1d6f673cd23c2e92e490cae2fb8616a482058547d9e63b5417a92b25",
+          "similarity_id": "60db1dec778c035dd27b92ac2a39f06a8e44d5e16fc81140d7a70d86cee4a370",
           "line": 34,
           "resource_type": "Microsoft.Web/sites",
-          "resource_name": "[variables('functionApp').unbilled_usage_process]",
+          "resource_name": "[variables('functionApp').microsoft_unbilled_synchronization]",
           "issue_type": "IncorrectValue",
-          "search_key": "resources.name={{[variables('functionApp').unbilled_usage_process]}}.properties.httpsOnly",
+          "search_key": "resources.name={{[variables('functionApp').microsoft_unbilled_synchronization]}}.properties.httpsOnly",
           "search_line": 34,
           "search_value": "",
           "expected_value": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
@@ -52,12 +52,12 @@
         },
         {
           "file_name": "path\\test\\fixtures\\similarity_id\\1_general_deployment.json",
-          "similarity_id": "60db1dec778c035dd27b92ac2a39f06a8e44d5e16fc81140d7a70d86cee4a370",
+          "similarity_id": "ce5fe80b1d6f673cd23c2e92e490cae2fb8616a482058547d9e63b5417a92b25",
           "line": 18,
           "resource_type": "Microsoft.Web/sites",
-          "resource_name": "[variables('functionApp').microsoft_unbilled_synchronization]",
+          "resource_name": "[variables('functionApp').unbilled_usage_process]",
           "issue_type": "IncorrectValue",
-          "search_key": "resources.name={{[variables('functionApp').microsoft_unbilled_synchronization]}}.properties.httpsOnly",
+          "search_key": "resources.name={{[variables('functionApp').unbilled_usage_process]}}.properties.httpsOnly",
           "search_line": 18,
           "search_value": "",
           "expected_value": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
