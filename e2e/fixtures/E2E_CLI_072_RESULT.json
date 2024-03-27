@@ -20,8 +20,8 @@
   },
   "total_counter": 4,
   "total_bom_resources": 0,
-  "start": "2024-03-26T14:34:46.4769902Z",
-  "end": "2024-03-26T14:34:51.0926076Z",
+  "start": "2024-03-27T14:12:18.6828073Z",
+  "end": "2024-03-27T14:12:23.2195749Z",
   "paths": [
     "/path/test/fixtures/resolve_references"
   ],
@@ -39,18 +39,7 @@
       "files": [
         {
           "file_name": "path\\test\\fixtures\\resolve_references\\swagger.yaml",
-          "similarity_id": "22e82edb39085e8787d853eed386b45f1774e7bbf7e1f08ed9662c33cd69d883",
-          "line": 14,
-          "issue_type": "MissingAttribute",
-          "search_key": "paths.{{/users/{userId}}}.$ref=./paths/users/user.yaml",
-          "search_line": 0,
-          "search_value": "500 response",
-          "expected_value": "500 response should be set",
-          "actual_value": "500 response is undefined"
-        },
-        {
-          "file_name": "path\\test\\fixtures\\resolve_references\\swagger.yaml",
-          "similarity_id": "21b4b94761ab17c403b6455c8b88f295729ed9e98fd3101b2bb5cf5373fba1e6",
+          "similarity_id": "0e9d0a90c2069babcc7d07b581105ebda5dba82dc83c0ef588103f8805662c8c",
           "line": 14,
           "issue_type": "MissingAttribute",
           "search_key": "paths.{{/users/{userId}}}.$ref=./paths/users/user.yaml",
@@ -61,7 +50,7 @@
         },
         {
           "file_name": "path\\test\\fixtures\\resolve_references\\swagger.yaml",
-          "similarity_id": "0e9d0a90c2069babcc7d07b581105ebda5dba82dc83c0ef588103f8805662c8c",
+          "similarity_id": "21b4b94761ab17c403b6455c8b88f295729ed9e98fd3101b2bb5cf5373fba1e6",
           "line": 14,
           "issue_type": "MissingAttribute",
           "search_key": "paths.{{/users/{userId}}}.$ref=./paths/users/user.yaml",
@@ -69,6 +58,17 @@
           "search_value": "429 response",
           "expected_value": "429 response should be set",
           "actual_value": "429 response is undefined"
+        },
+        {
+          "file_name": "path\\test\\fixtures\\resolve_references\\swagger.yaml",
+          "similarity_id": "22e82edb39085e8787d853eed386b45f1774e7bbf7e1f08ed9662c33cd69d883",
+          "line": 14,
+          "issue_type": "MissingAttribute",
+          "search_key": "paths.{{/users/{userId}}}.$ref=./paths/users/user.yaml",
+          "search_line": 0,
+          "search_value": "500 response",
+          "expected_value": "500 response should be set",
+          "actual_value": "500 response is undefined"
         }
       ]
     },
