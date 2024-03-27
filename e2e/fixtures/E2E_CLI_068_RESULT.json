@@ -20,10 +20,10 @@
 	},
 	"total_counter": 3,
 	"total_bom_resources": 0,
-	"start": "2024-03-27T10:27:02.623087Z",
-	"end": "2024-03-27T10:27:06.0017952Z",
+	"start": "2024-03-27T11:20:29.068037Z",
+	"end": "2024-03-27T11:20:30.0252697Z",
 	"paths": [
-		"./test/fixtures/dockerfile/corrupted_dockerfile"
+		"/path/test/fixtures/dockerfile/corrupted_dockerfile"
 	],
 	"queries": [
 		{
@@ -39,7 +39,7 @@
 			"description_id": "eb49caf6",
 			"files": [
 				{
-					"file_name": ".\\test\\fixtures\\dockerfile\\corrupted_dockerfile",
+					"file_name": "/path/test/fixtures/dockerfile/corrupted_dockerfile",
 					"similarity_id": "821b0a105dd9ebb6b14489251615d94813a578feb68624113a52ba9c1668ecb7",
 					"line": 1,
 					"issue_type": "MissingAttribute",
@@ -64,7 +64,7 @@
 			"description_id": "22f535ec",
 			"files": [
 				{
-					"file_name": ".\\test\\fixtures\\dockerfile\\corrupted_dockerfile",
+					"file_name": "/path/test/fixtures/dockerfile/corrupted_dockerfile",
 					"similarity_id": "a32938ae4d056569e5cfda73594f6cb276d4f9ee14a848fb6b642b14defee892",
 					"line": 1,
 					"issue_type": "IncorrectValue",
@@ -89,7 +89,7 @@
 			"description_id": "426121ee",
 			"files": [
 				{
-					"file_name": ".\\test\\fixtures\\dockerfile\\corrupted_dockerfile",
+					"file_name": "/path/test/fixtures/dockerfile/corrupted_dockerfile",
 					"similarity_id": "ec1a1e998229f963313752def87ce5027e89997cfb4180c9b356414566f5a029",
 					"line": 1,
 					"issue_type": "MissingAttribute",

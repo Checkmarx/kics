@@ -1,7 +1,7 @@
 {
 	"document": [
 		{
-			"id": "d9c27d00-79a0-47ac-8c2f-be369feddc1e",
+			"id": "f2696281-dc89-44d7-a87f-5697948b60c7",
 			"resource": {
 				"aws_redshift_cluster": {
 					"default1": {
@@ -10,7 +10,7 @@
 					}
 				}
 			},
-			"file": "\\path\\e2e\\fixtures\\samples\\terraform-single.tf"
+			"file": "/path/e2e/fixtures/samples/terraform-single.tf"
 		}
 	]
 }
