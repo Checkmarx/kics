@@ -1,12 +1,11 @@
 {
   "id": "075ca296-6768-4322-aea2-ba5063b969a9",
   "queryName": "Etcd TLS Certificate Files Not Properly Set",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "When using etcd commands, the '--cert-file' and '--key-file' should be defined",
   "descriptionUrl": "https://etcd.io/docs/v3.4/op-guide/security/",
   "platform": "Kubernetes",
   "descriptionID": "3c8aae35",
-  "cwe": "",
-  "oldSeverity": "HIGH"
+  "cwe": ""
 }

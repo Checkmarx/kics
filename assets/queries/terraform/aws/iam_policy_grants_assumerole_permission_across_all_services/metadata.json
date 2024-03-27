@@ -1,13 +1,12 @@
 {
   "id": "bcdcbdc6-a350-4855-ae7c-d1e6436f7c97",
   "queryName": "IAM Policy Grants 'AssumeRole' Permission Across All Services",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Access Control",
   "descriptionText": "IAM Policy should not grant 'AssumeRole' permission across all services.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role",
   "platform": "Terraform",
   "descriptionID": "948aa2ac",
   "cloudProvider": "aws",
-  "cwe": "",
-  "oldSeverity": "LOW"
+  "cwe": ""
 }

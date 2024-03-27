@@ -1,0 +1,69 @@
+{
+  "Resources": {
+    "myuser": {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "Path": "/",
+        "LoginProfile": {
+          "Password": "MY@SSW0RD12EDE"
+        },
+        "Policies": [
+          {
+            "PolicyName": "giveaccesstoqueueonly",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "sqs:*"
+                  ],
+                  "Resource": [
+                    "myqueue.Arn"
+                  ]
+                },
+                {
+                  "NotResource": [
+                    "myqueue.Arn"
+                  ],
+                  "Effect": "Deny",
+                  "Action": [
+                    "sqs:*"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "PolicyName": "giveaccesstotopiconly",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "sns:*"
+                  ],
+                  "Resource": [
+                    "mytopic"
+                  ]
+                },
+                {
+                  "Action": [
+                    "sns:*"
+                  ],
+                  "NotResource": [
+                    "mytopic"
+                  ],
+                  "Effect": "Deny"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "A sample template"
+}

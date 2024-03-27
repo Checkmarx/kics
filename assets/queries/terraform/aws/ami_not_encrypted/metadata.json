@@ -1,13 +1,12 @@
 {
   "id": "8bbb242f-6e38-4127-86d4-d8f0b2687ae2",
   "queryName": "AMI Not Encrypted",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Encryption",
   "descriptionText": "AWS AMI Encryption is not enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami",
   "platform": "Terraform",
   "descriptionID": "248fe368",
   "cloudProvider": "aws",
-  "cwe": "",
-  "oldSeverity": "HIGH"
+  "cwe": ""
 }
