@@ -23,7 +23,7 @@
 	"start": "2024-03-27T10:02:13.6066912Z",
 	"end": "2024-03-27T10:02:33.4660001Z",
 	"paths": [
-		"./e2e/fixtures/samples/terraform-single.tf"
+		"/path/e2e/fixtures/samples/terraform-single.tf"
 	],
 	"queries": [
 		{
@@ -39,7 +39,7 @@
 			"description_id": "458fe7a3",
 			"files": [
 				{
-					"file_name": ".\\e2e\\fixtures\\samples\\terraform-single.tf",
+					"file_name": "\\path\\e2e\\fixtures\\samples\\terraform-single.tf",
 					"similarity_id": "225c40e04fe9ac2285e2e47a448c8159cde8561762989f936c5cc6967977f664",
 					"line": 1,
 					"resource_type": "aws_redshift_cluster",
@@ -68,7 +68,7 @@
 			"description_id": "d03e85ae",
 			"files": [
 				{
-					"file_name": ".\\e2e\\fixtures\\samples\\terraform-single.tf",
+					"file_name": "\\path\\e2e\\fixtures\\samples\\terraform-single.tf",
 					"similarity_id": "aa346cd1642a83b40e221f96a43d88dbfacecdf1f8e5314c24145f8d35530197",
 					"line": 1,
 					"resource_type": "n/a",
@@ -95,7 +95,7 @@
 			"description_id": "6fd531fa",
 			"files": [
 				{
-					"file_name": ".\\e2e\\fixtures\\samples\\terraform-single.tf",
+					"file_name": "\\path\\e2e\\fixtures\\samples\\terraform-single.tf",
 					"similarity_id": "83461a5eac8fed2264fac68a6d352d1ed752867a9b0a131afa9ba7e366159b59",
 					"line": 1,
 					"resource_type": "aws_redshift_cluster",
@@ -108,7 +108,7 @@
 					"actual_value": "aws_redshift_cluster[default1].vpc_security_group_ids is undefined"
 				},
 				{
-					"file_name": ".\\e2e\\fixtures\\samples\\terraform-single.tf",
+					"file_name": "\\path\\e2e\\fixtures\\samples\\terraform-single.tf",
 					"similarity_id": "4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa",
 					"line": 1,
 					"resource_type": "aws_redshift_cluster",
@@ -135,7 +135,7 @@
 			"description_id": "e2e48d27",
 			"files": [
 				{
-					"file_name": ".\\e2e\\fixtures\\samples\\terraform-single.tf",
+					"file_name": "\\path\\e2e\\fixtures\\samples\\terraform-single.tf",
 					"similarity_id": "34ae9f216456678405a82e7419b9b1614ee09a765529f717679e1fa4f4a1ae0a",
 					"line": 1,
 					"resource_type": "aws_redshift_cluster",
@@ -162,7 +162,7 @@
 			"description_id": "09db2d52",
 			"files": [
 				{
-					"file_name": ".\\e2e\\fixtures\\samples\\terraform-single.tf",
+					"file_name": "\\path\\e2e\\fixtures\\samples\\terraform-single.tf",
 					"similarity_id": "406b71d9fd0edb656a4735df30dde77c5f8a6c4ec3caa3442f986a92832c653b",
 					"line": 1,
 					"resource_type": "aws_redshift_cluster",

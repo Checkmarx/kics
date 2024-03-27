@@ -10,7 +10,7 @@
 					}
 				}
 			},
-			"file": ".\\e2e\\fixtures\\samples\\terraform-single.tf"
+			"file": "\\path\\e2e\\fixtures\\samples\\terraform-single.tf"
 		}
 	]
 }
