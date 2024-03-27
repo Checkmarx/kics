@@ -1,12 +1,13 @@
 {
   "id": "1bcdf9f0-b1aa-40a4-b8c6-cd7785836843",
   "queryName": "API Gateway API Protocol Not HTTPS",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "API Gateway API protocol should be set to HTTPS",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/api_gateway_api#protocol",
   "platform": "Terraform",
   "descriptionID": "31f4c870",
   "cloudProvider": "alicloud",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

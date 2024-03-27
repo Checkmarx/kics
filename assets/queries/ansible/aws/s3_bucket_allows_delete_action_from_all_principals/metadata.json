@@ -1,12 +1,13 @@
 {
   "id": "6fa44721-ef21-41c6-8665-330d59461163",
   "queryName": "S3 Bucket Allows Delete Action From All Principals",
-  "severity": "HIGH",
+  "severity": "CRITICAL",
   "category": "Access Control",
   "descriptionText": "S3 Buckets must not allow Delete Action From All Principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering / deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is Delete, for all Principals.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html",
   "platform": "Ansible",
   "descriptionID": "7c11444e",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

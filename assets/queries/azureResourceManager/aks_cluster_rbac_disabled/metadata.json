@@ -1,12 +1,13 @@
 {
   "id": "9307a2ed-35c2-413d-94de-a1a0682c2158",
   "queryName": "AKS Cluster RBAC Disabled",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Microsoft.ContainerService/managedClusters should have enableRBAC set to true",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json",
   "platform": "AzureResourceManager",
   "descriptionID": "b07ac0d6",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }
