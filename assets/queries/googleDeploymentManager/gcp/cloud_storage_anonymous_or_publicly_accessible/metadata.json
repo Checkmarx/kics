@@ -1,12 +1,13 @@
 {
   "id": "63ae3638-a38c-4ff4-b616-6e1f72a31a6a",
   "queryName": "Cloud Storage Anonymous or Publicly Accessible",
-  "severity": "HIGH",
+  "severity": "CRITICAL",
   "category": "Access Control",
   "descriptionText": "Cloud Storage Buckets must not be anonymously or publicly accessible, which means the subattribute 'entity' from attributes 'acl' and 'defaultObjectAcl' must not be 'allUsers' or 'allAuthenticatedUsers'",
   "descriptionUrl": "https://cloud.google.com/storage/docs/json_api/v1/buckets",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "2146c969",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

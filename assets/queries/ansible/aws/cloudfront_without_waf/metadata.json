@@ -1,12 +1,13 @@
 {
   "id": "22c80725-e390-4055-8d14-a872230f6607",
   "queryName": "CloudFront Without WAF",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "All AWS CloudFront distributions should be integrated with the Web Application Firewall (AWS WAF) service",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudfront_distribution_module.html",
   "platform": "Ansible",
   "descriptionID": "7fd7e5c0",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

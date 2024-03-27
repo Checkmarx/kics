@@ -1,12 +1,13 @@
 {
   "id": "d6c2d06f-43c1-488a-9ba1-8d75b40fc62d",
   "queryName": "Elasticsearch with HTTPS disabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Amazon Elasticsearch does not have encryption for its domains enabled. To prevent such a scenario, update the attribute 'EnforceHTTPS' to true.",
   "descriptionUrl": "https://docs.ansible.com/ansible/devel/collections/community/aws/opensearch_module.html",
   "platform": "Ansible",
   "descriptionID": "4beff10d",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

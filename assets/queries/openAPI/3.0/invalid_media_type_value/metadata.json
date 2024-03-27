@@ -3,7 +3,7 @@
   "queryName": "Invalid Media Type Value (v3)",
   "severity": "INFO",
   "category": "Best Practices",
-  "descriptionText": "The Media Type value should match the following format: \u003ctype\u003e/\u003csubtype\u003e[+suffix][;parameters]",
+  "descriptionText": "The Media Type value should match the following format: <type>/<subtype>[+suffix][;parameters]",
   "descriptionUrl": "https://swagger.io/specification/#media-type-object",
   "platform": "OpenAPI",
   "descriptionID": "6d641994",

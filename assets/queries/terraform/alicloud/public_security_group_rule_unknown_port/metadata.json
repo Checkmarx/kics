@@ -1,12 +1,13 @@
 {
   "id": "dd706080-b7a8-47dc-81fb-3e8184430ec0",
   "queryName": "Public Security Group Rule Unknown Port",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "A unknown port, such as port 24 or port 111, is open to the public in either TCP or UDP or ALL protocol/protocols mentioned",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/security_group_rule#port_range",
   "platform": "Terraform",
   "descriptionID": "a2097952",
   "cloudProvider": "alicloud",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

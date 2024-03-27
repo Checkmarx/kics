@@ -1,12 +1,13 @@
 {
   "id": "1367dd13-2c90-4020-80b7-e4339a3dc2c4",
   "queryName": "Storage Account Allows Unsecure Transfer",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "'Microsoft.Storage/storageAccounts' should force the use of HTTPS",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#storageaccountpropertiescreateparameters-object",
   "platform": "AzureResourceManager",
   "descriptionID": "f87b26ea",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

@@ -1,12 +1,13 @@
 {
   "id": "7f0a8696-7159-4337-ad0d-8a3ab4a78195",
   "queryName": "MariaDB Server Public Network Access Enabled",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "MariaDB Server Public Network Access should be disabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mariadb_server#public_network_access_enabled",
   "platform": "Terraform",
   "descriptionID": "e1decb5e",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

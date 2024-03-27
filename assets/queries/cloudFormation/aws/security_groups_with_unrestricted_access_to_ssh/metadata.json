@@ -1,12 +1,13 @@
 {
   "id": "6e856af2-62d7-4ba2-adc1-73b62cef9cc1",
   "queryName": "Security Group With Unrestricted Access To SSH",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "'SSH' (TCP:22) should not be public in AWS Security Group",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html",
   "platform": "CloudFormation",
   "descriptionID": "d515d6dc",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

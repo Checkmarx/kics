@@ -1,12 +1,13 @@
 {
   "id": "b9c524a4-fe76-4021-a6a2-cb978fb4fde1",
   "queryName": "RDS Instance Events Not Logged",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "All RDS Instance events trackers should be 'true'",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/log_audit",
   "platform": "Terraform",
   "descriptionID": "c731d8ad",
   "cloudProvider": "alicloud",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

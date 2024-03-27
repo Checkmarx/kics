@@ -1,7 +1,7 @@
 {
   "id": "539e4557-d2b5-4d57-a001-cb01140a4e2d",
   "queryName": "Check Databricks Cluster GCP Attribute Best Practices",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Best Practices",
   "descriptionText": "One or some Databricks Cluster GCP Attribute Best Practices are not respected",
   "descriptionUrl": "https://docs.databricks.com/clusters/cluster-config-best-practices.html",
@@ -9,5 +9,6 @@
   "descriptionID": "c1fe1954",
   "cloudProvider": "common",
   "experimental": "true",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

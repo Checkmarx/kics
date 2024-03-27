@@ -1,12 +1,13 @@
 {
   "id": "85138beb-ce7c-4ca3-a09f-e8fbcc57ddd7",
   "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Cross-Account IAM Assume Role Policy should require external ID or MFA to protect cross-account access",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-assumerolepolicydocument",
   "platform": "CloudFormation",
   "descriptionID": "8fca679f",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

@@ -1,12 +1,13 @@
 {
   "id": "e25b56cd-a4d6-498f-ab92-e6296a082097",
   "queryName": "Trusted Microsoft Services Not Enabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Trusted Microsoft Services should be enabled for Storage Account access",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?tabs=json#networkruleset",
   "platform": "AzureResourceManager",
   "descriptionID": "88ca11b3",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

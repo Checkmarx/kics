@@ -1,12 +1,13 @@
 {
   "id": "bb0db090-5509-4853-a827-75ced0b3caa0",
   "queryName": "Google Storage Bucket Level Access Disabled",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "Google Storage Bucket Level Access should be enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket",
   "platform": "Terraform",
   "descriptionID": "6a48f2c6",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

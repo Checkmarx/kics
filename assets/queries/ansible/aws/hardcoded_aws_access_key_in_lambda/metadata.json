@@ -1,12 +1,13 @@
 {
   "id": "f34508b9-f574-4330-b42d-88c44cced645",
   "queryName": "Hardcoded AWS Access Key In Lambda",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Secret Management",
   "descriptionText": "Lambda access/secret keys should not be hardcoded",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_module.html",
   "platform": "Ansible",
   "descriptionID": "fc78f6de",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

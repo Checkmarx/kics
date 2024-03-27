@@ -1,12 +1,13 @@
 {
   "id": "1b4565c0-4877-49ac-ab03-adebbccd42ae",
   "queryName": "RDS DB Instance Publicly Accessible",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "'0.0.0.0' or '0.0.0.0/0' should not be in 'security_ips' list",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#security_ips",
   "platform": "Terraform",
   "descriptionID": "aac97545",
   "cloudProvider": "alicloud",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

@@ -1,11 +1,12 @@
 {
   "id": "221015a8-aa2a-43f5-b00b-ad7d2b1d47a8",
   "queryName": "Security Definitions Using Basic Auth",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Security Definition Object should not use basic authentication",
   "descriptionUrl": "https://swagger.io/specification/v2/#securitySchemeObject",
   "platform": "OpenAPI",
   "descriptionID": "80ec8e6a",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

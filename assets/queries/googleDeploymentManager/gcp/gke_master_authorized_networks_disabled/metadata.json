@@ -1,12 +1,13 @@
 {
   "id": "62c8cf50-87f0-4295-a974-8184ed78fe02",
   "queryName": "GKE Master Authorized Networks Disabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Master authorized networks must be enabled in GKE clusters",
   "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "be3364b4",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

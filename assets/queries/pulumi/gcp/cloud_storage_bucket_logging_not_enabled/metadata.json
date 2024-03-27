@@ -1,12 +1,13 @@
 {
   "id": "48f7e44d-d1d1-44c2-b336-9f11b65c4fb0",
   "queryName": "Cloud Storage Bucket Logging Not Enabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Cloud storage bucket should have logging enabled",
   "descriptionUrl": "https://www.pulumi.com/registry/packages/gcp/api-docs/storage/bucket/#logging_yaml",
   "platform": "Pulumi",
   "descriptionID": "cc15c4d8",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

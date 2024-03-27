@@ -1,12 +1,13 @@
 {
   "id": "b4cc2c52-34a6-4b43-b57c-4bdeb4514a5a",
   "queryName": "Virtual Network with DDoS Protection Plan disabled",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Availability",
   "descriptionText": "Virtual Network should have DDoS Protection Plan enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network#ddos_protection_plan",
   "platform": "Terraform",
   "descriptionID": "c08cb91b",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

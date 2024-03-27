@@ -1,12 +1,13 @@
 {
   "id": "41a38329-d81b-4be4-aef4-55b2615d3282",
   "queryName": "RAM Account Password Policy Not Required Symbols",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Secret Management",
   "descriptionText": "RAM account password security should require at least one symbol",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#require_symbols",
   "platform": "Terraform",
   "descriptionID": "f3616c34",
   "cloudProvider": "alicloud",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

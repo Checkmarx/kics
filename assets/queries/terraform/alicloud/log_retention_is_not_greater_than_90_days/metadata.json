@@ -1,12 +1,13 @@
 {
   "id": "ed6cf6ff-9a1f-491c-9f88-e03c0807f390",
   "queryName": "Log Retention Is Not Greater Than 90 Days",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Observability",
   "descriptionText": "OSS Log Store should have logging enabled for longer than 90 days, for better visibility of resources and objects.",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/log_store#retention_period",
   "platform": "Terraform",
   "descriptionID": "11d4fc85",
   "cloudProvider": "alicloud",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

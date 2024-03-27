@@ -1,12 +1,13 @@
 {
   "id": "327b0729-4c5c-4c44-8b5c-e476cd9c7290",
   "queryName": "DynamoDB Table Point In Time Recovery Disabled",
-  "severity": "MEDIUM",
+  "severity": "INFO",
   "category": "Best Practices",
   "descriptionText": "It's considered a best practice to have point in time recovery enabled for DynamoDB Table",
   "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/dynamodb/table/#pointintimerecovery_yaml",
   "platform": "Pulumi",
   "descriptionID": "6ff56c6e",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

@@ -1,12 +1,13 @@
 {
   "id": "dafe30ec-325d-4516-85d1-e8e6776f012c",
   "queryName": "Azure Instance Using Basic Authentication",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Best Practices",
   "descriptionText": "Azure Instances should use SSH Key instead of basic authentication",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine#admin_ssh_key",
   "platform": "Terraform",
   "descriptionID": "dafe30ec",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

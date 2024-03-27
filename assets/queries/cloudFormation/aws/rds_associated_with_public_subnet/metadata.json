@@ -1,12 +1,13 @@
 {
   "id": "4e88adee-a8eb-4605-a78d-9fb1096e3091",
   "queryName": "RDS Associated with Public Subnet",
-  "severity": "HIGH",
+  "severity": "CRITICAL",
   "category": "Networking and Firewall",
   "descriptionText": "RDS should not run in public subnet",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-dbsubnetgroupname",
   "platform": "CloudFormation",
   "descriptionID": "be2d1742",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

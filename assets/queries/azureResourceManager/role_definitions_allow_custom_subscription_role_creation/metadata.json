@@ -1,12 +1,13 @@
 {
   "id": "8fa9ceea-881f-4ef0-b0b8-728f589699a7",
   "queryName": "Role Definitions Allow Custom Subscription Role Creation",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Role Definitions should not allow custom subscription role creation (actions set to '*' or 'Microsoft.Authorization/roleDefinitions/write')",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.authorization/roledefinitions?tabs=json#permission-object",
   "platform": "AzureResourceManager",
   "descriptionID": "7d8860a5",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

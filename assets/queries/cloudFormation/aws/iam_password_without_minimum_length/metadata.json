@@ -1,12 +1,13 @@
 {
   "id": "b1b20ae3-8fa7-4af5-a74d-a2145920fcb1",
   "queryName": "IAM Password Without Minimum Length",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Best Practices",
   "descriptionText": "IAM password should have the required minimum length",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-iam.html#scenario-iam-user",
   "platform": "CloudFormation",
   "descriptionID": "46859482",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

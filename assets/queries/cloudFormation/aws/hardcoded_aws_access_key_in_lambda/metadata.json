@@ -1,12 +1,13 @@
 {
   "id": "2564172f-c92b-4261-9acd-464aed511696",
   "queryName": "Hardcoded AWS Access Key In Lambda",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Secret Management",
   "descriptionText": "Lambda access/secret keys should not be hardcoded",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-environment",
   "platform": "CloudFormation",
   "descriptionID": "ff065e3b",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

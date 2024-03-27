@@ -1,12 +1,13 @@
 {
   "id": "647de8aa-5a42-41b5-9faf-22136f117380",
   "queryName": "RDS DB Instance Publicly Accessible",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "RDS must not be defined with public interface, which means the attribute 'PubliclyAccessible' must be set to false.",
   "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/rds/instance/#publiclyaccessible_yaml",
   "platform": "Pulumi",
   "descriptionID": "be6d13f0",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

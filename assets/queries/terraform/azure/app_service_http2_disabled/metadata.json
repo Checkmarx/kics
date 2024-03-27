@@ -1,12 +1,13 @@
 {
   "id": "525b53be-62ed-4244-b4df-41aecfcb4071",
   "queryName": "App Service HTTP2 Disabled",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "App Service should have 'http2_enabled' enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#http2_enabled",
   "platform": "Terraform",
   "descriptionID": "dee0c164",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

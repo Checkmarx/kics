@@ -1,12 +1,13 @@
 {
   "id": "ccc3100c-0fdd-4a5e-9908-c10107291860",
   "queryName": "DNSSEC Using RSASHA1",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "DNSSEC should not use the RSASHA1 algorithm, which means if, within the 'dnssec_config' block, the 'default_key_specs' block exists with the 'algorithm' field is 'rsasha1' which is bad.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/dns_managed_zone#algorithm",
   "platform": "Terraform",
   "descriptionID": "07664c32",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

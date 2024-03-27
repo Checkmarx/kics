@@ -1,12 +1,13 @@
 {
   "id": "934613fe-b12c-4e5a-95f5-c1dcdffac1ff",
   "queryName": "CloudWatch Without Retention Period Specified",
-  "severity": "MEDIUM",
+  "severity": "INFO",
   "category": "Observability",
   "descriptionText": "AWS CloudWatch should have CloudWatch Logs enabled in order to monitor, store, and access log events",
   "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/cloudwatchlogs.aws.crossplane.io/LogGroup/v1alpha1@v0.29.0#spec-forProvider-retentionInDays",
   "platform": "Crossplane",
   "descriptionID": "9ce0c6f8",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

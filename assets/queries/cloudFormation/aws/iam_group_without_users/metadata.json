@@ -1,12 +1,13 @@
 {
   "id": "8f957abd-9703-413d-87d3-c578950a753c",
   "queryName": "IAM Group Without Users",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "IAM Group should have at least one user associated",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html",
   "platform": "CloudFormation",
   "descriptionID": "c23dca47",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

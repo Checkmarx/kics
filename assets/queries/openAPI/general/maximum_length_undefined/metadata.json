@@ -1,7 +1,7 @@
 {
   "id": "8c8261c2-19a9-4ef7-ad37-b8bc7bdd4d85",
   "queryName": "Maximum Length Undefined (v3)",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Insecure Configurations",
   "descriptionText": "String schema should have 'maxLength' defined.",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
@@ -16,5 +16,6 @@
       "descriptionText": "String schema/parameter/header should have 'maxLength' defined."
     }
   },
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

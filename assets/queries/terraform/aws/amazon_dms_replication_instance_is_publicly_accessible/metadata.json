@@ -1,12 +1,13 @@
 {
   "id": "030d3b18-1821-45b4-9e08-50efbe7becbb",
   "queryName": "Amazon DMS Replication Instance Is Publicly Accessible",
-  "severity": "HIGH",
+  "severity": "CRITICAL",
   "category": "Access Control",
   "descriptionText": "Amazon DMS is publicly accessible, therefore exposing possible sensitive information. To prevent such a scenario, update the attribute 'PubliclyAccessible' to false.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dms_replication_instance",
   "platform": "Terraform",
   "descriptionID": "e9791a4b",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

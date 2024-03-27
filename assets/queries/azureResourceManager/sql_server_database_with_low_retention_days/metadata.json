@@ -1,12 +1,13 @@
 {
   "id": "c09cdac2-7670-458a-bf6c-efad6880973a",
   "queryName": "SQL Server Database With Unrecommended Retention Days",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Observability",
   "descriptionText": "SQL Server Database Auditing Settings should keep the audit logs in the storage account for at least 90 days",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/auditingsettings?tabs=json",
   "platform": "AzureResourceManager",
   "descriptionID": "7867ae74",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

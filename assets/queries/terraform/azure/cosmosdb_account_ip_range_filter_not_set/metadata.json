@@ -1,12 +1,13 @@
 {
   "id": "c2a3efb6-8a58-481c-82f2-bfddf34bb4b7",
   "queryName": "CosmosDB Account IP Range Filter Not Set",
-  "severity": "HIGH",
+  "severity": "CRITICAL",
   "category": "Networking and Firewall",
   "descriptionText": "The IP range filter should be defined to secure the data stored",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_account#ip_range_filter",
   "platform": "Terraform",
   "descriptionID": "fd34a2d6",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

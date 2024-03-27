@@ -1,12 +1,13 @@
 {
   "id": "0ed012a4-9199-43d2-b9e4-9bd049a48aa4",
   "queryName": "IAM Database Auth Not Enabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "IAM Database Auth Enabled should be configured to true when using compatible engine and version",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html",
   "platform": "Ansible",
   "descriptionID": "952e08fc",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

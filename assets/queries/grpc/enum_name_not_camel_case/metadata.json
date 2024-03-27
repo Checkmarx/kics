@@ -1,11 +1,12 @@
 {
   "id": "daaace5f-c0dc-4835-b526-7a116b7f4b4e",
   "queryName": "Enum Name Not CamelCase",
-  "severity": "LOW",
+  "severity": "INFO",
   "category": "Best Practices",
   "descriptionText": "All Enum Names should follow CamelCase and start with Capital Letter",
   "descriptionUrl": "https://developers.google.com/protocol-buffers/docs/reference/proto3-spec#enum_definition",
   "platform": "GRPC",
   "descriptionID": "a780a54d",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

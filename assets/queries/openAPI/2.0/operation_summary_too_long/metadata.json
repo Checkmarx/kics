@@ -1,11 +1,12 @@
 {
   "id": "d47940ca-5970-45cc-bdd1-4d81398cee1f",
   "queryName": "Operation Summary Too Long",
-  "severity": "LOW",
+  "severity": "INFO",
   "category": "Best Practices",
   "descriptionText": "Operation summary should be short (less than 120 characters)",
   "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
   "platform": "OpenAPI",
   "descriptionID": "60a0b99e",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

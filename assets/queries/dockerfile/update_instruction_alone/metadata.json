@@ -1,11 +1,12 @@
 {
   "id": "9bae49be-0aa3-4de5-bab2-4c3a069e40cd",
   "queryName": "Update Instruction Alone",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Build Process",
-  "descriptionText": "Instruction 'RUN \u003cpackage-manager\u003e update' should always be followed by '\u003cpackage-manager\u003e install' in the same RUN statement",
+  "descriptionText": "Instruction 'RUN update' should always be followed by ' install' in the same RUN statement",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
   "platform": "Dockerfile",
   "descriptionID": "3785203d",
-  "cwe": "710"
+  "cwe": "710",
+  "oldSeverity": "MEDIUM"
 }

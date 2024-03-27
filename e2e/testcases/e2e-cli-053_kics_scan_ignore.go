@@ -13,7 +13,7 @@ func init() { //nolint
 				[]string{"scan", "-p", "/path/e2e/fixtures/samples/scan-ignore/ignore"},
 			},
 		},
-		WantStatus: []int{40, 20, 40, 40, 0},
+		WantStatus: []int{40, 20, 30, 40, 0},
 	}
 
 	Tests = append(Tests, testSample)

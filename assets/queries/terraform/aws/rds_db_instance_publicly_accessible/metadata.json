@@ -1,12 +1,13 @@
 {
   "id": "35113e6f-2c6b-414d-beec-7a9482d3b2d1",
   "queryName": "RDS DB Instance Publicly Accessible",
-  "severity": "HIGH",
+  "severity": "CRITICAL",
   "category": "Insecure Configurations",
   "descriptionText": "RDS must not be defined with public interface, which means the field 'publicly_accessible' should not be set to 'true' (default is 'false').",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#publicly_accessible",
   "platform": "Terraform",
   "descriptionID": "c145a47f",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

@@ -1,11 +1,12 @@
 {
   "id": "f2daed12-c802-49cd-afed-fe41d0b82fed",
   "queryName": "Same Alias In Different Froms",
-  "severity": "HIGH",
+  "severity": "LOW",
   "category": "Build Process",
   "descriptionText": "Different FROMS cant have the same alias defined",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/multistage-build/",
   "platform": "Dockerfile",
   "descriptionID": "c923ad4b",
-  "cwe": "694"
+  "cwe": "694",
+  "oldSeverity": "HIGH"
 }

@@ -1,12 +1,13 @@
 {
   "id": "3f23c96c-f9f5-488d-9b17-605b8da5842f",
   "queryName": "Unrestricted SQL Server Access",
-  "severity": "MEDIUM",
+  "severity": "CRITICAL",
   "category": "Networking and Firewall",
   "descriptionText": "Azure SQL Server Accessibility should be set to a minimal address range to grant the principle of least privileges, which means the difference between the values of the 'end_ip_address' and 'start_ip_address' should be less than 256. Additionally, both ips should be different from '0.0.0.0'",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlfirewallrule_module.html",
   "platform": "Ansible",
   "descriptionID": "03235d5d",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

@@ -1,12 +1,13 @@
 {
   "id": "d9dc6429-5140-498a-8f55-a10daac5f000",
   "queryName": "RDS DB Instance Publicly Accessible",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "RDS must not be defined with public interface, which means the attribute 'PubliclyAccessible' must be set to false and neither dbSubnetGroupName' subnets being part of a VPC that has an Internet gateway attached to it",
   "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/database.aws.crossplane.io/RDSInstance/v1beta1@v0.17.0",
   "platform": "Crossplane",
   "descriptionID": "d7566b63",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

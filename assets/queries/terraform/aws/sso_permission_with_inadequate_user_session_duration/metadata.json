@@ -1,12 +1,13 @@
 {
   "id": "ce9dfce0-5fc8-433b-944a-3b16153111a8",
   "queryName": "SSO Permission With Inadequate User Session Duration",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Access Control",
   "descriptionText": "SSO permissions should be configured to limit user sessions to no longer than 1 hour. Allowing longer sessions can increase the risk of unauthorized access or session hijacking. This is a best practice for security and should be implemented in SSO permission settings.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssoadmin_permission_set",
   "platform": "Terraform",
   "descriptionID": "755ecfdf",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

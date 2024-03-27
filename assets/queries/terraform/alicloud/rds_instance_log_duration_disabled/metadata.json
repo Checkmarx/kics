@@ -1,12 +1,13 @@
 {
   "id": "a597e05a-c065-44e7-9cc8-742f572a504a",
   "queryName": "RDS Instance Log Duration Disabled",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "log_duration parameter should be set to ON for RDS instances",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#parameters",
   "platform": "Terraform",
   "descriptionID": "c4027901",
   "cloudProvider": "alicloud",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

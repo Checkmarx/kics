@@ -1,12 +1,13 @@
 {
   "id": "b176e927-bbe2-44a6-a9c3-041417137e5f",
   "queryName": "AD Admin Not Configured For SQL Server",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "The Active Directory Administrator is not configured for a SQL server",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_sqlserver_module.html#parameter-ad_user",
   "platform": "Ansible",
   "descriptionID": "afa96f09",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

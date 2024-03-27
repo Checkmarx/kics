@@ -1,12 +1,13 @@
 {
   "id": "90120147-f2e7-4fda-bb21-6fa9109afd63",
   "queryName": "MySQL Server SSL Enforcement Disabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "'Microsoft.DBforMySQL/servers' should enforce SSL",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.dbformysql/servers?tabs=json#serverpropertiesforcreate-object",
   "platform": "AzureResourceManager",
   "descriptionID": "69fea5b1",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

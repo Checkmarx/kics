@@ -1,12 +1,13 @@
 {
   "id": "6d19ce0f-b3d8-4128-ac3d-1064e0f00494",
   "queryName": "CloudFront Without WAF",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "All AWS CloudFront distributions should be integrated with the Web Application Firewall (AWS WAF) service",
   "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/cloudfront.aws.crossplane.io/Distribution/v1alpha1@v0.29.0#spec-forProvider-distributionConfig-webACLID",
   "platform": "Crossplane",
   "descriptionID": "c5493606",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

@@ -1,12 +1,13 @@
 {
   "id": "c1282e03-b285-4637-aee7-eefe3a7bb658",
   "queryName": "EFS Volume With Disabled Transit Encryption",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "Amazon EFS volume does not have encryption for data at transit enabled. To prevent such a scenario, enable the attribute 'TransitEncryption'",
   "descriptionUrl": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/efs-volumes.html",
   "platform": "CloudFormation",
   "descriptionID": "99f92ea6",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

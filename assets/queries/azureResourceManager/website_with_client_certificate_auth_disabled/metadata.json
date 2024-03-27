@@ -1,12 +1,13 @@
 {
   "id": "92302b47-b0cc-46cb-a28f-5610ecda140b",
   "queryName": "Website with Client Certificate Auth Disabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "'Microsoft.Web/sites' should have client certificate authentication enabled",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object",
   "platform": "AzureResourceManager",
   "descriptionID": "1b3c50da",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

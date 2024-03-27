@@ -1,12 +1,13 @@
 {
   "id": "7a1ee8a9-71be-4b11-bb70-efb62d16863b",
   "queryName": "RDS Instance SSL Action Disabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "ssl_action parameter should be set to Open for RDS instances",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#ssl_action",
   "platform": "Terraform",
   "descriptionID": "4a568dd7",
   "cloudProvider": "alicloud",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

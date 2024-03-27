@@ -1,12 +1,13 @@
 {
   "id": "8212e2d7-e683-49bc-bf78-d6799075c5a7",
   "queryName": "Compute Instance Is Publicly Accessible",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Compute instances shouldn't be accessible from the Internet.",
   "descriptionUrl": "https://cloud.google.com/compute/docs/reference/rest/v1/instances",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "9f60c421",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }
