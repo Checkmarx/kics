@@ -1,16 +1,16 @@
 {
 	"document": [
 		{
-			"id": "f2696281-dc89-44d7-a87f-5697948b60c7",
-			"resource": {
-				"aws_redshift_cluster": {
-					"default1": {
-						"encrypted": true,
-						"publicly_accessible": false
-					}
-				}
-			},
-			"file": "/path/e2e/fixtures/samples/terraform-single.tf"
+		  "resource": {
+			"aws_redshift_cluster": {
+			  "default1": {
+				"publicly_accessible": false,
+				"encrypted": true
+			  }
+			}
+		  },
+		  "id": "0",
+		  "file": "file"
 		}
-	]
+	  ]
 }
