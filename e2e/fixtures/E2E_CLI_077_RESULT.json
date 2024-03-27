@@ -20,8 +20,8 @@
   },
   "total_counter": 2,
   "total_bom_resources": 0,
-  "start": "2023-12-27T09:48:54.183217Z",
-  "end": "2023-12-27T09:48:57.0673037Z",
+  "start": "2024-03-26T10:00:10.9102987Z",
+  "end": "2024-03-26T10:00:14.7683127Z",
   "paths": [
     "/path/test/fixtures/similarity_id"
   ],
@@ -39,7 +39,7 @@
       "files": [
         {
           "file_name": "path\\test\\fixtures\\similarity_id\\1_general_deployment.json",
-          "similarity_id": "f649e674f984920f340e4078adb4d472fa857d1a8bcfa3e4e0418743faa946fd",
+          "similarity_id": "60db1dec778c035dd27b92ac2a39f06a8e44d5e16fc81140d7a70d86cee4a370",
           "line": 34,
           "resource_type": "Microsoft.Web/sites",
           "resource_name": "[variables('functionApp').microsoft_unbilled_synchronization]",
@@ -52,7 +52,7 @@
         },
         {
           "file_name": "path\\test\\fixtures\\similarity_id\\1_general_deployment.json",
-          "similarity_id": "8e341b61966dfc47b2e78304b28b445c9891be5143fcf6bd09f5ba0679e1b0ca",
+          "similarity_id": "ce5fe80b1d6f673cd23c2e92e490cae2fb8616a482058547d9e63b5417a92b25",
           "line": 18,
           "resource_type": "Microsoft.Web/sites",
           "resource_name": "[variables('functionApp').unbilled_usage_process]",

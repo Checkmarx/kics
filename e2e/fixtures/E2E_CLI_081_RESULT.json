@@ -39,7 +39,7 @@
       "files": [
         {
           "file_name": "..\\test\\fixtures\\test_output_path\\positive1.json",
-          "similarity_id": "42d73d5b2fa1fbcb1145ea43b7dc4ec20f92adda85c61161b6a7714b6cd86219",
+          "similarity_id": "82c4e2ecf183c3887cf3f974f33db6f946d78a108744a8314e938f215b320ebc",
           "line": 53,
           "resource_type": "Microsoft.Compute/virtualMachines",
           "resource_name": "[variables('vmName')]",

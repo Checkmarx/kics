@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties.ContainerDefinitions", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.ContainerDefinitions.%v", [name, idx]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.ContainerDefinitions' should contain 'HealthCheck' property", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property", [name]),
