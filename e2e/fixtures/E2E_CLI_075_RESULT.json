@@ -53,7 +53,7 @@
 				},
 				{
 					"file_name": "path\\test\\fixtures\\analyzer_test_ansible_host\\e2e\\positive1.ini",
-					"similarity_id": "f1a3f97b89382313bac2e2b46d7548065649f521c900952f19a67eb10f3fc26a",
+					"similarity_id": "9cb04742c227f8da30d5e3f0ed823fd05334179f79dbe2435ba146af79317c45",
 					"line": 1,
 					"resource_type": "n/a",
 					"resource_name": "children",
