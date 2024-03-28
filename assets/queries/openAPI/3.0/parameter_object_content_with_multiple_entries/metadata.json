@@ -6,5 +6,6 @@
   "descriptionText": "The map content property of the parameter object should only contain one entry",
   "descriptionUrl": "https://swagger.io/specification/#parameter-object",
   "platform": "OpenAPI",
-  "descriptionID": "be33f7a9"
+  "descriptionID": "be33f7a9",
+  "cwe": ""
 }

@@ -8,7 +8,85 @@
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
-    "line": 6,
+    "line": 15,
     "filename": "positive1.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 28,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 28,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive6.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive6.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive6.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive6.tf"
+  },
+  {
+    "queryName": "API Gateway Access Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive7.tf"
   }
 ]

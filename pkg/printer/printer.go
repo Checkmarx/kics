@@ -18,7 +18,6 @@ import (
 )
 
 const (
-	wordWrapCount     = 5
 	charsLimitPerLine = 255
 )
 
@@ -70,6 +69,7 @@ var (
 // Line is the color to print the line with the vulnerability
 // minVersion is a bool that if true will print the results output in a minimum version
 type Printer struct {
+	Critical            color.RGBColor
 	Medium              color.RGBColor
 	High                color.RGBColor
 	Low                 color.RGBColor
@@ -102,19 +102,9 @@ func WordWrap(s, indentation string, limit int) string {
 }
 
 // PrintResult prints on output the summary results
-func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer, usingCustomQueries bool) error {
+func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bool) error {
 	log.Debug().Msg("helpers.PrintResult()")
-	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
-	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
-	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
-
-	fmt.Printf("Queries failed to execute: %d\n\n", summary.FailedToExecuteQueries)
-	for queryName, err := range failedQueries {
-		fmt.Printf("\t- %s:\n", queryName)
-		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", wordWrapCount))
-	}
-
-	fmt.Printf("------------------------------------\n\n")
+	fmt.Printf("\n\n")
 	for index := range summary.Queries {
 		idx := len(summary.Queries) - index - 1
 		if summary.Queries[idx].Severity == model.SeverityTrace {
@@ -127,6 +117,11 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 			printer.PrintBySev(string(summary.Queries[idx].Severity), string(summary.Queries[idx].Severity)),
 			len(summary.Queries[idx].Files),
 		)
+
+		if summary.Queries[idx].Experimental {
+			fmt.Println("Note: this is an experimental query")
+		}
+
 		if !printer.minimal {
 			if summary.Queries[idx].CISDescriptionID != "" {
 				fmt.Printf("%s %s\n", printer.Bold("Description ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
@@ -136,6 +131,10 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 				fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
 			}
 			fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+
+			if summary.Queries[idx].CWE != "" {
+				fmt.Printf("%s %s\n", printer.Bold("CWE:"), summary.Queries[idx].CWE)
+			}
 
 			queryCloudProvider := summary.Queries[idx].CloudProvider
 			if queryCloudProvider != "" {
@@ -157,6 +156,7 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 		printFiles(&summary.Queries[idx], printer)
 	}
 	fmt.Printf("\nResults Summary:\n")
+	printSeverityCounter(model.SeverityCritical, summary.SeveritySummary.SeverityCounters[model.SeverityCritical], printer.Critical)
 	printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
 	printSeverityCounter(model.SeverityMedium, summary.SeveritySummary.SeverityCounters[model.SeverityMedium], printer.Medium)
 	printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
@@ -263,6 +263,7 @@ func IsInitialized() bool {
 // NewPrinter initializes a new Printer
 func NewPrinter(minimal bool) *Printer {
 	return &Printer{
+		Critical:            color.HEX("#ff0000"),
 		Medium:              color.HEX("#ff7213"),
 		High:                color.HEX("#bb2124"),
 		Low:                 color.HEX("#edd57e"),
@@ -278,6 +279,8 @@ func NewPrinter(minimal bool) *Printer {
 // PrintBySev will print the output with the specific severity color given the severity of the result
 func (p *Printer) PrintBySev(content, sev string) string {
 	switch strings.ToUpper(sev) {
+	case model.SeverityCritical:
+		return p.Critical.Sprintf(content)
 	case model.SeverityHigh:
 		return p.High.Sprintf(content)
 	case model.SeverityMedium:

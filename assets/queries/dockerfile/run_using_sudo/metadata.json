@@ -6,5 +6,6 @@
   "descriptionText": "Avoid RUN with sudo command as it leads to unpredictable behavior",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
   "platform": "Dockerfile",
-  "descriptionID": "c4f2e24a"
+  "descriptionID": "c4f2e24a",
+  "cwe": "440"
 }

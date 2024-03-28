@@ -6,13 +6,15 @@
   "descriptionText": "Patch should define at least one success response (200, 201, 202 or 204)",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
   "platform": "OpenAPI",
+  "descriptionID": "6e740836",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "f36e87cc-a209-4f37-8571-66833e4aead7",
       "queryName": "Success Response Code Undefined for Patch Operation (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object"
+      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "6e740836"
+  "cwe": ""
 }

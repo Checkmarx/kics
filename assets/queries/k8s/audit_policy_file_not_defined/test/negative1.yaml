@@ -9,7 +9,7 @@ spec:
     - name: command-demo-container
       image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
       command: ["kube-apiserver"]
-      args: ["--audit-policy-file=/home/miguel/cx/kics/assets/queries/k8s/audit_policy_file_not_defined/test/negative1.yaml"]
+      args: ["--audit-policy-file=/home/foo/cx/kics/assets/queries/k8s/audit_policy_file_not_defined/test/negative1.yaml"]
   restartPolicy: OnFailure
 ---
 apiVersion: audit.k8s.io/v1 # This is required.

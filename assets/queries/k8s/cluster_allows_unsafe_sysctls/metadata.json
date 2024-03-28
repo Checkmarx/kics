@@ -6,5 +6,6 @@
   "descriptionText": "A Kubernetes Cluster must not allow unsafe sysctls, to prevent a pod from having any influence on any other pod on the node, harming the node's health or gaining CPU or memory resources outside of the resource limits of a pod. This means 'spec.securityContext.sysctls' must not specify unsafe sysctls and the attribute 'allowedUnsafeSysctls' must be undefined.",
   "descriptionUrl": "https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/",
   "platform": "Kubernetes",
-  "descriptionID": "6eb994bc"
+  "descriptionID": "6eb994bc",
+  "cwe": ""
 }

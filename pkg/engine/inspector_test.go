@@ -12,6 +12,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/open-policy-agent/opa/rego"
+	"github.com/stretchr/testify/assert"
+
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/detector"
@@ -317,6 +320,7 @@ func TestInspect(t *testing.T) { //nolint
 				excludeResults:       tt.fields.excludeResults,
 				detector:             inspDetector,
 				queryExecTimeout:     time.Duration(60) * time.Second,
+				numWorkers:           1,
 			}
 			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files,
 				[]string{filepath.FromSlash("assets/queries/")}, []string{"Dockerfile"}, currentQuery)
@@ -403,6 +407,8 @@ func TestNewInspector(t *testing.T) { //nolint
 		excludeResults   map[string]bool
 		queryExecTimeout int
 		needsLog         bool
+		useOldSeverities bool
+		numWorkers       int
 	}
 	tests := []struct {
 		name    string
@@ -429,6 +435,7 @@ func TestNewInspector(t *testing.T) { //nolint
 				excludeResults:   map[string]bool{},
 				queryExecTimeout: 60,
 				needsLog:         true,
+				numWorkers:       1,
 			},
 			want: &Inspector{
 				vb:      vbs,
@@ -449,7 +456,9 @@ func TestNewInspector(t *testing.T) { //nolint
 				&tt.args.queryFilter,
 				tt.args.excludeResults,
 				tt.args.queryExecTimeout,
-				tt.args.needsLog)
+				tt.args.useOldSeverities,
+				tt.args.needsLog,
+				tt.args.numWorkers)
 
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NewInspector() error: got = %v,\n wantErr = %v", err, tt.wantErr)
@@ -677,10 +686,85 @@ func TestShouldSkipFile(t *testing.T) {
 	}
 }
 
+func TestInspector_DecodeQueryResults(t *testing.T) {
+
+	//context
+	contextToUSe := context.Background()
+
+	//build inspector
+	c := newInspectorInstance(t, []string{})
+
+	type args struct {
+		queryContext QueryContext
+		regoResult   rego.ResultSet
+		timeDuration string
+	}
+	tests := []struct {
+		name     string
+		args     args
+		expected int
+	}{
+		{
+			name: "should_not_fail_when_timeout",
+			args: args{
+				queryContext: newQueryContext(contextToUSe),
+				regoResult:   newResultset(),
+				timeDuration: "0s",
+			},
+			expected: 0,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			//create a context with 0 second to timeout
+			timeoutDuration, _ := time.ParseDuration(tt.args.timeDuration)
+			myCtxTimeOut, _ := context.WithTimeout(contextToUSe, timeoutDuration)
+			result, err := c.DecodeQueryResults(&tt.args.queryContext, myCtxTimeOut, tt.args.regoResult)
+			assert.Nil(t, err, "Error not as expected")
+			assert.Equal(t, 0, len(result), "Array size is not as expected")
+		})
+	}
+}
+
+func newResultset() rego.ResultSet {
+	myValue := make(map[string]interface{})
+	myValue["documentId"] = "3a3be8f7-896e-4ef8-9db3-d6c19e60510b"
+	myValue["issueType"] = "IncorrectValue"
+	myValue["keyActualValue"] = "COPY --from referencesthe current FROM alias"
+	myValue["keyExpectedValue"] = "COPY --from should not references the current FROM alias"
+	myValue["searchKey"] = "{{ADD ${JAR_FILE} app.jar}}"
+
+	myBinding := make([]interface{}, 1)
+	myBinding[0] = myValue
+
+	myresult := rego.Result{
+		Bindings: map[string]interface{}{
+			"result": myBinding,
+		},
+	}
+	myResultSet := rego.ResultSet{myresult}
+	return myResultSet
+}
+
+func newQueryContext(ctx context.Context) QueryContext {
+	queryMetadata := model.QueryMetadata{
+		Platform: "myPlatform",
+		Query:    "myQuery"}
+	myQuery := PreparedQuery{
+		Metadata: queryMetadata,
+	}
+	queryContext := QueryContext{
+		Ctx:   ctx,
+		Query: &myQuery,
+	}
+	return queryContext
+}
+
 func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {
-	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"), filepath.FromSlash("./assets/utils/experimental-queries.json"))
+	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"), true)
 	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},
-		detector *detector.DetectLine) (*model.Vulnerability, error) {
+		detector *detector.DetectLine, useOldSeverity bool) (*model.Vulnerability, error) {
 		return &model.Vulnerability{}, nil
 	}
 	ins, err := NewInspector(
@@ -689,7 +773,7 @@ func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {
 		vb,
 		&tracker.CITracker{},
 		&source.QueryInspectorParameters{},
-		map[string]bool{}, 60, true,
+		map[string]bool{}, 60, false, true, 1,
 	)
 	require.NoError(t, err)
 	return ins
@@ -701,7 +785,7 @@ type mockSource struct {
 }
 
 func (m *mockSource) GetQueries(queryFilter *source.QueryInspectorParameters) ([]model.QueryMetadata, error) {
-	sources := source.NewFilesystemSource(m.Source, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"), filepath.FromSlash("./assets/utils/experimental-queries.json"))
+	sources := source.NewFilesystemSource(m.Source, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"), true)
 
 	return sources.GetQueries(queryFilter)
 }

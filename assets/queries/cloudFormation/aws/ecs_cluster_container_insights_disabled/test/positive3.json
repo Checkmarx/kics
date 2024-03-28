@@ -1,0 +1,22 @@
+{
+  "Resources": {
+    "ECSCluster": {
+      "Type": "AWS::ECS::Cluster",
+      "Properties": {
+        "ClusterName": "MyCluster",
+        "ClusterSettings": [
+          {
+              "Name": "containerInsights",
+              "Value": "disabled"
+          }
+        ],
+        "Tags": [
+          {
+              "Key": "environment",
+              "Value": "production"
+          }
+        ]
+      }
+    }
+  }
+}

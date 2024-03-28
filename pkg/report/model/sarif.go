@@ -1,18 +1,25 @@
 package model
 
 import (
+	"encoding/csv"
+	"encoding/json"
+	"os"
+	"path/filepath"
+
 	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 )
 
 var categoriesNotFound = make(map[string]bool)
 
 var severityLevelEquivalence = map[model.Severity]string{
-	"INFO":   "none",
-	"LOW":    "note",
-	"MEDIUM": "warning",
-	"HIGH":   "error",
+	"INFO":     "none",
+	"LOW":      "note",
+	"MEDIUM":   "warning",
+	"HIGH":     "error",
+	"CRITICAL": "error",
 }
 
 var targetTemplate = sarifDescriptorReference{
@@ -20,6 +27,13 @@ var targetTemplate = sarifDescriptorReference{
 		ComponentReferenceGUID:  "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
 		ComponentReferenceName:  "Categories",
 		ComponentReferenceIndex: 0,
+	},
+}
+
+var cweTemplate = cweDescriptorReference{
+	ToolComponent: cweComponentReference{
+		ComponentReferenceGUID: "1489b0c4-d7ce-4d31-af66-6382a01202e3",
+		ComponentReferenceName: "CWE",
 	},
 }
 
@@ -31,6 +45,7 @@ type ruleMetadata struct {
 	queryDescription string
 	queryURI         string
 	queryCategory    string
+	queryCwe         string
 	severity         model.Severity
 }
 
@@ -41,38 +56,63 @@ type ruleCISMetadata struct {
 }
 
 type sarifMessage struct {
-	Text string `json:"text"`
+	Text              string          `json:"text"`
+	MessageProperties sarifProperties `json:"properties,omitempty"`
 }
 
 type sarifComponentReference struct {
-	ComponentReferenceName  string `json:"name"`
-	ComponentReferenceGUID  string `json:"guid"`
-	ComponentReferenceIndex int    `json:"index"`
+	ComponentReferenceName  string `json:"name,omitempty"`
+	ComponentReferenceGUID  string `json:"guid,omitempty"`
+	ComponentReferenceIndex int    `json:"index,omitempty"`
+}
+
+type cweComponentReference struct {
+	ComponentReferenceGUID string `json:"guid"`
+	ComponentReferenceName string `json:"name"`
 }
 
 type sarifDescriptorReference struct {
-	ReferenceID    string                  `json:"id"`
-	ReferenceIndex int                     `json:"index"`
-	ToolComponent  sarifComponentReference `json:"toolComponent"`
+	ReferenceID    string                  `json:"id,omitempty"`
+	ReferenceGUID  string                  `json:"guid,omitempty"`
+	ReferenceIndex int                     `json:"index,omitempty"`
+	ToolComponent  sarifComponentReference `json:"toolComponent,omitempty"`
 }
 
-type sarifDescriptorRelationship struct {
-	Target sarifDescriptorReference `json:"target"`
+type cweMessage struct {
+	Text string `json:"text"`
+}
+
+type cweCsv struct {
+	CweID            string     `json:"id"`
+	FullDescription  cweMessage `json:"fullDescription"`
+	ShortDescription cweMessage `json:"shortDescription"`
+	GUID             string     `json:"guid"`
+	HelpURI          string     `json:"helpUri"`
+}
+
+type cweDescriptorReference struct {
+	ReferenceID   string                `json:"id"`
+	ReferenceGUID string                `json:"guid"`
+	ToolComponent cweComponentReference `json:"toolComponent"`
 }
 
 type sarifConfiguration struct {
 	Level string `json:"level"`
 }
 
+type sarifRelationship struct {
+	Relationship sarifDescriptorReference `json:"target,omitempty"`
+}
+
 type sarifRule struct {
-	RuleID               string                        `json:"id"`
-	RuleName             string                        `json:"name"`
-	RuleShortDescription sarifMessage                  `json:"shortDescription"`
-	RuleFullDescription  sarifMessage                  `json:"fullDescription"`
-	DefaultConfiguration sarifConfiguration            `json:"defaultConfiguration"`
-	HelpURI              string                        `json:"helpUri"`
-	RuleRelationships    []sarifDescriptorRelationship `json:"relationships"`
-	RuleProperties       sarifProperties               `json:"properties,omitempty"`
+	RuleID               string              `json:"id"`
+	RuleName             string              `json:"name"`
+	RuleShortDescription sarifMessage        `json:"shortDescription"`
+	RuleFullDescription  sarifMessage        `json:"fullDescription"`
+	DefaultConfiguration sarifConfiguration  `json:"defaultConfiguration"`
+	HelpURI              string              `json:"helpUri"`
+	Relationships        []sarifRelationship `json:"relationships,omitempty"`
+	RuleProperties       sarifProperties     `json:"properties,omitempty"`
 }
 
 type sarifDriver struct {
@@ -112,19 +152,32 @@ type sarifResult struct {
 	ResultLocations []sarifLocation `json:"locations"`
 }
 
-type sarifTaxanomyDefinition struct {
-	DefinitionID               string       `json:"id"`
-	DefinitionName             string       `json:"name"`
-	DefinitionShortDescription sarifMessage `json:"shortDescription"`
-	DefinitionFullDescription  sarifMessage `json:"fullDescription"`
+type taxonomyDefinitions struct {
+	DefinitionGUID             string     `json:"guid,omitempty"`
+	DefinitionName             string     `json:"name,omitempty"`
+	DefinitionID               string     `json:"id"`
+	DefinitionShortDescription cweMessage `json:"shortDescription"`
+	DefinitionFullDescription  cweMessage `json:"fullDescription"`
+	HelpURI                    string     `json:"helpUri,omitempty"`
+}
+
+type cweTaxonomiesWrapper struct {
+	Taxonomies sarifTaxonomy `json:"taxonomies"`
 }
 
 type sarifTaxonomy struct {
-	TaxonomyGUID             string                    `json:"guid"`
-	TaxonomyName             string                    `json:"name"`
-	TaxonomyFullDescription  sarifMessage              `json:"fullDescription"`
-	TaxonomyShortDescription sarifMessage              `json:"shortDescription"`
-	TaxonomyDefinitions      []sarifTaxanomyDefinition `json:"taxa"`
+	TaxonomyGUID                              string                `json:"guid"`
+	TaxonomyName                              string                `json:"name"`
+	TaxonomyFullDescription                   sarifMessage          `json:"fullDescription,omitempty"`
+	TaxonomyShortDescription                  sarifMessage          `json:"shortDescription"`
+	TaxonomyDownloadURI                       string                `json:"downloadUri,omitempty"`
+	TaxonomyInformationURI                    string                `json:"informationUri,omitempty"`
+	TaxonomyIsComprehensive                   bool                  `json:"isComprehensive,omitempty"`
+	TaxonomyLanguage                          string                `json:"language,omitempty"`
+	TaxonomyMinRequiredLocDataSemanticVersion string                `json:"minimumRequiredLocalizedDataSemanticVersion,omitempty"`
+	TaxonomyOrganization                      string                `json:"organization,omitempty"`
+	TaxonomyRealeaseDateUtc                   string                `json:"releaseDateUtc,omitempty"`
+	TaxonomyDefinitions                       []taxonomyDefinitions `json:"taxa"`
 }
 
 // SarifRun - sarifRun is a component of the SARIF report
@@ -136,7 +189,9 @@ type SarifRun struct {
 
 // SarifReport represents a usable sarif report reference
 type SarifReport interface {
-	BuildSarifIssue(issue *model.QueryResult)
+	BuildSarifIssue(issue *model.QueryResult) string
+	RebuildTaxonomies(cwes []string, guids map[string]string)
+	GetGUIDFromRelationships(idx int, cweID string) string
 }
 
 type sarifReport struct {
@@ -157,17 +212,66 @@ func initSarifTool() sarifTool {
 	}
 }
 
-func initSarifCategories() []sarifTaxanomyDefinition {
-	allCategories := []sarifTaxanomyDefinition{noCategory}
+func initSarifCategories() []taxonomyDefinitions {
+	allCategories := []taxonomyDefinitions{noCategory}
 	for _, category := range categories {
 		allCategories = append(allCategories, category)
 	}
 	return allCategories
 }
 
+// initCweCategories is responsible for building the CWE taxa field, inside taxonomies
+func initCweCategories(cweIDs []string, guids map[string]string) []taxonomyDefinitions {
+	absPath, err := filepath.Abs(".")
+	if err != nil {
+		return []taxonomyDefinitions{}
+	}
+
+	cweCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Software-Development-CWE.csv")
+	cweCsvList, err := readCWECsvInfo(cweCSVPath)
+	if err != nil {
+		return []taxonomyDefinitions{}
+	}
+
+	var taxonomyList []taxonomyDefinitions
+	for _, cweID := range cweIDs {
+		var matchingCweEntry cweCsv
+
+		for _, cweEntry := range cweCsvList {
+			if cweEntry.CweID == cweID {
+				matchingCweEntry = cweEntry
+				break
+			}
+		}
+
+		if matchingCweEntry.CweID == "" {
+			continue
+		}
+
+		guid, exists := guids[cweID]
+		if !exists {
+			continue
+		}
+
+		taxonomy := taxonomyDefinitions{
+			DefinitionID:               matchingCweEntry.CweID,
+			DefinitionGUID:             guid,
+			DefinitionFullDescription:  matchingCweEntry.FullDescription,
+			DefinitionShortDescription: matchingCweEntry.ShortDescription,
+			HelpURI:                    matchingCweEntry.HelpURI,
+		}
+		taxonomyList = append(taxonomyList, taxonomy)
+	}
+
+	return taxonomyList
+}
+
 func initSarifTaxonomies() []sarifTaxonomy {
-	return []sarifTaxonomy{
-		{
+	var taxonomies []sarifTaxonomy
+	// Categories
+
+	if targetTemplate.ToolComponent.ComponentReferenceName == "Categories" {
+		categories := sarifTaxonomy{
 			TaxonomyGUID: targetTemplate.ToolComponent.ComponentReferenceGUID,
 			TaxonomyName: targetTemplate.ToolComponent.ComponentReferenceName,
 			TaxonomyShortDescription: sarifMessage{
@@ -177,8 +281,35 @@ func initSarifTaxonomies() []sarifTaxonomy {
 				Text: "This taxonomy contains the types an issue can assume",
 			},
 			TaxonomyDefinitions: initSarifCategories(),
-		},
+		}
+		taxonomies = append(taxonomies, categories)
 	}
+
+	cweInfoPath := filepath.Join(".", "assets", "cwe_csv", "cwe_taxonomies_latest.json")
+
+	if cweTemplate.ToolComponent.ComponentReferenceName == "CWE" {
+		cweInfo, err := readCWEInfo(cweInfoPath)
+		if err != nil {
+			return taxonomies
+		}
+		cweTaxonomy := sarifTaxonomy{
+			TaxonomyGUID:                              cweInfo.TaxonomyGUID,
+			TaxonomyName:                              cweInfo.TaxonomyName,
+			TaxonomyInformationURI:                    cweInfo.TaxonomyInformationURI,
+			TaxonomyIsComprehensive:                   cweInfo.TaxonomyIsComprehensive,
+			TaxonomyLanguage:                          cweInfo.TaxonomyLanguage,
+			TaxonomyOrganization:                      cweInfo.TaxonomyOrganization,
+			TaxonomyRealeaseDateUtc:                   cweInfo.TaxonomyRealeaseDateUtc,
+			TaxonomyMinRequiredLocDataSemanticVersion: cweInfo.TaxonomyMinRequiredLocDataSemanticVersion,
+			TaxonomyDownloadURI:                       cweInfo.TaxonomyDownloadURI,
+			TaxonomyFullDescription:                   sarifMessage{Text: cweInfo.TaxonomyFullDescription.Text},
+			TaxonomyShortDescription:                  sarifMessage{Text: cweInfo.TaxonomyShortDescription.Text},
+			TaxonomyDefinitions:                       []taxonomyDefinitions{},
+		}
+		taxonomies = append(taxonomies, cweTaxonomy)
+	}
+
+	return taxonomies
 }
 
 func initSarifRun() []SarifRun {
@@ -209,17 +340,138 @@ func (sr *sarifReport) findSarifCategory(category string) int {
 	return 0
 }
 
+// readCWEInfo is responsible for reading the CWE taxonomy info from the json file
+func readCWEInfo(filePath string) (sarifTaxonomy, error) {
+	var wrapper cweTaxonomiesWrapper
+	fileContent, err := os.ReadFile(filepath.Clean(filePath))
+	if err != nil {
+		return sarifTaxonomy{}, err
+	}
+
+	err = json.Unmarshal(fileContent, &wrapper)
+	if err != nil {
+		return sarifTaxonomy{}, err
+	}
+
+	return wrapper.Taxonomies, nil
+}
+
+func generateGUID() string {
+	id := uuid.New()
+	return id.String()
+}
+
+// readCWECsvInfo is responsible for reading the CWE taxonomy info from the corresponding csv file
+func readCWECsvInfo(filePath string) ([]cweCsv, error) {
+	file, err := os.Open(filepath.Clean(filePath))
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	reader := csv.NewReader(file)
+	reader.FieldsPerRecord = -1 // Note: -1 means records may have a variable number of fields in the csv file
+	records, err := reader.ReadAll()
+
+	if err != nil {
+		return nil, err
+	}
+
+	var cweEntries []cweCsv
+	numRecords := 23
+
+	for _, record := range records {
+		if len(record) >= numRecords {
+			cweEntry := cweCsv{
+				CweID: record[0],
+				FullDescription: cweMessage{
+					Text: record[5],
+				},
+				ShortDescription: cweMessage{
+					Text: record[4],
+				},
+				GUID:    generateGUID(),
+				HelpURI: "https://cwe.mitre.org/data/definitions/" + record[0] + ".html",
+			}
+
+			// Check if Extended Description is empty, fill it with Description if so
+			if cweEntry.FullDescription.Text == "" {
+				cweEntry.FullDescription.Text = record[4]
+			}
+
+			cweEntries = append(cweEntries, cweEntry)
+		}
+	}
+
+	return cweEntries, nil
+}
+
+// buildCweCategory builds the CWE category in taxonomies, with info from CWE and CSV
+func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
+	absPath, err := filepath.Abs(".")
+	if err != nil {
+		return sarifDescriptorReference{}
+	}
+
+	cweInfoPath := filepath.Join(absPath, "assets", "cwe_csv", "cwe_taxonomies_latest.json")
+	cweCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Software-Development-CWE.csv")
+
+	cweInfo, err := readCWEInfo(cweInfoPath)
+	if err != nil {
+		return sarifDescriptorReference{}
+	}
+
+	_ = cweInfo
+
+	cweCsvList, err := readCWECsvInfo(cweCSVPath)
+	if err != nil {
+		return sarifDescriptorReference{}
+	}
+
+	var matchingCweEntry cweCsv
+	for _, cweEntry := range cweCsvList {
+		if cweEntry.CweID == cweID {
+			matchingCweEntry = cweEntry
+			break
+		}
+	}
+
+	if matchingCweEntry.CweID == "" {
+		return sarifDescriptorReference{}
+	}
+
+	newGUID := generateGUID()
+
+	cwe := sarifDescriptorReference{
+		ReferenceID:   matchingCweEntry.CweID,
+		ReferenceGUID: newGUID,
+		ToolComponent: sarifComponentReference{
+			ComponentReferenceGUID: "1489b0c4-d7ce-4d31-af66-6382a01202e3",
+			ComponentReferenceName: "CWE",
+		},
+	}
+
+	return cwe
+}
+
 func (sr *sarifReport) buildSarifCategory(category string) sarifDescriptorReference {
 	target := targetTemplate
 	categoryIndex := sr.findSarifCategory(category)
+
+	if categoryIndex >= 0 {
+		taxonomy := sr.Runs[0].Taxonomies[0].TaxonomyDefinitions[categoryIndex]
+
+		target.ReferenceID = taxonomy.DefinitionID
+	}
 	target.ReferenceIndex = categoryIndex
-	target.ReferenceID = sr.Runs[0].Taxonomies[0].TaxonomyDefinitions[categoryIndex].DefinitionID
-	if categoryIndex == 0 {
+
+	if categoryIndex == -1 {
 		if _, exists := categoriesNotFound[category]; !exists {
 			log.Warn().Msgf("Category %s not found.", category)
 			categoriesNotFound[category] = true
 		}
 	}
+
 	return target
 }
 
@@ -234,18 +486,36 @@ func (sr *sarifReport) findSarifRuleIndex(ruleID string) int {
 
 func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata ruleCISMetadata) int {
 	index := sr.findSarifRuleIndex(queryMetadata.queryID)
+
 	if index < 0 {
 		helpURI := "https://docs.kics.io/"
 		if queryMetadata.queryURI != "" {
 			helpURI = queryMetadata.queryURI
 		}
+
+		target := sr.buildSarifCategory(queryMetadata.queryCategory)
+		cwe := sr.buildCweCategory(queryMetadata.queryCwe)
+
+		var relationships []sarifRelationship
+
+		if cwe.ReferenceID != "" {
+			relationships = []sarifRelationship{
+				{Relationship: target},
+				{Relationship: cwe},
+			}
+		} else {
+			relationships = []sarifRelationship{
+				{Relationship: target},
+			}
+		}
+
 		rule := sarifRule{
 			RuleID:               queryMetadata.queryID,
 			RuleName:             queryMetadata.queryName,
 			RuleShortDescription: sarifMessage{Text: queryMetadata.queryName},
 			RuleFullDescription:  sarifMessage{Text: queryMetadata.queryDescription},
 			DefaultConfiguration: sarifConfiguration{Level: severityLevelEquivalence[queryMetadata.severity]},
-			RuleRelationships:    []sarifDescriptorRelationship{{Target: sr.buildSarifCategory(queryMetadata.queryCategory)}},
+			Relationships:        relationships,
 			HelpURI:              helpURI,
 			RuleProperties:       nil,
 		}
@@ -263,8 +533,38 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 	return index
 }
 
+// GetGUIDFromRelationships gets the GUID from the relationship for each CWE item
+func (sr *sarifReport) GetGUIDFromRelationships(idx int, cweID string) string {
+	if len(sr.Runs) > 0 {
+		if len(sr.Runs[0].Tool.Driver.Rules) > 0 {
+			relationships := sr.Runs[0].Tool.Driver.Rules[idx].Relationships
+			for _, relationship := range relationships {
+				target := relationship.Relationship
+
+				if target.ReferenceID == cweID {
+					return target.ReferenceGUID
+				}
+			}
+		}
+	}
+
+	return ""
+}
+
+// RebuildTaxonomies builds the taxonomies with the CWEs and the GUIDs coming from each relationships field
+func (sr *sarifReport) RebuildTaxonomies(cwes []string, guids map[string]string) {
+	if len(cwes) > 0 {
+		result := initCweCategories(cwes, guids)
+		if len(sr.Runs) > 0 {
+			if len(sr.Runs[0].Taxonomies) == 2 {
+				sr.Runs[0].Taxonomies[1].TaxonomyDefinitions = result
+			}
+		}
+	}
+}
+
 // BuildSarifIssue creates a new entries in Results (one for each file) and new entry in Rules and Taxonomy if necessary
-func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) {
+func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string {
 	if len(issue.Files) > 0 {
 		metadata := ruleMetadata{
 			queryID:          issue.QueryID,
@@ -272,6 +572,7 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) {
 			queryDescription: issue.Description,
 			queryURI:         issue.QueryURI,
 			queryCategory:    issue.Category,
+			queryCwe:         issue.CWE,
 			severity:         issue.Severity,
 		}
 		cisDescriptions := ruleCISMetadata{
@@ -294,7 +595,12 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) {
 				ResultRuleID:    issue.QueryID,
 				ResultRuleIndex: ruleIndex,
 				ResultKind:      kind,
-				ResultMessage:   sarifMessage{Text: issue.Files[idx].KeyActualValue},
+				ResultMessage: sarifMessage{
+					Text: issue.Files[idx].KeyActualValue,
+					MessageProperties: sarifProperties{
+						"platform": issue.Platform,
+					},
+				},
 				ResultLocations: []sarifLocation{
 					{
 						PhysicalLocation: sarifPhysicalLocation{
@@ -306,5 +612,7 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) {
 			}
 			sr.Runs[0].Results = append(sr.Runs[0].Results, result)
 		}
+		return issue.CWE
 	}
+	return ""
 }

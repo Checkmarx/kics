@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "AmazonMQ Broker Encryption Disabled",
+    "severity": "CRITICAL",
+    "line": 6,
+    "fileName": "positive1.yaml"
+  }
+]

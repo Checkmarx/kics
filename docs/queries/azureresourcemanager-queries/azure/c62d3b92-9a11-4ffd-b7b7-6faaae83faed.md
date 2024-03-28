@@ -28,7 +28,7 @@ Azure Kubernetes Service should have the Kubernetes dashboard disabled.<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Postitive test num. 1 - json file" hl_lines="14"
+```json title="Positive test num. 1 - json file" hl_lines="14"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -78,7 +78,7 @@ Azure Kubernetes Service should have the Kubernetes dashboard disabled.<br>
 }
 
 ```
-```json title="Postitive test num. 2 - json file" hl_lines="16"
+```json title="Positive test num. 2 - json file" hl_lines="16"
 {
   "properties": {
     "template": {

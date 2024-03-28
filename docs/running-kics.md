@@ -10,14 +10,14 @@ KICS is able to perform scans on these types of paths:
 -   Archived Files
 -   S3
 -   Git
--   GSC
+-   GCS
 
 Files and directories that are not local will be placed in a temporarily folder during KICS execution.
 
 ### Local Files
 
 ```
-docker run -t -v {​​​​path_to_scan}​​​​:/path checkmarx/kics scan -p /path
+docker run -t -v {path_to_scan}:/path checkmarx/kics scan -p /path
 ```
 
 ### Archived Files
@@ -33,10 +33,36 @@ Available archive formats:
 -   `xz`
 
 ```
-docker run -t -v {​​​​path_to_scan_zip}​​​​:/path checkmarx/kics scan -p /path
+To scan a zip file, we would use this instruction: 
+
+docker run -t -v "{path_to_folder_of_zip}:/path" checkmarx/kics:latest scan -p /path/{name_of_zip_file}
+
+-t: Docker command to allocate a pseudo-TTY.
+
+-v "{path_to_folder_of_zip}:/path": Mounts the directory containing the zip file to be scanned into the Docker container.
+
+checkmarx/kics:latest: Specifies the Docker image to use, which is the latest version of KICS available. 
+
+scan -p /path/{name_of_zip_file}: initiates a scan on the zip file we provided, considering it's folder path.
 ```
 
-More information can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)
+```
+To scan a file named "Example", we would use this instruction: 
+
+docker run -t -v "{path_to_folder_of_file_Example}:/path" checkmarx/kics:latest scan -p /path/Example
+
+-t: Docker command to allocate a pseudo-TTY.
+
+-v "{path_to_folder_of_file_Example}:/path": Mounts the directory containing the file to be scanned into the Docker container.
+
+checkmarx/kics:latest: Specifies the Docker image to use, which is the latest version of KICS available. 
+
+scan -p /path/Example: initiates a scan on the "Example" file we provided, considering it's folder path.
+```
+
+More information on Docker CLI can be seen [here](https://docs.docker.com/engine/reference/commandline/cli/)   
+
+More information on Go getter can be seen [here](https://github.com/hashicorp/go-getter#unarchiving)   
 
 ### S3
 
@@ -75,13 +101,13 @@ Please make sure you have SSH private key configured with your github account
 
 More information can be seen [here](https://github.com/hashicorp/go-getter#git-git)
 
-### GSC
+### GCS
 
 ```
 docker run -t checkmarx/kics scan -p "gcs::https://www.googleapis.com/storage/v1/bucket"
 ```
 
-Please make sure you have set GSC authentication credentials to your application code by environment variables
+Please make sure you have set authentication credentials to your application code by environment variables
 
 More information can be seen [here](https://github.com/hashicorp/go-getter#gcs-gcs)
 

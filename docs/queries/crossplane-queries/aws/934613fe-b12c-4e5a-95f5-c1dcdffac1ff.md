@@ -28,7 +28,7 @@ AWS CloudWatch should have CloudWatch Logs enabled in order to monitor, store, a
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="9 34 38 6"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="9 34 38 6"
 apiVersion: cloudwatchlogs.aws.crossplane.io/v1alpha1
 kind: LogGroup
 metadata:

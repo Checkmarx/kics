@@ -1,0 +1,19 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Router53",
+  "Resources": {
+    "MyStage": {
+      "Type": "AWS::ApiGatewayV2::Stage",
+      "Properties": {
+        "Description": "Prod Stage",
+        "AccessLogSettings": {
+            "DestinationArn": "dest",
+            "Format": "format"
+        },
+        "DeploymentId": "MyDeployment",
+        "ApiId": "CFNWebSocket",
+        "StageName": "Prod"
+      }
+    }
+  }
+}

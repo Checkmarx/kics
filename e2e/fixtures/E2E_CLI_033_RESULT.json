@@ -11,6 +11,7 @@
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
+		"CRITICAL": 0,
 		"HIGH": 0,
 		"INFO": 1,
 		"LOW": 2,
@@ -33,6 +34,7 @@
 			"platform": "Terraform",
 			"cloud_provider": "AWS",
 			"category": "Observability",
+      "experimental": false,
 			"description": "Make sure Logging is enabled for Redshift Cluster",
 			"description_id": "458fe7a3",
 			"files": [
@@ -61,6 +63,7 @@
 			"platform": "Terraform",
 			"cloud_provider": "AWS",
 			"category": "Insecure Configurations",
+      "experimental": false,
 			"description": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)",
 			"description_id": "6fd531fa",
 			"files": [
@@ -100,6 +103,7 @@
 			"platform": "Terraform",
 			"cloud_provider": "AWS",
 			"category": "Best Practices",
+      "experimental": false,
 			"description": "IAM Access Analyzer should be enabled and configured to continuously monitor resource permissions",
 			"description_id": "d03e85ae",
 			"files": [
@@ -126,6 +130,7 @@
 			"platform": "Terraform",
 			"cloud_provider": "AWS",
 			"category": "Networking and Firewall",
+      "experimental": false,
 			"description": "Redshift should not use the default port (5439) because an attacker can easily guess the port",
 			"description_id": "e2e48d27",
 			"files": [
@@ -152,6 +157,7 @@
 			"platform": "Terraform",
 			"cloud_provider": "AWS",
 			"category": "Best Practices",
+      "experimental": false,
 			"description": "AWS services resource tags are an essential part of managing components. As a best practice, the field 'tags' should have additional tags defined other than 'Name'",
 			"description_id": "09db2d52",
 			"files": [

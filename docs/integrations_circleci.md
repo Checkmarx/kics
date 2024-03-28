@@ -44,4 +44,4 @@ Go to the artifacts tab to inspect the results:
 
 Results will be displayed in plain text:
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/circleci-results.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/0f82e84ccbab376b4606efe5a85432d5b37ecb19/docs/img/circleci-results.png" width="850">

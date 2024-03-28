@@ -13,7 +13,7 @@
 | ----------- | ------------------------------------------------------------------------------ |
 | `timeout`   | number of seconds the query has to execute before being canceled (default 60)  |
 | `profiling` | enables performance profiler that prints resource consumption metrics in the logs during the execution (CPU, MEM) |
-| `fail-on`   | which kind of results should return an exit code different from 0 accepts: high, medium, low and info example: "high,low" (default [high,medium,low,info]) |
+| `fail-on`   | which kind of results should return an exit code different from 0 accepts: critical, high, medium, low and info example: "high,low" (default [critical,high,medium,low,info]) |
 | `ignore-on-exit` | defines which kind of non-zero exits code should be ignored accepts: all, results, errors, none example: if 'results' is set, only engine errors will make KICS exit code different|
 
 ## Updated Flags

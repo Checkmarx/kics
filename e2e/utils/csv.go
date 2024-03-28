@@ -32,9 +32,9 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 	var csvItems []csvSchema
 
 	for _, row := range csvData[1:] {
-		line, lineErr := strconv.Atoi(row[14])
+		line, lineErr := strconv.Atoi(row[15])
 		require.NoError(t, lineErr, "Error when converting CSV: %s", fullPath)
-		searchLine, searchErr := strconv.Atoi(row[17])
+		searchLine, searchErr := strconv.Atoi(row[18])
 		require.NoError(t, searchErr, "Error when converting CSV: %s", fullPath)
 
 		csvStruct.QueryName = row[0]
@@ -42,22 +42,23 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 		csvStruct.QueryURI = row[2]
 		csvStruct.Severity = row[3]
 		csvStruct.Platform = row[4]
-		csvStruct.CloudProvider = row[5]
-		csvStruct.Category = row[6]
-		csvStruct.DescriptionID = row[7]
-		csvStruct.Description = row[8]
-		csvStruct.CISDescriptionIDFormatted = row[9]
-		csvStruct.CISDescriptionTitle = row[10]
-		csvStruct.CISDescriptionTextFormatted = row[11]
-		csvStruct.FileName = row[12]
-		csvStruct.SimilarityID = row[13]
+		csvStruct.Cwe = row[5]
+		csvStruct.CloudProvider = row[6]
+		csvStruct.Category = row[7]
+		csvStruct.DescriptionID = row[8]
+		csvStruct.Description = row[9]
+		csvStruct.CISDescriptionIDFormatted = row[10]
+		csvStruct.CISDescriptionTitle = row[11]
+		csvStruct.CISDescriptionTextFormatted = row[12]
+		csvStruct.FileName = row[13]
+		csvStruct.SimilarityID = row[14]
 		csvStruct.Line = line
-		csvStruct.IssueType = row[15]
-		csvStruct.SearchKey = row[16]
+		csvStruct.IssueType = row[16]
+		csvStruct.SearchKey = row[17]
 		csvStruct.SearchLine = searchLine
-		csvStruct.SearchValue = row[18]
-		csvStruct.ExpectedValue = row[19]
-		csvStruct.ActualValue = row[20]
+		csvStruct.SearchValue = row[19]
+		csvStruct.ExpectedValue = row[20]
+		csvStruct.ActualValue = row[21]
 		csvItems = append(csvItems, csvStruct)
 	}
 
@@ -73,6 +74,7 @@ type csvSchema struct {
 	QueryURI                    string
 	Severity                    string
 	Platform                    string
+	Cwe                         string
 	CloudProvider               string
 	Category                    string
 	DescriptionID               string

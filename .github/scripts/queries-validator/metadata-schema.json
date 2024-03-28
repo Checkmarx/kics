@@ -35,6 +35,17 @@
             "type": "string",
             "enum": [
                 "TRACE",
+                "CRITICAL",
+                "HIGH",
+                "MEDIUM",
+                "LOW",
+                "INFO"
+            ]
+        },
+        "oldSeverity": {
+            "type": "string",
+            "enum": [
+                "TRACE",
                 "HIGH",
                 "MEDIUM",
                 "LOW",
@@ -76,7 +87,9 @@
                 "aws",
                 "azure",
                 "common",
-                "gcp"
+                "gcp",
+                "nifcloud",
+                "tencentcloud"
             ]
         },
         "platform": {
@@ -139,6 +152,15 @@
                     }
                 }
             }
+        },
+        "experimental": {
+            "type": "string",
+            "enum": [
+                "true"
+            ]
+        },
+        "cwe": {
+            "type": "string"
         }
     }
 }
