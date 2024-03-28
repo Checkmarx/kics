@@ -31,8 +31,8 @@ Flags:
                                       cannot be provided with type inclusion flags
       --experimental-queries          include experimental queries (queries not yet thoroughly reviewed)
       --fail-on strings               which kind of results should return an exit code different from 0
-                                      accepts: high, medium, low and info
-                                      example: "high,low" (default [high,medium,low,info])
+                                      accepts: critical, high, medium, low and info
+                                      example: "high,low" (default [critical,high,medium,low,info])
   -h, --help                          help for scan
       --ignore-on-exit string         defines which kind of non-zero exits code should be ignored
                                       accepts: all, results, errors, none
@@ -46,9 +46,10 @@ Flags:
       --max-file-size int             max file size permitted for scanning, in MB (default 5)
       --minimal-ui                    simplified version of CLI output
       --no-progress                   hides the progress bar
+      --old-severities                uses old severities in query results
       --output-name string            name used on report creations (default "results")
   -o, --output-path string            directory path to store reports
-      --parallel int                  number of workers per platform enabled for parallel scanning, set 0 to auto-detect parallelism (default 1)
+      --parallel int                  number of workers per platform enabled for parallel scanning (default set to 0 to auto-detect optimal number of workers)
   -p, --path strings                  paths or directories to scan
                                       example: "./somepath,somefile.txt"
       --payload-lines                 adds line information inside the payload when printing the payload file

@@ -69,6 +69,7 @@ var (
 // Line is the color to print the line with the vulnerability
 // minVersion is a bool that if true will print the results output in a minimum version
 type Printer struct {
+	Critical            color.RGBColor
 	Medium              color.RGBColor
 	High                color.RGBColor
 	Low                 color.RGBColor
@@ -155,6 +156,7 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 		printFiles(&summary.Queries[idx], printer)
 	}
 	fmt.Printf("\nResults Summary:\n")
+	printSeverityCounter(model.SeverityCritical, summary.SeveritySummary.SeverityCounters[model.SeverityCritical], printer.Critical)
 	printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
 	printSeverityCounter(model.SeverityMedium, summary.SeveritySummary.SeverityCounters[model.SeverityMedium], printer.Medium)
 	printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
@@ -261,6 +263,7 @@ func IsInitialized() bool {
 // NewPrinter initializes a new Printer
 func NewPrinter(minimal bool) *Printer {
 	return &Printer{
+		Critical:            color.HEX("#ff0000"),
 		Medium:              color.HEX("#ff7213"),
 		High:                color.HEX("#bb2124"),
 		Low:                 color.HEX("#edd57e"),
@@ -276,6 +279,8 @@ func NewPrinter(minimal bool) *Printer {
 // PrintBySev will print the output with the specific severity color given the severity of the result
 func (p *Printer) PrintBySev(content, sev string) string {
 	switch strings.ToUpper(sev) {
+	case model.SeverityCritical:
+		return p.Critical.Sprintf(content)
 	case model.SeverityHigh:
 		return p.High.Sprintf(content)
 	case model.SeverityMedium:

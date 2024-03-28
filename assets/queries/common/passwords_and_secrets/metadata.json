@@ -3,7 +3,7 @@
   "queryName": "Passwords And Secrets",
   "severity": "HIGH",
   "category": "Secret Management",
-  "descriptionText": "Query to find passwords and secrets in infrastructure code.",
+  "descriptionText": "Password and Secrets shouldn't be displayed in plain text on IaC files.",
   "descriptionUrl": "https://docs.kics.io/latest/secrets/",
   "platform": "Common",
   "descriptionID": "d69d8a89",

@@ -15,10 +15,11 @@ import (
 var categoriesNotFound = make(map[string]bool)
 
 var severityLevelEquivalence = map[model.Severity]string{
-	"INFO":   "none",
-	"LOW":    "note",
-	"MEDIUM": "warning",
-	"HIGH":   "error",
+	"INFO":     "none",
+	"LOW":      "note",
+	"MEDIUM":   "warning",
+	"HIGH":     "error",
+	"CRITICAL": "error",
 }
 
 var targetTemplate = sarifDescriptorReference{

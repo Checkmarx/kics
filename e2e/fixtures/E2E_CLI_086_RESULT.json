@@ -11,6 +11,7 @@
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
+		"CRITICAL": 0,
 		"HIGH": 6,
 		"INFO": 2,
 		"LOW": 3,
@@ -34,7 +35,7 @@
 			"cloud_provider": "COMMON",
 			"category": "Secret Management",
 			"experimental": false,
-			"description": "Query to find passwords and secrets in infrastructure code.",
+			"description": "Password and Secrets shouldn't be displayed in plain text on IaC files.",
 			"description_id": "d69d8a89",
 			"files": [
 				{

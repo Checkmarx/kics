@@ -406,5 +406,17 @@
     "severity": "HIGH",
     "line": 5,
     "fileName": "positive49.yml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password on YAML files when value in tuple",
+    "severity": "HIGH",
+    "line": 56,
+    "fileName": "positive50.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password on YAML files when value in tuple",
+    "severity": "HIGH",
+    "line": 68,
+    "fileName": "positive50.yaml"
   }
 ]
