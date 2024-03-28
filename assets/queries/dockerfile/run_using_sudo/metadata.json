@@ -1,11 +1,12 @@
 {
   "id": "8ada6e80-0ade-439e-b176-0b28f6bce35a",
   "queryName": "Run Using Sudo",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Avoid RUN with sudo command as it leads to unpredictable behavior",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
   "platform": "Dockerfile",
   "descriptionID": "c4f2e24a",
-  "cwe": "440"
+  "cwe": "440",
+  "oldSeverity": "HIGH"
 }
