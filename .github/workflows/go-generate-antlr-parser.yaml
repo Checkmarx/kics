@@ -26,7 +26,7 @@ jobs:
         run: |
           docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser/jsonfilter:/work -it antlr4-generator:dev
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v6
         with:
           title: "chore(parser): updating AWS jsonfilter ANTLR generated parser"
           token: ${{ secrets.KICS_BOT_PAT }}
