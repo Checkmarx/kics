@@ -1,11 +1,12 @@
 {
-  "id": "455f2e0c-686d-4fcb-8b5f-3f953f12c43c",
-  "queryName": "Seccomp Profile Is Not Configured",
-  "severity": "MEDIUM",
-  "category": "Insecure Configurations",
-  "descriptionText": "Containers should be configured with a secure Seccomp profile to restrict potentially dangerous syscalls",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#annotations",
-  "platform": "Terraform",
-  "descriptionID": "ad5436a1",
-  "cwe": ""
+    "id": "455f2e0c-686d-4fcb-8b5f-3f953f12c43c",
+    "queryName": "Seccomp Profile Is Not Configured",
+    "severity": "MEDIUM",
+    "category": "Insecure Configurations",
+    "descriptionText": "Containers should be configured with a secure Seccomp profile to restrict potentially dangerous syscalls",
+    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#annotations",
+    "platform": "Terraform",
+    "descriptionID": "ad5436a1",
+    "cwe": "",
+    "cloudProvider": "common"
 }

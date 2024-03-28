@@ -1,11 +1,12 @@
 {
-  "id": "ac1564a3-c324-4747-9fa1-9dfc234dace0",
-  "queryName": "Shared Host Network Namespace",
-  "severity": "MEDIUM",
-  "category": "Resource Management",
-  "descriptionText": "Container should not share the host network namespace",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_network",
-  "platform": "Terraform",
-  "descriptionID": "bf155ca7",
-  "cwe": ""
+    "id": "ac1564a3-c324-4747-9fa1-9dfc234dace0",
+    "queryName": "Shared Host Network Namespace",
+    "severity": "MEDIUM",
+    "category": "Resource Management",
+    "descriptionText": "Container should not share the host network namespace",
+    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_network",
+    "platform": "Terraform",
+    "descriptionID": "bf155ca7",
+    "cwe": "",
+    "cloudProvider": "common"
 }

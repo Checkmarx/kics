@@ -1,4 +1,4 @@
-# KICS AUTO REMEDIATION
+# KICS Auto Remediation
 
 With this new feature, KICS provides auto remediation for simple replacements and simple additions in a single line.
 
@@ -10,7 +10,7 @@ Note that this feature will be only available for Terraform, for now.
 
 
 
-## HOW KICS AR WORKS?
+## How KICS AR works?
 
 
 1. As a first step, you will need to scan your project/file and generate a JSON report.

@@ -1,11 +1,12 @@
 {
-  "id": "228c4c19-feeb-4c18-848c-800ac70fdfb7",
-  "queryName": "Image Without Digest",
-  "severity": "LOW",
-  "category": "Insecure Configurations",
-  "descriptionText": "Images should be specified together with their digests to ensure integrity",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image",
-  "platform": "Terraform",
-  "descriptionID": "fec9b353",
-  "cwe": ""
+    "id": "228c4c19-feeb-4c18-848c-800ac70fdfb7",
+    "queryName": "Image Without Digest",
+    "severity": "LOW",
+    "category": "Insecure Configurations",
+    "descriptionText": "Images should be specified together with their digests to ensure integrity",
+    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image",
+    "platform": "Terraform",
+    "descriptionID": "fec9b353",
+    "cwe": "",
+    "cloudProvider": "common"
 }

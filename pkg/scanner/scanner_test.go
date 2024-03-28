@@ -101,7 +101,7 @@ func createServices(types, cloudProviders []string) (serviceSlice, *storage.Memo
 
 	inspector, err := engine.NewInspector(context.Background(),
 		querySource, engine.DefaultVulnerabilityBuilder,
-		t, &source.QueryInspectorParameters{}, map[string]bool{}, 60, true, 1)
+		t, &source.QueryInspectorParameters{}, map[string]bool{}, 60, true, true, 1)
 	if err != nil {
 		return nil, nil, err
 	}

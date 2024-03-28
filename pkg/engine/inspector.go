@@ -58,7 +58,7 @@ type QueryLoader struct {
 
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
-	detector *detector.DetectLine) (*model.Vulnerability, error)
+	detector *detector.DetectLine, useOldSeverities bool) (*model.Vulnerability, error)
 
 // PreparedQuery includes the opaQuery and its metadata
 type PreparedQuery struct {
@@ -79,6 +79,7 @@ type Inspector struct {
 	enableCoverageReport bool
 	coverageReport       cover.Report
 	queryExecTimeout     time.Duration
+	useOldSeverities     bool
 	numWorkers           int
 }
 
@@ -118,6 +119,7 @@ func NewInspector(
 	queryParameters *source.QueryInspectorParameters,
 	excludeResults map[string]bool,
 	queryTimeout int,
+	useOldSeverities bool,
 	needsLog bool,
 	numWorkers int) (*Inspector, error) {
 	log.Debug().Msg("engine.NewInspector()")
@@ -170,6 +172,7 @@ func NewInspector(
 		excludeResults:   excludeResults,
 		detector:         lineDetector,
 		queryExecTimeout: queryExecTimeout,
+		useOldSeverities: useOldSeverities,
 		numWorkers:       adjustNumWorkers(numWorkers),
 	}, nil
 }
@@ -474,7 +477,7 @@ func (c *Inspector) DecodeQueryResults(
 }
 
 func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultItem interface{}) (*model.Vulnerability, bool) {
-	vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector)
+	vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector, c.useOldSeverities)
 	if err != nil && err.Error() == ErrNoResult.Error() {
 		// Ignoring bad results
 		return nil, false
