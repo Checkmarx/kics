@@ -1,25 +1,25 @@
 [
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 14,
     "filename": "positive1.tf"
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 11,
     "filename": "positive1.tf"
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive3.tf"
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 8,
     "filename": "positive2.tf"
   }

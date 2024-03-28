@@ -1,32 +1,32 @@
 [
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 8
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 8
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 98
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 98
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 169
   },
   {
     "queryName": "Docker Daemon Socket is Exposed to Containers",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 169
   }
 ]

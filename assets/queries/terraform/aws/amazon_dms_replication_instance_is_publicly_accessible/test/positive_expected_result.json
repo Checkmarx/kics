@@ -1,7 +1,7 @@
 [
   {
     "queryName": "Amazon DMS Replication Instance Is Publicly Accessible",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 10,
     "filename": "positive1.tf"
   }

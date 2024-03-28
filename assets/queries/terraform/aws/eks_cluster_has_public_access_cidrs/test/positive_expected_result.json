@@ -1,12 +1,12 @@
 [
   {
     "queryName": "EKS Cluster Has Public Access CIDRs",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 8
   },
   {
     "queryName": "EKS Cluster Has Public Access CIDRs",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 30
   }
 ]
