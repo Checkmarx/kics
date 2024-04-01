@@ -1,12 +1,13 @@
 {
   "id": "599318f2-6653-4569-9e21-041d06c63a89",
   "queryName": "AKS Private Cluster Disabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Azure Kubernetes Service (AKS) API should not be exposed to the internet",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster#private_cluster_enabled",
   "platform": "Terraform",
   "descriptionID": "3ec5eed5",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

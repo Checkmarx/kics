@@ -1,12 +1,13 @@
 {
   "id": "bdecd6db-2600-47dd-a10c-72c97cf17ae9",
   "queryName": "EFS Without KMS",
-  "severity": "HIGH",
+  "severity": "LOW",
   "category": "Encryption",
   "descriptionText": "Amazon Elastic Filesystem should have filesystem encryption enabled using KMS CMK customer-managed keys instead of AWS managed-keys",
   "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/efs.aws.crossplane.io/FileSystem/v1alpha1@v0.29.0#spec-forProvider-kmsKeyID",
   "platform": "Crossplane",
   "descriptionID": "2643a873",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

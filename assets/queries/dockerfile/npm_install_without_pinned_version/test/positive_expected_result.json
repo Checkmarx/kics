@@ -2,36 +2,43 @@
   {
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "filename": "positive1.dockerfile"
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
-    "line": 3
+    "line": 3,
+    "filename": "positive1.dockerfile"
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
-    "line": 4
+    "line": 4,
+    "filename": "positive1.dockerfile"
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
-    "line": 5
+    "line": 5,
+    "filename": "positive1.dockerfile"
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
-    "line": 6
+    "line": 6,
+    "filename": "positive1.dockerfile"
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "filename": "positive1.dockerfile"
   },
   {
     "queryName": "NPM Install Command Without Pinned Version",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 8,
+    "filename": "positive1.dockerfile"
   }
 ]
