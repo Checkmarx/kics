@@ -11,7 +11,7 @@ replace (
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
 	go.etcd.io/etcd/pkg/v3 => go.etcd.io/etcd/pkg/v3 v3.5.10
-	golang.org/x/crypto => golang.org/x/crypto v0.21.1-0.20240318092723-b91329d961d4 // indirect
+	golang.org/x/crypto => golang.org/x/crypto v0.21.1-0.20240326215738-8d0d405eedb9 // indirect
 	google.golang.org/protobuf => google.golang.org/protobuf v1.33.0 // indirect
 )
 
@@ -210,7 +210,7 @@ require (
 	github.com/yashtewari/glob-intersection v0.2.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.starlark.net v0.0.0-20230525235612-a134d8f9ddca // indirect
-	golang.org/x/crypto v0.21.1-0.20240318092723-b91329d961d4 // indirect
+	golang.org/x/crypto v0.21.1-0.20240326215738-8d0d405eedb9 // indirect
 	golang.org/x/oauth2 v0.11.0 // indirect
 	golang.org/x/sync v0.4.0 // indirect
 	golang.org/x/sys v0.18.0 // indirect
