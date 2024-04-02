@@ -33,6 +33,7 @@ func GetExtension(path string) string {
 }
 
 func readPossibleDockerFile(path string) bool {
+	path = filepath.Clean(path)
 	file, err := os.Open(path)
 	if err != nil {
 		return false
