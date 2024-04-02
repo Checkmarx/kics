@@ -136,9 +136,12 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 				fmt.Printf("%s %s\n", printer.Bold("CWE:"), summary.Queries[idx].CWE)
 			}
 
-			queryCloudProvider := summary.Queries[idx].CloudProvider
-			if queryCloudProvider != "" {
-				queryCloudProvider = strings.ToLower(queryCloudProvider) + "/"
+			queryCloudProvider := strings.ToLower(summary.Queries[idx].CloudProvider)
+
+			if queryCloudProvider == "common" {
+				queryCloudProvider = ""
+			} else if queryCloudProvider != "" {
+				queryCloudProvider += "/"
 			}
 
 			// checks if should print queries URL DOCS based on the use of custom queries and invalid ids
