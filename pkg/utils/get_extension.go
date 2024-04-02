@@ -34,6 +34,9 @@ func GetExtension(path string) string {
 
 func readPossibleDockerFile(path string) bool {
 	path = filepath.Clean(path)
+	if strings.HasSuffix(path, "gitignore") {
+		return true
+	}
 	file, err := os.Open(path)
 	if err != nil {
 		return false
