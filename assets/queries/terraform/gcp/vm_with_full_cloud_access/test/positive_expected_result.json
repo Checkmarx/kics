@@ -1,7 +1,7 @@
 [
   {
     "queryName": "VM With Full Cloud Access",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 20
   }
 ]

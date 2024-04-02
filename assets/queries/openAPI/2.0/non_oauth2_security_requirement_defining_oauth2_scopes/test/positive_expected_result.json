@@ -1,13 +1,13 @@
 [
   {
     "queryName": "Non OAuth2 Security Requirement Defining OAuth2 Scopes",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 33,
     "filename": "positive1.json"
   },
   {
     "queryName": "Non OAuth2 Security Requirement Defining OAuth2 Scopes",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 21,
     "filename": "positive2.yaml"
   }

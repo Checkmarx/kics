@@ -1,25 +1,25 @@
 [
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 4,
     "filename": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 10,
     "filename": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 21,
     "filename": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 10,
     "filename": "positive2.json"
   }

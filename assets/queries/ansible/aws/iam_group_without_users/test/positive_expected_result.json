@@ -1,13 +1,13 @@
 [
   {
     "queryName": "IAM Group Without Users",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 2,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "IAM Group Without Users",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 2,
     "fileName": "positive2.yaml"
   }

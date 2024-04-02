@@ -1,7 +1,7 @@
 [
   {
     "queryName": "EKS cluster logging is not enabled",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 6,
     "filename": "positive1.tf"
   }
