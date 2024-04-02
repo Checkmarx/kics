@@ -1,12 +1,13 @@
 {
   "id": "3609d27c-3698-483a-9402-13af6ae80583",
   "queryName": "S3 Bucket With Unsecured CORS Rule",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "If the CORS (Cross-Origin Resource Sharing) rule is defined in an S3 bucket, it should be secure",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-cors.html",
   "platform": "CloudFormation",
   "descriptionID": "f616509e",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

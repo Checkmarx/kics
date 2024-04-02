@@ -1,7 +1,7 @@
 [
   {
     "queryName": "Metadata Label Is Invalid",
-    "severity": "LOW",
+    "severity": "INFO",
     "line": 5
   }
 ]

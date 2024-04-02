@@ -1,12 +1,13 @@
 {
   "id": "0264093f-6791-4475-af34-4b8102dcbcd0",
   "queryName": "EC2 Instance Monitoring Disabled",
-  "severity": "INFO",
+  "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "EC2 Instance should have detailed monitoring enabled. With detailed monitoring enabled data is available in 1-minute periods",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-monitoring",
   "platform": "CloudFormation",
   "descriptionID": "81e4f520",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "INFO"
 }

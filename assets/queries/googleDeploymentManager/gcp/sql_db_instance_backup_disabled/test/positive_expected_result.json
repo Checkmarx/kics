@@ -1,19 +1,19 @@
 [
   {
     "queryName": "SQL DB Instance Backup Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 5,
     "filename": "positive1.yaml"
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 7,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "SQL DB Instance Backup Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 8,
     "filename": "positive3.yaml"
   }

@@ -1,25 +1,25 @@
 [
   {
     "queryName": "VPC FlowLogs Disabled",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 5,
     "filename": "positive1.tf"
   },
   {
     "queryName": "VPC FlowLogs Disabled",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive2.tf"
   },
   {
     "queryName": "VPC FlowLogs Disabled",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 14,
     "filename": "positive3.tf"
   },
   {
     "queryName": "VPC FlowLogs Disabled",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive4.tf"
   }

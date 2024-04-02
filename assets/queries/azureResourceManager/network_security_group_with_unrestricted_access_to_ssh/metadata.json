@@ -1,12 +1,13 @@
 {
   "id": "2ade1579-4b2c-4590-bebb-f99bf597f612",
   "queryName": "Network Security Group With Unrestricted Access To SSH",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Port 22 (SSH) is exposed to the Internet",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2020-07-01/networksecuritygroups?tabs=json#securityrulepropertiesformat-object",
   "platform": "AzureResourceManager",
   "descriptionID": "97b6233c",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

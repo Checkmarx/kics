@@ -1,12 +1,13 @@
 {
   "id": "95601b9a-7fe8-4aee-9b58-d36fd9382dfc",
   "queryName": "Stackdriver Logging Disabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Logging enabled, which means the attribute 'loggingService' must be defined and different from 'none'",
   "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "ba92577c",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

@@ -1,13 +1,13 @@
 [
   {
     "queryName": "GKE Master Authorized Networks Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 4,
     "filename": "positive1.yaml"
   },
   {
     "queryName": "GKE Master Authorized Networks Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 7,
     "filename": "positive2.yaml"
   }

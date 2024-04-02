@@ -1,13 +1,13 @@
 [
   {
     "queryName": "EFS Without KMS",
-    "severity": "HIGH",
+    "severity": "LOW",
     "line": 6,
     "fileName": "positive.yaml"
   },
   {
     "queryName": "EFS Without KMS",
-    "severity": "HIGH",
+    "severity": "LOW",
     "line": 36,
     "fileName": "positive.yaml"
   }

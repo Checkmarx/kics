@@ -1,25 +1,25 @@
 [
   {
     "queryName": "Network ACL With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 30,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "Network ACL With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 22,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Network ACL With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 26,
     "fileName": "positive3.tf"
   },
   {
     "queryName": "Network ACL With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 14,
     "fileName": "positive4.tf"
   }

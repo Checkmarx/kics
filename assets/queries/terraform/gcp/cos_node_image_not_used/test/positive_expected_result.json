@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "COS Node Image Not Used",
-		"severity": "MEDIUM",
-		"line": 16
-	}
+  {
+    "queryName": "COS Node Image Not Used",
+    "severity": "LOW",
+    "line": 16
+  }
 ]

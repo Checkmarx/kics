@@ -1,7 +1,7 @@
 [
   {
     "queryName": "RDS DB Instance Publicly Accessible",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 17,
     "fileName": "positive1.yaml"
   }
