@@ -1,13 +1,13 @@
 [
   {
     "queryName": "Log Profile Incorrect Category",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 22,
     "fileName": "positive1.json"
   },
   {
     "queryName": "Log Profile Incorrect Category",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 24,
     "fileName": "positive2.json"
   }

@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "ElasticSearch Encryption With KMS Disabled",
-		"severity": "MEDIUM",
-		"line": 5
-	}
+  {
+    "queryName": "ElasticSearch Encryption With KMS Disabled",
+    "severity": "HIGH",
+    "line": 5
+  }
 ]

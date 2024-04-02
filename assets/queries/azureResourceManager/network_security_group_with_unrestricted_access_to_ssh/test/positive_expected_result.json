@@ -1,37 +1,37 @@
 [
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 19,
     "fileName": "positive1.json"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 13,
     "fileName": "positive2.json"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 20,
     "fileName": "positive3.json"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 21,
     "fileName": "positive4.json"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 15,
     "fileName": "positive5.json"
   },
   {
     "queryName": "Network Security Group With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 22,
     "fileName": "positive6.json"
   }

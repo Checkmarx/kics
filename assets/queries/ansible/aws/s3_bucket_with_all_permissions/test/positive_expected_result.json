@@ -1,7 +1,7 @@
 [
   {
     "queryName": "S3 Bucket With All Permissions",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 5
   }
 ]

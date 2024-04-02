@@ -3,7 +3,7 @@
   "queryName": "Restart Policy On Failure Not Set To 5",
   "severity": "MEDIUM",
   "category": "Build Process",
-  "descriptionText": "Attribute 'restart:on-failure' should be set to 5. Restart policies in general should be used.",
+  "descriptionText": "Attribute 'restart:on-failure' should be set to 5. Restart policies in general should be used, and 5 retries is the recommended by CIS.",
   "descriptionUrl": "https://docs.docker.com/config/containers/start-containers-automatically/#use-a-restart-policy",
   "platform": "DockerCompose",
   "descriptionID": "d21fff2e",

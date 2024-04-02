@@ -1,12 +1,13 @@
 {
   "id": "65905cec-d691-4320-b320-2000436cb696",
   "queryName": "Security Group With Unrestricted Access To SSH",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "'SSH' (TCP:22) should not be public in AWS Security Group",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
   "platform": "Terraform",
   "descriptionID": "51e59188",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

@@ -1,12 +1,13 @@
 {
   "id": "77c1fa3f-83dc-4c9d-bfed-e1d0cc8fd9dc",
   "queryName": "Cloud Storage Bucket Is Publicly Accessible",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Cloud Storage Bucket is anonymously or publicly accessible",
   "descriptionUrl": "https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "f767772d",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

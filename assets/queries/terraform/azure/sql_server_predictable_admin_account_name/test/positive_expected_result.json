@@ -1,12 +1,12 @@
 [
   {
     "queryName": "SQL Server Predictable Admin Account Name",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 20
   },
   {
     "queryName": "SQL Server Predictable Admin Account Name",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 40
   }
 ]

@@ -1,43 +1,43 @@
 [
   {
     "queryName": "Update Instruction Alone",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 3,
     "fileName": "positive1.dockerfile"
   },
   {
     "queryName": "Update Instruction Alone",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 3,
     "fileName": "positive2.dockerfile"
   },
   {
     "queryName": "Update Instruction Alone",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 3,
     "fileName": "positive3.dockerfile"
   },
   {
     "queryName": "Update Instruction Alone",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 3,
     "fileName": "positive4.dockerfile"
   },
   {
     "queryName": "Update Instruction Alone",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 3,
     "fileName": "positive5.dockerfile"
   },
   {
     "queryName": "Update Instruction Alone",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 3,
     "fileName": "positive6.dockerfile"
   },
   {
     "queryName": "Update Instruction Alone",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 3,
     "fileName": "positive7.dockerfile"
   }

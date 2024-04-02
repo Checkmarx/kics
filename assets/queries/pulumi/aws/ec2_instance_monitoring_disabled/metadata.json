@@ -1,12 +1,13 @@
 {
   "id": "daa581ef-731c-4121-832d-cf078f67759d",
   "queryName": "EC2 Instance Monitoring Disabled",
-  "severity": "INFO",
+  "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "EC2 Instance should have detailed monitoring enabled. With detailed monitoring enabled data is available in 1-minute periods",
   "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/ec2/instance/#monitoring_yaml",
   "platform": "Pulumi",
   "descriptionID": "7f96d3ac",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "INFO"
 }

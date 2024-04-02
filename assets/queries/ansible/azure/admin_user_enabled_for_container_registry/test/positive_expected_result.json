@@ -1,12 +1,12 @@
 [
   {
     "queryName": "Admin User Enabled For Container Registry",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 7
   },
   {
     "queryName": "Admin User Enabled For Container Registry",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 17
   }
 ]
