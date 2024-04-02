@@ -88,6 +88,7 @@ var (
 		".cfg":               true,
 		".conf":              true,
 		".ini":               true,
+		".bicep":             true,
 	}
 	supportedRegexes = map[string][]string{
 		"azureresourcemanager": append(armRegexTypes, arm),
@@ -117,6 +118,7 @@ const (
 	json       = ".json"
 	sh         = ".sh"
 	arm        = "azureresourcemanager"
+	bicep      = "bicep"
 	kubernetes = "kubernetes"
 	terraform  = "terraform"
 	gdm        = "googledeploymentmanager"
@@ -391,6 +393,12 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 	case ".tf", "tfvars":
 		if a.isAvailableType(terraform) {
 			results <- terraform
+			locCount <- linesCount
+		}
+	// Bicep
+	case ".bicep":
+		if a.isAvailableType(bicep) {
+			results <- bicep
 			locCount <- linesCount
 		}
 	// GRPC

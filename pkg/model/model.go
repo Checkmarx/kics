@@ -13,6 +13,7 @@ import (
 // Constants to describe what kind of file refers
 const (
 	KindTerraform FileKind = "TF"
+	KindBICEP     FileKind = "BICEP"
 	KindJSON      FileKind = "JSON"
 	KindYAML      FileKind = "YAML"
 	KindYML       FileKind = "YML"
