@@ -1,9 +1,11 @@
 package utils
 
 import (
+	"bufio"
 	"bytes"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/rs/zerolog/log"
 	"golang.org/x/tools/godoc/util"
@@ -21,11 +23,34 @@ func GetExtension(path string) string {
 		if Contains(base, targets) {
 			ext = base
 		} else if isTextFile(path) {
-			ext = "possibleDockerfile"
+			if readPossibleDockerFile(path) {
+				ext = "possibleDockerfile"
+			}
 		}
 	}
 
 	return ext
+}
+
+func readPossibleDockerFile(path string) bool {
+	file, err := os.Open(path)
+	if err != nil {
+		return false
+	}
+	defer file.Close()
+	// Create a scanner to read the file line by line
+	scanner := bufio.NewScanner(file)
+	// Read lines from the file
+	for scanner.Scan() {
+		if strings.HasPrefix(scanner.Text(), "FROM") {
+			return true
+		} else if strings.HasPrefix(scanner.Text(), "#") {
+			continue
+		} else {
+			return false
+		}
+	}
+	return false
 }
 
 func isTextFile(path string) bool {
