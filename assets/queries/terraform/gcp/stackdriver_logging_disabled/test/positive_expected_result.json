@@ -1,13 +1,13 @@
 [
   {
     "queryName": "Stackdriver Logging Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 6,
     "fileName": "positive.tf"
   },
   {
     "queryName": "Stackdriver Logging Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 18,
     "fileName": "positive.tf"
   }

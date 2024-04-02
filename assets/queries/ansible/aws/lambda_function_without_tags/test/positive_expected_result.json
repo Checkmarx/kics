@@ -1,7 +1,7 @@
 [
   {
     "queryName": "Lambda Function Without Tags",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 2
   }
 ]

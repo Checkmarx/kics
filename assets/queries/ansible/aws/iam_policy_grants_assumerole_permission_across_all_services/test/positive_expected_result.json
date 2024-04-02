@@ -1,7 +1,7 @@
 [
   {
     "queryName": "IAM Policy Grants 'AssumeRole' Permission Across All Services",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 4,
     "fileName": "positive.yaml"
   }

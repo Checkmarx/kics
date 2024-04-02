@@ -2,36 +2,36 @@
   {
     "fileName": "positive2.yaml",
     "queryName": "Vulnerable Default SSL Certificate",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 7
   },
   {
     "fileName": "positive2.yaml",
     "queryName": "Vulnerable Default SSL Certificate",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 7
   },
   {
     "fileName": "positive3.yaml",
     "queryName": "Vulnerable Default SSL Certificate",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 8
   },
   {
     "queryName": "Vulnerable Default SSL Certificate",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 8,
     "fileName": "positive5.json"
   },
   {
     "queryName": "Vulnerable Default SSL Certificate",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 8,
     "fileName": "positive5.json"
   },
   {
     "queryName": "Vulnerable Default SSL Certificate",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 9,
     "fileName": "positive6.json"
   }

@@ -1,20 +1,20 @@
 [
-	{
-		"queryName": "Missing App Armor Config",
-		"severity": "LOW",
-		"line": 8,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "Missing App Armor Config",
-		"severity": "LOW",
-		"line": 25,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "Missing App Armor Config",
-		"severity": "LOW",
-		"line": 42,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "Missing App Armor Config",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "Missing App Armor Config",
+    "severity": "MEDIUM",
+    "line": 25,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "Missing App Armor Config",
+    "severity": "MEDIUM",
+    "line": 42,
+    "fileName": "positive.yaml"
+  }
 ]

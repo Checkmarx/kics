@@ -3,22 +3,22 @@
     "line": 14,
     "fileName": "positive2.yaml",
     "queryName": "Workspace Without Encryption",
-    "severity": "MEDIUM"
+    "severity": "HIGH"
   },
   {
     "fileName": "positive1.yaml",
     "queryName": "Workspace Without Encryption",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 4
   },
   {
     "queryName": "Workspace Without Encryption",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 5,
     "fileName": "positive3.json"
   },
   {
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 17,
     "fileName": "positive4.json",
     "queryName": "Workspace Without Encryption"

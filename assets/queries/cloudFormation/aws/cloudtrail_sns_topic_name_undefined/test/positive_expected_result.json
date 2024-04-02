@@ -1,13 +1,13 @@
 [
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
-    "severity": "MEDIUM",
+    "severity": "INFO",
     "line": 12,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
-    "severity": "MEDIUM",
+    "severity": "INFO",
     "line": 22,
     "fileName": "positive1.yaml"
   },
@@ -15,11 +15,11 @@
     "line": 9,
     "fileName": "positive2.json",
     "queryName": "CloudTrail SNS Topic Name Undefined",
-    "severity": "MEDIUM"
+    "severity": "INFO"
   },
   {
     "queryName": "CloudTrail SNS Topic Name Undefined",
-    "severity": "MEDIUM",
+    "severity": "INFO",
     "line": 23,
     "fileName": "positive2.json"
   }
