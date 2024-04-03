@@ -1,7 +1,7 @@
 [
   {
     "queryName": "Amplify App OAuth Token Exposed",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 5,
     "fileName": "positive2.yaml"
   },
@@ -9,17 +9,17 @@
     "line": 4,
     "fileName": "positive1.yaml",
     "queryName": "Amplify App OAuth Token Exposed",
-    "severity": "MEDIUM"
+    "severity": "HIGH"
   },
   {
     "queryName": "Amplify App OAuth Token Exposed",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 5,
     "fileName": "positive3.json"
   },
   {
     "queryName": "Amplify App OAuth Token Exposed",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 11,
     "fileName": "positive4.json"
   }

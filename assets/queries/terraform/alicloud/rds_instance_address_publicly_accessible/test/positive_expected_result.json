@@ -1,8 +1,8 @@
 [
-	{
-		"queryName": "RDS DB Instance Publicly Accessible",
-		"severity": "HIGH",
-		"line": 10,
-		"fileName": "positive1.tf"
-	}
+  {
+    "queryName": "RDS DB Instance Publicly Accessible",
+    "severity": "CRITICAL",
+    "line": 10,
+    "fileName": "positive1.tf"
+  }
 ]

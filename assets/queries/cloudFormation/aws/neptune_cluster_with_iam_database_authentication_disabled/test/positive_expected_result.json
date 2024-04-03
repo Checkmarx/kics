@@ -1,12 +1,12 @@
 [
   {
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 7,
     "fileName": "positive1.yaml",
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled"
   },
   {
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 12,
     "fileName": "positive1.yaml",
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled"
@@ -15,12 +15,12 @@
     "line": 8,
     "fileName": "positive2.json",
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
-    "severity": "MEDIUM"
+    "severity": "HIGH"
   },
   {
     "line": 15,
     "fileName": "positive2.json",
     "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
-    "severity": "MEDIUM"
+    "severity": "HIGH"
   }
 ]

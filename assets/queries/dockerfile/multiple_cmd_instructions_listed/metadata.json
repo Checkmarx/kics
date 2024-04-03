@@ -1,11 +1,12 @@
 {
   "id": "41c195f4-fc31-4a5c-8a1b-90605538d49f",
   "queryName": "Multiple CMD Instructions Listed",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Build Process",
   "descriptionText": "There can only be one CMD instruction in a Dockerfile. If you list more than one CMD then only the last CMD will take effect",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#cmd",
   "platform": "Dockerfile",
   "descriptionID": "96f59ca3",
-  "cwe": "1041"
+  "cwe": "1041",
+  "oldSeverity": "MEDIUM"
 }

@@ -1,13 +1,13 @@
 [
   {
     "queryName": "ROS Stack Notifications Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 3,
     "fileName": "positive.tf"
   },
   {
     "queryName": "ROS Stack Notifications Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 1,
     "fileName": "positive2.tf"
   }

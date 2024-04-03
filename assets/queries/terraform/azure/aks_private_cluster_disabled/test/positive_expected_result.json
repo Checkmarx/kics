@@ -1,13 +1,13 @@
 [
   {
     "queryName": "AKS Private Cluster Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 7,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "AKS Private Cluster Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive2.tf"
   }

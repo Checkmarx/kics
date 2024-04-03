@@ -1,12 +1,13 @@
 {
   "id": "678fd659-96f2-454a-a2a0-c2571f83a4a3",
   "queryName": "RDP Access Is Not Restricted",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "Check if the Google compute firewall allows unrestricted RDP access. Allowed ports should not contain RDP port 3389",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall",
   "platform": "Terraform",
   "descriptionID": "f8156d3b",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

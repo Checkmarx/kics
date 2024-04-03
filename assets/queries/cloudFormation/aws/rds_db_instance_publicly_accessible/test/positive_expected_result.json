@@ -1,13 +1,13 @@
 [
   {
     "queryName": "RDS DB Instance Publicly Accessible",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 69,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "RDS DB Instance Publicly Accessible",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 61,
     "fileName": "positive2.json"
   }

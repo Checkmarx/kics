@@ -1,25 +1,25 @@
 [
   {
     "queryName": "EC2 Instance Has Public IP",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 17,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "EC2 Instance Has Public IP",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 28,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "EC2 Instance Has Public IP",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "EC2 Instance Has Public IP",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 13,
     "fileName": "positive3.tf"
   }
