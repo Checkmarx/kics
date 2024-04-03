@@ -1,6 +1,7 @@
 package bicep
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 
@@ -19,16 +20,30 @@ type BicepVisitor struct {
 	resourceList []interface{}
 }
 
+type JSONBicep struct {
+	Parameters map[string]interface{} `json:"parameters"`
+	Variables  map[string]interface{} `json:"variables"`
+	Resources  []interface{}          `json:"resources"`
+}
+
 func NewBicepVisitor() *BicepVisitor {
 	paramList := map[string]interface{}{}
 	varList := map[string]interface{}{}
 	resourceList := []interface{}{}
 	return &BicepVisitor{paramList: paramList, varList: varList, resourceList: resourceList}
+}
 
+func convertVisitorToJSONBicep(visitor *BicepVisitor) *JSONBicep {
+	return &JSONBicep{
+		Parameters: visitor.paramList,
+		Variables:  visitor.varList,
+		Resources:  visitor.resourceList,
+	}
 }
 
 // Parse - parses bicep to BicepVisitor template (json file)
 func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
+	fmt.Println(file)
 	bicepVisitor := NewBicepVisitor()
 	stream, _ := antlr.NewFileStream(file)
 	lexer := parser.NewbicepLexer(stream)
@@ -43,7 +58,20 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 	fmt.Println("\nVariables: ", bicepVisitor.varList)
 	fmt.Println("\nResources: ", bicepVisitor.resourceList)
 
-	return nil, nil, nil
+	var doc model.Document
+
+	jBicep := convertVisitorToJSONBicep(bicepVisitor)
+	bicepBytes, err := json.Marshal(jBicep)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	err = json.Unmarshal(bicepBytes, &doc)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return []model.Document{doc}, nil, nil
 }
 
 func (v *BicepVisitor) VisitProgram(ctx *parser.ProgramContext) interface{} {
@@ -74,8 +102,10 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 	var decorators []interface{}
 	param := map[string]interface{}{}
 	identifier := ctx.Identifier().Accept(s)
-	paramVal := ctx.ParameterDefaultValue().Accept(s)
-	param["value"] = paramVal
+	if ctx.ParameterDefaultValue() != nil {
+		paramVal := ctx.ParameterDefaultValue().Accept(s)
+		param["value"] = paramVal
+	}
 	if ctx.TypeExpression() != nil {
 		typeExpression := ctx.TypeExpression().Accept(s)
 		param["type"] = typeExpression
@@ -313,7 +343,7 @@ func (s *BicepVisitor) VisitDecoratorExpression(ctx *parser.DecoratorExpressionC
 func (s *BicepVisitor) VisitFunctionCall(ctx *parser.FunctionCallContext) interface{} {
 	identifier := ctx.Identifier().Accept(s)
 	var argumentList []interface{}
-	if ctx.ArgumentList().GetChildCount() > 0 {
+	if ctx.ArgumentList() != nil {
 		argumentList = ctx.ArgumentList().Accept(s).([]interface{})
 	}
 	functionCall := map[string]interface{}{
