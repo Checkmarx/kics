@@ -1,26 +1,26 @@
 [
-	{
-		"queryName": "Missing Flag From Dnf Install",
-		"severity": "MEDIUM",
-		"line": 2,
-		"fileName": "positive.dockerfile"
-	},
-	{
-		"queryName": "Missing Flag From Dnf Install",
-		"severity": "MEDIUM",
-		"line": 10,
-		"fileName": "positive.dockerfile"
-	},
-	{
-		"queryName": "Missing Flag From Dnf Install",
-		"severity": "MEDIUM",
-		"line": 2,
-		"fileName": "positive2.dockerfile"
-	},
-	{
-		"queryName": "Missing Flag From Dnf Install",
-		"severity": "MEDIUM",
-		"line": 10,
-		"fileName": "positive2.dockerfile"
-	}
+  {
+    "queryName": "Missing Flag From Dnf Install",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive.dockerfile"
+  },
+  {
+    "queryName": "Missing Flag From Dnf Install",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive.dockerfile"
+  },
+  {
+    "queryName": "Missing Flag From Dnf Install",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive2.dockerfile"
+  },
+  {
+    "queryName": "Missing Flag From Dnf Install",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive2.dockerfile"
+  }
 ]

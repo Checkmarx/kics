@@ -17,10 +17,11 @@ import (
 )
 
 var cycloneDxSeverityLevelEquivalence = map[model.Severity]string{
-	"INFO":   "None",
-	"LOW":    "Low",
-	"MEDIUM": "Medium",
-	"HIGH":   "High",
+	"INFO":     "None",
+	"LOW":      "Low",
+	"MEDIUM":   "Medium",
+	"HIGH":     "High",
+	"CRITICAL": "Critical",
 }
 
 // CycloneDxReport includes all the properties considered relevant for the CycloneDX Report

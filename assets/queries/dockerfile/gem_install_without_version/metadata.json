@@ -3,7 +3,7 @@
   "queryName": "Gem Install Without Version",
   "severity": "MEDIUM",
   "category": "Supply-Chain",
-  "descriptionText": "Instead of 'gem install \u003cgem\u003e' we should use 'gem install \u003cgem\u003e:\u003cversion\u003e'",
+  "descriptionText": "Instead of 'gem install ' we should use 'gem install :'",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run",
   "platform": "Dockerfile",
   "descriptionID": "0586ed55",

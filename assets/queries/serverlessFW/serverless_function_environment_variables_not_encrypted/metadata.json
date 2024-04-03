@@ -1,11 +1,12 @@
 {
   "id": "4495bc5d-4d1e-4a26-ae92-152d18195648",
   "queryName": "Serverless Function Environment Variables Not Encrypted",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "Serverless Function should encrypt environment variables",
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/functions#kms-keys",
   "platform": "ServerlessFW",
   "descriptionID": "d900c253",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

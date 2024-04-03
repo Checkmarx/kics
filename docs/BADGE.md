@@ -19,6 +19,7 @@ For this example, let's assume HIGH and MEDIUM results are bad:
 
 ```bash
 #!/usr/bin/env bash
+CRITICAL=$(jq '.severity_counters.CRITICAL' results.json)
 HIGH=$(jq '.severity_counters.HIGH' results.json)
 MEDIUM=$(jq '.severity_counters.MEDIUM' results.json)
 LOW=$(jq '.severity_counters.LOW' results.json)

@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "Container Runs Unmasked",
-		"severity": "MEDIUM",
-		"line": 8
-	}
+  {
+    "queryName": "Container Runs Unmasked",
+    "severity": "HIGH",
+    "line": 8
+  }
 ]

@@ -1,11 +1,12 @@
 {
   "id": "40e1d1bf-11a9-4f63-a3a2-a8b84c602839",
   "queryName": "API Key Exposed In Global Security Scheme",
-  "severity": "LOW",
+  "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "API Keys should not be transported over network",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
   "platform": "OpenAPI",
   "descriptionID": "bcb4b221",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

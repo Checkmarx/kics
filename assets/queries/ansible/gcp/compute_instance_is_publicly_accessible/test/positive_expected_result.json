@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "Compute Instance Is Publicly Accessible",
-		"severity": "HIGH",
-		"line": 6
-	}
+  {
+    "queryName": "Compute Instance Is Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 6
+  }
 ]

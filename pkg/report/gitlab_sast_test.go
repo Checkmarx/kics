@@ -25,9 +25,17 @@ var gitlabSASTTests = []struct {
 	},
 	{
 		caseTest: jsonCaseTest{
-			summary:  test.SummaryMockCWE,
+			summary:  test.SummaryMockCritical,
 			path:     "./testdir",
 			filename: "test2",
+		},
+		expectedResult: test.SummaryMockCritical,
+	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCWE,
+			path:     "./testdir",
+			filename: "test3",
 		},
 		expectedResult: test.SummaryMockCWE,
 	},

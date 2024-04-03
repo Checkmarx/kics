@@ -1,13 +1,13 @@
 [
   {
     "queryName": "AmazonMQ Broker Encryption Disabled",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 6,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "AmazonMQ Broker Encryption Disabled",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 7,
     "fileName": "positive2.json"
   }

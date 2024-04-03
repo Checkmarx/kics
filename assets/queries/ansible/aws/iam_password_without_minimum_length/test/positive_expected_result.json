@@ -1,17 +1,17 @@
 [
   {
     "queryName": "IAM Password Without Minimum Length",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 2
   },
   {
     "queryName": "IAM Password Without Minimum Length",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 16
   },
   {
     "queryName": "IAM Password Without Minimum Length",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 27
   }
 ]

@@ -40,6 +40,7 @@ Use "kics [command] --help" for more information about a command.
 |-m, --bom                           |include bill of materials (BoM) in results output|
 |      --cloud-provider strings      |  list of cloud providers to scan (alicloud, aws, azure, gcp, nifcloud, tencentcloud)|
 |      --config string               |  path to configuration file|
+|      --old-severities              |  uses old severities in query results|
 |      --disable-full-descriptions   |  disable request for full descriptions and use default vulnerability descriptions|
 |      --disable-secrets             |  disable secrets scanning|
 |      --enable-openapi-refs         |  resolve the file reference, on OpenAPI files (default [false])|
@@ -48,9 +49,9 @@ Use "kics [command] --help" for more information about a command.
 |  -e, --exclude-paths strings       |  exclude paths from scan<br>supports glob and can be provided multiple times or as a quoted comma separated string<br>example: './shouldNotScan/*,somefile.txt'|
 |      --exclude-queries strings     |  exclude queries by providing the query ID<br>cannot be provided with query inclusion flags<br>can be provided multiple times or as a comma separated string<br>example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'|
 |  -x, --exclude-results strings     |  exclude results by providing the similarity ID of a result<br>can be provided multiple times or as a comma separated string<br>example: 'fec62a97d569662093dbb9739360942f...,31263s5696620s93dbb973d9360942fc2a...'|
-|      --exclude-severities strings  |  exclude results by providing the severity of a result<br>can be provided multiple times or as a comma separated string<br>example: 'info,low'<br>possible values: 'high, medium, low, info, trace'|
+|      --exclude-severities strings  |  exclude results by providing the severity of a result<br>can be provided multiple times or as a comma separated string<br>example: 'info,low'<br>possible values: 'critical, high, medium, low, info, trace'|
 |      --experimental-queries        |  include experimental queries (queries not yet thoroughly reviewed) (default [false])|
-|      --fail-on strings             |  which kind of results should return an exit code different from 0<br>accepts: high, medium, low and info<br>example: "high,low" (default [high,medium,low,info])|
+|      --fail-on strings             |  which kind of results should return an exit code different from 0<br>accepts: critical, high, medium, low and info<br>example: "high,low" (default [critical,high,medium,low,info])|
 |  -h, --help                        |  help for scan|
 |      --ignore-on-exit string       |  defines which kind of non-zero exits code should be ignored<br>accepts: all, results, errors, none<br>example: if 'results' is set, only engine errors will make KICS exit code different from 0 (default "none")|
 |  -i, --include-queries strings     |  include queries by providing the query ID<br>cannot be provided with query exclusion flags<br>can be provided multiple times or as a comma separated string<br>example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'|
@@ -61,7 +62,7 @@ Use "kics [command] --help" for more information about a command.
 |      --no-progress                 |  hides the progress bar|
 |      --output-name string          |  name used on report creations (default "results")|
 |  -o, --output-path string          |  directory path to store reports|
-|      --parallel                    |  number of workers per platform enabled for parallel scanning, set 0 to auto-detect parallelism (default 1)|
+|      --parallel int                |  number of workers per platform enabled for parallel scanning (default set to 0 to auto-detect optimal number of workers)|
 |  -p, --path strings                |  paths or directories to scan<br>example: "./somepath,somefile.txt"|
 |      --payload-lines               |  adds line information inside the payload when printing the payload file|
 |  -d, --payload-path string         |  path to store internal representation JSON file|

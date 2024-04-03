@@ -1,7 +1,7 @@
 [
   {
     "queryName": "Missing Cluster Log Types",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 9
   }
 ]

@@ -1,11 +1,13 @@
 {
   "id": "a6a4d4fc-4e8f-47d1-969f-e9d4a084f3b9",
   "queryName": "PSP Set To Privileged",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "Do not allow pod to request execution as privileged.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged",
   "platform": "Terraform",
   "descriptionID": "5ca96212",
-  "cwe": ""
+  "cwe": "",
+  "cloudProvider": "common",
+  "oldSeverity": "MEDIUM"
 }

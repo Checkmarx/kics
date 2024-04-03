@@ -1,37 +1,37 @@
 [
   {
     "queryName": "API Key Exposed In Global Security Scheme",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 52,
     "filename": "positive1.json"
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 57,
     "filename": "positive1.json"
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 62,
     "filename": "positive1.json"
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 31,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 35,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "API Key Exposed In Global Security Scheme",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 39,
     "filename": "positive2.yaml"
   }

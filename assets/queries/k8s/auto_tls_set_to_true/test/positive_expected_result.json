@@ -1,8 +1,8 @@
 [
-	{
-		"queryName": "Auto TLS Set To True",
-		"severity": "HIGH",
-		"line": 21,
-        "fileName": "positive1.yaml"
-	}
+  {
+    "queryName": "Auto TLS Set To True",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive1.yaml"
+  }
 ]

@@ -56,6 +56,7 @@ JSON reports are sorted by severity (from high to info) and should looks like as
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
+		"CRITICAL": 0,
 		"HIGH": 10,
 		"INFO": 0,
 		"LOW": 0,
@@ -671,14 +672,14 @@ SonarQube reports, follow [SonarQube Import Format](https://docs.sonarqube.org/l
 You can export html report by using `--report-formats "html"`.
 HTML reports are sorted by severity (from high to info), the results will have query information, a list of files which vulnerability was found and a code snippet where the problem was detected as you can see in following example:
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/html_report.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/fc93fd1fa4ed3572b0732c787be61d4c82fff2e5/docs/img/html_report.png" width="850">
 
 ## PDF
 
 You can export a pdf report by using `--report-formats "pdf"`.
 PDF reports are sorted by severity (from high to info), the results will have query information and a list of files alongside the line where the result was found.
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/pdf-report.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/514878ea3fbf98042def0b12cca475062321d36d/docs/img/pdf_report.png" width="850">
 
 ## CycloneDX
 
@@ -987,17 +988,19 @@ KICS displays the results in CLI. For detailed information, you can use `-v --lo
 
 ## Results Status Code
 
-| Code | Description                |
-| ---- | -------------------------- |
-| `0`  | No Results were Found      |
-| `50` | Found any `HIGH` Results   |
-| `40` | Found any `MEDIUM` Results |
-| `30` | Found any `LOW` Results    |
-| `20` | Found any `INFO` Results   |
+| Code | Description                 |
+| ---- | ----------------------------|
+| `0`  | No Results were Found       |
+| `60` | Found any `CRITICAL` Results|
+| `50` | Found any `HIGH` Results    |
+| `40` | Found any `MEDIUM` Results  |
+| `30` | Found any `LOW` Results     |
+| `20` | Found any `INFO` Results    |
 
 ## Error Status Code
 
 | Code  | Description      |
 | ----- | ---------------- |
+| `70`  | Remediation Error|
 | `126` | Engine Error     |
 | `130` | Signal-Interrupt |

@@ -1,12 +1,13 @@
 {
   "id": "d7b9d850-3e06-4a75-852f-c46c2e92240b",
   "queryName": "Hardcoded AWS Access Key",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Secret Management",
   "descriptionText": "AWS Access Key should not be hardcoded",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance",
   "platform": "Terraform",
   "descriptionID": "9e8cbdfb",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }
