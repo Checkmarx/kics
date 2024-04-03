@@ -78,7 +78,7 @@ decorator: AT decoratorExpression NL;
 decoratorExpression: functionCall | expression DOT functionCall;
 
 // functionCall -> IDENTIFIER "(" argumentList? ")"
-functionCall: identifier OPAR argumentList? CPAR;
+functionCall: identifier OPAR (NL+ argumentList)? NL+ CPAR;
 
 // argumentList -> expression ("," expression)*
 argumentList: expression (COMMA expression)*;
