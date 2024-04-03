@@ -12,7 +12,7 @@ import (
 )
 
 // GetExtension gets the extension of a file path
-func GetExtension(path string) string {
+func GetExtension(path string) (string, error) {
 	targets := []string{"Dockerfile", "tfvars"}
 
 	ext := filepath.Ext(path)
@@ -22,14 +22,22 @@ func GetExtension(path string) string {
 
 		if Contains(base, targets) {
 			ext = base
-		} else if isTextFile(path) {
-			if readPossibleDockerFile(path) {
-				ext = "possibleDockerfile"
+		} else {
+			isText, err := isTextFile(path)
+
+			if err != nil {
+				return "", err
+			}
+
+			if isText {
+				if readPossibleDockerFile(path) {
+					ext = "possibleDockerfile"
+				}
 			}
 		}
 	}
 
-	return ext
+	return ext, nil
 }
 
 func readPossibleDockerFile(path string) bool {
@@ -57,26 +65,26 @@ func readPossibleDockerFile(path string) bool {
 	return false
 }
 
-func isTextFile(path string) bool {
+func isTextFile(path string) (bool, error) {
 	info, err := os.Stat(path)
 	if err != nil {
 		log.Error().Msgf("failed to get file info: %s", err)
-		return false
+		return false, err
 	}
 
 	if info.IsDir() {
-		return false
+		return false, nil
 	}
 
 	content, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
 		log.Error().Msgf("failed to analyze file: %s", err)
-		return false
+		return false, err
 	}
 
 	content = bytes.Replace(content, []byte("\r"), []byte(""), -1)
 
 	isText := util.IsText(content)
 
-	return isText
+	return isText, nil
 }
