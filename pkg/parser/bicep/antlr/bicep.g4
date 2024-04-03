@@ -66,11 +66,11 @@ object: OBRACE (NL+ ( objectProperty NL+)*)? CBRACE;
 // objectProperty -> ( IDENTIFIER(name) | interpString ) ":" expression
 objectProperty: (name = identifier | interpString) COL expression;
 
-// array -> "[" ( NL+ arrayItem* )? "]"
-array: OBRACK (NL+ arrayItem*)? CBRACK;
+// array -> "[" NL* arrayItem* "]"
+array: OBRACK NL* arrayItem* CBRACK;
 
-// arrayItem -> expression NL+
-arrayItem: expression NL+;
+// arrayItem -> expression (NL+|COMMA)?
+arrayItem: expression (NL+|COMMA)?;
 
 // decorator -> "@" decoratorExpression NL
 decorator: AT decoratorExpression NL;
