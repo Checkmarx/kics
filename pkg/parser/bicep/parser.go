@@ -170,25 +170,23 @@ func (s *BicepVisitor) VisitParameterDefaultValue(ctx *parser.ParameterDefaultVa
 
 func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{} {
 	if ctx.GetChildCount() > 1 {
-		fmt.Println("Expression1")
 		if ctx.Identifier() != nil {
 			identifier := ctx.Identifier().Accept(s)
-			fmt.Println(identifier)
+			exp := ctx.Expression(0).Accept(s)
+			fmt.Println(exp)
 			if ctx.DOT() != nil {
-				fmt.Println("DOT")
-			} else {
-				fmt.Println("COL")
+				return identifier.(string)
 			}
+
+			return nil
 		} else {
 			for _, val := range ctx.AllExpression() {
 				val.Accept(s)
 			}
 		}
-	} else {
-		fmt.Println("Expression2")
-		return ctx.PrimaryExpression().Accept(s)
 	}
-	return nil
+
+	return ctx.PrimaryExpression().Accept(s)
 }
 
 // VisitPrimaryExpression is called when production primaryExpression is visited.
@@ -197,11 +195,9 @@ func (s *BicepVisitor) VisitPrimaryExpression(ctx *parser.PrimaryExpressionConte
 		return ctx.LiteralValue().Accept(s)
 	}
 	if ctx.FunctionCall() != nil {
-		fmt.Println("Function Call Primary Expression")
 		return ctx.FunctionCall().Accept(s)
 	}
 	if ctx.InterpString() != nil {
-		fmt.Println("InterpString Primary Expression")
 		return ctx.InterpString().Accept(s)
 	}
 	if ctx.MULTILINE_STRING() != nil {
@@ -211,18 +207,15 @@ func (s *BicepVisitor) VisitPrimaryExpression(ctx *parser.PrimaryExpressionConte
 		return ctx.Array().Accept(s)
 	}
 	if ctx.Object() != nil {
-		fmt.Println("Object Primary Expression")
 		return ctx.Object().Accept(s)
 	}
 	if ctx.ParenthesizedExpression() != nil {
-		fmt.Println("ParenthesizedExpression Primary Expression")
 		return ctx.ParenthesizedExpression().Accept(s)
 	}
 
 	return nil
 }
 
-// VisitInterpString is called when production interpString is visited.
 func (s *BicepVisitor) VisitLiteralValue(ctx *parser.LiteralValueContext) interface{} {
 	if ctx.NUMBER() != nil {
 		return ctx.NUMBER().GetText()
@@ -248,7 +241,7 @@ func (s *BicepVisitor) VisitInterpString(ctx *parser.InterpStringContext) interf
 	if ctx.GetChildCount() > 1 {
 		interpString := []interface{}{}
 		interpString = append(interpString, ctx.STRING_LEFT_PIECE().GetText())
-		if ctx.AllSTRING_MIDDLE_PIECE() != nil {
+		if ctx.AllSTRING_MIDDLE_PIECE() != nil && (len(ctx.AllSTRING_MIDDLE_PIECE()) > 0) {
 			for idx, val := range ctx.AllSTRING_MIDDLE_PIECE() {
 				interpString = append(interpString, ctx.Expression(idx).Accept(s))
 				interpString = append(interpString, val.GetText())
@@ -257,11 +250,31 @@ func (s *BicepVisitor) VisitInterpString(ctx *parser.InterpStringContext) interf
 		// Last expression with string right piece
 		interpString = append(interpString, ctx.Expression(len(ctx.AllSTRING_MIDDLE_PIECE())).Accept(s))
 		interpString = append(interpString, ctx.STRING_RIGHT_PIECE().GetText())
-		return interpString
-	} else {
-		fmt.Println("InterpString: ", ctx.STRING_COMPLETE().GetText())
-		return ctx.STRING_COMPLETE().GetText()
+		str := ""
+		for _, v := range interpString {
+			switch v := v.(type) {
+			case (string):
+				str = str + v
+			case (map[string][]interface{}):
+				for identifier, argumentList := range v {
+					resStr := "[" + identifier + "("
+					for idx, arg := range argumentList {
+						resStr += arg.(string)
+						if idx < len(argumentList)-1 {
+							resStr += ", "
+						}
+					}
+
+					resStr += ")]"
+					str += resStr
+				}
+			}
+
+		}
+		return str
 	}
+
+	return ctx.STRING_COMPLETE().GetText()
 }
 
 func (s *BicepVisitor) VisitArray(ctx *parser.ArrayContext) interface{} {
@@ -290,17 +303,15 @@ func (s *BicepVisitor) VisitObject(ctx *parser.ObjectContext) interface{} {
 }
 
 func (s *BicepVisitor) VisitObjectProperty(ctx *parser.ObjectPropertyContext) interface{} {
+	objectValue := ctx.Expression().Accept(s)
 	objectProperty := map[string]interface{}{}
-	fmt.Println("VisitObjectProperty")
 	if ctx.Identifier() != nil {
 		identifier := ctx.Identifier().Accept(s)
-		fmt.Println("VisitObjectProperty2: ", identifier.(string))
 		objectProperty[identifier.(string)] = ctx.Expression().Accept(s)
 	}
 	if ctx.InterpString() != nil {
 		interpString := ctx.InterpString().Accept(s)
-		fmt.Println("VisitObjectProperty3: ", interpString.(string))
-		objectProperty[interpString.(string)] = ctx.Expression().Accept(s)
+		objectProperty[interpString.(string)] = objectValue
 	}
 
 	return objectProperty
@@ -337,7 +348,7 @@ func (s *BicepVisitor) VisitIdentifier(ctx *parser.IdentifierContext) interface{
 	if (ctx.BOOL()) != nil {
 		return ctx.BOOL().GetText()
 	}
-	return nil
+	return ""
 }
 
 func (s *BicepVisitor) VisitParenthesizedExpression(ctx *parser.ParenthesizedExpressionContext) interface{} {
@@ -356,9 +367,7 @@ func (s *BicepVisitor) VisitDecoratorExpression(ctx *parser.DecoratorExpressionC
 func (s *BicepVisitor) VisitFunctionCall(ctx *parser.FunctionCallContext) interface{} {
 	identifier := ctx.Identifier().Accept(s)
 	var argumentList []interface{}
-	fmt.Println("VisitFunctionCall: ", identifier)
 	if ctx.ArgumentList() != nil {
-		fmt.Println("Function Call ArgumentList")
 		argumentList = ctx.ArgumentList().Accept(s).([]interface{})
 	}
 	functionCall := map[string]interface{}{
@@ -371,7 +380,6 @@ func (s *BicepVisitor) VisitFunctionCall(ctx *parser.FunctionCallContext) interf
 func (s *BicepVisitor) VisitArgumentList(ctx *parser.ArgumentListContext) interface{} {
 	var argumentList []interface{}
 	for _, val := range ctx.AllExpression() {
-		fmt.Println("VisitArgumentList")
 		argument := val.Accept(s)
 		argumentList = append(argumentList, argument)
 	}
