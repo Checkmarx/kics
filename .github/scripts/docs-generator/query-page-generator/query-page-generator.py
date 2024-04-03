@@ -58,7 +58,7 @@ def get_query_info(query_path : str, metadata_file = 'metadata.json'):
     for file in files:
         if file.lower().startswith('positive') and file != 'positive_expected_result.json':
             positive_filenames.append(file)
-        elif file.lower().startswith('negative') and file != 'positive_expected_result.json':
+        elif file.lower().startswith('negative'):
             negative_filenames.append(file)
 
     true_positives = []
