@@ -44,6 +44,7 @@ expression:
 // parenthesizedExpression
 primaryExpression:
 	literalValue
+	| functionCall
 	| interpString
 	| MULTILINE_STRING
 	| array
@@ -51,7 +52,7 @@ primaryExpression:
 	| parenthesizedExpression;
 
 // parenthesizedExpression -> "(" expression ")"
-parenthesizedExpression: OPAR expression CPAR;
+parenthesizedExpression: OPAR NL? expression NL? CPAR;
 
 // typeExpression -> singularTypeExpression ("|" singularTypeExpression)*
 typeExpression: type = identifier (PIPE type = identifier)*;
@@ -78,10 +79,10 @@ decorator: AT decoratorExpression NL;
 decoratorExpression: functionCall | expression DOT functionCall;
 
 // functionCall -> IDENTIFIER "(" argumentList? ")"
-functionCall: identifier OPAR (NL+ argumentList)? NL+ CPAR;
+functionCall: identifier OPAR (NL? argumentList)? NL? CPAR;
 
 // argumentList -> expression ("," expression)*
-argumentList: expression (COMMA expression)*;
+argumentList: expression (COMMA NL? expression)*;
 
 identifier:
 	IDENTIFIER
