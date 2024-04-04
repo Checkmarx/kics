@@ -375,14 +375,14 @@ var SecretsQueryMetadataJSON string
 var SecretsQueryRegexRulesJSON string
 
 // GetEmbeddedLibrary returns the embedded library.rego for the platform passed in the argument
-func GetEmbeddedLibrary(platform string) (string, error) <span class="cov10" title="11151">{
+func GetEmbeddedLibrary(platform string) (string, error) <span class="cov10" title="11073">{
         content, err := embeddedLibraries.ReadFile("libraries/" + platform + ".rego")
 
         return string(content), err
 }</span>
 
 // GetEmbeddedLibrary returns the embedded library.rego for the platform passed in the argument
-func GetEmbeddedLibraryData(platform string) (string, error) <span class="cov9" title="11145">{
+func GetEmbeddedLibraryData(platform string) (string, error) <span class="cov9" title="11067">{
         content, err := embeddedLibraryData.ReadFile("libraries/" + platform + ".json")
 
         return string(content), err
@@ -2568,13 +2568,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="33">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov8" title="33">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2599,14 +2599,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov2" title="2">{
+        if math.IsNaN(metric) </span><span class="cov3" title="3">{
                 metric = 0
         }</span>
 
@@ -5655,7 +5655,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -6524,19 +6524,19 @@ type MockQueriesSourceMockRecorder struct {
 }
 
 // NewMockQueriesSource creates a new mock instance.
-func NewMockQueriesSource(ctrl *gomock.Controller) *MockQueriesSource <span class="cov8" title="5115">{
+func NewMockQueriesSource(ctrl *gomock.Controller) *MockQueriesSource <span class="cov8" title="5076">{
         mock := &amp;MockQueriesSource{ctrl: ctrl}
         mock.recorder = &amp;MockQueriesSourceMockRecorder{mock}
         return mock
 }</span>
 
 // EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockQueriesSource) EXPECT() *MockQueriesSourceMockRecorder <span class="cov10" title="15345">{
+func (m *MockQueriesSource) EXPECT() *MockQueriesSourceMockRecorder <span class="cov10" title="15228">{
         return m.recorder
 }</span>
 
 // GetQueries mocks base method.
-func (m *MockQueriesSource) GetQueries(querySelection *source.QueryInspectorParameters) ([]model.QueryMetadata, error) <span class="cov8" title="5115">{
+func (m *MockQueriesSource) GetQueries(querySelection *source.QueryInspectorParameters) ([]model.QueryMetadata, error) <span class="cov8" title="5076">{
         m.ctrl.T.Helper()
         ret := m.ctrl.Call(m, "GetQueries", querySelection)
         ret0, _ := ret[0].([]model.QueryMetadata)
@@ -6545,13 +6545,13 @@ func (m *MockQueriesSource) GetQueries(querySelection *source.QueryInspectorPara
 }</span>
 
 // GetQueries indicates an expected call of GetQueries.
-func (mr *MockQueriesSourceMockRecorder) GetQueries(querySelection interface{}) *gomock.Call <span class="cov8" title="5115">{
+func (mr *MockQueriesSourceMockRecorder) GetQueries(querySelection interface{}) *gomock.Call <span class="cov8" title="5076">{
         mr.mock.ctrl.T.Helper()
         return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQueries", reflect.TypeOf((*MockQueriesSource)(nil).GetQueries), querySelection)
 }</span>
 
 // GetQueryLibrary mocks base method.
-func (m *MockQueriesSource) GetQueryLibrary(platform string) (source.RegoLibraries, error) <span class="cov9" title="10230">{
+func (m *MockQueriesSource) GetQueryLibrary(platform string) (source.RegoLibraries, error) <span class="cov9" title="10152">{
         m.ctrl.T.Helper()
         ret := m.ctrl.Call(m, "GetQueryLibrary", platform)
         ret0, _ := ret[0].(source.RegoLibraries)
@@ -6560,7 +6560,7 @@ func (m *MockQueriesSource) GetQueryLibrary(platform string) (source.RegoLibrari
 }</span>
 
 // GetQueryLibrary indicates an expected call of GetQueryLibrary.
-func (mr *MockQueriesSourceMockRecorder) GetQueryLibrary(platform interface{}) *gomock.Call <span class="cov9" title="10230">{
+func (mr *MockQueriesSourceMockRecorder) GetQueryLibrary(platform interface{}) *gomock.Call <span class="cov9" title="10152">{
         mr.mock.ctrl.T.Helper()
         return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetQueryLibrary", reflect.TypeOf((*MockQueriesSource)(nil).GetQueryLibrary), platform)
 }</span>
@@ -6957,12 +6957,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="31225">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="30979">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="31225">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="30904">{
+                <span class="cov9" title="30979">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="30658">{
                         return skipFolder
                 }</span>
 
@@ -7034,11 +7034,11 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov6" title="320">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="31244">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="30998">{
         s.mu.RLock()
         defer s.mu.RUnlock()
 
-        if info.IsDir() </span><span class="cov8" title="6936">{
+        if info.IsDir() </span><span class="cov8" title="6884">{
                 // exclude terraform cache folders
                 if queryRegexExcludeTerraCache.MatchString(path) </span><span class="cov3" title="13">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -7049,23 +7049,23 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                         }</span>
                         <span class="cov3" title="13">return true, filepath.SkipDir</span>
                 }
-                <span class="cov8" title="6923">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
+                <span class="cov8" title="6871">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="6922">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="6919">{
+                <span class="cov8" title="6870">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="6867">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="3">return false, nil</span>
         }
 
-        <span class="cov9" title="24308">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="24114">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="24308">ext := utils.GetExtension(path)
-        if !extensions.Include(ext) </span><span class="cov9" title="23988">{
+        <span class="cov9" title="24114">ext := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="23794">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
@@ -24209,15 +24209,15 @@ func StringifyStruct(v interface{}) (string, error) <span class="cov0" title="0"
 }
 
 // MapToStringSlice extract slice of keys from a map[string]string
-func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="5105">{
+func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="5066">{
         keys := make([]string, len(stringKeyMap))
 
         i := 0
-        for k := range stringKeyMap </span><span class="cov10" title="81680">{
+        for k := range stringKeyMap </span><span class="cov10" title="81056">{
                 keys[i] = k
                 i++
         }</span>
-        <span class="cov7" title="5105">return keys</span>
+        <span class="cov7" title="5066">return keys</span>
 }
 
 var queryHigh = model.QueryResult{ //nolint
