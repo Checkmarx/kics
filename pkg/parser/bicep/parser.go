@@ -3,8 +3,8 @@ package bicep
 import (
 	"encoding/json"
 	"fmt"
-	"strings"
 	"strconv"
+	"strings"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/bicep/antlr/parser"
@@ -113,7 +113,16 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 	}
 
 	for _, val := range ctx.AllDecorator() {
-		decorators = append(decorators, val.Accept(s))
+		decorator := val.Accept(s).(map[string]interface{})
+		if decorator["secure"] != nil {
+			if param["type"] == "string" {
+				param["type"] = "secureString"
+			} else if param["type"] == "object" {
+				param["type"] = "secureObject"
+			}
+		} else {
+			decorators = append(decorators, decorator)
+		}
 	}
 	param["decorators"] = decorators
 	s.paramList[identifier.(string)] = param
@@ -176,7 +185,19 @@ func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{
 			exp := ctx.Expression(0).Accept(s)
 			fmt.Println("Visit Expression value: ", exp)
 			if ctx.DOT() != nil {
-				return identifier.(string)
+				res := ""
+				for key, val := range exp.(map[string]interface{}) {
+					res += key + "("
+					for idx, arg := range val.([]interface{}) {
+						res += arg.(string)
+						if idx < len(val.([]interface{}))-1 {
+							res += ", "
+						}
+
+					}
+					res += ")." + identifier.(string)
+				}
+				return res
 			}
 
 			return nil
@@ -352,6 +373,9 @@ func (s *BicepVisitor) VisitIdentifier(ctx *parser.IdentifierContext) interface{
 	if (ctx.BOOL()) != nil {
 		return ctx.BOOL().GetText()
 	}
+	if (ctx.OBJECT()) != nil {
+		return ctx.OBJECT().GetText()
+	}
 	return nil
 }
 
@@ -391,11 +415,8 @@ func (s *BicepVisitor) VisitArgumentList(ctx *parser.ArgumentListContext) interf
 }
 
 func (s *BicepVisitor) VisitTypeExpression(ctx *parser.TypeExpressionContext) interface{} {
-	identifiers := []string{}
-	for _, val := range ctx.AllIdentifier() {
-		identifiers = append(identifiers, val.Accept(s).(string))
-	}
-	return identifiers
+
+	return ctx.Identifier().Accept(s)
 }
 
 // GetKind returns the kind of the parser
