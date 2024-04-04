@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 5a627dfa-a4dd-4020-a4c6-5f3caf4abcd6
 -   **Query name:** Check use no LTS Spark Version
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#CC0">Low</span>
 -   **Category:** Best Practices
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/databricks/use_lts_spark_version)
 
