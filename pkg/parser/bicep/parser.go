@@ -50,8 +50,8 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 
 	tokenStream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	bicepParser := parser.NewbicepParser(tokenStream)
-	// bicepParser.RemoveErrorListeners()
-	// bicepParser.AddErrorListener(antlr.NewDiagnosticErrorListener(true))
+	bicepParser.RemoveErrorListeners()
+	bicepParser.AddErrorListener(antlr.NewDiagnosticErrorListener(true))
 
 	bicepParser.Program().Accept(bicepVisitor)
 	fmt.Println("\nParameters: ", bicepVisitor.paramList)
@@ -173,7 +173,7 @@ func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{
 		if ctx.Identifier() != nil {
 			identifier := ctx.Identifier().Accept(s)
 			exp := ctx.Expression(0).Accept(s)
-			fmt.Println(exp)
+			fmt.Println("Visit Expression value: ", exp)
 			if ctx.DOT() != nil {
 				return identifier.(string)
 			}
@@ -348,7 +348,7 @@ func (s *BicepVisitor) VisitIdentifier(ctx *parser.IdentifierContext) interface{
 	if (ctx.BOOL()) != nil {
 		return ctx.BOOL().GetText()
 	}
-	return ""
+	return nil
 }
 
 func (s *BicepVisitor) VisitParenthesizedExpression(ctx *parser.ParenthesizedExpressionContext) interface{} {
