@@ -141,6 +141,12 @@ var printTests = []struct {
 		expectedResultFull: "\n\nUnpinned Actions Full Length Commit SHA, Severity: LOW, Results: 1\nDescription: Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release.\nPlatform: CICD\nLearn more about this vulnerability: https://docs.kics.io/latest/queries/cicd-queries/555ab8f9-2001-455e-a077-f2d0f41e2fb9\n\n\t[1]: positive.tf:12\n\n\n\n\nResults Summary:\nCRITICAL: 0\nHIGH: 0\nMEDIUM: 0\nLOW: 1\nINFO: 0\nTOTAL: 1\n\n",
 		customQueries:      false,
 	},
+	{
+		caseTest:           test.ExampleSummaryMockWithPasswordsAndSecretsCommonQuery,
+		expectedResult:     "\n\nPasswords And Secrets - AWS Secret Key, Severity: HIGH, Results: 1\n\t[1]: positive.tf:15\n\nResults Summary:\nCRITICAL: 0\nHIGH: 1\nMEDIUM: 0\nLOW: 0\nINFO: 0\nTOTAL: 1\n\n",
+		expectedResultFull: "\n\nPasswords And Secrets - AWS Secret Key, Severity: HIGH, Results: 1\nDescription: Query to find passwords and secrets in infrastructure code.\nPlatform: Common\nLearn more about this vulnerability: https://docs.kics.io/latest/queries/common-queries/a88baa34-e2ad-44ea-ad6f-8cac87bc7c71\n\n\t[1]: positive.tf:15\n\n\n\n\nResults Summary:\nCRITICAL: 0\nHIGH: 1\nMEDIUM: 0\nLOW: 0\nINFO: 0\nTOTAL: 1\n\n",
+		customQueries:      false,
+	},
 }
 
 // TestPrintResult tests the functions [PrintResult()] and all the methods called by them
