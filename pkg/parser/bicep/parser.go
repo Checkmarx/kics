@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+	"strconv"
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/bicep/antlr/parser"
@@ -218,16 +219,17 @@ func (s *BicepVisitor) VisitPrimaryExpression(ctx *parser.PrimaryExpressionConte
 
 func (s *BicepVisitor) VisitLiteralValue(ctx *parser.LiteralValueContext) interface{} {
 	if ctx.NUMBER() != nil {
-		return ctx.NUMBER().GetText()
+		number, _ := strconv.ParseFloat(ctx.NUMBER().GetText(), 32)
+		return number
 	}
 	if ctx.TRUE() != nil {
-		return ctx.TRUE().GetText()
+		return true
 	}
 	if ctx.FALSE() != nil {
-		return ctx.FALSE().GetText()
+		return false
 	}
 	if ctx.NULL() != nil {
-		return ctx.NULL().GetText()
+		return nil
 	}
 	if ctx.Identifier() != nil {
 		return ctx.Identifier().Accept(s)
@@ -274,7 +276,9 @@ func (s *BicepVisitor) VisitInterpString(ctx *parser.InterpStringContext) interf
 		return str
 	}
 
-	return ctx.STRING_COMPLETE().GetText()
+	unformattedString := ctx.STRING_COMPLETE().GetText()
+	finalString := strings.ReplaceAll(unformattedString, "'", "")
+	return finalString
 }
 
 func (s *BicepVisitor) VisitArray(ctx *parser.ArrayContext) interface{} {
