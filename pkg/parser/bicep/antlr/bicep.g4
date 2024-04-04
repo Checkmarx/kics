@@ -55,7 +55,7 @@ primaryExpression:
 parenthesizedExpression: OPAR NL? expression NL? CPAR;
 
 // typeExpression -> singularTypeExpression ("|" singularTypeExpression)*
-typeExpression: type = identifier (PIPE type = identifier)*;
+typeExpression: type = identifier;
 
 // literalValue -> NUMBER | "true" | "false" | "null"
 literalValue: NUMBER | TRUE | FALSE | NULL | identifier;
@@ -94,7 +94,8 @@ identifier:
 	| NULL
 	| STRING
 	| INT
-	| BOOL;
+	| BOOL
+	| OBJECT;
 
 // multilineString -> "'''" + MULTILINESTRINGCHAR+ + "'''"
 MULTILINE_STRING: '\'\'\'' .*? '\'\'\'';
@@ -132,6 +133,8 @@ TRUE: 'true';
 FALSE: 'false';
 
 NULL: 'null';
+
+OBJECT: 'object';
 
 RESOURCE: 'resource';
 
