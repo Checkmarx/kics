@@ -136,21 +136,21 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 				fmt.Printf("%s %s\n", printer.Bold("CWE:"), summary.Queries[idx].CWE)
 			}
 
-			queryCloudProvider := summary.Queries[idx].CloudProvider
-			if queryCloudProvider != "" {
-				queryCloudProvider = strings.ToLower(queryCloudProvider) + "/"
-			}
-
 			// checks if should print queries URL DOCS based on the use of custom queries and invalid ids
-			if !usingCustomQueries {
-				if validQueryID(summary.Queries[idx].QueryID) {
-					fmt.Printf("%s %s\n\n",
-						printer.Bold("Learn more about this vulnerability:"),
-						fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s%s",
-							strings.ToLower(summary.Queries[idx].Platform),
-							queryCloudProvider,
-							summary.Queries[idx].QueryID))
+			if !usingCustomQueries && validQueryID(summary.Queries[idx].QueryID) {
+				queryURLId := summary.Queries[idx].QueryID
+				queryURLPlatform := strings.ToLower(summary.Queries[idx].Platform)
+
+				if queryURLPlatform == "common" && strings.Contains(strings.ToLower(summary.Queries[idx].QueryName), "passwords and secrets") {
+					queryURLId = "a88baa34-e2ad-44ea-ad6f-8cac87bc7c71"
 				}
+
+				fmt.Printf("%s %s\n\n",
+					printer.Bold("Learn more about this vulnerability:"),
+					fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s%s",
+						queryURLPlatform,
+						normalizeURLCloudProvider(summary.Queries[idx].CloudProvider),
+						queryURLId))
 			}
 		}
 		printFiles(&summary.Queries[idx], printer)
@@ -305,4 +305,14 @@ func validQueryID(queryID string) bool {
 		return utils.ValidateUUID(queryID)
 	}
 	return true
+}
+
+func normalizeURLCloudProvider(cloudProvider string) string {
+	cloudProvider = strings.ToLower(cloudProvider)
+	if cloudProvider == "common" {
+		cloudProvider = ""
+	} else if cloudProvider != "" {
+		cloudProvider += "/"
+	}
+	return cloudProvider
 }
