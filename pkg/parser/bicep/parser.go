@@ -344,7 +344,18 @@ func (s *BicepVisitor) VisitObjectProperty(ctx *parser.ObjectPropertyContext) in
 
 func (s *BicepVisitor) VisitIdentifier(ctx *parser.IdentifierContext) interface{} {
 	if ctx.IDENTIFIER() != nil {
-		return ctx.IDENTIFIER().GetText()
+		identifier := ctx.IDENTIFIER().GetText()
+		for variable := range s.varList {
+			if variable == identifier {
+				return "variables('" + identifier + "')"
+			}
+		}
+		for parameter := range s.paramList {
+			if parameter == identifier {
+				return "parameters('" + identifier + "')"
+			}
+		}
+		return identifier
 	}
 	if (ctx.PARAM()) != nil {
 		return ctx.PARAM().GetText()
