@@ -155,7 +155,7 @@
 				
 				<option value="file49">github.com/Checkmarx/kics/pkg/engine/source/source.go (67.9%)</option>
 				
-				<option value="file50">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (77.9%)</option>
+				<option value="file50">github.com/Checkmarx/kics/pkg/engine/vulnerability_builder.go (78.5%)</option>
 				
 				<option value="file51">github.com/Checkmarx/kics/pkg/engine/vulnerability_utils.go (76.0%)</option>
 				
@@ -239,7 +239,7 @@
 				
 				<option value="file91">github.com/Checkmarx/kics/pkg/printer/options.go (85.5%)</option>
 				
-				<option value="file92">github.com/Checkmarx/kics/pkg/printer/printer.go (84.1%)</option>
+				<option value="file92">github.com/Checkmarx/kics/pkg/printer/printer.go (84.9%)</option>
 				
 				<option value="file93">github.com/Checkmarx/kics/pkg/printer/utils.go (80.0%)</option>
 				
@@ -2599,14 +2599,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="16">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov2" title="2">{
+        if math.IsNaN(metric) </span><span class="cov3" title="3">{
                 metric = 0
         }</span>
 
@@ -8492,23 +8492,23 @@ const (
         searchKeyMinLen = 3
 )
 
-func modifyVulSearchKeyReference(doc interface{}, originalSearchKey string, stringVulList []string) (string, bool) <span class="cov10" title="6">{
-        for index, vulSplit := range stringVulList </span><span class="cov10" title="6">{
+func modifyVulSearchKeyReference(doc interface{}, originalSearchKey string, stringVulList []string) (string, bool) <span class="cov10" title="7">{
+        for index, vulSplit := range stringVulList </span><span class="cov10" title="7">{
                 switch docTyped := doc.(type) </span>{
-                case map[string]interface{}:<span class="cov10" title="6">
+                case map[string]interface{}:<span class="cov10" title="7">
                         if strings.HasPrefix(vulSplit, "{{") &amp;&amp; strings.HasSuffix(vulSplit, "}}") </span><span class="cov0" title="0">{
                                 vulSplit = vulSplit[2 : len(vulSplit)-2]
                         }</span>
-                        <span class="cov10" title="6">if vulSplitEqual := strings.Split(vulSplit, "="); len(vulSplitEqual) != 1 </span><span class="cov0" title="0">{
+                        <span class="cov10" title="7">if vulSplitEqual := strings.Split(vulSplit, "="); len(vulSplitEqual) != 1 </span><span class="cov0" title="0">{
                                 vulSplit = vulSplitEqual[0]
                         }</span>
-                        <span class="cov10" title="6">newDoc, foundEntry := docTyped[vulSplit]
+                        <span class="cov10" title="7">newDoc, foundEntry := docTyped[vulSplit]
                         if metadataRefDoc, ok := docTyped["RefMetadata"]; ok &amp;&amp; foundEntry &amp;&amp; index &lt; len(stringVulList) </span><span class="cov0" title="0">{
                                 newSearchKey := strings.Join(stringVulList[:index], ".") + ".$ref=" + (metadataRefDoc.(map[string]interface{})["$ref"].(string))
                                 return newSearchKey, true
-                        }</span> else<span class="cov10" title="6"> if foundEntry </span><span class="cov0" title="0">{
+                        }</span> else<span class="cov10" title="7"> if foundEntry </span><span class="cov0" title="0">{
                                 doc = newDoc
-                        }</span> else<span class="cov10" title="6"> {
+                        }</span> else<span class="cov10" title="7"> {
                                 return originalSearchKey, false
                         }</span>
                 case []interface{}:<span class="cov0" title="0">
@@ -8531,13 +8531,13 @@ func modifyVulSearchKeyReference(doc interface{}, originalSearchKey string, stri
 var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
         tracker Tracker,
         v interface{},
-        detector *dec.DetectLine, useOldSeverities bool) (*model.Vulnerability, error) <span class="cov10" title="6">{
+        detector *dec.DetectLine, useOldSeverities bool) (*model.Vulnerability, error) <span class="cov10" title="7">{
         vObj, ok := v.(map[string]interface{})
         if !ok </span><span class="cov0" title="0">{
                 return &amp;model.Vulnerability{}, ErrInvalidResult
         }</span>
 
-        <span class="cov10" title="6">vObj = mergeWithMetadata(vObj, ctx.Query.Metadata.Metadata)
+        <span class="cov10" title="7">vObj = mergeWithMetadata(vObj, ctx.Query.Metadata.Metadata)
 
         var err error
         var output []byte
@@ -8547,19 +8547,19 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
                 return &amp;model.Vulnerability{}, errors.Wrap(err, "failed to marshall query output")
         }</span>
 
-        <span class="cov10" title="6">var fileID *string
+        <span class="cov10" title="7">var fileID *string
 
         fileID, err = mapKeyToString(vObj, "documentId", false)
         if err != nil </span><span class="cov0" title="0">{
                 return &amp;model.Vulnerability{}, errors.Wrap(err, "failed to recognize file id")
         }</span>
 
-        <span class="cov10" title="6">file, ok := ctx.Files[*fileID]
+        <span class="cov10" title="7">file, ok := ctx.Files[*fileID]
         if !ok </span><span class="cov0" title="0">{
                 return &amp;model.Vulnerability{}, errors.New("failed to find file from query response")
         }</span>
 
-        <span class="cov10" title="6">logWithFields := log.With().
+        <span class="cov10" title="7">logWithFields := log.With().
                 Str("scanID", ctx.scanID).
                 Str("fileName", file.FilePath).
                 Str("queryName", ctx.Query.Metadata.Query).
@@ -8574,7 +8574,7 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
 
         similarityIDLineInfo := ""
         searchKey := ""
-        if s, ok := vObj["searchKey"]; ok </span><span class="cov10" title="6">{
+        if s, ok := vObj["searchKey"]; ok </span><span class="cov10" title="7">{
                 searchKey = s.(string)
                 similarityIDLineInfo = searchKey
                 intDoc := file.LineInfoDocument
@@ -8584,20 +8584,20 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
                         vulsSplit, searchKey = sanitizeINIKey(vulsSplit)
                 }</span>
 
-                <span class="cov10" title="6">if strings.Contains(vulsSplit[len(vulsSplit)-1], "RefMetadata") </span><span class="cov0" title="0">{
+                <span class="cov10" title="7">if strings.Contains(vulsSplit[len(vulsSplit)-1], "RefMetadata") </span><span class="cov0" title="0">{
                         return &amp;model.Vulnerability{}, ErrNoResult
                 }</span>
 
                 // modify the search key in cases where it should be referencing a ref instead of part of the resolved object
-                <span class="cov10" title="6">searchKey, _ = modifyVulSearchKeyReference(intDoc, searchKey, vulsSplit)
+                <span class="cov10" title="7">searchKey, _ = modifyVulSearchKeyReference(intDoc, searchKey, vulsSplit)
                 vObj["searchKey"] = searchKey
                 linesVulne = detector.DetectLine(&amp;file, searchKey, &amp;logWithFields)</span>
         } else<span class="cov0" title="0"> {
                 logWithFields.Error().Msg("Saving result. failed to detect line")
         }</span>
 
-        <span class="cov10" title="6">lineNumber := 0
-        if file.Kind != model.KindHELM &amp;&amp; len(file.ResolvedFiles) == 0 </span><span class="cov10" title="6">{
+        <span class="cov10" title="7">lineNumber := 0
+        if file.Kind != model.KindHELM &amp;&amp; len(file.ResolvedFiles) == 0 </span><span class="cov10" title="7">{
                 searchLineCalc := &amp;searchLineCalculator{
                         lineNr:               -1,
                         vObj:                 vObj,
@@ -8610,39 +8610,37 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
                 lineNumber, similarityIDLineInfo, linesVulne = calculeSearchLine(searchLineCalc)
         }</span>
 
-        <span class="cov10" title="6">if linesVulne.Line == -1 </span><span class="cov10" title="6">{
+        <span class="cov10" title="7">if linesVulne.Line == -1 </span><span class="cov10" title="7">{
                 logWithFields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
                 linesVulne.Line = 1
         }</span>
 
-        <span class="cov10" title="6">searchValue := ""
+        <span class="cov10" title="7">searchValue := ""
         if s, ok := vObj["searchValue"]; ok </span><span class="cov0" title="0">{
                 searchValue = s.(string)
         }</span>
 
-        <span class="cov10" title="6">overrideKey := ""
+        <span class="cov10" title="7">overrideKey := ""
         if s, ok := vObj["overrideKey"]; ok </span><span class="cov4" title="2">{
                 overrideKey = s.(string)
         }</span>
 
-        <span class="cov10" title="6">queryID := getStringFromMap("id", DefaultQueryID, overrideKey, vObj, &amp;logWithFields)
+        <span class="cov10" title="7">queryID := getStringFromMap("id", DefaultQueryID, overrideKey, vObj, &amp;logWithFields)
 
         severity := getResolvedSeverity(vObj, &amp;logWithFields, overrideKey, useOldSeverities)
 
         issueType := DefaultIssueType
-        if v := mustMapKeyToString(vObj, "issueType"); v != nil </span><span class="cov10" title="6">{
+        if v := mustMapKeyToString(vObj, "issueType"); v != nil </span><span class="cov10" title="7">{
                 issueType = model.IssueType(*v)
         }</span>
-        <span class="cov10" title="6">similarityID, err := buildSimilarityID(ctx, linesVulne.ResolvedFile, queryID, searchKey, similarityIDLineInfo, searchValue)
+        <span class="cov10" title="7">similarityID, err := buildSimilarityID(ctx, linesVulne.ResolvedFile, queryID, searchKey, similarityIDLineInfo, searchValue)
 
         if err != nil </span><span class="cov0" title="0">{
                 logWithFields.Err(err).Send()
                 tracker.FailedComputeSimilarityID()
         }</span>
 
-        <span class="cov10" title="6">platform := getStringFromMap("platform", "", overrideKey, vObj, &amp;logWithFields)
-
-        return &amp;model.Vulnerability{
+        <span class="cov10" title="7">return &amp;model.Vulnerability{
                 ID:               0,
                 SimilarityID:     PtrStringToString(similarityID),
                 ScanID:           ctx.scanID,
@@ -8670,7 +8668,7 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
                 KeyActualValue:   PtrStringToString(mustMapKeyToString(vObj, "keyActualValue")),
                 Value:            mustMapKeyToString(vObj, "value"),
                 Output:           string(output),
-                CloudProvider:    getCloudProvider(platform, overrideKey, vObj, &amp;logWithFields),
+                CloudProvider:    getCloudProvider(overrideKey, vObj, &amp;logWithFields),
                 Remediation:      PtrStringToString(mustMapKeyToString(vObj, "remediation")),
                 RemediationType:  PtrStringToString(mustMapKeyToString(vObj, "remediationType")),
         }, nil</span>
@@ -8682,35 +8680,34 @@ func buildSimilarityID(
         queryID,
         searchKey,
         similarityIDLineInfo,
-        searchValue string) (*string, error) <span class="cov10" title="6">{
+        searchValue string) (*string, error) <span class="cov10" title="7">{
         if checkMinified(ctx, resolvedFile) </span><span class="cov0" title="0">{
                 return similarity.ComputeSimilarityID(ctx.BaseScanPaths, resolvedFile, queryID, searchKey, searchValue)
-        }</span> else<span class="cov10" title="6"> {
+        }</span> else<span class="cov10" title="7"> {
                 return similarity.ComputeSimilarityID(ctx.BaseScanPaths, resolvedFile, queryID, similarityIDLineInfo, searchValue)
         }</span>
 }
 
-func checkMinified(ctx *QueryContext, resolvedFile string) bool <span class="cov10" title="6">{
-        for i := range ctx.Files </span><span class="cov10" title="6">{
-                if ctx.Files[i].FilePath == resolvedFile </span><span class="cov10" title="6">{
+func checkMinified(ctx *QueryContext, resolvedFile string) bool <span class="cov10" title="7">{
+        for i := range ctx.Files </span><span class="cov10" title="7">{
+                if ctx.Files[i].FilePath == resolvedFile </span><span class="cov10" title="7">{
                         return ctx.Files[i].IsMinified
                 }</span>
         }
         <span class="cov0" title="0">return false</span>
 }
 
-func getCloudProvider(platform, overrideKey string, vObj map[string]interface{}, logWithFields *zerolog.Logger) string <span class="cov10" title="6">{
+func getCloudProvider(overrideKey string, vObj map[string]interface{}, logWithFields *zerolog.Logger) string <span class="cov10" title="7">{
         cloudProvider := ""
-        if platform == "Terraform" || platform == "CloudFormation" || platform == "Ansible" </span><span class="cov0" title="0">{
+        if _, ok := vObj["cloudProvider"]; ok </span><span class="cov1" title="1">{
                 cloudProvider = getStringFromMap("cloudProvider", "", overrideKey, vObj, logWithFields)
         }</span>
-
-        <span class="cov10" title="6">return cloudProvider</span>
+        <span class="cov10" title="7">return cloudProvider</span>
 }
 
 // calculate search Line if possible (default uses values of search key)
 func calculeSearchLine(searchLineCalc *searchLineCalculator) (lineNumber int,
-        similarityIDLineInfo string, linesVulne model.VulnerabilityLines) <span class="cov10" title="6">{
+        similarityIDLineInfo string, linesVulne model.VulnerabilityLines) <span class="cov10" title="7">{
         searchLineCalc.calculate()
         lineNumber = searchLineCalc.lineNr
         similarityIDLineInfo = searchLineCalc.similarityIDLineInfo
@@ -8720,15 +8717,15 @@ func calculeSearchLine(searchLineCalc *searchLineCalculator) (lineNumber int,
 }</span>
 
 func getResolvedSeverity(vObj map[string]interface{}, logWithFields *zerolog.Logger,
-        overrideKey string, useOldSeverities bool) model.Severity <span class="cov10" title="6">{
+        overrideKey string, useOldSeverities bool) model.Severity <span class="cov10" title="7">{
         var severity model.Severity = model.SeverityInfo
         s, err := mapKeyToString(vObj, "severity", false)
 
-        if err == nil </span><span class="cov7" title="4">{
+        if err == nil </span><span class="cov8" title="5">{
                 sev := getSeverity(strings.ToUpper(*s))
                 if sev == "" </span><span class="cov0" title="0">{
                         logWithFields.Warn().Str("severity", *s).Msg("Saving result. invalid severity constant value")
-                }</span> else<span class="cov7" title="4"> {
+                }</span> else<span class="cov8" title="5"> {
                         severity = sev
                         overrideValue := tryOverride(overrideKey, "severity", vObj)
                         if overrideValue != nil </span><span class="cov1" title="1">{
@@ -8736,7 +8733,7 @@ func getResolvedSeverity(vObj map[string]interface{}, logWithFields *zerolog.Log
                                 if sev != "" </span><span class="cov1" title="1">{
                                         severity = sev
                                 }</span>
-                        } else<span class="cov6" title="3"> if useOldSeverities </span><span class="cov1" title="1">{
+                        } else<span class="cov7" title="4"> if useOldSeverities </span><span class="cov1" title="1">{
                                 oldS, errOld := mapKeyToString(vObj, "oldSeverity", false)
                                 if errOld == nil </span><span class="cov1" title="1">{
                                         oldSev := getSeverity(strings.ToUpper(*oldS))
@@ -8748,7 +8745,7 @@ func getResolvedSeverity(vObj map[string]interface{}, logWithFields *zerolog.Log
                 logWithFields.Info().Msg("Saving result. failed to detect severity")
         }</span>
 
-        <span class="cov10" title="6">return severity</span>
+        <span class="cov10" title="7">return severity</span>
 }
 
 // sanitizeINIKey removes useless searchkey elements like "all" and "children"
@@ -8793,10 +8790,10 @@ type searchLineCalculator struct {
         linesVulne           model.VulnerabilityLines
 }
 
-func (s *searchLineCalculator) calculate() <span class="cov4" title="8">{
+func (s *searchLineCalculator) calculate() <span class="cov4" title="9">{
         if searchLine, ok := s.vObj["searchLine"]; ok </span><span class="cov1" title="1">{
                 line := make([]string, 0, len(searchLine.([]interface{})))
-                for _, strElement := range searchLine.([]interface{}) </span><span class="cov3" title="3">{
+                for _, strElement := range searchLine.([]interface{}) </span><span class="cov2" title="3">{
                         line = append(line, strElement.(string))
                 }</span>
                 <span class="cov1" title="1">var err error
@@ -8810,34 +8807,34 @@ func (s *searchLineCalculator) calculate() <span class="cov4" title="8">{
                 }</span>
         }
 }
-func mergeWithMetadata(base, additional map[string]interface{}) map[string]interface{} <span class="cov4" title="8">{
-        for k, v := range additional </span><span class="cov6" title="26">{
+func mergeWithMetadata(base, additional map[string]interface{}) map[string]interface{} <span class="cov4" title="9">{
+        for k, v := range additional </span><span class="cov7" title="33">{
                 if _, ok := base[k]; ok </span><span class="cov1" title="1">{
                         continue</span>
                 }
-                <span class="cov6" title="25">base[k] = v</span>
+                <span class="cov7" title="32">base[k] = v</span>
         }
-        <span class="cov4" title="8">return base</span>
+        <span class="cov4" title="9">return base</span>
 }
-func mustMapKeyToString(m map[string]interface{}, key string) *string <span class="cov8" title="49">{
+func mustMapKeyToString(m map[string]interface{}, key string) *string <span class="cov8" title="57">{
         res, err := mapKeyToString(m, key, true)
         excludedFields := []string{"value", "resourceName", "resourceType", "remediation", "remediationType"}
-        if err != nil &amp;&amp; !utils.Contains(key, excludedFields) </span><span class="cov4" title="8">{
+        if err != nil &amp;&amp; !utils.Contains(key, excludedFields) </span><span class="cov5" title="10">{
                 log.Warn().
                         Str("reason", err.Error()).
                         Msgf("Failed to get key %s in map", key)
         }</span>
-        <span class="cov8" title="49">return res</span>
+        <span class="cov8" title="57">return res</span>
 }
-func mapKeyToString(m map[string]interface{}, key string, allowNil bool) (*string, error) <span class="cov10" title="134">{
+func mapKeyToString(m map[string]interface{}, key string, allowNil bool) (*string, error) <span class="cov10" title="148">{
         v, ok := m[key]
-        if !ok </span><span class="cov9" title="103">{
+        if !ok </span><span class="cov9" title="112">{
                 return nil, fmt.Errorf("key '%s' not found in map", key)
         }</span>
-        <span class="cov7" title="31">switch vv := v.(type) </span>{
+        <span class="cov7" title="36">switch vv := v.(type) </span>{
         case json.Number:<span class="cov0" title="0">
                 return stringToPtrString(vv.String()), nil</span>
-        case string:<span class="cov6" title="26">
+        case string:<span class="cov7" title="31">
                 return stringToPtrString(vv), nil</span>
         case int, int32, int64:<span class="cov2" title="2">
                 return stringToPtrString(fmt.Sprintf("%d", vv)), nil</span>
@@ -8860,21 +8857,21 @@ func mapKeyToString(m map[string]interface{}, key string, allowNil bool) (*strin
         }</span>
         <span class="cov0" title="0">return stringToPtrString(""), nil</span>
 }
-func stringToPtrString(v string) *string <span class="cov7" title="31">{
+func stringToPtrString(v string) *string <span class="cov7" title="36">{
         return &amp;v
 }</span>
 
 // PtrStringToString - converts a pointer to string to a string
-func PtrStringToString(v *string) string <span class="cov7" title="44">{
-        if v == nil </span><span class="cov7" title="33">{
+func PtrStringToString(v *string) string <span class="cov8" title="51">{
+        if v == nil </span><span class="cov7" title="39">{
                 return ""
         }</span>
-        <span class="cov5" title="11">return *v</span>
+        <span class="cov5" title="12">return *v</span>
 }
-func tryOverride(overrideKey, vulnParam string, vObj map[string]interface{}) *string <span class="cov4" title="6">{
-        if overrideKey != "" </span><span class="cov3" title="3">{
-                if override, ok := vObj["override"].(map[string]interface{}); ok </span><span class="cov3" title="3">{
-                        if overrideObject, ok := override[overrideKey].(map[string]interface{}); ok </span><span class="cov3" title="3">{
+func tryOverride(overrideKey, vulnParam string, vObj map[string]interface{}) *string <span class="cov4" title="9">{
+        if overrideKey != "" </span><span class="cov2" title="3">{
+                if override, ok := vObj["override"].(map[string]interface{}); ok </span><span class="cov2" title="3">{
+                        if overrideObject, ok := override[overrideKey].(map[string]interface{}); ok </span><span class="cov2" title="3">{
                                 if _, ok := overrideObject[vulnParam]; ok </span><span class="cov2" title="2">{
                                         overrideValue, err := mapKeyToString(overrideObject, vulnParam, true)
                                         if err != nil </span><span class="cov0" title="0">{
@@ -8886,29 +8883,29 @@ func tryOverride(overrideKey, vulnParam string, vObj map[string]interface{}) *st
                         }
                 }
         }
-        <span class="cov3" title="4">return nil</span>
+        <span class="cov4" title="7">return nil</span>
 }
-func getStringFromMap(vulnParam, defaultParam, overrideKey string, vObj map[string]interface{}, logWithFields *zerolog.Logger) string <span class="cov8" title="54">{
+func getStringFromMap(vulnParam, defaultParam, overrideKey string, vObj map[string]interface{}, logWithFields *zerolog.Logger) string <span class="cov8" title="57">{
         ts, err := mapKeyToString(vObj, vulnParam, false)
-        if err != nil </span><span class="cov8" title="52">{
+        if err != nil </span><span class="cov8" title="53">{
                 logWithFields.Err(err).
                         Msgf("Saving result. failed to detect %s", vulnParam)
                 return defaultParam
         }</span>
-        <span class="cov2" title="2">overrideValue := tryOverride(overrideKey, vulnParam, vObj)
+        <span class="cov3" title="4">overrideValue := tryOverride(overrideKey, vulnParam, vObj)
         if overrideValue != nil </span><span class="cov1" title="1">{
                 ts = overrideValue
         }</span>
-        <span class="cov2" title="2">return *ts</span>
+        <span class="cov3" title="4">return *ts</span>
 }
 func getBoolFromMap(
         vulnParam string,
         defaultParam bool,
         overrideKey string,
         vObj map[string]interface{},
-        logWithFields *zerolog.Logger) bool <span class="cov4" title="6">{
+        logWithFields *zerolog.Logger) bool <span class="cov4" title="7">{
         ts, err := mapKeyToString(vObj, vulnParam, false)
-        if err != nil </span><span class="cov4" title="6">{
+        if err != nil </span><span class="cov4" title="7">{
                 return defaultParam
         }</span>
         <span class="cov0" title="0">overrideValue := tryOverride(overrideKey, vulnParam, vObj)
@@ -8923,9 +8920,9 @@ func getBoolFromMap(
         }</span>
         <span class="cov0" title="0">return res</span>
 }
-func getSeverity(severity string) model.Severity <span class="cov4" title="6">{
-        for _, si := range model.AllSeverities </span><span class="cov6" title="23">{
-                if severity == string(si) </span><span class="cov4" title="6">{
+func getSeverity(severity string) model.Severity <span class="cov4" title="7">{
+        for _, si := range model.AllSeverities </span><span class="cov7" title="28">{
+                if severity == string(si) </span><span class="cov4" title="7">{
                         return si
                 }</span>
         }
@@ -17949,16 +17946,16 @@ func WordWrap(s, indentation string, limit int) string <span class="cov3" title=
 }
 
 // PrintResult prints on output the summary results
-func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bool) error <span class="cov4" title="6">{
+func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bool) error <span class="cov5" title="10">{
         log.Debug().Msg("helpers.PrintResult()")
         fmt.Printf("\n\n")
-        for index := range summary.Queries </span><span class="cov7" title="20">{
+        for index := range summary.Queries </span><span class="cov7" title="24">{
                 idx := len(summary.Queries) - index - 1
                 if summary.Queries[idx].Severity == model.SeverityTrace </span><span class="cov0" title="0">{
                         continue</span>
                 }
 
-                <span class="cov7" title="20">fmt.Printf(
+                <span class="cov7" title="24">fmt.Printf(
                         "%s, Severity: %s, Results: %d\n",
                         printer.PrintBySev(summary.Queries[idx].QueryName, string(summary.Queries[idx].Severity)),
                         printer.PrintBySev(string(summary.Queries[idx].Severity), string(summary.Queries[idx].Severity)),
@@ -17969,40 +17966,40 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
                         fmt.Println("Note: this is an experimental query")
                 }</span>
 
-                <span class="cov7" title="20">if !printer.minimal </span><span class="cov5" title="10">{
+                <span class="cov7" title="24">if !printer.minimal </span><span class="cov5" title="12">{
                         if summary.Queries[idx].CISDescriptionID != "" </span><span class="cov0" title="0">{
                                 fmt.Printf("%s %s\n", printer.Bold("Description ID:"), summary.Queries[idx].CISDescriptionIDFormatted)
                                 fmt.Printf("%s %s\n", printer.Bold("Title:"), summary.Queries[idx].CISDescriptionTitle)
                                 fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].CISDescriptionTextFormatted)
-                        }</span> else<span class="cov5" title="10"> {
+                        }</span> else<span class="cov5" title="12"> {
                                 fmt.Printf("%s %s\n", printer.Bold("Description:"), summary.Queries[idx].Description)
                         }</span>
-                        <span class="cov5" title="10">fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
+                        <span class="cov5" title="12">fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
 
                         if summary.Queries[idx].CWE != "" </span><span class="cov2" title="2">{
                                 fmt.Printf("%s %s\n", printer.Bold("CWE:"), summary.Queries[idx].CWE)
                         }</span>
 
-                        <span class="cov5" title="10">queryCloudProvider := summary.Queries[idx].CloudProvider
-                        if queryCloudProvider != "" </span><span class="cov3" title="3">{
-                                queryCloudProvider = strings.ToLower(queryCloudProvider) + "/"
-                        }</span>
-
                         // checks if should print queries URL DOCS based on the use of custom queries and invalid ids
-                        <span class="cov5" title="10">if !usingCustomQueries </span><span class="cov4" title="6">{
-                                if validQueryID(summary.Queries[idx].QueryID) </span><span class="cov4" title="6">{
-                                        fmt.Printf("%s %s\n\n",
-                                                printer.Bold("Learn more about this vulnerability:"),
-                                                fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s%s",
-                                                        strings.ToLower(summary.Queries[idx].Platform),
-                                                        queryCloudProvider,
-                                                        summary.Queries[idx].QueryID))
+                        <span class="cov5" title="12">if !usingCustomQueries &amp;&amp; validQueryID(summary.Queries[idx].QueryID) </span><span class="cov5" title="8">{
+                                queryURLId := summary.Queries[idx].QueryID
+                                queryURLPlatform := strings.ToLower(summary.Queries[idx].Platform)
+
+                                if queryURLPlatform == "common" &amp;&amp; strings.Contains(strings.ToLower(summary.Queries[idx].QueryName), "passwords and secrets") </span><span class="cov1" title="1">{
+                                        queryURLId = "a88baa34-e2ad-44ea-ad6f-8cac87bc7c71"
                                 }</span>
+
+                                <span class="cov5" title="8">fmt.Printf("%s %s\n\n",
+                                        printer.Bold("Learn more about this vulnerability:"),
+                                        fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s%s",
+                                                queryURLPlatform,
+                                                normalizeURLCloudProvider(summary.Queries[idx].CloudProvider),
+                                                queryURLId))</span>
                         }
                 }
-                <span class="cov7" title="20">printFiles(&amp;summary.Queries[idx], printer)</span>
+                <span class="cov7" title="24">printFiles(&amp;summary.Queries[idx], printer)</span>
         }
-        <span class="cov4" title="6">fmt.Printf("\nResults Summary:\n")
+        <span class="cov5" title="10">fmt.Printf("\nResults Summary:\n")
         printSeverityCounter(model.SeverityCritical, summary.SeveritySummary.SeverityCounters[model.SeverityCritical], printer.Critical)
         printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
         printSeverityCounter(model.SeverityMedium, summary.SeveritySummary.SeverityCounters[model.SeverityMedium], printer.Medium)
@@ -18022,15 +18019,15 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
         return nil</span>
 }
 
-func printSeverityCounter(severity string, counter int, printColor color.RGBColor) <span class="cov8" title="30">{
+func printSeverityCounter(severity string, counter int, printColor color.RGBColor) <span class="cov8" title="50">{
         fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
 }</span>
 
-func printFiles(query *model.QueryResult, printer *Printer) <span class="cov7" title="20">{
-        for fileIdx := range query.Files </span><span class="cov8" title="30">{
+func printFiles(query *model.QueryResult, printer *Printer) <span class="cov7" title="24">{
+        for fileIdx := range query.Files </span><span class="cov8" title="34">{
                 fmt.Printf("\t%s %s:%s\n", printer.PrintBySev(fmt.Sprintf("[%d]:", fileIdx+1), string(query.Severity)),
                         query.Files[fileIdx].FileName, printer.Success.Sprint(query.Files[fileIdx].Line))
-                if !printer.minimal </span><span class="cov6" title="15">{
+                if !printer.minimal </span><span class="cov6" title="17">{
                         fmt.Println()
                         for _, line := range *query.Files[fileIdx].VulnLines </span><span class="cov0" title="0">{
                                 if len(line.Line) &gt; charsLimitPerLine </span><span class="cov0" title="0">{
@@ -18042,7 +18039,7 @@ func printFiles(query *model.QueryResult, printer *Printer) <span class="cov7" t
                                         fmt.Printf("\t\t%03d: %s\n", line.Position, line.Line)
                                 }</span>
                         }
-                        <span class="cov6" title="15">fmt.Print("\n\n")</span>
+                        <span class="cov6" title="17">fmt.Print("\n\n")</span>
                 }
         }
 }
@@ -18108,7 +18105,7 @@ func IsInitialized() bool <span class="cov1" title="1">{
 }</span>
 
 // NewPrinter initializes a new Printer
-func NewPrinter(minimal bool) *Printer <span class="cov5" title="7">{
+func NewPrinter(minimal bool) *Printer <span class="cov5" title="11">{
         return &amp;Printer{
                 Critical:            color.HEX("#ff0000"),
                 Medium:              color.HEX("#ff7213"),
@@ -18124,15 +18121,15 @@ func NewPrinter(minimal bool) *Printer <span class="cov5" title="7">{
 }</span>
 
 // PrintBySev will print the output with the specific severity color given the severity of the result
-func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" title="76">{
+func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" title="88">{
         switch strings.ToUpper(sev) </span>{
         case model.SeverityCritical:<span class="cov6" title="13">
                 return p.Critical.Sprintf(content)</span>
-        case model.SeverityHigh:<span class="cov8" title="41">
+        case model.SeverityHigh:<span class="cov8" title="47">
                 return p.High.Sprintf(content)</span>
-        case model.SeverityMedium:<span class="cov7" title="19">
+        case model.SeverityMedium:<span class="cov6" title="19">
                 return p.Medium.Sprintf(content)</span>
-        case model.SeverityLow:<span class="cov1" title="1">
+        case model.SeverityLow:<span class="cov4" title="7">
                 return p.Low.Sprintf(content)</span>
         case model.SeverityInfo:<span class="cov1" title="1">
                 return p.Info.Sprintf(content)</span>
@@ -18141,17 +18138,27 @@ func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" tit
 }
 
 // Bold returns the output in a bold format
-func (p *Printer) Bold(content string) string <span class="cov7" title="28">{
+func (p *Printer) Bold(content string) string <span class="cov8" title="34">{
         return color.Bold.Sprintf(content)
 }</span>
 
-func validQueryID(queryID string) bool <span class="cov4" title="6">{
+func validQueryID(queryID string) bool <span class="cov5" title="8">{
         if queryID == "" </span><span class="cov0" title="0">{
                 return false
-        }</span> else<span class="cov4" title="6"> if queryID != "" </span><span class="cov4" title="6">{
+        }</span> else<span class="cov5" title="8"> if queryID != "" </span><span class="cov5" title="8">{
                 return utils.ValidateUUID(queryID)
         }</span>
         <span class="cov0" title="0">return true</span>
+}
+
+func normalizeURLCloudProvider(cloudProvider string) string <span class="cov5" title="8">{
+        cloudProvider = strings.ToLower(cloudProvider)
+        if cloudProvider == "common" </span><span class="cov2" title="2">{
+                cloudProvider = ""
+        }</span> else<span class="cov4" title="6"> if cloudProvider != "" </span><span class="cov2" title="2">{
+                cloudProvider += "/"
+        }</span>
+        <span class="cov5" title="8">return cloudProvider</span>
 }
 </pre>
 		
@@ -24501,6 +24508,50 @@ var queryCritical = model.QueryResult{
         },
 }
 
+var queryLowCICDCloudProvider = model.QueryResult{
+        QueryName:     "Unpinned Actions Full Length Commit SHA",
+        QueryID:       "555ab8f9-2001-455e-a077-f2d0f41e2fb9",
+        Description:   "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release.",
+        DescriptionID: "9cb8402d",
+        Platform:      "CICD",
+        CloudProvider: "COMMON",
+        Severity:      model.SeverityLow,
+        Files: []model.VulnerableFile{
+                {
+                        FileName:         positive,
+                        Line:             12,
+                        IssueType:        "IncorrectValue",
+                        SearchKey:        "uses={{thollander/actions-comment-pull-request@v2}}",
+                        KeyExpectedValue: "Action is not pinned to a full length commit SHA.",
+                        KeyActualValue:   "Action pinned to a full length commit SHA.",
+                        Value:            nil,
+                        VulnLines:        &amp;[]model.CodeLine{},
+                },
+        },
+}
+
+var queryHighPasswordsAndSecrets = model.QueryResult{
+        QueryName:     "Passwords And Secrets - AWS Secret Key",
+        QueryID:       "83ab47ff-381d-48cd-bac5-fb32222f54af",
+        Description:   "Query to find passwords and secrets in infrastructure code.",
+        DescriptionID: "d69d8a89",
+        Platform:      "Common",
+        CloudProvider: "common",
+        Severity:      model.SeverityHigh,
+        Files: []model.VulnerableFile{
+                {
+                        FileName:         positive,
+                        Line:             15,
+                        IssueType:        "RedundantAttribute",
+                        SearchKey:        "",
+                        KeyExpectedValue: "Hardcoded secret key should not appear in source",
+                        KeyActualValue:   "Hardcoded secret key appears in source",
+                        Value:            nil,
+                        VulnLines:        &amp;[]model.CodeLine{},
+                },
+        },
+}
+
 var queryCriticalSonar = model.QueryResult{
         QueryName:                   "AmazonMQ Broker Encryption Disabled",
         QueryID:                     "316278b3-87ac-444c-8f8f-a733a28da609",
@@ -24870,6 +24921,62 @@ var SimpleSummaryMock = model.Summary{
                         model.SeverityLow:      0,
                         model.SeverityMedium:   1,
                         model.SeverityHigh:     0,
+                        model.SeverityCritical: 0,
+                },
+                TotalCounter: 1,
+        },
+        ScannedPaths: []string{
+                "./",
+        },
+}
+
+// ExampleSummaryMockWithCloudProviderCommon a summary with "common" as cloud provider to console tests
+var ExampleSummaryMockWithCloudProviderCommon = model.Summary{
+        Counters: model.Counters{
+                ScannedFiles:           1,
+                ParsedFiles:            1,
+                FailedToScanFiles:      0,
+                TotalQueries:           1,
+                FailedToExecuteQueries: 0,
+        },
+        Queries: []model.QueryResult{
+                queryLowCICDCloudProvider,
+        },
+        SeveritySummary: model.SeveritySummary{
+                ScanID: "console",
+                SeverityCounters: map[model.Severity]int{
+                        model.SeverityInfo:     0,
+                        model.SeverityLow:      1,
+                        model.SeverityMedium:   0,
+                        model.SeverityHigh:     0,
+                        model.SeverityCritical: 0,
+                },
+                TotalCounter: 1,
+        },
+        ScannedPaths: []string{
+                "./",
+        },
+}
+
+// ExampleSummaryMockWithPasswordsAndSecretsCommonQuery a summary using the "Passwords And Secrets" common query that contains multiple Ids
+var ExampleSummaryMockWithPasswordsAndSecretsCommonQuery = model.Summary{
+        Counters: model.Counters{
+                ScannedFiles:           1,
+                ParsedFiles:            1,
+                FailedToScanFiles:      0,
+                TotalQueries:           1,
+                FailedToExecuteQueries: 0,
+        },
+        Queries: []model.QueryResult{
+                queryHighPasswordsAndSecrets,
+        },
+        SeveritySummary: model.SeveritySummary{
+                ScanID: "console",
+                SeverityCounters: map[model.Severity]int{
+                        model.SeverityInfo:     0,
+                        model.SeverityLow:      0,
+                        model.SeverityMedium:   0,
+                        model.SeverityHigh:     1,
                         model.SeverityCritical: 0,
                 },
                 TotalCounter: 1,
