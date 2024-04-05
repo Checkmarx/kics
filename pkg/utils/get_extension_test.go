@@ -27,11 +27,16 @@ func TestGetExtension(t *testing.T) {
 			want:     ".tf",
 			filePath: "../../test/fixtures/all_auth_users_get_read_access/test/positive.tf",
 		},
+		{
+			name:     "Get empty extension from a file not named as Dockerfile and without extension defined",
+			want:     "",
+			filePath: "../../test/fixtures/negative_dockerfile/CW671X02_EBM_EVENT_RULE",
+		},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			got := GetExtension(test.filePath)
+			got, _ := GetExtension(test.filePath)
 			require.Equal(t, test.want, got)
 		})
 	}
