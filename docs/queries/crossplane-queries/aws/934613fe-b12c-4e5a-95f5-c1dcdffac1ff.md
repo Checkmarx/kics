@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 934613fe-b12c-4e5a-95f5-c1dcdffac1ff
 -   **Query name:** CloudWatch Without Retention Period Specified
 -   **Platform:** Crossplane
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#00C">Info</span>
 -   **Category:** Observability
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/crossplane/aws/cloudwatch_without_retention_period_specified)
 
