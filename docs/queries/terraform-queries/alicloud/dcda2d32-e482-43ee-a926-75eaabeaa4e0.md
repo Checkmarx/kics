@@ -18,7 +18,7 @@ hide:
 -   **Query id:** dcda2d32-e482-43ee-a926-75eaabeaa4e0
 -   **Query name:** RAM Security Preference Not Enforce MFA Login
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#CC0">Low</span>
 -   **Category:** Access Control
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/alicloud/ram_security_preference_not_enforce_mfa)
 
