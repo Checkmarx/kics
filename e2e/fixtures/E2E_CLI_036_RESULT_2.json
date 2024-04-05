@@ -20,8 +20,8 @@
   },
   "total_counter": 3,
   "total_bom_resources": 0,
-  "start": "2024-03-26T11:56:00.8241279Z",
-  "end": "2024-03-26T11:56:04.7366681Z",
+  "start": "2024-04-05T10:17:27.6335129+01:00",
+  "end": "2024-04-05T10:17:52.3788967+01:00",
   "paths": [
     "/path/e2e/fixtures/samples/positive.yaml"
   ],
@@ -38,6 +38,19 @@
       "description": "AWS Security Group Ingress should have a single port",
       "description_id": "5f2b65f3",
       "files": [
+        {
+          "file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
+          "similarity_id": "000056cd0b9697e13f2f4561f1963e34c58c042b921c4d0fad0f2fa5214374eb",
+          "line": 35,
+          "resource_type": "AWS::EC2::SecurityGroupIngress",
+          "resource_name": "EcsSecurityGroupALBports",
+          "issue_type": "IncorrectValue",
+          "search_key": "Resources.EcsSecurityGroupALBports.Properties",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
+          "actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
+        },
         {
           "file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
           "similarity_id": "d60022e14f1b45c574f71c0f48b3fee882b471819597b770e3545988a8f5295a",
@@ -63,19 +76,6 @@
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
           "actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
-        },
-        {
-          "file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
-          "similarity_id": "000056cd0b9697e13f2f4561f1963e34c58c042b921c4d0fad0f2fa5214374eb",
-          "line": 35,
-          "resource_type": "AWS::EC2::SecurityGroupIngress",
-          "resource_name": "EcsSecurityGroupALBports",
-          "issue_type": "IncorrectValue",
-          "search_key": "Resources.EcsSecurityGroupALBports.Properties",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
-          "actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
         }
       ]
     }
