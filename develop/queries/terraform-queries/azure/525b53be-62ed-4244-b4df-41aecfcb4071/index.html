@@ -1835,7 +1835,7 @@
 <li><strong>Query id:</strong> 525b53be-62ed-4244-b4df-41aecfcb4071</li>
 <li><strong>Query name:</strong> App Service HTTP2 Disabled</li>
 <li><strong>Platform:</strong> Terraform</li>
-<li><strong>Severity:</strong> <span style="color:#C60">Medium</span></li>
+<li><strong>Severity:</strong> <span style="color:#ff7213">Medium</span></li>
 <li><strong>Category:</strong> Insecure Configurations</li>
 <li><strong>URL:</strong> <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/azure/app_service_http2_disabled">Github</a></li>
 </ul>
@@ -1844,8 +1844,8 @@
 <a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#http2_enabled">Documentation</a></p>
 <h3 id="code_samples">Code samples<a class="headerlink" href="#code_samples" title="Permanent link">&para;</a></h3>
 <h4 id="code_samples_with_security_vulnerabilities">Code samples with security vulnerabilities<a class="headerlink" href="#code_samples_with_security_vulnerabilities" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><span class="filename">Positive test num. 1 - tf file</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="hll"><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_app_service&quot;</span><span class="w"> </span><span class="nv">&quot;positive1&quot;</span><span class="w"> </span><span class="p">{</span>
-</span><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example-app-service&quot;</span>
+<p><div class="highlight"><span class="filename">Positive test num. 1 - tf file</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_app_service&quot;</span><span class="w"> </span><span class="nv">&quot;positive3&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example-app-service&quot;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.example.location</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.example.name</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="na">app_service_plan_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_app_service_plan.example.id</span>
@@ -1859,10 +1859,17 @@
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="na">type</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;SQLServer&quot;</span>
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Server=some-server.mydomain.com;Integrated Security=SSPI&quot;</span>
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">}</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nb">site_config</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="na">dotnet_framework_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;v4.0&quot;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="na">scm_type</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;LocalGit&quot;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="na">min_tls_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">1.2</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="hll"><span class="w">    </span><span class="na">http2_enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
+</span><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Positive test num. 2 - tf file</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_app_service&quot;</span><span class="w"> </span><span class="nv">&quot;positive2&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example-app-service&quot;</span>
+<div class="highlight"><span class="filename">Positive test num. 2 - tf file</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="hll"><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_app_service&quot;</span><span class="w"> </span><span class="nv">&quot;positive1&quot;</span><span class="w"> </span><span class="p">{</span>
+</span><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example-app-service&quot;</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.example.location</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.example.name</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="na">app_service_plan_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_app_service_plan.example.id</span>
@@ -1876,15 +1883,9 @@
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="na">type</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;SQLServer&quot;</span>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Server=some-server.mydomain.com;Integrated Security=SSPI&quot;</span>
 <a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="hll"><span class="w">  </span><span class="nb">site_config</span><span class="w"> </span><span class="p">{</span>
-</span><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="na">dotnet_framework_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;v4.0&quot;</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="na">scm_type</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;LocalGit&quot;</span>
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="na">min_tls_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">1.2</span>
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="p">}</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Positive test num. 3 - tf file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_app_service&quot;</span><span class="w"> </span><span class="nv">&quot;positive3&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><span class="filename">Positive test num. 3 - tf file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_app_service&quot;</span><span class="w"> </span><span class="nv">&quot;positive2&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example-app-service&quot;</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.example.location</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.example.name</span>
@@ -1900,13 +1901,12 @@
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Server=some-server.mydomain.com;Integrated Security=SSPI&quot;</span>
 <a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">  </span><span class="nb">site_config</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="na">dotnet_framework_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;v4.0&quot;</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="hll"><span class="w">  </span><span class="nb">site_config</span><span class="w"> </span><span class="p">{</span>
+</span><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="na">dotnet_framework_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;v4.0&quot;</span>
 <a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="na">scm_type</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;LocalGit&quot;</span>
 <a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="na">min_tls_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">1.2</span>
-<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="hll"><span class="w">    </span><span class="na">http2_enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
-</span><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="p">}</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="p">}</span>
 </code></pre></div></p>
 <h4 id="code_samples_without_security_vulnerabilities">Code samples without security vulnerabilities<a class="headerlink" href="#code_samples_without_security_vulnerabilities" title="Permanent link">&para;</a></h4>
 <div class="highlight"><span class="filename">Negative test num. 1 - tf file</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_app_service&quot;</span><span class="w"> </span><span class="nv">&quot;negative&quot;</span><span class="w"> </span><span class="p">{</span>

@@ -1835,7 +1835,7 @@
 <li><strong>Query id:</strong> 6db6e0c2-32a3-4a2e-93b5-72c35f4119db</li>
 <li><strong>Query name:</strong> Copy With More Than Two Arguments Not Ending With Slash</li>
 <li><strong>Platform:</strong> Dockerfile</li>
-<li><strong>Severity:</strong> <span style="color:#CC0">Low</span></li>
+<li><strong>Severity:</strong> <span style="color:#edd57e">Low</span></li>
 <li><strong>Category:</strong> Build Process</li>
 <li><strong>URL:</strong> <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/copy_with_more_than_two_arguments_not_ending_with_slash">Github</a></li>
 </ul>
@@ -1848,11 +1848,11 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="hll"><span class="k">COPY</span><span class="w"> </span>package.json<span class="w"> </span>yarn.lock<span class="w"> </span>my_app
 </span></code></pre></div>
 <h4 id="code_samples_without_security_vulnerabilities">Code samples without security vulnerabilities<a class="headerlink" href="#code_samples_without_security_vulnerabilities" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><span class="filename">Negative test num. 1 - dockerfile file</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:carbon</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">COPY</span><span class="w"> </span>package.json<span class="w"> </span>yarn.lock<span class="w"> </span>my_app/
+<p><div class="highlight"><span class="filename">Negative test num. 1 - dockerfile file</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:carbon1</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">COPY</span><span class="w"> </span>package.json<span class="w"> </span>yarn.lock
 </code></pre></div>
-<div class="highlight"><span class="filename">Negative test num. 2 - dockerfile file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:carbon1</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">COPY</span><span class="w"> </span>package.json<span class="w"> </span>yarn.lock
+<div class="highlight"><span class="filename">Negative test num. 2 - dockerfile file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:carbon</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">COPY</span><span class="w"> </span>package.json<span class="w"> </span>yarn.lock<span class="w"> </span>my_app/
 </code></pre></div></p>
 
 

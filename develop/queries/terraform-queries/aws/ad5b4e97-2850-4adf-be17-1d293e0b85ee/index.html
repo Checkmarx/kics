@@ -1835,7 +1835,7 @@
 <li><strong>Query id:</strong> ad5b4e97-2850-4adf-be17-1d293e0b85ee</li>
 <li><strong>Query name:</strong> Glue Security Configuration Encryption Disabled</li>
 <li><strong>Platform:</strong> Terraform</li>
-<li><strong>Severity:</strong> <span style="color:#C00">High</span></li>
+<li><strong>Severity:</strong> <span style="color:#bb2124">High</span></li>
 <li><strong>Category:</strong> Encryption</li>
 <li><strong>URL:</strong> <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/glue_security_configuration_encryption_disabled">Github</a></li>
 </ul>
@@ -1844,17 +1844,17 @@
 <a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/glue_security_configuration#encryption_configuration">Documentation</a></p>
 <h3 id="code_samples">Code samples<a class="headerlink" href="#code_samples" title="Permanent link">&para;</a></h3>
 <h4 id="code_samples_with_security_vulnerabilities">Code samples with security vulnerabilities<a class="headerlink" href="#code_samples_with_security_vulnerabilities" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><span class="filename">Positive test num. 1 - tf file</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_glue_security_configuration&quot;</span><span class="w"> </span><span class="nv">&quot;positive1&quot;</span><span class="w"> </span><span class="p">{</span>
+<p><div class="highlight"><span class="filename">Positive test num. 1 - tf file</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_glue_security_configuration&quot;</span><span class="w"> </span><span class="nv">&quot;positive2&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example&quot;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nb">encryption_configuration</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="hll"><span class="w">    </span><span class="nb">cloudwatch_encryption</span><span class="w"> </span><span class="p">{</span>
-</span><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span><span class="na">cloudwatch_encryption_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;SSE-KMS&quot;</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nb">job_bookmarks_encryption</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">      </span><span class="na">job_bookmarks_encryption_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;CSE-KMS&quot;</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="na">kms_key_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_kms_key.example.arn</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nb">cloudwatch_encryption</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span><span class="na">cloudwatch_encryption_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;SSE-KMS&quot;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span><span class="na">kms_key_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_kms_key.example.arn</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="hll"><span class="w">    </span><span class="nb">job_bookmarks_encryption</span><span class="w"> </span><span class="p">{</span>
+</span><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="na">kms_key_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_kms_key.example.arn</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nb">s3_encryption</span><span class="w"> </span><span class="p">{</span>
@@ -1864,26 +1864,25 @@
 <a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Positive test num. 2 - tf file</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_glue_security_configuration&quot;</span><span class="w"> </span><span class="nv">&quot;positive2&quot;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><span class="filename">Positive test num. 2 - tf file</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_glue_security_configuration&quot;</span><span class="w"> </span><span class="nv">&quot;positive1&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example&quot;</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nb">encryption_configuration</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nb">cloudwatch_encryption</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="na">cloudwatch_encryption_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;SSE-KMS&quot;</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="na">kms_key_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_kms_key.example.arn</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nb">job_bookmarks_encryption</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="hll"><span class="w">      </span><span class="na">job_bookmarks_encryption_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;DISABLED&quot;</span>
-</span><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">      </span><span class="na">kms_key_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_kms_key.example.arn</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="nb">s3_encryption</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">      </span><span class="na">kms_key_arn</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_kms_key.example.arn</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">      </span><span class="na">s3_encryption_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;SSE-KMS&quot;</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="p">}</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="hll"><span class="w">    </span><span class="nb">cloudwatch_encryption</span><span class="w"> </span><span class="p">{</span>
+</span><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="na">cloudwatch_encryption_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;SSE-KMS&quot;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nb">job_bookmarks_encryption</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="na">job_bookmarks_encryption_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;CSE-KMS&quot;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="na">kms_key_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_kms_key.example.arn</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="nb">s3_encryption</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">      </span><span class="na">kms_key_arn</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_kms_key.example.arn</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">      </span><span class="na">s3_encryption_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;SSE-KMS&quot;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">Positive test num. 3 - tf file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_glue_security_configuration&quot;</span><span class="w"> </span><span class="nv">&quot;positive2&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example&quot;</span>
@@ -1894,16 +1893,17 @@
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">      </span><span class="na">kms_key_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_kms_key.example.arn</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="hll"><span class="w">    </span><span class="nb">job_bookmarks_encryption</span><span class="w"> </span><span class="p">{</span>
-</span><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">      </span><span class="na">kms_key_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_kms_key.example.arn</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="nb">s3_encryption</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">      </span><span class="na">kms_key_arn</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_kms_key.example.arn</span>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">      </span><span class="na">s3_encryption_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;SSE-KMS&quot;</span>
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="p">}</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nb">job_bookmarks_encryption</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="hll"><span class="w">      </span><span class="na">job_bookmarks_encryption_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;DISABLED&quot;</span>
+</span><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">      </span><span class="na">kms_key_arn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_kms_key.example.arn</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="nb">s3_encryption</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">      </span><span class="na">kms_key_arn</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">data.aws_kms_key.example.arn</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">      </span><span class="na">s3_encryption_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;SSE-KMS&quot;</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="p">}</span>
 </code></pre></div></p>
 <h4 id="code_samples_without_security_vulnerabilities">Code samples without security vulnerabilities<a class="headerlink" href="#code_samples_without_security_vulnerabilities" title="Permanent link">&para;</a></h4>
 <div class="highlight"><span class="filename">Negative test num. 1 - tf file</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_glue_security_configuration&quot;</span><span class="w"> </span><span class="nv">&quot;negative1&quot;</span><span class="w"> </span><span class="p">{</span>

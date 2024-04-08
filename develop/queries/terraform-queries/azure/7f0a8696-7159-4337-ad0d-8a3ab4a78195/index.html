@@ -1835,7 +1835,7 @@
 <li><strong>Query id:</strong> 7f0a8696-7159-4337-ad0d-8a3ab4a78195</li>
 <li><strong>Query name:</strong> MariaDB Server Public Network Access Enabled</li>
 <li><strong>Platform:</strong> Terraform</li>
-<li><strong>Severity:</strong> <span style="color:#C00">High</span></li>
+<li><strong>Severity:</strong> <span style="color:#bb2124">High</span></li>
 <li><strong>Category:</strong> Networking and Firewall</li>
 <li><strong>URL:</strong> <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/azure/mariadb_public_network_access_enabled">Github</a></li>
 </ul>
@@ -1844,8 +1844,8 @@
 <a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mariadb_server#public_network_access_enabled">Documentation</a></p>
 <h3 id="code_samples">Code samples<a class="headerlink" href="#code_samples" title="Permanent link">&para;</a></h3>
 <h4 id="code_samples_with_security_vulnerabilities">Code samples with security vulnerabilities<a class="headerlink" href="#code_samples_with_security_vulnerabilities" title="Permanent link">&para;</a></h4>
-<div class="highlight"><span class="filename">Positive test num. 1 - tf file</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="hll"><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_mariadb_server&quot;</span><span class="w"> </span><span class="nv">&quot;positive&quot;</span><span class="w"> </span><span class="p">{</span>
-</span><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example-mariadb-server&quot;</span>
+<p><div class="highlight"><span class="filename">Positive test num. 1 - tf file</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_mariadb_server&quot;</span><span class="w"> </span><span class="nv">&quot;positive&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example-mariadb-server&quot;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.example.location</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.example.name</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
@@ -1863,9 +1863,8 @@
 </span><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="na">ssl_enforcement_enabled</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
 <a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">}</span>
 </code></pre></div>
-<h4 id="code_samples_without_security_vulnerabilities">Code samples without security vulnerabilities<a class="headerlink" href="#code_samples_without_security_vulnerabilities" title="Permanent link">&para;</a></h4>
-<div class="highlight"><span class="filename">Negative test num. 1 - tf file</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_mariadb_server&quot;</span><span class="w"> </span><span class="nv">&quot;negative&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example-mariadb-server&quot;</span>
+<div class="highlight"><span class="filename">Positive test num. 2 - tf file</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="hll"><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_mariadb_server&quot;</span><span class="w"> </span><span class="nv">&quot;positive2&quot;</span><span class="w"> </span><span class="p">{</span>
+</span><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example-mariadb-server&quot;</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.example.location</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.example.name</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
@@ -1879,9 +1878,28 @@
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="na">auto_grow_enabled</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="na">backup_retention_days</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="m">7</span>
 <a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="na">geo_redundant_backup_enabled</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="na">public_network_access_enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="na">ssl_enforcement_enabled</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="p">}</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="na">ssl_enforcement_enabled</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="p">}</span>
+</code></pre></div></p>
+<h4 id="code_samples_without_security_vulnerabilities">Code samples without security vulnerabilities<a class="headerlink" href="#code_samples_without_security_vulnerabilities" title="Permanent link">&para;</a></h4>
+<div class="highlight"><span class="filename">Negative test num. 1 - tf file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;azurerm_mariadb_server&quot;</span><span class="w"> </span><span class="nv">&quot;negative&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="na">name</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example-mariadb-server&quot;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="na">location</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.example.location</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="na">resource_group_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">azurerm_resource_group.example.name</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="na">administrator_login</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mariadbadmin&quot;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="na">administrator_login_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;H@Sh1CoR3!&quot;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="na">sku_name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;B_Gen5_2&quot;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="na">storage_mb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5120</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="na">version</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;10.2&quot;</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span><span class="na">auto_grow_enabled</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span><span class="na">backup_retention_days</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="m">7</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">  </span><span class="na">geo_redundant_backup_enabled</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">  </span><span class="na">public_network_access_enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">  </span><span class="na">ssl_enforcement_enabled</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="p">}</span>
 </code></pre></div>
 
 

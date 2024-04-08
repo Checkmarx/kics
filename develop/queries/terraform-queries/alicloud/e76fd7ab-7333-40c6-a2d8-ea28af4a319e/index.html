@@ -1835,7 +1835,7 @@
 <li><strong>Query id:</strong> e76fd7ab-7333-40c6-a2d8-ea28af4a319e</li>
 <li><strong>Query name:</strong> Ram Account Password Policy Max Login Attempts Unrecommended</li>
 <li><strong>Platform:</strong> Terraform</li>
-<li><strong>Severity:</strong> <span style="color:#C60">Medium</span></li>
+<li><strong>Severity:</strong> <span style="color:#ff7213">Medium</span></li>
 <li><strong>Category:</strong> Secret Management</li>
 <li><strong>URL:</strong> <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/alicloud/ram_account_password_policy_max_login_attempts_unrecommended">Github</a></li>
 </ul>
@@ -1866,8 +1866,7 @@
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="na">hard_expiry</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="na">max_password_age</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="m">12</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="na">password_reuse_prevention</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="na">max_login_attempts</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">Negative test num. 2 - tf file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;alicloud_ram_account_password_policy&quot;</span><span class="w"> </span><span class="nv">&quot;corporate&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="na">minimum_password_length</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="m">9</span>
@@ -1878,7 +1877,8 @@
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="na">hard_expiry</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="na">max_password_age</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="m">12</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="na">password_reuse_prevention</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">}</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="na">max_login_attempts</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">}</span>
 </code></pre></div></p>
 
 

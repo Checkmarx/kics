@@ -1835,7 +1835,7 @@
 <li><strong>Query id:</strong> 030d3b18-1821-45b4-9e08-50efbe7becbb</li>
 <li><strong>Query name:</strong> Amazon DMS Replication Instance Is Publicly Accessible</li>
 <li><strong>Platform:</strong> Terraform</li>
-<li><strong>Severity:</strong> <span style="color:None">Critical</span></li>
+<li><strong>Severity:</strong> <span style="color:#ff0000">Critical</span></li>
 <li><strong>Category:</strong> Access Control</li>
 <li><strong>URL:</strong> <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/amazon_dms_replication_instance_is_publicly_accessible">Github</a></li>
 </ul>
@@ -1878,21 +1878,22 @@
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="na">engine_version</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.1.4&quot;</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="na">kms_key_arn</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012&quot;</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="na">multi_az</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="na">preferred_maintenance_window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sun:10:30-sun:14:30&quot;</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="na">replication_instance_class</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;dms.t2.micro&quot;</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="na">replication_instance_id</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;test-dms-replication-instance-tf&quot;</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="na">replication_subnet_group_id</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_dms_replication_subnet_group.test-dms-replication-subnet-group-tf.id</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="na">vpc_security_group_ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="s2">&quot;sg-12345678&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="p">]</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="na">depends_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="nv">aws_iam_role_policy_attachment.dms-access-for-endpoint-AmazonDMSRedshiftS3Role</span><span class="p">,</span>
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="nv">aws_iam_role_policy_attachment.dms-cloudwatch-logs-role-AmazonDMSCloudWatchLogsRole</span><span class="p">,</span>
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="nv">aws_iam_role_policy_attachment.dms-vpc-role-AmazonDMSVPCManagementRole</span>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">  </span><span class="p">]</span>
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="p">}</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="na">publicly_accessible</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="na">preferred_maintenance_window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sun:10:30-sun:14:30&quot;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="na">replication_instance_class</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;dms.t2.micro&quot;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="na">replication_instance_id</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;test-dms-replication-instance-tf&quot;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="na">replication_subnet_group_id</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_dms_replication_subnet_group.test-dms-replication-subnet-group-tf.id</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="na">vpc_security_group_ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="s2">&quot;sg-12345678&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="na">depends_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="nv">aws_iam_role_policy_attachment.dms-access-for-endpoint-AmazonDMSRedshiftS3Role</span><span class="p">,</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="nv">aws_iam_role_policy_attachment.dms-cloudwatch-logs-role-AmazonDMSCloudWatchLogsRole</span><span class="p">,</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="nv">aws_iam_role_policy_attachment.dms-vpc-role-AmazonDMSVPCManagementRole</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">Negative test num. 2 - tf file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_dms_replication_instance&quot;</span><span class="w"> </span><span class="nv">&quot;test&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="na">allocated_storage</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
@@ -1902,22 +1903,21 @@
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="na">engine_version</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.1.4&quot;</span>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="na">kms_key_arn</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012&quot;</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="na">multi_az</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="na">publicly_accessible</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="na">preferred_maintenance_window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sun:10:30-sun:14:30&quot;</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="na">replication_instance_class</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;dms.t2.micro&quot;</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="na">replication_instance_id</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;test-dms-replication-instance-tf&quot;</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span><span class="na">replication_subnet_group_id</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_dms_replication_subnet_group.test-dms-replication-subnet-group-tf.id</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">  </span><span class="na">vpc_security_group_ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="s2">&quot;sg-12345678&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">  </span><span class="p">]</span>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">  </span><span class="na">depends_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="nv">aws_iam_role_policy_attachment.dms-access-for-endpoint-AmazonDMSRedshiftS3Role</span><span class="p">,</span>
-<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span><span class="nv">aws_iam_role_policy_attachment.dms-cloudwatch-logs-role-AmazonDMSCloudWatchLogsRole</span><span class="p">,</span>
-<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">    </span><span class="nv">aws_iam_role_policy_attachment.dms-vpc-role-AmazonDMSVPCManagementRole</span>
-<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">  </span><span class="p">]</span>
-<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="p">}</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="na">preferred_maintenance_window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sun:10:30-sun:14:30&quot;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="na">replication_instance_class</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;dms.t2.micro&quot;</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="na">replication_instance_id</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;test-dms-replication-instance-tf&quot;</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="na">replication_subnet_group_id</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">aws_dms_replication_subnet_group.test-dms-replication-subnet-group-tf.id</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span><span class="na">vpc_security_group_ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="s2">&quot;sg-12345678&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">  </span><span class="na">depends_on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="nv">aws_iam_role_policy_attachment.dms-access-for-endpoint-AmazonDMSRedshiftS3Role</span><span class="p">,</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="nv">aws_iam_role_policy_attachment.dms-cloudwatch-logs-role-AmazonDMSCloudWatchLogsRole</span><span class="p">,</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span><span class="nv">aws_iam_role_policy_attachment.dms-vpc-role-AmazonDMSVPCManagementRole</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="p">}</span>
 </code></pre></div></p>
 
 

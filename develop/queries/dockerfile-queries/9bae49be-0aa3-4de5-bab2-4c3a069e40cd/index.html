@@ -1835,7 +1835,7 @@
 <li><strong>Query id:</strong> 9bae49be-0aa3-4de5-bab2-4c3a069e40cd</li>
 <li><strong>Query name:</strong> Update Instruction Alone</li>
 <li><strong>Platform:</strong> Dockerfile</li>
-<li><strong>Severity:</strong> <span style="color:#CC0">Low</span></li>
+<li><strong>Severity:</strong> <span style="color:#edd57e">Low</span></li>
 <li><strong>Category:</strong> Build Process</li>
 <li><strong>URL:</strong> <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/update_instruction_alone">Github</a></li>
 </ul>
@@ -1850,146 +1850,146 @@
 </span><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Positive test num. 2 - dockerfile file</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">opensuse:latest</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">RUN</span><span class="w"> </span>zypper<span class="w"> </span>refresh
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>zypper<span class="w"> </span>install<span class="w"> </span>nginx
+<div class="highlight"><span class="filename">Positive test num. 2 - dockerfile file</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">archlinux:latest</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">RUN</span><span class="w"> </span>pacman<span class="w"> </span>-Syu
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>nginx
 </span><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Positive test num. 3 - dockerfile file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">debian:latest</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">RUN</span><span class="w"> </span>apt<span class="w"> </span>update
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nginx
+<div class="highlight"><span class="filename">Positive test num. 3 - dockerfile file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">fedora:latest</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">RUN</span><span class="w"> </span>dnf<span class="w"> </span>update
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>nginx
 </span><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
 </code></pre></div></p>
 <details><summary>Positive test num. 4 - dockerfile file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">centos:latest</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>update
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>nginx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">debian:latest</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">RUN</span><span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nginx
 </span><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
 </code></pre></div>
 </details>
 <details><summary>Positive test num. 5 - dockerfile file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">fedora:latest</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">RUN</span><span class="w"> </span>dnf<span class="w"> </span>update
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>nginx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">opensuse:latest</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">RUN</span><span class="w"> </span>zypper<span class="w"> </span>refresh
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>zypper<span class="w"> </span>install<span class="w"> </span>nginx
 </span><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
 </code></pre></div>
 </details>
 <details><summary>Positive test num. 6 - dockerfile file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">archlinux:latest</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">RUN</span><span class="w"> </span>pacman<span class="w"> </span>-Syu
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>nginx
-</span><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:18.04</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>mysql-client<span class="w"> </span><span class="se">\</span>
+</span><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>update
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;mysql&quot;</span><span class="p">]</span>
 </code></pre></div>
 </details>
 <details><summary>Positive test num. 7 - dockerfile file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:18.04</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>mysql-client<span class="w"> </span><span class="se">\</span>
-</span><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>update
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;mysql&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">centos:latest</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>update
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>nginx
+</span><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
 </code></pre></div>
 </details>
 
 <h4 id="code_samples_without_security_vulnerabilities">Code samples without security vulnerabilities<a class="headerlink" href="#code_samples_without_security_vulnerabilities" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><span class="filename">Negative test num. 1 - dockerfile file</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:18.04</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>mysql-client<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>git<span class="w"> </span>ca-certificates
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>--update<span class="w"> </span>add<span class="w"> </span>easy-rsa
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;mysql&quot;</span><span class="p">]</span>
+<p><div class="highlight"><span class="filename">Negative test num. 1 - dockerfile file</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">archlinux:latest</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">RUN</span><span class="w"> </span>pacman<span class="w"> </span>-Syu<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>nginx
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Negative test num. 2 - dockerfile file</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:18.04</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>netcat<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>supervisor
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;mysql&quot;</span><span class="p">]</span>
+<div class="highlight"><span class="filename">Negative test num. 2 - dockerfile file</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">opensuse:latest</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">RUN</span><span class="w"> </span>zypper<span class="w"> </span>refresh<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>zypper<span class="w"> </span>install<span class="w"> </span>nginx
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Negative test num. 3 - dockerfile file</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:16.04</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>zend-server-php-5.6<span class="o">=</span><span class="m">8</span>.5.17+b19<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="k">RUN</span><span class="w"> </span>/usr/local/zend/bin/php<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;readfile(&#39;https://getcomposer.org/installer&#39;);&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>/usr/local/zend/bin/php<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>/usr/local/zend/bin/php<span class="w"> </span>composer.phar<span class="w"> </span>self-update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>/usr/local/zend/bin/php<span class="w"> </span>composer.phar<span class="w"> </span>update
+<div class="highlight"><span class="filename">Negative test num. 3 - dockerfile file</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:18.04</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>netcat<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>supervisor
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;mysql&quot;</span><span class="p">]</span>
 </code></pre></div></p>
 <details><summary>Negative test num. 4 - dockerfile file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">archlinux:latest</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">RUN</span><span class="w"> </span>pacman<span class="w"> </span>-Syu<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>nginx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">fedora:latest</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">RUN</span><span class="w"> </span>dnf<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>nginx
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
 </code></pre></div>
 </details>
 <details><summary>Negative test num. 5 - dockerfile file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:18.04</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>mysql-client<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>update
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;mysql&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">alpine:latest</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>nginx
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>--update-cache<span class="w"> </span>add<span class="w"> </span>vim
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>-U<span class="w"> </span>add<span class="w"> </span>nano
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
 </code></pre></div>
 </details>
 <details><summary>Negative test num. 6 - dockerfile file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">opensuse:latest</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">RUN</span><span class="w"> </span>zypper<span class="w"> </span>refresh<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>zypper<span class="w"> </span>install<span class="w"> </span>nginx
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:16.04</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>zend-server-php-5.6<span class="o">=</span><span class="m">8</span>.5.17+b19<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="k">RUN</span><span class="w"> </span>/usr/local/zend/bin/php<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;readfile(&#39;https://getcomposer.org/installer&#39;);&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>/usr/local/zend/bin/php<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>/usr/local/zend/bin/php<span class="w"> </span>composer.phar<span class="w"> </span>self-update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>/usr/local/zend/bin/php<span class="w"> </span>composer.phar<span class="w"> </span>update
 </code></pre></div>
 </details>
 <details><summary>Negative test num. 7 - dockerfile file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">debian:latest</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">RUN</span><span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>install<span class="w"> </span>nginx
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:18.04</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>mysql-client<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>update
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;mysql&quot;</span><span class="p">]</span>
 </code></pre></div>
 </details>
 <details><summary>Negative test num. 8 - dockerfile file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">centos:latest</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>nginx
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:18.04</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>mysql-client<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>git<span class="w"> </span>ca-certificates
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>--update<span class="w"> </span>add<span class="w"> </span>easy-rsa
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;mysql&quot;</span><span class="p">]</span>
 </code></pre></div>
 </details>
 <details><summary>Negative test num. 9 - dockerfile file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">fedora:latest</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">RUN</span><span class="w"> </span>dnf<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>nginx
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">alpine:latest</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>--update<span class="w"> </span>add<span class="w"> </span>nginx
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>--update<span class="w"> </span>nginx
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
 </code></pre></div>
 </details>
 <details><summary>Negative test num. 10 - dockerfile file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">alpine:latest</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>nginx
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>--update-cache<span class="w"> </span>add<span class="w"> </span>vim
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>-U<span class="w"> </span>add<span class="w"> </span>nano
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">debian:latest</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">RUN</span><span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>install<span class="w"> </span>nginx
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
 </code></pre></div>
 </details>
 <details><summary>Negative test num. 11 - dockerfile file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">alpine:latest</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>--update<span class="w"> </span>add<span class="w"> </span>nginx
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>--update<span class="w"> </span>nginx
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">centos:latest</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>nginx
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;nginx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-g&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;daemon off;&quot;</span><span class="p">]</span>
 </code></pre></div>
 </details>
 

@@ -1835,7 +1835,7 @@
 <li><strong>Query id:</strong> 5c0003fb-9aa0-42c1-9da3-eb0e332bef21</li>
 <li><strong>Query name:</strong> Secure Ciphers Disabled</li>
 <li><strong>Platform:</strong> Terraform</li>
-<li><strong>Severity:</strong> <span style="color:#C60">Medium</span></li>
+<li><strong>Severity:</strong> <span style="color:#ff7213">Medium</span></li>
 <li><strong>Category:</strong> Encryption</li>
 <li><strong>URL:</strong> <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/secure_ciphers_disabled">Github</a></li>
 </ul>
@@ -1901,7 +1901,7 @@
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="na">enabled</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="nb">default_cache_behavior</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="na">allowed_methods</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;DELETE&quot;, &quot;GET&quot;, &quot;HEAD&quot;, &quot;OPTIONS&quot;, &quot;PATCH&quot;, &quot;POST&quot;, &quot;PUT&quot;</span><span class="p">]</span>
@@ -1931,8 +1931,9 @@
 <a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
 <a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">  </span><span class="nb">viewer_certificate</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">    </span><span class="na">cloudfront_default_certificate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
-<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="p">}</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">    </span><span class="na">minimum_protocol_version</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;TLSv1.2_2019&quot;</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">Negative test num. 2 - tf file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">#this code is a correct code for which the query should not find any result</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_cloudfront_distribution&quot;</span><span class="w"> </span><span class="nv">&quot;negative1&quot;</span><span class="w"> </span><span class="p">{</span>
@@ -1945,7 +1946,7 @@
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="na">enabled</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span><span class="nb">default_cache_behavior</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="na">allowed_methods</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;DELETE&quot;, &quot;GET&quot;, &quot;HEAD&quot;, &quot;OPTIONS&quot;, &quot;PATCH&quot;, &quot;POST&quot;, &quot;PUT&quot;</span><span class="p">]</span>
@@ -1975,9 +1976,8 @@
 <a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>
 <a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">  </span><span class="nb">viewer_certificate</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">    </span><span class="na">cloudfront_default_certificate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
-<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">    </span><span class="na">minimum_protocol_version</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;TLSv1.2_2019&quot;</span>
-<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="p">}</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="p">}</span>
 </code></pre></div></p>
 
 
