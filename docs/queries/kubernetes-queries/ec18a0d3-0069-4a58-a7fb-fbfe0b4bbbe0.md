@@ -18,7 +18,7 @@ hide:
 -   **Query id:** ec18a0d3-0069-4a58-a7fb-fbfe0b4bbbe0
 -   **Query name:** Kubelet Certificate Authority Not Set
 -   **Platform:** Kubernetes
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Secret Management
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/k8s/kubelet_certificate_authority_not_set)
 
@@ -57,8 +57,8 @@ spec:
   containers:
     - name: command-demo-container
       image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
-      command: ["kube-apiserver"]
-      args: ["--kubelet-certificate-authority=/path/to/any/cert/file.pem"]
+      command: ["kube-apiserver","--kubelet-certificate-authority=/path/to/any/cert/file.crt"]
+      args: []
   restartPolicy: OnFailure
 
 ```
@@ -73,8 +73,8 @@ spec:
   containers:
     - name: command-demo-container
       image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
-      command: ["kube-apiserver","--kubelet-certificate-authority=/path/to/any/cert/file.crt"]
-      args: []
+      command: ["kube-apiserver"]
+      args: ["--kubelet-certificate-authority=/path/to/any/cert/file.pem"]
   restartPolicy: OnFailure
 
 ```

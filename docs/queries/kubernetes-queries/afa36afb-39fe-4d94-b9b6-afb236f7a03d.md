@@ -18,7 +18,7 @@ hide:
 -   **Query id:** afa36afb-39fe-4d94-b9b6-afb236f7a03d
 -   **Query name:** Pod Security Policy Admission Control Plugin Not Set
 -   **Platform:** Kubernetes
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Build Process
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/k8s/pod_security_policy_admission_control_plugin_not_set)
 
@@ -58,8 +58,8 @@ spec:
   containers:
     - name: command-demo-container
       image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
-      command: ["kube-apiserver"]
-      args: ["--enable-admission-plugins=PodSecurityPolicy", "--admission-control-config-file=path/to/plugin/config/file.yaml"]
+      command: ["kube-apiserver","--enable-admission-plugins=PodSecurityPolicy", "--admission-control-config-file=path/to/plugin/config/file.yaml"]
+      args: []
   restartPolicy: OnFailure
 
 ```
@@ -74,8 +74,8 @@ spec:
   containers:
     - name: command-demo-container
       image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
-      command: ["kube-apiserver","--enable-admission-plugins=PodSecurityPolicy", "--admission-control-config-file=path/to/plugin/config/file.yaml"]
-      args: []
+      command: ["kube-apiserver"]
+      args: ["--enable-admission-plugins=PodSecurityPolicy", "--admission-control-config-file=path/to/plugin/config/file.yaml"]
   restartPolicy: OnFailure
 
 ```
