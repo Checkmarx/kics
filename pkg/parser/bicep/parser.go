@@ -102,7 +102,10 @@ func (s *BicepVisitor) VisitStatement(ctx *parser.StatementContext) interface{} 
 func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) interface{} {
 	var decorators []interface{}
 	param := map[string]interface{}{}
-	identifier := ctx.Identifier().Accept(s).(string)
+	identifier, ok := ctx.Identifier().Accept(s).(string)
+	if !ok {
+		return nil
+	}
 	if ctx.ParameterDefaultValue() != nil {
 		paramVal := ctx.ParameterDefaultValue().Accept(s)
 		param["value"] = paramVal
@@ -387,7 +390,10 @@ func (s *BicepVisitor) VisitObjectProperty(ctx *parser.ObjectPropertyContext) in
 		objectProperty[identifier] = ctx.Expression().Accept(s)
 	}
 	if ctx.InterpString() != nil {
-		interpString := ctx.InterpString().Accept(s).(string)
+		interpString, ok := ctx.InterpString().Accept(s).(string)
+		if !ok {
+			return map[string]interface{}{}
+		}
 		objectProperty[interpString] = objectValue
 	}
 
@@ -456,10 +462,16 @@ func (s *BicepVisitor) VisitDecoratorExpression(ctx *parser.DecoratorExpressionC
 }
 
 func (s *BicepVisitor) VisitFunctionCall(ctx *parser.FunctionCallContext) interface{} {
-	identifier := ctx.Identifier().Accept(s).(string)
+	identifier, ok := ctx.Identifier().Accept(s).(string)
+	if !ok {
+		return map[string]interface{}{}
+	}
 	var argumentList []interface{}
 	if ctx.ArgumentList() != nil {
-		argumentList = ctx.ArgumentList().Accept(s).([]interface{})
+		argumentList, ok = ctx.ArgumentList().Accept(s).([]interface{})
+		if !ok {
+			return map[string]interface{}{}
+		}
 	}
 	functionCall := map[string][]interface{}{
 		identifier: argumentList,
