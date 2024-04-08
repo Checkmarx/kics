@@ -113,7 +113,7 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 	}
 
 	for _, val := range ctx.AllDecorator() {
-		decorator := val.Accept(s).(map[string]interface{})
+		decorator := val.Accept(s).(map[string][]interface{})
 		if decorator["secure"] != nil {
 			if param["type"] == "string" {
 				param["type"] = "secureString"
