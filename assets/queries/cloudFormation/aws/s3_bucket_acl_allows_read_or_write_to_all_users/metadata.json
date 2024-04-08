@@ -1,12 +1,13 @@
 {
   "id": "07dda8de-d90d-469e-9b37-1aca53526ced",
   "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
-  "severity": "HIGH",
+  "severity": "CRITICAL",
   "category": "Access Control",
   "descriptionText": "S3 Buckets should not be readable and writable to all users",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html",
   "platform": "CloudFormation",
   "descriptionID": "68456465",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

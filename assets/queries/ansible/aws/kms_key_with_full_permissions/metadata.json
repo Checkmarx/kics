@@ -1,9 +1,9 @@
 {
   "id": "5b9d237a-57d5-4177-be0e-71434b0fef47",
-  "queryName": "KMS Key With Full Permissions",
+  "queryName": "KMS Key With Vulnerable Policy",
   "severity": "HIGH",
   "category": "Insecure Configurations",
-  "descriptionText": "The KMS key has a policy that is too permissive, as it provides the AWS account owner with access to all AWS KMS operations, therefore violating the principle of least privilege.",
+  "descriptionText": "Checks if the policy is vulnerable and needs updating.",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/aws_kms_module.html",
   "platform": "Ansible",
   "descriptionID": "a1f47164",

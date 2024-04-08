@@ -1,12 +1,13 @@
 {
   "id": "1bf3b3d4-f373-4d7c-afbb-7d85948a67a5",
   "queryName": "DocDB Logging Is Disabled",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "DocDB logging should be enabled",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-docdb-dbcluster.html#cfn-docdb-dbcluster-enablecloudwatchlogsexports",
   "platform": "CloudFormation",
   "descriptionID": "4818ceaf",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

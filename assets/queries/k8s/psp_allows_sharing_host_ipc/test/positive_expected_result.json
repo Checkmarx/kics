@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "PSP Allows Sharing Host IPC",
-		"severity": "MEDIUM",
-		"line": 6
-	}
+  {
+    "queryName": "PSP Allows Sharing Host IPC",
+    "severity": "HIGH",
+    "line": 6
+  }
 ]

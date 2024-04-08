@@ -18,12 +18,12 @@ hide:
 -   **Query id:** 9bae49be-0aa3-4de5-bab2-4c3a069e40cd
 -   **Query name:** Update Instruction Alone
 -   **Platform:** Dockerfile
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#CC0">Low</span>
 -   **Category:** Build Process
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/update_instruction_alone)
 
 ### Description
-Instruction 'RUN <package-manager> update' should always be followed by '<package-manager> install' in the same RUN statement<br>
+Instruction 'RUN update' should always be followed by ' install' in the same RUN statement<br>
 [Documentation](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run)
 
 ### Code samples

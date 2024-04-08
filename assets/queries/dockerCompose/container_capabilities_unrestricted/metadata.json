@@ -1,11 +1,12 @@
 {
   "id": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d",
   "queryName": "Container Capabilities Unrestricted",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Resource Management",
   "descriptionText": "Some capabilities are not needed in certain (or any) containers. Make sure that you only add capabilities that your container needs. Drop unnecessary capabilities as well.",
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop",
   "platform": "DockerCompose",
   "descriptionID": "1ddab108",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

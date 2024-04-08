@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "Using Platform Flag with FROM Command",
-		"severity": "INFO",
-		"line": 6
-	}
+  {
+    "queryName": "Using Platform Flag with FROM Command",
+    "severity": "LOW",
+    "line": 6
+  }
 ]

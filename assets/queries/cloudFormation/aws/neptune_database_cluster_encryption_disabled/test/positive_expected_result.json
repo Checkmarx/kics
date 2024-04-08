@@ -1,6 +1,6 @@
 [
   {
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 27,
     "fileName": "positive1.yaml",
     "queryName": "Neptune Database Cluster Encryption Disabled"
@@ -9,6 +9,6 @@
     "line": 21,
     "fileName": "positive2.json",
     "queryName": "Neptune Database Cluster Encryption Disabled",
-    "severity": "MEDIUM"
+    "severity": "HIGH"
   }
 ]

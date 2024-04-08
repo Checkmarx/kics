@@ -1,8 +1,8 @@
 [
-    {
-      "queryName": "Elasticsearch with HTTPS disabled",
-      "severity": "HIGH",
-      "line": 31,
-      "fileName": "positive1.yaml"
-    }
+  {
+    "queryName": "Elasticsearch with HTTPS disabled",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive1.yaml"
+  }
 ]

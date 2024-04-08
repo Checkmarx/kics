@@ -1,12 +1,13 @@
 {
   "id": "f6d299d2-21eb-41cc-b1e1-fe12d857500b",
   "queryName": "VPC FlowLogs Disabled",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Every VPC resource should have an associated Flow Log",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html",
   "platform": "CloudFormation",
   "descriptionID": "0fb02ca5",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

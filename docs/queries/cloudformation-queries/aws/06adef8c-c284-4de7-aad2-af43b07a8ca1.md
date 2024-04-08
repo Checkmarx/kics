@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 06adef8c-c284-4de7-aad2-af43b07a8ca1
 -   **Query name:** IAM User LoginProfile Password Is In Plaintext
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#C00">High</span>
 -   **Category:** Insecure Configurations
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/iam_user_login_profile_password_is_in_plaintext)
 

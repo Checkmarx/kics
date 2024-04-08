@@ -1,7 +1,7 @@
 [
   {
     "queryName": "Key Expiration Not Set",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 1
   }
 ]

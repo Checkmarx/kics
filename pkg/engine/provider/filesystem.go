@@ -206,7 +206,7 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 }
 
 func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error) {
-	ext := utils.GetExtension(scanPath)
+	ext, _ := utils.GetExtension(scanPath)
 
 	if !extensions.Include(ext) {
 		return nil, ErrNotSupportedFile
@@ -261,7 +261,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}
-	ext := utils.GetExtension(path)
+	ext, _ := utils.GetExtension(path)
 	if !extensions.Include(ext) {
 		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil

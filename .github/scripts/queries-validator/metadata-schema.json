@@ -20,6 +20,7 @@
         "category",
         "descriptionText",
         "descriptionUrl",
+        "cloudProvider",
         "platform",
         "descriptionID"
     ],
@@ -36,6 +37,16 @@
             "enum": [
                 "TRACE",
                 "CRITICAL",
+                "HIGH",
+                "MEDIUM",
+                "LOW",
+                "INFO"
+            ]
+        },
+        "oldSeverity": {
+            "type": "string",
+            "enum": [
+                "TRACE",
                 "HIGH",
                 "MEDIUM",
                 "LOW",

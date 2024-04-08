@@ -1,12 +1,13 @@
 {
   "id": "b7b9d1c7-2d3b-49b4-b867-ebbe68d0b643",
   "queryName": "App Service Not Using Latest TLS Encryption Version",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "Ensure App Service is using the latest version of TLS encryption",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#min_tls_version",
   "platform": "Terraform",
   "descriptionID": "63399f46",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

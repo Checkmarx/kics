@@ -23,8 +23,8 @@
 	"start": "2024-01-31T15:46:25.2714687Z",
 	"end": "2024-01-31T15:46:25.5747871Z",
 	"paths": [
-    "/path/test/fixtures/test_new_severity/test",
-    "/path/test/fixtures/test_new_severity/high"
+    "/path/test/fixtures/test_old_severity/test",
+    "/path/test/fixtures/test_old_severity/high"
 	],
 	"queries": [
 		{
@@ -33,13 +33,14 @@
 			"query_url": "https://securitylab.github.com/research/github-actions-untrusted-input/",
 			"severity": "HIGH",
 			"platform": "CICD",
+			"cloud_provider": "COMMON",
 			"category": "Insecure Configurations",
 			"experimental": false,
 			"description": "GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event.",
 			"description_id": "02044a75",
 			"files": [
         {
-          "file_name": "path\\test\\fixtures\\test_new_severities\\test\\positive1.yaml",
+          "file_name": "path\\test\\fixtures\\test_old_severities\\test\\positive1.yaml",
           "similarity_id": "2197922dab336742ff58010e01218006c9b2c930a840018ef8b42fb1284f2a45",
           "line": 10,
           "issue_type": "IncorrectValue",
@@ -50,7 +51,7 @@
           "actual_value": "Run block contains dangerous input controlled by user."
         },
         {
-          "file_name": "path\\test\\fixtures\\test_new_severities\\test\\positive1.yaml",
+          "file_name": "path\\test\\fixtures\\test_old_severities\\test\\positive1.yaml",
           "similarity_id": "efac914cab5fb466570dd3a71ee3edd8197a15928c56c2aabff00f54d05c5e6d",
           "line": 10,
           "issue_type": "IncorrectValue",

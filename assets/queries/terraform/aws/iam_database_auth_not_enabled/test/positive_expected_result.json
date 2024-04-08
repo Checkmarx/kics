@@ -1,26 +1,26 @@
 [
-	{
-		"queryName": "IAM Database Auth Not Enabled",
-		"severity": "HIGH",
-		"line": 10,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "IAM Database Auth Not Enabled",
-		"severity": "HIGH",
-		"line": 1,
-		"fileName": "positive2.tf"
-	},
-	{
-		"queryName": "IAM Database Auth Not Enabled",
-		"severity": "HIGH",
-		"line": 1,
-		"fileName": "positive3.tf"
-	},
-	{
-		"queryName": "IAM Database Auth Not Enabled",
-		"severity": "HIGH",
-		"line": 17,
-		"fileName": "positive4.tf"
-	}
+  {
+    "queryName": "IAM Database Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "IAM Database Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "IAM Database Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "IAM Database Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive4.tf"
+  }
 ]

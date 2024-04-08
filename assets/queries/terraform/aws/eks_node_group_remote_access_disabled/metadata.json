@@ -1,12 +1,13 @@
 {
   "id": "ba40ace1-a047-483c-8a8d-bc2d3a67a82d",
   "queryName": "EKS node group remote access disabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "EKS node group remote access is disabled when 'SourceSecurityGroups' is missing",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_node_group#remote_access",
   "platform": "Terraform",
   "descriptionID": "6d42a06d",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }
