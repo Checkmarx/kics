@@ -178,29 +178,53 @@ func (s *BicepVisitor) VisitParameterDefaultValue(ctx *parser.ParameterDefaultVa
 	return param
 }
 
+/*
+Converts functioncall data (map of identifying string to slice of arguments) into a string
+
+	Example: "FunctionName": ["arg1", 2, "arg3", map[Function2: [arg4, arg5]]] becomes
+	"FunctionName(arg1, 2, arg3, Function2(arg4, arg5))"
+*/
+func parseFunctionCall(functionData map[string][]interface{}) string {
+	var stringifiedFunctionCall string = ""
+
+	for functionName, argumentList := range functionData {
+		stringifiedFunctionCall += functionName + "("
+		for index, argument := range argumentList {
+			switch argument := argument.(type) {
+			case string:
+				stringifiedFunctionCall += argument
+			case int:
+				convertedArgument := strconv.Itoa(argument)
+				stringifiedFunctionCall += convertedArgument
+			case map[string][]interface{}:
+				stringifiedFunctionCall += parseFunctionCall(argument)
+			}
+
+			if index < len(argumentList)-1 {
+				stringifiedFunctionCall += ", "
+			}
+		}
+	}
+	stringifiedFunctionCall += ")"
+
+	return stringifiedFunctionCall
+}
+
 func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{} {
 	if ctx.GetChildCount() > 1 {
 		if ctx.Identifier() != nil {
 			identifier := ctx.Identifier().Accept(s)
 			exp := ctx.Expression(0).Accept(s)
-			fmt.Println("Visit Expression value: ", exp)
 			if ctx.DOT() != nil {
-				res := ""
-				for key, val := range exp.(map[string]interface{}) {
-					res += key + "("
-					for idx, arg := range val.([]interface{}) {
-						res += arg.(string)
-						if idx < len(val.([]interface{}))-1 {
-							res += ", "
-						}
-
-					}
-					res += ")." + identifier.(string)
+				switch exp := exp.(type) {
+				case map[string][]interface{}:
+					return parseFunctionCall(exp) + "." + identifier.(string)
+				case string:
+					return exp + "." + identifier.(string)
+				default:
+					return nil
 				}
-				return res
 			}
-
-			return nil
 		} else {
 			for _, val := range ctx.AllExpression() {
 				val.Accept(s)
@@ -409,7 +433,7 @@ func (s *BicepVisitor) VisitFunctionCall(ctx *parser.FunctionCallContext) interf
 	if ctx.ArgumentList() != nil {
 		argumentList = ctx.ArgumentList().Accept(s).([]interface{})
 	}
-	functionCall := map[string]interface{}{
+	functionCall := map[string][]interface{}{
 		identifier.(string): argumentList,
 	}
 
