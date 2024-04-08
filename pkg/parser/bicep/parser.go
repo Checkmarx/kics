@@ -102,7 +102,7 @@ func (s *BicepVisitor) VisitStatement(ctx *parser.StatementContext) interface{} 
 func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) interface{} {
 	var decorators []interface{}
 	param := map[string]interface{}{}
-	identifier := ctx.Identifier().Accept(s)
+	identifier := ctx.Identifier().Accept(s).(string)
 	if ctx.ParameterDefaultValue() != nil {
 		paramVal := ctx.ParameterDefaultValue().Accept(s)
 		param["value"] = paramVal
@@ -125,7 +125,7 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 		}
 	}
 	param["decorators"] = decorators
-	s.paramList[identifier.(string)] = param
+	s.paramList[identifier] = param
 	return nil
 }
 
@@ -133,7 +133,7 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 func (s *BicepVisitor) VisitVariableDecl(ctx *parser.VariableDeclContext) interface{} {
 	var variable = map[string]interface{}{}
 	var decorators []interface{}
-	identifier := ctx.Identifier().Accept(s)
+	identifier := ctx.Identifier().Accept(s).(string)
 	expression := ctx.Expression().Accept(s)
 
 	for _, val := range ctx.AllDecorator() {
@@ -141,7 +141,7 @@ func (s *BicepVisitor) VisitVariableDecl(ctx *parser.VariableDeclContext) interf
 	}
 	variable["decorators"] = decorators
 	variable["value"] = expression
-	s.varList[identifier.(string)] = variable
+	s.varList[identifier] = variable
 
 	return nil
 }
@@ -150,7 +150,7 @@ func (s *BicepVisitor) VisitResourceDecl(ctx *parser.ResourceDeclContext) interf
 	resource := map[string]interface{}{}
 	var decorators []interface{}
 	interpString := ctx.InterpString().Accept(s)
-	identifier := ctx.Identifier().Accept(s)
+	identifier := ctx.Identifier().Accept(s).(string)
 	resourceType := strings.Split(interpString.(string), "@")[0]
 	apiVersion := strings.Split(interpString.(string), "@")[1]
 	resource["type"] = resourceType
@@ -213,14 +213,14 @@ func parseFunctionCall(functionData map[string][]interface{}) string {
 func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{} {
 	if ctx.GetChildCount() > 1 {
 		if ctx.Identifier() != nil {
-			identifier := ctx.Identifier().Accept(s)
+			identifier := ctx.Identifier().Accept(s).(string)
 			exp := ctx.Expression(0).Accept(s)
 			if ctx.DOT() != nil {
 				switch exp := exp.(type) {
 				case map[string][]interface{}:
-					return parseFunctionCall(exp) + "." + identifier.(string)
+					return parseFunctionCall(exp) + "." + identifier
 				case string:
-					return exp + "." + identifier.(string)
+					return exp + "." + identifier
 				default:
 					return nil
 				}
@@ -355,8 +355,8 @@ func (s *BicepVisitor) VisitObjectProperty(ctx *parser.ObjectPropertyContext) in
 	objectValue := ctx.Expression().Accept(s)
 	objectProperty := map[string]interface{}{}
 	if ctx.Identifier() != nil {
-		identifier := ctx.Identifier().Accept(s)
-		objectProperty[identifier.(string)] = ctx.Expression().Accept(s)
+		identifier := ctx.Identifier().Accept(s).(string)
+		objectProperty[identifier] = ctx.Expression().Accept(s)
 	}
 	if ctx.InterpString() != nil {
 		interpString := ctx.InterpString().Accept(s)
@@ -428,13 +428,13 @@ func (s *BicepVisitor) VisitDecoratorExpression(ctx *parser.DecoratorExpressionC
 }
 
 func (s *BicepVisitor) VisitFunctionCall(ctx *parser.FunctionCallContext) interface{} {
-	identifier := ctx.Identifier().Accept(s)
+	identifier := ctx.Identifier().Accept(s).(string)
 	var argumentList []interface{}
 	if ctx.ArgumentList() != nil {
 		argumentList = ctx.ArgumentList().Accept(s).([]interface{})
 	}
 	functionCall := map[string][]interface{}{
-		identifier.(string): argumentList,
+		identifier: argumentList,
 	}
 
 	return functionCall
