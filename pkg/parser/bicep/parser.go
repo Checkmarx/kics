@@ -113,7 +113,10 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 	}
 
 	for _, val := range ctx.AllDecorator() {
-		decorator := val.Accept(s).(map[string][]interface{})
+		decorator, ok := val.Accept(s).(map[string][]interface{})
+		if !ok {
+			return nil
+		}
 		if decorator["secure"] != nil {
 			if param["type"] == "string" {
 				param["type"] = "secureString"
@@ -161,8 +164,11 @@ func (s *BicepVisitor) VisitResourceDecl(ctx *parser.ResourceDeclContext) interf
 	resource["decorators"] = decorators
 	resource["name"] = identifier
 	if ctx.Object() != nil {
-		object := ctx.Object().Accept(s)
-		for key, val := range object.(map[string]interface{}) {
+		object, ok := ctx.Object().Accept(s).(map[string]interface{})
+		if !ok {
+			return nil
+		}
+		for key, val := range object {
 			resource[key] = val
 		}
 	}
@@ -306,7 +312,11 @@ func (s *BicepVisitor) VisitInterpString(ctx *parser.InterpStringContext) interf
 				for identifier, argumentList := range v {
 					resStr := "[" + identifier + "("
 					for idx, arg := range argumentList {
-						resStr += arg.(string)
+						stringArg, ok := arg.(string)
+						if !ok {
+							return ""
+						}
+						resStr += stringArg
 						if idx < len(argumentList)-1 {
 							resStr += ", "
 						}
@@ -342,7 +352,10 @@ func (s *BicepVisitor) VisitArrayItem(ctx *parser.ArrayItemContext) interface{} 
 func (s *BicepVisitor) VisitObject(ctx *parser.ObjectContext) interface{} {
 	object := map[string]interface{}{}
 	for _, val := range ctx.AllObjectProperty() {
-		objectProperty := val.Accept(s).(map[string]interface{})
+		objectProperty, ok := val.Accept(s).(map[string]interface{})
+		if !ok {
+			return object
+		}
 		for key, val := range objectProperty {
 			object[key] = val
 		}
