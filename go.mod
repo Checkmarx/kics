@@ -1,6 +1,6 @@
 module github.com/Checkmarx/kics
 
-go 1.21
+go 1.22
 
 replace (
 	github.com/containerd/containerd => github.com/containerd/containerd v1.6.26
@@ -21,6 +21,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr/antlr4/runtime/Go/antlr/v4 v4.0.0-20230305170008-8188dc5388df
+	github.com/antlr4-go/antlr/v4 v4.13.0
 	github.com/aws/aws-sdk-go v1.44.295
 	github.com/bigkevmcd/go-configparser v0.0.0-20230427073640-c6b631f70126
 	github.com/cheggaaa/pb/v3 v3.1.2
