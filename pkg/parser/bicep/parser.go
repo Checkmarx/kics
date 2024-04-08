@@ -117,7 +117,7 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 		if !ok {
 			return nil
 		}
-		if decorator["secure"] != nil {
+		if _, ok := decorator["secure"]; ok {
 			if param["type"] == "string" {
 				param["type"] = "secureString"
 			} else if param["type"] == "object" {
