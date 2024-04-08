@@ -18,7 +18,7 @@ hide:
 -   **Query id:** acb6b4e2-a086-4f35-aefd-4db6ea51ada2
 -   **Query name:** Elasticsearch Log Disabled
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Observability
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/elasticsearch_logs_disabled)
 
