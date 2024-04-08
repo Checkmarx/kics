@@ -47,7 +47,8 @@
 					"message": {
 						"text": "Script block contains dangerous input controlled by user.",
 						"properties": {
-							"platform": "CICD"
+							"platform": "CICD",
+							"cloud_provider": "COMMON"
 						}
 					},
 					"locations": [
