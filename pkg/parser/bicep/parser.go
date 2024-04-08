@@ -149,10 +149,10 @@ func (s *BicepVisitor) VisitVariableDecl(ctx *parser.VariableDeclContext) interf
 func (s *BicepVisitor) VisitResourceDecl(ctx *parser.ResourceDeclContext) interface{} {
 	resource := map[string]interface{}{}
 	var decorators []interface{}
-	interpString := ctx.InterpString().Accept(s)
+	interpString := ctx.InterpString().Accept(s).(string)
 	identifier := ctx.Identifier().Accept(s).(string)
-	resourceType := strings.Split(interpString.(string), "@")[0]
-	apiVersion := strings.Split(interpString.(string), "@")[1]
+	resourceType := strings.Split(interpString, "@")[0]
+	apiVersion := strings.Split(interpString, "@")[1]
 	resource["type"] = resourceType
 	resource["apiVersion"] = apiVersion
 	for _, val := range ctx.AllDecorator() {
@@ -359,8 +359,8 @@ func (s *BicepVisitor) VisitObjectProperty(ctx *parser.ObjectPropertyContext) in
 		objectProperty[identifier] = ctx.Expression().Accept(s)
 	}
 	if ctx.InterpString() != nil {
-		interpString := ctx.InterpString().Accept(s)
-		objectProperty[interpString.(string)] = objectValue
+		interpString := ctx.InterpString().Accept(s).(string)
+		objectProperty[interpString] = objectValue
 	}
 
 	return objectProperty
