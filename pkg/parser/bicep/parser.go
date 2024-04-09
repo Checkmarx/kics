@@ -102,7 +102,7 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 	}
 	if ctx.ParameterDefaultValue() != nil {
 		paramVal := ctx.ParameterDefaultValue().Accept(s)
-		param["value"] = paramVal
+		param["defaultValue"] = paramVal
 	}
 	if ctx.TypeExpression() != nil {
 		typeExpression := ctx.TypeExpression().Accept(s)
@@ -121,7 +121,13 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 				param["type"] = "secureObject"
 			}
 		} else {
-			decorators = append(decorators, decorator)
+			if _, ok := decorator["allowed"]; ok {
+				newDecorator := map[string][]interface{}{}
+				newDecorator["allowedValues"] = decorator["allowed"]
+				decorators = append(decorators, newDecorator)
+			} else {
+				decorators = append(decorators, decorator)
+			}
 		}
 	}
 	param["decorators"] = decorators
@@ -373,16 +379,38 @@ func (s *BicepVisitor) VisitObject(ctx *parser.ObjectContext) interface{} {
 	return object
 }
 
+func isParameter(expression interface{}) bool {
+	exp, ok := expression.(string)
+	if !ok {
+		return false
+	}
+
+	return strings.Contains(exp, "parameters(") || strings.Contains(exp, "variables(")
+}
+
+func isDotFunction(expression interface{}) bool {
+	exp, ok := expression.(string)
+	if !ok {
+		return false
+	}
+
+	return strings.Contains(exp, ").")
+}
+
 func (s *BicepVisitor) VisitObjectProperty(ctx *parser.ObjectPropertyContext) interface{} {
 	objectProperty := map[string]interface{}{}
 	if ctx.Expression() != nil {
 		objectValue := ctx.Expression().Accept(s)
+		if isParameter(objectValue) || isDotFunction(objectValue) {
+			objectValue = "[" + objectValue.(string) + "]"
+		}
+
 		if ctx.Identifier() != nil {
 			identifier, ok := ctx.Identifier().Accept(s).(string)
 			if !ok {
 				return map[string]interface{}{}
 			}
-			objectProperty[identifier] = ctx.Expression().Accept(s)
+			objectProperty[identifier] = objectValue
 		}
 		if ctx.InterpString() != nil {
 			interpString, ok := ctx.InterpString().Accept(s).(string)
