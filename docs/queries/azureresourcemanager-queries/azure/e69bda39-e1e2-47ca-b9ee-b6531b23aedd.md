@@ -87,204 +87,180 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 }
 
 ```
-```json title="Positive test num. 2 - json file" hl_lines="46"
+```json title="Positive test num. 2 - json file" hl_lines="45"
 {
-  "properties": {
-    "template": {
-      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-      "contentVersion": "1.0.0.0",
-      "parameters": {},
-      "functions": [],
-      "variables": {},
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "functions": [],
+  "variables": {},
+  "resources": [
+    {
+      "apiVersion": "2017-12-01",
+      "kind": "",
+      "location": "[resourceGroup().location]",
+      "name": "MyDBServer2",
+      "properties": {
+        "sslEnforcement": "Disabled",
+        "version": "11",
+        "administratorLogin": "root",
+        "administratorLoginPassword": "12345",
+        "storageMB": "2048",
+        "createMode": "Default",
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "creationDate": "2019-04-01T00:00:00Z",
+        "lastModifiedDate": "2019-04-01T00:00:00Z",
+        "maxSizeUnits": "SizeUnit.megabytes",
+        "isReadOnly": "false",
+        "isAutoUpgradeEnabled": "true",
+        "isStateful": "false",
+        "isExternal": "false"
+      },
+      "sku": {
+        "name": "S0",
+        "tier": "Basic",
+        "capacity": 1,
+        "family": "GeneralPurpose"
+      },
+      "type": "Microsoft.DBforPostgreSQL/servers",
       "resources": [
         {
-          "type": "Microsoft.DBforPostgreSQL/servers",
+          "type": "configurations",
           "apiVersion": "2017-12-01",
-          "kind": "",
-          "location": "[resourceGroup().location]",
-          "name": "MyDBServer3",
-          "properties": {
-            "sslEnforcement": "Disabled",
-            "version": "11",
-            "administratorLogin": "root",
-            "administratorLoginPassword": "12345",
-            "storageMB": "2048",
-            "createMode": "Default",
-            "collation": "SQL_Latin1_General_CP1_CI_AS",
-            "creationDate": "2019-04-01T00:00:00Z",
-            "lastModifiedDate": "2019-04-01T00:00:00Z",
-            "maxSizeUnits": "SizeUnit.megabytes",
-            "isReadOnly": "false",
-            "isAutoUpgradeEnabled": "true",
-            "isStateful": "false",
-            "isExternal": "false"
-          },
-          "sku": {
-            "name": "S0",
-            "tier": "Basic",
-            "capacity": 1,
-            "family": "GeneralPurpose"
-          },
-          "resources": [
-          ]
-        },
-        {
-          "type": "Microsoft.DBforPostgreSQL/servers/configurations",
-          "apiVersion": "2017-12-01",
-          "name": "MyDBServer/log_connections",
+          "dependsOn": [
+            "[resourceId('Microsoft.DBforPostgreSQL/servers', 'MyDBServer2')]"
+          ],
+          "name": "log_connections",
           "properties": {
             "value": "off"
           },
-          "dependsOn": [
-            "MyDBServer"
-          ],
           "location": "[resourceGroup().location]"
         }
-      ],
-      "outputs": {}
-    },
-    "parameters": {}
-  },
-  "kind": "template",
-  "type": "Microsoft.Blueprint/blueprints/artifacts",
-  "name": "myTemplate"
+      ]
+    }
+  ],
+  "outputs": {}
 }
 
 ```
-```json title="Positive test num. 3 - json file" hl_lines="45"
+```json title="Positive test num. 3 - json file" hl_lines="44"
 {
-  "properties": {
-    "template": {
-      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-      "contentVersion": "1.0.0.0",
-      "parameters": {},
-      "functions": [],
-      "variables": {},
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "functions": [],
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.DBforPostgreSQL/servers",
+      "apiVersion": "2017-12-01",
+      "kind": "",
+      "location": "[resourceGroup().location]",
+      "name": "MyDBServer3",
+      "properties": {
+        "sslEnforcement": "Disabled",
+        "version": "11",
+        "administratorLogin": "root",
+        "administratorLoginPassword": "12345",
+        "storageMB": "2048",
+        "createMode": "Default",
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "creationDate": "2019-04-01T00:00:00Z",
+        "lastModifiedDate": "2019-04-01T00:00:00Z",
+        "maxSizeUnits": "SizeUnit.megabytes",
+        "isReadOnly": "false",
+        "isAutoUpgradeEnabled": "true",
+        "isStateful": "false",
+        "isExternal": "false"
+      },
+      "sku": {
+        "name": "S0",
+        "tier": "Basic",
+        "capacity": 1,
+        "family": "GeneralPurpose"
+      },
       "resources": [
-        {
-          "type": "Microsoft.DBforPostgreSQL/servers",
-          "apiVersion": "2017-12-01",
-          "kind": "",
-          "location": "[resourceGroup().location]",
-          "name": "MyDBServer3",
-          "properties": {
-            "sslEnforcement": "Disabled",
-            "version": "11",
-            "administratorLogin": "root",
-            "administratorLoginPassword": "12345",
-            "storageMB": "2048",
-            "createMode": "Default",
-            "collation": "SQL_Latin1_General_CP1_CI_AS",
-            "creationDate": "2019-04-01T00:00:00Z",
-            "lastModifiedDate": "2019-04-01T00:00:00Z",
-            "maxSizeUnits": "SizeUnit.megabytes",
-            "isReadOnly": "false",
-            "isAutoUpgradeEnabled": "true",
-            "isStateful": "false",
-            "isExternal": "false"
-          },
-          "sku": {
-            "name": "S0",
-            "tier": "Basic",
-            "capacity": 1,
-            "family": "GeneralPurpose"
-          },
-          "resources": [
-          ]
-        },
-        {
-          "type": "Microsoft.DBforPostgreSQL/servers/configurations",
-          "apiVersion": "2017-12-01",
-          "name": "MyDBServer/log_connections",
-          "properties": {
-            "configurationSets": [
-              {
-                "configurationSetType": "Microsoft.DBforPostgreSQL/servers/configurations/dbconfig",
-                "configurationSet": {
-                  "name": "dbconfig"
-                }
-              }
-            ]
-          },
-          "dependsOn": [
-            "MyDBServer"
-          ],
-          "location": "[resourceGroup().location]"
-        }
-      ],
-      "outputs": {}
+      ]
     },
-    "parameters": {}
-  },
-  "kind": "template",
-  "type": "Microsoft.Blueprint/blueprints/artifacts",
-  "name": "myTemplate"
+    {
+      "type": "Microsoft.DBforPostgreSQL/servers/configurations",
+      "apiVersion": "2017-12-01",
+      "name": "MyDBServer/log_connections",
+      "properties": {
+        "value": "off"
+      },
+      "dependsOn": [
+        "MyDBServer"
+      ],
+      "location": "[resourceGroup().location]"
+    }
+  ],
+  "outputs": {}
 }
 
 ```
 <details><summary>Positive test num. 4 - json file</summary>
 
-```json hl_lines="47"
+```json hl_lines="43"
 {
-  "properties": {
-    "template": {
-      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-      "contentVersion": "1.0.0.0",
-      "parameters": {},
-      "functions": [],
-      "variables": {},
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "functions": [],
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.DBforPostgreSQL/servers",
+      "apiVersion": "2017-12-01",
+      "kind": "",
+      "location": "[resourceGroup().location]",
+      "name": "MyDBServer3",
+      "properties": {
+        "sslEnforcement": "Disabled",
+        "version": "11",
+        "administratorLogin": "root",
+        "administratorLoginPassword": "12345",
+        "storageMB": "2048",
+        "createMode": "Default",
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "creationDate": "2019-04-01T00:00:00Z",
+        "lastModifiedDate": "2019-04-01T00:00:00Z",
+        "maxSizeUnits": "SizeUnit.megabytes",
+        "isReadOnly": "false",
+        "isAutoUpgradeEnabled": "true",
+        "isStateful": "false",
+        "isExternal": "false"
+      },
+      "sku": {
+        "name": "S0",
+        "tier": "Basic",
+        "capacity": 1,
+        "family": "GeneralPurpose"
+      },
       "resources": [
-        {
-          "apiVersion": "2017-12-01",
-          "kind": "",
-          "location": "[resourceGroup().location]",
-          "name": "MyDBServer2",
-          "properties": {
-            "sslEnforcement": "Disabled",
-            "version": "11",
-            "administratorLogin": "root",
-            "administratorLoginPassword": "12345",
-            "storageMB": "2048",
-            "createMode": "Default",
-            "collation": "SQL_Latin1_General_CP1_CI_AS",
-            "creationDate": "2019-04-01T00:00:00Z",
-            "lastModifiedDate": "2019-04-01T00:00:00Z",
-            "maxSizeUnits": "SizeUnit.megabytes",
-            "isReadOnly": "false",
-            "isAutoUpgradeEnabled": "true",
-            "isStateful": "false",
-            "isExternal": "false"
-          },
-          "sku": {
-            "name": "S0",
-            "tier": "Basic",
-            "capacity": 1,
-            "family": "GeneralPurpose"
-          },
-          "type": "Microsoft.DBforPostgreSQL/servers",
-          "resources": [
-            {
-              "type": "configurations",
-              "apiVersion": "2017-12-01",
-              "dependsOn": [
-                "[resourceId('Microsoft.DBforPostgreSQL/servers', 'MyDBServer2')]"
-              ],
-              "name": "log_connections",
-              "properties": {
-                "value": "off"
-              },
-              "location": "[resourceGroup().location]"
-            }
-          ]
-        }
-      ],
-      "outputs": {}
+      ]
     },
-    "parameters": {}
-  },
-  "kind": "template",
-  "type": "Microsoft.Blueprint/blueprints/artifacts",
-  "name": "myTemplate"
+    {
+      "type": "Microsoft.DBforPostgreSQL/servers/configurations",
+      "apiVersion": "2017-12-01",
+      "name": "MyDBServer/log_connections",
+      "properties": {
+        "configurationSets": [
+          {
+            "configurationSetType": "Microsoft.DBforPostgreSQL/servers/configurations/dbconfig",
+            "configurationSet": {
+              "name": "dbconfig"
+            }
+          }
+        ]
+      },
+      "dependsOn": [
+        "MyDBServer"
+      ],
+      "location": "[resourceGroup().location]"
+    }
+  ],
+  "outputs": {}
 }
 
 ```
@@ -362,192 +338,74 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 </details>
 <details><summary>Positive test num. 6 - json file</summary>
 
-```json hl_lines="44"
+```json hl_lines="47"
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {},
-  "functions": [],
-  "variables": {},
-  "resources": [
-    {
-      "type": "Microsoft.DBforPostgreSQL/servers",
-      "apiVersion": "2017-12-01",
-      "kind": "",
-      "location": "[resourceGroup().location]",
-      "name": "MyDBServer3",
-      "properties": {
-        "sslEnforcement": "Disabled",
-        "version": "11",
-        "administratorLogin": "root",
-        "administratorLoginPassword": "12345",
-        "storageMB": "2048",
-        "createMode": "Default",
-        "collation": "SQL_Latin1_General_CP1_CI_AS",
-        "creationDate": "2019-04-01T00:00:00Z",
-        "lastModifiedDate": "2019-04-01T00:00:00Z",
-        "maxSizeUnits": "SizeUnit.megabytes",
-        "isReadOnly": "false",
-        "isAutoUpgradeEnabled": "true",
-        "isStateful": "false",
-        "isExternal": "false"
-      },
-      "sku": {
-        "name": "S0",
-        "tier": "Basic",
-        "capacity": 1,
-        "family": "GeneralPurpose"
-      },
+  "properties": {
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {},
+      "functions": [],
+      "variables": {},
       "resources": [
-      ]
-    },
-    {
-      "type": "Microsoft.DBforPostgreSQL/servers/configurations",
-      "apiVersion": "2017-12-01",
-      "name": "MyDBServer/log_connections",
-      "properties": {
-        "value": "off"
-      },
-      "dependsOn": [
-        "MyDBServer"
+        {
+          "apiVersion": "2017-12-01",
+          "kind": "",
+          "location": "[resourceGroup().location]",
+          "name": "MyDBServer2",
+          "properties": {
+            "sslEnforcement": "Disabled",
+            "version": "11",
+            "administratorLogin": "root",
+            "administratorLoginPassword": "12345",
+            "storageMB": "2048",
+            "createMode": "Default",
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "creationDate": "2019-04-01T00:00:00Z",
+            "lastModifiedDate": "2019-04-01T00:00:00Z",
+            "maxSizeUnits": "SizeUnit.megabytes",
+            "isReadOnly": "false",
+            "isAutoUpgradeEnabled": "true",
+            "isStateful": "false",
+            "isExternal": "false"
+          },
+          "sku": {
+            "name": "S0",
+            "tier": "Basic",
+            "capacity": 1,
+            "family": "GeneralPurpose"
+          },
+          "type": "Microsoft.DBforPostgreSQL/servers",
+          "resources": [
+            {
+              "type": "configurations",
+              "apiVersion": "2017-12-01",
+              "dependsOn": [
+                "[resourceId('Microsoft.DBforPostgreSQL/servers', 'MyDBServer2')]"
+              ],
+              "name": "log_connections",
+              "properties": {
+                "value": "off"
+              },
+              "location": "[resourceGroup().location]"
+            }
+          ]
+        }
       ],
-      "location": "[resourceGroup().location]"
-    }
-  ],
-  "outputs": {}
+      "outputs": {}
+    },
+    "parameters": {}
+  },
+  "kind": "template",
+  "type": "Microsoft.Blueprint/blueprints/artifacts",
+  "name": "myTemplate"
 }
 
 ```
 </details>
 <details><summary>Positive test num. 7 - json file</summary>
 
-```json hl_lines="45"
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {},
-  "functions": [],
-  "variables": {},
-  "resources": [
-    {
-      "apiVersion": "2017-12-01",
-      "kind": "",
-      "location": "[resourceGroup().location]",
-      "name": "MyDBServer2",
-      "properties": {
-        "sslEnforcement": "Disabled",
-        "version": "11",
-        "administratorLogin": "root",
-        "administratorLoginPassword": "12345",
-        "storageMB": "2048",
-        "createMode": "Default",
-        "collation": "SQL_Latin1_General_CP1_CI_AS",
-        "creationDate": "2019-04-01T00:00:00Z",
-        "lastModifiedDate": "2019-04-01T00:00:00Z",
-        "maxSizeUnits": "SizeUnit.megabytes",
-        "isReadOnly": "false",
-        "isAutoUpgradeEnabled": "true",
-        "isStateful": "false",
-        "isExternal": "false"
-      },
-      "sku": {
-        "name": "S0",
-        "tier": "Basic",
-        "capacity": 1,
-        "family": "GeneralPurpose"
-      },
-      "type": "Microsoft.DBforPostgreSQL/servers",
-      "resources": [
-        {
-          "type": "configurations",
-          "apiVersion": "2017-12-01",
-          "dependsOn": [
-            "[resourceId('Microsoft.DBforPostgreSQL/servers', 'MyDBServer2')]"
-          ],
-          "name": "log_connections",
-          "properties": {
-            "value": "off"
-          },
-          "location": "[resourceGroup().location]"
-        }
-      ]
-    }
-  ],
-  "outputs": {}
-}
-
-```
-</details>
-<details><summary>Positive test num. 8 - json file</summary>
-
-```json hl_lines="43"
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {},
-  "functions": [],
-  "variables": {},
-  "resources": [
-    {
-      "type": "Microsoft.DBforPostgreSQL/servers",
-      "apiVersion": "2017-12-01",
-      "kind": "",
-      "location": "[resourceGroup().location]",
-      "name": "MyDBServer3",
-      "properties": {
-        "sslEnforcement": "Disabled",
-        "version": "11",
-        "administratorLogin": "root",
-        "administratorLoginPassword": "12345",
-        "storageMB": "2048",
-        "createMode": "Default",
-        "collation": "SQL_Latin1_General_CP1_CI_AS",
-        "creationDate": "2019-04-01T00:00:00Z",
-        "lastModifiedDate": "2019-04-01T00:00:00Z",
-        "maxSizeUnits": "SizeUnit.megabytes",
-        "isReadOnly": "false",
-        "isAutoUpgradeEnabled": "true",
-        "isStateful": "false",
-        "isExternal": "false"
-      },
-      "sku": {
-        "name": "S0",
-        "tier": "Basic",
-        "capacity": 1,
-        "family": "GeneralPurpose"
-      },
-      "resources": [
-      ]
-    },
-    {
-      "type": "Microsoft.DBforPostgreSQL/servers/configurations",
-      "apiVersion": "2017-12-01",
-      "name": "MyDBServer/log_connections",
-      "properties": {
-        "configurationSets": [
-          {
-            "configurationSetType": "Microsoft.DBforPostgreSQL/servers/configurations/dbconfig",
-            "configurationSet": {
-              "name": "dbconfig"
-            }
-          }
-        ]
-      },
-      "dependsOn": [
-        "MyDBServer"
-      ],
-      "location": "[resourceGroup().location]"
-    }
-  ],
-  "outputs": {}
-}
-
-```
-</details>
-
-
-#### Code samples without security vulnerabilities
-```json title="Negative test num. 1 - json file"
+```json hl_lines="46"
 {
   "properties": {
     "template": {
@@ -593,7 +451,7 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
           "apiVersion": "2017-12-01",
           "name": "MyDBServer/log_connections",
           "properties": {
-            "value": "on"
+            "value": "off"
           },
           "dependsOn": [
             "MyDBServer"
@@ -611,7 +469,85 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 }
 
 ```
-```json title="Negative test num. 2 - json file"
+</details>
+<details><summary>Positive test num. 8 - json file</summary>
+
+```json hl_lines="45"
+{
+  "properties": {
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {},
+      "functions": [],
+      "variables": {},
+      "resources": [
+        {
+          "type": "Microsoft.DBforPostgreSQL/servers",
+          "apiVersion": "2017-12-01",
+          "kind": "",
+          "location": "[resourceGroup().location]",
+          "name": "MyDBServer3",
+          "properties": {
+            "sslEnforcement": "Disabled",
+            "version": "11",
+            "administratorLogin": "root",
+            "administratorLoginPassword": "12345",
+            "storageMB": "2048",
+            "createMode": "Default",
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "creationDate": "2019-04-01T00:00:00Z",
+            "lastModifiedDate": "2019-04-01T00:00:00Z",
+            "maxSizeUnits": "SizeUnit.megabytes",
+            "isReadOnly": "false",
+            "isAutoUpgradeEnabled": "true",
+            "isStateful": "false",
+            "isExternal": "false"
+          },
+          "sku": {
+            "name": "S0",
+            "tier": "Basic",
+            "capacity": 1,
+            "family": "GeneralPurpose"
+          },
+          "resources": [
+          ]
+        },
+        {
+          "type": "Microsoft.DBforPostgreSQL/servers/configurations",
+          "apiVersion": "2017-12-01",
+          "name": "MyDBServer/log_connections",
+          "properties": {
+            "configurationSets": [
+              {
+                "configurationSetType": "Microsoft.DBforPostgreSQL/servers/configurations/dbconfig",
+                "configurationSet": {
+                  "name": "dbconfig"
+                }
+              }
+            ]
+          },
+          "dependsOn": [
+            "MyDBServer"
+          ],
+          "location": "[resourceGroup().location]"
+        }
+      ],
+      "outputs": {}
+    },
+    "parameters": {}
+  },
+  "kind": "template",
+  "type": "Microsoft.Blueprint/blueprints/artifacts",
+  "name": "myTemplate"
+}
+
+```
+</details>
+
+
+#### Code samples without security vulnerabilities
+```json title="Negative test num. 1 - json file"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -654,6 +590,62 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
       ]
     }
   ]
+}
+
+```
+```json title="Negative test num. 2 - json file"
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "functions": [],
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.DBforPostgreSQL/servers",
+      "apiVersion": "2017-12-01",
+      "kind": "",
+      "location": "[resourceGroup().location]",
+      "name": "MyDBServer3",
+      "properties": {
+        "sslEnforcement": "Disabled",
+        "version": "11",
+        "administratorLogin": "root",
+        "administratorLoginPassword": "12345",
+        "storageMB": "2048",
+        "createMode": "Default",
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "creationDate": "2019-04-01T00:00:00Z",
+        "lastModifiedDate": "2019-04-01T00:00:00Z",
+        "maxSizeUnits": "SizeUnit.megabytes",
+        "isReadOnly": "false",
+        "isAutoUpgradeEnabled": "true",
+        "isStateful": "false",
+        "isExternal": "false"
+      },
+      "sku": {
+        "name": "S0",
+        "tier": "Basic",
+        "capacity": 1,
+        "family": "GeneralPurpose"
+      },
+      "resources": [
+      ]
+    },
+    {
+      "type": "Microsoft.DBforPostgreSQL/servers/configurations",
+      "apiVersion": "2017-12-01",
+      "name": "MyDBServer/log_connections",
+      "properties": {
+        "value": "on"
+      },
+      "dependsOn": [
+        "MyDBServer"
+      ],
+      "location": "[resourceGroup().location]"
+    }
+  ],
+  "outputs": {}
 }
 
 ```
@@ -716,57 +708,65 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 
 ```json
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {},
-  "functions": [],
-  "variables": {},
-  "resources": [
-    {
-      "type": "Microsoft.DBforPostgreSQL/servers",
-      "apiVersion": "2017-12-01",
-      "kind": "",
-      "location": "[resourceGroup().location]",
-      "name": "MyDBServer3",
-      "properties": {
-        "sslEnforcement": "Disabled",
-        "version": "11",
-        "administratorLogin": "root",
-        "administratorLoginPassword": "12345",
-        "storageMB": "2048",
-        "createMode": "Default",
-        "collation": "SQL_Latin1_General_CP1_CI_AS",
-        "creationDate": "2019-04-01T00:00:00Z",
-        "lastModifiedDate": "2019-04-01T00:00:00Z",
-        "maxSizeUnits": "SizeUnit.megabytes",
-        "isReadOnly": "false",
-        "isAutoUpgradeEnabled": "true",
-        "isStateful": "false",
-        "isExternal": "false"
-      },
-      "sku": {
-        "name": "S0",
-        "tier": "Basic",
-        "capacity": 1,
-        "family": "GeneralPurpose"
-      },
+  "properties": {
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {},
+      "functions": [],
+      "variables": {},
       "resources": [
-      ]
-    },
-    {
-      "type": "Microsoft.DBforPostgreSQL/servers/configurations",
-      "apiVersion": "2017-12-01",
-      "name": "MyDBServer/log_connections",
-      "properties": {
-        "value": "on"
-      },
-      "dependsOn": [
-        "MyDBServer"
+        {
+          "type": "Microsoft.DBforPostgreSQL/servers",
+          "apiVersion": "2017-12-01",
+          "kind": "",
+          "location": "[resourceGroup().location]",
+          "name": "MyDBServer3",
+          "properties": {
+            "sslEnforcement": "Disabled",
+            "version": "11",
+            "administratorLogin": "root",
+            "administratorLoginPassword": "12345",
+            "storageMB": "2048",
+            "createMode": "Default",
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "creationDate": "2019-04-01T00:00:00Z",
+            "lastModifiedDate": "2019-04-01T00:00:00Z",
+            "maxSizeUnits": "SizeUnit.megabytes",
+            "isReadOnly": "false",
+            "isAutoUpgradeEnabled": "true",
+            "isStateful": "false",
+            "isExternal": "false"
+          },
+          "sku": {
+            "name": "S0",
+            "tier": "Basic",
+            "capacity": 1,
+            "family": "GeneralPurpose"
+          },
+          "resources": [
+          ]
+        },
+        {
+          "type": "Microsoft.DBforPostgreSQL/servers/configurations",
+          "apiVersion": "2017-12-01",
+          "name": "MyDBServer/log_connections",
+          "properties": {
+            "value": "on"
+          },
+          "dependsOn": [
+            "MyDBServer"
+          ],
+          "location": "[resourceGroup().location]"
+        }
       ],
-      "location": "[resourceGroup().location]"
-    }
-  ],
-  "outputs": {}
+      "outputs": {}
+    },
+    "parameters": {}
+  },
+  "kind": "template",
+  "type": "Microsoft.Blueprint/blueprints/artifacts",
+  "name": "myTemplate"
 }
 
 ```

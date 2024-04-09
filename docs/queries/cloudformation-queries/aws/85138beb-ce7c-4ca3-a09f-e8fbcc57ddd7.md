@@ -37,20 +37,17 @@ Resources:
       AssumeRolePolicyDocument: >
         {
           "Version": "2012-10-17",
-          "Statement": {
+          "Statement": [
+            {
               "Action": "sts:AssumeRole",
               "Principal": {
                 "AWS": "arn:aws:iam::987654321145:root"
               },
               "Effect": "Allow",
               "Resource": "*",
-              "Sid": "",
-              "Condition": {
-                "StringEquals": {
-                  "sts:ExternalId": ""
-                }
-              }
-          }
+              "Sid": ""
+            }
+          ]
         }
 
 ```
@@ -63,20 +60,17 @@ Resources:
       "Properties": {
         "AssumeRolePolicyDocument": {
           "Version": "2012-10-17",
-          "Statement": {
-            "Action": "sts:AssumeRole",
-            "Principal": {
-              "AWS": "arn:aws:iam::987654321145:root"
-            },
-            "Effect": "Allow",
-            "Resource": "*",
-            "Sid": "",
-            "Condition": {
-              "StringEquals": {
-                "sts:ExternalId": ""
-              }
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Principal": {
+                "AWS": "arn:aws:iam::987654321145:root"
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+              "Sid": ""
             }
-          }
+          ]
         },
         "Path": "/"
       }
@@ -111,64 +105,7 @@ Resources:
         }
 
 ```
-<details><summary>Positive test num. 4 - yaml file</summary>
-
-```yaml hl_lines="6"
-AWSTemplateFormatVersion: "2010-09-09"
-Resources:
-  RootRole:
-    Type: "AWS::IAM::Role"
-    Properties:
-      AssumeRolePolicyDocument: >
-        {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Principal": {
-                "AWS": "arn:aws:iam::987654321145:root"
-              },
-              "Effect": "Allow",
-              "Resource": "*",
-              "Sid": ""
-            }
-          ]
-        }
-
-```
-</details>
-<details><summary>Positive test num. 5 - json file</summary>
-
-```json hl_lines="7"
-{
-  "AWSTemplateFormatVersion": "2010-09-09",
-  "Resources": {
-    "RootRole": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Principal": {
-                "AWS": "arn:aws:iam::987654321145:root"
-              },
-              "Effect": "Allow",
-              "Resource": "*",
-              "Sid": ""
-            }
-          ]
-        },
-        "Path": "/"
-      }
-    }
-  }
-}
-
-```
-</details>
-<details><summary>Positive test num. 6 - json file</summary>
+<details><summary>Positive test num. 4 - json file</summary>
 
 ```json hl_lines="7"
 {
@@ -202,10 +139,38 @@ Resources:
 
 ```
 </details>
+<details><summary>Positive test num. 5 - yaml file</summary>
 
+```yaml hl_lines="6"
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  RootRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument: >
+        {
+          "Version": "2012-10-17",
+          "Statement": {
+              "Action": "sts:AssumeRole",
+              "Principal": {
+                "AWS": "arn:aws:iam::987654321145:root"
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+              "Sid": "",
+              "Condition": {
+                "StringEquals": {
+                  "sts:ExternalId": ""
+                }
+              }
+          }
+        }
 
-#### Code samples without security vulnerabilities
-```json title="Negative test num. 1 - json file"
+```
+</details>
+<details><summary>Positive test num. 6 - json file</summary>
+
+```json hl_lines="7"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
@@ -214,28 +179,58 @@ Resources:
       "Properties": {
         "AssumeRolePolicyDocument": {
           "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Principal": {
-                "AWS": "arn:aws:iam::987654321145:root"
-              },
-              "Effect": "Allow",
-              "Resource": "*",
-              "Sid": "",
-              "Condition": { 
-                "Bool": { 
-                    "aws:MultiFactorAuthPresent": "true" 
-                  }
+          "Statement": {
+            "Action": "sts:AssumeRole",
+            "Principal": {
+              "AWS": "arn:aws:iam::987654321145:root"
+            },
+            "Effect": "Allow",
+            "Resource": "*",
+            "Sid": "",
+            "Condition": {
+              "StringEquals": {
+                "sts:ExternalId": ""
               }
             }
-          ]
+          }
         },
         "Path": "/"
       }
     }
   }
 }
+
+```
+</details>
+
+
+#### Code samples without security vulnerabilities
+```yaml title="Negative test num. 1 - yaml file"
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  RootRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument: >
+        {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Action": "sts:AssumeRole",
+                "Principal": {
+                  "AWS": "arn:aws:iam::987654321145:root"
+                },
+                "Effect": "Allow",
+                "Resource": "*",
+                "Sid": "",
+                "Condition": {
+                  "StringEquals": {
+                    "sts:ExternalId": "98765"
+                  }
+                }
+              }
+            ]
+        }
 
 ```
 ```json title="Negative test num. 2 - json file"
@@ -299,34 +294,39 @@ Resources:
         }
 
 ```
-<details><summary>Negative test num. 4 - yaml file</summary>
+<details><summary>Negative test num. 4 - json file</summary>
 
-```yaml
-AWSTemplateFormatVersion: "2010-09-09"
-Resources:
-  RootRole:
-    Type: "AWS::IAM::Role"
-    Properties:
-      AssumeRolePolicyDocument: >
-        {
-            "Version": "2012-10-17",
-            "Statement": [
-              {
-                "Action": "sts:AssumeRole",
-                "Principal": {
-                  "AWS": "arn:aws:iam::987654321145:root"
-                },
-                "Effect": "Allow",
-                "Resource": "*",
-                "Sid": "",
-                "Condition": {
-                  "StringEquals": {
-                    "sts:ExternalId": "98765"
+```json
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "RootRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Principal": {
+                "AWS": "arn:aws:iam::987654321145:root"
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+              "Sid": "",
+              "Condition": { 
+                "Bool": { 
+                    "aws:MultiFactorAuthPresent": "true" 
                   }
-                }
               }
-            ]
-        }
+            }
+          ]
+        },
+        "Path": "/"
+      }
+    }
+  }
+}
 
 ```
 </details>

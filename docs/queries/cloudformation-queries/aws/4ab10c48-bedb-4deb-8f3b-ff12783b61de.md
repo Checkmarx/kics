@@ -61,7 +61,39 @@ Resources:
           ThrottlingBurstLimit: '555'
 
 ```
-```json title="Positive test num. 2 - json file" hl_lines="23"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="6"
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "BatchJobDefinition"
+Resources:
+  ProdPos4:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      StageName: Prod
+      Description: Prod Stage
+      RestApiId: !Ref MyRestApi
+      DeploymentId: !Ref TestDeployment
+      DocumentationVersion: !Ref MyDocumentationVersion
+      ClientCertificateId: !Ref ClientCertificate
+      Variables:
+        Stack: Prod
+      MethodSettings:
+        - ResourcePath: /
+          HttpMethod: GET
+          MetricsEnabled: 'true'
+          DataTraceEnabled: 'false'
+        - ResourcePath: /stack
+          HttpMethod: POST
+          MetricsEnabled: 'true'
+          DataTraceEnabled: 'false'
+          ThrottlingBurstLimit: '999'
+        - ResourcePath: /stack
+          HttpMethod: GET
+          MetricsEnabled: 'true'
+          DataTraceEnabled: 'false'
+          ThrottlingBurstLimit: '555'
+
+```
+```json title="Positive test num. 3 - json file" hl_lines="23"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
@@ -113,7 +145,9 @@ Resources:
 }
 
 ```
-```json title="Positive test num. 3 - json file" hl_lines="6"
+<details><summary>Positive test num. 4 - json file</summary>
+
+```json hl_lines="6"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
@@ -164,13 +198,15 @@ Resources:
 }
 
 ```
-<details><summary>Positive test num. 4 - yaml file</summary>
+</details>
 
-```yaml hl_lines="6"
+
+#### Code samples without security vulnerabilities
+```yaml title="Negative test num. 1 - yaml file"
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "BatchJobDefinition"
 Resources:
-  ProdPos4:
+  ProdNeg1:
     Type: AWS::ApiGateway::Stage
     Properties:
       StageName: Prod
@@ -179,6 +215,7 @@ Resources:
       DeploymentId: !Ref TestDeployment
       DocumentationVersion: !Ref MyDocumentationVersion
       ClientCertificateId: !Ref ClientCertificate
+      TracingEnabled: true
       Variables:
         Stack: Prod
       MethodSettings:
@@ -198,11 +235,7 @@ Resources:
           ThrottlingBurstLimit: '555'
 
 ```
-</details>
-
-
-#### Code samples without security vulnerabilities
-```json title="Negative test num. 1 - json file"
+```json title="Negative test num. 2 - json file"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
@@ -252,38 +285,5 @@ Resources:
     }
   }
 }
-
-```
-```yaml title="Negative test num. 2 - yaml file"
-AWSTemplateFormatVersion: "2010-09-09"
-Description: "BatchJobDefinition"
-Resources:
-  ProdNeg1:
-    Type: AWS::ApiGateway::Stage
-    Properties:
-      StageName: Prod
-      Description: Prod Stage
-      RestApiId: !Ref MyRestApi
-      DeploymentId: !Ref TestDeployment
-      DocumentationVersion: !Ref MyDocumentationVersion
-      ClientCertificateId: !Ref ClientCertificate
-      TracingEnabled: true
-      Variables:
-        Stack: Prod
-      MethodSettings:
-        - ResourcePath: /
-          HttpMethod: GET
-          MetricsEnabled: 'true'
-          DataTraceEnabled: 'false'
-        - ResourcePath: /stack
-          HttpMethod: POST
-          MetricsEnabled: 'true'
-          DataTraceEnabled: 'false'
-          ThrottlingBurstLimit: '999'
-        - ResourcePath: /stack
-          HttpMethod: GET
-          MetricsEnabled: 'true'
-          DataTraceEnabled: 'false'
-          ThrottlingBurstLimit: '555'
 
 ```
