@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 350f3955-b5be-436f-afaa-3d2be2fa6cdd
 -   **Query name:** Azure Managed Disk Without Encryption
 -   **Platform:** AzureResourceManager
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Encryption
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/azure_managed_disk_without_encryption)
 
@@ -76,42 +76,7 @@ Azure Disk Encryption should be enabled<br>
 }
 
 ```
-```json title="Positive test num. 2 - json file" hl_lines="19"
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "projectName": {
-      "type": "string",
-      "metadata": {
-        "description": "Specifies a name for generating resource names."
-      }
-    }
-  },
-  "variables": {
-    "vmName": "[concat(parameters('projectName'), '-vm')]"
-  },
-  "resources": [
-    {
-      "type": "Microsoft.Compute/disks",
-      "apiVersion": "2020-09-30",
-      "name": "[concat(variables('vmName'),'-disk1')]",
-      "location": "[resourceGroup().location]",
-      "sku": {
-        "name": "Standard_LRS"
-      },
-      "properties": {
-        "creationData": {
-          "createOption": "Empty"
-        },
-        "diskSizeGB": 512
-      }
-    }
-  ]
-}
-
-```
-```json title="Positive test num. 3 - json file" hl_lines="32"
+```json title="Positive test num. 2 - json file" hl_lines="32"
 {
   "properties": {
     "template": {
@@ -165,6 +130,41 @@ Azure Disk Encryption should be enabled<br>
   "kind": "template",
   "type": "Microsoft.Blueprint/blueprints/artifacts",
   "name": "myTemplate"
+}
+
+```
+```json title="Positive test num. 3 - json file" hl_lines="19"
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectName": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies a name for generating resource names."
+      }
+    }
+  },
+  "variables": {
+    "vmName": "[concat(parameters('projectName'), '-vm')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Compute/disks",
+      "apiVersion": "2020-09-30",
+      "name": "[concat(variables('vmName'),'-disk1')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "properties": {
+        "creationData": {
+          "createOption": "Empty"
+        },
+        "diskSizeGB": 512
+      }
+    }
+  ]
 }
 
 ```
