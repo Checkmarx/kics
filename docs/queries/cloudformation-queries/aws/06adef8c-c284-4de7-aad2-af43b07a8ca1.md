@@ -106,56 +106,66 @@ Resources:
 
 
 #### Code samples without security vulnerabilities
-```json title="Negative test num. 1 - json file"
-{
-  "Resources": {
-    "myNewuser": {
-      "Type": "AWS::IAM::User",
-      "Properties": {
-        "Path": "/",
-        "LoginProfile": {
-          "Password": [
-            "secretsmanager"
-          ],
-          "PasswordResetRequired": false
-        },
-        "Policies": [
-          {
-            "PolicyName": "giveaccesstoqueueonly",
-            "PolicyDocument": {
-              "Version": "2012-10-17",
-              "Statement": [
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "sqs:*"
-                  ],
-                  "Resource": [
-                    "myqueue.Arn"
-                  ]
-                },
-                {
-                  "Effect": "Deny",
-                  "Action": [
-                    "sqs:*"
-                  ],
-                  "NotResource": [
-                    "myqueue.Arn"
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  },
-  "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "A sample template"
-}
+```yaml title="Negative test num. 1 - yaml file"
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A sample template
+Resources:
+    myTopuser:
+      Type: AWS::IAM::User
+      Properties:
+        Path: "/"
+        LoginProfile:
+         Password:
+         - !Ref NoEcho
+         PasswordResetRequired: false
+        Policies:
+        - PolicyName: giveaccesstoqueueonly
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Action:
+              - sqs:*
+              Resource:
+              - !GetAtt myqueue.Arn
+            - Effect: Deny
+              Action:
+              - sqs:*
+              NotResource:
+              - !GetAtt myqueue.Arn
 
 ```
-```json title="Negative test num. 2 - json file"
+```yaml title="Negative test num. 2 - yaml file"
+
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A sample template
+Resources:
+    myNewuser:
+      Type: AWS::IAM::User
+      Properties:
+        Path: "/"
+        LoginProfile:
+         Password:
+         - !Ref secretsmanager
+         PasswordResetRequired: false
+        Policies:
+        - PolicyName: giveaccesstoqueueonly
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Action:
+              - sqs:*
+              Resource:
+              - !GetAtt myqueue.Arn
+            - Effect: Deny
+              Action:
+              - sqs:*
+              NotResource:
+              - !GetAtt myqueue.Arn
+
+```
+```json title="Negative test num. 3 - json file"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "A sample template",
@@ -204,65 +214,55 @@ Resources:
 }
 
 ```
-```yaml title="Negative test num. 3 - yaml file"
+<details><summary>Negative test num. 4 - json file</summary>
 
-AWSTemplateFormatVersion: "2010-09-09"
-Description: A sample template
-Resources:
-    myNewuser:
-      Type: AWS::IAM::User
-      Properties:
-        Path: "/"
-        LoginProfile:
-         Password:
-         - !Ref secretsmanager
-         PasswordResetRequired: false
-        Policies:
-        - PolicyName: giveaccesstoqueueonly
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-            - Effect: Allow
-              Action:
-              - sqs:*
-              Resource:
-              - !GetAtt myqueue.Arn
-            - Effect: Deny
-              Action:
-              - sqs:*
-              NotResource:
-              - !GetAtt myqueue.Arn
-
-```
-<details><summary>Negative test num. 4 - yaml file</summary>
-
-```yaml
-AWSTemplateFormatVersion: "2010-09-09"
-Description: A sample template
-Resources:
-    myTopuser:
-      Type: AWS::IAM::User
-      Properties:
-        Path: "/"
-        LoginProfile:
-         Password:
-         - !Ref NoEcho
-         PasswordResetRequired: false
-        Policies:
-        - PolicyName: giveaccesstoqueueonly
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-            - Effect: Allow
-              Action:
-              - sqs:*
-              Resource:
-              - !GetAtt myqueue.Arn
-            - Effect: Deny
-              Action:
-              - sqs:*
-              NotResource:
-              - !GetAtt myqueue.Arn
+```json
+{
+  "Resources": {
+    "myNewuser": {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "Path": "/",
+        "LoginProfile": {
+          "Password": [
+            "secretsmanager"
+          ],
+          "PasswordResetRequired": false
+        },
+        "Policies": [
+          {
+            "PolicyName": "giveaccesstoqueueonly",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "sqs:*"
+                  ],
+                  "Resource": [
+                    "myqueue.Arn"
+                  ]
+                },
+                {
+                  "Effect": "Deny",
+                  "Action": [
+                    "sqs:*"
+                  ],
+                  "NotResource": [
+                    "myqueue.Arn"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "A sample template"
+}
 
 ```
 </details>

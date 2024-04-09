@@ -66,7 +66,17 @@ Resources:
 
 
 #### Code samples without security vulnerabilities
-```json title="Negative test num. 1 - json file"
+```yaml title="Negative test num. 1 - yaml file"
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "SDB Domain declared"
+Resources:
+  HostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: "HostedZone"
+
+```
+```json title="Negative test num. 2 - json file"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "SDB Domain declared",
@@ -79,15 +89,5 @@ Resources:
     }
   }
 }
-
-```
-```yaml title="Negative test num. 2 - yaml file"
-AWSTemplateFormatVersion: "2010-09-09"
-Description: "SDB Domain declared"
-Resources:
-  HostedZone:
-    Type: AWS::Route53::HostedZone
-    Properties:
-      Name: "HostedZone"
 
 ```

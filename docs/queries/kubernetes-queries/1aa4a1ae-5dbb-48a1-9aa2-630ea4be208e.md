@@ -74,8 +74,8 @@ spec:
   containers:
     - name: command-demo-container
       image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
-      command: ["kube-apiserver","--authorization-mode=RBAC,Node"]
-      args: []
+      command: ["kube-apiserver"]
+      args: ["--authorization-mode=RBAC,Node"]
   restartPolicy: OnFailure
 
 ```
@@ -90,8 +90,8 @@ spec:
   containers:
     - name: command-demo-container
       image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
-      command: ["kube-apiserver"]
-      args: ["--authorization-mode=RBAC,Node"]
+      command: ["kube-apiserver","--authorization-mode=RBAC,Node"]
+      args: []
   restartPolicy: OnFailure
 
 ```
