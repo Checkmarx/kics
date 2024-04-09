@@ -253,7 +253,11 @@ func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{
 		}
 	}
 
-	return ctx.PrimaryExpression().Accept(s)
+	if ctx.PrimaryExpression() != nil {
+		return ctx.PrimaryExpression().Accept(s)
+	}
+
+	return nil
 }
 
 // VisitPrimaryExpression is called when production primaryExpression is visited.
@@ -380,21 +384,23 @@ func (s *BicepVisitor) VisitObject(ctx *parser.ObjectContext) interface{} {
 }
 
 func (s *BicepVisitor) VisitObjectProperty(ctx *parser.ObjectPropertyContext) interface{} {
-	objectValue := ctx.Expression().Accept(s)
 	objectProperty := map[string]interface{}{}
-	if ctx.Identifier() != nil {
-		identifier, ok := ctx.Identifier().Accept(s).(string)
-		if !ok {
-			return map[string]interface{}{}
+	if ctx.Expression() != nil {
+		objectValue := ctx.Expression().Accept(s)
+		if ctx.Identifier() != nil {
+			identifier, ok := ctx.Identifier().Accept(s).(string)
+			if !ok {
+				return map[string]interface{}{}
+			}
+			objectProperty[identifier] = ctx.Expression().Accept(s)
 		}
-		objectProperty[identifier] = ctx.Expression().Accept(s)
-	}
-	if ctx.InterpString() != nil {
-		interpString, ok := ctx.InterpString().Accept(s).(string)
-		if !ok {
-			return map[string]interface{}{}
+		if ctx.InterpString() != nil {
+			interpString, ok := ctx.InterpString().Accept(s).(string)
+			if !ok {
+				return map[string]interface{}{}
+			}
+			objectProperty[interpString] = objectValue
 		}
-		objectProperty[interpString] = objectValue
 	}
 
 	return objectProperty
