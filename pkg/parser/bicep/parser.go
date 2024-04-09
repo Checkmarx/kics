@@ -233,6 +233,16 @@ func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{
 			if !ok {
 				return nil
 			}
+			for variable := range s.varList {
+				if variable == identifier {
+					identifier = "variables('" + identifier + "')"
+				}
+			}
+			for parameter := range s.paramList {
+				if parameter == identifier {
+					identifier = "parameters('" + identifier + "')"
+				}
+			}
 			exp := ctx.Expression(0).Accept(s)
 			if ctx.DOT() != nil {
 				switch exp := exp.(type) {
@@ -427,16 +437,6 @@ func (s *BicepVisitor) VisitObjectProperty(ctx *parser.ObjectPropertyContext) in
 func (s *BicepVisitor) VisitIdentifier(ctx *parser.IdentifierContext) interface{} {
 	if ctx.IDENTIFIER() != nil {
 		identifier := ctx.IDENTIFIER().GetText()
-		for variable := range s.varList {
-			if variable == identifier {
-				return "variables('" + identifier + "')"
-			}
-		}
-		for parameter := range s.paramList {
-			if parameter == identifier {
-				return "parameters('" + identifier + "')"
-			}
-		}
 		return identifier
 	}
 	if (ctx.PARAM()) != nil {
