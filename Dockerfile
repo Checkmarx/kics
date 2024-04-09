@@ -35,7 +35,7 @@ FROM cgr.dev/chainguard/git@sha256:1b0095b607c13391ea987bbcdac81745a363090cb3660
 
 ENV TERM xterm-256color
 
-USER root
+USER nonroot
 
 # Copy built binary to the runtime container
 # Vulnerability fixed in latest version of KICS remove when gh actions version is updated
