@@ -110,85 +110,7 @@ Encoding Map Key should be set in schema defined properties<br>
 }
 
 ```
-```yaml title="Positive test num. 2 - yaml file" hl_lines="42"
-openapi: 3.0.0
-info:
-  title: Simple API Overview
-  version: 1.0.0
-paths:
-  "/":
-    get:
-      operationId: listVersionsv2
-      summary: List API versions
-      responses:
-        "200":
-          description: 200 response
-          content:
-            application/json:
-              examples:
-                foo:
-                  value:
-                    versions:
-                      - status: CURRENT
-                        updated: "2011-01-21T11:33:21Z"
-                        id: v2.0
-                        links:
-                          - href: http://127.0.0.1:8774/v2/
-                            rel: self
-components:
-  responses:
-    ResponseExample:
-      description: 200 response
-      content:
-        application/json:
-          schema:
-            type: object
-            discriminator:
-              propertyName: petType
-            properties:
-              code:
-                type: string
-                format: binary
-              message:
-                type: string
-          encoding:
-            profileImage:
-              contentType: image/png, image/jpeg
-
-```
-```yaml title="Positive test num. 3 - yaml file" hl_lines="26"
-openapi: 3.0.0
-info:
-  title: Simple API Overview
-  version: 1.0.0
-paths:
-  "/":
-    get:
-      operationId: listVersionsv2
-      summary: List API versions
-      responses:
-        "200":
-          description: 200 response
-          content:
-            application/json:
-              schema:
-                type: object
-                discriminator:
-                  propertyName: petType
-                properties:
-                  code:
-                    type: string
-                    format: binary
-                  message:
-                    type: string
-              encoding:
-                profileImage:
-                  contentType: image/png, image/jpeg
-
-```
-<details><summary>Positive test num. 4 - json file</summary>
-
-```json hl_lines="36"
+```json title="Positive test num. 2 - json file" hl_lines="36"
 {
   "openapi": "3.0.0",
   "info": {
@@ -240,11 +162,7 @@ paths:
 }
 
 ```
-</details>
-
-
-#### Code samples without security vulnerabilities
-```yaml title="Negative test num. 1 - yaml file"
+```yaml title="Positive test num. 3 - yaml file" hl_lines="42"
 openapi: 3.0.0
 info:
   title: Simple API Overview
@@ -286,11 +204,47 @@ components:
               message:
                 type: string
           encoding:
-            code:
+            profileImage:
               contentType: image/png, image/jpeg
 
 ```
-```json title="Negative test num. 2 - json file"
+<details><summary>Positive test num. 4 - yaml file</summary>
+
+```yaml hl_lines="26"
+openapi: 3.0.0
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                type: object
+                discriminator:
+                  propertyName: petType
+                properties:
+                  code:
+                    type: string
+                    format: binary
+                  message:
+                    type: string
+              encoding:
+                profileImage:
+                  contentType: image/png, image/jpeg
+
+```
+</details>
+
+
+#### Code samples without security vulnerabilities
+```json title="Negative test num. 1 - json file"
 {
   "openapi": "3.0.0",
   "info": {
@@ -372,7 +326,7 @@ components:
 }
 
 ```
-```json title="Negative test num. 3 - json file"
+```json title="Negative test num. 2 - json file"
 {
   "openapi": "3.0.0",
   "info": {
@@ -422,6 +376,52 @@ components:
     }
   }
 }
+
+```
+```yaml title="Negative test num. 3 - yaml file"
+openapi: 3.0.0
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json:
+              examples:
+                foo:
+                  value:
+                    versions:
+                      - status: CURRENT
+                        updated: "2011-01-21T11:33:21Z"
+                        id: v2.0
+                        links:
+                          - href: http://127.0.0.1:8774/v2/
+                            rel: self
+components:
+  responses:
+    ResponseExample:
+      description: 200 response
+      content:
+        application/json:
+          schema:
+            type: object
+            discriminator:
+              propertyName: petType
+            properties:
+              code:
+                type: string
+                format: binary
+              message:
+                type: string
+          encoding:
+            code:
+              contentType: image/png, image/jpeg
 
 ```
 <details><summary>Negative test num. 4 - yaml file</summary>

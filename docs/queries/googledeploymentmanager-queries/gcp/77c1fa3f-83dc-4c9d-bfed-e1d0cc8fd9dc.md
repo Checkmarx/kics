@@ -54,7 +54,6 @@ resources:
     properties:
       storageClass: STANDARD
       location: EUROPE-WEST3
-      entity: user-liz@example.com
 
 ```
 ```yaml title="Negative test num. 2 - yaml file"
@@ -64,5 +63,6 @@ resources:
     properties:
       storageClass: STANDARD
       location: EUROPE-WEST3
+      entity: user-liz@example.com
 
 ```

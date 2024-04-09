@@ -72,6 +72,50 @@ EOF
 
 #### Code samples without security vulnerabilities
 ```tf title="Negative test num. 1 - tf file"
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_kms_key" "secure_policy" {
+  description             = "KMS key + secure_policy"
+  deletion_window_in_days = 7
+
+  policy = <<EOF
+{
+    "Version": "2008-10-17",
+    "Statement": [
+        {
+            "Sid": "Secure Policy",
+            "Effect": "Allow",
+            "Resource": "*",
+            "Action": [
+            "kms:Create*",
+            "kms:Describe*",
+            "kms:Enable*",
+            "kms:List*",
+            "kms:Put*",
+            "kms:Update*",
+            "kms:Revoke*",
+            "kms:Disable*",
+            "kms:Get*",
+            "kms:Delete*",
+            "kms:TagResource",
+            "kms:UntagResource",
+            "kms:ScheduleKeyDeletion",
+            "kms:CancelKeyDeletion"
+            ],
+            "Principal": "AWS": [
+              "arn:aws:iam::AWS-account-ID:user/user-name-1",
+              "arn:aws:iam::AWS-account-ID:user/UserName2"
+            ]
+        }
+    ]
+}
+EOF
+}
+
+```
+```tf title="Negative test num. 2 - tf file"
 resource "aws_iam_user" "user" {
   name = "test-user"
 }
@@ -129,7 +173,7 @@ resource "aws_iam_policy_attachment" "test-attach" {
 }
 
 ```
-```tf title="Negative test num. 2 - tf file"
+```tf title="Negative test num. 3 - tf file"
 data "aws_iam_policy_document" "glue-example-policyX" {
   statement {
     actions = [
@@ -145,50 +189,6 @@ data "aws_iam_policy_document" "glue-example-policyX" {
 
 resource "aws_glue_resource_policy" "exampleX" {
   policy = data.aws_iam_policy_document.glue-example-policyX.json
-}
-
-```
-```tf title="Negative test num. 3 - tf file"
-provider "aws" {
-  region = "us-east-1"
-}
-
-resource "aws_kms_key" "secure_policy" {
-  description             = "KMS key + secure_policy"
-  deletion_window_in_days = 7
-
-  policy = <<EOF
-{
-    "Version": "2008-10-17",
-    "Statement": [
-        {
-            "Sid": "Secure Policy",
-            "Effect": "Allow",
-            "Resource": "*",
-            "Action": [
-            "kms:Create*",
-            "kms:Describe*",
-            "kms:Enable*",
-            "kms:List*",
-            "kms:Put*",
-            "kms:Update*",
-            "kms:Revoke*",
-            "kms:Disable*",
-            "kms:Get*",
-            "kms:Delete*",
-            "kms:TagResource",
-            "kms:UntagResource",
-            "kms:ScheduleKeyDeletion",
-            "kms:CancelKeyDeletion"
-            ],
-            "Principal": "AWS": [
-              "arn:aws:iam::AWS-account-ID:user/user-name-1",
-              "arn:aws:iam::AWS-account-ID:user/UserName2"
-            ]
-        }
-    ]
-}
-EOF
 }
 
 ```
