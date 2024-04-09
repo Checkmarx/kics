@@ -1826,84 +1826,6 @@
 
 <h2 id="pulumi_queries_list">Pulumi Queries List<a class="headerlink" href="#pulumi_queries_list" title="Permanent link">&para;</a></h2>
 <p>This page contains all queries from Pulumi.</p>
-<h3 id="kubernetes">KUBERNETES<a class="headerlink" href="#kubernetes" title="Permanent link">&para;</a></h3>
-<p>Below are listed queries related to Pulumi KUBERNETES:</p>
-<table>
-<thead>
-<tr>
-<th>Query</th>
-<th>Severity</th>
-<th>Category</th>
-<th>More info</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PSP Set To Privileged<br/><sup><sub>ee305555-6b1d-4055-94cf-e22131143c34</sub></sup></td>
-<td><span style="color:#bb2124">High</span></td>
-<td>Insecure Configurations</td>
-<td><a href="../pulumi-queries/common/ee305555-6b1d-4055-94cf-e22131143c34" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/kubernetes/api-docs/policy/v1beta1/podsecuritypolicy/#privileged_yaml">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Missing App Armor Config<br/><sup><sub>95588189-1abd-4df1-9588-b0a5034f9e87</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Access Control</td>
-<td><a href="../pulumi-queries/common/95588189-1abd-4df1-9588-b0a5034f9e87" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/kubernetes/api-docs/core/v1/pod/#objectmeta">Documentation</a><br/></td>
-</tr>
-</tbody>
-</table>
-<h3 id="azure">AZURE<a class="headerlink" href="#azure" title="Permanent link">&para;</a></h3>
-<p>Below are listed queries related to Pulumi AZURE:</p>
-<table>
-<thead>
-<tr>
-<th>Query</th>
-<th>Severity</th>
-<th>Category</th>
-<th>More info</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>49e30ac8-f58e-4222-b488-3dcb90158ec1</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Encryption</td>
-<td><a href="../pulumi-queries/azure/49e30ac8-f58e-4222-b488-3dcb90158ec1" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/azure-native/api-docs/cache/redis/#enablenonsslport_yaml">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Storage Account Not Forcing HTTPS<br/><sup><sub>cb8e4bf0-903d-45c6-a278-9a947d82a27b</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Encryption</td>
-<td><a href="../pulumi-queries/azure/cb8e4bf0-903d-45c6-a278-9a947d82a27b" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/azure-native/api-docs/storage/storageaccount/#enablehttpstrafficonly_yaml">Documentation</a><br/></td>
-</tr>
-</tbody>
-</table>
-<h3 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h3>
-<p>Below are listed queries related to Pulumi GCP:</p>
-<table>
-<thead>
-<tr>
-<th>Query</th>
-<th>Severity</th>
-<th>Category</th>
-<th>More info</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Google Compute SSL Policy Weak Cipher In Use<br/><sup><sub>965e8830-2bec-4b9b-a7f0-24dbc200a68f</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Encryption</td>
-<td><a href="../pulumi-queries/gcp/965e8830-2bec-4b9b-a7f0-24dbc200a68f" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/compute/sslpolicy/#mintlsversion_yaml">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>48f7e44d-d1d1-44c2-b336-9f11b65c4fb0</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Observability</td>
-<td><a href="../pulumi-queries/gcp/48f7e44d-d1d1-44c2-b336-9f11b65c4fb0" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/storage/bucket/#logging_yaml">Documentation</a><br/></td>
-</tr>
-</tbody>
-</table>
 <h3 id="aws">AWS<a class="headerlink" href="#aws" title="Permanent link">&para;</a></h3>
 <p>Below are listed queries related to Pulumi AWS:</p>
 <table>
@@ -1959,6 +1881,12 @@
 <td><a href="../pulumi-queries/aws/00603add-7f72-448f-a6c0-9e456a7a3f94" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/aws/api-docs/elasticsearch/domain/#enforcehttps_yaml">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>API Gateway Access Logging Disabled<br/><sup><sub>bf4b48b9-fc1f-4552-984a-4becdb5bf503</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Observability</td>
+<td><a href="../pulumi-queries/aws/bf4b48b9-fc1f-4552-984a-4becdb5bf503" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/aws/api-docs/apigatewayv2/stage/#accesslogsettings_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>DocDB Logging Is Disabled<br/><sup><sub>2ca87964-fe7e-4cdc-899c-427f0f3525f8</sub></sup></td>
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Observability</td>
@@ -1975,12 +1903,6 @@
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Observability</td>
 <td><a href="../pulumi-queries/aws/a1120ee4-a712-42d9-8fb5-22595fed643b" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/aws/api-docs/elasticsearch/domain/#logpublishingoptions_yaml">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>API Gateway Access Logging Disabled<br/><sup><sub>bf4b48b9-fc1f-4552-984a-4becdb5bf503</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Observability</td>
-<td><a href="../pulumi-queries/aws/bf4b48b9-fc1f-4552-984a-4becdb5bf503" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/aws/api-docs/apigatewayv2/stage/#accesslogsettings_yaml">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>IAM Password Without Minimum Length<br/><sup><sub>9850d621-7485-44f7-8bdd-b3cf426315cf</sub></sup></td>
@@ -2005,6 +1927,84 @@
 <td><span style="color:#5bc0de">Info</span></td>
 <td>Best Practices</td>
 <td><a href="../pulumi-queries/aws/d991e4ae-42ab-429b-ab43-d5e5fa9ca633" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/aws/api-docs/ec2/instance/#ebsoptimized_yaml">Documentation</a><br/></td>
+</tr>
+</tbody>
+</table>
+<h3 id="azure">AZURE<a class="headerlink" href="#azure" title="Permanent link">&para;</a></h3>
+<p>Below are listed queries related to Pulumi AZURE:</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Severity</th>
+<th>Category</th>
+<th>More info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>49e30ac8-f58e-4222-b488-3dcb90158ec1</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Encryption</td>
+<td><a href="../pulumi-queries/azure/49e30ac8-f58e-4222-b488-3dcb90158ec1" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/azure-native/api-docs/cache/redis/#enablenonsslport_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Storage Account Not Forcing HTTPS<br/><sup><sub>cb8e4bf0-903d-45c6-a278-9a947d82a27b</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Encryption</td>
+<td><a href="../pulumi-queries/azure/cb8e4bf0-903d-45c6-a278-9a947d82a27b" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/azure-native/api-docs/storage/storageaccount/#enablehttpstrafficonly_yaml">Documentation</a><br/></td>
+</tr>
+</tbody>
+</table>
+<h3 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h3>
+<p>Below are listed queries related to Pulumi GCP:</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Severity</th>
+<th>Category</th>
+<th>More info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Compute SSL Policy Weak Cipher In Use<br/><sup><sub>965e8830-2bec-4b9b-a7f0-24dbc200a68f</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Encryption</td>
+<td><a href="../pulumi-queries/gcp/965e8830-2bec-4b9b-a7f0-24dbc200a68f" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/compute/sslpolicy/#mintlsversion_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>48f7e44d-d1d1-44c2-b336-9f11b65c4fb0</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Observability</td>
+<td><a href="../pulumi-queries/gcp/48f7e44d-d1d1-44c2-b336-9f11b65c4fb0" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/gcp/api-docs/storage/bucket/#logging_yaml">Documentation</a><br/></td>
+</tr>
+</tbody>
+</table>
+<h3 id="kubernetes">KUBERNETES<a class="headerlink" href="#kubernetes" title="Permanent link">&para;</a></h3>
+<p>Below are listed queries related to Pulumi KUBERNETES:</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Severity</th>
+<th>Category</th>
+<th>More info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PSP Set To Privileged<br/><sup><sub>ee305555-6b1d-4055-94cf-e22131143c34</sub></sup></td>
+<td><span style="color:#bb2124">High</span></td>
+<td>Insecure Configurations</td>
+<td><a href="../pulumi-queries/ee305555-6b1d-4055-94cf-e22131143c34" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/kubernetes/api-docs/policy/v1beta1/podsecuritypolicy/#privileged_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Missing App Armor Config<br/><sup><sub>95588189-1abd-4df1-9588-b0a5034f9e87</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Access Control</td>
+<td><a href="../pulumi-queries/95588189-1abd-4df1-9588-b0a5034f9e87" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/kubernetes/api-docs/core/v1/pod/#objectmeta">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table>

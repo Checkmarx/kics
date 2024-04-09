@@ -1826,58 +1826,6 @@
 
 <h2 id="crossplane_queries_list">Crossplane Queries List<a class="headerlink" href="#crossplane_queries_list" title="Permanent link">&para;</a></h2>
 <p>This page contains all queries from Crossplane.</p>
-<h3 id="azure">AZURE<a class="headerlink" href="#azure" title="Permanent link">&para;</a></h3>
-<p>Below are listed queries related to Crossplane AZURE:</p>
-<table>
-<thead>
-<tr>
-<th>Query</th>
-<th>Severity</th>
-<th>Category</th>
-<th>More info</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AKS RBAC Disabled<br/><sup><sub>b2418936-cd47-4ea2-8346-623c0bdb87bd</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Access Control</td>
-<td><a href="../crossplane-queries/azure/b2418936-cd47-4ea2-8346-623c0bdb87bd" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-azure/compute.azure.crossplane.io/AKSCluster/v1alpha3@v0.19.0#spec-disableRBAC">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>6c7cfec3-c686-4ed2-bf58-a1ec054b63fc</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Encryption</td>
-<td><a href="../crossplane-queries/azure/6c7cfec3-c686-4ed2-bf58-a1ec054b63fc" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-azure/cache.azure.crossplane.io/Redis/v1beta1@v0.19.0#spec-forProvider-enableNonSslPort">Documentation</a><br/></td>
-</tr>
-</tbody>
-</table>
-<h3 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h3>
-<p>Below are listed queries related to Crossplane GCP:</p>
-<table>
-<thead>
-<tr>
-<th>Query</th>
-<th>Severity</th>
-<th>Category</th>
-<th>More info</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Google Container Node Pool Auto Repair Disabled<br/><sup><sub>b4f65d13-a609-4dc1-af7c-63d2e08bffe9</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Insecure Configurations</td>
-<td><a href="../crossplane-queries/gcp/b4f65d13-a609-4dc1-af7c-63d2e08bffe9" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-gcp/container.gcp.crossplane.io/NodePool/v1beta1@v0.21.0#spec-forProvider-management-autoRepair">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>6c2d627c-de0f-45fb-b33d-dad9bffbb421</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Observability</td>
-<td><a href="../crossplane-queries/gcp/6c2d627c-de0f-45fb-b33d-dad9bffbb421" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-gcp/storage.gcp.crossplane.io/Bucket/v1alpha3@v0.21.0#spec-logging">Documentation</a><br/></td>
-</tr>
-</tbody>
-</table>
 <h3 id="aws">AWS<a class="headerlink" href="#aws" title="Permanent link">&para;</a></h3>
 <p>Below are listed queries related to Crossplane AWS:</p>
 <table>
@@ -1897,6 +1845,12 @@
 <td><a href="../crossplane-queries/aws/e50eb68a-a4af-4048-8bbe-8ec324421469" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/database.aws.crossplane.io/RDSInstance/v1beta1@v0.29.0#spec-forProvider-storageEncrypted">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>EFS Not Encrypted<br/><sup><sub>72840c35-3876-48be-900d-f21b2f0c2ea1</sub></sup></td>
+<td><span style="color:#bb2124">High</span></td>
+<td>Encryption</td>
+<td><a href="../crossplane-queries/aws/72840c35-3876-48be-900d-f21b2f0c2ea1" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/efs.aws.crossplane.io/FileSystem/v1alpha1@v0.29.0#spec-forProvider-encrypted">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>ELB Using Weak Ciphers<br/><sup><sub>a507daa5-0795-4380-960b-dd7bb7c56661</sub></sup></td>
 <td><span style="color:#bb2124">High</span></td>
 <td>Encryption</td>
@@ -1907,12 +1861,6 @@
 <td><span style="color:#bb2124">High</span></td>
 <td>Encryption</td>
 <td><a href="../crossplane-queries/aws/83bf5aca-138a-498e-b9cd-ad5bc5e117b4" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/neptune.aws.crossplane.io/DBCluster/v1alpha1@v0.29.0#spec-forProvider-storageEncrypted">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>EFS Not Encrypted<br/><sup><sub>72840c35-3876-48be-900d-f21b2f0c2ea1</sub></sup></td>
-<td><span style="color:#bb2124">High</span></td>
-<td>Encryption</td>
-<td><a href="../crossplane-queries/aws/72840c35-3876-48be-900d-f21b2f0c2ea1" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/efs.aws.crossplane.io/FileSystem/v1alpha1@v0.29.0#spec-forProvider-encrypted">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>DB Security Group Has Public Interface<br/><sup><sub>dd667399-8d9d-4a8d-bbb4-e49ab53b2f52</sub></sup></td>
@@ -1973,6 +1921,58 @@
 <td><span style="color:#5bc0de">Info</span></td>
 <td>Observability</td>
 <td><a href="../crossplane-queries/aws/934613fe-b12c-4e5a-95f5-c1dcdffac1ff" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-aws/cloudwatchlogs.aws.crossplane.io/LogGroup/v1alpha1@v0.29.0#spec-forProvider-retentionInDays">Documentation</a><br/></td>
+</tr>
+</tbody>
+</table>
+<h3 id="azure">AZURE<a class="headerlink" href="#azure" title="Permanent link">&para;</a></h3>
+<p>Below are listed queries related to Crossplane AZURE:</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Severity</th>
+<th>Category</th>
+<th>More info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AKS RBAC Disabled<br/><sup><sub>b2418936-cd47-4ea2-8346-623c0bdb87bd</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Access Control</td>
+<td><a href="../crossplane-queries/azure/b2418936-cd47-4ea2-8346-623c0bdb87bd" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-azure/compute.azure.crossplane.io/AKSCluster/v1alpha3@v0.19.0#spec-disableRBAC">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>6c7cfec3-c686-4ed2-bf58-a1ec054b63fc</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Encryption</td>
+<td><a href="../crossplane-queries/azure/6c7cfec3-c686-4ed2-bf58-a1ec054b63fc" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-azure/cache.azure.crossplane.io/Redis/v1beta1@v0.19.0#spec-forProvider-enableNonSslPort">Documentation</a><br/></td>
+</tr>
+</tbody>
+</table>
+<h3 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h3>
+<p>Below are listed queries related to Crossplane GCP:</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Severity</th>
+<th>Category</th>
+<th>More info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Container Node Pool Auto Repair Disabled<br/><sup><sub>b4f65d13-a609-4dc1-af7c-63d2e08bffe9</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Insecure Configurations</td>
+<td><a href="../crossplane-queries/gcp/b4f65d13-a609-4dc1-af7c-63d2e08bffe9" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-gcp/container.gcp.crossplane.io/NodePool/v1beta1@v0.21.0#spec-forProvider-management-autoRepair">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Cloud Storage Bucket Logging Not Enabled<br/><sup><sub>6c2d627c-de0f-45fb-b33d-dad9bffbb421</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Observability</td>
+<td><a href="../crossplane-queries/gcp/6c2d627c-de0f-45fb-b33d-dad9bffbb421" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-gcp/storage.gcp.crossplane.io/Bucket/v1alpha3@v0.21.0#spec-logging">Documentation</a><br/></td>
 </tr>
 </tbody>
 </table>
