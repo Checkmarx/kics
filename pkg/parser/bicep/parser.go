@@ -2,7 +2,6 @@ package bicep
 
 import (
 	"encoding/json"
-	"fmt"
 	"strconv"
 	"strings"
 
@@ -44,7 +43,6 @@ func convertVisitorToJSONBicep(visitor *BicepVisitor) *JSONBicep {
 
 // Parse - parses bicep to BicepVisitor template (json file)
 func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
-	fmt.Println(file)
 	bicepVisitor := NewBicepVisitor()
 	stream, _ := antlr.NewFileStream(file)
 	lexer := parser.NewbicepLexer(stream)
@@ -55,9 +53,6 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 	bicepParser.AddErrorListener(antlr.NewDiagnosticErrorListener(true))
 
 	bicepParser.Program().Accept(bicepVisitor)
-	fmt.Println("\nParameters: ", bicepVisitor.paramList)
-	fmt.Println("\nVariables: ", bicepVisitor.varList)
-	fmt.Println("\nResources: ", bicepVisitor.resourceList)
 
 	var doc model.Document
 
@@ -98,7 +93,6 @@ func (s *BicepVisitor) VisitStatement(ctx *parser.StatementContext) interface{} 
 	return nil
 }
 
-// VisitParameterDecl is called when production paramDecl is visited.
 func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) interface{} {
 	var decorators []interface{}
 	param := map[string]interface{}{}
@@ -116,7 +110,7 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 	}
 
 	for _, val := range ctx.AllDecorator() {
-		decorator, ok := val.Accept(s).(map[string]interface{})
+		decorator, ok := val.Accept(s).(map[string][]interface{})
 		if !ok {
 			return nil
 		}
@@ -135,7 +129,6 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 	return nil
 }
 
-// VisitParameterDecl is called when production paramDecl is visited.
 func (s *BicepVisitor) VisitVariableDecl(ctx *parser.VariableDeclContext) interface{} {
 	var variable = map[string]interface{}{}
 	var decorators []interface{}
@@ -190,7 +183,6 @@ func (s *BicepVisitor) VisitResourceDecl(ctx *parser.ResourceDeclContext) interf
 	return nil
 }
 
-// VisitParameterDefaultValue is called when production paramDecl is visited.
 func (s *BicepVisitor) VisitParameterDefaultValue(ctx *parser.ParameterDefaultValueContext) interface{} {
 	param := ctx.Expression().Accept(s)
 	return param
@@ -260,7 +252,6 @@ func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{
 	return nil
 }
 
-// VisitPrimaryExpression is called when production primaryExpression is visited.
 func (s *BicepVisitor) VisitPrimaryExpression(ctx *parser.PrimaryExpressionContext) interface{} {
 	if ctx.LiteralValue() != nil {
 		return ctx.LiteralValue().Accept(s)
@@ -308,7 +299,6 @@ func (s *BicepVisitor) VisitLiteralValue(ctx *parser.LiteralValueContext) interf
 	return nil
 }
 
-// VisitInterpString is called when production interpString is visited.
 func (s *BicepVisitor) VisitInterpString(ctx *parser.InterpStringContext) interface{} {
 	if ctx.GetChildCount() > 1 {
 		interpString := []interface{}{}
