@@ -309,7 +309,21 @@ func (s *BicepVisitor) VisitLiteralValue(ctx *parser.LiteralValueContext) interf
 		return nil
 	}
 	if ctx.Identifier() != nil {
-		return ctx.Identifier().Accept(s)
+		identifier, ok := ctx.Identifier().Accept(s).(string)
+		if !ok {
+			return nil
+		}
+		for variable := range s.varList {
+			if variable == identifier {
+				identifier = "variables('" + identifier + "')"
+			}
+		}
+		for parameter := range s.paramList {
+			if parameter == identifier {
+				identifier = "parameters('" + identifier + "')"
+			}
+		}
+		return identifier
 	}
 
 	return nil
