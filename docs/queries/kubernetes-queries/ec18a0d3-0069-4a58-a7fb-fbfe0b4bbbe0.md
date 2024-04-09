@@ -57,8 +57,8 @@ spec:
   containers:
     - name: command-demo-container
       image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
-      command: ["kube-apiserver","--kubelet-certificate-authority=/path/to/any/cert/file.crt"]
-      args: []
+      command: ["kube-apiserver"]
+      args: ["--kubelet-certificate-authority=/path/to/any/cert/file.pem"]
   restartPolicy: OnFailure
 
 ```
@@ -73,8 +73,8 @@ spec:
   containers:
     - name: command-demo-container
       image: gcr.io/google_containers/kube-apiserver-amd64:v1.6.0
-      command: ["kube-apiserver"]
-      args: ["--kubelet-certificate-authority=/path/to/any/cert/file.pem"]
+      command: ["kube-apiserver","--kubelet-certificate-authority=/path/to/any/cert/file.crt"]
+      args: []
   restartPolicy: OnFailure
 
 ```

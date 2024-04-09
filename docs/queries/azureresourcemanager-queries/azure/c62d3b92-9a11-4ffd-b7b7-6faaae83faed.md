@@ -142,60 +142,6 @@ Azure Kubernetes Service should have the Kubernetes dashboard disabled.<br>
 #### Code samples without security vulnerabilities
 ```json title="Negative test num. 1 - json file"
 {
-  "properties": {
-    "template": {
-      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-      "contentVersion": "1.0.0.0",
-      "resources": [
-        {
-          "name": "aksCluster1",
-          "type": "Microsoft.ContainerService/managedClusters",
-          "apiVersion": "2020-02-01",
-          "location": "[resourceGroup().location]",
-          "properties": {
-            "kubernetesVersion": "1.15.7",
-            "dnsPrefix": "dnsprefix",
-            "agentPoolProfiles": [
-              {
-                "name": "agentpool",
-                "count": 2,
-                "vmSize": "Standard_A1",
-                "osType": "Linux",
-                "storageProfile": "ManagedDisks"
-              }
-            ],
-            "linuxProfile": {
-              "adminUsername": "adminUserName",
-              "ssh": {
-                "publicKeys": [
-                  {
-                    "keyData": "keyData"
-                  }
-                ]
-              }
-            },
-            "servicePrincipalProfile": {
-              "clientId": "servicePrincipalAppId",
-              "secret": "servicePrincipalAppPassword"
-            },
-            "networkProfile": {
-              "networkPolicy": "azure"
-            }
-          }
-        }
-      ],
-      "outputs": {}
-    },
-    "parameters": {}
-  },
-  "kind": "template",
-  "type": "Microsoft.Blueprint/blueprints/artifacts",
-  "name": "myTemplate"
-}
-
-```
-```json title="Negative test num. 2 - json file"
-{
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "resources": [
@@ -241,6 +187,65 @@ Azure Kubernetes Service should have the Kubernetes dashboard disabled.<br>
       }
     }
   ]
+}
+
+```
+```json title="Negative test num. 2 - json file"
+{
+  "properties": {
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "resources": [
+        {
+          "name": "aksCluster1",
+          "type": "Microsoft.ContainerService/managedClusters",
+          "apiVersion": "2020-02-01",
+          "location": "[resourceGroup().location]",
+          "properties": {
+            "kubernetesVersion": "1.15.7",
+            "addonProfiles": {
+              "kubeDashboard": {
+                "enabled": false
+              }
+            },
+            "dnsPrefix": "dnsprefix",
+            "agentPoolProfiles": [
+              {
+                "name": "agentpool",
+                "count": 2,
+                "vmSize": "Standard_A1",
+                "osType": "Linux",
+                "storageProfile": "ManagedDisks"
+              }
+            ],
+            "linuxProfile": {
+              "adminUsername": "adminUserName",
+              "ssh": {
+                "publicKeys": [
+                  {
+                    "keyData": "keyData"
+                  }
+                ]
+              }
+            },
+            "servicePrincipalProfile": {
+              "clientId": "servicePrincipalAppId",
+              "secret": "servicePrincipalAppPassword"
+            },
+            "networkProfile": {
+              "networkPolicy": "azure"
+            }
+          }
+        }
+      ],
+      "outputs": {}
+    },
+    "parameters": {}
+  },
+  "kind": "template",
+  "type": "Microsoft.Blueprint/blueprints/artifacts",
+  "name": "myTemplate"
 }
 
 ```
@@ -305,11 +310,6 @@ Azure Kubernetes Service should have the Kubernetes dashboard disabled.<br>
           "location": "[resourceGroup().location]",
           "properties": {
             "kubernetesVersion": "1.15.7",
-            "addonProfiles": {
-              "kubeDashboard": {
-                "enabled": false
-              }
-            },
             "dnsPrefix": "dnsprefix",
             "agentPoolProfiles": [
               {

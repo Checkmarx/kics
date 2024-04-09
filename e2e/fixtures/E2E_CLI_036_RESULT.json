@@ -223,7 +223,7 @@
 			"cloud_provider": "AWS",
 			"category": "Networking and Firewall",
 			"experimental": false,
-			"description": "An AWS Elastic Load Balancer (ELB) shouldnÂ´t have security groups without outbound rules",
+			"description": "An AWS Elastic Load Balancer (ELB) shouldn't have security groups without outbound rules",
 			"description_id": "3ccdd7d2",
 			"files": [
 				{
@@ -250,7 +250,7 @@
 			"cloud_provider": "AWS",
 			"category": "Networking and Firewall",
 			"experimental": false,
-			"description": "An AWS Elastic Load Balancer (ELB) shouldnÂ´t have security groups without outbound rules",
+			"description": "An AWS Elastic Load Balancer (ELB) shouldn't have security groups without outbound rules",
 			"description_id": "7b876844",
 			"files": [
 				{
