@@ -670,7 +670,7 @@ func hideSecret(linesVuln *model.VulnerabilityLines,
 		if (*linesVuln.VulnLines)[idx].Line == issueLine {
 			regex := query.RegexStr
 
-			if len(query.SpecialMask) > 0 {
+			if query.SpecialMask != "" {
 				regex = "(.*)" + query.SpecialMask // get key
 			}
 

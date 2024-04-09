@@ -31,8 +31,8 @@ func (s *Summary) GetRemediationSets(results Report, include []string) map[strin
 }
 
 func shouldRemediate(file *File, include []string) bool {
-	if len(file.Remediation) > 0 &&
-		len(file.RemediationType) > 0 &&
+	if file.Remediation != "" &&
+		file.RemediationType != "" &&
 		(include[0] == "all" || utils.Contains(file.SimilarityID, include)) &&
 		filepath.Ext(file.FilePath) == ".tf" { // temporary
 		return true
