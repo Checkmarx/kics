@@ -18,7 +18,7 @@ hide:
 -   **Query id:** b30981fa-a12e-49c7-a5bb-eeafb61d0f0f
 -   **Query name:** Global Parameter Definition Not Being Used
 -   **Platform:** OpenAPI
--   **Severity:** <span style="color:#00C">Info</span>
+-   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Best Practices
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/openAPI/2.0/unused_parameter_definition)
 

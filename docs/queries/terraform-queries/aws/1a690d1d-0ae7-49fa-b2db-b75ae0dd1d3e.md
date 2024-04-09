@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 1a690d1d-0ae7-49fa-b2db-b75ae0dd1d3e
 -   **Query name:** Aurora With Disabled at Rest Encryption
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Encryption
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/aurora_with_disabled_at_rest_encryption)
 
