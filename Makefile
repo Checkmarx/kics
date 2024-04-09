@@ -174,3 +174,7 @@ help:
 define print-target
 	@printf "Executing target: \033[36m$@\033[0m\n"
 endef
+
+.PHONY: lint-docker-image
+lint-docker-image:
+	docker run -t --rm -v ./:/app -w /app golangci/golangci-lint:v1.57.2 golangci-lint run -v -c /app/.golangci.yml --timeout 20m
