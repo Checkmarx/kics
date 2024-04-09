@@ -28,7 +28,57 @@ VM disks for critical VMs must be encrypted with Customer Supplied Encryption Ke
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Positive test num. 1 - yaml file" hl_lines="16 26"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="8 18"
+resources:
+- name: vm-template
+  type: compute.v1.instance
+  properties:
+    zone: us-central1-a
+    machineType: zones/us-central1-a/machineTypes/n1-standard-1
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: projects/debian-cloud/global/images/family/debian-9
+    networkInterfaces:
+    - network: global/networks/default
+- type: compute.v1.disk
+  name: disk-3-data
+  properties:
+    sizeGb: 10
+    zone: us-east1-c
+
+```
+```yaml title="Positive test num. 2 - yaml file" hl_lines="14 23"
+resources:
+- name: vm-template2
+  type: compute.v1.instance
+  properties:
+    zone: us-central1-a
+    machineType: zones/us-central1-a/machineTypes/n1-standard-1
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: projects/debian-cloud/global/images/family/debian-9
+      diskEncryptionKey:
+        sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
+    networkInterfaces:
+    - network: global/networks/default
+- type: compute.v1.disk
+  name: disk-4-data
+  properties:
+    sizeGb: 10
+    zone: us-east1-c
+    diskEncryptionKey:
+      sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
+
+```
+```yaml title="Positive test num. 3 - yaml file" hl_lines="16 26"
 resources:
 - name: vm-template3
   type: compute.v1.instance
@@ -57,89 +107,10 @@ resources:
       rawKey: ""
 
 ```
-```yaml title="Positive test num. 2 - yaml file" hl_lines="8 18"
-resources:
-- name: vm-template
-  type: compute.v1.instance
-  properties:
-    zone: us-central1-a
-    machineType: zones/us-central1-a/machineTypes/n1-standard-1
-    disks:
-    - deviceName: boot
-      type: PERSISTENT
-      boot: true
-      autoDelete: true
-      initializeParams:
-        sourceImage: projects/debian-cloud/global/images/family/debian-9
-    networkInterfaces:
-    - network: global/networks/default
-- type: compute.v1.disk
-  name: disk-3-data
-  properties:
-    sizeGb: 10
-    zone: us-east1-c
-
-```
-```yaml title="Positive test num. 3 - yaml file" hl_lines="14 23"
-resources:
-- name: vm-template2
-  type: compute.v1.instance
-  properties:
-    zone: us-central1-a
-    machineType: zones/us-central1-a/machineTypes/n1-standard-1
-    disks:
-    - deviceName: boot
-      type: PERSISTENT
-      boot: true
-      autoDelete: true
-      initializeParams:
-        sourceImage: projects/debian-cloud/global/images/family/debian-9
-      diskEncryptionKey:
-        sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
-    networkInterfaces:
-    - network: global/networks/default
-- type: compute.v1.disk
-  name: disk-4-data
-  properties:
-    sizeGb: 10
-    zone: us-east1-c
-    diskEncryptionKey:
-      sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
-
-```
 
 
 #### Code samples without security vulnerabilities
 ```yaml title="Negative test num. 1 - yaml file"
-resources:
-- name: vm-template5
-  type: compute.v1.instance
-  properties:
-    zone: us-central1-a
-    machineType: zones/us-central1-a/machineTypes/n1-standard-1
-    disks:
-    - deviceName: boot
-      type: PERSISTENT
-      boot: true
-      autoDelete: true
-      initializeParams:
-        sourceImage: projects/debian-cloud/global/images/family/debian-9
-      diskEncryptionKey:
-        sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
-        kmsKeyName: disk-crypto-key
-    networkInterfaces:
-    - network: global/networks/default
-- type: compute.v1.disk
-  name: disk-2-data
-  properties:
-    sizeGb: 10
-    zone: us-east1-c
-    diskEncryptionKey:
-      sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
-      kmsKeyName: disk-crypto-key
-
-```
-```yaml title="Negative test num. 2 - yaml file"
 resources:
 - name: vm-template4
   type: compute.v1.instance
@@ -167,5 +138,34 @@ resources:
       sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
       rawKey: SGVsbG8gZnJvbSBHb29nbGUgQ2xvdWQgUGxhdGZvcm0=
 
+
+```
+```yaml title="Negative test num. 2 - yaml file"
+resources:
+- name: vm-template5
+  type: compute.v1.instance
+  properties:
+    zone: us-central1-a
+    machineType: zones/us-central1-a/machineTypes/n1-standard-1
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: projects/debian-cloud/global/images/family/debian-9
+      diskEncryptionKey:
+        sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
+        kmsKeyName: disk-crypto-key
+    networkInterfaces:
+    - network: global/networks/default
+- type: compute.v1.disk
+  name: disk-2-data
+  properties:
+    sizeGb: 10
+    zone: us-east1-c
+    diskEncryptionKey:
+      sha_256: 68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29
+      kmsKeyName: disk-crypto-key
 
 ```

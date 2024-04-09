@@ -53,16 +53,6 @@ RUN echo "final"
 
 #### Code samples without security vulnerabilities
 ```dockerfile title="Negative test num. 1 - dockerfile file"
-FROM ubuntu:22.04 AS test
-RUN echo "hello"
-
-FROM test AS build
-RUN echo "build"
-
-FROM build AS final
-RUN echo "final"
-```
-```dockerfile title="Negative test num. 2 - dockerfile file"
 FROM alpine:3.5
 RUN apk add --update py2-pip
 RUN pip install --upgrade pip
@@ -75,4 +65,14 @@ ARG IMAGE=alpine:3.12
 FROM $IMAGE
 CMD ["python", "/usr/src/app/app.py"]
 
+```
+```dockerfile title="Negative test num. 2 - dockerfile file"
+FROM ubuntu:22.04 AS test
+RUN echo "hello"
+
+FROM test AS build
+RUN echo "build"
+
+FROM build AS final
+RUN echo "final"
 ```

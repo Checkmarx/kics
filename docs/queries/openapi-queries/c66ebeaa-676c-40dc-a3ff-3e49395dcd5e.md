@@ -74,64 +74,7 @@ The Servers array should have at least one server defined. If not, the default v
 }
 
 ```
-```yaml title="Positive test num. 2 - yaml file" hl_lines="1"
-openapi: 3.0.0
-info:
-  title: Simple API Overview
-  version: 1.0.0
-paths:
-  "/":
-    get:
-      operationId: listVersionsv2
-      summary: List API versions
-      responses:
-        '200':
-          description: 200 response
-          content:
-            application/json:
-              examples:
-                foo:
-                  value:
-                    versions:
-                    - status: CURRENT
-                      updated: '2011-01-21T11:33:21Z'
-                      id: v2.0
-                      links:
-                      - href: http://127.0.0.1:8774/v2/
-                        rel: self
-
-```
-```yaml title="Positive test num. 3 - yaml file" hl_lines="25"
-openapi: 3.0.0
-info:
-  title: Simple API Overview
-  version: 1.0.0
-paths:
-  "/":
-    get:
-      operationId: listVersionsv2
-      summary: List API versions
-      responses:
-        '200':
-          description: 200 response
-          content:
-            application/json:
-              examples:
-                foo:
-                  value:
-                    versions:
-                    - status: CURRENT
-                      updated: '2011-01-21T11:33:21Z'
-                      id: v2.0
-                      links:
-                      - href: http://127.0.0.1:8774/v2/
-                        rel: self
-servers: []
-
-```
-<details><summary>Positive test num. 4 - json file</summary>
-
-```json hl_lines="43"
+```json title="Positive test num. 2 - json file" hl_lines="43"
 {
   "openapi": "3.0.0",
   "info": {
@@ -176,6 +119,63 @@ servers: []
   },
   "servers": []
 }
+
+```
+```yaml title="Positive test num. 3 - yaml file" hl_lines="1"
+openapi: 3.0.0
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              examples:
+                foo:
+                  value:
+                    versions:
+                    - status: CURRENT
+                      updated: '2011-01-21T11:33:21Z'
+                      id: v2.0
+                      links:
+                      - href: http://127.0.0.1:8774/v2/
+                        rel: self
+
+```
+<details><summary>Positive test num. 4 - yaml file</summary>
+
+```yaml hl_lines="25"
+openapi: 3.0.0
+info:
+  title: Simple API Overview
+  version: 1.0.0
+paths:
+  "/":
+    get:
+      operationId: listVersionsv2
+      summary: List API versions
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              examples:
+                foo:
+                  value:
+                    versions:
+                    - status: CURRENT
+                      updated: '2011-01-21T11:33:21Z'
+                      id: v2.0
+                      links:
+                      - href: http://127.0.0.1:8774/v2/
+                        rel: self
+servers: []
 
 ```
 </details>
