@@ -249,7 +249,7 @@ func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{
 		return ctx.PrimaryExpression().Accept(s)
 	}
 
-	return nil
+	return ""
 }
 
 func (s *BicepVisitor) VisitPrimaryExpression(ctx *parser.PrimaryExpressionContext) interface{} {
