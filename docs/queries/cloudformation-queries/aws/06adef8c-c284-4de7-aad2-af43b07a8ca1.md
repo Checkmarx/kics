@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 06adef8c-c284-4de7-aad2-af43b07a8ca1
 -   **Query name:** IAM User LoginProfile Password Is In Plaintext
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Insecure Configurations
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/iam_user_login_profile_password_is_in_plaintext)
 
@@ -106,66 +106,56 @@ Resources:
 
 
 #### Code samples without security vulnerabilities
-```yaml title="Negative test num. 1 - yaml file"
-AWSTemplateFormatVersion: "2010-09-09"
-Description: A sample template
-Resources:
-    myTopuser:
-      Type: AWS::IAM::User
-      Properties:
-        Path: "/"
-        LoginProfile:
-         Password:
-         - !Ref NoEcho
-         PasswordResetRequired: false
-        Policies:
-        - PolicyName: giveaccesstoqueueonly
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-            - Effect: Allow
-              Action:
-              - sqs:*
-              Resource:
-              - !GetAtt myqueue.Arn
-            - Effect: Deny
-              Action:
-              - sqs:*
-              NotResource:
-              - !GetAtt myqueue.Arn
+```json title="Negative test num. 1 - json file"
+{
+  "Resources": {
+    "myNewuser": {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "Path": "/",
+        "LoginProfile": {
+          "Password": [
+            "secretsmanager"
+          ],
+          "PasswordResetRequired": false
+        },
+        "Policies": [
+          {
+            "PolicyName": "giveaccesstoqueueonly",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "sqs:*"
+                  ],
+                  "Resource": [
+                    "myqueue.Arn"
+                  ]
+                },
+                {
+                  "Effect": "Deny",
+                  "Action": [
+                    "sqs:*"
+                  ],
+                  "NotResource": [
+                    "myqueue.Arn"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "A sample template"
+}
 
 ```
-```yaml title="Negative test num. 2 - yaml file"
-
-AWSTemplateFormatVersion: "2010-09-09"
-Description: A sample template
-Resources:
-    myNewuser:
-      Type: AWS::IAM::User
-      Properties:
-        Path: "/"
-        LoginProfile:
-         Password:
-         - !Ref secretsmanager
-         PasswordResetRequired: false
-        Policies:
-        - PolicyName: giveaccesstoqueueonly
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-            - Effect: Allow
-              Action:
-              - sqs:*
-              Resource:
-              - !GetAtt myqueue.Arn
-            - Effect: Deny
-              Action:
-              - sqs:*
-              NotResource:
-              - !GetAtt myqueue.Arn
-
-```
-```json title="Negative test num. 3 - json file"
+```json title="Negative test num. 2 - json file"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "A sample template",
@@ -214,55 +204,65 @@ Resources:
 }
 
 ```
-<details><summary>Negative test num. 4 - json file</summary>
+```yaml title="Negative test num. 3 - yaml file"
 
-```json
-{
-  "Resources": {
-    "myNewuser": {
-      "Type": "AWS::IAM::User",
-      "Properties": {
-        "Path": "/",
-        "LoginProfile": {
-          "Password": [
-            "secretsmanager"
-          ],
-          "PasswordResetRequired": false
-        },
-        "Policies": [
-          {
-            "PolicyName": "giveaccesstoqueueonly",
-            "PolicyDocument": {
-              "Version": "2012-10-17",
-              "Statement": [
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "sqs:*"
-                  ],
-                  "Resource": [
-                    "myqueue.Arn"
-                  ]
-                },
-                {
-                  "Effect": "Deny",
-                  "Action": [
-                    "sqs:*"
-                  ],
-                  "NotResource": [
-                    "myqueue.Arn"
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  },
-  "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "A sample template"
-}
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A sample template
+Resources:
+    myNewuser:
+      Type: AWS::IAM::User
+      Properties:
+        Path: "/"
+        LoginProfile:
+         Password:
+         - !Ref secretsmanager
+         PasswordResetRequired: false
+        Policies:
+        - PolicyName: giveaccesstoqueueonly
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Action:
+              - sqs:*
+              Resource:
+              - !GetAtt myqueue.Arn
+            - Effect: Deny
+              Action:
+              - sqs:*
+              NotResource:
+              - !GetAtt myqueue.Arn
+
+```
+<details><summary>Negative test num. 4 - yaml file</summary>
+
+```yaml
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A sample template
+Resources:
+    myTopuser:
+      Type: AWS::IAM::User
+      Properties:
+        Path: "/"
+        LoginProfile:
+         Password:
+         - !Ref NoEcho
+         PasswordResetRequired: false
+        Policies:
+        - PolicyName: giveaccesstoqueueonly
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Action:
+              - sqs:*
+              Resource:
+              - !GetAtt myqueue.Arn
+            - Effect: Deny
+              Action:
+              - sqs:*
+              NotResource:
+              - !GetAtt myqueue.Arn
 
 ```
 </details>

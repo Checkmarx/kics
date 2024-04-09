@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 4ab10c48-bedb-4deb-8f3b-ff12783b61de
 -   **Query name:** API Gateway X-Ray Disabled
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#CC0">Low</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Observability
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/api_gateway_xray_disabled)
 
@@ -61,39 +61,7 @@ Resources:
           ThrottlingBurstLimit: '555'
 
 ```
-```yaml title="Positive test num. 2 - yaml file" hl_lines="6"
-AWSTemplateFormatVersion: "2010-09-09"
-Description: "BatchJobDefinition"
-Resources:
-  ProdPos4:
-    Type: AWS::ApiGateway::Stage
-    Properties:
-      StageName: Prod
-      Description: Prod Stage
-      RestApiId: !Ref MyRestApi
-      DeploymentId: !Ref TestDeployment
-      DocumentationVersion: !Ref MyDocumentationVersion
-      ClientCertificateId: !Ref ClientCertificate
-      Variables:
-        Stack: Prod
-      MethodSettings:
-        - ResourcePath: /
-          HttpMethod: GET
-          MetricsEnabled: 'true'
-          DataTraceEnabled: 'false'
-        - ResourcePath: /stack
-          HttpMethod: POST
-          MetricsEnabled: 'true'
-          DataTraceEnabled: 'false'
-          ThrottlingBurstLimit: '999'
-        - ResourcePath: /stack
-          HttpMethod: GET
-          MetricsEnabled: 'true'
-          DataTraceEnabled: 'false'
-          ThrottlingBurstLimit: '555'
-
-```
-```json title="Positive test num. 3 - json file" hl_lines="23"
+```json title="Positive test num. 2 - json file" hl_lines="23"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
@@ -145,9 +113,7 @@ Resources:
 }
 
 ```
-<details><summary>Positive test num. 4 - json file</summary>
-
-```json hl_lines="6"
+```json title="Positive test num. 3 - json file" hl_lines="6"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
@@ -198,15 +164,13 @@ Resources:
 }
 
 ```
-</details>
+<details><summary>Positive test num. 4 - yaml file</summary>
 
-
-#### Code samples without security vulnerabilities
-```yaml title="Negative test num. 1 - yaml file"
+```yaml hl_lines="6"
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "BatchJobDefinition"
 Resources:
-  ProdNeg1:
+  ProdPos4:
     Type: AWS::ApiGateway::Stage
     Properties:
       StageName: Prod
@@ -215,7 +179,6 @@ Resources:
       DeploymentId: !Ref TestDeployment
       DocumentationVersion: !Ref MyDocumentationVersion
       ClientCertificateId: !Ref ClientCertificate
-      TracingEnabled: true
       Variables:
         Stack: Prod
       MethodSettings:
@@ -235,7 +198,11 @@ Resources:
           ThrottlingBurstLimit: '555'
 
 ```
-```json title="Negative test num. 2 - json file"
+</details>
+
+
+#### Code samples without security vulnerabilities
+```json title="Negative test num. 1 - json file"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
@@ -285,5 +252,38 @@ Resources:
     }
   }
 }
+
+```
+```yaml title="Negative test num. 2 - yaml file"
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "BatchJobDefinition"
+Resources:
+  ProdNeg1:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      StageName: Prod
+      Description: Prod Stage
+      RestApiId: !Ref MyRestApi
+      DeploymentId: !Ref TestDeployment
+      DocumentationVersion: !Ref MyDocumentationVersion
+      ClientCertificateId: !Ref ClientCertificate
+      TracingEnabled: true
+      Variables:
+        Stack: Prod
+      MethodSettings:
+        - ResourcePath: /
+          HttpMethod: GET
+          MetricsEnabled: 'true'
+          DataTraceEnabled: 'false'
+        - ResourcePath: /stack
+          HttpMethod: POST
+          MetricsEnabled: 'true'
+          DataTraceEnabled: 'false'
+          ThrottlingBurstLimit: '999'
+        - ResourcePath: /stack
+          HttpMethod: GET
+          MetricsEnabled: 'true'
+          DataTraceEnabled: 'false'
+          ThrottlingBurstLimit: '555'
 
 ```

@@ -18,7 +18,7 @@ hide:
 -   **Query id:** ddfc4eaa-af23-409f-b96c-bf5c45dc4daa
 -   **Query name:** HTTP Port Open To Internet
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Networking and Firewall
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/http_port_open)
 
@@ -70,22 +70,7 @@ Resources:
 
 
 #### Code samples without security vulnerabilities
-```yaml title="Negative test num. 1 - yaml file"
-Resources:
-  InstanceSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-        GroupDescription: Allow http to client host
-        VpcId:
-          Ref: myVPC
-        SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
-          CidrIp: 192.168.0.0/16
-
-```
-```json title="Negative test num. 2 - json file"
+```json title="Negative test num. 1 - json file"
 {
   "Resources": {
     "InstanceSecurityGroup": {
@@ -107,5 +92,20 @@ Resources:
     }
   }
 }
+
+```
+```yaml title="Negative test num. 2 - yaml file"
+Resources:
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+        GroupDescription: Allow http to client host
+        VpcId:
+          Ref: myVPC
+        SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 192.168.0.0/16
 
 ```

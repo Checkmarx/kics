@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 1cc2fbd7-816c-4fbf-ad6d-38a4afa4312a
 -   **Query name:** Security Group Egress CIDR Open To World
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Networking and Firewall
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/security_group_egress_cidr_open_to_world)
 
@@ -162,60 +162,7 @@ Resources:
 
 
 #### Code samples without security vulnerabilities
-```yaml title="Negative test num. 1 - yaml file"
-Resources:
-  InstanceSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-      GroupDescription: Allow http to client host
-      VpcId:
-         Ref: myVPC
-      SecurityGroupIngress:
-      - IpProtocol: tcp
-        Description: TCP
-        FromPort: 80
-        ToPort: 80
-        CidrIp: 192.0.2.0/24
-      SecurityGroupEgress:
-      - IpProtocol: tcp
-        Description: TCP
-        FromPort: 80
-        ToPort: 80
-        CidrIp: 192.0.2.0/24
-  OutboundRule:
-    Type: AWS::EC2::SecurityGroupEgress
-    Properties:
-      Description: TCP
-      IpProtocol: tcp
-      FromPort: 0
-      ToPort: 0
-      CidrIpv6: 2001:0DB8:1234::/48
-      DestinationSecurityGroupId:
-        Fn::GetAtt:
-        - TargetSG
-        - GroupId
-      GroupId:
-        Fn::GetAtt:
-        - SourceSG
-        - GroupId
-  InboundRule:
-    Type: AWS::EC2::SecurityGroupIngress
-    Properties:
-      Description: TCP
-      IpProtocol: tcp
-      FromPort: 0
-      ToPort: 0
-      CidrIpv6: 2001:0DB8:1234::/48
-      SourceSecurityGroupId:
-        Fn::GetAtt:
-        - SourceSG
-        - GroupId
-      GroupId:
-        Fn::GetAtt:
-        - TargetSG
-        - GroupId
-```
-```json title="Negative test num. 2 - json file"
+```json title="Negative test num. 1 - json file"
 {
   "Resources": {
     "InstanceSecurityGroup": {
@@ -292,4 +239,57 @@ Resources:
   }
 }
 
+```
+```yaml title="Negative test num. 2 - yaml file"
+Resources:
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow http to client host
+      VpcId:
+         Ref: myVPC
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        Description: TCP
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 192.0.2.0/24
+      SecurityGroupEgress:
+      - IpProtocol: tcp
+        Description: TCP
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 192.0.2.0/24
+  OutboundRule:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      Description: TCP
+      IpProtocol: tcp
+      FromPort: 0
+      ToPort: 0
+      CidrIpv6: 2001:0DB8:1234::/48
+      DestinationSecurityGroupId:
+        Fn::GetAtt:
+        - TargetSG
+        - GroupId
+      GroupId:
+        Fn::GetAtt:
+        - SourceSG
+        - GroupId
+  InboundRule:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      Description: TCP
+      IpProtocol: tcp
+      FromPort: 0
+      ToPort: 0
+      CidrIpv6: 2001:0DB8:1234::/48
+      SourceSecurityGroupId:
+        Fn::GetAtt:
+        - SourceSG
+        - GroupId
+      GroupId:
+        Fn::GetAtt:
+        - TargetSG
+        - GroupId
 ```
