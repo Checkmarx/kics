@@ -11,7 +11,7 @@ replace (
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
 	go.etcd.io/etcd/pkg/v3 => go.etcd.io/etcd/pkg/v3 v3.5.10
-	golang.org/x/crypto => golang.org/x/crypto v0.21.1-0.20240326215738-8d0d405eedb9 // indirect
+	golang.org/x/crypto => golang.org/x/crypto v0.21.1-0.20240404165943-d042a396a6de // indirect
 	google.golang.org/protobuf => google.golang.org/protobuf v1.33.0 // indirect
 )
 
@@ -20,7 +20,6 @@ require (
 	github.com/BurntSushi/toml v1.3.2
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
-	github.com/antlr/antlr4/runtime/Go/antlr/v4 v4.0.0-20230305170008-8188dc5388df
 	github.com/antlr4-go/antlr/v4 v4.13.0
 	github.com/aws/aws-sdk-go v1.44.295
 	github.com/bigkevmcd/go-configparser v0.0.0-20230427073640-c6b631f70126
@@ -214,8 +213,8 @@ require (
 	golang.org/x/crypto v0.21.1-0.20240326215738-8d0d405eedb9 // indirect
 	golang.org/x/oauth2 v0.11.0 // indirect
 	golang.org/x/sync v0.4.0 // indirect
-	golang.org/x/sys v0.18.0 // indirect
-	golang.org/x/term v0.18.0 // indirect
+	golang.org/x/sys v0.19.0 // indirect
+	golang.org/x/term v0.19.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	google.golang.org/api v0.126.0 // indirect
