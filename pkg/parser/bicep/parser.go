@@ -379,6 +379,9 @@ func (s *BicepVisitor) VisitArray(ctx *parser.ArrayContext) interface{} {
 	array := []interface{}{}
 	for _, val := range ctx.AllArrayItem() {
 		expression := val.Accept(s)
+		if isParameter(expression) || isDotFunction(expression) {
+			expression = "[" + expression.(string) + "]"
+		}
 		array = append(array, expression)
 	}
 	return array
