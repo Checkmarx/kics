@@ -211,7 +211,7 @@ Converts functioncall data (map of identifying string to slice of arguments) int
 	"FunctionName(arg1, 2, arg3, Function2(arg4, arg5))"
 */
 func parseFunctionCall(functionData map[string][]interface{}) string {
-	var stringifiedFunctionCall string = ""
+	stringifiedFunctionCall := ""
 
 	for functionName, argumentList := range functionData {
 		stringifiedFunctionCall += functionName + "("
@@ -347,8 +347,7 @@ func (s *BicepVisitor) VisitInterpString(ctx *parser.InterpStringContext) interf
 		interpString = append(interpString, ctx.STRING_LEFT_PIECE().GetText())
 		if ctx.AllSTRING_MIDDLE_PIECE() != nil && (len(ctx.AllSTRING_MIDDLE_PIECE()) > 0) {
 			for idx, val := range ctx.AllSTRING_MIDDLE_PIECE() {
-				interpString = append(interpString, ctx.Expression(idx).Accept(s))
-				interpString = append(interpString, val.GetText())
+				interpString = append(interpString, ctx.Expression(idx).Accept(s), val.GetText())
 			}
 		}
 		// Last expression with string right piece
@@ -542,7 +541,6 @@ func (s *BicepVisitor) VisitArgumentList(ctx *parser.ArgumentListContext) interf
 }
 
 func (s *BicepVisitor) VisitTypeExpression(ctx *parser.TypeExpressionContext) interface{} {
-
 	return ctx.Identifier().Accept(s)
 }
 
