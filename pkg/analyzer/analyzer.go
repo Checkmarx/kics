@@ -303,7 +303,8 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 				return err
 			}
 
-			if info.IsDir() { //Skip directories checking
+			// Skip directories checking
+			if info.IsDir() {
 				return nil
 			}
 
@@ -321,7 +322,6 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 					files = append(files, path)
 				}
 			}
-
 			return nil
 		}); err != nil {
 			log.Error().Msgf("failed to analyze path %s: %s", path, err)
