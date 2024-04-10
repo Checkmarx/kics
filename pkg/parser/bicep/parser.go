@@ -26,7 +26,7 @@ type JSONBicep struct {
 	Resources  []interface{}          `json:"resources"`
 }
 
-const CLOSE_PARENTHESIS = "')"
+const CloseParenthesis = "')"
 
 func NewBicepVisitor() *BicepVisitor {
 	paramList := map[string]interface{}{}
@@ -247,12 +247,12 @@ func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{
 			}
 			for variable := range s.varList {
 				if variable == identifier {
-					identifier = "variables('" + identifier + CLOSE_PARENTHESIS
+					identifier = "variables('" + identifier + CloseParenthesis
 				}
 			}
 			for parameter := range s.paramList {
 				if parameter == identifier {
-					identifier = "parameters('" + identifier + CLOSE_PARENTHESIS
+					identifier = "parameters('" + identifier + CloseParenthesis
 				}
 			}
 			exp := ctx.Expression(0).Accept(s)
@@ -330,12 +330,12 @@ func (s *BicepVisitor) VisitLiteralValue(ctx *parser.LiteralValueContext) interf
 		}
 		for variable := range s.varList {
 			if variable == identifier {
-				identifier = "variables('" + identifier + CLOSE_PARENTHESIS
+				identifier = "variables('" + identifier + CloseParenthesis
 			}
 		}
 		for parameter := range s.paramList {
 			if parameter == identifier {
-				identifier = "parameters('" + identifier + CLOSE_PARENTHESIS
+				identifier = "parameters('" + identifier + CloseParenthesis
 			}
 		}
 		return identifier
