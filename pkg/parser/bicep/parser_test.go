@@ -219,6 +219,11 @@ func TestParseBicepFile(t *testing.T) {
 							"type": "string",
 							"defaultValue": "[resourceGroup().location]"
 						},
+						"parenthesis": {
+							"decorators": null,
+							"defaultValue": "simple-vm",
+							"type": "string"
+						},
 						"vmName": {
 							"decorators": [
 								{

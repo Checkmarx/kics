@@ -290,7 +290,9 @@ func (s *BicepVisitor) VisitPrimaryExpression(ctx *parser.PrimaryExpressionConte
 		return ctx.InterpString().Accept(s)
 	}
 	if ctx.MULTILINE_STRING() != nil {
-		return ctx.MULTILINE_STRING().GetText()
+		finalString := strings.ReplaceAll(ctx.MULTILINE_STRING().GetText(), "'''", "")
+		finalString = strings.ReplaceAll(finalString, "\r\n", "")
+		return finalString
 	}
 	if ctx.Array() != nil {
 		return ctx.Array().Accept(s)
