@@ -396,12 +396,12 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 				results <- terraform
 				locCount <- linesCount
 			}
-    // Bicep
-    case ".bicep":
-      if a.isAvailableType(bicep) {
-        results <- bicep
-        locCount <- linesCount
-      }
+		// Bicep
+		case ".bicep":
+			if a.isAvailableType(bicep) {
+				results <- bicep
+				locCount <- linesCount
+			}
 		// GRPC
 		case ".proto":
 			if a.isAvailableType(grpc) {

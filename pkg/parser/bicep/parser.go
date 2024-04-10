@@ -70,9 +70,9 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 	return []model.Document{doc}, nil, nil
 }
 
-func (v *BicepVisitor) VisitProgram(ctx *parser.ProgramContext) interface{} {
+func (s *BicepVisitor) VisitProgram(ctx *parser.ProgramContext) interface{} {
 	for _, val := range ctx.AllStatement() {
-		val.Accept(v)
+		val.Accept(s)
 	}
 
 	return nil
