@@ -3,7 +3,7 @@
   "queryName": "API Key Exposed In Global Security (v3)",
   "severity": "LOW",
   "category": "Access Control",
-  "descriptionText": "API Keys should not be transported over network",
+  "descriptionText": "API Keys should be transported using a secure method such as HTTPS. Define a security scheme that uses a secure method to transport the API key.",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
   "platform": "OpenAPI",
   "descriptionID": "f7f6e7fb",
