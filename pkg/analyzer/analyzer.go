@@ -368,7 +368,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, wg *sync.WaitGroup) {
+func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, wg *sync.WaitGroup) { //nolint: gocyclo
 	defer wg.Done()
 
 	ext, errExt := utils.GetExtension(a.filePath)

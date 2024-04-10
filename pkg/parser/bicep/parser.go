@@ -26,6 +26,8 @@ type JSONBicep struct {
 	Resources  []interface{}          `json:"resources"`
 }
 
+const CLOSE_PARENTHESIS = "')"
+
 func NewBicepVisitor() *BicepVisitor {
 	paramList := map[string]interface{}{}
 	varList := map[string]interface{}{}
@@ -245,12 +247,12 @@ func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{
 			}
 			for variable := range s.varList {
 				if variable == identifier {
-					identifier = "variables('" + identifier + "')"
+					identifier = "variables('" + identifier + CLOSE_PARENTHESIS
 				}
 			}
 			for parameter := range s.paramList {
 				if parameter == identifier {
-					identifier = "parameters('" + identifier + "')"
+					identifier = "parameters('" + identifier + CLOSE_PARENTHESIS
 				}
 			}
 			exp := ctx.Expression(0).Accept(s)
@@ -290,7 +292,8 @@ func (s *BicepVisitor) VisitPrimaryExpression(ctx *parser.PrimaryExpressionConte
 	}
 	if ctx.MULTILINE_STRING() != nil {
 		finalString := strings.ReplaceAll(ctx.MULTILINE_STRING().GetText(), "'''", "")
-		finalString = strings.ReplaceAll(finalString, "\r\n", "")
+		finalString = strings.ReplaceAll(finalString, "\r", "")
+		finalString = strings.ReplaceAll(finalString, "\n", "")
 		return finalString
 	}
 	if ctx.Array() != nil {
@@ -327,12 +330,12 @@ func (s *BicepVisitor) VisitLiteralValue(ctx *parser.LiteralValueContext) interf
 		}
 		for variable := range s.varList {
 			if variable == identifier {
-				identifier = "variables('" + identifier + "')"
+				identifier = "variables('" + identifier + CLOSE_PARENTHESIS
 			}
 		}
 		for parameter := range s.paramList {
 			if parameter == identifier {
-				identifier = "parameters('" + identifier + "')"
+				identifier = "parameters('" + identifier + CLOSE_PARENTHESIS
 			}
 		}
 		return identifier
