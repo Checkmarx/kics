@@ -6,7 +6,6 @@ import (
 
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/resolver/file"
-	"github.com/mailru/easyjson"
 )
 
 // Parser defines a parser type
@@ -31,7 +30,7 @@ func (p *Parser) Resolve(fileContent []byte, filename string, resolveReferences 
 // Parse parses json file and returns it as a Document
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, error) {
 	r := model.Document{}
-	err := easyjson.Unmarshal(fileContent, &r)
+	err := json.Unmarshal(fileContent, &r)
 	if err != nil {
 		var r []model.Document
 		err = json.Unmarshal(fileContent, &r)
