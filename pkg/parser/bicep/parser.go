@@ -79,7 +79,6 @@ func (v *BicepVisitor) VisitProgram(ctx *parser.ProgramContext) interface{} {
 }
 
 func (s *BicepVisitor) VisitStatement(ctx *parser.StatementContext) interface{} {
-
 	if ctx.ParameterDecl() != nil {
 		return ctx.ParameterDecl().Accept(s)
 	}
@@ -364,9 +363,9 @@ func (s *BicepVisitor) VisitInterpString(ctx *parser.InterpStringContext) interf
 		str := ""
 		for _, v := range interpString {
 			switch v := v.(type) {
-			case (string):
-				str = str + v
-			case (map[string][]interface{}):
+			case string:
+				str += v
+			case map[string][]interface{}:
 				for identifier, argumentList := range v {
 					resStr := "[" + identifier + "("
 					for idx, arg := range argumentList {
@@ -384,7 +383,6 @@ func (s *BicepVisitor) VisitInterpString(ctx *parser.InterpStringContext) interf
 					str += resStr
 				}
 			}
-
 		}
 		return str
 	}
