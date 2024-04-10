@@ -351,8 +351,9 @@ func (s *BicepVisitor) VisitInterpString(ctx *parser.InterpStringContext) interf
 			}
 		}
 		// Last expression with string right piece
-		interpString = append(interpString, ctx.Expression(len(ctx.AllSTRING_MIDDLE_PIECE())).Accept(s))
-		interpString = append(interpString, ctx.STRING_RIGHT_PIECE().GetText())
+		interpString = append(interpString,
+			ctx.Expression(len(ctx.AllSTRING_MIDDLE_PIECE())).Accept(s),
+			ctx.STRING_RIGHT_PIECE().GetText())
 		str := ""
 		for _, v := range interpString {
 			switch v := v.(type) {
