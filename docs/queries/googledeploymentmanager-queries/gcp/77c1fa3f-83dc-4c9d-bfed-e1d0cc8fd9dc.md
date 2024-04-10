@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 77c1fa3f-83dc-4c9d-bfed-e1d0cc8fd9dc
 -   **Query name:** Cloud Storage Bucket Is Publicly Accessible
 -   **Platform:** GoogleDeploymentManager
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Access Control
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/googleDeploymentManager/gcp/cloud_storage_bucket_is_publicly_accessible)
 

@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "Missing Dnf Clean All",
-		"severity": "MEDIUM",
-		"line": 2
-	}
+  {
+    "queryName": "Missing Dnf Clean All",
+    "severity": "LOW",
+    "line": 2
+  }
 ]

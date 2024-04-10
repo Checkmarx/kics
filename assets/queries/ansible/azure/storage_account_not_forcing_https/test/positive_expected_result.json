@@ -1,47 +1,47 @@
 [
   {
     "queryName": "Storage Account Not Forcing HTTPS",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 3
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 15
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 24
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 33
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 42
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 51
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 60
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 69
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 78
   }
 ]

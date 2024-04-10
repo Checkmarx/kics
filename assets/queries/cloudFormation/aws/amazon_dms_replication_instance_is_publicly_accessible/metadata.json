@@ -1,12 +1,13 @@
 {
   "id": "5864fb39-d719-4182-80e2-89dbe627be63",
   "queryName": "Amazon DMS Replication Instance Is Publicly Accessible",
-  "severity": "HIGH",
+  "severity": "CRITICAL",
   "category": "Access Control",
   "descriptionText": "Amazon DMS is publicly accessible, therefore exposing possible sensitive information. To prevent such a scenario, update the attribute 'PubliclyAccessible' to false.",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationinstance.html",
   "platform": "CloudFormation",
   "descriptionID": "bc97aed1",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

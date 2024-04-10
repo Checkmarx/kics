@@ -1,15 +1,14 @@
 [
   {
     "queryName": "IAM Policies With Full Privileges",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 5,
     "fileName": "positive.tf"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 19,
     "fileName": "positive.tf"
   }
-
 ]

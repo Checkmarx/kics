@@ -1,25 +1,25 @@
 [
   {
     "queryName": "DocDB Logging Is Disabled",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 6,
     "filename": "positive1.json"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 15,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 15,
     "filename": "positive3.yaml"
   },
   {
     "queryName": "DocDB Logging Is Disabled",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 14,
     "filename": "positive4.json"
   }

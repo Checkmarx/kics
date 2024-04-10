@@ -1,12 +1,13 @@
 {
   "id": "48c61fbd-09c9-46cc-a521-012e0c325412",
   "queryName": "Private Cluster Disabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Kubernetes Clusters must be created with Private Clusters enabled, meaning the 'privateClusterConfig' must be defined and the attributes 'enablePrivateEndpoint' and 'enablePrivateNodes' must be true.",
   "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "c65a868d",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

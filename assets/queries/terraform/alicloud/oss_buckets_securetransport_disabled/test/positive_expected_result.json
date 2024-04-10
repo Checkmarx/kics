@@ -1,14 +1,14 @@
 [
-    {
-      "queryName": "OSS Buckets Secure Transport Disabled",
-      "severity": "HIGH",
-      "line": 2,
-      "fileName": "positive1.tf"
-    },
-    {
-        "queryName": "OSS Buckets Secure Transport Disabled",
-        "severity": "HIGH",
-        "line": 5,
-        "fileName": "positive2.tf"
-      }
-  ]
+  {
+    "queryName": "OSS Buckets Secure Transport Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "OSS Buckets Secure Transport Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive2.tf"
+  }
+]

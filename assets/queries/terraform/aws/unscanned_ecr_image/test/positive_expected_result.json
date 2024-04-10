@@ -1,12 +1,12 @@
 [
   {
     "queryName": "Unscanned ECR Image",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 1
   },
   {
     "queryName": "Unscanned ECR Image",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 11
   }
 ]

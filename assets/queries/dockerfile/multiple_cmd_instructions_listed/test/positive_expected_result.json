@@ -1,8 +1,8 @@
 [
-	{
-		"queryName": "Multiple CMD Instructions Listed",
-		"severity": "MEDIUM",
-		"line": 11,
-		"fileName": "positive.dockerfile"
-	}
+  {
+    "queryName": "Multiple CMD Instructions Listed",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive.dockerfile"
+  }
 ]

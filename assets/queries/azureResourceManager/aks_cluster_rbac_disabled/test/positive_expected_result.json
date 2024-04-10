@@ -1,25 +1,25 @@
 [
   {
     "queryName": "AKS Cluster RBAC Disabled",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 14,
     "fileName": "positive1.json"
   },
   {
     "queryName": "AKS Cluster RBAC Disabled",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 36,
     "fileName": "positive2.json"
   },
   {
     "queryName": "AKS Cluster RBAC Disabled",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 16,
     "fileName": "positive3.json"
   },
   {
     "queryName": "AKS Cluster RBAC Disabled",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 38,
     "fileName": "positive4.json"
   }

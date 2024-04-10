@@ -1,7 +1,7 @@
 [
   {
     "queryName": "ECR Repository Is Publicly Accessible",
-    "severity": "MEDIUM",
+    "severity": "CRITICAL",
     "line": 8
   }
 ]

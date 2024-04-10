@@ -1,27 +1,27 @@
 [
   {
     "queryName": "Pip install Keeping Cached Packages",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 2
   },
   {
     "queryName": "Pip install Keeping Cached Packages",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 8
   },
   {
     "queryName": "Pip install Keeping Cached Packages",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 9
   },
   {
     "queryName": "Pip install Keeping Cached Packages",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 10
   },
   {
     "queryName": "Pip install Keeping Cached Packages",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 11
   }
 ]

@@ -1,27 +1,27 @@
 [
   {
     "queryName": "No Password Policy Enabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 5
   },
   {
     "queryName": "No Password Policy Enabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 16
   },
   {
     "queryName": "No Password Policy Enabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 23
   },
   {
     "queryName": "No Password Policy Enabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 30
   },
   {
     "queryName": "No Password Policy Enabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 31
   }
 ]

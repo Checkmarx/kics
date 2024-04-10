@@ -1,12 +1,13 @@
 {
   "id": "38c5ee0d-7f22-4260-ab72-5073048df100",
   "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
-  "severity": "HIGH",
+  "severity": "CRITICAL",
   "category": "Access Control",
   "descriptionText": "S3 Buckets should not be readable and writable to all users",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket",
   "platform": "Terraform",
   "descriptionID": "d535387f",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

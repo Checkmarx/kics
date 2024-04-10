@@ -1,12 +1,13 @@
 {
   "id": "af167837-9636-4086-b815-c239186b9dda",
   "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Cross-Account IAM Assume Role Policy should require external ID or MFA to protect cross-account access",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/iam_role_module.html#parameter-assume_role_policy_document",
   "platform": "Ansible",
   "descriptionID": "54f0a7dd",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

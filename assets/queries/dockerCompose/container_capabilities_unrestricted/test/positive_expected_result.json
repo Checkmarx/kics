@@ -1,32 +1,32 @@
 [
-    {
-      "queryName": "Container Capabilities Unrestricted",
-      "severity": "LOW",
-      "line": 13,
-      "filename": "positive1.yaml"
-    },
-    {
-        "queryName": "Container Capabilities Unrestricted",
-        "severity": "LOW",
-        "line": 4,
-        "filename": "positive1.yaml"
-    },
-    {
-        "queryName": "Container Capabilities Unrestricted",
-        "severity": "LOW",
-        "line": 13,
-        "filename": "positive2.yaml"
-    },
-    {
-        "queryName": "Container Capabilities Unrestricted",
-        "severity": "LOW",
-        "line": 13,
-        "filename": "positive3.yaml"
-    },
-    {
-        "queryName": "Container Capabilities Unrestricted",
-        "severity": "LOW",
-        "line": 4,
-        "filename": "positive4.yaml"
-    }
+  {
+    "queryName": "Container Capabilities Unrestricted",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Container Capabilities Unrestricted",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.yaml"
+  },
+  {
+    "queryName": "Container Capabilities Unrestricted",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "Container Capabilities Unrestricted",
+    "severity": "MEDIUM",
+    "line": 13,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "Container Capabilities Unrestricted",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive4.yaml"
+  }
 ]
