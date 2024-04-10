@@ -18,7 +18,7 @@ hide:
 -   **Query id:** faa8fddf-c0aa-4b2d-84ff-e993e233ebe9
 -   **Query name:** S3 Bucket Allows List Action From All Principals
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Access Control
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/s3_bucket_allows_list_actions_from_all_principals)
 

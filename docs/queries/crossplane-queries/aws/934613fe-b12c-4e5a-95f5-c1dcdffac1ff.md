@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 934613fe-b12c-4e5a-95f5-c1dcdffac1ff
 -   **Query name:** CloudWatch Without Retention Period Specified
 -   **Platform:** Crossplane
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Observability
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/crossplane/aws/cloudwatch_without_retention_period_specified)
 
@@ -28,7 +28,7 @@ AWS CloudWatch should have CloudWatch Logs enabled in order to monitor, store, a
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Positive test num. 1 - yaml file" hl_lines="9 34 38 6"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="9 38"
 apiVersion: cloudwatchlogs.aws.crossplane.io/v1alpha1
 kind: LogGroup
 metadata:
@@ -67,6 +67,45 @@ spec:
             logGroupName: /aws/eks/sample-cluster/cluster
             region: us-east-1
             retentionInDays: 0
+
+```
+```yaml title="Positive test num. 2 - yaml file" hl_lines="34 6"
+apiVersion: cloudwatchlogs.aws.crossplane.io/v1alpha1
+kind: LogGroup
+metadata:
+  name: lg-5
+spec:
+  forProvider:
+    logGroupName: /aws/eks/sample-cluster/cluster
+    region: us-east-1
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: cluster-aws
+  labels:
+    provider: aws
+    cluster: eks
+spec:
+  compositeTypeRef:
+    apiVersion: mydev.org/v1alpha1
+    kind: CompositeCluster
+  writeConnectionSecretsToNamespace: crossplane-system
+  patchSets:
+    - name: metadata
+      patches:
+        - fromFieldPath: metadata.labels
+  resources:
+    - name: sample-ec2
+      base:
+        apiVersion: cloudwatchlogs.aws.crossplane.io/v1alpha1
+        kind: LogGroup
+        metadata:
+          name: lg-6
+        spec:
+          forProvider:
+            logGroupName: /aws/eks/sample-cluster/cluster
+            region: us-east-1
 
 ```
 
