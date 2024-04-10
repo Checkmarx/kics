@@ -1,4 +1,6 @@
-@description('Username for the Virtual Machine.')
+@description(
+  'Username for the Virtual Machine.'
+)
 param adminUsername string
 
 @description('Password for the Virtual Machine.')
@@ -6,8 +8,10 @@ param adminUsername string
 @secure()
 param adminPassword string
 
+
 @description(
-  'The Windows version for the VM. This will pick a fully patched image of this given Windows version.'
+  '''The Windows version for the VM.
+ This will pick a fully patched image of this given Windows version.'''
 )
 @allowed(
   [
@@ -37,6 +41,8 @@ param location string = resourceGroup().location
 
 @description('Name of the virtual machine.')
 param vmName string = 'simple-vm'
+
+param parenthesis string = ('simple-vm')
 
 var storageAccountName = 'bootdiags${uniqueString(resourceGroup().id)}'
 var nicName = 'myVMNic'

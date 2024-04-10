@@ -101,23 +101,15 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 	}
 	if ctx.ParameterDefaultValue() != nil {
 		paramVal := ctx.ParameterDefaultValue().Accept(s)
-		switch paramVal.(type) {
-		case string:
-			param["defaultValue"] = paramVal
+		switch paramVal := paramVal.(type) {
 		case map[string][]interface{}:
-			args := ""
-			for funcName, arguments := range paramVal.(map[string][]interface{}) {
-				for index, argument := range arguments {
-					arg, ok := argument.(string)
-					if ok {
-						args += arg
-						if index < len(arguments)-1 {
-							args += ", "
-						}
-					}
-				}
-				param["defaultValue"] = "[" + funcName + "(" + args + ")]"
+			stringifiedFunction := parseFunctionCall(paramVal)
+			param["defaultValue"] = "[" + stringifiedFunction + "]"
+		case interface{}:
+			if isDotFunction(paramVal) {
+				paramVal = "[" + paramVal.(string) + "]"
 			}
+			param["defaultValue"] = paramVal
 		default:
 			param["defaultValue"] = nil
 		}
@@ -297,7 +289,9 @@ func (s *BicepVisitor) VisitPrimaryExpression(ctx *parser.PrimaryExpressionConte
 		return ctx.InterpString().Accept(s)
 	}
 	if ctx.MULTILINE_STRING() != nil {
-		return ctx.MULTILINE_STRING().GetText()
+		finalString := strings.ReplaceAll(ctx.MULTILINE_STRING().GetText(), "'''", "")
+		finalString = strings.ReplaceAll(finalString, "\r\n", "")
+		return finalString
 	}
 	if ctx.Array() != nil {
 		return ctx.Array().Accept(s)

@@ -75,7 +75,7 @@ func TestParseBicepFile(t *testing.T) {
 								}
 							],
 							"type": "bool",
-							"value": true
+							"defaultValue": true
 						},
 						"middleString": {
 							"decorators": [
@@ -86,7 +86,7 @@ func TestParseBicepFile(t *testing.T) {
 								}
 							],
 							"type": "string",
-							"value": "'teste-${parameters('numberNodes')}${parameters('isNumber')}-teste'"
+							"defaultValue": "'teste-${parameters('numberNodes')}${parameters('isNumber')}-teste'"
 						},
 						"numberNodes": {
 							"decorators": [
@@ -97,7 +97,7 @@ func TestParseBicepFile(t *testing.T) {
 								}
 							],
 							"type": "int",
-							"value": 2
+							"defaultValue": 2
 						},
 						"projectName": {
 							"decorators": [
@@ -108,7 +108,7 @@ func TestParseBicepFile(t *testing.T) {
 								}
 							],
 							"type": "secureString",
-							"value": "test"
+							"defaultValue": "test"
 						}
 					},
 					"resources": [],
@@ -160,7 +160,7 @@ func TestParseBicepFile(t *testing.T) {
 									]
 								},
 								{
-									"allowed": [
+									"allowedValues": [
 										[
 											"2008-R2-SP1",
 											"2012-Datacenter",
@@ -181,7 +181,7 @@ func TestParseBicepFile(t *testing.T) {
 								}
 							],
 							"type": "string",
-							"value": "2019-Datacenter"
+							"defaultValue": "2019-Datacenter"
 						},
 						"adminPassword": {
 							"decorators": [
@@ -217,7 +217,12 @@ func TestParseBicepFile(t *testing.T) {
 								}
 							],
 							"type": "string",
-							"value": "resourceGroup().location"
+							"defaultValue": "[resourceGroup().location]"
+						},
+						"parenthesis": {
+							"decorators": null,
+							"defaultValue": "simple-vm",
+							"type": "string"
 						},
 						"vmName": {
 							"decorators": [
@@ -228,7 +233,7 @@ func TestParseBicepFile(t *testing.T) {
 								}
 							],
 							"type": "string",
-							"value": "simple-vm"
+							"defaultValue": "simple-vm"
 						},
 						"vmSize": {
 							"decorators": [
@@ -239,7 +244,7 @@ func TestParseBicepFile(t *testing.T) {
 								}
 							],
 							"type": "string",
-							"value": "Standard_D2_v3"
+							"defaultValue": "Standard_D2_v3"
 						}
 					},
 					"resources": [
@@ -260,17 +265,17 @@ func TestParseBicepFile(t *testing.T) {
 									]
 								}
 							],
-							"name": "parameters('vmName')",
-							"parameters('location')": "parameters('location')",
+							"name": "[parameters('vmName')]",
+							"location": "[parameters('location')]",
 							"properties": {
 								"diagnosticsProfile": {
 									"bootDiagnostics": {
 										"enabled": true,
-										"storageUri": "reference(resourceId(Microsoft.Storage/storageAccounts, variables('storageAccountName'))).primaryEndpoints.blob"
+										"storageUri": "[reference(resourceId(Microsoft.Storage/storageAccounts, variables('storageAccountName'))).primaryEndpoints.blob]"
 									}
 								},
 								"hardwareProfile": {
-									"parameters('vmSize')": "parameters('vmSize')"
+									"vmSize": "[parameters('vmSize')]"
 								},
 								"networkProfile": {
 									"networkInterfaces": [
@@ -285,9 +290,9 @@ func TestParseBicepFile(t *testing.T) {
 									]
 								},
 								"osProfile": {
-									"computerName": "parameters('vmName')",
-									"parameters('adminPassword')": "parameters('adminPassword')",
-									"parameters('adminUsername')": "parameters('adminUsername')"
+									"computerName": "[parameters('vmName')]",
+									"adminPassword": "[parameters('adminPassword')]",
+									"adminUsername": "[parameters('adminUsername')]"
 								},
 								"storageProfile": {
 									"dataDisks": [
@@ -300,7 +305,7 @@ func TestParseBicepFile(t *testing.T) {
 									"imageReference": {
 										"offer": "WindowsServer",
 										"publisher": "MicrosoftWindowsServer",
-										"sku": "parameters('OSVersion')",
+										"sku": "[parameters('OSVersion')]",
 										"version": "latest"
 									},
 									"osDisk": {
