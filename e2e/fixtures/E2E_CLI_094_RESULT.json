@@ -1,0 +1,65 @@
+{
+	"kics_version": "development",
+  "files_scanned": 2,
+  "lines_scanned": 283348,
+  "files_parsed": 2,
+  "lines_parsed": 283342,
+	"lines_ignored": 0,
+	"files_failed_to_scan": 0,
+	"queries_total": 1,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 0,
+		"INFO": 0,
+		"LOW": 0,
+		"MEDIUM": 2,
+		"TRACE": 0
+	},
+	"total_counter": 2,
+	"total_bom_resources": 0,
+	"start": "2024-04-10T16:51:27.8991485+01:00",
+	"end": "2024-04-10T16:51:52.8351076+01:00",
+	"paths": [
+    "/path/e2e/fixtures/samples/bigger_than_limit"
+	],
+	"queries": [
+		{
+			"query_name": "Global Server Object Uses HTTP",
+			"query_id": "2d8c175a-6d90-412b-8b0e-e034ea49a1fe",
+			"query_url": "https://swagger.io/specification/#server-object",
+			"severity": "MEDIUM",
+			"platform": "OpenAPI",
+			"category": "Encryption",
+			"experimental": false,
+			"description": "Global server object URL should use 'https' protocol instead of 'http'",
+			"description_id": "6b568693",
+			"files": [
+        {
+          "file_name": "/path/e2e/fixtures/samples/bigger_than_limit/myfolder/openapi1.json",
+          "similarity_id": "6a8abedb770762e791202941138c00da25ba758a575f9143b27768331b72e21e",
+          "line": 2,
+          "issue_type": "MissingAttribute",
+          "search_key": "openapi",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Global servers array should be defined",
+          "actual_value": "Global servers array is not defined"
+        },
+        {
+          "file_name": "/path/e2e/fixtures/samples/bigger_than_limit/myfolder/openapi.json",
+          "similarity_id": "869d24484fc185a837364f682b816b4bf11dedb0ec272e18908e01ad5a906f3a",
+          "line": 2,
+          "issue_type": "MissingAttribute",
+          "search_key": "openapi",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Global servers array should be defined",
+          "actual_value": "Global servers array is not defined"
+        }
+			]
+		}
+	]
+}
