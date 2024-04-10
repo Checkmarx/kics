@@ -102,7 +102,26 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 	}
 	if ctx.ParameterDefaultValue() != nil {
 		paramVal := ctx.ParameterDefaultValue().Accept(s)
-		param["defaultValue"] = paramVal
+		switch paramVal.(type) {
+		case string:
+			param["defaultValue"] = paramVal
+		case map[string][]interface{}:
+			args := ""
+			for funcName, arguments := range paramVal.(map[string][]interface{}) {
+				for index, argument := range arguments {
+					arg, ok := argument.(string)
+					if ok {
+						args += arg
+						if index < len(arguments)-1 {
+							args += ", "
+						}
+					}
+				}
+				param["defaultValue"] = "[" + funcName + "(" + args + ")]"
+			}
+		default:
+			param["defaultValue"] = nil
+		}
 	}
 	if ctx.TypeExpression() != nil {
 		typeExpression := ctx.TypeExpression().Accept(s)
