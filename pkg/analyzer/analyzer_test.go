@@ -423,6 +423,19 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			excludeGitIgnore:     false,
 			MaxFileSize:          -1,
 		},
+		{
+			name:                 "analyze_not_escape_when_size_folder_higher_than_5",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/bigger_than_limit")},
+			wantTypes:            []string{"openapi"},
+			wantExclude:          []string{},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantLOC:              283342,
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+			MaxFileSize:          -1,
+		},
 	}
 
 	for _, tt := range tests {
