@@ -8,5 +8,6 @@
   "platform": "Dockerfile",
   "descriptionID": "fed3d812",
   "cwe": "682",
-  "oldSeverity": "HIGH"
+  "oldSeverity": "HIGH",
+  "cloudProvider" : "common"
 }
