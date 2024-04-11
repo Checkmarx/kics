@@ -37,7 +37,6 @@ require (
 	github.com/hashicorp/terraform-json v0.16.0
 	github.com/johnfercher/maroto v0.43.1-0.20230914003034-2e439ed90fe3
 	github.com/mackerelio/go-osstat v0.2.4
-	github.com/mailru/easyjson v0.7.7
 	github.com/moby/buildkit v0.12.5
 	github.com/open-policy-agent/opa v0.62.1
 	github.com/pkg/errors v0.9.1
@@ -84,6 +83,7 @@ require (
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
+	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/mxk/go-flowrate v0.0.0-20140419014527-cca7078d478f // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
