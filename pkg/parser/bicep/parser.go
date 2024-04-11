@@ -21,9 +21,10 @@ type BicepVisitor struct {
 }
 
 type JSONBicep struct {
-	Parameters map[string]interface{} `json:"parameters"`
-	Variables  map[string]interface{} `json:"variables"`
-	Resources  []interface{}          `json:"resources"`
+	Parameters map[string]interface{}      `json:"parameters"`
+	Variables  map[string]interface{}      `json:"variables"`
+	Resources  []interface{}               `json:"resources"`
+	Lines      map[string]model.LineObject `json:"_kics_lines"`
 }
 
 const CloseParenthesis = "')"
@@ -32,6 +33,7 @@ func NewBicepVisitor() *BicepVisitor {
 	paramList := map[string]interface{}{}
 	varList := map[string]interface{}{}
 	resourceList := []interface{}{}
+
 	return &BicepVisitor{paramList: paramList, varList: varList, resourceList: resourceList}
 }
 
@@ -40,6 +42,7 @@ func convertVisitorToJSONBicep(visitor *BicepVisitor) *JSONBicep {
 		Parameters: visitor.paramList,
 		Variables:  visitor.varList,
 		Resources:  visitor.resourceList,
+		Lines:      make(map[string]model.LineObject),
 	}
 }
 
@@ -94,8 +97,31 @@ func (s *BicepVisitor) VisitStatement(ctx *parser.StatementContext) interface{} 
 	return nil
 }
 
+func parseDecorators(decorators []parser.IDecoratorContext, s *BicepVisitor) map[string]interface{} {
+	decoratorsMap := map[string]interface{}{}
+
+	for _, val := range decorators {
+		decorator, ok := val.Accept(s).(map[string][]interface{})
+		if !ok {
+			return nil
+		}
+		for name, values := range decorator {
+			if name == "description" {
+				metadata := map[string]interface{}{}
+				metadata["description"] = values[0]
+				decoratorsMap["metadata"] = metadata
+			} else if name == "maxLength" || name == "minLength" || name == "minValue" || name == "maxValue" {
+				decoratorsMap[name] = values[0]
+			} else {
+				decoratorsMap[name] = values
+			}
+		}
+	}
+
+	return decoratorsMap
+}
+
 func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) interface{} {
-	var decorators []interface{}
 	param := map[string]interface{}{}
 	identifier, ok := ctx.Identifier().Accept(s).(string)
 	if !ok {
@@ -120,46 +146,39 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 		typeExpression := ctx.TypeExpression().Accept(s)
 		param["type"] = typeExpression
 	}
-
-	for _, val := range ctx.AllDecorator() {
-		decorator, ok := val.Accept(s).(map[string][]interface{})
-		if !ok {
-			return nil
-		}
-		if _, ok := decorator["secure"]; ok {
+	decoratorsMap := parseDecorators(ctx.AllDecorator(), s)
+	for name, values := range decoratorsMap {
+		if name == "secure" {
 			if param["type"] == "string" {
 				param["type"] = "secureString"
 			} else if param["type"] == "object" {
 				param["type"] = "secureObject"
 			}
 		} else {
-			if _, ok := decorator["allowed"]; ok {
-				newDecorator := map[string][]interface{}{}
-				newDecorator["allowedValues"] = decorator["allowed"]
-				decorators = append(decorators, newDecorator)
+			if name == "allowed" {
+				param["allowedValues"] = decoratorsMap["allowed"]
 			} else {
-				decorators = append(decorators, decorator)
+				param[name] = values
 			}
 		}
 	}
-	param["decorators"] = decorators
+
 	s.paramList[identifier] = param
 	return nil
 }
 
 func (s *BicepVisitor) VisitVariableDecl(ctx *parser.VariableDeclContext) interface{} {
 	var variable = map[string]interface{}{}
-	var decorators []interface{}
 	identifier, ok := ctx.Identifier().Accept(s).(string)
 	if !ok {
 		return nil
 	}
 	expression := ctx.Expression().Accept(s)
-
-	for _, val := range ctx.AllDecorator() {
-		decorators = append(decorators, val.Accept(s))
+	decoratorsMap := parseDecorators(ctx.AllDecorator(), s)
+	for name, values := range decoratorsMap {
+		variable[name] = values
 	}
-	variable["decorators"] = decorators
+
 	variable["value"] = expression
 	s.varList[identifier] = variable
 
@@ -168,7 +187,6 @@ func (s *BicepVisitor) VisitVariableDecl(ctx *parser.VariableDeclContext) interf
 
 func (s *BicepVisitor) VisitResourceDecl(ctx *parser.ResourceDeclContext) interface{} {
 	resource := map[string]interface{}{}
-	var decorators []interface{}
 	interpString, ok := ctx.InterpString().Accept(s).(string)
 	if !ok {
 		return nil
@@ -181,10 +199,11 @@ func (s *BicepVisitor) VisitResourceDecl(ctx *parser.ResourceDeclContext) interf
 	apiVersion := strings.Split(interpString, "@")[1]
 	resource["type"] = resourceType
 	resource["apiVersion"] = apiVersion
-	for _, val := range ctx.AllDecorator() {
-		decorators = append(decorators, val.Accept(s))
+	decoratorsMap := parseDecorators(ctx.AllDecorator(), s)
+	for name, values := range decoratorsMap {
+		resource[name] = values
 	}
-	resource["decorators"] = decorators
+
 	resource["name"] = identifier
 	if ctx.Object() != nil {
 		object, ok := ctx.Object().Accept(s).(map[string]interface{})

@@ -67,48 +67,32 @@ func TestParseBicepFile(t *testing.T) {
 			want: `{
 					"parameters": {
 						"isNumber": {
-							"decorators": [
-								{
-									"description": [
-										"This is a test bool param declaration."
-									]
-								}
-							],
-							"type": "bool",
-							"defaultValue": true
+							"defaultValue": true,
+							"metadata": {
+								"description": "This is a test bool param declaration."
+							},
+							"type": "bool"
 						},
 						"middleString": {
-							"decorators": [
-								{
-									"description": [
-										"This is a test middle string param declaration."
-									]
-								}
-							],
-							"type": "string",
-							"defaultValue": "'teste-${parameters('numberNodes')}${parameters('isNumber')}-teste'"
+							"defaultValue": "'teste-${parameters('numberNodes')}${parameters('isNumber')}-teste'",
+							"metadata": {
+								"description": "This is a test middle string param declaration."
+							},
+							"type": "string"
 						},
 						"numberNodes": {
-							"decorators": [
-								{
-									"description": [
-										"This is a test int param declaration."
-									]
-								}
-							],
-							"type": "int",
-							"defaultValue": 2
+							"defaultValue": 2,
+							"metadata": {
+								"description": "This is a test int param declaration."
+							},
+							"type": "int"
 						},
 						"projectName": {
-							"decorators": [
-								{
-									"description": [
-										"This is a test param with secure declaration."
-									]
-								}
-							],
-							"type": "secureString",
-							"defaultValue": "test"
+							"defaultValue": "test",
+							"metadata": {
+								"description": "This is a test param with secure declaration."
+							},
+							"type": "secureString"
 						}
 					},
 					"resources": [],
@@ -122,23 +106,15 @@ func TestParseBicepFile(t *testing.T) {
 			want: `{
 					"variables": {
 						"nicName": {
-							"decorators": [
-								{
-									"description": [
-										"This is a test var declaration."
-									]
-								}
-							],
+							"metadata": {
+								"description": "This is a test var declaration."
+							},
 							"value": "myVMNic"
 						},
 						"storageAccountName": {
-							"decorators": [
-								{
-									"description": [
-										"This is a test var declaration."
-									]
-								}
-							],
+							"metadata": {
+								"description": "This is a test var declaration."
+							},
 							"value": "'bootdiags${[uniqueString(resourceGroup().id)]}'"
 						}
 					},
@@ -153,104 +129,72 @@ func TestParseBicepFile(t *testing.T) {
 			want: `{
 					"parameters": {
 						"OSVersion": {
-							"decorators": [
-								{
-									"description": [
-										"The Windows version for the VM. This will pick a fully patched image of this given Windows version."
-									]
-								},
-								{
-									"allowedValues": [
-										[
-											"2008-R2-SP1",
-											"2012-Datacenter",
-											"2012-R2-Datacenter",
-											"2016-Nano-Server",
-											"2016-Datacenter-with-Containers",
-											"2016-Datacenter",
-											"2019-Datacenter",
-											"2019-Datacenter-Core",
-											"2019-Datacenter-Core-smalldisk",
-											"2019-Datacenter-Core-with-Containers",
-											"2019-Datacenter-Core-with-Containers-smalldisk",
-											"2019-Datacenter-smalldisk",
-											"2019-Datacenter-with-Containers",
-											"2019-Datacenter-with-Containers-smalldisk"
-										]
-									]
-								}
+							"allowedValues": [
+								[
+									"2008-R2-SP1",
+									"2012-Datacenter",
+									"2012-R2-Datacenter",
+									"2016-Nano-Server",
+									"2016-Datacenter-with-Containers",
+									"2016-Datacenter",
+									"2019-Datacenter",
+									"2019-Datacenter-Core",
+									"2019-Datacenter-Core-smalldisk",
+									"2019-Datacenter-Core-with-Containers",
+									"2019-Datacenter-Core-with-Containers-smalldisk",
+									"2019-Datacenter-smalldisk",
+									"2019-Datacenter-with-Containers",
+									"2019-Datacenter-with-Containers-smalldisk"
+								]
 							],
-							"type": "string",
-							"defaultValue": "2019-Datacenter"
+							"defaultValue": "2019-Datacenter",
+							"metadata": {
+								"description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version."
+							},
+							"type": "string"
 						},
 						"adminPassword": {
-							"decorators": [
-								{
-									"description": [
-										"Password for the Virtual Machine."
-									]
-								},
-								{
-									"minLength": [
-										12
-									]
-								}
-							],
+							"metadata": {
+								"description": "Password for the Virtual Machine."
+							},
+							"minLength": 12,
 							"type": "secureString"
 						},
 						"adminUsername": {
-							"decorators": [
-								{
-									"description": [
-										"Username for the Virtual Machine."
-									]
-								}
-							],
+							"metadata": {
+								"description": "Username for the Virtual Machine."
+							},
 							"type": "string"
 						},
 						"location": {
-							"decorators": [
-								{
-									"description": [
-										"Location for all resources."
-									]
-								}
-							],
-							"type": "string",
-							"defaultValue": "[resourceGroup().location]"
+							"defaultValue": "[resourceGroup().location]",
+							"metadata": {
+								"description": "Location for all resources."
+							},
+							"type": "string"
 						},
 						"parenthesis": {
-							"decorators": null,
 							"defaultValue": "simple-vm",
 							"type": "string"
 						},
 						"vmName": {
-							"decorators": [
-								{
-									"description": [
-										"Name of the virtual machine."
-									]
-								}
-							],
-							"type": "string",
-							"defaultValue": "simple-vm"
+							"defaultValue": "simple-vm",
+							"metadata": {
+								"description": "Name of the virtual machine."
+							},
+							"type": "string"
 						},
 						"vmSize": {
-							"decorators": [
-								{
-									"description": [
-										"Size of the virtual machine."
-									]
-								}
-							],
-							"type": "string",
-							"defaultValue": "Standard_D2_v3"
+							"defaultValue": "Standard_D2_v3",
+							"metadata": {
+								"description": "Size of the virtual machine."
+							},
+							"type": "string"
 						}
 					},
 					"resources": [
 						{
 							"apiVersion": "2021-03-01",
-							"decorators": null,
 							"dependsOn": [
 								{
 									"resourceId": [
@@ -265,8 +209,8 @@ func TestParseBicepFile(t *testing.T) {
 									]
 								}
 							],
-							"name": "[parameters('vmName')]",
 							"location": "[parameters('location')]",
+							"name": "[parameters('vmName')]",
 							"properties": {
 								"diagnosticsProfile": {
 									"bootDiagnostics": {
@@ -290,9 +234,9 @@ func TestParseBicepFile(t *testing.T) {
 									]
 								},
 								"osProfile": {
-									"computerName": "[parameters('vmName')]",
 									"adminPassword": "[parameters('adminPassword')]",
-									"adminUsername": "[parameters('adminUsername')]"
+									"adminUsername": "[parameters('adminUsername')]",
+									"computerName": "[parameters('vmName')]"
 								},
 								"storageProfile": {
 									"dataDisks": [
@@ -321,11 +265,9 @@ func TestParseBicepFile(t *testing.T) {
 					],
 					"variables": {
 						"nicName": {
-							"decorators": null,
 							"value": "myVMNic"
 						},
 						"storageAccountName": {
-							"decorators": null,
 							"value": "'bootdiags${[uniqueString(resourceGroup().id)]}'"
 						}
 					}
