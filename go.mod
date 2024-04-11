@@ -1,6 +1,6 @@
 module github.com/Checkmarx/kics
 
-go 1.22.1
+go 1.22
 
 replace (
 	github.com/containerd/containerd => github.com/containerd/containerd v1.6.26
@@ -83,8 +83,8 @@ require (
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
-	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
+	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mxk/go-flowrate v0.0.0-20140419014527-cca7078d478f // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/sagikazarmark/locafero v0.4.0 // indirect
