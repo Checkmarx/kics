@@ -36,137 +36,171 @@ func bicepParserInit() {
 		"", "", "'@'", "','", "'['", "']'", "'('", "')'", "'.'", "'|'", "':'",
 		"'='", "'{'", "'}'", "'param'", "'var'", "'true'", "'false'", "'null'",
 		"'object'", "'resource'", "", "", "", "", "'string'", "'int'", "'bool'",
+		"'if'", "'for'", "'in'", "'?'", "'>'", "'>='", "'<'", "'<='", "'=='",
+		"'!='",
 	}
 	staticData.SymbolicNames = []string{
 		"", "MULTILINE_STRING", "AT", "COMMA", "OBRACK", "CBRACK", "OPAR", "CPAR",
 		"DOT", "PIPE", "COL", "ASSIGN", "OBRACE", "CBRACE", "PARAM", "VAR",
 		"TRUE", "FALSE", "NULL", "OBJECT", "RESOURCE", "STRING_LEFT_PIECE",
 		"STRING_MIDDLE_PIECE", "STRING_RIGHT_PIECE", "STRING_COMPLETE", "STRING",
-		"INT", "BOOL", "IDENTIFIER", "NUMBER", "NL", "SPACES", "UNKNOWN",
+		"INT", "BOOL", "IF", "FOR", "IN", "QMARK", "GT", "GTE", "LT", "LTE",
+		"EQ", "NEQ", "IDENTIFIER", "NUMBER", "NL", "SPACES", "UNKNOWN",
 	}
 	staticData.RuleNames = []string{
 		"program", "statement", "parameterDecl", "parameterDefaultValue", "variableDecl",
-		"resourceDecl", "interpString", "expression", "primaryExpression", "parenthesizedExpression",
-		"typeExpression", "literalValue", "object", "objectProperty", "array",
-		"arrayItem", "decorator", "decoratorExpression", "functionCall", "argumentList",
-		"identifier",
+		"resourceDecl", "ifCondition", "forExpression", "forVariableBlock",
+		"forBody", "interpString", "expression", "logicCharacter", "primaryExpression",
+		"parenthesizedExpression", "typeExpression", "literalValue", "object",
+		"objectProperty", "array", "arrayItem", "decorator", "decoratorExpression",
+		"functionCall", "argumentList", "identifier",
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 32, 257, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 42, 322, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
-		2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 1,
-		0, 5, 0, 44, 8, 0, 10, 0, 12, 0, 47, 9, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1,
-		1, 1, 3, 1, 55, 8, 1, 1, 2, 5, 2, 58, 8, 2, 10, 2, 12, 2, 61, 9, 2, 1,
-		2, 1, 2, 1, 2, 1, 2, 3, 2, 67, 8, 2, 1, 2, 1, 2, 1, 2, 3, 2, 72, 8, 2,
-		3, 2, 74, 8, 2, 1, 2, 1, 2, 1, 3, 1, 3, 1, 3, 1, 4, 5, 4, 82, 8, 4, 10,
-		4, 12, 4, 85, 9, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 5, 5, 5, 94,
-		8, 5, 10, 5, 12, 5, 97, 9, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5,
-		1, 6, 1, 6, 1, 6, 1, 6, 5, 6, 110, 8, 6, 10, 6, 12, 6, 113, 9, 6, 1, 6,
-		1, 6, 1, 6, 1, 6, 3, 6, 119, 8, 6, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7,
-		1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 5, 7, 135, 8, 7, 10, 7,
-		12, 7, 138, 9, 7, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 3, 8, 147,
-		8, 8, 1, 9, 1, 9, 3, 9, 151, 8, 9, 1, 9, 1, 9, 3, 9, 155, 8, 9, 1, 9, 1,
-		9, 1, 10, 1, 10, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 3, 11, 166, 8, 11,
-		1, 12, 1, 12, 4, 12, 170, 8, 12, 11, 12, 12, 12, 171, 1, 12, 1, 12, 4,
-		12, 176, 8, 12, 11, 12, 12, 12, 177, 5, 12, 180, 8, 12, 10, 12, 12, 12,
-		183, 9, 12, 3, 12, 185, 8, 12, 1, 12, 1, 12, 1, 13, 1, 13, 3, 13, 191,
-		8, 13, 1, 13, 1, 13, 1, 13, 1, 14, 1, 14, 5, 14, 198, 8, 14, 10, 14, 12,
-		14, 201, 9, 14, 1, 14, 5, 14, 204, 8, 14, 10, 14, 12, 14, 207, 9, 14, 1,
-		14, 1, 14, 1, 15, 1, 15, 4, 15, 213, 8, 15, 11, 15, 12, 15, 214, 1, 15,
-		3, 15, 218, 8, 15, 1, 16, 1, 16, 1, 16, 1, 16, 1, 17, 1, 17, 1, 17, 1,
-		17, 1, 17, 3, 17, 229, 8, 17, 1, 18, 1, 18, 1, 18, 3, 18, 234, 8, 18, 1,
-		18, 3, 18, 237, 8, 18, 1, 18, 3, 18, 240, 8, 18, 1, 18, 1, 18, 1, 19, 1,
-		19, 1, 19, 3, 19, 247, 8, 19, 1, 19, 5, 19, 250, 8, 19, 10, 19, 12, 19,
-		253, 9, 19, 1, 20, 1, 20, 1, 20, 0, 1, 14, 21, 0, 2, 4, 6, 8, 10, 12, 14,
-		16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 0, 1, 2, 0, 14, 20,
-		25, 28, 278, 0, 45, 1, 0, 0, 0, 2, 54, 1, 0, 0, 0, 4, 59, 1, 0, 0, 0, 6,
-		77, 1, 0, 0, 0, 8, 83, 1, 0, 0, 0, 10, 95, 1, 0, 0, 0, 12, 118, 1, 0, 0,
-		0, 14, 120, 1, 0, 0, 0, 16, 146, 1, 0, 0, 0, 18, 148, 1, 0, 0, 0, 20, 158,
-		1, 0, 0, 0, 22, 165, 1, 0, 0, 0, 24, 167, 1, 0, 0, 0, 26, 190, 1, 0, 0,
-		0, 28, 195, 1, 0, 0, 0, 30, 210, 1, 0, 0, 0, 32, 219, 1, 0, 0, 0, 34, 228,
-		1, 0, 0, 0, 36, 230, 1, 0, 0, 0, 38, 243, 1, 0, 0, 0, 40, 254, 1, 0, 0,
-		0, 42, 44, 3, 2, 1, 0, 43, 42, 1, 0, 0, 0, 44, 47, 1, 0, 0, 0, 45, 43,
-		1, 0, 0, 0, 45, 46, 1, 0, 0, 0, 46, 48, 1, 0, 0, 0, 47, 45, 1, 0, 0, 0,
-		48, 49, 5, 0, 0, 1, 49, 1, 1, 0, 0, 0, 50, 55, 3, 4, 2, 0, 51, 55, 3, 8,
-		4, 0, 52, 55, 3, 10, 5, 0, 53, 55, 5, 30, 0, 0, 54, 50, 1, 0, 0, 0, 54,
-		51, 1, 0, 0, 0, 54, 52, 1, 0, 0, 0, 54, 53, 1, 0, 0, 0, 55, 3, 1, 0, 0,
-		0, 56, 58, 3, 32, 16, 0, 57, 56, 1, 0, 0, 0, 58, 61, 1, 0, 0, 0, 59, 57,
-		1, 0, 0, 0, 59, 60, 1, 0, 0, 0, 60, 62, 1, 0, 0, 0, 61, 59, 1, 0, 0, 0,
-		62, 63, 5, 14, 0, 0, 63, 73, 3, 40, 20, 0, 64, 66, 3, 20, 10, 0, 65, 67,
-		3, 6, 3, 0, 66, 65, 1, 0, 0, 0, 66, 67, 1, 0, 0, 0, 67, 74, 1, 0, 0, 0,
-		68, 69, 5, 20, 0, 0, 69, 71, 3, 12, 6, 0, 70, 72, 3, 6, 3, 0, 71, 70, 1,
-		0, 0, 0, 71, 72, 1, 0, 0, 0, 72, 74, 1, 0, 0, 0, 73, 64, 1, 0, 0, 0, 73,
-		68, 1, 0, 0, 0, 74, 75, 1, 0, 0, 0, 75, 76, 5, 30, 0, 0, 76, 5, 1, 0, 0,
-		0, 77, 78, 5, 11, 0, 0, 78, 79, 3, 14, 7, 0, 79, 7, 1, 0, 0, 0, 80, 82,
-		3, 32, 16, 0, 81, 80, 1, 0, 0, 0, 82, 85, 1, 0, 0, 0, 83, 81, 1, 0, 0,
-		0, 83, 84, 1, 0, 0, 0, 84, 86, 1, 0, 0, 0, 85, 83, 1, 0, 0, 0, 86, 87,
-		5, 15, 0, 0, 87, 88, 3, 40, 20, 0, 88, 89, 5, 11, 0, 0, 89, 90, 3, 14,
-		7, 0, 90, 91, 5, 30, 0, 0, 91, 9, 1, 0, 0, 0, 92, 94, 3, 32, 16, 0, 93,
-		92, 1, 0, 0, 0, 94, 97, 1, 0, 0, 0, 95, 93, 1, 0, 0, 0, 95, 96, 1, 0, 0,
-		0, 96, 98, 1, 0, 0, 0, 97, 95, 1, 0, 0, 0, 98, 99, 5, 20, 0, 0, 99, 100,
-		3, 40, 20, 0, 100, 101, 3, 12, 6, 0, 101, 102, 5, 11, 0, 0, 102, 103, 3,
-		24, 12, 0, 103, 104, 5, 30, 0, 0, 104, 11, 1, 0, 0, 0, 105, 111, 5, 21,
-		0, 0, 106, 107, 3, 14, 7, 0, 107, 108, 5, 22, 0, 0, 108, 110, 1, 0, 0,
-		0, 109, 106, 1, 0, 0, 0, 110, 113, 1, 0, 0, 0, 111, 109, 1, 0, 0, 0, 111,
-		112, 1, 0, 0, 0, 112, 114, 1, 0, 0, 0, 113, 111, 1, 0, 0, 0, 114, 115,
-		3, 14, 7, 0, 115, 116, 5, 23, 0, 0, 116, 119, 1, 0, 0, 0, 117, 119, 5,
-		24, 0, 0, 118, 105, 1, 0, 0, 0, 118, 117, 1, 0, 0, 0, 119, 13, 1, 0, 0,
-		0, 120, 121, 6, 7, -1, 0, 121, 122, 3, 16, 8, 0, 122, 136, 1, 0, 0, 0,
-		123, 124, 10, 4, 0, 0, 124, 125, 5, 4, 0, 0, 125, 126, 3, 14, 7, 0, 126,
-		127, 5, 5, 0, 0, 127, 135, 1, 0, 0, 0, 128, 129, 10, 3, 0, 0, 129, 130,
-		5, 8, 0, 0, 130, 135, 3, 40, 20, 0, 131, 132, 10, 2, 0, 0, 132, 133, 5,
-		10, 0, 0, 133, 135, 3, 40, 20, 0, 134, 123, 1, 0, 0, 0, 134, 128, 1, 0,
-		0, 0, 134, 131, 1, 0, 0, 0, 135, 138, 1, 0, 0, 0, 136, 134, 1, 0, 0, 0,
-		136, 137, 1, 0, 0, 0, 137, 15, 1, 0, 0, 0, 138, 136, 1, 0, 0, 0, 139, 147,
-		3, 22, 11, 0, 140, 147, 3, 36, 18, 0, 141, 147, 3, 12, 6, 0, 142, 147,
-		5, 1, 0, 0, 143, 147, 3, 28, 14, 0, 144, 147, 3, 24, 12, 0, 145, 147, 3,
-		18, 9, 0, 146, 139, 1, 0, 0, 0, 146, 140, 1, 0, 0, 0, 146, 141, 1, 0, 0,
-		0, 146, 142, 1, 0, 0, 0, 146, 143, 1, 0, 0, 0, 146, 144, 1, 0, 0, 0, 146,
-		145, 1, 0, 0, 0, 147, 17, 1, 0, 0, 0, 148, 150, 5, 6, 0, 0, 149, 151, 5,
-		30, 0, 0, 150, 149, 1, 0, 0, 0, 150, 151, 1, 0, 0, 0, 151, 152, 1, 0, 0,
-		0, 152, 154, 3, 14, 7, 0, 153, 155, 5, 30, 0, 0, 154, 153, 1, 0, 0, 0,
-		154, 155, 1, 0, 0, 0, 155, 156, 1, 0, 0, 0, 156, 157, 5, 7, 0, 0, 157,
-		19, 1, 0, 0, 0, 158, 159, 3, 40, 20, 0, 159, 21, 1, 0, 0, 0, 160, 166,
-		5, 29, 0, 0, 161, 166, 5, 16, 0, 0, 162, 166, 5, 17, 0, 0, 163, 166, 5,
-		18, 0, 0, 164, 166, 3, 40, 20, 0, 165, 160, 1, 0, 0, 0, 165, 161, 1, 0,
-		0, 0, 165, 162, 1, 0, 0, 0, 165, 163, 1, 0, 0, 0, 165, 164, 1, 0, 0, 0,
-		166, 23, 1, 0, 0, 0, 167, 184, 5, 12, 0, 0, 168, 170, 5, 30, 0, 0, 169,
-		168, 1, 0, 0, 0, 170, 171, 1, 0, 0, 0, 171, 169, 1, 0, 0, 0, 171, 172,
-		1, 0, 0, 0, 172, 181, 1, 0, 0, 0, 173, 175, 3, 26, 13, 0, 174, 176, 5,
-		30, 0, 0, 175, 174, 1, 0, 0, 0, 176, 177, 1, 0, 0, 0, 177, 175, 1, 0, 0,
-		0, 177, 178, 1, 0, 0, 0, 178, 180, 1, 0, 0, 0, 179, 173, 1, 0, 0, 0, 180,
-		183, 1, 0, 0, 0, 181, 179, 1, 0, 0, 0, 181, 182, 1, 0, 0, 0, 182, 185,
-		1, 0, 0, 0, 183, 181, 1, 0, 0, 0, 184, 169, 1, 0, 0, 0, 184, 185, 1, 0,
-		0, 0, 185, 186, 1, 0, 0, 0, 186, 187, 5, 13, 0, 0, 187, 25, 1, 0, 0, 0,
-		188, 191, 3, 40, 20, 0, 189, 191, 3, 12, 6, 0, 190, 188, 1, 0, 0, 0, 190,
-		189, 1, 0, 0, 0, 191, 192, 1, 0, 0, 0, 192, 193, 5, 10, 0, 0, 193, 194,
-		3, 14, 7, 0, 194, 27, 1, 0, 0, 0, 195, 199, 5, 4, 0, 0, 196, 198, 5, 30,
-		0, 0, 197, 196, 1, 0, 0, 0, 198, 201, 1, 0, 0, 0, 199, 197, 1, 0, 0, 0,
-		199, 200, 1, 0, 0, 0, 200, 205, 1, 0, 0, 0, 201, 199, 1, 0, 0, 0, 202,
-		204, 3, 30, 15, 0, 203, 202, 1, 0, 0, 0, 204, 207, 1, 0, 0, 0, 205, 203,
-		1, 0, 0, 0, 205, 206, 1, 0, 0, 0, 206, 208, 1, 0, 0, 0, 207, 205, 1, 0,
-		0, 0, 208, 209, 5, 5, 0, 0, 209, 29, 1, 0, 0, 0, 210, 217, 3, 14, 7, 0,
-		211, 213, 5, 30, 0, 0, 212, 211, 1, 0, 0, 0, 213, 214, 1, 0, 0, 0, 214,
-		212, 1, 0, 0, 0, 214, 215, 1, 0, 0, 0, 215, 218, 1, 0, 0, 0, 216, 218,
-		5, 3, 0, 0, 217, 212, 1, 0, 0, 0, 217, 216, 1, 0, 0, 0, 217, 218, 1, 0,
-		0, 0, 218, 31, 1, 0, 0, 0, 219, 220, 5, 2, 0, 0, 220, 221, 3, 34, 17, 0,
-		221, 222, 5, 30, 0, 0, 222, 33, 1, 0, 0, 0, 223, 229, 3, 36, 18, 0, 224,
-		225, 3, 14, 7, 0, 225, 226, 5, 8, 0, 0, 226, 227, 3, 36, 18, 0, 227, 229,
-		1, 0, 0, 0, 228, 223, 1, 0, 0, 0, 228, 224, 1, 0, 0, 0, 229, 35, 1, 0,
-		0, 0, 230, 231, 3, 40, 20, 0, 231, 236, 5, 6, 0, 0, 232, 234, 5, 30, 0,
-		0, 233, 232, 1, 0, 0, 0, 233, 234, 1, 0, 0, 0, 234, 235, 1, 0, 0, 0, 235,
-		237, 3, 38, 19, 0, 236, 233, 1, 0, 0, 0, 236, 237, 1, 0, 0, 0, 237, 239,
-		1, 0, 0, 0, 238, 240, 5, 30, 0, 0, 239, 238, 1, 0, 0, 0, 239, 240, 1, 0,
-		0, 0, 240, 241, 1, 0, 0, 0, 241, 242, 5, 7, 0, 0, 242, 37, 1, 0, 0, 0,
-		243, 251, 3, 14, 7, 0, 244, 246, 5, 3, 0, 0, 245, 247, 5, 30, 0, 0, 246,
-		245, 1, 0, 0, 0, 246, 247, 1, 0, 0, 0, 247, 248, 1, 0, 0, 0, 248, 250,
-		3, 14, 7, 0, 249, 244, 1, 0, 0, 0, 250, 253, 1, 0, 0, 0, 251, 249, 1, 0,
-		0, 0, 251, 252, 1, 0, 0, 0, 252, 39, 1, 0, 0, 0, 253, 251, 1, 0, 0, 0,
-		254, 255, 7, 0, 0, 0, 255, 41, 1, 0, 0, 0, 31, 45, 54, 59, 66, 71, 73,
-		83, 95, 111, 118, 134, 136, 146, 150, 154, 165, 171, 177, 181, 184, 190,
-		199, 205, 214, 217, 228, 233, 236, 239, 246, 251,
+		2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 2,
+		21, 7, 21, 2, 22, 7, 22, 2, 23, 7, 23, 2, 24, 7, 24, 2, 25, 7, 25, 1, 0,
+		5, 0, 54, 8, 0, 10, 0, 12, 0, 57, 9, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1,
+		1, 3, 1, 65, 8, 1, 1, 2, 5, 2, 68, 8, 2, 10, 2, 12, 2, 71, 9, 2, 1, 2,
+		1, 2, 1, 2, 1, 2, 3, 2, 77, 8, 2, 1, 2, 1, 2, 1, 2, 3, 2, 82, 8, 2, 3,
+		2, 84, 8, 2, 1, 2, 1, 2, 1, 3, 1, 3, 1, 3, 1, 4, 5, 4, 92, 8, 4, 10, 4,
+		12, 4, 95, 9, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 5, 5, 5, 104, 8,
+		5, 10, 5, 12, 5, 107, 9, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 3,
+		5, 116, 8, 5, 1, 5, 1, 5, 1, 6, 1, 6, 1, 6, 1, 6, 1, 7, 1, 7, 5, 7, 126,
+		8, 7, 10, 7, 12, 7, 129, 9, 7, 1, 7, 1, 7, 1, 7, 3, 7, 134, 8, 7, 1, 7,
+		1, 7, 1, 7, 1, 7, 1, 7, 5, 7, 141, 8, 7, 10, 7, 12, 7, 144, 9, 7, 1, 7,
+		1, 7, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 1, 9, 1, 9, 3, 9, 156, 8, 9,
+		1, 10, 1, 10, 1, 10, 1, 10, 5, 10, 162, 8, 10, 10, 10, 12, 10, 165, 9,
+		10, 1, 10, 1, 10, 1, 10, 1, 10, 3, 10, 171, 8, 10, 1, 11, 1, 11, 1, 11,
+		1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1,
+		11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11,
+		5, 11, 197, 8, 11, 10, 11, 12, 11, 200, 9, 11, 1, 12, 1, 12, 1, 13, 1,
+		13, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 3, 13, 212, 8, 13, 1, 14,
+		1, 14, 3, 14, 216, 8, 14, 1, 14, 1, 14, 3, 14, 220, 8, 14, 1, 14, 1, 14,
+		1, 15, 1, 15, 1, 16, 1, 16, 1, 16, 1, 16, 1, 16, 3, 16, 231, 8, 16, 1,
+		17, 1, 17, 4, 17, 235, 8, 17, 11, 17, 12, 17, 236, 1, 17, 1, 17, 4, 17,
+		241, 8, 17, 11, 17, 12, 17, 242, 5, 17, 245, 8, 17, 10, 17, 12, 17, 248,
+		9, 17, 3, 17, 250, 8, 17, 1, 17, 1, 17, 1, 18, 1, 18, 3, 18, 256, 8, 18,
+		1, 18, 1, 18, 1, 18, 1, 19, 1, 19, 5, 19, 263, 8, 19, 10, 19, 12, 19, 266,
+		9, 19, 1, 19, 5, 19, 269, 8, 19, 10, 19, 12, 19, 272, 9, 19, 1, 19, 1,
+		19, 1, 20, 1, 20, 4, 20, 278, 8, 20, 11, 20, 12, 20, 279, 1, 20, 3, 20,
+		283, 8, 20, 1, 21, 1, 21, 1, 21, 1, 21, 1, 22, 1, 22, 1, 22, 1, 22, 1,
+		22, 3, 22, 294, 8, 22, 1, 23, 1, 23, 1, 23, 3, 23, 299, 8, 23, 1, 23, 3,
+		23, 302, 8, 23, 1, 23, 3, 23, 305, 8, 23, 1, 23, 1, 23, 1, 24, 1, 24, 1,
+		24, 3, 24, 312, 8, 24, 1, 24, 5, 24, 315, 8, 24, 10, 24, 12, 24, 318, 9,
+		24, 1, 25, 1, 25, 1, 25, 0, 1, 22, 26, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18,
+		20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 0, 2, 1,
+		0, 32, 37, 3, 0, 14, 20, 25, 27, 38, 38, 347, 0, 55, 1, 0, 0, 0, 2, 64,
+		1, 0, 0, 0, 4, 69, 1, 0, 0, 0, 6, 87, 1, 0, 0, 0, 8, 93, 1, 0, 0, 0, 10,
+		105, 1, 0, 0, 0, 12, 119, 1, 0, 0, 0, 14, 123, 1, 0, 0, 0, 16, 147, 1,
+		0, 0, 0, 18, 155, 1, 0, 0, 0, 20, 170, 1, 0, 0, 0, 22, 172, 1, 0, 0, 0,
+		24, 201, 1, 0, 0, 0, 26, 211, 1, 0, 0, 0, 28, 213, 1, 0, 0, 0, 30, 223,
+		1, 0, 0, 0, 32, 230, 1, 0, 0, 0, 34, 232, 1, 0, 0, 0, 36, 255, 1, 0, 0,
+		0, 38, 260, 1, 0, 0, 0, 40, 275, 1, 0, 0, 0, 42, 284, 1, 0, 0, 0, 44, 293,
+		1, 0, 0, 0, 46, 295, 1, 0, 0, 0, 48, 308, 1, 0, 0, 0, 50, 319, 1, 0, 0,
+		0, 52, 54, 3, 2, 1, 0, 53, 52, 1, 0, 0, 0, 54, 57, 1, 0, 0, 0, 55, 53,
+		1, 0, 0, 0, 55, 56, 1, 0, 0, 0, 56, 58, 1, 0, 0, 0, 57, 55, 1, 0, 0, 0,
+		58, 59, 5, 0, 0, 1, 59, 1, 1, 0, 0, 0, 60, 65, 3, 4, 2, 0, 61, 65, 3, 8,
+		4, 0, 62, 65, 3, 10, 5, 0, 63, 65, 5, 40, 0, 0, 64, 60, 1, 0, 0, 0, 64,
+		61, 1, 0, 0, 0, 64, 62, 1, 0, 0, 0, 64, 63, 1, 0, 0, 0, 65, 3, 1, 0, 0,
+		0, 66, 68, 3, 42, 21, 0, 67, 66, 1, 0, 0, 0, 68, 71, 1, 0, 0, 0, 69, 67,
+		1, 0, 0, 0, 69, 70, 1, 0, 0, 0, 70, 72, 1, 0, 0, 0, 71, 69, 1, 0, 0, 0,
+		72, 73, 5, 14, 0, 0, 73, 83, 3, 50, 25, 0, 74, 76, 3, 30, 15, 0, 75, 77,
+		3, 6, 3, 0, 76, 75, 1, 0, 0, 0, 76, 77, 1, 0, 0, 0, 77, 84, 1, 0, 0, 0,
+		78, 79, 5, 20, 0, 0, 79, 81, 3, 20, 10, 0, 80, 82, 3, 6, 3, 0, 81, 80,
+		1, 0, 0, 0, 81, 82, 1, 0, 0, 0, 82, 84, 1, 0, 0, 0, 83, 74, 1, 0, 0, 0,
+		83, 78, 1, 0, 0, 0, 84, 85, 1, 0, 0, 0, 85, 86, 5, 40, 0, 0, 86, 5, 1,
+		0, 0, 0, 87, 88, 5, 11, 0, 0, 88, 89, 3, 22, 11, 0, 89, 7, 1, 0, 0, 0,
+		90, 92, 3, 42, 21, 0, 91, 90, 1, 0, 0, 0, 92, 95, 1, 0, 0, 0, 93, 91, 1,
+		0, 0, 0, 93, 94, 1, 0, 0, 0, 94, 96, 1, 0, 0, 0, 95, 93, 1, 0, 0, 0, 96,
+		97, 5, 15, 0, 0, 97, 98, 3, 50, 25, 0, 98, 99, 5, 11, 0, 0, 99, 100, 3,
+		22, 11, 0, 100, 101, 5, 40, 0, 0, 101, 9, 1, 0, 0, 0, 102, 104, 3, 42,
+		21, 0, 103, 102, 1, 0, 0, 0, 104, 107, 1, 0, 0, 0, 105, 103, 1, 0, 0, 0,
+		105, 106, 1, 0, 0, 0, 106, 108, 1, 0, 0, 0, 107, 105, 1, 0, 0, 0, 108,
+		109, 5, 20, 0, 0, 109, 110, 3, 50, 25, 0, 110, 111, 3, 20, 10, 0, 111,
+		115, 5, 11, 0, 0, 112, 116, 3, 12, 6, 0, 113, 116, 3, 34, 17, 0, 114, 116,
+		3, 14, 7, 0, 115, 112, 1, 0, 0, 0, 115, 113, 1, 0, 0, 0, 115, 114, 1, 0,
+		0, 0, 116, 117, 1, 0, 0, 0, 117, 118, 5, 40, 0, 0, 118, 11, 1, 0, 0, 0,
+		119, 120, 5, 28, 0, 0, 120, 121, 3, 28, 14, 0, 121, 122, 3, 34, 17, 0,
+		122, 13, 1, 0, 0, 0, 123, 127, 5, 4, 0, 0, 124, 126, 5, 40, 0, 0, 125,
+		124, 1, 0, 0, 0, 126, 129, 1, 0, 0, 0, 127, 125, 1, 0, 0, 0, 127, 128,
+		1, 0, 0, 0, 128, 130, 1, 0, 0, 0, 129, 127, 1, 0, 0, 0, 130, 133, 5, 29,
+		0, 0, 131, 134, 3, 50, 25, 0, 132, 134, 3, 16, 8, 0, 133, 131, 1, 0, 0,
+		0, 133, 132, 1, 0, 0, 0, 134, 135, 1, 0, 0, 0, 135, 136, 5, 30, 0, 0, 136,
+		137, 3, 22, 11, 0, 137, 138, 5, 10, 0, 0, 138, 142, 3, 18, 9, 0, 139, 141,
+		5, 40, 0, 0, 140, 139, 1, 0, 0, 0, 141, 144, 1, 0, 0, 0, 142, 140, 1, 0,
+		0, 0, 142, 143, 1, 0, 0, 0, 143, 145, 1, 0, 0, 0, 144, 142, 1, 0, 0, 0,
+		145, 146, 5, 5, 0, 0, 146, 15, 1, 0, 0, 0, 147, 148, 5, 6, 0, 0, 148, 149,
+		3, 50, 25, 0, 149, 150, 5, 3, 0, 0, 150, 151, 3, 50, 25, 0, 151, 152, 5,
+		7, 0, 0, 152, 17, 1, 0, 0, 0, 153, 156, 3, 22, 11, 0, 154, 156, 3, 12,
+		6, 0, 155, 153, 1, 0, 0, 0, 155, 154, 1, 0, 0, 0, 156, 19, 1, 0, 0, 0,
+		157, 163, 5, 21, 0, 0, 158, 159, 3, 22, 11, 0, 159, 160, 5, 22, 0, 0, 160,
+		162, 1, 0, 0, 0, 161, 158, 1, 0, 0, 0, 162, 165, 1, 0, 0, 0, 163, 161,
+		1, 0, 0, 0, 163, 164, 1, 0, 0, 0, 164, 166, 1, 0, 0, 0, 165, 163, 1, 0,
+		0, 0, 166, 167, 3, 22, 11, 0, 167, 168, 5, 23, 0, 0, 168, 171, 1, 0, 0,
+		0, 169, 171, 5, 24, 0, 0, 170, 157, 1, 0, 0, 0, 170, 169, 1, 0, 0, 0, 171,
+		21, 1, 0, 0, 0, 172, 173, 6, 11, -1, 0, 173, 174, 3, 26, 13, 0, 174, 198,
+		1, 0, 0, 0, 175, 176, 10, 5, 0, 0, 176, 177, 5, 31, 0, 0, 177, 178, 3,
+		22, 11, 0, 178, 179, 5, 10, 0, 0, 179, 180, 3, 22, 11, 6, 180, 197, 1,
+		0, 0, 0, 181, 182, 10, 2, 0, 0, 182, 183, 3, 24, 12, 0, 183, 184, 3, 22,
+		11, 3, 184, 197, 1, 0, 0, 0, 185, 186, 10, 6, 0, 0, 186, 187, 5, 4, 0,
+		0, 187, 188, 3, 22, 11, 0, 188, 189, 5, 5, 0, 0, 189, 197, 1, 0, 0, 0,
+		190, 191, 10, 4, 0, 0, 191, 192, 5, 8, 0, 0, 192, 197, 3, 50, 25, 0, 193,
+		194, 10, 3, 0, 0, 194, 195, 5, 10, 0, 0, 195, 197, 3, 50, 25, 0, 196, 175,
+		1, 0, 0, 0, 196, 181, 1, 0, 0, 0, 196, 185, 1, 0, 0, 0, 196, 190, 1, 0,
+		0, 0, 196, 193, 1, 0, 0, 0, 197, 200, 1, 0, 0, 0, 198, 196, 1, 0, 0, 0,
+		198, 199, 1, 0, 0, 0, 199, 23, 1, 0, 0, 0, 200, 198, 1, 0, 0, 0, 201, 202,
+		7, 0, 0, 0, 202, 25, 1, 0, 0, 0, 203, 212, 3, 32, 16, 0, 204, 212, 3, 46,
+		23, 0, 205, 212, 3, 20, 10, 0, 206, 212, 5, 1, 0, 0, 207, 212, 3, 38, 19,
+		0, 208, 212, 3, 34, 17, 0, 209, 212, 3, 14, 7, 0, 210, 212, 3, 28, 14,
+		0, 211, 203, 1, 0, 0, 0, 211, 204, 1, 0, 0, 0, 211, 205, 1, 0, 0, 0, 211,
+		206, 1, 0, 0, 0, 211, 207, 1, 0, 0, 0, 211, 208, 1, 0, 0, 0, 211, 209,
+		1, 0, 0, 0, 211, 210, 1, 0, 0, 0, 212, 27, 1, 0, 0, 0, 213, 215, 5, 6,
+		0, 0, 214, 216, 5, 40, 0, 0, 215, 214, 1, 0, 0, 0, 215, 216, 1, 0, 0, 0,
+		216, 217, 1, 0, 0, 0, 217, 219, 3, 22, 11, 0, 218, 220, 5, 40, 0, 0, 219,
+		218, 1, 0, 0, 0, 219, 220, 1, 0, 0, 0, 220, 221, 1, 0, 0, 0, 221, 222,
+		5, 7, 0, 0, 222, 29, 1, 0, 0, 0, 223, 224, 3, 50, 25, 0, 224, 31, 1, 0,
+		0, 0, 225, 231, 5, 39, 0, 0, 226, 231, 5, 16, 0, 0, 227, 231, 5, 17, 0,
+		0, 228, 231, 5, 18, 0, 0, 229, 231, 3, 50, 25, 0, 230, 225, 1, 0, 0, 0,
+		230, 226, 1, 0, 0, 0, 230, 227, 1, 0, 0, 0, 230, 228, 1, 0, 0, 0, 230,
+		229, 1, 0, 0, 0, 231, 33, 1, 0, 0, 0, 232, 249, 5, 12, 0, 0, 233, 235,
+		5, 40, 0, 0, 234, 233, 1, 0, 0, 0, 235, 236, 1, 0, 0, 0, 236, 234, 1, 0,
+		0, 0, 236, 237, 1, 0, 0, 0, 237, 246, 1, 0, 0, 0, 238, 240, 3, 36, 18,
+		0, 239, 241, 5, 40, 0, 0, 240, 239, 1, 0, 0, 0, 241, 242, 1, 0, 0, 0, 242,
+		240, 1, 0, 0, 0, 242, 243, 1, 0, 0, 0, 243, 245, 1, 0, 0, 0, 244, 238,
+		1, 0, 0, 0, 245, 248, 1, 0, 0, 0, 246, 244, 1, 0, 0, 0, 246, 247, 1, 0,
+		0, 0, 247, 250, 1, 0, 0, 0, 248, 246, 1, 0, 0, 0, 249, 234, 1, 0, 0, 0,
+		249, 250, 1, 0, 0, 0, 250, 251, 1, 0, 0, 0, 251, 252, 5, 13, 0, 0, 252,
+		35, 1, 0, 0, 0, 253, 256, 3, 50, 25, 0, 254, 256, 3, 20, 10, 0, 255, 253,
+		1, 0, 0, 0, 255, 254, 1, 0, 0, 0, 256, 257, 1, 0, 0, 0, 257, 258, 5, 10,
+		0, 0, 258, 259, 3, 22, 11, 0, 259, 37, 1, 0, 0, 0, 260, 264, 5, 4, 0, 0,
+		261, 263, 5, 40, 0, 0, 262, 261, 1, 0, 0, 0, 263, 266, 1, 0, 0, 0, 264,
+		262, 1, 0, 0, 0, 264, 265, 1, 0, 0, 0, 265, 270, 1, 0, 0, 0, 266, 264,
+		1, 0, 0, 0, 267, 269, 3, 40, 20, 0, 268, 267, 1, 0, 0, 0, 269, 272, 1,
+		0, 0, 0, 270, 268, 1, 0, 0, 0, 270, 271, 1, 0, 0, 0, 271, 273, 1, 0, 0,
+		0, 272, 270, 1, 0, 0, 0, 273, 274, 5, 5, 0, 0, 274, 39, 1, 0, 0, 0, 275,
+		282, 3, 22, 11, 0, 276, 278, 5, 40, 0, 0, 277, 276, 1, 0, 0, 0, 278, 279,
+		1, 0, 0, 0, 279, 277, 1, 0, 0, 0, 279, 280, 1, 0, 0, 0, 280, 283, 1, 0,
+		0, 0, 281, 283, 5, 3, 0, 0, 282, 277, 1, 0, 0, 0, 282, 281, 1, 0, 0, 0,
+		282, 283, 1, 0, 0, 0, 283, 41, 1, 0, 0, 0, 284, 285, 5, 2, 0, 0, 285, 286,
+		3, 44, 22, 0, 286, 287, 5, 40, 0, 0, 287, 43, 1, 0, 0, 0, 288, 294, 3,
+		46, 23, 0, 289, 290, 3, 22, 11, 0, 290, 291, 5, 8, 0, 0, 291, 292, 3, 46,
+		23, 0, 292, 294, 1, 0, 0, 0, 293, 288, 1, 0, 0, 0, 293, 289, 1, 0, 0, 0,
+		294, 45, 1, 0, 0, 0, 295, 296, 3, 50, 25, 0, 296, 301, 5, 6, 0, 0, 297,
+		299, 5, 40, 0, 0, 298, 297, 1, 0, 0, 0, 298, 299, 1, 0, 0, 0, 299, 300,
+		1, 0, 0, 0, 300, 302, 3, 48, 24, 0, 301, 298, 1, 0, 0, 0, 301, 302, 1,
+		0, 0, 0, 302, 304, 1, 0, 0, 0, 303, 305, 5, 40, 0, 0, 304, 303, 1, 0, 0,
+		0, 304, 305, 1, 0, 0, 0, 305, 306, 1, 0, 0, 0, 306, 307, 5, 7, 0, 0, 307,
+		47, 1, 0, 0, 0, 308, 316, 3, 22, 11, 0, 309, 311, 5, 3, 0, 0, 310, 312,
+		5, 40, 0, 0, 311, 310, 1, 0, 0, 0, 311, 312, 1, 0, 0, 0, 312, 313, 1, 0,
+		0, 0, 313, 315, 3, 22, 11, 0, 314, 309, 1, 0, 0, 0, 315, 318, 1, 0, 0,
+		0, 316, 314, 1, 0, 0, 0, 316, 317, 1, 0, 0, 0, 317, 49, 1, 0, 0, 0, 318,
+		316, 1, 0, 0, 0, 319, 320, 7, 1, 0, 0, 320, 51, 1, 0, 0, 0, 36, 55, 64,
+		69, 76, 81, 83, 93, 105, 115, 127, 133, 142, 155, 163, 170, 196, 198, 211,
+		215, 219, 230, 236, 242, 246, 249, 255, 264, 270, 279, 282, 293, 298, 301,
+		304, 311, 316,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -232,11 +266,21 @@ const (
 	bicepParserSTRING              = 25
 	bicepParserINT                 = 26
 	bicepParserBOOL                = 27
-	bicepParserIDENTIFIER          = 28
-	bicepParserNUMBER              = 29
-	bicepParserNL                  = 30
-	bicepParserSPACES              = 31
-	bicepParserUNKNOWN             = 32
+	bicepParserIF                  = 28
+	bicepParserFOR                 = 29
+	bicepParserIN                  = 30
+	bicepParserQMARK               = 31
+	bicepParserGT                  = 32
+	bicepParserGTE                 = 33
+	bicepParserLT                  = 34
+	bicepParserLTE                 = 35
+	bicepParserEQ                  = 36
+	bicepParserNEQ                 = 37
+	bicepParserIDENTIFIER          = 38
+	bicepParserNUMBER              = 39
+	bicepParserNL                  = 40
+	bicepParserSPACES              = 41
+	bicepParserUNKNOWN             = 42
 )
 
 // bicepParser rules.
@@ -247,21 +291,26 @@ const (
 	bicepParserRULE_parameterDefaultValue   = 3
 	bicepParserRULE_variableDecl            = 4
 	bicepParserRULE_resourceDecl            = 5
-	bicepParserRULE_interpString            = 6
-	bicepParserRULE_expression              = 7
-	bicepParserRULE_primaryExpression       = 8
-	bicepParserRULE_parenthesizedExpression = 9
-	bicepParserRULE_typeExpression          = 10
-	bicepParserRULE_literalValue            = 11
-	bicepParserRULE_object                  = 12
-	bicepParserRULE_objectProperty          = 13
-	bicepParserRULE_array                   = 14
-	bicepParserRULE_arrayItem               = 15
-	bicepParserRULE_decorator               = 16
-	bicepParserRULE_decoratorExpression     = 17
-	bicepParserRULE_functionCall            = 18
-	bicepParserRULE_argumentList            = 19
-	bicepParserRULE_identifier              = 20
+	bicepParserRULE_ifCondition             = 6
+	bicepParserRULE_forExpression           = 7
+	bicepParserRULE_forVariableBlock        = 8
+	bicepParserRULE_forBody                 = 9
+	bicepParserRULE_interpString            = 10
+	bicepParserRULE_expression              = 11
+	bicepParserRULE_logicCharacter          = 12
+	bicepParserRULE_primaryExpression       = 13
+	bicepParserRULE_parenthesizedExpression = 14
+	bicepParserRULE_typeExpression          = 15
+	bicepParserRULE_literalValue            = 16
+	bicepParserRULE_object                  = 17
+	bicepParserRULE_objectProperty          = 18
+	bicepParserRULE_array                   = 19
+	bicepParserRULE_arrayItem               = 20
+	bicepParserRULE_decorator               = 21
+	bicepParserRULE_decoratorExpression     = 22
+	bicepParserRULE_functionCall            = 23
+	bicepParserRULE_argumentList            = 24
+	bicepParserRULE_identifier              = 25
 )
 
 // IProgramContext is an interface to support dynamic dispatch.
@@ -381,20 +430,20 @@ func (p *bicepParser) Program() (localctx IProgramContext) {
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(45)
+	p.SetState(55)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&1074839556) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&1099512725508) != 0 {
 		{
-			p.SetState(42)
+			p.SetState(52)
 			p.Statement()
 		}
 
-		p.SetState(47)
+		p.SetState(57)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -402,7 +451,7 @@ func (p *bicepParser) Program() (localctx IProgramContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(48)
+		p.SetState(58)
 		p.Match(bicepParserEOF)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -545,7 +594,7 @@ func (s *StatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 func (p *bicepParser) Statement() (localctx IStatementContext) {
 	localctx = NewStatementContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 2, bicepParserRULE_statement)
-	p.SetState(54)
+	p.SetState(64)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -555,28 +604,28 @@ func (p *bicepParser) Statement() (localctx IStatementContext) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(50)
+			p.SetState(60)
 			p.ParameterDecl()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(51)
+			p.SetState(61)
 			p.VariableDecl()
 		}
 
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(52)
+			p.SetState(62)
 			p.ResourceDecl()
 		}
 
 	case 4:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(53)
+			p.SetState(63)
 			p.Match(bicepParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -818,7 +867,7 @@ func (p *bicepParser) ParameterDecl() (localctx IParameterDeclContext) {
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(59)
+	p.SetState(69)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -827,11 +876,11 @@ func (p *bicepParser) ParameterDecl() (localctx IParameterDeclContext) {
 
 	for _la == bicepParserAT {
 		{
-			p.SetState(56)
+			p.SetState(66)
 			p.Decorator()
 		}
 
-		p.SetState(61)
+		p.SetState(71)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -839,7 +888,7 @@ func (p *bicepParser) ParameterDecl() (localctx IParameterDeclContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(62)
+		p.SetState(72)
 		p.Match(bicepParserPARAM)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -847,13 +896,13 @@ func (p *bicepParser) ParameterDecl() (localctx IParameterDeclContext) {
 		}
 	}
 	{
-		p.SetState(63)
+		p.SetState(73)
 
 		var _x = p.Identifier()
 
 		localctx.(*ParameterDeclContext).name = _x
 	}
-	p.SetState(73)
+	p.SetState(83)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -862,10 +911,10 @@ func (p *bicepParser) ParameterDecl() (localctx IParameterDeclContext) {
 	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 5, p.GetParserRuleContext()) {
 	case 1:
 		{
-			p.SetState(64)
+			p.SetState(74)
 			p.TypeExpression()
 		}
-		p.SetState(66)
+		p.SetState(76)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -874,7 +923,7 @@ func (p *bicepParser) ParameterDecl() (localctx IParameterDeclContext) {
 
 		if _la == bicepParserASSIGN {
 			{
-				p.SetState(65)
+				p.SetState(75)
 				p.ParameterDefaultValue()
 			}
 
@@ -882,7 +931,7 @@ func (p *bicepParser) ParameterDecl() (localctx IParameterDeclContext) {
 
 	case 2:
 		{
-			p.SetState(68)
+			p.SetState(78)
 			p.Match(bicepParserRESOURCE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -890,13 +939,13 @@ func (p *bicepParser) ParameterDecl() (localctx IParameterDeclContext) {
 			}
 		}
 		{
-			p.SetState(69)
+			p.SetState(79)
 
 			var _x = p.InterpString()
 
 			localctx.(*ParameterDeclContext).type_ = _x
 		}
-		p.SetState(71)
+		p.SetState(81)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -905,7 +954,7 @@ func (p *bicepParser) ParameterDecl() (localctx IParameterDeclContext) {
 
 		if _la == bicepParserASSIGN {
 			{
-				p.SetState(70)
+				p.SetState(80)
 				p.ParameterDefaultValue()
 			}
 
@@ -915,7 +964,7 @@ func (p *bicepParser) ParameterDecl() (localctx IParameterDeclContext) {
 		goto errorExit
 	}
 	{
-		p.SetState(75)
+		p.SetState(85)
 		p.Match(bicepParserNL)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1026,7 +1075,7 @@ func (p *bicepParser) ParameterDefaultValue() (localctx IParameterDefaultValueCo
 	p.EnterRule(localctx, 6, bicepParserRULE_parameterDefaultValue)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(77)
+		p.SetState(87)
 		p.Match(bicepParserASSIGN)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1034,7 +1083,7 @@ func (p *bicepParser) ParameterDefaultValue() (localctx IParameterDefaultValueCo
 		}
 	}
 	{
-		p.SetState(78)
+		p.SetState(88)
 		p.expression(0)
 	}
 
@@ -1223,7 +1272,7 @@ func (p *bicepParser) VariableDecl() (localctx IVariableDeclContext) {
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(83)
+	p.SetState(93)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1232,11 +1281,11 @@ func (p *bicepParser) VariableDecl() (localctx IVariableDeclContext) {
 
 	for _la == bicepParserAT {
 		{
-			p.SetState(80)
+			p.SetState(90)
 			p.Decorator()
 		}
 
-		p.SetState(85)
+		p.SetState(95)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1244,7 +1293,7 @@ func (p *bicepParser) VariableDecl() (localctx IVariableDeclContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(86)
+		p.SetState(96)
 		p.Match(bicepParserVAR)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1252,14 +1301,14 @@ func (p *bicepParser) VariableDecl() (localctx IVariableDeclContext) {
 		}
 	}
 	{
-		p.SetState(87)
+		p.SetState(97)
 
 		var _x = p.Identifier()
 
 		localctx.(*VariableDeclContext).name = _x
 	}
 	{
-		p.SetState(88)
+		p.SetState(98)
 		p.Match(bicepParserASSIGN)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1267,11 +1316,11 @@ func (p *bicepParser) VariableDecl() (localctx IVariableDeclContext) {
 		}
 	}
 	{
-		p.SetState(89)
+		p.SetState(99)
 		p.expression(0)
 	}
 	{
-		p.SetState(90)
+		p.SetState(100)
 		p.Match(bicepParserNL)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1317,7 +1366,9 @@ type IResourceDeclContext interface {
 	NL() antlr.TerminalNode
 	Identifier() IIdentifierContext
 	InterpString() IInterpStringContext
+	IfCondition() IIfConditionContext
 	Object() IObjectContext
+	ForExpression() IForExpressionContext
 	AllDecorator() []IDecoratorContext
 	Decorator(i int) IDecoratorContext
 
@@ -1411,6 +1462,22 @@ func (s *ResourceDeclContext) InterpString() IInterpStringContext {
 	return t.(IInterpStringContext)
 }
 
+func (s *ResourceDeclContext) IfCondition() IIfConditionContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IIfConditionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IIfConditionContext)
+}
+
 func (s *ResourceDeclContext) Object() IObjectContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
@@ -1425,6 +1492,22 @@ func (s *ResourceDeclContext) Object() IObjectContext {
 	}
 
 	return t.(IObjectContext)
+}
+
+func (s *ResourceDeclContext) ForExpression() IForExpressionContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IForExpressionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IForExpressionContext)
 }
 
 func (s *ResourceDeclContext) AllDecorator() []IDecoratorContext {
@@ -1492,7 +1575,7 @@ func (p *bicepParser) ResourceDecl() (localctx IResourceDeclContext) {
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(95)
+	p.SetState(105)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1501,11 +1584,11 @@ func (p *bicepParser) ResourceDecl() (localctx IResourceDeclContext) {
 
 	for _la == bicepParserAT {
 		{
-			p.SetState(92)
+			p.SetState(102)
 			p.Decorator()
 		}
 
-		p.SetState(97)
+		p.SetState(107)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1513,7 +1596,7 @@ func (p *bicepParser) ResourceDecl() (localctx IResourceDeclContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(98)
+		p.SetState(108)
 		p.Match(bicepParserRESOURCE)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1521,40 +1604,870 @@ func (p *bicepParser) ResourceDecl() (localctx IResourceDeclContext) {
 		}
 	}
 	{
-		p.SetState(99)
+		p.SetState(109)
 
 		var _x = p.Identifier()
 
 		localctx.(*ResourceDeclContext).name = _x
 	}
 	{
-		p.SetState(100)
+		p.SetState(110)
 
 		var _x = p.InterpString()
 
 		localctx.(*ResourceDeclContext).type_ = _x
 	}
 	{
-		p.SetState(101)
+		p.SetState(111)
 		p.Match(bicepParserASSIGN)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-
-	{
-		p.SetState(102)
-		p.Object()
+	p.SetState(115)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
 	}
 
+	switch p.GetTokenStream().LA(1) {
+	case bicepParserIF:
+		{
+			p.SetState(112)
+			p.IfCondition()
+		}
+
+	case bicepParserOBRACE:
+		{
+			p.SetState(113)
+			p.Object()
+		}
+
+	case bicepParserOBRACK:
+		{
+			p.SetState(114)
+			p.ForExpression()
+		}
+
+	default:
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
+	}
 	{
-		p.SetState(103)
+		p.SetState(117)
 		p.Match(bicepParserNL)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IIfConditionContext is an interface to support dynamic dispatch.
+type IIfConditionContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	IF() antlr.TerminalNode
+	ParenthesizedExpression() IParenthesizedExpressionContext
+	Object() IObjectContext
+
+	// IsIfConditionContext differentiates from other interfaces.
+	IsIfConditionContext()
+}
+
+type IfConditionContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyIfConditionContext() *IfConditionContext {
+	var p = new(IfConditionContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = bicepParserRULE_ifCondition
+	return p
+}
+
+func InitEmptyIfConditionContext(p *IfConditionContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = bicepParserRULE_ifCondition
+}
+
+func (*IfConditionContext) IsIfConditionContext() {}
+
+func NewIfConditionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *IfConditionContext {
+	var p = new(IfConditionContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = bicepParserRULE_ifCondition
+
+	return p
+}
+
+func (s *IfConditionContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *IfConditionContext) IF() antlr.TerminalNode {
+	return s.GetToken(bicepParserIF, 0)
+}
+
+func (s *IfConditionContext) ParenthesizedExpression() IParenthesizedExpressionContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IParenthesizedExpressionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IParenthesizedExpressionContext)
+}
+
+func (s *IfConditionContext) Object() IObjectContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IObjectContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IObjectContext)
+}
+
+func (s *IfConditionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *IfConditionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *IfConditionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case bicepVisitor:
+		return t.VisitIfCondition(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *bicepParser) IfCondition() (localctx IIfConditionContext) {
+	localctx = NewIfConditionContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 12, bicepParserRULE_ifCondition)
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(119)
+		p.Match(bicepParserIF)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(120)
+		p.ParenthesizedExpression()
+	}
+	{
+		p.SetState(121)
+		p.Object()
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IForExpressionContext is an interface to support dynamic dispatch.
+type IForExpressionContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetItem returns the item rule contexts.
+	GetItem() IIdentifierContext
+
+	// SetItem sets the item rule contexts.
+	SetItem(IIdentifierContext)
+
+	// Getter signatures
+	OBRACK() antlr.TerminalNode
+	FOR() antlr.TerminalNode
+	IN() antlr.TerminalNode
+	Expression() IExpressionContext
+	COL() antlr.TerminalNode
+	ForBody() IForBodyContext
+	CBRACK() antlr.TerminalNode
+	ForVariableBlock() IForVariableBlockContext
+	AllNL() []antlr.TerminalNode
+	NL(i int) antlr.TerminalNode
+	Identifier() IIdentifierContext
+
+	// IsForExpressionContext differentiates from other interfaces.
+	IsForExpressionContext()
+}
+
+type ForExpressionContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+	item   IIdentifierContext
+}
+
+func NewEmptyForExpressionContext() *ForExpressionContext {
+	var p = new(ForExpressionContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = bicepParserRULE_forExpression
+	return p
+}
+
+func InitEmptyForExpressionContext(p *ForExpressionContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = bicepParserRULE_forExpression
+}
+
+func (*ForExpressionContext) IsForExpressionContext() {}
+
+func NewForExpressionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ForExpressionContext {
+	var p = new(ForExpressionContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = bicepParserRULE_forExpression
+
+	return p
+}
+
+func (s *ForExpressionContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *ForExpressionContext) GetItem() IIdentifierContext { return s.item }
+
+func (s *ForExpressionContext) SetItem(v IIdentifierContext) { s.item = v }
+
+func (s *ForExpressionContext) OBRACK() antlr.TerminalNode {
+	return s.GetToken(bicepParserOBRACK, 0)
+}
+
+func (s *ForExpressionContext) FOR() antlr.TerminalNode {
+	return s.GetToken(bicepParserFOR, 0)
+}
+
+func (s *ForExpressionContext) IN() antlr.TerminalNode {
+	return s.GetToken(bicepParserIN, 0)
+}
+
+func (s *ForExpressionContext) Expression() IExpressionContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IExpressionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExpressionContext)
+}
+
+func (s *ForExpressionContext) COL() antlr.TerminalNode {
+	return s.GetToken(bicepParserCOL, 0)
+}
+
+func (s *ForExpressionContext) ForBody() IForBodyContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IForBodyContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IForBodyContext)
+}
+
+func (s *ForExpressionContext) CBRACK() antlr.TerminalNode {
+	return s.GetToken(bicepParserCBRACK, 0)
+}
+
+func (s *ForExpressionContext) ForVariableBlock() IForVariableBlockContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IForVariableBlockContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IForVariableBlockContext)
+}
+
+func (s *ForExpressionContext) AllNL() []antlr.TerminalNode {
+	return s.GetTokens(bicepParserNL)
+}
+
+func (s *ForExpressionContext) NL(i int) antlr.TerminalNode {
+	return s.GetToken(bicepParserNL, i)
+}
+
+func (s *ForExpressionContext) Identifier() IIdentifierContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IIdentifierContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IIdentifierContext)
+}
+
+func (s *ForExpressionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ForExpressionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *ForExpressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case bicepVisitor:
+		return t.VisitForExpression(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *bicepParser) ForExpression() (localctx IForExpressionContext) {
+	localctx = NewForExpressionContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 14, bicepParserRULE_forExpression)
+	var _la int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(123)
+		p.Match(bicepParserOBRACK)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	p.SetState(127)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_la = p.GetTokenStream().LA(1)
+
+	for _la == bicepParserNL {
+		{
+			p.SetState(124)
+			p.Match(bicepParserNL)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+		p.SetState(129)
+		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
+		_la = p.GetTokenStream().LA(1)
+	}
+	{
+		p.SetState(130)
+		p.Match(bicepParserFOR)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	p.SetState(133)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+
+	switch p.GetTokenStream().LA(1) {
+	case bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserOBJECT, bicepParserRESOURCE, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIDENTIFIER:
+		{
+			p.SetState(131)
+
+			var _x = p.Identifier()
+
+			localctx.(*ForExpressionContext).item = _x
+		}
+
+	case bicepParserOPAR:
+		{
+			p.SetState(132)
+			p.ForVariableBlock()
+		}
+
+	default:
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
+	}
+	{
+		p.SetState(135)
+		p.Match(bicepParserIN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(136)
+		p.expression(0)
+	}
+	{
+		p.SetState(137)
+		p.Match(bicepParserCOL)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(138)
+		p.ForBody()
+	}
+	p.SetState(142)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_la = p.GetTokenStream().LA(1)
+
+	for _la == bicepParserNL {
+		{
+			p.SetState(139)
+			p.Match(bicepParserNL)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+		p.SetState(144)
+		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
+		_la = p.GetTokenStream().LA(1)
+	}
+	{
+		p.SetState(145)
+		p.Match(bicepParserCBRACK)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IForVariableBlockContext is an interface to support dynamic dispatch.
+type IForVariableBlockContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetItem returns the item rule contexts.
+	GetItem() IIdentifierContext
+
+	// GetIndex returns the index rule contexts.
+	GetIndex() IIdentifierContext
+
+	// SetItem sets the item rule contexts.
+	SetItem(IIdentifierContext)
+
+	// SetIndex sets the index rule contexts.
+	SetIndex(IIdentifierContext)
+
+	// Getter signatures
+	OPAR() antlr.TerminalNode
+	COMMA() antlr.TerminalNode
+	CPAR() antlr.TerminalNode
+	AllIdentifier() []IIdentifierContext
+	Identifier(i int) IIdentifierContext
+
+	// IsForVariableBlockContext differentiates from other interfaces.
+	IsForVariableBlockContext()
+}
+
+type ForVariableBlockContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+	item   IIdentifierContext
+	index  IIdentifierContext
+}
+
+func NewEmptyForVariableBlockContext() *ForVariableBlockContext {
+	var p = new(ForVariableBlockContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = bicepParserRULE_forVariableBlock
+	return p
+}
+
+func InitEmptyForVariableBlockContext(p *ForVariableBlockContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = bicepParserRULE_forVariableBlock
+}
+
+func (*ForVariableBlockContext) IsForVariableBlockContext() {}
+
+func NewForVariableBlockContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ForVariableBlockContext {
+	var p = new(ForVariableBlockContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = bicepParserRULE_forVariableBlock
+
+	return p
+}
+
+func (s *ForVariableBlockContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *ForVariableBlockContext) GetItem() IIdentifierContext { return s.item }
+
+func (s *ForVariableBlockContext) GetIndex() IIdentifierContext { return s.index }
+
+func (s *ForVariableBlockContext) SetItem(v IIdentifierContext) { s.item = v }
+
+func (s *ForVariableBlockContext) SetIndex(v IIdentifierContext) { s.index = v }
+
+func (s *ForVariableBlockContext) OPAR() antlr.TerminalNode {
+	return s.GetToken(bicepParserOPAR, 0)
+}
+
+func (s *ForVariableBlockContext) COMMA() antlr.TerminalNode {
+	return s.GetToken(bicepParserCOMMA, 0)
+}
+
+func (s *ForVariableBlockContext) CPAR() antlr.TerminalNode {
+	return s.GetToken(bicepParserCPAR, 0)
+}
+
+func (s *ForVariableBlockContext) AllIdentifier() []IIdentifierContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IIdentifierContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IIdentifierContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IIdentifierContext); ok {
+			tst[i] = t.(IIdentifierContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *ForVariableBlockContext) Identifier(i int) IIdentifierContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IIdentifierContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IIdentifierContext)
+}
+
+func (s *ForVariableBlockContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ForVariableBlockContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *ForVariableBlockContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case bicepVisitor:
+		return t.VisitForVariableBlock(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *bicepParser) ForVariableBlock() (localctx IForVariableBlockContext) {
+	localctx = NewForVariableBlockContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 16, bicepParserRULE_forVariableBlock)
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(147)
+		p.Match(bicepParserOPAR)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(148)
+
+		var _x = p.Identifier()
+
+		localctx.(*ForVariableBlockContext).item = _x
+	}
+	{
+		p.SetState(149)
+		p.Match(bicepParserCOMMA)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(150)
+
+		var _x = p.Identifier()
+
+		localctx.(*ForVariableBlockContext).index = _x
+	}
+	{
+		p.SetState(151)
+		p.Match(bicepParserCPAR)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IForBodyContext is an interface to support dynamic dispatch.
+type IForBodyContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetBody returns the body rule contexts.
+	GetBody() IExpressionContext
+
+	// SetBody sets the body rule contexts.
+	SetBody(IExpressionContext)
+
+	// Getter signatures
+	Expression() IExpressionContext
+	IfCondition() IIfConditionContext
+
+	// IsForBodyContext differentiates from other interfaces.
+	IsForBodyContext()
+}
+
+type ForBodyContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+	body   IExpressionContext
+}
+
+func NewEmptyForBodyContext() *ForBodyContext {
+	var p = new(ForBodyContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = bicepParserRULE_forBody
+	return p
+}
+
+func InitEmptyForBodyContext(p *ForBodyContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = bicepParserRULE_forBody
+}
+
+func (*ForBodyContext) IsForBodyContext() {}
+
+func NewForBodyContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ForBodyContext {
+	var p = new(ForBodyContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = bicepParserRULE_forBody
+
+	return p
+}
+
+func (s *ForBodyContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *ForBodyContext) GetBody() IExpressionContext { return s.body }
+
+func (s *ForBodyContext) SetBody(v IExpressionContext) { s.body = v }
+
+func (s *ForBodyContext) Expression() IExpressionContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IExpressionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExpressionContext)
+}
+
+func (s *ForBodyContext) IfCondition() IIfConditionContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IIfConditionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IIfConditionContext)
+}
+
+func (s *ForBodyContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ForBodyContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *ForBodyContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case bicepVisitor:
+		return t.VisitForBody(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *bicepParser) ForBody() (localctx IForBodyContext) {
+	localctx = NewForBodyContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 18, bicepParserRULE_forBody)
+	p.SetState(155)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+
+	switch p.GetTokenStream().LA(1) {
+	case bicepParserMULTILINE_STRING, bicepParserOBRACK, bicepParserOPAR, bicepParserOBRACE, bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserOBJECT, bicepParserRESOURCE, bicepParserSTRING_LEFT_PIECE, bicepParserSTRING_COMPLETE, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIDENTIFIER, bicepParserNUMBER:
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(153)
+
+			var _x = p.expression(0)
+
+			localctx.(*ForBodyContext).body = _x
+		}
+
+	case bicepParserIF:
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(154)
+			p.IfCondition()
+		}
+
+	default:
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
 	}
 
 errorExit:
@@ -1703,10 +2616,10 @@ func (s *InterpStringContext) Accept(visitor antlr.ParseTreeVisitor) interface{}
 
 func (p *bicepParser) InterpString() (localctx IInterpStringContext) {
 	localctx = NewInterpStringContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 12, bicepParserRULE_interpString)
+	p.EnterRule(localctx, 20, bicepParserRULE_interpString)
 	var _alt int
 
-	p.SetState(118)
+	p.SetState(170)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1716,30 +2629,30 @@ func (p *bicepParser) InterpString() (localctx IInterpStringContext) {
 	case bicepParserSTRING_LEFT_PIECE:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(105)
+			p.SetState(157)
 			p.Match(bicepParserSTRING_LEFT_PIECE)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(111)
+		p.SetState(163)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
-		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 8, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 13, p.GetParserRuleContext())
 		if p.HasError() {
 			goto errorExit
 		}
 		for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 			if _alt == 1 {
 				{
-					p.SetState(106)
+					p.SetState(158)
 					p.expression(0)
 				}
 				{
-					p.SetState(107)
+					p.SetState(159)
 					p.Match(bicepParserSTRING_MIDDLE_PIECE)
 					if p.HasError() {
 						// Recognition error - abort rule
@@ -1748,22 +2661,22 @@ func (p *bicepParser) InterpString() (localctx IInterpStringContext) {
 				}
 
 			}
-			p.SetState(113)
+			p.SetState(165)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
 			}
-			_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 8, p.GetParserRuleContext())
+			_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 13, p.GetParserRuleContext())
 			if p.HasError() {
 				goto errorExit
 			}
 		}
 		{
-			p.SetState(114)
+			p.SetState(166)
 			p.expression(0)
 		}
 		{
-			p.SetState(115)
+			p.SetState(167)
 			p.Match(bicepParserSTRING_RIGHT_PIECE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1774,7 +2687,7 @@ func (p *bicepParser) InterpString() (localctx IInterpStringContext) {
 	case bicepParserSTRING_COMPLETE:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(117)
+			p.SetState(169)
 			p.Match(bicepParserSTRING_COMPLETE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1823,11 +2736,13 @@ type IExpressionContext interface {
 	PrimaryExpression() IPrimaryExpressionContext
 	AllExpression() []IExpressionContext
 	Expression(i int) IExpressionContext
+	QMARK() antlr.TerminalNode
+	COL() antlr.TerminalNode
+	LogicCharacter() ILogicCharacterContext
 	OBRACK() antlr.TerminalNode
 	CBRACK() antlr.TerminalNode
 	DOT() antlr.TerminalNode
 	Identifier() IIdentifierContext
-	COL() antlr.TerminalNode
 
 	// IsExpressionContext differentiates from other interfaces.
 	IsExpressionContext()
@@ -1932,6 +2847,30 @@ func (s *ExpressionContext) Expression(i int) IExpressionContext {
 	return t.(IExpressionContext)
 }
 
+func (s *ExpressionContext) QMARK() antlr.TerminalNode {
+	return s.GetToken(bicepParserQMARK, 0)
+}
+
+func (s *ExpressionContext) COL() antlr.TerminalNode {
+	return s.GetToken(bicepParserCOL, 0)
+}
+
+func (s *ExpressionContext) LogicCharacter() ILogicCharacterContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ILogicCharacterContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ILogicCharacterContext)
+}
+
 func (s *ExpressionContext) OBRACK() antlr.TerminalNode {
 	return s.GetToken(bicepParserOBRACK, 0)
 }
@@ -1958,10 +2897,6 @@ func (s *ExpressionContext) Identifier() IIdentifierContext {
 	}
 
 	return t.(IIdentifierContext)
-}
-
-func (s *ExpressionContext) COL() antlr.TerminalNode {
-	return s.GetToken(bicepParserCOL, 0)
 }
 
 func (s *ExpressionContext) GetRuleContext() antlr.RuleContext {
@@ -1993,23 +2928,23 @@ func (p *bicepParser) expression(_p int) (localctx IExpressionContext) {
 	localctx = NewExpressionContext(p, p.GetParserRuleContext(), _parentState)
 	var _prevctx IExpressionContext = localctx
 	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
-	_startState := 14
-	p.EnterRecursionRule(localctx, 14, bicepParserRULE_expression, _p)
+	_startState := 22
+	p.EnterRecursionRule(localctx, 22, bicepParserRULE_expression, _p)
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(121)
+		p.SetState(173)
 		p.PrimaryExpression()
 	}
 
 	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
-	p.SetState(136)
+	p.SetState(198)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
-	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 11, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 16, p.GetParserRuleContext())
 	if p.HasError() {
 		goto errorExit
 	}
@@ -2019,79 +2954,36 @@ func (p *bicepParser) expression(_p int) (localctx IExpressionContext) {
 				p.TriggerExitRuleEvent()
 			}
 			_prevctx = localctx
-			p.SetState(134)
+			p.SetState(196)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
 			}
 
-			switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 10, p.GetParserRuleContext()) {
+			switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 15, p.GetParserRuleContext()) {
 			case 1:
 				localctx = NewExpressionContext(p, _parentctx, _parentState)
 				p.PushNewRecursionContext(localctx, _startState, bicepParserRULE_expression)
-				p.SetState(123)
+				p.SetState(175)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 4)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 4)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 5)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 5)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(124)
-					p.Match(bicepParserOBRACK)
+					p.SetState(176)
+					p.Match(bicepParserQMARK)
 					if p.HasError() {
 						// Recognition error - abort rule
 						goto errorExit
 					}
 				}
 				{
-					p.SetState(125)
+					p.SetState(177)
 					p.expression(0)
 				}
 				{
-					p.SetState(126)
-					p.Match(bicepParserCBRACK)
-					if p.HasError() {
-						// Recognition error - abort rule
-						goto errorExit
-					}
-				}
-
-			case 2:
-				localctx = NewExpressionContext(p, _parentctx, _parentState)
-				p.PushNewRecursionContext(localctx, _startState, bicepParserRULE_expression)
-				p.SetState(128)
-
-				if !(p.Precpred(p.GetParserRuleContext(), 3)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 3)", ""))
-					goto errorExit
-				}
-				{
-					p.SetState(129)
-					p.Match(bicepParserDOT)
-					if p.HasError() {
-						// Recognition error - abort rule
-						goto errorExit
-					}
-				}
-				{
-					p.SetState(130)
-
-					var _x = p.Identifier()
-
-					localctx.(*ExpressionContext).property = _x
-				}
-
-			case 3:
-				localctx = NewExpressionContext(p, _parentctx, _parentState)
-				p.PushNewRecursionContext(localctx, _startState, bicepParserRULE_expression)
-				p.SetState(131)
-
-				if !(p.Precpred(p.GetParserRuleContext(), 2)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 2)", ""))
-					goto errorExit
-				}
-				{
-					p.SetState(132)
+					p.SetState(178)
 					p.Match(bicepParserCOL)
 					if p.HasError() {
 						// Recognition error - abort rule
@@ -2099,7 +2991,102 @@ func (p *bicepParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(133)
+					p.SetState(179)
+					p.expression(6)
+				}
+
+			case 2:
+				localctx = NewExpressionContext(p, _parentctx, _parentState)
+				p.PushNewRecursionContext(localctx, _startState, bicepParserRULE_expression)
+				p.SetState(181)
+
+				if !(p.Precpred(p.GetParserRuleContext(), 2)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 2)", ""))
+					goto errorExit
+				}
+				{
+					p.SetState(182)
+					p.LogicCharacter()
+				}
+				{
+					p.SetState(183)
+					p.expression(3)
+				}
+
+			case 3:
+				localctx = NewExpressionContext(p, _parentctx, _parentState)
+				p.PushNewRecursionContext(localctx, _startState, bicepParserRULE_expression)
+				p.SetState(185)
+
+				if !(p.Precpred(p.GetParserRuleContext(), 6)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 6)", ""))
+					goto errorExit
+				}
+				{
+					p.SetState(186)
+					p.Match(bicepParserOBRACK)
+					if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+					}
+				}
+				{
+					p.SetState(187)
+					p.expression(0)
+				}
+				{
+					p.SetState(188)
+					p.Match(bicepParserCBRACK)
+					if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+					}
+				}
+
+			case 4:
+				localctx = NewExpressionContext(p, _parentctx, _parentState)
+				p.PushNewRecursionContext(localctx, _startState, bicepParserRULE_expression)
+				p.SetState(190)
+
+				if !(p.Precpred(p.GetParserRuleContext(), 4)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 4)", ""))
+					goto errorExit
+				}
+				{
+					p.SetState(191)
+					p.Match(bicepParserDOT)
+					if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+					}
+				}
+				{
+					p.SetState(192)
+
+					var _x = p.Identifier()
+
+					localctx.(*ExpressionContext).property = _x
+				}
+
+			case 5:
+				localctx = NewExpressionContext(p, _parentctx, _parentState)
+				p.PushNewRecursionContext(localctx, _startState, bicepParserRULE_expression)
+				p.SetState(193)
+
+				if !(p.Precpred(p.GetParserRuleContext(), 3)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 3)", ""))
+					goto errorExit
+				}
+				{
+					p.SetState(194)
+					p.Match(bicepParserCOL)
+					if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+					}
+				}
+				{
+					p.SetState(195)
 
 					var _x = p.Identifier()
 
@@ -2111,12 +3098,12 @@ func (p *bicepParser) expression(_p int) (localctx IExpressionContext) {
 			}
 
 		}
-		p.SetState(138)
+		p.SetState(200)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
-		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 11, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 16, p.GetParserRuleContext())
 		if p.HasError() {
 			goto errorExit
 		}
@@ -2135,6 +3122,130 @@ errorExit:
 	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
+// ILogicCharacterContext is an interface to support dynamic dispatch.
+type ILogicCharacterContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	GT() antlr.TerminalNode
+	GTE() antlr.TerminalNode
+	LT() antlr.TerminalNode
+	LTE() antlr.TerminalNode
+	EQ() antlr.TerminalNode
+	NEQ() antlr.TerminalNode
+
+	// IsLogicCharacterContext differentiates from other interfaces.
+	IsLogicCharacterContext()
+}
+
+type LogicCharacterContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyLogicCharacterContext() *LogicCharacterContext {
+	var p = new(LogicCharacterContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = bicepParserRULE_logicCharacter
+	return p
+}
+
+func InitEmptyLogicCharacterContext(p *LogicCharacterContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = bicepParserRULE_logicCharacter
+}
+
+func (*LogicCharacterContext) IsLogicCharacterContext() {}
+
+func NewLogicCharacterContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *LogicCharacterContext {
+	var p = new(LogicCharacterContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = bicepParserRULE_logicCharacter
+
+	return p
+}
+
+func (s *LogicCharacterContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *LogicCharacterContext) GT() antlr.TerminalNode {
+	return s.GetToken(bicepParserGT, 0)
+}
+
+func (s *LogicCharacterContext) GTE() antlr.TerminalNode {
+	return s.GetToken(bicepParserGTE, 0)
+}
+
+func (s *LogicCharacterContext) LT() antlr.TerminalNode {
+	return s.GetToken(bicepParserLT, 0)
+}
+
+func (s *LogicCharacterContext) LTE() antlr.TerminalNode {
+	return s.GetToken(bicepParserLTE, 0)
+}
+
+func (s *LogicCharacterContext) EQ() antlr.TerminalNode {
+	return s.GetToken(bicepParserEQ, 0)
+}
+
+func (s *LogicCharacterContext) NEQ() antlr.TerminalNode {
+	return s.GetToken(bicepParserNEQ, 0)
+}
+
+func (s *LogicCharacterContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *LogicCharacterContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *LogicCharacterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case bicepVisitor:
+		return t.VisitLogicCharacter(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *bicepParser) LogicCharacter() (localctx ILogicCharacterContext) {
+	localctx = NewLogicCharacterContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 24, bicepParserRULE_logicCharacter)
+	var _la int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(201)
+		_la = p.GetTokenStream().LA(1)
+
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&270582939648) != 0) {
+			p.GetErrorHandler().RecoverInline(p)
+		} else {
+			p.GetErrorHandler().ReportMatch(p)
+			p.Consume()
+		}
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
 // IPrimaryExpressionContext is an interface to support dynamic dispatch.
 type IPrimaryExpressionContext interface {
 	antlr.ParserRuleContext
@@ -2149,6 +3260,7 @@ type IPrimaryExpressionContext interface {
 	MULTILINE_STRING() antlr.TerminalNode
 	Array() IArrayContext
 	Object() IObjectContext
+	ForExpression() IForExpressionContext
 	ParenthesizedExpression() IParenthesizedExpressionContext
 
 	// IsPrimaryExpressionContext differentiates from other interfaces.
@@ -2271,6 +3383,22 @@ func (s *PrimaryExpressionContext) Object() IObjectContext {
 	return t.(IObjectContext)
 }
 
+func (s *PrimaryExpressionContext) ForExpression() IForExpressionContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IForExpressionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IForExpressionContext)
+}
+
 func (s *PrimaryExpressionContext) ParenthesizedExpression() IParenthesizedExpressionContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
@@ -2307,39 +3435,39 @@ func (s *PrimaryExpressionContext) Accept(visitor antlr.ParseTreeVisitor) interf
 
 func (p *bicepParser) PrimaryExpression() (localctx IPrimaryExpressionContext) {
 	localctx = NewPrimaryExpressionContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 16, bicepParserRULE_primaryExpression)
-	p.SetState(146)
+	p.EnterRule(localctx, 26, bicepParserRULE_primaryExpression)
+	p.SetState(211)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 12, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 17, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(139)
+			p.SetState(203)
 			p.LiteralValue()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(140)
+			p.SetState(204)
 			p.FunctionCall()
 		}
 
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(141)
+			p.SetState(205)
 			p.InterpString()
 		}
 
 	case 4:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(142)
+			p.SetState(206)
 			p.Match(bicepParserMULTILINE_STRING)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2350,21 +3478,28 @@ func (p *bicepParser) PrimaryExpression() (localctx IPrimaryExpressionContext) {
 	case 5:
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(143)
+			p.SetState(207)
 			p.Array()
 		}
 
 	case 6:
 		p.EnterOuterAlt(localctx, 6)
 		{
-			p.SetState(144)
+			p.SetState(208)
 			p.Object()
 		}
 
 	case 7:
 		p.EnterOuterAlt(localctx, 7)
 		{
-			p.SetState(145)
+			p.SetState(209)
+			p.ForExpression()
+		}
+
+	case 8:
+		p.EnterOuterAlt(localctx, 8)
+		{
+			p.SetState(210)
 			p.ParenthesizedExpression()
 		}
 
@@ -2487,19 +3622,19 @@ func (s *ParenthesizedExpressionContext) Accept(visitor antlr.ParseTreeVisitor) 
 
 func (p *bicepParser) ParenthesizedExpression() (localctx IParenthesizedExpressionContext) {
 	localctx = NewParenthesizedExpressionContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 18, bicepParserRULE_parenthesizedExpression)
+	p.EnterRule(localctx, 28, bicepParserRULE_parenthesizedExpression)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(148)
+		p.SetState(213)
 		p.Match(bicepParserOPAR)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(150)
+	p.SetState(215)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2508,7 +3643,7 @@ func (p *bicepParser) ParenthesizedExpression() (localctx IParenthesizedExpressi
 
 	if _la == bicepParserNL {
 		{
-			p.SetState(149)
+			p.SetState(214)
 			p.Match(bicepParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2518,10 +3653,10 @@ func (p *bicepParser) ParenthesizedExpression() (localctx IParenthesizedExpressi
 
 	}
 	{
-		p.SetState(152)
+		p.SetState(217)
 		p.expression(0)
 	}
-	p.SetState(154)
+	p.SetState(219)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2530,7 +3665,7 @@ func (p *bicepParser) ParenthesizedExpression() (localctx IParenthesizedExpressi
 
 	if _la == bicepParserNL {
 		{
-			p.SetState(153)
+			p.SetState(218)
 			p.Match(bicepParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2540,7 +3675,7 @@ func (p *bicepParser) ParenthesizedExpression() (localctx IParenthesizedExpressi
 
 	}
 	{
-		p.SetState(156)
+		p.SetState(221)
 		p.Match(bicepParserCPAR)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2654,10 +3789,10 @@ func (s *TypeExpressionContext) Accept(visitor antlr.ParseTreeVisitor) interface
 
 func (p *bicepParser) TypeExpression() (localctx ITypeExpressionContext) {
 	localctx = NewTypeExpressionContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 20, bicepParserRULE_typeExpression)
+	p.EnterRule(localctx, 30, bicepParserRULE_typeExpression)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(158)
+		p.SetState(223)
 
 		var _x = p.Identifier()
 
@@ -2779,18 +3914,18 @@ func (s *LiteralValueContext) Accept(visitor antlr.ParseTreeVisitor) interface{}
 
 func (p *bicepParser) LiteralValue() (localctx ILiteralValueContext) {
 	localctx = NewLiteralValueContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 22, bicepParserRULE_literalValue)
-	p.SetState(165)
+	p.EnterRule(localctx, 32, bicepParserRULE_literalValue)
+	p.SetState(230)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 15, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 20, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(160)
+			p.SetState(225)
 			p.Match(bicepParserNUMBER)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2801,7 +3936,7 @@ func (p *bicepParser) LiteralValue() (localctx ILiteralValueContext) {
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(161)
+			p.SetState(226)
 			p.Match(bicepParserTRUE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2812,7 +3947,7 @@ func (p *bicepParser) LiteralValue() (localctx ILiteralValueContext) {
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(162)
+			p.SetState(227)
 			p.Match(bicepParserFALSE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2823,7 +3958,7 @@ func (p *bicepParser) LiteralValue() (localctx ILiteralValueContext) {
 	case 4:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(163)
+			p.SetState(228)
 			p.Match(bicepParserNULL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2834,7 +3969,7 @@ func (p *bicepParser) LiteralValue() (localctx ILiteralValueContext) {
 	case 5:
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(164)
+			p.SetState(229)
 			p.Identifier()
 		}
 
@@ -2983,19 +4118,19 @@ func (s *ObjectContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *bicepParser) Object() (localctx IObjectContext) {
 	localctx = NewObjectContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 24, bicepParserRULE_object)
+	p.EnterRule(localctx, 34, bicepParserRULE_object)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(167)
+		p.SetState(232)
 		p.Match(bicepParserOBRACE)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(184)
+	p.SetState(249)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3003,7 +4138,7 @@ func (p *bicepParser) Object() (localctx IObjectContext) {
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == bicepParserNL {
-		p.SetState(169)
+		p.SetState(234)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -3012,7 +4147,7 @@ func (p *bicepParser) Object() (localctx IObjectContext) {
 
 		for ok := true; ok; ok = _la == bicepParserNL {
 			{
-				p.SetState(168)
+				p.SetState(233)
 				p.Match(bicepParserNL)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -3020,26 +4155,26 @@ func (p *bicepParser) Object() (localctx IObjectContext) {
 				}
 			}
 
-			p.SetState(171)
+			p.SetState(236)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
 			}
 			_la = p.GetTokenStream().LA(1)
 		}
-		p.SetState(181)
+		p.SetState(246)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
 		_la = p.GetTokenStream().LA(1)
 
-		for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&524271616) != 0 {
+		for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&275133743104) != 0 {
 			{
-				p.SetState(173)
+				p.SetState(238)
 				p.ObjectProperty()
 			}
-			p.SetState(175)
+			p.SetState(240)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -3048,7 +4183,7 @@ func (p *bicepParser) Object() (localctx IObjectContext) {
 
 			for ok := true; ok; ok = _la == bicepParserNL {
 				{
-					p.SetState(174)
+					p.SetState(239)
 					p.Match(bicepParserNL)
 					if p.HasError() {
 						// Recognition error - abort rule
@@ -3056,7 +4191,7 @@ func (p *bicepParser) Object() (localctx IObjectContext) {
 					}
 				}
 
-				p.SetState(177)
+				p.SetState(242)
 				p.GetErrorHandler().Sync(p)
 				if p.HasError() {
 					goto errorExit
@@ -3064,7 +4199,7 @@ func (p *bicepParser) Object() (localctx IObjectContext) {
 				_la = p.GetTokenStream().LA(1)
 			}
 
-			p.SetState(183)
+			p.SetState(248)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -3074,7 +4209,7 @@ func (p *bicepParser) Object() (localctx IObjectContext) {
 
 	}
 	{
-		p.SetState(186)
+		p.SetState(251)
 		p.Match(bicepParserCBRACE)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3227,9 +4362,9 @@ func (s *ObjectPropertyContext) Accept(visitor antlr.ParseTreeVisitor) interface
 
 func (p *bicepParser) ObjectProperty() (localctx IObjectPropertyContext) {
 	localctx = NewObjectPropertyContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 26, bicepParserRULE_objectProperty)
+	p.EnterRule(localctx, 36, bicepParserRULE_objectProperty)
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(190)
+	p.SetState(255)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3238,7 +4373,7 @@ func (p *bicepParser) ObjectProperty() (localctx IObjectPropertyContext) {
 	switch p.GetTokenStream().LA(1) {
 	case bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserOBJECT, bicepParserRESOURCE, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIDENTIFIER:
 		{
-			p.SetState(188)
+			p.SetState(253)
 
 			var _x = p.Identifier()
 
@@ -3247,7 +4382,7 @@ func (p *bicepParser) ObjectProperty() (localctx IObjectPropertyContext) {
 
 	case bicepParserSTRING_LEFT_PIECE, bicepParserSTRING_COMPLETE:
 		{
-			p.SetState(189)
+			p.SetState(254)
 			p.InterpString()
 		}
 
@@ -3256,7 +4391,7 @@ func (p *bicepParser) ObjectProperty() (localctx IObjectPropertyContext) {
 		goto errorExit
 	}
 	{
-		p.SetState(192)
+		p.SetState(257)
 		p.Match(bicepParserCOL)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3264,7 +4399,7 @@ func (p *bicepParser) ObjectProperty() (localctx IObjectPropertyContext) {
 		}
 	}
 	{
-		p.SetState(193)
+		p.SetState(258)
 		p.expression(0)
 	}
 
@@ -3409,19 +4544,19 @@ func (s *ArrayContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *bicepParser) Array() (localctx IArrayContext) {
 	localctx = NewArrayContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 28, bicepParserRULE_array)
+	p.EnterRule(localctx, 38, bicepParserRULE_array)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(195)
+		p.SetState(260)
 		p.Match(bicepParserOBRACK)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(199)
+	p.SetState(264)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3430,7 +4565,7 @@ func (p *bicepParser) Array() (localctx IArrayContext) {
 
 	for _la == bicepParserNL {
 		{
-			p.SetState(196)
+			p.SetState(261)
 			p.Match(bicepParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3438,27 +4573,27 @@ func (p *bicepParser) Array() (localctx IArrayContext) {
 			}
 		}
 
-		p.SetState(201)
+		p.SetState(266)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
 		_la = p.GetTokenStream().LA(1)
 	}
-	p.SetState(205)
+	p.SetState(270)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&1061146706) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&824889561170) != 0 {
 		{
-			p.SetState(202)
+			p.SetState(267)
 			p.ArrayItem()
 		}
 
-		p.SetState(207)
+		p.SetState(272)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -3466,7 +4601,7 @@ func (p *bicepParser) Array() (localctx IArrayContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(208)
+		p.SetState(273)
 		p.Match(bicepParserCBRACK)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3584,22 +4719,22 @@ func (s *ArrayItemContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *bicepParser) ArrayItem() (localctx IArrayItemContext) {
 	localctx = NewArrayItemContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 30, bicepParserRULE_arrayItem)
+	p.EnterRule(localctx, 40, bicepParserRULE_arrayItem)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(210)
+		p.SetState(275)
 		p.expression(0)
 	}
-	p.SetState(217)
+	p.SetState(282)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 	switch p.GetTokenStream().LA(1) {
 	case bicepParserNL:
-		p.SetState(212)
+		p.SetState(277)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -3608,7 +4743,7 @@ func (p *bicepParser) ArrayItem() (localctx IArrayItemContext) {
 
 		for ok := true; ok; ok = _la == bicepParserNL {
 			{
-				p.SetState(211)
+				p.SetState(276)
 				p.Match(bicepParserNL)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -3616,7 +4751,7 @@ func (p *bicepParser) ArrayItem() (localctx IArrayItemContext) {
 				}
 			}
 
-			p.SetState(214)
+			p.SetState(279)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -3626,7 +4761,7 @@ func (p *bicepParser) ArrayItem() (localctx IArrayItemContext) {
 
 	case bicepParserCOMMA:
 		{
-			p.SetState(216)
+			p.SetState(281)
 			p.Match(bicepParserCOMMA)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3744,10 +4879,10 @@ func (s *DecoratorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *bicepParser) Decorator() (localctx IDecoratorContext) {
 	localctx = NewDecoratorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 32, bicepParserRULE_decorator)
+	p.EnterRule(localctx, 42, bicepParserRULE_decorator)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(219)
+		p.SetState(284)
 		p.Match(bicepParserAT)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3755,11 +4890,11 @@ func (p *bicepParser) Decorator() (localctx IDecoratorContext) {
 		}
 	}
 	{
-		p.SetState(220)
+		p.SetState(285)
 		p.DecoratorExpression()
 	}
 	{
-		p.SetState(221)
+		p.SetState(286)
 		p.Match(bicepParserNL)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3884,29 +5019,29 @@ func (s *DecoratorExpressionContext) Accept(visitor antlr.ParseTreeVisitor) inte
 
 func (p *bicepParser) DecoratorExpression() (localctx IDecoratorExpressionContext) {
 	localctx = NewDecoratorExpressionContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 34, bicepParserRULE_decoratorExpression)
-	p.SetState(228)
+	p.EnterRule(localctx, 44, bicepParserRULE_decoratorExpression)
+	p.SetState(293)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 25, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 30, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(223)
+			p.SetState(288)
 			p.FunctionCall()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(224)
+			p.SetState(289)
 			p.expression(0)
 		}
 		{
-			p.SetState(225)
+			p.SetState(290)
 			p.Match(bicepParserDOT)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3914,7 +5049,7 @@ func (p *bicepParser) DecoratorExpression() (localctx IDecoratorExpressionContex
 			}
 		}
 		{
-			p.SetState(226)
+			p.SetState(291)
 			p.FunctionCall()
 		}
 
@@ -4054,27 +5189,27 @@ func (s *FunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{}
 
 func (p *bicepParser) FunctionCall() (localctx IFunctionCallContext) {
 	localctx = NewFunctionCallContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 36, bicepParserRULE_functionCall)
+	p.EnterRule(localctx, 46, bicepParserRULE_functionCall)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(230)
+		p.SetState(295)
 		p.Identifier()
 	}
 	{
-		p.SetState(231)
+		p.SetState(296)
 		p.Match(bicepParserOPAR)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(236)
+	p.SetState(301)
 	p.GetErrorHandler().Sync(p)
 
-	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 27, p.GetParserRuleContext()) == 1 {
-		p.SetState(233)
+	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 32, p.GetParserRuleContext()) == 1 {
+		p.SetState(298)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4083,7 +5218,7 @@ func (p *bicepParser) FunctionCall() (localctx IFunctionCallContext) {
 
 		if _la == bicepParserNL {
 			{
-				p.SetState(232)
+				p.SetState(297)
 				p.Match(bicepParserNL)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -4093,14 +5228,14 @@ func (p *bicepParser) FunctionCall() (localctx IFunctionCallContext) {
 
 		}
 		{
-			p.SetState(235)
+			p.SetState(300)
 			p.ArgumentList()
 		}
 
 	} else if p.HasError() { // JIM
 		goto errorExit
 	}
-	p.SetState(239)
+	p.SetState(304)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4109,7 +5244,7 @@ func (p *bicepParser) FunctionCall() (localctx IFunctionCallContext) {
 
 	if _la == bicepParserNL {
 		{
-			p.SetState(238)
+			p.SetState(303)
 			p.Match(bicepParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4119,7 +5254,7 @@ func (p *bicepParser) FunctionCall() (localctx IFunctionCallContext) {
 
 	}
 	{
-		p.SetState(241)
+		p.SetState(306)
 		p.Match(bicepParserCPAR)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4268,15 +5403,15 @@ func (s *ArgumentListContext) Accept(visitor antlr.ParseTreeVisitor) interface{}
 
 func (p *bicepParser) ArgumentList() (localctx IArgumentListContext) {
 	localctx = NewArgumentListContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 38, bicepParserRULE_argumentList)
+	p.EnterRule(localctx, 48, bicepParserRULE_argumentList)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(243)
+		p.SetState(308)
 		p.expression(0)
 	}
-	p.SetState(251)
+	p.SetState(316)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4285,14 +5420,14 @@ func (p *bicepParser) ArgumentList() (localctx IArgumentListContext) {
 
 	for _la == bicepParserCOMMA {
 		{
-			p.SetState(244)
+			p.SetState(309)
 			p.Match(bicepParserCOMMA)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(246)
+		p.SetState(311)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4301,7 +5436,7 @@ func (p *bicepParser) ArgumentList() (localctx IArgumentListContext) {
 
 		if _la == bicepParserNL {
 			{
-				p.SetState(245)
+				p.SetState(310)
 				p.Match(bicepParserNL)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -4311,11 +5446,11 @@ func (p *bicepParser) ArgumentList() (localctx IArgumentListContext) {
 
 		}
 		{
-			p.SetState(248)
+			p.SetState(313)
 			p.expression(0)
 		}
 
-		p.SetState(253)
+		p.SetState(318)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4456,15 +5591,15 @@ func (s *IdentifierContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *bicepParser) Identifier() (localctx IIdentifierContext) {
 	localctx = NewIdentifierContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 40, bicepParserRULE_identifier)
+	p.EnterRule(localctx, 50, bicepParserRULE_identifier)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(254)
+		p.SetState(319)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&505397248) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&275114868736) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -4487,7 +5622,7 @@ errorExit:
 
 func (p *bicepParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex int) bool {
 	switch ruleIndex {
-	case 7:
+	case 11:
 		var t *ExpressionContext = nil
 		if localctx != nil {
 			t = localctx.(*ExpressionContext)
@@ -4502,13 +5637,19 @@ func (p *bicepParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex i
 func (p *bicepParser) Expression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
 	switch predIndex {
 	case 0:
-		return p.Precpred(p.GetParserRuleContext(), 4)
+		return p.Precpred(p.GetParserRuleContext(), 5)
 
 	case 1:
-		return p.Precpred(p.GetParserRuleContext(), 3)
+		return p.Precpred(p.GetParserRuleContext(), 2)
 
 	case 2:
-		return p.Precpred(p.GetParserRuleContext(), 2)
+		return p.Precpred(p.GetParserRuleContext(), 6)
+
+	case 3:
+		return p.Precpred(p.GetParserRuleContext(), 4)
+
+	case 4:
+		return p.Precpred(p.GetParserRuleContext(), 3)
 
 	default:
 		panic("No predicate with index: " + fmt.Sprint(predIndex))

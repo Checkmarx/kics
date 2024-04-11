@@ -26,11 +26,26 @@ type bicepVisitor interface {
 	// Visit a parse tree produced by bicepParser#resourceDecl.
 	VisitResourceDecl(ctx *ResourceDeclContext) interface{}
 
+	// Visit a parse tree produced by bicepParser#ifCondition.
+	VisitIfCondition(ctx *IfConditionContext) interface{}
+
+	// Visit a parse tree produced by bicepParser#forExpression.
+	VisitForExpression(ctx *ForExpressionContext) interface{}
+
+	// Visit a parse tree produced by bicepParser#forVariableBlock.
+	VisitForVariableBlock(ctx *ForVariableBlockContext) interface{}
+
+	// Visit a parse tree produced by bicepParser#forBody.
+	VisitForBody(ctx *ForBodyContext) interface{}
+
 	// Visit a parse tree produced by bicepParser#interpString.
 	VisitInterpString(ctx *InterpStringContext) interface{}
 
 	// Visit a parse tree produced by bicepParser#expression.
 	VisitExpression(ctx *ExpressionContext) interface{}
+
+	// Visit a parse tree produced by bicepParser#logicCharacter.
+	VisitLogicCharacter(ctx *LogicCharacterContext) interface{}
 
 	// Visit a parse tree produced by bicepParser#primaryExpression.
 	VisitPrimaryExpression(ctx *PrimaryExpressionContext) interface{}

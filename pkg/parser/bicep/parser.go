@@ -21,10 +21,9 @@ type BicepVisitor struct {
 }
 
 type JSONBicep struct {
-	Parameters map[string]interface{}      `json:"parameters"`
-	Variables  map[string]interface{}      `json:"variables"`
-	Resources  []interface{}               `json:"resources"`
-	Lines      map[string]model.LineObject `json:"_kics_lines"`
+	Parameters map[string]interface{} `json:"parameters"`
+	Variables  map[string]interface{} `json:"variables"`
+	Resources  []interface{}          `json:"resources"`
 }
 
 const CloseParenthesis = "')"
@@ -33,7 +32,6 @@ func NewBicepVisitor() *BicepVisitor {
 	paramList := map[string]interface{}{}
 	varList := map[string]interface{}{}
 	resourceList := []interface{}{}
-
 	return &BicepVisitor{paramList: paramList, varList: varList, resourceList: resourceList}
 }
 
@@ -42,7 +40,6 @@ func convertVisitorToJSONBicep(visitor *BicepVisitor) *JSONBicep {
 		Parameters: visitor.paramList,
 		Variables:  visitor.varList,
 		Resources:  visitor.resourceList,
-		Lines:      make(map[string]model.LineObject),
 	}
 }
 
@@ -285,7 +282,7 @@ func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{
 					return nil
 				}
 			}
-		} else {
+		} else if ctx.LogicCharacter() == nil {
 			for _, val := range ctx.AllExpression() {
 				val.Accept(s)
 			}

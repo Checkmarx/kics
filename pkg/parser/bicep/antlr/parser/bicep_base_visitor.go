@@ -32,11 +32,31 @@ func (v *BasebicepVisitor) VisitResourceDecl(ctx *ResourceDeclContext) interface
 	return v.VisitChildren(ctx)
 }
 
+func (v *BasebicepVisitor) VisitIfCondition(ctx *IfConditionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BasebicepVisitor) VisitForExpression(ctx *ForExpressionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BasebicepVisitor) VisitForVariableBlock(ctx *ForVariableBlockContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BasebicepVisitor) VisitForBody(ctx *ForBodyContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BasebicepVisitor) VisitInterpString(ctx *InterpStringContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
 func (v *BasebicepVisitor) VisitExpression(ctx *ExpressionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BasebicepVisitor) VisitLogicCharacter(ctx *LogicCharacterContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

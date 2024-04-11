@@ -24,8 +24,31 @@ variableDecl:
 // resourceDecl -> decorator* "resource" IDENTIFIER(name) interpString(type) "existing"? "=" (ifCondition | object | forExpression) NL
 resourceDecl:
 	decorator* RESOURCE name = identifier type = interpString ASSIGN (
-		object
+		ifCondition
+        | object
+        | forExpression
 	) NL;
+
+// ifCondition -> "if" parenthesizedExpression object
+ifCondition
+    : IF parenthesizedExpression object
+    ;
+
+// forExpression -> "[" "for" (IDENTIFIER(item) | forVariableBlock) "in" expression ":" forBody "]"
+forExpression
+    : OBRACK NL* FOR (item = identifier | forVariableBlock) IN expression COL forBody NL* CBRACK
+    ;
+
+// forVariableBlock -> "(" IDENTIFIER(item) "," IDENTIFIER(index) ")"
+forVariableBlock
+    : OPAR item = identifier COMMA index = identifier CPAR
+    ;
+
+// forBody -> expression(body) | ifCondition
+forBody
+    : body = expression
+    | ifCondition
+    ;
 
 // interpString ->  stringLeftPiece ( expression stringMiddlePiece )* expression stringRightPiece | stringComplete
 interpString:
@@ -36,9 +59,13 @@ interpString:
 // ":" IDENTIFIER(name)
 expression:
 	expression OBRACK expression CBRACK
+	| expression QMARK expression COL expression
 	| expression DOT property = identifier
 	| expression COL name = identifier
+	| expression logicCharacter expression
 	| primaryExpression;
+
+logicCharacter: (GT | GTE | LT | LTE | EQ | NEQ);
 
 // primaryExpression -> literalValue | interpString | multilineString | array | object |
 // parenthesizedExpression
@@ -49,6 +76,7 @@ primaryExpression:
 	| MULTILINE_STRING
 	| array
 	| object
+	| forExpression
 	| parenthesizedExpression;
 
 // parenthesizedExpression -> "(" expression ")"
@@ -155,6 +183,46 @@ STRING: 'string';
 INT: 'int';
 
 BOOL: 'bool';
+
+IF
+    : 'if'
+    ;
+
+FOR
+    : 'for'
+    ;
+
+IN
+    : 'in'
+    ;
+
+QMARK
+	: '?'
+	;
+
+GT
+    : '>'
+    ;
+
+GTE
+    : '>='
+    ;
+
+LT
+    : '<'
+    ;
+
+LTE
+    : '<='
+    ;
+
+EQ
+    : '=='
+    ;
+
+NEQ
+    : '!='
+    ;
 
 IDENTIFIER: [a-zA-Z_] [a-zA-Z_0-9]*;
 
