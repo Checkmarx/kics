@@ -31,7 +31,7 @@ Below are listed queries related to Crossplane AZURE:
 |            Query             |Severity|Category|More info|
 |------------------------------|--------|--------|-----------|
 |AKS RBAC Disabled<br/><sup><sub>b2418936-cd47-4ea2-8346-623c0bdb87bd</sub></sup>|<span style="color:#ff7213">Medium</span>|Access Control|<a href="../crossplane-queries/azure/b2418936-cd47-4ea2-8346-623c0bdb87bd" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-azure/compute.azure.crossplane.io/AKSCluster/v1alpha3@v0.19.0#spec-disableRBAC">Documentation</a><br/>|
-|Redis Cache Allows Non SSL Connections<br/><sup><sub>6c7cfec3-c686-4ed2-bf58-a1ec054b63fc</sub></sup>|<span style="color:#ff7213">Medium</span>|Encryption|<a href="../crossplane-queries/azure/6c7cfec3-c686-4ed2-bf58-a1ec054b63fc" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-azure/cache.azure.crossplane.io/Redis/v1beta1@v0.19.0#spec-forProvider-enableNonSslPort">Documentation</a><br/>|
+|Redis Cache Allows Non SSL Connections<br/><sup><sub>6c7cfec3-c686-4ed2-bf58-a1ec054b63fc</sub></sup>|<span style="color:#ff7213">Medium</span>|Insecure Configurations|<a href="../crossplane-queries/azure/6c7cfec3-c686-4ed2-bf58-a1ec054b63fc" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-azure/cache.azure.crossplane.io/Redis/v1beta1@v0.19.0#spec-forProvider-enableNonSslPort">Documentation</a><br/>|
 
 ### GCP
 Below are listed queries related to Crossplane GCP:
