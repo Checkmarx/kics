@@ -2179,12 +2179,6 @@
 <td><a href="../cloudformation-queries/aws/76ddf32c-85b1-4808-8935-7eef8030ab36" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>IAM User LoginProfile Password Is In Plaintext<br/><sup><sub>06adef8c-c284-4de7-aad2-af43b07a8ca1</sub></sup></td>
-<td><span style="color:#bb2124">High</span></td>
-<td>Insecure Configurations</td>
-<td><a href="../cloudformation-queries/aws/06adef8c-c284-4de7-aad2-af43b07a8ca1" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>KMS Key With Vulnerable Policy<br/><sup><sub>da905474-7454-43c0-b8d2-5756ab951aba</sub></sup></td>
 <td><span style="color:#bb2124">High</span></td>
 <td>Insecure Configurations</td>
@@ -2353,6 +2347,12 @@
 <td><a href="../cloudformation-queries/aws/2564172f-c92b-4261-9acd-464aed511696" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-environment">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>IAM User LoginProfile Password Is In Plaintext<br/><sup><sub>06adef8c-c284-4de7-aad2-af43b07a8ca1</sub></sup></td>
+<td><span style="color:#bb2124">High</span></td>
+<td>Secret Management</td>
+<td><a href="../cloudformation-queries/aws/06adef8c-c284-4de7-aad2-af43b07a8ca1" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>RefreshToken Is Exposed<br/><sup><sub>5b48c507-0d1f-41b0-a630-76817c6b4189</sub></sup></td>
 <td><span style="color:#bb2124">High</span></td>
 <td>Secret Management</td>
@@ -2399,6 +2399,12 @@
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Access Control</td>
 <td><a href="../cloudformation-queries/aws/7f384a5f-b5a2-4d84-8ca3-ee0a5247becb" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Group Inline Policies<br/><sup><sub>a58d1a2d-4078-4b80-855b-84cc3f7f4540</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Access Control</td>
+<td><a href="../cloudformation-queries/aws/a58d1a2d-4078-4b80-855b-84cc3f7f4540" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>IAM Group Without Users<br/><sup><sub>8f957abd-9703-413d-87d3-c578950a753c</sub></sup></td>
@@ -2505,7 +2511,7 @@
 <tr>
 <td>RDS Multi-AZ Deployment Disabled<br/><sup><sub>2b1d4935-9acf-48a7-8466-10d18bf51a69</sub></sup></td>
 <td><span style="color:#ff7213">Medium</span></td>
-<td>Backup</td>
+<td>Availability</td>
 <td><a href="../cloudformation-queries/aws/2b1d4935-9acf-48a7-8466-10d18bf51a69" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -2513,6 +2519,12 @@
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Backup</td>
 <td><a href="../cloudformation-queries/aws/8c415f6f-7b90-4a27-a44a-51047e1506f9" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Without Versioning<br/><sup><sub>a227ec01-f97a-4084-91a4-47b350c1db54</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Backup</td>
+<td><a href="../cloudformation-queries/aws/a227ec01-f97a-4084-91a4-47b350c1db54" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Stack Retention Disabled<br/><sup><sub>fe974ae9-858e-4991-bbd5-e040a834679f</sub></sup></td>
@@ -2615,12 +2627,6 @@
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Encryption</td>
 <td><a href="../cloudformation-queries/aws/9fcd0a0a-9b6f-4670-a215-d94e6bf3f184" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-enableiamdatabaseauthentication">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>IAM Group Inline Policies<br/><sup><sub>a58d1a2d-4078-4b80-855b-84cc3f7f4540</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Encryption</td>
-<td><a href="../cloudformation-queries/aws/a58d1a2d-4078-4b80-855b-84cc3f7f4540" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>KMS Key Rotation Disabled<br/><sup><sub>235ca980-eb71-48f4-9030-df0c371029eb</sub></sup></td>
@@ -3001,12 +3007,6 @@
 <td><a href="../cloudformation-queries/aws/4552b71f-0a2a-4bc4-92dd-ed7ec1b4674c" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>S3 Bucket Without Versioning<br/><sup><sub>a227ec01-f97a-4084-91a4-47b350c1db54</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Observability</td>
-<td><a href="../cloudformation-queries/aws/a227ec01-f97a-4084-91a4-47b350c1db54" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>VPC FlowLogs Disabled<br/><sup><sub>f6d299d2-21eb-41cc-b1e1-fe12d857500b</sub></sup></td>
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Observability</td>
@@ -3143,12 +3143,6 @@
 <td><span style="color:#edd57e">Low</span></td>
 <td>Encryption</td>
 <td><a href="../cloudformation-queries/aws/6d087495-2a42-4735-abf7-02ef5660a7e6" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Unscanned ECR Image<br/><sup><sub>9025b2b3-e554-4842-ba87-db7aeec36d35</sub></sup></td>
-<td><span style="color:#edd57e">Low</span></td>
-<td>Encryption</td>
-<td><a href="../cloudformation-queries/aws/9025b2b3-e554-4842-ba87-db7aeec36d35" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-imagescanningconfiguration">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>API Gateway Cache Cluster Disabled<br/><sup><sub>52790cad-d60d-41d5-8483-146f9f21208d</sub></sup></td>
@@ -3323,6 +3317,12 @@
 <td><span style="color:#edd57e">Low</span></td>
 <td>Observability</td>
 <td><a href="../cloudformation-queries/aws/837e033c-4717-40bd-807e-6abaa30161b7" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unscanned ECR Image<br/><sup><sub>9025b2b3-e554-4842-ba87-db7aeec36d35</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Observability</td>
+<td><a href="../cloudformation-queries/aws/9025b2b3-e554-4842-ba87-db7aeec36d35" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-imagescanningconfiguration">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>API Gateway Stage Without API Gateway UsagePlan Associated<br/><sup><sub>7f8f1b60-43df-4c28-aa21-fb836dbd8071</sub></sup></td>

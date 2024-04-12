@@ -3309,10 +3309,22 @@
 <td><a href="../terraform-queries/aws/8fdb08a0-a868-4fdf-9c27-ccab0237f1ab" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#snapshot_retention_limit">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>RDS Cluster With Backup Disabled<br/><sup><sub>e542bd46-58c4-4e0f-a52a-1fb4f9548e02</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Backup</td>
+<td><a href="../terraform-queries/aws/e542bd46-58c4-4e0f-a52a-1fb4f9548e02" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#backup_retention_period">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>RDS With Backup Disabled<br/><sup><sub>1dc73fb4-5b51-430c-8c5f-25dcf9090b02</sub></sup></td>
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Backup</td>
 <td><a href="../terraform-queries/aws/1dc73fb4-5b51-430c-8c5f-25dcf9090b02" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Without Versioning<br/><sup><sub>568a4d22-3517-44a6-a7ad-6a7eed88722c</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Backup</td>
+<td><a href="../terraform-queries/aws/568a4d22-3517-44a6-a7ad-6a7eed88722c" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#versioning">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Stack Retention Disabled<br/><sup><sub>6e0e2f68-3fd9-4cd8-a5e4-e2213ef0df97</sub></sup></td>
@@ -3325,12 +3337,6 @@
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Best Practices</td>
 <td><a href="../terraform-queries/aws/6e3fd2ed-5c83-4c68-9679-7700d224d379" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb#drop_invalid_header_fields">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>RDS Cluster With Backup Disabled<br/><sup><sub>e542bd46-58c4-4e0f-a52a-1fb4f9548e02</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Best Practices</td>
-<td><a href="../terraform-queries/aws/e542bd46-58c4-4e0f-a52a-1fb4f9548e02" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#backup_retention_period">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>AMI Not Encrypted<br/><sup><sub>8bbb242f-6e38-4127-86d4-d8f0b2687ae2</sub></sup></td>
@@ -3511,6 +3517,12 @@
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Insecure Configurations</td>
 <td><a href="../terraform-queries/aws/5ba6229c-8057-433e-91d0-21cf13569ca9" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/organizations_policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Default VPC Exists<br/><sup><sub>96ed3526-0179-4c73-b1b2-372fde2e0d13</sub></sup></td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Insecure Defaults</td>
+<td><a href="../terraform-queries/aws/96ed3526-0179-4c73-b1b2-372fde2e0d13" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_vpc">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Vulnerable Default SSL Certificate<br/><sup><sub>3a1e94df-6847-4c0e-a3b6-6c6af4e128ef</sub></sup></td>
@@ -3717,12 +3729,6 @@
 <td><a href="../terraform-queries/aws/9d0d4512-1959-43a2-a17f-72360ff06d1b" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Default VPC Exists<br/><sup><sub>96ed3526-0179-4c73-b1b2-372fde2e0d13</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Observability</td>
-<td><a href="../terraform-queries/aws/96ed3526-0179-4c73-b1b2-372fde2e0d13" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_vpc">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>DocDB Logging Is Disabled<br/><sup><sub>56f6a008-1b14-4af4-b9b2-ab7cf7e27641</sub></sup></td>
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Observability</td>
@@ -3811,12 +3817,6 @@
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Observability</td>
 <td><a href="../terraform-queries/aws/a8fc2180-b3ac-4c93-bd0d-a55b974e4b07" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#event_selector">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>S3 Bucket Without Versioning<br/><sup><sub>568a4d22-3517-44a6-a7ad-6a7eed88722c</sub></sup></td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Observability</td>
-<td><a href="../terraform-queries/aws/568a4d22-3517-44a6-a7ad-6a7eed88722c" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#versioning">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Stack Notifications Disabled<br/><sup><sub>b72d0026-f649-4c91-a9ea-15d8f681ac09</sub></sup></td>
@@ -3975,18 +3975,6 @@
 <td><a href="../terraform-queries/aws/25d251f3-f348-4f95-845c-1090e41a615c" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/efs_file_system#kms_key_id">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Redis Disabled<br/><sup><sub>4bd15dd9-8d5e-4008-8532-27eb0c3706d3</sub></sup></td>
-<td><span style="color:#edd57e">Low</span></td>
-<td>Encryption</td>
-<td><a href="../terraform-queries/aws/4bd15dd9-8d5e-4008-8532-27eb0c3706d3" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#engine">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Unscanned ECR Image<br/><sup><sub>9630336b-3fed-4096-8173-b9afdfe346a7</sub></sup></td>
-<td><span style="color:#edd57e">Low</span></td>
-<td>Encryption</td>
-<td><a href="../terraform-queries/aws/9630336b-3fed-4096-8173-b9afdfe346a7" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository#scan_on_push">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>AWS Password Policy With Unchangeable Passwords<br/><sup><sub>9ef7d25d-9764-4224-9968-fa321c56ef76</sub></sup></td>
 <td><span style="color:#edd57e">Low</span></td>
 <td>Insecure Configurations</td>
@@ -4003,6 +3991,12 @@
 <td><span style="color:#edd57e">Low</span></td>
 <td>Insecure Configurations</td>
 <td><a href="../terraform-queries/aws/a31a5a29-718a-4ff4-8001-a69e5e4d029e" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Redis Disabled<br/><sup><sub>4bd15dd9-8d5e-4008-8532-27eb0c3706d3</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Insecure Configurations</td>
+<td><a href="../terraform-queries/aws/4bd15dd9-8d5e-4008-8532-27eb0c3706d3" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#engine">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Redshift Cluster Without VPC<br/><sup><sub>0a494a6a-ebe2-48a0-9d77-cf9d5125e1b3</sub></sup></td>
@@ -4171,6 +4165,12 @@
 <td><span style="color:#edd57e">Low</span></td>
 <td>Observability</td>
 <td><a href="../terraform-queries/aws/8152e0cf-d2f0-47ad-96d5-d003a76eabd1" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#tracing_config">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unscanned ECR Image<br/><sup><sub>9630336b-3fed-4096-8173-b9afdfe346a7</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Observability</td>
+<td><a href="../terraform-queries/aws/9630336b-3fed-4096-8173-b9afdfe346a7" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository#scan_on_push">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>API Gateway Stage Without API Gateway UsagePlan Associated<br/><sup><sub>c999cf62-0920-40f8-8dda-0caccd66ed7e</sub></sup></td>
@@ -5243,16 +5243,16 @@
 <td><a href="../terraform-queries/gcp/3e4d5ce6-3280-4027-8010-c26eeea1ec01" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>User with IAM Role<br/><sup><sub>704fcc44-a58f-4af5-82e2-93f2a58ef918</sub></sup></td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Access Control</td>
+<td><a href="../terraform-queries/gcp/704fcc44-a58f-4af5-82e2-93f2a58ef918" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/iam_policy#role">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Outdated GKE Version<br/><sup><sub>128df7ec-f185-48bc-8913-ce756a3ccb85</sub></sup></td>
 <td><span style="color:#edd57e">Low</span></td>
 <td>Best Practices</td>
 <td><a href="../terraform-queries/gcp/128df7ec-f185-48bc-8913-ce756a3ccb85" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#master_version">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>User with IAM Role<br/><sup><sub>704fcc44-a58f-4af5-82e2-93f2a58ef918</sub></sup></td>
-<td><span style="color:#edd57e">Low</span></td>
-<td>Best Practices</td>
-<td><a href="../terraform-queries/gcp/704fcc44-a58f-4af5-82e2-93f2a58ef918" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/iam_policy#role">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Cluster Labels Disabled<br/><sup><sub>65c1bc7a-4835-4ac4-a2b6-13d310b0648d</sub></sup></td>

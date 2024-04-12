@@ -2330,6 +2330,13 @@
 <td><a href="../ansible-queries/aws/e69890e6-fce5-461d-98ad-cb98318dfc96" target="_blank">Query details</a><br><a href="https://docs.ansible.com/ansible/latest/collections/community/aws/rds_instance_module.html#parameter-backup_retention_period">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>S3 Bucket Without Versioning<br/><sup><sub>9232306a-f839-40aa-b3ef-b352001da9a5</sub></sup></td>
+<td>Ansible</td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Backup</td>
+<td><a href="../ansible-queries/aws/9232306a-f839-40aa-b3ef-b352001da9a5" target="_blank">Query details</a><br><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-versioning">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Stack Retention Disabled<br/><sup><sub>17d5ba1d-7667-4729-b1a6-b11fde3db7f7</sub></sup></td>
 <td>Ansible</td>
 <td><span style="color:#ff7213">Medium</span></td>
@@ -2531,13 +2538,6 @@
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Observability</td>
 <td><a href="../ansible-queries/aws/c3b9f7b0-f5a0-49ec-9cbc-f1e346b7274d" target="_blank">Query details</a><br><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-debug_botocore_endpoint_logs">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>S3 Bucket Without Versioning<br/><sup><sub>9232306a-f839-40aa-b3ef-b352001da9a5</sub></sup></td>
-<td>Ansible</td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Observability</td>
-<td><a href="../ansible-queries/aws/9232306a-f839-40aa-b3ef-b352001da9a5" target="_blank">Query details</a><br><a href="https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-versioning">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>No Stack Policy<br/><sup><sub>ffe0fd52-7a8b-4a5c-8fc7-49844418e6c9</sub></sup></td>
@@ -3688,13 +3688,6 @@
 <td><a href="../azureresourcemanager-queries/azure/2583fab1-953b-4fae-bd02-4a136a6c21f9" target="_blank">Query details</a><br><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters?tabs=json#managedclusterapiserveraccessprofile-object">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Standard Price Is Not Selected<br/><sup><sub>2081c7d6-2851-4cce-bda5-cb49d462da42</sub></sup></td>
-<td>AzureResourceManager</td>
-<td><span style="color:#edd57e">Low</span></td>
-<td>Networking and Firewall</td>
-<td><a href="../azureresourcemanager-queries/azure/2081c7d6-2851-4cce-bda5-cb49d462da42" target="_blank">Query details</a><br><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.security/pricings?tabs=json#pricingproperties-object">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Storage Account Allows Default Network Access<br/><sup><sub>9073f073-5d60-4b46-b569-0d6baa80ed95</sub></sup></td>
 <td>AzureResourceManager</td>
 <td><span style="color:#edd57e">Low</span></td>
@@ -3735,6 +3728,13 @@
 <td><span style="color:#edd57e">Low</span></td>
 <td>Observability</td>
 <td><a href="../azureresourcemanager-queries/azure/564b70f8-41cd-4690-aff8-bb53add86bc9" target="_blank">Query details</a><br><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.network/2019-11-01/networkwatchers/flowlogs?tabs=json#retentionpolicyparameters-object">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Standard Price Is Not Selected<br/><sup><sub>2081c7d6-2851-4cce-bda5-cb49d462da42</sub></sup></td>
+<td>AzureResourceManager</td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Resource Management</td>
+<td><a href="../azureresourcemanager-queries/azure/2081c7d6-2851-4cce-bda5-cb49d462da42" target="_blank">Query details</a><br><a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.security/pricings?tabs=json#pricingproperties-object">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Account Admins Not Notified By Email<br/><sup><sub>a8852cc0-fd4b-4fc7-9372-1e43fad0732e</sub></sup></td>
@@ -4122,13 +4122,6 @@
 <td><a href="../cloudformation-queries/aws/76ddf32c-85b1-4808-8935-7eef8030ab36" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-batch-jobdefinition.html">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>IAM User LoginProfile Password Is In Plaintext<br/><sup><sub>06adef8c-c284-4de7-aad2-af43b07a8ca1</sub></sup></td>
-<td>CloudFormation</td>
-<td><span style="color:#bb2124">High</span></td>
-<td>Insecure Configurations</td>
-<td><a href="../cloudformation-queries/aws/06adef8c-c284-4de7-aad2-af43b07a8ca1" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>KMS Key With Vulnerable Policy<br/><sup><sub>da905474-7454-43c0-b8d2-5756ab951aba</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#bb2124">High</span></td>
@@ -4325,6 +4318,13 @@
 <td><a href="../cloudformation-queries/aws/2564172f-c92b-4261-9acd-464aed511696" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-environment">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>IAM User LoginProfile Password Is In Plaintext<br/><sup><sub>06adef8c-c284-4de7-aad2-af43b07a8ca1</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#bb2124">High</span></td>
+<td>Secret Management</td>
+<td><a href="../cloudformation-queries/aws/06adef8c-c284-4de7-aad2-af43b07a8ca1" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>RefreshToken Is Exposed<br/><sup><sub>5b48c507-0d1f-41b0-a630-76817c6b4189</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#bb2124">High</span></td>
@@ -4379,6 +4379,13 @@
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Access Control</td>
 <td><a href="../cloudformation-queries/aws/7f384a5f-b5a2-4d84-8ca3-ee0a5247becb" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>IAM Group Inline Policies<br/><sup><sub>a58d1a2d-4078-4b80-855b-84cc3f7f4540</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Access Control</td>
+<td><a href="../cloudformation-queries/aws/a58d1a2d-4078-4b80-855b-84cc3f7f4540" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>IAM Group Without Users<br/><sup><sub>8f957abd-9703-413d-87d3-c578950a753c</sub></sup></td>
@@ -4503,7 +4510,7 @@
 <td>RDS Multi-AZ Deployment Disabled<br/><sup><sub>2b1d4935-9acf-48a7-8466-10d18bf51a69</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#ff7213">Medium</span></td>
-<td>Backup</td>
+<td>Availability</td>
 <td><a href="../cloudformation-queries/aws/2b1d4935-9acf-48a7-8466-10d18bf51a69" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -4512,6 +4519,13 @@
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Backup</td>
 <td><a href="../cloudformation-queries/aws/8c415f6f-7b90-4a27-a44a-51047e1506f9" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Without Versioning<br/><sup><sub>a227ec01-f97a-4084-91a4-47b350c1db54</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Backup</td>
+<td><a href="../cloudformation-queries/aws/a227ec01-f97a-4084-91a4-47b350c1db54" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Stack Retention Disabled<br/><sup><sub>fe974ae9-858e-4991-bbd5-e040a834679f</sub></sup></td>
@@ -4631,13 +4645,6 @@
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Encryption</td>
 <td><a href="../cloudformation-queries/aws/9fcd0a0a-9b6f-4670-a215-d94e6bf3f184" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-enableiamdatabaseauthentication">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>IAM Group Inline Policies<br/><sup><sub>a58d1a2d-4078-4b80-855b-84cc3f7f4540</sub></sup></td>
-<td>CloudFormation</td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Encryption</td>
-<td><a href="../cloudformation-queries/aws/a58d1a2d-4078-4b80-855b-84cc3f7f4540" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>KMS Key Rotation Disabled<br/><sup><sub>235ca980-eb71-48f4-9030-df0c371029eb</sub></sup></td>
@@ -5081,13 +5088,6 @@
 <td><a href="../cloudformation-queries/aws/4552b71f-0a2a-4bc4-92dd-ed7ec1b4674c" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#cfn-s3-bucket-loggingconfig">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>S3 Bucket Without Versioning<br/><sup><sub>a227ec01-f97a-4084-91a4-47b350c1db54</sub></sup></td>
-<td>CloudFormation</td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Observability</td>
-<td><a href="../cloudformation-queries/aws/a227ec01-f97a-4084-91a4-47b350c1db54" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>VPC FlowLogs Disabled<br/><sup><sub>f6d299d2-21eb-41cc-b1e1-fe12d857500b</sub></sup></td>
 <td>CloudFormation</td>
 <td><span style="color:#ff7213">Medium</span></td>
@@ -5247,13 +5247,6 @@
 <td><span style="color:#edd57e">Low</span></td>
 <td>Encryption</td>
 <td><a href="../cloudformation-queries/aws/6d087495-2a42-4735-abf7-02ef5660a7e6" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-efs-filesystem.html">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Unscanned ECR Image<br/><sup><sub>9025b2b3-e554-4842-ba87-db7aeec36d35</sub></sup></td>
-<td>CloudFormation</td>
-<td><span style="color:#edd57e">Low</span></td>
-<td>Encryption</td>
-<td><a href="../cloudformation-queries/aws/9025b2b3-e554-4842-ba87-db7aeec36d35" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-imagescanningconfiguration">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>API Gateway Cache Cluster Disabled<br/><sup><sub>52790cad-d60d-41d5-8483-146f9f21208d</sub></sup></td>
@@ -5457,6 +5450,13 @@
 <td><span style="color:#edd57e">Low</span></td>
 <td>Observability</td>
 <td><a href="../cloudformation-queries/aws/837e033c-4717-40bd-807e-6abaa30161b7" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unscanned ECR Image<br/><sup><sub>9025b2b3-e554-4842-ba87-db7aeec36d35</sub></sup></td>
+<td>CloudFormation</td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Observability</td>
+<td><a href="../cloudformation-queries/aws/9025b2b3-e554-4842-ba87-db7aeec36d35" target="_blank">Query details</a><br><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-imagescanningconfiguration">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>API Gateway Stage Without API Gateway UsagePlan Associated<br/><sup><sub>7f8f1b60-43df-4c28-aa21-fb836dbd8071</sub></sup></td>
@@ -5798,7 +5798,7 @@
 <td>Redis Cache Allows Non SSL Connections<br/><sup><sub>6c7cfec3-c686-4ed2-bf58-a1ec054b63fc</sub></sup></td>
 <td>Crossplane</td>
 <td><span style="color:#ff7213">Medium</span></td>
-<td>Encryption</td>
+<td>Insecure Configurations</td>
 <td><a href="../crossplane-queries/azure/6c7cfec3-c686-4ed2-bf58-a1ec054b63fc" target="_blank">Query details</a><br><a href="https://doc.crds.dev/github.com/crossplane/provider-azure/cache.azure.crossplane.io/Redis/v1beta1@v0.19.0#spec-forProvider-enableNonSslPort">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -6267,7 +6267,7 @@
 <td>UNIX Ports Out Of Range<br/><sup><sub>71bf8cf8-f0a1-42fa-b9d2-d10525e0a38e</sub></sup></td>
 <td>Dockerfile</td>
 <td><span style="color:#5bc0de">Info</span></td>
-<td>Availability</td>
+<td>Networking and Firewall</td>
 <td><a href="../dockerfile-queries/71bf8cf8-f0a1-42fa-b9d2-d10525e0a38e" target="_blank">Query details</a><br><a href="https://docs.docker.com/engine/reference/builder/#expose">Documentation</a><br/></td>
 </tr>
 <tr>
@@ -9526,18 +9526,18 @@
 <td><a href="../pulumi-queries/aws/d991e4ae-42ab-429b-ab43-d5e5fa9ca633" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/aws/api-docs/ec2/instance/#ebsoptimized_yaml">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>49e30ac8-f58e-4222-b488-3dcb90158ec1</sub></sup></td>
-<td>Pulumi</td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Encryption</td>
-<td><a href="../pulumi-queries/azure/49e30ac8-f58e-4222-b488-3dcb90158ec1" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/azure-native/api-docs/cache/redis/#enablenonsslport_yaml">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>Storage Account Not Forcing HTTPS<br/><sup><sub>cb8e4bf0-903d-45c6-a278-9a947d82a27b</sub></sup></td>
 <td>Pulumi</td>
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Encryption</td>
 <td><a href="../pulumi-queries/azure/cb8e4bf0-903d-45c6-a278-9a947d82a27b" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/azure-native/api-docs/storage/storageaccount/#enablehttpstrafficonly_yaml">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Redis Cache Allows Non SSL Connections<br/><sup><sub>49e30ac8-f58e-4222-b488-3dcb90158ec1</sub></sup></td>
+<td>Pulumi</td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Insecure Configurations</td>
+<td><a href="../pulumi-queries/azure/49e30ac8-f58e-4222-b488-3dcb90158ec1" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/azure-native/api-docs/cache/redis/#enablenonsslport_yaml">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Google Compute SSL Policy Weak Cipher In Use<br/><sup><sub>965e8830-2bec-4b9b-a7f0-24dbc200a68f</sub></sup></td>
@@ -11269,11 +11269,25 @@
 <td><a href="../terraform-queries/aws/8fdb08a0-a868-4fdf-9c27-ccab0237f1ab" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#snapshot_retention_limit">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>RDS Cluster With Backup Disabled<br/><sup><sub>e542bd46-58c4-4e0f-a52a-1fb4f9548e02</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Backup</td>
+<td><a href="../terraform-queries/aws/e542bd46-58c4-4e0f-a52a-1fb4f9548e02" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#backup_retention_period">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>RDS With Backup Disabled<br/><sup><sub>1dc73fb4-5b51-430c-8c5f-25dcf9090b02</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Backup</td>
 <td><a href="../terraform-queries/aws/1dc73fb4-5b51-430c-8c5f-25dcf9090b02" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>S3 Bucket Without Versioning<br/><sup><sub>568a4d22-3517-44a6-a7ad-6a7eed88722c</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Backup</td>
+<td><a href="../terraform-queries/aws/568a4d22-3517-44a6-a7ad-6a7eed88722c" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#versioning">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Stack Retention Disabled<br/><sup><sub>6e0e2f68-3fd9-4cd8-a5e4-e2213ef0df97</sub></sup></td>
@@ -11288,13 +11302,6 @@
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Best Practices</td>
 <td><a href="../terraform-queries/aws/6e3fd2ed-5c83-4c68-9679-7700d224d379" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb#drop_invalid_header_fields">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>RDS Cluster With Backup Disabled<br/><sup><sub>e542bd46-58c4-4e0f-a52a-1fb4f9548e02</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Best Practices</td>
-<td><a href="../terraform-queries/aws/e542bd46-58c4-4e0f-a52a-1fb4f9548e02" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#backup_retention_period">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>AMI Not Encrypted<br/><sup><sub>8bbb242f-6e38-4127-86d4-d8f0b2687ae2</sub></sup></td>
@@ -11505,6 +11512,13 @@
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Insecure Configurations</td>
 <td><a href="../terraform-queries/aws/5ba6229c-8057-433e-91d0-21cf13569ca9" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/organizations_policy">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Default VPC Exists<br/><sup><sub>96ed3526-0179-4c73-b1b2-372fde2e0d13</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#ff7213">Medium</span></td>
+<td>Insecure Defaults</td>
+<td><a href="../terraform-queries/aws/96ed3526-0179-4c73-b1b2-372fde2e0d13" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_vpc">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Vulnerable Default SSL Certificate<br/><sup><sub>3a1e94df-6847-4c0e-a3b6-6c6af4e128ef</sub></sup></td>
@@ -11745,13 +11759,6 @@
 <td><a href="../terraform-queries/aws/9d0d4512-1959-43a2-a17f-72360ff06d1b" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Default VPC Exists<br/><sup><sub>96ed3526-0179-4c73-b1b2-372fde2e0d13</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Observability</td>
-<td><a href="../terraform-queries/aws/96ed3526-0179-4c73-b1b2-372fde2e0d13" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_vpc">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>DocDB Logging Is Disabled<br/><sup><sub>56f6a008-1b14-4af4-b9b2-ab7cf7e27641</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#ff7213">Medium</span></td>
@@ -11855,13 +11862,6 @@
 <td><span style="color:#ff7213">Medium</span></td>
 <td>Observability</td>
 <td><a href="../terraform-queries/aws/a8fc2180-b3ac-4c93-bd0d-a55b974e4b07" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#event_selector">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>S3 Bucket Without Versioning<br/><sup><sub>568a4d22-3517-44a6-a7ad-6a7eed88722c</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#ff7213">Medium</span></td>
-<td>Observability</td>
-<td><a href="../terraform-queries/aws/568a4d22-3517-44a6-a7ad-6a7eed88722c" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#versioning">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Stack Notifications Disabled<br/><sup><sub>b72d0026-f649-4c91-a9ea-15d8f681ac09</sub></sup></td>
@@ -12046,20 +12046,6 @@
 <td><a href="../terraform-queries/aws/25d251f3-f348-4f95-845c-1090e41a615c" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/efs_file_system#kms_key_id">Documentation</a><br/></td>
 </tr>
 <tr>
-<td>Redis Disabled<br/><sup><sub>4bd15dd9-8d5e-4008-8532-27eb0c3706d3</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#edd57e">Low</span></td>
-<td>Encryption</td>
-<td><a href="../terraform-queries/aws/4bd15dd9-8d5e-4008-8532-27eb0c3706d3" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#engine">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>Unscanned ECR Image<br/><sup><sub>9630336b-3fed-4096-8173-b9afdfe346a7</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#edd57e">Low</span></td>
-<td>Encryption</td>
-<td><a href="../terraform-queries/aws/9630336b-3fed-4096-8173-b9afdfe346a7" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository#scan_on_push">Documentation</a><br/></td>
-</tr>
-<tr>
 <td>AWS Password Policy With Unchangeable Passwords<br/><sup><sub>9ef7d25d-9764-4224-9968-fa321c56ef76</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#edd57e">Low</span></td>
@@ -12079,6 +12065,13 @@
 <td><span style="color:#edd57e">Low</span></td>
 <td>Insecure Configurations</td>
 <td><a href="../terraform-queries/aws/a31a5a29-718a-4ff4-8001-a69e5e4d029e" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Redis Disabled<br/><sup><sub>4bd15dd9-8d5e-4008-8532-27eb0c3706d3</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Insecure Configurations</td>
+<td><a href="../terraform-queries/aws/4bd15dd9-8d5e-4008-8532-27eb0c3706d3" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_cluster#engine">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Redshift Cluster Without VPC<br/><sup><sub>0a494a6a-ebe2-48a0-9d77-cf9d5125e1b3</sub></sup></td>
@@ -12275,6 +12268,13 @@
 <td><span style="color:#edd57e">Low</span></td>
 <td>Observability</td>
 <td><a href="../terraform-queries/aws/8152e0cf-d2f0-47ad-96d5-d003a76eabd1" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#tracing_config">Documentation</a><br/></td>
+</tr>
+<tr>
+<td>Unscanned ECR Image<br/><sup><sub>9630336b-3fed-4096-8173-b9afdfe346a7</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Observability</td>
+<td><a href="../terraform-queries/aws/9630336b-3fed-4096-8173-b9afdfe346a7" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository#scan_on_push">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>API Gateway Stage Without API Gateway UsagePlan Associated<br/><sup><sub>c999cf62-0920-40f8-8dda-0caccd66ed7e</sub></sup></td>
@@ -13460,18 +13460,18 @@
 <td><a href="../terraform-queries/gcp/3e4d5ce6-3280-4027-8010-c26eeea1ec01" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance">Documentation</a><br/></td>
 </tr>
 <tr>
+<td>User with IAM Role<br/><sup><sub>704fcc44-a58f-4af5-82e2-93f2a58ef918</sub></sup></td>
+<td>Terraform</td>
+<td><span style="color:#edd57e">Low</span></td>
+<td>Access Control</td>
+<td><a href="../terraform-queries/gcp/704fcc44-a58f-4af5-82e2-93f2a58ef918" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/iam_policy#role">Documentation</a><br/></td>
+</tr>
+<tr>
 <td>Outdated GKE Version<br/><sup><sub>128df7ec-f185-48bc-8913-ce756a3ccb85</sub></sup></td>
 <td>Terraform</td>
 <td><span style="color:#edd57e">Low</span></td>
 <td>Best Practices</td>
 <td><a href="../terraform-queries/gcp/128df7ec-f185-48bc-8913-ce756a3ccb85" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#master_version">Documentation</a><br/></td>
-</tr>
-<tr>
-<td>User with IAM Role<br/><sup><sub>704fcc44-a58f-4af5-82e2-93f2a58ef918</sub></sup></td>
-<td>Terraform</td>
-<td><span style="color:#edd57e">Low</span></td>
-<td>Best Practices</td>
-<td><a href="../terraform-queries/gcp/704fcc44-a58f-4af5-82e2-93f2a58ef918" target="_blank">Query details</a><br><a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/iam_policy#role">Documentation</a><br/></td>
 </tr>
 <tr>
 <td>Cluster Labels Disabled<br/><sup><sub>65c1bc7a-4835-4ac4-a2b6-13d310b0648d</sub></sup></td>
