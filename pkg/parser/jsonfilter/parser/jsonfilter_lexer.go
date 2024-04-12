@@ -1,13 +1,12 @@
-// Code generated from java-escape by ANTLR 4.11.1. DO NOT EDIT.
+// Code generated from JSONFilter.g4 by ANTLR 4.13.1. DO NOT EDIT.
 
 package parser
 
 import (
 	"fmt"
+	"github.com/antlr4-go/antlr/v4"
 	"sync"
 	"unicode"
-
-	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
 )
 
 // Suppress unused import error
@@ -22,46 +21,46 @@ type JSONFilterLexer struct {
 	// TODO: EOF string
 }
 
-var jsonfilterlexerLexerStaticData struct {
+var JSONFilterLexerLexerStaticData struct {
 	once                   sync.Once
 	serializedATN          []int32
-	channelNames           []string
-	modeNames              []string
-	literalNames           []string
-	symbolicNames          []string
-	ruleNames              []string
-	predictionContextCache *antlr.PredictionContextCache
+	ChannelNames           []string
+	ModeNames              []string
+	LiteralNames           []string
+	SymbolicNames          []string
+	RuleNames              []string
+	PredictionContextCache *antlr.PredictionContextCache
 	atn                    *antlr.ATN
 	decisionToDFA          []*antlr.DFA
 }
 
 func jsonfilterlexerLexerInit() {
-	staticData := &jsonfilterlexerLexerStaticData
-	staticData.channelNames = []string{
+	staticData := &JSONFilterLexerLexerStaticData
+	staticData.ChannelNames = []string{
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN",
 	}
-	staticData.modeNames = []string{
+	staticData.ModeNames = []string{
 		"DEFAULT_MODE",
 	}
-	staticData.literalNames = []string{
+	staticData.LiteralNames = []string{
 		"", "'$.'", "'*'", "'{'", "'}'", "'('", "')'", "'['", "']'", "'.'",
 		"'&&'", "'||'", "'='", "'!='", "'>'", "'<'", "'>='", "'<='", "'IS'",
 		"'NOT'", "'NULL'", "'EXISTS'", "'TRUE'", "'FALSE'",
 	}
-	staticData.symbolicNames = []string{
+	staticData.SymbolicNames = []string{
 		"", "SEL_START", "STAR", "LCURLY", "RCURLY", "LPAREN", "RPAREN", "LBRACKET",
 		"RBRACKET", "DOT", "AND", "OR", "EQUALS", "NOT_EQUALS", "GT", "LT",
 		"GE", "LE", "IS", "NOT", "NULL", "EXISTS", "TRUE", "FALSE", "INDENTIFIER",
 		"STRING", "NUMBER", "WS",
 	}
-	staticData.ruleNames = []string{
+	staticData.RuleNames = []string{
 		"SEL_START", "STAR", "LCURLY", "RCURLY", "LPAREN", "RPAREN", "LBRACKET",
 		"RBRACKET", "DOT", "AND", "OR", "EQUALS", "NOT_EQUALS", "GT", "LT",
 		"GE", "LE", "IS", "NOT", "NULL", "EXISTS", "TRUE", "FALSE", "INDENTIFIER",
 		"STRING", "ESC", "UNICODE", "HEX", "SAFECODEPOINT", "NUMBER", "INT",
 		"EXP", "WS",
 	}
-	staticData.predictionContextCache = antlr.NewPredictionContextCache()
+	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
 		4, 0, 27, 207, 6, -1, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2,
 		4, 7, 4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2,
@@ -172,7 +171,7 @@ func jsonfilterlexerLexerInit() {
 // NewJSONFilterLexer(). You can call this function if you wish to initialize the static state ahead
 // of time.
 func JSONFilterLexerInit() {
-	staticData := &jsonfilterlexerLexerStaticData
+	staticData := &JSONFilterLexerLexerStaticData
 	staticData.once.Do(jsonfilterlexerLexerInit)
 }
 
@@ -181,13 +180,13 @@ func NewJSONFilterLexer(input antlr.CharStream) *JSONFilterLexer {
 	JSONFilterLexerInit()
 	l := new(JSONFilterLexer)
 	l.BaseLexer = antlr.NewBaseLexer(input)
-	staticData := &jsonfilterlexerLexerStaticData
-	l.Interpreter = antlr.NewLexerATNSimulator(l, staticData.atn, staticData.decisionToDFA, staticData.predictionContextCache)
-	l.channelNames = staticData.channelNames
-	l.modeNames = staticData.modeNames
-	l.RuleNames = staticData.ruleNames
-	l.LiteralNames = staticData.literalNames
-	l.SymbolicNames = staticData.symbolicNames
+	staticData := &JSONFilterLexerLexerStaticData
+	l.Interpreter = antlr.NewLexerATNSimulator(l, staticData.atn, staticData.decisionToDFA, staticData.PredictionContextCache)
+	l.channelNames = staticData.ChannelNames
+	l.modeNames = staticData.ModeNames
+	l.RuleNames = staticData.RuleNames
+	l.LiteralNames = staticData.LiteralNames
+	l.SymbolicNames = staticData.SymbolicNames
 	l.GrammarFileName = "JSONFilter.g4"
 	// TODO: l.EOF = antlr.TokenEOF
 
