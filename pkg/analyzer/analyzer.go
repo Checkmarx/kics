@@ -303,23 +303,20 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 				return err
 			}
 
-			// Skip directories checking
-			if info.IsDir() {
-				return nil
-			}
+			if !info.IsDir() {
+				ext, errExt := utils.GetExtension(path)
+				if errExt == nil {
+					trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
+					ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
 
-			ext, errExt := utils.GetExtension(path)
-			if errExt == nil {
-				trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
-				ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
+					if isConfigFile(path, defaultConfigFiles) {
+						projectConfigFiles = append(projectConfigFiles, path)
+						a.Exc = append(a.Exc, path)
+					}
 
-				if isConfigFile(path, defaultConfigFiles) {
-					projectConfigFiles = append(projectConfigFiles, path)
-					a.Exc = append(a.Exc, path)
-				}
-
-				if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, a.Exc) {
-					files = append(files, path)
+					if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, a.Exc) {
+						files = append(files, path)
+					}
 				}
 			}
 			return nil

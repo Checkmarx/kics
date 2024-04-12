@@ -436,6 +436,19 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			excludeGitIgnore:     false,
 			MaxFileSize:          -1,
 		},
+		{
+			name:                 "analyze_escape_empty_project",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/empty_project")},
+			wantTypes:            []string{},
+			wantExclude:          []string{},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantLOC:              0,
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+			MaxFileSize:          -1,
+		},
 	}
 
 	for _, tt := range tests {
