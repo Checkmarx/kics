@@ -508,8 +508,8 @@ func TestAnalyzer_Analyze_Empty_Project(t *testing.T) {
 			}
 
 			err1 := os.Mkdir(tt.paths[1], 0755)
-
 			if err1 != nil {
+				os.RemoveAll(tt.paths[0])
 				require.Nil(t, err1, "error creating folder")
 			}
 
