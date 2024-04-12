@@ -1,12 +1,12 @@
 [
-	{
-		"queryName": "ElasticSearch Not Encrypted At Rest",
-		"severity": "MEDIUM",
-		"line": 1
-	},
-	{
-		"queryName": "ElasticSearch Not Encrypted At Rest",
-		"severity": "MEDIUM",
-		"line": 11
-	}
+  {
+    "queryName": "ElasticSearch Not Encrypted At Rest",
+    "severity": "HIGH",
+    "line": 1
+  },
+  {
+    "queryName": "ElasticSearch Not Encrypted At Rest",
+    "severity": "HIGH",
+    "line": 11
+  }
 ]

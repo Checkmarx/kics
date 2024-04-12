@@ -1,13 +1,13 @@
 [
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 15,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 27,
     "fileName": "positive2.json"
   }

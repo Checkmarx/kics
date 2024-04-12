@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 10c61e4b-eed5-49cf-9c7d-d4bf02e9edfa
 -   **Query name:** Schema Object Properties With Duplicated Keys (v3)
 -   **Platform:** OpenAPI
--   **Severity:** <span style="color:#00C">Info</span>
+-   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Structure and Semantics
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/openAPI/general/schema_object_properties_with_duplicated_keys)
 

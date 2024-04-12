@@ -16,10 +16,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Set up Go 1.22.x
+      - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: 1.22.x
+          go-version-file: go.mod
       - name: Run test metrics script
         id: testcov
         run: |
@@ -27,8 +27,8 @@ jobs:
           TOTAL_TESTS=$(cat test-results | grep -v TestQueriesContent/ | grep -v TestQueriesMetadata/ | grep -v TestQueries/ | grep PASS | wc -l)
           echo "Total number of tests :: ${TOTAL_TESTS}"
           echo "::set-output name=total_tests::${TOTAL_TESTS}"
-      - name: Checks if Go coverage is at least 74%
-        if: steps.testcov.outputs.coverage < 74
+      - name: Checks if Go coverage is at least 75%
+        if: steps.testcov.outputs.coverage < 75
         run: |
-          echo "Go coverage is lower than 74%: ${{ steps.testcov.outputs.coverage }}%"
+          echo "Go coverage is lower than 75%: ${{ steps.testcov.outputs.coverage }}%"
           exit 1

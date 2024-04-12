@@ -1,11 +1,12 @@
 {
   "id": "b16e8501-ef3c-44e1-a543-a093238099c9",
   "queryName": "Using Platform Flag with FROM Command",
-  "severity": "MEDIUM",
-  "category": "Supply-Chain",
+  "severity": "LOW",
+  "category": "Best Practices",
   "descriptionText": "Don't use '--platform' flag with FROM",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#from",
   "platform": "Dockerfile",
   "descriptionID": "5bd0baab",
-  "cwe": "695"
+  "cwe": "695",
+  "oldSeverity": "INFO"
 }

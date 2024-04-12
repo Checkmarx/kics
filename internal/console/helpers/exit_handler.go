@@ -13,8 +13,8 @@ var shouldFail map[string]struct{}
 // ResultsExitCode calculate exit code base on severity of results, returns 0 if no results was reported
 func ResultsExitCode(summary *model.Summary) int {
 	// severityArr is needed to make sure 'for' cycle is made in an ordered fashion
-	severityArr := []model.Severity{"HIGH", "MEDIUM", "LOW", "INFO", "TRACE"}
-	codeMap := map[model.Severity]int{"HIGH": 50, "MEDIUM": 40, "LOW": 30, "INFO": 20, "TRACE": 0}
+	severityArr := []model.Severity{"CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO", "TRACE"}
+	codeMap := map[model.Severity]int{"CRITICAL": 60, "HIGH": 50, "MEDIUM": 40, "LOW": 30, "INFO": 20, "TRACE": 0}
 	exitMap := summary.SeveritySummary.SeverityCounters
 	for _, severity := range severityArr {
 		if _, reportSeverity := shouldFail[strings.ToLower(string(severity))]; !reportSeverity {
@@ -42,10 +42,11 @@ func InitShouldIgnoreArg(arg string) error {
 // InitShouldFailArg initializes which kind of vulnerability severity should changes exit code
 func InitShouldFailArg(args []string) error {
 	possibleArgs := map[string]struct{}{
-		"high":   {},
-		"medium": {},
-		"low":    {},
-		"info":   {},
+		"critical": {},
+		"high":     {},
+		"medium":   {},
+		"low":      {},
+		"info":     {},
 	}
 	if len(args) == 0 {
 		shouldFail = possibleArgs
@@ -55,7 +56,7 @@ func InitShouldFailArg(args []string) error {
 	argsConverted := make(map[string]struct{})
 	for _, arg := range args {
 		if _, ok := possibleArgs[strings.ToLower(arg)]; !ok {
-			validArgs := []string{"high", "medium", "low", "info"}
+			validArgs := []string{"critical", "high", "medium", "low", "info"}
 			return fmt.Errorf("unknown argument for --fail-on: %s\nvalid arguments:\n  %s", arg, strings.Join(validArgs, "\n  "))
 		}
 		argsConverted[strings.ToLower(arg)] = struct{}{}

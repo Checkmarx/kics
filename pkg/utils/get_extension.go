@@ -1,9 +1,11 @@
 package utils
 
 import (
+	"bufio"
 	"bytes"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/rs/zerolog/log"
 	"golang.org/x/exp/slices"
@@ -15,7 +17,7 @@ const (
 )
 
 // GetExtension gets the extension of a file path
-func GetExtension(path string) string {
+func GetExtension(path string) (string, error) {
 	targets := []string{"Dockerfile", "tfvars"}
 
 	ext := filepath.Ext(path)
@@ -25,29 +27,64 @@ func GetExtension(path string) string {
 
 		if Contains(base, targets) {
 			ext = base
-		} else if isTextFile(path) {
-			ext = "possibleDockerfile"
+		} else {
+			isText, err := isTextFile(path)
+
+			if err != nil {
+				return "", err
+			}
+
+			if isText {
+				if readPossibleDockerFile(path) {
+					ext = "possibleDockerfile"
+				}
+			}
 		}
 	}
 
-	return ext
+	return ext, nil
 }
 
-func isTextFile(path string) bool {
+func readPossibleDockerFile(path string) bool {
+	path = filepath.Clean(path)
+	if strings.HasSuffix(path, "gitignore") {
+		return true
+	}
+	file, err := os.Open(path)
+	if err != nil {
+		return false
+	}
+	defer file.Close()
+	// Create a scanner to read the file line by line
+	scanner := bufio.NewScanner(file)
+	// Read lines from the file
+	for scanner.Scan() {
+		if strings.HasPrefix(scanner.Text(), "FROM") {
+			return true
+		} else if strings.HasPrefix(scanner.Text(), "#") {
+			continue
+		} else {
+			return false
+		}
+	}
+	return false
+}
+
+func isTextFile(path string) (bool, error) {
 	info, err := os.Stat(path)
 	if err != nil {
 		log.Error().Msgf("failed to get file info: %s", err)
-		return false
+		return false, err
 	}
 
 	if info.IsDir() {
-		return false
+		return false, nil
 	}
 
 	content, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
 		log.Error().Msgf("failed to analyze file: %s", err)
-		return false
+		return false, err
 	}
 
 	invalidChars := slices.ContainsFunc[byte](content, func(b byte) bool {
@@ -62,5 +99,5 @@ func isTextFile(path string) bool {
 
 	isText := util.IsText(content)
 
-	return isText
+	return isText, nil
 }

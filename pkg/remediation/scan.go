@@ -83,7 +83,7 @@ func scanTmpFile(tmpFile, queryID string, remediated []byte, openAPIResolveRefer
 
 // getPayload gets the payload of a file
 func getPayload(filePath string, content []byte, openAPIResolveReferences bool) (model.FileMetadatas, error) {
-	ext := utils.GetExtension(filePath)
+	ext, _ := utils.GetExtension(filePath)
 	var p []*parser.Parser
 	var err error
 
@@ -239,6 +239,7 @@ func initScan(queryID string) (*engine.Inspector, error) {
 		&queryFilter,
 		make(map[string]bool),
 		c.ScanParams.QueryExecTimeout,
+		c.ScanParams.UseOldSeverities,
 		false,
 		c.ScanParams.ParallelScanFlag,
 	)

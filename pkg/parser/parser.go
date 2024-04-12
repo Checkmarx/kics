@@ -180,7 +180,7 @@ func contains(types []string, supportedTypes map[string]bool) bool {
 }
 
 func (c *Parser) isValidExtension(filePath string) bool {
-	ext := utils.GetExtension(filePath)
+	ext, _ := utils.GetExtension(filePath)
 	_, ok := c.extensions[ext]
 	return ok
 }

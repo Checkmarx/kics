@@ -1,11 +1,13 @@
 {
   "id": "ee305555-6b1d-4055-94cf-e22131143c34",
   "queryName": "PSP Set To Privileged",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "Do not allow pod to request execution as privileged.",
   "descriptionUrl": "https://www.pulumi.com/registry/packages/kubernetes/api-docs/policy/v1beta1/podsecuritypolicy/#privileged_yaml",
   "platform": "Pulumi",
   "descriptionID": "7a6c8b70",
-  "cwe": ""
+  "cwe": "",
+  "cloudProvider": "common",
+  "oldSeverity": "MEDIUM"
 }

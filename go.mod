@@ -1,17 +1,18 @@
 module github.com/Checkmarx/kics
 
-go 1.21
+go 1.22.1
 
 replace (
 	github.com/containerd/containerd => github.com/containerd/containerd v1.6.26
 	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
-	github.com/docker/docker => github.com/docker/docker v24.0.7+incompatible
+	github.com/docker/docker => github.com/docker/docker v24.0.9+incompatible
 	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.9.1
 	github.com/moby/buildkit => github.com/moby/buildkit v0.12.5
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
 	go.etcd.io/etcd/pkg/v3 => go.etcd.io/etcd/pkg/v3 v3.5.10
 	golang.org/x/crypto => golang.org/x/crypto v0.17.0 // indirect
+	google.golang.org/protobuf => google.golang.org/protobuf v1.33.0 // indirect
 )
 
 require (
@@ -36,7 +37,6 @@ require (
 	github.com/hashicorp/terraform-json v0.16.0
 	github.com/johnfercher/maroto v0.40.0
 	github.com/mackerelio/go-osstat v0.2.4
-	github.com/mailru/easyjson v0.7.7
 	github.com/moby/buildkit v0.12.5
 	github.com/open-policy-agent/opa v0.58.0
 	github.com/pkg/errors v0.9.1
@@ -74,6 +74,7 @@ require (
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
+	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mxk/go-flowrate v0.0.0-20140419014527-cca7078d478f // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/samber/lo v1.38.1 // indirect

@@ -84,7 +84,7 @@
             },
             "severity": {
                 "type": "string",
-                "enum": ["info", "minor", "major", "critical"]
+                "enum": ["info", "minor", "major", "critical","blocker"]
             },
             "fingerprint": {
                 "$ref": "#/definitions/similarity_id_pattern"

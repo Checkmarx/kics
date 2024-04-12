@@ -1,12 +1,13 @@
 {
   "id": "cff9c3f7-e8f0-455f-9fb4-5f72326da96e",
   "queryName": "Secret Without Expiration Date",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Best Practices",
   "descriptionText": "All Secrets must have an expiration date defined",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.keyvault/vaults/secrets?tabs=json#SecretAttributes",
   "platform": "AzureResourceManager",
   "descriptionID": "bb5f96a2",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

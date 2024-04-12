@@ -1,27 +1,27 @@
 [
   {
     "queryName": "Network Policy Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 3
   },
   {
     "queryName": "Network Policy Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 21
   },
   {
     "queryName": "Network Policy Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 54
   },
   {
     "queryName": "Network Policy Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 73
   },
   {
     "queryName": "Network Policy Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 96
   }
 ]

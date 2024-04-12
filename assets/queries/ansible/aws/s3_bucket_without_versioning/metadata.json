@@ -2,7 +2,7 @@
   "id": "9232306a-f839-40aa-b3ef-b352001da9a5",
   "queryName": "S3 Bucket Without Versioning",
   "severity": "MEDIUM",
-  "category": "Observability",
+  "category": "Backup",
   "descriptionText": "S3 bucket should have versioning enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/s3_bucket_module.html#parameter-versioning",
   "platform": "Ansible",

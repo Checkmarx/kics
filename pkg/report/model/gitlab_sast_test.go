@@ -146,6 +146,52 @@ var tests = []gitlabSASTTest{
 			},
 		},
 	},
+	{
+		name: "Should create one occurrence with critical severity",
+		vq: model.QueryResult{
+			QueryName:   "test",
+			QueryID:     "1",
+			Description: "test description",
+			QueryURI:    "https://www.test.com",
+			Severity:    model.SeverityCritical,
+			Files: []model.VulnerableFile{
+				{KeyActualValue: "test", FileName: "test.json", Line: 1, SimilarityID: "similarity"},
+			},
+		},
+		file: model.VulnerableFile{
+			KeyActualValue: "test",
+			FileName:       "test.json",
+			Line:           1,
+			SimilarityID:   "similarity",
+		},
+		want: gitlabSASTReport{
+			Vulnerabilities: []gitlabSASTVulnerability{
+				{
+					ID:       "similarity",
+					Severity: "Critical",
+					Name:     "test",
+					Links: []gitlabSASTVulnerabilityLink{
+						{
+							URL: "https://www.test.com",
+						},
+					},
+					Location: gitlabSASTVulnerabilityLocation{
+						File:  "test.json",
+						Start: 1,
+						End:   1,
+					},
+					Identifiers: []gitlabSASTVulnerabilityIdentifier{
+						{
+							IdentifierType: "kics",
+							Name:           "Keeping Infrastructure as Code Secure",
+							URL:            "https://docs.kics.io/latest/queries/-queries",
+							Value:          "1",
+						},
+					},
+				},
+			},
+		},
+	},
 }
 
 func TestBuildGitlabSASTVulnerability(t *testing.T) {

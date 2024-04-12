@@ -1,12 +1,13 @@
 {
   "id": "5400f379-a347-4bdd-a032-446465fdcc6f",
   "queryName": "Trusted Microsoft Services Not Enabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Trusted Microsoft Services should be enabled for Storage Account access",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#bypass",
   "platform": "Terraform",
   "descriptionID": "2d2af667",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

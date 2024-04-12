@@ -19,8 +19,3 @@ You can find our releases <a href="https://github.com/Checkmarx/kics/releases" t
 ## Docker Images
 
 KICS docker images are pushed to [DockerHub](https://hub.docker.com/repository/docker/checkmarx/kics)
-
-List of images digests:
-
--   [Release versions](./docker/digests.md)
--   [Nightly images](./docker/nightly.md)

@@ -6,21 +6,22 @@
 	"lines_parsed": 41,
 	"lines_ignored": 0,
 	"files_failed_to_scan": 0,
-	"queries_total": 509,
+	"queries_total": 504,
 	"queries_failed_to_execute": 0,
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
+		"CRITICAL": 0,
 		"HIGH": 2,
 		"INFO": 0,
-		"LOW": 3,
-		"MEDIUM": 2,
+		"LOW": 4,
+		"MEDIUM": 1,
 		"TRACE": 0
 	},
 	"total_counter": 7,
 	"total_bom_resources": 0,
-	"start": "2024-02-28T11:04:27.2239043Z",
-	"end": "2024-02-28T11:04:48.1195576Z",
+	"start": "2024-03-27T10:38:38.1816373Z",
+	"end": "2024-03-27T10:38:46.3157519Z",
 	"paths": [
 		"/path/e2e/fixtures/samples/tmp-gitignore/project"
 	],
@@ -38,7 +39,7 @@
 			"description_id": "ba38e42e",
 			"files": [
 				{
-					"file_name": "path\\e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
+					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
 					"similarity_id": "f78771454bbc8c7cc4e703809be527acff71494fe75912fcce99078f7107b9e3",
 					"line": 9,
 					"resource_type": "AWS::RDS::DBInstance",
@@ -65,7 +66,7 @@
 			"description_id": "f052de92",
 			"files": [
 				{
-					"file_name": "path\\e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
+					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
 					"similarity_id": "2b6cae0f077151fd53e3fc7dcaccaed7125184ec732cbc86854cf125ee7a1aaa",
 					"line": 9,
 					"resource_type": "AWS::RDS::DBInstance",
@@ -80,46 +81,19 @@
 			]
 		},
 		{
-			"query_name": "Low RDS Backup Retention Period",
-			"query_id": "e649a218-d099-4550-86a4-1231e1fcb60d",
-			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html",
-			"severity": "MEDIUM",
-			"platform": "CloudFormation",
-			"cloud_provider": "AWS",
-			"category": "Backup",
-			"experimental": false,
-			"description": "AWS RDS backup retention policy should be at least 7 days",
-			"description_id": "55094eb2",
-			"files": [
-				{
-					"file_name": "path\\e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
-					"similarity_id": "0269a014ca0130a13a79b7a78c7614060c0b02d48f08be43e54182191ef64692",
-					"line": 6,
-					"resource_type": "AWS::RDS::DBInstance",
-					"resource_name": "DBInstanceSample1",
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.DBInstanceSample1.Properties",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "The RDS DBInstance 'DBInstanceSample1' resource should have backup retention period of at least 7 days",
-					"actual_value": "The RDS DBInstance 'DBInstanceSample1' resource doesn't define a backup retention period and no RDS Cluster are defined"
-				}
-			]
-		},
-		{
 			"query_name": "RDS Multi-AZ Deployment Disabled",
 			"query_id": "2b1d4935-9acf-48a7-8466-10d18bf51a69",
 			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
 			"severity": "MEDIUM",
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
-			"category": "Backup",
+			"category": "Availability",
 			"experimental": false,
 			"description": "AWS RDS Instance should have a multi-az deployment",
 			"description_id": "4bdb6677",
 			"files": [
 				{
-					"file_name": "path\\e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
+					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
 					"similarity_id": "9136af90b60b79ccfe4dbdcc396c69b1907d62c31e4ef5d8882d9edf0f1b85cb",
 					"line": 6,
 					"resource_type": "AWS::RDS::DBInstance",
@@ -146,7 +120,7 @@
 			"description_id": "e2908402",
 			"files": [
 				{
-					"file_name": "path\\e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
+					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
 					"similarity_id": "d03ad958902a729200308edf6dd83cf3bb6a32d29dfb78945154a849a005fc6f",
 					"line": 6,
 					"resource_type": "AWS::RDS::DBInstance",
@@ -173,7 +147,7 @@
 			"description_id": "24a6978e",
 			"files": [
 				{
-					"file_name": "path\\e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
+					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
 					"similarity_id": "784e2d544fa3390808bed7b05bf0a64a8ddcc6637f34e3bba38225c10af90b91",
 					"line": 3,
 					"resource_type": "n/a",
@@ -184,6 +158,33 @@
 					"search_value": "",
 					"expected_value": "'AWS::AccessAnalyzer::Analyzer' should be set",
 					"actual_value": "'AWS::AccessAnalyzer::Analyzer' is undefined"
+				}
+			]
+		},
+		{
+			"query_name": "Low RDS Backup Retention Period",
+			"query_id": "e649a218-d099-4550-86a4-1231e1fcb60d",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html",
+			"severity": "LOW",
+			"platform": "CloudFormation",
+			"cloud_provider": "AWS",
+			"category": "Backup",
+			"experimental": false,
+			"description": "AWS RDS backup retention policy should be at least 7 days",
+			"description_id": "55094eb2",
+			"files": [
+				{
+					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
+					"similarity_id": "0269a014ca0130a13a79b7a78c7614060c0b02d48f08be43e54182191ef64692",
+					"line": 6,
+					"resource_type": "AWS::RDS::DBInstance",
+					"resource_name": "DBInstanceSample1",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.DBInstanceSample1.Properties",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "The RDS DBInstance 'DBInstanceSample1' resource should have backup retention period of at least 7 days",
+					"actual_value": "The RDS DBInstance 'DBInstanceSample1' resource doesn't define a backup retention period and no RDS Cluster are defined"
 				}
 			]
 		},
@@ -200,7 +201,7 @@
 			"description_id": "606a0602",
 			"files": [
 				{
-					"file_name": "path\\e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
+					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
 					"similarity_id": "2387b70c01b920c2d38a1c8a143101a0730ef5fa938e1d7e69b74d4d95cf78cf",
 					"line": 6,
 					"resource_type": "AWS::RDS::DBInstance",

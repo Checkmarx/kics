@@ -1,12 +1,12 @@
 [
   {
     "queryName": "Misconfigured Password Policy Expiration",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 12
   },
   {
     "queryName": "Misconfigured Password Policy Expiration",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 8
   }
 ]

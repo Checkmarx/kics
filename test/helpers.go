@@ -16,8 +16,10 @@ import (
 
 const (
 	// ValidUUIDRegex is a constant representing a regular expression rule to validate UUID string
-	ValidUUIDRegex = `(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`
-	positive       = "positive.tf"
+	ValidUUIDRegex    = `(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`
+	positive          = "positive.tf"
+	positiveYamlSonar = "../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml"
+	positiveYaml      = "test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml"
 )
 
 type execute func() error
@@ -326,6 +328,201 @@ var queryHighCWE = model.QueryResult{ //nolint
 	CWE: "22",
 }
 
+var queryCritical = model.QueryResult{
+	QueryName:                   "AmazonMQ Broker Encryption Disabled",
+	QueryID:                     "316278b3-87ac-444c-8f8f-a733a28da609",
+	Description:                 "AmazonMQ Broker should have Encryption Options defined",
+	DescriptionID:               "c5d562d9",
+	CISDescriptionIDFormatted:   "testCISID",
+	CISDescriptionTitle:         "testCISTitle",
+	CISDescriptionTextFormatted: "testCISDescription",
+	CloudProvider:               "AWS",
+	Severity:                    model.SeverityCritical,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         positiveYaml,
+			Line:             6,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is missing",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
+}
+
+var queryLowCICDCloudProvider = model.QueryResult{
+	QueryName:     "Unpinned Actions Full Length Commit SHA",
+	QueryID:       "555ab8f9-2001-455e-a077-f2d0f41e2fb9",
+	Description:   "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release.",
+	DescriptionID: "9cb8402d",
+	Platform:      "CICD",
+	CloudProvider: "COMMON",
+	Severity:      model.SeverityLow,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         positive,
+			Line:             12,
+			IssueType:        "IncorrectValue",
+			SearchKey:        "uses={{thollander/actions-comment-pull-request@v2}}",
+			KeyExpectedValue: "Action is not pinned to a full length commit SHA.",
+			KeyActualValue:   "Action pinned to a full length commit SHA.",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
+}
+
+var queryHighPasswordsAndSecrets = model.QueryResult{
+	QueryName:     "Passwords And Secrets - AWS Secret Key",
+	QueryID:       "83ab47ff-381d-48cd-bac5-fb32222f54af",
+	Description:   "Query to find passwords and secrets in infrastructure code.",
+	DescriptionID: "d69d8a89",
+	Platform:      "Common",
+	CloudProvider: "common",
+	Severity:      model.SeverityHigh,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         positive,
+			Line:             15,
+			IssueType:        "RedundantAttribute",
+			SearchKey:        "",
+			KeyExpectedValue: "Hardcoded secret key should not appear in source",
+			KeyActualValue:   "Hardcoded secret key appears in source",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
+}
+
+var queryCriticalSonar = model.QueryResult{
+	QueryName:                   "AmazonMQ Broker Encryption Disabled",
+	QueryID:                     "316278b3-87ac-444c-8f8f-a733a28da609",
+	Description:                 "AmazonMQ Broker should have Encryption Options defined",
+	DescriptionID:               "c5d562d9",
+	CISDescriptionIDFormatted:   "testCISID",
+	CISDescriptionTitle:         "testCISTitle",
+	CISDescriptionTextFormatted: "testCISDescription",
+	CloudProvider:               "AWS",
+	Severity:                    model.SeverityCritical,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         positiveYamlSonar,
+			Line:             6,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is missing",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
+}
+
+var SummaryMockCriticalSonar = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           2,
+		ParsedFiles:            2,
+		FailedToScanFiles:      0,
+		TotalQueries:           1,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.QueryResult{
+		queryCriticalSonar,
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:     0,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   0,
+			model.SeverityHigh:     0,
+			model.SeverityCritical: 1,
+		},
+		TotalCounter: 1,
+	},
+	ScannedPaths: []string{
+		"./",
+	},
+}
+
+var SummaryMockCritical = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           2,
+		ParsedFiles:            2,
+		FailedToScanFiles:      0,
+		TotalQueries:           1,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.QueryResult{
+		queryCritical,
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:     0,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   0,
+			model.SeverityHigh:     0,
+			model.SeverityCritical: 1,
+		},
+		TotalCounter: 1,
+	},
+	ScannedPaths: []string{
+		"./",
+	},
+}
+
+var queryCriticalASFF = model.QueryResult{
+	QueryName:     "AmazonMQ Broker Encryption Disabled",
+	QueryID:       "316278b3-87ac-444c-8f8f-a733a28da609",
+	Description:   "AmazonMQ Broker should have Encryption Options defined",
+	DescriptionID: "c5d562d9",
+	CloudProvider: "AWS",
+	Severity:      model.SeverityCritical,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         positiveYaml,
+			Line:             6,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is missing",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
+	CWE: "22",
+}
+
+var SummaryMockCriticalFullPathASFF = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           2,
+		ParsedFiles:            2,
+		FailedToScanFiles:      0,
+		TotalQueries:           1,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.QueryResult{
+		queryCriticalASFF,
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:     0,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   0,
+			model.SeverityHigh:     0,
+			model.SeverityCritical: 1,
+		},
+		TotalCounter: 1,
+	},
+	ScannedPaths: []string{
+		"./",
+	},
+}
+
 // SummaryMock a summary to be used without running kics scan
 var SummaryMock = model.Summary{
 	Counters: model.Counters{
@@ -341,16 +538,41 @@ var SummaryMock = model.Summary{
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
 		SeverityCounters: map[model.Severity]int{
-			model.SeverityInfo:   0,
-			model.SeverityLow:    0,
-			model.SeverityMedium: 0,
-			model.SeverityHigh:   2,
+			model.SeverityInfo:     0,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   0,
+			model.SeverityHigh:     2,
+			model.SeverityCritical: 0,
 		},
 		TotalCounter: 2,
 	},
 	ScannedPaths: []string{
 		"./",
 	},
+}
+
+var queryCriticalCLI = model.QueryResult{
+	QueryName:                   "Run Block Injection",
+	QueryID:                     "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+	Description:                 "GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event.", //nolint
+	DescriptionID:               "02044a75",
+	CISDescriptionIDFormatted:   "testCISID",
+	CISDescriptionTitle:         "testCISTitle",
+	CISDescriptionTextFormatted: "testCISDescription",
+	Severity:                    model.SeverityCritical,
+	Files: []model.VulnerableFile{
+		{
+			FileName:         positive,
+			Line:             10,
+			IssueType:        "MissingAttribute",
+			SearchKey:        "aws_alb_listener[front_end].default_action.redirect",
+			KeyExpectedValue: "'default_action.redirect.protocol' is equal 'HTTPS'",
+			KeyActualValue:   "'default_action.redirect.protocol' is missing",
+			Value:            nil,
+			VulnLines:        &[]model.CodeLine{},
+		},
+	},
+	CWE: "",
 }
 
 // SummaryMockCWE a summary to be used with cwe field complete
@@ -368,10 +590,11 @@ var SummaryMockCWE = model.Summary{
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
 		SeverityCounters: map[model.Severity]int{
-			model.SeverityInfo:   0,
-			model.SeverityLow:    0,
-			model.SeverityMedium: 0,
-			model.SeverityHigh:   2,
+			model.SeverityInfo:     0,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   0,
+			model.SeverityHigh:     2,
+			model.SeverityCritical: 0,
 		},
 		TotalCounter: 2,
 	},
@@ -395,10 +618,11 @@ var SimpleSummaryMockAsff = model.Summary{
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
 		SeverityCounters: map[model.Severity]int{
-			model.SeverityInfo:   0,
-			model.SeverityLow:    0,
-			model.SeverityMedium: 1,
-			model.SeverityHigh:   0,
+			model.SeverityInfo:     0,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   1,
+			model.SeverityHigh:     2,
+			model.SeverityCritical: 0,
 		},
 		TotalCounter: 1,
 	},
@@ -420,14 +644,16 @@ var ComplexSummaryMock = model.Summary{
 		queryHigh,
 		queryMedium,
 		queryHighCWE,
+		queryCriticalCLI,
 	},
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
 		SeverityCounters: map[model.Severity]int{
-			model.SeverityInfo:   0,
-			model.SeverityLow:    0,
-			model.SeverityMedium: 1,
-			model.SeverityHigh:   4,
+			model.SeverityInfo:     0,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   1,
+			model.SeverityHigh:     2,
+			model.SeverityCritical: 2,
 		},
 		TotalCounter: 5,
 	},
@@ -451,10 +677,11 @@ var ComplexSummaryMockWithExperimental = model.Summary{
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
 		SeverityCounters: map[model.Severity]int{
-			model.SeverityInfo:   0,
-			model.SeverityLow:    0,
-			model.SeverityMedium: 1,
-			model.SeverityHigh:   2,
+			model.SeverityInfo:     0,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   1,
+			model.SeverityHigh:     2,
+			model.SeverityCritical: 0,
 		},
 		TotalCounter: 3,
 	},
@@ -479,10 +706,11 @@ var ExampleSummaryMock = model.Summary{
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
 		SeverityCounters: map[model.Severity]int{
-			model.SeverityInfo:   2,
-			model.SeverityLow:    0,
-			model.SeverityMedium: 1,
-			model.SeverityHigh:   0,
+			model.SeverityInfo:     2,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   1,
+			model.SeverityHigh:     0,
+			model.SeverityCritical: 0,
 		},
 		TotalCounter: 3,
 	},
@@ -533,10 +761,67 @@ var SimpleSummaryMock = model.Summary{
 	SeveritySummary: model.SeveritySummary{
 		ScanID: "console",
 		SeverityCounters: map[model.Severity]int{
-			model.SeverityInfo:   0,
-			model.SeverityLow:    0,
-			model.SeverityMedium: 1,
-			model.SeverityHigh:   0,
+			model.SeverityInfo:     0,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   1,
+			model.SeverityHigh:     0,
+			model.SeverityCritical: 0,
+		},
+		TotalCounter: 1,
+	},
+	ScannedPaths: []string{
+		"./",
+	},
+}
+
+// ExampleSummaryMockWithCloudProviderCommon a summary with "common" as cloud provider to console tests
+var ExampleSummaryMockWithCloudProviderCommon = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           1,
+		ParsedFiles:            1,
+		FailedToScanFiles:      0,
+		TotalQueries:           1,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.QueryResult{
+		queryLowCICDCloudProvider,
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:     0,
+			model.SeverityLow:      1,
+			model.SeverityMedium:   0,
+			model.SeverityHigh:     0,
+			model.SeverityCritical: 0,
+		},
+		TotalCounter: 1,
+	},
+	ScannedPaths: []string{
+		"./",
+	},
+}
+
+// ExampleSummaryMockWithPasswordsAndSecretsCommonQuery a summary using the "Passwords And Secrets" common query that contains multiple Ids
+var ExampleSummaryMockWithPasswordsAndSecretsCommonQuery = model.Summary{
+	Counters: model.Counters{
+		ScannedFiles:           1,
+		ParsedFiles:            1,
+		FailedToScanFiles:      0,
+		TotalQueries:           1,
+		FailedToExecuteQueries: 0,
+	},
+	Queries: []model.QueryResult{
+		queryHighPasswordsAndSecrets,
+	},
+	SeveritySummary: model.SeveritySummary{
+		ScanID: "console",
+		SeverityCounters: map[model.Severity]int{
+			model.SeverityInfo:     0,
+			model.SeverityLow:      0,
+			model.SeverityMedium:   0,
+			model.SeverityHigh:     1,
+			model.SeverityCritical: 0,
 		},
 		TotalCounter: 1,
 	},

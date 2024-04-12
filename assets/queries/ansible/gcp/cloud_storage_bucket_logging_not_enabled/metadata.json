@@ -1,12 +1,13 @@
 {
   "id": "507df964-ad97-4035-ab14-94a82eabdfdd",
   "queryName": "Cloud Storage Bucket Logging Not Enabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Cloud storage bucket should have logging enabled",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_storage_bucket_module.html#parameter-logging",
   "platform": "Ansible",
   "descriptionID": "ba5af65f",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }
