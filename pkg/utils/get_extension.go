@@ -92,7 +92,7 @@ func isTextFile(path string) (bool, error) {
 	})
 
 	if len(content) == 0 || invalidChars {
-		return false
+		return false, nil
 	}
 
 	content = bytes.Replace(content, []byte("\r"), []byte(""), -1)
