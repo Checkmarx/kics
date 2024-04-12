@@ -18,7 +18,7 @@ hide:
 -   **Query id:** bbe3dd3d-fea9-4b68-a785-cfabe2bbbc54
 -   **Query name:** Policy Without Principal
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Access Control
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/policy_without_principal)
 

@@ -1,13 +1,13 @@
 [
   {
     "queryName": "Cleartext Credentials With Basic Authentication For Operation",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 28,
     "filename": "positive1.json"
   },
   {
     "queryName": "Cleartext Credentials With Basic Authentication For Operation",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 19,
     "filename": "positive2.yaml"
   }

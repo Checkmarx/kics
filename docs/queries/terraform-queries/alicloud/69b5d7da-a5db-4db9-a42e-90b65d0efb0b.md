@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 69b5d7da-a5db-4db9-a42e-90b65d0efb0b
 -   **Query name:** ActionTrail Trail OSS Bucket is Publicly Accessible
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Observability
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/alicloud/actiontrail_trail_oss_bucket_is_publicly_accessible)
 

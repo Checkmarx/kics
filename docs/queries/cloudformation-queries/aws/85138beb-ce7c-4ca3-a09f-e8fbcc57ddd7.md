@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 85138beb-ce7c-4ca3-a09f-e8fbcc57ddd7
 -   **Query name:** Cross-Account IAM Assume Role Policy Without ExternalId or MFA
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Access Control
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/cross_account_iam_assume_role_policy_without_external_id_or_mfa)
 

@@ -303,20 +303,20 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 				return err
 			}
 
-			ext := utils.GetExtension(path)
+			ext, errExt := utils.GetExtension(path)
+			if errExt == nil {
+				trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
+				ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
 
-			trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
-			ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
+				if isConfigFile(path, defaultConfigFiles) {
+					projectConfigFiles = append(projectConfigFiles, path)
+					a.Exc = append(a.Exc, path)
+				}
 
-			if isConfigFile(path, defaultConfigFiles) {
-				projectConfigFiles = append(projectConfigFiles, path)
-				a.Exc = append(a.Exc, path)
+				if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, a.Exc) {
+					files = append(files, path)
+				}
 			}
-
-			if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, a.Exc) {
-				files = append(files, path)
-			}
-
 			return nil
 		}); err != nil {
 			log.Error().Msgf("failed to analyze path %s: %s", path, err)
@@ -369,46 +369,48 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, wg *sync.WaitGroup) {
 	defer wg.Done()
 
-	ext := utils.GetExtension(a.filePath)
-	linesCount, _ := utils.LineCounter(a.filePath)
+	ext, errExt := utils.GetExtension(a.filePath)
+	if errExt == nil {
+		linesCount, _ := utils.LineCounter(a.filePath)
 
-	switch ext {
-	// Dockerfile (direct identification)
-	case ".dockerfile", "Dockerfile":
-		if a.isAvailableType(dockerfile) {
-			results <- dockerfile
-			locCount <- linesCount
+		switch ext {
+		// Dockerfile (direct identification)
+		case ".dockerfile", "Dockerfile":
+			if a.isAvailableType(dockerfile) {
+				results <- dockerfile
+				locCount <- linesCount
+			}
+		// Dockerfile (indirect identification)
+		case "possibleDockerfile", ".ubi8", ".debian":
+			if a.isAvailableType(dockerfile) && isDockerfile(a.filePath) {
+				results <- dockerfile
+				locCount <- linesCount
+			} else {
+				unwanted <- a.filePath
+			}
+		// Terraform
+		case ".tf", "tfvars":
+			if a.isAvailableType(terraform) {
+				results <- terraform
+				locCount <- linesCount
+			}
+		// GRPC
+		case ".proto":
+			if a.isAvailableType(grpc) {
+				results <- grpc
+				locCount <- linesCount
+			}
+		// It could be Ansible Config or Ansible Inventory
+		case ".cfg", ".conf", ".ini":
+			if a.isAvailableType(ansible) {
+				results <- ansible
+				locCount <- linesCount
+			}
+		/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
+		Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager*/
+		case yaml, yml, json, sh:
+			a.checkContent(results, unwanted, locCount, linesCount, ext)
 		}
-	// Dockerfile (indirect identification)
-	case "possibleDockerfile", ".ubi8", ".debian":
-		if a.isAvailableType(dockerfile) && isDockerfile(a.filePath) {
-			results <- dockerfile
-			locCount <- linesCount
-		} else {
-			unwanted <- a.filePath
-		}
-	// Terraform
-	case ".tf", "tfvars":
-		if a.isAvailableType(terraform) {
-			results <- terraform
-			locCount <- linesCount
-		}
-	// GRPC
-	case ".proto":
-		if a.isAvailableType(grpc) {
-			results <- grpc
-			locCount <- linesCount
-		}
-	// It could be Ansible Config or Ansible Inventory
-	case ".cfg", ".conf", ".ini":
-		if a.isAvailableType(ansible) {
-			results <- ansible
-			locCount <- linesCount
-		}
-	/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
-	Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager*/
-	case yaml, yml, json, sh:
-		a.checkContent(results, unwanted, locCount, linesCount, ext)
 	}
 }
 

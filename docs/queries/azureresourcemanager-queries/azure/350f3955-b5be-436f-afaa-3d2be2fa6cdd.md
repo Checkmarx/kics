@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 350f3955-b5be-436f-afaa-3d2be2fa6cdd
 -   **Query name:** Azure Managed Disk Without Encryption
 -   **Platform:** AzureResourceManager
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Encryption
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/azure_managed_disk_without_encryption)
 

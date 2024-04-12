@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
-      - name: Set up Go 1.21.x
-        uses: actions/setup-go@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
-          go-version: 1.21.x
+          go-version-file: go.mod
       - name: Run test metrics script
         id: testcoverage
         run: |

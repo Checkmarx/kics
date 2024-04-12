@@ -1,13 +1,13 @@
 [
   {
     "queryName": "Stackdriver Monitoring Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 4,
     "filename": "positive1.yaml"
   },
   {
     "queryName": "Stackdriver Monitoring Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 6,
     "filename": "positive2.yaml"
   }

@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 59ebb4f3-2a6c-46dc-b4f0-cc5418dcddcd
 -   **Query name:** Serverless Role With Full Privileges
 -   **Platform:** ServerlessFW
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Access Control
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/serverlessFW/serverless_role_with_full_privileges)
 
@@ -28,6 +28,66 @@ Roles defined in Serverless files should not have policies granting full adminis
 
 ### Code samples
 #### Code samples with security vulnerabilities
+```yml title="Positive test num. 1 - yml file" hl_lines="11"
+service: service
+frameworkVersion: '2' 
+provider:
+  name: aws
+  runtime: nodejs12.x
+  iam:
+    role:
+      name: custom-role-name
+      path: /custom-role-path/
+      statements:
+        - Effect: 'Allow'
+          Resource: '*'
+          Action: '*'
+      managedPolicies:
+        - 'arn:aws:iam::123456789012:user/*'
+      permissionsBoundary: arn:aws:iam::123456789012:policy/boundaries
+      tags:
+        key: value
+ 
+functions:
+  hello:
+    handler: handler.hello
+    onError: arn:aws:sns:us-east-1:XXXXXX:test
+    tags:
+      foo: bar
+    role: arn:aws:iam::XXXXXX:role/role
+    tracing: Active
+
+```
 
 
 #### Code samples without security vulnerabilities
+```yml title="Negative test num. 1 - yml file"
+service: service
+frameworkVersion: '2' 
+provider:
+  name: aws
+  runtime: nodejs12.x
+  iam:
+    role:
+      name: custom-role-name
+      path: /custom-role-path/
+      statements:
+        - Effect: 'Allow'
+          Resource: '*'
+          Action: 'iam:DeleteUser'
+      managedPolicies:
+        - 'arn:aws:iam::123456789012:user/*'
+      permissionsBoundary: arn:aws:iam::123456789012:policy/boundaries
+      tags:
+        key: value
+ 
+functions:
+  hello:
+    handler: handler.hello
+    onError: arn:aws:sns:us-east-1:XXXXXX:test
+    tags:
+      foo: bar
+    role: arn:aws:iam::XXXXXX:role/role
+    tracing: Active
+
+```

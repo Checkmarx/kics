@@ -18,7 +18,7 @@ hide:
 -   **Query id:** d4a73c49-cbaa-4c6f-80ee-d6ef5a3a26f5
 -   **Query name:** CloudTrail Logging Disabled
 -   **Platform:** Ansible
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Observability
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/ansible/aws/cloudtrail_logging_disabled)
 

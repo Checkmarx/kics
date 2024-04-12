@@ -1,8 +1,8 @@
 [
-	{
-		"queryName": "Storage Account Not Forcing HTTPS",
-		"severity": "HIGH",
-		"line": 9,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "Storage Account Not Forcing HTTPS",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive.yaml"
+  }
 ]
