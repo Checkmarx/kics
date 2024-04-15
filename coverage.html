@@ -107,7 +107,7 @@
 				
 				<option value="file25">github.com/Checkmarx/kics/internal/tracker/ci.go (93.5%)</option>
 				
-				<option value="file26">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (92.7%)</option>
+				<option value="file26">github.com/Checkmarx/kics/pkg/analyzer/analyzer.go (92.3%)</option>
 				
 				<option value="file27">github.com/Checkmarx/kics/pkg/builder/engine/engine.go (71.8%)</option>
 				
@@ -319,7 +319,7 @@
 				
 				<option value="file131">github.com/Checkmarx/kics/pkg/utils/contains.go (60.0%)</option>
 				
-				<option value="file132">github.com/Checkmarx/kics/pkg/utils/get_extension.go (78.0%)</option>
+				<option value="file132">github.com/Checkmarx/kics/pkg/utils/get_extension.go (78.3%)</option>
 				
 				<option value="file133">github.com/Checkmarx/kics/pkg/utils/line_counter.go (84.6%)</option>
 				
@@ -2566,13 +2566,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="37">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="37">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2597,7 +2597,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3192,7 +3192,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
                         }</span>
 
                         <span class="cov7" title="219">ext, errExt := utils.GetExtension(path)
-                        if errExt == nil </span><span class="cov7" title="214">{
+                        if errExt == nil </span><span class="cov7" title="178">{
                                 trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
                                 ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
 
@@ -3201,7 +3201,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
                                         a.Exc = append(a.Exc, path)
                                 }</span>
 
-                                <span class="cov7" title="214">if _, ok := possibleFileTypes[ext]; ok &amp;&amp; !isExcludedFile(path, a.Exc) </span><span class="cov6" title="152">{
+                                <span class="cov7" title="178">if _, ok := possibleFileTypes[ext]; ok &amp;&amp; !isExcludedFile(path, a.Exc) </span><span class="cov6" title="152">{
                                         files = append(files, path)
                                 }</span>
                         }
@@ -3557,20 +3557,20 @@ func isExcludedFile(path string, exc []string) bool <span class="cov7" title="16
         <span class="cov6" title="152">return false</span>
 }
 
-func isDeadSymlink(path string) bool <span class="cov7" title="212">{
+func isDeadSymlink(path string) bool <span class="cov7" title="176">{
         fileInfo, _ := os.Stat(path)
         return fileInfo == nil
 }</span>
 
-func isConfigFile(path string, exc []string) bool <span class="cov7" title="214">{
-        for i := range exc </span><span class="cov7" title="214">{
+func isConfigFile(path string, exc []string) bool <span class="cov7" title="178">{
+        for i := range exc </span><span class="cov7" title="178">{
                 exclude, err := provider.GetExcludePaths(exc[i])
                 if err != nil </span><span class="cov0" title="0">{
                         log.Err(err).Msg("failed to get exclude paths")
                 }</span>
-                <span class="cov7" title="214">for j := range exclude </span><span class="cov7" title="214">{
+                <span class="cov7" title="178">for j := range exclude </span><span class="cov7" title="178">{
                         fileInfo, _ := os.Stat(path)
-                        if fileInfo != nil &amp;&amp; fileInfo.IsDir() </span><span class="cov5" title="36">{
+                        if fileInfo != nil &amp;&amp; fileInfo.IsDir() </span><span class="cov0" title="0">{
                                 continue</span>
                         }
 
@@ -3580,7 +3580,7 @@ func isConfigFile(path string, exc []string) bool <span class="cov7" title="214"
                         }</span>
                 }
         }
-        <span class="cov7" title="209">return false</span>
+        <span class="cov7" title="173">return false</span>
 }
 
 // shouldConsiderGitIgnoreFile verifies if the scan should exclude the files according to the .gitignore file
@@ -3625,7 +3625,7 @@ func (a *analyzerInfo) isAvailableType(typeName string) bool <span class="cov6" 
 
 func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool,
         gitIgnore *ignore.GitIgnore,
-        fullPath string, trimmedPath string, ignoreFiles []string) []string <span class="cov7" title="214">{
+        fullPath string, trimmedPath string, ignoreFiles []string) []string <span class="cov7" title="178">{
         exceededFileSize := a.MaxFileSize &gt;= 0 &amp;&amp; float64(fileSize)/float64(sizeMb) &gt; float64(a.MaxFileSize)
 
         if (hasGitIgnoreFile &amp;&amp; gitIgnore.MatchesPath(trimmedPath)) || isDeadSymlink(fullPath) || exceededFileSize </span><span class="cov2" title="3">{
@@ -3636,7 +3636,7 @@ func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool,
                         log.Error().Msgf("file %s exceeds maximum file size of %d Mb", fullPath, a.MaxFileSize)
                 }</span>
         }
-        <span class="cov7" title="214">return ignoreFiles</span>
+        <span class="cov7" title="178">return ignoreFiles</span>
 }
 
 func typeLower(types, exclTypes []string) (typesRes, exclTypesRes []string) <span class="cov4" title="25">{
@@ -5655,7 +5655,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -23731,6 +23731,7 @@ func ContainsInString(target string, list []string) bool <span class="cov0" titl
 import (
         "bufio"
         "bytes"
+        "fmt"
         "os"
         "path/filepath"
         "strings"
@@ -23740,24 +23741,33 @@ import (
 )
 
 // GetExtension gets the extension of a file path
-func GetExtension(path string) (string, error) <span class="cov10" title="4">{
+func GetExtension(path string) (string, error) <span class="cov10" title="5">{
         targets := []string{"Dockerfile", "tfvars"}
 
-        ext := filepath.Ext(path)
+        // Get file information
+        fileInfo, err := os.Stat(path)
+        if err != nil </span><span class="cov0" title="0">{
+                return "", fmt.Errorf("file %s not found", path)
+        }</span>
 
-        if ext == "" </span><span class="cov8" title="3">{
+        <span class="cov10" title="5">if fileInfo.IsDir() </span><span class="cov1" title="1">{
+                return "", fmt.Errorf("the path %s is a directory", path)
+        }</span>
+
+        <span class="cov8" title="4">ext := filepath.Ext(path)
+        if ext == "" </span><span class="cov7" title="3">{
                 base := filepath.Base(path)
 
                 if Contains(base, targets) </span><span class="cov1" title="1">{
                         ext = base
-                }</span> else<span class="cov5" title="2"> {
+                }</span> else<span class="cov4" title="2"> {
                         isText, err := isTextFile(path)
 
                         if err != nil </span><span class="cov0" title="0">{
                                 return "", err
                         }</span>
 
-                        <span class="cov5" title="2">if isText </span><span class="cov5" title="2">{
+                        <span class="cov4" title="2">if isText </span><span class="cov4" title="2">{
                                 if readPossibleDockerFile(path) </span><span class="cov1" title="1">{
                                         ext = "possibleDockerfile"
                                 }</span>
@@ -23765,26 +23775,26 @@ func GetExtension(path string) (string, error) <span class="cov10" title="4">{
                 }
         }
 
-        <span class="cov10" title="4">return ext, nil</span>
+        <span class="cov8" title="4">return ext, nil</span>
 }
 
-func readPossibleDockerFile(path string) bool <span class="cov5" title="2">{
+func readPossibleDockerFile(path string) bool <span class="cov4" title="2">{
         path = filepath.Clean(path)
         if strings.HasSuffix(path, "gitignore") </span><span class="cov0" title="0">{
                 return true
         }</span>
-        <span class="cov5" title="2">file, err := os.Open(path)
+        <span class="cov4" title="2">file, err := os.Open(path)
         if err != nil </span><span class="cov0" title="0">{
                 return false
         }</span>
-        <span class="cov5" title="2">defer file.Close()
+        <span class="cov4" title="2">defer file.Close()
         // Create a scanner to read the file line by line
         scanner := bufio.NewScanner(file)
         // Read lines from the file
-        for scanner.Scan() </span><span class="cov8" title="3">{
+        for scanner.Scan() </span><span class="cov7" title="3">{
                 if strings.HasPrefix(scanner.Text(), "FROM") </span><span class="cov1" title="1">{
                         return true
-                }</span> else<span class="cov5" title="2"> if strings.HasPrefix(scanner.Text(), "#") </span><span class="cov1" title="1">{
+                }</span> else<span class="cov4" title="2"> if strings.HasPrefix(scanner.Text(), "#") </span><span class="cov1" title="1">{
                         continue</span>
                 } else<span class="cov1" title="1"> {
                         return false
@@ -23793,24 +23803,24 @@ func readPossibleDockerFile(path string) bool <span class="cov5" title="2">{
         <span class="cov0" title="0">return false</span>
 }
 
-func isTextFile(path string) (bool, error) <span class="cov5" title="2">{
+func isTextFile(path string) (bool, error) <span class="cov4" title="2">{
         info, err := os.Stat(path)
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("failed to get file info: %s", err)
                 return false, err
         }</span>
 
-        <span class="cov5" title="2">if info.IsDir() </span><span class="cov0" title="0">{
+        <span class="cov4" title="2">if info.IsDir() </span><span class="cov0" title="0">{
                 return false, nil
         }</span>
 
-        <span class="cov5" title="2">content, err := os.ReadFile(filepath.Clean(path))
+        <span class="cov4" title="2">content, err := os.ReadFile(filepath.Clean(path))
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("failed to analyze file: %s", err)
                 return false, err
         }</span>
 
-        <span class="cov5" title="2">content = bytes.Replace(content, []byte("\r"), []byte(""), -1)
+        <span class="cov4" title="2">content = bytes.Replace(content, []byte("\r"), []byte(""), -1)
 
         isText := util.IsText(content)
 
