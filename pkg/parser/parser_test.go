@@ -112,9 +112,9 @@ func TestIsValidExtension(t *testing.T) {
 		Add(&jsonParser.Parser{}).
 		Add(&dockerParser.Parser{}).
 		Build([]string{""}, []string{""})
-	require.True(t, parser[0].isValidExtension("test.json"), "test.json should be a valid extension")
-	require.True(t, parser[1].isValidExtension("Dockerfile"), "dockerfile should be a valid extension")
-	require.False(t, parser[0].isValidExtension("test.xml"), "test.xml should not be a valid extension")
+	require.True(t, parser[0].isValidExtension("../../test/fixtures/test_extension/test.json"), "test.json should be a valid extension")
+	require.True(t, parser[1].isValidExtension("../../test/fixtures/test_extension/Dockerfile"), "dockerfile should be a valid extension")
+	require.False(t, parser[0].isValidExtension("../../test/fixtures/test_extension/test.xml"), "test.xml should not be a valid extension")
 }
 
 func TestCommentsCommands(t *testing.T) {
