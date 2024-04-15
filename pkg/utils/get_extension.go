@@ -3,6 +3,7 @@ package utils
 import (
 	"bufio"
 	"bytes"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -15,8 +16,17 @@ import (
 func GetExtension(path string) (string, error) {
 	targets := []string{"Dockerfile", "tfvars"}
 
-	ext := filepath.Ext(path)
+	// Get file information
+	fileInfo, err := os.Stat(path)
+	if err != nil {
+		return "", fmt.Errorf("file %s not found", path)
+	}
 
+	if fileInfo.IsDir() {
+		return "", fmt.Errorf("the path %s is a directory", path)
+	}
+
+	ext := filepath.Ext(path)
 	if ext == "" {
 		base := filepath.Base(path)
 
