@@ -6,7 +6,7 @@ replace (
 	github.com/containerd/containerd => github.com/containerd/containerd v1.6.26
 	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
 	github.com/docker/docker => github.com/docker/docker v24.0.9+incompatible
-	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.9.1
+	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.9.2-0.20240407021823-0397e5e0c0f8
 	github.com/moby/buildkit => github.com/moby/buildkit v0.12.5
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
@@ -25,7 +25,7 @@ require (
 	github.com/bigkevmcd/go-configparser v0.0.0-20230427073640-c6b631f70126
 	github.com/cheggaaa/pb/v3 v3.1.2
 	github.com/emicklei/proto v1.11.2
-	github.com/getsentry/sentry-go v0.27.1-0.20240408080118-9311a060b6e1
+	github.com/getsentry/sentry-go v0.27.1-0.20240412184740-1492d375054c
 	github.com/gocarina/gocsv v0.0.0-20220310154401-d4df709ca055
 	github.com/golang/mock v1.6.0
 	github.com/google/pprof v0.0.0-20210720184732-4bb14d4b1be1
