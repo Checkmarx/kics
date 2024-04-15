@@ -24,9 +24,7 @@ KICS supports scanning Azure Resource Manager (ARM) templates with `.json` exten
 
 KICS supports scanning Bicep files with `.bicep` extension.
 
-To build ARM JSON templates from Bicep code or vice-versa, check the [official ARM documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build).
-
-To understand the differences between ARM JSON templates and Bicep check [this official syntax comparison](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax).
+For instructions on converting between ARM JSON templates and Bicep code, refer to the [official ARM documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build). To understand the distinctions between the two, explore the [official syntax comparison](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax).
 
 Note that KICS recognizes this technology as Azure Resource Manager (for queries purpose).
 
