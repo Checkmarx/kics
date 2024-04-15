@@ -30,7 +30,7 @@ To understand the differences between ARM JSON templates and Bicep check [this o
 
 Note that KICS recognizes this technology as Azure Resource Manager (for queries purpose).
 
-[Future Improvements](future_improvements.md)
+Explore our ongoing enhancements and planed features on our [Future Improvements](future_improvements.md) page.
 
 ## CDK
 
