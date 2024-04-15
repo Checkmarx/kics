@@ -31,8 +31,8 @@ Below are listed queries related to Pulumi AZURE:
 
 |            Query             |Severity|Category|More info|
 |------------------------------|--------|--------|-----------|
-|Redis Cache Allows Non SSL Connections<br/><sup><sub>49e30ac8-f58e-4222-b488-3dcb90158ec1</sub></sup>|<span style="color:#ff7213">Medium</span>|Encryption|<a href="../pulumi-queries/azure/49e30ac8-f58e-4222-b488-3dcb90158ec1" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/azure-native/api-docs/cache/redis/#enablenonsslport_yaml">Documentation</a><br/>|
 |Storage Account Not Forcing HTTPS<br/><sup><sub>cb8e4bf0-903d-45c6-a278-9a947d82a27b</sub></sup>|<span style="color:#ff7213">Medium</span>|Encryption|<a href="../pulumi-queries/azure/cb8e4bf0-903d-45c6-a278-9a947d82a27b" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/azure-native/api-docs/storage/storageaccount/#enablehttpstrafficonly_yaml">Documentation</a><br/>|
+|Redis Cache Allows Non SSL Connections<br/><sup><sub>49e30ac8-f58e-4222-b488-3dcb90158ec1</sub></sup>|<span style="color:#ff7213">Medium</span>|Insecure Configurations|<a href="../pulumi-queries/azure/49e30ac8-f58e-4222-b488-3dcb90158ec1" target="_blank">Query details</a><br><a href="https://www.pulumi.com/registry/packages/azure-native/api-docs/cache/redis/#enablenonsslport_yaml">Documentation</a><br/>|
 
 ### GCP
 Below are listed queries related to Pulumi GCP:
