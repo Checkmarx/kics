@@ -302,6 +302,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 			if err != nil {
 				return err
 			}
+
 			ext, errExt := utils.GetExtension(path)
 			if errExt == nil {
 				trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
