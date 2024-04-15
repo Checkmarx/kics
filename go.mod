@@ -7,6 +7,7 @@ replace (
 	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
 	github.com/docker/docker => github.com/docker/docker v24.0.9+incompatible
 	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.9.2-0.20240407021823-0397e5e0c0f8
+	github.com/jung-kurt/gofpdf => github.com/jung-kurt/gofpdf v1.16.3-0.20210918000319-0c885ad36193 // indirect
 	github.com/moby/buildkit => github.com/moby/buildkit v0.12.5
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
@@ -165,7 +166,7 @@ require (
 	github.com/jmoiron/sqlx v1.3.5 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
-	github.com/jung-kurt/gofpdf v1.16.2 // indirect
+	github.com/jung-kurt/gofpdf v1.16.3-0.20210918000319-0c885ad36193 // indirect
 	github.com/klauspost/compress v1.17.7 // indirect
 	github.com/lann/builder v0.0.0-20180802200727-47ae307949d0 // indirect
 	github.com/lann/ps v0.0.0-20150810152359-62de8c46ede0 // indirect
