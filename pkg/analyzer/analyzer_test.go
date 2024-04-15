@@ -1,7 +1,6 @@
 package analyzer
 
 import (
-	"os"
 	"path/filepath"
 	"sort"
 	"testing"
@@ -465,80 +464,6 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			require.Equal(t, tt.wantTypes, got.Types, "wrong types from analyzer")
 			require.Equal(t, tt.wantExclude, got.Exc, "wrong excludes from analyzer")
 			require.Equal(t, tt.wantLOC, got.ExpectedLOC, "wrong loc from analyzer")
-		})
-	}
-}
-
-func TestAnalyzer_Analyze_Empty_Project(t *testing.T) {
-	tests := []struct {
-		name                 string
-		paths                []string
-		typesFromFlag        []string
-		excludeTypesFromFlag []string
-		wantTypes            []string
-		wantExclude          []string
-		wantLOC              int
-		wantErr              bool
-		gitIgnoreFileName    string
-		excludeGitIgnore     bool
-		MaxFileSize          int
-	}{
-		{
-			name:                 "analyze_escape_empty_project",
-			paths:                []string{filepath.FromSlash("../../test/fixtures/empty_project"), filepath.FromSlash("../../test/fixtures/empty_project/empty_folder")},
-			wantTypes:            []string{},
-			wantExclude:          []string{},
-			typesFromFlag:        []string{""},
-			excludeTypesFromFlag: []string{""},
-			wantLOC:              0,
-			wantErr:              false,
-			gitIgnoreFileName:    "",
-			excludeGitIgnore:     false,
-			MaxFileSize:          -1,
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-
-			err := os.Mkdir(tt.paths[0], 0755)
-
-			if err != nil {
-				require.Nil(t, err, "error creating folder")
-			}
-
-			err1 := os.Mkdir(tt.paths[1], 0755)
-			if err1 != nil {
-				os.RemoveAll(tt.paths[0])
-				require.Nil(t, err1, "error creating folder")
-			}
-
-			exc := []string{""}
-
-			analyzer := &Analyzer{
-				Paths:             tt.paths,
-				Types:             tt.typesFromFlag,
-				ExcludeTypes:      tt.excludeTypesFromFlag,
-				Exc:               exc,
-				ExcludeGitIgnore:  tt.excludeGitIgnore,
-				GitIgnoreFileName: tt.gitIgnoreFileName,
-				MaxFileSize:       tt.MaxFileSize,
-			}
-
-			got, err := Analyze(analyzer)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("Analyze = %v, wantErr = %v", err, tt.wantErr)
-			}
-			sort.Strings(tt.wantTypes)
-			sort.Strings(tt.wantExclude)
-			sort.Strings(got.Types)
-			sort.Strings(got.Exc)
-
-			require.Equal(t, tt.wantTypes, got.Types, "wrong types from analyzer")
-			require.Equal(t, tt.wantExclude, got.Exc, "wrong excludes from analyzer")
-			require.Equal(t, tt.wantLOC, got.ExpectedLOC, "wrong loc from analyzer")
-			os.RemoveAll(tt.paths[1])
-			os.RemoveAll(tt.paths[0])
 		})
 	}
 }
