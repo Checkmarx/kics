@@ -19,7 +19,7 @@ func TestParser_Parse(t *testing.T) {
 		if _, ok := parser.extensions[".json"]; !ok {
 			continue
 		}
-		docs, err := parser.Parse("test.json", []byte(`
+		docs, err := parser.Parse("../../test/fixtures/test_extension/test.json", []byte(`
 {
 	"martin": {
 		"name": "CxBraga"
@@ -36,7 +36,7 @@ func TestParser_Parse(t *testing.T) {
 		if _, ok := parser.extensions[".yaml"]; !ok {
 			continue
 		}
-		docs, err := parser.Parse("test.yaml", []byte(`
+		docs, err := parser.Parse("../../test/fixtures/test_extension/test.yaml", []byte(`
 martin:
   name: CxBraga
 `), true, false)
@@ -50,7 +50,7 @@ martin:
 		if _, ok := parser.extensions[".dockerfile"]; !ok {
 			continue
 		}
-		docs, err := parser.Parse("Dockerfile", []byte(`
+		docs, err := parser.Parse("../../test/fixtures/test_extension/Dockerfile", []byte(`
 FROM foo
 COPY . /
 RUN echo hello
@@ -119,7 +119,7 @@ func TestIsValidExtension(t *testing.T) {
 
 func TestCommentsCommands(t *testing.T) {
 	parser, _ := NewBuilder().Add(&dockerParser.Parser{}).Build([]string{""}, []string{""})
-	commands := parser[0].CommentsCommands("Dockerfile", []byte(`
+	commands := parser[0].CommentsCommands("../../test/fixtures/test_extension/Dockerfile", []byte(`
 	# kics-scan ignore
 	# kics-scan disable=ffdf4b37-7703-4dfe-a682-9d2e99bc6c09
 	FROM foo
