@@ -22,7 +22,7 @@ func PrintSarifReport(path, filename string, body interface{}) error {
 		auxGUID := map[string]string{}
 		for idx := range summary.Queries {
 			x := sarifReport.BuildSarifIssue(&summary.Queries[idx])
-			if len(x) > 0 {
+			if x != "" {
 				auxID = append(auxID, x)
 				guid := sarifReport.GetGUIDFromRelationships(idx, x)
 				auxGUID[x] = guid

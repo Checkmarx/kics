@@ -198,7 +198,7 @@ func (c *comment) value() (value CommentCommand) {
 	comment := strings.ToLower(string(*c))
 	if isHelm(comment) {
 		res := KICSGetContentCommentRgxp.FindString(comment)
-		if len(res) > 0 {
+		if res != "" {
 			comment = res
 		}
 	}
