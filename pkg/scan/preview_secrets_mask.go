@@ -98,14 +98,14 @@ func maskSecret(rule *secrets.RegexQuery, lines *[]model.CodeLine, idx int) {
 	regex := rule.RegexStr
 	line := (*lines)[idx]
 
-	if len(rule.SpecialMask) > 0 {
+	if rule.SpecialMask != "" {
 		regex = "(.+)" + rule.SpecialMask
 	}
 
 	var re = regexp.MustCompile(regex)
 	match := re.FindString(line.Line)
 
-	if len(rule.SpecialMask) > 0 {
+	if rule.SpecialMask != "" {
 		match = line.Line[len(match):]
 	}
 

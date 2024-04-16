@@ -68,7 +68,7 @@ generate: mod-tidy ## go generate
 
 .PHONY: generate-antlr
 generate-antlr: ## generate parser with ANTLRv4, needs JRE (Java Runtime Environment) on the system
-	@cd pkg/parser/jsonfilter/ && java -jar $(LIB)/antlr-4.11.1-complete.jar -Dlanguage=Go -visitor -no-listener -o parser JSONFilter.g4
+	@cd pkg/parser/jsonfilter/ && java -jar $(LIB)/antlr-4.13.1-complete.jar -Dlanguage=Go -visitor -no-listener -o parser JSONFilter.g4
 
 .PHONY: test
 test-short: # Run sanity unit tests
@@ -131,7 +131,7 @@ dkr-compose: ## build docker image and runs docker-compose up
 .PHONY: dkr-build-antlr
 dkr-build-antlr: ## build ANTLRv4 docker image and generate parser based on given grammar
 	@docker build -t antlr4-generator:dev -f ./docker/Dockerfile.antlr .
-	@docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser/jsonfilter:/work -it antlr4-generator:dev
+	@docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser/jsonfilter/:/work -it antlr4-generator:dev
 
 .PHONY: release
 release: ## goreleaser --rm-dist
@@ -174,3 +174,7 @@ help:
 define print-target
 	@printf "Executing target: \033[36m$@\033[0m\n"
 endef
+
+.PHONY: lint-docker-image
+lint-docker-image:
+	docker run -t --rm -v ./:/app -w /app golangci/golangci-lint:v1.57.2 golangci-lint run -v -c /app/.golangci.yml --timeout 20m
