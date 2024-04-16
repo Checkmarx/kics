@@ -1,7 +1,7 @@
 package parser // JSONFilter
 
 import (
-	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
+	"github.com/antlr4-go/antlr/v4"
 )
 
 const (
