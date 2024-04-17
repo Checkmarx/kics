@@ -18,7 +18,7 @@
 </div>
 
 ---
-#### Version 2.0.0 Added features, Breaking changes and Deprecated Queries
+#### Version 2.0.0 Added Features, Breaking Changes and Deprecated Queries
 
 #### Breaking changes
 - Critical severity added a [new exit status code](https://docs.kics.io/latest/results/#results_status_code)
