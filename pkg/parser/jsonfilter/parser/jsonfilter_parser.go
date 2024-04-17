@@ -1,4 +1,4 @@
-// Code generated from java-escape by ANTLR 4.11.1. DO NOT EDIT.
+// Code generated from JSONFilter.g4 by ANTLR 4.13.1. DO NOT EDIT.
 
 package parser // JSONFilter
 
@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"sync"
 
-	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
+	"github.com/antlr4-go/antlr/v4"
 )
 
 // Suppress unused import errors
@@ -19,35 +19,35 @@ type JSONFilterParser struct {
 	*antlr.BaseParser
 }
 
-var jsonfilterParserStaticData struct {
+var JSONFilterParserStaticData struct {
 	once                   sync.Once
 	serializedATN          []int32
-	literalNames           []string
-	symbolicNames          []string
-	ruleNames              []string
-	predictionContextCache *antlr.PredictionContextCache
+	LiteralNames           []string
+	SymbolicNames          []string
+	RuleNames              []string
+	PredictionContextCache *antlr.PredictionContextCache
 	atn                    *antlr.ATN
 	decisionToDFA          []*antlr.DFA
 }
 
 func jsonfilterParserInit() {
-	staticData := &jsonfilterParserStaticData
-	staticData.literalNames = []string{
+	staticData := &JSONFilterParserStaticData
+	staticData.LiteralNames = []string{
 		"", "'$.'", "'*'", "'{'", "'}'", "'('", "')'", "'['", "']'", "'.'",
 		"'&&'", "'||'", "'='", "'!='", "'>'", "'<'", "'>='", "'<='", "'IS'",
 		"'NOT'", "'NULL'", "'EXISTS'", "'TRUE'", "'FALSE'",
 	}
-	staticData.symbolicNames = []string{
+	staticData.SymbolicNames = []string{
 		"", "SEL_START", "STAR", "LCURLY", "RCURLY", "LPAREN", "RPAREN", "LBRACKET",
 		"RBRACKET", "DOT", "AND", "OR", "EQUALS", "NOT_EQUALS", "GT", "LT",
 		"GE", "LE", "IS", "NOT", "NULL", "EXISTS", "TRUE", "FALSE", "INDENTIFIER",
 		"STRING", "NUMBER", "WS",
 	}
-	staticData.ruleNames = []string{
+	staticData.RuleNames = []string{
 		"awsjsonfilter", "dotnotation", "filter_expr", "exp", "selector", "qualifiedidentifier",
 		"member", "operator", "literal",
 	}
-	staticData.predictionContextCache = antlr.NewPredictionContextCache()
+	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
 		4, 1, 27, 90, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 1, 0, 1, 0, 1, 1, 1,
@@ -102,7 +102,7 @@ func jsonfilterParserInit() {
 // NewJSONFilterParser(). You can call this function if you wish to initialize the static state ahead
 // of time.
 func JSONFilterParserInit() {
-	staticData := &jsonfilterParserStaticData
+	staticData := &JSONFilterParserStaticData
 	staticData.once.Do(jsonfilterParserInit)
 }
 
@@ -111,12 +111,12 @@ func NewJSONFilterParser(input antlr.TokenStream) *JSONFilterParser {
 	JSONFilterParserInit()
 	this := new(JSONFilterParser)
 	this.BaseParser = antlr.NewBaseParser(input)
-	staticData := &jsonfilterParserStaticData
-	this.Interpreter = antlr.NewParserATNSimulator(this, staticData.atn, staticData.decisionToDFA, staticData.predictionContextCache)
-	this.RuleNames = staticData.ruleNames
-	this.LiteralNames = staticData.literalNames
-	this.SymbolicNames = staticData.symbolicNames
-	this.GrammarFileName = "java-escape"
+	staticData := &JSONFilterParserStaticData
+	this.Interpreter = antlr.NewParserATNSimulator(this, staticData.atn, staticData.decisionToDFA, staticData.PredictionContextCache)
+	this.RuleNames = staticData.RuleNames
+	this.LiteralNames = staticData.LiteralNames
+	this.SymbolicNames = staticData.SymbolicNames
+	this.GrammarFileName = "JSONFilter.g4"
 
 	return this
 }
@@ -173,20 +173,28 @@ type IAwsjsonfilterContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
+	// Getter signatures
+	Dotnotation() IDotnotationContext
+
 	// IsAwsjsonfilterContext differentiates from other interfaces.
 	IsAwsjsonfilterContext()
 }
 
 type AwsjsonfilterContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyAwsjsonfilterContext() *AwsjsonfilterContext {
 	var p = new(AwsjsonfilterContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = JSONFilterParserRULE_awsjsonfilter
 	return p
+}
+
+func InitEmptyAwsjsonfilterContext(p *AwsjsonfilterContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = JSONFilterParserRULE_awsjsonfilter
 }
 
 func (*AwsjsonfilterContext) IsAwsjsonfilterContext() {}
@@ -194,7 +202,7 @@ func (*AwsjsonfilterContext) IsAwsjsonfilterContext() {}
 func NewAwsjsonfilterContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *AwsjsonfilterContext {
 	var p = new(AwsjsonfilterContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = JSONFilterParserRULE_awsjsonfilter
@@ -239,35 +247,25 @@ func (s *AwsjsonfilterContext) Accept(visitor antlr.ParseTreeVisitor) interface{
 }
 
 func (p *JSONFilterParser) Awsjsonfilter() (localctx IAwsjsonfilterContext) {
-	this := p
-	_ = this
-
 	localctx = NewAwsjsonfilterContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 0, JSONFilterParserRULE_awsjsonfilter)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(18)
 		p.Dotnotation()
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IDotnotationContext is an interface to support dynamic dispatch.
@@ -277,20 +275,30 @@ type IDotnotationContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
+	// Getter signatures
+	LCURLY() antlr.TerminalNode
+	Filter_expr() IFilter_exprContext
+	RCURLY() antlr.TerminalNode
+
 	// IsDotnotationContext differentiates from other interfaces.
 	IsDotnotationContext()
 }
 
 type DotnotationContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyDotnotationContext() *DotnotationContext {
 	var p = new(DotnotationContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = JSONFilterParserRULE_dotnotation
 	return p
+}
+
+func InitEmptyDotnotationContext(p *DotnotationContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = JSONFilterParserRULE_dotnotation
 }
 
 func (*DotnotationContext) IsDotnotationContext() {}
@@ -298,7 +306,7 @@ func (*DotnotationContext) IsDotnotationContext() {}
 func NewDotnotationContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *DotnotationContext {
 	var p = new(DotnotationContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = JSONFilterParserRULE_dotnotation
@@ -351,32 +359,16 @@ func (s *DotnotationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} 
 }
 
 func (p *JSONFilterParser) Dotnotation() (localctx IDotnotationContext) {
-	this := p
-	_ = this
-
 	localctx = NewDotnotationContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 2, JSONFilterParserRULE_dotnotation)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(20)
 		p.Match(JSONFilterParserLCURLY)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(21)
@@ -385,9 +377,23 @@ func (p *JSONFilterParser) Dotnotation() (localctx IDotnotationContext) {
 	{
 		p.SetState(22)
 		p.Match(JSONFilterParserRCURLY)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IFilter_exprContext is an interface to support dynamic dispatch.
@@ -396,21 +402,25 @@ type IFilter_exprContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
-
 	// IsFilter_exprContext differentiates from other interfaces.
 	IsFilter_exprContext()
 }
 
 type Filter_exprContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyFilter_exprContext() *Filter_exprContext {
 	var p = new(Filter_exprContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = JSONFilterParserRULE_filter_expr
 	return p
+}
+
+func InitEmptyFilter_exprContext(p *Filter_exprContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = JSONFilterParserRULE_filter_expr
 }
 
 func (*Filter_exprContext) IsFilter_exprContext() {}
@@ -418,7 +428,7 @@ func (*Filter_exprContext) IsFilter_exprContext() {}
 func NewFilter_exprContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Filter_exprContext {
 	var p = new(Filter_exprContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = JSONFilterParserRULE_filter_expr
@@ -428,8 +438,8 @@ func NewFilter_exprContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 
 func (s *Filter_exprContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *Filter_exprContext) CopyFrom(ctx *Filter_exprContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+func (s *Filter_exprContext) CopyAll(ctx *Filter_exprContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
 }
 
 func (s *Filter_exprContext) GetRuleContext() antlr.RuleContext {
@@ -441,15 +451,15 @@ func (s *Filter_exprContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 }
 
 type Filter_expr_parenthesizedContext struct {
-	*Filter_exprContext
+	Filter_exprContext
 }
 
 func NewFilter_expr_parenthesizedContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Filter_expr_parenthesizedContext {
 	var p = new(Filter_expr_parenthesizedContext)
 
-	p.Filter_exprContext = NewEmptyFilter_exprContext()
+	InitEmptyFilter_exprContext(&p.Filter_exprContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*Filter_exprContext))
+	p.CopyAll(ctx.(*Filter_exprContext))
 
 	return p
 }
@@ -493,7 +503,7 @@ func (s *Filter_expr_parenthesizedContext) Accept(visitor antlr.ParseTreeVisitor
 }
 
 type Filter_expr_andContext struct {
-	*Filter_exprContext
+	Filter_exprContext
 	lhs IFilter_exprContext
 	rhs IFilter_exprContext
 }
@@ -501,9 +511,9 @@ type Filter_expr_andContext struct {
 func NewFilter_expr_andContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Filter_expr_andContext {
 	var p = new(Filter_expr_andContext)
 
-	p.Filter_exprContext = NewEmptyFilter_exprContext()
+	InitEmptyFilter_exprContext(&p.Filter_exprContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*Filter_exprContext))
+	p.CopyAll(ctx.(*Filter_exprContext))
 
 	return p
 }
@@ -576,15 +586,15 @@ func (s *Filter_expr_andContext) Accept(visitor antlr.ParseTreeVisitor) interfac
 }
 
 type Filter_expr_expContext struct {
-	*Filter_exprContext
+	Filter_exprContext
 }
 
 func NewFilter_expr_expContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Filter_expr_expContext {
 	var p = new(Filter_expr_expContext)
 
-	p.Filter_exprContext = NewEmptyFilter_exprContext()
+	InitEmptyFilter_exprContext(&p.Filter_exprContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*Filter_exprContext))
+	p.CopyAll(ctx.(*Filter_exprContext))
 
 	return p
 }
@@ -620,7 +630,7 @@ func (s *Filter_expr_expContext) Accept(visitor antlr.ParseTreeVisitor) interfac
 }
 
 type Filter_expr_orContext struct {
-	*Filter_exprContext
+	Filter_exprContext
 	lhs IFilter_exprContext
 	rhs IFilter_exprContext
 }
@@ -628,9 +638,9 @@ type Filter_expr_orContext struct {
 func NewFilter_expr_orContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Filter_expr_orContext {
 	var p = new(Filter_expr_orContext)
 
-	p.Filter_exprContext = NewEmptyFilter_exprContext()
+	InitEmptyFilter_exprContext(&p.Filter_exprContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*Filter_exprContext))
+	p.CopyAll(ctx.(*Filter_exprContext))
 
 	return p
 }
@@ -707,38 +717,22 @@ func (p *JSONFilterParser) Filter_expr() (localctx IFilter_exprContext) {
 }
 
 func (p *JSONFilterParser) filter_expr(_p int) (localctx IFilter_exprContext) {
-	this := p
-	_ = this
-
 	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
+
 	_parentState := p.GetState()
 	localctx = NewFilter_exprContext(p, p.GetParserRuleContext(), _parentState)
 	var _prevctx IFilter_exprContext = localctx
 	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
 	_startState := 4
 	p.EnterRecursionRule(localctx, 4, JSONFilterParserRULE_filter_expr, _p)
-
-	defer func() {
-		p.UnrollRecursionContexts(_parentctx)
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
 	p.SetState(30)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 
 	switch p.GetTokenStream().LA(1) {
 	case JSONFilterParserLPAREN:
@@ -749,6 +743,10 @@ func (p *JSONFilterParser) filter_expr(_p int) (localctx IFilter_exprContext) {
 		{
 			p.SetState(25)
 			p.Match(JSONFilterParserLPAREN)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 		{
 			p.SetState(26)
@@ -757,6 +755,10 @@ func (p *JSONFilterParser) filter_expr(_p int) (localctx IFilter_exprContext) {
 		{
 			p.SetState(27)
 			p.Match(JSONFilterParserRPAREN)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	case JSONFilterParserSEL_START:
@@ -769,13 +771,19 @@ func (p *JSONFilterParser) filter_expr(_p int) (localctx IFilter_exprContext) {
 		}
 
 	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
 	}
 	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
 	p.SetState(40)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 2, p.GetParserRuleContext())
-
+	if p.HasError() {
+		goto errorExit
+	}
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 2, p.GetParserRuleContext())
+	if p.HasError() {
+		goto errorExit
+	}
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			if p.GetParseListeners() != nil {
@@ -784,7 +792,11 @@ func (p *JSONFilterParser) filter_expr(_p int) (localctx IFilter_exprContext) {
 			_prevctx = localctx
 			p.SetState(38)
 			p.GetErrorHandler().Sync(p)
-			switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 1, p.GetParserRuleContext()) {
+			if p.HasError() {
+				goto errorExit
+			}
+
+			switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 1, p.GetParserRuleContext()) {
 			case 1:
 				localctx = NewFilter_expr_andContext(p, NewFilter_exprContext(p, _parentctx, _parentState))
 				localctx.(*Filter_expr_andContext).lhs = _prevctx
@@ -793,11 +805,16 @@ func (p *JSONFilterParser) filter_expr(_p int) (localctx IFilter_exprContext) {
 				p.SetState(32)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 3)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 3)", ""))
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 3)", ""))
+					goto errorExit
 				}
 				{
 					p.SetState(33)
 					p.Match(JSONFilterParserAND)
+					if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+					}
 				}
 				{
 					p.SetState(34)
@@ -815,11 +832,16 @@ func (p *JSONFilterParser) filter_expr(_p int) (localctx IFilter_exprContext) {
 				p.SetState(35)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 2)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 2)", ""))
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 2)", ""))
+					goto errorExit
 				}
 				{
 					p.SetState(36)
 					p.Match(JSONFilterParserOR)
+					if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+					}
 				}
 				{
 					p.SetState(37)
@@ -829,15 +851,33 @@ func (p *JSONFilterParser) filter_expr(_p int) (localctx IFilter_exprContext) {
 					localctx.(*Filter_expr_orContext).rhs = _x
 				}
 
+			case antlr.ATNInvalidAltNumber:
+				goto errorExit
 			}
 
 		}
 		p.SetState(42)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 2, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 2, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.UnrollRecursionContexts(_parentctx)
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IExpContext is an interface to support dynamic dispatch.
@@ -847,20 +887,31 @@ type IExpContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
+	// Getter signatures
+	Selector() ISelectorContext
+	Operator() IOperatorContext
+	Literal() ILiteralContext
+	Qualifiedidentifier() IQualifiedidentifierContext
+
 	// IsExpContext differentiates from other interfaces.
 	IsExpContext()
 }
 
 type ExpContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyExpContext() *ExpContext {
 	var p = new(ExpContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = JSONFilterParserRULE_exp
 	return p
+}
+
+func InitEmptyExpContext(p *ExpContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = JSONFilterParserRULE_exp
 }
 
 func (*ExpContext) IsExpContext() {}
@@ -868,7 +919,7 @@ func (*ExpContext) IsExpContext() {}
 func NewExpContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ExpContext {
 	var p = new(ExpContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = JSONFilterParserRULE_exp
@@ -961,28 +1012,8 @@ func (s *ExpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 }
 
 func (p *JSONFilterParser) Exp() (localctx IExpContext) {
-	this := p
-	_ = this
-
 	localctx = NewExpContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 6, JSONFilterParserRULE_exp)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(43)
@@ -994,7 +1025,11 @@ func (p *JSONFilterParser) Exp() (localctx IExpContext) {
 	}
 	p.SetState(47)
 	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 3, p.GetParserRuleContext()) {
+	if p.HasError() {
+		goto errorExit
+	}
+
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 3, p.GetParserRuleContext()) {
 	case 1:
 		{
 			p.SetState(45)
@@ -1007,9 +1042,21 @@ func (p *JSONFilterParser) Exp() (localctx IExpContext) {
 			p.Qualifiedidentifier()
 		}
 
+	case antlr.ATNInvalidAltNumber:
+		goto errorExit
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // ISelectorContext is an interface to support dynamic dispatch.
@@ -1019,20 +1066,29 @@ type ISelectorContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
+	// Getter signatures
+	SEL_START() antlr.TerminalNode
+	Qualifiedidentifier() IQualifiedidentifierContext
+
 	// IsSelectorContext differentiates from other interfaces.
 	IsSelectorContext()
 }
 
 type SelectorContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptySelectorContext() *SelectorContext {
 	var p = new(SelectorContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = JSONFilterParserRULE_selector
 	return p
+}
+
+func InitEmptySelectorContext(p *SelectorContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = JSONFilterParserRULE_selector
 }
 
 func (*SelectorContext) IsSelectorContext() {}
@@ -1040,7 +1096,7 @@ func (*SelectorContext) IsSelectorContext() {}
 func NewSelectorContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SelectorContext {
 	var p = new(SelectorContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = JSONFilterParserRULE_selector
@@ -1089,39 +1145,33 @@ func (s *SelectorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 }
 
 func (p *JSONFilterParser) Selector() (localctx ISelectorContext) {
-	this := p
-	_ = this
-
 	localctx = NewSelectorContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 8, JSONFilterParserRULE_selector)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(49)
 		p.Match(JSONFilterParserSEL_START)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(50)
 		p.Qualifiedidentifier()
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IQualifiedidentifierContext is an interface to support dynamic dispatch.
@@ -1131,20 +1181,31 @@ type IQualifiedidentifierContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
+	// Getter signatures
+	AllMember() []IMemberContext
+	Member(i int) IMemberContext
+	AllDOT() []antlr.TerminalNode
+	DOT(i int) antlr.TerminalNode
+
 	// IsQualifiedidentifierContext differentiates from other interfaces.
 	IsQualifiedidentifierContext()
 }
 
 type QualifiedidentifierContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyQualifiedidentifierContext() *QualifiedidentifierContext {
 	var p = new(QualifiedidentifierContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = JSONFilterParserRULE_qualifiedidentifier
 	return p
+}
+
+func InitEmptyQualifiedidentifierContext(p *QualifiedidentifierContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = JSONFilterParserRULE_qualifiedidentifier
 }
 
 func (*QualifiedidentifierContext) IsQualifiedidentifierContext() {}
@@ -1152,7 +1213,7 @@ func (*QualifiedidentifierContext) IsQualifiedidentifierContext() {}
 func NewQualifiedidentifierContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *QualifiedidentifierContext {
 	var p = new(QualifiedidentifierContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = JSONFilterParserRULE_qualifiedidentifier
@@ -1230,28 +1291,8 @@ func (s *QualifiedidentifierContext) Accept(visitor antlr.ParseTreeVisitor) inte
 }
 
 func (p *JSONFilterParser) Qualifiedidentifier() (localctx IQualifiedidentifierContext) {
-	this := p
-	_ = this
-
 	localctx = NewQualifiedidentifierContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 10, JSONFilterParserRULE_qualifiedidentifier)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
@@ -1261,13 +1302,22 @@ func (p *JSONFilterParser) Qualifiedidentifier() (localctx IQualifiedidentifierC
 	}
 	p.SetState(57)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 4, p.GetParserRuleContext())
-
+	if p.HasError() {
+		goto errorExit
+	}
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 4, p.GetParserRuleContext())
+	if p.HasError() {
+		goto errorExit
+	}
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
 				p.SetState(53)
 				p.Match(JSONFilterParserDOT)
+				if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+				}
 			}
 			{
 				p.SetState(54)
@@ -1277,10 +1327,26 @@ func (p *JSONFilterParser) Qualifiedidentifier() (localctx IQualifiedidentifierC
 		}
 		p.SetState(59)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 4, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 4, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IMemberContext is an interface to support dynamic dispatch.
@@ -1290,20 +1356,34 @@ type IMemberContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
+	// Getter signatures
+	INDENTIFIER() antlr.TerminalNode
+	AllLBRACKET() []antlr.TerminalNode
+	LBRACKET(i int) antlr.TerminalNode
+	AllNUMBER() []antlr.TerminalNode
+	NUMBER(i int) antlr.TerminalNode
+	AllRBRACKET() []antlr.TerminalNode
+	RBRACKET(i int) antlr.TerminalNode
+
 	// IsMemberContext differentiates from other interfaces.
 	IsMemberContext()
 }
 
 type MemberContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyMemberContext() *MemberContext {
 	var p = new(MemberContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = JSONFilterParserRULE_member
 	return p
+}
+
+func InitEmptyMemberContext(p *MemberContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = JSONFilterParserRULE_member
 }
 
 func (*MemberContext) IsMemberContext() {}
@@ -1311,7 +1391,7 @@ func (*MemberContext) IsMemberContext() {}
 func NewMemberContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *MemberContext {
 	var p = new(MemberContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = JSONFilterParserRULE_member
@@ -1368,38 +1448,26 @@ func (s *MemberContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 }
 
 func (p *JSONFilterParser) Member() (localctx IMemberContext) {
-	this := p
-	_ = this
-
 	localctx = NewMemberContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 12, JSONFilterParserRULE_member)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	var _alt int
 
 	p.SetState(69)
 	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 6, p.GetParserRuleContext()) {
+	if p.HasError() {
+		goto errorExit
+	}
+
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 6, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(60)
 			p.Match(JSONFilterParserINDENTIFIER)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	case 2:
@@ -1407,9 +1475,16 @@ func (p *JSONFilterParser) Member() (localctx IMemberContext) {
 		{
 			p.SetState(61)
 			p.Match(JSONFilterParserINDENTIFIER)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 		p.SetState(65)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_alt = 1
 		for ok := true; ok; ok = _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 			switch _alt {
@@ -1417,28 +1492,56 @@ func (p *JSONFilterParser) Member() (localctx IMemberContext) {
 				{
 					p.SetState(62)
 					p.Match(JSONFilterParserLBRACKET)
+					if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+					}
 				}
 				{
 					p.SetState(63)
 					p.Match(JSONFilterParserNUMBER)
+					if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+					}
 				}
 				{
 					p.SetState(64)
 					p.Match(JSONFilterParserRBRACKET)
+					if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+					}
 				}
 
 			default:
-				panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+				p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+				goto errorExit
 			}
 
 			p.SetState(67)
 			p.GetErrorHandler().Sync(p)
-			_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 5, p.GetParserRuleContext())
+			_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 5, p.GetParserRuleContext())
+			if p.HasError() {
+				goto errorExit
+			}
 		}
 
+	case antlr.ATNInvalidAltNumber:
+		goto errorExit
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IOperatorContext is an interface to support dynamic dispatch.
@@ -1448,20 +1551,35 @@ type IOperatorContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
+	// Getter signatures
+	EQUALS() antlr.TerminalNode
+	NOT_EQUALS() antlr.TerminalNode
+	IS() antlr.TerminalNode
+	NOT() antlr.TerminalNode
+	GT() antlr.TerminalNode
+	LT() antlr.TerminalNode
+	GE() antlr.TerminalNode
+	LE() antlr.TerminalNode
+
 	// IsOperatorContext differentiates from other interfaces.
 	IsOperatorContext()
 }
 
 type OperatorContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyOperatorContext() *OperatorContext {
 	var p = new(OperatorContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = JSONFilterParserRULE_operator
 	return p
+}
+
+func InitEmptyOperatorContext(p *OperatorContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = JSONFilterParserRULE_operator
 }
 
 func (*OperatorContext) IsOperatorContext() {}
@@ -1469,7 +1587,7 @@ func (*OperatorContext) IsOperatorContext() {}
 func NewOperatorContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *OperatorContext {
 	var p = new(OperatorContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = JSONFilterParserRULE_operator
@@ -1530,28 +1648,9 @@ func (s *OperatorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 }
 
 func (p *JSONFilterParser) Operator() (localctx IOperatorContext) {
-	this := p
-	_ = this
-
 	localctx = NewOperatorContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 14, JSONFilterParserRULE_operator)
 	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	p.EnterOuterAlt(localctx, 1)
 	{
@@ -1566,7 +1665,17 @@ func (p *JSONFilterParser) Operator() (localctx IOperatorContext) {
 		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // ILiteralContext is an interface to support dynamic dispatch.
@@ -1576,20 +1685,39 @@ type ILiteralContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
+	// Getter signatures
+	AllNUMBER() []antlr.TerminalNode
+	NUMBER(i int) antlr.TerminalNode
+	AllDOT() []antlr.TerminalNode
+	DOT(i int) antlr.TerminalNode
+	AllSTAR() []antlr.TerminalNode
+	STAR(i int) antlr.TerminalNode
+	STRING() antlr.TerminalNode
+	NULL() antlr.TerminalNode
+	EXISTS() antlr.TerminalNode
+	TRUE() antlr.TerminalNode
+	FALSE() antlr.TerminalNode
+	INDENTIFIER() antlr.TerminalNode
+
 	// IsLiteralContext differentiates from other interfaces.
 	IsLiteralContext()
 }
 
 type LiteralContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
 func NewEmptyLiteralContext() *LiteralContext {
 	var p = new(LiteralContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
 	p.RuleIndex = JSONFilterParserRULE_literal
 	return p
+}
+
+func InitEmptyLiteralContext(p *LiteralContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = JSONFilterParserRULE_literal
 }
 
 func (*LiteralContext) IsLiteralContext() {}
@@ -1597,7 +1725,7 @@ func (*LiteralContext) IsLiteralContext() {}
 func NewLiteralContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *LiteralContext {
 	var p = new(LiteralContext)
 
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
 	p.RuleIndex = JSONFilterParserRULE_literal
@@ -1674,42 +1802,34 @@ func (s *LiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 }
 
 func (p *JSONFilterParser) Literal() (localctx ILiteralContext) {
-	this := p
-	_ = this
-
 	localctx = NewLiteralContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 16, JSONFilterParserRULE_literal)
 	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
 
 	var _alt int
 
 	p.SetState(87)
 	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 8, p.GetParserRuleContext()) {
+	if p.HasError() {
+		goto errorExit
+	}
+
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 8, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(73)
 			p.Match(JSONFilterParserNUMBER)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 		p.SetState(76)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_alt = 1
 		for ok := true; ok; ok = _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 			switch _alt {
@@ -1717,6 +1837,10 @@ func (p *JSONFilterParser) Literal() (localctx ILiteralContext) {
 				{
 					p.SetState(74)
 					p.Match(JSONFilterParserDOT)
+					if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+					}
 				}
 				{
 					p.SetState(75)
@@ -1731,12 +1855,16 @@ func (p *JSONFilterParser) Literal() (localctx ILiteralContext) {
 				}
 
 			default:
-				panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+				p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+				goto errorExit
 			}
 
 			p.SetState(78)
 			p.GetErrorHandler().Sync(p)
-			_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 7, p.GetParserRuleContext())
+			_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 7, p.GetParserRuleContext())
+			if p.HasError() {
+				goto errorExit
+			}
 		}
 
 	case 2:
@@ -1744,6 +1872,10 @@ func (p *JSONFilterParser) Literal() (localctx ILiteralContext) {
 		{
 			p.SetState(80)
 			p.Match(JSONFilterParserSTRING)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	case 3:
@@ -1751,6 +1883,10 @@ func (p *JSONFilterParser) Literal() (localctx ILiteralContext) {
 		{
 			p.SetState(81)
 			p.Match(JSONFilterParserNUMBER)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	case 4:
@@ -1758,6 +1894,10 @@ func (p *JSONFilterParser) Literal() (localctx ILiteralContext) {
 		{
 			p.SetState(82)
 			p.Match(JSONFilterParserNULL)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	case 5:
@@ -1765,6 +1905,10 @@ func (p *JSONFilterParser) Literal() (localctx ILiteralContext) {
 		{
 			p.SetState(83)
 			p.Match(JSONFilterParserEXISTS)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	case 6:
@@ -1772,6 +1916,10 @@ func (p *JSONFilterParser) Literal() (localctx ILiteralContext) {
 		{
 			p.SetState(84)
 			p.Match(JSONFilterParserTRUE)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	case 7:
@@ -1779,6 +1927,10 @@ func (p *JSONFilterParser) Literal() (localctx ILiteralContext) {
 		{
 			p.SetState(85)
 			p.Match(JSONFilterParserFALSE)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	case 8:
@@ -1786,11 +1938,27 @@ func (p *JSONFilterParser) Literal() (localctx ILiteralContext) {
 		{
 			p.SetState(86)
 			p.Match(JSONFilterParserINDENTIFIER)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
+	case antlr.ATNInvalidAltNumber:
+		goto errorExit
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 func (p *JSONFilterParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex int) bool {
@@ -1808,9 +1976,6 @@ func (p *JSONFilterParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIn
 }
 
 func (p *JSONFilterParser) Filter_expr_Sempred(localctx antlr.RuleContext, predIndex int) bool {
-	this := p
-	_ = this
-
 	switch predIndex {
 	case 0:
 		return p.Precpred(p.GetParserRuleContext(), 3)

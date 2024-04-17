@@ -88,7 +88,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		return nil, err
 	}
 
-	isCustomSecretsRegexes := len(c.ScanParams.SecretsRegexesPath) > 0
+	isCustomSecretsRegexes := c.ScanParams.SecretsRegexesPath != ""
 
 	secretsInspector, err := secrets.NewInspector(
 		ctx,
@@ -202,7 +202,7 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 }
 
 func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err error) {
-	if len(regexRulesPath) > 0 {
+	if regexRulesPath != "" {
 		b, err := os.ReadFile(regexRulesPath)
 		if err != nil {
 			return regexRulesContent, err
