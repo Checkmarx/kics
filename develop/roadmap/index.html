@@ -1701,9 +1701,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#completed_features" class="md-nav__link">
+  <a href="#version_200_deprecated_queries" class="md-nav__link">
     <span class="md-ellipsis">
-      Completed Features
+      Version 2.0.0 deprecated queries
     </span>
   </a>
   
@@ -1890,380 +1890,190 @@
   <h1>Roadmap</h1>
 
 <h2 id="kics_roadmap">KICS Roadmap<a class="headerlink" href="#kics_roadmap" title="Permanent link">&para;</a></h2>
-<p>These are our upcoming features:</p>
+<p>These are our upcoming new supports:</p>
 <ul>
-<li>Add new BoM resources:<ul>
-<li>AWS Aurora </li>
-<li>AWS DynamoDB </li>
-<li>AWS RDS </li>
-</ul>
-</li>
-<li>BoM for Serverless Framework</li>
-<li>Support Windows Containers</li>
+<li>Bicep</li>
+<li>Terraform: Databricks (by default)</li>
+<li>Terraform: NifCloud (by default)</li>
+<li>Terraform: TencentCloud (by default)</li>
+<li>Extend Pulumi Support to .json extention</li>
 </ul>
 <p>Have an idea?
 Join the <a href="https://github.com/Checkmarx/kics/discussions" target="_blank">GitHub discussions</a> or contact KICS core team at <a href="mailto:kics@checkmarx.com">kics@checkmarx.com</a></p>
-<hr />
-<h2 id="completed_features">Completed Features<a class="headerlink" href="#completed_features" title="Permanent link">&para;</a></h2>
+<h2 id="version_200_deprecated_queries">Version 2.0.0 deprecated queries<a class="headerlink" href="#version_200_deprecated_queries" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Release</th>
-<th>Feature</th>
+<th>QueryID</th>
+<th>Name</th>
+<th>Platform</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>September 2022</strong></td>
-<td></td>
+<td>7fdc2bf3-6bc0-4cb3-84c5-cfd041c0f892</td>
+<td>ECS Task Definition Container With Plaintext Password</td>
+<td>Ansible</td>
 </tr>
 <tr>
-<td>v1.6.0</td>
-<td>Support new technologies: Pulumi, Serverless Framework, Crossplane and Knative</td>
+<td>8e3063f4-b511-45c3-b030-f3b0c9131951</td>
+<td>IAM Password Without Lowercase Letter</td>
+<td>Ansible</td>
 </tr>
 <tr>
-<td>v1.6.0</td>
-<td>Kuberneter (dynamic gathering and scan of Kubernetes cluster data through Kubernetes API)</td>
+<td>9cf25d62-0b96-42c8-b66d-998cd6ee5bb8</td>
+<td>IAM Password Without Number</td>
+<td>Ansible</td>
 </tr>
 <tr>
-<td><strong>April 2022</strong></td>
-<td></td>
+<td>83957b81-39c1-4191-8e12-671d2ce14354</td>
+<td>IAM Password Without Uppercase Letter</td>
+<td>Ansible</td>
 </tr>
 <tr>
-<td>v1.5.6</td>
-<td>Support REST API to execute KICS scan</td>
+<td>309edc5b-5a59-42b4-a357-d4d098311fd4</td>
+<td>S3 Bucket SSE Disabled</td>
+<td>Ansible</td>
 </tr>
 <tr>
-<td>v1.5.6</td>
-<td>Support REST API to get KICS scan results</td>
+<td>1e2341ba-a5cf-4f0a-a5f6-47e90c68ea89</td>
+<td>User Data Shell Script Is Encoded</td>
+<td>Ansible</td>
 </tr>
 <tr>
-<td>v1.5.6</td>
-<td>Support Cloudformation BOM</td>
+<td>f9b10cdb-eaab-4e39-9793-e12b94a582ad</td>
+<td>ECS Task Definition Container With Plaintext Password</td>
+<td>CloudFormation</td>
 </tr>
 <tr>
-<td><strong>March 2022</strong></td>
-<td></td>
+<td>f4cf35d6-da92-48de-ab70-57be2b2e6497</td>
+<td>IAM Password Without Lowercase Letter</td>
+<td>CloudFormation</td>
 </tr>
 <tr>
-<td>v1.5.5</td>
-<td>Kubelet Configuration Support</td>
+<td>839f238f-2e3a-4a72-b945-8abdf91af955</td>
+<td>IAM Password Without Number</td>
+<td>CloudFormation</td>
 </tr>
 <tr>
-<td>v1.5.5</td>
-<td>Display how many lines of IaC were parsed/scanned (in LOGS)</td>
+<td>d72a7869-e8b9-4e12-bcd2-e8be10b39fa7</td>
+<td>IAM Password Without Symbol</td>
+<td>CloudFormation</td>
 </tr>
 <tr>
-<td>v1.5.5</td>
-<td>Docker compose analyzer support</td>
+<td>445020f6-b69e-4484-847f-02d4b7768902</td>
+<td>IAM Password Without Uppercase Letter</td>
+<td>CloudFormation</td>
 </tr>
 <tr>
-<td>v1.5.4</td>
-<td>Gitlab KICS added Features - Analyse Merge Requests</td>
+<td>64ab651b-f5b2-4af0-8c89-ddd03c4d0e61</td>
+<td>S3 Bucket SSE Disabled</td>
+<td>CloudFormation</td>
 </tr>
 <tr>
-<td>v1.5.3</td>
-<td>Support multi-staged Docker queries</td>
+<td>4fbfee74-8186-40d5-a24e-4baa76a855de</td>
+<td>SQS Queue Policy Allows NotAction</td>
+<td>CloudFormation</td>
 </tr>
 <tr>
-<td><strong>February 2022</strong></td>
-<td></td>
+<td>4a8fc9a2-2b2f-4b3f-aa8d-401425872034</td>
+<td>SQS Queue Policy Allows NotPrincipal</td>
+<td>CloudFormation</td>
 </tr>
 <tr>
-<td>v1.5.2</td>
-<td>Terraformer integration with AZURE</td>
+<td>48c3bc58-6959-4f27-b647-4fedeace23be</td>
+<td>User Data Shell Script Is Encoded</td>
+<td>CloudFormation</td>
 </tr>
 <tr>
-<td>v1.5.2</td>
-<td>Terraformer integration with GCP</td>
+<td>5fa731ea-e844-47a6-a1e8-abc25e95847e</td>
+<td>Vulnerable OpenSSL Version</td>
+<td>Dockerfile</td>
 </tr>
 <tr>
-<td>v1.5.2</td>
-<td>Multiple paths for queries</td>
+<td>9d43040e-e703-4e16-8bfe-8d4da10fa7e6</td>
+<td>Container CPU Requests Not Equal To It's Limits</td>
+<td>Kubernetes</td>
 </tr>
 <tr>
-<td>v1.5.1</td>
-<td>Cloud Development Kit for Terraform support</td>
+<td>aafa7d94-62de-4fbf-8838-b69ee217b0e6</td>
+<td>Container Memory Requests Not Equal To It's Limits</td>
+<td>Kubernetes</td>
 </tr>
 <tr>
-<td><strong>January 2022</strong></td>
-<td></td>
+<td>aee3c7d2-a811-4201-90c7-11c028be9a46</td>
+<td>Container Requests Not Equal To It's Limits</td>
+<td>Kubernetes</td>
 </tr>
 <tr>
-<td>v1.5.0</td>
-<td>Terraformer integration with AWS</td>
+<td>2f1a0619-b12b-48a0-825f-993bb6f01d58</td>
+<td>Not Limited Capabilities For Container</td>
+<td>Kubernetes</td>
 </tr>
 <tr>
-<td>v1.5.0</td>
-<td>AWS Serverless Application Model support</td>
+<td>70d3873e-d537-46e5-ac3b-4e48fbdd29b4</td>
+<td>Cleartext API Key In Global Security (v2)</td>
+<td>OpenAPI</td>
 </tr>
 <tr>
-<td>v1.5.0</td>
-<td>ASFF report</td>
+<td>9c238c97-1991-4c0b-9c7d-6c7912e1dc7c</td>
+<td>Cleartext API Key In Global Security (v3)</td>
+<td>OpenAPI</td>
 </tr>
 <tr>
-<td><strong>December 2021</strong></td>
-<td></td>
+<td>99733b39-6413-4ed8-8acf-dc7cdc9b4e51</td>
+<td>Cleartext API Key In Operation Security (v2)</td>
+<td>OpenAPI</td>
 </tr>
 <tr>
-<td>v1.4.9</td>
-<td>Google Deployment Manager support</td>
+<td>d90d4e40-44c1-4125-87a0-e072c3e195b5</td>
+<td>Cleartext API Key In Operation Security (v3)</td>
+<td>OpenAPI</td>
 </tr>
 <tr>
-<td>v1.4.9</td>
-<td>gRPC support</td>
+<td>de92dd34-1b88-43e8-b825-6e02d73c4549</td>
+<td>IAM Password Without Lowercase Letter</td>
+<td>Pulumi</td>
 </tr>
 <tr>
-<td>v1.4.9</td>
-<td>CycloneDX SBOM report</td>
+<td>d40210ea-64b9-4cce-a4fb-e8604f3c062c</td>
+<td>ECS Task Definition Container With Plaintext Password</td>
+<td>Terraform</td>
 </tr>
 <tr>
-<td>v1.4.9</td>
-<td>JUnit report</td>
+<td>bbc7c137-6c7b-4fc4-984a-0c88e91fcaf9</td>
+<td>IAM Password Without Lowercase Letter</td>
+<td>Terraform</td>
 </tr>
 <tr>
-<td><strong>November 2021</strong></td>
-<td></td>
+<td>7a70eed6-de3a-4da2-94da-a2bbc8fe2a48</td>
+<td>IAM Password Without Symbol</td>
+<td>Terraform</td>
 </tr>
 <tr>
-<td>v1.4.8</td>
-<td>Pre-commit hooks integration</td>
+<td>c5ff7bc9-d8ea-46dd-81cb-8286f3222249</td>
+<td>IAM Password Without Uppercase Letter</td>
+<td>Terraform</td>
 </tr>
 <tr>
-<td>v1.4.8</td>
-<td>SonarQube report</td>
+<td>2acb555f-f4ad-4b1b-b984-84e6588f4b05</td>
+<td>Not Limited Capabilities For Pod Security Policy</td>
+<td>Terraform</td>
 </tr>
 <tr>
-<td>v1.4.7</td>
-<td>Parsers ignore comment by line</td>
+<td>2bc626a8-0751-446f-975d-8139214fc790</td>
+<td>Role Assignment Of Guest Users</td>
+<td>Terraform</td>
 </tr>
 <tr>
-<td>v1.4.7</td>
-<td>MegaLinter integration</td>
+<td>6726dcc0-5ff5-459d-b473-a780bef7665c</td>
+<td>S3 Bucket SSE Disabled</td>
+<td>Terraform</td>
 </tr>
 <tr>
-<td><strong>October 2021</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>v1.4.6</td>
-<td>Terraform Cloud integration</td>
-</tr>
-<tr>
-<td>v1.4.5</td>
-<td>Azure Blueprints support</td>
-</tr>
-<tr>
-<td>v1.4.5</td>
-<td>Bill-of-Material for cloud-resources generation (--bom option)</td>
-</tr>
-<tr>
-<td>v1.4.5</td>
-<td>Terraform plan support</td>
-</tr>
-<tr>
-<td><strong>September 2021</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>v1.4.4</td>
-<td>Terraform verified modules support</td>
-</tr>
-<tr>
-<td>v1.4.3</td>
-<td>Passwords and Secrets mechanism</td>
-</tr>
-<tr>
-<td>v1.4.3</td>
-<td>--disable-secrets and --secrets-regexes-path option</td>
-</tr>
-<tr>
-<td>v1.4.3</td>
-<td>TravisCI integration example</td>
-</tr>
-<tr>
-<td>v1.4.2</td>
-<td>--exclude-severities and --libraries-path option</td>
-</tr>
-<tr>
-<td><strong>August 2021</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>v1.4.1</td>
-<td>Ignore/disable/enable feature on commented files</td>
-</tr>
-<tr>
-<td>v1.4.0</td>
-<td>Azure Resource Manager support</td>
-</tr>
-<tr>
-<td>v1.4.0</td>
-<td>Terraform functions</td>
-</tr>
-<tr>
-<td>v1.4.0</td>
-<td>CIS descriptions</td>
-</tr>
-<tr>
-<td><strong>July 2021</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>v1.3.5</td>
-<td>--input-data option</td>
-</tr>
-<tr>
-<td>v1.3.5</td>
-<td>Improved documentation</td>
-</tr>
-<tr>
-<td><strong>June 2021</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>v1.3.3</td>
-<td>PDF report</td>
-</tr>
-<tr>
-<td>v1.3.2</td>
-<td>Gitlab SAST report</td>
-</tr>
-<tr>
-<td>v1.3.2</td>
-<td>Improved HTML report (path, platform, start/end times)</td>
-</tr>
-<tr>
-<td><strong>May 2021</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>v1.3.0</td>
-<td>Improved performance (sample filtering and parallel scans)</td>
-</tr>
-<tr>
-<td>v1.3.0</td>
-<td>Improved Logs (CPU, RAM outputs)</td>
-</tr>
-<tr>
-<td>v1.3.0</td>
-<td>Jenkinsfile documentation and examples</td>
-</tr>
-<tr>
-<td>v1.3.0</td>
-<td>CircleCI integration example</td>
-</tr>
-<tr>
-<td><strong>April 2021</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>v1.2.4</td>
-<td>Added Open API 3.0 support</td>
-</tr>
-<tr>
-<td>v1.2.4</td>
-<td>Distribution platforms: Homebrew</td>
-</tr>
-<tr>
-<td>v1.2.2</td>
-<td>Terraform - Parameters files support</td>
-</tr>
-<tr>
-<td><strong>March 2021</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>v1.2.1</td>
-<td>Helm support</td>
-</tr>
-<tr>
-<td>v1.2.1</td>
-<td>Reporting - add HTML format</td>
-</tr>
-<tr>
-<td>v1.2.0</td>
-<td>Documentation - Queries catalog</td>
-</tr>
-<tr>
-<td>v1.2.0</td>
-<td>Reporting - add SARIF format</td>
-</tr>
-<tr>
-<td>v1.2.0</td>
-<td>Improved CLI outputs (progess, coloring, logo)</td>
-</tr>
-<tr>
-<td>v1.2.0</td>
-<td>Engineering and performance improvements</td>
-</tr>
-<tr>
-<td><strong>February 2021</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>v1.1.4</td>
-<td>CI/CD improved documentation</td>
-</tr>
-<tr>
-<td>v1.1.3</td>
-<td>Mac support</td>
-</tr>
-<tr>
-<td>v1.1.3</td>
-<td>Hard-coded secret keys detection</td>
-</tr>
-<tr>
-<td><strong>January 2021</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>v1.1.1</td>
-<td>Adding more queries and extending coverage</td>
-</tr>
-<tr>
-<td>v1.1.1</td>
-<td>Adding more CI/CD integrations</td>
-</tr>
-<tr>
-<td>v1.1.1</td>
-<td>Engineering and performance improvements</td>
-</tr>
-<tr>
-<td><strong>December 2020</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>v1.1.0</td>
-<td>K8S support</td>
-</tr>
-<tr>
-<td>v1.1.0</td>
-<td>Docker support</td>
-</tr>
-<tr>
-<td>v1.1.0</td>
-<td>Ansible support</td>
-</tr>
-<tr>
-<td>v1.1.0</td>
-<td>AWS CloudFormation support</td>
-</tr>
-<tr>
-<td><strong>November 2020</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>v1.0.0</td>
-<td>First version of KICS engine</td>
-</tr>
-<tr>
-<td>v1.0.0</td>
-<td>Terraform support, 50 queries</td>
-</tr>
-<tr>
-<td>v1.0.0</td>
-<td>Delivery: CLI &amp; Docker</td>
+<td>9cf718ce-46f9-430e-89ec-c456f8b469ee</td>
+<td>User Data Shell Script Is Encoded</td>
+<td>Terraform</td>
 </tr>
 </tbody>
 </table>
