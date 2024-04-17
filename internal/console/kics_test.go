@@ -271,6 +271,7 @@ func TestScanPerformance(t *testing.T) { //nolint
 				"-q",
 				filepath.FromSlash("../../assets/queries/"),
 				"--ignore-on-exit", "all",
+				"--parallel", "1",
 			},
 			secondExecArgs: []string{"kics",
 				"scan",
@@ -279,7 +280,6 @@ func TestScanPerformance(t *testing.T) { //nolint
 				"-q",
 				filepath.FromSlash("../../assets/queries/"),
 				"--ignore-on-exit", "all",
-				"--parallel", "0",
 			},
 		},
 	}
