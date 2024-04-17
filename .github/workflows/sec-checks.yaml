@@ -162,7 +162,7 @@ jobs:
         run: go install golang.org/x/vuln/cmd/govulncheck@latest
       - name: Run govulncheck scanner in fs mode
         run: |
-          govulncheck -C . ./... > ./results.txt || true
+          govulncheck -show verbose -C . ./... > ./results.txt || true
           bash ./.github/scripts/sec-checks/govulncheck-ignore-unfixed.sh
       - name: Inspect action report
         if: always()
@@ -183,12 +183,12 @@ jobs:
         with:
           go-version-file: go.mod
       - name: Build kics
-        run: go build -ldflags "-s -w " -a -installsuffix cgo -o ./bin/kics ./cmd/console/main.go
+        run: go build -ldflags "-s -w" -a -installsuffix cgo -o ./bin/kics ./cmd/console/main.go
       - name: Install govulncheck
         run: go install golang.org/x/vuln/cmd/govulncheck@latest
       - name: Run govulncheck scanner in binary mode
         run: |
-          govulncheck -mode=binary ./bin/kics > ./results.txt || true
+          govulncheck -show verbose -mode=binary ./bin/kics > ./results.txt || true
           bash ./.github/scripts/sec-checks/govulncheck-ignore-unfixed.sh
       - name: Inspect action report
         if: always()
