@@ -18,7 +18,20 @@
 </div>
 
 ---
+#### Version 2.0.0 Added Features, Breaking Changes and Deprecated Queries
 
+#### Breaking changes
+- Critical severity added a [new exit status code](https://docs.kics.io/latest/results/#results_status_code)
+- Terraformer removed
+
+#### Added features
+- Critical severity
+- Parallel Scan (by default)
+
+#### Deprecated Queries
+Click [here](roadmap.md) to check the deprecated queries list.
+
+---
 #### Supported Platforms
 
 KICS scans and detects issues in following Infrastructure as Code solutions:
