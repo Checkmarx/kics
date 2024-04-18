@@ -130,12 +130,10 @@ func parseDecorators(decorators []parser.IDecoratorContext, s *BicepVisitor) map
 
 func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) interface{} {
 	param := map[string]interface{}{}
-	identifier, ok := ctx.Identifier().Accept(s).(string)
-	if !ok {
-		return nil
-	}
+	identifier := ctx.Identifier().Accept(s).(string)
 	if ctx.ParameterDefaultValue() != nil {
 		paramVal := ctx.ParameterDefaultValue().Accept(s)
+		param["defaultValue"] = nil
 		switch paramVal := paramVal.(type) {
 		case map[string][]interface{}:
 			stringifiedFunction := parseFunctionCall(paramVal)
@@ -145,8 +143,6 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 				paramVal = "[" + paramVal.(string) + "]"
 			}
 			param["defaultValue"] = paramVal
-		default:
-			param["defaultValue"] = nil
 		}
 	}
 	if ctx.TypeExpression() != nil {
@@ -184,10 +180,7 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 
 func (s *BicepVisitor) VisitVariableDecl(ctx *parser.VariableDeclContext) interface{} {
 	var variable = map[string]interface{}{}
-	identifier, ok := ctx.Identifier().Accept(s).(string)
-	if !ok {
-		return nil
-	}
+	identifier := ctx.Identifier().Accept(s).(string)
 	expression := ctx.Expression().Accept(s)
 	decoratorsMap := parseDecorators(ctx.AllDecorator(), s)
 	for name, values := range decoratorsMap {
@@ -280,10 +273,7 @@ func parseFunctionCall(functionData map[string][]interface{}) string {
 func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{} {
 	if ctx.GetChildCount() > 1 {
 		if ctx.Identifier() != nil {
-			identifier, ok := ctx.Identifier().Accept(s).(string)
-			if !ok {
-				return nil
-			}
+			identifier := ctx.Identifier().Accept(s).(string)
 			for variable := range s.varList {
 				if variable == identifier {
 					identifier = "variables('" + identifier + CloseParenthesis
@@ -359,14 +349,8 @@ func (s *BicepVisitor) VisitLiteralValue(ctx *parser.LiteralValueContext) interf
 	if ctx.FALSE() != nil {
 		return false
 	}
-	if ctx.NULL() != nil {
-		return nil
-	}
 	if ctx.Identifier() != nil {
-		identifier, ok := ctx.Identifier().Accept(s).(string)
-		if !ok {
-			return nil
-		}
+		identifier := ctx.Identifier().Accept(s).(string)
 		for variable := range s.varList {
 			if variable == identifier {
 				identifier = "variables('" + identifier + CloseParenthesis
@@ -504,17 +488,11 @@ func (s *BicepVisitor) VisitObjectProperty(ctx *parser.ObjectPropertyContext) in
 		}
 
 		if ctx.Identifier() != nil {
-			identifier, ok := ctx.Identifier().Accept(s).(string)
-			if !ok {
-				return KicsObjectProperty{objectProperty: map[string]interface{}{}, line: 0}
-			}
+			identifier := ctx.Identifier().Accept(s).(string)
 			objectProperty[identifier] = objectValue
 		}
 		if ctx.InterpString() != nil {
-			interpString, ok := ctx.InterpString().Accept(s).(string)
-			if !ok {
-				return KicsObjectProperty{objectProperty: map[string]interface{}{}, line: 0}
-			}
+			interpString := ctx.InterpString().Accept(s).(string)
 			objectProperty[interpString] = objectValue
 		}
 	}
@@ -526,21 +504,6 @@ func (s *BicepVisitor) VisitIdentifier(ctx *parser.IdentifierContext) interface{
 	if ctx.IDENTIFIER() != nil {
 		identifier := ctx.IDENTIFIER().GetText()
 		return identifier
-	}
-	if (ctx.PARAM()) != nil {
-		return ctx.PARAM().GetText()
-	}
-	if (ctx.RESOURCE()) != nil {
-		return ctx.RESOURCE().GetText()
-	}
-	if (ctx.VAR()) != nil {
-		return ctx.VAR().GetText()
-	}
-	if (ctx.TRUE()) != nil {
-		return ctx.TRUE().GetText()
-	}
-	if (ctx.FALSE()) != nil {
-		return ctx.FALSE().GetText()
 	}
 	if (ctx.NULL()) != nil {
 		return ctx.NULL().GetText()
@@ -557,7 +520,7 @@ func (s *BicepVisitor) VisitIdentifier(ctx *parser.IdentifierContext) interface{
 	if (ctx.OBJECT()) != nil {
 		return ctx.OBJECT().GetText()
 	}
-	return nil
+	return ""
 }
 
 func (s *BicepVisitor) VisitParenthesizedExpression(ctx *parser.ParenthesizedExpressionContext) interface{} {
@@ -574,11 +537,9 @@ func (s *BicepVisitor) VisitDecoratorExpression(ctx *parser.DecoratorExpressionC
 }
 
 func (s *BicepVisitor) VisitFunctionCall(ctx *parser.FunctionCallContext) interface{} {
-	identifier, ok := ctx.Identifier().Accept(s).(string)
-	if !ok {
-		return map[string]interface{}{}
-	}
+	identifier := ctx.Identifier().Accept(s).(string)
 	var argumentList []interface{}
+	var ok bool
 	if ctx.ArgumentList() != nil {
 		argumentList, ok = ctx.ArgumentList().Accept(s).([]interface{})
 		if !ok {
