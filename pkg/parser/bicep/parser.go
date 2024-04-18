@@ -202,10 +202,7 @@ func (s *BicepVisitor) VisitVariableDecl(ctx *parser.VariableDeclContext) interf
 
 func (s *BicepVisitor) VisitResourceDecl(ctx *parser.ResourceDeclContext) interface{} {
 	resource := map[string]interface{}{}
-	interpString, ok := ctx.InterpString().Accept(s).(string)
-	if !ok {
-		return nil
-	}
+	interpString := ctx.InterpString().Accept(s).(string)
 	identifier, ok := ctx.Identifier().Accept(s).(string)
 	if !ok {
 		return nil
@@ -470,7 +467,6 @@ func (s *BicepVisitor) VisitObject(ctx *parser.ObjectContext) interface{} {
 					kicsArr := []interface{}{kicsDefault}
 					line[kicsArray] = kicsArr
 				}
-
 			}
 			propertiesLines[kicsPrefix+key] = line
 		}
