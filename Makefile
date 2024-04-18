@@ -69,6 +69,7 @@ generate: mod-tidy ## go generate
 .PHONY: generate-antlr
 generate-antlr: ## generate parser with ANTLRv4, needs JRE (Java Runtime Environment) on the system
 	@cd pkg/parser/jsonfilter/ && java -jar $(LIB)/antlr-4.13.1-complete.jar -Dlanguage=Go -visitor -no-listener -o parser JSONFilter.g4
+	@cd pkg/parser/bicep/antlr && java -jar $(LIB)/antlr-4.13.1-complete.jar -Dlanguage=Go -visitor -no-listener -o parser bicep.g4
 
 .PHONY: test
 test-short: # Run sanity unit tests
@@ -132,6 +133,7 @@ dkr-compose: ## build docker image and runs docker-compose up
 dkr-build-antlr: ## build ANTLRv4 docker image and generate parser based on given grammar
 	@docker build -t antlr4-generator:dev -f ./docker/Dockerfile.antlr .
 	@docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser/jsonfilter/:/work -it antlr4-generator:dev
+	@docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser/bicep/antlr:/work -it antlr4-generator:dev
 
 .PHONY: release
 release: ## goreleaser --rm-dist
