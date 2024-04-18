@@ -47,6 +47,7 @@ param parenthesis string = ('simple-vm')
 var storageAccountName = 'bootdiags${uniqueString(resourceGroup().id)}'
 var nicName = 'myVMNic'
 
+@sys.description('This is a test description for resources')
 resource vm 'Microsoft.Compute/virtualMachines@2021-03-01' = {
   name: vmName
   location: location
@@ -55,7 +56,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-03-01' = {
       vmSize: vmSize
     }
     osProfile: {
-      computerName: vmName
+      computerName: 'computer'.vmName
       adminUsername: adminUsername
       adminPassword: adminPassword
     }
@@ -83,7 +84,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-03-01' = {
     networkProfile: {
       networkInterfaces: [
         {
-          id: resourceId('Microsoft.Network/networkInterfaces', nicName)
+          id: resourceId('Microsoft.Network/networkInterfaces', 'nick'.nicName)
         }
       ]
     }
@@ -99,5 +100,14 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-03-01' = {
   dependsOn: [
     resourceId('Microsoft.Network/networkInterfaces', nicName)
     resourceId('Microsoft.Storage/storageAccounts', storageAccountName)
+  ]
+}
+
+resource nic 'Microsoft.Network/networkInterfaces@2021-03-01' = {
+  name: nicName[0]
+  location: [
+    for i in name: {
+      name: nicName
+    }
   ]
 }
