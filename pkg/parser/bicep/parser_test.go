@@ -67,6 +67,14 @@ func TestParseBicepFile(t *testing.T) {
 			want: `{
 					"parameters": {
 						"isNumber": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 10
+								},
+								"_kics_type": {
+									"_kics_line": 10
+								}
+							},
 							"defaultValue": true,
 							"metadata": {
 								"description": "This is a test bool param declaration."
@@ -74,6 +82,14 @@ func TestParseBicepFile(t *testing.T) {
 							"type": "bool"
 						},
 						"middleString": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 13
+								},
+								"_kics_type": {
+									"_kics_line": 13
+								}
+							},
 							"defaultValue": "'teste-${parameters('numberNodes')}${parameters('isNumber')}-teste'",
 							"metadata": {
 								"description": "This is a test middle string param declaration."
@@ -81,6 +97,14 @@ func TestParseBicepFile(t *testing.T) {
 							"type": "string"
 						},
 						"numberNodes": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 7
+								},
+								"_kics_type": {
+									"_kics_line": 7
+								}
+							},
 							"defaultValue": 2,
 							"metadata": {
 								"description": "This is a test int param declaration."
@@ -88,6 +112,14 @@ func TestParseBicepFile(t *testing.T) {
 							"type": "int"
 						},
 						"projectName": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 4
+								},
+								"_kics_type": {
+									"_kics_line": 4
+								}
+							},
 							"defaultValue": "test",
 							"metadata": {
 								"description": "This is a test param with secure declaration."
@@ -97,7 +129,7 @@ func TestParseBicepFile(t *testing.T) {
 					},
 					"resources": [],
 					"variables": {}
-					}`,
+				}`,
 			wantErr: false,
 		},
 		{
@@ -129,6 +161,14 @@ func TestParseBicepFile(t *testing.T) {
 			want: `{
 					"parameters": {
 						"OSVersion": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 35
+								},
+								"_kics_type": {
+									"_kics_line": 35
+								}
+							},
 							"allowedValues": [
 								[
 									"2008-R2-SP1",
@@ -154,6 +194,14 @@ func TestParseBicepFile(t *testing.T) {
 							"type": "string"
 						},
 						"adminPassword": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 10
+								},
+								"_kics_type": {
+									"_kics_line": 10
+								}
+							},
 							"metadata": {
 								"description": "Password for the Virtual Machine."
 							},
@@ -161,12 +209,28 @@ func TestParseBicepFile(t *testing.T) {
 							"type": "secureString"
 						},
 						"adminUsername": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 5
+								},
+								"_kics_type": {
+									"_kics_line": 5
+								}
+							},
 							"metadata": {
 								"description": "Username for the Virtual Machine."
 							},
 							"type": "string"
 						},
 						"location": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 41
+								},
+								"_kics_type": {
+									"_kics_line": 41
+								}
+							},
 							"defaultValue": "[resourceGroup().location]",
 							"metadata": {
 								"description": "Location for all resources."
@@ -174,10 +238,26 @@ func TestParseBicepFile(t *testing.T) {
 							"type": "string"
 						},
 						"parenthesis": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 46
+								},
+								"_kics_type": {
+									"_kics_line": 46
+								}
+							},
 							"defaultValue": "simple-vm",
 							"type": "string"
 						},
 						"vmName": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 44
+								},
+								"_kics_type": {
+									"_kics_line": 44
+								}
+							},
 							"defaultValue": "simple-vm",
 							"metadata": {
 								"description": "Name of the virtual machine."
@@ -185,6 +265,14 @@ func TestParseBicepFile(t *testing.T) {
 							"type": "string"
 						},
 						"vmSize": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 38
+								},
+								"_kics_type": {
+									"_kics_line": 38
+								}
+							},
 							"defaultValue": "Standard_D2_v3",
 							"metadata": {
 								"description": "Size of the virtual machine."
@@ -194,6 +282,36 @@ func TestParseBicepFile(t *testing.T) {
 					},
 					"resources": [
 						{
+							"_kics_lines": {
+								"_kics__default": {
+									"_kics_line": 50
+								},
+								"_kics_apiVersion": {
+									"_kics_line": 50
+								},
+								"_kics_dependsOn": {
+									"_kics_arr": [
+										{
+											"_kics__default": {
+												"_kics_line": 99
+											}
+										}
+									],
+									"_kics_line": 99
+								},
+								"_kics_location": {
+									"_kics_line": 52
+								},
+								"_kics_name": {
+									"_kics_line": 51
+								},
+								"_kics_properties": {
+									"_kics_line": 53
+								},
+								"_kics_type": {
+									"_kics_line": 50
+								}
+							},
 							"apiVersion": "2021-03-01",
 							"dependsOn": [
 								{
@@ -209,21 +327,92 @@ func TestParseBicepFile(t *testing.T) {
 									]
 								}
 							],
+							"identifier": "vm",
 							"location": "[parameters('location')]",
 							"name": "[parameters('vmName')]",
 							"properties": {
+								"_kics_lines": {
+									"_kics__default": {
+										"_kics_line": 53
+									},
+									"_kics_diagnosticsProfile": {
+										"_kics_line": 90
+									},
+									"_kics_hardwareProfile": {
+										"_kics_line": 54
+									},
+									"_kics_networkProfile": {
+										"_kics_line": 83
+									},
+									"_kics_osProfile": {
+										"_kics_line": 57
+									},
+									"_kics_storageProfile": {
+										"_kics_line": 62
+									}
+								},
 								"diagnosticsProfile": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 90
+										},
+										"_kics_bootDiagnostics": {
+											"_kics_line": 91
+										}
+									},
 									"bootDiagnostics": {
+										"_kics_lines": {
+											"_kics__default": {
+												"_kics_line": 91
+											},
+											"_kics_enabled": {
+												"_kics_line": 92
+											},
+											"_kics_storageUri": {
+												"_kics_line": 93
+											}
+										},
 										"enabled": true,
 										"storageUri": "[reference(resourceId(Microsoft.Storage/storageAccounts, variables('storageAccountName'))).primaryEndpoints.blob]"
 									}
 								},
 								"hardwareProfile": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 54
+										},
+										"_kics_vmSize": {
+											"_kics_line": 55
+										}
+									},
 									"vmSize": "[parameters('vmSize')]"
 								},
 								"networkProfile": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 83
+										},
+										"_kics_networkInterfaces": {
+											"_kics_arr": [
+												{
+													"_kics__default": {
+														"_kics_line": 84
+													}
+												}
+											],
+											"_kics_line": 84
+										}
+									},
 									"networkInterfaces": [
 										{
+											"_kics_lines": {
+												"_kics__default": {
+													"_kics_line": 85
+												},
+												"_kics_id": {
+													"_kics_line": 86
+												}
+											},
 											"id": {
 												"resourceId": [
 													"Microsoft.Network/networkInterfaces",
@@ -234,27 +423,112 @@ func TestParseBicepFile(t *testing.T) {
 									]
 								},
 								"osProfile": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 57
+										},
+										"_kics_adminPassword": {
+											"_kics_line": 60
+										},
+										"_kics_adminUsername": {
+											"_kics_line": 59
+										},
+										"_kics_computerName": {
+											"_kics_line": 58
+										}
+									},
 									"adminPassword": "[parameters('adminPassword')]",
 									"adminUsername": "[parameters('adminUsername')]",
 									"computerName": "[parameters('vmName')]"
 								},
 								"storageProfile": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 62
+										},
+										"_kics_dataDisks": {
+											"_kics_arr": [
+												{
+													"_kics__default": {
+														"_kics_line": 75
+													}
+												}
+											],
+											"_kics_line": 75
+										},
+										"_kics_imageReference": {
+											"_kics_line": 63
+										},
+										"_kics_osDisk": {
+											"_kics_line": 69
+										}
+									},
 									"dataDisks": [
 										{
+											"_kics_lines": {
+												"_kics__default": {
+													"_kics_line": 76
+												},
+												"_kics_createOption": {
+													"_kics_line": 79
+												},
+												"_kics_diskSizeGB": {
+													"_kics_line": 77
+												},
+												"_kics_lun": {
+													"_kics_line": 78
+												}
+											},
 											"createOption": "Empty",
 											"diskSizeGB": 1023,
 											"lun": 0
 										}
 									],
 									"imageReference": {
+										"_kics_lines": {
+											"_kics__default": {
+												"_kics_line": 63
+											},
+											"_kics_offer": {
+												"_kics_line": 65
+											},
+											"_kics_publisher": {
+												"_kics_line": 64
+											},
+											"_kics_sku": {
+												"_kics_line": 66
+											},
+											"_kics_version": {
+												"_kics_line": 67
+											}
+										},
 										"offer": "WindowsServer",
 										"publisher": "MicrosoftWindowsServer",
 										"sku": "[parameters('OSVersion')]",
 										"version": "latest"
 									},
 									"osDisk": {
+										"_kics_lines": {
+											"_kics__default": {
+												"_kics_line": 69
+											},
+											"_kics_createOption": {
+												"_kics_line": 70
+											},
+											"_kics_managedDisk": {
+												"_kics_line": 71
+											}
+										},
 										"createOption": "FromImage",
 										"managedDisk": {
+											"_kics_lines": {
+												"_kics__default": {
+													"_kics_line": 71
+												},
+												"_kics_storageAccountType": {
+													"_kics_line": 72
+												}
+											},
 											"storageAccountType": "StandardSSD_LRS"
 										}
 									}
