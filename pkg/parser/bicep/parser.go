@@ -203,10 +203,7 @@ func (s *BicepVisitor) VisitVariableDecl(ctx *parser.VariableDeclContext) interf
 func (s *BicepVisitor) VisitResourceDecl(ctx *parser.ResourceDeclContext) interface{} {
 	resource := map[string]interface{}{}
 	interpString := ctx.InterpString().Accept(s).(string)
-	identifier, ok := ctx.Identifier().Accept(s).(string)
-	if !ok {
-		return nil
-	}
+	identifier := ctx.Identifier().Accept(s).(string)
 	resourceType := strings.Split(interpString, "@")[0]
 	apiVersion := strings.Split(interpString, "@")[1]
 	resource["type"] = resourceType
