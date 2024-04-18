@@ -6,6 +6,7 @@ on:
     branches: [master]
     paths:
       - "pkg/parser/jsonfilter/JSONFilter.g4"
+      - "pkg/parser/bicep/antlr/bicep.g4"
 jobs:
   metrics:
     name: generate-antlr-parser
@@ -22,9 +23,12 @@ jobs:
           context: .
           push: false
           tags: antlr4-generator:dev
-      - name: Generate Parser
+      - name: Generate JSONFilter Parser
         run: |
           docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser/jsonfilter:/work -it antlr4-generator:dev
+      - name: Generate Bicep Parser
+        run: |
+            docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser/bicep/antlr:/work -it antlr4-generator:dev  
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
