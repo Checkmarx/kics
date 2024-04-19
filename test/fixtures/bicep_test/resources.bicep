@@ -110,4 +110,8 @@ resource nic 'Microsoft.Network/networkInterfaces@2021-03-01' = {
       name: nicName
     }
   ]
+  userAssignedIdentities: {
+    '${resourceId('Microsoft.ManagedIdentity/userAssignedIdentities',nicName)}': {}
+  }
+  assignableScopes: [subscription().id]
 }
