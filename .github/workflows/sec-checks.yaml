@@ -18,7 +18,7 @@ jobs:
           ignore-unfixed: true
           format: 'json'
           output: './results.json'
-          severity: 'CRITICAL,HIGH,MEDIUM'
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW'
           exit-code: '1'
         # trivy-config: trivy.yaml
       - name: Inspect action report
@@ -65,7 +65,7 @@ jobs:
           vuln-type: 'os,library'
           format: 'json'
           output: './results.json'
-          severity: 'CRITICAL,HIGH,MEDIUM'
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW'
           ignore-policy: './trivy-ignore.rego'
         # trivy-config: trivy.image.yaml
           exit-code: '1'
@@ -91,7 +91,7 @@ jobs:
           path: "."
           only-fixed: true
           output-format: json
-          severity-cutoff: medium
+          severity-cutoff: low
           fail-build: true
       - name: Inspect action report
         if: always()
@@ -137,7 +137,7 @@ jobs:
         with:
           image: kics:sec-tests-${{ github.sha }}
           only-fixed: true
-          severity-cutoff: medium
+          severity-cutoff: low
           output-format: json
           fail-build: true
       - name: upload artifact
