@@ -52,7 +52,7 @@ require (
 	github.com/tidwall/gjson v1.14.4
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/yargevad/filepathx v1.0.0
-	github.com/zclconf/go-cty v1.13.1
+	github.com/zclconf/go-cty v1.14.4
 	golang.org/x/net v0.23.0
 	golang.org/x/text v0.14.0
 	golang.org/x/tools v0.16.1
@@ -68,6 +68,7 @@ require (
 	cloud.google.com/go/iam v1.1.5 // indirect
 	cloud.google.com/go/storage v1.36.0 // indirect
 	github.com/Microsoft/hcsshim v0.12.1-0.20240402173835-42671b424b99 // indirect
+	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
 	github.com/aws/aws-sdk-go v1.44.122 // indirect
 	github.com/aws/smithy-go v1.20.2 // indirect
 	github.com/containerd/log v0.1.0 // indirect
