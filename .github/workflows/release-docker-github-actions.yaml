@@ -39,7 +39,7 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: checkmarx/kics:gh-action-kics1.7
+          tags: checkmarx/kics:gh-action-kics2.0
           build-args: |
             VERSION=${{ github.event.inputs.version }}
             COMMIT=${{ github.sha }}
@@ -49,20 +49,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Export Image Digests
-        run: |
-          VERSION=${{ github.event.inputs.version }}
-
-          DIGEST=${{ steps.build_gh_action.outputs.digest }}
-
-          echo "${VERSION}-gh-actions,${DIGEST}" >> docs/docker/digests.csv
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 3.x
-      - name: Generate .md table
-        run: |
-          pip install csvtomd
-          csvtomd docs/docker/digests.csv > docs/docker/digests.md
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:

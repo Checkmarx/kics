@@ -126,10 +126,12 @@ function sortFunction(index) {
     }
   }
   const severityOrder = {
-    "high": 0,
-    "medium": 1,
-    "low": 2,
-    "info": 3,
+    "critical": 0,
+    "high": 1,
+    "medium": 2,
+    "low": 3,
+    "info": 4,
+    "trace": 5,
   }
   return function (a, b) {
     const severityA = severityOrder[a.children[index].innerText.toLowerCase().trim()]

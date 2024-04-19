@@ -1,12 +1,13 @@
 {
   "id": "57ced4b9-6ba4-487b-8843-b65562b90c77",
   "queryName": "Security Group With Unrestricted Access To SSH",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "'SSH' (TCP:22) should not be public in AWS Security Group",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_group_module.html",
   "platform": "Ansible",
   "descriptionID": "ea2f2c57",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

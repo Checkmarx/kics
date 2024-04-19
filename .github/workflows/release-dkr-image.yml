@@ -99,26 +99,6 @@ jobs:
       #    password: ${{ secrets.DOCKER_PASSWORD }}
       #    readme-filepath: docs/dockerhub.md
       #    repository: checkmarx/kics
-      - name: Export Image Digests
-        run: |
-          VERSION=${{ steps.get-version.outputs.version }}
-
-          DIGEST=${{ steps.build_alpine.outputs.digest }}
-          ALPINE_DIGEST=${{ steps.build_alpine.outputs.digest }}
-          DEBIAN_DIGEST=${{ steps.build_debian.outputs.digest }}
-          UBI8_DIGEST=${{ steps.build_ubi8.outputs.digest }}
-
-          echo "${VERSION},${DIGEST}" >> docs/docker/digests.csv
-          echo "${VERSION}-alpine,${ALPINE_DIGEST}" >> docs/docker/digests.csv
-          echo "${VERSION}-debian,${DEBIAN_DIGEST}" >> docs/docker/digests.csv
-          echo "${VERSION}-ubi8,${UBI8_DIGEST}" >> docs/docker/digests.csv
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 3.x
-      - name: Generate .md table
-        run: |
-          pip install csvtomd
-          csvtomd docs/docker/digests.csv > docs/docker/digests.md
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:

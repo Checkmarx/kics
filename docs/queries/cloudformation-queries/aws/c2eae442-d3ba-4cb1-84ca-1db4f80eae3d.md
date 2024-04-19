@@ -18,7 +18,7 @@ hide:
 -   **Query id:** c2eae442-d3ba-4cb1-84ca-1db4f80eae3d
 -   **Query name:** Lambda Function Without Dead Letter Queue
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#CC0">Low</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Insecure Configurations
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/lambda_function_without_dead_letter_queue)
 

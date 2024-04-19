@@ -17,10 +17,11 @@ import (
 )
 
 var cycloneDxSeverityLevelEquivalence = map[model.Severity]string{
-	"INFO":   "None",
-	"LOW":    "Low",
-	"MEDIUM": "Medium",
-	"HIGH":   "High",
+	"INFO":     "None",
+	"LOW":      "Low",
+	"MEDIUM":   "Medium",
+	"HIGH":     "High",
+	"CRITICAL": "Critical",
 }
 
 // CycloneDxReport includes all the properties considered relevant for the CycloneDX Report
@@ -222,7 +223,7 @@ func InitCycloneDxReport() *CycloneDxReport {
 	}
 
 	return &CycloneDxReport{
-		XMLNS:        "http://cyclonedx.org/schema/bom/1.3",
+		XMLNS:        "http://cyclonedx.org/schema/bom/1.5",
 		XMLNSV:       "http://cyclonedx.org/schema/ext/vulnerability/1.0",
 		SerialNumber: "urn:uuid:" + uuid.New().String(),
 		Version:      1,

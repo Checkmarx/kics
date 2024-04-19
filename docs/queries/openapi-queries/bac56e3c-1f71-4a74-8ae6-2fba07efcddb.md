@@ -18,7 +18,7 @@ hide:
 -   **Query id:** bac56e3c-1f71-4a74-8ae6-2fba07efcddb
 -   **Query name:** Example JSON Reference Outside Components Examples
 -   **Platform:** OpenAPI
--   **Severity:** <span style="color:#00C">Info</span>
+-   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Structure and Semantics
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/openAPI/3.0/example_json_reference_outside_components_examples)
 

@@ -1,12 +1,13 @@
 {
   "id": "ad9dabc7-7839-4bae-a957-aa9120013f39",
   "queryName": "Lambda With Vulnerable Policy",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "The attribute 'action' should not have wildcard",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission#action",
   "platform": "Terraform",
   "descriptionID": "5db376a3",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

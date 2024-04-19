@@ -1,12 +1,13 @@
 {
   "id": "e6cd49ba-77ed-417f-9bca-4f5303554308",
   "queryName": "DocDB Logging Is Disabled",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "DocDB logging should be enabled",
   "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/docdb.aws.crossplane.io/DBCluster/v1alpha1@v0.21.1#status-atProvider-enabledCloudwatchLogsExports",
   "platform": "Crossplane",
   "descriptionID": "60b6794e",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

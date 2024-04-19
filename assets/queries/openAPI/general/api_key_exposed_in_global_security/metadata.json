@@ -1,9 +1,9 @@
 {
   "id": "aecee30b-8ea1-4776-a99c-d6d600f0862f",
   "queryName": "API Key Exposed In Global Security (v3)",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Access Control",
-  "descriptionText": "API Keys should not be transported over network",
+  "descriptionText": "API Keys should be transported using a secure method such as HTTPS. Define a security scheme that uses a secure method to transport the API key.",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
   "platform": "OpenAPI",
   "descriptionID": "f7f6e7fb",
@@ -13,8 +13,10 @@
       "id": "533a0d13-6e89-4551-ae33-bce14e5849c1",
       "queryName": "API Key Exposed In Global Security (v2)",
       "descriptionUrl": "https://swagger.io/specification/v2/#securityDefinitionsObject",
-      "descriptionText": ""
+      "descriptionText": "API Keys should be transported using a secure method such as HTTPS. Define a security scheme that uses a secure method to transport the API key."
     }
   },
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM",
+  "cloudProvider": "common"
 }

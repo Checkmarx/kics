@@ -1,7 +1,7 @@
-# UTILITIES
+# Utilities
 
 
-## LINES SCANNED AND LINES PARSED 
+## Lines scanned and lines parsed
 
 KICS presents the number of lines scanned and the number of lines parsed. Both are presented in LOG messages and the JSON report. Note that the number of the lines includes empty ones.
 
@@ -19,7 +19,7 @@ Lines scanned are the lines of the files that were scanned, in the first instanc
 
 
 
-## RESOURCE TYPE AND RESOURCE NAME
+## Resource type and resource name
 
 KICS presents the resource type and the resource name fields in the JSON result of each query. These fields are available for the following platforms: Ansible, Azure Resource Manager, CloudFormation, CrossPlane, Knative, Kubernetes, Google Deployment Manager, Pulumi, ServerlessFW and Terraform.
 

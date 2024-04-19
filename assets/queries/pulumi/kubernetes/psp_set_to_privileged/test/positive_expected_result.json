@@ -1,8 +1,8 @@
 [
-	{
-		"queryName": "PSP Set To Privileged",
-		"severity": "MEDIUM",
-		"line": 11,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "PSP Set To Privileged",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive.yaml"
+  }
 ]

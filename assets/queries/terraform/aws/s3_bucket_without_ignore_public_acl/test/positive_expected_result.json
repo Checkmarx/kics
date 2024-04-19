@@ -1,25 +1,25 @@
 [
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 10,
     "filename": "positive1.tf"
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 7,
     "filename": "positive2.tf"
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 1,
     "filename": "positive3.tf"
   },
   {
     "queryName": "S3 Bucket Without Ignore Public ACL",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 5,
     "filename": "positive4.tf"
   }

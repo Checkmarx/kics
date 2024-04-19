@@ -1,12 +1,12 @@
 [
   {
     "queryName": "Yum Install Allows Manual Input",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 3
   },
   {
     "queryName": "Yum Install Allows Manual Input",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 4
   }
 ]

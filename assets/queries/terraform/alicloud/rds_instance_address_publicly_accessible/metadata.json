@@ -1,12 +1,13 @@
 {
   "id": "faaefc15-51a5-419e-bb5e-51a4b5ab3485",
   "queryName": "RDS DB Instance Publicly Accessible",
-  "severity": "HIGH",
+  "severity": "CRITICAL",
   "category": "Insecure Configurations",
   "descriptionText": "The field 'address' should not be set to '0.0.0.0/0'",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#address",
   "platform": "Terraform",
   "descriptionID": "d23dc3f9",
   "cloudProvider": "alicloud",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

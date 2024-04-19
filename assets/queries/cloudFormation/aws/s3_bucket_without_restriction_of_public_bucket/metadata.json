@@ -1,12 +1,13 @@
 {
   "id": "350cd468-0e2c-44ef-9d22-cfb73a62523c",
   "queryName": "S3 Bucket Without Restriction Of Public Bucket",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "S3 bucket without restriction of public bucket",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html",
   "platform": "CloudFormation",
   "descriptionID": "f9a4d93a",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

@@ -1,12 +1,13 @@
 {
   "id": "bf878b1a-7418-4de3-b13c-3a86cf894920",
   "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",
-  "severity": "LOW",
+  "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "S3 bucket public access is overridden by S3 bucket Public Access Block when the following attributes are set to true - 'block_public_acls', 'block_public_policy', 'ignore_public_acls', and 'restrict_public_buckets'",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block#bucket",
   "platform": "Terraform",
   "descriptionID": "aa9967ef",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

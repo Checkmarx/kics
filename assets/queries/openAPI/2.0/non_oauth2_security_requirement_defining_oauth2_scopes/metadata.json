@@ -1,11 +1,12 @@
 {
   "id": "ba239cb9-f342-4c20-812d-7b5a2aa6969e",
   "queryName": "Non OAuth2 Security Requirement Defining OAuth2 Scopes",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Structure and Semantics",
   "descriptionText": "If the security scheme is not of type 'oauth2', the array value must be empty",
   "descriptionUrl": "https://swagger.io/specification/v2/#securityRequirementObject",
   "platform": "OpenAPI",
   "descriptionID": "33e1e674",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

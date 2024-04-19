@@ -22,7 +22,7 @@ type K8sConfig struct {
 
 func getK8sClient() (client.Client, error) {
 	// authentication through k8s config file
-	if len(os.Getenv("K8S_CONFIG_FILE")) > 0 {
+	if os.Getenv("K8S_CONFIG_FILE") != "" {
 		config, err := clientcmd.BuildConfigFromFlags("", os.Getenv("K8S_CONFIG_FILE"))
 
 		if err != nil {
@@ -46,7 +46,7 @@ func getK8sClient() (client.Client, error) {
 	}
 
 	// authentication through k8s service account token or k8s client certificate
-	if len(os.Getenv("K8S_HOST")) > 0 && c.hasCertificateAuthority() {
+	if os.Getenv("K8S_HOST") != "" && c.hasCertificateAuthority() {
 		c.Config.Host = os.Getenv("K8S_HOST")
 
 		// authentication through k8s service account token
@@ -67,12 +67,12 @@ func getK8sClient() (client.Client, error) {
 }
 
 func (c *K8sConfig) hasCertificateAuthority() bool {
-	if len(os.Getenv("K8S_CA_FILE")) > 0 {
+	if os.Getenv("K8S_CA_FILE") != "" {
 		c.Config.TLSClientConfig.CAFile = os.Getenv("K8S_CA_FILE")
 		return true
 	}
 
-	if len(os.Getenv("K8S_CA_DATA")) > 0 {
+	if os.Getenv("K8S_CA_DATA") != "" {
 		caDataDecoded, err := b64.StdEncoding.DecodeString(os.Getenv("K8S_CA_DATA"))
 		if err != nil {
 			log.Error().Msgf("failed to decode K8S_CA_DATA: %s", err)
@@ -86,12 +86,12 @@ func (c *K8sConfig) hasCertificateAuthority() bool {
 }
 
 func (c *K8sConfig) hasServiceAccountToken() bool {
-	if len(os.Getenv("K8S_SA_TOKEN_FILE")) > 0 {
+	if os.Getenv("K8S_SA_TOKEN_FILE") != "" {
 		c.Config.BearerTokenFile = os.Getenv("K8S_SA_TOKEN_FILE")
 		return true
 	}
 
-	if len(os.Getenv("K8S_SA_TOKEN_DATA")) > 0 {
+	if os.Getenv("K8S_SA_TOKEN_DATA") != "" {
 		c.Config.BearerToken = os.Getenv("K8S_SA_TOKEN_DATA")
 		return true
 	}
@@ -102,12 +102,12 @@ func (c *K8sConfig) hasServiceAccountToken() bool {
 func (c *K8sConfig) hasClientCertificate() bool {
 	hasCert := false
 
-	if len(os.Getenv("K8S_CERT_FILE")) > 0 {
+	if os.Getenv("K8S_CERT_FILE") != "" {
 		c.Config.TLSClientConfig.CertFile = os.Getenv("K8S_CERT_FILE")
 		hasCert = true
 	}
 
-	if len(os.Getenv("K8S_CERT_DATA")) > 0 {
+	if os.Getenv("K8S_CERT_DATA") != "" {
 		certDataDecoded, err := b64.StdEncoding.DecodeString(os.Getenv("K8S_CERT_DATA"))
 		if err != nil {
 			log.Error().Msgf("failed to decode K8S_CERT_DATA: %s", err)
@@ -118,12 +118,12 @@ func (c *K8sConfig) hasClientCertificate() bool {
 	}
 
 	if hasCert {
-		if len(os.Getenv("K8S_KEY_FILE")) > 0 {
+		if os.Getenv("K8S_KEY_FILE") != "" {
 			c.Config.TLSClientConfig.KeyFile = os.Getenv("K8S_KEY_FILE")
 			return true
 		}
 
-		if len(os.Getenv("K8S_KEY_DATA")) > 0 {
+		if os.Getenv("K8S_KEY_DATA") != "" {
 			keyDataDecoded, err := b64.StdEncoding.DecodeString(os.Getenv("K8S_KEY_DATA"))
 			if err != nil {
 				log.Error().Msgf("failed to decode K8S_KEY_DATA: %s", err)

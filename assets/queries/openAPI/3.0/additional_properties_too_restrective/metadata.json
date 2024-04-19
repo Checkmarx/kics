@@ -1,11 +1,12 @@
 {
   "id": "a19c3bbd-c056-40d7-9e1c-eeb0634e320d",
   "queryName": "Additional Properties Too Restrictive",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Insecure Configurations",
   "descriptionText": "Objects should accept 'additionalProperties' if it is allOf or an object with anyOf or oneOf",
   "descriptionUrl": "https://swagger.io/specification/#schema-object",
   "platform": "OpenAPI",
   "descriptionID": "d470a878",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

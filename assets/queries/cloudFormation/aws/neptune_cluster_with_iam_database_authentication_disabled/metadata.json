@@ -1,12 +1,13 @@
 {
   "id": "a3aa0087-8228-4e7e-b202-dc9036972d02",
   "queryName": "Neptune Cluster With IAM Database Authentication Disabled",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Neptune Cluster should have IAM Database Authentication enabled",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-neptune-dbcluster.html#cfn-neptune-dbcluster-iamauthenabled",
   "platform": "CloudFormation",
   "descriptionID": "39cddadb",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

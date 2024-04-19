@@ -12,7 +12,11 @@ import (
 	"golang.org/x/net/html"
 )
 
-var availablePlatforms = initPlatforms()
+var (
+	availablePlatforms = initPlatforms()
+	severityIds        = []string{"info", "low", "medium", "high", "critical", "total"}
+	headerIds          = []string{"scan-paths", "scan-platforms"}
+)
 
 func initPlatforms() map[string]string {
 	platforms := make(map[string]string)
@@ -38,26 +42,24 @@ func HTMLValidation(t *testing.T, file string) {
 	require.NoError(t, errAct, "Opening Actual HTML File should not yield an error")
 
 	// Compare Header Data (Paths, Platforms)
-	headerIds := []string{"scan-paths", "scan-platforms"}
-	for arg := range headerIds {
-		expectedValue := getElementByID(expectedHTML, headerIds[arg])
-		actualValue := getElementByID(actualHTML, headerIds[arg])
-
+	sliceOfExpected := make([]string, 0, len(headerIds))
+	sliceOfActual := make([]string, 0, len(headerIds))
+	for _, header := range headerIds {
+		expectedValue := getElementByID(expectedHTML, header)
+		actualValue := getElementByID(actualHTML, header)
+		sliceOfActual = append(sliceOfActual, strings.Split(actualValue.LastChild.Data, ",")...)
 		// Adapt path if running locally (dev)
 		if GetKICSDockerImageName() == "" {
 			expectedValue.LastChild.Data = KicsDevPathAdapter(expectedValue.LastChild.Data)
 		}
-
-		require.NotNil(t, actualValue.LastChild,
-			"[%s] Invalid value in Element ID <%s>", file, headerIds[arg])
-
-		require.Equal(t, expectedValue.LastChild.Data, actualValue.LastChild.Data,
-			"[%s] HTML Element <%s>:\n- Expected value: %s\n- Actual value: %s\n",
-			file, headerIds[arg], expectedValue.LastChild.Data, actualValue.LastChild.Data)
+		sliceOfExpected = append(sliceOfExpected, strings.Split(expectedValue.LastChild.Data, ",")...)
+		require.NotNil(t, actualValue.LastChild, "[%s] Invalid value in Element ID <%s>", file, header)
 	}
 
-	// Compare Severity Values (High, Medium, Total...)
-	severityIds := []string{"info", "low", "medium", "high", "total"}
+	require.ElementsMatch(t, sliceOfExpected, sliceOfActual,
+		"[%s] HTML Element :\n- Expected value: %s\n- Actual value: %s\n",
+		file, sliceOfExpected, sliceOfActual)
+
 	for arg := range severityIds {
 		nodeIdentificator := "severity-count-" + severityIds[arg]
 		expectedSeverityValue := getElementByID(expectedHTML, nodeIdentificator)

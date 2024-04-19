@@ -1,11 +1,12 @@
 {
   "id": "46a2e9ec-6a5f-4faa-9d39-4ea44d5d87a2",
   "queryName": "Bind Address Not Properly Set",
-  "severity": "HIGH",
+  "severity": "INFO",
   "category": "Networking and Firewall",
   "descriptionText": "When using kube-controller-manager or kube-scheduler commands, the '--bind-address' should not be set to 127.0.0.1",
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
   "descriptionID": "b52844f2",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

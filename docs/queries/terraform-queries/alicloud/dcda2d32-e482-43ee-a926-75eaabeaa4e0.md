@@ -18,7 +18,7 @@ hide:
 -   **Query id:** dcda2d32-e482-43ee-a926-75eaabeaa4e0
 -   **Query name:** RAM Security Preference Not Enforce MFA Login
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Access Control
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/alicloud/ram_security_preference_not_enforce_mfa)
 
@@ -61,20 +61,6 @@ resource "alicloud_ram_security_preference" "example2" {
   allow_user_to_change_password = true
   enforce_mfa_for_login = false
 }
-
-```
-```tf title="Positive test num. 3 - tf file" 
-# this file does not return any result because inside the test folder exists at least one resource "alicloud_ram_security_preference" in the samples
-#resource "alicloud_ram_user" "user3" {
-#  name         = "user_test"
-#  display_name = "user_display_name"
-#  mobile       = "86-18688888888"
-#  email        = "hello.uuu@aaa.com"
-#  comments     = "yoyoyo"
-#  force        = true
-#}
-
-
 
 ```
 

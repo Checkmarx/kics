@@ -1,17 +1,17 @@
 [
   {
     "queryName": "Small Activity Log Retention Period",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 13
   },
   {
     "queryName": "Small Activity Log Retention Period",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 20
   },
   {
     "queryName": "Small Activity Log Retention Period",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 46
   }
 ]

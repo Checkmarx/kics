@@ -1,0 +1,35 @@
+{
+    "components": {},
+    "info": {
+      "description": "Swagger auto-generated from learnt schema for ves-io-s-gorman-s-gorman-sent4-http-load-balancer",
+      "title": "ves-io-s-gorman-s-gorman-sent4-http-load-balancer",
+      "version": "2023-06-21 17:30:59"
+    },
+    "openapi": "3.0.3",
+    "paths": {
+      "/": {
+        "get": {
+          "description": "Swagger auto-generated from learnt schema",
+          "parameters": [
+            {
+              "description": "Integer",
+              "in": "header",
+              "name": "upgrade-insecure-requests",
+              "schema": {
+                "pattern": "-?\\d+",
+                "type": "string"
+              }
+            }
+          ]
+        }
+    },
+    "servers": [
+      {
+        "url": "http://sent4.volterra.plutometal.com"
+      },
+      {
+        "url": "https://sent4.volterra.plutometal.com"
+      }
+    ]
+  }
+}
