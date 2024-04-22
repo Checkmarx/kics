@@ -30,7 +30,7 @@ isPinned(use){
 }
 
 isRelative(use){
-	allowed := ["./", "../"]
+	allowed := ["./"]
     startswith(use,allowed[i])
 }
 
