@@ -1,12 +1,13 @@
 {
   "id": "9d0d4512-1959-43a2-a17f-72360ff06d1b",
   "queryName": "CloudWatch VPC Changes Alarm Missing",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Ensure a log metric filter and alarm exist for VPC changes",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern",
   "platform": "Terraform",
   "descriptionID": "6159556d",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

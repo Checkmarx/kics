@@ -1,13 +1,13 @@
 [
   {
     "queryName": "MQ Broker Is Publicly Accessible",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 15,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "MQ Broker Is Publicly Accessible",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 31,
     "fileName": "positive2.json"
   }

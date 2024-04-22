@@ -1,13 +1,13 @@
 [
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 25,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 33,
     "fileName": "positive1.yaml"
   },
@@ -15,10 +15,10 @@
     "line": 55,
     "fileName": "positive2.json",
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2",
-    "severity": "HIGH"
+    "severity": "MEDIUM"
   },
   {
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 11,
     "fileName": "positive2.json",
     "queryName": "CloudFront Without Minimum Protocol TLS 1.2"

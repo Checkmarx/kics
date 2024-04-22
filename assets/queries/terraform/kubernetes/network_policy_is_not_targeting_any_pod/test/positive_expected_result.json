@@ -1,7 +1,7 @@
 [
   {
     "queryName": "Network Policy Is Not Targeting Any Pod",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 14
   }
 ]

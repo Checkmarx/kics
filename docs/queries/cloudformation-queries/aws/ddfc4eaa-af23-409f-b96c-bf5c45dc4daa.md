@@ -18,7 +18,7 @@ hide:
 -   **Query id:** ddfc4eaa-af23-409f-b96c-bf5c45dc4daa
 -   **Query name:** HTTP Port Open To Internet
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Networking and Firewall
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/http_port_open)
 

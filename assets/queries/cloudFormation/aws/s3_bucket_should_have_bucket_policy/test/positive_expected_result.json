@@ -1,49 +1,49 @@
 [
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 4,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 31,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 56,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 42,
     "fileName": "positive2.json"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 88,
     "fileName": "positive2.json"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 130,
     "fileName": "positive2.json"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 4,
     "fileName": "positive3.yaml"
   },
   {
     "queryName": "S3 Bucket Should Have Bucket Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 5,
     "fileName": "positive4.json"
   }

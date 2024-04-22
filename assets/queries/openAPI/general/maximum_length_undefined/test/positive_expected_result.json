@@ -1,127 +1,127 @@
 [
   {
     "queryName": "Maximum Length Undefined (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 58,
     "filename": "positive1.json"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 62,
     "filename": "positive1.json"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 77,
     "filename": "positive1.json"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 77,
     "filename": "positive1.json"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 27,
     "filename": "positive2.json"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 31,
     "filename": "positive2.json"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 34,
     "filename": "positive3.yaml"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 37,
     "filename": "positive3.yaml"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 47,
     "filename": "positive3.yaml"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 47,
     "filename": "positive3.yaml"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 22,
     "filename": "positive4.yaml"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 25,
     "filename": "positive4.yaml"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 23,
     "filename": "positive5.json"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 27,
     "filename": "positive5.json"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 19,
     "filename": "positive6.yaml"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 22,
     "filename": "positive6.yaml"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 23,
     "filename": "positive7.json"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 28,
     "filename": "positive7.json"
   },
   {
     "queryName": "Maximum Length Undefined (v2)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 28,
     "filename": "positive8.json"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 46,
     "filename": "positive9.json"
   },
   {
     "queryName": "Maximum Length Undefined (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 55,
     "filename": "positive9.json"
   }

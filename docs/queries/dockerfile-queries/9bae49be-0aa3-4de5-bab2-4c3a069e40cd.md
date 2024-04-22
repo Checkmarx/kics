@@ -18,12 +18,12 @@ hide:
 -   **Query id:** 9bae49be-0aa3-4de5-bab2-4c3a069e40cd
 -   **Query name:** Update Instruction Alone
 -   **Platform:** Dockerfile
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Build Process
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/update_instruction_alone)
 
 ### Description
-Instruction 'RUN <package-manager> update' should always be followed by '<package-manager> install' in the same RUN statement<br>
+Instruction 'RUN update' should always be followed by ' install' in the same RUN statement<br>
 [Documentation](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run)
 
 ### Code samples
@@ -105,13 +105,33 @@ ENTRYPOINT ["mysql"]
 
 ```
 ```dockerfile title="Negative test num. 2 - dockerfile file"
+FROM alpine:latest
+RUN apk update && apk add nginx
+RUN apk --update-cache add vim
+RUN apk -U add nano
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+```dockerfile title="Negative test num. 3 - dockerfile file"
+FROM alpine:latest
+RUN apk --update add nginx
+RUN apk add --update nginx
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+<details><summary>Negative test num. 4 - dockerfile file</summary>
+
+```dockerfile
 FROM ubuntu:18.04
 RUN apt-get update && apt-get install -y netcat \
     apt-get update && apt-get install -y supervisor
 ENTRYPOINT ["mysql"]
 
 ```
-```dockerfile title="Negative test num. 3 - dockerfile file"
+</details>
+<details><summary>Negative test num. 5 - dockerfile file</summary>
+
+```dockerfile
 FROM ubuntu:16.04
 
 RUN apt-get update \
@@ -121,7 +141,8 @@ RUN apt-get update \
 RUN /usr/local/zend/bin/php -r "readfile('https://getcomposer.org/installer');" | /usr/local/zend/bin/php \
     && /usr/local/zend/bin/php composer.phar self-update && /usr/local/zend/bin/php composer.phar update
 ```
-<details><summary>Negative test num. 4 - dockerfile file</summary>
+</details>
+<details><summary>Negative test num. 6 - dockerfile file</summary>
 
 ```dockerfile
 FROM archlinux:latest
@@ -130,7 +151,7 @@ RUN pacman -Syu && pacman -S nginx
 CMD ["nginx", "-g", "daemon off;"]
 ```
 </details>
-<details><summary>Negative test num. 5 - dockerfile file</summary>
+<details><summary>Negative test num. 7 - dockerfile file</summary>
 
 ```dockerfile
 FROM ubuntu:18.04
@@ -141,7 +162,7 @@ ENTRYPOINT ["mysql"]
 
 ```
 </details>
-<details><summary>Negative test num. 6 - dockerfile file</summary>
+<details><summary>Negative test num. 8 - dockerfile file</summary>
 
 ```dockerfile
 FROM opensuse:latest
@@ -150,7 +171,7 @@ RUN zypper refresh && zypper install nginx
 CMD ["nginx", "-g", "daemon off;"]
 ```
 </details>
-<details><summary>Negative test num. 7 - dockerfile file</summary>
+<details><summary>Negative test num. 9 - dockerfile file</summary>
 
 ```dockerfile
 FROM debian:latest
@@ -159,7 +180,7 @@ RUN apt update && install nginx
 CMD ["nginx", "-g", "daemon off;"]
 ```
 </details>
-<details><summary>Negative test num. 8 - dockerfile file</summary>
+<details><summary>Negative test num. 10 - dockerfile file</summary>
 
 ```dockerfile
 FROM centos:latest
@@ -168,32 +189,11 @@ RUN yum update && yum install nginx
 CMD ["nginx", "-g", "daemon off;"]
 ```
 </details>
-<details><summary>Negative test num. 9 - dockerfile file</summary>
+<details><summary>Negative test num. 11 - dockerfile file</summary>
 
 ```dockerfile
 FROM fedora:latest
 RUN dnf update && dnf install nginx
-
-CMD ["nginx", "-g", "daemon off;"]
-```
-</details>
-<details><summary>Negative test num. 10 - dockerfile file</summary>
-
-```dockerfile
-FROM alpine:latest
-RUN apk update && apk add nginx
-RUN apk --update-cache add vim
-RUN apk -U add nano
-
-CMD ["nginx", "-g", "daemon off;"]
-```
-</details>
-<details><summary>Negative test num. 11 - dockerfile file</summary>
-
-```dockerfile
-FROM alpine:latest
-RUN apk --update add nginx
-RUN apk add --update nginx
 
 CMD ["nginx", "-g", "daemon off;"]
 ```

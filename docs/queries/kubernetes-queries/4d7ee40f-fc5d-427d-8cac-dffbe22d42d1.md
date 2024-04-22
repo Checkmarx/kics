@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 4d7ee40f-fc5d-427d-8cac-dffbe22d42d1
 -   **Query name:** Authorization Mode Node Not Set
 -   **Platform:** Kubernetes
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Insecure Configurations
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/k8s/authorization_mode_node_not_set)
 

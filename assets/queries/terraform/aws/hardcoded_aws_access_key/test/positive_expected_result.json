@@ -1,13 +1,13 @@
 [
   {
     "queryName": "Hardcoded AWS Access Key",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 5,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Hardcoded AWS Access Key",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 13,
     "fileName": "positive1.tf"
   }

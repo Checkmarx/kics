@@ -29,7 +29,6 @@
     "line": 23,
     "fileName": "positive4.tf"
   },
-  
   {
     "queryName": "S3 Bucket Without Enabled MFA Delete",
     "severity": "LOW",
