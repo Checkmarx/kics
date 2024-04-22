@@ -166,7 +166,7 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 		}
 	}
 
-	line := map[string]int{kicsLine: ctx.GetStop().GetLine() + 1}
+	line := map[string]int{kicsLine: ctx.GetStop().GetLine()}
 	lines := map[string]map[string]int{
 		kicsPrefix + "defaultValue": line,
 		kicsPrefix + "type":         line,
