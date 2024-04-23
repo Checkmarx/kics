@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/rs/zerolog/log"
 )
 
@@ -151,7 +151,7 @@ func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.Vulner
 }
 
 func getEnv(env string) string {
-	if len(os.Getenv(env)) > 0 {
+	if os.Getenv(env) != "" {
 		return os.Getenv(env)
 	}
 

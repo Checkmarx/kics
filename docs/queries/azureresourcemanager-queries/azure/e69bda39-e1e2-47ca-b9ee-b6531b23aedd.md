@@ -18,7 +18,7 @@ hide:
 -   **Query id:** e69bda39-e1e2-47ca-b9ee-b6531b23aedd
 -   **Query name:** PostgreSQL Database Server Log Connections Disabled
 -   **Platform:** AzureResourceManager
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Networking and Firewall
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/postgres_sql_server_log_connections_disabled)
 

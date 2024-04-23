@@ -18,7 +18,7 @@ hide:
 -   **Query id:** fc040fb6-4c23-4c0d-b12a-39edac35debb
 -   **Query name:** Disk Encryption Disabled
 -   **Platform:** GoogleDeploymentManager
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Encryption
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/googleDeploymentManager/gcp/disk_encryption_disabled)
 

@@ -18,7 +18,7 @@ hide:
 -   **Query id:** cdddb86f-95f6-4fc4-b5a1-483d9afceb2b
 -   **Query name:** COPY '--from' References Current FROM Alias
 -   **Platform:** Dockerfile
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Build Process
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/copy_from_references_current_from_alias)
 

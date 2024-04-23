@@ -51,7 +51,7 @@ def get_query_info(query_path : str, metadata_file = 'metadata.json'):
     with open(expected_result_file_path) as f:
         expected_results = json.loads(f.read())
 
-    files = os.listdir(os.path.join(query_path, 'test'))
+    files = sorted(os.listdir(os.path.join(query_path, 'test')), key=str.casefold)
     positive_filenames = []
     negative_filenames = []
 

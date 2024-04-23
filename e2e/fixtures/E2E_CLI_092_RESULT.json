@@ -87,7 +87,7 @@
 			"severity": "MEDIUM",
 			"platform": "CloudFormation",
 			"cloud_provider": "AWS",
-			"category": "Backup",
+			"category": "Availability",
 			"experimental": false,
 			"description": "AWS RDS Instance should have a multi-az deployment",
 			"description_id": "4bdb6677",

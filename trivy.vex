@@ -1,0 +1,22 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://openvex.dev/docs/public/vex-685261c01e907a07114f2953353f39503e2c11783b124cb74833f6cfcd34436b",
+  "author": "Fernando Nogueira",
+  "timestamp": "2024-03-22T10:34:54.6859785-04:00",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2019-25210"
+      },
+      "timestamp": "2024-03-22T10:34:54.68598-04:00",
+      "products": [
+        {
+          "@id": "pkg:golang/helm.sh/helm/v3@v3.14.2"
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path"
+    }
+  ]
+}

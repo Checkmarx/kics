@@ -1,0 +1,9 @@
+#  format: 'table'
+#  exit:
+#    code: '1'
+#  ignore-unfixed: true
+#  vuln:
+#    type: 'os,library'
+#  output: './trivy-image-results.json'
+#  severity: 'CRITICAL,HIGH,MEDIUM'
+#  ignore-policy: './trivy-ignore.rego'

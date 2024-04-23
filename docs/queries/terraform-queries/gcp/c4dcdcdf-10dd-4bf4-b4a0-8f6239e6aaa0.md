@@ -18,7 +18,7 @@ hide:
 -   **Query id:** c4dcdcdf-10dd-4bf4-b4a0-8f6239e6aaa0
 -   **Query name:** SSH Access Is Not Restricted
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Networking and Firewall
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/gcp/ssh_access_is_not_restricted)
 
