@@ -16,20 +16,20 @@ jobs:
         with:
           scan-type: 'fs'
           ignore-unfixed: true
-          format: 'json'
-          output: './results.json'
+          format: 'table'
+          output: './results.txt'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW'
           exit-code: '1'
         # trivy-config: trivy.yaml
       - name: Inspect action report
         if: always()
-        run: cat ./results.json
+        run: cat ./results.txt
       - name: Upload artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: trivy-fs-scan-results
-          path: ./results.json
+          path: ./results.txt
   trivy-docker-image:
     name: Trivy docker image scan
     runs-on: ubuntu-latest
@@ -63,21 +63,21 @@ jobs:
           image-ref: kics:sec-trivy-tests-${{ github.sha }}
           ignore-unfixed: true
           vuln-type: 'os,library'
-          format: 'json'
-          output: './results.json'
+          format: 'table'
+          output: './results.txt'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW'
           ignore-policy: './trivy-ignore.rego'
         # trivy-config: trivy.image.yaml
           exit-code: '1'
       - name: Inspect action report
         if: always()
-        run: cat ./results.json
+        run: cat ./results.txt
       - name: Upload artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: trivy-docker-image-scan-results
-          path: ./results.json
+          path: ./results.txt
   grype-file-system:
     name: Grype fs scan
     runs-on: ubuntu-latest
@@ -90,12 +90,12 @@ jobs:
         with:
           path: "."
           only-fixed: true
-          output-format: json
+          output-format: table
           severity-cutoff: low
           fail-build: true
       - name: Inspect action report
         if: always()
-        run: cat ${{ steps.grype-fs-scan.outputs.json }}
+        run: ls
       - name: Upload artifact
         if: always()
         uses: actions/upload-artifact@v4
@@ -138,7 +138,7 @@ jobs:
           image: kics:sec-tests-${{ github.sha }}
           only-fixed: true
           severity-cutoff: low
-          output-format: json
+          output-format: table
           fail-build: true
       - name: upload artifact
         if: always()
