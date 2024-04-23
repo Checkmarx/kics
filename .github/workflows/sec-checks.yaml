@@ -23,7 +23,7 @@ jobs:
         # trivy-config: trivy.yaml
       - name: Inspect action report
         if: always()
-        run: ls
+        run: cat ./results.json
       - name: Upload artifact
         if: always()
         uses: actions/upload-artifact@v4
