@@ -1,5 +1,5 @@
 ignore:
-  - vulnerability: GHSA-4v7x-pqxf-cx7m
+  - vulnerability: GHSA-4v7x-pqxf-cx7m # False Positive
   - package:
       name: anchore/scan-action
   - package:
