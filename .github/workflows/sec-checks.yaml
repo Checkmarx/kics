@@ -23,7 +23,7 @@ jobs:
         # trivy-config: trivy.yaml
       - name: Inspect action report
         if: always()
-        run: cat ./results.json
+        run: cat ./results.txt
       - name: Upload artifact
         if: always()
         uses: actions/upload-artifact@v4
@@ -89,6 +89,7 @@ jobs:
         uses: anchore/scan-action@v3
         with:
           path: "."
+          by-cve: true
           only-fixed: true
           output-format: table
           severity-cutoff: low
@@ -128,6 +129,7 @@ jobs:
         with:
           image: kics:sec-tests-${{ github.sha }}
           only-fixed: true
+          by-cve: true
           severity-cutoff: low
           output-format: table
           fail-build: true
