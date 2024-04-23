@@ -23,7 +23,7 @@ jobs:
         # trivy-config: trivy.yaml
       - name: Inspect action report
         if: always()
-        run: cat ./results.txt
+        run: ls
       - name: Upload artifact
         if: always()
         uses: actions/upload-artifact@v4
@@ -93,15 +93,6 @@ jobs:
           output-format: table
           severity-cutoff: low
           fail-build: true
-      - name: Inspect action report
-        if: always()
-        run: ls
-      - name: Upload artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: grype-fs-scan-results
-          path: ${{ steps.grype-fs-scan.outputs.json }}
   grype-docker-image:
     name: Grype docker image scan
     runs-on: ubuntu-latest
@@ -140,15 +131,6 @@ jobs:
           severity-cutoff: low
           output-format: table
           fail-build: true
-      - name: upload artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: grype-docker-image-scan-results
-          path: ${{ steps.grype-image-scan.outputs.json }}
-      - name: Inspect action report
-        if: always()
-        run: cat ${{ steps.grype-image-scan.outputs.json }}
   govulncheck-file-system:
     runs-on: ubuntu-latest
     name: govulncheck fs scan
