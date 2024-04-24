@@ -30,7 +30,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/wolfi-base@sha256:36e4b16af5c6f70e7eb71349f9c0341dd96a364ff04a4e0f352cb2a8389bf6f3
+FROM cgr.dev/chainguard/git
 
 ENV TERM xterm-256color
 
@@ -49,6 +49,7 @@ WORKDIR /app/bin
 ENV PATH $PATH:/app/bin
 
 RUN chmod 777 /app/bin/kics
+RUN chmod 777 /app/bin
 
 # Command to run the executable
 ENTRYPOINT ["/app/bin/kics"]
