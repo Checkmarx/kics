@@ -242,6 +242,7 @@ func initScan(queryID string) (*engine.Inspector, error) {
 		c.ScanParams.UseOldSeverities,
 		false,
 		c.ScanParams.ParallelScanFlag,
+		c.ScanParams.KicsComputeNewSimID,
 	)
 
 	return inspector, err

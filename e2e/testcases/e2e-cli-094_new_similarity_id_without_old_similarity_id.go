@@ -1,10 +1,10 @@
 package testcases
 
 // E2E-CLI-094 - KICS scan
-// should perform a scan successfully giving results with similarity ids unique
+// should perform a scan successfully giving results with similarity ids unique without showing the old similarity id
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should perform a scan successfully giving results with similarity ids unique [E2E-CLI-094]",
+		Name: "should perform a scan successfully giving results with similarity ids unique without showing the old similarity id [E2E-CLI-094]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",

@@ -38,4 +38,5 @@ const (
 	ParallelScanFile        = "parallel"
 	MaxFileSizeFlag         = "max-file-size"
 	UseOldSeveritiesFlag    = "old-severities"
+	KicsComputeNewSimIDFlag = "kics_compute_new_simid"
 )
