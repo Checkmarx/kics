@@ -32,7 +32,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
 # kics-scan ignore-line
 FROM cgr.dev/chainguard/git:latest-root
 ENV TERM xterm-256color
-RUN apk update
+
 #USER root
 
 
