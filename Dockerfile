@@ -26,6 +26,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go
 
+USER nonroot
 
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
