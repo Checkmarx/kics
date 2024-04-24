@@ -51,7 +51,6 @@ jobs:
         run: |
           docker run -v ${PWD}/assets/queries:/path \
             kics:${{ github.sha }} scan \
-            --log-path "/path/info.log" \
             -p "/path" \
             -o "/path/"
       - name: Archive test logs
