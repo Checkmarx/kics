@@ -77,9 +77,9 @@ jobs:
       - name: Set Output Permissions
         run: |
           sudo chmod -R 777 ./e2e
-          whoami
-          id -i
-          cat /etc/passwd
+          whoami > results.txt
+      - name: Set Output2 Permissions
+        run: cat results.txt
       - name: Run E2E Tests
         env:
           E2E_KICS_DOCKER: kics:e2e-tests-${{ github.sha }}
