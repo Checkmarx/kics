@@ -30,8 +30,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/git
-
+FROM cgr.dev/chainguard/busybox
 ENV TERM xterm-256color
 
 
@@ -43,16 +42,10 @@ COPY --from=build_env /app/assets/queries /app/bin/assets/queries
 COPY --from=build_env /app/assets/cwe_csv /app/bin/assets/cwe_csv
 COPY --from=build_env /app/assets/libraries/* /app/bin/assets/libraries/
 
-# Set permissions for the binary
-RUN chmod +x /app/bin/kics
-
 WORKDIR /app/bin
 
 # Healthcheck the container
 ENV PATH $PATH:/app/bin
-
-RUN chmod 777 /app/bin/kics
-RUN chmod 777 /app/bin
 
 # Command to run the executable
 ENTRYPOINT ["/app/bin/kics"]
