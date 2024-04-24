@@ -30,8 +30,10 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/busybox
+FROM cgr.dev/chainguard/wolfi-base
 ENV TERM xterm-256color
+
+USER root
 
 
 # Copy built binary to the runtime container
