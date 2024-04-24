@@ -33,7 +33,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
 FROM cgr.dev/chainguard/wolfi-base
 ENV TERM xterm-256color
 
-
+USER nonroot
 # Copy built binary to the runtime container
 # Vulnerability fixed in latest version of KICS remove when gh actions version is updated
 # kics-scan ignore-line
