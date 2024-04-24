@@ -43,6 +43,9 @@ COPY --from=build_env /app/assets/queries /app/bin/assets/queries
 COPY --from=build_env /app/assets/cwe_csv /app/bin/assets/cwe_csv
 COPY --from=build_env /app/assets/libraries/* /app/bin/assets/libraries/
 
+# Set permissions for the binary
+RUN chmod +x /app/bin/kics
+
 WORKDIR /app/bin
 
 # Healthcheck the container
