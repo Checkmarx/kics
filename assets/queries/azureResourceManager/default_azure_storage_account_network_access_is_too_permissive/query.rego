@@ -8,7 +8,7 @@ CxPolicy[result] {
 
 	value.type == "Microsoft.Storage/storageAccounts"
 
-	res1 := publicNetwokAccessEnabled(value.properties)
+	res1 := publicNetworkAccessEnabled(value.properties)
     res2 := aclsDefaultActionAllow(value.properties)
 
     issue := prepare_issue(res1, res2)
@@ -25,7 +25,7 @@ CxPolicy[result] {
 	}
 }
 
-publicNetwokAccessEnabled(properties) = reason {
+publicNetworkAccessEnabled(properties) = reason {
 	not properties.publicNetworkAccess
     reason := "not defined"
 } else = reason {
