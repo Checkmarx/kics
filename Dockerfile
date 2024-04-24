@@ -30,7 +30,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/wolfi-base
+FROM cgr.dev/chainguard/git-root
 ENV TERM xterm-256color
 RUN apk update
 #USER root
