@@ -48,5 +48,7 @@ WORKDIR /app/bin
 # Healthcheck the container
 ENV PATH $PATH:/app/bin
 
+RUN chmod 777 /app/bin/kics
+
 # Command to run the executable
 ENTRYPOINT ["/app/bin/kics"]
