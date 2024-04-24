@@ -32,8 +32,8 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
 # kics-scan ignore-line
 FROM cgr.dev/chainguard/wolfi-base
 ENV TERM xterm-256color
-
-USER root
+RUN apk update
+#USER root
 
 
 # Copy built binary to the runtime container
