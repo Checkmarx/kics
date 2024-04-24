@@ -146,10 +146,6 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) {
 
 	failedQueries := executeScanParameters.inspector.GetFailedQueries()
 
-	if err != nil {
-		return nil, err
-	}
-
 	results, err := c.Storage.GetVulnerabilities(ctx, c.ScanParams.ScanID)
 	if err != nil {
 		log.Err(err)
