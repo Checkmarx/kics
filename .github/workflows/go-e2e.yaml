@@ -92,6 +92,7 @@ jobs:
         run: |
           go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -json
       - name: Set Output3 Permissions
+        if: always()
         run: ls -la ./output
       - name: Generate E2E Report
         if: always()
