@@ -4,7 +4,7 @@
   "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "Security groups allow ingress from 0.0.0.0:0 and/or ::/0",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group.html",
+  "descriptionUrl": "https://www.terraform.io/docs/providers/aws/r/security_group.html",
   "platform": "Terraform",
   "descriptionID": "ce3ee5e0",
   "cloudProvider": "aws",

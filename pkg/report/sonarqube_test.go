@@ -39,6 +39,15 @@ func TestPrintSonarQubeReport(t *testing.T) {
 			},
 			wantErr: false,
 		},
+		{
+			name: "Test PrintSonarQubeReport Critical Severity",
+			args: args{
+				path:     "./testdir",
+				filename: "testout2",
+				body:     test.SummaryMockCritical,
+			},
+			wantErr: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

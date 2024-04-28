@@ -1,12 +1,13 @@
 {
   "id": "83bf5aca-138a-498e-b9cd-ad5bc5e117b4",
   "queryName": "Neptune Database Cluster Encryption Disabled",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Encryption",
   "descriptionText": "Neptune database cluster storage should have encryption enabled",
   "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/neptune.aws.crossplane.io/DBCluster/v1alpha1@v0.29.0#spec-forProvider-storageEncrypted",
   "platform": "Crossplane",
   "descriptionID": "f7998100",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

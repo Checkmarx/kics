@@ -6,8 +6,8 @@ import argparse
 import json
 import copy
 
-severities = {'High': 'HIGH', 'Medium': 'MEDIUM', 'Low': 'LOW', 'Info': 'INFO', 'Trace': 'TRACE'}
-colors = {'High': '#C00', 'Medium': '#C60', 'Low': '#CC0', 'Info': '#00C', 'Trace' : '#CCC'}
+severities = {'Critical': 'CRITICAL', 'High': 'HIGH', 'Medium': 'MEDIUM', 'Low': 'LOW', 'Info': 'INFO', 'Trace': 'TRACE'}
+colors = {'Critical': '#ff0000', 'High': '#bb2124', 'Medium': '#ff7213', 'Low': '#edd57e', 'Info': '#5bc0de', 'Trace' : '#CCCCCC'}
 template_dict = {}
 platforms = []
 
@@ -91,7 +91,11 @@ for path in all_metadata:
 
         check_and_create_override_entry(meta_dict, template_dict)
         q_id = meta_dict['id']
-        query_page = os.path.join('..', f"{meta_dict.get('platform').lower()}-queries", meta_dict.get('cloudProvider', '').lower(), meta_dict.get('id'))
+        cloud_provider = meta_dict.get('cloudProvider', '').lower()
+        query_page = os.path.join('..',
+                                  f"{platform.lower()}-queries",
+                                  cloud_provider if cloud_provider != 'common' else '',
+                                  q_id).replace('\\', '/')
         meta_dict['descriptionText'] = f'<a href="{query_page}" target="_blank">Query details</a>'
         template_dict[platform][sub_platform][severity][category][q_id] = meta_dict
 #
@@ -116,18 +120,18 @@ for path in all_metadata:
 #
 for file_format in parsed_args['formats']:
     general_data = {}
-    for platform in template_dict:
-        # sort by category
+    for platform in sorted(template_dict.keys(), key=str.casefold):
         data = {}
-        for sub_platform in template_dict[platform]:
+        for sub_platform in sorted(template_dict[platform].keys(), key=str.casefold):
             data[sub_platform] = {}
             for severity in severities:
                 if severities[severity] in template_dict[platform][sub_platform]:
                     data[sub_platform][severity] = {}
-                    for category in sorted(template_dict[platform][sub_platform][severities[severity]].keys()):
+                    for category in sorted(template_dict[platform][sub_platform][severities[severity]].keys(), key=str.casefold):
                         metadata_info = template_dict[platform][sub_platform][severities[severity]][category]
+                        sorted_metadata_info = dict(sorted(metadata_info.items(), key=lambda item: item[1]['queryName'].lower()))
                         data[sub_platform][severity] = {
-                            **data[sub_platform][severity], **metadata_info}
+                            **data[sub_platform][severity], **sorted_metadata_info}
         # create tables for each platform
         general_data[platform] = data
 

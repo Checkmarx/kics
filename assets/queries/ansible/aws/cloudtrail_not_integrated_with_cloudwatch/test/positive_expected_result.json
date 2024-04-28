@@ -1,22 +1,22 @@
 [
   {
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 2,
     "queryName": "CloudTrail Not Integrated With CloudWatch"
   },
   {
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 2,
     "queryName": "CloudTrail Not Integrated With CloudWatch"
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 14
   },
   {
     "queryName": "CloudTrail Not Integrated With CloudWatch",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 27
   }
 ]

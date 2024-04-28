@@ -1,68 +1,70 @@
 {
-  "kics_version": "development",
-  "files_scanned": 1,
-  "lines_scanned": 44,
-  "files_parsed": 1,
-  "lines_parsed": 44,
-  "lines_ignored": 0,
-  "files_failed_to_scan": 0,
-  "queries_total": 1,
-  "queries_failed_to_execute": 0,
-  "queries_failed_to_compute_similarity_id": 0,
-  "scan_id": "console",
-  "severity_counters": {
-    "HIGH": 2,
-    "INFO": 0,
-    "LOW": 0,
-    "MEDIUM": 0,
-    "TRACE": 0
-  },
-  "total_counter": 2,
-  "total_bom_resources": 0,
-  "start": "2023-12-27T09:48:54.183217Z",
-  "end": "2023-12-27T09:48:57.0673037Z",
-  "paths": [
-    "/path/test/fixtures/similarity_id"
-  ],
-  "queries": [
-    {
-      "query_name": "Website Not Forcing HTTPS",
-      "query_id": "488847ff-6031-487c-bf42-98fd6ac5c9a0",
-      "query_url": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object",
-      "severity": "HIGH",
-      "platform": "AzureResourceManager",
-      "category": "Insecure Configurations",
-      "experimental": false,
-      "description": "'Microsoft.Web/sites' should force the use of HTTPS",
-      "description_id": "3af52329",
-      "files": [
-        {
-          "file_name": "path\\test\\fixtures\\similarity_id\\1_general_deployment.json",
-          "similarity_id": "f649e674f984920f340e4078adb4d472fa857d1a8bcfa3e4e0418743faa946fd",
-          "line": 34,
-          "resource_type": "Microsoft.Web/sites",
-          "resource_name": "[variables('functionApp').microsoft_unbilled_synchronization]",
-          "issue_type": "IncorrectValue",
-          "search_key": "resources.name={{[variables('functionApp').microsoft_unbilled_synchronization]}}.properties.httpsOnly",
-          "search_line": 34,
-          "search_value": "",
-          "expected_value": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
-          "actual_value": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true"
-        },
-        {
-          "file_name": "path\\test\\fixtures\\similarity_id\\1_general_deployment.json",
-          "similarity_id": "8e341b61966dfc47b2e78304b28b445c9891be5143fcf6bd09f5ba0679e1b0ca",
-          "line": 18,
-          "resource_type": "Microsoft.Web/sites",
-          "resource_name": "[variables('functionApp').unbilled_usage_process]",
-          "issue_type": "IncorrectValue",
-          "search_key": "resources.name={{[variables('functionApp').unbilled_usage_process]}}.properties.httpsOnly",
-          "search_line": 18,
-          "search_value": "",
-          "expected_value": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
-          "actual_value": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true"
-        }
-      ]
-    }
-  ]
+	"kics_version": "development",
+	"files_scanned": 1,
+	"lines_scanned": 44,
+	"files_parsed": 1,
+	"lines_parsed": 44,
+	"lines_ignored": 0,
+	"files_failed_to_scan": 0,
+	"queries_total": 1,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 0,
+		"INFO": 0,
+		"LOW": 0,
+		"MEDIUM": 2,
+		"TRACE": 0
+	},
+	"total_counter": 2,
+	"total_bom_resources": 0,
+	"start": "2024-03-27T11:15:24.7815997Z",
+	"end": "2024-03-27T11:15:25.7563531Z",
+	"paths": [
+		"/path/test/fixtures/similarity_id"
+	],
+	"queries": [
+		{
+			"query_name": "Website Not Forcing HTTPS",
+			"query_id": "488847ff-6031-487c-bf42-98fd6ac5c9a0",
+			"query_url": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object",
+			"severity": "MEDIUM",
+			"platform": "AzureResourceManager",
+			"cloud_provider": "AZURE",
+			"category": "Insecure Configurations",
+			"experimental": false,
+			"description": "'Microsoft.Web/sites' should force the use of HTTPS",
+			"description_id": "3af52329",
+			"files": [
+				{
+					"file_name": "/path/test/fixtures/similarity_id/1_general_deployment.json",
+					"similarity_id": "f649e674f984920f340e4078adb4d472fa857d1a8bcfa3e4e0418743faa946fd",
+					"line": 34,
+					"resource_type": "Microsoft.Web/sites",
+					"resource_name": "[variables('functionApp').microsoft_unbilled_synchronization]",
+					"issue_type": "IncorrectValue",
+					"search_key": "resources.name={{[variables('functionApp').microsoft_unbilled_synchronization]}}.properties.httpsOnly",
+					"search_line": 34,
+					"search_value": "",
+					"expected_value": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
+					"actual_value": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true"
+				},
+				{
+					"file_name": "/path/test/fixtures/similarity_id/1_general_deployment.json",
+					"similarity_id": "8e341b61966dfc47b2e78304b28b445c9891be5143fcf6bd09f5ba0679e1b0ca",
+					"line": 18,
+					"resource_type": "Microsoft.Web/sites",
+					"resource_name": "[variables('functionApp').unbilled_usage_process]",
+					"issue_type": "IncorrectValue",
+					"search_key": "resources.name={{[variables('functionApp').unbilled_usage_process]}}.properties.httpsOnly",
+					"search_line": 18,
+					"search_value": "",
+					"expected_value": "resource with type 'Microsoft.Web/sites' should have the 'httpsOnly' false set to true",
+					"actual_value": "resource with type 'Microsoft.Web/sites' doesn't have 'httpsOnly' set to true"
+				}
+			]
+		}
+	]
 }

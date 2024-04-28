@@ -1,12 +1,13 @@
 {
   "id": "73d59e76-a12c-4b74-a3d8-d3e1e19c25b3",
   "queryName": "EKS node group remote access",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Ensure Amazon EKS Node group has implict SSH access",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-eks-nodegroup.html",
   "platform": "CloudFormation",
   "descriptionID": "b3ebf24c",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

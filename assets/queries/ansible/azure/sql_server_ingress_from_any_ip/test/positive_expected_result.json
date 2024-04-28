@@ -1,7 +1,7 @@
 [
   {
     "queryName": "SQLServer Ingress From Any IP",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 8
   }
 ]

@@ -160,10 +160,11 @@ func generateReport(tmpFile, jsonPath, reportName string) { //nolint
 		SeveritySummary: model.SeveritySummary{
 			ScanID: "console",
 			SeverityCounters: map[model.Severity]int{
-				model.SeverityInfo:   0,
-				model.SeverityLow:    0,
-				model.SeverityMedium: 4,
-				model.SeverityHigh:   1,
+				model.SeverityInfo:     0,
+				model.SeverityLow:      0,
+				model.SeverityMedium:   4,
+				model.SeverityHigh:     1,
+				model.SeverityCritical: 0,
 			},
 			TotalCounter: 5,
 		},

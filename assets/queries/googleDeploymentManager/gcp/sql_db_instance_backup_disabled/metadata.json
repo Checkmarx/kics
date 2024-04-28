@@ -1,12 +1,13 @@
 {
   "id": "a5bf1a1c-92c7-401c-b4c6-ebdc8b686c01",
   "queryName": "SQL DB Instance Backup Disabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Backup",
   "descriptionText": "Checks if backup configuration is enabled for all Cloud SQL Database instances",
   "descriptionUrl": "https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/instances",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "45790b7e",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

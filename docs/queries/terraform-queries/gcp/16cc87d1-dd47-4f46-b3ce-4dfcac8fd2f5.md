@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 16cc87d1-dd47-4f46-b3ce-4dfcac8fd2f5
 -   **Query name:** KMS Crypto Key is Publicly Accessible
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Encryption
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/gcp/kms_crypto_key_publicly_accessible)
 

@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "CloudTrail Multi Region Disabled",
-		"severity": "MEDIUM",
-		"line": 7
-	}
+  {
+    "queryName": "CloudTrail Multi Region Disabled",
+    "severity": "LOW",
+    "line": 7
+  }
 ]

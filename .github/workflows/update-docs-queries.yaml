@@ -6,6 +6,8 @@ on:
     branches: [master]
     paths:
       - "assets/queries/**/metadata.json"
+      - "assets/queries/**/test/**"
+      - ".github/scripts/docs-generator/**"
 
 jobs:
   update-docs:

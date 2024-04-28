@@ -1,17 +1,17 @@
 [
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 7
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 7
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 7
   }
 ]

@@ -143,7 +143,7 @@ var (
 				getTestParams(&testCaseParamsType{
 					platform:   "terraform",
 					queryDir:   "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					samplePath: "../ANOTHER-FILE-PATH/redshift_publicly_accessible/test/positive1.tf",
+					samplePath: "../test/fixtures/test_extension/positive.tf",
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {
@@ -309,7 +309,7 @@ func createInspectorAndGetVulnerabilities(ctx context.Context, t testing.TB,
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 			InputDataPath:  "",
 		},
-		map[string]bool{}, 60, true, 1)
+		map[string]bool{}, 60, true, true, 1)
 
 	require.Nil(t, err)
 	require.NotNil(t, inspector)

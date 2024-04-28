@@ -10,53 +10,47 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Go 1.21.x
-        uses: actions/setup-go@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
-          go-version: 1.21.x
+          go-version-file: go.mod
           cache: false
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3.5.0
         with:
-          version: v1.55.2
+          version: v1.57.2
           args: -c .golangci.yml --timeout 20m
   go-generate:
     name: go-generate
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go 1.21.x
-        uses: actions/setup-go@v4
-        with:
-          go-version: 1.21.x
       - name: Check out code
         uses: actions/checkout@v3
         with:
           persist-credentials: false
           fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
       - name: Generate mocks and marshall/unmarshall code
         run: make generate
   unit-tests:
     name: unit-tests
     strategy:
       matrix:
-        go-version: [1.21.x]
+        go-version: [1.22.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Set up Go 1.21.x
-        uses: actions/setup-go@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go-version }}
       - name: Check out code into the Go module directory
         uses: actions/checkout@v3
         with:
           persist-credentials: false
-      - uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          filters: |
-            src:
-              - 'pkg/terraformer/**'
       - name: Get cache paths
         id: go-cache-paths
         shell: bash
@@ -80,24 +74,14 @@ jobs:
           minimum-size: 32GB
           maximum-size: 32GB
           disk-root: "C:"
-      - name: Test and Generate Report
-        if: matrix.os != 'windows-latest' && steps.changes.outputs.src == 'true'
-        run: |
-          go test -mod=vendor -v -timeout 2100s $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
-          result_code=${PIPESTATUS[0]}
-          exit $result_code
       - name: Test and Generate Report Dev
-        if: matrix.os != 'windows-latest'  && steps.changes.outputs.src == 'false'
+        if: matrix.os != 'windows-latest'
         run: |
           go test -tags dev -mod=vendor -v -timeout 2100s $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
           result_code=${PIPESTATUS[0]}
           exit $result_code
-      - name: Test and Generate Report Windows
-        if: matrix.os == 'windows-latest' && steps.changes.outputs.src == 'true'
-        run: |
-          go test -mod=vendor -v -timeout 2100s $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
       - name: Test and Generate Report Windows Dev
-        if: matrix.os == 'windows-latest' && steps.changes.outputs.src == 'false'
+        if: matrix.os == 'windows-latest'
         run: |
           go test -mod=vendor -tags dev -v -timeout 2100s $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
       - name: Archive test logs

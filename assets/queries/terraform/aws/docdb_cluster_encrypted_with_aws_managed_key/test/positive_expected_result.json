@@ -1,7 +1,7 @@
 [
   {
     "queryName": "DOCDB Cluster Encrypted With AWS Managed Key",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 16
   }
 ]

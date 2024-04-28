@@ -20,6 +20,7 @@
         "category",
         "descriptionText",
         "descriptionUrl",
+        "cloudProvider",
         "platform",
         "descriptionID"
     ],
@@ -32,6 +33,17 @@
             "minLength": 8
         },
         "severity": {
+            "type": "string",
+            "enum": [
+                "TRACE",
+                "CRITICAL",
+                "HIGH",
+                "MEDIUM",
+                "LOW",
+                "INFO"
+            ]
+        },
+        "oldSeverity": {
             "type": "string",
             "enum": [
                 "TRACE",

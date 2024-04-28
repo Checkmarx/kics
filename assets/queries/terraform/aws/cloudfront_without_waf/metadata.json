@@ -1,12 +1,13 @@
 {
   "id": "1419b4c6-6d5c-4534-9cf6-6a5266085333",
   "queryName": "CloudFront Without WAF",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "All AWS CloudFront distributions should be integrated with the Web Application Firewall (AWS WAF) service",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution",
   "platform": "Terraform",
   "descriptionID": "8fa5ef1b",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }

@@ -31,7 +31,8 @@
                             "INFO",
                             "MINOR",
                             "MAJOR",
-                            "CRITICAL"
+                            "CRITICAL",
+                            "BLOCKER"
                         ]
                     },
                     "cwe": {
