@@ -3,7 +3,7 @@
   "queryName": "Using Platform Flag with FROM Command",
   "severity": "LOW",
   "category": "Best Practices",
-  "descriptionText": "FROM instruction should use the flag '--platform'",
+  "descriptionText": "'FROM' instruction should use the flag '--platform'",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#from",
   "platform": "Dockerfile",
   "descriptionID": "5bd0baab",
