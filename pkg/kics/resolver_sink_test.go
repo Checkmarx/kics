@@ -147,6 +147,7 @@ func MockService(paths []string,
 		false,
 		true,
 		1,
+		false,
 	)
 	if err != nil {
 		log.Error().Msgf(`Failed to build inspector for path %s with error: %v`, path, err)
