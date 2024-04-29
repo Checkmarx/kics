@@ -32,6 +32,7 @@
       "query_url": "https://docs.microsoft.com/en-us/azure/templates/microsoft.compute/virtualmachines?tabs=json#linuxconfiguration-object",
       "severity": "MEDIUM",
       "platform": "AzureResourceManager",
+      "cloud_provider": "AZURE",
       "category": "Best Practices",
       "experimental": false,
       "description": "Azure Instances should use SSH Key instead of basic authentication",

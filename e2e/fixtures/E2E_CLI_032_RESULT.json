@@ -7,21 +7,21 @@
   "lines_ignored": 0,
   "files_failed_to_scan": 0,
   "queries_total": 500,
-  "queries_failed_to_execute": 4,
+  "queries_failed_to_execute": 0,
   "queries_failed_to_compute_similarity_id": 0,
   "scan_id": "console",
   "severity_counters": {
     "CRITICAL": 0,
     "HIGH": 6,
     "INFO": 3,
-    "LOW": 3,
+    "LOW": 5,
     "MEDIUM": 10,
     "TRACE": 0
   },
-  "total_counter": 22,
+  "total_counter": 24,
   "total_bom_resources": 0,
-  "start": "2024-04-05T10:03:57.6344852+01:00",
-  "end": "2024-04-05T10:04:38.2675493+01:00",
+  "start": "2024-04-29T15:36:07.7321463+01:00",
+  "end": "2024-04-29T15:36:22.007629+01:00",
   "paths": [
     "/path/e2e/fixtures/samples/positive.yaml"
   ],
@@ -75,7 +75,7 @@
       "cloud_provider": "COMMON",
       "category": "Secret Management",
       "experimental": false,
-      "description": "Password and Secrets shouldn't be displayed in plain text on IaC files.",
+      "description": "Query to find passwords and secrets in infrastructure code.",
       "description_id": "d69d8a89",
       "files": [
         {
@@ -100,7 +100,7 @@
       "cloud_provider": "COMMON",
       "category": "Secret Management",
       "experimental": false,
-      "description": "Password and Secrets shouldn't be displayed in plain text on IaC files.",
+      "description": "Query to find passwords and secrets in infrastructure code.",
       "description_id": "d69d8a89",
       "files": [
         {
@@ -130,19 +130,6 @@
       "files": [
         {
           "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "3c4976bcd6061315525a23a644cb6ed3bc4888794f21e8161a1cd38ea0495f30",
-          "line": 24,
-          "resource_type": "AWS::EC2::SecurityGroupIngress",
-          "resource_name": "EcsSecurityGroupHTTPinbound02",
-          "issue_type": "IncorrectValue",
-          "search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
-          "actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
-        },
-        {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "f1f15967fd4bd2b39610dcbe3c2d641068dc1b409821142f41d179dbc360b3aa",
           "line": 32,
           "resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -153,6 +140,19 @@
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
           "actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)"
+        },
+        {
+          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "3c4976bcd6061315525a23a644cb6ed3bc4888794f21e8161a1cd38ea0495f30",
+          "line": 24,
+          "resource_type": "AWS::EC2::SecurityGroupIngress",
+          "resource_name": "EcsSecurityGroupHTTPinbound02",
+          "issue_type": "IncorrectValue",
+          "search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
+          "actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
         }
       ]
     },
@@ -273,7 +273,7 @@
       "cloud_provider": "AWS",
       "category": "Networking and Firewall",
       "experimental": false,
-      "description": "An AWS Elastic Load Balancer (ELB) shouldnÂ´t have security groups without outbound rules",
+      "description": "An AWS Elastic Load Balancer (ELB) shouldn't have security groups without outbound rules",
       "description_id": "3ccdd7d2",
       "files": [
         {
@@ -300,7 +300,7 @@
       "cloud_provider": "AWS",
       "category": "Networking and Firewall",
       "experimental": false,
-      "description": "An AWS Elastic Load Balancer (ELB) shouldnÂ´t have security groups without outbound rules",
+      "description": "An AWS Elastic Load Balancer (ELB) shouldn't have security groups without outbound rules",
       "description_id": "7b876844",
       "files": [
         {
@@ -359,19 +359,6 @@
       "files": [
         {
           "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "810487007189ac4de717dffc3204a05756e80e910b34f89ee08fd14f612328aa",
-          "line": 27,
-          "resource_type": "AWS::EC2::SecurityGroupIngress",
-          "resource_name": "EcsSecurityGroupSSHinbound",
-          "issue_type": "IncorrectValue",
-          "search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
-          "actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
-        },
-        {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "000056cd0b9697e13f2f4561f1963e34c58c042b921c4d0fad0f2fa5214374eb",
           "line": 35,
           "resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -382,6 +369,19 @@
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
           "actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
+        },
+        {
+          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "810487007189ac4de717dffc3204a05756e80e910b34f89ee08fd14f612328aa",
+          "line": 27,
+          "resource_type": "AWS::EC2::SecurityGroupIngress",
+          "resource_name": "EcsSecurityGroupSSHinbound",
+          "issue_type": "IncorrectValue",
+          "search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
+          "actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
         },
         {
           "file_name": "/path/e2e/fixtures/samples/positive.yaml",
@@ -422,6 +422,46 @@
           "search_value": "",
           "expected_value": "Resources.service.Properties.DeploymentConfiguration should be defined and not null",
           "actual_value": "Resources.service.Properties.DeploymentConfiguration is undefined or null"
+        }
+      ]
+    },
+    {
+      "query_name": "ECS Task Definition HealthCheck Missing",
+      "query_id": "d24389b4-b209-4ff0-8345-dc7a4569dcdd",
+      "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-healthcheck.html",
+      "severity": "LOW",
+      "platform": "CloudFormation",
+      "cloud_provider": "AWS",
+      "category": "Observability",
+      "experimental": false,
+      "description": "Amazon ECS must have the HealthCheck property defined to give more control over monitoring the health of tasks",
+      "description_id": "e2e3a50a",
+      "files": [
+        {
+          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "8cd0c1d85f668baacc2d37b0037e026fc5d62761f353dd314942b227afd41c43",
+          "line": 115,
+          "resource_type": "AWS::ECS::TaskDefinition",
+          "resource_name": "TaskDefinition",
+          "issue_type": "MissingAttribute",
+          "search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions.1.Name=busybox",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
+          "actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
+        },
+        {
+          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "1a3083ecb6510696d2224f736fbb492fc716b17b4061a0750af6f6e7cfbd6cd2",
+          "line": 207,
+          "resource_type": "AWS::ECS::TaskDefinition",
+          "resource_name": "TaskDefinition",
+          "issue_type": "MissingAttribute",
+          "search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions.0.Name=simple-app",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
+          "actual_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property"
         }
       ]
     },
@@ -493,19 +533,6 @@
       "files": [
         {
           "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "e96cf20cc6e1e11dce2d40d9e2b37446a00f00c3f541aa7dd13861059f6fcce8",
-          "line": 19,
-          "resource_type": "AWS::EC2::SecurityGroupIngress",
-          "resource_name": "EcsSecurityGroupHTTPinbound02",
-          "issue_type": "MissingAttribute",
-          "search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description should be set",
-          "actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is undefined"
-        },
-        {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "95883c9f983adb8f547c54e24837b6aa402978a00417be98441514959d4171d4",
           "line": 27,
           "resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -516,6 +543,19 @@
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description should be set",
           "actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
+        },
+        {
+          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "e96cf20cc6e1e11dce2d40d9e2b37446a00f00c3f541aa7dd13861059f6fcce8",
+          "line": 19,
+          "resource_type": "AWS::EC2::SecurityGroupIngress",
+          "resource_name": "EcsSecurityGroupHTTPinbound02",
+          "issue_type": "MissingAttribute",
+          "search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description should be set",
+          "actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is undefined"
         },
         {
           "file_name": "/path/e2e/fixtures/samples/positive.yaml",

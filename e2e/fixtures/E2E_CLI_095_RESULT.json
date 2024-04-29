@@ -6,7 +6,7 @@
   "lines_parsed": 66,
   "lines_ignored": 0,
   "files_failed_to_scan": 0,
-  "queries_total": 21,
+  "queries_total": 1,
   "queries_failed_to_execute": 0,
   "queries_failed_to_compute_similarity_id": 0,
   "scan_id": "console",
@@ -14,80 +14,18 @@
     "CRITICAL": 0,
     "HIGH": 0,
     "INFO": 0,
-    "LOW": 2,
-    "MEDIUM": 8,
+    "LOW": 0,
+    "MEDIUM": 2,
     "TRACE": 0
   },
-  "total_counter": 10,
+  "total_counter": 2,
   "total_bom_resources": 0,
-  "start": "2024-04-24T15:59:24.7615001+01:00",
-  "end": "2024-04-24T15:59:28.2559615+01:00",
+  "start": "2024-04-29T15:47:48.2304103+01:00",
+  "end": "2024-04-29T15:47:52.5595973+01:00",
   "paths": [
     "/path/test/fixtures/new_similarity_id"
   ],
   "queries": [
-    {
-      "query_name": "Container Capabilities Unrestricted",
-      "query_id": "ce76b7d0-9e77-464d-b86f-c5c48e03e22d",
-      "query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop",
-      "severity": "MEDIUM",
-      "platform": "DockerCompose",
-      "category": "Resource Management",
-      "experimental": false,
-      "description": "Some capabilities are not needed in certain (or any) containers. Make sure that you only add capabilities that your container needs. Drop unnecessary capabilities as well.",
-      "description_id": "1ddab108",
-      "files": [
-        {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
-          "similarity_id": "07fd9de61a3948b8ef6b0153d475f6c4cf9766dce297e3acfa063cee2150ab21",
-          "old_similarity_id": "a162f409cec49b43250c213115187838dd1f8a0b8cb6a3bcdcb5efe466159bef",
-          "line": 43,
-          "issue_type": "MissingAttribute",
-          "search_key": "services.api",
-          "search_line": 43,
-          "search_value": "",
-          "expected_value": "Docker compose file to have 'cap_drop' attribute",
-          "actual_value": "Docker compose file doesn't have 'cap_drop' attribute. Make sure your container only has necessary capabilities."
-        },
-        {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
-          "similarity_id": "be98fbae2286fe9befe7e842e83f69666b24c44ff4e357aa4269c789cbd9d9e1",
-          "old_similarity_id": "0290fbc82a7259073503d263a601b8fdf99fb93b77bd4e640c026513b2b68795",
-          "line": 25,
-          "issue_type": "MissingAttribute",
-          "search_key": "services.ui",
-          "search_line": 25,
-          "search_value": "",
-          "expected_value": "Docker compose file to have 'cap_drop' attribute",
-          "actual_value": "Docker compose file doesn't have 'cap_drop' attribute. Make sure your container only has necessary capabilities."
-        }
-      ]
-    },
-    {
-      "query_name": "Container Traffic Not Bound To Host Interface",
-      "query_id": "451d79dc-0588-476a-ad03-3c7f0320abb3",
-      "query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#ports",
-      "severity": "MEDIUM",
-      "platform": "DockerCompose",
-      "category": "Networking and Firewall",
-      "experimental": false,
-      "description": "Incoming container traffic should be bound to a specific host interface",
-      "description_id": "909d1bcd",
-      "files": [
-        {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
-          "similarity_id": "98f70ae2cb2396187ec43f26baf440c8821d71ece23f1c40426e221f0504711b",
-          "old_similarity_id": "40dc92dd3a239c491a842b359adcb3112c89bc5825128b4f2ad791c0f33867be",
-          "line": 32,
-          "issue_type": "IncorrectValue",
-          "search_key": "services.ui.ports",
-          "search_line": 32,
-          "search_value": "",
-          "expected_value": "Docker compose file to have 'ports' attribute bound to a specific host interface.",
-          "actual_value": "Docker compose file doesn't have 'ports' attribute bound to a specific host interface"
-        }
-      ]
-    },
     {
       "query_name": "Memory Not Limited",
       "query_id": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492",
@@ -118,105 +56,6 @@
           "line": 4,
           "issue_type": "MissingAttribute",
           "search_key": "services.api.deploy",
-          "search_line": 4,
-          "search_value": "",
-          "expected_value": "'deploy.resources' should be defined",
-          "actual_value": "'deploy.resources' is not defined"
-        }
-      ]
-    },
-    {
-      "query_name": "Privileged Ports Mapped In Container",
-      "query_id": "bc2908f3-f73c-40a9-8793-c1b7d5544f79",
-      "query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop",
-      "severity": "MEDIUM",
-      "platform": "DockerCompose",
-      "category": "Networking and Firewall",
-      "experimental": false,
-      "description": "Privileged ports (1 to 1023) should not be mapped. Also you should drop net_bind_service linux capability from the container unless you absolutely need to use priviledged ports.",
-      "description_id": "686dd55f",
-      "files": [
-        {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
-          "similarity_id": "09f40f88ac03c1eeae99345c919c936415fe4832077bcbfc54a3b65f5c461634",
-          "old_similarity_id": "7781e66ba8a584a40fd777ab963a2d055cf255f0667f1174254ff9ca7576e136",
-          "line": 32,
-          "issue_type": "IncorrectValue",
-          "search_key": "services.ui.ports",
-          "search_line": 32,
-          "search_value": "",
-          "expected_value": "Docker compose file to have 'ports' attribute not set to privileged ports (\u003c1024).",
-          "actual_value": "Docker compose file has 'ports' attribute set to privileged ports (\u003c1024)."
-        }
-      ]
-    },
-    {
-      "query_name": "Security Opt Not Set",
-      "query_id": "610e266e-6c12-4bca-9925-1ed0cd29742b",
-      "query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt",
-      "severity": "MEDIUM",
-      "platform": "DockerCompose",
-      "category": "Resource Management",
-      "experimental": false,
-      "description": "Attribute 'security_opt' should be defined.",
-      "description_id": "83fb7a65",
-      "files": [
-        {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
-          "similarity_id": "247948b2614cac7f4f94912d247f0f921400fcf109102ce6fc3007d44293883c",
-          "old_similarity_id": "c9e212e7c498aa520147b3faf212256793640dcb3dfa1695580f4d0685cd84b8",
-          "line": 25,
-          "issue_type": "MissingAttribute",
-          "search_key": "services.ui",
-          "search_line": 25,
-          "search_value": "",
-          "expected_value": "Docker compose file to have 'security_opt' attribute",
-          "actual_value": "Docker compose file does not have 'security_opt' attribute"
-        },
-        {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
-          "similarity_id": "cc7b4854a8c90430ee2c1116d41311e32ccf5a7be8f0952eafe27cabd285d0c2",
-          "old_similarity_id": "e975a2b7170574bd27162aa4344de20a0b3bde19fed118cfb3bf69700f6e67cb",
-          "line": 43,
-          "issue_type": "MissingAttribute",
-          "search_key": "services.api",
-          "search_line": 43,
-          "search_value": "",
-          "expected_value": "Docker compose file to have 'security_opt' attribute",
-          "actual_value": "Docker compose file does not have 'security_opt' attribute"
-        }
-      ]
-    },
-    {
-      "query_name": "Cpus Not Limited",
-      "query_id": "6b610c50-99fb-4ef0-a5f3-e312fd945bc3",
-      "query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources",
-      "severity": "LOW",
-      "platform": "DockerCompose",
-      "category": "Resource Management",
-      "experimental": false,
-      "description": "CPU limits should be set because if the system has CPU time free, a container is guaranteed to be allocated as much CPU as it requests",
-      "description_id": "d58d94a1",
-      "files": [
-        {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
-          "similarity_id": "3b09843bfd068df9db99ca7797d8ec339462f66038caec115ae90fe0c4d0f93f",
-          "old_similarity_id": "ee661acd30da7ed3f03f904b8014a23ec629ab902cc8a9f9923972513988417c",
-          "line": 4,
-          "issue_type": "MissingAttribute",
-          "search_key": "services.api.deploy",
-          "search_line": 4,
-          "search_value": "",
-          "expected_value": "'deploy.resources' should be defined",
-          "actual_value": "'deploy.resources' is not defined"
-        },
-        {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
-          "similarity_id": "d21ae0a3b73d640a9359dd896b9b95a2528cbada52eb6d090bfd61c792893a73",
-          "old_similarity_id": "ee661acd30da7ed3f03f904b8014a23ec629ab902cc8a9f9923972513988417c",
-          "line": 4,
-          "issue_type": "MissingAttribute",
-          "search_key": "services.ui.deploy",
           "search_line": 4,
           "search_value": "",
           "expected_value": "'deploy.resources' should be defined",
