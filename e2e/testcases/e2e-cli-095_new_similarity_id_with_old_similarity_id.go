@@ -4,7 +4,7 @@ package testcases
 // should perform a scan successfully giving results with similarity ids unique and the old similarity id
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should perform a scan successfully giving results with similarity ids unique, showing the old similarity id [E2E-CLI-094]",
+		Name: "should perform a scan successfully giving results with similarity ids unique, showing the old similarity id [E2E-CLI-095]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
