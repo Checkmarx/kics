@@ -20,8 +20,8 @@
   },
   "total_counter": 17,
   "total_bom_resources": 0,
-  "start": "2024-04-05T11:04:50.3059836+01:00",
-  "end": "2024-04-05T11:05:32.3719948+01:00",
+  "start": "2024-04-29T16:21:47.3016367+01:00",
+  "end": "2024-04-29T16:22:22.269544+01:00",
   "paths": [
     "/path/e2e/fixtures/samples/terraform.tf"
   ],
@@ -35,7 +35,7 @@
       "cloud_provider": "COMMON",
       "category": "Secret Management",
       "experimental": false,
-      "description": "Password and Secrets shouldn't be displayed in plain text on IaC files.",
+      "description": "Query to find passwords and secrets in infrastructure code.",
       "description_id": "d69d8a89",
       "files": [
         {
@@ -164,13 +164,13 @@
       "files": [
         {
           "file_name": "/path/e2e/fixtures/samples/terraform.tf",
-          "similarity_id": "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d",
-          "line": 10,
+          "similarity_id": "0455ad9d92fa1dc1cbf20dd5042ee21d9ae176388662b5982501aa01724e50d9",
+          "line": 1,
           "resource_type": "aws_redshift_cluster",
-          "resource_name": "default1",
+          "resource_name": "default",
           "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default1]",
-          "search_line": 10,
+          "search_key": "aws_redshift_cluster[default]",
+          "search_line": 1,
           "search_value": "",
           "expected_value": "'aws_redshift_cluster.logging' should be true",
           "actual_value": "'aws_redshift_cluster.logging' is undefined",
@@ -179,13 +179,13 @@
         },
         {
           "file_name": "/path/e2e/fixtures/samples/terraform.tf",
-          "similarity_id": "0455ad9d92fa1dc1cbf20dd5042ee21d9ae176388662b5982501aa01724e50d9",
-          "line": 1,
+          "similarity_id": "2abf26c3014fc445da69d8d5bb862c1c511e8e16ad3a6c6f6e14c28aa0adac1d",
+          "line": 10,
           "resource_type": "aws_redshift_cluster",
-          "resource_name": "default",
+          "resource_name": "default1",
           "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default]",
-          "search_line": 1,
+          "search_key": "aws_redshift_cluster[default1]",
+          "search_line": 10,
           "search_value": "",
           "expected_value": "'aws_redshift_cluster.logging' should be true",
           "actual_value": "'aws_redshift_cluster.logging' is undefined",
@@ -235,6 +235,19 @@
       "files": [
         {
           "file_name": "/path/e2e/fixtures/samples/terraform.tf",
+          "similarity_id": "4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa",
+          "line": 10,
+          "resource_type": "aws_redshift_cluster",
+          "resource_name": "default1",
+          "issue_type": "MissingAttribute",
+          "search_key": "aws_redshift_cluster[default1]",
+          "search_line": -1,
+          "search_value": "cluster_subnet_group_name",
+          "expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name should be set",
+          "actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined"
+        },
+        {
+          "file_name": "/path/e2e/fixtures/samples/terraform.tf",
           "similarity_id": "83461a5eac8fed2264fac68a6d352d1ed752867a9b0a131afa9ba7e366159b59",
           "line": 10,
           "resource_type": "aws_redshift_cluster",
@@ -271,19 +284,6 @@
           "search_value": "vpc_security_group_ids",
           "expected_value": "aws_redshift_cluster[default].vpc_security_group_ids should be set",
           "actual_value": "aws_redshift_cluster[default].vpc_security_group_ids is undefined"
-        },
-        {
-          "file_name": "/path/e2e/fixtures/samples/terraform.tf",
-          "similarity_id": "4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa",
-          "line": 10,
-          "resource_type": "aws_redshift_cluster",
-          "resource_name": "default1",
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default1]",
-          "search_line": -1,
-          "search_value": "cluster_subnet_group_name",
-          "expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name should be set",
-          "actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined"
         }
       ]
     },
@@ -341,19 +341,6 @@
       "files": [
         {
           "file_name": "/path/e2e/fixtures/samples/terraform.tf",
-          "similarity_id": "406b71d9fd0edb656a4735df30dde77c5f8a6c4ec3caa3442f986a92832c653b",
-          "line": 10,
-          "resource_type": "aws_redshift_cluster",
-          "resource_name": "default1",
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[{{default1}}]",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "aws_redshift_cluster[{{default1}}].tags should be defined and not null",
-          "actual_value": "aws_redshift_cluster[{{default1}}].tags is undefined or null"
-        },
-        {
-          "file_name": "/path/e2e/fixtures/samples/terraform.tf",
           "similarity_id": "b44463ffd0f5c1eadc04ce6649982da68658349ad880daef470250661d3d1512",
           "line": 1,
           "resource_type": "aws_redshift_cluster",
@@ -364,8 +351,22 @@
           "search_value": "",
           "expected_value": "aws_redshift_cluster[{{default}}].tags should be defined and not null",
           "actual_value": "aws_redshift_cluster[{{default}}].tags is undefined or null"
+        },
+        {
+          "file_name": "/path/e2e/fixtures/samples/terraform.tf",
+          "similarity_id": "406b71d9fd0edb656a4735df30dde77c5f8a6c4ec3caa3442f986a92832c653b",
+          "line": 10,
+          "resource_type": "aws_redshift_cluster",
+          "resource_name": "default1",
+          "issue_type": "MissingAttribute",
+          "search_key": "aws_redshift_cluster[{{default1}}]",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "aws_redshift_cluster[{{default1}}].tags should be defined and not null",
+          "actual_value": "aws_redshift_cluster[{{default1}}].tags is undefined or null"
         }
       ]
     }
   ]
 }
+

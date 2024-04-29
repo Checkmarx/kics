@@ -20,8 +20,8 @@
   },
   "total_counter": 17,
   "total_bom_resources": 0,
-  "start": "2024-04-05T11:11:52.6387722+01:00",
-  "end": "2024-04-05T11:12:53.4330675+01:00",
+  "start": "2024-04-29T16:25:56.540155+01:00",
+  "end": "2024-04-29T16:26:57.6416493+01:00",
   "paths": [
     "/path/e2e/fixtures/samples/terraform.tf"
   ],
@@ -35,7 +35,7 @@
       "cloud_provider": "COMMON",
       "category": "Secret Management",
       "experimental": false,
-      "description": "Password and Secrets shouldn't be displayed in plain text on IaC files.",
+      "description": "Query to find passwords and secrets in infrastructure code.",
       "description_id": "d69d8a89",
       "files": [
         {
@@ -76,13 +76,13 @@
       "files": [
         {
           "file_name": "\\path\\e2e\\fixtures\\samples\\terraform.tf",
-          "similarity_id": "a09d6aefe0fec02ce6b1b30afb3186c7fa4454165a4a1754ed104d22d6156af7",
-          "line": 10,
+          "similarity_id": "e413b091a0cfff9b692ce5d9fa075e3f69e037a58030e9ef592d5f58ae446fbc",
+          "line": 1,
           "resource_type": "aws_redshift_cluster",
-          "resource_name": "default1",
+          "resource_name": "default",
           "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default1]",
-          "search_line": 10,
+          "search_key": "aws_redshift_cluster[default]",
+          "search_line": 1,
           "search_value": "",
           "expected_value": "aws_redshift_cluster.encrypted should be defined and not null",
           "actual_value": "aws_redshift_cluster.encrypted is undefined or null",
@@ -91,13 +91,13 @@
         },
         {
           "file_name": "\\path\\e2e\\fixtures\\samples\\terraform.tf",
-          "similarity_id": "e413b091a0cfff9b692ce5d9fa075e3f69e037a58030e9ef592d5f58ae446fbc",
-          "line": 1,
+          "similarity_id": "a09d6aefe0fec02ce6b1b30afb3186c7fa4454165a4a1754ed104d22d6156af7",
+          "line": 10,
           "resource_type": "aws_redshift_cluster",
-          "resource_name": "default",
+          "resource_name": "default1",
           "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default]",
-          "search_line": 1,
+          "search_key": "aws_redshift_cluster[default1]",
+          "search_line": 10,
           "search_value": "",
           "expected_value": "aws_redshift_cluster.encrypted should be defined and not null",
           "actual_value": "aws_redshift_cluster.encrypted is undefined or null",
@@ -235,19 +235,6 @@
       "files": [
         {
           "file_name": "\\path\\e2e\\fixtures\\samples\\terraform.tf",
-          "similarity_id": "83461a5eac8fed2264fac68a6d352d1ed752867a9b0a131afa9ba7e366159b59",
-          "line": 10,
-          "resource_type": "aws_redshift_cluster",
-          "resource_name": "default1",
-          "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default1]",
-          "search_line": -1,
-          "search_value": "vpc_security_group_ids",
-          "expected_value": "aws_redshift_cluster[default1].vpc_security_group_ids should be set",
-          "actual_value": "aws_redshift_cluster[default1].vpc_security_group_ids is undefined"
-        },
-        {
-          "file_name": "\\path\\e2e\\fixtures\\samples\\terraform.tf",
           "similarity_id": "4aa3f159f39767de53b49ed871977b8b499bf19b3b0865b1631042aa830598aa",
           "line": 10,
           "resource_type": "aws_redshift_cluster",
@@ -258,6 +245,19 @@
           "search_value": "cluster_subnet_group_name",
           "expected_value": "aws_redshift_cluster[default1].cluster_subnet_group_name should be set",
           "actual_value": "aws_redshift_cluster[default1].cluster_subnet_group_name is undefined"
+        },
+        {
+          "file_name": "\\path\\e2e\\fixtures\\samples\\terraform.tf",
+          "similarity_id": "c703e26654dc3e9da1ad3519663f38aed2a29e629b4342f9e75af464a07699e0",
+          "line": 1,
+          "resource_type": "aws_redshift_cluster",
+          "resource_name": "default",
+          "issue_type": "MissingAttribute",
+          "search_key": "aws_redshift_cluster[default]",
+          "search_line": -1,
+          "search_value": "vpc_security_group_ids",
+          "expected_value": "aws_redshift_cluster[default].vpc_security_group_ids should be set",
+          "actual_value": "aws_redshift_cluster[default].vpc_security_group_ids is undefined"
         },
         {
           "file_name": "\\path\\e2e\\fixtures\\samples\\terraform.tf",
@@ -274,16 +274,16 @@
         },
         {
           "file_name": "\\path\\e2e\\fixtures\\samples\\terraform.tf",
-          "similarity_id": "c703e26654dc3e9da1ad3519663f38aed2a29e629b4342f9e75af464a07699e0",
-          "line": 1,
+          "similarity_id": "83461a5eac8fed2264fac68a6d352d1ed752867a9b0a131afa9ba7e366159b59",
+          "line": 10,
           "resource_type": "aws_redshift_cluster",
-          "resource_name": "default",
+          "resource_name": "default1",
           "issue_type": "MissingAttribute",
-          "search_key": "aws_redshift_cluster[default]",
+          "search_key": "aws_redshift_cluster[default1]",
           "search_line": -1,
           "search_value": "vpc_security_group_ids",
-          "expected_value": "aws_redshift_cluster[default].vpc_security_group_ids should be set",
-          "actual_value": "aws_redshift_cluster[default].vpc_security_group_ids is undefined"
+          "expected_value": "aws_redshift_cluster[default1].vpc_security_group_ids should be set",
+          "actual_value": "aws_redshift_cluster[default1].vpc_security_group_ids is undefined"
         }
       ]
     },
@@ -369,3 +369,4 @@
     }
   ]
 }
+
