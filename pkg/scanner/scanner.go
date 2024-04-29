@@ -106,6 +106,6 @@ func (s serviceSlice) GetQueriesLength() int {
 
 func startProgressBar(total int, wg *sync.WaitGroup, progressChannel chan int64, proBarBuilder progress.PbBuilder) {
 	wg.Add(1)
-	progressBar := proBarBuilder.BuildCounter("\nExecuting queries: ", total, wg, progressChannel)
+	progressBar := proBarBuilder.BuildCounter("Executing queries: ", total, wg, progressChannel)
 	go progressBar.Start()
 }

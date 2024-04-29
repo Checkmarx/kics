@@ -102,7 +102,7 @@ func GenerateReport(path, filename string, body interface{}, formats []string, p
 	log.Debug().Msgf("helpers.GenerateReport()")
 	metrics.Metric.Start("generate_report")
 
-	progressBar := proBarBuilder.BuildCircle("\nGenerating Reports: ")
+	progressBar := proBarBuilder.BuildCircle("Generating Reports: ")
 
 	var err error = nil
 	go progressBar.Start()

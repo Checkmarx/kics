@@ -42,7 +42,7 @@ type executeScanParameters struct {
 }
 
 func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
-	progressBar := c.ProBarBuilder.BuildCircle("\nPreparing Scan Assets: ")
+	progressBar := c.ProBarBuilder.BuildCircle("Preparing Scan Assets: ")
 	go progressBar.Start()
 
 	extractedPaths, err := c.prepareAndAnalyzePaths(ctx)
