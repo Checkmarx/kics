@@ -286,6 +286,20 @@ func (r *Resolver) resolveYamlPath(
 
 		filename := filepath.Clean(onlyFilePath)
 
+		fileContent, err := readFileContent(filename)
+		if err != nil {
+			return *v, false
+		}
+
+		// Regex to match if the parent file is being included in the child file
+		// Only relevant for the Ansible platform
+		pattern := fmt.Sprintf(`include_tasks\s*:\s*%s`, regexp.QuoteMeta(filepath.Base(filePath)))
+
+		regex := regexp.MustCompile(pattern)
+		if regex.MatchString(string(fileContent)) {
+			return *v, false
+		}
+
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[filename]; !ok {
 			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, true, resolveReferences); isError {
@@ -346,20 +360,12 @@ func (r *Resolver) resolveFile(
 	resolveCount int,
 	resolvedFilesCache map[string]ResolvedFile,
 	yamlResolve bool, resolveReferences bool) (any, bool) {
-	// open the file with the content to replace
-	file, err := os.Open(filepath.Clean(filePath))
+
+	// Open and read the file with the content to replace
+	fileContent, err := readFileContent(filePath)
 	if err != nil {
 		return value, true
 	}
-
-	defer func(file *os.File) {
-		err = file.Close()
-		if err != nil {
-			log.Err(err).Msgf("failed to close resolved file: %s", filePath)
-		}
-	}(file)
-	// read the content
-	fileContent, _ := io.ReadAll(file)
 
 	resolvedFile := r.Resolve(fileContent, filePath, resolveCount+1, resolvedFilesCache, resolveReferences)
 
@@ -576,4 +582,26 @@ func checkServerlessFileReference(value string) string {
 		return matches[1]
 	}
 	return value
+}
+
+func readFileContent(filePath string) ([]byte, error) {
+	// Open the file
+	file, err := os.Open(filepath.Clean(filePath))
+	if err != nil {
+		return nil, err
+	}
+	defer func(file *os.File) {
+		err = file.Close()
+		if err != nil {
+			log.Err(err).Msgf("failed to close resolved file: %s", filePath)
+		}
+	}(file)
+
+	// Read the content
+	fileContent, err := io.ReadAll(file)
+	if err != nil {
+		return nil, err
+	}
+
+	return fileContent, nil
 }
