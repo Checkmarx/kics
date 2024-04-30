@@ -20,9 +20,11 @@ KICS does not currently support the analysis of modules within Bicep files. Due 
 
 Due to the nature of regex-based pattern matching, the passwords and secrets query may generate false positives when applied to Bicep files. Bicep files have a different syntax and structure compared to other file formats which can affect the accuracy of the query.
 
-To mitigate the potential for false positives and ensure a more accurate scanning process for Bicep files, we recommend users consider disabling the passwords and secrets query when scanning Bicep files. This can be achieved by using the "--disable-secrets" flag.
+To avoid potential false positives and improve the accuracy of scans when working with Bicep files, we recommend users consider disabling the passwords and secrets query. This can be done by using the "--disable-secrets" flag.
 
-Note: Disabling the passwords and secrets query may reduce the overall coverage of security checks performed by KICS. Therefore, users should consider the trade-offs and implications based on their specific use case and security requirements. More information about this query can be found on the [Password and Secrets documentation](https://github.com/Checkmarx/kics/blob/master/docs/secrets.md). 
+**Note**: When using the "--disable-secrets" flag, be aware that this will disable the passwords and secrets query for all languages, not just Bicep files. As a result, you may miss some security checks in other files. Before using this flag, carefully consider the impact on your overall security coverage, especially if your project includes multiple languages or file types.
+
+We advise reviewing your project's specific security needs to determine if this flag is appropriate. More information about the passwords and secrets query is available in our [Password and Secrets documentation](https://github.com/Checkmarx/kics/blob/master/docs/secrets.md). 
 
 ---
 
