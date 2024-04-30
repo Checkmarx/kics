@@ -1,13 +1,17 @@
+//go:build !parallelScans
+// +build !parallelScans
+
 package console
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/require"
 	"os"
 	"path/filepath"
 	"runtime"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestConsole_Execute(t *testing.T) { //nolint
@@ -267,6 +271,7 @@ func TestScanPerformance(t *testing.T) { //nolint
 				"-q",
 				filepath.FromSlash("../../assets/queries/"),
 				"--ignore-on-exit", "all",
+				"--parallel", "1",
 			},
 			secondExecArgs: []string{"kics",
 				"scan",
@@ -275,7 +280,6 @@ func TestScanPerformance(t *testing.T) { //nolint
 				"-q",
 				filepath.FromSlash("../../assets/queries/"),
 				"--ignore-on-exit", "all",
-				"--parallel", "0",
 			},
 		},
 	}

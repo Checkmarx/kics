@@ -225,7 +225,7 @@ go run ./cmd/console/main.go generate-id
 ```
 
 - `queryName` describes the name of the vulnerability
-- `severity` can be filled with `HIGH`, `MEDIUM`, `LOW` or `INFO`
+- `severity` can be filled with `CRITICAL`, `HIGH`, `MEDIUM`, `LOW` or `INFO`
 - `category` pick one of the following:
     - Access Control
     - Availability

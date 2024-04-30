@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "Run Using apt",
-		"severity": "MEDIUM",
-		"line": 2
-	}
+  {
+    "queryName": "Run Using apt",
+    "severity": "LOW",
+    "line": 2
+  }
 ]

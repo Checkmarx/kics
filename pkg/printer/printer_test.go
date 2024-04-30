@@ -45,6 +45,14 @@ func TestPrinter(t *testing.T) {
 		want string
 	}{
 		{
+			name: "test_critical",
+			args: args{
+				content: "test_critical_content",
+				sev:     model.SeverityCritical,
+			},
+			want: "test_critical_content",
+		},
+		{
 			name: "test_high",
 			args: args{
 				content: "test_high_content",
@@ -111,20 +119,32 @@ var printTests = []struct {
 
 	{
 		caseTest:           test.ComplexSummaryMock,
-		expectedResult:     "\n\nAMI Not Encrypted, Severity: HIGH, Results: 2\n\t[1]: positive.tf:30\n\t[2]: positive.tf:35\nAmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n\t[1]: positive.tf:1\nALB protocol is HTTP, Severity: HIGH, Results: 2\n\t[1]: positive.tf:25\n\t[2]: positive.tf:19\n\nResults Summary:\nHIGH: 4\nMEDIUM: 1\nLOW: 0\nINFO: 0\nTOTAL: 5\n\n",
-		expectedResultFull: "\n\nAMI Not Encrypted, Severity: HIGH, Results: 2\nDescription: AWS AMI Encryption is not enabled\nPlatform: \nCWE: 22\nLearn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/97707503-a22c-4cd7-b7c0-f088fa7cf830\n\n\t[1]: positive.tf:30\n\n\n\n\t[2]: positive.tf:35\n\n\n\nAmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\nDescription: AmazonMQ Broker should have Encryption Options defined\nPlatform: \nLearn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/aws/3db3f534-e3a3-487f-88c7-0a9fbf64b702\n\n\t[1]: positive.tf:1\n\n\n\nALB protocol is HTTP, Severity: HIGH, Results: 2\nDescription: ALB protocol is HTTP Description\nPlatform: \nLearn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/de7f5e83-da88-4046-871f-ea18504b1d43\n\n\t[1]: positive.tf:25\n\n\n\n\t[2]: positive.tf:19\n\n\n\n\nResults Summary:\nHIGH: 4\nMEDIUM: 1\nLOW: 0\nINFO: 0\nTOTAL: 5\n\n",
+		expectedResult:     "\n\nRun Block Injection, Severity: CRITICAL, Results: 1\n\t[1]: positive.tf:10\nAMI Not Encrypted, Severity: HIGH, Results: 2\n\t[1]: positive.tf:30\n\t[2]: positive.tf:35\nAmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n\t[1]: positive.tf:1\nALB protocol is HTTP, Severity: HIGH, Results: 2\n\t[1]: positive.tf:25\n\t[2]: positive.tf:19\n\nResults Summary:\nCRITICAL: 2\nHIGH: 2\nMEDIUM: 1\nLOW: 0\nINFO: 0\nTOTAL: 5\n\n",
+		expectedResultFull: "\n\nRun Block Injection, Severity: CRITICAL, Results: 1\nDescription: GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event.\nPlatform: \nLearn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/20f14e1a-a899-4e79-9f09-b6a84cd4649b\n\n\t[1]: positive.tf:10\n\n\n\nAMI Not Encrypted, Severity: HIGH, Results: 2\nDescription: AWS AMI Encryption is not enabled\nPlatform: \nCWE: 22\nLearn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/97707503-a22c-4cd7-b7c0-f088fa7cf830\n\n\t[1]: positive.tf:30\n\n\n\n\t[2]: positive.tf:35\n\n\n\nAmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\nDescription: AmazonMQ Broker should have Encryption Options defined\nPlatform: \nLearn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/aws/3db3f534-e3a3-487f-88c7-0a9fbf64b702\n\n\t[1]: positive.tf:1\n\n\n\nALB protocol is HTTP, Severity: HIGH, Results: 2\nDescription: ALB protocol is HTTP Description\nPlatform: \nLearn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/de7f5e83-da88-4046-871f-ea18504b1d43\n\n\t[1]: positive.tf:25\n\n\n\n\t[2]: positive.tf:19\n\n\n\n\nResults Summary:\nCRITICAL: 2\nHIGH: 2\nMEDIUM: 1\nLOW: 0\nINFO: 0\nTOTAL: 5\n\n",
 		customQueries:      false,
 	},
 	{
 		caseTest:           test.ComplexSummaryMock,
-		expectedResult:     "\n\nAMI Not Encrypted, Severity: HIGH, Results: 2\n\t[1]: positive.tf:30\n\t[2]: positive.tf:35\nAmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n\t[1]: positive.tf:1\nALB protocol is HTTP, Severity: HIGH, Results: 2\n\t[1]: positive.tf:25\n\t[2]: positive.tf:19\n\nResults Summary:\nHIGH: 4\nMEDIUM: 1\nLOW: 0\nINFO: 0\nTOTAL: 5\n\n",
-		expectedResultFull: "\n\nAMI Not Encrypted, Severity: HIGH, Results: 2\nDescription: AWS AMI Encryption is not enabled\nPlatform: \nCWE: 22\n\t[1]: positive.tf:30\n\n\n\n\t[2]: positive.tf:35\n\n\n\nAmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\nDescription: AmazonMQ Broker should have Encryption Options defined\nPlatform: \n\t[1]: positive.tf:1\n\n\n\nALB protocol is HTTP, Severity: HIGH, Results: 2\nDescription: ALB protocol is HTTP Description\nPlatform: \n\t[1]: positive.tf:25\n\n\n\n\t[2]: positive.tf:19\n\n\n\n\nResults Summary:\nHIGH: 4\nMEDIUM: 1\nLOW: 0\nINFO: 0\nTOTAL: 5\n\n",
+		expectedResult:     "\n\nRun Block Injection, Severity: CRITICAL, Results: 1\n\t[1]: positive.tf:10\nAMI Not Encrypted, Severity: HIGH, Results: 2\n\t[1]: positive.tf:30\n\t[2]: positive.tf:35\nAmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n\t[1]: positive.tf:1\nALB protocol is HTTP, Severity: HIGH, Results: 2\n\t[1]: positive.tf:25\n\t[2]: positive.tf:19\n\nResults Summary:\nCRITICAL: 2\nHIGH: 2\nMEDIUM: 1\nLOW: 0\nINFO: 0\nTOTAL: 5\n\n",
+		expectedResultFull: "\n\nRun Block Injection, Severity: CRITICAL, Results: 1\nDescription: GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event.\nPlatform: \n\t[1]: positive.tf:10\n\n\n\nAMI Not Encrypted, Severity: HIGH, Results: 2\nDescription: AWS AMI Encryption is not enabled\nPlatform: \nCWE: 22\n\t[1]: positive.tf:30\n\n\n\n\t[2]: positive.tf:35\n\n\n\nAmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\nDescription: AmazonMQ Broker should have Encryption Options defined\nPlatform: \n\t[1]: positive.tf:1\n\n\n\nALB protocol is HTTP, Severity: HIGH, Results: 2\nDescription: ALB protocol is HTTP Description\nPlatform: \n\t[1]: positive.tf:25\n\n\n\n\t[2]: positive.tf:19\n\n\n\n\nResults Summary:\nCRITICAL: 2\nHIGH: 2\nMEDIUM: 1\nLOW: 0\nINFO: 0\nTOTAL: 5\n\n",
 		customQueries:      true,
 	},
 	{
 		caseTest:           test.ComplexSummaryMockWithExperimental,
-		expectedResult:     "\n\nAmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n\t[1]: positive.tf:1\nALB protocol is HTTP, Severity: HIGH, Results: 2\nNote: this is an experimental query\n\t[1]: positive.tf:25\n\t[2]: positive.tf:19\n\nResults Summary:\nHIGH: 2\nMEDIUM: 1\nLOW: 0\nINFO: 0\nTOTAL: 3\n\n",
-		expectedResultFull: "\n\nAmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\nDescription: AmazonMQ Broker should have Encryption Options defined\nPlatform: \nLearn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/aws/3db3f534-e3a3-487f-88c7-0a9fbf64b702\n\n\t[1]: positive.tf:1\n\n\n\nALB protocol is HTTP, Severity: HIGH, Results: 2\nNote: this is an experimental query\nDescription: ALB protocol is HTTP Description\nPlatform: \nLearn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/de7f5e83-da88-4046-871f-ea18504b1d43\n\n\t[1]: positive.tf:25\n\n\n\n\t[2]: positive.tf:19\n\n\n\n\nResults Summary:\nHIGH: 2\nMEDIUM: 1\nLOW: 0\nINFO: 0\nTOTAL: 3\n\n",
+		expectedResult:     "\n\nAmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\n\t[1]: positive.tf:1\nALB protocol is HTTP, Severity: HIGH, Results: 2\nNote: this is an experimental query\n\t[1]: positive.tf:25\n\t[2]: positive.tf:19\n\nResults Summary:\nCRITICAL: 0\nHIGH: 2\nMEDIUM: 1\nLOW: 0\nINFO: 0\nTOTAL: 3\n\n",
+		expectedResultFull: "\n\nAmazonMQ Broker Encryption Disabled, Severity: MEDIUM, Results: 1\nDescription: AmazonMQ Broker should have Encryption Options defined\nPlatform: \nLearn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/aws/3db3f534-e3a3-487f-88c7-0a9fbf64b702\n\n\t[1]: positive.tf:1\n\n\n\nALB protocol is HTTP, Severity: HIGH, Results: 2\nNote: this is an experimental query\nDescription: ALB protocol is HTTP Description\nPlatform: \nLearn more about this vulnerability: https://docs.kics.io/latest/queries/-queries/de7f5e83-da88-4046-871f-ea18504b1d43\n\n\t[1]: positive.tf:25\n\n\n\n\t[2]: positive.tf:19\n\n\n\n\nResults Summary:\nCRITICAL: 0\nHIGH: 2\nMEDIUM: 1\nLOW: 0\nINFO: 0\nTOTAL: 3\n\n",
+		customQueries:      false,
+	},
+	{
+		caseTest:           test.ExampleSummaryMockWithCloudProviderCommon,
+		expectedResult:     "\n\nUnpinned Actions Full Length Commit SHA, Severity: LOW, Results: 1\n\t[1]: positive.tf:12\n\nResults Summary:\nCRITICAL: 0\nHIGH: 0\nMEDIUM: 0\nLOW: 1\nINFO: 0\nTOTAL: 1\n\n",
+		expectedResultFull: "\n\nUnpinned Actions Full Length Commit SHA, Severity: LOW, Results: 1\nDescription: Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release.\nPlatform: CICD\nLearn more about this vulnerability: https://docs.kics.io/latest/queries/cicd-queries/555ab8f9-2001-455e-a077-f2d0f41e2fb9\n\n\t[1]: positive.tf:12\n\n\n\n\nResults Summary:\nCRITICAL: 0\nHIGH: 0\nMEDIUM: 0\nLOW: 1\nINFO: 0\nTOTAL: 1\n\n",
+		customQueries:      false,
+	},
+	{
+		caseTest:           test.ExampleSummaryMockWithPasswordsAndSecretsCommonQuery,
+		expectedResult:     "\n\nPasswords And Secrets - AWS Secret Key, Severity: HIGH, Results: 1\n\t[1]: positive.tf:15\n\nResults Summary:\nCRITICAL: 0\nHIGH: 1\nMEDIUM: 0\nLOW: 0\nINFO: 0\nTOTAL: 1\n\n",
+		expectedResultFull: "\n\nPasswords And Secrets - AWS Secret Key, Severity: HIGH, Results: 1\nDescription: Query to find passwords and secrets in infrastructure code.\nPlatform: Common\nLearn more about this vulnerability: https://docs.kics.io/latest/queries/common-queries/a88baa34-e2ad-44ea-ad6f-8cac87bc7c71\n\n\t[1]: positive.tf:15\n\n\n\n\nResults Summary:\nCRITICAL: 0\nHIGH: 1\nMEDIUM: 0\nLOW: 0\nINFO: 0\nTOTAL: 1\n\n",
 		customQueries:      false,
 	},
 }

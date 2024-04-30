@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 9efb0b2d-89c9-41a3-91ca-dcc0aec911fd
 -   **Query name:** Image Version Not Explicit
 -   **Platform:** Dockerfile
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Supply-Chain
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/image_version_not_explicit)
 

@@ -104,7 +104,7 @@ func getKeyWithCurlyBrackets(key string, extractedString [][]string, parts []str
 						log.Error().Msgf("failed to extract curly brackets substring")
 					}
 					if len(extractedString) > i {
-						if len(extractedString[i][1]) > 0 {
+						if extractedString[i][1] != "" {
 							substr1 = extractedString[i][1]
 						}
 					}
@@ -114,7 +114,7 @@ func getKeyWithCurlyBrackets(key string, extractedString [][]string, parts []str
 						log.Error().Msgf("failed to extract curly brackets substring")
 					}
 					if len(extractedString) > i {
-						if len(extractedString[i][1]) > 0 {
+						if extractedString[i][1] != "" {
 							substr2 = extractedString[i][1]
 						}
 					}

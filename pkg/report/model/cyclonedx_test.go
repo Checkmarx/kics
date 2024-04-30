@@ -26,7 +26,7 @@ var metadata Metadata = Metadata{
 }
 
 var initCycloneDxReport CycloneDxReport = CycloneDxReport{
-	XMLNS:        "http://cyclonedx.org/schema/bom/1.3",
+	XMLNS:        "http://cyclonedx.org/schema/bom/1.5",
 	XMLNSV:       "http://cyclonedx.org/schema/ext/vulnerability/1.0",
 	SerialNumber: "urn:uuid:", // set to "urn:uuid:" because it will be different for every report
 	Version:      1,
@@ -59,14 +59,17 @@ func TestInitCycloneDxReport(t *testing.T) {
 // TestBuildCycloneDxReport tests the BuildCycloneDxReport function
 func TestBuildCycloneDxReport(t *testing.T) {
 	var cycloneDx CycloneDxReport = initCycloneDxReport
+	var cycloneDxCritical CycloneDxReport = initCycloneDxReport
 	var cycloneDxCWE CycloneDxReport = initCycloneDxReport
-	var vulnsC1, vulnsC2, vulnsC3 []Vulnerability
-	var positiveSha, negativeSha string
+	var vulnsC1, vulnsC2, vulnsC3, vulnsC4 []Vulnerability
+	var positiveSha, negativeSha, criticalSha string
 
 	var sha256TestMap = map[string]map[string]string{
 		"positive": {
-			"Unix":    "487d5879d7ec205b4dcd037d5ce0075ed4fedb9dd5b8e45390ffdfa3442f15f7",
-			"Windows": "bd4ac2f61e7c623477b5d200b3662fd7caac5e89e042960fd1adb008e0962635",
+			"Unix":            "487d5879d7ec205b4dcd037d5ce0075ed4fedb9dd5b8e45390ffdfa3442f15f7",
+			"Windows":         "bd4ac2f61e7c623477b5d200b3662fd7caac5e89e042960fd1adb008e0962635",
+			"CriticalWindows": "1c624a2f982858ee0b747f26c0e0019bc7fbb130c7719e90a5d5c1f552608a4f",
+			"CriticalUnix":    "04174a2b45ae406d5432590304b1773c9a46a95a2327b3cc164cb464dc57cef5",
 		},
 		"negative": {
 			"Unix":    "cd10cef2b154363f32ca4018426982509efbc9e1a8ea6bca587e68ffaef09c37",
@@ -77,9 +80,11 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	if runtime.GOOS == "windows" {
 		positiveSha = sha256TestMap["positive"]["Windows"]
 		negativeSha = sha256TestMap["negative"]["Windows"]
+		criticalSha = sha256TestMap["positive"]["CriticalWindows"]
 	} else {
 		positiveSha = sha256TestMap["positive"]["Unix"]
 		negativeSha = sha256TestMap["negative"]["Unix"]
+		criticalSha = sha256TestMap["positive"]["CriticalUnix"]
 	}
 
 	v1 := Vulnerability{
@@ -170,6 +175,29 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		},
 	}
 
+	vulnsC3 = append(vulnsC3, v4)
+
+	v5 := Vulnerability{
+		Ref: fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v316278b3-87ac-444c-8f8f-a733a28da609", criticalSha[0:12]),
+		ID:  "316278b3-87ac-444c-8f8f-a733a28da609",
+		Source: Source{
+			Name: "KICS",
+			URL:  "https://kics.io/",
+		},
+		Ratings: []Rating{
+			{
+				Severity: "Critical",
+				Method:   "Other",
+			},
+		},
+		Description: "[].[AmazonMQ Broker Encryption Disabled]: testCISDescription",
+		Recommendations: []Recommendation{
+			{
+				Recommendation: "Problem found in line 6. Expected value: 'default_action.redirect.protocol' is equal 'HTTPS'. Actual value: 'default_action.redirect.protocol' is missing.",
+			},
+		},
+	}
+
 	vulnsC1 = append(vulnsC1, v1)
 	vulnsC1 = append(vulnsC1, v2)
 
@@ -205,8 +233,6 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		Vulnerabilities: vulnsC2,
 	}
 
-	vulnsC3 = append(vulnsC3, v4)
-
 	c3 := Component{
 		Type:    "file",
 		BomRef:  fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%s", negativeSha[0:12]),
@@ -222,16 +248,36 @@ func TestBuildCycloneDxReport(t *testing.T) {
 		Vulnerabilities: vulnsC3,
 	}
 
+	vulnsC4 = append(vulnsC4, v5)
+
+	c4 := Component{
+		Type:    "file",
+		BomRef:  fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v", criticalSha[0:12]),
+		Name:    "../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml",
+		Version: fmt.Sprintf("0.0.0-%v", criticalSha[0:12]),
+		Purl:    fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v", criticalSha[0:12]),
+		Hashes: []Hash{
+			{
+				Alg:     "SHA-256",
+				Content: criticalSha,
+			},
+		},
+		Vulnerabilities: vulnsC4,
+	}
+
 	cycloneDx.Components.Components = append(cycloneDx.Components.Components, c2)
 	cycloneDx.Components.Components = append(cycloneDx.Components.Components, c1)
 	cycloneDxCWE.Components.Components = append(cycloneDxCWE.Components.Components, c3)
+	cycloneDxCritical.Components.Components = append(cycloneDxCritical.Components.Components, c4)
 
 	filePaths := make(map[string]string)
 
 	file1 := filepath.Join("..", "..", "..", "assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive.tf")
 	file2 := filepath.Join("..", "..", "..", "assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "negative.tf")
+	file3 := filepath.Join("..", "..", "..", "test", "fixtures", "test_critical_custom_queries", "amazon_mq_broker_encryption_disabled", "test", "positive1.yaml")
 	filePaths[file1] = file1
 	filePaths[file2] = file2
+	filePaths[file3] = file3
 
 	type args struct {
 		summary   *model.Summary
@@ -246,9 +292,17 @@ func TestBuildCycloneDxReport(t *testing.T) {
 			name: "Build CycloneDX report",
 			args: args{
 				summary:   &test.ExampleSummaryMock,
-				filePaths: filePaths,
+				filePaths: map[string]string{file1: file1, file2: file2},
 			},
 			want: &cycloneDx,
+		},
+		{
+			name: "Build CycloneDX report with critical severity",
+			args: args{
+				summary:   &test.SummaryMockCritical,
+				filePaths: map[string]string{file3: file3},
+			},
+			want: &cycloneDxCritical,
 		},
 		{
 			name: "Build CycloneDX report with cwe field complete",

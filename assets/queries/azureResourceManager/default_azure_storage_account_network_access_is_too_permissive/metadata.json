@@ -1,12 +1,13 @@
 {
   "id": "d855ced8-6157-448f-9f1d-f05a41d046f7",
   "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
-  "severity": "MEDIUM",
+  "severity": "HIGH",
   "category": "Access Control",
   "descriptionText": "Make sure that your Azure Storage Account access is limited to those who require it.",
   "descriptionUrl": "https://learn.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts",
   "platform": "AzureResourceManager",
   "descriptionID": "d855ced8",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

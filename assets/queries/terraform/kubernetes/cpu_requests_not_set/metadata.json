@@ -1,11 +1,13 @@
 {
   "id": "577ac19c-6a77-46d7-9f14-e049cdd15ec2",
   "queryName": "CPU Requests Not Set",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Resource Management",
   "descriptionText": "CPU requests should be set to ensure the sum of the resource requests of the scheduled Containers is less than the capacity of the node",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#requests",
   "platform": "Terraform",
   "descriptionID": "957f09a7",
-  "cwe": ""
+  "cwe": "",
+  "cloudProvider": "common",
+  "oldSeverity": "MEDIUM"
 }

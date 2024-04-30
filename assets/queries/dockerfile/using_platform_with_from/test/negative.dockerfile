@@ -3,4 +3,4 @@ RUN apk add --update py2-pip
 RUN pip install --upgrade pip
 LABEL maintainer="SvenDowideit@home.org.au"
 COPY requirements.txt /usr/src/app/
-FROM baseimage
+FROM --platform=arm64 baseimage as baseimage-build

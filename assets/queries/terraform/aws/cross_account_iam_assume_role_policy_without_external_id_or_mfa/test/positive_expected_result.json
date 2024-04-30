@@ -1,19 +1,19 @@
 [
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 4,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 4,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Cross-Account IAM Assume Role Policy Without ExternalId or MFA",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 4,
     "fileName": "positive3.tf"
   }

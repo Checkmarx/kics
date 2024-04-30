@@ -29,7 +29,6 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude: []string{
 				filepath.FromSlash("../../test/fixtures/analyzer_test/not_openapi.json"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/pnpm-lock.yaml"),
-				filepath.FromSlash("../../test/fixtures/analyzer_test/dead_symlink"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/undetected.yaml")},
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
@@ -149,7 +148,8 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/gitignore"),
 			},
 			wantTypes: []string{"kubernetes"},
-			wantExclude: []string{filepath.FromSlash("../../test/fixtures/gitignore/positive.dockerfile"),
+			wantExclude: []string{
+				filepath.FromSlash("../../test/fixtures/gitignore/positive.dockerfile"),
 				filepath.FromSlash("../../test/fixtures/gitignore/secrets.tf"),
 				filepath.FromSlash("../../test/fixtures/gitignore/gitignore"),
 			},
@@ -229,7 +229,6 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/analyzer_test/azureResourceManager.json"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/cloudformation.yaml"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/crossplane.yaml"),
-				filepath.FromSlash("../../test/fixtures/analyzer_test/dead_symlink"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/docker-compose.yaml"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/gdm.yaml"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/helm/Chart.yaml"),
@@ -262,7 +261,6 @@ func TestAnalyzer_Analyze(t *testing.T) {
 				filepath.FromSlash("../../test/fixtures/analyzer_test/not_openapi.json"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/undetected.yaml"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/pnpm-lock.yaml"),
-				filepath.FromSlash("../../test/fixtures/analyzer_test/dead_symlink"),
 			},
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{"ansible", "pulumi"},
@@ -279,7 +277,6 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude: []string{
 				filepath.FromSlash("../../test/fixtures/analyzer_test/pnpm-lock.yaml"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/not_openapi.json"),
-				filepath.FromSlash("../../test/fixtures/analyzer_test/dead_symlink"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/undetected.yaml"),
 			},
 			typesFromFlag:        []string{""},
@@ -297,7 +294,6 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude: []string{
 				filepath.FromSlash("../../test/fixtures/analyzer_test/pnpm-lock.yaml"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/not_openapi.json"),
-				filepath.FromSlash("../../test/fixtures/analyzer_test/dead_symlink"),
 				filepath.FromSlash("../../test/fixtures/analyzer_test/undetected.yaml"),
 			},
 			typesFromFlag:        []string{""},

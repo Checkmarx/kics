@@ -1,20 +1,20 @@
 [
-    {
-      "queryName": "Elasticsearch with HTTPS disabled",
-      "severity": "HIGH",
-      "line": 15,
-      "fileName": "positive1.yaml"
-    },
-    {
-      "queryName": "Elasticsearch with HTTPS disabled",
-      "severity": "HIGH",
-      "line": 24,
-      "fileName": "positive2.yaml"
-    },
-    {
-      "queryName": "Elasticsearch with HTTPS disabled",
-      "severity": "HIGH",
-      "line": 6,
-      "fileName": "positive3.yaml"
-    }
+  {
+    "queryName": "Elasticsearch with HTTPS disabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Elasticsearch with HTTPS disabled",
+    "severity": "MEDIUM",
+    "line": 24,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Elasticsearch with HTTPS disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive3.yaml"
+  }
 ]

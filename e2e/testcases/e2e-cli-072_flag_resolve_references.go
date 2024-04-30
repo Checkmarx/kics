@@ -21,7 +21,7 @@ func init() { //nolint
 				},
 			},
 		},
-		WantStatus: []int{40},
+		WantStatus: []int{30},
 	}
 
 	Tests = append(Tests, testSample)

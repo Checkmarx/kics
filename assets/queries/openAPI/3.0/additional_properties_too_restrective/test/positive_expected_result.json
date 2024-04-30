@@ -1,25 +1,25 @@
 [
   {
     "queryName": "Additional Properties Too Restrictive",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 41,
     "filename": "positive1.json"
   },
   {
     "queryName": "Additional Properties Too Restrictive",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 15,
     "filename": "positive3.json"
   },
   {
     "queryName": "Additional Properties Too Restrictive",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 25,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "Additional Properties Too Restrictive",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 13,
     "filename": "positive4.yaml"
   }

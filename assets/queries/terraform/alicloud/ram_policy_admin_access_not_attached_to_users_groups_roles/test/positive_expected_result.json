@@ -1,19 +1,19 @@
 [
   {
     "queryName": "Ram Policy Admin Access Not Attached to Users Groups Roles",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 35,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "Ram Policy Admin Access Not Attached to Users Groups Roles",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 32,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Ram Policy Admin Access Not Attached to Users Groups Roles",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 49,
     "fileName": "positive3.tf"
   }

@@ -1,7 +1,7 @@
 {
   "id": "b2f275be-7d64-4064-b418-be6b431363a7",
   "queryName": "Success Response Code Undefined for Get Operation (v3)",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "Get should define at least one success response (200 or 202)",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
@@ -16,5 +16,6 @@
       "descriptionText": ""
     }
   },
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

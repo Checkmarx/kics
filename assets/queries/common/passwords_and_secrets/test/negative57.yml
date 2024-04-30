@@ -1,0 +1,8 @@
+- name: "Configure the MySQL user "
+  community.mysql.mysql_user:
+    login_user: "root"
+    login_password: "{{ mysql_root_password }}"
+    name: "{{ mysql_user }}"
+    password: "{{ mysql_user_password }}"
+    password_expire: "never"
+    update_password: "on_create"
