@@ -8,5 +8,6 @@
   "platform": "Kubernetes",
   "descriptionID": "b52844f2",
   "cwe": "",
-  "oldSeverity": "HIGH"
+  "oldSeverity": "HIGH",
+  "cloudProvider": "common"
 }
