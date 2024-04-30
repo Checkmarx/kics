@@ -22,5 +22,29 @@
     "severity": "MEDIUM",
     "line": 24,
     "filename": "positive4.json"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive1.bicep"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive2.bicep"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive3.bicep"
+  },
+  {
+    "queryName": "SQL Server Database Without Auditing",
+    "severity": "MEDIUM",
+    "line": 15,
+    "filename": "positive4.bicep"
   }
 ]
