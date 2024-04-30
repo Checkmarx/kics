@@ -53,6 +53,128 @@ func convertVisitorToJSONBicep(visitor *BicepVisitor) *JSONBicep {
 	}
 }
 
+type Resource struct {
+	Name         string
+	Parent       string
+	Children     []*Resource
+	ResourceData interface{}
+}
+
+func filterTestStruct(resources []*Resource) []*Resource {
+	filteredResources := []*Resource{}
+
+	for _, resource := range resources {
+		if resource.Parent == "" {
+			filteredResources = append(filteredResources, resource)
+		}
+	}
+
+	return filteredResources
+}
+
+func reformatTestTree(resource Resource) map[string]interface{} {
+	res := map[string]interface{}{}
+
+	res["identifier"] = resource.Name
+	children := []interface{}{}
+	for _, child := range resource.Children {
+		formattedChild := reformatTestTree(*child)
+		children = append(children, formattedChild)
+	}
+
+	res["resources"] = children
+	for k, v := range resource.ResourceData.(map[string]interface{}) {
+		res[k] = v
+	}
+
+	return res
+}
+
+func addChildrenToParents(resources []*Resource) {
+	resourceMap := map[string]*Resource{}
+
+	for _, resource := range resources {
+		resourceMap[resource.Name] = resource
+	}
+
+	for _, resource := range resources {
+		if resource.Parent != "" {
+			parent := resourceMap[resource.Parent]
+			parent.Children = append(parent.Children, resource)
+		}
+	}
+}
+
+func shortenTypes(resource map[string]interface{}, parentType string) map[string]interface{} {
+	newResource := resource
+
+	// currentType := resource["type"]
+	if _, hasParent := resource["parent"]; hasParent {
+		newType := strings.Replace(resource["type"].(string), parentType+"/", "", 1)
+		parentType = resource["type"].(string)
+		newResource["type"] = newType
+	} else {
+		parentType = resource["type"].(string)
+	}
+
+	if children, hasChildren := resource["resources"]; hasChildren {
+		newChildren := []interface{}{}
+		for _, child := range children.([]interface{}) {
+			newChild := shortenTypes(child.(map[string]interface{}), parentType)
+			newChildren = append(newChildren, newChild)
+		}
+		newResource["resources"] = newChildren
+	}
+
+	return newResource
+}
+
+func makeResourcesNestedStructure(jBicep *JSONBicep) []interface{} {
+	resources := []*Resource{}
+
+	trueResources := jBicep.Resources
+	for _, res := range trueResources {
+		resName := res.(map[string]interface{})["identifier"].(string)
+		actualRes := res.(map[string]interface{})
+		resParent, ok := actualRes["parent"]
+		var newRes Resource
+		if ok {
+			resParentName, ok := resParent.(string)
+			if ok {
+				newRes = Resource{
+					Name:         resName,
+					Parent:       resParentName,
+					ResourceData: res,
+				}
+			}
+		} else {
+			newRes = Resource{
+				Name:         resName,
+				ResourceData: res,
+			}
+		}
+		resources = append(resources, &newRes)
+	}
+
+	addChildrenToParents(resources)
+
+	filteredResources := filterTestStruct(resources)
+
+	reformattedResources := []interface{}{}
+	for _, node := range filteredResources {
+		formattedNode := reformatTestTree(*node)
+		reformattedResources = append(reformattedResources, formattedNode)
+	}
+
+	resultResources := []interface{}{}
+	for _, node := range reformattedResources {
+		newNode := shortenTypes(node.(map[string]interface{}), "")
+		resultResources = append(resultResources, newNode)
+	}
+
+	return resultResources
+}
+
 // Parse - parses bicep to BicepVisitor template (json file)
 func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 	bicepVisitor := NewBicepVisitor()
@@ -69,6 +191,9 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 	var doc model.Document
 
 	jBicep := convertVisitorToJSONBicep(bicepVisitor)
+	testeResources := makeResourcesNestedStructure(jBicep)
+
+	jBicep.Resources = testeResources
 	bicepBytes, err := json.Marshal(jBicep)
 	if err != nil {
 		return nil, nil, err
