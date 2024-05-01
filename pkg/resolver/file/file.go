@@ -286,17 +286,7 @@ func (r *Resolver) resolveYamlPath(
 
 		filename := filepath.Clean(onlyFilePath)
 
-		fileContent, err := readFileContent(filename)
-		if err != nil {
-			return *v, false
-		}
-
-		// Regex to match if the parent file is being included in the child file
-		// Only relevant for the Ansible platform
-		pattern := fmt.Sprintf(`include_tasks\s*:\s*%s`, regexp.QuoteMeta(filepath.Base(filePath)))
-
-		regex := regexp.MustCompile(pattern)
-		if regex.MatchString(string(fileContent)) {
+		if isCircular, _ := checkAnsibleCircularImports(filePath, filename); isCircular {
 			return *v, false
 		}
 
@@ -604,4 +594,26 @@ func readFileContent(filePath string) ([]byte, error) {
 	}
 
 	return fileContent, nil
+}
+
+func checkAnsibleCircularImports(parentfilePath, childFilePath string) (bool, error) {
+	// Check if parent and child files are in different directories
+	if filepath.Dir(parentfilePath) != filepath.Dir(childFilePath) {
+		return false, nil
+	}
+
+	childFileContent, err := readFileContent(childFilePath)
+	if err != nil {
+		return true, err
+	}
+
+	// Regex to match if the parent file is being imported in the child file
+	pattern := fmt.Sprintf(`(?:import|include)_\w+\s*:\s*%s`, regexp.QuoteMeta(filepath.Base(parentfilePath)))
+
+	regex := regexp.MustCompile(pattern)
+	if regex.MatchString(string(childFileContent)) {
+		return true, nil
+	}
+
+	return false, nil
 }
