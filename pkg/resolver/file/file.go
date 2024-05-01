@@ -350,7 +350,6 @@ func (r *Resolver) resolveFile(
 	resolveCount int,
 	resolvedFilesCache map[string]ResolvedFile,
 	yamlResolve bool, resolveReferences bool) (any, bool) {
-
 	// Open and read the file with the content to replace
 	fileContent, err := readFileContent(filePath)
 	if err != nil {
