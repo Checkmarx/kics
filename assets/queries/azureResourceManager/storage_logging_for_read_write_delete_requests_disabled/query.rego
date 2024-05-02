@@ -10,16 +10,18 @@ CxPolicy[result] {
 
 	value.type == "Microsoft.Storage/storageAccounts/queueServices/providers/diagnosticsettings"
 
-	
+	#array containing data that will be used to help build the following objects
 	valSlice:= [x | x := {
     	sprintf("%s", [value.properties.logs[n].category]): [value.properties.logs[n].enabled, n]
         }]
 
+	#object that maps category names to their respective enabled values
 	unionObject := {k: v |
 		some i, k
     	v := valSlice[i][k][0]
       }
 
+	#object that maps category names to their respective index values in the document
 	catIndexObject := {k: v |
 		some i, k
     	v := valSlice[i][k][1]
