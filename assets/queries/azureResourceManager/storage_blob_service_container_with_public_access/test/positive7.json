@@ -51,17 +51,6 @@
       "kind": "StorageV2",
       "properties": {
         "networkAcls": {
-          "bypass": "None",
-          "virtualNetworkRules": [
-            {
-              "id": "[variables('containerSubnetRef')]",
-              "action": "Allow"
-            },
-            {
-              "id": "[variables('storageSubnetRef')]",
-              "action": "Allow"
-            }
-          ],
           "defaultAction": "Deny"
         },
         "supportsHttpsTrafficOnly": true,
