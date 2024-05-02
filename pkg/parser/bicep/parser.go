@@ -108,7 +108,6 @@ func addChildrenToParents(resources []*Resource) {
 func shortenTypes(resource map[string]interface{}, parentType string) map[string]interface{} {
 	newResource := resource
 
-	// currentType := resource["type"]
 	if _, hasParent := resource["parent"]; hasParent {
 		newType := strings.Replace(resource["type"].(string), parentType+"/", "", 1)
 		parentType = resource["type"].(string)
