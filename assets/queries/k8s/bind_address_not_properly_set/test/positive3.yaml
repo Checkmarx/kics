@@ -18,5 +18,5 @@ spec:
     - name: command-demo-container
       image: k8s.gcr.io/kube-scheduler:v1.19.0
       command: ["kube-scheduler"]
-      args: ["--bind-address=127.0.0.1"]
+      args: []
   restartPolicy: OnFailure
