@@ -244,10 +244,10 @@ func TestParseBicepFile(t *testing.T) {
 						"OSVersion": {
 							"_kics_lines": {
 								"_kics_defaultValue": {
-									"_kics_line": 34
+									"_kics_line": 33
 								},
 								"_kics_type": {
-									"_kics_line": 34
+									"_kics_line": 33
 								}
 							},
 							"allowedValues": [
@@ -303,13 +303,55 @@ func TestParseBicepFile(t *testing.T) {
 							},
 							"type": "string"
 						},
+						"existingContainerSubnetName": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 53
+								},
+								"_kics_type": {
+									"_kics_line": 53
+								}
+							},
+							"metadata": {
+								"description": "Name of the subnet to use for cloud shell containers."
+							},
+							"type": "string"
+						},
+						"existingStorageSubnetName": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 50
+								},
+								"_kics_type": {
+									"_kics_line": 50
+								}
+							},
+							"metadata": {
+								"description": "Name of the subnet to use for storage account."
+							},
+							"type": "string"
+						},
+						"existingVNETName": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 47
+								},
+								"_kics_type": {
+									"_kics_line": 47
+								}
+							},
+							"metadata": {
+								"description": "Name of the virtual network to use for cloud shell containers."
+							},
+							"type": "string"
+						},
 						"location": {
 							"_kics_lines": {
 								"_kics_defaultValue": {
-									"_kics_line": 40
+									"_kics_line": 39
 								},
 								"_kics_type": {
-									"_kics_line": 40
+									"_kics_line": 39
 								}
 							},
 							"defaultValue": "[resourceGroup().location]",
@@ -321,10 +363,10 @@ func TestParseBicepFile(t *testing.T) {
 						"parenthesis": {
 							"_kics_lines": {
 								"_kics_defaultValue": {
-									"_kics_line": 45
+									"_kics_line": 44
 								},
 								"_kics_type": {
-									"_kics_line": 45
+									"_kics_line": 44
 								}
 							},
 							"defaultValue": "simple-vm",
@@ -333,10 +375,10 @@ func TestParseBicepFile(t *testing.T) {
 						"vmName": {
 							"_kics_lines": {
 								"_kics_defaultValue": {
-									"_kics_line": 43
+									"_kics_line": 42
 								},
 								"_kics_type": {
-									"_kics_line": 43
+									"_kics_line": 42
 								}
 							},
 							"defaultValue": "simple-vm",
@@ -348,10 +390,10 @@ func TestParseBicepFile(t *testing.T) {
 						"vmSize": {
 							"_kics_lines": {
 								"_kics_defaultValue": {
-									"_kics_line": 37
+									"_kics_line": 36
 								},
 								"_kics_type": {
-									"_kics_line": 37
+									"_kics_line": 36
 								}
 							},
 							"defaultValue": "Standard_D2_v3",
@@ -365,32 +407,32 @@ func TestParseBicepFile(t *testing.T) {
 						{
 							"_kics_lines": {
 								"_kics__default": {
-									"_kics_line": 51
+									"_kics_line": 72
 								},
 								"_kics_apiVersion": {
-									"_kics_line": 50
+									"_kics_line": 71
 								},
 								"_kics_dependsOn": {
 									"_kics_arr": [
 										{
 											"_kics__default": {
-												"_kics_line": 100
+												"_kics_line": 121
 											}
 										}
 									],
-									"_kics_line": 100
+									"_kics_line": 121
 								},
 								"_kics_location": {
-									"_kics_line": 53
+									"_kics_line": 74
 								},
 								"_kics_name": {
-									"_kics_line": 52
+									"_kics_line": 73
 								},
 								"_kics_properties": {
-									"_kics_line": 54
+									"_kics_line": 75
 								},
 								"_kics_type": {
-									"_kics_line": 50
+									"_kics_line": 71
 								}
 							},
 							"apiVersion": "2021-03-01",
@@ -417,43 +459,43 @@ func TestParseBicepFile(t *testing.T) {
 							"properties": {
 								"_kics_lines": {
 									"_kics__default": {
-										"_kics_line": 54
+										"_kics_line": 75
 									},
 									"_kics_diagnosticsProfile": {
-										"_kics_line": 91
+										"_kics_line": 112
 									},
 									"_kics_hardwareProfile": {
-										"_kics_line": 55
+										"_kics_line": 76
 									},
 									"_kics_networkProfile": {
-										"_kics_line": 84
+										"_kics_line": 105
 									},
 									"_kics_osProfile": {
-										"_kics_line": 58
+										"_kics_line": 79
 									},
 									"_kics_storageProfile": {
-										"_kics_line": 63
+										"_kics_line": 84
 									}
 								},
 								"diagnosticsProfile": {
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 91
+											"_kics_line": 112
 										},
 										"_kics_bootDiagnostics": {
-											"_kics_line": 92
+											"_kics_line": 113
 										}
 									},
 									"bootDiagnostics": {
 										"_kics_lines": {
 											"_kics__default": {
-												"_kics_line": 92
+												"_kics_line": 113
 											},
 											"_kics_enabled": {
-												"_kics_line": 93
+												"_kics_line": 114
 											},
 											"_kics_storageUri": {
-												"_kics_line": 94
+												"_kics_line": 115
 											}
 										},
 										"enabled": true,
@@ -463,10 +505,10 @@ func TestParseBicepFile(t *testing.T) {
 								"hardwareProfile": {
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 55
+											"_kics_line": 76
 										},
 										"_kics_vmSize": {
-											"_kics_line": 56
+											"_kics_line": 77
 										}
 									},
 									"vmSize": "[parameters('vmSize')]"
@@ -474,27 +516,27 @@ func TestParseBicepFile(t *testing.T) {
 								"networkProfile": {
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 84
+											"_kics_line": 105
 										},
 										"_kics_networkInterfaces": {
 											"_kics_arr": [
 												{
 													"_kics__default": {
-														"_kics_line": 85
+														"_kics_line": 106
 													}
 												}
 											],
-											"_kics_line": 85
+											"_kics_line": 106
 										}
 									},
 									"networkInterfaces": [
 										{
 											"_kics_lines": {
 												"_kics__default": {
-													"_kics_line": 86
+													"_kics_line": 107
 												},
 												"_kics_id": {
-													"_kics_line": 87
+													"_kics_line": 108
 												}
 											},
 											"id": {
@@ -509,16 +551,16 @@ func TestParseBicepFile(t *testing.T) {
 								"osProfile": {
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 58
+											"_kics_line": 79
 										},
 										"_kics_adminPassword": {
-											"_kics_line": 61
+											"_kics_line": 82
 										},
 										"_kics_adminUsername": {
-											"_kics_line": 60
+											"_kics_line": 81
 										},
 										"_kics_computerName": {
-											"_kics_line": 59
+											"_kics_line": 80
 										}
 									},
 									"adminPassword": "[parameters('adminPassword')]",
@@ -528,39 +570,39 @@ func TestParseBicepFile(t *testing.T) {
 								"storageProfile": {
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 63
+											"_kics_line": 84
 										},
 										"_kics_dataDisks": {
 											"_kics_arr": [
 												{
 													"_kics__default": {
-														"_kics_line": 76
+														"_kics_line": 97
 													}
 												}
 											],
-											"_kics_line": 76
+											"_kics_line": 97
 										},
 										"_kics_imageReference": {
-											"_kics_line": 64
+											"_kics_line": 85
 										},
 										"_kics_osDisk": {
-											"_kics_line": 70
+											"_kics_line": 91
 										}
 									},
 									"dataDisks": [
 										{
 											"_kics_lines": {
 												"_kics__default": {
-													"_kics_line": 77
+													"_kics_line": 98
 												},
 												"_kics_createOption": {
-													"_kics_line": 80
+													"_kics_line": 101
 												},
 												"_kics_diskSizeGB": {
-													"_kics_line": 78
+													"_kics_line": 99
 												},
 												"_kics_lun": {
-													"_kics_line": 79
+													"_kics_line": 100
 												}
 											},
 											"createOption": "Empty",
@@ -571,19 +613,19 @@ func TestParseBicepFile(t *testing.T) {
 									"imageReference": {
 										"_kics_lines": {
 											"_kics__default": {
-												"_kics_line": 64
+												"_kics_line": 85
 											},
 											"_kics_offer": {
-												"_kics_line": 66
+												"_kics_line": 87
 											},
 											"_kics_publisher": {
-												"_kics_line": 65
+												"_kics_line": 86
 											},
 											"_kics_sku": {
-												"_kics_line": 67
+												"_kics_line": 88
 											},
 											"_kics_version": {
-												"_kics_line": 68
+												"_kics_line": 89
 											}
 										},
 										"offer": "WindowsServer",
@@ -594,23 +636,23 @@ func TestParseBicepFile(t *testing.T) {
 									"osDisk": {
 										"_kics_lines": {
 											"_kics__default": {
-												"_kics_line": 70
+												"_kics_line": 91
 											},
 											"_kics_createOption": {
-												"_kics_line": 71
+												"_kics_line": 92
 											},
 											"_kics_managedDisk": {
-												"_kics_line": 72
+												"_kics_line": 93
 											}
 										},
 										"createOption": "FromImage",
 										"managedDisk": {
 											"_kics_lines": {
 												"_kics__default": {
-													"_kics_line": 72
+													"_kics_line": 93
 												},
 												"_kics_storageAccountType": {
-													"_kics_line": 73
+													"_kics_line": 94
 												}
 											},
 											"storageAccountType": "StandardSSD_LRS"
@@ -618,37 +660,38 @@ func TestParseBicepFile(t *testing.T) {
 									}
 								}
 							},
+							"resources": [],
 							"type": "Microsoft.Compute/virtualMachines"
 						},
 						{
 							"_kics_lines": {
 								"_kics__default": {
-									"_kics_line": 106
+									"_kics_line": 127
 								},
 								"_kics_apiVersion": {
-									"_kics_line": 106
+									"_kics_line": 127
 								},
 								"_kics_assignableScopes": {
 									"_kics_arr": [
 										{
 											"_kics__default": {
-												"_kics_line": 116
+												"_kics_line": 137
 											}
 										}
 									],
-									"_kics_line": 116
+									"_kics_line": 137
 								},
 								"_kics_location": {
-									"_kics_line": 108
+									"_kics_line": 129
 								},
 								"_kics_name": {
-									"_kics_line": 107
+									"_kics_line": 128
 								},
 								"_kics_type": {
-									"_kics_line": 106
+									"_kics_line": 127
 								},
 								"_kics_userAssignedIdentities": {
-									"_kics_line": 113
+									"_kics_line": 134
 								}
 							},
 							"apiVersion": "2021-03-01",
@@ -658,32 +701,358 @@ func TestParseBicepFile(t *testing.T) {
 							"identifier": "nic",
 							"location": null,
 							"name": "",
+							"resources": [],
 							"type": "Microsoft.Network/networkInterfaces",
 							"userAssignedIdentities": {
 								"'${[resourceId(Microsoft.ManagedIdentity/userAssignedIdentities, variables('nicName'))]}'": {
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 114
+											"_kics_line": 135
 										}
 									}
 								},
 								"_kics_lines": {
 									"_kics_'${[resourceId(Microsoft.ManagedIdentity/userAssignedIdentities, variables('nicName'))]}'": {
-										"_kics_line": 114
+										"_kics_line": 135
 									},
 									"_kics__default": {
-										"_kics_line": 113
+										"_kics_line": 134
 									}
 								}
 							}
+						},
+						{
+							"_kics_lines": {
+								"_kics__default": {
+									"_kics_line": 140
+								},
+								"_kics_apiVersion": {
+									"_kics_line": 140
+								},
+								"_kics_kind": {
+									"_kics_line": 147
+								},
+								"_kics_location": {
+									"_kics_line": 142
+								},
+								"_kics_name": {
+									"_kics_line": 141
+								},
+								"_kics_properties": {
+									"_kics_line": 148
+								},
+								"_kics_sku": {
+									"_kics_line": 143
+								},
+								"_kics_type": {
+									"_kics_line": 140
+								}
+							},
+							"apiVersion": "2019-06-01",
+							"identifier": "storageAccount",
+							"kind": "StorageV2",
+							"location": "[parameters('location')]",
+							"name": "[variables('storageAccountName')]",
+							"properties": {
+								"_kics_lines": {
+									"_kics__default": {
+										"_kics_line": 148
+									},
+									"_kics_accessTier": {
+										"_kics_line": 177
+									},
+									"_kics_encryption": {
+										"_kics_line": 164
+									},
+									"_kics_networkAcls": {
+										"_kics_line": 149
+									},
+									"_kics_supportsHttpsTrafficOnly": {
+										"_kics_line": 163
+									}
+								},
+								"accessTier": "Cool",
+								"encryption": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 164
+										},
+										"_kics_keySource": {
+											"_kics_line": 175
+										},
+										"_kics_services": {
+											"_kics_line": 165
+										}
+									},
+									"keySource": "Microsoft.Storage",
+									"services": {
+										"_kics_lines": {
+											"_kics__default": {
+												"_kics_line": 165
+											},
+											"_kics_blob": {
+												"_kics_line": 170
+											},
+											"_kics_file": {
+												"_kics_line": 166
+											}
+										},
+										"blob": {
+											"_kics_lines": {
+												"_kics__default": {
+													"_kics_line": 170
+												},
+												"_kics_enabled": {
+													"_kics_line": 172
+												},
+												"_kics_keyType": {
+													"_kics_line": 171
+												}
+											},
+											"enabled": true,
+											"keyType": "Account"
+										},
+										"file": {
+											"_kics_lines": {
+												"_kics__default": {
+													"_kics_line": 166
+												},
+												"_kics_enabled": {
+													"_kics_line": 168
+												},
+												"_kics_keyType": {
+													"_kics_line": 167
+												}
+											},
+											"enabled": true,
+											"keyType": "Account"
+										}
+									}
+								},
+								"networkAcls": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 149
+										},
+										"_kics_bypass": {
+											"_kics_line": 150
+										},
+										"_kics_defaultAction": {
+											"_kics_line": 161
+										},
+										"_kics_virtualNetworkRules": {
+											"_kics_arr": [
+												{
+													"_kics__default": {
+														"_kics_line": 151
+													}
+												}
+											],
+											"_kics_line": 151
+										}
+									},
+									"bypass": "None",
+									"defaultAction": "Deny",
+									"virtualNetworkRules": [
+										{
+											"_kics_lines": {
+												"_kics__default": {
+													"_kics_line": 152
+												},
+												"_kics_action": {
+													"_kics_line": 154
+												},
+												"_kics_id": {
+													"_kics_line": 153
+												}
+											},
+											"action": "Allow",
+											"id": "[variables('containerSubnetRef')]"
+										},
+										{
+											"_kics_lines": {
+												"_kics__default": {
+													"_kics_line": 156
+												},
+												"_kics_action": {
+													"_kics_line": 158
+												},
+												"_kics_id": {
+													"_kics_line": 157
+												}
+											},
+											"action": "Allow",
+											"id": "[variables('storageSubnetRef')]"
+										}
+									]
+								},
+								"supportsHttpsTrafficOnly": true
+							},
+							"resources": [
+								{
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 181
+										},
+										"_kics_apiVersion": {
+											"_kics_line": 181
+										},
+										"_kics_name": {
+											"_kics_line": 183
+										},
+										"_kics_parent": {
+											"_kics_line": 182
+										},
+										"_kics_properties": {
+											"_kics_line": 188
+										},
+										"_kics_sku": {
+											"_kics_line": 184
+										},
+										"_kics_type": {
+											"_kics_line": 181
+										}
+									},
+									"apiVersion": "2019-06-01",
+									"identifier": "storageAccountName_default",
+									"name": "default",
+									"parent": "storageAccount",
+									"properties": {
+										"_kics_lines": {
+											"_kics__default": {
+												"_kics_line": 188
+											},
+											"_kics_deleteRetentionPolicy": {
+												"_kics_line": 189
+											}
+										},
+										"deleteRetentionPolicy": {
+											"_kics_lines": {
+												"_kics__default": {
+													"_kics_line": 189
+												},
+												"_kics_enabled": {
+													"_kics_line": 190
+												}
+											},
+											"enabled": false
+										}
+									},
+									"resources": [
+										{
+											"_kics_lines": {
+												"_kics__default": {
+													"_kics_line": 195
+												},
+												"_kics_apiVersion": {
+													"_kics_line": 195
+												},
+												"_kics_name": {
+													"_kics_line": 197
+												},
+												"_kics_parent": {
+													"_kics_line": 196
+												},
+												"_kics_properties": {
+													"_kics_line": 198
+												},
+												"_kics_type": {
+													"_kics_line": 195
+												}
+											},
+											"apiVersion": "2019-06-01",
+											"identifier": "storageAccountName_default_container",
+											"name": "container",
+											"parent": "storageAccountName_default",
+											"properties": {
+												"_kics_lines": {
+													"_kics__default": {
+														"_kics_line": 198
+													},
+													"_kics_denyEncryptionScopeOverride": {
+														"_kics_line": 199
+													},
+													"_kics_metadata": {
+														"_kics_line": 201
+													},
+													"_kics_publicAccess": {
+														"_kics_line": 200
+													}
+												},
+												"denyEncryptionScopeOverride": true,
+												"metadata": {
+													"_kics_lines": {
+														"_kics__default": {
+															"_kics_line": 201
+														}
+													}
+												},
+												"publicAccess": "Blob"
+											},
+											"resources": [],
+											"type": "containers"
+										}
+									],
+									"sku": {
+										"_kics_lines": {
+											"_kics__default": {
+												"_kics_line": 184
+											},
+											"_kics_name": {
+												"_kics_line": 185
+											},
+											"_kics_tier": {
+												"_kics_line": 186
+											}
+										},
+										"name": "Standard_LRS",
+										"tier": "Standard"
+									},
+									"type": "blobServices"
+								}
+							],
+							"sku": {
+								"_kics_lines": {
+									"_kics__default": {
+										"_kics_line": 143
+									},
+									"_kics_name": {
+										"_kics_line": 144
+									},
+									"_kics_tier": {
+										"_kics_line": 145
+									}
+								},
+								"name": "Standard_LRS",
+								"tier": "Standard"
+							},
+							"type": "Microsoft.Storage/storageAccounts"
 						}
 					],
 					"variables": {
+						"containerSubnetRef": {
+							"value": {
+								"resourceId": [
+									"Microsoft.Network/virtualNetworks/subnets",
+									"parameters('existingVNETName')",
+									"parameters('existingContainerSubnetName')"
+								]
+							}
+						},
 						"nicName": {
 							"value": "myVMNic"
 						},
 						"storageAccountName": {
 							"value": "'bootdiags${[uniqueString(resourceGroup().id)]}'"
+						},
+						"storageSubnetRef": {
+							"value": {
+								"resourceId": [
+									"Microsoft.Network/virtualNetworks/subnets",
+									"parameters('existingVNETName')",
+									"parameters('existingStorageSubnetName')"
+								]
+							}
 						}
 					}
 				}`,

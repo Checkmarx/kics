@@ -8,7 +8,6 @@ param adminUsername string
 @secure()
 param adminPassword string
 
-
 @description(
   '''The Windows version for the VM.
  This will pick a fully patched image of this given Windows version.'''
@@ -44,8 +43,30 @@ param vmName string = 'simple-vm'
 
 param parenthesis string = ('simple-vm')
 
+@description('Name of the virtual network to use for cloud shell containers.')
+param existingVNETName string
+
+@description('Name of the subnet to use for storage account.')
+param existingStorageSubnetName string
+
+@description('Name of the subnet to use for cloud shell containers.')
+param existingContainerSubnetName string
+
 var storageAccountName = 'bootdiags${uniqueString(resourceGroup().id)}'
+
 var nicName = 'myVMNic'
+
+var containerSubnetRef = resourceId(
+  'Microsoft.Network/virtualNetworks/subnets',
+  existingVNETName,
+  existingContainerSubnetName
+)
+
+var storageSubnetRef = resourceId(
+  'Microsoft.Network/virtualNetworks/subnets',
+  existingVNETName,
+  existingStorageSubnetName
+)
 
 @sys.description('This is a test description for resources')
 resource vm 'Microsoft.Compute/virtualMachines@2021-03-01' = {
@@ -114,4 +135,69 @@ resource nic 'Microsoft.Network/networkInterfaces@2021-03-01' = {
     '${resourceId('Microsoft.ManagedIdentity/userAssignedIdentities',nicName)}': {}
   }
   assignableScopes: [subscription().id]
+}
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
+  name: storageAccountName
+  location: location
+  sku: {
+    name: 'Standard_LRS'
+    tier: 'Standard'
+  }
+  kind: 'StorageV2'
+  properties: {
+    networkAcls: {
+      bypass: 'None'
+      virtualNetworkRules: [
+        {
+          id: containerSubnetRef
+          action: 'Allow'
+        }
+        {
+          id: storageSubnetRef
+          action: 'Allow'
+        }
+      ]
+      defaultAction: 'Deny'
+    }
+    supportsHttpsTrafficOnly: true
+    encryption: {
+      services: {
+        file: {
+          keyType: 'Account'
+          enabled: true
+        }
+        blob: {
+          keyType: 'Account'
+          enabled: true
+        }
+      }
+      keySource: 'Microsoft.Storage'
+    }
+    accessTier: 'Cool'
+  }
+}
+
+resource storageAccountName_default 'Microsoft.Storage/storageAccounts/blobServices@2019-06-01' = {
+  parent: storageAccount
+  name: 'default'
+  sku: {
+    name: 'Standard_LRS'
+    tier: 'Standard'
+  }
+  properties: {
+    deleteRetentionPolicy: {
+      enabled: false
+    }
+  }
+}
+
+resource storageAccountName_default_container 'Microsoft.Storage/storageAccounts/blobServices/containers@2019-06-01' = {
+  parent: storageAccountName_default
+  name: 'container'
+  properties: {
+    denyEncryptionScopeOverride: true
+    publicAccess: 'Blob'
+    metadata: {}
+  }
 }
