@@ -8,13 +8,13 @@
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
-    "line": 13,
+    "line": 11,
     "fileName": "positive2.json"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
     "severity": "HIGH",
-    "line": 14,
+    "line": 12,
     "fileName": "positive3.json"
   }
 ]
