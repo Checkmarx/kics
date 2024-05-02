@@ -3,14 +3,15 @@ package file
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"reflect"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 
 	"github.com/Checkmarx/kics/test"
 	"gopkg.in/yaml.v3"
@@ -82,7 +83,8 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile), true); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
+			resolvedFilesCache := make(map[string]ResolvedFile)
+			if got := r.Resolve(cont, tt.args.path, 0, &resolvedFilesCache, true); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
 				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
 			}
 		})
@@ -144,7 +146,8 @@ func TestResolver_Resolve_Without_ResolveReferences(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile), false); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
+			resolvedFilesCache := make(map[string]ResolvedFile)
+			if got := r.Resolve(cont, tt.args.path, 0, &resolvedFilesCache, false); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
 				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
 			}
 		})
