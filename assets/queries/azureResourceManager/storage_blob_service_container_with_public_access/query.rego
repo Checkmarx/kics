@@ -99,6 +99,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource with type 'containers' shouldn't have 'publicAccess' %s set to 'Container' or 'Blob'", [val_type]),
 		"keyActualValue": sprintf("resource with type 'containers' has 'publicAccess' property set to '%s'", [publicOptions[o]]),
-		"searchLine": common_lib.build_search_line([path[0], path[1], "resources", childPath[0], "resources", subchildPath[0]], ["properties", "publicAccess"]),
+		"searchLine": common_lib.build_search_line(path, ["resources", childPath[0], "resources", subchildPath[0], "properties", "publicAccess"]),
 	}
 }
