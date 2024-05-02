@@ -281,7 +281,7 @@ func (r *Resolver) resolveYamlPath(
 		value = checkServerlessFileReference(value)
 
 		path := filepath.Join(filepath.Dir(filePath), value)
-		if ansibleVars {
+		if false {
 			exists, ansibleVarsPath := findAnsibleVarsPath(filepath.Dir(filePath), value)
 			if !exists {
 				return *v, false
