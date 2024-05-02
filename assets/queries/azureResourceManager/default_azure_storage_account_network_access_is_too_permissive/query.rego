@@ -49,7 +49,7 @@ prepare_issue(val1, val2) = issue {
     issue := {
     	"kav": "resource with type 'Microsoft.Storage/storageAccounts' publicNetworkAccess is not set (default is 'Enabled')",
         "sk": ".properties.publicNetworkAccess",
-        "sl": ["properties", "publicNetworkAccess"],
+        "sl": ["properties"],
         "issueType": "MissingAttribute"
     }
 } else = issue {
