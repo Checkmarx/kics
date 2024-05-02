@@ -38,37 +38,7 @@
   {
     "queryName": "Storage Blob Service Container With Public Access",
     "severity": "HIGH",
-    "line": 5,
-    "fileName": "positive1.bicep"
-  },
-  {
-    "queryName": "Storage Blob Service Container With Public Access",
-    "severity": "HIGH",
-    "line": 87,
-    "fileName": "positive2.bicep"
-  },
-  {
-    "queryName": "Storage Blob Service Container With Public Access",
-    "severity": "HIGH",
-    "line": 29,
-    "fileName": "positive3.bicep"
-  },
-  {
-    "queryName": "Storage Blob Service Container With Public Access",
-    "severity": "HIGH",
-    "line": 5,
-    "fileName": "positive4.bicep"
-  },
-  {
-    "queryName": "Storage Blob Service Container With Public Access",
-    "severity": "HIGH",
-    "line": 87,
-    "fileName": "positive5.bicep"
-  },
-  {
-    "queryName": "Storage Blob Service Container With Public Access",
-    "severity": "HIGH",
-    "line": 29,
-    "fileName": "positive6.bicep"
+    "line": 96,
+    "fileName": "positive7.json"
   }
 ]
