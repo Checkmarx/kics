@@ -127,7 +127,7 @@ const (
 	LogFormatPretty = "pretty"
 
 	// MaxResolvedFiles - max files kics will resolve to prevent circular cycles
-	MaxResolvedFiles = 15
+	MaxResolvedFiles = 50
 )
 
 // GetRelease - returns the current release in the format 'kics@version' to be used by sentry
