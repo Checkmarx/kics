@@ -172,7 +172,7 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string,
 	fullObjectCopy := obj
 
 	// resolve the paths
-	obj, _ = r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolveCount, maxResolverDepth, resolvedFilesCache, false, resolveReferences)
+	obj, _ = r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolveCount, maxResolverDepth, resolvedFilesCache, false, resolveReferences, false)
 
 	if obj.Kind == 1 && len(obj.Content) == 1 {
 		obj = *obj.Content[0]
@@ -194,7 +194,8 @@ func (r *Resolver) yamlWalk(
 	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool,
-	resolveReferences bool) (yaml.Node, bool) {
+	resolveReferences bool,
+	ansibleVars bool) (yaml.Node, bool) {
 	// go over the value and replace paths with the real content
 	switch value.Kind {
 	case yaml.ScalarNode:
@@ -202,7 +203,7 @@ func (r *Resolver) yamlWalk(
 			return r.resolveYamlPath(originalFileContent, fullObject,
 				value, path,
 				resolveCount, maxResolverDepth, resolvedFilesCache,
-				refBool, resolveReferences)
+				refBool, resolveReferences, ansibleVars)
 		}
 		return *value, false
 	default:
@@ -210,11 +211,12 @@ func (r *Resolver) yamlWalk(
 		for i := range value.Content {
 			if i >= 1 {
 				refBool = strings.Contains(value.Content[i-1].Value, "$ref")
+				ansibleVars = strings.Contains(value.Content[i-1].Value, "include_vars")
 			}
 			resolved, ok := r.yamlWalk(originalFileContent, fullObject,
 				value.Content[i], path,
 				resolveCount, maxResolverDepth, resolvedFilesCache,
-				refBool, resolveReferences)
+				refBool, resolveReferences, ansibleVars)
 
 			if i >= 1 && refBool && (resolved.Kind == yaml.MappingNode || !ok) {
 				// Create RefMetadata and add it to yaml Node
@@ -262,7 +264,7 @@ func (r *Resolver) resolveYamlPath(
 	filePath string,
 	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
-	refBool bool, resolveReferences bool) (yaml.Node, bool) {
+	refBool bool, resolveReferences bool, ansibleVars bool) (yaml.Node, bool) {
 	value := v.Value
 	if resolveCount > maxResolverDepth || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
 		return *v, false
@@ -279,16 +281,24 @@ func (r *Resolver) resolveYamlPath(
 		value = checkServerlessFileReference(value)
 
 		path := filepath.Join(filepath.Dir(filePath), value)
-		onlyFilePath := getPathFromString(path)
-		_, err := os.Stat(path)
-		if err != nil {
-			return *v, false
+		if ansibleVars {
+			exists, ansibleVarsPath := findAnsibleVarsPath(filepath.Dir(filePath), value)
+			if !exists {
+				return *v, false
+			}
+			path = ansibleVarsPath
+		} else {
+			_, err := os.Stat(path)
+			if err != nil {
+				return *v, false
+			}
 		}
 
 		if !contains(filepath.Ext(path), r.Extension) {
 			return *v, false
 		}
 
+		onlyFilePath := getPathFromString(path)
 		filename := filepath.Clean(onlyFilePath)
 
 		// Check if file has already been resolved, if not resolve it and save it for future references
@@ -585,4 +595,19 @@ func checkServerlessFileReference(value string) string {
 		return matches[1]
 	}
 	return value
+}
+
+func findAnsibleVarsPath(folder, filename string) (exists bool, ansibleVarsPath string) {
+	paths := []string{
+		filepath.Join(folder, "vars", filename),
+		filepath.Join(folder, filename),
+	}
+
+	for _, path := range paths {
+		if _, err := os.Stat(path); err == nil {
+			return true, path
+		}
+	}
+
+	return false, ""
 }
