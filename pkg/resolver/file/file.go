@@ -62,7 +62,7 @@ func isOpenAPI(fileContent []byte) bool {
 
 // Resolve - replace or modifies in-memory content before parsing
 func (r *Resolver) Resolve(fileContent []byte, path string,
-	resolveCount int, resolvedFilesCache map[string]ResolvedFile,
+	resolveCount, maxResolverDepth int, resolvedFilesCache map[string]ResolvedFile,
 	resolveReferences bool) []byte {
 	// handle panic during resolve process
 	defer func() {
@@ -77,7 +77,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string,
 	}
 
 	if utils.Contains(filepath.Ext(path), []string{".yml", ".yaml"}) {
-		return r.yamlResolve(fileContent, path, resolveCount, resolvedFilesCache, resolveReferences)
+		return r.yamlResolve(fileContent, path, resolveCount, maxResolverDepth, resolvedFilesCache, resolveReferences)
 	}
 	var obj any
 	err := r.unmarshler(fileContent, &obj)
@@ -86,7 +86,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string,
 	}
 
 	// resolve the paths
-	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, resolvedFilesCache, false, resolveReferences)
+	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, maxResolverDepth, resolvedFilesCache, false, resolveReferences)
 
 	b, err := json.MarshalIndent(obj, "", "")
 	if err == nil {
@@ -101,7 +101,7 @@ func (r *Resolver) walk(
 	fullObject interface{},
 	value any,
 	path string,
-	resolveCount int,
+	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool,
 	resolveReferences bool) (any, bool) {
@@ -109,16 +109,16 @@ func (r *Resolver) walk(
 	switch typedValue := value.(type) {
 	case string:
 		if filepath.Base(path) != typedValue {
-			return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolveCount, resolvedFilesCache, refBool, resolveReferences)
+			return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolveCount, maxResolverDepth, resolvedFilesCache, refBool, resolveReferences)
 		}
 		return value, false
 	case []any:
 		for i, v := range typedValue {
-			typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, refBool, resolveReferences)
+			typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount, maxResolverDepth, resolvedFilesCache, refBool, resolveReferences)
 		}
 		return typedValue, false
 	case map[string]any:
-		return r.handleMap(originalFileContent, fullObject, typedValue, path, resolveCount, resolvedFilesCache, resolveReferences)
+		return r.handleMap(originalFileContent, fullObject, typedValue, path, resolveCount, maxResolverDepth, resolvedFilesCache, resolveReferences)
 	default:
 		return value, false
 	}
@@ -129,13 +129,13 @@ func (r *Resolver) handleMap(
 	fullObject interface{},
 	value map[string]interface{},
 	path string,
-	resolveCount int,
+	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
 	resolveReferences bool,
 ) (any, bool) {
 	for k, v := range value {
 		isRef := strings.Contains(strings.ToLower(k), "$ref")
-		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, isRef, resolveReferences)
+		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, maxResolverDepth, resolvedFilesCache, isRef, resolveReferences)
 		// check if it is a ref then add new details
 		if valMap, ok := val.(map[string]interface{}); (ok || !res) && isRef {
 			// Create RefMetadata and add it to the resolved value map
@@ -156,7 +156,7 @@ func (r *Resolver) handleMap(
 }
 
 func (r *Resolver) yamlResolve(fileContent []byte, path string,
-	resolveCount int, resolvedFilesCache map[string]ResolvedFile,
+	resolveCount, maxResolverDepth int, resolvedFilesCache map[string]ResolvedFile,
 	resolveReferences bool) []byte {
 	var obj yaml.Node
 	err := r.unmarshler(fileContent, &obj)
@@ -167,7 +167,7 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string,
 	fullObjectCopy := obj
 
 	// resolve the paths
-	obj, _ = r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolveCount, resolvedFilesCache, false, resolveReferences)
+	obj, _ = r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolveCount, maxResolverDepth, resolvedFilesCache, false, resolveReferences)
 
 	if obj.Kind == 1 && len(obj.Content) == 1 {
 		obj = *obj.Content[0]
@@ -186,7 +186,7 @@ func (r *Resolver) yamlWalk(
 	fullObject *yaml.Node,
 	value *yaml.Node,
 	path string,
-	resolveCount int,
+	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool,
 	resolveReferences bool) (yaml.Node, bool) {
@@ -196,7 +196,7 @@ func (r *Resolver) yamlWalk(
 		if filepath.Base(path) != value.Value {
 			return r.resolveYamlPath(originalFileContent, fullObject,
 				value, path,
-				resolveCount, resolvedFilesCache,
+				resolveCount, maxResolverDepth, resolvedFilesCache,
 				refBool, resolveReferences)
 		}
 		return *value, false
@@ -208,7 +208,7 @@ func (r *Resolver) yamlWalk(
 			}
 			resolved, ok := r.yamlWalk(originalFileContent, fullObject,
 				value.Content[i], path,
-				resolveCount, resolvedFilesCache,
+				resolveCount, maxResolverDepth, resolvedFilesCache,
 				refBool, resolveReferences)
 
 			if i >= 1 && refBool && (resolved.Kind == yaml.MappingNode || !ok) {
@@ -255,7 +255,7 @@ func (r *Resolver) resolveYamlPath(
 	fullObject *yaml.Node,
 	v *yaml.Node,
 	filePath string,
-	resolveCount int,
+	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool, resolveReferences bool) (yaml.Node, bool) {
 	value := v.Value
@@ -288,7 +288,7 @@ func (r *Resolver) resolveYamlPath(
 
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[filename]; !ok {
-			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, true, resolveReferences); isError {
+			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, maxResolverDepth, resolvedFilesCache, true, resolveReferences); isError {
 				if retYaml, yamlNode := ret.(yaml.Node); yamlNode {
 					return retYaml, false
 				} else {
@@ -343,7 +343,7 @@ func (r *Resolver) returnResolveYamlPathValue(
 func (r *Resolver) resolveFile(
 	value string,
 	filePath string,
-	resolveCount int,
+	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
 	yamlResolve bool, resolveReferences bool) (any, bool) {
 	// open the file with the content to replace
@@ -361,7 +361,7 @@ func (r *Resolver) resolveFile(
 	// read the content
 	fileContent, _ := io.ReadAll(file)
 
-	resolvedFile := r.Resolve(fileContent, filePath, resolveCount+1, resolvedFilesCache, resolveReferences)
+	resolvedFile := r.Resolve(fileContent, filePath, resolveCount+1, maxResolverDepth, resolvedFilesCache, resolveReferences)
 
 	if yamlResolve {
 		var obj yaml.Node
@@ -402,7 +402,7 @@ func (r *Resolver) resolvePath(
 	originalFileContent []byte,
 	fullObject interface{},
 	value, filePath string,
-	resolveCount int,
+	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool, resolveReferences bool) (any, bool) {
 	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
@@ -430,7 +430,7 @@ func (r *Resolver) resolvePath(
 
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[onlyFilePath]; !ok {
-			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, false, resolveReferences); isError {
+			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, maxResolverDepth, resolvedFilesCache, false, resolveReferences); isError {
 				return ret, false
 			}
 		}

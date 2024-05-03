@@ -143,6 +143,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		ParallelScanFlag:            flags.GetIntFlag(flags.ParallelScanFile),
 		MaxFileSizeFlag:             flags.GetIntFlag(flags.MaxFileSizeFlag),
 		UseOldSeverities:            flags.GetBoolFlag(flags.UseOldSeveritiesFlag),
+		MaxResolverDepth:            flags.GetIntFlag(flags.MaxResolverDepth),
 	}
 
 	return &scanParams
