@@ -65,7 +65,7 @@ type Service struct {
 // PrepareSources will prepare the sources to be scanned
 func (s *Service) PrepareSources(ctx context.Context,
 	scanID string,
-	openAPIResolveReferences bool,
+	openAPIResolveReferences bool, resolverDepth int,
 	wg *sync.WaitGroup, errCh chan<- error) {
 	defer wg.Done()
 	// CxSAST query under review
@@ -74,10 +74,10 @@ func (s *Service) PrepareSources(ctx context.Context,
 		ctx,
 		s.Parser.SupportedExtensions(),
 		func(ctx context.Context, filename string, rc io.ReadCloser) error {
-			return s.sink(ctx, filename, scanID, rc, data, openAPIResolveReferences)
+			return s.sink(ctx, filename, scanID, rc, data, openAPIResolveReferences, resolverDepth)
 		},
 		func(ctx context.Context, filename string) ([]string, error) { // Sink used for resolver files and templates
-			return s.resolverSink(ctx, filename, scanID, openAPIResolveReferences)
+			return s.resolverSink(ctx, filename, scanID, openAPIResolveReferences, resolverDepth)
 		},
 	); err != nil {
 		errCh <- errors.Wrap(err, "failed to read sources")

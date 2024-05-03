@@ -28,7 +28,7 @@ var (
 
 func (s *Service) sink(ctx context.Context, filename, scanID string,
 	rc io.Reader, data []byte,
-	openAPIResolveReferences bool) error {
+	openAPIResolveReferences bool, resolverDepth int) error {
 	s.Tracker.TrackFileFound(filename)
 	log.Debug().Msgf("Starting to process file %s", filename)
 
@@ -42,7 +42,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string,
 	if err != nil {
 		return errors.Wrapf(err, "failed to get file content: %s", filename)
 	}
-	documents, err := s.Parser.Parse(filename, *content, openAPIResolveReferences, c.IsMinified)
+	documents, err := s.Parser.Parse(filename, *content, openAPIResolveReferences, c.IsMinified, resolverDepth)
 	if err != nil {
 		log.Err(err).Msgf("failed to parse file content: %s", filename)
 		return nil

@@ -83,7 +83,7 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile), true); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
+			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile), true, 15); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
 				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
 			}
 		})
@@ -145,7 +145,7 @@ func TestResolver_Resolve_Without_ResolveReferences(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile), false); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
+			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile), false, 15); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
 				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
 			}
 		})

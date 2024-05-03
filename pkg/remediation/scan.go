@@ -37,9 +37,9 @@ type runQueryInfo struct {
 }
 
 // scanTmpFile scans a temporary file against a specific query
-func scanTmpFile(tmpFile, queryID string, remediated []byte, openAPIResolveReferences bool) ([]model.Vulnerability, error) {
+func scanTmpFile(tmpFile, queryID string, remediated []byte, openAPIResolveReferences bool, resolverDepth int) ([]model.Vulnerability, error) {
 	// get payload
-	files, err := getPayload(tmpFile, remediated, openAPIResolveReferences)
+	files, err := getPayload(tmpFile, remediated, openAPIResolveReferences, resolverDepth)
 
 	if err != nil {
 		log.Err(err)
@@ -82,7 +82,7 @@ func scanTmpFile(tmpFile, queryID string, remediated []byte, openAPIResolveRefer
 }
 
 // getPayload gets the payload of a file
-func getPayload(filePath string, content []byte, openAPIResolveReferences bool) (model.FileMetadatas, error) {
+func getPayload(filePath string, content []byte, openAPIResolveReferences bool, resolverDepth int) (model.FileMetadatas, error) {
 	ext, _ := utils.GetExtension(filePath)
 	var p []*parser.Parser
 	var err error
@@ -118,7 +118,7 @@ func getPayload(filePath string, content []byte, openAPIResolveReferences bool) 
 	}
 
 	isMinified := minified.IsMinified(filePath, content)
-	documents, er := p[0].Parse(filePath, content, openAPIResolveReferences, isMinified)
+	documents, er := p[0].Parse(filePath, content, openAPIResolveReferences, isMinified, resolverDepth)
 
 	if er != nil {
 		log.Error().Msgf("failed to parse file '%s': %s", filePath, er)

@@ -65,7 +65,7 @@ func (p *Parser) StringifyContent(content []byte) (string, error) {
 }
 
 // Resolve resolves proto files variables
-func (p *Parser) Resolve(fileContent []byte, _ string, _ bool) ([]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, _ string, _ bool, _ int) ([]byte, error) {
 	return fileContent, nil
 }
 

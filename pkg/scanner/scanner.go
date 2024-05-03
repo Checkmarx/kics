@@ -16,6 +16,7 @@ func PrepareAndScan(
 	ctx context.Context,
 	scanID string,
 	openAPIResolveReferences bool,
+	resolverDepth int,
 	proBarBuilder progress.PbBuilder,
 	services serviceSlice,
 ) error {
@@ -27,7 +28,7 @@ func PrepareAndScan(
 
 	for _, service := range services {
 		wg.Add(1)
-		go service.PrepareSources(ctx, scanID, openAPIResolveReferences, &wg, errCh)
+		go service.PrepareSources(ctx, scanID, openAPIResolveReferences, resolverDepth, &wg, errCh)
 	}
 
 	go func() {

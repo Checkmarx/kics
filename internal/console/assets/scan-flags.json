@@ -227,5 +227,11 @@
   "shorthandFlag": "",
   "defaultValue": "false",
   "usage": "uses old severities in query results"
+  },
+  "resolver-depth": {
+    "flagType": "int",
+    "shorthandFlag": "",
+    "defaultValue": "15",
+    "usage": "Resolver depth"
   }
 }

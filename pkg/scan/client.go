@@ -48,6 +48,7 @@ type Parameters struct {
 	ParallelScanFlag            int
 	MaxFileSizeFlag             int
 	UseOldSeverities            bool
+	ResolverDepth               int
 }
 
 // Client represents a scan client
