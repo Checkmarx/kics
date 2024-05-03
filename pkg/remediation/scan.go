@@ -37,7 +37,11 @@ type runQueryInfo struct {
 }
 
 // scanTmpFile scans a temporary file against a specific query
-func scanTmpFile(tmpFile, queryID string, remediated []byte, openAPIResolveReferences bool, maxResolverDepth int) ([]model.Vulnerability, error) {
+func scanTmpFile(
+	tmpFile, queryID string,
+	remediated []byte,
+	openAPIResolveReferences bool,
+	maxResolverDepth int) ([]model.Vulnerability, error) {
 	// get payload
 	files, err := getPayload(tmpFile, remediated, openAPIResolveReferences, maxResolverDepth)
 

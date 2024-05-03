@@ -123,7 +123,11 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
 
 // Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and
 // an error, if an error has occurred
-func (c *Parser) Parse(filePath string, fileContent []byte, openAPIResolveReferences, isMinified bool, maxResolverDepth int) (ParsedDocument, error) {
+func (c *Parser) Parse(
+	filePath string,
+	fileContent []byte,
+	openAPIResolveReferences, isMinified bool,
+	maxResolverDepth int) (ParsedDocument, error) {
 	fileContent = utils.DecryptAnsibleVault(fileContent, os.Getenv("ANSIBLE_VAULT_PASSWORD_FILE"))
 
 	if c.isValidExtension(filePath) {

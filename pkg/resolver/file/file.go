@@ -108,16 +108,22 @@ func (r *Resolver) walk(
 	switch typedValue := value.(type) {
 	case string:
 		if filepath.Base(path) != typedValue {
-			return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolveCount, maxResolverDepth, resolvedFilesCache, refBool, resolveReferences)
+			return r.resolvePath(
+				originalFileContent, fullObject, typedValue, path, resolveCount,
+				maxResolverDepth, resolvedFilesCache, refBool, resolveReferences)
 		}
 		return value, false
 	case []any:
 		for i, v := range typedValue {
-			typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount, maxResolverDepth, resolvedFilesCache, refBool, resolveReferences)
+			typedValue[i], _ = r.walk(
+				originalFileContent, fullObject, v, path, resolveCount,
+				maxResolverDepth, resolvedFilesCache, refBool, resolveReferences)
 		}
 		return typedValue, false
 	case map[string]any:
-		return r.handleMap(originalFileContent, fullObject, typedValue, path, resolveCount, maxResolverDepth, resolvedFilesCache, resolveReferences)
+		return r.handleMap(
+			originalFileContent, fullObject, typedValue, path, resolveCount,
+			maxResolverDepth, resolvedFilesCache, resolveReferences)
 	default:
 		return value, false
 	}
@@ -287,7 +293,9 @@ func (r *Resolver) resolveYamlPath(
 
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[filename]; !ok {
-			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, maxResolverDepth, resolvedFilesCache, true, resolveReferences); isError {
+			if ret, isError := r.resolveFile(
+				value, onlyFilePath, resolveCount, maxResolverDepth,
+				resolvedFilesCache, true, resolveReferences); isError {
 				if retYaml, yamlNode := ret.(yaml.Node); yamlNode {
 					return retYaml, false
 				} else {
@@ -429,7 +437,9 @@ func (r *Resolver) resolvePath(
 
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[onlyFilePath]; !ok {
-			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, maxResolverDepth, resolvedFilesCache, false, resolveReferences); isError {
+			if ret, isError := r.resolveFile(
+				value, onlyFilePath, resolveCount, maxResolverDepth,
+				resolvedFilesCache, false, resolveReferences); isError {
 				return ret, false
 			}
 		}

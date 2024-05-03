@@ -16,7 +16,11 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func (s *Service) resolverSink(ctx context.Context, filename, scanID string, openAPIResolveReferences bool, maxResolverDepth int) ([]string, error) {
+func (s *Service) resolverSink(
+	ctx context.Context,
+	filename, scanID string,
+	openAPIResolveReferences bool,
+	maxResolverDepth int) ([]string, error) {
 	kind := s.Resolver.GetType(filename)
 	if kind == model.KindCOMMON {
 		return []string{}, nil
@@ -41,7 +45,9 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 		}
 
 		if kind == model.KindHELM {
-			ignoreList, errorIL := s.getOriginalIgnoreLines(rfile.FileName, rfile.OriginalData, openAPIResolveReferences, isMinified, maxResolverDepth)
+			ignoreList, errorIL := s.getOriginalIgnoreLines(
+				rfile.FileName, rfile.OriginalData,
+				openAPIResolveReferences, isMinified, maxResolverDepth)
 			if errorIL == nil {
 				documents.IgnoreLines = ignoreList
 
