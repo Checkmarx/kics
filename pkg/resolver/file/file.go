@@ -62,7 +62,7 @@ func isOpenAPI(fileContent []byte) bool {
 
 // Resolve - replace or modifies in-memory content before parsing
 func (r *Resolver) Resolve(fileContent []byte, path string,
-	resolveCount int, resolvedFilesCache *map[string]ResolvedFile,
+	resolveCount int, resolvedFilesCache map[string]ResolvedFile,
 	resolveReferences bool) []byte {
 	// handle panic during resolve process
 	defer func() {
@@ -102,7 +102,7 @@ func (r *Resolver) walk(
 	value any,
 	path string,
 	resolveCount int,
-	resolvedFilesCache *map[string]ResolvedFile,
+	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool,
 	resolveReferences bool) (any, bool) {
 	// go over the value and replace paths with the real content
@@ -130,7 +130,7 @@ func (r *Resolver) handleMap(
 	value map[string]interface{},
 	path string,
 	resolveCount int,
-	resolvedFilesCache *map[string]ResolvedFile,
+	resolvedFilesCache map[string]ResolvedFile,
 	resolveReferences bool,
 ) (any, bool) {
 	for k, v := range value {
@@ -156,7 +156,7 @@ func (r *Resolver) handleMap(
 }
 
 func (r *Resolver) yamlResolve(fileContent []byte, path string,
-	resolveCount int, resolvedFilesCache *map[string]ResolvedFile,
+	resolveCount int, resolvedFilesCache map[string]ResolvedFile,
 	resolveReferences bool) []byte {
 	var obj yaml.Node
 	err := r.unmarshler(fileContent, &obj)
@@ -187,7 +187,7 @@ func (r *Resolver) yamlWalk(
 	value *yaml.Node,
 	path string,
 	resolveCount int,
-	resolvedFilesCache *map[string]ResolvedFile,
+	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool,
 	resolveReferences bool,
 	ansibleVars bool) (yaml.Node, bool) {
@@ -258,15 +258,10 @@ func (r *Resolver) resolveYamlPath(
 	v *yaml.Node,
 	filePath string,
 	resolveCount int,
-	resolvedFilesCache *map[string]ResolvedFile,
+	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool, resolveReferences bool, ansibleVars bool) (yaml.Node, bool) {
 	value := v.Value
 	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
-		r.ResolvedFiles[getPathFromString(value)] = model.ResolvedFile{
-			Content:      (*resolvedFilesCache)[filePath].fileContent,
-			Path:         filePath,
-			LinesContent: utils.SplitLines(string((*resolvedFilesCache)[filePath].fileContent)),
-		}
 		return *v, false
 	}
 	var splitPath []string
@@ -287,9 +282,6 @@ func (r *Resolver) resolveYamlPath(
 				return *v, false
 			}
 			path = ansibleVarsPath
-			if checkValidAnsibleVarsFile(r, path) {
-				return *v, false
-			}
 		} else {
 			_, err := os.Stat(path)
 			if err != nil {
@@ -305,7 +297,7 @@ func (r *Resolver) resolveYamlPath(
 		filename := filepath.Clean(onlyFilePath)
 
 		// Check if file has already been resolved, if not resolve it and save it for future references
-		if _, ok := (*resolvedFilesCache)[filename]; !ok {
+		if _, ok := resolvedFilesCache[filename]; !ok {
 			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, true, resolveReferences); isError {
 				if retYaml, yamlNode := ret.(yaml.Node); yamlNode {
 					return retYaml, false
@@ -316,12 +308,12 @@ func (r *Resolver) resolveYamlPath(
 		}
 
 		r.ResolvedFiles[getPathFromString(value)] = model.ResolvedFile{
-			Content:      (*resolvedFilesCache)[filename].fileContent,
+			Content:      resolvedFilesCache[filename].fileContent,
 			Path:         path,
-			LinesContent: utils.SplitLines(string((*resolvedFilesCache)[filename].fileContent)),
+			LinesContent: utils.SplitLines(string(resolvedFilesCache[filename].fileContent)),
 		}
 
-		node, _ := (*resolvedFilesCache)[filename].resolvedFileObject.(yaml.Node)
+		node, _ := resolvedFilesCache[filename].resolvedFileObject.(yaml.Node)
 		obj = &node
 
 		if strings.Contains(strings.ToLower(value), "!ref") { // Cloudformation !Ref check
@@ -362,13 +354,22 @@ func (r *Resolver) resolveFile(
 	value string,
 	filePath string,
 	resolveCount int,
-	resolvedFilesCache *map[string]ResolvedFile,
+	resolvedFilesCache map[string]ResolvedFile,
 	yamlResolve bool, resolveReferences bool) (any, bool) {
-	// Open and read the file with the content to replace
-	fileContent, err := readFileContent(filePath)
+	// open the file with the content to replace
+	file, err := os.Open(filepath.Clean(filePath))
 	if err != nil {
 		return value, true
 	}
+
+	defer func(file *os.File) {
+		err = file.Close()
+		if err != nil {
+			log.Err(err).Msgf("failed to close resolved file: %s", filePath)
+		}
+	}(file)
+	// read the content
+	fileContent, _ := io.ReadAll(file)
 
 	resolvedFile := r.Resolve(fileContent, filePath, resolveCount+1, resolvedFilesCache, resolveReferences)
 
@@ -384,7 +385,7 @@ func (r *Resolver) resolveFile(
 			obj = *obj.Content[0]
 		}
 
-		(*resolvedFilesCache)[filePath] = ResolvedFile{fileContent, obj}
+		resolvedFilesCache[filePath] = ResolvedFile{fileContent, obj}
 	} else {
 		var obj any
 		err = r.unmarshler(resolvedFile, &obj) // parse the content
@@ -392,7 +393,7 @@ func (r *Resolver) resolveFile(
 			return value, true
 		}
 
-		(*resolvedFilesCache)[filePath] = ResolvedFile{fileContent, obj}
+		resolvedFilesCache[filePath] = ResolvedFile{fileContent, obj}
 	}
 
 	return nil, false
@@ -412,14 +413,9 @@ func (r *Resolver) resolvePath(
 	fullObject interface{},
 	value, filePath string,
 	resolveCount int,
-	resolvedFilesCache *map[string]ResolvedFile,
+	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool, resolveReferences bool) (any, bool) {
 	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
-		r.ResolvedFiles[getPathFromString(value)] = model.ResolvedFile{
-			Content:      (*resolvedFilesCache)[filePath].fileContent,
-			Path:         filePath,
-			LinesContent: utils.SplitLines(string((*resolvedFilesCache)[filePath].fileContent)),
-		}
 		return value, false
 	}
 	var splitPath []string
@@ -443,19 +439,19 @@ func (r *Resolver) resolvePath(
 		}
 
 		// Check if file has already been resolved, if not resolve it and save it for future references
-		if _, ok := (*resolvedFilesCache)[onlyFilePath]; !ok {
+		if _, ok := resolvedFilesCache[onlyFilePath]; !ok {
 			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, false, resolveReferences); isError {
 				return ret, false
 			}
 		}
 
 		r.ResolvedFiles[getPathFromString(value)] = model.ResolvedFile{
-			Content:      (*resolvedFilesCache)[onlyFilePath].fileContent,
+			Content:      resolvedFilesCache[onlyFilePath].fileContent,
 			Path:         path,
-			LinesContent: utils.SplitLines(string((*resolvedFilesCache)[onlyFilePath].fileContent)),
+			LinesContent: utils.SplitLines(string(resolvedFilesCache[onlyFilePath].fileContent)),
 		}
 
-		obj = (*resolvedFilesCache)[onlyFilePath].resolvedFileObject
+		obj = resolvedFilesCache[onlyFilePath].resolvedFileObject
 
 		// Cloudformation !Ref check
 		if strings.Contains(strings.ToLower(value), "!ref") || len(splitPath) == 1 {
@@ -592,29 +588,7 @@ func checkServerlessFileReference(value string) string {
 	return value
 }
 
-func readFileContent(filePath string) ([]byte, error) {
-	// Open the file
-	file, err := os.Open(filepath.Clean(filePath))
-	if err != nil {
-		return nil, err
-	}
-	defer func(file *os.File) {
-		err = file.Close()
-		if err != nil {
-			log.Err(err).Msgf("failed to close resolved file: %s", filePath)
-		}
-	}(file)
-
-	// Read the content
-	fileContent, err := io.ReadAll(file)
-	if err != nil {
-		return nil, err
-	}
-
-	return fileContent, nil
-}
-
-func findAnsibleVarsPath(folder string, filename string) (bool, string) {
+func findAnsibleVarsPath(folder, filename string) (bool, string) {
 	paths := []string{
 		filepath.Join(folder, "vars", filename),
 		filepath.Join(folder, filename),
@@ -627,18 +601,4 @@ func findAnsibleVarsPath(folder string, filename string) (bool, string) {
 	}
 
 	return false, ""
-}
-
-func checkValidAnsibleVarsFile(r *Resolver, path string) bool {
-	childFileContent, err := readFileContent(path)
-	if err != nil {
-		return false
-	}
-	var parsedData interface{}
-	err = r.unmarshler(childFileContent, &parsedData)
-	if err != nil {
-		return false
-	}
-	_, valid := parsedData.(map[string]interface{})
-	return valid
 }
