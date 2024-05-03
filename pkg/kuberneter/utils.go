@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	appsv1 "k8s.io/api/apps/v1"
