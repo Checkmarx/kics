@@ -232,6 +232,6 @@
     "flagType": "int",
     "shorthandFlag": "",
     "defaultValue": "15",
-    "usage": "maximum depth to which the resolver will traverse to resolve files"
+    "usage": "max depth to which the resolver will traverse to resolve files"
   }
 }

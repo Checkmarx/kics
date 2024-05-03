@@ -49,7 +49,12 @@ func getBefore(line string) string {
 }
 
 // willRemediate verifies if the remediation actually removes the result
-func willRemediate(remediated []string, originalFileName string, remediation *Remediation, openAPIResolveReferences bool, maxResolverDepth int) bool {
+func willRemediate(
+	remediated []string,
+	originalFileName string,
+	remediation *Remediation,
+	openAPIResolveReferences bool,
+	maxResolverDepth int) bool {
 	filepath.Clean(originalFileName)
 	// create temporary file
 	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+"-"+filepath.Base(originalFileName))
