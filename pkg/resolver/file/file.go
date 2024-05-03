@@ -102,8 +102,7 @@ func (r *Resolver) walk(
 	path string,
 	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
-	refBool bool,
-	resolveReferences bool) (any, bool) {
+	refBool, resolveReferences bool) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
@@ -193,9 +192,7 @@ func (r *Resolver) yamlWalk(
 	path string,
 	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
-	refBool bool,
-	resolveReferences bool,
-	ansibleVars bool) (yaml.Node, bool) {
+	refBool, resolveReferences, ansibleVars bool) (yaml.Node, bool) {
 	// go over the value and replace paths with the real content
 	switch value.Kind {
 	case yaml.ScalarNode:
@@ -264,7 +261,7 @@ func (r *Resolver) resolveYamlPath(
 	filePath string,
 	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
-	refBool bool, resolveReferences bool, ansibleVars bool) (yaml.Node, bool) {
+	refBool, resolveReferences, ansibleVars bool) (yaml.Node, bool) {
 	value := v.Value
 	if resolveCount > maxResolverDepth || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
 		return *v, false
@@ -362,7 +359,7 @@ func (r *Resolver) resolveFile(
 	filePath string,
 	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
-	yamlResolve bool, resolveReferences bool) (any, bool) {
+	yamlResolve, resolveReferences bool) (any, bool) {
 	// open the file with the content to replace
 	file, err := os.Open(filepath.Clean(filePath))
 	if err != nil {
