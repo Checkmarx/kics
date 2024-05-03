@@ -11,7 +11,6 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/Checkmarx/kics/pkg/analyzer"
 	"gopkg.in/yaml.v3"
 
@@ -259,7 +258,7 @@ func (r *Resolver) resolveYamlPath(
 	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool, resolveReferences bool) (yaml.Node, bool) {
 	value := v.Value
-	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
+	if resolveCount > maxResolverDepth || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
 		return *v, false
 	}
 	var splitPath []string
@@ -405,7 +404,7 @@ func (r *Resolver) resolvePath(
 	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool, resolveReferences bool) (any, bool) {
-	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
+	if resolveCount > maxResolverDepth || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
 		return value, false
 	}
 	var splitPath []string
