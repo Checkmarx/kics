@@ -75,11 +75,11 @@ func filterParentStructs(resources []*Resource) []interface{} {
 	return filteredResources
 }
 
-func setChildType(child *map[string]interface{}, parentType string) {
+func setChildType(child map[string]interface{}, parentType string) {
 
 	if parentType != "" {
-		newType := strings.Replace((*child)["type"].(string), parentType+"/", "", 1)
-		(*child)["type"] = newType
+		newType := strings.Replace((child)["type"].(string), parentType+"/", "", 1)
+		(child)["type"] = newType
 	}
 }
 
@@ -90,7 +90,7 @@ func reformatTestTree(resource *Resource) map[string]interface{} {
 	children := []interface{}{}
 	for _, child := range resource.Children {
 		formattedChild := reformatTestTree(child)
-		setChildType(&formattedChild, resource.FullType)
+		setChildType(formattedChild, resource.FullType)
 		children = append(children, formattedChild)
 	}
 	if len(children) > 0 {
