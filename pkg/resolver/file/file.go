@@ -171,7 +171,9 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string,
 	fullObjectCopy := obj
 
 	// resolve the paths
-	obj, _ = r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolveCount, maxResolverDepth, resolvedFilesCache, false, resolveReferences, false)
+	obj, _ = r.yamlWalk(
+		fileContent, &fullObjectCopy, &obj, path, resolveCount,
+		maxResolverDepth, resolvedFilesCache, false, resolveReferences, false)
 
 	if obj.Kind == 1 && len(obj.Content) == 1 {
 		obj = *obj.Content[0]
@@ -204,7 +206,8 @@ func (r *Resolver) yamlWalk(
 		}
 		return *value, false
 	default:
-		refBool := false
+		refBool = false
+		ansibleVars = false
 		for i := range value.Content {
 			if i >= 1 {
 				refBool = strings.Contains(value.Content[i-1].Value, "$ref")
@@ -277,26 +280,10 @@ func (r *Resolver) resolveYamlPath(
 	} else { // external file resolve
 		value = checkServerlessFileReference(value)
 
-		path := filepath.Join(filepath.Dir(filePath), value)
-		if ansibleVars {
-			exists, ansibleVarsPath := findAnsibleVarsPath(filepath.Dir(filePath), value)
-			if !exists {
-				return *v, false
-			}
-			path = ansibleVarsPath
-		} else {
-			_, err := os.Stat(path)
-			if err != nil {
-				return *v, false
-			}
-		}
-
-		if !contains(filepath.Ext(path), r.Extension) {
+		exists, path, onlyFilePath, filename := findFilePath(filepath.Dir(filePath), value, ansibleVars, r.Extension)
+		if !exists {
 			return *v, false
 		}
-
-		onlyFilePath := getPathFromString(path)
-		filename := filepath.Clean(onlyFilePath)
 
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[filename]; !ok {
@@ -594,13 +581,36 @@ func checkServerlessFileReference(value string) string {
 	return value
 }
 
-func findAnsibleVarsPath(folder, filename string) (exists bool, ansibleVarsPath string) {
-	paths := []string{
-		filepath.Join(folder, "vars", filename),
-		filepath.Join(folder, filename),
+func findFilePath(
+	folderPath, filename string,
+	ansibleVars bool,
+	extensions []string) (exists bool, path, onlyFilePath, cleanFilePath string) {
+	path = filepath.Join(folderPath, filename)
+	if ansibleVars {
+		if exists, ansibleVarsPath := findAnsibleVarsPath(folderPath, filename); !exists {
+			return false, "", "", ""
+		} else {
+			path = ansibleVarsPath
+		}
+	} else if _, err := os.Stat(path); err != nil {
+		return false, "", "", ""
 	}
 
-	for _, path := range paths {
+	if !contains(filepath.Ext(path), extensions) {
+		return false, "", "", ""
+	}
+
+	onlyFilePath = getPathFromString(path)
+	return true, path, onlyFilePath, filepath.Clean(onlyFilePath)
+}
+
+func findAnsibleVarsPath(folderPath, filename string) (exists bool, ansibleVarsPath string) {
+	possiblePaths := []string{
+		filepath.Join(folderPath, "vars", filename),
+		filepath.Join(folderPath, filename),
+	}
+
+	for _, path := range possiblePaths {
 		if _, err := os.Stat(path); err == nil {
 			return true, path
 		}
