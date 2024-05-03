@@ -76,7 +76,6 @@ func filterParentStructs(resources []*Resource) []interface{} {
 }
 
 func setChildType(child map[string]interface{}, parentType string) {
-
 	if parentType != "" {
 		newType := strings.Replace((child)["type"].(string), parentType+"/", "", 1)
 		(child)["type"] = newType
