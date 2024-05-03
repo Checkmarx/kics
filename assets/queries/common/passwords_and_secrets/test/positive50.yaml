@@ -1,0 +1,265 @@
+swagger: "2.0"
+info:
+  x-ibm-name: sirene-apigw
+  title: Sirene
+  description: '{reflex-name:DIALOG/APFR}{contacts:J594670}'
+  version: 1.0.0
+  contact:
+    email: mickael.masse@mpsa.com
+    name: MICKAEL MASSE
+schemes:
+  - https
+basePath: /partners/dialog-apfr/sirene/v1
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Basic Authentication:
+    description: The user name and password provided by PSA Group.
+    type: basic
+    x-ibm-authentication-registry: ldap
+  Client ID:
+    description: The client ID provided by PSA Group when you register your application.
+    in: header
+    name: X-IBM-Client-Id
+    type: apiKey
+security:
+  - Client ID: []
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  assembly:
+    execute:
+      - parse:
+          version: 2.0.0
+          use-content-type: true
+          warn-on-empty-input: true
+      - gatewayscript:
+          title: set target url
+          version: 1.0.0
+      - invoke:
+          title: invoke
+          verb: keep
+          target-url: $(target-url)$(api.operation.path)
+          version: 1.5.0
+          final-action: true
+  gateway: datapower-api-gateway
+  properties:
+    mock-proxy-user:
+      value: mzpamt66
+      description: ""
+      encoded: false
+    mock-proxy-password:
+      value: testpwd
+      description: ""
+      encoded: false
+    mock-target-url:
+      value: https://api.insee.fr/entreprises/sirene/V3
+      description: ""
+      encoded: false
+    dev-proxy-user:
+      value: mzpamt66
+      description: ""
+      encoded: false
+    dev-proxy-password:
+      value: testpwd
+      description: ""
+      encoded: false
+    dev-target-url:
+      value: https://api.insee.fr/entreprises/sirene/V3
+      description: ""
+      encoded: false
+    preprod-target-url:
+      value: REPLACE_PREPROD_URL
+      description: ""
+      encoded: false
+    prod-target-url:
+      value: REPLACE_PROD_URL
+      description: ""
+      encoded: false
+  phase: realized
+  type: rest
+  compatibility:
+    wrapper-policies:
+      allow-chunked-uploads: false
+    enforce-required-params: false
+    request-headers: true
+    allow-trailing-slash: true
+    migrated-api: true
+  buffering: true
+paths:
+  /siren:
+    post:
+      tags:
+        - UniteLegale
+      summary: Recherche multicritère d'unités légales
+      description: ""
+      operationId: findSirenByQPost
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/csv
+      parameters:
+        - name: q
+          in: formData
+          description: Contenu de la requête multicritères, voir la documentation pour
+            plus de précisions
+          required: false
+          type: string
+        - name: date
+          in: formData
+          description: Date à laquelle s'appliqueront les critères de recherche sur
+            les champs historisés, format AAAA-MM-JJ
+          required: false
+          type: string
+        - name: champs
+          in: formData
+          description: Liste des champs demandés, séparés par des virgules
+          required: false
+          type: string
+        - name: masquerValeursNulles
+          in: formData
+          description: Masque (true) ou affiche (false, par défaut) les attributs qui
+            n'ont pas de valeur
+          required: false
+          type: boolean
+        - name: facette.champ
+          in: formData
+          description: Liste des champs sur lesquels des comptages seront effectués,
+            séparés par des virgules
+          required: false
+          type: string
+        - name: tri
+          in: formData
+          description: Champs sur lesquels des tris seront effectués, séparés par des
+            virgules. Tri sur siren par défaut
+          required: false
+          type: string
+        - name: nombre
+          in: formData
+          description: Nombre d'éléments demandés dans la réponse, défaut 20
+          required: false
+          type: integer
+          maximum: 100000
+          minimum: 0
+        - name: debut
+          in: formData
+          description: Rang du premier élément demandé dans la réponse, défaut 0
+          required: false
+          type: integer
+          maximum: 1000000
+          minimum: 0
+        - name: curseur
+          in: formData
+          description: Paramètre utilisé pour la pagination profonde, voir la documentation
+            pour plus de précisions
+          required: false
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReponseUnitesLegales'
+        "301":
+          description: Entreprise doublon
+        "400":
+          description: Nombre incorrect de paramètres ou les paramètres sont mal formatés
+        "401":
+          description: Jeton d'accès manquant ou invalide
+        "404":
+          description: Entreprise non trouvée dans la base Sirene (si le paramètre
+            date n'a pas été utilisé, cela peut signifier que le numéro de 9 chiffres
+            ne correspond pas à un Siren présent dans la base ; si le paramètre a
+            été utilisé, le Siren peut exister mais la date de création est postérieure
+            au paramètre date)
+        "406":
+          description: Le paramètre 'Accept' de l'en-tête HTTP contient une valeur
+            non prévue
+        "414":
+          description: Requête trop longue
+        "429":
+          description: Quota d'interrogations de l'API dépassé
+        "500":
+          description: Erreur interne du serveur
+        "503":
+          description: Service indisponible
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    get:
+      tags:
+        - Informations
+      summary: État du service, dates de mise à jour et numéro de version
+      description: ""
+      operationId: informations
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ReponseInformations'
+        "503":
+          description: Service indisponible
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+definitions:
+  Adresse:
+    type: object
+    properties:
+      complementAdresseEtablissement:
+        type: string
+        description: Complément d'adresse de l'établissement
+      numeroVoieEtablissement:
+        type: string
+        description: Numéro dans la voie
+      indiceRepetitionEtablissement:
+        type: string
+        description: Indice de répétition dans la voie
+      typeVoieEtablissement:
+        type: string
+        description: Type de la voie
+      libelleVoieEtablissement:
+        type: string
+        description: Libellé de la voie
+      codePostalEtablissement:
+        type: string
+        description: Code postal
+      libelleCommuneEtablissement:
+        type: string
+        description: Libellé de la commune pour les adresses en France
+      libelleCommuneEtrangerEtablissement:
+        type: string
+        description: Libellé complémentaire pour une adresse à l'étranger
+      distributionSpecialeEtablissement:
+        type: string
+        description: Distribution spéciale (BP par ex)
+      codeCommuneEtablissement:
+        type: string
+        description: Code commune de localisation de l’établissement hors établissements
+          situés à l’étranger (Le code commune est défini dans le <a href='https://www.insee.fr/fr/information/2028028'>code
+          officiel géographique (COG)</a>)
+      codeCedexEtablissement:
+        type: string
+        description: Numéro de Cedex
+      libelleCedexEtablissement:
+        type: string
+        description: Libellé correspondant au numéro de Cedex (variable codeCedexEtablissement)
+      codePaysEtrangerEtablissement:
+        type: string
+        description: Code pays pour les établissements situés à l’étranger
+      libellePaysEtrangerEtablissement:
+        type: string
+        description: Libellé du pays pour les adresses à l’étranger
+    description: Ensemble des variables d'adresse d'un établissement
+    etatService:
+      type: string
+      description: État actuel du service
+      enum:
+        - UP
+        - DOWN
+tags: []

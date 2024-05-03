@@ -1,37 +1,37 @@
 [
   {
     "queryName": "Response on operations that should not have a body has declared content (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 29,
     "filename": "positive1.json"
   },
   {
     "queryName": "Response on operations that should not have a body has declared content (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 20,
     "filename": "positive2.json"
   },
   {
     "queryName": "Response on operations that should not have a body has declared content (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 23,
     "filename": "positive3.yaml"
   },
   {
     "queryName": "Response on operations that should not have a body has declared content (v3)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 17,
     "filename": "positive4.yaml"
   },
   {
     "queryName": "Response on operations that should not have a body has declared content (v2)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 13,
     "filename": "positive5.yaml"
   },
   {
     "queryName": "Response on operations that should not have a body has declared content (v2)",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 15,
     "filename": "positive6.json"
   }

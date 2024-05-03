@@ -3,8 +3,6 @@ package engine
 import (
 	"context"
 	"fmt"
-	"github.com/open-policy-agent/opa/rego"
-	"github.com/stretchr/testify/assert"
 	"io"
 	"os"
 	"path/filepath"
@@ -13,6 +11,9 @@ import (
 	"sync"
 	"testing"
 	"time"
+
+	"github.com/open-policy-agent/opa/rego"
+	"github.com/stretchr/testify/assert"
 
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/internal/tracker"
@@ -406,6 +407,7 @@ func TestNewInspector(t *testing.T) { //nolint
 		excludeResults   map[string]bool
 		queryExecTimeout int
 		needsLog         bool
+		useOldSeverities bool
 		numWorkers       int
 	}
 	tests := []struct {
@@ -454,6 +456,7 @@ func TestNewInspector(t *testing.T) { //nolint
 				&tt.args.queryFilter,
 				tt.args.excludeResults,
 				tt.args.queryExecTimeout,
+				tt.args.useOldSeverities,
 				tt.args.needsLog,
 				tt.args.numWorkers)
 
@@ -761,7 +764,7 @@ func newQueryContext(ctx context.Context) QueryContext {
 func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {
 	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"), true)
 	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},
-		detector *detector.DetectLine) (*model.Vulnerability, error) {
+		detector *detector.DetectLine, useOldSeverity bool) (*model.Vulnerability, error) {
 		return &model.Vulnerability{}, nil
 	}
 	ins, err := NewInspector(
@@ -770,7 +773,7 @@ func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {
 		vb,
 		&tracker.CITracker{},
 		&source.QueryInspectorParameters{},
-		map[string]bool{}, 60, true, 1,
+		map[string]bool{}, 60, false, true, 1,
 	)
 	require.NoError(t, err)
 	return ins

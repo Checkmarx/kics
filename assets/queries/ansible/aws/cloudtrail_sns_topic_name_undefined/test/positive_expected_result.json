@@ -1,12 +1,12 @@
 [
-	{
-		"queryName": "CloudTrail SNS Topic Name Undefined",
-		"severity": "MEDIUM",
-		"line": 2
-	},
-	{
-		"queryName": "CloudTrail SNS Topic Name Undefined",
-		"severity": "MEDIUM",
-		"line": 15
-	}
+  {
+    "queryName": "CloudTrail SNS Topic Name Undefined",
+    "severity": "LOW",
+    "line": 2
+  },
+  {
+    "queryName": "CloudTrail SNS Topic Name Undefined",
+    "severity": "LOW",
+    "line": 15
+  }
 ]

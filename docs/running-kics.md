@@ -10,7 +10,7 @@ KICS is able to perform scans on these types of paths:
 -   Archived Files
 -   S3
 -   Git
--   GSC
+-   GCS
 
 Files and directories that are not local will be placed in a temporarily folder during KICS execution.
 
@@ -101,13 +101,13 @@ Please make sure you have SSH private key configured with your github account
 
 More information can be seen [here](https://github.com/hashicorp/go-getter#git-git)
 
-### GSC
+### GCS
 
 ```
 docker run -t checkmarx/kics scan -p "gcs::https://www.googleapis.com/storage/v1/bucket"
 ```
 
-Please make sure you have set GSC authentication credentials to your application code by environment variables
+Please make sure you have set authentication credentials to your application code by environment variables
 
 More information can be seen [here](https://github.com/hashicorp/go-getter#gcs-gcs)
 

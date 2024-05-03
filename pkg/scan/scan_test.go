@@ -1,13 +1,71 @@
 package scan
 
 import (
-	"path/filepath"
-	"testing"
-
+	"context"
 	"github.com/Checkmarx/kics/assets"
 	"github.com/Checkmarx/kics/pkg/engine/source"
+	"github.com/Checkmarx/kics/pkg/model"
+	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/stretchr/testify/require"
+	"path/filepath"
+	"testing"
 )
+
+func Test_ExecuteScan(t *testing.T) {
+	tests := []struct {
+		name                 string
+		scanParams           Parameters
+		ctx                  context.Context
+		expectedResultsCount int
+		expectedSeverity     model.Severity
+		expectedLine         int
+	}{
+		{
+			name: "test exec scan",
+			scanParams: Parameters{
+				ExcludePaths: []string{
+					"./../../test/fixtures/test_scan_cloudfront_logging_disabled/metadata.json",
+					"./../../test/fixtures/test_scan_cloudfront_logging_disabled/test/positive_expected_result.tf",
+				},
+				Path:                    []string{"./../../test/fixtures/test_scan_cloudfront_logging_disabled/test/positive1.yaml"},
+				QueriesPath:             []string{"./../../test/fixtures/test_scan_cloudfront_logging_disabled"},
+				PreviewLines:            3,
+				CloudProvider:           []string{"aws"},
+				Platform:                []string{"CloudFormation"},
+				ChangedDefaultQueryPath: true,
+				MaxFileSizeFlag:         100,
+				QueryExecTimeout:        60,
+			},
+			ctx:                  context.Background(),
+			expectedResultsCount: 1,
+			expectedSeverity:     "MEDIUM",
+			expectedLine:         5,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			c, err := NewClient(&tt.scanParams, &progress.PbBuilder{}, &consolePrinter.Printer{})
+
+			if err != nil {
+				t.Fatalf(`NewClient failed for path %s with error: %v`, tt.scanParams.Path[0], err)
+			}
+
+			r, err := c.executeScan(tt.ctx)
+
+			if err != nil {
+				t.Fatalf(`ExecuteScan failed for path %s with error: %v`, tt.scanParams.Path[0], err)
+			}
+
+			resultsCount := len(r.Results)
+			require.Equal(t, tt.expectedResultsCount, resultsCount)
+
+			firstResult := &r.Results[0]
+			require.Equal(t, tt.expectedSeverity, firstResult.Severity)
+		})
+	}
+}
 
 func Test_GetSecretsRegexRules(t *testing.T) {
 	tests := []struct {

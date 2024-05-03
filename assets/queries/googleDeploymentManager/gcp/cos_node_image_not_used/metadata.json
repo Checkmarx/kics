@@ -1,12 +1,13 @@
 {
   "id": "dbe058d7-b82e-430b-8426-992b2e4677e7",
   "queryName": "COS Node Image Not Used",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Insecure Configurations",
   "descriptionText": "The node image should be Container-Optimized OS(COS)",
   "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "5915a575",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

@@ -7,6 +7,7 @@ CxPolicy[result] {
 	uses := input.document[i].jobs[j].steps[k].uses
 	not isAllowed(uses)
 	not isPinned(uses)
+	not isRelative(uses)
 	
 	result := {
 		"documentId": input.document[i].id,
@@ -26,5 +27,10 @@ isAllowed(use){
 
 isPinned(use){
 	regex.match("@[a-f0-9]{40}$", use)
+}
+
+isRelative(use){
+	allowed := ["./"]
+    startswith(use,allowed[i])
 }
 

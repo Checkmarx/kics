@@ -68,7 +68,9 @@ Flag: `--profiling CPU`
 9:43AM INF Inspector stopped
 9:43AM INF Scan duration: 21.1476197s
 ```
+
 ---
+
 ### MEM Profiling
 
 Flag: `--profiling MEM`

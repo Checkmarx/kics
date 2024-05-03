@@ -1,7 +1,7 @@
 [
   {
     "queryName": "Config Rule For Encrypted Volumes Disabled",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 2
   }
 ]

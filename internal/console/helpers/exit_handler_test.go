@@ -22,10 +22,11 @@ var resultsExitCodeTests = []struct {
 		caseTest: resultExitCode{
 			summary: test.SummaryMock,
 			failOn: map[string]struct{}{
-				"high":   {},
-				"medium": {},
-				"low":    {},
-				"info":   {},
+				"critical": {},
+				"high":     {},
+				"medium":   {},
+				"low":      {},
+				"info":     {},
 			},
 		},
 		expectedResult: 50,
@@ -52,13 +53,14 @@ var resultsExitCodeTests = []struct {
 		caseTest: resultExitCode{
 			summary: test.ComplexSummaryMock,
 			failOn: map[string]struct{}{
-				"high":   {},
-				"medium": {},
-				"low":    {},
-				"info":   {},
+				"critical": {},
+				"high":     {},
+				"medium":   {},
+				"low":      {},
+				"info":     {},
 			},
 		},
-		expectedResult: 50,
+		expectedResult: 60,
 	},
 }
 
@@ -161,10 +163,11 @@ var initShouldFailTests = []struct {
 		expectedResult: initFail{
 			wantErr: false,
 			want: map[string]struct{}{
-				"high":   {},
-				"medium": {},
-				"low":    {},
-				"info":   {},
+				"critical": {},
+				"high":     {},
+				"medium":   {},
+				"low":      {},
+				"info":     {},
 			},
 		},
 	},
@@ -178,14 +181,15 @@ var initShouldFailTests = []struct {
 		},
 	},
 	{
-		caseTest: []string{"HIGH", "Medium", "loW", "info"},
+		caseTest: []string{"Critical", "HIGH", "Medium", "loW", "info"},
 		expectedResult: initFail{
 			wantErr: false,
 			want: map[string]struct{}{
-				"high":   {},
-				"medium": {},
-				"low":    {},
-				"info":   {},
+				"critical": {},
+				"high":     {},
+				"medium":   {},
+				"low":      {},
+				"info":     {},
 			},
 		},
 	},

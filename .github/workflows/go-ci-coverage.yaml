@@ -17,10 +17,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Set up Go 1.21.x
-        uses: actions/setup-go@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
-          go-version: 1.21.x
+          go-version-file: go.mod
       - name: Run test metrics script
         id: testcov
         run: |
@@ -33,11 +33,11 @@ jobs:
           curl -L \
             https://img.shields.io/badge/Go%20Coverage-${{ steps.testcov.outputs.coverage }}%25-${{ steps.testcov.outputs.color }}.svg > coverage.svg
           cat coverage.svg
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }}-badge-latest
           path: coverage.svg
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }}-coverage-latest
           path: coverage.html
@@ -55,12 +55,12 @@ jobs:
           git config --global user.name "KICSBot"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Download Coverage Report
-        uses: actions/download-artifact@master
+        uses: actions/download-artifact@v4
         with:
           name: ${{ runner.os }}-coverage-latest
           path: latest-coverage
       - name: Download Badge svg
-        uses: actions/download-artifact@master
+        uses: actions/download-artifact@v4
         with:
           name: ${{ runner.os }}-badge-latest
           path: latest-coverage

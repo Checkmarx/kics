@@ -1,4 +1,3 @@
-// Package model (go:generate go run -mod=mod github.com/mailru/easyjson/easyjson ./$GOFILE)
 package model
 
 import (
@@ -6,7 +5,6 @@ import (
 	"sort"
 	"strings"
 
-	_ "github.com/mailru/easyjson/gen" // easyjson unmarshaler
 	"github.com/rs/zerolog/log"
 )
 
@@ -34,11 +32,12 @@ const (
 
 // Constants to describe vulnerability's severity
 const (
-	SeverityHigh   = "HIGH"
-	SeverityMedium = "MEDIUM"
-	SeverityLow    = "LOW"
-	SeverityInfo   = "INFO"
-	SeverityTrace  = "TRACE"
+	SeverityCritical = "CRITICAL"
+	SeverityHigh     = "HIGH"
+	SeverityMedium   = "MEDIUM"
+	SeverityLow      = "LOW"
+	SeverityInfo     = "INFO"
+	SeverityTrace    = "TRACE"
 )
 
 // Constants to describe issue's type
@@ -51,6 +50,7 @@ const (
 // Arrays to group all constants of one type
 var (
 	AllSeverities = []Severity{
+		SeverityCritical,
 		SeverityHigh,
 		SeverityMedium,
 		SeverityLow,
@@ -250,12 +250,12 @@ func (m FileMetadatas) ToMap() map[string]FileMetadata {
 	return c
 }
 
-// Documents (easyjson:json)
+// Documents
 type Documents struct {
 	Documents []Document `json:"document"`
 }
 
-// Document (easyjson:json)
+// Document
 type Document map[string]interface{}
 
 // Combine merge documents from FileMetadatas using the ID as reference for Document ID and FileName as reference for file

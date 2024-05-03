@@ -6,21 +6,22 @@
 	"lines_parsed": 5,
 	"lines_ignored": 0,
 	"files_failed_to_scan": 0,
-	"queries_total": 980,
+	"queries_total": 1041,
 	"queries_failed_to_execute": 0,
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
+		"CRITICAL": 0,
 		"HIGH": 0,
 		"INFO": 1,
-		"LOW": 2,
-		"MEDIUM": 3,
+		"LOW": 4,
+		"MEDIUM": 1,
 		"TRACE": 0
 	},
 	"total_counter": 6,
 	"total_bom_resources": 0,
-	"start": "2022-05-23T15:48:48.9150787+01:00",
-	"end": "2022-05-23T15:49:34.9151582+01:00",
+	"start": "2024-03-27T11:16:10.4750723Z",
+	"end": "2024-03-27T11:16:20.2535676Z",
 	"paths": [
 		"/path/e2e/fixtures/samples/terraform-single.tf"
 	],
@@ -33,7 +34,7 @@
 			"platform": "Terraform",
 			"cloud_provider": "AWS",
 			"category": "Observability",
-      "experimental": false,
+			"experimental": false,
 			"description": "Make sure Logging is enabled for Redshift Cluster",
 			"description_id": "458fe7a3",
 			"files": [
@@ -55,14 +56,41 @@
 			]
 		},
 		{
+			"query_name": "IAM Access Analyzer Not Enabled",
+			"query_id": "e592a0c5-5bdb-414c-9066-5dba7cdea370",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer",
+			"severity": "LOW",
+			"platform": "Terraform",
+			"cloud_provider": "AWS",
+			"category": "Best Practices",
+			"experimental": false,
+			"description": "IAM Access Analyzer should be enabled and configured to continuously monitor resource permissions",
+			"description_id": "d03e85ae",
+			"files": [
+				{
+					"file_name": "/path/e2e/fixtures/samples/terraform-single.tf",
+					"similarity_id": "aa346cd1642a83b40e221f96a43d88dbfacecdf1f8e5314c24145f8d35530197",
+					"line": 1,
+					"resource_type": "n/a",
+					"resource_name": "n/a",
+					"issue_type": "MissingAttribute",
+					"search_key": "resource",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'aws_accessanalyzer_analyzer' should be set",
+					"actual_value": "'aws_accessanalyzer_analyzer' is undefined"
+				}
+			]
+		},
+		{
 			"query_name": "Redshift Cluster Without VPC",
 			"query_id": "0a494a6a-ebe2-48a0-9d77-cf9d5125e1b3",
 			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#vpc_security_group_ids",
-			"severity": "MEDIUM",
+			"severity": "LOW",
 			"platform": "Terraform",
 			"cloud_provider": "AWS",
 			"category": "Insecure Configurations",
-      "experimental": false,
+			"experimental": false,
 			"description": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)",
 			"description_id": "6fd531fa",
 			"files": [
@@ -95,33 +123,6 @@
 			]
 		},
 		{
-			"query_name": "IAM Access Analyzer Not Enabled",
-			"query_id": "e592a0c5-5bdb-414c-9066-5dba7cdea370",
-			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer",
-			"severity": "LOW",
-			"platform": "Terraform",
-			"cloud_provider": "AWS",
-			"category": "Best Practices",
-      "experimental": false,
-			"description": "IAM Access Analyzer should be enabled and configured to continuously monitor resource permissions",
-			"description_id": "d03e85ae",
-			"files": [
-				{
-					"file_name": "/path/e2e/fixtures/samples/terraform-single.tf",
-					"similarity_id": "aa346cd1642a83b40e221f96a43d88dbfacecdf1f8e5314c24145f8d35530197",
-					"line": 1,
-					"resource_type": "n/a",
-					"resource_name": "n/a",
-					"issue_type": "MissingAttribute",
-					"search_key": "resource",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "'aws_accessanalyzer_analyzer' should be set",
-					"actual_value": "'aws_accessanalyzer_analyzer' is undefined"
-				}
-			]
-		},
-		{
 			"query_name": "Redshift Using Default Port",
 			"query_id": "41abc6cc-dde1-4217-83d3-fb5f0cc09d8f",
 			"query_url": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster#port",
@@ -129,7 +130,7 @@
 			"platform": "Terraform",
 			"cloud_provider": "AWS",
 			"category": "Networking and Firewall",
-      "experimental": false,
+			"experimental": false,
 			"description": "Redshift should not use the default port (5439) because an attacker can easily guess the port",
 			"description_id": "e2e48d27",
 			"files": [
@@ -156,7 +157,7 @@
 			"platform": "Terraform",
 			"cloud_provider": "AWS",
 			"category": "Best Practices",
-      "experimental": false,
+			"experimental": false,
 			"description": "AWS services resource tags are an essential part of managing components. As a best practice, the field 'tags' should have additional tags defined other than 'Name'",
 			"description_id": "09db2d52",
 			"files": [

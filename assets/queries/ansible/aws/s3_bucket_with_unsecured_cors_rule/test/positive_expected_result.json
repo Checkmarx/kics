@@ -1,13 +1,13 @@
 [
   {
     "queryName": "S3 Bucket with Unsecured CORS Rule",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 5,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket with Unsecured CORS Rule",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 5,
     "fileName": "positive2.yaml"
   }

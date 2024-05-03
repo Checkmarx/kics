@@ -4,7 +4,7 @@
   "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Lambda Permission Principal should not contain a wildcard.",
-  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/lambda_policy_module.html",
   "platform": "Terraform",
   "descriptionID": "b443babe",
   "cloudProvider": "aws",
