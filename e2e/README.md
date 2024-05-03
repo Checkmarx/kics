@@ -30,7 +30,7 @@ WINDOWS: go build -tags dev -o ./bin/kics.exe cmd/console/main.go
 
 Run
 ```bash
-go test "github.com/Checkmarx/kics/e2e" -v -count=1 -tags dev
+go test "github.com/Checkmarx/kics/v2/e2e" -v -count=1 -tags dev
 ```
 
 - **Running E2E Tests from docker (slower) (used in CI):**
@@ -45,13 +45,13 @@ WINDOWS: docker build -t kics:e2e-tests -f .\Dockerfile .
 
 Run (linux/mac/bash):
 ```bash
-E2E_KICS_DOCKER=kics:e2e-tests go test "github.com/Checkmarx/kics/e2e" -v -count=1 -tags dev
+E2E_KICS_DOCKER=kics:e2e-tests go test "github.com/Checkmarx/kics/v2/e2e" -v -count=1 -tags dev
 ```
 
 Run (windows)
 ```powershell
 SET "E2E_KICS_DOCKER=kics:e2e-tests" (or set the variable using environment variables window)
-go test "github.com/Checkmarx/kics/e2e" -v -count=1 -tags dev
+go test "github.com/Checkmarx/kics/v2/e2e" -v -count=1 -tags dev
 ```
 
 ## Test Structure

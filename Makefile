@@ -110,7 +110,7 @@ test-coverage-report: test-cover
 test-e2e: ## Run E2E tests
 test-e2e: build
 	$(call print-target)
-	E2E_KICS_BINARY=$(PWD)/bin/kics go test "github.com/Checkmarx/kics/e2e" -v -timeout 1500s
+	E2E_KICS_BINARY=$(PWD)/bin/kics go test "github.com/Checkmarx/kics/v2/e2e" -v -timeout 1500s
 
 .PHONY: cover
 cover: ## generate coverage report
