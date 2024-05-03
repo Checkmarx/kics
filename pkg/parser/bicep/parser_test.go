@@ -660,7 +660,6 @@ func TestParseBicepFile(t *testing.T) {
 									}
 								}
 							},
-							"resources": [],
 							"type": "Microsoft.Compute/virtualMachines"
 						},
 						{
@@ -701,7 +700,6 @@ func TestParseBicepFile(t *testing.T) {
 							"identifier": "nic",
 							"location": null,
 							"name": "",
-							"resources": [],
 							"type": "Microsoft.Network/networkInterfaces",
 							"userAssignedIdentities": {
 								"'${[resourceId(Microsoft.ManagedIdentity/userAssignedIdentities, variables('nicName'))]}'": {
@@ -989,7 +987,6 @@ func TestParseBicepFile(t *testing.T) {
 												},
 												"publicAccess": "Blob"
 											},
-											"resources": [],
 											"type": "containers"
 										}
 									],

@@ -55,6 +55,7 @@ func convertVisitorToJSONBicep(visitor *BicepVisitor) *JSONBicep {
 
 type Resource struct {
 	Name         string
+	FullType     string
 	Parent       string
 	Children     []*Resource
 	ResourceData interface{}
@@ -67,7 +68,6 @@ func filterParentStructs(resources []*Resource) []interface{} {
 	for _, resource := range resources {
 		if resource.Parent == "" {
 			formattedNode := reformatTestTree(*resource)
-			formattedNode = shortenTypes(formattedNode, "")
 			filteredResources = append(filteredResources, formattedNode)
 		}
 	}
@@ -75,24 +75,33 @@ func filterParentStructs(resources []*Resource) []interface{} {
 	return filteredResources
 }
 
+func setChildType(child *map[string]interface{}, parentType string) {
+
+	if parentType != "" {
+		newType := strings.Replace((*child)["type"].(string), parentType+"/", "", 1)
+		(*child)["type"] = newType
+	}
+}
+
 // Reverte um objeto do tipo struct Resource para a estrutura original do JBicep (inverso do convertOriginalResourcesToStruct)
 func reformatTestTree(resource Resource) map[string]interface{} {
-	res := map[string]interface{}{}
-
-	res["identifier"] = resource.Name
+	reformattedResource := map[string]interface{}{}
 
 	children := []interface{}{}
 	for _, child := range resource.Children {
 		formattedChild := reformatTestTree(*child)
+		setChildType(&formattedChild, resource.FullType)
 		children = append(children, formattedChild)
 	}
-
-	res["resources"] = children
-	for k, v := range resource.ResourceData.(map[string]interface{}) {
-		res[k] = v
+	if len(children) > 0 {
+		reformattedResource["resources"] = children
 	}
 
-	return res
+	for k, v := range resource.ResourceData.(map[string]interface{}) {
+		reformattedResource[k] = v
+	}
+
+	return reformattedResource
 }
 
 // Adiciona as resources ao array "resources" do seu parent caso exista
@@ -108,28 +117,6 @@ func addChildrenToParents(resources []*Resource) {
 	}
 }
 
-// Dá trim aos types de forma a que sigam a mesma estrutura que é utilizada pelos ficheiros ARM
-func shortenTypes(resource map[string]interface{}, parentType string) map[string]interface{} {
-
-	if _, hasParent := resource["parent"]; hasParent {
-		newType := strings.Replace(resource["type"].(string), parentType+"/", "", 1)
-		parentType = resource["type"].(string)
-		resource["type"] = newType
-	} else {
-		parentType = resource["type"].(string)
-	}
-
-	if children, hasChildren := resource["resources"]; hasChildren {
-		for _, child := range children.([]interface{}) {
-			updatedChild := shortenTypes(child.(map[string]interface{}), parentType)
-			child = &updatedChild
-		}
-		resource["resources"] = children
-	}
-
-	return resource
-}
-
 // Converte array de objetos com a estrutura original do JBicep para um array de Resource
 func convertOriginalResourcesToStruct(resources []interface{}) []*Resource {
 	newResources := []*Resource{}
@@ -137,8 +124,10 @@ func convertOriginalResourcesToStruct(resources []interface{}) []*Resource {
 	for _, res := range resources {
 		actualRes := res.(map[string]interface{})
 		resName := actualRes["identifier"].(string)
+		resType := actualRes["type"].(string)
 		newRes := Resource{
 			Name:         resName,
+			FullType:     resType,
 			ResourceData: res,
 		}
 
@@ -154,11 +143,10 @@ func convertOriginalResourcesToStruct(resources []interface{}) []*Resource {
 }
 
 func makeResourcesNestedStructure(jBicep *JSONBicep) []interface{} {
-	trueResources := jBicep.Resources
-	resources := convertOriginalResourcesToStruct(trueResources)
+	originalResources := jBicep.Resources
 
+	resources := convertOriginalResourcesToStruct(originalResources)
 	addChildrenToParents(resources)
-
 	filteredResources := filterParentStructs(resources)
 
 	return filteredResources
