@@ -206,8 +206,8 @@ func (r *Resolver) yamlWalk(
 		}
 		return *value, false
 	default:
-		refBool = false
-		ansibleVars = false
+		refBool := false
+		ansibleVars := false
 		for i := range value.Content {
 			if i >= 1 {
 				refBool = strings.Contains(value.Content[i-1].Value, "$ref")
@@ -266,7 +266,7 @@ func (r *Resolver) resolveYamlPath(
 	resolvedFilesCache map[string]ResolvedFile,
 	refBool, resolveReferences, ansibleVars bool) (yaml.Node, bool) {
 	value := v.Value
-	if resolveCount > maxResolverDepth || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
+	if resolveCount >= maxResolverDepth || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
 		return *v, false
 	}
 	var splitPath []string
@@ -406,7 +406,7 @@ func (r *Resolver) resolvePath(
 	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
 	refBool bool, resolveReferences bool) (any, bool) {
-	if resolveCount > maxResolverDepth || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
+	if resolveCount >= maxResolverDepth || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
 		return value, false
 	}
 	var splitPath []string
