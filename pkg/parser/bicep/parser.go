@@ -109,6 +109,9 @@ func addChildrenToParents(resources []*Resource) {
 
 	for _, resource := range resources {
 		resourceMap[resource.Name] = resource
+	}
+
+	for _, resource := range resources {
 		if resource.Parent != "" {
 			parent := resourceMap[resource.Parent]
 			parent.Children = append(parent.Children, resource)
