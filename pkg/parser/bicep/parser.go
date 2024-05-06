@@ -96,7 +96,11 @@ func reformatTestTree(resource *Resource) map[string]interface{} {
 		reformattedResource["resources"] = children
 	}
 
-	for k, v := range resource.ResourceData.(map[string]interface{}) {
+	resData, ok := resource.ResourceData.(map[string]interface{})
+	if !ok {
+		return reformattedResource
+	}
+	for k, v := range resData {
 		reformattedResource[k] = v
 	}
 
