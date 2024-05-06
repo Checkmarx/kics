@@ -40,6 +40,10 @@
                 "type": "string",
                 "minLength": 1
             },
+            "cwe":{
+                "type": "string",
+                "minimum": 0
+            },
             "description": {
                 "type": "string",
                 "minLength": 1
@@ -80,7 +84,7 @@
             },
             "severity": {
                 "type": "string",
-                "enum": ["info", "minor", "major", "critical"]
+                "enum": ["info", "minor", "major", "critical","blocker"]
             },
             "fingerprint": {
                 "$ref": "#/definitions/similarity_id_pattern"

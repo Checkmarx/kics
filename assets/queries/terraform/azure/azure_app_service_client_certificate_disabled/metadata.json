@@ -1,12 +1,13 @@
 {
   "id": "a81573f9-3691-4d83-88a0-7d4af63e17a3",
   "queryName": "Azure App Service Client Certificate Disabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "Azure App Service client certificate should be enabled",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service#client_cert_enabled",
   "platform": "Terraform",
   "descriptionID": "7beaf18e",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

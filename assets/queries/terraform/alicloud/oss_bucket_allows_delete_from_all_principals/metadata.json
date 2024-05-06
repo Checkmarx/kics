@@ -1,12 +1,13 @@
 {
   "id": "8c0695d8-2378-4cd6-8243-7fd5894fa574",
   "queryName": "OSS Bucket Allows Delete Action From All Principals",
-  "severity": "HIGH",
+  "severity": "CRITICAL",
   "category": "Access Control",
   "descriptionText": "OSS Bucket should not allow delete action from all principals, as to prevent leaking private information to the entire internet or allow unauthorized data tampering/deletion. This means the 'Effect' must not be 'Allow' when the 'Action' is DeleteBucket, for all Principals.",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/oss_bucket#policy",
   "platform": "Terraform",
   "descriptionID": "ee07e6f5",
   "cloudProvider": "alicloud",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

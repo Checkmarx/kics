@@ -1,20 +1,20 @@
 [
-	{
-		"queryName": "Check Databricks Cluster Azure Attribute Best Practices",
-		"severity": "MEDIUM",
-		"line": 11,
-		"fileName": "positive1.tf"
-	},
-	{
-		"queryName": "Check Databricks Cluster Azure Attribute Best Practices",
-		"severity": "MEDIUM",
-		"line": 12,
-		"fileName": "positive2.tf"
-	},
-	{
-		"queryName": "Check Databricks Cluster Azure Attribute Best Practices",
-		"severity": "MEDIUM",
-		"line": 10,
-		"fileName": "positive3.tf"
-	}
+  {
+    "queryName": "Check Databricks Cluster Azure Attribute Best Practices",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Check Databricks Cluster Azure Attribute Best Practices",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Check Databricks Cluster Azure Attribute Best Practices",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive3.tf"
+  }
 ]

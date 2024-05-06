@@ -9,7 +9,7 @@ CxPolicy[result] {
 	storageAccount := task[modules[index]]
 	ansLib.checkState(storageAccount)
 
-    res1 := publicNetwokAccessEnabled(storageAccount)
+    res1 := publicNetworkAccessEnabled(storageAccount)
     res2 := aclsDefaultActionAllow(storageAccount)
 
     issue := prepare_issue(res1, res2)
@@ -25,7 +25,7 @@ CxPolicy[result] {
 	}
 }
 
-publicNetwokAccessEnabled(sa) = reason {
+publicNetworkAccessEnabled(sa) = reason {
 	not sa.public_network_access
 	reason := "not defined"
 } else = reason {

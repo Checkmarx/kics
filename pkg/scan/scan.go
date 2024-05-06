@@ -71,7 +71,9 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		queryFilter,
 		c.ExcludeResultsMap,
 		c.ScanParams.QueryExecTimeout,
+		c.ScanParams.UseOldSeverities,
 		true,
+		c.ScanParams.ParallelScanFlag,
 	)
 	if err != nil {
 		return nil, err
@@ -82,7 +84,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		return nil, err
 	}
 
-	isCustomSecretsRegexes := len(c.ScanParams.SecretsRegexesPath) > 0
+	isCustomSecretsRegexes := c.ScanParams.SecretsRegexesPath != ""
 
 	secretsInspector, err := secrets.NewInspector(
 		ctx,
@@ -143,10 +145,6 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) {
 
 	failedQueries := executeScanParameters.inspector.GetFailedQueries()
 
-	if err != nil {
-		return nil, err
-	}
-
 	results, err := c.Storage.GetVulnerabilities(ctx, c.ScanParams.ScanID)
 	if err != nil {
 		log.Err(err)
@@ -176,7 +174,7 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 }
 
 func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err error) {
-	if len(regexRulesPath) > 0 {
+	if regexRulesPath != "" {
 		b, err := os.ReadFile(regexRulesPath)
 		if err != nil {
 			return regexRulesContent, err

@@ -1,17 +1,17 @@
 [
   {
     "queryName": "CPU Limits Not Set",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 8
   },
   {
     "queryName": "CPU Limits Not Set",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 8
   },
   {
     "queryName": "CPU Limits Not Set",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 106
   }
 ]

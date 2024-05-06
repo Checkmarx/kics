@@ -1,12 +1,13 @@
 {
   "id": "59acb56b-2b10-4c2c-ba38-f2223c3f5cfc",
   "queryName": "Small MSSQL Server Audit Retention",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Observability",
   "descriptionText": "Make sure for SQL Servers that Auditing Retention is greater than 90 days",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_server",
   "platform": "Terraform",
   "descriptionID": "96124822",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

@@ -18,7 +18,7 @@ hide:
 -   **Query id:** c66ebeaa-676c-40dc-a3ff-3e49395dcd5e
 -   **Query name:** Servers Array Undefined
 -   **Platform:** OpenAPI
--   **Severity:** <span style="color:#00C">Info</span>
+-   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Structure and Semantics
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/openAPI/3.0/servers_undefined)
 

@@ -1,12 +1,13 @@
 {
   "id": "a21b8df3-c840-4b3d-a41a-10fb2afda171",
   "queryName": "Not Proper Email Account In Use",
-  "severity": "HIGH",
+  "severity": "LOW",
   "category": "Insecure Configurations",
   "descriptionText": "Gmail accounts are being used instead of corporate credentials",
   "descriptionUrl": "https://cloud.google.com/deployment-manager/docs/configuration/set-access-control-resources",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "a21b8df4",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

@@ -14,14 +14,14 @@ def get_meta_data_and_tests(input_path : str, metadata_file = 'metadata.json'):
 
     for path in all_metadata:
         query_info = get_query_info(os.path.dirname(path), metadata_file)
-        query_id = query_info.get("id")
+        query_id = query_info.get('id')
         if not query_id: continue
         queries_data[query_id] = query_info
 
     return queries_data
 
 # Creates a dictionary with the query information present in the "./metadata.json" file and the "./test" directory
-def get_query_info(query_path : str, metadata_file = 'metadata.json', test_extensions = (".json", ".yaml", ".tf", ".dockerfile")):
+def get_query_info(query_path : str, metadata_file = 'metadata.json'):
     metadata_file_path = os.path.join(query_path, metadata_file)
 
     if not os.path.exists(metadata_file_path):
@@ -32,13 +32,13 @@ def get_query_info(query_path : str, metadata_file = 'metadata.json', test_exten
         query_metadata_content = json.loads(f.read())
 
     # Find the index of the folder name in the directory path
-    folder_index = metadata_file_path.rfind("assets\queries")
+    folder_index = metadata_file_path.rfind('assets\queries')
     # If the folder name is found, return everything after it
     if folder_index != -1:
         path_after_folder = metadata_file_path[folder_index:]
     else:
         path_after_folder = metadata_file_path
-    query_metadata_content['githubUrl'] = f"https://github.com/Checkmarx/kics/tree/master/{os.path.dirname(path_after_folder)}"
+    query_metadata_content['githubUrl'] = f'https://github.com/Checkmarx/kics/tree/master/{os.path.dirname(path_after_folder)}'.replace('\\', '/')
 
     test_folder_path = os.path.join(query_path, 'test')
     if not os.path.isdir(test_folder_path):
@@ -51,61 +51,47 @@ def get_query_info(query_path : str, metadata_file = 'metadata.json', test_exten
     with open(expected_result_file_path) as f:
         expected_results = json.loads(f.read())
 
+    files = sorted(os.listdir(os.path.join(query_path, 'test')), key=str.casefold)
+    positive_filenames = []
+    negative_filenames = []
+
+    for file in files:
+        if file.lower().startswith('positive') and file != 'positive_expected_result.json':
+            positive_filenames.append(file)
+        elif file.lower().startswith('negative'):
+            negative_filenames.append(file)
+
     true_positives = []
     true_negatives = []
-    count_positives = 0
-    count_negatives = 0
-    valid_tests = True
+    for p_filename in positive_filenames:
+        positive_file_path = os.path.join(query_path, 'test', p_filename)
+        if os.path.exists(positive_file_path):
+            with open(positive_file_path, 'r') as f:
+                test_content = f.read()
 
-    # Get information inside the "./test" folder
-    while valid_tests:
-        all_tests_saved = True
-        if count_positives == 0:
-            positive = "positive"
-            negative = "negative"
-        else:
-            positive = f"positive{count_positives}"
-            negative = f"negative{count_negatives}"
-
-        for extension in test_extensions:
-            # Positive tests
-            positive_file_path = os.path.join(query_path, "test", positive + extension)
-            if os.path.exists(positive_file_path):
-
-                with open(positive_file_path, "r") as f:
-                    test_content = f.read()
-
-                if count_positives == 0:
-                    test_results = expected_results
-                else:
-                    test_results = [
-                        f
-                        for f in expected_results
-                        if ((f.get("fileName")
-                             or f.get("filename")
-                             or f.get("file")) == positive + extension)
-                    ]
-                lines = list(set([item["line"] for item in test_results]))
-                positive_test = dict(fileName=positive + extension, lines=lines, code=test_content)
+            # length == 1 or EDGE CASES
+            if len(positive_filenames) == 1 or ('terraform/aws/certificate_has_expired' in query_path.replace('\\', '/') and p_filename == 'positive.tf'):
+                test_results = expected_results
+            else:
+                test_results = [
+                    f
+                    for f in expected_results
+                    if ((f.get('fileName')
+                         or f.get('filename')
+                         or f.get('file')) == p_filename)
+                ]
+            lines = list(set([item['line'] for item in test_results]))
+            if lines != []:
+                positive_test = dict(fileName=p_filename, lines=lines, code=test_content)
                 true_positives.append(positive_test)
-                all_tests_saved = False
 
-            # Negative tests
-            negative_file_path = os.path.join(query_path, "test", negative + extension)
-            if os.path.exists(negative_file_path):
-
-                with open(negative_file_path, "r") as f:
-                    test_content = f.read()
-
-                negative_test = dict(fileName=negative + extension, code=test_content)
-                true_negatives.append(negative_test)
-                all_tests_saved = False
-
-        if all_tests_saved and count_positives != 0 and count_negatives != 0:
-            valid_tests = False
-        else:
-            count_positives += 1
-            count_negatives += 1
+    for n_filename in negative_filenames:
+        negative_file_path = os.path.join(query_path, 'test', n_filename)
+        if os.path.exists(negative_file_path):
+            with open(negative_file_path, 'r') as f:
+                test_content = f.read()
+            negative_test = dict(fileName=n_filename, code=test_content)
+            true_negatives.append(negative_test)
 
     query_metadata_content['true_positives'] = true_positives
     query_metadata_content['true_negatives'] = true_negatives
@@ -117,7 +103,7 @@ def format_negative_tests(format_negative_tests : dict) -> str:
 
     for idx, x in enumerate(format_negative_tests):
         filename = x.get('fileName')
-        extension = filename.split(".")[-1]
+        extension = filename.split('.')[-1]
         title = f'Negative test num. {idx + 1} - {extension} file'
         code = x.get('code')
 
@@ -125,11 +111,11 @@ def format_negative_tests(format_negative_tests : dict) -> str:
         if idx <= 2:
             result += f'```{extension} title="{title}"\n{code}\n```\n'
         else:
-            result += f"<details><summary>{title}</summary>\n\n"
+            result += f'<details><summary>{title}</summary>\n\n'
             result += f'```{extension}\n{code}\n```\n'
-            result += "</details>\n"
+            result += '</details>\n'
 
-    return result
+    return result if result != '' else 'Tests Not Fround'
 
 # Utility for generate ".md" documentation
 def format_positive_tests(positive_tests : dict) -> str:
@@ -137,7 +123,7 @@ def format_positive_tests(positive_tests : dict) -> str:
 
     for idx, x in enumerate(positive_tests):
         filename = x.get('fileName')
-        extension = filename.split(".")[-1]
+        extension = filename.split('.')[-1]
         title = f'Positive test num. {idx + 1} - {extension} file'
         code = x.get('code')
 
@@ -151,22 +137,22 @@ def format_positive_tests(positive_tests : dict) -> str:
                 if idy + 1 >= results_lines_len:
                     results_lines += str(y)
                 else:
-                    results_lines += f"{str(y)} "
+                    results_lines += f'{str(y)} '
             results_lines += '"'
 
         # If the query has more than 3 tests, the remaining tests are placed in a drop down
         if idx <= 2:
             result += f'```{extension} title="{title}" {results_lines}\n{code}\n```\n'
         else:
-            result += f"<details><summary>{title}</summary>\n\n"
+            result += f'<details><summary>{title}</summary>\n\n'
             result += f'```{extension} {results_lines}\n{code}\n```\n'
-            result += "</details>\n"
+            result += '</details>\n'
 
-    return result
+    return result if result != '' else 'Tests Not Fround'
 
 # Utility for generate ".md" documentation
 def format_severity(severity : str) -> str:
-    colors = {'High': '#C00', 'Medium': '#C60', 'Low': '#CC0', 'Info': '#00C', 'Trace': '#CCC'}
+    colors = {'Critical': '#ff0000', 'High': '#bb2124', 'Medium': '#ff7213', 'Low': '#edd57e', 'Info': '#5bc0de', 'Trace': '#CCCCCC'}
     severity = severity.capitalize()
     color = colors.get(severity)
     return f'<span style="color:{color}">{severity}</span>'
@@ -177,7 +163,7 @@ def generate_md_docs(queries_database : str, output_path : str, template_file_pa
     if (delete_folders):
         platforms = {f"{value.get('platform').lower()}-queries"
                      for value in queries_database.values()
-                     if value.get("platform") is not None}
+                     if value.get('platform') is not None}
 
         # Get a list of all the folders in the path
         folders = [folder for folder in os.listdir(output_path) if os.path.isdir(os.path.join(output_path, folder))]
@@ -196,37 +182,38 @@ def generate_md_docs(queries_database : str, output_path : str, template_file_pa
 
     for key, query_data in queries_database.items():
         query_doc = doc_template
-        query_doc = doc_template.replace("<QUERY_ID>", key).replace(
-            "<QUERY_NAME>", query_data.get('queryName')).replace(
-            "<PLATFORM>", query_data.get('platform')).replace(
-            "<SEVERITY>", format_severity(query_data.get('severity'))).replace(
-            "<CATEGORY>", query_data.get('category')).replace(
-            "<GITHUB_URL>", query_data.get('githubUrl')).replace(
-            "<DESCRIPTION_TEXT>", query_data.get('descriptionText')).replace(
-            "<DESCRIPTION_URL>", query_data.get('descriptionUrl')).replace(
-            "<POSITIVE_TESTS>", format_positive_tests(query_data.get('true_positives'))).replace(
-            "<NEGATIVE_TESTS>", format_negative_tests(query_data.get('true_negatives')))
+        query_doc = doc_template.replace('<QUERY_ID>', key).replace(
+            '<QUERY_NAME>', query_data.get('queryName')).replace(
+            '<PLATFORM>', query_data.get('platform')).replace(
+            '<SEVERITY>', format_severity(query_data.get('severity'))).replace(
+            '<CATEGORY>', query_data.get('category')).replace(
+            '<GITHUB_URL>', query_data.get('githubUrl')).replace(
+            '<DESCRIPTION_TEXT>', query_data.get('descriptionText')).replace(
+            '<DESCRIPTION_URL>', query_data.get('descriptionUrl')).replace(
+            '<POSITIVE_TESTS>', format_positive_tests(query_data.get('true_positives'))).replace(
+            '<NEGATIVE_TESTS>', format_negative_tests(query_data.get('true_negatives')))
 
+        cloud_provider = query_data.get('cloudProvider', '').lower()
         platform_folder_path = os.path.join(output_path,
                                             f"{query_data.get('platform').lower()}-queries",
-                                            query_data.get('cloudProvider', '').lower())
+                                            cloud_provider if cloud_provider != 'common' else '')
         if not os.path.exists(platform_folder_path):
             os.makedirs(platform_folder_path)
 
         # If you are having problems rendering the ".md" pages, try adding encoding='utf-8' as a parameter of "open" function invocation
-        with open(f"{os.path.join(platform_folder_path, key)}.md", "w") as f:
+        with open(f'{os.path.join(platform_folder_path, key)}.md', 'w') as f:
             f.write(query_doc)
 
 # Export a dictionary to a "json" file
 def export_to_json(queries_database : dict, output_path : str):
-    with open(os.path.join(output_path, "queries_database.json"), "w") as f:
+    with open(os.path.join(output_path, 'queries_database.json'), 'w') as f:
         json.dump(queries_database, f, indent=4)
 
 def main():
     start_time = time.time()
 
     # Script arguments
-    parser = argparse.ArgumentParser(description="Create/Update documentation page for each query")
+    parser = argparse.ArgumentParser(description='Create/Update documentation page for each query')
     parser.add_argument('-p', type=Path, dest='input_path',
                         help='Folder path to read "metadata.json".', required=True)
     parser.add_argument('-o', type=Path, dest='output_path',
@@ -243,7 +230,7 @@ def main():
     # Validating optional arguments
     output_format = args.output_format
     if output_format == 'md' and (args.template_path is None):
-        parser.error("-f json requires --t")
+        parser.error('-f json requires --t')
 
     input_path = args.input_path
     if not input_path.exists(): raise FileNotFoundError("\033[31minput_path doesn't exist in the operating system\033[0m")
@@ -269,5 +256,5 @@ def main():
     elapsed_time = end_time - start_time
     print(f"-->\033[34m Elapsed time: {round(elapsed_time, 2)} seconds\033[0m")
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

@@ -97,9 +97,14 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
 				if line == "" {
 					continue
 				}
+				if strings.HasSuffix(filePath, ".yaml") && strings.HasPrefix(line, "---") {
+					continue
+				}
+
 				if !strings.HasPrefix(line, commentToken) {
 					break
 				}
+
 				fields := strings.Fields(strings.TrimSpace(strings.TrimPrefix(line, commentToken)))
 				if len(fields) > 1 && fields[0] == "kics-scan" && fields[1] != "" {
 					commandParameters := strings.SplitN(fields[1], "=", 2)
@@ -175,7 +180,7 @@ func contains(types []string, supportedTypes map[string]bool) bool {
 }
 
 func (c *Parser) isValidExtension(filePath string) bool {
-	ext := utils.GetExtension(filePath)
+	ext, _ := utils.GetExtension(filePath)
 	_, ok := c.extensions[ext]
 	return ok
 }

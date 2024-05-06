@@ -1,12 +1,12 @@
 [
   {
     "queryName": "Pod Security Policy Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 2
   },
   {
     "queryName": "Pod Security Policy Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 18
   }
 ]

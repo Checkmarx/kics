@@ -67,15 +67,17 @@ Example of results summary:
 ```hcl
 1: CxINFO - 2:04:47 PM]Results summary:
 2:                     Total Results": 141,
-3:                     "HIGH": 10,
-4:                     "INFO": 4,
-5:                     "LOW": 62,
-6:                     "MEDIUM": 65
+3:                     "CRITICAL": 0,
+4:                     "HIGH": 10,
+5:                     "INFO": 4,
+6:                     "LOW": 62,
+7:                     "MEDIUM": 65
 ```
 
 ## Viewing KICS Vulnerability Details
 Detailed information about the vulnerabilities that were detected is shown in the file editor window. The vulnerable code is highlighted according the severity level of the vulnerability, as follows:
 
+- Critical - pure red
 - High - red
 - Medium - orange
 - Info - green

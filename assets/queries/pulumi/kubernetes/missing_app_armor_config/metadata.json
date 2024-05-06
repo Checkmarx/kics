@@ -1,11 +1,13 @@
 {
   "id": "95588189-1abd-4df1-9588-b0a5034f9e87",
   "queryName": "Missing App Armor Config",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Access Control",
   "descriptionText": "Containers should be configured with AppArmor for any application to reduce its potential attack",
   "descriptionUrl": "https://www.pulumi.com/registry/packages/kubernetes/api-docs/core/v1/pod/#objectmeta",
   "platform": "Pulumi",
   "descriptionID": "15676623",
-  "cwe": ""
+  "cwe": "",
+  "cloudProvider": "common",
+  "oldSeverity": "LOW"
 }

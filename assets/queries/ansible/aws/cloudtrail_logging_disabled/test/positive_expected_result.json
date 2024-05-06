@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "CloudTrail Logging Disabled",
-		"severity": "HIGH",
-		"line": 5
-	}
+  {
+    "queryName": "CloudTrail Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 5
+  }
 ]

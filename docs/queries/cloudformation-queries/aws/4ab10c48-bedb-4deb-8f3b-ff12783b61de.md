@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 4ab10c48-bedb-4deb-8f3b-ff12783b61de
 -   **Query name:** API Gateway X-Ray Disabled
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Observability
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/api_gateway_xray_disabled)
 

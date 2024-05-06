@@ -1,6 +1,7 @@
 package model
 
 import (
+	"reflect"
 	"strings"
 	"sync"
 
@@ -150,6 +151,7 @@ func processLine(kind yaml.Kind, content *yaml.Node, position int) (linesIgnore 
 	} else {
 		nodeToIgnore = content.Content[position]
 	}
+
 	linesIgnore = append(linesIgnore, nodeToIgnore.Line-1, nodeToIgnore.Line)
 	return
 }
@@ -175,13 +177,17 @@ func processBlock(kind yaml.Kind, content []*yaml.Node, position int) (linesIgno
 // getNodeLastLine returns the last line of a node
 func getNodeLastLine(node *yaml.Node) (lastLine int) {
 	lastLine = node.Line
-	for _, content := range node.Content {
-		if content.Line > lastLine {
-			lastLine = content.Line
+	if len(node.Content) > 0 {
+		for _, content := range node.Content {
+			if content.Line > lastLine {
+				lastLine = content.Line
+			}
+			if lineContent := getNodeLastLine(content); lineContent > lastLine {
+				lastLine = lineContent
+			}
 		}
-		if lineContent := getNodeLastLine(content); lineContent > lastLine {
-			lastLine = lineContent
-		}
+	} else if reflect.TypeOf(node.Value).Kind() == reflect.String {
+		lastLine += strings.Count(node.Value, "\n")
 	}
 
 	return
@@ -190,6 +196,12 @@ func getNodeLastLine(node *yaml.Node) (lastLine int) {
 // value returns the value of the comment
 func (c *comment) value() (value CommentCommand) {
 	comment := strings.ToLower(string(*c))
+	if isHelm(comment) {
+		res := KICSGetContentCommentRgxp.FindString(comment)
+		if res != "" {
+			comment = res
+		}
+	}
 	// check if we are working with kics command
 	if KICSCommentRgxp.MatchString(comment) {
 		comment = KICSCommentRgxp.ReplaceAllString(comment, "")
@@ -199,4 +211,8 @@ func (c *comment) value() (value CommentCommand) {
 		return
 	}
 	return CommentCommand(comment)
+}
+
+func isHelm(comment string) bool {
+	return strings.Contains(comment, "helm")
 }

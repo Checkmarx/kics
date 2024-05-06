@@ -102,6 +102,22 @@ body {
   top: 50%;
 }
 
+.kics-black {
+  color: #000;
+}
+
+.kics-red {
+  color: #EE3F3F;
+}
+
+.kics-red > svg {
+  fill: #EE3F3F;
+}
+
+.kics-red ~ .badge{
+  background-color: #503e9e;
+}
+
 .kics-orange {
   color: #fc6e3a;
 }

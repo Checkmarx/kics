@@ -1,67 +1,67 @@
 [
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 66
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 112
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 115
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 145
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 175
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 193
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 203
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 229
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 250
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 265
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 280
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 70
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 299
   }
 ]

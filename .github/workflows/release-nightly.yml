@@ -49,9 +49,9 @@ jobs:
             - name: View HEAD Commit
               value: https://github.com/Checkmarx/kics/commit/${{ github.sha }}
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
-          go-version: 1.20.x
+          go-version: 1.22.x
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v4.2.0
         with:
@@ -196,28 +196,6 @@ jobs:
             VERSION=nightly-${{ needs.pre_release_job.outputs.sha8 }}
             COMMIT=${{ github.sha }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
-      - name: Export Image Digests
-        run: |
-          VERSION=nightly
-
-          COMMIT_SHA8=${{ needs.pre_release_job.outputs.sha8 }}
-          DATE=$(date +'%Y-%m-%d')
-          DIGEST=${{ steps.build_alpine.outputs.digest }}
-          ALPINE_DIGEST=${{ steps.build_alpine.outputs.digest }}
-          DEBIAN_DIGEST=${{ steps.build_debian.outputs.digest }}
-          UBI8_DIGEST=${{ steps.build_ubi8.outputs.digest }}
-
-          echo "scratch,${COMMIT_SHA8},${DATE},${DIGEST}" >> docs/docker/nightly.csv
-          echo "alpine,${COMMIT_SHA8},${DATE},${ALPINE_DIGEST}" >> docs/docker/nightly.csv
-          echo "debian,${COMMIT_SHA8},${DATE},${DEBIAN_DIGEST}" >> docs/docker/nightly.csv
-          echo "ubi8,${COMMIT_SHA8},${DATE},${UBI8_DIGEST}" >> docs/docker/nightly.csv
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 3.x
-      - name: Generate .md table
-        run: |
-          pip install csvtomd
-          csvtomd docs/docker/nightly.csv > docs/docker/nightly.md
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:

@@ -76,7 +76,7 @@ Note that KICS recognizes this technology as Azure Resource Manager (for queries
 
 ## Docker
 
-KICS supports scanning Docker files named `Dockerfile` or with `.dockerfile` extension.
+KICS supports scanning Docker files with any name (but with no extension) and files with `.dockerfile` extension.
 
 ## Docker Compose
 

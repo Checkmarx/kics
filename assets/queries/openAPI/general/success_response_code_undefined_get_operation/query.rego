@@ -11,6 +11,7 @@ CxPolicy[result] {
 
 	not common_lib.valid_key(response, "200")
 	not common_lib.valid_key(response, "202")
+	not common_lib.valid_key(response, "2XX")
 
 	result := {
 		"documentId": doc.id,
