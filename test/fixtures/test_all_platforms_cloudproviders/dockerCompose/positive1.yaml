@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+ lelele-service:
+    build: ./
+    image: lelele-service
+    restart: always
+    container_name: lelele
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8092:8092
