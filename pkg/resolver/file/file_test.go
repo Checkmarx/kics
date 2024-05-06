@@ -152,6 +152,7 @@ func TestResolver_Resolve_Without_ResolveReferences(t *testing.T) {
 	}
 }
 
+// when using the key 'include_vars', the resolver will search for the file inside the folder 'current_path/vars' and then in the 'current_path'.
 func TestResolver_Resolve_Ansible_Vars(t *testing.T) {
 	err := test.ChangeCurrentDir("kics")
 	if err != nil {
