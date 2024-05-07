@@ -236,6 +236,10 @@ SPACES: [ \t]+ -> skip;
 
 UNKNOWN: .;
 
+SINGLE_LINE_COMMENT: '//' ~[\r\n]* -> skip;
+
+MULTI_LINE_COMMENT: '/*' .*? '*/' -> skip;
+
 fragment STRINGCHAR: ~[\\'\n\r\t$] | ESCAPE;
 
 fragment ESCAPE: '\\' ([\\'nrt$] | 'u{' HEX+ '}');
