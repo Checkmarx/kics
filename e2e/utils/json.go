@@ -205,7 +205,7 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			actualQuery := actualI.Queries[i]
 			expectQuery := expectI.Queries[i]
 
-			require.Equal(t, actualQuery.QueryName, expectQuery.QueryName,
+			require.Equal(t, actualQuery.QueryID, expectQuery.QueryID,
 				"Expected Result queries doesn't match the actual result queries [in the index: %d]."+
 					"\nExpected File: 'fixtures/%s'.\nActual File: 'output/%s'.",
 				i, expectFileName, actualFileName)
