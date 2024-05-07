@@ -62,6 +62,7 @@ expression:
 	| expression QMARK expression COL expression
 	| expression DOT property = identifier
 	| expression COL name = identifier
+	| expression COL COL name = identifier
 	| expression logicCharacter expression
 	| primaryExpression;
 
