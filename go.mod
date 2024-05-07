@@ -22,7 +22,7 @@ require (
 	github.com/agnivade/levenshtein v1.1.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
 	github.com/antlr4-go/antlr/v4 v4.13.0
-	github.com/aws/aws-sdk-go-v2 v1.17.6
+	github.com/aws/aws-sdk-go-v2 v1.26.1
 	github.com/bigkevmcd/go-configparser v0.0.0-20230427073640-c6b631f70126
 	github.com/cheggaaa/pb/v3 v3.1.2
 	github.com/emicklei/proto v1.11.2
