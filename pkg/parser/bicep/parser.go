@@ -331,8 +331,6 @@ func (s *BicepVisitor) VisitResourceDecl(ctx *parser.ResourceDeclContext) interf
 
 	line := map[string]int{kicsLine: ctx.GetStart().GetLine()}
 	lines[kicsPrefix+"apiVersion"] = line
-
-	line = map[string]int{kicsLine: ctx.GetStart().GetLine()}
 	lines[kicsPrefix+"type"] = line
 
 	s.resourceList = append(s.resourceList, resource)
