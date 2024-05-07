@@ -1,8 +1,8 @@
 [
-	{
-		"queryName": "Node Restriction Admission Control Plugin Not Set",
-		"severity": "HIGH",
-		"line": 11,
-		"fileName": "positive1.yaml"
-	}
+  {
+    "queryName": "Node Restriction Admission Control Plugin Not Set",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml"
+  }
 ]

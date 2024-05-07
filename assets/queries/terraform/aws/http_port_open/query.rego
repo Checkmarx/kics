@@ -1,12 +1,11 @@
 package Cx
 
-import data.generic.terraform as terraLib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
 
-	terraLib.portOpenToInternet(resource.ingress, 80)
+	tf_lib.portOpenToInternet(resource.ingress, 80)
 
 	result := {
 		"documentId": input.document[i].id,

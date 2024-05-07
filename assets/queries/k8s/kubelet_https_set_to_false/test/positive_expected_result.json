@@ -1,8 +1,8 @@
 [
-	{
-		"queryName": "Kubelet HTTPS Set To False",
-		"severity": "HIGH",
-		"line": 11,
-        "fileName": "positive1.yaml"
-	}
+  {
+    "queryName": "Kubelet HTTPS Set To False",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.yaml"
+  }
 ]

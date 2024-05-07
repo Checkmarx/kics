@@ -14,7 +14,8 @@ import (
 )
 
 const (
-	source = "./test/fixtures/all_auth_users_get_read_access"
+	source_get_queries              = "./test/fixtures/all_auth_users_get_read_access"
+	source_get_queries_experimental = "./test/fixtures/test_experimental_queries/experimental_queries_queries"
 )
 
 // BenchmarkFilesystemSource_GetQueries benchmarks getQueries to see improvements
@@ -23,10 +24,11 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 		b.Fatal(err)
 	}
 	type fields struct {
-		Source         []string
-		Types          []string
-		CloudProviders []string
-		Library        string
+		Source              []string
+		Types               []string
+		CloudProviders      []string
+		Library             string
+		ExperimentalQueries bool
 	}
 	tests := []struct {
 		name   string
@@ -35,16 +37,17 @@ func BenchmarkFilesystemSource_GetQueries(b *testing.B) {
 		{
 			name: "testing_all_paths",
 			fields: fields{
-				Source:         []string{"./assets/queries/"},
-				Types:          []string{""},
-				CloudProviders: []string{""},
-				Library:        "./assets/libraries",
+				Source:              []string{"./assets/queries/"},
+				Types:               []string{""},
+				CloudProviders:      []string{""},
+				Library:             "./assets/libraries",
+				ExperimentalQueries: true,
 			},
 		},
 	}
 	for _, tt := range tests {
 		b.Run(tt.name, func(b *testing.B) {
-			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types, tt.fields.CloudProviders, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, tt.fields.Types, tt.fields.CloudProviders, tt.fields.Library, tt.fields.ExperimentalQueries)
 			for n := 0; n < b.N; n++ {
 				filter := QueryInspectorParameters{
 					IncludeQueries: IncludeQueries{ByIDs: []string{}},
@@ -67,10 +70,11 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 	contentByte, err := os.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
 	require.NoError(t, err)
 	type fields struct {
-		Source         []string
-		Types          []string
-		CloudProviders []string
-		Library        string
+		Source              []string
+		Types               []string
+		CloudProviders      []string
+		Library             string
+		ExperimentalQueries bool
 	}
 	tests := []struct {
 		name              string
@@ -84,8 +88,9 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 		{
 			name: "get_queries_with_exclude_result_1",
 			fields: fields{
-				Source: []string{source}, Types: []string{""},
+				Source: []string{source_get_queries}, Types: []string{""},
 				CloudProviders: []string{""}, Library: "./assets/libraries",
+				ExperimentalQueries: true,
 			},
 			excludeCategory:   []string{},
 			excludeSeverities: []string{},
@@ -104,8 +109,9 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 						"severity":        model.SeverityHigh,
 						"platform":        "Terraform",
 					},
-					Platform:    "terraform",
-					Aggregation: 1,
+					Platform:     "terraform",
+					Aggregation:  1,
+					Experimental: false,
 				},
 			},
 			wantErr: false,
@@ -113,7 +119,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 		{
 			name: "get_queries_with_exclude_no_result_1",
 			fields: fields{
-				Source: []string{source}, Types: []string{""},
+				Source: []string{source_get_queries}, Types: []string{""},
 				CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
 			excludeCategory:   []string{},
@@ -135,7 +141,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 		{
 			name: "get_queries_with_exclude_category_no_result",
 			fields: fields{
-				Source: []string{source}, Types: []string{""},
+				Source: []string{source_get_queries}, Types: []string{""},
 				CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
 			excludeCategory:   []string{"Access Control"},
@@ -147,7 +153,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 		{
 			name: "get_queries_with_exclude_severity_no_result",
 			fields: fields{
-				Source: []string{source}, Types: []string{""},
+				Source: []string{source_get_queries}, Types: []string{""},
 				CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
 			excludeCategory:   []string{},
@@ -159,7 +165,7 @@ func TestFilesystemSource_GetQueriesWithExclude(t *testing.T) { //nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library, tt.fields.ExperimentalQueries)
 			filter := QueryInspectorParameters{
 				IncludeQueries: IncludeQueries{ByIDs: []string{}},
 				ExcludeQueries: ExcludeQueries{ByIDs: tt.excludeIDs, ByCategories: tt.excludeCategory, BySeverities: tt.excludeSeverities},
@@ -189,10 +195,11 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 	require.NoError(t, err)
 
 	type fields struct {
-		Source         []string
-		Types          []string
-		CloudProviders []string
-		Library        string
+		Source              []string
+		Types               []string
+		CloudProviders      []string
+		Library             string
+		ExperimentalQueries bool
 	}
 	tests := []struct {
 		name       string
@@ -204,7 +211,9 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 		{
 			name: "get_queries_with_include_result_1",
 			fields: fields{
-				Source: []string{source}, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
+				Source: []string{source_get_queries}, Types: []string{""}, CloudProviders: []string{""},
+				Library:             "./assets/libraries",
+				ExperimentalQueries: true,
 			},
 			includeIDs: []string{"57b9893d-33b1-4419-bcea-b828fb87e318"},
 			want: []model.QueryMetadata{
@@ -221,8 +230,9 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 						"severity":        model.SeverityHigh,
 						"platform":        "Terraform",
 					},
-					Platform:    "terraform",
-					Aggregation: 1,
+					Platform:     "terraform",
+					Aggregation:  1,
+					Experimental: false,
 				},
 			},
 			wantErr: false,
@@ -230,7 +240,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 		{
 			name: "get_queries_with_include_no_result_1",
 			fields: fields{
-				Source: []string{source}, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
+				Source: []string{source_get_queries}, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
 			},
 			includeIDs: []string{"57b9893d-33b1-4419-bcea-xxxxxxx"},
 			want:       []model.QueryMetadata{},
@@ -248,7 +258,7 @@ func TestFilesystemSource_GetQueriesWithInclude(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library, tt.fields.ExperimentalQueries)
 			filter := QueryInspectorParameters{
 				IncludeQueries: IncludeQueries{
 					ByIDs: tt.includeIDs,
@@ -281,8 +291,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		t.Fatal(err)
 	}
 	type fields struct {
-		Source  []string
-		Library string
+		Source              []string
+		Library             string
+		ExperimentalQueries bool
 	}
 	type args struct {
 		platform string
@@ -297,8 +308,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_terraform",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:              []string{"./assets/queries/template"},
+				Library:             "./assets/libraries",
+				ExperimentalQueries: true,
 			},
 			args: args{
 				platform: "terraform",
@@ -309,8 +321,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_common",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:              []string{"./assets/queries/template"},
+				Library:             "./assets/libraries",
+				ExperimentalQueries: true,
 			},
 			args: args{
 				platform: "common",
@@ -321,8 +334,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_cloudformation",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:              []string{"./assets/queries/template"},
+				Library:             "./assets/libraries",
+				ExperimentalQueries: true,
 			},
 			args: args{
 				platform: "cloudFormation",
@@ -333,8 +347,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_ansible",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:              []string{"./assets/queries/template"},
+				Library:             "./assets/libraries",
+				ExperimentalQueries: true,
 			},
 			args: args{
 				platform: "ansible",
@@ -345,8 +360,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_dockerfile",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:              []string{"./assets/queries/template"},
+				Library:             "./assets/libraries",
+				ExperimentalQueries: true,
 			},
 			args: args{
 				platform: "dockerfile",
@@ -357,8 +373,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_k8s",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:              []string{"./assets/queries/template"},
+				Library:             "./assets/libraries",
+				ExperimentalQueries: true,
 			},
 			args: args{
 				platform: "k8s",
@@ -369,8 +386,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_cicd",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:              []string{"./assets/queries/template"},
+				Library:             "./assets/libraries",
+				ExperimentalQueries: true,
 			},
 			args: args{
 				platform: "cicd",
@@ -381,8 +399,9 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 		{
 			name: "get_generic_query_unknown",
 			fields: fields{
-				Source:  []string{"./assets/queries/template"},
-				Library: "./assets/libraries",
+				Source:              []string{"./assets/queries/template"},
+				Library:             "./assets/libraries",
+				ExperimentalQueries: true,
 			},
 			args: args{
 				platform: "unknown",
@@ -393,7 +412,7 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library, tt.fields.ExperimentalQueries)
 
 			got, err := s.GetQueryLibrary(tt.args.platform)
 			if (err != nil) != tt.wantErr {
@@ -415,12 +434,15 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 
 	contentByte, err := os.ReadFile(filepath.FromSlash("./test/fixtures/get_queries_test/content_get_queries.rego"))
 	require.NoError(t, err)
+	contentByteExperimental, err := os.ReadFile(filepath.FromSlash("./test/fixtures/test_experimental_queries/experimental_queries_queries/experimental/test/query.rego"))
+	require.NoError(t, err)
 
 	type fields struct {
-		Source         []string
-		Types          []string
-		CloudProviders []string
-		Library        string
+		Source              []string
+		Types               []string
+		CloudProviders      []string
+		Library             string
+		ExperimentalQueries bool
 	}
 	tests := []struct {
 		name    string
@@ -431,7 +453,9 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_1",
 			fields: fields{
-				Source: []string{source, source}, Types: []string{""}, CloudProviders: []string{""}, Library: "./assets/libraries",
+				Source: []string{source_get_queries, source_get_queries}, Types: []string{""}, CloudProviders: []string{""},
+				Library:             "./assets/libraries",
+				ExperimentalQueries: false,
 			},
 			want: []model.QueryMetadata{
 				{
@@ -447,8 +471,9 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 						"severity":        model.SeverityHigh,
 						"platform":        "Terraform",
 					},
-					Platform:    "terraform",
-					Aggregation: 1,
+					Platform:     "terraform",
+					Aggregation:  1,
+					Experimental: false,
 				},
 				{
 					Query:     "all_auth_users_get_read_access",
@@ -463,8 +488,9 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 						"severity":        model.SeverityHigh,
 						"platform":        "Terraform",
 					},
-					Platform:    "terraform",
-					Aggregation: 1,
+					Platform:     "terraform",
+					Aggregation:  1,
+					Experimental: false,
 				},
 			},
 			wantErr: false,
@@ -472,15 +498,67 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 		{
 			name: "get_queries_error",
 			fields: fields{
-				Source: []string{"../no-path"},
+				Source:              []string{"../no-path"},
+				ExperimentalQueries: false,
 			},
 			want:    nil,
 			wantErr: true,
 		},
+		{
+			name: "get_queries_experimental_with_flag",
+			fields: fields{
+				Source: []string{source_get_queries_experimental}, Types: []string{""}, CloudProviders: []string{""},
+				Library:             "./assets/libraries",
+				ExperimentalQueries: true,
+			},
+			want: []model.QueryMetadata{
+				{
+					Query:     "test",
+					Content:   string(contentByteExperimental),
+					InputData: "{}",
+					Metadata: map[string]interface{}{
+						"category":        "Insecure Configurations",
+						"descriptionText": "SSL Client Certificate should be enabled",
+						"descriptionUrl":  "https://docs.ansible.com/ansible/2.8/modules/aws_api_gateway_module.html",
+						"id":              "b47b98ab-e481-4a82-8bb1-1ab39fd36e33",
+						"queryName":       "API Gateway Without SSL Certificate",
+						"severity":        model.SeverityMedium,
+						"platform":        "Ansible",
+						"cloudProvider":   "aws",
+						"descriptionID":   "82608f36",
+						"experimental":    "true",
+					},
+					Platform:     "ansible",
+					Aggregation:  1,
+					Experimental: true,
+				},
+				{
+					Query:     "tested_query",
+					Content:   string(contentByteExperimental),
+					InputData: "{}",
+					Metadata: map[string]interface{}{
+						"category":        "Insecure Configurations",
+						"descriptionText": "SSL Client Certificate should be enabled",
+						"descriptionUrl":  "https://docs.ansible.com/ansible/2.8/modules/aws_api_gateway_module.html",
+						"id":              "b47b98ab-e481-4a82-8bb1-1ab39fd36e34",
+						"queryName":       "API Gateway Without SSL Certificate",
+						"severity":        model.SeverityMedium,
+						"platform":        "Ansible",
+						"cloudProvider":   "aws",
+						"descriptionID":   "82608f36",
+						"experimental":    "true",
+					},
+					Platform:     "ansible",
+					Aggregation:  1,
+					Experimental: true,
+				},
+			},
+			wantErr: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library)
+			s := NewFilesystemSource(tt.fields.Source, []string{""}, []string{""}, tt.fields.Library, tt.fields.ExperimentalQueries)
 			filter := QueryInspectorParameters{
 				IncludeQueries: IncludeQueries{
 					ByIDs: []string{}},
@@ -488,7 +566,8 @@ func TestFilesystemSource_GetQueries(t *testing.T) {
 					ByIDs:        []string{},
 					ByCategories: []string{},
 				},
-				InputDataPath: "",
+				ExperimentalQueries: tt.fields.ExperimentalQueries,
+				InputDataPath:       "",
 			}
 			got, err := s.GetQueries(&filter)
 			if (err != nil) != tt.wantErr {
@@ -742,7 +821,7 @@ func TestSource_validateMetadata(t *testing.T) {
 
 // TestSource_ListSupportedCloudProviders tests the function ListSupportedCloudProviders.
 func TestSource_ListSupportedCloudProviders(t *testing.T) {
-	want := []string{"alicloud", "aws", "azure", "gcp"}
+	want := []string{"alicloud", "aws", "azure", "gcp", "nifcloud", "tencentcloud"}
 	t.Run("test List Supported CP", func(t *testing.T) {
 		got := ListSupportedCloudProviders()
 		require.Equal(t, want, got)

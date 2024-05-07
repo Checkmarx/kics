@@ -6,5 +6,7 @@
   "descriptionText": "Deployments should be assigned with a PodDisruptionBudget to ensure high availability",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment#selector",
   "platform": "Terraform",
-  "descriptionID": "add58c0c"
+  "descriptionID": "add58c0c",
+  "cwe": "",
+  "cloudProvider": "common"
 }

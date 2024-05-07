@@ -6,5 +6,7 @@
   "descriptionText": "Container should not share the host IPC namespace",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_ipc",
   "platform": "Terraform",
-  "descriptionID": "e76243f6"
+  "descriptionID": "e76243f6",
+  "cwe": "",
+  "cloudProvider": "common"
 }

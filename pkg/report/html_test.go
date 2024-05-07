@@ -25,6 +25,22 @@ var htmlTests = []struct {
 		},
 		expectedResult: test.SummaryMock,
 	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCritical,
+			path:     "./testdir",
+			filename: "testout2",
+		},
+		expectedResult: test.SummaryMockCritical,
+	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCWE,
+			path:     "./testdir",
+			filename: "testout3",
+		},
+		expectedResult: test.SummaryMockCWE,
+	},
 }
 
 // TestPrintHTMLReport tests the functions [PrintHTMLReport()] and all the methods called by them

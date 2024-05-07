@@ -18,7 +18,7 @@ hide:
 -   **Query id:** f2daed12-c802-49cd-afed-fe41d0b82fed
 -   **Query name:** Same Alias In Different Froms
 -   **Platform:** Dockerfile
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Build Process
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/same_alias_in_different_froms)
 
@@ -28,7 +28,7 @@ Different FROMS cant have the same alias defined<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```dockerfile title="Postitive test num. 1 - dockerfile file" hl_lines="4"
+```dockerfile title="Positive test num. 1 - dockerfile file" hl_lines="4"
 FROM baseImage
 RUN Test
 

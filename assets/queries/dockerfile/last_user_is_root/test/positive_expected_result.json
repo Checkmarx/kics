@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "Last User Is 'root'",
-		"severity": "MEDIUM",
-		"line": 2
-	}
+  {
+    "queryName": "Last User Is 'root'",
+    "severity": "HIGH",
+    "line": 2
+  }
 ]

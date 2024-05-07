@@ -1,0 +1,13 @@
+---
+# playbook.yml
+- name: Configure web servers
+  hosts: web_servers
+  roles:
+    - common
+    - web
+
+- name: Configure database servers
+  hosts: db_servers
+  roles:
+    - common
+    - db

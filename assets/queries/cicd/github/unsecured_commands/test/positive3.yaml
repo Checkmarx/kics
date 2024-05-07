@@ -1,0 +1,30 @@
+name: Vulnerable workflow
+
+on:
+  pull_request_target
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 2. Print github context
+      - run: |
+          print("""${{ toJSON(github) }}""")
+        shell: python
+      - name: Create new PR deployment
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+        uses: actions/github-script@v5
+        with:
+          # 3. Create deployment
+          script: |
+            return await github.rest.repos.createDeployment({
+                ...context.repo,
+                ref: context.payload.pull_request.head.sha,
+                auto_merge: false,
+                required_contexts: [],
+                environment: "${{ env.ENVIRONMENT_NAME }}",
+                transient_environment: false,
+                production_environment: false,
+            });
+          github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,9 +1,19 @@
 var sortAsc = true;
 var headerArray = [];
 
+
+
+const isHome = document.getElementsByClassName('md-header__button md-logo')[0].href === window.location.href;
+
 (function () {
   removeElement(".nav-item a[rel='prev']", true)
   removeElement(".nav-item a[rel='next']", true)
+  console.log(isHome)
+  if (isHome) {
+    removeElement("div.md-sidebar.md-sidebar--primary", false);
+    removeElement("article.md-content__inner.md-typeset > h1", false)
+  }
+
 
   var kics = document.querySelectorAll(".md-ellipsis")
   kics[0].setAttribute("style", "display:none;")
@@ -24,7 +34,7 @@ var headerArray = [];
       const index = i;
       headerArray.push(tableHeader[i].innerText.toLowerCase())
       const headerText = sanitize(tableHeader[i].innerText)
-      if (!tableHeader[i].innerText.toLowerCase().includes("help")) {
+      if (!tableHeader[i].innerText.toLowerCase().includes("more info")) {
         const spanSort = document.createElement("span")
         spanSort.innerText = headerText
 
@@ -116,10 +126,12 @@ function sortFunction(index) {
     }
   }
   const severityOrder = {
-    "high": 0,
-    "medium": 1,
-    "low": 2,
-    "info": 3,
+    "critical": 0,
+    "high": 1,
+    "medium": 2,
+    "low": 3,
+    "info": 4,
+    "trace": 5,
   }
   return function (a, b) {
     const severityA = severityOrder[a.children[index].innerText.toLowerCase().trim()]

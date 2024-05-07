@@ -1,7 +1,7 @@
 [
   {
     "queryName": "Stack Without Template",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 1
   }
 ]

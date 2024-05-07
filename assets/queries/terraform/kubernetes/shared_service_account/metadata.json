@@ -6,5 +6,7 @@
   "descriptionText": "A Service Account token is shared between workloads",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#service_account_name",
   "platform": "Terraform",
-  "descriptionID": "a13adbaa"
+  "descriptionID": "a13adbaa",
+  "cwe": "",
+  "cloudProvider": "common"
 }

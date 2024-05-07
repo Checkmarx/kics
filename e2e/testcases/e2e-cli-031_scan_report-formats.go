@@ -27,7 +27,7 @@ func init() { //nolint
 			},
 			UseMock: []bool{false, true},
 		},
-		WantStatus: []int{50, 50},
+		WantStatus: []int{50, 40},
 	}
 
 	Tests = append(Tests, testSample)

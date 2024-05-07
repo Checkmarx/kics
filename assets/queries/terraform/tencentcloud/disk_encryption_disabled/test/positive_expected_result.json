@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Disk Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  }
+]

@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 77c1fa3f-83dc-4c9d-bfed-e1d0cc8fd9dc
 -   **Query name:** Cloud Storage Bucket Is Publicly Accessible
 -   **Platform:** GoogleDeploymentManager
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Access Control
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/googleDeploymentManager/gcp/cloud_storage_bucket_is_publicly_accessible)
 
@@ -28,7 +28,7 @@ Cloud Storage Bucket is anonymously or publicly accessible<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="5"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="5"
 resources:
   - name: bucket-access-control
     type: storage.v1.bucketAccessControl
@@ -36,7 +36,7 @@ resources:
       entity: allUsers
 
 ```
-```yaml title="Postitive test num. 2 - yaml file" hl_lines="5"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="5"
 resources:
   - name: bucket-access-control
     type: storage.v1.bucketAccessControl

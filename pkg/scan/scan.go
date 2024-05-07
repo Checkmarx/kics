@@ -24,7 +24,6 @@ import (
 	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/Checkmarx/kics/pkg/resolver/helm"
 	"github.com/Checkmarx/kics/pkg/scanner"
-
 	"github.com/rs/zerolog/log"
 )
 
@@ -60,7 +59,8 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		c.ScanParams.QueriesPath,
 		c.ScanParams.Platform,
 		c.ScanParams.CloudProvider,
-		c.ScanParams.LibrariesPath)
+		c.ScanParams.LibrariesPath,
+		c.ScanParams.ExperimentalQueries)
 
 	queryFilter := c.createQueryFilter()
 
@@ -71,7 +71,9 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		queryFilter,
 		c.ExcludeResultsMap,
 		c.ScanParams.QueryExecTimeout,
+		c.ScanParams.UseOldSeverities,
 		true,
+		c.ScanParams.ParallelScanFlag,
 	)
 	if err != nil {
 		return nil, err
@@ -82,7 +84,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		return nil, err
 	}
 
-	isCustomSecretsRegexes := len(c.ScanParams.SecretsRegexesPath) > 0
+	isCustomSecretsRegexes := c.ScanParams.SecretsRegexesPath != ""
 
 	secretsInspector, err := secrets.NewInspector(
 		ctx,
@@ -135,16 +137,13 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) {
 		return nil, nil
 	}
 
-	if err = scanner.PrepareAndScan(ctx, c.ScanParams.ScanID, *c.ProBarBuilder, executeScanParameters.services); err != nil {
+	if err = scanner.PrepareAndScan(ctx, c.ScanParams.ScanID, c.ScanParams.OpenAPIResolveReferences, *c.ProBarBuilder,
+		executeScanParameters.services); err != nil {
 		log.Err(err)
 		return nil, err
 	}
 
 	failedQueries := executeScanParameters.inspector.GetFailedQueries()
-
-	if err != nil {
-		return nil, err
-	}
 
 	results, err := c.Storage.GetVulnerabilities(ctx, c.ScanParams.ScanID)
 	if err != nil {
@@ -175,7 +174,7 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 }
 
 func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err error) {
-	if len(regexRulesPath) > 0 {
+	if regexRulesPath != "" {
 		b, err := os.ReadFile(regexRulesPath)
 		if err != nil {
 			return regexRulesContent, err
@@ -200,10 +199,11 @@ func (c *Client) createQueryFilter() *source.QueryInspectorParameters {
 	}
 
 	queryFilter := source.QueryInspectorParameters{
-		IncludeQueries: includeQueries,
-		ExcludeQueries: excludeQueries,
-		InputDataPath:  c.ScanParams.InputData,
-		BomQueries:     c.ScanParams.BillOfMaterials,
+		IncludeQueries:      includeQueries,
+		ExcludeQueries:      excludeQueries,
+		ExperimentalQueries: c.ScanParams.ExperimentalQueries,
+		InputDataPath:       c.ScanParams.InputData,
+		BomQueries:          c.ScanParams.BillOfMaterials,
 	}
 
 	return &queryFilter
@@ -256,6 +256,7 @@ func (c *Client) createService(
 				SecretsInspector: secretsInspector,
 				Tracker:          t,
 				Resolver:         combinedResolver,
+				MaxFileSize:      c.ScanParams.MaxFileSizeFlag,
 			},
 		)
 	}

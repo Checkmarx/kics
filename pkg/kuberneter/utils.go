@@ -169,7 +169,6 @@ func buildSupportedKinds() *supportedKinds {
 		},
 		"policy/v1beta1": {
 			"PodDisruptionBudget": &policyv1beta1.PodDisruptionBudgetList{},
-			"PodSecurityPolicy":   &policyv1beta1.PodSecurityPolicyList{},
 		},
 		"rbac.authorization.k8s.io/v1alpha1": {
 			"ClusterRoleBinding": &rbacv1alpha1.ClusterRoleBindingList{},

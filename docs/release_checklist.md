@@ -20,4 +20,3 @@
     - git checkout integrations
     - git tag ${latest_tag}-integrations
     - git push origin ${latest_tag}-integrations
-    NOTE: make sure that `pkg/terraformer` only has `terraformer_alt.go` without build tags

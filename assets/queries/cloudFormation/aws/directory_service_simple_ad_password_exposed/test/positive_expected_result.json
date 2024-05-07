@@ -2,23 +2,23 @@
   {
     "fileName": "positive3.yaml",
     "queryName": "Directory Service Simple AD Password Exposed",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 5
   },
   {
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 9,
     "fileName": "positive2.yaml",
     "queryName": "Directory Service Simple AD Password Exposed"
   },
   {
     "queryName": "Directory Service Simple AD Password Exposed",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 18,
     "fileName": "positive1.yaml"
   },
   {
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 20,
     "fileName": "positive4.json",
     "queryName": "Directory Service Simple AD Password Exposed"
@@ -26,12 +26,12 @@
   {
     "fileName": "positive5.json",
     "queryName": "Directory Service Simple AD Password Exposed",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 12
   },
   {
     "queryName": "Directory Service Simple AD Password Exposed",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 6,
     "fileName": "positive6.json"
   }

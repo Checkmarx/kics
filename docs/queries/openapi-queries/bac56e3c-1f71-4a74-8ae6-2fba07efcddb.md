@@ -18,7 +18,7 @@ hide:
 -   **Query id:** bac56e3c-1f71-4a74-8ae6-2fba07efcddb
 -   **Query name:** Example JSON Reference Outside Components Examples
 -   **Platform:** OpenAPI
--   **Severity:** <span style="color:#00C">Info</span>
+-   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Structure and Semantics
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/openAPI/3.0/example_json_reference_outside_components_examples)
 
@@ -28,7 +28,7 @@ Reference to examples should point to #/components/examples<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Postitive test num. 1 - json file" hl_lines="77"
+```json title="Positive test num. 1 - json file" hl_lines="77"
 {
   "openapi": "3.0.0",
   "info": {
@@ -117,7 +117,7 @@ Reference to examples should point to #/components/examples<br>
 }
 
 ```
-```yaml title="Postitive test num. 2 - yaml file" hl_lines="51"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="51"
 openapi: 3.0.0
 info:
   title: Simple API overview

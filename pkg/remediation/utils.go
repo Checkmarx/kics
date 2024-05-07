@@ -31,8 +31,8 @@ func (s *Summary) GetRemediationSets(results Report, include []string) map[strin
 }
 
 func shouldRemediate(file *File, include []string) bool {
-	if len(file.Remediation) > 0 &&
-		len(file.RemediationType) > 0 &&
+	if file.Remediation != "" &&
+		file.RemediationType != "" &&
 		(include[0] == "all" || utils.Contains(file.SimilarityID, include)) &&
 		filepath.Ext(file.FilePath) == ".tf" { // temporary
 		return true
@@ -49,7 +49,7 @@ func getBefore(line string) string {
 }
 
 // willRemediate verifies if the remediation actually removes the result
-func willRemediate(remediated []string, originalFileName string, remediation *Remediation) bool {
+func willRemediate(remediated []string, originalFileName string, remediation *Remediation, openAPIResolveReferences bool) bool {
 	filepath.Clean(originalFileName)
 	// create temporary file
 	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+"-"+filepath.Base(originalFileName))
@@ -75,7 +75,7 @@ func willRemediate(remediated []string, originalFileName string, remediation *Re
 	}
 
 	// scan the temporary file to verify if the remediation removed the result
-	results, err := scanTmpFile(tmpFile, remediation.QueryID, content)
+	results, err := scanTmpFile(tmpFile, remediation.QueryID, content, openAPIResolveReferences)
 
 	if err != nil {
 		log.Error().Msgf("failed to get results of query %s: %s", remediation.QueryID, err)

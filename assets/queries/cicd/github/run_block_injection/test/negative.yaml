@@ -1,0 +1,29 @@
+name: check-go-coverage
+
+on:
+  pull_request_target:
+    branches: [master]
+
+jobs:
+  coverage:
+    name: Check Go coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Go 1.22.x
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.22.x
+      - name: Run test metrics script
+        id: testcov
+        run: |
+          make test-coverage-report | tee test-results
+          echo "coverage=$(cat test-results | grep "Total coverage: " test-results | cut -d ":" -f 2 | bc)" >> $GITHUB_ENV
+      - name: Checks if Go coverage is at least 80%
+        if: env.coverage < 80
+        run: |
+          echo "Go coverage is lower than 80%: ${{ env.coverage }}%"
+          exit 1

@@ -6,5 +6,6 @@
   "descriptionText": "A user should be specified in the dockerfile, otherwise the image will run as root",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#user",
   "platform": "Dockerfile",
-  "descriptionID": "eb49caf6"
+  "descriptionID": "eb49caf6",
+  "cwe": "250"
 }

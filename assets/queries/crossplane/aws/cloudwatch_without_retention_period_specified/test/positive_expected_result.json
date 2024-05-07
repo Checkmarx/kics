@@ -1,26 +1,26 @@
 [
   {
     "queryName": "CloudWatch Without Retention Period Specified",
-    "severity": "MEDIUM",
+    "severity": "INFO",
     "line": 9,
     "fileName": "positive.yaml"
   },
   {
     "queryName": "CloudWatch Without Retention Period Specified",
-    "severity": "MEDIUM",
+    "severity": "INFO",
     "line": 38,
     "fileName": "positive.yaml"
   },
   {
     "queryName": "CloudWatch Without Retention Period Specified",
-    "severity": "MEDIUM",
+    "severity": "INFO",
     "line": 6,
     "fileName": "positive2.yaml"
   },
   {
     "queryName": "CloudWatch Without Retention Period Specified",
-    "severity": "MEDIUM",
+    "severity": "INFO",
     "line": 34,
     "fileName": "positive2.yaml"
-  } 
+  }
 ]

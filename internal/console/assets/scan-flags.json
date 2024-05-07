@@ -59,11 +59,17 @@
     "defaultValue": "false",
     "usage": "include bill of materials (BoM) in results output"
   },
+  "experimental-queries": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "include experimental queries (queries not yet thoroughly reviewed)"
+  },
   "fail-on": {
     "flagType": "multiStr",
     "shorthandFlag": "",
-    "defaultValue": "high,medium,low,info",
-    "usage": "which kind of results should return an exit code different from 0\naccepts: high, medium, low and info\nexample: \"high,low\"",
+    "defaultValue": "critical,high,medium,low,info",
+    "usage": "which kind of results should return an exit code different from 0\naccepts: critical, high, medium, low and info\nexample: \"high,low\"",
     "validation": "validateMultiStrEnum"
   },
   "ignore-on-exit": {
@@ -113,7 +119,8 @@
     "flagType": "str",
     "shorthandFlag": "o",
     "defaultValue": "",
-    "usage": "directory path to store reports"
+    "usage": "directory path to store reports",
+    "validation": "validatePath"
   },
   "path": {
     "flagType": "multiStr",
@@ -195,5 +202,30 @@
     "shorthandFlag": "",
     "defaultValue": "false",
     "usage": "disables the exclusion of paths specified within .gitignore file"
+  },
+  "enable-openapi-refs": {
+    "flagType": "bool",
+    "shorthandFlag": "",
+    "defaultValue": "false",
+    "usage": "resolve the file reference, on OpenAPI files"
+  },
+  "parallel": {
+    "flagType": "int",
+    "shorthandFlag": "",
+    "defaultValue": "0",
+    "usage": "number of workers per platform enabled for parallel scanning (default set to 0 to auto-detect optimal number of workers)",
+    "validation": "validateWorkersFlag"
+  },
+  "max-file-size": {
+    "flagType": "int",
+    "shorthandFlag": "",
+    "defaultValue": "5",
+    "usage": "max file size permitted for scanning, in MB"
+  },
+  "old-severities": {
+  "flagType": "bool",
+  "shorthandFlag": "",
+  "defaultValue": "false",
+  "usage": "uses old severities in query results"
   }
 }

@@ -29,7 +29,7 @@ import (
 
 var (
 	validUUID    = regexp.MustCompile(ValidUUIDRegex)
-	severityList = []string{model.SeverityHigh, model.SeverityMedium, model.SeverityLow, model.SeverityInfo, model.SeverityTrace}
+	severityList = []string{model.SeverityCritical, model.SeverityHigh, model.SeverityMedium, model.SeverityLow, model.SeverityInfo, model.SeverityTrace}
 
 	requiredQueryResultProperties = []string{
 		"documentId",
@@ -55,6 +55,9 @@ var (
 		"../assets/queries/dockerfile/apt_get_install_pin_version_not_defined",
 		"../assets/queries/terraform/aws/redshift_cluster_without_vpc",
 		"../assets/queries/openAPI/general/response_code_missing",
+		"../assets/queries/cicd/github/run_block_injection",
+		"../assets/queries/cicd/github/script_block_injection",
+		"../assets/queries/azureResourceManager/key_vault_not_recoverable",
 	}
 
 	// TODO uncomment this test once all metadata are fixed
@@ -198,7 +201,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 	inspector, err := engine.NewInspector(
 		ctx,
 		queriesSource,
-		func(ctx *engine.QueryContext, trk engine.Tracker, v interface{}, detector *detector.DetectLine) (*model.Vulnerability, error) {
+		func(ctx *engine.QueryContext, trk engine.Tracker, v interface{}, detector *detector.DetectLine, useOldSeverities bool) (*model.Vulnerability, error) {
 			m, ok := v.(map[string]interface{})
 			require.True(t, ok)
 
@@ -264,6 +267,8 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 		map[string]bool{},
 		60,
 		true,
+		true,
+		1,
 	)
 	require.Nil(t, err)
 	require.NotNil(t, inspector)

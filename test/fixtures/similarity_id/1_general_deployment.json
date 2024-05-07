@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2021-03-01",
+      "name": "[variables('functionApp').unbilled_usage_process]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+      ],
+      "tags": {
+      },
+      "kind": "functionapp,linux",
+      "properties": {
+        "httpsOnly": false,
+        "keyVaultReferenceIdentity": "SystemAssigned"
+      },
+      "resources": [
+      ]
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2021-03-01",
+      "name": "[variables('functionApp').microsoft_unbilled_synchronization]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [],
+      "tags": {
+      },
+      "kind": "functionapp,linux",
+      "properties": {
+        "httpsOnly": false,
+        "keyVaultReferenceIdentity": "SystemAssigned"
+      },
+      "resources": [
+      ]
+    }
+  ],
+  "outputs": {
+  }
+}

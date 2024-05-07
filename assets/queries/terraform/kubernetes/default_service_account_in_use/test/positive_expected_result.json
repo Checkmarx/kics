@@ -1,12 +1,12 @@
 [
   {
     "queryName": "Default Service Account In Use",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 1
   },
   {
     "queryName": "Default Service Account In Use",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 12
   }
 ]

@@ -6,5 +6,7 @@
   "descriptionText": "Memory requests should be defined for each container. This allows the kubelet to reserve the requested amount of system resources and prevents over-provisioning on individual nodes",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#requests",
   "platform": "Terraform",
-  "descriptionID": "a77e5da7"
+  "descriptionID": "a77e5da7",
+  "cwe": "",
+  "cloudProvider": "common"
 }

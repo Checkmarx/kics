@@ -18,7 +18,7 @@ hide:
 -   **Query id:** c62d3b92-9a11-4ffd-b7b7-6faaae83faed
 -   **Query name:** AKS Dashboard Is Enabled
 -   **Platform:** AzureResourceManager
--   **Severity:** <span style="color:#CC0">Low</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Insecure Configurations
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/aks_dashboard_enabled)
 
@@ -28,7 +28,7 @@ Azure Kubernetes Service should have the Kubernetes dashboard disabled.<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Postitive test num. 1 - json file" hl_lines="14"
+```json title="Positive test num. 1 - json file" hl_lines="14"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -78,7 +78,7 @@ Azure Kubernetes Service should have the Kubernetes dashboard disabled.<br>
 }
 
 ```
-```json title="Postitive test num. 2 - json file" hl_lines="16"
+```json title="Positive test num. 2 - json file" hl_lines="16"
 {
   "properties": {
     "template": {

@@ -18,8 +18,8 @@ hide:
 -   **Query id:** 06adef8c-c284-4de7-aad2-af43b07a8ca1
 -   **Query name:** IAM User LoginProfile Password Is In Plaintext
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#C60">Medium</span>
--   **Category:** Insecure Configurations
+-   **Severity:** <span style="color:#bb2124">High</span>
+-   **Category:** Secret Management
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/iam_user_login_profile_password_is_in_plaintext)
 
 ### Description
@@ -28,7 +28,7 @@ IAM User LoginProfile Password must not be a plaintext string<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="9"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="9"
 AWSTemplateFormatVersion: "2010-09-09"
 Description: A sample template
 Resources:
@@ -56,7 +56,7 @@ Resources:
               - !GetAtt myqueue.Arn
 
 ```
-```json title="Postitive test num. 2 - json file" hl_lines="9"
+```json title="Positive test num. 2 - json file" hl_lines="9"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "A sample template",

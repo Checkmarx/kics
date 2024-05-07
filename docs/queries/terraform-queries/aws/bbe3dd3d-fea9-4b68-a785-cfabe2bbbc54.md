@@ -18,7 +18,7 @@ hide:
 -   **Query id:** bbe3dd3d-fea9-4b68-a785-cfabe2bbbc54
 -   **Query name:** Policy Without Principal
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Access Control
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/policy_without_principal)
 
@@ -28,7 +28,7 @@ All policies, except IAM identity-based policies, should have the 'Principal' el
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="9"
+```tf title="Positive test num. 1 - tf file" hl_lines="9"
 provider "aws" {
   region = "us-east-1"
 }

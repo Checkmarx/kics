@@ -1,37 +1,37 @@
 [
   {
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 5,
     "fileName": "positive2.yaml",
     "queryName": "DocDB Cluster Master Password In Plaintext"
   },
   {
     "queryName": "DocDB Cluster Master Password In Plaintext",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 12,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "DocDB Cluster Master Password In Plaintext",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 12,
     "fileName": "positive3.yaml"
   },
   {
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 17,
     "fileName": "positive4.json",
     "queryName": "DocDB Cluster Master Password In Plaintext"
   },
   {
     "queryName": "DocDB Cluster Master Password In Plaintext",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 6,
     "fileName": "positive5.json"
   },
   {
     "queryName": "DocDB Cluster Master Password In Plaintext",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 18,
     "fileName": "positive6.json"
   }

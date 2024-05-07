@@ -6,5 +6,7 @@
   "descriptionText": "Service type should not be NodePort",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service#type",
   "platform": "Terraform",
-  "descriptionID": "50e2c36f"
+  "descriptionID": "50e2c36f",
+  "cwe": "",
+  "cloudProvider": "common"
 }

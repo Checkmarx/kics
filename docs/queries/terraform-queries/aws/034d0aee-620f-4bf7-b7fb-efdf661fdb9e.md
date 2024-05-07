@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 034d0aee-620f-4bf7-b7fb-efdf661fdb9e
 -   **Query name:** Group With Privilege Escalation By Actions 'lambda:CreateFunction' And 'iam:PassRole' And 'lambda:InvokeFunction'
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Access Control
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/group_with_privilege_escalation_by_actions_iam_PassRole_and_lambda_CreateFunction_and_lambda_InvokeFunction)
 
@@ -28,7 +28,7 @@ Group with privilege escalation by actions 'lambda:CreateFunction' and 'iam:Pass
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="1"
+```tf title="Positive test num. 1 - tf file" hl_lines="1"
 resource "aws_iam_group" "cosmic" {
   name = "cosmic"
 }

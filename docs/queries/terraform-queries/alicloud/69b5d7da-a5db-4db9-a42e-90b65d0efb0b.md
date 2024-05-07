@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 69b5d7da-a5db-4db9-a42e-90b65d0efb0b
 -   **Query name:** ActionTrail Trail OSS Bucket is Publicly Accessible
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Observability
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/alicloud/actiontrail_trail_oss_bucket_is_publicly_accessible)
 
@@ -28,7 +28,7 @@ ActionTrail Trail OSS Bucket should not be publicly accessible<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="3"
+```tf title="Positive test num. 1 - tf file" hl_lines="3"
 resource "alicloud_oss_bucket" "bucket_actiontrail3" {
   bucket = "bucket_actiontrail_3"
   acl    = "public-read"
@@ -44,7 +44,7 @@ resource "alicloud_actiontrail_trail" "actiontrail3" {
 
 
 ```
-```tf title="Postitive test num. 2 - tf file" hl_lines="3"
+```tf title="Positive test num. 2 - tf file" hl_lines="3"
 resource "alicloud_oss_bucket" "bucket_actiontrail4" {
   bucket = "bucket_actiontrail_4"
   acl    = "public-read-write"

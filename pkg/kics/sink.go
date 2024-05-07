@@ -12,7 +12,7 @@ import (
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser"
 	"github.com/Checkmarx/kics/pkg/utils"
-	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
+	"github.com/antlr4-go/antlr/v4"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -26,11 +26,13 @@ var (
 	}
 )
 
-func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reader, data []byte) error {
-	s.Tracker.TrackFileFound()
+func (s *Service) sink(ctx context.Context, filename, scanID string,
+	rc io.Reader, data []byte,
+	openAPIResolveReferences bool) error {
+	s.Tracker.TrackFileFound(filename)
 	log.Debug().Msgf("Starting to process file %s", filename)
 
-	c, err := getContent(rc, data)
+	c, err := getContent(rc, data, s.MaxFileSize, filename)
 
 	*c.Content = resolveCRLFFile(*c.Content)
 	content := c.Content
@@ -40,8 +42,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 	if err != nil {
 		return errors.Wrapf(err, "failed to get file content: %s", filename)
 	}
-
-	documents, err := s.Parser.Parse(filename, *content)
+	documents, err := s.Parser.Parse(filename, *content, openAPIResolveReferences, c.IsMinified)
 	if err != nil {
 		log.Err(err).Msgf("failed to parse file content: %s", filename)
 		return nil
@@ -86,11 +87,12 @@ func (s *Service) sink(ctx context.Context, filename, scanID string, rc io.Reade
 			LinesIgnore:       documents.IgnoreLines,
 			ResolvedFiles:     documents.ResolvedFiles,
 			LinesOriginalData: utils.SplitLines(documents.Content),
+			IsMinified:        documents.IsMinified,
 		}
 
 		s.saveToFile(ctx, &file)
 	}
-	s.Tracker.TrackFileParse()
+	s.Tracker.TrackFileParse(filename)
 	log.Debug().Msgf("Finished to process file %s", filename)
 
 	s.Tracker.TrackFileParseCountLines(documents.CountLines - len(documents.IgnoreLines))

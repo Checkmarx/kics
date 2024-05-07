@@ -4,13 +4,13 @@ The values below were obtained after scanning 150 open source projects with KICS
 the supported IaC technologies (c.f., Terraform, Ansible, Kubernetes, Docker, AWS Cloudformation).
 
 
-| IaC Technology    | Query Accuracy<sup>1</sup>    | Query Coverage<sup>2</sup> | Scanned IaC files​ | Number of Results​ | Average Scan Time​ (s) | Average Project Size (MB) |
-| :---              | :---     | :---    | :--- | :---     | :---| :---|
-| Terraform​         | 99.7%​    | 46%     | 1176​ | 709      | 6.6  | 33.4​ |
-| Docker​            | 98.8%​​    | 68%​     | 1017​ | 5109     | 11   | 0.7 |​
-| Kubernetes​        | 99.3%​​    | 88.7%​   | 6089​ | 21753    | 7    | 90 |​
-| CloudFormation​    | 95%​      | 73%​     | 1769​ | 5343     | 10.2 | 4.8 |​
-| Ansible ​          | 100%     |​ 54%​     | 3367​ | 1320     | 23.3 | 4.1 |​
+| IaC Technology    | Query Accuracy<sup>1</sup>    | Query Coverage<sup>2</sup> | Scanned IaC files | Number of Results | Average Scan Time (s) | Average Project Size (MB) |
+| :---              | :---     | :---    | :--- | :---     | :---| :---  |
+| Terraform         | 99.7%    | 46%     | 1176 | 709      | 6.6  | 33.4 |
+| Docker            | 98.8%    | 68%     | 1017 | 5109     | 11   | 0.7  |
+| Kubernetes        | 99.3%    | 88.7%   | 6089 | 21753    | 7    | 90   |
+| CloudFormation    | 95%      | 73%     | 1769 | 5343     | 10.2 | 4.8  |
+| Ansible           | 100%     | 54%     | 3367 | 1320     | 23.3 | 4.1  |
 
 ---
 
@@ -68,7 +68,9 @@ Flag: `--profiling CPU`
 9:43AM INF Inspector stopped
 9:43AM INF Scan duration: 21.1476197s
 ```
+
 ---
+
 ### MEM Profiling
 
 Flag: `--profiling MEM`

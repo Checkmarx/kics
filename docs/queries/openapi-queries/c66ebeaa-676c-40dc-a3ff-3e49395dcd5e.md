@@ -18,7 +18,7 @@ hide:
 -   **Query id:** c66ebeaa-676c-40dc-a3ff-3e49395dcd5e
 -   **Query name:** Servers Array Undefined
 -   **Platform:** OpenAPI
--   **Severity:** <span style="color:#00C">Info</span>
+-   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Structure and Semantics
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/openAPI/3.0/servers_undefined)
 
@@ -28,7 +28,7 @@ The Servers array should have at least one server defined. If not, the default v
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Postitive test num. 1 - json file" hl_lines="2"
+```json title="Positive test num. 1 - json file" hl_lines="2"
 {
   "openapi": "3.0.0",
   "info": {
@@ -74,7 +74,7 @@ The Servers array should have at least one server defined. If not, the default v
 }
 
 ```
-```json title="Postitive test num. 2 - json file" hl_lines="43"
+```json title="Positive test num. 2 - json file" hl_lines="43"
 {
   "openapi": "3.0.0",
   "info": {
@@ -121,7 +121,7 @@ The Servers array should have at least one server defined. If not, the default v
 }
 
 ```
-```yaml title="Postitive test num. 3 - yaml file" hl_lines="1"
+```yaml title="Positive test num. 3 - yaml file" hl_lines="1"
 openapi: 3.0.0
 info:
   title: Simple API Overview
@@ -148,7 +148,7 @@ paths:
                         rel: self
 
 ```
-<details><summary>Postitive test num. 4 - yaml file</summary>
+<details><summary>Positive test num. 4 - yaml file</summary>
 
 ```yaml hl_lines="25"
 openapi: 3.0.0

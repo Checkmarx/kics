@@ -18,7 +18,7 @@ hide:
 -   **Query id:** e69bda39-e1e2-47ca-b9ee-b6531b23aedd
 -   **Query name:** PostgreSQL Database Server Log Connections Disabled
 -   **Platform:** AzureResourceManager
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Networking and Firewall
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/postgres_sql_server_log_connections_disabled)
 
@@ -28,7 +28,7 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Postitive test num. 1 - json file" hl_lines="40"
+```json title="Positive test num. 1 - json file" hl_lines="40"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -87,7 +87,7 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 }
 
 ```
-```json title="Postitive test num. 2 - json file" hl_lines="45"
+```json title="Positive test num. 2 - json file" hl_lines="45"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -143,7 +143,7 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 }
 
 ```
-```json title="Postitive test num. 3 - json file" hl_lines="44"
+```json title="Positive test num. 3 - json file" hl_lines="44"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -199,7 +199,7 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 }
 
 ```
-<details><summary>Postitive test num. 4 - json file</summary>
+<details><summary>Positive test num. 4 - json file</summary>
 
 ```json hl_lines="43"
 {
@@ -265,7 +265,7 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 
 ```
 </details>
-<details><summary>Postitive test num. 5 - json file</summary>
+<details><summary>Positive test num. 5 - json file</summary>
 
 ```json hl_lines="42"
 {
@@ -336,7 +336,7 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 
 ```
 </details>
-<details><summary>Postitive test num. 6 - json file</summary>
+<details><summary>Positive test num. 6 - json file</summary>
 
 ```json hl_lines="47"
 {
@@ -403,7 +403,7 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 
 ```
 </details>
-<details><summary>Postitive test num. 7 - json file</summary>
+<details><summary>Positive test num. 7 - json file</summary>
 
 ```json hl_lines="46"
 {
@@ -470,7 +470,7 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 
 ```
 </details>
-<details><summary>Postitive test num. 8 - json file</summary>
+<details><summary>Positive test num. 8 - json file</summary>
 
 ```json hl_lines="45"
 {

@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 10c61e4b-eed5-49cf-9c7d-d4bf02e9edfa
 -   **Query name:** Schema Object Properties With Duplicated Keys (v3)
 -   **Platform:** OpenAPI
--   **Severity:** <span style="color:#00C">Info</span>
+-   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Structure and Semantics
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/openAPI/general/schema_object_properties_with_duplicated_keys)
 
@@ -28,7 +28,7 @@ Schema Object Property key should be unique through out the fields 'properties',
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Postitive test num. 1 - json file" hl_lines="19 53 38"
+```json title="Positive test num. 1 - json file" hl_lines="19 53 38"
 {
   "openapi": "3.0.0",
   "info": {
@@ -96,7 +96,7 @@ Schema Object Property key should be unique through out the fields 'properties',
 }
 
 ```
-```yaml title="Postitive test num. 2 - yaml file" hl_lines="16 28 37"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="16 28 37"
 openapi: 3.0.0
 info:
   title: Simple API Overview
@@ -139,7 +139,7 @@ components:
               type: string
 
 ```
-```json title="Postitive test num. 3 - json file" hl_lines="57 28 44"
+```json title="Positive test num. 3 - json file" hl_lines="57 28 44"
 {
   "openapi": "3.0.0",
   "info": {
@@ -216,7 +216,7 @@ components:
 }
 
 ```
-<details><summary>Postitive test num. 4 - yaml file</summary>
+<details><summary>Positive test num. 4 - yaml file</summary>
 
 ```yaml hl_lines="24 41 34"
 openapi: 3.0.0
@@ -266,7 +266,7 @@ paths:
 
 ```
 </details>
-<details><summary>Postitive test num. 5 - json file</summary>
+<details><summary>Positive test num. 5 - json file</summary>
 
 ```json hl_lines="57 28 44"
 {
@@ -346,7 +346,7 @@ paths:
 
 ```
 </details>
-<details><summary>Postitive test num. 6 - yaml file</summary>
+<details><summary>Positive test num. 6 - yaml file</summary>
 
 ```yaml hl_lines="24 41 34"
 swagger: '2.0'

@@ -1,7 +1,7 @@
 [
   {
     "queryName": "IAM Role Allows All Principals To Assume",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 37
   }
 ]
