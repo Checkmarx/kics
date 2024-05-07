@@ -32,6 +32,10 @@ func (v *BasebicepVisitor) VisitResourceDecl(ctx *ResourceDeclContext) interface
 	return v.VisitChildren(ctx)
 }
 
+func (v *BasebicepVisitor) VisitOutputDecl(ctx *OutputDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BasebicepVisitor) VisitIfCondition(ctx *IfConditionContext) interface{} {
 	return v.VisitChildren(ctx)
 }

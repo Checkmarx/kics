@@ -3,7 +3,7 @@ grammar bicep;
 // program -> statement* EOF
 program: statement* EOF;
 
-statement: parameterDecl | variableDecl | resourceDecl | NL;
+statement: parameterDecl | variableDecl | resourceDecl | outputDecl | NL;
 
 // parameterDecl -> decorator* "parameter" IDENTIFIER(name) typeExpression parameterDefaultValue? NL
 // | decorator* "parameter" IDENTIFIER(name) "resource" interpString(type) parameterDefaultValue? NL
@@ -28,6 +28,9 @@ resourceDecl:
         | object
         | forExpression
 	) NL;
+
+outputDecl: 
+	decorator* OUTPUT name = identifier (type1 = identifier | RESOURCE type2 = interpString) ASSIGN expression NL;
 
 // ifCondition -> "if" parenthesizedExpression object
 ifCondition
@@ -166,6 +169,8 @@ NULL: 'null';
 OBJECT: 'object';
 
 RESOURCE: 'resource';
+
+OUTPUT: 'output';
 
 // stringLeftPiece -> "'" STRINGCHAR* "${"
 STRING_LEFT_PIECE: '\'' STRINGCHAR* '${';
