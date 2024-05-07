@@ -201,6 +201,13 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			}
 		}
 
+		sort.Slice(actualI.Queries, func(a, b int) bool {
+			return actualI.Queries[a].QueryID < actualI.Queries[b].QueryID
+		})
+		sort.Slice(expectI.Queries, func(a, b int) bool {
+			return expectI.Queries[a].QueryID < expectI.Queries[b].QueryID
+		})
+
 		for i := range actualI.Queries {
 			actualQuery := actualI.Queries[i]
 			expectQuery := expectI.Queries[i]
