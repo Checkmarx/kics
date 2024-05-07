@@ -28,7 +28,7 @@ For instructions on converting between ARM JSON templates and Bicep code, refer 
 
 Note that KICS recognizes this technology as Azure Resource Manager (for queries purpose).
 
-Explore our ongoing enhancements and planed features on our [Future Improvements](future_improvements.md) page.
+Explore our ongoing enhancements and planned features on our [Future Improvements](future_improvements.md) page.
 
 ## CDK
 

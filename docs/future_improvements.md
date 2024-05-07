@@ -30,5 +30,5 @@ We advise reviewing your project's specific security needs to determine if this 
 
 ## Contribution
 
-If you'd like to contribute or provide insightfull feedback regarding KICS' capabilities and limitations, please don't hesitate to contact [our team](https://github.com/Checkmarx/kics/issues/).
+If you'd like to contribute or provide insightful feedback regarding KICS' capabilities and limitations, please don't hesitate to contact [our team](https://github.com/Checkmarx/kics/issues/).
 We appreciate your patience and understanding as we strive to deliver a more robust scanning solution.
