@@ -63,9 +63,8 @@ expression:
 	expression OBRACK expression CBRACK
 	| expression QMARK expression COL expression
 	| expression DOT property = identifier
-  | expression DOT functionCall
+  	| expression DOT functionCall
 	| expression COL name = identifier
-	| expression COL COL name = identifier
 	| expression logicCharacter expression
 	| primaryExpression;
 
@@ -148,7 +147,7 @@ DOT: '.';
 
 PIPE: '|';
 
-COL: ':';
+COL: ':' | '::';
 
 ASSIGN: '=';
 
