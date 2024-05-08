@@ -375,20 +375,27 @@ func parseFunctionCall(functionData map[string][]interface{}) string {
 	return stringifiedFunctionCall
 }
 
+// function to check if an identifier is a parameter/variable and add the required keyword if so
+func convertToParamVar(str string, s *BicepVisitor) string {
+	for variable := range s.varList {
+		if variable == str {
+			return "variables('" + str + CloseParenthesis
+		}
+	}
+	for parameter := range s.paramList {
+		if parameter == str {
+			return "parameters('" + str + CloseParenthesis
+		}
+	}
+
+	return str
+}
+
 func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{} {
 	if ctx.GetChildCount() > 1 {
 		if ctx.Identifier() != nil {
 			identifier := ctx.Identifier().Accept(s).(string)
-			for variable := range s.varList {
-				if variable == identifier {
-					identifier = "variables('" + identifier + CloseParenthesis
-				}
-			}
-			for parameter := range s.paramList {
-				if parameter == identifier {
-					identifier = "parameters('" + identifier + CloseParenthesis
-				}
-			}
+			identifier = convertToParamVar(identifier, s)
 			exp := ctx.Expression(0).Accept(s)
 			if ctx.DOT() != nil {
 				switch exp := exp.(type) {
@@ -456,16 +463,7 @@ func (s *BicepVisitor) VisitLiteralValue(ctx *parser.LiteralValueContext) interf
 	}
 	if ctx.Identifier() != nil {
 		identifier := ctx.Identifier().Accept(s).(string)
-		for variable := range s.varList {
-			if variable == identifier {
-				identifier = "variables('" + identifier + CloseParenthesis
-			}
-		}
-		for parameter := range s.paramList {
-			if parameter == identifier {
-				identifier = "parameters('" + identifier + CloseParenthesis
-			}
-		}
+		identifier = convertToParamVar(identifier, s)
 		return identifier
 	}
 
