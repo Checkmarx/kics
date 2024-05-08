@@ -472,46 +472,72 @@ func (s *BicepVisitor) VisitLiteralValue(ctx *parser.LiteralValueContext) interf
 	return nil
 }
 
+func acceptExpressionAtIndex(idx int, ctx *parser.InterpStringContext, s *BicepVisitor) interface{} {
+	var expression interface{}
+	expression = ""
+	if ctx.Expression(idx) != nil {
+		expression = ctx.Expression(idx).Accept(s)
+	}
+
+	return expression
+}
+
+func parseComplexInterp(ctx *parser.InterpStringContext, s *BicepVisitor) string {
+	interpString := []interface{}{}
+
+	if ctx.STRING_LEFT_PIECE() == nil || ctx.STRING_RIGHT_PIECE() == nil {
+		return ""
+	}
+
+	leftPiece := ctx.STRING_LEFT_PIECE().GetText()
+	rightPiece := ctx.STRING_RIGHT_PIECE().GetText()
+	middlePieces := ctx.AllSTRING_MIDDLE_PIECE()
+
+	interpString = append(interpString, leftPiece)
+
+	if middlePieces != nil && (len(middlePieces) > 0) {
+		for idx, val := range middlePieces {
+			expression := acceptExpressionAtIndex(idx, ctx, s)
+			interpString = append(interpString, expression, val.GetText())
+		}
+	}
+
+	lastExpression := acceptExpressionAtIndex(len(middlePieces), ctx, s)
+	interpString = append(interpString,
+		lastExpression,
+		rightPiece)
+
+	str := ""
+	for _, v := range interpString {
+		switch v := v.(type) {
+		case string:
+			str += v
+		case map[string][]interface{}:
+			for identifier, argumentList := range v {
+				resStr := "[" + identifier + "("
+				for idx, arg := range argumentList {
+					stringArg, ok := arg.(string)
+					if !ok {
+						return ""
+					}
+					resStr += stringArg
+					if idx < len(argumentList)-1 {
+						resStr += ", "
+					}
+				}
+
+				resStr += ")]"
+				str += resStr
+			}
+		}
+	}
+	return str
+}
+
 func (s *BicepVisitor) VisitInterpString(ctx *parser.InterpStringContext) interface{} {
 	if ctx.GetChildCount() > 1 {
-		interpString := []interface{}{}
-		interpString = append(interpString, ctx.STRING_LEFT_PIECE().GetText())
-		if ctx.AllSTRING_MIDDLE_PIECE() != nil && (len(ctx.AllSTRING_MIDDLE_PIECE()) > 0) {
-			for idx, val := range ctx.AllSTRING_MIDDLE_PIECE() {
-				interpString = append(interpString, ctx.Expression(idx).Accept(s), val.GetText())
-			}
-		}
-		// Last expression with string right piece
-		if len(ctx.AllExpression()) > 0 {
-			interpString = append(interpString,
-				ctx.Expression(len(ctx.AllSTRING_MIDDLE_PIECE())).Accept(s),
-				ctx.STRING_RIGHT_PIECE().GetText())
-		}
-		str := ""
-		for _, v := range interpString {
-			switch v := v.(type) {
-			case string:
-				str += v
-			case map[string][]interface{}:
-				for identifier, argumentList := range v {
-					resStr := "[" + identifier + "("
-					for idx, arg := range argumentList {
-						stringArg, ok := arg.(string)
-						if !ok {
-							return ""
-						}
-						resStr += stringArg
-						if idx < len(argumentList)-1 {
-							resStr += ", "
-						}
-					}
-
-					resStr += ")]"
-					str += resStr
-				}
-			}
-		}
-		return str
+		complexInterpString := parseComplexInterp(ctx, s)
+		return complexInterpString
 	}
 
 	unformattedString := ctx.STRING_COMPLETE().GetText()
