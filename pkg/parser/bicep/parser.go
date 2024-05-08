@@ -482,6 +482,35 @@ func acceptExpressionAtIndex(idx int, ctx *parser.InterpStringContext, s *BicepV
 	return expression
 }
 
+func buildComplexInterp(interpStringValues []interface{}) string {
+	str := ""
+	for _, v := range interpStringValues {
+		switch v := v.(type) {
+		case string:
+			str += v
+		case map[string][]interface{}:
+			for identifier, argumentList := range v {
+				resStr := "[" + identifier + "("
+				for idx, arg := range argumentList {
+					stringArg, ok := arg.(string)
+					if !ok {
+						return ""
+					}
+					resStr += stringArg
+					if idx < len(argumentList)-1 {
+						resStr += ", "
+					}
+				}
+
+				resStr += ")]"
+				str += resStr
+			}
+		}
+	}
+
+	return str
+}
+
 func parseComplexInterp(ctx *parser.InterpStringContext, s *BicepVisitor) string {
 	interpString := []interface{}{}
 
@@ -507,31 +536,9 @@ func parseComplexInterp(ctx *parser.InterpStringContext, s *BicepVisitor) string
 		lastExpression,
 		rightPiece)
 
-	str := ""
-	for _, v := range interpString {
-		switch v := v.(type) {
-		case string:
-			str += v
-		case map[string][]interface{}:
-			for identifier, argumentList := range v {
-				resStr := "[" + identifier + "("
-				for idx, arg := range argumentList {
-					stringArg, ok := arg.(string)
-					if !ok {
-						return ""
-					}
-					resStr += stringArg
-					if idx < len(argumentList)-1 {
-						resStr += ", "
-					}
-				}
+	resultString := buildComplexInterp(interpString)
 
-				resStr += ")]"
-				str += resStr
-			}
-		}
-	}
-	return str
+	return resultString
 }
 
 func (s *BicepVisitor) VisitInterpString(ctx *parser.InterpStringContext) interface{} {
