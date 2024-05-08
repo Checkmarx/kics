@@ -26,6 +26,9 @@ type bicepVisitor interface {
 	// Visit a parse tree produced by bicepParser#resourceDecl.
 	VisitResourceDecl(ctx *ResourceDeclContext) interface{}
 
+	// Visit a parse tree produced by bicepParser#outputDecl.
+	VisitOutputDecl(ctx *OutputDeclContext) interface{}
+
 	// Visit a parse tree produced by bicepParser#ifCondition.
 	VisitIfCondition(ctx *IfConditionContext) interface{}
 

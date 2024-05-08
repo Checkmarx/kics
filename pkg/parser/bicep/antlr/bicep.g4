@@ -65,6 +65,7 @@ expression:
 	| expression DOT property = identifier
   | expression DOT functionCall
 	| expression COL name = identifier
+	| expression COL COL name = identifier
 	| expression logicCharacter expression
 	| primaryExpression;
 
