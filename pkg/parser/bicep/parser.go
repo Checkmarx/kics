@@ -475,7 +475,11 @@ func (s *BicepVisitor) VisitLiteralValue(ctx *parser.LiteralValueContext) interf
 func (s *BicepVisitor) VisitInterpString(ctx *parser.InterpStringContext) interface{} {
 	if ctx.GetChildCount() > 1 {
 		interpString := []interface{}{}
-		interpString = append(interpString, ctx.STRING_LEFT_PIECE().GetText())
+		leftPiece := ""
+		if ctx.STRING_LEFT_PIECE() != nil {
+			leftPiece = ctx.STRING_LEFT_PIECE().GetText()
+		}
+		interpString = append(interpString, leftPiece)
 		if ctx.AllSTRING_MIDDLE_PIECE() != nil && (len(ctx.AllSTRING_MIDDLE_PIECE()) > 0) {
 			for idx, val := range ctx.AllSTRING_MIDDLE_PIECE() {
 				interpString = append(interpString, ctx.Expression(idx).Accept(s), val.GetText())
@@ -483,9 +487,22 @@ func (s *BicepVisitor) VisitInterpString(ctx *parser.InterpStringContext) interf
 		}
 		// Last expression with string right piece
 		if len(ctx.AllExpression()) > 0 {
+			expression := ""
+			if ctx.Expression(len(ctx.AllSTRING_MIDDLE_PIECE())) != nil {
+				var ok bool
+				expression, ok = ctx.Expression(len(ctx.AllSTRING_MIDDLE_PIECE())).Accept(s).(string)
+				if !ok {
+					expression = ""
+				}
+
+			}
+			rightPiece := ""
+			if ctx.STRING_RIGHT_PIECE() != nil {
+				rightPiece = ctx.STRING_RIGHT_PIECE().GetText()
+			}
 			interpString = append(interpString,
-				ctx.Expression(len(ctx.AllSTRING_MIDDLE_PIECE())).Accept(s),
-				ctx.STRING_RIGHT_PIECE().GetText())
+				expression,
+				rightPiece)
 		}
 		str := ""
 		for _, v := range interpString {
