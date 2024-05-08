@@ -3,7 +3,7 @@ grammar bicep;
 // program -> statement* EOF
 program: statement* EOF;
 
-statement: parameterDecl | variableDecl | resourceDecl | NL;
+statement: parameterDecl | variableDecl | resourceDecl | outputDecl | NL;
 
 // parameterDecl -> decorator* "parameter" IDENTIFIER(name) typeExpression parameterDefaultValue? NL
 // | decorator* "parameter" IDENTIFIER(name) "resource" interpString(type) parameterDefaultValue? NL
@@ -23,11 +23,13 @@ variableDecl:
 
 // resourceDecl -> decorator* "resource" IDENTIFIER(name) interpString(type) "existing"? "=" (ifCondition | object | forExpression) NL
 resourceDecl:
-	decorator* RESOURCE name = identifier type = interpString ASSIGN (
+	decorator* RESOURCE name = identifier type = interpString EXISTING? ASSIGN (
 		ifCondition
         | object
         | forExpression
 	) NL;
+
+outputDecl: decorator* OUTPUT name = identifier (type1 = identifier | RESOURCE type2 = interpString) ASSIGN expression NL;
 
 // ifCondition -> "if" parenthesizedExpression object
 ifCondition
@@ -61,6 +63,7 @@ expression:
 	expression OBRACK expression CBRACK
 	| expression QMARK expression COL expression
 	| expression DOT property = identifier
+  | expression DOT functionCall
 	| expression COL name = identifier
 	| expression logicCharacter expression
 	| primaryExpression;
@@ -166,6 +169,9 @@ OBJECT: 'object';
 
 RESOURCE: 'resource';
 
+OUTPUT: 'output';
+
+EXISTING: 'existing';
 // stringLeftPiece -> "'" STRINGCHAR* "${"
 STRING_LEFT_PIECE: '\'' STRINGCHAR* '${';
 
@@ -230,6 +236,10 @@ NUMBER: [0-9]+ ('.' [0-9]+)?;
 
 // NL -> ("\n" | "\r")+
 NL: [\r\n]+;
+
+SINGLE_LINE_COMMENT: '//' ~[\r\n]* -> skip;
+
+MULTI_LINE_COMMENT: '/*' .*? '*/' -> skip;
 
 SPACES: [ \t]+ -> skip;
 
