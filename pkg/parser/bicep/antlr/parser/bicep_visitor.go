@@ -29,6 +29,15 @@ type bicepVisitor interface {
 	// Visit a parse tree produced by bicepParser#outputDecl.
 	VisitOutputDecl(ctx *OutputDeclContext) interface{}
 
+	// Visit a parse tree produced by bicepParser#targetScopeDecl.
+	VisitTargetScopeDecl(ctx *TargetScopeDeclContext) interface{}
+
+	// Visit a parse tree produced by bicepParser#importDecl.
+	VisitImportDecl(ctx *ImportDeclContext) interface{}
+
+	// Visit a parse tree produced by bicepParser#metadataDecl.
+	VisitMetadataDecl(ctx *MetadataDeclContext) interface{}
+
 	// Visit a parse tree produced by bicepParser#ifCondition.
 	VisitIfCondition(ctx *IfConditionContext) interface{}
 

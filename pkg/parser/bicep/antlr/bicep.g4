@@ -3,7 +3,7 @@ grammar bicep;
 // program -> statement* EOF
 program: statement* EOF;
 
-statement: parameterDecl | variableDecl | resourceDecl | outputDecl | NL;
+statement: parameterDecl | variableDecl | resourceDecl | outputDecl | targetScopeDecl | importDecl | NL;
 
 // parameterDecl -> decorator* "parameter" IDENTIFIER(name) typeExpression parameterDefaultValue? NL
 // | decorator* "parameter" IDENTIFIER(name) "resource" interpString(type) parameterDefaultValue? NL
@@ -30,6 +30,17 @@ resourceDecl:
 	) NL;
 
 outputDecl: decorator* OUTPUT name = identifier (type1 = identifier | RESOURCE type2 = interpString) ASSIGN expression NL;
+
+// targetScopeDecl -> "targetScope" "=" expression NL
+targetScopeDecl: TARGET_SCOPE ASSIGN expression NL;
+
+// importDecl -> decorator* "import" interpString(specification) importWithClause? importAsClause? NL
+importDecl:
+    decorator* IMPORT specification = interpString (WITH object | AS alias = identifier)* NL;
+
+// metadataDecl -> "metadata" IDENTIFIER(name) "=" expression NL
+metadataDecl:
+    METADATA name = identifier ASSIGN expression NL;
 
 // ifCondition -> "if" parenthesizedExpression object
 ifCondition
@@ -171,7 +182,18 @@ RESOURCE: 'resource';
 
 OUTPUT: 'output';
 
+TARGET_SCOPE: 'targetScope';
+ 
+IMPORT: 'import';
+ 
+WITH: 'with';
+
+AS: 'as';
+
+METADATA: 'metadata';
+
 EXISTING: 'existing';
+
 // stringLeftPiece -> "'" STRINGCHAR* "${"
 STRING_LEFT_PIECE: '\'' STRINGCHAR* '${';
 
