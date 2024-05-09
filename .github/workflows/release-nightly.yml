@@ -62,7 +62,7 @@ jobs:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           DESCRIPTIONS_URL: ${{ secrets.DESCRIPTIONS_URL }}
       - name: delete release
-        uses: dev-drprasad/delete-tag-and-release@v0.2.1
+        uses: dev-drprasad/delete-tag-and-release@v1.0.1
         with:
           delete_release: true # default: false
           tag_name: nightly # tag name to delete
@@ -197,7 +197,7 @@ jobs:
             COMMIT=${{ github.sha }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v6
         with:
           title: "docs(kicsbot): update images digest"
           token: ${{ secrets.KICS_BOT_PAT }}

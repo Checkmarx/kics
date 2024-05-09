@@ -3,7 +3,7 @@ package console
 import (
 	"fmt"
 
-	"github.com/Checkmarx/kics/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
 	"github.com/spf13/cobra"
 )
 

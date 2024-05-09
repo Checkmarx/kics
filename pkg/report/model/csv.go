@@ -1,6 +1,6 @@
 package model
 
-import "github.com/Checkmarx/kics/pkg/model"
+import "github.com/Checkmarx/kics/v2/pkg/model"
 
 // CSVReport struct contains all the info to create the csv report
 type CSVReport struct {

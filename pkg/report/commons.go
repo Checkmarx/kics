@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	reportModel "github.com/Checkmarx/kics/pkg/report/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	reportModel "github.com/Checkmarx/kics/v2/pkg/report/model"
 	"github.com/gocarina/gocsv"
 	"github.com/rs/zerolog/log"
 )
