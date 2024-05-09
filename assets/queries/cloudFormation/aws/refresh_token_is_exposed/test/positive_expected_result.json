@@ -1,14 +1,14 @@
 [
   {
     "queryName": "RefreshToken Is Exposed",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 18,
     "fileName": "positive1.yaml"
   },
   {
     "fileName": "positive2.json",
     "queryName": "RefreshToken Is Exposed",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 26
   }
 ]

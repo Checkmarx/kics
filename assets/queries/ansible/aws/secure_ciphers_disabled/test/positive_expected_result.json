@@ -1,7 +1,7 @@
 [
   {
     "queryName": "Secure Ciphers Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 14
   }
 ]

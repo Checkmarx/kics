@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
-	"github.com/Checkmarx/kics/internal/constants"
+	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
+	"github.com/Checkmarx/kics/v2/internal/constants"
 	"github.com/gookit/color"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog"

@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/test"
 	"github.com/stretchr/testify/require"
 )
 
@@ -23,11 +23,19 @@ func TestPrintCodeClimateReport(t *testing.T) {
 			},
 		},
 		{
+			name: "print code climate report critical",
+			caseTest: jsonCaseTest{
+				summary:  test.SummaryMockCritical,
+				path:     filepath.Join(os.TempDir(), "testdir"),
+				filename: "output2",
+			},
+		},
+		{
 			name: "print code climate report with cwe field complete",
 			caseTest: jsonCaseTest{
 				summary:  test.SummaryMockCWE,
 				path:     filepath.Join(os.TempDir(), "testdir"),
-				filename: "output2",
+				filename: "output3",
 			},
 		},
 	}

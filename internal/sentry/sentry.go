@@ -3,8 +3,8 @@ package sentry
 import (
 	"encoding/json"
 
-	"github.com/Checkmarx/kics/internal/console/flags"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/internal/console/flags"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/getsentry/sentry-go"
 	"github.com/rs/zerolog/log"
 )

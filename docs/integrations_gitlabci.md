@@ -42,15 +42,15 @@ When your pipeline executes, it will run this job. If KICS finds any issues, it 
 
 #### Pipeline Failure
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_failure.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/fb3d0d28a14d79040e9368418016788bdd155017/docs/img/kics_gitlab_pipeline_failure.png" width="850">
 
 #### Pipeline Success
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_success.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/fb3d0d28a14d79040e9368418016788bdd155017/docs/img/kics_gitlab_pipeline_success.png" width="850">
 
 #### Download Artifact
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/kics_gitlab_pipeline_artifact.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/f2cd57f929424ee60765622d8b1a3f784707a58f/docs/img/kics_gitlab_pipeline_artifact.png" width="850">
 
 ## Using GitLab SAST Reports
 

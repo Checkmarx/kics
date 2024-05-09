@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/test"
 	"github.com/stretchr/testify/require"
 )
 
@@ -28,6 +28,14 @@ func TestPrintCSVReport(t *testing.T) {
 				summary:  test.SummaryMockCWE,
 				path:     filepath.Join(os.TempDir(), "testdir"),
 				filename: "output2",
+			},
+		},
+		{
+			name: "print csv report critical",
+			caseTest: jsonCaseTest{
+				summary:  test.SummaryMockCritical,
+				path:     filepath.Join(os.TempDir(), "testdir"),
+				filename: "output3",
 			},
 		},
 	}

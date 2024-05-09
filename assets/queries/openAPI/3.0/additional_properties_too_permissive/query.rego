@@ -10,6 +10,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	schema := value.schema
+	schema.type == "object"
 	issue := test_schema(schema)
 	result := {
 		"documentId": doc.id,
@@ -25,6 +26,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	targetObject := doc.components.schemas[schema]
+	targetObject.type == "object"
 	issue := test_schema(targetObject)
 
 	result := {

@@ -1,37 +1,37 @@
 [
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 15,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 16,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 6,
     "fileName": "positive3.tf"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 6,
     "fileName": "positive4.tf"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 20,
     "fileName": "positive5.tf"
   },
   {
     "queryName": "S3 Bucket ACL Allows Read Or Write to All Users",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 20,
     "fileName": "positive6.tf"
   }

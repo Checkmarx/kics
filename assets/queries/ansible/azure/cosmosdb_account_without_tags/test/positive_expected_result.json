@@ -1,7 +1,7 @@
 [
   {
     "queryName": "Cosmos DB Account Without Tags",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 3
   }
 ]

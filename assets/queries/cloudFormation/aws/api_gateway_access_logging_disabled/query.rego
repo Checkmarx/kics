@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::ApiGatewayV2::Stage"
 
 	properties := resource.Properties
-	searchKeyValid := validNonEmptyKey(properties, "DefaultRouteSettings")
+	searchKeyValid := common_lib.valid_non_empty_key(properties, "DefaultRouteSettings")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -29,7 +29,7 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	defaultRouteSettings := properties.DefaultRouteSettings
-	searchKeyValid := validNonEmptyKey(defaultRouteSettings, "LoggingLevel")
+	searchKeyValid := common_lib.valid_non_empty_key(defaultRouteSettings, "LoggingLevel")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -68,7 +68,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::ApiGateway::Stage"
 
 	properties := resource.Properties
-	searchKeyValid := validNonEmptyKey(properties, "MethodSettings")
+	searchKeyValid := common_lib.valid_non_empty_key(properties, "MethodSettings")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -88,7 +88,7 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	methodSettings := properties.MethodSettings
-	searchKeyValid := validNonEmptyKey(methodSettings, "LoggingLevel")
+	searchKeyValid := common_lib.valid_non_empty_key(methodSettings, "LoggingLevel")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -157,14 +157,4 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, stage),
 		"searchKey": sprintf("Resources.%s.Properties", [stage]),
 	}
-}
-
-validNonEmptyKey(field, key) = output {
-	not common_lib.valid_key(field, key)
-	output = ""
-} else = output {
-	keyObj := field[key]
-	is_object(keyObj)
-	count(keyObj) == 0
-	output := concat(".", ["", key])
 }

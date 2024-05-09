@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"strings"
 
-	build "github.com/Checkmarx/kics/pkg/builder/model"
-	"github.com/Checkmarx/kics/pkg/model"
+	build "github.com/Checkmarx/kics/v2/pkg/builder/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )

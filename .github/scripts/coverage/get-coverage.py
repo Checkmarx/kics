@@ -96,7 +96,7 @@ def calc_file_stats(lines: typing.List[LineStats]) -> typing.List[FileStats]:
     print("::endgroup::")
 
     for filename, group in itertools.groupby(lines, key=key):
-        filename = filename.replace("github.com/Checkmarx/kics/", "")
+        filename = filename.replace("github.com/Checkmarx/kics/v2/", "")
         if filename in exclude:
             continue
         group = list(group)
@@ -140,9 +140,9 @@ def main():
     if os.environ.get('GITHUB_RUN_ID'):
         if total >= 90:
             color = 'brightgreen'
-        elif total >= 80:
+        elif total >= 70:
             color = 'green'
-        elif total >= 75:
+        elif total >= 50:
             color = 'orange'
         else:
             color = 'red'

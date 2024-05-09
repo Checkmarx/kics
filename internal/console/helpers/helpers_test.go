@@ -6,8 +6,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/progress"
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
+	"github.com/Checkmarx/kics/v2/test"
 	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/require"
 )

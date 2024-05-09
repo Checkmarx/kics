@@ -5,25 +5,25 @@ import (
 	"context"
 	"os"
 
-	"github.com/Checkmarx/kics/assets"
-	"github.com/Checkmarx/kics/pkg/engine"
-	"github.com/Checkmarx/kics/pkg/engine/provider"
-	"github.com/Checkmarx/kics/pkg/engine/secrets"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/kics"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser"
-	ansibleConfigParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/config"
-	ansibleHostsParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/hosts"
-	buildahParser "github.com/Checkmarx/kics/pkg/parser/buildah"
-	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
-	protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"
-	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
-	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
-	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
-	"github.com/Checkmarx/kics/pkg/resolver"
-	"github.com/Checkmarx/kics/pkg/resolver/helm"
-	"github.com/Checkmarx/kics/pkg/scanner"
+	"github.com/Checkmarx/kics/v2/assets"
+	"github.com/Checkmarx/kics/v2/pkg/engine"
+	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
+	"github.com/Checkmarx/kics/v2/pkg/engine/secrets"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/kics"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser"
+	ansibleConfigParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/config"
+	ansibleHostsParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/hosts"
+	buildahParser "github.com/Checkmarx/kics/v2/pkg/parser/buildah"
+	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
+	protoParser "github.com/Checkmarx/kics/v2/pkg/parser/grpc"
+	jsonParser "github.com/Checkmarx/kics/v2/pkg/parser/json"
+	terraformParser "github.com/Checkmarx/kics/v2/pkg/parser/terraform"
+	yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/v2/pkg/resolver"
+	"github.com/Checkmarx/kics/v2/pkg/resolver/helm"
+	"github.com/Checkmarx/kics/v2/pkg/scanner"
 	"github.com/rs/zerolog/log"
 )
 
@@ -71,6 +71,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		queryFilter,
 		c.ExcludeResultsMap,
 		c.ScanParams.QueryExecTimeout,
+		c.ScanParams.UseOldSeverities,
 		true,
 		c.ScanParams.ParallelScanFlag,
 	)
@@ -83,7 +84,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		return nil, err
 	}
 
-	isCustomSecretsRegexes := len(c.ScanParams.SecretsRegexesPath) > 0
+	isCustomSecretsRegexes := c.ScanParams.SecretsRegexesPath != ""
 
 	secretsInspector, err := secrets.NewInspector(
 		ctx,
@@ -144,10 +145,6 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) {
 
 	failedQueries := executeScanParameters.inspector.GetFailedQueries()
 
-	if err != nil {
-		return nil, err
-	}
-
 	results, err := c.Storage.GetVulnerabilities(ctx, c.ScanParams.ScanID)
 	if err != nil {
 		log.Err(err)
@@ -177,7 +174,7 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 }
 
 func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err error) {
-	if len(regexRulesPath) > 0 {
+	if regexRulesPath != "" {
 		b, err := os.ReadFile(regexRulesPath)
 		if err != nil {
 			return regexRulesContent, err

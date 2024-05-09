@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/rs/zerolog/log"
 )
 
@@ -180,7 +180,7 @@ func contains(types []string, supportedTypes map[string]bool) bool {
 }
 
 func (c *Parser) isValidExtension(filePath string) bool {
-	ext := utils.GetExtension(filePath)
+	ext, _ := utils.GetExtension(filePath)
 	_, ok := c.extensions[ext]
 	return ok
 }

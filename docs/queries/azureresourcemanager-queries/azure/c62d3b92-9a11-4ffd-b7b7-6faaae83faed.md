@@ -18,7 +18,7 @@ hide:
 -   **Query id:** c62d3b92-9a11-4ffd-b7b7-6faaae83faed
 -   **Query name:** AKS Dashboard Is Enabled
 -   **Platform:** AzureResourceManager
--   **Severity:** <span style="color:#CC0">Low</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Insecure Configurations
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/aks_dashboard_enabled)
 

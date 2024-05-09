@@ -1,12 +1,13 @@
 {
   "id": "bbfc97ab-e92a-4a7b-954c-e88cec815011",
   "queryName": "Stackdriver Monitoring Disabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Kubernetes Engine Clusters must have Stackdriver Monitoring enabled, which means the attribute 'monitoringService' must be defined and different than 'none'",
   "descriptionUrl": "https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters",
   "platform": "GoogleDeploymentManager",
   "descriptionID": "c1eb34ef",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

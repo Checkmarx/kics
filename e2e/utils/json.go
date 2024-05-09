@@ -11,10 +11,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/stretchr/testify/require"
 	"github.com/xeipuuv/gojsonschema"
 )
+
+var filekey = "file"
 
 type logMsg struct {
 	Level    string `json:"level"`
@@ -143,7 +145,6 @@ func CheckLine(t *testing.T, expec, want string, line int) {
 }
 
 func setFields(t *testing.T, expect, actual []string, expectFileName, actualFileName, location string) {
-	filekey := "file"
 	switch location {
 	case "payload":
 		var actualI model.Documents
@@ -226,6 +227,11 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			})
 		}
 
+		require.ElementsMatch(t, expectI.ScannedPaths, actualI.ScannedPaths,
+			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result Scanned Paths content: 'output/%s'.",
+			expectFileName, actualFileName)
+		expectI.ScannedPaths = []string{}
+		actualI.ScannedPaths = []string{}
 		require.Equal(t, expectI, actualI,
 			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result content: 'output/%s'.",
 			expectFileName, actualFileName)

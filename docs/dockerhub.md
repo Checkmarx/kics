@@ -84,6 +84,7 @@ Flags:
   -m, --bom                           include bill of materials (BoM) in results output
       --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp)
       --config string                 path to configuration file
+      --old-severities                use old severities in query results (excludes critical severity)
       --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
       --disable-secrets               disable secrets scanning
       --enable-openapi-refs           resolve the file reference, on OpenAPI files (default [false]) 
@@ -107,8 +108,8 @@ Flags:
                                       example: 'info,low'
       --experimental-queries          include experimental queries (queries not yet thoroughly reviewed) (default [false])
       --fail-on strings               which kind of results should return an exit code different from 0
-                                      accepts: high, medium, low and info
-                                      example: "high,low" (default [high,medium,low,info])
+                                      accepts: critical, high, medium, low and info
+                                      example: "high,low" (default [critical,high,medium,low,info])
   -h, --help                          help for scan
       --ignore-on-exit string         defines which kind of non-zero exits code should be ignored
                                       accepts: all, results, errors, none

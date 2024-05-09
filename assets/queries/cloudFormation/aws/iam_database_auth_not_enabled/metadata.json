@@ -1,12 +1,13 @@
 {
   "id": "9fcd0a0a-9b6f-4670-a215-d94e6bf3f184",
   "queryName": "IAM Database Auth Not Enabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "IAM Database Auth Enabled should be configured to true when using compatible engine and version",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-enableiamdatabaseauthentication",
   "platform": "CloudFormation",
   "descriptionID": "e4c2c085",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

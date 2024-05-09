@@ -1,222 +1,222 @@
 [
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 8
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 22
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 22
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 36
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 36
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 36
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 36
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 36
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 36
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 50
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 50
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 64
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 78
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 92
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 92
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 92
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 92
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 106
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 120
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 120
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 134
   }
 ]

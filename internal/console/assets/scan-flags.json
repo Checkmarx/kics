@@ -68,8 +68,8 @@
   "fail-on": {
     "flagType": "multiStr",
     "shorthandFlag": "",
-    "defaultValue": "high,medium,low,info",
-    "usage": "which kind of results should return an exit code different from 0\naccepts: high, medium, low and info\nexample: \"high,low\"",
+    "defaultValue": "critical,high,medium,low,info",
+    "usage": "which kind of results should return an exit code different from 0\naccepts: critical, high, medium, low and info\nexample: \"high,low\"",
     "validation": "validateMultiStrEnum"
   },
   "ignore-on-exit": {
@@ -212,8 +212,8 @@
   "parallel": {
     "flagType": "int",
     "shorthandFlag": "",
-    "defaultValue": "1",
-    "usage": "number of workers per platform enabled for parallel scanning, set 0 to auto-detect parallelism",
+    "defaultValue": "0",
+    "usage": "number of workers per platform enabled for parallel scanning (default set to 0 to auto-detect optimal number of workers)",
     "validation": "validateWorkersFlag"
   },
   "max-file-size": {
@@ -221,5 +221,11 @@
     "shorthandFlag": "",
     "defaultValue": "5",
     "usage": "max file size permitted for scanning, in MB"
+  },
+  "old-severities": {
+  "flagType": "bool",
+  "shorthandFlag": "",
+  "defaultValue": "false",
+  "usage": "uses old severities in query results"
   }
 }

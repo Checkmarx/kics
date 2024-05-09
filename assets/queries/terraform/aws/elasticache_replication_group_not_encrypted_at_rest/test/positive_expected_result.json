@@ -1,13 +1,13 @@
 [
   {
     "queryName": "ElastiCache Replication Group Not Encrypted At Rest",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "ElastiCache Replication Group Not Encrypted At Rest",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 9,
     "fileName": "positive2.tf"
   }

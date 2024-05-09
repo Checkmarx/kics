@@ -1,61 +1,61 @@
 [
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 8,
     "filename": "positive1.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 6,
     "filename": "positive2.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 36,
     "filename": "positive3.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 6,
     "filename": "positive4.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 37,
     "filename": "positive5.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 10,
     "filename": "positive6.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 8,
     "filename": "positive7.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 38,
     "filename": "positive8.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 8,
     "filename": "positive9.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 39,
     "filename": "positive10.json"
   }

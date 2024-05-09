@@ -1,12 +1,13 @@
 {
   "id": "2e9e0729-66d5-4148-9d39-5e6fb4bf2a4e",
   "queryName": "Elasticsearch with HTTPS disabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Networking and Firewall",
   "descriptionText": "Amazon Elasticsearch does not have encryption for its domains enabled. To prevent such a scenario, update the attribute 'EnforceHTTPS' to true.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticsearch_domain#enforce_https",
   "platform": "Terraform",
   "descriptionID": "069080cd",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "HIGH"
 }

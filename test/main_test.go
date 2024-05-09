@@ -9,20 +9,20 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/assets"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/kics"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser"
-	ansibleConfigParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/config"
-	ansibleHostsParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/hosts"
-	buildahParser "github.com/Checkmarx/kics/pkg/parser/buildah"
-	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
-	protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"
-	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
-	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
-	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/assets"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/kics"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser"
+	ansibleConfigParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/config"
+	ansibleHostsParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/hosts"
+	buildahParser "github.com/Checkmarx/kics/v2/pkg/parser/buildah"
+	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
+	protoParser "github.com/Checkmarx/kics/v2/pkg/parser/grpc"
+	jsonParser "github.com/Checkmarx/kics/v2/pkg/parser/json"
+	terraformParser "github.com/Checkmarx/kics/v2/pkg/parser/terraform"
+	yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
@@ -41,6 +41,7 @@ var (
 		"../assets/queries/terraform/general":               {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/alicloud":              {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/nifcloud":              {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/tencentcloud":          {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/crossplane/aws":                  {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
 		"../assets/queries/crossplane/azure":                {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
 		"../assets/queries/crossplane/gcp":                  {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},

@@ -1,10 +1,9 @@
 ignore:
+  - vulnerability: GHSA-4v7x-pqxf-cx7m # False Positive
   - package:
       name: anchore/scan-action
   - package:
       location: "/root/.terraform.d/plugins/linux_amd64/terraform-provider-**"
-  - package:
-      location: "/usr/bin/terraformer"
   - package:
       location: "/usr/bin/terraform"
   - package:

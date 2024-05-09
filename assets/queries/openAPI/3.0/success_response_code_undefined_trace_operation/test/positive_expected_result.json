@@ -1,13 +1,13 @@
 [
   {
     "queryName": "Success Response Code Undefined for Trace Operation",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 12,
     "filename": "positive1.json"
   },
   {
     "queryName": "Success Response Code Undefined for Trace Operation",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 10,
     "filename": "positive2.yaml"
   }

@@ -11,16 +11,17 @@
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
-		"HIGH": 1,
+		"CRITICAL": 0,
+		"HIGH": 0,
 		"INFO": 0,
 		"LOW": 0,
-		"MEDIUM": 0,
+		"MEDIUM": 1,
 		"TRACE": 0
 	},
 	"total_counter": 1,
 	"total_bom_resources": 0,
-	"start": "2024-02-12T12:34:07.3154393Z",
-	"end": "2024-02-12T12:34:25.658434Z",
+	"start": "2024-03-27T12:57:39.1952639Z",
+	"end": "2024-03-27T12:57:40.2523796Z",
 	"paths": [
 		"/path/test/fixtures/test_output_path"
 	],
@@ -29,15 +30,16 @@
 			"query_name": "Azure Instance Using Basic Authentication",
 			"query_id": "6797f581-0433-4768-ae3e-7ceb2f8b138e",
 			"query_url": "https://docs.microsoft.com/en-us/azure/templates/microsoft.compute/virtualmachines?tabs=json#linuxconfiguration-object",
-			"severity": "HIGH",
+			"severity": "MEDIUM",
 			"platform": "AzureResourceManager",
+			"cloud_provider": "AZURE",
 			"category": "Best Practices",
 			"experimental": false,
 			"description": "Azure Instances should use SSH Key instead of basic authentication",
 			"description_id": "98ba05ca",
 			"files": [
 				{
-					"file_name": "..\\test\\fixtures\\test_output_path\\positive1.json",
+					"file_name": "/path/test/fixtures/test_output_path/positive1.json",
 					"similarity_id": "42d73d5b2fa1fbcb1145ea43b7dc4ec20f92adda85c61161b6a7714b6cd86219",
 					"line": 53,
 					"resource_type": "Microsoft.Compute/virtualMachines",

@@ -1,79 +1,79 @@
 [
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 3,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 3,
     "fileName": "positive2.yaml"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 3,
     "fileName": "positive3.yaml"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 12,
     "fileName": "positive3.yaml"
   },
   {
     "fileName": "positive4.yaml",
     "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 3
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 12,
     "fileName": "positive4.yaml"
   },
   {
     "fileName": "positive5.json",
     "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 30
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 4,
     "fileName": "positive6.json"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 47,
     "fileName": "positive7.json"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 4,
     "fileName": "positive8.json"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 15,
     "fileName": "positive8.json"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 3,
     "fileName": "positive9.yaml"
   },
   {
     "queryName": "S3 Bucket Without SSL In Write Actions",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 34,
     "fileName": "positive10.json"
   }

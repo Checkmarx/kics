@@ -18,7 +18,7 @@ hide:
 -   **Query id:** a9becca7-892a-4af7-b9e1-44bf20a4cd9a
 -   **Query name:** PostgreSQL Server Without Connection Throttling
 -   **Platform:** Ansible
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Observability
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/ansible/azure/postgre_sql_server_without_connection_throttling)
 
