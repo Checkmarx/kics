@@ -215,17 +215,25 @@ func parseDecorators(decorators []parser.IDecoratorContext, s *BicepVisitor) map
 	decoratorsMap := map[string]interface{}{}
 
 	for _, val := range decorators {
+		if val == nil {
+			continue
+		}
+
 		decorator, ok := val.Accept(s).(map[string][]interface{})
 		if !ok {
-			return nil
+			return map[string]interface{}{}
 		}
 		for name, values := range decorator {
 			if name == "description" {
-				metadata := map[string]interface{}{}
-				metadata["description"] = values[0]
-				decoratorsMap["metadata"] = metadata
+				if len(values) > 0 {
+					metadata := map[string]interface{}{}
+					metadata["description"] = values[0]
+					decoratorsMap["metadata"] = metadata
+				}
 			} else if name == "maxLength" || name == "minLength" || name == "minValue" || name == "maxValue" {
-				decoratorsMap[name] = values[0]
+				if len(values) > 0 {
+					decoratorsMap[name] = values[0]
+				}
 			} else {
 				decoratorsMap[name] = values
 			}
@@ -287,13 +295,15 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 
 func (s *BicepVisitor) VisitVariableDecl(ctx *parser.VariableDeclContext) interface{} {
 	var variable = map[string]interface{}{}
-	identifier := ctx.Identifier().Accept(s).(string)
-	expression := ctx.Expression().Accept(s)
+
+	identifier := checkAcceptAntlrString(ctx.Identifier(), s)
+
 	decoratorsMap := parseDecorators(ctx.AllDecorator(), s)
 	for name, values := range decoratorsMap {
 		variable[name] = values
 	}
 
+	expression := checkAcceptExpression(ctx.Expression(), s)
 	variable["value"] = expression
 	s.varList[identifier] = variable
 
@@ -316,27 +326,31 @@ func (s *BicepVisitor) VisitResourceDecl(ctx *parser.ResourceDeclContext) interf
 		apiVersion = fullType[1]
 	}
 
+	resource["identifier"] = identifier
 	resource["type"] = resourceType
 	resource["apiVersion"] = apiVersion
+
 	decoratorsMap := parseDecorators(ctx.AllDecorator(), s)
 	for name, values := range decoratorsMap {
 		resource[name] = values
 	}
 
-	resource["identifier"] = identifier
 	if ctx.Object() != nil {
 		object, ok := ctx.Object().Accept(s).(map[string]interface{})
-		if !ok {
-			return nil
-		}
-		for key, val := range object {
-			resource[key] = val
+		if ok {
+			for key, val := range object {
+				resource[key] = val
+			}
 		}
 	}
 
-	lines, ok := resource[kicsLines].(map[string]interface{})
-	if !ok {
-		lines = map[string]interface{}{}
+	lines := map[string]interface{}{}
+	if resKicsLines, hasLines := resource[kicsLines]; hasLines {
+		var ok bool
+		lines, ok = resKicsLines.(map[string]interface{})
+		if !ok {
+			lines = map[string]interface{}{}
+		}
 	}
 
 	line := map[string]int{kicsLine: ctx.GetStart().GetLine()}
@@ -360,6 +374,14 @@ func checkAcceptAntlrString(ctx antlr.ParserRuleContext, s *BicepVisitor) string
 	}
 
 	return resultString
+}
+
+func checkAcceptExpression(ctx antlr.ParserRuleContext, s *BicepVisitor) interface{} {
+	if ctx != nil {
+		return ctx.Accept(s)
+	}
+
+	return ""
 }
 
 func (s *BicepVisitor) VisitParameterDefaultValue(ctx *parser.ParameterDefaultValueContext) interface{} {
