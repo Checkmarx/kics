@@ -17,7 +17,7 @@ import (
 	ansibleConfigParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/config"
 	ansibleHostsParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/hosts"
 	buildahParser "github.com/Checkmarx/kics/v2/pkg/parser/buildah"
-  bicepParser "github.com/Checkmarx/kics/v2/pkg/parser/bicep"
+    bicepParser "github.com/Checkmarx/kics/v2/pkg/parser/bicep"
 	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker" 
 	protoParser "github.com/Checkmarx/kics/v2/pkg/parser/grpc"
 	jsonParser "github.com/Checkmarx/kics/v2/pkg/parser/json"
