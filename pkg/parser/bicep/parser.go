@@ -302,10 +302,20 @@ func (s *BicepVisitor) VisitVariableDecl(ctx *parser.VariableDeclContext) interf
 
 func (s *BicepVisitor) VisitResourceDecl(ctx *parser.ResourceDeclContext) interface{} {
 	resource := map[string]interface{}{}
-	interpString := ctx.InterpString().Accept(s).(string)
-	identifier := ctx.Identifier().Accept(s).(string)
-	resourceType := strings.Split(interpString, "@")[0]
-	apiVersion := strings.Split(interpString, "@")[1]
+	resourceType := ""
+	apiVersion := ""
+
+	interpString := checkAcceptAntlrString(ctx.InterpString(), s)
+	identifier := checkAcceptAntlrString(ctx.Identifier(), s)
+
+	fullType := strings.Split(interpString, "@")
+	if len(fullType) > 0 {
+		resourceType = fullType[0]
+	}
+	if len(fullType) > 1 {
+		apiVersion = fullType[1]
+	}
+
 	resource["type"] = resourceType
 	resource["apiVersion"] = apiVersion
 	decoratorsMap := parseDecorators(ctx.AllDecorator(), s)
@@ -336,6 +346,20 @@ func (s *BicepVisitor) VisitResourceDecl(ctx *parser.ResourceDeclContext) interf
 	s.resourceList = append(s.resourceList, resource)
 
 	return nil
+}
+
+func checkAcceptAntlrString(ctx antlr.ParserRuleContext, s *BicepVisitor) string {
+	resultString := ""
+	ok := false
+
+	if ctx != nil {
+		resultString, ok = ctx.Accept(s).(string)
+		if !ok {
+			resultString = ""
+		}
+	}
+
+	return resultString
 }
 
 func (s *BicepVisitor) VisitParameterDefaultValue(ctx *parser.ParameterDefaultValueContext) interface{} {
