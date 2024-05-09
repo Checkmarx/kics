@@ -244,10 +244,10 @@ func TestParseBicepFile(t *testing.T) {
 						"OSVersion": {
 							"_kics_lines": {
 								"_kics_defaultValue": {
-									"_kics_line": 33
+									"_kics_line": 42
 								},
 								"_kics_type": {
-									"_kics_line": 33
+									"_kics_line": 42
 								}
 							},
 							"allowedValues": [
@@ -303,13 +303,144 @@ func TestParseBicepFile(t *testing.T) {
 							},
 							"type": "string"
 						},
+						"arrayP": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 136
+								},
+								"_kics_type": {
+									"_kics_line": 136
+								}
+							},
+							"defaultValue": [
+								"allLogs",
+								"ConnectedClientList"
+							],
+							"type": "array"
+						},
+						"capacity": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 65
+								},
+								"_kics_type": {
+									"_kics_line": 65
+								}
+							},
+							"allowedValues": [
+								[
+									0,
+									1,
+									2,
+									3,
+									4,
+									5,
+									6
+								]
+							],
+							"defaultValue": 2,
+							"metadata": {
+								"description": "Optional. The size of the Redis cache to deploy. Valid values: for C (Basic/Standard) family (0, 1, 2, 3, 4, 5, 6), for P (Premium) family (1, 2, 3, 4)."
+							},
+							"type": "int"
+						},
+						"diagnosticLogCategoriesToEnable": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 18
+								},
+								"_kics_type": {
+									"_kics_line": 18
+								}
+							},
+							"allowedValues": [
+								[
+									"allLogs",
+									"ConnectedClientList"
+								]
+							],
+							"defaultValue": [
+								"allLogs"
+							],
+							"metadata": {
+								"description": "Optional. The name of logs that will be streamed. \"allLogs\" includes all possible logs for the resource."
+							},
+							"type": "array"
+						},
+						"diagnosticMetricsToEnable": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 93
+								},
+								"_kics_type": {
+									"_kics_line": 93
+								}
+							},
+							"allowedValues": [
+								[
+									"AllMetrics"
+								]
+							],
+							"defaultValue": [
+								"AllMetrics"
+							],
+							"metadata": {
+								"description": "Optional. The name of metrics that will be streamed."
+							},
+							"type": "array"
+						},
+						"diagnosticSettingsName": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 82
+								},
+								"_kics_type": {
+									"_kics_line": 82
+								}
+							},
+							"defaultValue": "'${name}-diagnosticSettings'",
+							"metadata": {
+								"description": "Optional. The name of the diagnostic setting, if deployed."
+							},
+							"type": "string"
+						},
+						"diagnosticWorkspaceId": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 85
+								},
+								"_kics_type": {
+									"_kics_line": 85
+								}
+							},
+							"defaultValue": "",
+							"metadata": {
+								"description": "Optional. Resource ID of the diagnostic log analytics workspace. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub."
+							},
+							"type": "string"
+						},
+						"enableNonSslPort": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 99
+								},
+								"_kics_type": {
+									"_kics_line": 99
+								}
+							},
+							"defaultValue": false,
+							"metadata": {
+								"description": "Optional. Specifies whether the non-ssl Redis server port (6379) is enabled."
+							},
+							"type": "bool"
+						},
 						"existingContainerSubnetName": {
 							"_kics_lines": {
 								"_kics_defaultValue": {
-									"_kics_line": 53
+									"_kics_line": 126
 								},
 								"_kics_type": {
-									"_kics_line": 53
+									"_kics_line": 126
 								}
 							},
 							"metadata": {
@@ -320,10 +451,10 @@ func TestParseBicepFile(t *testing.T) {
 						"existingStorageSubnetName": {
 							"_kics_lines": {
 								"_kics_defaultValue": {
-									"_kics_line": 50
+									"_kics_line": 123
 								},
 								"_kics_type": {
-									"_kics_line": 50
+									"_kics_line": 123
 								}
 							},
 							"metadata": {
@@ -334,10 +465,10 @@ func TestParseBicepFile(t *testing.T) {
 						"existingVNETName": {
 							"_kics_lines": {
 								"_kics_defaultValue": {
-									"_kics_line": 47
+									"_kics_line": 120
 								},
 								"_kics_type": {
-									"_kics_line": 47
+									"_kics_line": 120
 								}
 							},
 							"metadata": {
@@ -345,13 +476,42 @@ func TestParseBicepFile(t *testing.T) {
 							},
 							"type": "string"
 						},
+						"hasPrivateLink": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 96
+								},
+								"_kics_type": {
+									"_kics_line": 96
+								}
+							},
+							"defaultValue": false,
+							"metadata": {
+								"description": "Has the resource private endpoint?"
+							},
+							"type": "bool"
+						},
+						"keyvaultName": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 68
+								},
+								"_kics_type": {
+									"_kics_line": 68
+								}
+							},
+							"metadata": {
+								"description": "The name of an existing keyvault, that it will be used to store secrets (connection string)"
+							},
+							"type": "string"
+						},
 						"location": {
 							"_kics_lines": {
 								"_kics_defaultValue": {
-									"_kics_line": 39
+									"_kics_line": 112
 								},
 								"_kics_type": {
-									"_kics_line": 39
+									"_kics_line": 112
 								}
 							},
 							"defaultValue": "[resourceGroup().location]",
@@ -360,25 +520,168 @@ func TestParseBicepFile(t *testing.T) {
 							},
 							"type": "string"
 						},
+						"name": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 131
+								},
+								"_kics_type": {
+									"_kics_line": 131
+								}
+							},
+							"maxLength": 63,
+							"metadata": {
+								"description": "Required. The name of the Redis cache resource. Start and end with alphanumeric. Consecutive hyphens not allowed"
+							},
+							"minLength": 1,
+							"type": "string"
+						},
 						"parenthesis": {
 							"_kics_lines": {
 								"_kics_defaultValue": {
-									"_kics_line": 44
+									"_kics_line": 117
 								},
 								"_kics_type": {
-									"_kics_line": 44
+									"_kics_line": 117
 								}
 							},
 							"defaultValue": "simple-vm",
 							"type": "string"
 						},
+						"redisConfiguration": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 102
+								},
+								"_kics_type": {
+									"_kics_line": 102
+								}
+							},
+							"defaultValue": {
+								"_kics_lines": {
+									"_kics__default": {
+										"_kics_line": 102
+									}
+								}
+							},
+							"metadata": {
+								"description": "Optional. All Redis Settings. Few possible keys: rdb-backup-enabled,rdb-storage-connection-string,rdb-backup-frequency,maxmemory-delta,maxmemory-policy,notify-keyspace-events,maxmemory-samples,slowlog-log-slower-than,slowlog-max-len,list-max-ziplist-entries,list-max-ziplist-value,hash-max-ziplist-entries,hash-max-ziplist-value,set-max-intset-entries,zset-max-ziplist-entries,zset-max-ziplist-value etc."
+							},
+							"type": "object"
+						},
+						"replicasPerMaster": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 106
+								},
+								"_kics_type": {
+									"_kics_line": 106
+								}
+							},
+							"defaultValue": 1,
+							"metadata": {
+								"description": "Optional. The number of replicas to be created per primary."
+							},
+							"minValue": 1,
+							"type": "int"
+						},
+						"replicasPerPrimary": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 49
+								},
+								"_kics_type": {
+									"_kics_line": 49
+								}
+							},
+							"defaultValue": 1,
+							"metadata": {
+								"description": "Optional. The number of replicas to be created per primary."
+							},
+							"minValue": 1,
+							"type": "int"
+						},
+						"shardCount": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 53
+								},
+								"_kics_type": {
+									"_kics_line": 53
+								}
+							},
+							"defaultValue": 1,
+							"metadata": {
+								"description": "Optional. The number of shards to be created on a Premium Cluster Cache."
+							},
+							"minValue": 1,
+							"type": "int"
+						},
+						"skuName": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 76
+								},
+								"_kics_type": {
+									"_kics_line": 76
+								}
+							},
+							"allowedValues": [
+								[
+									"Basic",
+									"Premium",
+									"Standard"
+								]
+							],
+							"defaultValue": "Standard",
+							"metadata": {
+								"description": "Optional, default is Standard. The type of Redis cache to deploy."
+							},
+							"type": "string"
+						},
+						"subnetId": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 79
+								},
+								"_kics_type": {
+									"_kics_line": 79
+								}
+							},
+							"defaultValue": "",
+							"metadata": {
+								"description": "Optional. The full resource ID of a subnet in a virtual network to deploy the Redis cache in. Example format: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/Microsoft.{Network|ClassicNetwork}/VirtualNetworks/vnet1/subnets/subnet1."
+							},
+							"type": "string"
+						},
+						"tags": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 45
+								},
+								"_kics_type": {
+									"_kics_line": 45
+								}
+							},
+							"defaultValue": {
+								"_kics_lines": {
+									"_kics__default": {
+										"_kics_line": 45
+									}
+								}
+							},
+							"metadata": {
+								"description": "Optional. Tags of the resource."
+							},
+							"type": "object"
+						},
 						"vmName": {
 							"_kics_lines": {
 								"_kics_defaultValue": {
-									"_kics_line": 42
+									"_kics_line": 115
 								},
 								"_kics_type": {
-									"_kics_line": 42
+									"_kics_line": 115
 								}
 							},
 							"defaultValue": "simple-vm",
@@ -390,10 +693,10 @@ func TestParseBicepFile(t *testing.T) {
 						"vmSize": {
 							"_kics_lines": {
 								"_kics_defaultValue": {
-									"_kics_line": 36
+									"_kics_line": 109
 								},
 								"_kics_type": {
-									"_kics_line": 36
+									"_kics_line": 109
 								}
 							},
 							"defaultValue": "Standard_D2_v3",
@@ -407,32 +710,32 @@ func TestParseBicepFile(t *testing.T) {
 						{
 							"_kics_lines": {
 								"_kics__default": {
-									"_kics_line": 72
+									"_kics_line": 173
 								},
 								"_kics_apiVersion": {
-									"_kics_line": 71
+									"_kics_line": 172
 								},
 								"_kics_dependsOn": {
 									"_kics_arr": [
 										{
 											"_kics__default": {
-												"_kics_line": 121
+												"_kics_line": 222
 											}
 										}
 									],
-									"_kics_line": 121
+									"_kics_line": 222
 								},
 								"_kics_location": {
-									"_kics_line": 74
+									"_kics_line": 175
 								},
 								"_kics_name": {
-									"_kics_line": 73
+									"_kics_line": 174
 								},
 								"_kics_properties": {
-									"_kics_line": 75
+									"_kics_line": 176
 								},
 								"_kics_type": {
-									"_kics_line": 71
+									"_kics_line": 172
 								}
 							},
 							"apiVersion": "2021-03-01",
@@ -459,43 +762,43 @@ func TestParseBicepFile(t *testing.T) {
 							"properties": {
 								"_kics_lines": {
 									"_kics__default": {
-										"_kics_line": 75
+										"_kics_line": 176
 									},
 									"_kics_diagnosticsProfile": {
-										"_kics_line": 112
+										"_kics_line": 213
 									},
 									"_kics_hardwareProfile": {
-										"_kics_line": 76
+										"_kics_line": 177
 									},
 									"_kics_networkProfile": {
-										"_kics_line": 105
+										"_kics_line": 206
 									},
 									"_kics_osProfile": {
-										"_kics_line": 79
+										"_kics_line": 180
 									},
 									"_kics_storageProfile": {
-										"_kics_line": 84
+										"_kics_line": 185
 									}
 								},
 								"diagnosticsProfile": {
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 112
+											"_kics_line": 213
 										},
 										"_kics_bootDiagnostics": {
-											"_kics_line": 113
+											"_kics_line": 214
 										}
 									},
 									"bootDiagnostics": {
 										"_kics_lines": {
 											"_kics__default": {
-												"_kics_line": 113
+												"_kics_line": 214
 											},
 											"_kics_enabled": {
-												"_kics_line": 114
+												"_kics_line": 215
 											},
 											"_kics_storageUri": {
-												"_kics_line": 115
+												"_kics_line": 216
 											}
 										},
 										"enabled": true,
@@ -505,10 +808,10 @@ func TestParseBicepFile(t *testing.T) {
 								"hardwareProfile": {
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 76
+											"_kics_line": 177
 										},
 										"_kics_vmSize": {
-											"_kics_line": 77
+											"_kics_line": 178
 										}
 									},
 									"vmSize": "[parameters('vmSize')]"
@@ -516,33 +819,33 @@ func TestParseBicepFile(t *testing.T) {
 								"networkProfile": {
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 105
+											"_kics_line": 206
 										},
 										"_kics_networkInterfaces": {
 											"_kics_arr": [
 												{
 													"_kics__default": {
-														"_kics_line": 106
+														"_kics_line": 207
 													}
 												}
 											],
-											"_kics_line": 106
+											"_kics_line": 207
 										}
 									},
 									"networkInterfaces": [
 										{
 											"_kics_lines": {
 												"_kics__default": {
-													"_kics_line": 107
+													"_kics_line": 208
 												},
 												"_kics_id": {
-													"_kics_line": 108
+													"_kics_line": 209
 												}
 											},
 											"id": {
 												"resourceId": [
 													"Microsoft.Network/networkInterfaces",
-													"nick.variables('nicName')"
+													"nick"
 												]
 											}
 										}
@@ -551,58 +854,58 @@ func TestParseBicepFile(t *testing.T) {
 								"osProfile": {
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 79
+											"_kics_line": 180
 										},
 										"_kics_adminPassword": {
-											"_kics_line": 82
+											"_kics_line": 183
 										},
 										"_kics_adminUsername": {
-											"_kics_line": 81
+											"_kics_line": 182
 										},
 										"_kics_computerName": {
-											"_kics_line": 80
+											"_kics_line": 181
 										}
 									},
 									"adminPassword": "[parameters('adminPassword')]",
 									"adminUsername": "[parameters('adminUsername')]",
-									"computerName": "[computer.parameters('vmName')]"
+									"computerName": "computer"
 								},
 								"storageProfile": {
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 84
+											"_kics_line": 185
 										},
 										"_kics_dataDisks": {
 											"_kics_arr": [
 												{
 													"_kics__default": {
-														"_kics_line": 97
+														"_kics_line": 198
 													}
 												}
 											],
-											"_kics_line": 97
+											"_kics_line": 198
 										},
 										"_kics_imageReference": {
-											"_kics_line": 85
+											"_kics_line": 186
 										},
 										"_kics_osDisk": {
-											"_kics_line": 91
+											"_kics_line": 192
 										}
 									},
 									"dataDisks": [
 										{
 											"_kics_lines": {
 												"_kics__default": {
-													"_kics_line": 98
+													"_kics_line": 199
 												},
 												"_kics_createOption": {
-													"_kics_line": 101
+													"_kics_line": 202
 												},
 												"_kics_diskSizeGB": {
-													"_kics_line": 99
+													"_kics_line": 200
 												},
 												"_kics_lun": {
-													"_kics_line": 100
+													"_kics_line": 201
 												}
 											},
 											"createOption": "Empty",
@@ -613,19 +916,19 @@ func TestParseBicepFile(t *testing.T) {
 									"imageReference": {
 										"_kics_lines": {
 											"_kics__default": {
-												"_kics_line": 85
+												"_kics_line": 186
 											},
 											"_kics_offer": {
-												"_kics_line": 87
+												"_kics_line": 188
 											},
 											"_kics_publisher": {
-												"_kics_line": 86
+												"_kics_line": 187
 											},
 											"_kics_sku": {
-												"_kics_line": 88
+												"_kics_line": 189
 											},
 											"_kics_version": {
-												"_kics_line": 89
+												"_kics_line": 190
 											}
 										},
 										"offer": "WindowsServer",
@@ -636,23 +939,23 @@ func TestParseBicepFile(t *testing.T) {
 									"osDisk": {
 										"_kics_lines": {
 											"_kics__default": {
-												"_kics_line": 91
+												"_kics_line": 192
 											},
 											"_kics_createOption": {
-												"_kics_line": 92
+												"_kics_line": 193
 											},
 											"_kics_managedDisk": {
-												"_kics_line": 93
+												"_kics_line": 194
 											}
 										},
 										"createOption": "FromImage",
 										"managedDisk": {
 											"_kics_lines": {
 												"_kics__default": {
-													"_kics_line": 93
+													"_kics_line": 194
 												},
 												"_kics_storageAccountType": {
-													"_kics_line": 94
+													"_kics_line": 195
 												}
 											},
 											"storageAccountType": "StandardSSD_LRS"
@@ -665,32 +968,32 @@ func TestParseBicepFile(t *testing.T) {
 						{
 							"_kics_lines": {
 								"_kics__default": {
-									"_kics_line": 127
+									"_kics_line": 228
 								},
 								"_kics_apiVersion": {
-									"_kics_line": 127
+									"_kics_line": 228
 								},
 								"_kics_assignableScopes": {
 									"_kics_arr": [
 										{
 											"_kics__default": {
-												"_kics_line": 137
+												"_kics_line": 238
 											}
 										}
 									],
-									"_kics_line": 137
+									"_kics_line": 238
 								},
 								"_kics_location": {
-									"_kics_line": 129
+									"_kics_line": 230
 								},
 								"_kics_name": {
-									"_kics_line": 128
+									"_kics_line": 229
 								},
 								"_kics_type": {
-									"_kics_line": 127
+									"_kics_line": 228
 								},
 								"_kics_userAssignedIdentities": {
-									"_kics_line": 134
+									"_kics_line": 235
 								}
 							},
 							"apiVersion": "2021-03-01",
@@ -705,16 +1008,16 @@ func TestParseBicepFile(t *testing.T) {
 								"'${[resourceId(Microsoft.ManagedIdentity/userAssignedIdentities, variables('nicName'))]}'": {
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 135
+											"_kics_line": 236
 										}
 									}
 								},
 								"_kics_lines": {
 									"_kics_'${[resourceId(Microsoft.ManagedIdentity/userAssignedIdentities, variables('nicName'))]}'": {
-										"_kics_line": 135
+										"_kics_line": 236
 									},
 									"_kics__default": {
-										"_kics_line": 134
+										"_kics_line": 235
 									}
 								}
 							}
@@ -722,28 +1025,28 @@ func TestParseBicepFile(t *testing.T) {
 						{
 							"_kics_lines": {
 								"_kics__default": {
-									"_kics_line": 140
+									"_kics_line": 241
 								},
 								"_kics_apiVersion": {
-									"_kics_line": 140
+									"_kics_line": 241
 								},
 								"_kics_kind": {
-									"_kics_line": 147
+									"_kics_line": 248
 								},
 								"_kics_location": {
-									"_kics_line": 142
+									"_kics_line": 243
 								},
 								"_kics_name": {
-									"_kics_line": 141
+									"_kics_line": 242
 								},
 								"_kics_properties": {
-									"_kics_line": 148
+									"_kics_line": 249
 								},
 								"_kics_sku": {
-									"_kics_line": 143
+									"_kics_line": 244
 								},
 								"_kics_type": {
-									"_kics_line": 140
+									"_kics_line": 241
 								}
 							},
 							"apiVersion": "2019-06-01",
@@ -754,57 +1057,57 @@ func TestParseBicepFile(t *testing.T) {
 							"properties": {
 								"_kics_lines": {
 									"_kics__default": {
-										"_kics_line": 148
+										"_kics_line": 249
 									},
 									"_kics_accessTier": {
-										"_kics_line": 177
+										"_kics_line": 278
 									},
 									"_kics_encryption": {
-										"_kics_line": 164
+										"_kics_line": 265
 									},
 									"_kics_networkAcls": {
-										"_kics_line": 149
+										"_kics_line": 250
 									},
 									"_kics_supportsHttpsTrafficOnly": {
-										"_kics_line": 163
+										"_kics_line": 264
 									}
 								},
 								"accessTier": "Cool",
 								"encryption": {
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 164
+											"_kics_line": 265
 										},
 										"_kics_keySource": {
-											"_kics_line": 175
+											"_kics_line": 276
 										},
 										"_kics_services": {
-											"_kics_line": 165
+											"_kics_line": 266
 										}
 									},
 									"keySource": "Microsoft.Storage",
 									"services": {
 										"_kics_lines": {
 											"_kics__default": {
-												"_kics_line": 165
+												"_kics_line": 266
 											},
 											"_kics_blob": {
-												"_kics_line": 170
+												"_kics_line": 271
 											},
 											"_kics_file": {
-												"_kics_line": 166
+												"_kics_line": 267
 											}
 										},
 										"blob": {
 											"_kics_lines": {
 												"_kics__default": {
-													"_kics_line": 170
+													"_kics_line": 271
 												},
 												"_kics_enabled": {
-													"_kics_line": 172
+													"_kics_line": 273
 												},
 												"_kics_keyType": {
-													"_kics_line": 171
+													"_kics_line": 272
 												}
 											},
 											"enabled": true,
@@ -813,13 +1116,13 @@ func TestParseBicepFile(t *testing.T) {
 										"file": {
 											"_kics_lines": {
 												"_kics__default": {
-													"_kics_line": 166
+													"_kics_line": 267
 												},
 												"_kics_enabled": {
-													"_kics_line": 168
+													"_kics_line": 269
 												},
 												"_kics_keyType": {
-													"_kics_line": 167
+													"_kics_line": 268
 												}
 											},
 											"enabled": true,
@@ -830,23 +1133,23 @@ func TestParseBicepFile(t *testing.T) {
 								"networkAcls": {
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 149
+											"_kics_line": 250
 										},
 										"_kics_bypass": {
-											"_kics_line": 150
+											"_kics_line": 251
 										},
 										"_kics_defaultAction": {
-											"_kics_line": 161
+											"_kics_line": 262
 										},
 										"_kics_virtualNetworkRules": {
 											"_kics_arr": [
 												{
 													"_kics__default": {
-														"_kics_line": 151
+														"_kics_line": 252
 													}
 												}
 											],
-											"_kics_line": 151
+											"_kics_line": 252
 										}
 									},
 									"bypass": "None",
@@ -855,13 +1158,13 @@ func TestParseBicepFile(t *testing.T) {
 										{
 											"_kics_lines": {
 												"_kics__default": {
-													"_kics_line": 152
+													"_kics_line": 253
 												},
 												"_kics_action": {
-													"_kics_line": 154
+													"_kics_line": 255
 												},
 												"_kics_id": {
-													"_kics_line": 153
+													"_kics_line": 254
 												}
 											},
 											"action": "Allow",
@@ -870,13 +1173,13 @@ func TestParseBicepFile(t *testing.T) {
 										{
 											"_kics_lines": {
 												"_kics__default": {
-													"_kics_line": 156
+													"_kics_line": 257
 												},
 												"_kics_action": {
-													"_kics_line": 158
+													"_kics_line": 259
 												},
 												"_kics_id": {
-													"_kics_line": 157
+													"_kics_line": 258
 												}
 											},
 											"action": "Allow",
@@ -890,25 +1193,25 @@ func TestParseBicepFile(t *testing.T) {
 								{
 									"_kics_lines": {
 										"_kics__default": {
-											"_kics_line": 181
+											"_kics_line": 282
 										},
 										"_kics_apiVersion": {
-											"_kics_line": 181
+											"_kics_line": 282
 										},
 										"_kics_name": {
-											"_kics_line": 183
+											"_kics_line": 284
 										},
 										"_kics_parent": {
-											"_kics_line": 182
+											"_kics_line": 283
 										},
 										"_kics_properties": {
-											"_kics_line": 188
+											"_kics_line": 289
 										},
 										"_kics_sku": {
-											"_kics_line": 184
+											"_kics_line": 285
 										},
 										"_kics_type": {
-											"_kics_line": 181
+											"_kics_line": 282
 										}
 									},
 									"apiVersion": "2019-06-01",
@@ -918,19 +1221,19 @@ func TestParseBicepFile(t *testing.T) {
 									"properties": {
 										"_kics_lines": {
 											"_kics__default": {
-												"_kics_line": 188
+												"_kics_line": 289
 											},
 											"_kics_deleteRetentionPolicy": {
-												"_kics_line": 189
+												"_kics_line": 290
 											}
 										},
 										"deleteRetentionPolicy": {
 											"_kics_lines": {
 												"_kics__default": {
-													"_kics_line": 189
+													"_kics_line": 290
 												},
 												"_kics_enabled": {
-													"_kics_line": 190
+													"_kics_line": 291
 												}
 											},
 											"enabled": false
@@ -940,22 +1243,22 @@ func TestParseBicepFile(t *testing.T) {
 										{
 											"_kics_lines": {
 												"_kics__default": {
-													"_kics_line": 195
+													"_kics_line": 296
 												},
 												"_kics_apiVersion": {
-													"_kics_line": 195
+													"_kics_line": 296
 												},
 												"_kics_name": {
-													"_kics_line": 197
+													"_kics_line": 298
 												},
 												"_kics_parent": {
-													"_kics_line": 196
+													"_kics_line": 297
 												},
 												"_kics_properties": {
-													"_kics_line": 198
+													"_kics_line": 299
 												},
 												"_kics_type": {
-													"_kics_line": 195
+													"_kics_line": 296
 												}
 											},
 											"apiVersion": "2019-06-01",
@@ -965,23 +1268,23 @@ func TestParseBicepFile(t *testing.T) {
 											"properties": {
 												"_kics_lines": {
 													"_kics__default": {
-														"_kics_line": 198
+														"_kics_line": 299
 													},
 													"_kics_denyEncryptionScopeOverride": {
-														"_kics_line": 199
+														"_kics_line": 300
 													},
 													"_kics_metadata": {
-														"_kics_line": 201
+														"_kics_line": 302
 													},
 													"_kics_publicAccess": {
-														"_kics_line": 200
+														"_kics_line": 301
 													}
 												},
 												"denyEncryptionScopeOverride": true,
 												"metadata": {
 													"_kics_lines": {
 														"_kics__default": {
-															"_kics_line": 201
+															"_kics_line": 302
 														}
 													}
 												},
@@ -993,13 +1296,13 @@ func TestParseBicepFile(t *testing.T) {
 									"sku": {
 										"_kics_lines": {
 											"_kics__default": {
-												"_kics_line": 184
+												"_kics_line": 285
 											},
 											"_kics_name": {
-												"_kics_line": 185
+												"_kics_line": 286
 											},
 											"_kics_tier": {
-												"_kics_line": 186
+												"_kics_line": 287
 											}
 										},
 										"name": "Standard_LRS",
@@ -1011,19 +1314,184 @@ func TestParseBicepFile(t *testing.T) {
 							"sku": {
 								"_kics_lines": {
 									"_kics__default": {
-										"_kics_line": 143
+										"_kics_line": 244
 									},
 									"_kics_name": {
-										"_kics_line": 144
+										"_kics_line": 245
 									},
 									"_kics_tier": {
-										"_kics_line": 145
+										"_kics_line": 246
 									}
 								},
 								"name": "Standard_LRS",
 								"tier": "Standard"
 							},
 							"type": "Microsoft.Storage/storageAccounts"
+						},
+						{
+							"_kics_lines": {
+								"_kics__default": {
+									"_kics_line": 306
+								},
+								"_kics_apiVersion": {
+									"_kics_line": 306
+								},
+								"_kics_location": {
+									"_kics_line": 308
+								},
+								"_kics_name": {
+									"_kics_line": 307
+								},
+								"_kics_properties": {
+									"_kics_line": 311
+								},
+								"_kics_tags": {
+									"_kics_line": 309
+								},
+								"_kics_type": {
+									"_kics_line": 306
+								},
+								"_kics_zones": {
+									"_kics_line": 327
+								}
+							},
+							"apiVersion": "2021-06-01",
+							"identifier": "redisCache",
+							"location": "[parameters('location')]",
+							"name": "[parameters('name')]",
+							"properties": {
+								"_kics_lines": {
+									"_kics__default": {
+										"_kics_line": 311
+									},
+									"_kics_enableNonSslPort": {
+										"_kics_line": 312
+									},
+									"_kics_minimumTlsVersion": {
+										"_kics_line": 313
+									},
+									"_kics_publicNetworkAccess": {
+										"_kics_line": 314
+									},
+									"_kics_redisConfiguration": {
+										"_kics_line": 315
+									},
+									"_kics_redisVersion": {
+										"_kics_line": 316
+									},
+									"_kics_replicasPerMaster": {
+										"_kics_line": 317
+									},
+									"_kics_replicasPerPrimary": {
+										"_kics_line": 318
+									},
+									"_kics_shardCount": {
+										"_kics_line": 319
+									},
+									"_kics_sku": {
+										"_kics_line": 320
+									},
+									"_kics_subnetId": {
+										"_kics_line": 325
+									}
+								},
+								"enableNonSslPort": "[parameters('enableNonSslPort')]",
+								"minimumTlsVersion": "1.2",
+								"publicNetworkAccess": "",
+								"redisConfiguration": "",
+								"redisVersion": "6",
+								"replicasPerMaster": "",
+								"replicasPerPrimary": "",
+								"shardCount": "",
+								"sku": {
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 320
+										},
+										"_kics_capacity": {
+											"_kics_line": 321
+										},
+										"_kics_family": {
+											"_kics_line": 322
+										},
+										"_kics_name": {
+											"_kics_line": 323
+										}
+									},
+									"capacity": "[parameters('capacity')]",
+									"family": "",
+									"name": "[parameters('skuName')]"
+								},
+								"subnetId": ""
+							},
+							"tags": "[parameters('tags')]",
+							"type": "Microsoft.Cache/redis",
+							"zones": ""
+						},
+						{
+							"apiVersion": "2021-05-01-preview",
+							"identifier": "redisCache_diagnosticSettings",
+							"type": "Microsoft.Insights/diagnosticSettings"
+						},
+						{
+							"_kics_lines": {
+								"_kics__default": {
+									"_kics_line": 351
+								},
+								"_kics_apiVersion": {
+									"_kics_line": 351
+								},
+								"_kics_name": {
+									"_kics_line": 352
+								},
+								"_kics_type": {
+									"_kics_line": 351
+								}
+							},
+							"apiVersion": "2022-11-01",
+							"identifier": "keyVault",
+							"name": "[parameters('keyvaultName')]",
+							"resources": [
+								{
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 330
+										},
+										"_kics_apiVersion": {
+											"_kics_line": 330
+										},
+										"_kics_name": {
+											"_kics_line": 331
+										},
+										"_kics_parent": {
+											"_kics_line": 332
+										},
+										"_kics_properties": {
+											"_kics_line": 333
+										},
+										"_kics_type": {
+											"_kics_line": 330
+										}
+									},
+									"apiVersion": "2018-02-14",
+									"identifier": "redisConnectionStringSecret",
+									"name": "redisConStrSecret",
+									"parent": "keyVault",
+									"properties": {
+										"_kics_lines": {
+											"_kics__default": {
+												"_kics_line": 333
+											},
+											"_kics_value": {
+												"_kics_line": 334
+											}
+										},
+										"value": "'${redisCache.properties.hostName},password=${.primaryKey},ssl=True,abortConnect=False'"
+									},
+									"type": "secrets"
+								}
+							],
+							"type": "Microsoft.KeyVault/vaults"
 						}
 					],
 					"variables": {
@@ -1035,6 +1503,15 @@ func TestParseBicepFile(t *testing.T) {
 									"parameters('existingContainerSubnetName')"
 								]
 							}
+						},
+						"diagnosticsLogs": {
+							"value": ""
+						},
+						"diagnosticsLogsSpecified": {
+							"value": null
+						},
+						"diagnosticsMetrics": {
+							"value": null
 						},
 						"nicName": {
 							"value": "myVMNic"
