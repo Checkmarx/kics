@@ -46,7 +46,7 @@ jobs:
           DESCRIPTIONS_URL: ${{ secrets.DESCRIPTIONS_URL }}
           APISCANNER: "true"
       - name: delete release
-        uses: dev-drprasad/delete-tag-and-release@v0.2.1
+        uses: dev-drprasad/delete-tag-and-release@v1.0.1
         with:
           delete_release: true # default: false
           tag_name: apispec # tag name to delete
