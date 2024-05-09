@@ -639,78 +639,39 @@ func (s *BicepVisitor) VisitObjectProperty(ctx *parser.ObjectPropertyContext) in
 }
 
 func (s *BicepVisitor) VisitIdentifier(ctx *parser.IdentifierContext) interface{} {
-	if (ctx.IDENTIFIER()) != nil {
-		return ctx.IDENTIFIER().GetText()
+	contexts := []antlr.TerminalNode{
+		ctx.IDENTIFIER(),
+		ctx.IMPORT(),
+		ctx.WITH(),
+		ctx.AS(),
+		ctx.METADATA(),
+		ctx.PARAM(),
+		ctx.RESOURCE(),
+		ctx.OUTPUT(),
+		ctx.EXISTING(),
+		ctx.VAR(),
+		ctx.IF(),
+		ctx.FOR(),
+		ctx.IN(),
+		ctx.TRUE(),
+		ctx.FALSE(),
+		ctx.NULL(),
+		ctx.TARGET_SCOPE(),
+		ctx.STRING(),
+		ctx.INT(),
+		ctx.BOOL(),
+		ctx.ARRAY(),
+		ctx.OBJECT(),
+		ctx.TYPE(),
+		ctx.MODULE(),
 	}
-	if (ctx.IMPORT()) != nil {
-		return ctx.IMPORT().GetText()
+
+	for _, context := range contexts {
+		if context != nil {
+			return context.GetText()
+		}
 	}
-	if (ctx.WITH()) != nil {
-		return ctx.WITH().GetText()
-	}
-	if (ctx.AS()) != nil {
-		return ctx.AS().GetText()
-	}
-	if (ctx.METADATA()) != nil {
-		return ctx.METADATA().GetText()
-	}
-	if (ctx.PARAM()) != nil {
-		return ctx.PARAM().GetText()
-	}
-	if (ctx.RESOURCE()) != nil {
-		return ctx.RESOURCE().GetText()
-	}
-	if (ctx.OUTPUT()) != nil {
-		return ctx.OUTPUT().GetText()
-	}
-	if (ctx.EXISTING()) != nil {
-		return ctx.EXISTING().GetText()
-	}
-	if (ctx.VAR()) != nil {
-		return ctx.VAR().GetText()
-	}
-	if (ctx.IF()) != nil {
-		return ctx.IF().GetText()
-	}
-	if (ctx.FOR()) != nil {
-		return ctx.FOR().GetText()
-	}
-	if (ctx.IN()) != nil {
-		return ctx.IN().GetText()
-	}
-	if (ctx.TRUE()) != nil {
-		return ctx.TRUE().GetText()
-	}
-	if (ctx.FALSE()) != nil {
-		return ctx.FALSE().GetText()
-	}
-	if (ctx.NULL()) != nil {
-		return ctx.NULL().GetText()
-	}
-	if (ctx.TARGET_SCOPE()) != nil {
-		return ctx.TARGET_SCOPE().GetText()
-	}
-	if (ctx.STRING()) != nil {
-		return ctx.STRING().GetText()
-	}
-	if (ctx.INT()) != nil {
-		return ctx.INT().GetText()
-	}
-	if (ctx.BOOL()) != nil {
-		return ctx.BOOL().GetText()
-	}
-	if (ctx.ARRAY()) != nil {
-		return ctx.ARRAY().GetText()
-	}
-	if (ctx.OBJECT()) != nil {
-		return ctx.OBJECT().GetText()
-	}
-	if (ctx.TYPE()) != nil {
-		return ctx.TYPE().GetText()
-	}
-	if (ctx.MODULE()) != nil {
-		return ctx.MODULE().GetText()
-	}
+
 	return ""
 }
 
