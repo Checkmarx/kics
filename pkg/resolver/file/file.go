@@ -2,17 +2,19 @@ package file
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
-	"io/ioutil"
+	"io"
 	"os"
 	"path/filepath"
-	"reflect"
+	"regexp"
+	"strconv"
 	"strings"
-	"testing"
 
-	"github.com/Checkmarx/kics/v2/test"
+	"github.com/Checkmarx/kics/v2/pkg/analyzer"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
+	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
 )
 

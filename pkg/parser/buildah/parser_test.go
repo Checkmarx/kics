@@ -2,10 +2,10 @@ package buildah
 
 import (
 	"encoding/json"
-	"github.com/Checkmarx/kics/v2/pkg/model"
 	"reflect"
 	"testing"
 
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/stretchr/testify/require"
 )
 
