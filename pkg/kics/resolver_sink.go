@@ -8,10 +8,10 @@ import (
 	"regexp"
 	"sort"
 
-	sentryReport "github.com/Checkmarx/kics/internal/sentry"
-	"github.com/Checkmarx/kics/pkg/minified"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/utils"
+	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+	"github.com/Checkmarx/kics/v2/pkg/minified"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 )

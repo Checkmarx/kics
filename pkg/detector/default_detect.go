@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/rs/zerolog"
 )
 

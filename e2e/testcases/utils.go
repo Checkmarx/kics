@@ -4,11 +4,11 @@ import (
 	"os"
 	"path/filepath"
 
-	u "github.com/Checkmarx/kics/e2e/utils"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/remediation"
-	"github.com/Checkmarx/kics/pkg/report"
-	"github.com/Checkmarx/kics/pkg/utils"
+	u "github.com/Checkmarx/kics/v2/e2e/utils"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/remediation"
+	"github.com/Checkmarx/kics/v2/pkg/report"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/rs/zerolog/log"
 )
 

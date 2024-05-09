@@ -27,7 +27,7 @@ jobs:
           sed -E -i "s/(<p.*>)[0-9]{4}\.[0-9]{2}\.[0-9]{2}<p>/\1${{ steps.cdate.outputs.date }}<p>/" docs/index.md
           sed -E -i "s/(<a.*href=\"https:\/\/github.com\/Checkmarx\/kics\/releases\/download\/).*(\/kics_).*(_[a-z]+_.*>)/\1v${{ github.event.inputs.version }}\2${{ github.event.inputs.version }}\3/g" docs/index.md
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v6
         with:
           title: "docs(kicsbot): preparing for release ${{ github.event.inputs.version }}"
           token: ${{ secrets.KICS_BOT_PAT }}

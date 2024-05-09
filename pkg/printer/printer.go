@@ -7,10 +7,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 
-	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
-	"github.com/Checkmarx/kics/pkg/model"
+	consoleFlags "github.com/Checkmarx/kics/v2/internal/console/flags"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/gookit/color"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
