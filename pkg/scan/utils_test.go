@@ -7,10 +7,10 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/analyzer"
-	"github.com/Checkmarx/kics/pkg/engine/provider"
-	"github.com/Checkmarx/kics/pkg/model"
-	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
+	"github.com/Checkmarx/kics/v2/pkg/analyzer"
+	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
 	"github.com/stretchr/testify/require"
 )
 
