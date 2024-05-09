@@ -2,19 +2,19 @@
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
     "severity": "MEDIUM",
-    "line": 79,
+    "line": 80,
     "fileName": "positive1.json"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
     "severity": "MEDIUM",
-    "line": 83,
+    "line": 84,
     "fileName": "positive1.json"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
     "severity": "MEDIUM",
-    "line": 87,
+    "line": 88,
     "fileName": "positive1.json"
   },
   {
@@ -32,7 +32,7 @@
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
     "severity": "MEDIUM",
-    "line": 79,
+    "line": 80,
     "fileName": "positive2.json"
   },
   {
@@ -56,19 +56,19 @@
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
     "severity": "MEDIUM",
-    "line": 81,
+    "line": 82,
     "fileName": "positive4.json"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
     "severity": "MEDIUM",
-    "line": 85,
+    "line": 86,
     "fileName": "positive4.json"
   },
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
     "severity": "MEDIUM",
-    "line": 89,
+    "line": 90,
     "fileName": "positive4.json"
   },
   {
@@ -86,7 +86,7 @@
   {
     "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
     "severity": "MEDIUM",
-    "line": 81,
+    "line": 82,
     "fileName": "positive5.json"
   },
   {
