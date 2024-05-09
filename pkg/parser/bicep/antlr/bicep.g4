@@ -3,7 +3,30 @@ grammar bicep;
 // program -> statement* EOF
 program: statement* EOF;
 
-statement: parameterDecl | variableDecl | resourceDecl | outputDecl | targetScopeDecl | importDecl | metadataDecl | typeDecl | moduleDecl | NL;
+statement:
+	targetScopeDecl
+	| importDecl
+	| metadataDecl
+	| parameterDecl
+	| typeDecl
+	| variableDecl
+	| resourceDecl
+	| moduleDecl
+	| outputDecl
+	| NL;
+
+// targetScopeDecl -> "targetScope" "=" expression NL
+targetScopeDecl: TARGET_SCOPE ASSIGN expression NL;
+
+// importDecl -> decorator* "import" interpString(specification) importWithClause? importAsClause? NL
+importDecl:
+	decorator* IMPORT specification = interpString (
+		WITH object
+		| AS alias = identifier
+	)* NL;
+
+// metadataDecl -> "metadata" IDENTIFIER(name) "=" expression NL
+metadataDecl: METADATA name = identifier ASSIGN expression NL;
 
 // parameterDecl -> decorator* "parameter" IDENTIFIER(name) typeExpression parameterDefaultValue? NL
 // | decorator* "parameter" IDENTIFIER(name) "resource" interpString(type) parameterDefaultValue? NL
@@ -17,6 +40,10 @@ parameterDecl:
 // parameterDefaultValue -> "=" expression
 parameterDefaultValue: ASSIGN expression;
 
+// typeDecl -> decorator* "type" IDENTIFIER(name) "=" typeExpression NL
+typeDecl:
+	decorator* TYPE name = identifier ASSIGN typeExpression NL;
+
 // variableDecl -> decorator* "variable" IDENTIFIER(name) "=" expression NL
 variableDecl:
 	decorator* VAR name = identifier ASSIGN expression NL;
@@ -25,61 +52,39 @@ variableDecl:
 resourceDecl:
 	decorator* RESOURCE name = identifier type = interpString EXISTING? ASSIGN (
 		ifCondition
-        | object
-        | forExpression
+		| object
+		| forExpression
 	) NL;
 
-
-// outputDecl ->
-//   decorator* "output" IDENTIFIER(name) IDENTIFIER(type) "=" expression NL
-//   decorator* "output" IDENTIFIER(name) "resource" interpString(type) "=" expression NL
-outputDecl: 
-	decorator* OUTPUT name = identifier (type1 = identifier | RESOURCE type2 = interpString) ASSIGN expression NL;
-
-// targetScopeDecl -> "targetScope" "=" expression NL
-targetScopeDecl: TARGET_SCOPE ASSIGN expression NL;
-
-// importDecl -> decorator* "import" interpString(specification) importWithClause? importAsClause? NL
-importDecl:
-    decorator* IMPORT specification = interpString (WITH object | AS alias = identifier)* NL;
-
-// metadataDecl -> "metadata" IDENTIFIER(name) "=" expression NL
-metadataDecl:
-    METADATA name = identifier ASSIGN expression NL;
-
-// typeDecl -> decorator* "type" IDENTIFIER(name) "=" typeExpression NL
-typeDecl: 
-	decorator* TYPE name = identifier ASSIGN typeExpression NL;
-
 // moduleDecl -> decorator* "module" IDENTIFIER(name) interpString(type) "=" (ifCondition | object | forExpression) NL
-moduleDecl
-    : decorator* MODULE name = identifier type = interpString ASSIGN (
-        ifCondition
-        | object
-        | forExpression
-    ) NL
-    ;
+moduleDecl:
+	decorator* MODULE name = identifier type = interpString ASSIGN (
+		ifCondition
+		| object
+		| forExpression
+	) NL;
+
+// outputDecl -> decorator* "output" IDENTIFIER(name) IDENTIFIER(type) "=" expression NL decorator*
+// "output" IDENTIFIER(name) "resource" interpString(type) "=" expression NL
+outputDecl:
+	decorator* OUTPUT name = identifier (
+		type1 = identifier
+		| RESOURCE type2 = interpString
+	) ASSIGN expression NL;
 
 // ifCondition -> "if" parenthesizedExpression object
-ifCondition
-    : IF parenthesizedExpression object
-    ;
+ifCondition: IF parenthesizedExpression object;
 
 // forExpression -> "[" "for" (IDENTIFIER(item) | forVariableBlock) "in" expression ":" forBody "]"
-forExpression
-    : OBRACK NL* FOR (item = identifier | forVariableBlock) IN expression COL forBody NL* CBRACK
-    ;
+forExpression:
+	OBRACK NL* FOR (item = identifier | forVariableBlock) IN expression COL forBody NL* CBRACK;
 
 // forVariableBlock -> "(" IDENTIFIER(item) "," IDENTIFIER(index) ")"
-forVariableBlock
-    : OPAR item = identifier COMMA index = identifier CPAR
-    ;
+forVariableBlock:
+	OPAR item = identifier COMMA index = identifier CPAR;
 
 // forBody -> expression(body) | ifCondition
-forBody
-    : body = expression
-    | ifCondition
-    ;
+forBody: body = expression | ifCondition;
 
 // interpString ->  stringLeftPiece ( expression stringMiddlePiece )* expression stringRightPiece | stringComplete
 interpString:
@@ -92,7 +97,7 @@ expression:
 	expression OBRACK expression CBRACK
 	| expression QMARK expression COL expression
 	| expression DOT property = identifier
-  	| expression DOT functionCall
+	| expression DOT functionCall
 	| expression COL name = identifier
 	| expression logicCharacter expression
 	| primaryExpression;
@@ -130,7 +135,7 @@ objectProperty: (name = identifier | interpString) COL expression;
 array: OBRACK NL* arrayItem* CBRACK;
 
 // arrayItem -> expression (NL+|COMMA)?
-arrayItem: expression (NL+|COMMA)?;
+arrayItem: expression (NL+ | COMMA)?;
 
 // decorator -> "@" decoratorExpression NL
 decorator: AT decoratorExpression NL;
@@ -144,29 +149,29 @@ functionCall: identifier OPAR (NL? argumentList)? NL? CPAR;
 // argumentList -> expression ("," expression)*
 argumentList: expression (COMMA NL? expression)*;
 
-identifier
-    : IDENTIFIER
-    | IMPORT
-    | WITH
-    | AS
-    | METADATA
-    | PARAM
-    | RESOURCE
-    | OUTPUT
-    | EXISTING
-    | VAR
-    | IF
-    | FOR
-    | IN
-    | TRUE
-    | FALSE
-    | NULL
-    | TARGET_SCOPE
-    | STRING
-    | INT
-    | BOOL
+identifier:
+	IDENTIFIER
+	| IMPORT
+	| WITH
+	| AS
+	| METADATA
+	| PARAM
+	| RESOURCE
+	| OUTPUT
+	| EXISTING
+	| VAR
+	| IF
+	| FOR
+	| IN
+	| TRUE
+	| FALSE
+	| NULL
+	| TARGET_SCOPE
+	| STRING
+	| INT
+	| BOOL
 	| ARRAY
-    | OBJECT;
+	| OBJECT;
 
 // multilineString -> "'''" + MULTILINESTRINGCHAR+ + "'''"
 MULTILINE_STRING: '\'\'\'' .*? '\'\'\'';
@@ -214,9 +219,9 @@ RESOURCE: 'resource';
 OUTPUT: 'output';
 
 TARGET_SCOPE: 'targetScope';
- 
+
 IMPORT: 'import';
- 
+
 WITH: 'with';
 
 AS: 'as';
@@ -247,45 +252,25 @@ INT: 'int';
 
 BOOL: 'bool';
 
-IF
-    : 'if'
-    ;
+IF: 'if';
 
-FOR
-    : 'for'
-    ;
+FOR: 'for';
 
-IN
-    : 'in'
-    ;
+IN: 'in';
 
-QMARK
-	: '?'
-	;
+QMARK: '?';
 
-GT
-    : '>'
-    ;
+GT: '>';
 
-GTE
-    : '>='
-    ;
+GTE: '>=';
 
-LT
-    : '<'
-    ;
+LT: '<';
 
-LTE
-    : '<='
-    ;
+LTE: '<=';
 
-EQ
-    : '=='
-    ;
+EQ: '==';
 
-NEQ
-    : '!='
-    ;
+NEQ: '!=';
 
 IDENTIFIER: [a-zA-Z_] [a-zA-Z_0-9]*;
 
