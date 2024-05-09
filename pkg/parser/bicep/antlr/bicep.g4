@@ -162,8 +162,10 @@ identifier:
 	| METADATA
 	| PARAM
 	| RESOURCE
+	| MODULE
 	| OUTPUT
 	| EXISTING
+	| TYPE
 	| VAR
 	| IF
 	| FOR
