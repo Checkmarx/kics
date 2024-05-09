@@ -1,0 +1,115 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Test",
+    "description": "test",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://example.com",
+      "description": "Example"
+    }
+  ],
+  "paths": {
+    "/Header/{SourceID}": {
+      "get": {
+        "summary": "Forecast Header Updates",
+        "description": "Get Forecast Header channel data from MDM for a given source.",
+        "operationId": "GetForecastHeader",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "x-test-forecasts-ack-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForecastHeaders"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForecastHeaders"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "There are no more updates available."
+          }
+        }
+      }
+    },
+    "/Detail/{SourceID}": {
+      "get": {
+        "summary": "Forecast Detail Updates",
+        "description": "Get Forecast Header channel data from MDM for a given source.",
+        "operationId": "GetForecastDetail",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "x-test-forecastdetails-ack-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForecastDetails"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForecastDetails"
+                },
+                "examples": {
+                  "default": {
+                    "value": null
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "There are no more updates available."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+    },
+    "securitySchemes": {
+      "apiKeyHeader": {
+        "type": "apiKey",
+        "name": "Ocp-Apim-Subscription-Key",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ]
+}
