@@ -2,11 +2,11 @@ package scan
 
 import (
 	"context"
-	"github.com/Checkmarx/kics/assets"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/model"
-	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
-	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/v2/assets"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
 	"github.com/stretchr/testify/require"
 	"path/filepath"
 	"testing"

@@ -3,11 +3,11 @@ package parser
 import (
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
-	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
-	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
-	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
+	jsonParser "github.com/Checkmarx/kics/v2/pkg/parser/json"
+	terraformParser "github.com/Checkmarx/kics/v2/pkg/parser/terraform"
+	yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
 	"github.com/stretchr/testify/require"
 )
 

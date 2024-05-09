@@ -3,10 +3,10 @@ package json
 import (
 	"bytes"
 
-	"github.com/Checkmarx/kics/pkg/parser/utils"
+	"github.com/Checkmarx/kics/v2/pkg/parser/utils"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/resolver/file"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/resolver/file"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"

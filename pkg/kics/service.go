@@ -7,15 +7,15 @@ import (
 	"io"
 	"sync"
 
-	"github.com/Checkmarx/kics/pkg/engine"
-	"github.com/Checkmarx/kics/pkg/engine/provider"
-	"github.com/Checkmarx/kics/pkg/engine/secrets"
-	"github.com/Checkmarx/kics/pkg/minified"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser"
-	"github.com/Checkmarx/kics/pkg/resolver"
+	"github.com/Checkmarx/kics/v2/pkg/engine"
+	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
+	"github.com/Checkmarx/kics/v2/pkg/engine/secrets"
+	"github.com/Checkmarx/kics/v2/pkg/minified"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser"
+	"github.com/Checkmarx/kics/v2/pkg/resolver"
 
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )

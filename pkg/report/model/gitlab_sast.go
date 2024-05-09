@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 )

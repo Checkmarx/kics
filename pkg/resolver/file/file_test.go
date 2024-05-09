@@ -2,19 +2,21 @@ package file
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"path/filepath"
-	"reflect"
+	"regexp"
+	"strconv"
 	"strings"
-	"testing"
 
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
-
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/pkg/analyzer"
 	"gopkg.in/yaml.v3"
+
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
+	"github.com/rs/zerolog/log"
 )
 
 func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {

@@ -6,10 +6,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
 	"github.com/hashicorp/hcl/v2"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/stretchr/testify/require"
 )
 

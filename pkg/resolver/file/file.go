@@ -2,21 +2,18 @@ package file
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
-	"io"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"io/ioutil"
 	"os"
 	"path/filepath"
-	"regexp"
-	"strconv"
+	"reflect"
 	"strings"
+	"testing"
 
-	"github.com/Checkmarx/kics/pkg/analyzer"
+	"github.com/Checkmarx/kics/v2/test"
 	"gopkg.in/yaml.v3"
-
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/utils"
-	"github.com/rs/zerolog/log"
 )
 
 // ResolvedFile - used for caching the already resolved files

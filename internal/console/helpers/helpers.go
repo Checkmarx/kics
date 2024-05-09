@@ -14,9 +14,9 @@ import (
 	"strings"
 
 	"github.com/BurntSushi/toml"
-	"github.com/Checkmarx/kics/internal/metrics"
-	"github.com/Checkmarx/kics/pkg/progress"
-	"github.com/Checkmarx/kics/pkg/report"
+	"github.com/Checkmarx/kics/v2/internal/metrics"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
+	"github.com/Checkmarx/kics/v2/pkg/report"
 	"github.com/hashicorp/hcl"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
