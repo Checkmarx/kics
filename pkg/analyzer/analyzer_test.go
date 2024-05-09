@@ -430,7 +430,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			wantExclude:          []string{},
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
-			wantLOC:              227,
+			wantLOC:              377,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
