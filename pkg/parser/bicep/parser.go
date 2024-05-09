@@ -245,10 +245,11 @@ func parseDecorators(decorators []parser.IDecoratorContext, s *BicepVisitor) map
 
 func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) interface{} {
 	param := map[string]interface{}{}
-	identifier := ctx.Identifier().Accept(s).(string)
+
+	identifier := checkAcceptAntlrString(ctx.Identifier(), s)
+
 	if ctx.ParameterDefaultValue() != nil {
 		paramVal := ctx.ParameterDefaultValue().Accept(s)
-		param["defaultValue"] = nil
 		switch paramVal := paramVal.(type) {
 		case map[string][]interface{}:
 			stringifiedFunction := parseFunctionCall(paramVal)
@@ -258,12 +259,16 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 				paramVal = "[" + paramVal.(string) + "]"
 			}
 			param["defaultValue"] = paramVal
+		default:
+			param["defaultValue"] = nil
 		}
 	}
+
 	if ctx.TypeExpression() != nil {
 		typeExpression := ctx.TypeExpression().Accept(s)
 		param["type"] = typeExpression
 	}
+
 	decoratorsMap := parseDecorators(ctx.AllDecorator(), s)
 	for name, values := range decoratorsMap {
 		if name == "secure" {
@@ -274,7 +279,7 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 			}
 		} else {
 			if name == "allowed" {
-				param["allowedValues"] = decoratorsMap["allowed"]
+				param["allowedValues"] = values
 			} else {
 				param[name] = values
 			}
@@ -290,6 +295,7 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 	param[kicsLines] = lines
 
 	s.paramList[identifier] = param
+
 	return nil
 }
 
@@ -385,7 +391,7 @@ func checkAcceptExpression(ctx antlr.ParserRuleContext, s *BicepVisitor) interfa
 }
 
 func (s *BicepVisitor) VisitParameterDefaultValue(ctx *parser.ParameterDefaultValueContext) interface{} {
-	param := ctx.Expression().Accept(s)
+	param := checkAcceptExpression(ctx.Expression(), s)
 	return param
 }
 
@@ -415,8 +421,8 @@ func parseFunctionCall(functionData map[string][]interface{}) string {
 				stringifiedFunctionCall += ", "
 			}
 		}
+		stringifiedFunctionCall += ")"
 	}
-	stringifiedFunctionCall += ")"
 
 	return stringifiedFunctionCall
 }
@@ -508,9 +514,11 @@ func (s *BicepVisitor) VisitLiteralValue(ctx *parser.LiteralValueContext) interf
 		return false
 	}
 	if ctx.Identifier() != nil {
-		identifier := ctx.Identifier().Accept(s).(string)
-		identifier = convertToParamVar(identifier, s)
-		return identifier
+		identifier, ok := ctx.Identifier().Accept(s).(string)
+		if ok {
+			identifier = convertToParamVar(identifier, s)
+			return identifier
+		}
 	}
 
 	return nil
@@ -591,9 +599,13 @@ func (s *BicepVisitor) VisitInterpString(ctx *parser.InterpStringContext) interf
 		return complexInterpString
 	}
 
-	unformattedString := ctx.STRING_COMPLETE().GetText()
-	finalString := strings.ReplaceAll(unformattedString, "'", "")
-	return finalString
+	if ctx.STRING_COMPLETE() != nil {
+		unformattedString := ctx.STRING_COMPLETE().GetText()
+		finalString := strings.ReplaceAll(unformattedString, "'", "")
+		return finalString
+	}
+
+	return ""
 }
 
 func (s *BicepVisitor) VisitArray(ctx *parser.ArrayContext) interface{} {
@@ -609,12 +621,31 @@ func (s *BicepVisitor) VisitArray(ctx *parser.ArrayContext) interface{} {
 }
 
 func (s *BicepVisitor) VisitArrayItem(ctx *parser.ArrayItemContext) interface{} {
-	return ctx.Expression().Accept(s)
+	return checkAcceptExpression(ctx.Expression(), s)
+}
+
+func isParameter(expression interface{}) bool {
+	exp, ok := expression.(string)
+	if !ok {
+		return false
+	}
+
+	return strings.Contains(exp, "parameters(") || strings.Contains(exp, "variables(")
+}
+
+func isDotFunction(expression interface{}) bool {
+	exp, ok := expression.(string)
+	if !ok {
+		return false
+	}
+
+	return strings.Contains(exp, ").")
 }
 
 func (s *BicepVisitor) VisitObject(ctx *parser.ObjectContext) interface{} {
 	object := map[string]interface{}{}
 	propertiesLines := map[string]interface{}{}
+
 	for _, val := range ctx.AllObjectProperty() {
 		objectProperty, ok := val.Accept(s).(KicsObjectProperty)
 		if !ok {
@@ -645,26 +676,9 @@ func (s *BicepVisitor) VisitObject(ctx *parser.ObjectContext) interface{} {
 	return object
 }
 
-func isParameter(expression interface{}) bool {
-	exp, ok := expression.(string)
-	if !ok {
-		return false
-	}
-
-	return strings.Contains(exp, "parameters(") || strings.Contains(exp, "variables(")
-}
-
-func isDotFunction(expression interface{}) bool {
-	exp, ok := expression.(string)
-	if !ok {
-		return false
-	}
-
-	return strings.Contains(exp, ").")
-}
-
 func (s *BicepVisitor) VisitObjectProperty(ctx *parser.ObjectPropertyContext) interface{} {
 	objectProperty := map[string]interface{}{}
+
 	if ctx.Expression() != nil {
 		objectValue := ctx.Expression().Accept(s)
 		if isParameter(objectValue) || isDotFunction(objectValue) {
@@ -672,12 +686,16 @@ func (s *BicepVisitor) VisitObjectProperty(ctx *parser.ObjectPropertyContext) in
 		}
 
 		if ctx.Identifier() != nil {
-			identifier := ctx.Identifier().Accept(s).(string)
-			objectProperty[identifier] = objectValue
+			identifier, ok := ctx.Identifier().Accept(s).(string)
+			if ok {
+				objectProperty[identifier] = objectValue
+			}
 		}
 		if ctx.InterpString() != nil {
-			interpString := ctx.InterpString().Accept(s).(string)
-			objectProperty[interpString] = objectValue
+			interpString, ok := ctx.InterpString().Accept(s).(string)
+			if ok {
+				objectProperty[interpString] = objectValue
+			}
 		}
 	}
 
@@ -722,23 +740,30 @@ func (s *BicepVisitor) VisitIdentifier(ctx *parser.IdentifierContext) interface{
 }
 
 func (s *BicepVisitor) VisitParenthesizedExpression(ctx *parser.ParenthesizedExpressionContext) interface{} {
-	return ctx.Expression().Accept(s)
+	return checkAcceptExpression(ctx.Expression(), s)
 }
 
 func (s *BicepVisitor) VisitDecorator(ctx *parser.DecoratorContext) interface{} {
+	if ctx.DecoratorExpression() == nil {
+		return map[string][]interface{}{}
+	}
 	decorator := ctx.DecoratorExpression().Accept(s)
 	return decorator
 }
 
 func (s *BicepVisitor) VisitDecoratorExpression(ctx *parser.DecoratorExpressionContext) interface{} {
+	if ctx.FunctionCall() == nil {
+		return map[string][]interface{}{}
+	}
 	return ctx.FunctionCall().Accept(s)
 }
 
 func (s *BicepVisitor) VisitFunctionCall(ctx *parser.FunctionCallContext) interface{} {
-	identifier := ctx.Identifier().Accept(s).(string)
 	var argumentList []interface{}
-	var ok bool
+	identifier := checkAcceptAntlrString(ctx.Identifier(), s)
+
 	if ctx.ArgumentList() != nil {
+		var ok bool
 		argumentList, ok = ctx.ArgumentList().Accept(s).([]interface{})
 		if !ok {
 			return map[string]interface{}{}
@@ -753,6 +778,7 @@ func (s *BicepVisitor) VisitFunctionCall(ctx *parser.FunctionCallContext) interf
 
 func (s *BicepVisitor) VisitArgumentList(ctx *parser.ArgumentListContext) interface{} {
 	var argumentList []interface{}
+
 	for _, val := range ctx.AllExpression() {
 		argument := val.Accept(s)
 		argumentList = append(argumentList, argument)
@@ -761,7 +787,7 @@ func (s *BicepVisitor) VisitArgumentList(ctx *parser.ArgumentListContext) interf
 }
 
 func (s *BicepVisitor) VisitTypeExpression(ctx *parser.TypeExpressionContext) interface{} {
-	return ctx.Identifier().Accept(s)
+	return checkAcceptAntlrString(ctx.Identifier(), s)
 }
 
 // GetKind returns the kind of the parser
