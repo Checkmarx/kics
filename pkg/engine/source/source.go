@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"

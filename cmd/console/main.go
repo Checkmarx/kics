@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
-	"github.com/Checkmarx/kics/internal/console"
-	"github.com/Checkmarx/kics/internal/console/helpers"
-	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/v2/internal/console"
+	"github.com/Checkmarx/kics/v2/internal/console/helpers"
+	"github.com/Checkmarx/kics/v2/internal/constants"
 )
 
 func main() {

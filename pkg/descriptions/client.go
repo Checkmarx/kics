@@ -10,9 +10,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/constants"
-	descModel "github.com/Checkmarx/kics/pkg/descriptions/model"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	descModel "github.com/Checkmarx/kics/v2/pkg/descriptions/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/rs/zerolog/log"
 )
 

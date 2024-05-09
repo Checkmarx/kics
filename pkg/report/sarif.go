@@ -3,7 +3,7 @@ package report
 import (
 	"strings"
 
-	reportModel "github.com/Checkmarx/kics/pkg/report/model"
+	reportModel "github.com/Checkmarx/kics/v2/pkg/report/model"
 )
 
 // PrintSarifReport creates a report file on sarif format, fetching the ID and GUID from relationships to be inputted to taxonomies field

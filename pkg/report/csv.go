@@ -3,7 +3,7 @@ package report
 import (
 	"strings"
 
-	reportModel "github.com/Checkmarx/kics/pkg/report/model"
+	reportModel "github.com/Checkmarx/kics/v2/pkg/report/model"
 )
 
 // PrintCSVReport prints the CSV report in the given path and filename with the given body
