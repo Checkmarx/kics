@@ -108,7 +108,7 @@ func bicepParserInit() {
 		31, 3, 31, 426, 8, 31, 1, 31, 5, 31, 429, 8, 31, 10, 31, 12, 31, 432, 9,
 		31, 1, 32, 1, 32, 1, 32, 0, 1, 34, 33, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18,
 		20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54,
-		56, 58, 60, 62, 64, 0, 2, 1, 0, 42, 47, 3, 0, 14, 28, 35, 40, 49, 49, 474,
+		56, 58, 60, 62, 64, 0, 2, 1, 0, 42, 47, 3, 0, 14, 30, 35, 40, 49, 49, 474,
 		0, 69, 1, 0, 0, 0, 2, 84, 1, 0, 0, 0, 4, 86, 1, 0, 0, 0, 6, 94, 1, 0, 0,
 		0, 8, 110, 1, 0, 0, 0, 10, 119, 1, 0, 0, 0, 12, 137, 1, 0, 0, 0, 14, 143,
 		1, 0, 0, 0, 16, 155, 1, 0, 0, 0, 18, 167, 1, 0, 0, 0, 20, 187, 1, 0, 0,
@@ -3908,7 +3908,7 @@ func (p *bicepParser) ForExpression() (localctx IForExpressionContext) {
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserARRAY, bicepParserOBJECT, bicepParserRESOURCE, bicepParserOUTPUT, bicepParserTARGET_SCOPE, bicepParserIMPORT, bicepParserWITH, bicepParserAS, bicepParserMETADATA, bicepParserEXISTING, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIF, bicepParserFOR, bicepParserIN, bicepParserIDENTIFIER:
+	case bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserARRAY, bicepParserOBJECT, bicepParserRESOURCE, bicepParserOUTPUT, bicepParserTARGET_SCOPE, bicepParserIMPORT, bicepParserWITH, bicepParserAS, bicepParserMETADATA, bicepParserEXISTING, bicepParserTYPE, bicepParserMODULE, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIF, bicepParserFOR, bicepParserIN, bicepParserIDENTIFIER:
 		{
 			p.SetState(230)
 
@@ -5184,7 +5184,7 @@ func (p *bicepParser) LambdaExpression() (localctx ILambdaExpressionContext) {
 		}
 		_la = p.GetTokenStream().LA(1)
 
-		if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&1691034387992658) != 0 {
+		if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&1691035998605394) != 0 {
 			{
 				p.SetState(304)
 				p.ArgumentList()
@@ -5200,7 +5200,7 @@ func (p *bicepParser) LambdaExpression() (localctx ILambdaExpressionContext) {
 			}
 		}
 
-	case bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserARRAY, bicepParserOBJECT, bicepParserRESOURCE, bicepParserOUTPUT, bicepParserTARGET_SCOPE, bicepParserIMPORT, bicepParserWITH, bicepParserAS, bicepParserMETADATA, bicepParserEXISTING, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIF, bicepParserFOR, bicepParserIN, bicepParserIDENTIFIER:
+	case bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserARRAY, bicepParserOBJECT, bicepParserRESOURCE, bicepParserOUTPUT, bicepParserTARGET_SCOPE, bicepParserIMPORT, bicepParserWITH, bicepParserAS, bicepParserMETADATA, bicepParserEXISTING, bicepParserTYPE, bicepParserMODULE, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIF, bicepParserFOR, bicepParserIN, bicepParserIDENTIFIER:
 		{
 			p.SetState(308)
 			p.Identifier()
@@ -6307,7 +6307,7 @@ func (p *bicepParser) Object() (localctx IObjectContext) {
 		}
 		_la = p.GetTokenStream().LA(1)
 
-		for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&565134481145856) != 0 {
+		for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&565136091758592) != 0 {
 			{
 				p.SetState(352)
 				p.ObjectProperty()
@@ -6509,7 +6509,7 @@ func (p *bicepParser) ObjectProperty() (localctx IObjectPropertyContext) {
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserARRAY, bicepParserOBJECT, bicepParserRESOURCE, bicepParserOUTPUT, bicepParserTARGET_SCOPE, bicepParserIMPORT, bicepParserWITH, bicepParserAS, bicepParserMETADATA, bicepParserEXISTING, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIF, bicepParserFOR, bicepParserIN, bicepParserIDENTIFIER:
+	case bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserARRAY, bicepParserOBJECT, bicepParserRESOURCE, bicepParserOUTPUT, bicepParserTARGET_SCOPE, bicepParserIMPORT, bicepParserWITH, bicepParserAS, bicepParserMETADATA, bicepParserEXISTING, bicepParserTYPE, bicepParserMODULE, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIF, bicepParserFOR, bicepParserIN, bicepParserIDENTIFIER:
 		{
 			p.SetState(367)
 
@@ -6725,7 +6725,7 @@ func (p *bicepParser) Array() (localctx IArrayContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&1691034387992658) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&1691035998605394) != 0 {
 		{
 			p.SetState(381)
 			p.ArrayItem()
@@ -6907,7 +6907,7 @@ func (p *bicepParser) ArrayItem() (localctx IArrayItemContext) {
 			}
 		}
 
-	case bicepParserMULTILINE_STRING, bicepParserOBRACK, bicepParserCBRACK, bicepParserOPAR, bicepParserOBRACE, bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserARRAY, bicepParserOBJECT, bicepParserRESOURCE, bicepParserOUTPUT, bicepParserTARGET_SCOPE, bicepParserIMPORT, bicepParserWITH, bicepParserAS, bicepParserMETADATA, bicepParserEXISTING, bicepParserSTRING_LEFT_PIECE, bicepParserSTRING_COMPLETE, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIF, bicepParserFOR, bicepParserIN, bicepParserIDENTIFIER, bicepParserNUMBER:
+	case bicepParserMULTILINE_STRING, bicepParserOBRACK, bicepParserCBRACK, bicepParserOPAR, bicepParserOBRACE, bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserARRAY, bicepParserOBJECT, bicepParserRESOURCE, bicepParserOUTPUT, bicepParserTARGET_SCOPE, bicepParserIMPORT, bicepParserWITH, bicepParserAS, bicepParserMETADATA, bicepParserEXISTING, bicepParserTYPE, bicepParserMODULE, bicepParserSTRING_LEFT_PIECE, bicepParserSTRING_COMPLETE, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIF, bicepParserFOR, bicepParserIN, bicepParserIDENTIFIER, bicepParserNUMBER:
 
 	default:
 	}
@@ -7624,8 +7624,10 @@ type IIdentifierContext interface {
 	METADATA() antlr.TerminalNode
 	PARAM() antlr.TerminalNode
 	RESOURCE() antlr.TerminalNode
+	MODULE() antlr.TerminalNode
 	OUTPUT() antlr.TerminalNode
 	EXISTING() antlr.TerminalNode
+	TYPE() antlr.TerminalNode
 	VAR() antlr.TerminalNode
 	IF() antlr.TerminalNode
 	FOR() antlr.TerminalNode
@@ -7704,12 +7706,20 @@ func (s *IdentifierContext) RESOURCE() antlr.TerminalNode {
 	return s.GetToken(bicepParserRESOURCE, 0)
 }
 
+func (s *IdentifierContext) MODULE() antlr.TerminalNode {
+	return s.GetToken(bicepParserMODULE, 0)
+}
+
 func (s *IdentifierContext) OUTPUT() antlr.TerminalNode {
 	return s.GetToken(bicepParserOUTPUT, 0)
 }
 
 func (s *IdentifierContext) EXISTING() antlr.TerminalNode {
 	return s.GetToken(bicepParserEXISTING, 0)
+}
+
+func (s *IdentifierContext) TYPE() antlr.TerminalNode {
+	return s.GetToken(bicepParserTYPE, 0)
 }
 
 func (s *IdentifierContext) VAR() antlr.TerminalNode {
@@ -7792,7 +7802,7 @@ func (p *bicepParser) Identifier() (localctx IIdentifierContext) {
 		p.SetState(433)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&565115153793024) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&565116764405760) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)

@@ -663,31 +663,39 @@ func (s *BicepVisitor) VisitObjectProperty(ctx *parser.ObjectPropertyContext) in
 }
 
 func (s *BicepVisitor) VisitIdentifier(ctx *parser.IdentifierContext) interface{} {
-	if ctx.IDENTIFIER() != nil {
-		identifier := ctx.IDENTIFIER().GetText()
-		return identifier
+	contexts := []antlr.TerminalNode{
+		ctx.IDENTIFIER(),
+		ctx.IMPORT(),
+		ctx.WITH(),
+		ctx.AS(),
+		ctx.METADATA(),
+		ctx.PARAM(),
+		ctx.RESOURCE(),
+		ctx.OUTPUT(),
+		ctx.EXISTING(),
+		ctx.VAR(),
+		ctx.IF(),
+		ctx.FOR(),
+		ctx.IN(),
+		ctx.TRUE(),
+		ctx.FALSE(),
+		ctx.NULL(),
+		ctx.TARGET_SCOPE(),
+		ctx.STRING(),
+		ctx.INT(),
+		ctx.BOOL(),
+		ctx.ARRAY(),
+		ctx.OBJECT(),
+		ctx.TYPE(),
+		ctx.MODULE(),
 	}
-	if (ctx.NULL()) != nil {
-		return ctx.NULL().GetText()
+
+	for _, context := range contexts {
+		if context != nil {
+			return context.GetText()
+		}
 	}
-	if (ctx.STRING()) != nil {
-		return ctx.STRING().GetText()
-	}
-	if (ctx.INT()) != nil {
-		return ctx.INT().GetText()
-	}
-	if (ctx.BOOL()) != nil {
-		return ctx.BOOL().GetText()
-	}
-	if (ctx.OBJECT()) != nil {
-		return ctx.OBJECT().GetText()
-	}
-	if (ctx.ARRAY()) != nil {
-		return ctx.ARRAY().GetText()
-	}
-	if (ctx.METADATA()) != nil {
-		return ctx.METADATA().GetText()
-	}
+
 	return ""
 }
 
