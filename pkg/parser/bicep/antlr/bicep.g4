@@ -126,18 +126,29 @@ functionCall: identifier OPAR (NL? argumentList)? NL? CPAR;
 // argumentList -> expression ("," expression)*
 argumentList: expression (COMMA NL? expression)*;
 
-identifier:
-	IDENTIFIER
-	| PARAM
-	| RESOURCE
-	| VAR
-	| TRUE
-	| FALSE
-	| NULL
-	| STRING
-	| INT
-	| BOOL
-	| OBJECT;
+identifier
+    : IDENTIFIER
+    | IMPORT
+    | WITH
+    | AS
+    | METADATA
+    | PARAM
+    | RESOURCE
+    | OUTPUT
+    | EXISTING
+    | VAR
+    | IF
+    | FOR
+    | IN
+    | TRUE
+    | FALSE
+    | NULL
+    | TARGET_SCOPE
+    | STRING
+    | INT
+    | BOOL
+	| ARRAY
+    | OBJECT;
 
 // multilineString -> "'''" + MULTILINESTRINGCHAR+ + "'''"
 MULTILINE_STRING: '\'\'\'' .*? '\'\'\'';
@@ -175,6 +186,8 @@ TRUE: 'true';
 FALSE: 'false';
 
 NULL: 'null';
+
+ARRAY: 'array';
 
 OBJECT: 'object';
 

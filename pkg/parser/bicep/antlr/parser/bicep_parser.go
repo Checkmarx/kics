@@ -35,15 +35,15 @@ func bicepParserInit() {
 	staticData.LiteralNames = []string{
 		"", "", "'@'", "','", "'['", "']'", "'('", "')'", "'.'", "'|'", "",
 		"'='", "'{'", "'}'", "'param'", "'var'", "'true'", "'false'", "'null'",
-		"'object'", "'resource'", "'output'", "'targetScope'", "'import'", "'with'",
-		"'as'", "'metadata'", "'existing'", "", "", "", "", "'string'", "'int'",
-		"'bool'", "'if'", "'for'", "'in'", "'?'", "'>'", "'>='", "'<'", "'<='",
-		"'=='", "'!='",
+		"'array'", "'object'", "'resource'", "'output'", "'targetScope'", "'import'",
+		"'with'", "'as'", "'metadata'", "'existing'", "", "", "", "", "'string'",
+		"'int'", "'bool'", "'if'", "'for'", "'in'", "'?'", "'>'", "'>='", "'<'",
+		"'<='", "'=='", "'!='",
 	}
 	staticData.SymbolicNames = []string{
 		"", "MULTILINE_STRING", "AT", "COMMA", "OBRACK", "CBRACK", "OPAR", "CPAR",
 		"DOT", "PIPE", "COL", "ASSIGN", "OBRACE", "CBRACE", "PARAM", "VAR",
-		"TRUE", "FALSE", "NULL", "OBJECT", "RESOURCE", "OUTPUT", "TARGET_SCOPE",
+		"TRUE", "FALSE", "NULL", "ARRAY", "OBJECT", "RESOURCE", "OUTPUT", "TARGET_SCOPE",
 		"IMPORT", "WITH", "AS", "METADATA", "EXISTING", "STRING_LEFT_PIECE",
 		"STRING_MIDDLE_PIECE", "STRING_RIGHT_PIECE", "STRING_COMPLETE", "STRING",
 		"INT", "BOOL", "IF", "FOR", "IN", "QMARK", "GT", "GTE", "LT", "LTE",
@@ -61,7 +61,7 @@ func bicepParserInit() {
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 51, 386, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 52, 386, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
 		2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 2,
@@ -102,8 +102,8 @@ func bicepParserInit() {
 		369, 8, 27, 1, 27, 1, 27, 1, 28, 1, 28, 1, 28, 3, 28, 376, 8, 28, 1, 28,
 		5, 28, 379, 8, 28, 10, 28, 12, 28, 382, 9, 28, 1, 29, 1, 29, 1, 29, 0,
 		1, 30, 30, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32,
-		34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 0, 2, 1, 0, 39, 44,
-		3, 0, 14, 20, 32, 34, 45, 45, 417, 0, 63, 1, 0, 0, 0, 2, 75, 1, 0, 0, 0,
+		34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 0, 2, 1, 0, 40, 45,
+		3, 0, 14, 28, 33, 38, 46, 46, 417, 0, 63, 1, 0, 0, 0, 2, 75, 1, 0, 0, 0,
 		4, 80, 1, 0, 0, 0, 6, 98, 1, 0, 0, 0, 8, 104, 1, 0, 0, 0, 10, 116, 1, 0,
 		0, 0, 12, 136, 1, 0, 0, 0, 14, 150, 1, 0, 0, 0, 16, 158, 1, 0, 0, 0, 18,
 		174, 1, 0, 0, 0, 20, 180, 1, 0, 0, 0, 22, 184, 1, 0, 0, 0, 24, 208, 1,
@@ -116,65 +116,65 @@ func bicepParserInit() {
 		1, 0, 0, 0, 63, 64, 1, 0, 0, 0, 64, 66, 1, 0, 0, 0, 65, 63, 1, 0, 0, 0,
 		66, 67, 5, 0, 0, 1, 67, 1, 1, 0, 0, 0, 68, 76, 3, 4, 2, 0, 69, 76, 3, 8,
 		4, 0, 70, 76, 3, 10, 5, 0, 71, 76, 3, 12, 6, 0, 72, 76, 3, 14, 7, 0, 73,
-		76, 3, 16, 8, 0, 74, 76, 5, 47, 0, 0, 75, 68, 1, 0, 0, 0, 75, 69, 1, 0,
+		76, 3, 16, 8, 0, 74, 76, 5, 48, 0, 0, 75, 68, 1, 0, 0, 0, 75, 69, 1, 0,
 		0, 0, 75, 70, 1, 0, 0, 0, 75, 71, 1, 0, 0, 0, 75, 72, 1, 0, 0, 0, 75, 73,
 		1, 0, 0, 0, 75, 74, 1, 0, 0, 0, 76, 3, 1, 0, 0, 0, 77, 79, 3, 50, 25, 0,
 		78, 77, 1, 0, 0, 0, 79, 82, 1, 0, 0, 0, 80, 78, 1, 0, 0, 0, 80, 81, 1,
 		0, 0, 0, 81, 83, 1, 0, 0, 0, 82, 80, 1, 0, 0, 0, 83, 84, 5, 14, 0, 0, 84,
 		94, 3, 58, 29, 0, 85, 87, 3, 38, 19, 0, 86, 88, 3, 6, 3, 0, 87, 86, 1,
-		0, 0, 0, 87, 88, 1, 0, 0, 0, 88, 95, 1, 0, 0, 0, 89, 90, 5, 20, 0, 0, 90,
+		0, 0, 0, 87, 88, 1, 0, 0, 0, 88, 95, 1, 0, 0, 0, 89, 90, 5, 21, 0, 0, 90,
 		92, 3, 28, 14, 0, 91, 93, 3, 6, 3, 0, 92, 91, 1, 0, 0, 0, 92, 93, 1, 0,
 		0, 0, 93, 95, 1, 0, 0, 0, 94, 85, 1, 0, 0, 0, 94, 89, 1, 0, 0, 0, 95, 96,
-		1, 0, 0, 0, 96, 97, 5, 47, 0, 0, 97, 5, 1, 0, 0, 0, 98, 99, 5, 11, 0, 0,
+		1, 0, 0, 0, 96, 97, 5, 48, 0, 0, 97, 5, 1, 0, 0, 0, 98, 99, 5, 11, 0, 0,
 		99, 100, 3, 30, 15, 0, 100, 7, 1, 0, 0, 0, 101, 103, 3, 50, 25, 0, 102,
 		101, 1, 0, 0, 0, 103, 106, 1, 0, 0, 0, 104, 102, 1, 0, 0, 0, 104, 105,
 		1, 0, 0, 0, 105, 107, 1, 0, 0, 0, 106, 104, 1, 0, 0, 0, 107, 108, 5, 15,
 		0, 0, 108, 109, 3, 58, 29, 0, 109, 110, 5, 11, 0, 0, 110, 111, 3, 30, 15,
-		0, 111, 112, 5, 47, 0, 0, 112, 9, 1, 0, 0, 0, 113, 115, 3, 50, 25, 0, 114,
+		0, 111, 112, 5, 48, 0, 0, 112, 9, 1, 0, 0, 0, 113, 115, 3, 50, 25, 0, 114,
 		113, 1, 0, 0, 0, 115, 118, 1, 0, 0, 0, 116, 114, 1, 0, 0, 0, 116, 117,
-		1, 0, 0, 0, 117, 119, 1, 0, 0, 0, 118, 116, 1, 0, 0, 0, 119, 120, 5, 20,
-		0, 0, 120, 121, 3, 58, 29, 0, 121, 123, 3, 28, 14, 0, 122, 124, 5, 27,
+		1, 0, 0, 0, 117, 119, 1, 0, 0, 0, 118, 116, 1, 0, 0, 0, 119, 120, 5, 21,
+		0, 0, 120, 121, 3, 58, 29, 0, 121, 123, 3, 28, 14, 0, 122, 124, 5, 28,
 		0, 0, 123, 122, 1, 0, 0, 0, 123, 124, 1, 0, 0, 0, 124, 125, 1, 0, 0, 0,
 		125, 129, 5, 11, 0, 0, 126, 130, 3, 20, 10, 0, 127, 130, 3, 42, 21, 0,
 		128, 130, 3, 22, 11, 0, 129, 126, 1, 0, 0, 0, 129, 127, 1, 0, 0, 0, 129,
-		128, 1, 0, 0, 0, 130, 131, 1, 0, 0, 0, 131, 132, 5, 47, 0, 0, 132, 11,
+		128, 1, 0, 0, 0, 130, 131, 1, 0, 0, 0, 131, 132, 5, 48, 0, 0, 132, 11,
 		1, 0, 0, 0, 133, 135, 3, 50, 25, 0, 134, 133, 1, 0, 0, 0, 135, 138, 1,
 		0, 0, 0, 136, 134, 1, 0, 0, 0, 136, 137, 1, 0, 0, 0, 137, 139, 1, 0, 0,
-		0, 138, 136, 1, 0, 0, 0, 139, 140, 5, 21, 0, 0, 140, 144, 3, 58, 29, 0,
-		141, 145, 3, 58, 29, 0, 142, 143, 5, 20, 0, 0, 143, 145, 3, 28, 14, 0,
+		0, 138, 136, 1, 0, 0, 0, 139, 140, 5, 22, 0, 0, 140, 144, 3, 58, 29, 0,
+		141, 145, 3, 58, 29, 0, 142, 143, 5, 21, 0, 0, 143, 145, 3, 28, 14, 0,
 		144, 141, 1, 0, 0, 0, 144, 142, 1, 0, 0, 0, 145, 146, 1, 0, 0, 0, 146,
-		147, 5, 11, 0, 0, 147, 148, 3, 30, 15, 0, 148, 149, 5, 47, 0, 0, 149, 13,
-		1, 0, 0, 0, 150, 151, 5, 22, 0, 0, 151, 152, 5, 11, 0, 0, 152, 153, 3,
-		30, 15, 0, 153, 154, 5, 47, 0, 0, 154, 15, 1, 0, 0, 0, 155, 157, 3, 50,
+		147, 5, 11, 0, 0, 147, 148, 3, 30, 15, 0, 148, 149, 5, 48, 0, 0, 149, 13,
+		1, 0, 0, 0, 150, 151, 5, 23, 0, 0, 151, 152, 5, 11, 0, 0, 152, 153, 3,
+		30, 15, 0, 153, 154, 5, 48, 0, 0, 154, 15, 1, 0, 0, 0, 155, 157, 3, 50,
 		25, 0, 156, 155, 1, 0, 0, 0, 157, 160, 1, 0, 0, 0, 158, 156, 1, 0, 0, 0,
 		158, 159, 1, 0, 0, 0, 159, 161, 1, 0, 0, 0, 160, 158, 1, 0, 0, 0, 161,
-		162, 5, 23, 0, 0, 162, 169, 3, 28, 14, 0, 163, 164, 5, 24, 0, 0, 164, 168,
-		3, 42, 21, 0, 165, 166, 5, 25, 0, 0, 166, 168, 3, 58, 29, 0, 167, 163,
+		162, 5, 24, 0, 0, 162, 169, 3, 28, 14, 0, 163, 164, 5, 25, 0, 0, 164, 168,
+		3, 42, 21, 0, 165, 166, 5, 26, 0, 0, 166, 168, 3, 58, 29, 0, 167, 163,
 		1, 0, 0, 0, 167, 165, 1, 0, 0, 0, 168, 171, 1, 0, 0, 0, 169, 167, 1, 0,
 		0, 0, 169, 170, 1, 0, 0, 0, 170, 172, 1, 0, 0, 0, 171, 169, 1, 0, 0, 0,
-		172, 173, 5, 47, 0, 0, 173, 17, 1, 0, 0, 0, 174, 175, 5, 26, 0, 0, 175,
+		172, 173, 5, 48, 0, 0, 173, 17, 1, 0, 0, 0, 174, 175, 5, 27, 0, 0, 175,
 		176, 3, 58, 29, 0, 176, 177, 5, 11, 0, 0, 177, 178, 3, 30, 15, 0, 178,
-		179, 5, 47, 0, 0, 179, 19, 1, 0, 0, 0, 180, 181, 5, 35, 0, 0, 181, 182,
+		179, 5, 48, 0, 0, 179, 19, 1, 0, 0, 0, 180, 181, 5, 36, 0, 0, 181, 182,
 		3, 36, 18, 0, 182, 183, 3, 42, 21, 0, 183, 21, 1, 0, 0, 0, 184, 188, 5,
-		4, 0, 0, 185, 187, 5, 47, 0, 0, 186, 185, 1, 0, 0, 0, 187, 190, 1, 0, 0,
+		4, 0, 0, 185, 187, 5, 48, 0, 0, 186, 185, 1, 0, 0, 0, 187, 190, 1, 0, 0,
 		0, 188, 186, 1, 0, 0, 0, 188, 189, 1, 0, 0, 0, 189, 191, 1, 0, 0, 0, 190,
-		188, 1, 0, 0, 0, 191, 194, 5, 36, 0, 0, 192, 195, 3, 58, 29, 0, 193, 195,
+		188, 1, 0, 0, 0, 191, 194, 5, 37, 0, 0, 192, 195, 3, 58, 29, 0, 193, 195,
 		3, 24, 12, 0, 194, 192, 1, 0, 0, 0, 194, 193, 1, 0, 0, 0, 195, 196, 1,
-		0, 0, 0, 196, 197, 5, 37, 0, 0, 197, 198, 3, 30, 15, 0, 198, 199, 5, 10,
-		0, 0, 199, 203, 3, 26, 13, 0, 200, 202, 5, 47, 0, 0, 201, 200, 1, 0, 0,
+		0, 0, 0, 196, 197, 5, 38, 0, 0, 197, 198, 3, 30, 15, 0, 198, 199, 5, 10,
+		0, 0, 199, 203, 3, 26, 13, 0, 200, 202, 5, 48, 0, 0, 201, 200, 1, 0, 0,
 		0, 202, 205, 1, 0, 0, 0, 203, 201, 1, 0, 0, 0, 203, 204, 1, 0, 0, 0, 204,
 		206, 1, 0, 0, 0, 205, 203, 1, 0, 0, 0, 206, 207, 5, 5, 0, 0, 207, 23, 1,
 		0, 0, 0, 208, 209, 5, 6, 0, 0, 209, 210, 3, 58, 29, 0, 210, 211, 5, 3,
 		0, 0, 211, 212, 3, 58, 29, 0, 212, 213, 5, 7, 0, 0, 213, 25, 1, 0, 0, 0,
 		214, 217, 3, 30, 15, 0, 215, 217, 3, 20, 10, 0, 216, 214, 1, 0, 0, 0, 216,
-		215, 1, 0, 0, 0, 217, 27, 1, 0, 0, 0, 218, 224, 5, 28, 0, 0, 219, 220,
-		3, 30, 15, 0, 220, 221, 5, 29, 0, 0, 221, 223, 1, 0, 0, 0, 222, 219, 1,
+		215, 1, 0, 0, 0, 217, 27, 1, 0, 0, 0, 218, 224, 5, 29, 0, 0, 219, 220,
+		3, 30, 15, 0, 220, 221, 5, 30, 0, 0, 221, 223, 1, 0, 0, 0, 222, 219, 1,
 		0, 0, 0, 223, 226, 1, 0, 0, 0, 224, 222, 1, 0, 0, 0, 224, 225, 1, 0, 0,
 		0, 225, 227, 1, 0, 0, 0, 226, 224, 1, 0, 0, 0, 227, 228, 3, 30, 15, 0,
-		228, 229, 5, 30, 0, 0, 229, 232, 1, 0, 0, 0, 230, 232, 5, 31, 0, 0, 231,
+		228, 229, 5, 31, 0, 0, 229, 232, 1, 0, 0, 0, 230, 232, 5, 32, 0, 0, 231,
 		218, 1, 0, 0, 0, 231, 230, 1, 0, 0, 0, 232, 29, 1, 0, 0, 0, 233, 234, 6,
 		15, -1, 0, 234, 235, 3, 34, 17, 0, 235, 262, 1, 0, 0, 0, 236, 237, 10,
-		6, 0, 0, 237, 238, 5, 38, 0, 0, 238, 239, 3, 30, 15, 0, 239, 240, 5, 10,
+		6, 0, 0, 237, 238, 5, 39, 0, 0, 238, 239, 3, 30, 15, 0, 239, 240, 5, 10,
 		0, 0, 240, 241, 3, 30, 15, 7, 241, 261, 1, 0, 0, 0, 242, 243, 10, 2, 0,
 		0, 243, 244, 3, 32, 16, 0, 244, 245, 3, 30, 15, 3, 245, 261, 1, 0, 0, 0,
 		246, 247, 10, 7, 0, 0, 247, 248, 5, 4, 0, 0, 248, 249, 3, 30, 15, 0, 249,
@@ -191,17 +191,17 @@ func bicepParserInit() {
 		275, 267, 1, 0, 0, 0, 275, 268, 1, 0, 0, 0, 275, 269, 1, 0, 0, 0, 275,
 		270, 1, 0, 0, 0, 275, 271, 1, 0, 0, 0, 275, 272, 1, 0, 0, 0, 275, 273,
 		1, 0, 0, 0, 275, 274, 1, 0, 0, 0, 276, 35, 1, 0, 0, 0, 277, 279, 5, 6,
-		0, 0, 278, 280, 5, 47, 0, 0, 279, 278, 1, 0, 0, 0, 279, 280, 1, 0, 0, 0,
-		280, 281, 1, 0, 0, 0, 281, 283, 3, 30, 15, 0, 282, 284, 5, 47, 0, 0, 283,
+		0, 0, 278, 280, 5, 48, 0, 0, 279, 278, 1, 0, 0, 0, 279, 280, 1, 0, 0, 0,
+		280, 281, 1, 0, 0, 0, 281, 283, 3, 30, 15, 0, 282, 284, 5, 48, 0, 0, 283,
 		282, 1, 0, 0, 0, 283, 284, 1, 0, 0, 0, 284, 285, 1, 0, 0, 0, 285, 286,
 		5, 7, 0, 0, 286, 37, 1, 0, 0, 0, 287, 288, 3, 58, 29, 0, 288, 39, 1, 0,
-		0, 0, 289, 295, 5, 46, 0, 0, 290, 295, 5, 16, 0, 0, 291, 295, 5, 17, 0,
+		0, 0, 289, 295, 5, 47, 0, 0, 290, 295, 5, 16, 0, 0, 291, 295, 5, 17, 0,
 		0, 292, 295, 5, 18, 0, 0, 293, 295, 3, 58, 29, 0, 294, 289, 1, 0, 0, 0,
 		294, 290, 1, 0, 0, 0, 294, 291, 1, 0, 0, 0, 294, 292, 1, 0, 0, 0, 294,
 		293, 1, 0, 0, 0, 295, 41, 1, 0, 0, 0, 296, 313, 5, 12, 0, 0, 297, 299,
-		5, 47, 0, 0, 298, 297, 1, 0, 0, 0, 299, 300, 1, 0, 0, 0, 300, 298, 1, 0,
+		5, 48, 0, 0, 298, 297, 1, 0, 0, 0, 299, 300, 1, 0, 0, 0, 300, 298, 1, 0,
 		0, 0, 300, 301, 1, 0, 0, 0, 301, 310, 1, 0, 0, 0, 302, 304, 3, 44, 22,
-		0, 303, 305, 5, 47, 0, 0, 304, 303, 1, 0, 0, 0, 305, 306, 1, 0, 0, 0, 306,
+		0, 303, 305, 5, 48, 0, 0, 304, 303, 1, 0, 0, 0, 305, 306, 1, 0, 0, 0, 306,
 		304, 1, 0, 0, 0, 306, 307, 1, 0, 0, 0, 307, 309, 1, 0, 0, 0, 308, 302,
 		1, 0, 0, 0, 309, 312, 1, 0, 0, 0, 310, 308, 1, 0, 0, 0, 310, 311, 1, 0,
 		0, 0, 311, 314, 1, 0, 0, 0, 312, 310, 1, 0, 0, 0, 313, 298, 1, 0, 0, 0,
@@ -209,25 +209,25 @@ func bicepParserInit() {
 		43, 1, 0, 0, 0, 317, 320, 3, 58, 29, 0, 318, 320, 3, 28, 14, 0, 319, 317,
 		1, 0, 0, 0, 319, 318, 1, 0, 0, 0, 320, 321, 1, 0, 0, 0, 321, 322, 5, 10,
 		0, 0, 322, 323, 3, 30, 15, 0, 323, 45, 1, 0, 0, 0, 324, 328, 5, 4, 0, 0,
-		325, 327, 5, 47, 0, 0, 326, 325, 1, 0, 0, 0, 327, 330, 1, 0, 0, 0, 328,
+		325, 327, 5, 48, 0, 0, 326, 325, 1, 0, 0, 0, 327, 330, 1, 0, 0, 0, 328,
 		326, 1, 0, 0, 0, 328, 329, 1, 0, 0, 0, 329, 334, 1, 0, 0, 0, 330, 328,
 		1, 0, 0, 0, 331, 333, 3, 48, 24, 0, 332, 331, 1, 0, 0, 0, 333, 336, 1,
 		0, 0, 0, 334, 332, 1, 0, 0, 0, 334, 335, 1, 0, 0, 0, 335, 337, 1, 0, 0,
 		0, 336, 334, 1, 0, 0, 0, 337, 338, 5, 5, 0, 0, 338, 47, 1, 0, 0, 0, 339,
-		346, 3, 30, 15, 0, 340, 342, 5, 47, 0, 0, 341, 340, 1, 0, 0, 0, 342, 343,
+		346, 3, 30, 15, 0, 340, 342, 5, 48, 0, 0, 341, 340, 1, 0, 0, 0, 342, 343,
 		1, 0, 0, 0, 343, 341, 1, 0, 0, 0, 343, 344, 1, 0, 0, 0, 344, 347, 1, 0,
 		0, 0, 345, 347, 5, 3, 0, 0, 346, 341, 1, 0, 0, 0, 346, 345, 1, 0, 0, 0,
 		346, 347, 1, 0, 0, 0, 347, 49, 1, 0, 0, 0, 348, 349, 5, 2, 0, 0, 349, 350,
-		3, 52, 26, 0, 350, 351, 5, 47, 0, 0, 351, 51, 1, 0, 0, 0, 352, 358, 3,
+		3, 52, 26, 0, 350, 351, 5, 48, 0, 0, 351, 51, 1, 0, 0, 0, 352, 358, 3,
 		54, 27, 0, 353, 354, 3, 30, 15, 0, 354, 355, 5, 8, 0, 0, 355, 356, 3, 54,
 		27, 0, 356, 358, 1, 0, 0, 0, 357, 352, 1, 0, 0, 0, 357, 353, 1, 0, 0, 0,
 		358, 53, 1, 0, 0, 0, 359, 360, 3, 58, 29, 0, 360, 365, 5, 6, 0, 0, 361,
-		363, 5, 47, 0, 0, 362, 361, 1, 0, 0, 0, 362, 363, 1, 0, 0, 0, 363, 364,
+		363, 5, 48, 0, 0, 362, 361, 1, 0, 0, 0, 362, 363, 1, 0, 0, 0, 363, 364,
 		1, 0, 0, 0, 364, 366, 3, 56, 28, 0, 365, 362, 1, 0, 0, 0, 365, 366, 1,
-		0, 0, 0, 366, 368, 1, 0, 0, 0, 367, 369, 5, 47, 0, 0, 368, 367, 1, 0, 0,
+		0, 0, 0, 366, 368, 1, 0, 0, 0, 367, 369, 5, 48, 0, 0, 368, 367, 1, 0, 0,
 		0, 368, 369, 1, 0, 0, 0, 369, 370, 1, 0, 0, 0, 370, 371, 5, 7, 0, 0, 371,
 		55, 1, 0, 0, 0, 372, 380, 3, 30, 15, 0, 373, 375, 5, 3, 0, 0, 374, 376,
-		5, 47, 0, 0, 375, 374, 1, 0, 0, 0, 375, 376, 1, 0, 0, 0, 376, 377, 1, 0,
+		5, 48, 0, 0, 375, 374, 1, 0, 0, 0, 375, 376, 1, 0, 0, 0, 376, 377, 1, 0,
 		0, 0, 377, 379, 3, 30, 15, 0, 378, 373, 1, 0, 0, 0, 379, 382, 1, 0, 0,
 		0, 380, 378, 1, 0, 0, 0, 380, 381, 1, 0, 0, 0, 381, 57, 1, 0, 0, 0, 382,
 		380, 1, 0, 0, 0, 383, 384, 7, 1, 0, 0, 384, 59, 1, 0, 0, 0, 42, 63, 75,
@@ -290,39 +290,40 @@ const (
 	bicepParserTRUE                = 16
 	bicepParserFALSE               = 17
 	bicepParserNULL                = 18
-	bicepParserOBJECT              = 19
-	bicepParserRESOURCE            = 20
-	bicepParserOUTPUT              = 21
-	bicepParserTARGET_SCOPE        = 22
-	bicepParserIMPORT              = 23
-	bicepParserWITH                = 24
-	bicepParserAS                  = 25
-	bicepParserMETADATA            = 26
-	bicepParserEXISTING            = 27
-	bicepParserSTRING_LEFT_PIECE   = 28
-	bicepParserSTRING_MIDDLE_PIECE = 29
-	bicepParserSTRING_RIGHT_PIECE  = 30
-	bicepParserSTRING_COMPLETE     = 31
-	bicepParserSTRING              = 32
-	bicepParserINT                 = 33
-	bicepParserBOOL                = 34
-	bicepParserIF                  = 35
-	bicepParserFOR                 = 36
-	bicepParserIN                  = 37
-	bicepParserQMARK               = 38
-	bicepParserGT                  = 39
-	bicepParserGTE                 = 40
-	bicepParserLT                  = 41
-	bicepParserLTE                 = 42
-	bicepParserEQ                  = 43
-	bicepParserNEQ                 = 44
-	bicepParserIDENTIFIER          = 45
-	bicepParserNUMBER              = 46
-	bicepParserNL                  = 47
-	bicepParserSINGLE_LINE_COMMENT = 48
-	bicepParserMULTI_LINE_COMMENT  = 49
-	bicepParserSPACES              = 50
-	bicepParserUNKNOWN             = 51
+	bicepParserARRAY               = 19
+	bicepParserOBJECT              = 20
+	bicepParserRESOURCE            = 21
+	bicepParserOUTPUT              = 22
+	bicepParserTARGET_SCOPE        = 23
+	bicepParserIMPORT              = 24
+	bicepParserWITH                = 25
+	bicepParserAS                  = 26
+	bicepParserMETADATA            = 27
+	bicepParserEXISTING            = 28
+	bicepParserSTRING_LEFT_PIECE   = 29
+	bicepParserSTRING_MIDDLE_PIECE = 30
+	bicepParserSTRING_RIGHT_PIECE  = 31
+	bicepParserSTRING_COMPLETE     = 32
+	bicepParserSTRING              = 33
+	bicepParserINT                 = 34
+	bicepParserBOOL                = 35
+	bicepParserIF                  = 36
+	bicepParserFOR                 = 37
+	bicepParserIN                  = 38
+	bicepParserQMARK               = 39
+	bicepParserGT                  = 40
+	bicepParserGTE                 = 41
+	bicepParserLT                  = 42
+	bicepParserLTE                 = 43
+	bicepParserEQ                  = 44
+	bicepParserNEQ                 = 45
+	bicepParserIDENTIFIER          = 46
+	bicepParserNUMBER              = 47
+	bicepParserNL                  = 48
+	bicepParserSINGLE_LINE_COMMENT = 49
+	bicepParserMULTI_LINE_COMMENT  = 50
+	bicepParserSPACES              = 51
+	bicepParserUNKNOWN             = 52
 )
 
 // bicepParser rules.
@@ -483,7 +484,7 @@ func (p *bicepParser) Program() (localctx IProgramContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&140737504133124) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&281475008217092) != 0 {
 		{
 			p.SetState(60)
 			p.Statement()
@@ -3229,7 +3230,7 @@ func (p *bicepParser) ForExpression() (localctx IForExpressionContext) {
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserOBJECT, bicepParserRESOURCE, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIDENTIFIER:
+	case bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserARRAY, bicepParserOBJECT, bicepParserRESOURCE, bicepParserOUTPUT, bicepParserTARGET_SCOPE, bicepParserIMPORT, bicepParserWITH, bicepParserAS, bicepParserMETADATA, bicepParserEXISTING, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIF, bicepParserFOR, bicepParserIN, bicepParserIDENTIFIER:
 		{
 			p.SetState(192)
 
@@ -3634,8 +3635,8 @@ func (p *bicepParser) ForBody() (localctx IForBodyContext) {
 		goto errorExit
 	}
 
-	switch p.GetTokenStream().LA(1) {
-	case bicepParserMULTILINE_STRING, bicepParserOBRACK, bicepParserOPAR, bicepParserOBRACE, bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserOBJECT, bicepParserRESOURCE, bicepParserSTRING_LEFT_PIECE, bicepParserSTRING_COMPLETE, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIDENTIFIER, bicepParserNUMBER:
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 18, p.GetParserRuleContext()) {
+	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(214)
@@ -3645,15 +3646,14 @@ func (p *bicepParser) ForBody() (localctx IForBodyContext) {
 			localctx.(*ForBodyContext).body = _x
 		}
 
-	case bicepParserIF:
+	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(215)
 			p.IfCondition()
 		}
 
-	default:
-		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+	case antlr.ATNInvalidAltNumber:
 		goto errorExit
 	}
 
@@ -4451,7 +4451,7 @@ func (p *bicepParser) LogicCharacter() (localctx ILogicCharacterContext) {
 		p.SetState(265)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&34634616274944) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&69269232549888) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -5395,7 +5395,7 @@ func (p *bicepParser) Object() (localctx IObjectContext) {
 		}
 		_la = p.GetTokenStream().LA(1)
 
-		for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&35216854859776) != 0 {
+		for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&70915278749696) != 0 {
 			{
 				p.SetState(302)
 				p.ObjectProperty()
@@ -5597,7 +5597,7 @@ func (p *bicepParser) ObjectProperty() (localctx IObjectPropertyContext) {
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserOBJECT, bicepParserRESOURCE, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIDENTIFIER:
+	case bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserARRAY, bicepParserOBJECT, bicepParserRESOURCE, bicepParserOUTPUT, bicepParserTARGET_SCOPE, bicepParserIMPORT, bicepParserWITH, bicepParserAS, bicepParserMETADATA, bicepParserEXISTING, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIF, bicepParserFOR, bicepParserIN, bicepParserIDENTIFIER:
 		{
 			p.SetState(317)
 
@@ -5813,7 +5813,7 @@ func (p *bicepParser) Array() (localctx IArrayContext) {
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&105585599041618) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&211652767109202) != 0 {
 		{
 			p.SetState(331)
 			p.ArrayItem()
@@ -5995,7 +5995,7 @@ func (p *bicepParser) ArrayItem() (localctx IArrayItemContext) {
 			}
 		}
 
-	case bicepParserMULTILINE_STRING, bicepParserOBRACK, bicepParserCBRACK, bicepParserOPAR, bicepParserOBRACE, bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserOBJECT, bicepParserRESOURCE, bicepParserSTRING_LEFT_PIECE, bicepParserSTRING_COMPLETE, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIDENTIFIER, bicepParserNUMBER:
+	case bicepParserMULTILINE_STRING, bicepParserOBRACK, bicepParserCBRACK, bicepParserOPAR, bicepParserOBRACE, bicepParserPARAM, bicepParserVAR, bicepParserTRUE, bicepParserFALSE, bicepParserNULL, bicepParserARRAY, bicepParserOBJECT, bicepParserRESOURCE, bicepParserOUTPUT, bicepParserTARGET_SCOPE, bicepParserIMPORT, bicepParserWITH, bicepParserAS, bicepParserMETADATA, bicepParserEXISTING, bicepParserSTRING_LEFT_PIECE, bicepParserSTRING_COMPLETE, bicepParserSTRING, bicepParserINT, bicepParserBOOL, bicepParserIF, bicepParserFOR, bicepParserIN, bicepParserIDENTIFIER, bicepParserNUMBER:
 
 	default:
 	}
@@ -6706,15 +6706,26 @@ type IIdentifierContext interface {
 
 	// Getter signatures
 	IDENTIFIER() antlr.TerminalNode
+	IMPORT() antlr.TerminalNode
+	WITH() antlr.TerminalNode
+	AS() antlr.TerminalNode
+	METADATA() antlr.TerminalNode
 	PARAM() antlr.TerminalNode
 	RESOURCE() antlr.TerminalNode
+	OUTPUT() antlr.TerminalNode
+	EXISTING() antlr.TerminalNode
 	VAR() antlr.TerminalNode
+	IF() antlr.TerminalNode
+	FOR() antlr.TerminalNode
+	IN() antlr.TerminalNode
 	TRUE() antlr.TerminalNode
 	FALSE() antlr.TerminalNode
 	NULL() antlr.TerminalNode
+	TARGET_SCOPE() antlr.TerminalNode
 	STRING() antlr.TerminalNode
 	INT() antlr.TerminalNode
 	BOOL() antlr.TerminalNode
+	ARRAY() antlr.TerminalNode
 	OBJECT() antlr.TerminalNode
 
 	// IsIdentifierContext differentiates from other interfaces.
@@ -6757,6 +6768,22 @@ func (s *IdentifierContext) IDENTIFIER() antlr.TerminalNode {
 	return s.GetToken(bicepParserIDENTIFIER, 0)
 }
 
+func (s *IdentifierContext) IMPORT() antlr.TerminalNode {
+	return s.GetToken(bicepParserIMPORT, 0)
+}
+
+func (s *IdentifierContext) WITH() antlr.TerminalNode {
+	return s.GetToken(bicepParserWITH, 0)
+}
+
+func (s *IdentifierContext) AS() antlr.TerminalNode {
+	return s.GetToken(bicepParserAS, 0)
+}
+
+func (s *IdentifierContext) METADATA() antlr.TerminalNode {
+	return s.GetToken(bicepParserMETADATA, 0)
+}
+
 func (s *IdentifierContext) PARAM() antlr.TerminalNode {
 	return s.GetToken(bicepParserPARAM, 0)
 }
@@ -6765,8 +6792,28 @@ func (s *IdentifierContext) RESOURCE() antlr.TerminalNode {
 	return s.GetToken(bicepParserRESOURCE, 0)
 }
 
+func (s *IdentifierContext) OUTPUT() antlr.TerminalNode {
+	return s.GetToken(bicepParserOUTPUT, 0)
+}
+
+func (s *IdentifierContext) EXISTING() antlr.TerminalNode {
+	return s.GetToken(bicepParserEXISTING, 0)
+}
+
 func (s *IdentifierContext) VAR() antlr.TerminalNode {
 	return s.GetToken(bicepParserVAR, 0)
+}
+
+func (s *IdentifierContext) IF() antlr.TerminalNode {
+	return s.GetToken(bicepParserIF, 0)
+}
+
+func (s *IdentifierContext) FOR() antlr.TerminalNode {
+	return s.GetToken(bicepParserFOR, 0)
+}
+
+func (s *IdentifierContext) IN() antlr.TerminalNode {
+	return s.GetToken(bicepParserIN, 0)
 }
 
 func (s *IdentifierContext) TRUE() antlr.TerminalNode {
@@ -6781,6 +6828,10 @@ func (s *IdentifierContext) NULL() antlr.TerminalNode {
 	return s.GetToken(bicepParserNULL, 0)
 }
 
+func (s *IdentifierContext) TARGET_SCOPE() antlr.TerminalNode {
+	return s.GetToken(bicepParserTARGET_SCOPE, 0)
+}
+
 func (s *IdentifierContext) STRING() antlr.TerminalNode {
 	return s.GetToken(bicepParserSTRING, 0)
 }
@@ -6791,6 +6842,10 @@ func (s *IdentifierContext) INT() antlr.TerminalNode {
 
 func (s *IdentifierContext) BOOL() antlr.TerminalNode {
 	return s.GetToken(bicepParserBOOL, 0)
+}
+
+func (s *IdentifierContext) ARRAY() antlr.TerminalNode {
+	return s.GetToken(bicepParserARRAY, 0)
 }
 
 func (s *IdentifierContext) OBJECT() antlr.TerminalNode {
@@ -6825,7 +6880,7 @@ func (p *bicepParser) Identifier() (localctx IIdentifierContext) {
 		p.SetState(383)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&35214438940672) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&70910446911488) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)

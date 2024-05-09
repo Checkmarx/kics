@@ -658,6 +658,12 @@ func (s *BicepVisitor) VisitIdentifier(ctx *parser.IdentifierContext) interface{
 	if (ctx.OBJECT()) != nil {
 		return ctx.OBJECT().GetText()
 	}
+	if (ctx.ARRAY()) != nil {
+		return ctx.ARRAY().GetText()
+	}
+	if (ctx.METADATA()) != nil {
+		return ctx.METADATA().GetText()
+	}
 	return ""
 }
 
