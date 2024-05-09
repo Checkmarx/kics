@@ -16,26 +16,6 @@ func (v *BasebicepVisitor) VisitStatement(ctx *StatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BasebicepVisitor) VisitParameterDecl(ctx *ParameterDeclContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BasebicepVisitor) VisitParameterDefaultValue(ctx *ParameterDefaultValueContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BasebicepVisitor) VisitVariableDecl(ctx *VariableDeclContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BasebicepVisitor) VisitResourceDecl(ctx *ResourceDeclContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BasebicepVisitor) VisitOutputDecl(ctx *OutputDeclContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
 func (v *BasebicepVisitor) VisitTargetScopeDecl(ctx *TargetScopeDeclContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -48,11 +28,31 @@ func (v *BasebicepVisitor) VisitMetadataDecl(ctx *MetadataDeclContext) interface
 	return v.VisitChildren(ctx)
 }
 
+func (v *BasebicepVisitor) VisitParameterDecl(ctx *ParameterDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BasebicepVisitor) VisitParameterDefaultValue(ctx *ParameterDefaultValueContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BasebicepVisitor) VisitTypeDecl(ctx *TypeDeclContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
+func (v *BasebicepVisitor) VisitVariableDecl(ctx *VariableDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BasebicepVisitor) VisitResourceDecl(ctx *ResourceDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BasebicepVisitor) VisitModuleDecl(ctx *ModuleDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BasebicepVisitor) VisitOutputDecl(ctx *OutputDeclContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -77,6 +77,10 @@ func (v *BasebicepVisitor) VisitInterpString(ctx *InterpStringContext) interface
 }
 
 func (v *BasebicepVisitor) VisitExpression(ctx *ExpressionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BasebicepVisitor) VisitLambdaExpression(ctx *LambdaExpressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

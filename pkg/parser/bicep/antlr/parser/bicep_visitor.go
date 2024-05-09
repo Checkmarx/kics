@@ -14,21 +14,6 @@ type bicepVisitor interface {
 	// Visit a parse tree produced by bicepParser#statement.
 	VisitStatement(ctx *StatementContext) interface{}
 
-	// Visit a parse tree produced by bicepParser#parameterDecl.
-	VisitParameterDecl(ctx *ParameterDeclContext) interface{}
-
-	// Visit a parse tree produced by bicepParser#parameterDefaultValue.
-	VisitParameterDefaultValue(ctx *ParameterDefaultValueContext) interface{}
-
-	// Visit a parse tree produced by bicepParser#variableDecl.
-	VisitVariableDecl(ctx *VariableDeclContext) interface{}
-
-	// Visit a parse tree produced by bicepParser#resourceDecl.
-	VisitResourceDecl(ctx *ResourceDeclContext) interface{}
-
-	// Visit a parse tree produced by bicepParser#outputDecl.
-	VisitOutputDecl(ctx *OutputDeclContext) interface{}
-
 	// Visit a parse tree produced by bicepParser#targetScopeDecl.
 	VisitTargetScopeDecl(ctx *TargetScopeDeclContext) interface{}
 
@@ -38,11 +23,26 @@ type bicepVisitor interface {
 	// Visit a parse tree produced by bicepParser#metadataDecl.
 	VisitMetadataDecl(ctx *MetadataDeclContext) interface{}
 
+	// Visit a parse tree produced by bicepParser#parameterDecl.
+	VisitParameterDecl(ctx *ParameterDeclContext) interface{}
+
+	// Visit a parse tree produced by bicepParser#parameterDefaultValue.
+	VisitParameterDefaultValue(ctx *ParameterDefaultValueContext) interface{}
+
 	// Visit a parse tree produced by bicepParser#typeDecl.
 	VisitTypeDecl(ctx *TypeDeclContext) interface{}
 
+	// Visit a parse tree produced by bicepParser#variableDecl.
+	VisitVariableDecl(ctx *VariableDeclContext) interface{}
+
+	// Visit a parse tree produced by bicepParser#resourceDecl.
+	VisitResourceDecl(ctx *ResourceDeclContext) interface{}
+
 	// Visit a parse tree produced by bicepParser#moduleDecl.
 	VisitModuleDecl(ctx *ModuleDeclContext) interface{}
+
+	// Visit a parse tree produced by bicepParser#outputDecl.
+	VisitOutputDecl(ctx *OutputDeclContext) interface{}
 
 	// Visit a parse tree produced by bicepParser#ifCondition.
 	VisitIfCondition(ctx *IfConditionContext) interface{}
@@ -61,6 +61,9 @@ type bicepVisitor interface {
 
 	// Visit a parse tree produced by bicepParser#expression.
 	VisitExpression(ctx *ExpressionContext) interface{}
+
+	// Visit a parse tree produced by bicepParser#lambdaExpression.
+	VisitLambdaExpression(ctx *LambdaExpressionContext) interface{}
 
 	// Visit a parse tree produced by bicepParser#logicCharacter.
 	VisitLogicCharacter(ctx *LogicCharacterContext) interface{}

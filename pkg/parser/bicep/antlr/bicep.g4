@@ -102,6 +102,10 @@ expression:
 	| expression logicCharacter expression
 	| primaryExpression;
 
+// lambdaExpression -> ( "(" argumentList? ")" | IDENTIFIER ) "=>" expression
+lambdaExpression: 
+    (OPAR argumentList? CPAR | identifier) ARROW expression;
+
 logicCharacter: (GT | GTE | LT | LTE | EQ | NEQ);
 
 // primaryExpression -> literalValue | interpString | multilineString | array | object |
@@ -114,7 +118,8 @@ primaryExpression:
 	| array
 	| object
 	| forExpression
-	| parenthesizedExpression;
+	| parenthesizedExpression
+    | lambdaExpression;
 
 // parenthesizedExpression -> "(" expression ")"
 parenthesizedExpression: OPAR NL? expression NL? CPAR;
@@ -271,6 +276,8 @@ LTE: '<=';
 EQ: '==';
 
 NEQ: '!=';
+
+ARROW: '=>';
 
 IDENTIFIER: [a-zA-Z_] [a-zA-Z_0-9]*;
 
