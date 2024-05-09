@@ -16,7 +16,7 @@ jobs:
           go-version-file: go.mod
           cache: false
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v3.5.0
+        uses: golangci/golangci-lint-action@v4.0.0
         with:
           version: v1.57.2
           args: -c .golangci.yml --timeout 20m
