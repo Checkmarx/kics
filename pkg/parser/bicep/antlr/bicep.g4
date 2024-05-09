@@ -3,7 +3,7 @@ grammar bicep;
 // program -> statement* EOF
 program: statement* EOF;
 
-statement: parameterDecl | variableDecl | resourceDecl | outputDecl | targetScopeDecl | importDecl | NL;
+statement: parameterDecl | variableDecl | resourceDecl | outputDecl | targetScopeDecl | importDecl | metadataDecl | typeDecl | moduleDecl | NL;
 
 // parameterDecl -> decorator* "parameter" IDENTIFIER(name) typeExpression parameterDefaultValue? NL
 // | decorator* "parameter" IDENTIFIER(name) "resource" interpString(type) parameterDefaultValue? NL
@@ -29,7 +29,12 @@ resourceDecl:
         | forExpression
 	) NL;
 
-outputDecl: decorator* OUTPUT name = identifier (type1 = identifier | RESOURCE type2 = interpString) ASSIGN expression NL;
+
+// outputDecl ->
+//   decorator* "output" IDENTIFIER(name) IDENTIFIER(type) "=" expression NL
+//   decorator* "output" IDENTIFIER(name) "resource" interpString(type) "=" expression NL
+outputDecl: 
+	decorator* OUTPUT name = identifier (type1 = identifier | RESOURCE type2 = interpString) ASSIGN expression NL;
 
 // targetScopeDecl -> "targetScope" "=" expression NL
 targetScopeDecl: TARGET_SCOPE ASSIGN expression NL;
@@ -41,6 +46,19 @@ importDecl:
 // metadataDecl -> "metadata" IDENTIFIER(name) "=" expression NL
 metadataDecl:
     METADATA name = identifier ASSIGN expression NL;
+
+// typeDecl -> decorator* "type" IDENTIFIER(name) "=" typeExpression NL
+typeDecl: 
+	decorator* TYPE name = identifier ASSIGN typeExpression NL;
+
+// moduleDecl -> decorator* "module" IDENTIFIER(name) interpString(type) "=" (ifCondition | object | forExpression) NL
+moduleDecl
+    : decorator* MODULE name = identifier type = interpString ASSIGN (
+        ifCondition
+        | object
+        | forExpression
+    ) NL
+    ;
 
 // ifCondition -> "if" parenthesizedExpression object
 ifCondition
@@ -206,6 +224,10 @@ AS: 'as';
 METADATA: 'metadata';
 
 EXISTING: 'existing';
+
+TYPE: 'type';
+
+MODULE: 'module';
 
 // stringLeftPiece -> "'" STRINGCHAR* "${"
 STRING_LEFT_PIECE: '\'' STRINGCHAR* '${';

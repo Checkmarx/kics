@@ -48,6 +48,14 @@ func (v *BasebicepVisitor) VisitMetadataDecl(ctx *MetadataDeclContext) interface
 	return v.VisitChildren(ctx)
 }
 
+func (v *BasebicepVisitor) VisitTypeDecl(ctx *TypeDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BasebicepVisitor) VisitModuleDecl(ctx *ModuleDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BasebicepVisitor) VisitIfCondition(ctx *IfConditionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
