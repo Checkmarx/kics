@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/console/flags"
+	"github.com/Checkmarx/kics/v2/internal/console/flags"
 	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/assert"
 )

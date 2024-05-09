@@ -1,9 +1,9 @@
 package descriptions
 
 import (
-	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/internal/tracker"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	"github.com/Checkmarx/kics/v2/internal/tracker"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 )
 
 // CheckVersion - checks if using the latest version and saves that information in the tracker
