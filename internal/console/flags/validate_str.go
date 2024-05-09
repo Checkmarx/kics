@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
 var validStrEnums = map[string]map[string]string{

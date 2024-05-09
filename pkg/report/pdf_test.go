@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/test"
 )
 
 var pdfTests = []reportTestCase{

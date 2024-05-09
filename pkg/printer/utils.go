@@ -3,7 +3,7 @@ package printer
 import (
 	"time"
 
-	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
+	consoleFlags "github.com/Checkmarx/kics/v2/internal/console/flags"
 	"github.com/rs/zerolog"
 )
 

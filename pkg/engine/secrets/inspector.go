@@ -11,14 +11,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Checkmarx/kics/assets"
-	"github.com/Checkmarx/kics/pkg/detector"
-	"github.com/Checkmarx/kics/pkg/detector/docker"
-	"github.com/Checkmarx/kics/pkg/detector/helm"
-	engine "github.com/Checkmarx/kics/pkg/engine"
-	"github.com/Checkmarx/kics/pkg/engine/similarity"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/assets"
+	"github.com/Checkmarx/kics/v2/pkg/detector"
+	"github.com/Checkmarx/kics/v2/pkg/detector/docker"
+	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
+	engine "github.com/Checkmarx/kics/v2/pkg/engine"
+	"github.com/Checkmarx/kics/v2/pkg/engine/similarity"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/rs/zerolog/log"
 )
 
