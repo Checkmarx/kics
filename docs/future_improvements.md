@@ -26,6 +26,14 @@ To avoid potential false positives and improve the accuracy of scans when workin
 
 We advise reviewing your project's specific security needs to determine if this flag is appropriate. More information about the passwords and secrets query is available in our [Password and Secrets documentation](https://github.com/Checkmarx/kics/blob/master/docs/secrets.md). 
 
+### Commands on Bicep Files as Comments
+
+The current version does not support **ignoring sections using special commands in comments** when scanning Bicep files. Unlike other file types, where comments starting with `kics-scan` can control the scan behavior, this feature is not yet available for Bicep.
+
+We are working on adding this capability in future updates. Until then, please note that Bicep files will be scanned in their entirety, and commands in comments will be ignored.
+
+More information about commands on comments in files is available on [Running KICS documentation page](https://docs.kics.io/latest/running-kics/#using_commands_on_scanned_files_as_comments)
+
 ---
 
 ## Contribution
