@@ -61,7 +61,7 @@ type Resource struct {
 	ResourceData interface{}
 }
 
-// Encurta o array de Resources deixando apenas aquelas do nivel mais alto (não tem parent)
+// Filters the Resource array in order to keep only the top-level resources while reformatting them
 func filterParentStructs(resources []*Resource) []interface{} {
 	filteredResources := []interface{}{}
 
@@ -76,13 +76,21 @@ func filterParentStructs(resources []*Resource) []interface{} {
 }
 
 func setChildType(child map[string]interface{}, parentType string) {
+	childType, hasType := child["type"]
+	if !hasType {
+		return
+	}
+	childTypeString, ok := childType.(string)
+	if !ok {
+		return
+	}
 	if parentType != "" {
-		newType := strings.Replace((child)["type"].(string), parentType+"/", "", 1)
-		(child)["type"] = newType
+		childTypeString = strings.Replace(childTypeString, parentType+"/", "", 1)
+		child["type"] = childTypeString
 	}
 }
 
-// Reverte um objeto do tipo struct Resource para a estrutura original do JBicep (inverso do convertOriginalResourcesToStruct)
+// Converts Resource struct array back to a JBicep structure
 func reformatTestTree(resource *Resource) map[string]interface{} {
 	reformattedResource := map[string]interface{}{}
 
@@ -107,38 +115,63 @@ func reformatTestTree(resource *Resource) map[string]interface{} {
 	return reformattedResource
 }
 
-// Adiciona as resources ao array "resources" do seu parent caso exista
+// Adds resource to its parent's children array
 func addChildrenToParents(resources []*Resource) {
 	resourceMap := map[string]*Resource{}
 
+	// Loops twice through the resources array in order to first fill the resourceMap with the required data
 	for _, resource := range resources {
 		resourceMap[resource.Name] = resource
 	}
 
 	for _, resource := range resources {
 		if resource.Parent != "" {
-			parent := resourceMap[resource.Parent]
+			parent, ok := resourceMap[resource.Parent]
+			if !ok {
+				continue
+			}
 			parent.Children = append(parent.Children, resource)
 		}
 	}
 }
 
-// Converte array de objetos com a estrutura original do JBicep para um array de Resource
+// Converts JBicep structure to a Resource struct array
 func convertOriginalResourcesToStruct(resources []interface{}) []*Resource {
 	newResources := []*Resource{}
 
 	for _, res := range resources {
-		actualRes := res.(map[string]interface{})
-		resName := actualRes["identifier"].(string)
-		resType := actualRes["type"].(string)
+		actualRes, ok := res.(map[string]interface{})
+		if !ok {
+			return newResources
+		}
+		resName, hasName := actualRes["identifier"]
+		resType, hasType := actualRes["type"]
+
+		if !hasName || !hasType {
+			return newResources
+		}
+
+		resNameString, ok := resName.(string)
+		if !ok {
+			return newResources
+		}
+		resTypeString, ok := resType.(string)
+		if !ok {
+			return newResources
+		}
+
 		newRes := Resource{
-			Name:         resName,
-			FullType:     resType,
+			Name:         resNameString,
+			FullType:     resTypeString,
 			ResourceData: res,
 		}
 
-		if resParent, ok := actualRes["parent"]; ok {
-			newRes.Parent = resParent.(string)
+		if resParent, hasParent := actualRes["parent"]; hasParent {
+			var ok bool
+			newRes.Parent, ok = resParent.(string)
+			if !ok {
+				return newResources
+			}
 		}
 
 		newResources = append(newResources, &newRes)
@@ -160,22 +193,30 @@ func makeResourcesNestedStructure(jBicep *JSONBicep) []interface{} {
 // Parse - parses bicep to BicepVisitor template (json file)
 func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 	bicepVisitor := NewBicepVisitor()
-	stream, _ := antlr.NewFileStream(file)
+	stream, err := antlr.NewFileStream(file)
+	if err != nil {
+		return nil, nil, err
+	}
 	lexer := parser.NewbicepLexer(stream)
 
 	tokenStream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	bicepParser := parser.NewbicepParser(tokenStream)
+
 	bicepParser.RemoveErrorListeners()
 	bicepParser.AddErrorListener(antlr.NewDiagnosticErrorListener(true))
 
-	bicepParser.Program().Accept(bicepVisitor)
+	program := bicepParser.Program()
+	if program != nil {
+		program.Accept(bicepVisitor)
+	}
 
 	var doc model.Document
 
 	jBicep := convertVisitorToJSONBicep(bicepVisitor)
-	testeResources := makeResourcesNestedStructure(jBicep)
 
-	jBicep.Resources = testeResources
+	nestedResources := makeResourcesNestedStructure(jBicep)
+	jBicep.Resources = nestedResources
+
 	bicepBytes, err := json.Marshal(jBicep)
 	if err != nil {
 		return nil, nil, err
@@ -445,23 +486,38 @@ func convertToParamVar(str string, s *BicepVisitor) string {
 
 func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{} {
 	if ctx.GetChildCount() > 1 {
-		if ctx.Identifier() != nil {
-			identifier := ctx.Identifier().Accept(s).(string)
-			identifier = convertToParamVar(identifier, s)
-			exp := ctx.Expression(0).Accept(s)
-			if ctx.DOT() != nil {
-				switch exp := exp.(type) {
-				case map[string][]interface{}:
-					return parseFunctionCall(exp) + "." + identifier
-				case string:
-					return exp + "." + identifier
-				default:
-					return nil
-				}
+		if ctx.DOT() != nil {
+			var expressionString string
+
+			var exp interface{} = ""
+			if ctx.Expression(0) != nil {
+				exp = ctx.Expression(0).Accept(s)
 			}
-		} else if ctx.LogicCharacter() == nil {
-			for _, val := range ctx.AllExpression() {
-				val.Accept(s)
+
+			switch exp := exp.(type) {
+			case map[string][]interface{}:
+				expressionString = parseFunctionCall(exp)
+			case string:
+				expressionString = exp
+			default:
+				expressionString = ""
+			}
+
+			if ctx.Identifier() != nil {
+				identifier := checkAcceptAntlrString(ctx.Identifier(), s)
+				identifier = convertToParamVar(identifier, s)
+
+				return expressionString + "." + identifier
+			}
+
+			if ctx.FunctionCall() != nil {
+				fc := ctx.FunctionCall().Accept(s)
+				fcData, ok := fc.(map[string][]interface{})
+				if !ok {
+					return ""
+				}
+				functionCallString := parseFunctionCall(fcData)
+				return expressionString + "." + functionCallString
 			}
 		}
 	}
@@ -470,7 +526,7 @@ func (s *BicepVisitor) VisitExpression(ctx *parser.ExpressionContext) interface{
 		return ctx.PrimaryExpression().Accept(s)
 	}
 
-	return ""
+	return nil
 }
 
 func (s *BicepVisitor) VisitPrimaryExpression(ctx *parser.PrimaryExpressionContext) interface{} {

@@ -1002,7 +1002,7 @@ func TestParseBicepFile(t *testing.T) {
 							],
 							"identifier": "nic",
 							"location": null,
-							"name": "",
+							"name": null,
 							"type": "Microsoft.Network/networkInterfaces",
 							"userAssignedIdentities": {
 								"'${[resourceId(Microsoft.ManagedIdentity/userAssignedIdentities, variables('nicName'))]}'": {
@@ -1397,12 +1397,12 @@ func TestParseBicepFile(t *testing.T) {
 								},
 								"enableNonSslPort": "[parameters('enableNonSslPort')]",
 								"minimumTlsVersion": "1.2",
-								"publicNetworkAccess": "",
-								"redisConfiguration": "",
+								"publicNetworkAccess": null,
+								"redisConfiguration": null,
 								"redisVersion": "6",
-								"replicasPerMaster": "",
-								"replicasPerPrimary": "",
-								"shardCount": "",
+								"replicasPerMaster": null,
+								"replicasPerPrimary": null,
+								"shardCount": null,
 								"sku": {
 									"_kics_lines": {
 										"_kics__default": {
@@ -1419,14 +1419,14 @@ func TestParseBicepFile(t *testing.T) {
 										}
 									},
 									"capacity": "[parameters('capacity')]",
-									"family": "",
+									"family": null,
 									"name": "[parameters('skuName')]"
 								},
-								"subnetId": ""
+								"subnetId": null
 							},
 							"tags": "[parameters('tags')]",
 							"type": "Microsoft.Cache/redis",
-							"zones": ""
+							"zones": null
 						},
 						{
 							"apiVersion": "2021-05-01-preview",
@@ -1486,7 +1486,7 @@ func TestParseBicepFile(t *testing.T) {
 												"_kics_line": 334
 											}
 										},
-										"value": "'${redisCache.properties.hostName},password=${.primaryKey},ssl=True,abortConnect=False'"
+										"value": "['${redisCache.properties.hostName},password=${redisCache.listKeys().primaryKey},ssl=True,abortConnect=False']"
 									},
 									"type": "secrets"
 								}
@@ -1505,7 +1505,7 @@ func TestParseBicepFile(t *testing.T) {
 							}
 						},
 						"diagnosticsLogs": {
-							"value": ""
+							"value": null
 						},
 						"diagnosticsLogsSpecified": {
 							"value": null
