@@ -96,7 +96,7 @@ def calc_file_stats(lines: typing.List[LineStats]) -> typing.List[FileStats]:
     print("::endgroup::")
 
     for filename, group in itertools.groupby(lines, key=key):
-        filename = filename.replace("github.com/Checkmarx/kics/", "")
+        filename = filename.replace("github.com/Checkmarx/kics/v2/", "")
         if filename in exclude:
             continue
         group = list(group)

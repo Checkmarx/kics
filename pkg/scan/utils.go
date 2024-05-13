@@ -8,12 +8,12 @@ import (
 	"regexp"
 	"strings"
 
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
-	"github.com/Checkmarx/kics/pkg/analyzer"
-	"github.com/Checkmarx/kics/pkg/engine/provider"
-	"github.com/Checkmarx/kics/pkg/model"
-	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
-	"github.com/Checkmarx/kics/pkg/utils"
+	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
+	"github.com/Checkmarx/kics/v2/pkg/analyzer"
+	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )

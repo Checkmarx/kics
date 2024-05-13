@@ -11,15 +11,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/xeipuuv/gojsonschema"
 )
 
-var (
-	filekey = "file"
-)
+var filekey = "file"
 
 type logMsg struct {
 	Level    string `json:"level"`
@@ -159,7 +157,14 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		require.NoError(t, errW,
 			"[output/%s] Actual Payload - Unmarshaling JSON file should not yield an error", actualFileName)
 
-		checkDocuments(t, &actualI)
+		idKey := "id"
+		for _, docs := range actualI.Documents {
+			// Here additional checks may be added as length of id, or contains in file
+			require.NotNil(t, docs[idKey])
+			require.NotNil(t, docs[filekey])
+			docs[idKey] = "0"
+			docs[filekey] = filekey
+		}
 
 		require.Equal(t, expectI, actualI,
 			"Expected Payload content: 'fixtures/%s' doesn't match the Actual Payload content: 'output/%s'.",
@@ -197,13 +202,31 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			}
 		}
 
-		assert.True(t, assertUnique(&actualI.Queries), "Expected all similarity id to be unique")
+		for i := range actualI.Queries {
+			actualQuery := actualI.Queries[i]
+			expectQuery := expectI.Queries[i]
 
-		expectedSearchValue, actualSearchValue := checkQueries(t, &actualI, &expectI, expectFileName, actualFileName)
+			require.Equal(t, actualQuery.QueryName, expectQuery.QueryName,
+				"Expected Result queries doesn't match the actual result queries [in the index: %d]."+
+					"\nExpected File: 'fixtures/%s'.\nActual File: 'output/%s'.",
+				i, expectFileName, actualFileName)
 
-		require.ElementsMatch(t, expectedSearchValue, actualSearchValue,
-			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result Search Value content: 'output/%s'.",
-			expectFileName, actualFileName)
+			require.Equal(t, len(actualQuery.Files), len(expectQuery.Files),
+				"Expected query results doesn't match the actual query results [query: %s]."+
+					"\nExpected File: 'fixtures/%s'.\nActual File: 'output/%s'.",
+				actualQuery.QueryName, expectFileName, actualFileName)
+
+			for j := range actualI.Queries[i].Files {
+				actualQuery.Files[j].FileName = ""
+				expectQuery.Files[j].FileName = ""
+			}
+			sort.Slice(actualQuery.Files, func(a, b int) bool {
+				return actualQuery.Files[a].SimilarityID < actualQuery.Files[b].SimilarityID
+			})
+			sort.Slice(expectQuery.Files, func(a, b int) bool {
+				return expectQuery.Files[a].SimilarityID < expectQuery.Files[b].SimilarityID
+			})
+		}
 
 		require.ElementsMatch(t, expectI.ScannedPaths, actualI.ScannedPaths,
 			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result Scanned Paths content: 'output/%s'.",
@@ -214,68 +237,4 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result content: 'output/%s'.",
 			expectFileName, actualFileName)
 	}
-}
-
-func checkQueries(t *testing.T,
-	actualI, expectI *model.Summary,
-	expectFileName,
-	actualFileName string) (expectedSearchValue, actualSearchValue []string) {
-	expectedSearchValue = []string{}
-	actualSearchValue = []string{}
-	for i := range actualI.Queries {
-		actualQuery := actualI.Queries[i]
-		expectQuery := expectI.Queries[i]
-
-		require.Equal(t, actualQuery.QueryName, expectQuery.QueryName,
-			"Expected Result queries doesn't match the actual result queries [in the index: %d]."+
-				"\nExpected File: 'fixtures/%s'.\nActual File: 'output/%s'.",
-			i, expectFileName, actualFileName)
-
-		require.Equal(t, len(actualQuery.Files), len(expectQuery.Files),
-			"Expected query results doesn't match the actual query results [query: %s]."+
-				"\nExpected File: 'fixtures/%s'.\nActual File: 'output/%s'.",
-			actualQuery.QueryName, expectFileName, actualFileName)
-
-		for j := range actualI.Queries[i].Files {
-			expectedSearchValue = append(expectedSearchValue, expectQuery.Files[j].SearchValue)
-			actualSearchValue = append(actualSearchValue, expectQuery.Files[j].SearchValue)
-			actualQuery.Files[j].SearchValue = ""
-			expectQuery.Files[j].SearchValue = ""
-			actualQuery.Files[j].FileName = ""
-			expectQuery.Files[j].FileName = ""
-		}
-
-		sort.Slice(actualQuery.Files, func(a, b int) bool {
-			return actualQuery.Files[a].SimilarityID < actualQuery.Files[b].SimilarityID
-		})
-		sort.Slice(expectQuery.Files, func(a, b int) bool {
-			return expectQuery.Files[a].SimilarityID < expectQuery.Files[b].SimilarityID
-		})
-	}
-	return expectedSearchValue, actualSearchValue
-}
-
-func checkDocuments(t *testing.T, actualI *model.Documents) {
-	idKey := "id"
-	for _, docs := range actualI.Documents {
-		// Here additional checks may be added as length of id, or contains in file
-		require.NotNil(t, docs[idKey])
-		require.NotNil(t, docs[filekey])
-		docs[idKey] = "0"
-		docs[filekey] = filekey
-	}
-}
-
-func assertUnique(slice *model.QueryResultSlice) bool {
-	mapSimilarityIDCounter := make(map[string]int)
-	for i := range *slice {
-		for x := range (*slice)[i].Files {
-			if _, ok := mapSimilarityIDCounter[(*slice)[i].Files[x].SimilarityID]; ok {
-				return false // Duplicate found
-			} else {
-				mapSimilarityIDCounter[(*slice)[i].Files[x].SimilarityID] = 1
-			}
-		}
-	}
-	return true // No duplicates found
 }

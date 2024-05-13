@@ -6,12 +6,12 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/Checkmarx/kics/assets"
-	"github.com/Checkmarx/kics/internal/tracker"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/progress"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/assets"
+	"github.com/Checkmarx/kics/v2/internal/tracker"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/stretchr/testify/require"
 )
 

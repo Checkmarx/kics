@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/console/helpers"
-	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/internal/console/helpers"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
 var validMultiStrEnums = map[string]map[string]string{

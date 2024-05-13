@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	reportModel "github.com/Checkmarx/kics/pkg/report/model"
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	reportModel "github.com/Checkmarx/kics/v2/pkg/report/model"
+	"github.com/Checkmarx/kics/v2/test"
 	"github.com/stretchr/testify/require"
 )
 

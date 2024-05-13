@@ -9,7 +9,7 @@ import (
 
 	"encoding/json"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/pkg/errors"
 	"mvdan.cc/sh/v3/syntax"
 )

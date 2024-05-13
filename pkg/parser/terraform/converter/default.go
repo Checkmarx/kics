@@ -5,9 +5,9 @@ import (
 	"strconv"
 	"strings"
 
-	sentryReport "github.com/Checkmarx/kics/internal/sentry"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser/terraform/functions"
+	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/functions"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/rs/zerolog/log"
