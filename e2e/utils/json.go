@@ -12,7 +12,6 @@ import (
 	"time"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/xeipuuv/gojsonschema"
 )
