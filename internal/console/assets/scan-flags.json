@@ -227,5 +227,11 @@
   "shorthandFlag": "",
   "defaultValue": "false",
   "usage": "uses old severities in query results"
+  },
+  "max-resolver-depth": {
+    "flagType": "int",
+    "shorthandFlag": "",
+    "defaultValue": "15",
+    "usage": "max depth to which the resolver will traverse to resolve files"
   }
 }

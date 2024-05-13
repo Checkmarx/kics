@@ -58,6 +58,7 @@ Use "kics [command] --help" for more information about a command.
 |      --input-data string           |  path to query input data files|
 |  -b, --libraries-path string       |  path to directory with libraries (default "./assets/libraries")|
 |      --max-file-size int           |  max file size permitted for scanning, in MB (default 5)|
+|      --max-resolver-depth int      |  max depth to which the resolver will traverse to resolve files (default 15)|
 |      --minimal-ui                  |  simplified version of CLI output|
 |      --no-progress                 |  hides the progress bar|
 |      --output-name string          |  name used on report creations (default "results")|
