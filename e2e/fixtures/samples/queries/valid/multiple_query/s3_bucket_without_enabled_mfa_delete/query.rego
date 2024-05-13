@@ -2,21 +2,6 @@ package Cx
 
 import data.generic.common as common_lib
 
-CxPolicy[result] {
-	bucket := input.document[i].resource.aws_s3_bucket[name]
-	not common_lib.valid_key(bucket, "lifecycle_rule")
-	not common_lib.valid_key(bucket, "versioning")
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("aws_s3_bucket[%s]", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_s3_bucket[%s].versioning should be defined and not null", [name]),
-		"keyActualValue": sprintf("aws_s3_bucket[%s].versioning is undefined or null", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name], []),
-	}
-}
-
 checkedFields = {
 	"enabled",
 	"mfa_delete"
@@ -49,23 +34,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'%s' should be set to true", [checkedFields[j]]),
 		"keyActualValue": sprintf("'%s' is set to false", [checkedFields[j]]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket", name, "versioning", checkedFields[j]], []),
-	}
-}
-
-CxPolicy[result] {
-	module := input.document[i].module[name]
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
-
-	not common_lib.valid_key(module, "lifecycle_rule")
-	not common_lib.valid_key(module, keyToCheck)
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("module[%s]", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'versioning' should be defined and not null",
-		"keyActualValue": "'versioning' is undefined or null",
-		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
 }
 
