@@ -410,17 +410,13 @@ func (s *BicepVisitor) VisitResourceDecl(ctx *parser.ResourceDeclContext) interf
 }
 
 func checkAcceptAntlrString(ctx antlr.ParserRuleContext, s *BicepVisitor) string {
-	resultString := ""
-	ok := false
-
 	if ctx != nil {
-		resultString, ok = ctx.Accept(s).(string)
-		if !ok {
-			resultString = ""
+		if result, ok := ctx.Accept(s).(string); ok {
+			return result
 		}
 	}
 
-	return resultString
+	return ""
 }
 
 func checkAcceptExpression(ctx antlr.ParserRuleContext, s *BicepVisitor) interface{} {
@@ -581,13 +577,11 @@ func (s *BicepVisitor) VisitLiteralValue(ctx *parser.LiteralValueContext) interf
 }
 
 func acceptExpressionAtIndex(idx int, ctx *parser.InterpStringContext, s *BicepVisitor) interface{} {
-	var expression interface{}
-	expression = ""
 	if ctx.Expression(idx) != nil {
-		expression = ctx.Expression(idx).Accept(s)
+		return ctx.Expression(idx).Accept(s)
 	}
 
-	return expression
+	return ""
 }
 
 func buildComplexInterp(interpStringValues []interface{}) string {
