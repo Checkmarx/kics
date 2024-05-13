@@ -105,6 +105,191 @@ func TestParseBicepFile(t *testing.T) {
 		wantErr  bool
 	}{
 		{
+			name:     "Parse Bicep file with Unsuported Content",
+			filename: filepath.Join("..", "..", "..", "test", "fixtures", "bicep_test", "unsuported.bicep"),
+			want: `{
+					"parameters": {
+						"diagnosticLogCategoriesToEnable": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 44
+								},
+								"_kics_type": {
+									"_kics_line": 44
+								}
+							},
+							"allowedValues": [
+								[
+									"allLogs",
+									"ConnectedClientList"
+								]
+							],
+							"defaultValue": [
+								"allLogs"
+							],
+							"metadata": {
+								"description": "Optional. The name of logs that will be streamed. \"allLogs\" includes all possible logs for the resource."
+							},
+							"type": "array"
+						},
+						"diagnosticMetricsToEnable": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 52
+								},
+								"_kics_type": {
+									"_kics_line": 52
+								}
+							},
+							"allowedValues": [
+								[
+									"AllMetrics"
+								]
+							],
+							"defaultValue": [
+								"AllMetrics"
+							],
+							"metadata": {
+								"description": "Optional. The name of metrics that will be streamed."
+							},
+							"type": "array"
+						},
+						"diagnosticSettingsName": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 32
+								},
+								"_kics_type": {
+									"_kics_line": 32
+								}
+							},
+							"defaultValue": "'${parameters('name')}-diagnosticSettings'",
+							"metadata": {
+								"description": "Optional. The name of the diagnostic setting, if deployed."
+							},
+							"type": "string"
+						},
+						"diagnosticWorkspaceId": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 35
+								},
+								"_kics_type": {
+									"_kics_line": 35
+								}
+							},
+							"defaultValue": "",
+							"metadata": {
+								"description": "Optional. Resource ID of the diagnostic log analytics workspace. For security reasons, it is recommended to set diagnostic settings to send data to either storage account, log analytics workspace or event hub."
+							},
+							"type": "string"
+						},
+						"keyvaultName": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 23
+								},
+								"_kics_type": {
+									"_kics_line": 23
+								}
+							},
+							"metadata": {
+								"description": "The name of an existing keyvault, that it will be used to store secrets (connection string)"
+							},
+							"type": "string"
+						},
+						"name": {
+							"_kics_lines": {
+								"_kics_defaultValue": {
+									"_kics_line": 20
+								},
+								"_kics_type": {
+									"_kics_line": 20
+								}
+							},
+							"maxLength": 63,
+							"metadata": {
+								"description": "Required. The name of the Redis cache resource. Start and end with alphanumeric. Consecutive hyphens not allowed"
+							},
+							"minLength": 1,
+							"type": "string"
+						}
+					},
+					"resources": [
+						{
+							"_kics_lines": {
+								"_kics__default": {
+									"_kics_line": 110
+								},
+								"_kics_apiVersion": {
+									"_kics_line": 110
+								},
+								"_kics_name": {
+									"_kics_line": 111
+								},
+								"_kics_type": {
+									"_kics_line": 110
+								}
+							},
+							"apiVersion": "2022-11-01",
+							"identifier": "keyVault",
+							"name": "[parameters('keyvaultName')]",
+							"type": "Microsoft.KeyVault/vaults"
+						},
+						{
+							"apiVersion": "2021-05-01-preview",
+							"identifier": "redisCache_diagnosticSettings",
+							"type": "Microsoft.Insights/diagnosticSettings"
+						}
+					],
+					"variables": {
+						"diagnosticsLogs": {
+							"value": null
+						},
+						"diagnosticsLogsSpecified": {
+							"value": null
+						},
+						"diagnosticsMetrics": {
+							"value": null
+						},
+						"dogs": {
+							"value": [
+								{
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 73
+										},
+										"_kics_age": {
+											"_kics_line": 75
+										},
+										"_kics_name": {
+											"_kics_line": 74
+										}
+									},
+									"age": 3,
+									"name": "Fido"
+								},
+								{
+									"_kics_lines": {
+										"_kics__default": {
+											"_kics_line": 77
+										},
+										"_kics_age": {
+											"_kics_line": 79
+										},
+										"_kics_name": {
+											"_kics_line": 78
+										}
+									},
+									"age": 7,
+									"name": "Rex"
+								}
+							]
+						}
+					}
+				}`,
+		},
+		{
 			name:     "Parse Bicep file with parameters",
 			filename: filepath.Join("..", "..", "..", "test", "fixtures", "bicep_test", "parameters.bicep"),
 			want: `{
