@@ -10,7 +10,7 @@ func init() { //nolint
 				[]string{"scan", "-o", "/path/e2e/output",
 					"--output-name", "E2E_CLI_091_RESULT",
 					"-p", "\"/path/test/fixtures/bicep_test/test\"",
-					"-d", "\"/path/e2e/output/E2E_CLI_091_PAYLOAD.json\"",
+					"-d", "/path/e2e/output/E2E_CLI_091_PAYLOAD.json",
 					"--disable-secrets",
 				},
 			},
