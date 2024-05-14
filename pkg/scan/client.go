@@ -48,6 +48,7 @@ type Parameters struct {
 	ParallelScanFlag            int
 	MaxFileSizeFlag             int
 	UseOldSeverities            bool
+	MaxResolverDepth            int
 	KicsComputeNewSimID         bool
 }
 

@@ -34,7 +34,7 @@ type Command struct {
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, _ string, _ bool) ([]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, _ string, _ bool, _ int) ([]byte, error) {
 	return fileContent, nil
 }
 
