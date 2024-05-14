@@ -1,17 +1,17 @@
 [
-	{
-		"queryName": "GKE Master Authorized Networks Disabled",
-		"severity": "HIGH",
-		"line": 10
-	},
-	{
-		"queryName": "GKE Master Authorized Networks Disabled",
-		"severity": "HIGH",
-		"line": 17
-	},
-	{
-		"queryName": "GKE Master Authorized Networks Disabled",
-		"severity": "HIGH",
-		"line": 22
-	}
+  {
+    "queryName": "GKE Master Authorized Networks Disabled",
+    "severity": "MEDIUM",
+    "line": 10
+  },
+  {
+    "queryName": "GKE Master Authorized Networks Disabled",
+    "severity": "MEDIUM",
+    "line": 17
+  },
+  {
+    "queryName": "GKE Master Authorized Networks Disabled",
+    "severity": "MEDIUM",
+    "line": 22
+  }
 ]

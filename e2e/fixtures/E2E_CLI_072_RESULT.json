@@ -11,16 +11,17 @@
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
+		"CRITICAL": 0,
 		"HIGH": 0,
 		"INFO": 1,
-		"LOW": 0,
-		"MEDIUM": 3,
+		"LOW": 3,
+		"MEDIUM": 0,
 		"TRACE": 0
 	},
 	"total_counter": 4,
 	"total_bom_resources": 0,
-	"start": "2023-11-08T16:01:57.5219527Z",
-	"end": "2023-11-08T16:01:59.1971883Z",
+	"start": "2024-04-04T09:11:37.4243245+01:00",
+	"end": "2024-04-04T09:11:38.6566014+01:00",
 	"paths": [
 		"/path/test/fixtures/resolve_references"
 	],
@@ -29,7 +30,7 @@
 			"query_name": "Response Code Missing (v3)",
 			"query_id": "6c35d2c6-09f2-4e5c-a094-e0e91327071d",
 			"query_url": "https://swagger.io/specification/#operation-object",
-			"severity": "MEDIUM",
+			"severity": "LOW",
 			"platform": "OpenAPI",
 			"category": "Networking and Firewall",
 			"experimental": false,
@@ -37,18 +38,7 @@
 			"description_id": "dbf15009",
 			"files": [
 				{
-					"file_name": "path\\test\\fixtures\\resolve_references\\swagger.yaml",
-					"similarity_id": "0e9d0a90c2069babcc7d07b581105ebda5dba82dc83c0ef588103f8805662c8c",
-					"line": 14,
-					"issue_type": "MissingAttribute",
-					"search_key": "paths.{{/users/{userId}}}.$ref=./paths/users/user.yaml",
-					"search_line": 0,
-					"search_value": "400 response",
-					"expected_value": "400 response should be set",
-					"actual_value": "400 response is undefined"
-				},
-				{
-					"file_name": "path\\test\\fixtures\\resolve_references\\swagger.yaml",
+					"file_name": "/path/test/fixtures/resolve_references/swagger.yaml",
 					"similarity_id": "21b4b94761ab17c403b6455c8b88f295729ed9e98fd3101b2bb5cf5373fba1e6",
 					"line": 14,
 					"issue_type": "MissingAttribute",
@@ -59,7 +49,7 @@
 					"actual_value": "429 response is undefined"
 				},
 				{
-					"file_name": "path\\test\\fixtures\\resolve_references\\swagger.yaml",
+					"file_name": "/path/test/fixtures/resolve_references/swagger.yaml",
 					"similarity_id": "22e82edb39085e8787d853eed386b45f1774e7bbf7e1f08ed9662c33cd69d883",
 					"line": 14,
 					"issue_type": "MissingAttribute",
@@ -68,6 +58,17 @@
 					"search_value": "500 response",
 					"expected_value": "500 response should be set",
 					"actual_value": "500 response is undefined"
+				},
+				{
+					"file_name": "/path/test/fixtures/resolve_references/swagger.yaml",
+					"similarity_id": "0e9d0a90c2069babcc7d07b581105ebda5dba82dc83c0ef588103f8805662c8c",
+					"line": 14,
+					"issue_type": "MissingAttribute",
+					"search_key": "paths.{{/users/{userId}}}.$ref=./paths/users/user.yaml",
+					"search_line": 0,
+					"search_value": "400 response",
+					"expected_value": "400 response should be set",
+					"actual_value": "400 response is undefined"
 				}
 			]
 		},
@@ -83,7 +84,7 @@
 			"description_id": "5cdc0f3b",
 			"files": [
 				{
-					"file_name": "path\\test\\fixtures\\resolve_references\\swagger.yaml",
+					"file_name": "/path/test/fixtures/resolve_references/swagger.yaml",
 					"similarity_id": "ff39e561509c13315ce34a0be602a974d63231b70cb5cdf778109e062302f8eb",
 					"line": 17,
 					"issue_type": "IncorrectValue",

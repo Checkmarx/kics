@@ -1,12 +1,12 @@
 [
   {
     "queryName": "Storage Account Not Forcing HTTPS",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 7
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 10
   }
 ]

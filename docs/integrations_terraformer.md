@@ -1,4 +1,4 @@
-# Running KICS with Terraformer
+# Running KICS with Terraformer (Deprecated after 1.7.13)
 
 From version 1.5, KICS integrates with Terraformer to scan resources deployed in the Cloud. The runtime information of the resources is obtained by providing a Terraformer path to KICS, via `-p` flag. The scan happens immediately after this information is obtained. In the end, results are shown as for any other KICS scan.
 

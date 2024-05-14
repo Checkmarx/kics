@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/stretchr/testify/require"
 )
 
@@ -149,7 +149,7 @@ func Test_Resolve(t *testing.T) {
 		ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 		`
 
-	resolved, err := parser.Resolve([]byte(have), "Dockerfile", true)
+	resolved, err := parser.Resolve([]byte(have), "Dockerfile", true, 15)
 	require.NoError(t, err)
 	require.Equal(t, []byte(have), resolved)
 }

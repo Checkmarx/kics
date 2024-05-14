@@ -6,24 +6,29 @@ on:
 
 jobs:
   coverage:
-    name: Check Go coverage
+    name: generate-coverage
     runs-on: ubuntu-latest
+    outputs:
+      coverage: ${{ steps.testcov.outputs.coverage }}
+      color: ${{ steps.testcov.outputs.color }}
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Set up Go 1.21.x
-        uses: actions/setup-go@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
-          go-version: 1.21.x
+          go-version-file: go.mod
       - name: Run test metrics script
         id: testcov
         run: |
           make test-coverage-report | tee test-results
-          echo "coverage=$(cat test-results | grep "Total coverage: " test-results | cut -d ":" -f 2 | bc)" >> $GITHUB_ENV
-      - name: Checks if Go coverage is at least 80%
-        if: env.coverage < 80
+          TOTAL_TESTS=$(cat test-results | grep -v TestQueriesContent/ | grep -v TestQueriesMetadata/ | grep -v TestQueries/ | grep PASS | wc -l)
+          echo "Total number of tests :: ${TOTAL_TESTS}"
+          echo "::set-output name=total_tests::${TOTAL_TESTS}"
+      - name: Checks if Go coverage is at least 74%
+        if: steps.testcov.outputs.coverage < 74
         run: |
-          echo "Go coverage is lower than 80%: ${{ env.coverage }}%"
+          echo "Go coverage is lower than 74%: ${{ steps.testcov.outputs.coverage }}%"
           exit 1

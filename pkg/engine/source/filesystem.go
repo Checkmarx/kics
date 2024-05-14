@@ -9,10 +9,10 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/Checkmarx/kics/assets"
-	"github.com/Checkmarx/kics/internal/constants"
-	sentryReport "github.com/Checkmarx/kics/internal/sentry"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/assets"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -82,7 +82,7 @@ func ListSupportedPlatforms() []string {
 
 // ListSupportedCloudProviders returns a list of supported cloud providers
 func ListSupportedCloudProviders() []string {
-	return []string{"alicloud", "aws", "azure", "gcp", "nifcloud"}
+	return []string{"alicloud", "aws", "azure", "gcp", "nifcloud", "tencentcloud"}
 }
 
 func getLibraryInDir(platform, libraryDirPath string) string {

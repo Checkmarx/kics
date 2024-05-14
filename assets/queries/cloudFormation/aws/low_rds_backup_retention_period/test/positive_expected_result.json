@@ -3,47 +3,47 @@
     "line": 52,
     "fileName": "positive1.yaml",
     "queryName": "Low RDS Backup Retention Period",
-    "severity": "MEDIUM"
+    "severity": "LOW"
   },
   {
     "fileName": "positive4.yaml",
     "queryName": "Low RDS Backup Retention Period",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 43
   },
   {
     "queryName": "Low RDS Backup Retention Period",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 22,
     "fileName": "positive3.yaml"
   },
   {
     "queryName": "Low RDS Backup Retention Period",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 35,
     "fileName": "positive2.yaml"
   },
   {
     "queryName": "Low RDS Backup Retention Period",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 113,
     "fileName": "positive5.json"
   },
   {
     "queryName": "Low RDS Backup Retention Period",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 55,
     "fileName": "positive6.json"
   },
   {
     "queryName": "Low RDS Backup Retention Period",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 26,
     "fileName": "positive7.json"
   },
   {
     "queryName": "Low RDS Backup Retention Period",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 54,
     "fileName": "positive8.json"
   }

@@ -9,10 +9,10 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/Checkmarx/kics/internal/metrics"
-	"github.com/Checkmarx/kics/pkg/engine/provider"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/internal/metrics"
+	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	ignore "github.com/sabhiram/go-gitignore"
@@ -293,7 +293,6 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	projectConfigFiles := make([]string, 0)
 	done := make(chan bool)
 	hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
-
 	// get all the files inside the given paths
 	for _, path := range a.Paths {
 		if _, err := os.Stat(path); err != nil {
@@ -304,19 +303,20 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 				return err
 			}
 
-			ext := utils.GetExtension(path)
+			ext, errExt := utils.GetExtension(path)
+			if errExt == nil {
+				trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
+				ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
 
-			ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, ignoreFiles)
+				if isConfigFile(path, defaultConfigFiles) {
+					projectConfigFiles = append(projectConfigFiles, path)
+					a.Exc = append(a.Exc, path)
+				}
 
-			if isConfigFile(path, defaultConfigFiles) {
-				projectConfigFiles = append(projectConfigFiles, path)
-				a.Exc = append(a.Exc, path)
+				if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, a.Exc) {
+					files = append(files, path)
+				}
 			}
-
-			if _, ok := possibleFileTypes[ext]; ok && !isExcludedFile(path, a.Exc) {
-				files = append(files, path)
-			}
-
 			return nil
 		}); err != nil {
 			log.Error().Msgf("failed to analyze path %s: %s", path, err)
@@ -369,46 +369,48 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, wg *sync.WaitGroup) {
 	defer wg.Done()
 
-	ext := utils.GetExtension(a.filePath)
-	linesCount, _ := utils.LineCounter(a.filePath)
+	ext, errExt := utils.GetExtension(a.filePath)
+	if errExt == nil {
+		linesCount, _ := utils.LineCounter(a.filePath)
 
-	switch ext {
-	// Dockerfile (direct identification)
-	case ".dockerfile", "Dockerfile":
-		if a.isAvailableType(dockerfile) {
-			results <- dockerfile
-			locCount <- linesCount
+		switch ext {
+		// Dockerfile (direct identification)
+		case ".dockerfile", "Dockerfile":
+			if a.isAvailableType(dockerfile) {
+				results <- dockerfile
+				locCount <- linesCount
+			}
+		// Dockerfile (indirect identification)
+		case "possibleDockerfile", ".ubi8", ".debian":
+			if a.isAvailableType(dockerfile) && isDockerfile(a.filePath) {
+				results <- dockerfile
+				locCount <- linesCount
+			} else {
+				unwanted <- a.filePath
+			}
+		// Terraform
+		case ".tf", "tfvars":
+			if a.isAvailableType(terraform) {
+				results <- terraform
+				locCount <- linesCount
+			}
+		// GRPC
+		case ".proto":
+			if a.isAvailableType(grpc) {
+				results <- grpc
+				locCount <- linesCount
+			}
+		// It could be Ansible Config or Ansible Inventory
+		case ".cfg", ".conf", ".ini":
+			if a.isAvailableType(ansible) {
+				results <- ansible
+				locCount <- linesCount
+			}
+		/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
+		Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager*/
+		case yaml, yml, json, sh:
+			a.checkContent(results, unwanted, locCount, linesCount, ext)
 		}
-	// Dockerfile (indirect identification)
-	case "possibleDockerfile", ".ubi8", ".debian":
-		if a.isAvailableType(dockerfile) && isDockerfile(a.filePath) {
-			results <- dockerfile
-			locCount <- linesCount
-		} else {
-			unwanted <- a.filePath
-		}
-	// Terraform
-	case ".tf", "tfvars":
-		if a.isAvailableType(terraform) {
-			results <- terraform
-			locCount <- linesCount
-		}
-	// GRPC
-	case ".proto":
-		if a.isAvailableType(grpc) {
-			results <- grpc
-			locCount <- linesCount
-		}
-	// It could be Ansible Config or Ansible Inventory
-	case ".cfg", ".conf", ".ini":
-		if a.isAvailableType(ansible) {
-			results <- ansible
-			locCount <- linesCount
-		}
-	/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
-	Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager*/
-	case yaml, yml, json, sh:
-		a.checkContent(results, unwanted, locCount, linesCount, ext)
 	}
 }
 
@@ -694,7 +696,8 @@ func isConfigFile(path string, exc []string) bool {
 }
 
 // shouldConsiderGitIgnoreFile verifies if the scan should exclude the files according to the .gitignore file
-func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bool) (bool, *ignore.GitIgnore) {
+func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bool) (hasGitIgnoreFileRes bool,
+	gitIgnoreRes *ignore.GitIgnore) {
 	gitIgnorePath := filepath.ToSlash(filepath.Join(path, gitIgnore))
 	_, err := os.Stat(gitIgnorePath)
 
@@ -734,15 +737,15 @@ func (a *analyzerInfo) isAvailableType(typeName string) bool {
 
 func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool,
 	gitIgnore *ignore.GitIgnore,
-	path string, ignoreFiles []string) []string {
+	fullPath string, trimmedPath string, ignoreFiles []string) []string {
 	exceededFileSize := a.MaxFileSize >= 0 && float64(fileSize)/float64(sizeMb) > float64(a.MaxFileSize)
 
-	if (hasGitIgnoreFile && gitIgnore.MatchesPath(path)) || isDeadSymlink(path) || exceededFileSize {
-		ignoreFiles = append(ignoreFiles, path)
-		a.Exc = append(a.Exc, path)
+	if (hasGitIgnoreFile && gitIgnore.MatchesPath(trimmedPath)) || isDeadSymlink(fullPath) || exceededFileSize {
+		ignoreFiles = append(ignoreFiles, fullPath)
+		a.Exc = append(a.Exc, fullPath)
 
 		if exceededFileSize {
-			log.Error().Msgf("file %s exceeds maximum file size of %d Mb", path, a.MaxFileSize)
+			log.Error().Msgf("file %s exceeds maximum file size of %d Mb", fullPath, a.MaxFileSize)
 		}
 	}
 	return ignoreFiles

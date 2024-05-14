@@ -221,6 +221,7 @@
                                                     "Severity": {
                                                         "type": "string",
                                                         "enum": [
+                                                            "Critical",
                                                             "High",
                                                             "Medium",
                                                             "Low",

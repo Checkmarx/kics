@@ -56,6 +56,7 @@ JSON reports are sorted by severity (from high to info) and should looks like as
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
+		"CRITICAL": 0,
 		"HIGH": 10,
 		"INFO": 0,
 		"LOW": 0,
@@ -597,26 +598,25 @@ JUnit reports follow [JUnit XML specification by junit-team](https://github.com/
 	</testsuite>
 ```
 
-
 **Overview of key-value pairs:**   
-**<?xml?>**: This is the XML declaration indicating the version of XML being used and the character encoding.   
-**<testsuites>**: This is the opening tag for the <testsuites> element, which represents a collection of test suites. Here are the key-value pairs:
+**<?xml?\>**: This is the XML declaration indicating the version of XML being used and the character encoding.   
+**<testsuites\>**: This is the opening tag for the <testsuites\> element, which represents a collection of test suites. Here are the key-value pairs:   
 **name**: The name of the test suite.   
 **time**: The total time taken for executing all the tests in the test suite.   
 **failures**: The total number of test failures encountered in the test suite.   
-**<testsuite>**: This is the opening tag for a specific test suite within the overall collection. Here are the key-value pairs:   
+**<testsuite\>**: This is the opening tag for a specific test suite within the overall collection. Here are the key-value pairs:   
 **name**: The name of the test suite.   
 **failures**: The total number of test failures encountered in this specific test suite.   
 **tests**: The total number of tests executed in this specific test suite.   
-**<testcase>**: This is the opening tag for a specific test case within the test suite. Here are the key-value pairs:   
+**<testcase\>**: This is the opening tag for a specific test case within the test suite. Here are the key-value pairs:   
 **name**: The name of the test case, which describes the scenario being tested.   
 **classname**: The name of the class to which this test case belongs.   
-**<failure>**: This is the <failure> tag indicating that the test case has failed. Here are the key-value pairs:   
+**<failure\>**: This is the <failure\> tag indicating that the test case has failed. Here are the key-value pairs:   
 **type**: The type of failure or error encountered.   
-**message**: A descriptive message explaining the failure or error in detail.   
-**</testcase>**: This is the closing tag for the <testcase> element, marking the end of the specific test case.   
-**</testsuite>**: This is the closing tag for the <testsuite> element, marking the end of the specific test suite.   
-**</testsuites>**: This is the closing tag for the <testsuites> element, marking the end of the overall collection of test suites.   
+**message**: A descriptive message explaining the failure or error in detail.      
+**</testcase\>**: This is the closing tag for the <testcase\> element, marking the end of the specific test case.   
+**</testsuite\>**: This is the closing tag for the <testsuite\> element, marking the end of the specific test suite.   
+**</testsuites\>**: This is the closing tag for the <testsuites\> element, marking the end of the overall collection of test suites.   
 
 Also, you can check our [Jenkins integration section](integrations_jenkins.md) to check how to integrate this report with Jenkins JUnit plugin.
 
@@ -671,18 +671,18 @@ SonarQube reports, follow [SonarQube Import Format](https://docs.sonarqube.org/l
 You can export html report by using `--report-formats "html"`.
 HTML reports are sorted by severity (from high to info), the results will have query information, a list of files which vulnerability was found and a code snippet where the problem was detected as you can see in following example:
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/html_report.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/fc93fd1fa4ed3572b0732c787be61d4c82fff2e5/docs/img/html_report.png" width="850">
 
 ## PDF
 
 You can export a pdf report by using `--report-formats "pdf"`.
 PDF reports are sorted by severity (from high to info), the results will have query information and a list of files alongside the line where the result was found.
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/pdf-report.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/pdf_report.png" width="850">
 
 ## CycloneDX
 
-Now, the CycloneDX report is only available in XML format since the vulnerability schema extension is not currently available in JSON. The guidelines used to build the CycloneDX report were the [bom schema 1.3](http://cyclonedx.org/schema/bom/1.3) and [vulnerability schema 1.0](https://github.com/CycloneDX/specification/blob/master/schema/ext/vulnerability-1.0.xsd).                                                                                               
+Now, the CycloneDX report is only available in XML format since the vulnerability schema extension is not currently available in JSON. The guidelines used to build the CycloneDX report were the [bom schema 1.5](http://cyclonedx.org/schema/bom/1.5) and [vulnerability schema 1.0](https://github.com/CycloneDX/specification/blob/master/schema/ext/vulnerability-1.0.xsd).                                                                                               
 **Note:** As of the latest update, the CycloneDX version utilized in the report is 1.5. However, it's important to clarify that no additional features or fields introduced in version 1.5 are currently utilized. The functionality remains consistent with the version 1.3 for KICS. Future updates will leverage the new features introduced in CycloneDX version 1.5.
 
 
@@ -690,7 +690,7 @@ You can export CycloneDX report by using `--report-formats "cyclonedx"`. The gen
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
-<bom xmlns="http://cyclonedx.org/schema/bom/1.3" serialNumber="urn:uuid:031053e5-97fa-4776-bd4b-d8705b37748c" xmlns:v="http://cyclonedx.org/schema/ext/vulnerability/1.0" version="1">
+<bom xmlns="http://cyclonedx.org/schema/bom/1.5" serialNumber="urn:uuid:031053e5-97fa-4776-bd4b-d8705b37748c" xmlns:v="http://cyclonedx.org/schema/ext/vulnerability/1.0" version="1">
 	<metadata>
 		<timestamp>2024-02-14T12:21:17Z</timestamp>
 		<tools>
@@ -889,16 +889,15 @@ You can export CSV report by using `--report-formats "csv"`.
 
 CSV reports follow the [CSV structure](https://www.loc.gov/preservation/digital/formats/fdd/fdd000323.shtml#:~:text=CSV%20is%20a%20simple%20format,characters%20indicating%20a%20line%20break.).
 
-```
-| query_name                 | query_id                              | query_uri                                                                                             | severity | platform | cwe | cloud_provider | category              | description_id | description                                                              | cis_description_id | cis_description_title | cis_description_text | file_name                                                                                             | similarity_id                                              | line | issue_type        | search_key                                        | search_line | search_value | expected_value                                                                  | actual_value                                                                      |
-| -------------------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------- | -------- | -------- | --- | --------------- | --------------------- | -------------- | ------------------------------------------------------------------------- | ------------------ | --------------------- | -------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---- | ----------------- | ------------------------------------------------- | ----------- | ------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| ALB Listening on HTTP      | f81d63d2-c5d7-43a4-a5b5-66717a41c895 | https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html | HIGH     | Ansible  | 22  | AWS             | Networking and Firewall | 3a7576e5       | AWS Application Load Balancer (alb) should not listen on HTTP             |                    |                       |                      | assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml                                  | a00c90f900058bb60c8eeeaf5236416079e5085fe0465b69aa51b5aa5b7442fe | 11   | IncorrectValue    | name={{my_elb_application}}.{{community.aws.elb_application_lb}}.listeners.Protocol=HTTP | -1          |              | 'aws_elb_application_lb' Protocol should be 'HTTP'                                | 'aws_elb_application_lb' Protocol it's not 'HTTP'                                 |
-| ALB Listening on HTTP      | f81d63d2-c5d7-43a4-a5b5-66717a41c895 | https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html | HIGH     | Ansible  | 22  | AWS             | Networking and Firewall | 3a7576e5       | AWS Application Load Balancer (alb) should not listen on HTTP             |                    |                       |                      | assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml                                  | 02e577bf2456c31f64f2855f8345fa051c0fe2159e1f116bd392e02af5f4a4f9 | 29   | MissingAttribute | name={{my_elb_application2}}.{{community.aws.elb_application_lb}}.listeners             | -1          |              | 'aws_elb_application_lb' Protocol should be 'HTTP'                                | 'aws_elb_application_lb' Protocol is missing                                   |
-```
+| query_name           | query_id                            | query_uri                                                                                             | severity | platform | cwe | cloud_provider | category              | description_id | description                                                      | cis_description_id | cis_description_title | cis_description_text | file_name                                                                                             | similarity_id                                          | line | issue_type      | search_key                                                                                    | search_line | search_value | expected_value                                                                    | actual_value                                                                    |
+|----------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------|----------|----------|-----|-----------------|-----------------------|-----------------|------------------------------------------------------------------|---------------------|-----------------------|----------------------|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------|------|-----------------|----------------------------------------------------------------------------------------------|-------------|--------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| ALB Listening on HTTP | f81d63d2-c5d7-43a4-a5b5-66717a41c895 | https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html | HIGH     | Ansible  | 22  | AWS             | Networking and Firewall | 3a7576e5       | AWS Application Load Balancer (alb) should not listen on HTTP |                     |                       |                      | assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml                                  | a00c90f900058bb60c8eeeaf5236416079e5085fe0465b69aa51b5aa5b7442fe | 11   | IncorrectValue | name={{my_elb_application}}.{{community.aws.elb_application_lb}}.listeners.Protocol=HTTP | -1          |              | 'aws_elb_application_lb' Protocol should be 'HTTP'                                | 'aws_elb_application_lb' Protocol it's not 'HTTP'                                 |
+| ALB Listening on HTTP | f81d63d2-c5d7-43a4-a5b5-66717a41c895 | https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html | HIGH     | Ansible  | 22  | AWS             | Networking and Firewall | 3a7576e5       | AWS Application Load Balancer (alb) should not listen on HTTP |                     |                       |                      | assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml                                  | 02e577bf2456c31f64f2855f8345fa051c0fe2159e1f116bd392e02af5f4a4f9 | 29   | MissingAttribute | name={{my_elb_application2}}.{{community.aws.elb_application_lb}}.listeners         | -1          |              | 'aws_elb_application_lb' Protocol should be 'HTTP'                                | 'aws_elb_application_lb' Protocol is missing                                   |
+
 
 **Brief Explanation of CSV Columns:**   
 **query_name**: Specifies the name of the query.   
-**query_id**: Unique identifier for the query.
+**query_id**: Unique identifier for the query.   
 **query_uri**: URI link to documentation or reference material related to the query.   
 **severity**: Indicates the severity level of the vulnerability.   
 **platform**: Specifies the platform or technology stack targeted by the query.   
@@ -918,7 +917,7 @@ CSV reports follow the [CSV structure](https://www.loc.gov/preservation/digital/
 **search_line**: Line number where the search was conducted.   
 **search_value**: Value searched for in the file.   
 **expected_value**: Expected value for the vulnerability.   
-**actual_value**: Actual value found in the file.   
+**actual_value**: Actual value found in the file.
 
 ## Code Climate
 
@@ -987,17 +986,19 @@ KICS displays the results in CLI. For detailed information, you can use `-v --lo
 
 ## Results Status Code
 
-| Code | Description                |
-| ---- | -------------------------- |
-| `0`  | No Results were Found      |
-| `50` | Found any `HIGH` Results   |
-| `40` | Found any `MEDIUM` Results |
-| `30` | Found any `LOW` Results    |
-| `20` | Found any `INFO` Results   |
+| Code | Description                 |
+| ---- | ----------------------------|
+| `0`  | No Results were Found       |
+| `60` | Found any `CRITICAL` Results|
+| `50` | Found any `HIGH` Results    |
+| `40` | Found any `MEDIUM` Results  |
+| `30` | Found any `LOW` Results     |
+| `20` | Found any `INFO` Results    |
 
 ## Error Status Code
 
 | Code  | Description      |
 | ----- | ---------------- |
+| `70`  | Remediation Error|
 | `126` | Engine Error     |
 | `130` | Signal-Interrupt |

@@ -1,7 +1,7 @@
 [
-	{
-		"queryName": "MQ Broker Is Publicly Accessible",
-		"severity": "MEDIUM",
-		"line": 19
-	}
+  {
+    "queryName": "MQ Broker Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 19
+  }
 ]

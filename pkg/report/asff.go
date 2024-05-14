@@ -3,7 +3,7 @@ package report
 import (
 	"strings"
 
-	reportModel "github.com/Checkmarx/kics/pkg/report/model"
+	reportModel "github.com/Checkmarx/kics/v2/pkg/report/model"
 )
 
 // PrintASFFReport prints the ASFF report in the given path and filename with the given body

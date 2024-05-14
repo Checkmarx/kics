@@ -1,12 +1,12 @@
 [
   {
     "queryName": "RDS DB Instance Publicly Accessible",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 12
   },
   {
     "queryName": "RDS DB Instance Publicly Accessible",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 22
   }
 ]

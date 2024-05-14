@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/johnfercher/maroto/pkg/color"
 	"github.com/johnfercher/maroto/pkg/consts"
 	"github.com/johnfercher/maroto/pkg/pdf"
@@ -394,6 +394,7 @@ func createSummaryResultsField(m pdf.Maroto, label, value string, mColor color.C
 }
 
 func createSummaryArea(m pdf.Maroto, summary *model.Summary) {
+	criticalSeverityCount := fmt.Sprint(summary.SeverityCounters["CRITICAL"])
 	highSeverityCount := fmt.Sprint(summary.SeverityCounters["HIGH"])
 	mediumSeverityCount := fmt.Sprint(summary.SeverityCounters["MEDIUM"])
 	lowSeverityCount := fmt.Sprint(summary.SeverityCounters["LOW"])
@@ -401,16 +402,18 @@ func createSummaryArea(m pdf.Maroto, summary *model.Summary) {
 	totalCount := fmt.Sprint(summary.TotalCounter)
 
 	m.Row(rowMedium, func() {
+		createSummaryResultsField(m, "CRITICAL", criticalSeverityCount, getPureRedColor())
 		createSummaryResultsField(m, "HIGH", highSeverityCount, getRedColor())
 		createSummaryResultsField(m, "MEDIUM", mediumSeverityCount, getOrangeColor())
 		createSummaryResultsField(m, "LOW", lowSeverityCount, getYellowColor())
 		createSummaryResultsField(m, "INFO", infoSeverityCount, getBlueColor())
 
-		m.ColSpace(colTwo)
+		m.ColSpace(colOne)
 
 		m.Col(colOne, func() {
 			m.Text("TOTAL", props.Text{
 				Size:        defaultTextSize,
+				Right:       10.0,
 				Align:       consts.Right,
 				Style:       consts.Bold,
 				Extrapolate: false,
@@ -419,7 +422,7 @@ func createSummaryArea(m pdf.Maroto, summary *model.Summary) {
 		m.Col(colOne, func() {
 			m.Text(totalCount, props.Text{
 				Size:        defaultTextSize,
-				Align:       consts.Right,
+				Align:       consts.Left,
 				Style:       consts.Bold,
 				Extrapolate: false,
 			})
@@ -462,6 +465,14 @@ func getGrayColor() color.Color {
 		Red:   200,
 		Green: 200,
 		Blue:  200,
+	}
+}
+
+func getPureRedColor() color.Color {
+	return color.Color{
+		Red:   250,
+		Green: 0,
+		Blue:  0,
 	}
 }
 

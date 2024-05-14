@@ -1,7 +1,7 @@
 [
   {
     "queryName": "DB Security Group With Public Scope",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 5
   }
 ]

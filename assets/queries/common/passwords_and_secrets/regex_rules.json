@@ -12,6 +12,10 @@
         {
           "description": "Avoiding CF AllowUsersToChangePassword",
           "regex": "['\"]?AllowUsersToChangePassword['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?"
+        },
+        {
+          "description": "Avoiding Ansible playbook update_password",
+          "regex": "['\"]?update_password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?"
         }
       ],
       "specialMask": "(?i)['\"]?password['\"]?\\s*[:=]\\s*"
@@ -329,6 +333,15 @@
       "id": "8a879bc7-6f82-40fd-bb48-74d25d557fe8",
       "name": "SendGrid API Key",
       "regex": "(?i)SG\\.[a-zA-Z0-9\\-\\_]{22}\\.[a-zA-Z0-9\\-\\_]{43}\\s*"
+    },
+    {
+      "id": "be0ed753-d304-4363-844a-144050d4006d",
+      "name": "Generic Password on YAML files when value in tuple",
+      "regex": ".*password\\s*:[\\n|\\r]\\s*value:([^\\n|\\r]*)",
+      "multiline": {
+        "detectLineGroup": 1
+      },
+      "specialMask": ".*password\\s*:[\\n|\\r]\\s*value:"
     }
   ],
   "allowRules": [

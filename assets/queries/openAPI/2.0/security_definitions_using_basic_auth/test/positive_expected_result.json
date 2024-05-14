@@ -1,13 +1,13 @@
 [
   {
     "queryName": "Security Definitions Using Basic Auth",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 25,
     "filename": "positive1.json"
   },
   {
     "queryName": "Security Definitions Using Basic Auth",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 17,
     "filename": "positive2.yaml"
   }

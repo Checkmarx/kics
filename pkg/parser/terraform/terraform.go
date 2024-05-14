@@ -5,11 +5,11 @@ import (
 	"path/filepath"
 	"regexp"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser/terraform/comment"
-	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
-	"github.com/Checkmarx/kics/pkg/parser/utils"
-	masterUtils "github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/comment"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
+	"github.com/Checkmarx/kics/v2/pkg/parser/utils"
+	masterUtils "github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/pkg/errors"
@@ -46,7 +46,7 @@ func NewDefaultWithVarsPath(terraformVarsPath string) *Parser {
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string, _ bool) ([]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, filename string, _ bool, _ int) ([]byte, error) {
 	// handle panic during resolve process
 	defer func() {
 		if r := recover(); r != nil {

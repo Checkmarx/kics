@@ -2,7 +2,7 @@
   "id": "6c7cfec3-c686-4ed2-bf58-a1ec054b63fc",
   "queryName": "Redis Cache Allows Non SSL Connections",
   "severity": "MEDIUM",
-  "category": "Encryption",
+  "category": "Insecure Configurations",
   "descriptionText": "Redis Cache resource should not allow non-SSL connections.",
   "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-azure/cache.azure.crossplane.io/Redis/v1beta1@v0.19.0#spec-forProvider-enableNonSslPort",
   "platform": "Crossplane",

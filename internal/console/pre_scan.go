@@ -9,12 +9,12 @@ import (
 	"strings"
 
 	"code.cloudfoundry.org/bytefmt"
-	"github.com/Checkmarx/kics/internal/console/flags"
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
-	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/internal/metrics"
-	internalPrinter "github.com/Checkmarx/kics/pkg/printer"
-	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/v2/internal/console/flags"
+	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	"github.com/Checkmarx/kics/v2/internal/metrics"
+	internalPrinter "github.com/Checkmarx/kics/v2/pkg/printer"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
 	"github.com/mackerelio/go-osstat/memory"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -158,6 +158,7 @@ func (console *console) preScan() {
 	log.Info().Msgf("CPU: %.1f", cpu)
 
 	log.Info().Msgf("Max file size permitted for scanning: %d MB", flags.GetIntFlag(flags.MaxFileSizeFlag))
+	log.Info().Msgf("Max resolver depth permitted for resolving files: %d", flags.GetIntFlag(flags.MaxResolverDepth))
 
 	noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
 	if strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") {

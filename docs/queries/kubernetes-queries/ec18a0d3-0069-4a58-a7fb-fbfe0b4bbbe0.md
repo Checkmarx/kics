@@ -18,7 +18,7 @@ hide:
 -   **Query id:** ec18a0d3-0069-4a58-a7fb-fbfe0b4bbbe0
 -   **Query name:** Kubelet Certificate Authority Not Set
 -   **Platform:** Kubernetes
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Secret Management
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/k8s/kubelet_certificate_authority_not_set)
 

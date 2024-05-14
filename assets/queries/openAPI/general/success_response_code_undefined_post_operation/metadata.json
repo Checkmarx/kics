@@ -1,7 +1,7 @@
 {
   "id": "f368dd2d-9344-4146-a05b-7c6faa1269ad",
   "queryName": "Success Response Code Undefined for Post Operation (v3)",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "Post should define at least one success response (200, 201, 202 or 204)",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
@@ -16,5 +16,6 @@
       "descriptionText": ""
     }
   },
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

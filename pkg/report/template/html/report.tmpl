@@ -20,9 +20,14 @@
         <span id="scan-end-time"><strong>End time:</strong> {{ .End.Format "15:04:05, Jan 02 2006" }}</span>
       {{- end}}
     </div>
-    <h2 style="margin-top:41px" class="kics-orange">Vulnerabilities:</h2>
+    <h2 style="margin-top:41px" class="kics-black">Vulnerabilities:</h2>
     <div class="counters">
     {{- with .SeveritySummary -}}
+      <div class="severity" onclick="filter('CRITICAL')">
+        <div class="kics-red icon">{{ includeSVG "vulnerability_fill.svg" }}</div>
+        <span class="badge" id="severity-count-critical">{{ index .SeverityCounters (severity "critical") }}</span>
+        <span class="caption">CRITICAL</span>
+      </div>
       <div class="severity" onclick="filter('HIGH')">
         <div class="kics-orange icon">{{ includeSVG "vulnerability_fill.svg" }}</div>
         <span class="badge" id="severity-count-high">{{ index .SeverityCounters (severity "high") }}</span>

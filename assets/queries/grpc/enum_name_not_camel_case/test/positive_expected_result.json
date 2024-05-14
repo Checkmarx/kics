@@ -1,17 +1,17 @@
 [
   {
     "queryName": "Enum Name Not CamelCase",
-    "severity": "LOW",
+    "severity": "INFO",
     "line": 3
   },
   {
     "queryName": "Enum Name Not CamelCase",
-    "severity": "LOW",
+    "severity": "INFO",
     "line": 10
   },
   {
     "queryName": "Enum Name Not CamelCase",
-    "severity": "LOW",
+    "severity": "INFO",
     "line": 18
   }
 ]

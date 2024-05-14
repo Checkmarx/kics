@@ -5,9 +5,9 @@ import (
 	"strconv"
 	"strings"
 
-	sentryReport "github.com/Checkmarx/kics/internal/sentry"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser/terraform/functions"
+	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/functions"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/rs/zerolog/log"
@@ -433,7 +433,7 @@ func (c *converter) convertTemplateConditional(expr *hclsyntax.ConditionalExpr) 
 		}, false)
 		return "", nil
 	}
-	if len(falseResult) > 0 {
+	if falseResult != "" {
 		builder.WriteString("%{else}")
 		builder.WriteString(falseResult)
 	}
@@ -450,7 +450,7 @@ func (c *converter) convertTemplateConditional(expr *hclsyntax.ConditionalExpr) 
 func (c *converter) convertTemplateFor(expr *hclsyntax.ForExpr) (string, error) {
 	builder := &strings.Builder{}
 	builder.WriteString("%{for ")
-	if len(expr.KeyVar) > 0 {
+	if expr.KeyVar != "" {
 		builder.WriteString(expr.KeyVar)
 		builder.WriteString(", ")
 	}

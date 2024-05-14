@@ -4,11 +4,11 @@ import (
 	"os"
 	"path/filepath"
 
-	u "github.com/Checkmarx/kics/e2e/utils"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/remediation"
-	"github.com/Checkmarx/kics/pkg/report"
-	"github.com/Checkmarx/kics/pkg/utils"
+	u "github.com/Checkmarx/kics/v2/e2e/utils"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/remediation"
+	"github.com/Checkmarx/kics/v2/pkg/report"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/rs/zerolog/log"
 )
 
@@ -160,10 +160,11 @@ func generateReport(tmpFile, jsonPath, reportName string) { //nolint
 		SeveritySummary: model.SeveritySummary{
 			ScanID: "console",
 			SeverityCounters: map[model.Severity]int{
-				model.SeverityInfo:   0,
-				model.SeverityLow:    0,
-				model.SeverityMedium: 4,
-				model.SeverityHigh:   1,
+				model.SeverityInfo:     0,
+				model.SeverityLow:      0,
+				model.SeverityMedium:   4,
+				model.SeverityHigh:     1,
+				model.SeverityCritical: 0,
 			},
 			TotalCounter: 5,
 		},

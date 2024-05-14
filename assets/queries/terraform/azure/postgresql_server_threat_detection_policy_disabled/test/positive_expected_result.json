@@ -1,13 +1,13 @@
 [
   {
     "queryName": "PostgreSQL Server Threat Detection Policy Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 22,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "PostgreSQL Server Threat Detection Policy Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive2.tf"
   }

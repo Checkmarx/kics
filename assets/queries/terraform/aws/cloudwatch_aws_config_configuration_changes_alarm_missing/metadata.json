@@ -1,12 +1,13 @@
 {
   "id": "5b8d7527-de8e-4114-b9dd-9d988f1f418f",
   "queryName": "CloudWatch AWS Config Configuration Changes Alarm Missing",
-  "severity": "LOW",
+  "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Ensure a log metric filter and alarm exist for AWS Config configuration changes",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_metric_filter#pattern",
   "platform": "Terraform",
   "descriptionID": "698457eb",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "LOW"
 }
