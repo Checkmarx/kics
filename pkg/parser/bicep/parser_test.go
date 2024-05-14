@@ -28,7 +28,7 @@ func TestParser_SupportedExtensions(t *testing.T) {
 func Test_Resolve(t *testing.T) {
 	parser := &Parser{}
 	param := `param vmName string = 'simple-vm'`
-	resolved, err := parser.Resolve([]byte(param), "test.bicep", true)
+	resolved, err := parser.Resolve([]byte(param), "test.bicep", true, 15)
 	require.NoError(t, err)
 	require.Equal(t, []byte(param), resolved)
 }
