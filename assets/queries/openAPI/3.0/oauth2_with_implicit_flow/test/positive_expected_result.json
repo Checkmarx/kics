@@ -10,5 +10,23 @@
     "severity": "MEDIUM",
     "line": 34,
     "filename": "positive2.yaml"
+  },
+  {
+    "queryName": "OAuth2 With Implicit Flow",
+    "severity": "MEDIUM",
+    "line": 37,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "OAuth2 With Implicit Flow",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "OAuth2 With Implicit Flow",
+    "severity": "MEDIUM",
+    "line": 31,
+    "filename": "positive5.yaml"
   }
 ]
