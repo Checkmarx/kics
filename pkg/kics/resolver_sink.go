@@ -16,7 +16,11 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func (s *Service) resolverSink(ctx context.Context, filename, scanID string, openAPIResolveReferences bool) ([]string, error) {
+func (s *Service) resolverSink(
+	ctx context.Context,
+	filename, scanID string,
+	openAPIResolveReferences bool,
+	maxResolverDepth int) ([]string, error) {
 	kind := s.Resolver.GetType(filename)
 	if kind == model.KindCOMMON {
 		return []string{}, nil
@@ -31,7 +35,7 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 		s.Tracker.TrackFileFound(rfile.FileName)
 
 		isMinified := minified.IsMinified(rfile.FileName, rfile.Content)
-		documents, err := s.Parser.Parse(rfile.FileName, rfile.Content, openAPIResolveReferences, isMinified)
+		documents, err := s.Parser.Parse(rfile.FileName, rfile.Content, openAPIResolveReferences, isMinified, maxResolverDepth)
 		if err != nil {
 			if documents.Kind == "break" {
 				return []string{}, nil
@@ -41,7 +45,9 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 		}
 
 		if kind == model.KindHELM {
-			ignoreList, errorIL := s.getOriginalIgnoreLines(rfile.FileName, rfile.OriginalData, openAPIResolveReferences, isMinified)
+			ignoreList, errorIL := s.getOriginalIgnoreLines(
+				rfile.FileName, rfile.OriginalData,
+				openAPIResolveReferences, isMinified, maxResolverDepth)
 			if errorIL == nil {
 				documents.IgnoreLines = ignoreList
 
@@ -100,11 +106,12 @@ func (s *Service) resolverSink(ctx context.Context, filename, scanID string, ope
 
 func (s *Service) getOriginalIgnoreLines(filename string,
 	originalFile []uint8,
-	openAPIResolveReferences, isMinified bool) (ignoreLines []int, err error) {
+	openAPIResolveReferences, isMinified bool,
+	maxResolverDepth int) (ignoreLines []int, err error) {
 	refactor := regexp.MustCompile(`.*\n?.*KICS_HELM_ID.+\n`).ReplaceAll(originalFile, []uint8{})
 	refactor = regexp.MustCompile(`{{-\s*(.*?)\s*}}`).ReplaceAll(refactor, []uint8{})
 
-	documentsOriginal, err := s.Parser.Parse(filename, refactor, openAPIResolveReferences, isMinified)
+	documentsOriginal, err := s.Parser.Parse(filename, refactor, openAPIResolveReferences, isMinified, maxResolverDepth)
 	if err == nil {
 		ignoreLines = documentsOriginal.IgnoreLines
 	}

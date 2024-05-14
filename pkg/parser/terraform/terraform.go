@@ -46,7 +46,7 @@ func NewDefaultWithVarsPath(terraformVarsPath string) *Parser {
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string, _ bool) ([]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, filename string, _ bool, _ int) ([]byte, error) {
 	// handle panic during resolve process
 	defer func() {
 		if r := recover(); r != nil {

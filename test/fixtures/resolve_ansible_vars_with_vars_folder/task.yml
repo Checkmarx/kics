@@ -1,0 +1,5 @@
+- name: Add variables
+  ansible.builtin.include_vars: main.yml
+- name: Print variable from main.yml
+  debug:
+    msg: "Hello {{ world }}"
