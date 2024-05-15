@@ -22,5 +22,29 @@
     "severity": "HIGH",
     "line": 21,
     "filename": "positive4.json"
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
+    "line": 18,
+    "filename": "positive1.bicep"
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive2.bicep"
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
+    "line": 18,
+    "filename": "positive3.bicep"
+  },
+  {
+    "queryName": "Azure Managed Disk Without Encryption",
+    "severity": "HIGH",
+    "line": 7,
+    "filename": "positive4.bicep"
   }
 ]

@@ -10,5 +10,17 @@
     "severity": "LOW",
     "line": 15,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Phone Number Not Set For Security Contacts",
+    "severity": "LOW",
+    "line": 3,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "Phone Number Not Set For Security Contacts",
+    "severity": "LOW",
+    "line": 3,
+    "fileName": "positive2.bicep"
   }
 ]

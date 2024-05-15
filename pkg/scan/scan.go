@@ -15,6 +15,7 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/parser"
 	ansibleConfigParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/config"
 	ansibleHostsParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/hosts"
+	bicepParser "github.com/Checkmarx/kics/v2/pkg/parser/bicep"
 	buildahParser "github.com/Checkmarx/kics/v2/pkg/parser/buildah"
 	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
 	protoParser "github.com/Checkmarx/kics/v2/pkg/parser/grpc"
@@ -55,9 +56,12 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		return nil, nil
 	}
 
+	paramsPlatforms := c.ScanParams.Platform
+	useDifferentPlatformQueries(&paramsPlatforms)
+
 	querySource := source.NewFilesystemSource(
 		c.ScanParams.QueriesPath,
-		c.ScanParams.Platform,
+		paramsPlatforms,
 		c.ScanParams.CloudProvider,
 		c.ScanParams.LibrariesPath,
 		c.ScanParams.ExperimentalQueries)
@@ -168,6 +172,26 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) {
 	}, nil
 }
 
+func useDifferentPlatformQueries(platforms *[]string) {
+	hasBicep := false
+	hasARM := false
+	for _, platform := range *platforms {
+		if platform == "bicep" {
+			hasBicep = true
+		}
+		if platform == "azureresourcemanager" {
+			hasARM = true
+		}
+		if hasARM && hasBicep {
+			break
+		}
+	}
+
+	if hasBicep && !hasARM {
+		*platforms = append(*platforms, "azureresourcemanager")
+	}
+}
+
 func getExcludeResultsMap(excludeResults []string) map[string]bool {
 	excludeResultsMap := make(map[string]bool)
 	for _, er := range excludeResults {
@@ -228,6 +252,7 @@ func (c *Client) createService(
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefaultWithVarsPath(c.ScanParams.TerraformVarsPath)).
+		Add(&bicepParser.Parser{}).
 		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).
 		Add(&buildahParser.Parser{}).

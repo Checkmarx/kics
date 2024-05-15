@@ -106,5 +106,119 @@
     "severity": "MEDIUM",
     "line": 69,
     "fileName": "positive6.json"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive3.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive3.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive4.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive4.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive5.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive5.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive5.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive6.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive6.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive6.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive7.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive7.bicep"
+  },
+  {
+    "queryName": "Storage Logging For Read Write And Delete Requests Disabled",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive7.bicep"
   }
 ]
