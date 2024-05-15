@@ -1,63 +1,52 @@
 {
   "kics_version": "development",
   "files_scanned": 1,
-  "lines_scanned": 66,
+  "lines_scanned": 19,
   "files_parsed": 1,
-  "lines_parsed": 66,
+  "lines_parsed": 19,
   "lines_ignored": 0,
   "files_failed_to_scan": 0,
-  "queries_total": 1,
+  "queries_total": 17,
   "queries_failed_to_execute": 0,
   "queries_failed_to_compute_similarity_id": 0,
   "scan_id": "console",
   "severity_counters": {
     "CRITICAL": 0,
     "HIGH": 0,
-    "INFO": 0,
+    "INFO": 1,
     "LOW": 0,
-    "MEDIUM": 2,
+    "MEDIUM": 0,
     "TRACE": 0
   },
-  "total_counter": 2,
+  "total_counter": 1,
   "total_bom_resources": 0,
-  "start": "2024-03-26T14:46:52.4090749Z",
-  "end": "2024-03-26T14:46:55.6257816Z",
+  "start": "2024-05-06T15:45:28.1028682+01:00",
+  "end": "2024-05-06T15:45:29.6882643+01:00",
   "paths": [
-    "/path/test/fixtures/new_similarity_id"
+    "/path/test/fixtures/resolve_references"
   ],
   "queries": [
     {
-      "query_name": "Memory Not Limited",
-      "query_id": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492",
-      "query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources",
-      "severity": "MEDIUM",
-      "platform": "DockerCompose",
-      "category": "Resource Management",
+      "query_name": "Components Schema Definition Is Unused",
+      "query_id": "962fa01e-b791-4dcc-b04a-4a3e7389be5e",
+      "query_url": "https://swagger.io/specification/#components-object",
+      "severity": "INFO",
+      "platform": "OpenAPI",
+      "category": "Best Practices",
       "experimental": false,
-      "description": "Memory limits should be defined for each container. This prevents potential resource exhaustion by ensuring that containers consume not more than the designated amount of memory",
-      "description_id": "8fcb9f7d",
+      "description": "Components schemas definitions should be referenced or removed from Open API definition",
+      "description_id": "5cdc0f3b",
       "files": [
         {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
-          "similarity_id": "7a2fb2748dcebcb8a4169e65b71a5f51dff8b3dabca853847b9f7568485c5e37",
-          "line": 4,
-          "issue_type": "MissingAttribute",
-          "search_key": "services.api.deploy",
-          "search_line": 4,
+          "file_name": "path\\test\\fixtures\\resolve_references\\swagger.yaml",
+          "similarity_id": "ff39e561509c13315ce34a0be602a974d63231b70cb5cdf778109e062302f8eb",
+          "line": 17,
+          "issue_type": "IncorrectValue",
+          "search_key": "components.schemas.{{MyResponse}}",
+          "search_line": -1,
           "search_value": "",
-          "expected_value": "'deploy.resources' should be defined",
-          "actual_value": "'deploy.resources' is not defined"
-        },
-        {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
-          "similarity_id": "074e833d4a971ef74dcaca53f1af93c15f90ea6627fded399529a4b7c2e8ce59",
-          "line": 4,
-          "issue_type": "MissingAttribute",
-          "search_key": "services.ui.deploy",
-          "search_line": 4,
-          "search_value": "",
-          "expected_value": "'deploy.resources' should be defined",
-          "actual_value": "'deploy.resources' is not defined"
+          "expected_value": "Schema should be used as reference somewhere",
+          "actual_value": "Schema is not used as reference"
         }
       ]
     }
