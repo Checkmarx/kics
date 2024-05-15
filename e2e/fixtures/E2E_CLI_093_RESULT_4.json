@@ -23,8 +23,8 @@
   "start": "2024-05-15T15:52:17.0377038+01:00",
   "end": "2024-05-15T15:52:17.9722107+01:00",
   "paths": [
-    "path/test/fixtures/test_old_severity/test",
-    "path/test/fixtures/test_old_severity/high"
+    "/path/test/fixtures/test_old_severity/test",
+    "/path/test/fixtures/test_old_severity/high"
   ],
   "queries": [
     {
