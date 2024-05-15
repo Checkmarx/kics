@@ -20,8 +20,8 @@
   },
   "total_counter": 2,
   "total_bom_resources": 0,
-  "start": "2024-02-26T16:32:34.7508686Z",
-  "end": "2024-02-26T16:32:35.1060554Z",
+  "start": "2024-05-15T15:44:45.3600052+01:00",
+  "end": "2024-05-15T15:44:45.6773859+01:00",
   "paths": [
     "/path/test/fixtures/test_critical_severity/run_block_injection/test",
     "/path/test/fixtures/test_critical_severity/run_block_injection/query"
@@ -41,7 +41,7 @@
       "files": [
         {
           "file_name": "path\\test\\fixtures\\test_critical_severity\\run_block_injection\\test\\positive1.yaml",
-          "similarity_id": "a1294c1a63bca998f5cadb852c2680cd6be87510b295234219f2018d684e93fc",
+          "similarity_id": "bc1190ab3eb96cba01d963d7fc2b1d244f311aa30c6c1bad37c44ff1f746a09c",
           "line": 10,
           "issue_type": "IncorrectValue",
           "search_key": "run={{if [ \"${{ github.event.issue.body }}\" ]; then\n  if [[ \"${{ github.event.issue.title }}\" =~ ^\\[Auto\\]* ]]; then\n    :\n  else\n    echo \"This issue does not need to generate a markdown file.\" 1\u003e\u00262\n    exit 1;\n  fi;\nelse\n  echo \"The description of the issue is empty.\" 1\u003e\u00262\n  exit 1;\nfi;\n}}",
@@ -52,7 +52,7 @@
         },
         {
           "file_name": "path\\test\\fixtures\\test_critical_severity\\run_block_injection\\test\\positive1.yaml",
-          "similarity_id": "bc1190ab3eb96cba01d963d7fc2b1d244f311aa30c6c1bad37c44ff1f746a09c",
+          "similarity_id": "a1294c1a63bca998f5cadb852c2680cd6be87510b295234219f2018d684e93fc",
           "line": 10,
           "issue_type": "IncorrectValue",
           "search_key": "run={{if [ \"${{ github.event.issue.body }}\" ]; then\n  if [[ \"${{ github.event.issue.title }}\" =~ ^\\[Auto\\]* ]]; then\n    :\n  else\n    echo \"This issue does not need to generate a markdown file.\" 1\u003e\u00262\n    exit 1;\n  fi;\nelse\n  echo \"The description of the issue is empty.\" 1\u003e\u00262\n  exit 1;\nfi;\n}}",
