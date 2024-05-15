@@ -11,7 +11,7 @@ terraform {
   }
 }
 
-resource "aws_s3_bucket" "positive3" {
+resource "aws_s3_bucket" "positive2" {
   bucket = "my-tf-test-bucket"
   acl    = "private"
 
