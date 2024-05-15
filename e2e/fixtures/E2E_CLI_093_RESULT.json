@@ -20,11 +20,11 @@
   },
   "total_counter": 2,
   "total_bom_resources": 0,
-  "start": "2024-01-31T15:46:25.2714687Z",
-  "end": "2024-01-31T15:46:25.5747871Z",
+  "start": "2024-05-15T15:52:17.0576034+01:00",
+  "end": "2024-05-15T15:52:17.9838169+01:00",
   "paths": [
-    "/path/test/fixtures/test_old_severity/test",
-    "/path/test/fixtures/test_old_severity/info"
+    "path/test/fixtures/test_old_severity/test",
+    "path/test/fixtures/test_old_severity/info"
   ],
   "queries": [
     {
@@ -40,24 +40,24 @@
       "description_id": "02044a75",
       "files": [
         {
-          "file_name": "path\\test\\fixtures\\test_old_severities\\test\\positive1.yaml",
+          "file_name": "path\\test\\fixtures\\test_old_severity\\test\\positive1.yaml",
           "similarity_id": "a1294c1a63bca998f5cadb852c2680cd6be87510b295234219f2018d684e93fc",
           "line": 10,
           "issue_type": "IncorrectValue",
           "search_key": "run={{if [ \"${{ github.event.issue.body }}\" ]; then\n  if [[ \"${{ github.event.issue.title }}\" =~ ^\\[Auto\\]* ]]; then\n    :\n  else\n    echo \"This issue does not need to generate a markdown file.\" 1\u003e\u00262\n    exit 1;\n  fi;\nelse\n  echo \"The description of the issue is empty.\" 1\u003e\u00262\n  exit 1;\nfi;\n}}",
           "search_line": 10,
-          "search_value": "github.event.issue.body",
+          "search_value": "github.event.issue.title",
           "expected_value": "Run block does not contain dangerous input controlled by user.",
           "actual_value": "Run block contains dangerous input controlled by user."
         },
         {
-          "file_name": "path\\test\\fixtures\\test_old_severities\\test\\positive1.yaml",
+          "file_name": "path\\test\\fixtures\\test_old_severity\\test\\positive1.yaml",
           "similarity_id": "bc1190ab3eb96cba01d963d7fc2b1d244f311aa30c6c1bad37c44ff1f746a09c",
           "line": 10,
           "issue_type": "IncorrectValue",
           "search_key": "run={{if [ \"${{ github.event.issue.body }}\" ]; then\n  if [[ \"${{ github.event.issue.title }}\" =~ ^\\[Auto\\]* ]]; then\n    :\n  else\n    echo \"This issue does not need to generate a markdown file.\" 1\u003e\u00262\n    exit 1;\n  fi;\nelse\n  echo \"The description of the issue is empty.\" 1\u003e\u00262\n  exit 1;\nfi;\n}}",
           "search_line": 10,
-          "search_value": "github.event.issue.title",
+          "search_value": "github.event.issue.body",
           "expected_value": "Run block does not contain dangerous input controlled by user.",
           "actual_value": "Run block contains dangerous input controlled by user."
         }
