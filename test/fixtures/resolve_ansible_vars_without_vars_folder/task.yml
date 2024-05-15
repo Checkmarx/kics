@@ -1,0 +1,5 @@
+- name: Add variables
+  include_vars: variables.yml
+- name: Print variable from main.yml
+  debug:
+    msg: "Hello {{ world }}"

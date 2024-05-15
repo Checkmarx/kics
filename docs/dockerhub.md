@@ -120,6 +120,8 @@ Flags:
                                       example: 'e69890e6-fce5-461d-98ad-cb98318dfc96,4728cd65-a20c-49da-8b31-9c08b423e4db'
       --input-data string             path to query input data files
   -b, --libraries-path string         path to directory with libraries (default "./assets/libraries")
+      --max-file-size int             max file size permitted for scanning, in MB (default 5)
+      --max-resolver-depth int        max depth to which the resolver will traverse to resolve files (default 15)
       --minimal-ui                    simplified version of CLI output
       --no-progress                   hides the progress bar
       --output-name string            name used on report creations (default "results")
@@ -134,10 +136,10 @@ Flags:
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                  case insensitive list of platform types to scan
-                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+                                      (Ansible, AzureResourceManager, Bicep, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
                                       cannot be provided with type exclusion flags
       --exclude-type strings          case insensitive list of platform types not to scan
-                                      (Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+                                      (Ansible, AzureResourceManager, Bicep, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
                                       cannot be provided with type inclusion flags                                         
       
 ```
