@@ -423,6 +423,19 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			excludeGitIgnore:     false,
 			MaxFileSize:          -1,
 		},
+		{
+			name:                 "analyze_test_bicep",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/bicep_test")},
+			wantTypes:            []string{"bicep"},
+			wantExclude:          []string{},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantLOC:              697,
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+			MaxFileSize:          -1,
+		},
 	}
 
 	for _, tt := range tests {

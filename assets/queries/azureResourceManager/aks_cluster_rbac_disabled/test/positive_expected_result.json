@@ -22,5 +22,29 @@
     "severity": "HIGH",
     "line": 38,
     "fileName": "positive4.json"
+  },
+  {
+    "queryName": "AKS Cluster RBAC Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "AKS Cluster RBAC Disabled",
+    "severity": "HIGH",
+    "line": 26,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "AKS Cluster RBAC Disabled",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive3.bicep"
+  },
+  {
+    "queryName": "AKS Cluster RBAC Disabled",
+    "severity": "HIGH",
+    "line": 26,
+    "fileName": "positive4.bicep"
   }
 ]
