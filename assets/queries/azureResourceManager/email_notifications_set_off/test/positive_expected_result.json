@@ -70,5 +70,77 @@
     "severity": "INFO",
     "line": 22,
     "filename": "positive12.json"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 7,
+    "filename": "positive1.bicep"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 3,
+    "filename": "positive2.bicep"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 6,
+    "filename": "positive3.bicep"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 3,
+    "filename": "positive4.bicep"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 11,
+    "filename": "positive5.bicep"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive6.bicep"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 7,
+    "filename": "positive7.bicep"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 3,
+    "filename": "positive8.bicep"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 6,
+    "filename": "positive9.bicep"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 3,
+    "filename": "positive10.bicep"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 11,
+    "filename": "positive11.bicep"
+  },
+  {
+    "queryName": "Email Notifications Disabled",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive12.bicep"
   }
 ]

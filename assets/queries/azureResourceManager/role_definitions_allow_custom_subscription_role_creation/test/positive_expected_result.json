@@ -22,5 +22,29 @@
     "severity": "HIGH",
     "line": 20,
     "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Role Definitions Allow Custom Subscription Role Creation",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "Role Definitions Allow Custom Subscription Role Creation",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "Role Definitions Allow Custom Subscription Role Creation",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive3.bicep"
+  },
+  {
+    "queryName": "Role Definitions Allow Custom Subscription Role Creation",
+    "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive4.bicep"
   }
 ]

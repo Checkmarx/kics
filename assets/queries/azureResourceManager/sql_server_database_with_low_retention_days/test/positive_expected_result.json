@@ -22,5 +22,29 @@
     "severity": "LOW",
     "line": 45,
     "filename": "positive4.json"
+  },
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "LOW",
+    "line": 36,
+    "filename": "positive1.bicep"
+  },
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "LOW",
+    "line": 31,
+    "filename": "positive2.bicep"
+  },
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "LOW",
+    "line": 36,
+    "filename": "positive3.bicep"
+  },
+  {
+    "queryName": "SQL Server Database With Unrecommended Retention Days",
+    "severity": "LOW",
+    "line": 31,
+    "filename": "positive4.bicep"
   }
 ]

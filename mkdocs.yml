@@ -38,6 +38,7 @@ nav:
       - Architecture: architecture.md
       - Auto Remediation : kics_auto_remediation.md
       - Certifications: certifications.md
+      - Future Improvements: future_improvements.md 
       - Changes in v1.3.0: changes.md
       - Changes in v1.6.0: changes1_6.md
       - Changes in v1.7.0: changes1_7.md
