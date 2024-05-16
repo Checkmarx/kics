@@ -1,8 +1,8 @@
 {
   "document": [
     {
-      "file": "file",
-      "id": "0",
+      "file": "/path/test/fixtures/bicep_test/test/negative1.bicep",
+      "id": "1855f672-95d3-49f3-9771-8a9b380c37aa",
       "parameters": {},
       "resources": [
         {
@@ -29,8 +29,8 @@
       "variables": {}
     },
     {
-      "file": "file",
-      "id": "0",
+      "file": "/path/test/fixtures/bicep_test/test/negative2.bicep",
+      "id": "8c5f76e3-fde5-4061-b0fb-9eb64447a093",
       "parameters": {},
       "resources": [
         {
@@ -57,8 +57,8 @@
       "variables": {}
     },
     {
-      "file": "file",
-      "id": "0",
+      "file": "/path/test/fixtures/bicep_test/test/positive1.bicep",
+      "id": "e101cce8-1518-4d22-9c60-06f4de4425a7",
       "parameters": {},
       "resources": [
         {
@@ -85,8 +85,8 @@
       "variables": {}
     },
     {
-      "file": "file",
-      "id": "0",
+      "file": "/path/test/fixtures/bicep_test/test/positive10.bicep",
+      "id": "47359cb6-7a0a-40aa-85cd-2c671b7c7aa5",
       "parameters": {},
       "resources": [
         {
@@ -107,8 +107,8 @@
       "variables": {}
     },
     {
-      "file": "file",
-      "id": "0",
+      "file": "/path/test/fixtures/bicep_test/test/positive11.bicep",
+      "id": "f4d89b22-7589-42e8-9778-4141aa60e54c",
       "parameters": {},
       "resources": [
         {
@@ -135,8 +135,8 @@
       "variables": {}
     },
     {
-      "file": "file",
-      "id": "0",
+      "file": "/path/test/fixtures/bicep_test/test/positive12.bicep",
+      "id": "6175b9e5-327e-4ea2-80bc-67fe5f23420a",
       "parameters": {},
       "resources": [
         {
@@ -162,8 +162,8 @@
       "variables": {}
     },
     {
-      "file": "file",
-      "id": "0",
+      "file": "/path/test/fixtures/bicep_test/test/positive2.bicep",
+      "id": "483eb0dc-2062-4f3f-ab5b-2e0518b98079",
       "parameters": {},
       "resources": [
         {
@@ -186,8 +186,8 @@
       "variables": {}
     },
     {
-      "file": "file",
-      "id": "0",
+      "file": "/path/test/fixtures/bicep_test/test/positive3.bicep",
+      "id": "b3ed9d08-7cfa-4e24-a27e-5a25a2a29c49",
       "parameters": {},
       "resources": [
         {
@@ -213,8 +213,8 @@
       "variables": {}
     },
     {
-      "file": "file",
-      "id": "0",
+      "file": "/path/test/fixtures/bicep_test/test/positive4.bicep",
+      "id": "3c53d036-88e4-4695-a71e-359ccf46c9f2",
       "parameters": {},
       "resources": [
         {
@@ -235,8 +235,8 @@
       "variables": {}
     },
     {
-      "file": "file",
-      "id": "0",
+      "file": "/path/test/fixtures/bicep_test/test/positive5.bicep",
+      "id": "80aa5d5f-60f0-4476-8a39-d449a9ec3263",
       "parameters": {},
       "resources": [
         {
@@ -263,8 +263,8 @@
       "variables": {}
     },
     {
-      "file": "file",
-      "id": "0",
+      "file": "/path/test/fixtures/bicep_test/test/positive6.bicep",
+      "id": "9dde669e-2bca-4e94-86d9-0334c5f2ba25",
       "parameters": {},
       "resources": [
         {
@@ -290,8 +290,8 @@
       "variables": {}
     },
     {
-      "file": "file",
-      "id": "0",
+      "file": "/path/test/fixtures/bicep_test/test/positive7.bicep",
+      "id": "282a90c6-3400-46ab-a906-3b64dd5bda0c",
       "parameters": {},
       "resources": [
         {
@@ -318,8 +318,8 @@
       "variables": {}
     },
     {
-      "file": "file",
-      "id": "0",
+      "file": "/path/test/fixtures/bicep_test/test/positive8.bicep",
+      "id": "6353f9d7-ab83-4f11-94ff-ca8e6006cd30",
       "parameters": {},
       "resources": [
         {
@@ -342,8 +342,8 @@
       "variables": {}
     },
     {
-      "file": "file",
-      "id": "0",
+      "file": "/path/test/fixtures/bicep_test/test/positive9.bicep",
+      "id": "d9fa013c-1f49-4cba-b680-04cc60485d07",
       "parameters": {},
       "resources": [
         {
