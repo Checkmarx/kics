@@ -1,83 +1,83 @@
 {
-	"kics_version": "development",
-	"files_scanned": 1,
-	"lines_scanned": 289,
-	"files_parsed": 1,
-	"lines_parsed": 289,
-	"lines_ignored": 0,
-	"files_failed_to_scan": 0,
-	"queries_total": 1,
-	"queries_failed_to_execute": 0,
-	"queries_failed_to_compute_similarity_id": 0,
-	"scan_id": "console",
-	"severity_counters": {
-		"CRITICAL": 0,
-		"HIGH": 0,
-		"INFO": 0,
-		"LOW": 0,
-		"MEDIUM": 3,
-		"TRACE": 0
-	},
-	"total_counter": 3,
-	"total_bom_resources": 0,
-	"start": "2023-06-29T12:20:35.085794+01:00",
-	"end": "2023-06-29T12:20:40.0129014+01:00",
-	"paths": [
-		"/path/e2e/fixtures/samples/positive.yaml"
-	],
-	"queries": [
-		{
-			"query_name": "Security Group Ingress With Port Range",
-			"query_id": "87482183-a8e7-4e42-a566-7a23ec231c16",
-			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html",
-			"severity": "MEDIUM",
-			"platform": "CloudFormation",
-			"cloud_provider": "AWS",
-			"category": "Networking and Firewall",
+  "kics_version": "development",
+  "files_scanned": 1,
+  "lines_scanned": 289,
+  "files_parsed": 1,
+  "lines_parsed": 289,
+  "lines_ignored": 0,
+  "files_failed_to_scan": 0,
+  "queries_total": 1,
+  "queries_failed_to_execute": 0,
+  "queries_failed_to_compute_similarity_id": 0,
+  "scan_id": "console",
+  "severity_counters": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "INFO": 0,
+    "LOW": 0,
+    "MEDIUM": 3,
+    "TRACE": 0
+  },
+  "total_counter": 3,
+  "total_bom_resources": 0,
+  "start": "2024-04-29T15:30:58.0337669+01:00",
+  "end": "2024-04-29T15:31:04.8370804+01:00",
+  "paths": [
+    "/path/e2e/fixtures/samples/positive.yaml"
+  ],
+  "queries": [
+    {
+      "query_name": "Security Group Ingress With Port Range",
+      "query_id": "87482183-a8e7-4e42-a566-7a23ec231c16",
+      "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html",
+      "severity": "MEDIUM",
+      "platform": "CloudFormation",
+      "cloud_provider": "AWS",
+      "category": "Networking and Firewall",
       "experimental": false,
-			"description": "AWS Security Group Ingress should have a single port",
-			"description_id": "5f2b65f3",
-			"files": [
-				{
-					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
-					"similarity_id": "000056cd0b9697e13f2f4561f1963e34c58c042b921c4d0fad0f2fa5214374eb",
-					"line": 35,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupALBports",
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupALBports.Properties",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
-					"actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
-				},
-				{
-					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
-					"similarity_id": "d60022e14f1b45c574f71c0f48b3fee882b471819597b770e3545988a8f5295a",
-					"line": 19,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupHTTPinbound02",
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort should equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
-					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
-				},
-				{
-					"file_name": "path\\e2e\\fixtures\\samples\\positive.yaml",
-					"similarity_id": "810487007189ac4de717dffc3204a05756e80e910b34f89ee08fd14f612328aa",
-					"line": 27,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupSSHinbound",
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
-					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
-				}
-			]
-		}
-	]
+      "description": "AWS Security Group Ingress should have a single port",
+      "description_id": "5f2b65f3",
+      "files": [
+        {
+          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "810487007189ac4de717dffc3204a05756e80e910b34f89ee08fd14f612328aa",
+          "line": 27,
+          "resource_type": "AWS::EC2::SecurityGroupIngress",
+          "resource_name": "EcsSecurityGroupSSHinbound",
+          "issue_type": "IncorrectValue",
+          "search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
+          "actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
+        },
+        {
+          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "000056cd0b9697e13f2f4561f1963e34c58c042b921c4d0fad0f2fa5214374eb",
+          "line": 35,
+          "resource_type": "AWS::EC2::SecurityGroupIngress",
+          "resource_name": "EcsSecurityGroupALBports",
+          "issue_type": "IncorrectValue",
+          "search_key": "Resources.EcsSecurityGroupALBports.Properties",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
+          "actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
+        },
+        {
+          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "d60022e14f1b45c574f71c0f48b3fee882b471819597b770e3545988a8f5295a",
+          "line": 19,
+          "resource_type": "AWS::EC2::SecurityGroupIngress",
+          "resource_name": "EcsSecurityGroupHTTPinbound02",
+          "issue_type": "IncorrectValue",
+          "search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort should equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
+          "actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
+        }
+      ]
+    }
+  ]
 }
