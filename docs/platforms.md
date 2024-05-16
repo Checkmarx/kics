@@ -9,14 +9,26 @@ KICS supports scanning Ansible files with `.yaml` extension.
 KICS can decrypt Ansible Vault files on the fly. For that, you need to define the environment variable `ANSIBLE_VAULT_PASSWORD_FILE`.
 
 ## Ansible Config
+
 KICS supports scanning Ansible Configuration files with `.cfg` or `.conf` extension.
 
 ## Ansible Inventory
+
 KICS supports scanning Ansible Inventory files with `.ini`, `.json` or `.yaml` extension.
 
 ## Azure Resource Manager
 
-KICS supports scanning Azure Resource Manager (ARM) templates with `.json` extension. To build ARM JSON templates from Bicep code check the [official ARM documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build) and [here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax) to understand the differences between ARM JSON templates and Bicep.
+KICS supports scanning Azure Resource Manager (ARM) templates with `.json` extension. 
+
+## Bicep 
+
+KICS supports scanning Bicep files with `.bicep` extension.
+
+For instructions on converting between ARM JSON templates and Bicep code, refer to the [official ARM documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build). To understand the distinctions between the two, explore the [official syntax comparison](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax).
+
+Note that KICS recognizes this technology as Azure Resource Manager (for queries purpose).
+
+Explore our ongoing enhancements and planned features on our [Future Improvements](future_improvements.md) page.
 
 ## CDK
 

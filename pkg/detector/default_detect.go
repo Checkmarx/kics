@@ -46,6 +46,13 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	for _, key := range splitSanitized {
 		substr1, substr2 := GenerateSubstrings(key, extractedString)
 
+		// BICEP-specific tweaks in order to make bicep files compatible with ARM queries
+		if file.Kind == "BICEP" {
+			substr1 = strings.ReplaceAll(substr1, "resources", "resource")
+			substr1 = strings.ReplaceAll(substr1, "parameters", "param")
+			substr1 = strings.ReplaceAll(substr1, "variables", "variable")
+		}
+
 		detector, lines = detector.DetectCurrentLine(substr1, substr2, 0, lines)
 
 		if detector.IsBreak {
