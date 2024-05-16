@@ -39,4 +39,5 @@ const (
 	MaxFileSizeFlag         = "max-file-size"
 	UseOldSeveritiesFlag    = "old-severities"
 	MaxResolverDepth        = "max-resolver-depth"
+	KicsComputeNewSimIDFlag = "kics_compute_new_simid"
 )

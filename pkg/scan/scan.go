@@ -78,6 +78,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		c.ScanParams.UseOldSeverities,
 		true,
 		c.ScanParams.ParallelScanFlag,
+		c.ScanParams.KicsComputeNewSimID,
 	)
 	if err != nil {
 		return nil, err
