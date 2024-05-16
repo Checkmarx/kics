@@ -7,12 +7,12 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/Checkmarx/kics/internal/tracker"
-	"github.com/Checkmarx/kics/pkg/engine"
-	"github.com/Checkmarx/kics/pkg/engine/mock"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/v2/internal/tracker"
+	"github.com/Checkmarx/kics/v2/pkg/engine"
+	"github.com/Checkmarx/kics/v2/pkg/engine/mock"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -143,7 +143,7 @@ var (
 				getTestParams(&testCaseParamsType{
 					platform:   "terraform",
 					queryDir:   "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					samplePath: "../ANOTHER-FILE-PATH/redshift_publicly_accessible/test/positive1.tf",
+					samplePath: "../test/fixtures/test_extension/positive.tf",
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {

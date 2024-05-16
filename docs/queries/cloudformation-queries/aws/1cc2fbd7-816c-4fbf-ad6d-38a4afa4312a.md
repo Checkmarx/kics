@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 1cc2fbd7-816c-4fbf-ad6d-38a4afa4312a
 -   **Query name:** Security Group Egress CIDR Open To World
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Networking and Firewall
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/security_group_egress_cidr_open_to_world)
 

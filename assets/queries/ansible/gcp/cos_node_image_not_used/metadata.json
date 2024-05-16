@@ -1,12 +1,13 @@
 {
   "id": "be41f891-96b1-4b9d-b74f-b922a918c778",
   "queryName": "COS Node Image Not Used",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Insecure Configurations",
   "descriptionText": "The node image should be Container-Optimized OS(COS)",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_container_node_pool_module.html#parameter-config/image_type",
   "platform": "Ansible",
   "descriptionID": "1bcc90d0",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

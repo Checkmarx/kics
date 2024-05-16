@@ -3,10 +3,10 @@ package json
 import (
 	"bytes"
 
-	"github.com/Checkmarx/kics/pkg/parser/utils"
+	"github.com/Checkmarx/kics/v2/pkg/parser/utils"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/resolver/file"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/resolver/file"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
@@ -18,11 +18,11 @@ type Parser struct {
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string, resolveReferences bool) ([]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, filename string, resolveReferences bool, maxResolverDepth int) ([]byte, error) {
 	// Resolve files passed as arguments with file resolver (e.g. file://)
 	res := file.NewResolver(yaml.Unmarshal, yaml.Marshal, p.SupportedExtensions())
 	resolvedFilesCache := make(map[string]file.ResolvedFile)
-	resolved := res.Resolve(fileContent, filename, 0, resolvedFilesCache, resolveReferences)
+	resolved := res.Resolve(fileContent, filename, 0, maxResolverDepth, resolvedFilesCache, resolveReferences)
 	p.resolvedFiles = res.ResolvedFiles
 	if len(res.ResolvedFiles) == 0 {
 		return fileContent, nil

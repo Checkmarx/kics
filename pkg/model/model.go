@@ -1,4 +1,3 @@
-// Package model (go:generate go run -mod=mod github.com/mailru/easyjson/easyjson ./$GOFILE)
 package model
 
 import (
@@ -6,13 +5,13 @@ import (
 	"sort"
 	"strings"
 
-	_ "github.com/mailru/easyjson/gen" // easyjson unmarshaler
 	"github.com/rs/zerolog/log"
 )
 
 // Constants to describe what kind of file refers
 const (
 	KindTerraform FileKind = "TF"
+	KindBICEP     FileKind = "BICEP"
 	KindJSON      FileKind = "JSON"
 	KindYAML      FileKind = "YAML"
 	KindYML       FileKind = "YML"
@@ -252,12 +251,12 @@ func (m FileMetadatas) ToMap() map[string]FileMetadata {
 	return c
 }
 
-// Documents (easyjson:json)
+// Documents
 type Documents struct {
 	Documents []Document `json:"document"`
 }
 
-// Document (easyjson:json)
+// Document
 type Document map[string]interface{}
 
 // Combine merge documents from FileMetadatas using the ID as reference for Document ID and FileName as reference for file

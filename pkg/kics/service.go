@@ -7,15 +7,15 @@ import (
 	"io"
 	"sync"
 
-	"github.com/Checkmarx/kics/pkg/engine"
-	"github.com/Checkmarx/kics/pkg/engine/provider"
-	"github.com/Checkmarx/kics/pkg/engine/secrets"
-	"github.com/Checkmarx/kics/pkg/minified"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser"
-	"github.com/Checkmarx/kics/pkg/resolver"
+	"github.com/Checkmarx/kics/v2/pkg/engine"
+	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
+	"github.com/Checkmarx/kics/v2/pkg/engine/secrets"
+	"github.com/Checkmarx/kics/v2/pkg/minified"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser"
+	"github.com/Checkmarx/kics/v2/pkg/resolver"
 
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -66,6 +66,7 @@ type Service struct {
 func (s *Service) PrepareSources(ctx context.Context,
 	scanID string,
 	openAPIResolveReferences bool,
+	maxResolverDepth int,
 	wg *sync.WaitGroup, errCh chan<- error) {
 	defer wg.Done()
 	// CxSAST query under review
@@ -74,10 +75,10 @@ func (s *Service) PrepareSources(ctx context.Context,
 		ctx,
 		s.Parser.SupportedExtensions(),
 		func(ctx context.Context, filename string, rc io.ReadCloser) error {
-			return s.sink(ctx, filename, scanID, rc, data, openAPIResolveReferences)
+			return s.sink(ctx, filename, scanID, rc, data, openAPIResolveReferences, maxResolverDepth)
 		},
 		func(ctx context.Context, filename string) ([]string, error) { // Sink used for resolver files and templates
-			return s.resolverSink(ctx, filename, scanID, openAPIResolveReferences)
+			return s.resolverSink(ctx, filename, scanID, openAPIResolveReferences, maxResolverDepth)
 		},
 	); err != nil {
 		errCh <- errors.Wrap(err, "failed to read sources")

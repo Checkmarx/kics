@@ -137,3 +137,4 @@ run:
     - docs
     - vendor
     - pkg/parser/jsonfilter/parser
+    - pkg/parser/bicep/antlr

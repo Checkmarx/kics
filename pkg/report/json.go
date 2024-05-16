@@ -1,6 +1,6 @@
 package report
 
-import "github.com/Checkmarx/kics/internal/constants"
+import "github.com/Checkmarx/kics/v2/internal/constants"
 
 const jsonExtension = ".json"
 

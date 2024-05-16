@@ -1,6 +1,6 @@
 package model
 
-import "github.com/Checkmarx/kics/pkg/model"
+import "github.com/Checkmarx/kics/v2/pkg/model"
 
 type lines struct {
 	Begin int `json:"begin"`

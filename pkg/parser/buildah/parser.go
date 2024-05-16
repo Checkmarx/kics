@@ -9,7 +9,7 @@ import (
 
 	"encoding/json"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/pkg/errors"
 	"mvdan.cc/sh/v3/syntax"
 )
@@ -51,7 +51,7 @@ const (
 )
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, _ string, _ bool) ([]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, _ string, _ bool, _ int) ([]byte, error) {
 	return fileContent, nil
 }
 

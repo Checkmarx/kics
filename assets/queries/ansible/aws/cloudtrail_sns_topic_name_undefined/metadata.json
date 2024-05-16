@@ -1,12 +1,13 @@
 {
   "id": "5ba316a9-c466-4ec1-8d5b-bc6107dc9a92",
   "queryName": "CloudTrail SNS Topic Name Undefined",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Observability",
   "descriptionText": "Check if SNS topic name is set for CloudTrail",
   "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/cloudtrail_module.html",
   "platform": "Ansible",
   "descriptionID": "de97fa1a",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

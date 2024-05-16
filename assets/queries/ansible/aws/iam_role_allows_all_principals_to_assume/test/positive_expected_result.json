@@ -1,14 +1,14 @@
 [
-	{
-		"queryName": "IAM Role Allows All Principals To Assume",
-		"severity": "LOW",
-		"line": 4,
-		"fileName": "positive.yaml"
-	},
-	{
-		"queryName": "IAM Role Allows All Principals To Assume",
-		"severity": "LOW",
-		"line": 17,
-		"fileName": "positive.yaml"
-	}
+  {
+    "queryName": "IAM Role Allows All Principals To Assume",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive.yaml"
+  },
+  {
+    "queryName": "IAM Role Allows All Principals To Assume",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive.yaml"
+  }
 ]

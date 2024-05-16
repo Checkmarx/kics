@@ -124,7 +124,7 @@ func (info *k8sAPICall) listKinds(apiVersion string, kinds map[string]interface{
 			sb = info.getResource(item, apiVersion, kind, sb)
 		}
 
-		if len(sb.String()) > 0 {
+		if sb.String() != "" {
 			info.saveK8sResources(kind, sb.String(), apiVersionFolder)
 		}
 		sb.Reset()

@@ -1,12 +1,13 @@
 {
   "id": "dc158941-28ce-481d-a7fa-dc80761edf46",
   "queryName": "RDS Instance Retention Period Not Recommended",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Observability",
   "descriptionText": "RDS Instance SQL Retention Period should be greater than 180",
   "descriptionUrl": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_instance#sql_collector_config_value",
   "platform": "Terraform",
   "descriptionID": "243a4fb4",
   "cloudProvider": "alicloud",
-  "cwe": ""
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

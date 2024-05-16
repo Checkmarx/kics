@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/test"
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/test"
+	"github.com/aws/aws-sdk-go-v2/aws"
 )
 
 // TestBuildASFFReport tests the BuildASFFReport function

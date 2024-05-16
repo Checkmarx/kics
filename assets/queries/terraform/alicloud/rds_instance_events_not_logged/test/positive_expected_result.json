@@ -1,14 +1,14 @@
 [
   {
     "queryName": "RDS Instance Events Not Logged",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 15,
     "fileName": "positive1.tf"
   },
   {
-      "queryName": "RDS Instance Events Not Logged",
-      "severity": "HIGH",
-      "line": 4,
-      "fileName": "positive2.tf"
+    "queryName": "RDS Instance Events Not Logged",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive2.tf"
   }
 ]

@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	build "github.com/Checkmarx/kics/pkg/builder/model"
+	build "github.com/Checkmarx/kics/v2/pkg/builder/model"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 )
 

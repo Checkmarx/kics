@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/v2/internal/constants"
 	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/require"
 )

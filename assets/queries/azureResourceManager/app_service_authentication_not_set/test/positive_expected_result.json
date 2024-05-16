@@ -1,50 +1,98 @@
 [
   {
     "queryName": "App Service Authentication Is Not Set",
-    "severity": "INFO",
+    "severity": "MEDIUM",
     "line": 37,
     "fileName": "positive1.json"
   },
   {
     "queryName": "App Service Authentication Is Not Set",
-    "severity": "INFO",
+    "severity": "MEDIUM",
     "line": 33,
     "fileName": "positive2.json"
   },
   {
     "queryName": "App Service Authentication Is Not Set",
-    "severity": "INFO",
+    "severity": "MEDIUM",
     "line": 44,
     "fileName": "positive3.json"
   },
   {
     "queryName": "App Service Authentication Is Not Set",
-    "severity": "INFO",
+    "severity": "MEDIUM",
     "line": 40,
     "fileName": "positive4.json"
   },
   {
     "queryName": "App Service Authentication Is Not Set",
-    "severity": "INFO",
+    "severity": "MEDIUM",
     "line": 39,
     "fileName": "positive5.json"
   },
   {
     "queryName": "App Service Authentication Is Not Set",
-    "severity": "INFO",
+    "severity": "MEDIUM",
     "line": 35,
     "fileName": "positive6.json"
   },
   {
     "queryName": "App Service Authentication Is Not Set",
-    "severity": "INFO",
+    "severity": "MEDIUM",
     "line": 46,
     "fileName": "positive7.json"
   },
   {
     "queryName": "App Service Authentication Is Not Set",
-    "severity": "INFO",
+    "severity": "MEDIUM",
     "line": 42,
     "fileName": "positive8.json"
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive3.bicep"
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive4.bicep"
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive5.bicep"
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive6.bicep"
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive7.bicep"
+  },
+  {
+    "queryName": "App Service Authentication Is Not Set",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive8.bicep"
   }
 ]

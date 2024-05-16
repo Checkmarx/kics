@@ -3,9 +3,10 @@
   "queryName": "Using Unnamed Build Stages",
   "severity": "LOW",
   "category": "Build Process",
-  "descriptionText": " This query is used to ensure that build stages are named. This way even if the Dockerfile is re-ordered, the COPY instruction doesn’t break.",
+  "descriptionText": " This query is used to ensure that build stages are named. This way even if the Dockerfile is re-ordered, the COPY instruction doesn't break.",
   "descriptionUrl": "https://docs.docker.com/develop/develop-images/multistage-build/",
   "platform": "Dockerfile",
   "descriptionID": "dea09829",
+  "cloudProvider": "common",
   "cwe": "710"
 }

@@ -34,5 +34,41 @@
     "severity": "HIGH",
     "line": 23,
     "fileName": "positive5.json"
+  },
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 27,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 5,
+    "fileName": "positive3.bicep"
+  },
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 27,
+    "fileName": "positive4.bicep"
+  },
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive5.bicep"
+  },
+  {
+    "queryName": "Key Vault Not Recoverable",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive5.bicep"
   }
 ]

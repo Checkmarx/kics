@@ -1,7 +1,7 @@
 [
   {
     "queryName": "AD Admin Not Configured For SQL Server",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 3
   }
 ]

@@ -12,7 +12,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/test"
 	"gopkg.in/yaml.v3"
 )
 
@@ -82,7 +82,7 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile), true); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
+			if got := r.Resolve(cont, tt.args.path, 0, 15, make(map[string]ResolvedFile), true); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
 				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
 			}
 		})
@@ -144,7 +144,71 @@ func TestResolver_Resolve_Without_ResolveReferences(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			if got := r.Resolve(cont, tt.args.path, 0, make(map[string]ResolvedFile), false); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
+			if got := r.Resolve(cont, tt.args.path, 0, 15, make(map[string]ResolvedFile), false); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
+				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
+			}
+		})
+	}
+}
+
+// when using the key 'include_vars', the resolver will search for the file inside the folder 'current_path/vars' and then in the 'current_path'.
+func TestResolver_Resolve_Ansible_Vars(t *testing.T) {
+	err := test.ChangeCurrentDir("kics")
+	if err != nil {
+		t.Fatal(err)
+	}
+	type fields struct {
+		*Resolver
+	}
+	type args struct {
+		path string
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   []byte
+	}{
+		{
+			name: "resolve ansible vars when vars folder is present",
+			fields: fields{
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
+			},
+			args: args{
+				path: filepath.ToSlash("test/fixtures/resolve_ansible_vars_with_vars_folder/main.yml"),
+			},
+			want: []byte(
+				`-hosts:localhosttasks:-name:Includetask.ymlansible.builtin.include_tasks:-name:Addvariablesansible.builtin.include_vars:world:"World"-name:Printvariablefrommain.ymldebug:msg:"Hello{{world}}"-name:Includetask.ymlagainansible.builtin.include_tasks:-name:Addvariablesansible.builtin.include_vars:world:"World"-name:Printvariablefrommain.ymldebug:msg:"Hello{{world}}"`,
+			),
+		},
+		{
+			name: "resolve ansible vars when vars folder is not present",
+			fields: fields{
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
+			},
+			args: args{
+				path: filepath.ToSlash("test/fixtures/resolve_ansible_vars_without_vars_folder/main.yml"),
+			},
+			want: []byte(
+				`-hosts:localhosttasks:-name:Includetask.ymlansible.builtin.include_tasks:-name:Addvariablesinclude_vars:world:"World"-name:Printvariablefrommain.ymldebug:msg:"Hello{{world}}"-name:Includetask.ymlagainansible.builtin.include_tasks:-name:Addvariablesinclude_vars:world:"World"-name:Printvariablefrommain.ymldebug:msg:"Hello{{world}}"`,
+			),
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			r := &Resolver{
+				unmarshler:    tt.fields.unmarshler,
+				marshler:      tt.fields.marshler,
+				ResolvedFiles: tt.fields.ResolvedFiles,
+				Extension:     tt.fields.Extension,
+			}
+
+			cont, err := getFileContent(tt.args.path)
+			if err != nil {
+				t.Fatal(err)
+			}
+
+			if got := r.Resolve(cont, tt.args.path, 0, 15, make(map[string]ResolvedFile), false); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
 				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
 			}
 		})

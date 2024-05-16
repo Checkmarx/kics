@@ -9,8 +9,8 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/Checkmarx/kics/e2e/testcases"
-	"github.com/Checkmarx/kics/e2e/utils"
+	"github.com/Checkmarx/kics/v2/e2e/testcases"
+	"github.com/Checkmarx/kics/v2/e2e/utils"
 	"github.com/stretchr/testify/require"
 )
 
