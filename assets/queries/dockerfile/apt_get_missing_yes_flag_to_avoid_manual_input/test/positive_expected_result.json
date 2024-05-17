@@ -64,5 +64,29 @@
     "severity": "LOW",
     "line": 2,
     "filename": "positive5.dockerfile"
+  },
+  {
+    "queryName": "APT-GET Missing '-y' To Avoid Manual Input",
+    "severity": "LOW",
+    "line": 3,
+    "filename": "positive6.dockerfile"  
+  }, 
+  {
+    "queryName": "APT-GET Missing '-y' To Avoid Manual Input",
+    "severity": "LOW",
+    "line": 2,
+    "filename": "positive6.dockerfile"
+  },
+  {
+    "queryName": "APT-GET Missing '-y' To Avoid Manual Input",
+    "severity": "LOW",
+    "line": 3,
+    "filename": "positive7.dockerfile"  
+  }, 
+  {
+    "queryName": "APT-GET Missing '-y' To Avoid Manual Input",
+    "severity": "LOW",
+    "line": 2,
+    "filename": "positive7.dockerfile"
   }
 ]
