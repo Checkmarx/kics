@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("{{%s}} sould avoid manual input", [resource.Original]),
+		"keyExpectedValue": sprintf("{{%s}} should avoid manual input", [resource.Original]),
 		"keyActualValue": sprintf("{{%s}} doesn't avoid manual input", [resource.Original]),
 	}
 }
@@ -32,14 +32,14 @@ CxPolicy[result] {
 	dockerLib.arrayContains(resource.Value, {"apt-get", "install"})
 
 	not avoidManualInputInList(resource.Value)
-
-	result := {
-		"documentId": input.document[i].id,
-		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("{{%s}} should avoid manual input", [resource.Original]),
-		"keyActualValue": sprintf("{{%s}} doesn't avoid manual input", [resource.Original]),
-	}
+	
+    result := {
+        "documentId": input.document[i].id,
+        "searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
+        "issueType": "IncorrectValue",
+        "keyExpectedValue": sprintf("{{%s}} should avoid manual input", [resource.Original]),
+        "keyActualValue": sprintf("{{%s}} doesn't avoid manual input", [resource.Original]),
+    }
 }
 
 isAptGet(command) {
@@ -47,19 +47,19 @@ isAptGet(command) {
 }
 
 avoidManualInputInList(command) {
-	flags := ["-y", "yes", "--assumeyes", "-qy"]
-
+	flags := ["-y", "--yes", "--assume-yes", "-qy", "-q=2", "-qq"]
+	
 	contains(command[j], flags[x])
 }
 
 avoidManualInput(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*(-([A-Za-z])*y|-yes|--assumeyes) (-(-)?[a-zA-Z]+ *)*install", command)
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*(-([A-Za-z])*y|--yes|-qq|-q=2|--assume-yes|(-q|--quiet)(.*(-q|--quiet)){1}) (-(-)?[a-zA-Z]+ *)*install", command)
 }
 
 avoidManualInput(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install (-(-)?[a-zA-Z]+ *)*(-([A-Za-z])*y|-yes|--assumeyes)", command)
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install (-(-)?[a-zA-Z]+ *)*(-([A-Za-z])*y|--yes|-qq|-q=2|--assume-yes|(-q|--quiet)(.*(-q|--quiet)){1})", command)
 }
 
 avoidManualInput(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install ([A-Za-z0-9\\W]+ *)*(-([A-Za-z])*y|-yes|--assumeyes)", command)
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install ([A-Za-z0-9\\W]+ *)*(-([A-Za-z])*y|--yes|-qq|-q=2|--assume-yes|(-q|--quiet)(.*(-q|--quiet)){1})", command)
 }
