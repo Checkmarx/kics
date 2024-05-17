@@ -17,7 +17,8 @@ import (
 	ansibleConfigParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/config"
 	ansibleHostsParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/hosts"
 	buildahParser "github.com/Checkmarx/kics/v2/pkg/parser/buildah"
-	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
+    bicepParser "github.com/Checkmarx/kics/v2/pkg/parser/bicep"
+	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker" 
 	protoParser "github.com/Checkmarx/kics/v2/pkg/parser/grpc"
 	jsonParser "github.com/Checkmarx/kics/v2/pkg/parser/json"
 	terraformParser "github.com/Checkmarx/kics/v2/pkg/parser/terraform"
@@ -64,7 +65,7 @@ var (
 		"../assets/queries/openAPI/general":                 {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/3.0":                     {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/2.0":                     {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
-		"../assets/queries/azureResourceManager":            {FileKind: []model.FileKind{model.KindJSON}, Platform: "azureResourceManager"},
+		"../assets/queries/azureResourceManager":            {FileKind: []model.FileKind{model.KindJSON, model.KindBICEP}, Platform: "azureResourceManager"},
 		"../assets/queries/googleDeploymentManager/gcp":     {FileKind: []model.FileKind{model.KindYAML}, Platform: "googleDeploymentManager"},
 		"../assets/queries/googleDeploymentManager/gcp_bom": {FileKind: []model.FileKind{model.KindYAML}, Platform: "googleDeploymentManager"},
 		"../assets/queries/grpc":                            {FileKind: []model.FileKind{model.KindPROTO}, Platform: "grpc"},
@@ -194,6 +195,7 @@ func getCombinedParser() []*parser.Parser {
 	bd, _ := parser.NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
+		Add(&bicepParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).

@@ -10,5 +10,17 @@
     "severity": "LOW",
     "line": 24,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Log Profile Incorrect Category",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "Log Profile Incorrect Category",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive2.bicep"
   }
 ]
