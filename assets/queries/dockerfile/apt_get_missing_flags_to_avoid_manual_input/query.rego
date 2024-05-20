@@ -48,9 +48,13 @@ isAptGet(command) {
 }
 
 avoidManualInputInList(command) {
-	flags := ["-y", "yes", "--assumeyes", "-qy"]
-
-	contains(command[j], flags[x])
+    flags := ["-y", "--yes", "--assume-yes", "-qy", "-q=2", "-qq"]
+    flagfound := contains(command[_], flags[_])
+    flagfound
+} else {
+    flagsquiet := ["-q","--quiet"]
+    quietflag := {z | command[y] == flagsquiet[_]; z := y}
+    count(quietflag) == 2
 }
 
 avoidManualInput(command) {
