@@ -11,16 +11,12 @@ terraform {
   }
 }
 
-resource "aws_s3_bucket" "positive3" {
+resource "aws_s3_bucket" "negative6" {
   bucket = "my-tf-test-bucket"
   acl    = "private"
 
   tags = {
     Name        = "My bucket"
     Environment = "Dev"
-  }
-
-  versioning {
-    enabled = false
   }
 }
