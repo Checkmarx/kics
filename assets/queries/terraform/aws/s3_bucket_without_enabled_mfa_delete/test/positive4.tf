@@ -1,26 +1,11 @@
-provider "aws" {
-  region = "us-east-1"
-}
+module "s3_bucket" {
+  source = "terraform-aws-modules/s3-bucket/aws"
+  version = "3.7.0"
 
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.0"
-    }
-  }
-}
-
-resource "aws_s3_bucket" "positive3" {
-  bucket = "my-tf-test-bucket"
+  bucket = "my-s3-bucket"
   acl    = "private"
 
-  tags = {
-    Name        = "My bucket"
-    Environment = "Dev"
-  }
-
   versioning {
-    enabled = false
+    enabled = true
   }
 }

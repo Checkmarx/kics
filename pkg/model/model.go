@@ -11,6 +11,7 @@ import (
 // Constants to describe what kind of file refers
 const (
 	KindTerraform FileKind = "TF"
+	KindBICEP     FileKind = "BICEP"
 	KindJSON      FileKind = "JSON"
 	KindYAML      FileKind = "YAML"
 	KindYML       FileKind = "YML"
@@ -155,6 +156,7 @@ type Vulnerability struct {
 	ID               int         `json:"id"`
 	ScanID           string      `db:"scan_id" json:"-"`
 	SimilarityID     string      `db:"similarity_id" json:"similarityID"`
+	OldSimilarityID  string      `db:"old_similarity_id" json:"oldSimilarityID"`
 	FileID           string      `db:"file_id" json:"-"`
 	FileName         string      `db:"file_name" json:"fileName"`
 	QueryID          string      `db:"query_id" json:"queryID"`

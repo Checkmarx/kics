@@ -59,7 +59,7 @@ func Test_ResolverSink(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			s := tt.service
 
-			excluded, err := s.resolverSink(ctx, tt.path, "", false)
+			excluded, err := s.resolverSink(ctx, tt.path, "", false, 15)
 			if err != nil {
 				t.Fatalf(`ResolverSink failed for path %s with error: %v`, tt.path, err)
 			}
@@ -95,7 +95,7 @@ func Test_ResolverSink_ParseError(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := tt.service
-			_, err := s.resolverSink(ctx, tt.path, "", false)
+			_, err := s.resolverSink(ctx, tt.path, "", false, 15)
 			require.EqualError(t, err, tt.expectedErrorString)
 		})
 	}
@@ -147,6 +147,7 @@ func MockService(paths []string,
 		false,
 		true,
 		1,
+		false,
 	)
 	if err != nil {
 		log.Error().Msgf(`Failed to build inspector for path %s with error: %v`, path, err)

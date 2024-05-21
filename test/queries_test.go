@@ -96,7 +96,7 @@ func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []mode
 		for filePath := range temporaryRemediationSets {
 			fix := temporaryRemediationSets[filePath].(remediation.Set)
 
-			err = summary.RemediateFile(filePath, fix, false)
+			err = summary.RemediateFile(filePath, fix, false, 15)
 			os.Remove(filePath)
 			if err != nil {
 				require.NoError(t, err)
@@ -226,7 +226,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 			InputDataPath:  "",
 		},
-		map[string]bool{}, 60, false, true, 1)
+		map[string]bool{}, 60, false, true, 1, false)
 
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)

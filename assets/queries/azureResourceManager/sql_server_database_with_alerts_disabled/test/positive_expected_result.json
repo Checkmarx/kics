@@ -10,5 +10,17 @@
     "severity": "MEDIUM",
     "line": 16,
     "filename": "positive2.json"
+  },
+  {
+    "queryName": "SQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive1.bicep"
+  },
+  {
+    "queryName": "SQL Server Database With Alerts Disabled",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive2.bicep"
   }
 ]
