@@ -3,4 +3,5 @@ pkg/engine/mock/*.go
 */**/*_test.go
 **/*_mock.go
 pkg/parser/jsonfilter/parser/jsonfilter*
+pkg/parser/bicep/antlr/parser/bicep*
 internal/sentry

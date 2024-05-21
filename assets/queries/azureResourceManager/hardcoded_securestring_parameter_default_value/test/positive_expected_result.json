@@ -10,5 +10,17 @@
     "severity": "HIGH",
     "line": 9,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Hardcoded SecureString Parameter Default Value",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "Hardcoded SecureString Parameter Default Value",
+    "severity": "HIGH",
+    "line": 2,
+    "fileName": "positive2.bicep"
   }
 ]

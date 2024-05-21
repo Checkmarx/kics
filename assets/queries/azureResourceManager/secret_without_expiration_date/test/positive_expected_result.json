@@ -22,5 +22,29 @@
     "severity": "MEDIUM",
     "line": 56,
     "filename": "positive4.json"
+  },
+  {
+    "queryName": "Secret Without Expiration Date",
+    "severity": "MEDIUM",
+    "line": 33,
+    "filename": "positive1.bicep"
+  },
+  {
+    "queryName": "Secret Without Expiration Date",
+    "severity": "MEDIUM",
+    "line": 35,
+    "filename": "positive2.bicep"
+  },
+  {
+    "queryName": "Secret Without Expiration Date",
+    "severity": "MEDIUM",
+    "line": 33,
+    "filename": "positive3.bicep"
+  },
+  {
+    "queryName": "Secret Without Expiration Date",
+    "severity": "MEDIUM",
+    "line": 35,
+    "filename": "positive4.bicep"
   }
 ]

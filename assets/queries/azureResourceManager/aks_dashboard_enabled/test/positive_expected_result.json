@@ -10,5 +10,17 @@
     "severity": "LOW",
     "line": 16,
     "filename": "positive2.json"
+  },
+  {
+    "queryName": "AKS Dashboard Is Enabled",
+    "severity": "LOW",
+    "line": 8,
+    "filename": "positive1.bicep"
+  },
+  {
+    "queryName": "AKS Dashboard Is Enabled",
+    "severity": "LOW",
+    "line": 8,
+    "filename": "positive2.bicep"
   }
 ]
