@@ -18,6 +18,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_route[%s] restricts CIDR", [name]),
 		"keyActualValue": sprintf("aws_route[%s] does not restrict CIDR", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_route", name], []),
 	}
 }
 
