@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "badc7874",
   "cloudProvider": "nifcloud",
-  "experimental": "true",
   "cwe": ""
 }
