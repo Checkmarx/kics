@@ -62,7 +62,9 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="NIFCloud" src="docs/img/logo-nifcloud.png" width="110">&nbsp;&nbsp;&nbsp;
 <img alt="TencentCloud" src="docs/img/logo-tencentcloud.png" width="180">&nbsp;&nbsp;&nbsp;
 
-In order to run the Databricks, NIFCloud and TencentCloud queries, use the `--experimental-queries` flag when running KICS.
+By default, Databricks, NIFCloud, and TencentCloud queries run when you scan Terraform files using KICS.
+
+The `Severity` and `Description` of these queries are still under review.
 
 ## Getting Started
 

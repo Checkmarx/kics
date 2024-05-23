@@ -152,7 +152,9 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 </div>
 </div>
 
-In order to run the Databricks, NIFCloud and TencentCloud queries, use the `--experimental-queries` flag when running KICS.
+By default, Databricks, NIFCloud, and TencentCloud queries run when you scan Terraform files using KICS.
+
+The `Severity` and `Description` of these queries are still under review.
 
 ## Getting Started
 
