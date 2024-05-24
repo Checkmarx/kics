@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/Checkmarx/kics/pkg/builder/engine"
-	"github.com/Checkmarx/kics/pkg/parser/terraform/functions"
+	"github.com/Checkmarx/kics/v2/pkg/builder/engine"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/functions"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hcldec"
 	"github.com/hashicorp/hcl/v2/hclsyntax"

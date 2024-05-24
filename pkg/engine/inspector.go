@@ -11,13 +11,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/metrics"
-	sentryReport "github.com/Checkmarx/kics/internal/sentry"
-	"github.com/Checkmarx/kics/pkg/detector"
-	"github.com/Checkmarx/kics/pkg/detector/docker"
-	"github.com/Checkmarx/kics/pkg/detector/helm"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/internal/metrics"
+	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+	"github.com/Checkmarx/kics/v2/pkg/detector"
+	"github.com/Checkmarx/kics/v2/pkg/detector/docker"
+	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/cover"
 	"github.com/open-policy-agent/opa/rego"
@@ -58,7 +58,7 @@ type QueryLoader struct {
 
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
-	detector *detector.DetectLine, useOldSeverities bool) (*model.Vulnerability, error)
+	detector *detector.DetectLine, useOldSeverities bool, kicsComputeNewSimID bool) (*model.Vulnerability, error)
 
 // PreparedQuery includes the opaQuery and its metadata
 type PreparedQuery struct {
@@ -81,6 +81,7 @@ type Inspector struct {
 	queryExecTimeout     time.Duration
 	useOldSeverities     bool
 	numWorkers           int
+	kicsComputeNewSimID  bool
 }
 
 // QueryContext contains the context where the query is executed, which scan it belongs, basic information of query,
@@ -121,7 +122,8 @@ func NewInspector(
 	queryTimeout int,
 	useOldSeverities bool,
 	needsLog bool,
-	numWorkers int) (*Inspector, error) {
+	numWorkers int,
+	kicsComputeNewSimID bool) (*Inspector, error) {
 	log.Debug().Msg("engine.NewInspector()")
 
 	metrics.Metric.Start("get_queries")
@@ -165,15 +167,16 @@ func NewInspector(
 	}
 
 	return &Inspector{
-		QueryLoader:      &queryLoader,
-		vb:               vb,
-		tracker:          tracker,
-		failedQueries:    failedQueries,
-		excludeResults:   excludeResults,
-		detector:         lineDetector,
-		queryExecTimeout: queryExecTimeout,
-		useOldSeverities: useOldSeverities,
-		numWorkers:       adjustNumWorkers(numWorkers),
+		QueryLoader:         &queryLoader,
+		vb:                  vb,
+		tracker:             tracker,
+		failedQueries:       failedQueries,
+		excludeResults:      excludeResults,
+		detector:            lineDetector,
+		queryExecTimeout:    queryExecTimeout,
+		useOldSeverities:    useOldSeverities,
+		numWorkers:          adjustNumWorkers(numWorkers),
+		kicsComputeNewSimID: kicsComputeNewSimID,
 	}, nil
 }
 
@@ -477,7 +480,7 @@ func (c *Inspector) DecodeQueryResults(
 }
 
 func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultItem interface{}) (*model.Vulnerability, bool) {
-	vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector, c.useOldSeverities)
+	vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector, c.useOldSeverities, c.kicsComputeNewSimID)
 	if err != nil && err.Error() == ErrNoResult.Error() {
 		// Ignoring bad results
 		return nil, false

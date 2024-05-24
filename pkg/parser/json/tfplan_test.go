@@ -3,7 +3,7 @@ package json
 import (
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/stretchr/testify/require"
 )
 

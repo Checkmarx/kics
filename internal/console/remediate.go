@@ -7,12 +7,12 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/Checkmarx/kics/internal/console/flags"
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
-	sentryReport "github.com/Checkmarx/kics/internal/sentry"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	internalPrinter "github.com/Checkmarx/kics/pkg/printer"
-	"github.com/Checkmarx/kics/pkg/remediation"
+	"github.com/Checkmarx/kics/v2/internal/console/flags"
+	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
+	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	internalPrinter "github.com/Checkmarx/kics/v2/pkg/printer"
+	"github.com/Checkmarx/kics/v2/pkg/remediation"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -79,6 +79,7 @@ func remediate() error {
 	resultsPath := flags.GetStrFlag(flags.Results)
 	include := flags.GetMultiStrFlag(flags.IncludeIds)
 	openAPIResolveReferences := flags.GetBoolFlag(flags.OpenAPIReferencesFlag)
+	maxResolverDepth := flags.GetIntFlag(flags.MaxResolverDepth)
 
 	filepath.Clean(resultsPath)
 
@@ -106,7 +107,7 @@ func remediate() error {
 
 	for filePath := range remediationSets {
 		fix := remediationSets[filePath].(remediation.Set)
-		err = summary.RemediateFile(filePath, fix, openAPIResolveReferences)
+		err = summary.RemediateFile(filePath, fix, openAPIResolveReferences, maxResolverDepth)
 		if err != nil {
 			return err
 		}

@@ -5,7 +5,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/v2/internal/constants"
 	"github.com/cheggaaa/pb/v3"
 )
 

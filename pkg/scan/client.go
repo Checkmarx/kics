@@ -4,11 +4,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/storage"
-	"github.com/Checkmarx/kics/internal/tracker"
-	"github.com/Checkmarx/kics/pkg/descriptions"
-	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
-	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/v2/internal/storage"
+	"github.com/Checkmarx/kics/v2/internal/tracker"
+	"github.com/Checkmarx/kics/v2/pkg/descriptions"
+	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
 	"github.com/rs/zerolog/log"
 )
 
@@ -48,6 +48,8 @@ type Parameters struct {
 	ParallelScanFlag            int
 	MaxFileSizeFlag             int
 	UseOldSeverities            bool
+	MaxResolverDepth            int
+	KicsComputeNewSimID         bool
 }
 
 // Client represents a scan client

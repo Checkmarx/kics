@@ -16,5 +16,23 @@
     "severity": "LOW",
     "line": 23,
     "filename": "positive3.json"
+  },
+  {
+    "queryName": "Standard Price Is Not Selected",
+    "severity": "LOW",
+    "line": 18,
+    "filename": "positive1.bicep"
+  },
+  {
+    "queryName": "Standard Price Is Not Selected",
+    "severity": "LOW",
+    "line": 18,
+    "filename": "positive2.bicep"
+  },
+  {
+    "queryName": "Standard Price Is Not Selected",
+    "severity": "LOW",
+    "line": 10,
+    "filename": "positive3.bicep"
   }
 ]

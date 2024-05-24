@@ -9,10 +9,10 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/Checkmarx/kics/internal/metrics"
-	"github.com/Checkmarx/kics/pkg/engine/provider"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/internal/metrics"
+	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	ignore "github.com/sabhiram/go-gitignore"
@@ -88,6 +88,7 @@ var (
 		".cfg":               true,
 		".conf":              true,
 		".ini":               true,
+		".bicep":             true,
 	}
 	supportedRegexes = map[string][]string{
 		"azureresourcemanager": append(armRegexTypes, arm),
@@ -117,6 +118,7 @@ const (
 	json       = ".json"
 	sh         = ".sh"
 	arm        = "azureresourcemanager"
+	bicep      = "bicep"
 	kubernetes = "kubernetes"
 	terraform  = "terraform"
 	gdm        = "googledeploymentmanager"
@@ -366,7 +368,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, wg *sync.WaitGroup) {
+func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, wg *sync.WaitGroup) { //nolint: gocyclo
 	defer wg.Done()
 
 	ext, errExt := utils.GetExtension(a.filePath)
@@ -392,6 +394,12 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 		case ".tf", "tfvars":
 			if a.isAvailableType(terraform) {
 				results <- terraform
+				locCount <- linesCount
+			}
+		// Bicep
+		case ".bicep":
+			if a.isAvailableType(bicep) {
+				results <- bicep
 				locCount <- linesCount
 			}
 		// GRPC

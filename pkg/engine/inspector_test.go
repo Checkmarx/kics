@@ -15,16 +15,16 @@ import (
 	"github.com/open-policy-agent/opa/rego"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Checkmarx/kics/assets"
-	"github.com/Checkmarx/kics/internal/tracker"
-	"github.com/Checkmarx/kics/pkg/detector"
-	"github.com/Checkmarx/kics/pkg/detector/docker"
-	"github.com/Checkmarx/kics/pkg/detector/helm"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/progress"
-	"github.com/Checkmarx/kics/pkg/utils"
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/assets"
+	"github.com/Checkmarx/kics/v2/internal/tracker"
+	"github.com/Checkmarx/kics/v2/pkg/detector"
+	"github.com/Checkmarx/kics/v2/pkg/detector/docker"
+	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
+	"github.com/Checkmarx/kics/v2/test"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
@@ -186,9 +186,10 @@ func TestInspect(t *testing.T) { //nolint
 		excludeResults       map[string]bool
 	}
 	type args struct {
-		ctx    context.Context
-		scanID string
-		files  model.FileMetadatas
+		ctx                 context.Context
+		scanID              string
+		files               model.FileMetadatas
+		kicsComputeNewSimID bool
 	}
 	tests := []struct {
 		name    string
@@ -233,11 +234,13 @@ func TestInspect(t *testing.T) { //nolint
 						LinesOriginalData: utils.SplitLines("orig_data"),
 					},
 				},
+				kicsComputeNewSimID: true,
 			},
 			want: []model.Vulnerability{
 				{
 					ID:               0,
 					SimilarityID:     "fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe",
+					OldSimilarityID:  "fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe",
 					ScanID:           "scanID",
 					FileID:           "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
 					FileName:         "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
@@ -296,6 +299,7 @@ func TestInspect(t *testing.T) { //nolint
 						LinesOriginalData: utils.SplitLines("orig_data"),
 					},
 				},
+				kicsComputeNewSimID: true,
 			},
 			want:    []model.Vulnerability{},
 			wantErr: false,
@@ -321,6 +325,7 @@ func TestInspect(t *testing.T) { //nolint
 				detector:             inspDetector,
 				queryExecTimeout:     time.Duration(60) * time.Second,
 				numWorkers:           1,
+				kicsComputeNewSimID:  tt.args.kicsComputeNewSimID,
 			}
 			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files,
 				[]string{filepath.FromSlash("assets/queries/")}, []string{"Dockerfile"}, currentQuery)
@@ -399,16 +404,17 @@ func TestNewInspector(t *testing.T) { //nolint
 		Aggregation: 1,
 	})
 	type args struct {
-		ctx              context.Context
-		source           source.QueriesSource
-		vb               VulnerabilityBuilder
-		tracker          Tracker
-		queryFilter      source.QueryInspectorParameters
-		excludeResults   map[string]bool
-		queryExecTimeout int
-		needsLog         bool
-		useOldSeverities bool
-		numWorkers       int
+		ctx                 context.Context
+		source              source.QueriesSource
+		vb                  VulnerabilityBuilder
+		tracker             Tracker
+		queryFilter         source.QueryInspectorParameters
+		excludeResults      map[string]bool
+		queryExecTimeout    int
+		needsLog            bool
+		useOldSeverities    bool
+		numWorkers          int
+		kicsComputeNewSimID bool
 	}
 	tests := []struct {
 		name    string
@@ -432,10 +438,11 @@ func TestNewInspector(t *testing.T) { //nolint
 						ByCategories: []string{},
 					},
 				},
-				excludeResults:   map[string]bool{},
-				queryExecTimeout: 60,
-				needsLog:         true,
-				numWorkers:       1,
+				excludeResults:      map[string]bool{},
+				queryExecTimeout:    60,
+				needsLog:            true,
+				numWorkers:          1,
+				kicsComputeNewSimID: true,
 			},
 			want: &Inspector{
 				vb:      vbs,
@@ -458,7 +465,7 @@ func TestNewInspector(t *testing.T) { //nolint
 				tt.args.queryExecTimeout,
 				tt.args.useOldSeverities,
 				tt.args.needsLog,
-				tt.args.numWorkers)
+				tt.args.numWorkers, tt.args.kicsComputeNewSimID)
 
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NewInspector() error: got = %v,\n wantErr = %v", err, tt.wantErr)
@@ -547,8 +554,9 @@ func TestEngine_LenQueriesByPlat(t *testing.T) {
 	}
 
 	type args struct {
-		queriesPath []string
-		platform    []string
+		queriesPath         []string
+		platform            []string
+		kicsComputeNewSimID bool
 	}
 	tests := []struct {
 		name string
@@ -558,8 +566,9 @@ func TestEngine_LenQueriesByPlat(t *testing.T) {
 		{
 			name: "test_len_queries_plat",
 			args: args{
-				queriesPath: []string{filepath.FromSlash("./test/fixtures")},
-				platform:    []string{"terraform"},
+				queriesPath:         []string{filepath.FromSlash("./test/fixtures")},
+				platform:            []string{"terraform"},
+				kicsComputeNewSimID: true,
 			},
 			min: 1,
 		},
@@ -570,7 +579,8 @@ func TestEngine_LenQueriesByPlat(t *testing.T) {
 					filepath.FromSlash("./assets/queries/terraform/aws/alb_deletion_protection_disabled"),
 					filepath.FromSlash("./assets/queries/terraform/aws/alb_is_not_integrated_with_waf"),
 				},
-				platform: []string{"terraform"},
+				platform:            []string{"terraform"},
+				kicsComputeNewSimID: true,
 			},
 			min: 2,
 		},
@@ -578,7 +588,7 @@ func TestEngine_LenQueriesByPlat(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ins := newInspectorInstance(t, tt.args.queriesPath)
+			ins := newInspectorInstance(t, tt.args.queriesPath, tt.args.kicsComputeNewSimID)
 			got := ins.LenQueriesByPlat(tt.args.platform)
 			require.True(t, got >= tt.min)
 		})
@@ -590,8 +600,9 @@ func TestEngine_GetFailedQueries(t *testing.T) {
 		t.Fatal(err)
 	}
 	type args struct {
-		queriesPath     []string
-		nrFailedQueries int
+		queriesPath         []string
+		nrFailedQueries     int
+		kicsComputeNewSimID bool
 	}
 	tests := []struct {
 		name string
@@ -600,15 +611,16 @@ func TestEngine_GetFailedQueries(t *testing.T) {
 		{
 			name: "test_get_failed_queries",
 			args: args{
-				queriesPath:     []string{filepath.FromSlash("./test/fixtures")},
-				nrFailedQueries: 5,
+				queriesPath:         []string{filepath.FromSlash("./test/fixtures")},
+				nrFailedQueries:     5,
+				kicsComputeNewSimID: true,
 			},
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ins := newInspectorInstance(t, tt.args.queriesPath)
+			ins := newInspectorInstance(t, tt.args.queriesPath, tt.args.kicsComputeNewSimID)
 			fail := make([]string, tt.args.nrFailedQueries)
 			for idx := range fail {
 				ins.failedQueries[fmt.Sprint(idx)] = nil
@@ -692,7 +704,7 @@ func TestInspector_DecodeQueryResults(t *testing.T) {
 	contextToUSe := context.Background()
 
 	//build inspector
-	c := newInspectorInstance(t, []string{})
+	c := newInspectorInstance(t, []string{}, true)
 
 	type args struct {
 		queryContext QueryContext
@@ -761,10 +773,10 @@ func newQueryContext(ctx context.Context) QueryContext {
 	return queryContext
 }
 
-func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {
+func newInspectorInstance(t *testing.T, queryPath []string, kicsComputeNewSimID bool) *Inspector {
 	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"), true)
 	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},
-		detector *detector.DetectLine, useOldSeverity bool) (*model.Vulnerability, error) {
+		detector *detector.DetectLine, useOldSeverity bool, kicsComputeNewSimID bool) (*model.Vulnerability, error) {
 		return &model.Vulnerability{}, nil
 	}
 	ins, err := NewInspector(
@@ -773,7 +785,9 @@ func newInspectorInstance(t *testing.T, queryPath []string) *Inspector {
 		vb,
 		&tracker.CITracker{},
 		&source.QueryInspectorParameters{},
-		map[string]bool{}, 60, false, true, 1,
+		map[string]bool{}, 60,
+		false, true, 1,
+		kicsComputeNewSimID,
 	)
 	require.NoError(t, err)
 	return ins

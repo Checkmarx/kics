@@ -12,16 +12,16 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/Checkmarx/kics/internal/console/flags"
-	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/internal/tracker"
-	"github.com/Checkmarx/kics/pkg/engine"
-	"github.com/Checkmarx/kics/pkg/engine/mock"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/progress"
-	"github.com/Checkmarx/kics/pkg/remediation"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/internal/console/flags"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	"github.com/Checkmarx/kics/v2/internal/tracker"
+	"github.com/Checkmarx/kics/v2/pkg/engine"
+	"github.com/Checkmarx/kics/v2/pkg/engine/mock"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
+	"github.com/Checkmarx/kics/v2/pkg/remediation"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/golang/mock/gomock"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -96,7 +96,7 @@ func testRemediationQuery(t testing.TB, entry queryEntry, vulnerabilities []mode
 		for filePath := range temporaryRemediationSets {
 			fix := temporaryRemediationSets[filePath].(remediation.Set)
 
-			err = summary.RemediateFile(filePath, fix, false)
+			err = summary.RemediateFile(filePath, fix, false, 15)
 			os.Remove(filePath)
 			if err != nil {
 				require.NoError(t, err)
@@ -226,7 +226,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 			InputDataPath:  "",
 		},
-		map[string]bool{}, 60, false, true, 1)
+		map[string]bool{}, 60, false, true, 1, false)
 
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)

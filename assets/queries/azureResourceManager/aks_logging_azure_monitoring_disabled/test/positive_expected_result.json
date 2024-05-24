@@ -22,5 +22,29 @@
     "severity": "MEDIUM",
     "line": 8,
     "filename": "positive4.json"
+  },
+  {
+    "queryName": "AKS Logging To Azure Monitoring Is Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive1.bicep"
+  },
+  {
+    "queryName": "AKS Logging To Azure Monitoring Is Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "filename": "positive2.bicep"
+  },
+  {
+    "queryName": "AKS Logging To Azure Monitoring Is Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive3.bicep"
+  },
+  {
+    "queryName": "AKS Logging To Azure Monitoring Is Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "filename": "positive4.bicep"
   }
 ]

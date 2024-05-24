@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.11.0
+        uses: styfle/cancel-workflow-action@0.12.1
         with:
           access_token: ${{ github.token }}
       - name: Check out code
@@ -84,7 +84,7 @@ jobs:
           E2E_KICS_DOCKER: kics:e2e-debian-tests-${{ github.sha }}
           E2E_KICS_QUERIES_PATH: ${{ steps.getbin.outputs.queries }}
         run: |
-          go test -tags dev "github.com/Checkmarx/kics/e2e" -timeout 1500s -json > results.json
+          go test -tags dev "github.com/Checkmarx/kics/v2/e2e" -timeout 1500s -json > results.json
       - name: Generate E2E Report
         if: always()
         env:

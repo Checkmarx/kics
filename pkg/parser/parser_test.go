@@ -3,11 +3,11 @@ package parser
 import (
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
-	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
-	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
-	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
+	jsonParser "github.com/Checkmarx/kics/v2/pkg/parser/json"
+	terraformParser "github.com/Checkmarx/kics/v2/pkg/parser/terraform"
+	yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
 	"github.com/stretchr/testify/require"
 )
 
@@ -25,7 +25,7 @@ func TestParser_Parse(t *testing.T) {
 		"name": "CxBraga"
 	}
 }
-`), true, false)
+`), true, false, 15)
 		require.NoError(t, err)
 		require.Len(t, docs.Docs, 1)
 		require.Contains(t, docs.Docs[0], "martin")
@@ -39,7 +39,7 @@ func TestParser_Parse(t *testing.T) {
 		docs, err := parser.Parse("../../test/fixtures/test_extension/test.yaml", []byte(`
 martin:
   name: CxBraga
-`), true, false)
+`), true, false, 15)
 		require.NoError(t, err)
 		require.Len(t, docs.Docs, 1)
 		require.Contains(t, docs.Docs[0], "martin")
@@ -54,7 +54,7 @@ martin:
 FROM foo
 COPY . /
 RUN echo hello
-`), true, false)
+`), true, false, 15)
 
 		require.NoError(t, err)
 		require.Len(t, docs.Docs, 1)
@@ -70,7 +70,7 @@ func TestParser_Empty(t *testing.T) {
 		t.Errorf("Error building parser: %s", err)
 	}
 	for _, parser := range p {
-		docs, err := parser.Parse("test.json", nil, true, false)
+		docs, err := parser.Parse("test.json", nil, true, false, 15)
 		require.Nil(t, docs.Docs)
 		require.Equal(t, model.FileKind(""), docs.Kind)
 		require.Error(t, err)

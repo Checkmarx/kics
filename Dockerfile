@@ -1,4 +1,4 @@
-FROM cgr.dev/chainguard/go@sha256:a06a462f22445088e8bbb4478dedf83228af0db9003cd4f4cde5981694bc3d3d as build_env
+FROM --platform=linux/amd64 cgr.dev/chainguard/go@sha256:08d316c0f1d271a94cc9fe70e926f531cb3714f87ac9025e6bb64f5e55650541 as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -31,11 +31,9 @@ USER nonroot
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/git@sha256:f20defbb71126cae9e76cb95d24399df877b4fe62476525c0e67b05c0206b51d
+FROM --platform=linux/amd64 cgr.dev/chainguard/git@sha256:9857edbfddf33eeeaf6a048502609ab0b2ed16273fc2ce93f49af98a31b6919d
 
 ENV TERM xterm-256color
-
-USER root
 
 # Copy built binary to the runtime container
 # Vulnerability fixed in latest version of KICS remove when gh actions version is updated

@@ -8,10 +8,10 @@ import (
 	"regexp"
 	"sort"
 
-	sentryReport "github.com/Checkmarx/kics/internal/sentry"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser"
-	"github.com/Checkmarx/kics/pkg/utils"
+	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser/jsonfilter/parser"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/antlr4-go/antlr/v4"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
@@ -28,7 +28,8 @@ var (
 
 func (s *Service) sink(ctx context.Context, filename, scanID string,
 	rc io.Reader, data []byte,
-	openAPIResolveReferences bool) error {
+	openAPIResolveReferences bool,
+	maxResolverDepth int) error {
 	s.Tracker.TrackFileFound(filename)
 	log.Debug().Msgf("Starting to process file %s", filename)
 
@@ -42,7 +43,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string,
 	if err != nil {
 		return errors.Wrapf(err, "failed to get file content: %s", filename)
 	}
-	documents, err := s.Parser.Parse(filename, *content, openAPIResolveReferences, c.IsMinified)
+	documents, err := s.Parser.Parse(filename, *content, openAPIResolveReferences, c.IsMinified, maxResolverDepth)
 	if err != nil {
 		log.Err(err).Msgf("failed to parse file content: %s", filename)
 		return nil

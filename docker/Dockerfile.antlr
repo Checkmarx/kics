@@ -32,4 +32,4 @@ RUN adduser \
 COPY --from=builder /opt/antlr4/antlr4/antlr4-tool.jar /usr/local/lib/
 WORKDIR /work
 ENTRYPOINT ["java", "-Xmx500M", "-cp", "/usr/local/lib/antlr4-tool.jar", "org.antlr.v4.Tool"]
-CMD [ "-Dlanguage=Go", "-visitor", "-no-listener", "-o", "parser", "JSONFilter.g4" ]
+CMD [ "-Dlanguage=Go", "-visitor", "-no-listener", "-o", "parser", "jsonfilter/JSONFilter.g4", "-Dlanguage=Go", "-visitor", "-no-listener", "-o", "parser", "bicep/antlr/bicep.g4"]

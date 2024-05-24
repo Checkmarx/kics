@@ -9,9 +9,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
+	"github.com/Checkmarx/kics/v2/test"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
 )

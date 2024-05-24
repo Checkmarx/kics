@@ -4,17 +4,17 @@ import (
 	"context"
 	"testing"
 
-	"github.com/Checkmarx/kics/assets"
-	"github.com/Checkmarx/kics/internal/storage"
-	"github.com/Checkmarx/kics/internal/tracker"
-	"github.com/Checkmarx/kics/pkg/engine"
-	"github.com/Checkmarx/kics/pkg/engine/provider"
-	"github.com/Checkmarx/kics/pkg/engine/secrets"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/parser"
-	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
-	"github.com/Checkmarx/kics/pkg/resolver"
-	"github.com/Checkmarx/kics/pkg/resolver/helm"
+	"github.com/Checkmarx/kics/v2/assets"
+	"github.com/Checkmarx/kics/v2/internal/storage"
+	"github.com/Checkmarx/kics/v2/internal/tracker"
+	"github.com/Checkmarx/kics/v2/pkg/engine"
+	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
+	"github.com/Checkmarx/kics/v2/pkg/engine/secrets"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/parser"
+	yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/v2/pkg/resolver"
+	"github.com/Checkmarx/kics/v2/pkg/resolver/helm"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 )
@@ -59,7 +59,7 @@ func Test_ResolverSink(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			s := tt.service
 
-			excluded, err := s.resolverSink(ctx, tt.path, "", false)
+			excluded, err := s.resolverSink(ctx, tt.path, "", false, 15)
 			if err != nil {
 				t.Fatalf(`ResolverSink failed for path %s with error: %v`, tt.path, err)
 			}
@@ -95,7 +95,7 @@ func Test_ResolverSink_ParseError(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := tt.service
-			_, err := s.resolverSink(ctx, tt.path, "", false)
+			_, err := s.resolverSink(ctx, tt.path, "", false, 15)
 			require.EqualError(t, err, tt.expectedErrorString)
 		})
 	}
@@ -147,6 +147,7 @@ func MockService(paths []string,
 		false,
 		true,
 		1,
+		false,
 	)
 	if err != nil {
 		log.Error().Msgf(`Failed to build inspector for path %s with error: %v`, path, err)

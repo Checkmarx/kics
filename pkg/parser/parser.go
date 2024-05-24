@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/rs/zerolog/log"
 )
 
@@ -17,7 +17,7 @@ type kindParser interface {
 	SupportedExtensions() []string
 	SupportedTypes() map[string]bool
 	Parse(filePath string, fileContent []byte) ([]model.Document, []int, error)
-	Resolve(fileContent []byte, filename string, _ bool) ([]byte, error)
+	Resolve(fileContent []byte, filename string, _ bool, _ int) ([]byte, error)
 	StringifyContent(content []byte) (string, error)
 	GetResolvedFiles() map[string]model.ResolvedFile
 }
@@ -123,11 +123,15 @@ func (c *Parser) CommentsCommands(filePath string, fileContent []byte) model.Com
 
 // Parse executes a parser on the fileContent and returns the file content as a Document, the file kind and
 // an error, if an error has occurred
-func (c *Parser) Parse(filePath string, fileContent []byte, openAPIResolveReferences, isMinified bool) (ParsedDocument, error) {
+func (c *Parser) Parse(
+	filePath string,
+	fileContent []byte,
+	openAPIResolveReferences, isMinified bool,
+	maxResolverDepth int) (ParsedDocument, error) {
 	fileContent = utils.DecryptAnsibleVault(fileContent, os.Getenv("ANSIBLE_VAULT_PASSWORD_FILE"))
 
 	if c.isValidExtension(filePath) {
-		resolved, err := c.parsers.Resolve(fileContent, filePath, openAPIResolveReferences)
+		resolved, err := c.parsers.Resolve(fileContent, filePath, openAPIResolveReferences, maxResolverDepth)
 		if err != nil {
 			return ParsedDocument{}, err
 		}

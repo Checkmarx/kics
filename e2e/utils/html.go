@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/v2/internal/constants"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/net/html"
 )

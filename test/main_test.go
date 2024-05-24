@@ -9,20 +9,21 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/assets"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/kics"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser"
-	ansibleConfigParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/config"
-	ansibleHostsParser "github.com/Checkmarx/kics/pkg/parser/ansible/ini/hosts"
-	buildahParser "github.com/Checkmarx/kics/pkg/parser/buildah"
-	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
-	protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"
-	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
-	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
-	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/assets"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/kics"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser"
+	ansibleConfigParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/config"
+	ansibleHostsParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/hosts"
+	buildahParser "github.com/Checkmarx/kics/v2/pkg/parser/buildah"
+    bicepParser "github.com/Checkmarx/kics/v2/pkg/parser/bicep"
+	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker" 
+	protoParser "github.com/Checkmarx/kics/v2/pkg/parser/grpc"
+	jsonParser "github.com/Checkmarx/kics/v2/pkg/parser/json"
+	terraformParser "github.com/Checkmarx/kics/v2/pkg/parser/terraform"
+	yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
@@ -64,7 +65,7 @@ var (
 		"../assets/queries/openAPI/general":                 {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/3.0":                     {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/2.0":                     {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
-		"../assets/queries/azureResourceManager":            {FileKind: []model.FileKind{model.KindJSON}, Platform: "azureResourceManager"},
+		"../assets/queries/azureResourceManager":            {FileKind: []model.FileKind{model.KindJSON, model.KindBICEP}, Platform: "azureResourceManager"},
 		"../assets/queries/googleDeploymentManager/gcp":     {FileKind: []model.FileKind{model.KindYAML}, Platform: "googleDeploymentManager"},
 		"../assets/queries/googleDeploymentManager/gcp_bom": {FileKind: []model.FileKind{model.KindYAML}, Platform: "googleDeploymentManager"},
 		"../assets/queries/grpc":                            {FileKind: []model.FileKind{model.KindPROTO}, Platform: "grpc"},
@@ -171,7 +172,7 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 	files := make(model.FileMetadatas, 0)
 
 	for _, parser := range combinedParser {
-		docs, err := parser.Parse(filePath, content, true, false)
+		docs, err := parser.Parse(filePath, content, true, false, 15)
 		for _, document := range docs.Docs {
 			require.NoError(t, err)
 			files = append(files, model.FileMetadata{
@@ -194,6 +195,7 @@ func getCombinedParser() []*parser.Parser {
 	bd, _ := parser.NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
+		Add(&bicepParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).

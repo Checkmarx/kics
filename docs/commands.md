@@ -58,6 +58,7 @@ Use "kics [command] --help" for more information about a command.
 |      --input-data string           |  path to query input data files|
 |  -b, --libraries-path string       |  path to directory with libraries (default "./assets/libraries")|
 |      --max-file-size int           |  max file size permitted for scanning, in MB (default 5)|
+|      --max-resolver-depth int      |  max depth to which the resolver will traverse to resolve files (default 15)|
 |      --minimal-ui                  |  simplified version of CLI output|
 |      --no-progress                 |  hides the progress bar|
 |      --output-name string          |  name used on report creations (default "results")|
@@ -72,8 +73,8 @@ Use "kics [command] --help" for more information about a command.
 |  -r, --secrets-regexes-path string |  path to secrets regex rules configuration file|
 |      --terraform-vars-path         |  string path where terraform variables are present|
 |      --timeout int                 |  number of seconds the query has to execute before being canceled (default 60)|
-|  -t, --type strings                |  case insensitive list of platform types to scan<br>(Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC,GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)<br>cannot be provided with type exclusion flags|
-|      --exclude-type strings        |  case insensitive list of platform types not to scan<br>(Ansible, AzureResourceManager, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)<br>cannot be provided with type inclusion flags|
+|  -t, --type strings                |  case insensitive list of platform types to scan<br>(Ansible, AzureResourceManager, Bicep, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC,GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)<br>cannot be provided with type exclusion flags|
+|      --exclude-type strings        |  case insensitive list of platform types not to scan<br>(Ansible, AzureResourceManager, Bicep, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)<br>cannot be provided with type inclusion flags|
 
 
 Usage:

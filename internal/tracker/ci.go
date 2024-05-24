@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 )
 
 // CITracker contains information of how many queries were loaded and executed
@@ -16,22 +16,23 @@ var (
 )
 
 type CITracker struct {
-	ExecutingQueries   int
-	ExecutedQueries    int
-	FoundFiles         int
-	FailedSimilarityID int
-	LoadedQueries      int
-	ParsedFiles        int
-	ScanSecrets        int
-	ScanPaths          int
-	lines              int
-	FoundCountLines    int
-	ParsedCountLines   int
-	IgnoreCountLines   int
-	Version            model.Version
-	BagOfFilesParse    map[string]int
-	BagOfFilesFound    map[string]int
-	syncFileMutex      sync.Mutex
+	ExecutingQueries      int
+	ExecutedQueries       int
+	FoundFiles            int
+	FailedSimilarityID    int
+	FailedOldSimilarityID int
+	LoadedQueries         int
+	ParsedFiles           int
+	ScanSecrets           int
+	ScanPaths             int
+	lines                 int
+	FoundCountLines       int
+	ParsedCountLines      int
+	IgnoreCountLines      int
+	Version               model.Version
+	BagOfFilesParse       map[string]int
+	BagOfFilesFound       map[string]int
+	syncFileMutex         sync.Mutex
 }
 
 // NewTracker will create a new instance of a tracker with the number of lines to display in results output
@@ -104,6 +105,11 @@ func (c *CITracker) FailedDetectLine() {
 // FailedComputeSimilarityID - queries that failed to compute similarity ID
 func (c *CITracker) FailedComputeSimilarityID() {
 	c.FailedSimilarityID++
+}
+
+// FailedComputeOldSimilarityID - queries that failed to compute old similarity ID
+func (c *CITracker) FailedComputeOldSimilarityID() {
+	c.FailedOldSimilarityID++
 }
 
 // TrackScanSecret - add to secrets scanned

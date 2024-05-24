@@ -1,0 +1,6 @@
+- hosts: localhost
+  tasks:
+    - name: Include task.yml
+      ansible.builtin.include_tasks: task.yml
+    - name: Include task.yml again
+      ansible.builtin.include_tasks: task.yml

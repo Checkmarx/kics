@@ -6,8 +6,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/rs/zerolog/log"
 )
 
@@ -49,7 +49,12 @@ func getBefore(line string) string {
 }
 
 // willRemediate verifies if the remediation actually removes the result
-func willRemediate(remediated []string, originalFileName string, remediation *Remediation, openAPIResolveReferences bool) bool {
+func willRemediate(
+	remediated []string,
+	originalFileName string,
+	remediation *Remediation,
+	openAPIResolveReferences bool,
+	maxResolverDepth int) bool {
 	filepath.Clean(originalFileName)
 	// create temporary file
 	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+"-"+filepath.Base(originalFileName))
@@ -75,7 +80,7 @@ func willRemediate(remediated []string, originalFileName string, remediation *Re
 	}
 
 	// scan the temporary file to verify if the remediation removed the result
-	results, err := scanTmpFile(tmpFile, remediation.QueryID, content, openAPIResolveReferences)
+	results, err := scanTmpFile(tmpFile, remediation.QueryID, content, openAPIResolveReferences, maxResolverDepth)
 
 	if err != nil {
 		log.Error().Msgf("failed to get results of query %s: %s", remediation.QueryID, err)

@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/stretchr/testify/require"
 )
 
@@ -49,7 +49,7 @@ func TestParser_Parse(t *testing.T) {
 func Test_Resolve(t *testing.T) {
 	parser := &Parser{}
 
-	resolved, err := parser.Resolve([]byte(have), "test.json", true)
+	resolved, err := parser.Resolve([]byte(have), "test.json", true, 15)
 	require.NoError(t, err)
 	require.Equal(t, have, string(resolved))
 }

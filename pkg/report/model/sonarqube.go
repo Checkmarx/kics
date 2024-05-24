@@ -1,8 +1,8 @@
 package model
 
 import (
-	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 )
 
 // severitySonarQubeEquivalence maps the severity of the KICS to the SonarQube equivalent

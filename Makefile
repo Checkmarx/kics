@@ -110,7 +110,7 @@ test-coverage-report: test-cover
 test-e2e: ## Run E2E tests
 test-e2e: build
 	$(call print-target)
-	E2E_KICS_BINARY=$(PWD)/bin/kics go test "github.com/Checkmarx/kics/e2e" -v -timeout 1500s
+	E2E_KICS_BINARY=$(PWD)/bin/kics go test "github.com/Checkmarx/kics/v2/e2e" -v -timeout 1500s
 
 .PHONY: cover
 cover: ## generate coverage report
@@ -131,7 +131,7 @@ dkr-compose: ## build docker image and runs docker-compose up
 .PHONY: dkr-build-antlr
 dkr-build-antlr: ## build ANTLRv4 docker image and generate parser based on given grammar
 	@docker build -t antlr4-generator:dev -f ./docker/Dockerfile.antlr .
-	@docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser/jsonfilter/:/work -it antlr4-generator:dev
+	@docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser:/work -it antlr4-generator:dev
 
 .PHONY: release
 release: ## goreleaser --rm-dist

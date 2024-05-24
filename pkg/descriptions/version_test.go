@@ -4,9 +4,9 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/Checkmarx/kics/internal/tracker"
-	mockclient "github.com/Checkmarx/kics/pkg/descriptions/mock"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/internal/tracker"
+	mockclient "github.com/Checkmarx/kics/v2/pkg/descriptions/mock"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/stretchr/testify/require"
 )
 
