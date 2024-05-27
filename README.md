@@ -56,6 +56,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="Azure BluePrints" src="docs/img/logo-azure-blueprints.png" width="100">&nbsp;&nbsp;&nbsp;
 <img alt="GitHub Workflows" src="docs/img/logo-github-icon.png" width="100">&nbsp;&nbsp;&nbsp;
 <img alt="OpenTofu" src="docs/img/logo-opentofu.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Bicep" src="docs/img/logo-bicep.png" width="90">&nbsp;&nbsp;&nbsp;
 
 #### Beta Features
 <img alt="Databricks" src="docs/img/logo-databricks.png" width="200">&nbsp;&nbsp;&nbsp;
