@@ -28,7 +28,6 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 ### Supported Platforms
 
 <br>
-<br>
 <table align="center"><tr>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#terraform" title="www.kics.io">
 <td>
@@ -42,7 +41,6 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <td>
 <img alt="Docker" src="docs/img/logo-docker.png" width="180">
 </tr></table>
-<br>
 <br>
 <table align="center"><tr>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#cloudformation" title="www.kics.io">
@@ -61,7 +59,6 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </td>
 </a>&nbsp;&nbsp;&nbsp;
 </tr></table>
-<br>
 <br>
 <table align="center"><tr>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#openapi" title="www.kics.io">
@@ -86,7 +83,6 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </a>&nbsp;&nbsp;&nbsp;
 </tr></table>
 <br>
-<br>
 <table align="center"><tr>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#cdk" title="www.kics.io">
 <td>
@@ -110,7 +106,6 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </a>&nbsp;&nbsp;&nbsp;
 </tr></table>
 <br>
-<br>
 <table align="center"><tr>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#crossplane" title="www.kics.io">
 <td>
@@ -128,7 +123,6 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </td>
 </a>&nbsp;&nbsp;&nbsp;
 </tr></table>
-<br>
 <br>
 <table align="center"><tr>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#azure-blueprints" title="www.kics.io">
