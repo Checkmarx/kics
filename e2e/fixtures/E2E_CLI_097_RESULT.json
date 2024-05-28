@@ -23,7 +23,7 @@
   "start": "2024-05-28T13:02:18.3801389+01:00",
   "end": "2024-05-28T13:02:22.2610394+01:00",
   "paths": [
-    "../test/fixtures/new_similarity_id"
+    "/path/test/fixtures/new_similarity_id"
   ],
   "queries": [
     {
@@ -38,7 +38,7 @@
       "description_id": "8fcb9f7d",
       "files": [
         {
-          "file_name": "..\\test\\fixtures\\new_similarity_id\\stack.yml",
+          "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
           "similarity_id": "d961aaad4a5f76c10bbb5af77b2ee8bd88dd2f977d6af847bd03d12b54569820",
           "line": 4,
           "issue_type": "MissingAttribute",
@@ -49,7 +49,7 @@
           "actual_value": "'deploy.resources' is not defined"
         },
         {
-          "file_name": "..\\test\\fixtures\\new_similarity_id\\stack.yml",
+          "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
           "similarity_id": "d961aaad4a5f76c10bbb5af77b2ee8bd88dd2f977d6af847bd03d12b54569820",
           "line": 4,
           "issue_type": "MissingAttribute",

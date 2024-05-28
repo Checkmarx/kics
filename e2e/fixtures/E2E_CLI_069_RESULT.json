@@ -23,8 +23,8 @@
   "start": "2024-05-28T13:16:27.1599468+01:00",
   "end": "2024-05-28T13:16:27.6636108+01:00",
   "paths": [
-    "../test/fixtures/experimental_test/sample",
-    "../test/fixtures/experimental_test/queries"
+    "/path/test/fixtures/experimental_test/sample",
+    "/path/test/fixtures/experimental_test/queries"
   ],
   "queries": [
     {
@@ -40,7 +40,7 @@
       "description_id": "68984bf2",
       "files": [
         {
-          "file_name": "..\\test\\fixtures\\experimental_test\\sample\\sample.tf",
+          "file_name": "path\\test\\fixtures\\experimental_test\\sample\\sample.tf",
           "similarity_id": "32a6747d15f909ebe86d171c563878dd7e06dfb2f9ec1b569ef46e810860f27a",
           "line": 4,
           "resource_type": "aws_elasticache_cluster",
