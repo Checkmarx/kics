@@ -30,13 +30,15 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <br>
 <br>
 <p align="center">
+<div  style="background-color: rgb(255, 50, 50);">
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#terraform" title="www.kics.io">
 <kbd>
 <img src="docs/img/logo-terraform.png" alt="Terraform" width="160" />
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </kbd>
+</div>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#kubernetes" title="www.kics.io">
-<kbd style="background-color: rgb(255, 50, 50);">
+<kbd>
 <img alt="Kubernetes" src="docs/img/logo-k8s.png" width="210">
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </kbd>
