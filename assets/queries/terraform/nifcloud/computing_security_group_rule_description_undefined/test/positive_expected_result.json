@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Nifcloud Computing Undefined Description To Security Group Rule",
+		"queryName": "(Beta) Nifcloud Computing Undefined Description To Security Group Rule",
 		"severity": "LOW",
 		"line": 1,
 		"fileName": "positive.tf"
