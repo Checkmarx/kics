@@ -64,25 +64,19 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </tr></table>
 <table align="center"><tr>
 <td>
-&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#openapi" title="www.kics.io">
 <img alt="OpenAPI" src="docs/img/logo-openapi.png" width="175">
 </a>
-&nbsp;
 </td>
 <td>
-&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#grpc" title="www.kics.io">
 <img alt="gRPC" src="docs/img/logo-grpc.png" width="120">
 </a>
-&nbsp;
 </td>
 <td>
-&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#azure-resource-manager" title="www.kics.io">
 <img alt="Azure Resource Manager" src="docs/img/logo-arm.png" width="60">
 </a>
-&nbsp;
 </td>
 <td>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#google-deployment-manager" title="www.kics.io">
@@ -92,33 +86,21 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </tr></table>
 <table align="center"><tr>
 <td>
-&nbsp;
-&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#cdk" title="www.kics.io">
 <img alt="Cloud Development Kit" src="docs/img/logo-cdk.png" width="160">
 </a>
-&nbsp;
-&nbsp;
 </td>
 <td>
-&nbsp;
-&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#sam" title="www.kics.io">
 <img alt="SAM" src="docs/img/logo-sam.png" width="55">
 </a>
-&nbsp;
-&nbsp;
 </td>
 <td>
-&nbsp;
-&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#docker-compose" title="www.kics.io">
 <img alt="Docker Compose" src="docs/img/logo-dockercompose.png" width="90">
 </a>
-&nbsp;
 </td>
 <td>
-&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#knative" title="www.kics.io">
 <img alt="Knative" src="docs/img/logo-knative.png" width="80">
 </a>
@@ -126,25 +108,19 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </tr></table>
 <table align="center"><tr>
 <td>
-&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#crossplane" title="www.kics.io">
 <img alt="Crossplane" src="docs/img/logo-crossplane.png" width="150">
 </a>
-&nbsp;
 </td>
 <td>
-&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#pulumi" title="www.kics.io">
 <img alt="Pulumi" src="docs/img/logo-pulumi.png" width="130">
 </a>
-&nbsp;
 </td>
 <td>
-&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#serverlessfw" title="www.kics.io">
 <img alt="ServerlessFW" src="docs/img/logo-serverlessfw.png" width="150">
 </a>
-&nbsp;
 </td>
 </tr></table>
 <table align="center"><tr>
