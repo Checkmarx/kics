@@ -29,22 +29,19 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 
 <br>
 <br>
-<p align="center">
+<table align="center"><tr>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#terraform" title="www.kics.io">
-<kbd>
+<td>
 <img src="docs/img/logo-terraform.png" alt="Terraform" width="160" />
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</kbd>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#kubernetes" title="www.kics.io">
-<kbd>
+<td>
 <img alt="Kubernetes" src="docs/img/logo-k8s.png" width="210">
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</kbd>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#docker" title="www.kics.io">
-<kbd>
+<td>
 <img alt="Docker" src="docs/img/logo-docker.png" width="180">
-</a>&nbsp;&nbsp;&nbsp;
-</kbd>
+</tr></table>
 <br>
 <br>
 <table align="center"><tr>
@@ -66,45 +63,74 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </tr></table>
 <br>
 <br>
+<table align="center"><tr>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#openapi" title="www.kics.io">
+<td>
 <img alt="OpenAPI" src="docs/img/logo-openapi.png" width="150">
+</td>
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#grpc" title="www.kics.io">
+<td>
 <img alt="gRPC" src="docs/img/logo-grpc.png" width="120">
+</td>
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#azure-resource-manager" title="www.kics.io">
+<td>
 <img alt="Azure Resource Manager" src="docs/img/logo-arm.png" width="55">
+</td>
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#google-deployment-manager" title="www.kics.io">
+<td>
 <img alt="Google Deployment Manager" src="docs/img/logo-gdm.png" width="55">
+</td>
 </a>&nbsp;&nbsp;&nbsp;
+</tr></table>
 <br>
 <br>
+<table align="center"><tr>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#cdk" title="www.kics.io">
+<td>
 <img alt="Cloud Development Kit" src="docs/img/logo-cdk.png" width="150">
+</td>
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#sam" title="www.kics.io">
+<td>
 <img alt="SAM" src="docs/img/logo-sam.png" width="55">
+</td>
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#docker-compose" title="www.kics.io">
+<td>
 <img alt="Docker Compose" src="docs/img/logo-dockercompose.png" width="80">
+</td>
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#knative" title="www.kics.io">
+<td>
 <img alt="Knative" src="docs/img/logo-knative.png" width="80">
+</td>
 </a>&nbsp;&nbsp;&nbsp;
+</tr></table>
 <br>
 <br>
+<table align="center"><tr>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#crossplane" title="www.kics.io">
+<td>
 <img alt="Crossplane" src="docs/img/logo-crossplane.png" width="150">
+</td>
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#pulumi" title="www.kics.io">
+<td>
 <img alt="Pulumi" src="docs/img/logo-pulumi.png" width="130">
+</td>
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#serverlessfw" title="www.kics.io">
+<td>
 <img alt="ServerlessFW" src="docs/img/logo-serverlessfw.png" width="150">
+</td>
 </a>&nbsp;&nbsp;&nbsp;
+</tr></table>
 <br>
 <br>
+<table align="center"><tr>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#azure-blueprints" title="www.kics.io">
 <img alt="Azure BluePrints" src="docs/img/logo-azure-blueprints.png" width="100">
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -114,7 +140,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#terraform" title="www.kics.io">
 <img alt="OpenTofu" src="docs/img/logo-opentofu.png" width="150">
 </a>&nbsp;&nbsp;&nbsp;
-</p>
+</tr></table>
 
 ### Beta Features
 <p align="center">
