@@ -235,12 +235,12 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 
 		// compare the results
 		expectToCompare := []model.VulnerableFile{}
-		for _, v := range expectI.Queries {
-			expectToCompare = append(expectToCompare, v.Files...)
+		for i := range expectI.Queries {
+			expectToCompare = append(expectToCompare, expectI.Queries[i].Files...)
 		}
 		actualToCompare := []model.VulnerableFile{}
-		for _, v := range actualI.Queries {
-			actualToCompare = append(actualToCompare, v.Files...)
+		for i := range actualI.Queries {
+			actualToCompare = append(actualToCompare, actualI.Queries[i].Files...)
 		}
 		require.ElementsMatch(t, expectToCompare, actualToCompare,
 			"Expected Queries content: 'fixtures/%s' doesn't match the Actual Queries content: 'output/%s'.",
