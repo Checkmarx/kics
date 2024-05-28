@@ -49,6 +49,7 @@ type Parameters struct {
 	MaxFileSizeFlag             int
 	UseOldSeverities            bool
 	MaxResolverDepth            int
+	KicsComputeNewSimID         bool
 }
 
 // Client represents a scan client
