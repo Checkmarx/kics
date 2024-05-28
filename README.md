@@ -32,7 +32,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <p align="center">
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#terraform" title="www.kics.io">
 <kbd>
-<img src="docs/img/logo-terraform.png" alt="Terraform" width="100" />
+<img src="docs/img/logo-terraform.png" alt="Terraform" width="160" />
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </kbd>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#kubernetes" title="www.kics.io">
