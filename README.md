@@ -104,15 +104,10 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 
 ### Beta Features
 <p align="center">
-<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#databricks" title="www.kics.io">
-<img alt="Databricks" src="docs/img/logo-databricks.png" width="200">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</a>
-<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#" title="www.kics.io">
-<img alt="NIFCloud" src="docs/img/logo-nifcloud.png" width="110">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</a>
-<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#" title="www.kics.io">
-<img alt="TencentCloud" src="docs/img/logo-tencentcloud.png" width="180">&nbsp;&nbsp;&nbsp;
-</a>
+<img alt="Databricks" src="docs/img/logo-databricks.png" width="200">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="NIFCloud" src="docs/img/logo-nifcloud.png" width="110">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="TencentCloud" src="docs/img/logo-tencentcloud.png" width="180">
+&nbsp;&nbsp;&nbsp;
 </p>
 
 In order to run the Databricks, NIFCloud and TencentCloud queries, use the `--experimental-queries` flag when running KICS.
