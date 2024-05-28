@@ -36,11 +36,15 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </kbd>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#kubernetes" title="www.kics.io">
+<kbd>
 <img alt="Kubernetes" src="docs/img/logo-k8s.png" width="150">
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</kbd>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#docker" title="www.kics.io">
+<kbd>
 <img alt="Docker" src="docs/img/logo-docker.png" width="150">
 </a>&nbsp;&nbsp;&nbsp;
+</kbd>
 <br>
 <br>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#cloudformation" title="www.kics.io">
