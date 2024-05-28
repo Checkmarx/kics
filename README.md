@@ -51,6 +51,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </a>
 </kbd>
 <br>
+<br>
 <kbd>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#cloudformation" title="www.kics.io">
 <img alt="CloudFormation" src="docs/img/logo-cf.png" width="150">
@@ -74,6 +75,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="Helm" src="docs/img/logo-helm.png" width="150">
 </a>
 </kbd>
+<br>
 <br>
 <kbd>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#openapi" title="www.kics.io">
@@ -107,6 +109,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="Google Deployment Manager" src="docs/img/logo-gdm.png" width="60">
 </a>
 </kbd>
+<br>
 <br>
 <kbd>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#cdk" title="www.kics.io">
@@ -144,6 +147,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </a>
 </kbd>
 <br>
+<br>
 <kbd>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#crossplane" title="www.kics.io">
 <img alt="Crossplane" src="docs/img/logo-crossplane.png" width="150">
@@ -169,6 +173,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="ServerlessFW" src="docs/img/logo-serverlessfw.png" width="150">
 </a>
 </kbd>
+<br>
 <br>
 <kbd>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#azure-blueprints" title="www.kics.io">
