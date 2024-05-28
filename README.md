@@ -27,6 +27,8 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 
 ### Supported Platforms
 
+<br>
+<br>
 <p align="center">
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#terraform" title="www.kics.io">
 <img alt="Terraform" src="docs/img/logo-terraform.png" width="100" >
