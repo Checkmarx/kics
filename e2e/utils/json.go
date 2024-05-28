@@ -232,8 +232,6 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 		require.ElementsMatch(t, expectI.ScannedPaths, actualI.ScannedPaths,
 			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result Scanned Paths content: 'output/%s'.",
 			expectFileName, actualFileName)
-		expectI.ScannedPaths = []string{}
-		actualI.ScannedPaths = []string{}
 
 		//compare the results
 		expectToCompare := []model.VulnerableFile{}
@@ -248,6 +246,7 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			"Expected Queries content: 'fixtures/%s' doesn't match the Actual Queries content: 'output/%s'.",
 			expectToCompare, actualToCompare)
 
+		//compare severity counters
 		compare := reflect.DeepEqual(expectI.SeveritySummary.SeverityCounters, actualI.SeveritySummary.SeverityCounters)
 		require.True(t, compare, "Expected Severity Counters content: 'fixtures/%s' doesn't match the Actual Severity Counters content: 'output/%s'.", //nolint:lll
 			expectI.SeveritySummary.SeverityCounters, actualI.SeveritySummary.SeverityCounters)
