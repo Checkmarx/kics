@@ -47,9 +47,11 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </kbd>
 <br>
 <br>
+<table><tr><td>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#cloudformation" title="www.kics.io">
 <img alt="CloudFormation" src="docs/img/logo-cf.png" width="150">
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td></tr></table>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#ansible" title="www.kics.io">
 <img alt="Ansible" src="docs/img/logo-ansible.png" width="150">
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
