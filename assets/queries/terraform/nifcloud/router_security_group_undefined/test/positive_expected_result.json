@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Nifcloud Router Undefined Security Group To Router",
+		"queryName": "(Beta) Nifcloud Router Undefined Security Group To Router",
 		"severity": "HIGH",
 		"line": 1,
 		"fileName": "positive.tf"
