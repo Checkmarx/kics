@@ -28,6 +28,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 ### Supported Platforms
 
 <br>
+<p align="center">
 <kbd>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#terraform" title="www.kics.io">
 <img src="docs/img/logo-terraform.png" alt="Terraform" width="120" />
@@ -133,6 +134,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="OpenTofu" src="docs/img/logo-opentofu.png" width="150">
 </a>
 </kbd>
+</p>
 
 <br>
 <table align="center"><tr>
