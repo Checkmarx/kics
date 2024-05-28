@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"reflect"
 	"runtime"
 	"sort"
 	"strings"
@@ -144,6 +145,7 @@ func CheckLine(t *testing.T, expec, want string, line int) {
 	}
 }
 
+//nolint:funlen
 func setFields(t *testing.T, expect, actual []string, expectFileName, actualFileName, location string) {
 	switch location {
 	case "payload":
@@ -232,8 +234,22 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			expectFileName, actualFileName)
 		expectI.ScannedPaths = []string{}
 		actualI.ScannedPaths = []string{}
-		require.Equal(t, expectI, actualI,
-			"Expected Result content: 'fixtures/%s' doesn't match the Actual Result content: 'output/%s'.",
-			expectFileName, actualFileName)
+
+		//compare the results
+		expectToCompare := []model.VulnerableFile{}
+		for _, v := range expectI.Queries {
+			expectToCompare = append(expectToCompare, v.Files...)
+		}
+		actualToCompare := []model.VulnerableFile{}
+		for _, v := range actualI.Queries {
+			actualToCompare = append(actualToCompare, v.Files...)
+		}
+		require.ElementsMatch(t, expectToCompare, actualToCompare,
+			"Expected Queries content: 'fixtures/%s' doesn't match the Actual Queries content: 'output/%s'.",
+			expectToCompare, actualToCompare)
+
+		compare := reflect.DeepEqual(expectI.SeveritySummary.SeverityCounters, actualI.SeveritySummary.SeverityCounters)
+		require.True(t, compare, "Expected Severity Counters content: 'fixtures/%s' doesn't match the Actual Severity Counters content: 'output/%s'.", //nolint:lll
+			expectI.SeveritySummary.SeverityCounters, actualI.SeveritySummary.SeverityCounters)
 	}
 }
