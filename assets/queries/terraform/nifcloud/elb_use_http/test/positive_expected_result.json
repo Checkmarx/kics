@@ -1,12 +1,12 @@
 [
 	{
-		"queryName": "Nifcloud ELB Use HTTP Protocol",
+		"queryName": "(Beta) Nifcloud ELB Use HTTP Protocol",
 		"severity": "HIGH",
 		"line": 1,
 		"fileName": "positive1.tf"
 	},
 	{
-		"queryName": "Nifcloud ELB Use HTTP Protocol",
+		"queryName": "(Beta) Nifcloud ELB Use HTTP Protocol",
 		"severity": "HIGH",
 		"line": 1,
 		"fileName": "positive2.tf"
