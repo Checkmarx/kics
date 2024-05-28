@@ -47,17 +47,24 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </kbd>
 <br>
 <br>
+<table><tr>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#cloudformation" title="www.kics.io">
-<table><tr><td>
+<td>
 <img alt="CloudFormation" src="docs/img/logo-cf.png" width="150">
-</td></tr></table>
+</td>
+<td>
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#ansible" title="www.kics.io">
+<td>
 <img alt="Ansible" src="docs/img/logo-ansible.png" width="150">
+</td>
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#helm" title="www.kics.io">
+<td>
 <img alt="Helm" src="docs/img/logo-helm.png" width="150">
+</td>
 </a>&nbsp;&nbsp;&nbsp;
+</tr></table>
 <br>
 <br>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#openapi" title="www.kics.io">
