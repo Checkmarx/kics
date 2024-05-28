@@ -36,7 +36,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </kbd>
 <a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#kubernetes" title="www.kics.io">
-<kbd>
+<kbd style="background-color: rgb(255, 50, 50);">
 <img alt="Kubernetes" src="docs/img/logo-k8s.png" width="210">
 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </kbd>
