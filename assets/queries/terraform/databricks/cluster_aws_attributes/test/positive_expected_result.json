@@ -1,24 +1,24 @@
 [
   {
-    "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
+    "queryName": "(Beta) Check Databricks Cluster AWS Attribute Best Practices",
     "severity": "LOW",
     "line": 11,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
+    "queryName": "(Beta) Check Databricks Cluster AWS Attribute Best Practices",
     "severity": "LOW",
     "line": 13,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
+    "queryName": "(Beta) Check Databricks Cluster AWS Attribute Best Practices",
     "severity": "LOW",
     "line": 10,
     "fileName": "positive3.tf"
   },
   {
-    "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
+    "queryName": "(Beta) Check Databricks Cluster AWS Attribute Best Practices",
     "severity": "LOW",
     "line": 12,
     "fileName": "positive4.tf"
