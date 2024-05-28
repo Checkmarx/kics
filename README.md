@@ -27,6 +27,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 
 #### Supported Platforms
 
+<p align="center">
 <img alt="Terraform" src="docs/img/logo-terraform.png" width="100" >&nbsp;&nbsp;&nbsp;
 <img alt="Kubernetes" src="docs/img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="Docker" src="docs/img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
@@ -57,11 +58,14 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="Azure BluePrints" src="docs/img/logo-azure-blueprints.png" width="100">&nbsp;&nbsp;&nbsp;
 <img alt="GitHub Workflows" src="docs/img/logo-github-icon.png" width="100">&nbsp;&nbsp;&nbsp;
 <img alt="OpenTofu" src="docs/img/logo-opentofu.png" width="150">&nbsp;&nbsp;&nbsp;
+</p>
 
 #### Beta Features
+<p align="center">
 <img alt="Databricks" src="docs/img/logo-databricks.png" width="200">&nbsp;&nbsp;&nbsp;
 <img alt="NIFCloud" src="docs/img/logo-nifcloud.png" width="110">&nbsp;&nbsp;&nbsp;
 <img alt="TencentCloud" src="docs/img/logo-tencentcloud.png" width="180">&nbsp;&nbsp;&nbsp;
+</p>
 
 In order to run the Databricks, NIFCloud and TencentCloud queries, use the `--experimental-queries` flag when running KICS.
 
