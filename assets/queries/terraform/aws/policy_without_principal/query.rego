@@ -27,7 +27,7 @@ CxPolicy[result] {
 }
 
 is_iam_identity_based_policy(resource) {
-	iam_identity_based_policy := {"aws_iam_group_policy", "aws_iam_policy", "aws_iam_role_policy", "aws_iam_user_policy"}
+	iam_identity_based_policy := {"aws_iam_group_policy", "aws_iam_policy", "aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_role"}
 	resource == iam_identity_based_policy[_]
 }
 
