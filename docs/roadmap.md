@@ -2,11 +2,8 @@
 
 These are our upcoming new supports:
 
-- Bicep
-- Terraform: Databricks (by default)
-- Terraform: NifCloud (by default)
-- Terraform: TencentCloud (by default)
 - Extend Pulumi Support to .json extention
+- Populate CWE IDs in all remaining queries
 
 
 Have an idea?
