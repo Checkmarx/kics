@@ -12,9 +12,10 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/Checkmarx/kics)](https://goreportcard.com/report/github.com/Checkmarx/kics)
 [![Go Coverage](https://raw.githubusercontent.com/Checkmarx/kics/gh-pages/coverage.svg)](https://docs.kics.io/coverage.html)
 
-
+<p align="center">
 <img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics_new_logo_2022_dark.png#gh-light-mode-only" width="500">
 <img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics_new_logo_2022_white.png#gh-dark-mode-only" width="500">
+</p>
 
 ---
 
@@ -24,43 +25,129 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 
 **KICS** stands for **K**eeping **I**nfrastructure as **C**ode **S**ecure, it is open source and is a must-have for any cloud native project.
 
-#### Supported Platforms
+### Supported Platforms
 
-<img alt="Terraform" src="docs/img/logo-terraform.png" width="100" >&nbsp;&nbsp;&nbsp;
-<img alt="Kubernetes" src="docs/img/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Docker" src="docs/img/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
 <br>
-<br>
-<img alt="CloudFormation" src="docs/img/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Ansible" src="docs/img/logo-ansible.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Helm" src="docs/img/logo-helm.png" width="150">&nbsp;&nbsp;&nbsp;
-<br>
-<br>
-<img alt="OpenAPI" src="docs/img/logo-openapi.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="gRPC" src="docs/img/logo-grpc.png" width="120">&nbsp;&nbsp;&nbsp;
-<img alt="Azure Resource Manager" src="docs/img/logo-arm.png" width="55">&nbsp;&nbsp;&nbsp;
-<img alt="Google Deployment Manager" src="docs/img/logo-gdm.png" width="55">&nbsp;&nbsp;&nbsp;
-<br>
-<br>
-<img alt="Cloud Deployment Kit" src="docs/img/logo-cdk.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="SAM" src="docs/img/logo-sam.png" width="55">&nbsp;&nbsp;&nbsp;
-<img alt="Docker Compose" src="docs/img/logo-dockercompose.png" width="80">&nbsp;&nbsp;&nbsp;
-<img alt="Knative" src="docs/img/logo-knative.png" width="80">&nbsp;&nbsp;&nbsp;
-<br>
-<br>
-<img alt="Crossplane" src="docs/img/logo-crossplane.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="Pulumi" src="docs/img/logo-pulumi.png" width="130">&nbsp;&nbsp;&nbsp;
-<img alt="ServerlessFW" src="docs/img/logo-serverlessfw.png" width="150">&nbsp;&nbsp;&nbsp;
-<br>
-<br>
-<img alt="Azure BluePrints" src="docs/img/logo-azure-blueprints.png" width="100">&nbsp;&nbsp;&nbsp;
-<img alt="GitHub Workflows" src="docs/img/logo-github-icon.png" width="100">&nbsp;&nbsp;&nbsp;
-<img alt="OpenTofu" src="docs/img/logo-opentofu.png" width="150">&nbsp;&nbsp;&nbsp;
+<table align="center"><tr>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#terraform" title="www.kics.io">
+<img src="docs/img/logo-terraform.png" alt="Terraform" width="120" />
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#kubernetes" title="www.kics.io">
+<img alt="Kubernetes" src="docs/img/logo-k8s.png" width="160">
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#docker" title="www.kics.io">
+<img alt="Docker" src="docs/img/logo-docker.png" width="180">
+</a>
+</td>
+</tr></table>
+<table align="center"><tr>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#cloudformation" title="www.kics.io">
+<img alt="CloudFormation" src="docs/img/logo-cf.png" width="150">
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#ansible" title="www.kics.io">
+<img alt="Ansible" src="docs/img/logo-ansible.png" width="150">
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#helm" title="www.kics.io">
+<img alt="Helm" src="docs/img/logo-helm.png" width="150">
+</a>
+</td>
+</tr></table>
+<table align="center"><tr>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#openapi" title="www.kics.io">
+<img alt="OpenAPI" src="docs/img/logo-openapi.png" width="175">
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#grpc" title="www.kics.io">
+<img alt="gRPC" src="docs/img/logo-grpc.png" width="120">
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#azure-resource-manager" title="www.kics.io">
+<img alt="Azure Resource Manager" src="docs/img/logo-arm.png" width="60">
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#google-deployment-manager" title="www.kics.io">
+<img alt="Google Deployment Manager" src="docs/img/logo-gdm.png" width="60">
+</a>
+</td>
+</tr></table>
+<table align="center"><tr>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#cdk" title="www.kics.io">
+<img alt="Cloud Development Kit" src="docs/img/logo-cdk.png" width="160">
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#sam" title="www.kics.io">
+<img alt="SAM" src="docs/img/logo-sam.png" width="55">
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#docker-compose" title="www.kics.io">
+<img alt="Docker Compose" src="docs/img/logo-dockercompose.png" width="90">
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#knative" title="www.kics.io">
+<img alt="Knative" src="docs/img/logo-knative.png" width="80">
+</a>
+</td>
+</tr></table>
+<table align="center"><tr>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#crossplane" title="www.kics.io">
+<img alt="Crossplane" src="docs/img/logo-crossplane.png" width="150">
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#pulumi" title="www.kics.io">
+<img alt="Pulumi" src="docs/img/logo-pulumi.png" width="130">
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#serverlessfw" title="www.kics.io">
+<img alt="ServerlessFW" src="docs/img/logo-serverlessfw.png" width="150">
+</a>
+</td>
+</tr></table>
+<table align="center"><tr>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#azure-blueprints" title="www.kics.io">
+<img alt="Azure BluePrints" src="docs/img/logo-azure-blueprints.png" width="100">
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#cicd" title="www.kics.io">
+<img alt="GitHub Workflows" src="docs/img/logo-github-icon.png" width="100">
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#terraform" title="www.kics.io">
+<img alt="OpenTofu" src="docs/img/logo-opentofu.png" width="150">
+</a>
+</td>
+</tr></table>
 
-#### Beta Features
-<img alt="Databricks" src="docs/img/logo-databricks.png" width="200">&nbsp;&nbsp;&nbsp;
-<img alt="NIFCloud" src="docs/img/logo-nifcloud.png" width="110">&nbsp;&nbsp;&nbsp;
-<img alt="TencentCloud" src="docs/img/logo-tencentcloud.png" width="180">&nbsp;&nbsp;&nbsp;
+### Beta Features
+<p align="center">
+<img alt="Databricks" src="docs/img/logo-databricks.png" width="200">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="NIFCloud" src="docs/img/logo-nifcloud.png" width="110">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="TencentCloud" src="docs/img/logo-tencentcloud.png" width="180">
+&nbsp;&nbsp;&nbsp;
+</p>
 
 In order to run the Databricks, NIFCloud and TencentCloud queries, use the `--experimental-queries` flag when running KICS.
 

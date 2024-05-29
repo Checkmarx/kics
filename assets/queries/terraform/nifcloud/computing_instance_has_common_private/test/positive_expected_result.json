@@ -1,12 +1,12 @@
 [
 	{
-		"queryName": "Nifcloud Computing Has Common Private Network",
+		"queryName": "(Beta) Nifcloud Computing Has Common Private Network",
 		"severity": "LOW",
 		"line": 1,
 		"fileName": "positive1.tf"
 	},
 	{
-		"queryName": "Nifcloud Computing Has Common Private Network",
+		"queryName": "(Beta) Nifcloud Computing Has Common Private Network",
 		"severity": "LOW",
 		"line": 1,
 		"fileName": "positive2.tf"

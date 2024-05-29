@@ -1,6 +1,6 @@
 {
   "id": "375cdab9-3f94-4ae0-b1e3-8fbdf9cdf4d7",
-  "queryName": "Job's Task is Legacy (spark_submit_task)",
+  "queryName": "(Beta) Job's Task is Legacy (spark_submit_task)",
   "severity": "MEDIUM",
   "category": "Best Practices",
   "descriptionText": "Job's Task Is spark_submit_task",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "fcfdfbd3",
   "cloudProvider": "common",
-  "experimental": "true",
   "cwe": ""
 }

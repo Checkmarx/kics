@@ -1,6 +1,6 @@
 {
   "id": "89218b48-75c9-4cb3-aaba-5299e852e8bc",
-  "queryName": "Nifcloud Computing Undefined Security Group To Instance",
+  "queryName": "(Beta) Nifcloud Computing Undefined Security Group To Instance",
   "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "Missing security group for instance",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "157ebbeb",
   "cloudProvider": "nifcloud",
-  "experimental": "true",
   "cwe": ""
 }
