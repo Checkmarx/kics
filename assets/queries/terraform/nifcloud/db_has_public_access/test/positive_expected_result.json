@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Nifcloud RDB Has Public DB Access",
+		"queryName": "(Beta) Nifcloud RDB Has Public DB Access",
 		"severity": "HIGH",
 		"line": 1,
 		"fileName": "positive.tf"
