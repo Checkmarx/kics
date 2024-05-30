@@ -1,6 +1,6 @@
 {
   "id": "94e47f3f-b90b-43a1-a36d-521580bae863",
-  "queryName": "Nifcloud LB Use HTTP Port",
+  "queryName": "(Beta) Nifcloud LB Use HTTP Port",
   "severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "The lb use http port",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "fc3831f9",
   "cloudProvider": "nifcloud",
-  "experimental": "true",
   "cwe": ""
 }

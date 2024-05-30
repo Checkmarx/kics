@@ -1,6 +1,6 @@
 {
   "id": "940ddce2-26bd-4e31-a9b4-382714f73231",
-  "queryName": "Nifcloud RDB Undefined Description To DB Security Group",
+  "queryName": "(Beta) Nifcloud RDB Undefined Description To DB Security Group",
   "severity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "Missing description for db security group",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "badc7874",
   "cloudProvider": "nifcloud",
-  "experimental": "true",
   "cwe": ""
 }

@@ -1,6 +1,6 @@
 {
   "id": "953c0cc6-5f30-44cb-a803-bf4ef2571be8",
-  "queryName": "Databricks Autoscale Badly Setup",
+  "queryName": "(Beta) Databricks Autoscale Badly Setup",
   "severity": "MEDIUM",
   "category": "Resource Management",
   "descriptionText": "Databricks should have min and max worker setup for autoscale",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "e6eabd3e",
   "cloudProvider": "common",
-  "experimental": "true",
   "cwe": ""
 }

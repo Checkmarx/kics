@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Check Databricks Cluster GCP Attribute Best Practices",
+    "queryName": "(Beta) Check Databricks Cluster GCP Attribute Best Practices",
     "severity": "LOW",
     "line": 11,
     "fileName": "positive1.tf"

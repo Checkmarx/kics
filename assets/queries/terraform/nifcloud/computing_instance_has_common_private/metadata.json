@@ -1,6 +1,6 @@
 {
   "id": "df58dd45-8009-43c2-90f7-c90eb9d53ed9",
-  "queryName": "Nifcloud Computing Has Common Private Network",
+  "queryName": "(Beta) Nifcloud Computing Has Common Private Network",
   "severity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "The instance has common private network",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "c5065d3a",
   "cloudProvider": "nifcloud",
-  "experimental": "true",
   "cwe": ""
 }

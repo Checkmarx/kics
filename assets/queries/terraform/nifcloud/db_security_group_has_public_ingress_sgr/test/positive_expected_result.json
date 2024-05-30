@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Nifcloud RDB Has Public DB Ingress Security Group Rule",
+		"queryName": "(Beta) Nifcloud RDB Has Public DB Ingress Security Group Rule",
 		"severity": "HIGH",
 		"line": 1,
 		"fileName": "positive.tf"
