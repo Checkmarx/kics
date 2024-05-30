@@ -1,6 +1,6 @@
 {
   "id": "675e8eaa-2754-42b7-bf33-bfa295d1601d",
-  "queryName": "Nifcloud LB Use Insecure TLS Policy Name",
+  "queryName": "(Beta) Nifcloud LB Use Insecure TLS Policy Name",
   "severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "The lb use insecure tls policy",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "be14dafb",
   "cloudProvider": "nifcloud",
-  "experimental": "true",
   "cwe": ""
 }

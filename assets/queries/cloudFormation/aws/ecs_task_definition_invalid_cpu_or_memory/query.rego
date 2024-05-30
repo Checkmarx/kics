@@ -19,7 +19,9 @@ CxPolicy[result] {
 	}
 
 	checkMemory(taskDef, memory) == true
-	searchkey := createSearchKey(name2, taskDef.Properties.ContainerDefinitions[_])
+
+    getkey := cf_lib.createSearchKey(taskDef.Properties.ContainerDefinitions[_])
+    searchkey = sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -41,7 +43,8 @@ CxPolicy[result] {
 	cpuMem := {256, 512, 1024, 2048, 4096}
 	cpu := taskDef.Properties.ContainerDefinitions[_].Cpu
 	not commonLib.inArray(cpuMem, cpu)
-	searchkey := createSearchKey(name2, taskDef.Properties.ContainerDefinitions[_])
+	getkey := cf_lib.createSearchKey(taskDef.Properties.ContainerDefinitions[_])
+    searchkey := sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -75,12 +78,4 @@ checkRemainder(mem, cpu) {
 	not mem % 1024 == 0
 }
 
-createSearchKey(a, b) = search {
-	not b.Name.Ref
-	search := sprintf("Resources.%s.Properties.ContainerDefinitions.Name=%s", [a, b.Name])
-}
 
-createSearchKey(a, b) = search {
-	b.Name.Ref
-	search := sprintf("Resources.%s.Properties.ContainerDefinitions.Name.Ref=%s", [a, b.Name.Ref])
-}

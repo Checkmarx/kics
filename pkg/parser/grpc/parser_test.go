@@ -527,7 +527,7 @@ func TestParser_Resolve(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			p := &Parser{}
-			got, err := p.Resolve(tt.args.fileContent, tt.args.filename, true)
+			got, err := p.Resolve(tt.args.fileContent, tt.args.filename, true, 15)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Parser.Resolve() error = %v, wantErr %v", err, tt.wantErr)
 				return

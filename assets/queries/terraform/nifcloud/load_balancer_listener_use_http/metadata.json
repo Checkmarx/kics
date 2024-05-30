@@ -1,6 +1,6 @@
 {
   "id": "9f751a80-31f0-43a3-926c-20772791a038",
-  "queryName": "Nifcloud LB Listener Use HTTP Port",
+  "queryName": "(Beta) Nifcloud LB Listener Use HTTP Port",
   "severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "The lb listener use http port",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "c078c492",
   "cloudProvider": "nifcloud",
-  "experimental": "true",
   "cwe": ""
 }

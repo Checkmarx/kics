@@ -22,5 +22,29 @@
     "severity": "INFO",
     "line": 15,
     "filename": "positive4.json"
+  },
+  {
+    "queryName": "Account Admins Not Notified By Email",
+    "severity": "INFO",
+    "line": 4,
+    "filename": "positive1.bicep"
+  }, 
+  {
+    "queryName": "Account Admins Not Notified By Email",
+    "severity": "INFO",
+    "line": 3,
+    "filename": "positive2.bicep"
+  },
+  {
+    "queryName": "Account Admins Not Notified By Email",
+    "severity": "INFO",
+    "line": 4,
+    "filename": "positive3.bicep"
+  },
+  {
+    "queryName": "Account Admins Not Notified By Email",
+    "severity": "INFO",
+    "line": 3,
+    "filename": "positive4.bicep"
   }
 ]

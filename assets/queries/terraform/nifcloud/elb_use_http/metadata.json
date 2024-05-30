@@ -1,6 +1,6 @@
 {
   "id": "e2de2b80-2fc2-4502-a764-40930dfcc70a",
-  "queryName": "Nifcloud ELB Use HTTP Protocol",
+  "queryName": "(Beta) Nifcloud ELB Use HTTP Protocol",
   "severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "The elb use http protocol",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "051c06d1",
   "cloudProvider": "nifcloud",
-  "experimental": "true",
   "cwe": ""
 }

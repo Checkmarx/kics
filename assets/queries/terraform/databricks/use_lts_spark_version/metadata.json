@@ -1,6 +1,6 @@
 {
   "id": "5a627dfa-a4dd-4020-a4c6-5f3caf4abcd6",
-  "queryName": "Check use no LTS Spark Version",
+  "queryName": "(Beta) Check use no LTS Spark Version",
   "severity": "LOW",
   "category": "Best Practices",
   "descriptionText": "Spark Version is not a Long-term Support",
@@ -8,7 +8,6 @@
   "platform": "Terraform",
   "descriptionID": "fdaa059f",
   "cloudProvider": "common",
-  "experimental": "true",
   "cwe": "",
   "oldSeverity": "MEDIUM"
 }

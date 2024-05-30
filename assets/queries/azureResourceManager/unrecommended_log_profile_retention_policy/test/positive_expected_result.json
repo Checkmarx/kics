@@ -34,5 +34,41 @@
     "severity": "LOW",
     "line": 28,
     "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive3.bicep"
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive4.bicep"
+  },
+  {
+    "queryName": "Unrecommended Log Profile Retention Policy",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive4.bicep"
   }
 ]

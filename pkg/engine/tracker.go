@@ -13,5 +13,6 @@ type Tracker interface {
 	TrackScanSecret()
 	FailedDetectLine()
 	FailedComputeSimilarityID()
+	FailedComputeOldSimilarityID()
 	GetOutputLines() int
 }

@@ -1,6 +1,6 @@
 {
   "id": "2c4fe4a9-f44b-4c70-b09b-5b75cd251805",
-  "queryName": "Unrestricted Databricks ACL",
+  "queryName": "(Beta) Unrestricted Databricks ACL",
   "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "ACL allow ingress from 0.0.0.0/0 and/or ::/0",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "9670a9f6",
   "cloudProvider": "common",
-  "experimental": "true",
   "cwe": ""
 }

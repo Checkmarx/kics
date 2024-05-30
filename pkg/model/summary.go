@@ -23,6 +23,7 @@ type SeveritySummary struct {
 type VulnerableFile struct {
 	FileName         string      `json:"file_name"`
 	SimilarityID     string      `json:"similarity_id"`
+	OldSimilarityID  string      `json:"old_similarity_id,omitempty"`
 	Line             int         `json:"line"`
 	VulnLines        *[]CodeLine `json:"-"`
 	ResourceType     string      `json:"resource_type,omitempty"`
@@ -216,6 +217,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 		qItem.Files = append(qItem.Files, VulnerableFile{
 			FileName:         resolvedPath,
 			SimilarityID:     item.SimilarityID,
+			OldSimilarityID:  item.OldSimilarityID,
 			Line:             item.Line,
 			VulnLines:        item.VulnLines,
 			ResourceType:     item.ResourceType,

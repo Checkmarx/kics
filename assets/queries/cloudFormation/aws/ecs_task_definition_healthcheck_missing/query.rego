@@ -9,14 +9,17 @@ CxPolicy[result] {
 	contDef := resource.Properties.ContainerDefinitions[idx]
 	not common_lib.valid_key(contDef, "HealthCheck")
 
+    getkey := cf_lib.createSearchKey(contDef)
+    searchkey := sprintf("Resources.%s.Properties.ContainerDefinitions.%v.Name%s", [name,idx,getkey])
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties.ContainerDefinitions", [name]),
+        "searchKey": searchkey,
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.ContainerDefinitions' should contain 'HealthCheck' property", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.ContainerDefinitions' doesn't contain 'HealthCheck' property", [name]),
-		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "ContainerDefinitions"], [idx]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "ContainerDefinitions"], [idx, "Name","Ref" ]),
 	}
 }

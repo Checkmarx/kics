@@ -1,6 +1,6 @@
 {
   "id": "b0749c53-e3ff-4d09-bbe4-dca94e2e7a38",
-  "queryName": "Check Databricks Cluster AWS Attribute Best Practices",
+  "queryName": "(Beta) Check Databricks Cluster AWS Attribute Best Practices",
   "severity": "LOW",
   "category": "Best Practices",
   "descriptionText": "One or some Databricks Cluster AWS Attribute Best Practices are not respected",
@@ -8,7 +8,6 @@
   "platform": "Terraform",
   "descriptionID": "b6345aa6",
   "cloudProvider": "common",
-  "experimental": "true",
   "cwe": "",
   "oldSeverity": "MEDIUM"
 }

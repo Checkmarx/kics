@@ -22,5 +22,29 @@
     "severity": "MEDIUM",
     "line": 42,
     "filename": "positive4.json"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive1.bicep"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive2.bicep"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 27,
+    "filename": "positive3.bicep"
+  },
+  {
+    "queryName": "Azure Instance Using Basic Authentication",
+    "severity": "MEDIUM",
+    "line": 17,
+    "filename": "positive4.bicep"
   }
 ]

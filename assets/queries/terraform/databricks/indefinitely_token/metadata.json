@@ -1,6 +1,6 @@
 {
   "id": "7d05ca25-91b4-42ee-b6f6-b06611a87ce8",
-  "queryName": "Indefinitely Databricks Token Lifetime",
+  "queryName": "(Beta) Indefinitely Databricks Token Lifetime",
   "severity": "MEDIUM",
   "category": "Insecure Defaults",
   "descriptionText": "Token has an indefinitely lifetime",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "79759163",
   "cloudProvider": "common",
-  "experimental": "true",
   "cwe": ""
 }

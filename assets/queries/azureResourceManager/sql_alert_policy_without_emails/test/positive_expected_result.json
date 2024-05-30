@@ -34,5 +34,41 @@
     "severity": "INFO",
     "line": 50,
     "filename": "positive6.json"
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 31,
+    "filename": "positive1.bicep"
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 33,
+    "filename": "positive2.bicep"
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 33,
+    "filename": "positive3.bicep"
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 31,
+    "filename": "positive4.bicep"
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 33,
+    "filename": "positive5.bicep"
+  },
+  {
+    "queryName": "SQL Alert Policy Without Emails",
+    "severity": "INFO",
+    "line": 33,
+    "filename": "positive6.bicep"
   }
 ]

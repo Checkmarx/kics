@@ -9,9 +9,9 @@ CxPolicy[result] {
 	version != "undefined"
 
 	operation := doc.paths[p][op]
-	acceptable_response(operation, op)
-
 	response := operation.responses[code]
+	acceptable_response(code, op)
+
 	key := get_key_by_version(version)
 	not common_lib.valid_key(response, key)
 
@@ -31,9 +31,10 @@ CxPolicy[result] {
 	version == "3.0"
 
 	operation := doc.paths[path][op]
-	acceptable_response(operation, op)
+	response := operation.responses[code]
+	acceptable_response(code, op)
 
-	count(operation.responses[code].content) == 0
+	count(response.content) == 0
 
 	result := {
 		"documentId": doc.id,
@@ -50,9 +51,9 @@ CxPolicy[result] {
 	version == "3.0"
 
 	operation := doc.paths[path][op]
-	acceptable_response(operation, op)
-
 	response := operation.responses[code]
+	acceptable_response(code, op)
+
 	responses := response.content[content_type]
 	not common_lib.valid_key(responses, "schema")
 
@@ -65,13 +66,12 @@ CxPolicy[result] {
 	}
 }
 
-acceptable_response(operation, op) {
+acceptable_response(code, op) {
 	operation_should_have_content := ["get", "put", "post", "delete", "options", "patch", "trace"]
 	common_lib.equalsOrInArray(operation_should_have_content, lower(op))
 
 	response_code_should_not_have_content := ["204", "304"]
 
-	response := operation.responses[code]
 	not common_lib.equalsOrInArray(response_code_should_not_have_content, lower(code))
 }
 

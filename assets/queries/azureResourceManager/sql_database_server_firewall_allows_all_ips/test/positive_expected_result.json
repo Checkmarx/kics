@@ -22,5 +22,29 @@
     "severity": "CRITICAL",
     "line": 16,
     "filename": "positive4.json"
+  },
+  {
+    "queryName": "SQL Database Server Firewall Allows All IPS",
+    "severity": "CRITICAL",
+    "line": 18,
+    "filename": "positive1.bicep"
+  },
+  {
+    "queryName": "SQL Database Server Firewall Allows All IPS",
+    "severity": "CRITICAL",
+    "line": 4,
+    "filename": "positive2.bicep"
+  },
+  {
+    "queryName": "SQL Database Server Firewall Allows All IPS",
+    "severity": "CRITICAL",
+    "line": 18,
+    "filename": "positive3.bicep"
+  },
+  {
+    "queryName": "SQL Database Server Firewall Allows All IPS",
+    "severity": "CRITICAL",
+    "line": 4,
+    "filename": "positive4.bicep"
   }
 ]

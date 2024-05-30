@@ -1,6 +1,6 @@
 {
   "id": "30c2760c-740e-4672-9d7f-2c29e0cb385d",
-  "queryName": "Nifcloud Router Has Common Private Network",
+  "queryName": "(Beta) Nifcloud Router Has Common Private Network",
   "severity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "The router has common private network",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "ca6704da",
   "cloudProvider": "nifcloud",
-  "experimental": "true",
   "cwe": ""
 }
