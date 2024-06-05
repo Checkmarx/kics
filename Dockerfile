@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 cgr.dev/chainguard/go@sha256:c531ef65c3190e83318cf19b3d6386d3e4be6a66cca2d76bb6ff15bce8ee6a02 as build_env
+FROM --platform=linux/amd64 cgr.dev/chainguard/go@sha256:38db527239c4b33c6ebd1751007041e33cdf81de45f2195b1a60816eb351def1 as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
