@@ -137,6 +137,11 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
                 <img alt="OpenTofu" src="img/logo-opentofu.png"  width="130" style="min-width:80px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
+<div class="card card-interactable"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <a href="platforms/#bicep">
+                <img alt="Bicep" src="img/logo-bicep.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+        </a>
+</div>
 </div>
 
 #### Beta Features
@@ -152,7 +157,9 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
 </div>
 </div>
 
-In order to run the Databricks, NIFCloud and TencentCloud queries, use the `--experimental-queries` flag when running KICS.
+By default, Databricks, NIFCloud, and TencentCloud queries run when you scan Terraform files using KICS.
+
+The `Severity` and `Description` of these queries are still under review.
 
 ## Getting Started
 

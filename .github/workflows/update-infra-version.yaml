@@ -16,13 +16,13 @@ jobs:
         with:
           fetch-depth: 0
       - name: Update Terraform Cloud Integration
-        uses: peter-evans/repository-dispatch@v2
+        uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.KICS_BOT_PAT }}
           repository: ${{ secrets.TFC_REPO_PATH }}
           event-type: new-release
       - name: Update Infra
-        uses: peter-evans/repository-dispatch@v2
+        uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.KICS_BOT_PAT }}
           repository: ${{ secrets.INFRA_REPO }}
