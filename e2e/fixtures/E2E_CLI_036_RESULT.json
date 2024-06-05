@@ -20,8 +20,8 @@
   },
   "total_counter": 20,
   "total_bom_resources": 0,
-  "start": "2024-04-29T15:30:58.0266967+01:00",
-  "end": "2024-04-29T15:31:04.6979039+01:00",
+  "start": "2024-05-28T12:51:01.1706894+01:00",
+  "end": "2024-05-28T12:51:08.9940487+01:00",
   "paths": [
     "/path/e2e/fixtures/samples/positive.yaml"
   ],
@@ -147,7 +147,7 @@
       "files": [
         {
           "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "27c1aa11c215cb09ce1ad1e569a090d5bc80ca156c5bf81f3b52415dbd6608f0",
+          "similarity_id": "7d59e0095d8eda260b02394f129910d70d01b55dffb356780166354f9360d848",
           "line": 104,
           "resource_type": "AWS::ElasticLoadBalancingV2::Listener",
           "resource_name": "ALBListener",
@@ -389,12 +389,12 @@
       "files": [
         {
           "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "8cd0c1d85f668baacc2d37b0037e026fc5d62761f353dd314942b227afd41c43",
-          "line": 115,
+          "similarity_id": "1a3083ecb6510696d2224f736fbb492fc716b17b4061a0750af6f6e7cfbd6cd2",
+          "line": 207,
           "resource_type": "AWS::ECS::TaskDefinition",
           "resource_name": "TaskDefinition",
           "issue_type": "MissingAttribute",
-          "search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions.1.Name=busybox",
+          "search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions.0.Name=simple-app",
           "search_line": -1,
           "search_value": "",
           "expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
@@ -402,12 +402,12 @@
         },
         {
           "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "1a3083ecb6510696d2224f736fbb492fc716b17b4061a0750af6f6e7cfbd6cd2",
-          "line": 207,
+          "similarity_id": "8cd0c1d85f668baacc2d37b0037e026fc5d62761f353dd314942b227afd41c43",
+          "line": 115,
           "resource_type": "AWS::ECS::TaskDefinition",
           "resource_name": "TaskDefinition",
           "issue_type": "MissingAttribute",
-          "search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions.0.Name=simple-app",
+          "search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions.1.Name=busybox",
           "search_line": -1,
           "search_value": "",
           "expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
