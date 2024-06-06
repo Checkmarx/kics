@@ -20,8 +20,8 @@
   },
   "total_counter": 1,
   "total_bom_resources": 0,
-  "start": "2024-04-05T11:00:26.5703068+01:00",
-  "end": "2024-04-05T11:00:31.1164274+01:00",
+  "start": "2024-05-28T12:31:17.0374916+01:00",
+  "end": "2024-05-28T12:31:21.6206031+01:00",
   "paths": [
     "/path/test/fixtures/test_output_path"
   ],
@@ -40,7 +40,7 @@
       "files": [
         {
           "file_name": "/path/test/fixtures/test_output_path/positive1.json",
-          "similarity_id": "82c4e2ecf183c3887cf3f974f33db6f946d78a108744a8314e938f215b320ebc",
+          "similarity_id": "42d73d5b2fa1fbcb1145ea43b7dc4ec20f92adda85c61161b6a7714b6cd86219",
           "line": 53,
           "resource_type": "Microsoft.Compute/virtualMachines",
           "resource_name": "[variables('vmName')]",
