@@ -1,7 +1,7 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
-import future.keywords
+import future.keywords.contains
 
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
