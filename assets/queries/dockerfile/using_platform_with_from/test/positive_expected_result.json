@@ -1,8 +1,8 @@
 [
   {
     "queryName": "Using Platform Flag with FROM Command",
-    "severity": "LOW",
+    "severity": "INFO",
     "line": 6,
-    "fileName": "positive.dockerfile"
+    "fileName": "positive1.dockerfile"
   }
 ]
