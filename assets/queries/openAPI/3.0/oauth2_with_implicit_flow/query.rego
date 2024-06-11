@@ -1,21 +1,21 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
 
-	security_scheme := doc.components.securitySchemes[name]
+	security_scheme := doc.components.securitySchemes[key]
 	security_scheme.type == "oauth2"
-	flow := security_scheme.flows[flow_object]
-	flow_object == "implicit"
+	common_lib.valid_key(security_scheme.flows, "implicit")
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("components.securitySchemes.{{%s}}.flows.implicit", [name]),
+		"searchKey": sprintf("components.securitySchemes.{{%s}}.flows.implicit", [key]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("components.securitySchemes.{{%s}}.flows do not contain an 'implicit' flow", [name]),
-		"keyActualValue": sprintf("components.securitySchemes.{{%s}}.flows contain an 'implicit' flow", [name]),
+		"keyExpectedValue": sprintf("components.securitySchemes.{{%s}}.flows should not use 'implicit' flow", [key]),
+		"keyActualValue": sprintf("components.securitySchemes.{{%s}}.flows is using 'implicit' flow", [key]),
 	}
 }
