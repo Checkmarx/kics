@@ -20,7 +20,7 @@
     
     
       
-        <title>APT-GET Missing Flag To Avoid Manual Input - KICS</title>
+        <title>APT-GET Missing Flags To Avoid Manual Input - KICS</title>
       
     
     
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              APT-GET Missing Flag To Avoid Manual Input
+              APT-GET Missing Flags To Avoid Manual Input
             
           </span>
         </div>
@@ -1840,7 +1840,7 @@
   
 
 
-  <h1>APT-GET Missing Flag To Avoid Manual Input</h1>
+  <h1>APT-GET Missing Flags To Avoid Manual Input</h1>
 
 <style>
   .highlight .hll {
@@ -1861,7 +1861,7 @@
 <li><strong>URL:</strong> <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/apt_get_missing_flags_to_avoid_manual_input">Github</a></li>
 </ul>
 <h3 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h3>
-<p>Check if apt-get calls use the flag -y to avoid user manual input.<br>
+<p>Check if apt-get calls use flags to avoid user manual input.<br>
 <a href="https://docs.docker.com/engine/reference/builder/#run">Documentation</a></p>
 <h3 id="code_samples">Code samples<a class="headerlink" href="#code_samples" title="Permanent link">&para;</a></h3>
 <h4 id="code_samples_with_security_vulnerabilities">Code samples with security vulnerabilities<a class="headerlink" href="#code_samples_with_security_vulnerabilities" title="Permanent link">&para;</a></h4>
@@ -1878,17 +1878,85 @@
 <div class="highlight"><span class="filename">Positive test num. 3 - dockerfile file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span><span class="nv">DUMMY</span><span class="o">=</span><span class="nb">test</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">2</span>.7
 </span></code></pre></div></p>
+<details><summary>Positive test num. 4 - dockerfile file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;sudo&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-get&quot;</span>,<span class="w"> </span><span class="s2">&quot;-q&quot;</span><span class="w"> </span>,<span class="s2">&quot;install&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-utils&quot;</span><span class="o">]</span>
+</span><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>-q<span class="w"> </span>install<span class="w"> </span>apt-utils
+</span></code></pre></div>
+</details>
+<details><summary>Positive test num. 5 - dockerfile file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;sudo&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-get&quot;</span>,<span class="w"> </span><span class="s2">&quot;--quiet&quot;</span>,<span class="w"> </span><span class="s2">&quot;install&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-utils&quot;</span><span class="o">]</span><span class="w"> </span>
+</span><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>--quiet<span class="w"> </span>install<span class="w"> </span>apt-utils
+</span></code></pre></div>
+</details>
+<details><summary>Positive test num. 6 - dockerfile file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>--quiet<span class="w"> </span>install<span class="w"> </span>sl
+</span><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;apt-get&quot;</span>,<span class="w"> </span><span class="s2">&quot;--quiet&quot;</span><span class="w"> </span>,<span class="s2">&quot;install&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-utils&quot;</span><span class="o">]</span><span class="w"> </span>
+</span></code></pre></div>
+</details>
+<details><summary>Positive test num. 7 - dockerfile file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>-q<span class="w"> </span>install<span class="w"> </span>sl
+</span><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="hll"><span class="k">RUN</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;apt-get&quot;</span>,<span class="w"> </span><span class="s2">&quot;-q&quot;</span>,<span class="w"> </span><span class="s2">&quot;install&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-utils&quot;</span><span class="o">]</span><span class="w"> </span>
+</span></code></pre></div>
+</details>
+
 <h4 id="code_samples_without_security_vulnerabilities">Code samples without security vulnerabilities<a class="headerlink" href="#code_samples_without_security_vulnerabilities" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><span class="filename">Negative test num. 1 - dockerfile file</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>apt-utils
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>-qy<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>gcc
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">RUN</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;apt-get&quot;</span>,<span class="w"> </span><span class="s2">&quot;-y&quot;</span>,<span class="w"> </span><span class="s2">&quot;install&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-utils&quot;</span><span class="o">]</span>
+<p><div class="highlight"><span class="filename">Negative test num. 1 - dockerfile file</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>apt-utils
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>-qy<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>gcc
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">RUN</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;apt-get&quot;</span>,<span class="w"> </span><span class="s2">&quot;-y&quot;</span>,<span class="w"> </span><span class="s2">&quot;install&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-utils&quot;</span><span class="o">]</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Negative test num. 2 - dockerfile file</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">RUN</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>apt-utils
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">RUN</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>-qy<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>gcc
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">RUN</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;sudo&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-get&quot;</span>,<span class="w"> </span><span class="s2">&quot;-y&quot;</span>,<span class="w"> </span><span class="s2">&quot;install&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-utils&quot;</span><span class="o">]</span>
+<div class="highlight"><span class="filename">Negative test num. 2 - dockerfile file</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">RUN</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>apt-utils
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">RUN</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>-qy<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>gcc
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">RUN</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;sudo&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-get&quot;</span>,<span class="w"> </span><span class="s2">&quot;-y&quot;</span>,<span class="w"> </span><span class="s2">&quot;install&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-utils&quot;</span><span class="o">]</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Negative test num. 3 - dockerfile file</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>--yes<span class="w"> </span>install<span class="w"> </span>apt-utils
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">RUN</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;sudo&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-get&quot;</span>,<span class="w"> </span><span class="s2">&quot;--yes&quot;</span><span class="w"> </span>,<span class="s2">&quot;install&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-utils&quot;</span><span class="o">]</span>
 </code></pre></div></p>
+<details><summary>Negative test num. 4 - dockerfile file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">RUN</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>-qq<span class="w"> </span>install<span class="w"> </span>apt-utils
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">RUN</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;apt-get&quot;</span>,<span class="w"> </span><span class="s2">&quot;-qq&quot;</span>,<span class="w"> </span><span class="s2">&quot;install&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-utils&quot;</span><span class="o">]</span><span class="w"> </span>
+</code></pre></div>
+</details>
+<details><summary>Negative test num. 5 - dockerfile file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>--assume-yes<span class="w"> </span>install<span class="w"> </span>apt-utils
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">RUN</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;sudo&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-get&quot;</span>,<span class="w"> </span><span class="s2">&quot;--assume-yes&quot;</span>,<span class="w"> </span><span class="s2">&quot;install&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-utils&quot;</span><span class="o">]</span><span class="w"> </span>
+</code></pre></div>
+</details>
+<details><summary>Negative test num. 6 - dockerfile file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">RUN</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>-q<span class="o">=</span><span class="m">2</span><span class="w"> </span>install<span class="w"> </span>apt-utils
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">RUN</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;apt-get&quot;</span>,<span class="w"> </span><span class="s2">&quot;-q=2&quot;</span>,<span class="w"> </span><span class="s2">&quot;install&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-utils&quot;</span><span class="o">]</span>
+</code></pre></div>
+</details>
+<details><summary>Negative test num. 7 - dockerfile file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>--quiet<span class="w"> </span>--quiet<span class="w"> </span>install<span class="w"> </span>sl
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">RUN</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;apt-get&quot;</span>,<span class="w"> </span><span class="s2">&quot;--quiet&quot;</span>,<span class="w"> </span><span class="s2">&quot;--quiet&quot;</span><span class="w"> </span>,<span class="s2">&quot;install&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-utils&quot;</span><span class="o">]</span><span class="w"> </span>
+</code></pre></div>
+</details>
+<details><summary>Negative test num. 8 - dockerfile file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:12</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>-q<span class="w"> </span>-q<span class="w"> </span>install<span class="w"> </span>sl
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">RUN</span><span class="w"> </span><span class="o">[</span><span class="s2">&quot;apt-get&quot;</span>,<span class="w"> </span><span class="s2">&quot;-q&quot;</span>,<span class="w"> </span><span class="s2">&quot;-q&quot;</span>,<span class="w"> </span><span class="s2">&quot;apt-utils&quot;</span><span class="o">]</span>
+</code></pre></div>
+</details>
 
 
 

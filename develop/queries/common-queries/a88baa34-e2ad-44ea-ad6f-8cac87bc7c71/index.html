@@ -4277,56 +4277,111 @@
 <a id="__codelineno-90-8" name="__codelineno-90-8" href="#__codelineno-90-8"></a>    update_password: &quot;on_create&quot;
 </code></pre></div>
 </details>
-<details><summary>Negative test num. 42 - json file</summary>
+<details><summary>Negative test num. 42 - yaml file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a><span class="p">{</span>
-<a id="__codelineno-91-2" name="__codelineno-91-2" href="#__codelineno-91-2"></a><span class="w">  </span><span class="nt">&quot;openapi&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.0.0&quot;</span><span class="p">,</span>
-<a id="__codelineno-91-3" name="__codelineno-91-3" href="#__codelineno-91-3"></a><span class="w">  </span><span class="nt">&quot;info&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-91-4" name="__codelineno-91-4" href="#__codelineno-91-4"></a><span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Simple API Overview&quot;</span><span class="p">,</span>
-<a id="__codelineno-91-5" name="__codelineno-91-5" href="#__codelineno-91-5"></a><span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>
-<a id="__codelineno-91-6" name="__codelineno-91-6" href="#__codelineno-91-6"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-91-7" name="__codelineno-91-7" href="#__codelineno-91-7"></a><span class="w">  </span><span class="nt">&quot;paths&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
-<a id="__codelineno-91-8" name="__codelineno-91-8" href="#__codelineno-91-8"></a><span class="w">  </span><span class="nt">&quot;servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-91-9" name="__codelineno-91-9" href="#__codelineno-91-9"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-91-10" name="__codelineno-91-10" href="#__codelineno-91-10"></a><span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://my.api.server.com/&quot;</span><span class="p">,</span>
-<a id="__codelineno-91-11" name="__codelineno-91-11" href="#__codelineno-91-11"></a><span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My API Server 1&quot;</span>
-<a id="__codelineno-91-12" name="__codelineno-91-12" href="#__codelineno-91-12"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-91-13" name="__codelineno-91-13" href="#__codelineno-91-13"></a><span class="w">  </span><span class="p">]</span>
-<a id="__codelineno-91-14" name="__codelineno-91-14" href="#__codelineno-91-14"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span>
+<a id="__codelineno-91-2" name="__codelineno-91-2" href="#__codelineno-91-2"></a><span class="nt">on</span><span class="p">:</span>
+<a id="__codelineno-91-3" name="__codelineno-91-3" href="#__codelineno-91-3"></a><span class="w">  </span><span class="nt">workflow_call</span><span class="p">:</span>
+<a id="__codelineno-91-4" name="__codelineno-91-4" href="#__codelineno-91-4"></a><span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<a id="__codelineno-91-5" name="__codelineno-91-5" href="#__codelineno-91-5"></a><span class="w">      </span><span class="nt">environment</span><span class="p">:</span>
+<a id="__codelineno-91-6" name="__codelineno-91-6" href="#__codelineno-91-6"></a><span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Github environment</span>
+<a id="__codelineno-91-7" name="__codelineno-91-7" href="#__codelineno-91-7"></a><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<a id="__codelineno-91-8" name="__codelineno-91-8" href="#__codelineno-91-8"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<a id="__codelineno-91-9" name="__codelineno-91-9" href="#__codelineno-91-9"></a><span class="w">      </span><span class="nt">githubRunner</span><span class="p">:</span>
+<a id="__codelineno-91-10" name="__codelineno-91-10" href="#__codelineno-91-10"></a><span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github runner lables</span>
+<a id="__codelineno-91-11" name="__codelineno-91-11" href="#__codelineno-91-11"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<a id="__codelineno-91-12" name="__codelineno-91-12" href="#__codelineno-91-12"></a><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<a id="__codelineno-91-13" name="__codelineno-91-13" href="#__codelineno-91-13"></a><span class="w">      </span><span class="nt">helmInstall</span><span class="p">:</span>
+<a id="__codelineno-91-14" name="__codelineno-91-14" href="#__codelineno-91-14"></a><span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">install the helm release</span>
+<a id="__codelineno-91-15" name="__codelineno-91-15" href="#__codelineno-91-15"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<a id="__codelineno-91-16" name="__codelineno-91-16" href="#__codelineno-91-16"></a><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<a id="__codelineno-91-17" name="__codelineno-91-17" href="#__codelineno-91-17"></a><span class="w">        </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-91-18" name="__codelineno-91-18" href="#__codelineno-91-18"></a><span class="nt">jobs</span><span class="p">:</span>
+<a id="__codelineno-91-19" name="__codelineno-91-19" href="#__codelineno-91-19"></a><span class="w">  </span><span class="nt">push_deploy</span><span class="p">:</span>
+<a id="__codelineno-91-20" name="__codelineno-91-20" href="#__codelineno-91-20"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ inputs.environment }}</span>
+<a id="__codelineno-91-21" name="__codelineno-91-21" href="#__codelineno-91-21"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ fromJSON(inputs.githubRunner) }}</span>
+<a id="__codelineno-91-22" name="__codelineno-91-22" href="#__codelineno-91-22"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<a id="__codelineno-91-23" name="__codelineno-91-23" href="#__codelineno-91-23"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout repository</span>
+<a id="__codelineno-91-24" name="__codelineno-91-24" href="#__codelineno-91-24"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<a id="__codelineno-91-25" name="__codelineno-91-25" href="#__codelineno-91-25"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-91-26" name="__codelineno-91-26" href="#__codelineno-91-26"></a><span class="w">          </span><span class="nt">fetch-tags</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-91-27" name="__codelineno-91-27" href="#__codelineno-91-27"></a><span class="w">          </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<a id="__codelineno-91-28" name="__codelineno-91-28" href="#__codelineno-91-28"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get secrets from Azure Key Vault</span>
+<a id="__codelineno-91-29" name="__codelineno-91-29" href="#__codelineno-91-29"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-91-30" name="__codelineno-91-30" href="#__codelineno-91-30"></a><span class="w">          </span><span class="no">set -e</span>
+<a id="__codelineno-91-31" name="__codelineno-91-31" href="#__codelineno-91-31"></a><span class="w">          </span><span class="no">vault_name=&quot;${{ vars.AZURE_KV }}&quot;</span>
+<a id="__codelineno-91-32" name="__codelineno-91-32" href="#__codelineno-91-32"></a><span class="w">          </span><span class="no">auth0_client_id=$(az keyvault secret show --vault-name $vault_name --name cel-auth0-client-id --query &quot;value&quot; -o tsv)</span>
+<a id="__codelineno-91-33" name="__codelineno-91-33" href="#__codelineno-91-33"></a><span class="w">          </span><span class="no">auth0_client_secret=$(az keyvault secret show --vault-name $vault_name --name cel-auth0-client-secret --query &quot;value&quot; -o tsv)</span>
+<a id="__codelineno-91-34" name="__codelineno-91-34" href="#__codelineno-91-34"></a><span class="w">          </span><span class="no">restapi_mgt_appid=$(az keyvault secret show --vault-name $vault_name --name cel-restapi-mgt-appid --query &quot;value&quot; -o tsv)</span>
+<a id="__codelineno-91-35" name="__codelineno-91-35" href="#__codelineno-91-35"></a><span class="w">          </span><span class="no">restapi_mgt_appsec=$(az keyvault secret show --vault-name $vault_name --name cel-restapi-mgt-appsec --query &quot;value&quot; -o tsv)</span>
+<a id="__codelineno-91-36" name="__codelineno-91-36" href="#__codelineno-91-36"></a><span class="w">          </span><span class="no">cel_projectmgr_db_user=$(az keyvault secret show --vault-name $vault_name --name cel-projectmgr-db-user --query &quot;value&quot; -o tsv)</span>
+<a id="__codelineno-91-37" name="__codelineno-91-37" href="#__codelineno-91-37"></a><span class="w">          </span><span class="no">cel_projectmgr_db_password=$(az keyvault secret show --vault-name $vault_name --name cel-projectmgr-db-password --query &quot;value&quot; -o tsv)</span>
+<a id="__codelineno-91-38" name="__codelineno-91-38" href="#__codelineno-91-38"></a><span class="w">          </span><span class="no">cel_project_export_key=$(az keyvault secret show --vault-name $vault_name --name cel-project-export-key --query &quot;value&quot; -o tsv)</span>
+<a id="__codelineno-91-39" name="__codelineno-91-39" href="#__codelineno-91-39"></a><span class="w">          </span><span class="no"># This escapes the commas in the vars.AUTH0_CNX_LIST env. variable by adding a backslash in front of it</span>
+<a id="__codelineno-91-40" name="__codelineno-91-40" href="#__codelineno-91-40"></a><span class="w">          </span><span class="no">auth0_cnx_list=$(echo ${{ vars.AUTH0_CNX_LIST }} | sed &#39;s/,/\\,/&#39;)</span>
+<a id="__codelineno-91-41" name="__codelineno-91-41" href="#__codelineno-91-41"></a><span class="w">          </span><span class="no"># Mask secrets</span>
+<a id="__codelineno-91-42" name="__codelineno-91-42" href="#__codelineno-91-42"></a><span class="w">          </span><span class="no">echo &quot;::add-mask::$auth0_client_id&quot;</span>
+<a id="__codelineno-91-43" name="__codelineno-91-43" href="#__codelineno-91-43"></a><span class="w">          </span><span class="no">echo &quot;::add-mask::$auth0_client_secret&quot;</span>
+<a id="__codelineno-91-44" name="__codelineno-91-44" href="#__codelineno-91-44"></a><span class="w">          </span><span class="no">echo &quot;::add-mask::$restapi_mgt_appid&quot;</span>
+<a id="__codelineno-91-45" name="__codelineno-91-45" href="#__codelineno-91-45"></a><span class="w">          </span><span class="no">echo &quot;::add-mask::$restapi_mgt_appsec&quot;</span>
+<a id="__codelineno-91-46" name="__codelineno-91-46" href="#__codelineno-91-46"></a><span class="w">          </span><span class="no">echo &quot;::add-mask::$cel_projectmgr_db_user&quot;</span>
+<a id="__codelineno-91-47" name="__codelineno-91-47" href="#__codelineno-91-47"></a><span class="w">          </span><span class="no">echo &quot;::add-mask::$cel_projectmgr_db_password&quot;</span>
+<a id="__codelineno-91-48" name="__codelineno-91-48" href="#__codelineno-91-48"></a><span class="w">          </span><span class="no">echo &quot;::add-mask::$cel_project_export_key&quot;</span>
+<a id="__codelineno-91-49" name="__codelineno-91-49" href="#__codelineno-91-49"></a><span class="w">          </span><span class="no">echo &quot;AUTH0_CLIENT_ID=$auth0_client_id&quot; &gt;&gt; $GITHUB_ENV</span>
+<a id="__codelineno-91-50" name="__codelineno-91-50" href="#__codelineno-91-50"></a><span class="w">          </span><span class="no">echo &quot;AUTH0_CLIENT_SECRET=$auth0_client_secret&quot; &gt;&gt; $GITHUB_ENV</span>
+<a id="__codelineno-91-51" name="__codelineno-91-51" href="#__codelineno-91-51"></a><span class="w">          </span><span class="no">echo &quot;RESTAPI_MGT_APPID=$restapi_mgt_appid&quot; &gt;&gt; $GITHUB_ENV</span>
+<a id="__codelineno-91-52" name="__codelineno-91-52" href="#__codelineno-91-52"></a><span class="w">          </span><span class="no">echo &quot;RESTAPI_MGT_APPSEC=$restapi_mgt_appsec&quot; &gt;&gt; $GITHUB_ENV</span>
+<a id="__codelineno-91-53" name="__codelineno-91-53" href="#__codelineno-91-53"></a><span class="w">          </span><span class="no">echo &quot;CEL_PROJECTMGR_DB_USER=$cel_projectmgr_db_user&quot; &gt;&gt; $GITHUB_ENV</span>
+<a id="__codelineno-91-54" name="__codelineno-91-54" href="#__codelineno-91-54"></a><span class="w">          </span><span class="no">echo &quot;CEL_PROJECTMGR_DB_PASSWORD=$cel_projectmgr_db_password&quot; &gt;&gt; $GITHUB_ENV</span>
+<a id="__codelineno-91-55" name="__codelineno-91-55" href="#__codelineno-91-55"></a><span class="w">          </span><span class="no">echo &quot;CEL_PROJECT_EXPORT_KEY=$cel_project_export_key&quot; &gt;&gt; $GITHUB_ENV</span>
+<a id="__codelineno-91-56" name="__codelineno-91-56" href="#__codelineno-91-56"></a><span class="w">          </span><span class="no">echo &quot;AUTH0_CNX_LIST=$auth0_cnx_list&quot; &gt;&gt; $GITHUB_ENV</span>
+<a id="__codelineno-91-57" name="__codelineno-91-57" href="#__codelineno-91-57"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get EA secrets from Azure Key Vault</span>
+<a id="__codelineno-91-58" name="__codelineno-91-58" href="#__codelineno-91-58"></a><span class="w">        </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ inputs.environment == &#39;ea&#39; }}</span>
+<a id="__codelineno-91-59" name="__codelineno-91-59" href="#__codelineno-91-59"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-91-60" name="__codelineno-91-60" href="#__codelineno-91-60"></a><span class="w">          </span><span class="no">set -e</span>
+<a id="__codelineno-91-61" name="__codelineno-91-61" href="#__codelineno-91-61"></a><span class="w">          </span><span class="no">vault_name=&quot;${{ vars.AZURE_KV }}&quot;</span>
+<a id="__codelineno-91-62" name="__codelineno-91-62" href="#__codelineno-91-62"></a><span class="w">          </span><span class="no">auth0_client_id=$(az keyvault secret show --vault-name $vault_name --name cel-auth0-client-id-${{ inputs.environment }} --query value -o tsv)</span>
+<a id="__codelineno-91-63" name="__codelineno-91-63" href="#__codelineno-91-63"></a><span class="w">          </span><span class="no">auth0_client_secret=$(az keyvault secret show --vault-name $vault_name --name cel-auth0-client-secret-${{ inputs.environment }} --query value -o tsv)</span>
+<a id="__codelineno-91-64" name="__codelineno-91-64" href="#__codelineno-91-64"></a><span class="w">          </span><span class="no">restapi_mgt_appid=$(az keyvault secret show --vault-name $vault_name --name cel-restapi-mgt-appid-${{ inputs.environment }} --query value -o tsv)</span>
+<a id="__codelineno-91-65" name="__codelineno-91-65" href="#__codelineno-91-65"></a><span class="w">          </span><span class="no">restapi_mgt_appsec=$(az keyvault secret show --vault-name $vault_name --name cel-restapi-mgt-appsec-${{ inputs.environment }} --query value -o tsv)</span>
+<a id="__codelineno-91-66" name="__codelineno-91-66" href="#__codelineno-91-66"></a><span class="w">          </span><span class="no"># Mask secrets</span>
+<a id="__codelineno-91-67" name="__codelineno-91-67" href="#__codelineno-91-67"></a><span class="w">          </span><span class="no">echo &quot;::add-mask::$auth0_client_id&quot;</span>
+<a id="__codelineno-91-68" name="__codelineno-91-68" href="#__codelineno-91-68"></a><span class="w">          </span><span class="no">echo &quot;::add-mask::$auth0_client_secret&quot;</span>
+<a id="__codelineno-91-69" name="__codelineno-91-69" href="#__codelineno-91-69"></a><span class="w">          </span><span class="no">echo &quot;::add-mask::$restapi_mgt_appid&quot;</span>
+<a id="__codelineno-91-70" name="__codelineno-91-70" href="#__codelineno-91-70"></a><span class="w">          </span><span class="no">echo &quot;::add-mask::$restapi_mgt_appsec&quot;</span>
+<a id="__codelineno-91-71" name="__codelineno-91-71" href="#__codelineno-91-71"></a><span class="w">          </span><span class="no">echo &quot;AUTH0_CLIENT_ID=${auth0_client_id}&quot; &gt;&gt; $GITHUB_ENV</span>
+<a id="__codelineno-91-72" name="__codelineno-91-72" href="#__codelineno-91-72"></a><span class="w">          </span><span class="no">echo &quot;AUTH0_CLIENT_SECRET=${auth0_client_secret}&quot; &gt;&gt; $GITHUB_ENV</span>
+<a id="__codelineno-91-73" name="__codelineno-91-73" href="#__codelineno-91-73"></a><span class="w">          </span><span class="no">echo &quot;RESTAPI_MGT_APPID=${restapi_mgt_appid}&quot; &gt;&gt; $GITHUB_ENV</span>
+<a id="__codelineno-91-74" name="__codelineno-91-74" href="#__codelineno-91-74"></a><span class="w">          </span><span class="no">echo &quot;RESTAPI_MGT_APPSEC=${restapi_mgt_appsec}&quot; &gt;&gt; $GITHUB_ENV</span>
 </code></pre></div>
 </details>
-<details><summary>Negative test num. 43 - tf file</summary>
+<details><summary>Negative test num. 43 - json file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;primary3&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-92-2" name="__codelineno-92-2" href="#__codelineno-92-2"></a><span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;marcellus-wallace&quot;</span>
-<a id="__codelineno-92-3" name="__codelineno-92-3" href="#__codelineno-92-3"></a><span class="w">  </span><span class="na">location</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1-a&quot;</span>
-<a id="__codelineno-92-4" name="__codelineno-92-4" href="#__codelineno-92-4"></a><span class="w">  </span><span class="na">initial_node_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
-<a id="__codelineno-92-5" name="__codelineno-92-5" href="#__codelineno-92-5"></a>
-<a id="__codelineno-92-6" name="__codelineno-92-6" href="#__codelineno-92-6"></a><span class="w">  </span><span class="nb">master_auth</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-92-7" name="__codelineno-92-7" href="#__codelineno-92-7"></a><span class="w">    </span><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1234567890qwertyuiopasdfghjklçzxcvbnm&quot;</span>
-<a id="__codelineno-92-8" name="__codelineno-92-8" href="#__codelineno-92-8"></a><span class="w">    </span><span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
-<a id="__codelineno-92-9" name="__codelineno-92-9" href="#__codelineno-92-9"></a>
-<a id="__codelineno-92-10" name="__codelineno-92-10" href="#__codelineno-92-10"></a><span class="w">    </span><span class="nb">client_certificate_config</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-92-11" name="__codelineno-92-11" href="#__codelineno-92-11"></a><span class="w">      </span><span class="na">issue_client_certificate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a><span class="p">{</span>
+<a id="__codelineno-92-2" name="__codelineno-92-2" href="#__codelineno-92-2"></a><span class="w">  </span><span class="nt">&quot;openapi&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.0.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-92-3" name="__codelineno-92-3" href="#__codelineno-92-3"></a><span class="w">  </span><span class="nt">&quot;info&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-92-4" name="__codelineno-92-4" href="#__codelineno-92-4"></a><span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Simple API Overview&quot;</span><span class="p">,</span>
+<a id="__codelineno-92-5" name="__codelineno-92-5" href="#__codelineno-92-5"></a><span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>
+<a id="__codelineno-92-6" name="__codelineno-92-6" href="#__codelineno-92-6"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-92-7" name="__codelineno-92-7" href="#__codelineno-92-7"></a><span class="w">  </span><span class="nt">&quot;paths&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<a id="__codelineno-92-8" name="__codelineno-92-8" href="#__codelineno-92-8"></a><span class="w">  </span><span class="nt">&quot;servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-92-9" name="__codelineno-92-9" href="#__codelineno-92-9"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-92-10" name="__codelineno-92-10" href="#__codelineno-92-10"></a><span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://my.api.server.com/&quot;</span><span class="p">,</span>
+<a id="__codelineno-92-11" name="__codelineno-92-11" href="#__codelineno-92-11"></a><span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My API Server 1&quot;</span>
 <a id="__codelineno-92-12" name="__codelineno-92-12" href="#__codelineno-92-12"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-92-13" name="__codelineno-92-13" href="#__codelineno-92-13"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-92-14" name="__codelineno-92-14" href="#__codelineno-92-14"></a>
-<a id="__codelineno-92-15" name="__codelineno-92-15" href="#__codelineno-92-15"></a><span class="w">  </span><span class="nb">timeouts</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-92-16" name="__codelineno-92-16" href="#__codelineno-92-16"></a><span class="w">    </span><span class="na">create</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;30m&quot;</span>
-<a id="__codelineno-92-17" name="__codelineno-92-17" href="#__codelineno-92-17"></a><span class="w">    </span><span class="na">update</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;40m&quot;</span>
-<a id="__codelineno-92-18" name="__codelineno-92-18" href="#__codelineno-92-18"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-92-19" name="__codelineno-92-19" href="#__codelineno-92-19"></a><span class="p">}</span>
+<a id="__codelineno-92-13" name="__codelineno-92-13" href="#__codelineno-92-13"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-92-14" name="__codelineno-92-14" href="#__codelineno-92-14"></a><span class="p">}</span>
 </code></pre></div>
 </details>
 <details><summary>Negative test num. 44 - tf file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;primary5&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-93-2" name="__codelineno-93-2" href="#__codelineno-93-2"></a><span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;marcellus-wallace-credential&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;primary3&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-93-2" name="__codelineno-93-2" href="#__codelineno-93-2"></a><span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;marcellus-wallace&quot;</span>
 <a id="__codelineno-93-3" name="__codelineno-93-3" href="#__codelineno-93-3"></a><span class="w">  </span><span class="na">location</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1-a&quot;</span>
 <a id="__codelineno-93-4" name="__codelineno-93-4" href="#__codelineno-93-4"></a><span class="w">  </span><span class="na">initial_node_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
 <a id="__codelineno-93-5" name="__codelineno-93-5" href="#__codelineno-93-5"></a>
 <a id="__codelineno-93-6" name="__codelineno-93-6" href="#__codelineno-93-6"></a><span class="w">  </span><span class="nb">master_auth</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-93-7" name="__codelineno-93-7" href="#__codelineno-93-7"></a><span class="w">    </span><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PRIVATE KEY_key&quot;</span>
+<a id="__codelineno-93-7" name="__codelineno-93-7" href="#__codelineno-93-7"></a><span class="w">    </span><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1234567890qwertyuiopasdfghjklçzxcvbnm&quot;</span>
 <a id="__codelineno-93-8" name="__codelineno-93-8" href="#__codelineno-93-8"></a><span class="w">    </span><span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
 <a id="__codelineno-93-9" name="__codelineno-93-9" href="#__codelineno-93-9"></a>
 <a id="__codelineno-93-10" name="__codelineno-93-10" href="#__codelineno-93-10"></a><span class="w">    </span><span class="nb">client_certificate_config</span><span class="w"> </span><span class="p">{</span>
@@ -4343,17 +4398,40 @@
 </details>
 <details><summary>Negative test num. 45 - tf file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_secret_manager_secret&quot;</span><span class="w"> </span><span class="nv">&quot;secret-basic&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-94-2" name="__codelineno-94-2" href="#__codelineno-94-2"></a><span class="w">  </span><span class="na">secret_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;secret-version&quot;</span>
-<a id="__codelineno-94-3" name="__codelineno-94-3" href="#__codelineno-94-3"></a>
-<a id="__codelineno-94-4" name="__codelineno-94-4" href="#__codelineno-94-4"></a><span class="w">  </span><span class="nb">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-94-5" name="__codelineno-94-5" href="#__codelineno-94-5"></a><span class="w">    </span><span class="na">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-label&quot;</span>
-<a id="__codelineno-94-6" name="__codelineno-94-6" href="#__codelineno-94-6"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-94-7" name="__codelineno-94-7" href="#__codelineno-94-7"></a>
-<a id="__codelineno-94-8" name="__codelineno-94-8" href="#__codelineno-94-8"></a><span class="w">  </span><span class="nb">replication</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-94-9" name="__codelineno-94-9" href="#__codelineno-94-9"></a><span class="w">    </span><span class="na">automatic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
-<a id="__codelineno-94-10" name="__codelineno-94-10" href="#__codelineno-94-10"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-94-11" name="__codelineno-94-11" href="#__codelineno-94-11"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;primary5&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-94-2" name="__codelineno-94-2" href="#__codelineno-94-2"></a><span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;marcellus-wallace-credential&quot;</span>
+<a id="__codelineno-94-3" name="__codelineno-94-3" href="#__codelineno-94-3"></a><span class="w">  </span><span class="na">location</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1-a&quot;</span>
+<a id="__codelineno-94-4" name="__codelineno-94-4" href="#__codelineno-94-4"></a><span class="w">  </span><span class="na">initial_node_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<a id="__codelineno-94-5" name="__codelineno-94-5" href="#__codelineno-94-5"></a>
+<a id="__codelineno-94-6" name="__codelineno-94-6" href="#__codelineno-94-6"></a><span class="w">  </span><span class="nb">master_auth</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-94-7" name="__codelineno-94-7" href="#__codelineno-94-7"></a><span class="w">    </span><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PRIVATE KEY_key&quot;</span>
+<a id="__codelineno-94-8" name="__codelineno-94-8" href="#__codelineno-94-8"></a><span class="w">    </span><span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<a id="__codelineno-94-9" name="__codelineno-94-9" href="#__codelineno-94-9"></a>
+<a id="__codelineno-94-10" name="__codelineno-94-10" href="#__codelineno-94-10"></a><span class="w">    </span><span class="nb">client_certificate_config</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-94-11" name="__codelineno-94-11" href="#__codelineno-94-11"></a><span class="w">      </span><span class="na">issue_client_certificate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-94-12" name="__codelineno-94-12" href="#__codelineno-94-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-94-13" name="__codelineno-94-13" href="#__codelineno-94-13"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-94-14" name="__codelineno-94-14" href="#__codelineno-94-14"></a>
+<a id="__codelineno-94-15" name="__codelineno-94-15" href="#__codelineno-94-15"></a><span class="w">  </span><span class="nb">timeouts</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-94-16" name="__codelineno-94-16" href="#__codelineno-94-16"></a><span class="w">    </span><span class="na">create</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;30m&quot;</span>
+<a id="__codelineno-94-17" name="__codelineno-94-17" href="#__codelineno-94-17"></a><span class="w">    </span><span class="na">update</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;40m&quot;</span>
+<a id="__codelineno-94-18" name="__codelineno-94-18" href="#__codelineno-94-18"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-94-19" name="__codelineno-94-19" href="#__codelineno-94-19"></a><span class="p">}</span>
+</code></pre></div>
+</details>
+<details><summary>Negative test num. 46 - tf file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-95-1" name="__codelineno-95-1" href="#__codelineno-95-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_secret_manager_secret&quot;</span><span class="w"> </span><span class="nv">&quot;secret-basic&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-95-2" name="__codelineno-95-2" href="#__codelineno-95-2"></a><span class="w">  </span><span class="na">secret_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;secret-version&quot;</span>
+<a id="__codelineno-95-3" name="__codelineno-95-3" href="#__codelineno-95-3"></a>
+<a id="__codelineno-95-4" name="__codelineno-95-4" href="#__codelineno-95-4"></a><span class="w">  </span><span class="nb">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-95-5" name="__codelineno-95-5" href="#__codelineno-95-5"></a><span class="w">    </span><span class="na">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-label&quot;</span>
+<a id="__codelineno-95-6" name="__codelineno-95-6" href="#__codelineno-95-6"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-95-7" name="__codelineno-95-7" href="#__codelineno-95-7"></a>
+<a id="__codelineno-95-8" name="__codelineno-95-8" href="#__codelineno-95-8"></a><span class="w">  </span><span class="nb">replication</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-95-9" name="__codelineno-95-9" href="#__codelineno-95-9"></a><span class="w">    </span><span class="na">automatic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-95-10" name="__codelineno-95-10" href="#__codelineno-95-10"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-95-11" name="__codelineno-95-11" href="#__codelineno-95-11"></a><span class="p">}</span>
 </code></pre></div>
 </details>
 
