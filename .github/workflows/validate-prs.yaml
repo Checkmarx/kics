@@ -85,7 +85,7 @@ jobs:
       run: sudo apt-get install jq
     - name: Check user username
       run: |
-        response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics-core-team/members")
+        response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics/members")
         team_members=$(echo "$response" | jq -r '.[].login')
         if [[ "$USERNAME" == "dependabot[bot]" ]] || echo "${team_members[@]}" | grep -Pq "^$USERNAME$"; then
           echo "Contributor belongs to Checkmarx organization."
