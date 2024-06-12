@@ -144,7 +144,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		{
 			name: "error_not_suported_extension",
 			fields: fields{
-				paths:    []string{"assets/queries/template/test/positive.tf"},
+				paths:    []string{"assets/queries/template/test/positive1.tf"},
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{
@@ -175,7 +175,7 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		{
 			name: "err_resolver_sink",
 			fields: fields{
-				paths:    []string{"assets/queries/template/test/positive.tf"},
+				paths:    []string{"assets/queries/template/test/positive1.tf"},
 				excludes: map[string][]os.FileInfo{},
 			},
 			args: args{

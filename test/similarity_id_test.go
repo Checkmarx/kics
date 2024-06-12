@@ -143,7 +143,7 @@ var (
 				getTestParams(&testCaseParamsType{
 					platform:   "terraform",
 					queryDir:   "../assets/queries/terraform/aws/redshift_publicly_accessible",
-					samplePath: "../test/fixtures/test_extension/positive.tf",
+					samplePath: "../test/fixtures/test_extension/positive1.tf",
 				}),
 			},
 			expectedFunction: func(t *testing.T, condition bool) {

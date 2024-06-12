@@ -8,7 +8,7 @@ import (
 )
 
 func TestAddCertificateInfo(t *testing.T) {
-	path := filepath.Join("..", "..", "..", "test", "fixtures", "test_certificate", "positive.tf")
+	path := filepath.Join("..", "..", "..", "test", "fixtures", "test_certificate", "positive1.tf")
 	certificatePath := "certificate.pem"
 
 	info := AddCertificateInfo(path, certificatePath)

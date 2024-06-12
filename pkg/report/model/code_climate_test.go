@@ -24,7 +24,7 @@ func TestBuildCodeClimateReport(t *testing.T) {
 					Description: "ALB protocol is HTTP Description",
 					Categories:  []string{"Security"},
 					Location: location{
-						Path:  "positive.tf",
+						Path:  "positive1.tf",
 						Lines: lines{Begin: 25},
 					},
 					Severity: "critical",
@@ -36,7 +36,7 @@ func TestBuildCodeClimateReport(t *testing.T) {
 					Description: "ALB protocol is HTTP Description",
 					Categories:  []string{"Security"},
 					Location: location{
-						Path:  "positive.tf",
+						Path:  "positive1.tf",
 						Lines: lines{Begin: 19},
 					},
 					Severity: "critical",
@@ -54,7 +54,7 @@ func TestBuildCodeClimateReport(t *testing.T) {
 					Description: "AWS AMI Encryption is not enabled",
 					Categories:  []string{"Security"},
 					Location: location{
-						Path:  "positive.tf",
+						Path:  "positive1.tf",
 						Lines: lines{Begin: 30},
 					},
 					Severity: "critical",
@@ -67,7 +67,7 @@ func TestBuildCodeClimateReport(t *testing.T) {
 					Description: "AWS AMI Encryption is not enabled",
 					Categories:  []string{"Security"},
 					Location: location{
-						Path:  "positive.tf",
+						Path:  "positive1.tf",
 						Lines: lines{Begin: 35},
 					},
 					Severity:    "critical",

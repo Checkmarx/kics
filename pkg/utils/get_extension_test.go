@@ -31,9 +31,9 @@ func TestGetExtension(t *testing.T) {
 			err:      nil,
 		},
 		{
-			name:     "Get extension from a file with extension defined ('positive.tf')",
+			name:     "Get extension from a file with extension defined ('positive1.tf')",
 			want:     ".tf",
-			filePath: "../../test/fixtures/all_auth_users_get_read_access/test/positive.tf",
+			filePath: "../../test/fixtures/all_auth_users_get_read_access/test/positive1.tf",
 			toCreate: false,
 			err:      nil,
 		},

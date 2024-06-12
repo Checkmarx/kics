@@ -11,7 +11,7 @@ func init() { //nolint
 			Args: []cmdArgs{
 				[]string{"scan", "--queries-path", "/path/e2e/fixtures/samples/queries/valid/single_query," +
 					"/path/e2e/fixtures/samples/queries/valid/multiple_query",
-					"-p", "/path/e2e/fixtures/samples/bom-positive.tf"},
+					"-p", "/path/e2e/fixtures/samples/bom-positive1.tf"},
 			},
 		},
 		Validation: func(outputText string) bool {
