@@ -31,7 +31,7 @@ USER nonroot
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/git@sha256:9dc48ca2f9b643fffece0d7079f4e3b0b40e343de1c8f0f583db551d3df3c419
+FROM cgr.dev/chainguard/git@sha256:7b82024b69106cda75126da436260b20cc9d3750ceb0d735cb4b4aee9b2155c1
 
 ENV TERM xterm-256color
 
