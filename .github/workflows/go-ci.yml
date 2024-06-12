@@ -86,7 +86,7 @@ jobs:
           go test -mod=vendor -tags dev -v -timeout 2100s $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
       - name: Archive test logs
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: unit-test-${{ runner.os }}-${{ github.event.pull_request.head.sha }}.log
           path: unit-test.log

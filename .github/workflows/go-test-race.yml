@@ -45,7 +45,7 @@ jobs:
           exit $result_code
       - name: Archive test logs
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: unit-test-${{ runner.os }}-${{ github.event.pull_request.head.sha }}.log
           path: unit-test.log
