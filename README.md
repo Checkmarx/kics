@@ -12,6 +12,9 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/Checkmarx/kics)](https://goreportcard.com/report/github.com/Checkmarx/kics)
 [![Go Coverage](https://raw.githubusercontent.com/Checkmarx/kics/gh-pages/coverage.svg)](https://docs.kics.io/coverage.html)
 
+
+
+
 <p align="center">
 <img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics_new_logo_2022_dark.png#gh-light-mode-only" width="500">
 <img alt="KICS - Keep Infrastructure as Code Secure" src="docs/img/logo/kics_new_logo_2022_white.png#gh-dark-mode-only" width="500">
