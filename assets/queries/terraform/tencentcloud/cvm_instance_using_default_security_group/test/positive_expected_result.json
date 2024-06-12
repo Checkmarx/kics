@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Cvm Instance Using Default Security Group",
+    "severity": "LOW",
+    "line": 19,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Cvm Instance Using Default Security Group",
+    "severity": "LOW",
+    "line": 19,
+    "fileName": "positive2.tf"
+  }
+]
