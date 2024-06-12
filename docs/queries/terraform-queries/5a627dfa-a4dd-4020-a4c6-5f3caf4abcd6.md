@@ -1,5 +1,5 @@
 ---
-title: Check use no LTS Spark Version
+title: (Beta) Check use no LTS Spark Version
 hide:
   toc: true
   navigation: true
@@ -16,7 +16,7 @@ hide:
 </style>
 
 -   **Query id:** 5a627dfa-a4dd-4020-a4c6-5f3caf4abcd6
--   **Query name:** Check use no LTS Spark Version
+-   **Query name:** (Beta) Check use no LTS Spark Version
 -   **Platform:** Terraform
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Best Practices
