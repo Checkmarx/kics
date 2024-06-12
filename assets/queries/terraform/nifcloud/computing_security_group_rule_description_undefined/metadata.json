@@ -1,6 +1,6 @@
 {
   "id": "e4610872-0b1c-4fb7-ab57-d81c0afdb291",
-  "queryName": "Nifcloud Computing Undefined Description To Security Group Rule",
+  "queryName": "(Beta) Nifcloud Computing Undefined Description To Security Group Rule",
   "severity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "Missing description for security group rule",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "66ed83ab",
   "cloudProvider": "nifcloud",
-  "experimental": "true",
   "cwe": ""
 }

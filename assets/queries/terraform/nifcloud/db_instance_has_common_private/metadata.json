@@ -1,6 +1,6 @@
 {
   "id": "9bf57c23-fbab-4222-85f3-3f207a53c6a8",
-  "queryName": "Nifcloud RDB Has Common Private Network",
+  "queryName": "(Beta) Nifcloud RDB Has Common Private Network",
   "severity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "The rdb has common private network",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "89f1ff38",
   "cloudProvider": "nifcloud",
-  "experimental": "true",
   "cwe": ""
 }

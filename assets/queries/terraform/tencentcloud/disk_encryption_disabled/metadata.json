@@ -1,6 +1,6 @@
 {
   "id": "1ee0f202-31da-49ba-bbce-04a989912e4b",
-  "queryName": "Disk Encryption Disabled",
+  "queryName": "(Beta) Disk Encryption Disabled",
   "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "Disks should have encryption enabled",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "1ee0f202",
   "cloudProvider": "tencentcloud",
-  "experimental": "true",
   "cwe": ""
 }

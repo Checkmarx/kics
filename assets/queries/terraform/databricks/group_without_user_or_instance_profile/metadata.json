@@ -1,6 +1,6 @@
 {
   "id": "23c3067a-8cc9-480c-b645-7c1e0ad4bf60",
-  "queryName": "Databricks Group Without User Or Instance Profile",
+  "queryName": "(Beta) Databricks Group Without User Or Instance Profile",
   "severity": "LOW",
   "category": "Access Control",
   "descriptionText": "Databricks Group should have at least one user or one instance profile associated",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "4bb78f12",
   "cloudProvider": "common",
-  "experimental": "true",
   "cwe": ""
 }

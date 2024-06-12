@@ -1,6 +1,6 @@
 {
   "id": "e7dada38-af20-4899-8955-dabea84ab1f0",
-  "queryName": "Nifcloud Router Undefined Security Group To Router",
+  "queryName": "(Beta) Nifcloud Router Undefined Security Group To Router",
   "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "Missing security group for router",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "4cd22b80",
   "cloudProvider": "nifcloud",
-  "experimental": "true",
   "cwe": ""
 }

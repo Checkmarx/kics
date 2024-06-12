@@ -1,6 +1,6 @@
 {
   "id": "e5071f76-cbe7-468d-bb2b-d10f02d2b713",
-  "queryName": "Nifcloud RDB Has Backup Retention Less Than 2 Day",
+  "queryName": "(Beta) Nifcloud RDB Has Backup Retention Less Than 2 Day",
   "severity": "MEDIUM",
   "category": "Backup",
   "descriptionText": "The rdb has backup retention less than 2 day",
@@ -8,6 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "5fadf94a",
   "cloudProvider": "nifcloud",
-  "experimental": "true",
   "cwe": ""
 }
