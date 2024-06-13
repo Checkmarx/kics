@@ -68,7 +68,6 @@ resource "tencentcloud_kubernetes_cluster" "example" {
 
     enhanced_security_service = false
     enhanced_monitor_service  = false
-    user_data                 = "dGVzdA=="
   }
 
   worker_config {
@@ -86,8 +85,6 @@ resource "tencentcloud_kubernetes_cluster" "example" {
 
     enhanced_security_service = false
     enhanced_monitor_service  = false
-    user_data                 = "dGVzdA=="
-    key_ids                   = ["skey-11112222"]
     cam_role_name             = "CVM_QcsRole"
   }
 

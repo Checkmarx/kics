@@ -33,8 +33,6 @@ resource "tencentcloud_kubernetes_cluster" "managed_cluster" {
 
     enhanced_security_service = false
     enhanced_monitor_service  = false
-    user_data                 = "dGVzdA=="
-    key_ids                   = "skey-11112222"
   }
 
   log_agent {

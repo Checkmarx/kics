@@ -2,7 +2,7 @@
   {
     "queryName": "(Beta) TKE cluster log agent is not enabled",
     "severity": "LOW",
-    "line": 41,
+    "line": 39,
     "filename": "positive1.tf"
   },
   {
