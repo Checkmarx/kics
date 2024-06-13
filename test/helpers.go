@@ -193,7 +193,7 @@ var queryInfo = model.QueryResult{
 	Severity:  model.SeverityInfo,
 	Files: []model.VulnerableFile{
 		{
-			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "negative.tf"),
+			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "negative1.tf"),
 			Line:             1,
 			IssueType:        "MissingAttribute",
 			SearchKey:        "aws_guardduty_detector[{{negative1}}]",
@@ -257,7 +257,7 @@ var queryMediumCycloneCWE = model.QueryResult{
 	Severity:  model.SeverityMedium,
 	Files: []model.VulnerableFile{
 		{
-			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "negative.tf"),
+			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "negative1.tf"),
 			Line:             2,
 			IssueType:        "IncorrectValue",
 			SearchKey:        "aws_guardduty_detector[negative1].enable",

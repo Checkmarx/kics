@@ -132,7 +132,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	}
 
 	v3 := Vulnerability{
-		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%se38a8e0a-b88b-4902-b3fe-b0fcb17d5c10", negativeSha[0:12]),
+		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative1.tf@0.0.0-%se38a8e0a-b88b-4902-b3fe-b0fcb17d5c10", negativeSha[0:12]),
 		ID:  "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
 		CWE: "",
 		Source: Source{
@@ -154,7 +154,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	}
 
 	v4 := Vulnerability{
-		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%s704dadd3-54fc-48ac-b6a0-02f170011473", negativeSha[0:12]),
+		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative1.tf@0.0.0-%s704dadd3-54fc-48ac-b6a0-02f170011473", negativeSha[0:12]),
 		ID:  "704dadd3-54fc-48ac-b6a0-02f170011473",
 		CWE: "22",
 		Source: Source{
@@ -220,10 +220,10 @@ func TestBuildCycloneDxReport(t *testing.T) {
 
 	c2 := Component{
 		Type:    "file",
-		BomRef:  fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%s", negativeSha[0:12]),
-		Name:    "../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf",
+		BomRef:  fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative1.tf@0.0.0-%s", negativeSha[0:12]),
+		Name:    "../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative1.tf",
 		Version: fmt.Sprintf("0.0.0-%s", negativeSha[0:12]),
-		Purl:    fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%s", negativeSha[0:12]),
+		Purl:    fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative1.tf@0.0.0-%s", negativeSha[0:12]),
 		Hashes: []Hash{
 			{
 				Alg:     "SHA-256",
@@ -235,10 +235,10 @@ func TestBuildCycloneDxReport(t *testing.T) {
 
 	c3 := Component{
 		Type:    "file",
-		BomRef:  fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%s", negativeSha[0:12]),
-		Name:    "../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf",
+		BomRef:  fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative1.tf@0.0.0-%s", negativeSha[0:12]),
+		Name:    "../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative1.tf",
 		Version: fmt.Sprintf("0.0.0-%s", negativeSha[0:12]),
-		Purl:    fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%s", negativeSha[0:12]),
+		Purl:    fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative1.tf@0.0.0-%s", negativeSha[0:12]),
 		Hashes: []Hash{
 			{
 				Alg:     "SHA-256",
@@ -273,7 +273,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	filePaths := make(map[string]string)
 
 	file1 := filepath.Join("..", "..", "..", "assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive.tf")
-	file2 := filepath.Join("..", "..", "..", "assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "negative.tf")
+	file2 := filepath.Join("..", "..", "..", "assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "negative1.tf")
 	file3 := filepath.Join("..", "..", "..", "test", "fixtures", "test_critical_custom_queries", "amazon_mq_broker_encryption_disabled", "test", "positive1.yaml")
 	filePaths[file1] = file1
 	filePaths[file2] = file2
