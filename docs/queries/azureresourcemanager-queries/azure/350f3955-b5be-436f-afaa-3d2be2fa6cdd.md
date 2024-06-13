@@ -28,7 +28,41 @@ Azure Disk Encryption should be enabled<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Positive test num. 1 - json file" hl_lines="30"
+```bicep title="Positive test num. 1 - bicep file" hl_lines="18"
+@description('Specifies a name for generating resource names.')
+param projectName string
+
+var vmName = '${projectName}-vm'
+
+resource vmName_disk1 'Microsoft.Compute/disks@2020-09-30' = {
+  name: '${vmName}-disk1'
+  location: resourceGroup().location
+  sku: {
+    name: 'Standard_LRS'
+  }
+  properties: {
+    creationData: {
+      createOption: 'Empty'
+    }
+    diskSizeGB: 512
+    encryptionSettingsCollection: {
+      enabled: false
+      encryptionSettings: [
+        {
+          diskEncryptionKey: {
+            secretUrl: 'https://secret.com/secrets/secret'
+            sourceVault: {
+              id: '/someid/somekey'
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+```
+```json title="Positive test num. 2 - json file" hl_lines="30"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -76,7 +110,30 @@ Azure Disk Encryption should be enabled<br>
 }
 
 ```
-```json title="Positive test num. 2 - json file" hl_lines="19"
+```bicep title="Positive test num. 3 - bicep file" hl_lines="7"
+@description('Specifies a name for generating resource names.')
+param projectName string
+
+var vmName = '${projectName}-vm'
+
+resource vmName_disk1 'Microsoft.Compute/disks@2020-09-30' = {
+  name: '${vmName}-disk1'
+  location: resourceGroup().location
+  sku: {
+    name: 'Standard_LRS'
+  }
+  properties: {
+    creationData: {
+      createOption: 'Empty'
+    }
+    diskSizeGB: 512
+  }
+}
+
+```
+<details><summary>Positive test num. 4 - json file</summary>
+
+```json hl_lines="19"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -111,7 +168,47 @@ Azure Disk Encryption should be enabled<br>
 }
 
 ```
-```json title="Positive test num. 3 - json file" hl_lines="32"
+</details>
+<details><summary>Positive test num. 5 - bicep file</summary>
+
+```bicep hl_lines="18"
+@description('Specifies a name for generating resource names.')
+param projectName string
+
+var vmName = '${projectName}-vm'
+
+resource vmName_disk1 'Microsoft.Compute/disks@2020-09-30' = {
+  name: '${vmName}-disk1'
+  location: resourceGroup().location
+  sku: {
+    name: 'Standard_LRS'
+  }
+  properties: {
+    creationData: {
+      createOption: 'Empty'
+    }
+    diskSizeGB: 512
+    encryptionSettingsCollection: {
+      enabled: false
+      encryptionSettings: [
+        {
+          diskEncryptionKey: {
+            secretUrl: 'https://secret.com/secrets/secret'
+            sourceVault: {
+              id: '/someid/somekey'
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+```
+</details>
+<details><summary>Positive test num. 6 - json file</summary>
+
+```json hl_lines="32"
 {
   "properties": {
     "template": {
@@ -168,7 +265,32 @@ Azure Disk Encryption should be enabled<br>
 }
 
 ```
-<details><summary>Positive test num. 4 - json file</summary>
+</details>
+<details><summary>Positive test num. 7 - bicep file</summary>
+
+```bicep hl_lines="7"
+@description('Specifies a name for generating resource names.')
+param projectName string
+
+var vmName = '${projectName}-vm'
+
+resource vmName_disk1 'Microsoft.Compute/disks@2020-09-30' = {
+  name: '${vmName}-disk1'
+  location: resourceGroup().location
+  sku: {
+    name: 'Standard_LRS'
+  }
+  properties: {
+    creationData: {
+      createOption: 'Empty'
+    }
+    diskSizeGB: 512
+  }
+}
+
+```
+</details>
+<details><summary>Positive test num. 8 - json file</summary>
 
 ```json hl_lines="21"
 {
@@ -218,7 +340,41 @@ Azure Disk Encryption should be enabled<br>
 
 
 #### Code samples without security vulnerabilities
-```json title="Negative test num. 1 - json file"
+```bicep title="Negative test num. 1 - bicep file"
+@description('Specifies a name for generating resource names.')
+param projectName string
+
+var vmName = '${projectName}-vm'
+
+resource vmName_disk1 'Microsoft.Compute/disks@2020-09-30' = {
+  name: '${vmName}-disk1'
+  location: resourceGroup().location
+  sku: {
+    name: 'Standard_LRS'
+  }
+  properties: {
+    creationData: {
+      createOption: 'Empty'
+    }
+    diskSizeGB: 512
+    encryptionSettingsCollection: {
+      enabled: true
+      encryptionSettings: [
+        {
+          diskEncryptionKey: {
+            secretUrl: 'https://secret.com/secrets/secret'
+            sourceVault: {
+              id: '/someid/somekey'
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+```
+```json title="Negative test num. 2 - json file"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -266,7 +422,43 @@ Azure Disk Encryption should be enabled<br>
 }
 
 ```
-```json title="Negative test num. 2 - json file"
+```bicep title="Negative test num. 3 - bicep file"
+@description('Specifies a name for generating resource names.')
+param projectName string
+
+var vmName = '${projectName}-vm'
+
+resource vmName_disk1 'Microsoft.Compute/disks@2020-09-30' = {
+  name: '${vmName}-disk1'
+  location: resourceGroup().location
+  sku: {
+    name: 'Standard_LRS'
+  }
+  properties: {
+    creationData: {
+      createOption: 'Empty'
+    }
+    diskSizeGB: 512
+    encryptionSettingsCollection: {
+      enabled: true
+      encryptionSettings: [
+        {
+          diskEncryptionKey: {
+            secretUrl: 'https://secret.com/secrets/secret'
+            sourceVault: {
+              id: '/someid/somekey'
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+```
+<details><summary>Negative test num. 4 - json file</summary>
+
+```json
 {
   "properties": {
     "template": {
@@ -323,3 +515,4 @@ Azure Disk Encryption should be enabled<br>
 }
 
 ```
+</details>
