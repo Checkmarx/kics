@@ -47,7 +47,7 @@ resource "tencentcloud_kubernetes_cluster" "example" {
   cluster_name                    = "tf_example_cluster"
   cluster_desc                    = "example for tke cluster"
   cluster_max_service_num         = 32
-  cluster_internet                = false
+  cluster_internet                = true
   cluster_internet_security_group = local.sg_id
   cluster_version                 = "1.22.5"
   cluster_deploy_type             = "MANAGED_CLUSTER"
@@ -72,7 +72,6 @@ resource "tencentcloud_kubernetes_cluster" "example" {
     enhanced_security_service = false
     enhanced_monitor_service  = false
     user_data                 = "dGVzdA=="
-    password                  = "ZZXXccvv1212"
   }
 
   worker_config {
@@ -96,7 +95,6 @@ resource "tencentcloud_kubernetes_cluster" "example" {
     user_data                 = "dGVzdA=="
     key_ids                   = ["skey-11112222"]
     cam_role_name             = "CVM_QcsRole"
-    password                  = "ZZXXccvv1212"
   }
 
   labels = {

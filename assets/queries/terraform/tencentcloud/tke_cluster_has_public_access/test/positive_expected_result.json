@@ -1,20 +1,26 @@
 [
   {
-    "queryName": "TKE Cluster Has Public Access",
+    "queryName": "(Beta) TKE Cluster Has Public Access",
     "severity": "MEDIUM",
     "line": 63,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "TKE Cluster Has Public Access",
+    "queryName": "(Beta) TKE Cluster Has Public Access",
     "severity": "MEDIUM",
     "line": 86,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "TKE Cluster Has Public Access",
+    "queryName": "(Beta) TKE Cluster Has Public Access",
     "severity": "MEDIUM",
-    "line": 43,
+    "line": 62,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "(Beta) TKE Cluster Has Public Access",
+    "severity": "MEDIUM",
+    "line": 84,
     "fileName": "positive2.tf"
   }
 ]

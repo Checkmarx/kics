@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "(Beta) TKE cluster log agent is not enabled",
+    "severity": "LOW",
+    "line": 41,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "(Beta) TKE cluster log agent is not enabled",
+    "severity": "LOW",
+    "line": 6,
+    "filename": "positive2.tf"
+  }
+]
