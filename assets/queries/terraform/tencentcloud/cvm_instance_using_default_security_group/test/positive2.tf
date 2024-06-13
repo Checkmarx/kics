@@ -15,9 +15,7 @@ resource "tencentcloud_instance" "cvm_postpaid" {
   vpc_id            = "vpc-axrsmmrv"
   subnet_id         = "subnet-861wd75e"
 
-  security_groups = [
-    tencentcloud_security_group.default.id
-  ]
+  security_groups = [tencentcloud_security_group.default.id]
 
   data_disks {
     data_disk_type = "CLOUD_PREMIUM"

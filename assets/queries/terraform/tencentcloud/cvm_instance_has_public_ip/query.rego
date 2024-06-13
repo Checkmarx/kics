@@ -18,22 +18,3 @@ CxPolicy[result] {
         "searchLine":common_lib.build_search_line(["resource", "tencentcloud_instance", name, "allocate_public_ip"], []),
     }
 }
-
-CxPolicy[result] {
-	module := input.document[i].module[name]
-	publicIpKey := common_lib.get_module_equivalent_key("tencentcloud", module.source, "tencentcloud_instance", "allocate_public_ip")
-
-	common_lib.valid_key(module, publicIpKey)
-	publicIpKey == true
-
-	result := {
-        "documentId": input.document[i].id,
-        "resourceType": "n/a",
-        "resourceName": "n/a",
-        "searchKey": sprintf("module[%s].allocate_public_ip", [name]),
-        "issueType": "IncorrectValue",
-        "keyExpectedValue": sprintf("module[%s] 'allocate_public_ip' should be set to false", [name]),
-        "keyActualValue": sprintf("module[%s] 'allocate_public_ip' is true", [name]),
-        "searchLine":common_lib.build_search_line(["module", name, "allocate_public_ip"], []),
-    }
-}
