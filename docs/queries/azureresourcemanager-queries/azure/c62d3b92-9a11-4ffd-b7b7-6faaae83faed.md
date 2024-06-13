@@ -28,7 +28,49 @@ Azure Kubernetes Service should have the Kubernetes dashboard disabled.<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Positive test num. 1 - json file" hl_lines="14"
+```bicep title="Positive test num. 1 - bicep file" hl_lines="8"
+resource aksCluster1 'Microsoft.ContainerService/managedClusters@2020-02-01' = {
+  name: 'aksCluster1'
+  location: resourceGroup().location
+  properties: {
+    kubernetesVersion: '1.15.7'
+    addonProfiles: {
+      kubeDashboard: {
+        enabled: true
+      }
+    }
+    dnsPrefix: 'dnsprefix'
+    agentPoolProfiles: [
+      {
+        name: 'agentpool'
+        count: 2
+        vmSize: 'Standard_A1'
+        osType: 'Linux'
+        storageProfile: 'ManagedDisks'
+      }
+    ]
+    linuxProfile: {
+      adminUsername: 'adminUserName'
+      ssh: {
+        publicKeys: [
+          {
+            keyData: 'keyData'
+          }
+        ]
+      }
+    }
+    servicePrincipalProfile: {
+      clientId: 'servicePrincipalAppId'
+      secret: 'servicePrincipalAppPassword'
+    }
+    networkProfile: {
+      networkPolicy: 'azure'
+    }
+  }
+}
+
+```
+```json title="Positive test num. 2 - json file" hl_lines="14"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -78,7 +120,51 @@ Azure Kubernetes Service should have the Kubernetes dashboard disabled.<br>
 }
 
 ```
-```json title="Positive test num. 2 - json file" hl_lines="16"
+```bicep title="Positive test num. 3 - bicep file" hl_lines="8"
+resource aksCluster1 'Microsoft.ContainerService/managedClusters@2020-02-01' = {
+  name: 'aksCluster1'
+  location: resourceGroup().location
+  properties: {
+    kubernetesVersion: '1.15.7'
+    addonProfiles: {
+      kubeDashboard: {
+        enabled: true
+      }
+    }
+    dnsPrefix: 'dnsprefix'
+    agentPoolProfiles: [
+      {
+        name: 'agentpool'
+        count: 2
+        vmSize: 'Standard_A1'
+        osType: 'Linux'
+        storageProfile: 'ManagedDisks'
+      }
+    ]
+    linuxProfile: {
+      adminUsername: 'adminUserName'
+      ssh: {
+        publicKeys: [
+          {
+            keyData: 'keyData'
+          }
+        ]
+      }
+    }
+    servicePrincipalProfile: {
+      clientId: 'servicePrincipalAppId'
+      secret: 'servicePrincipalAppPassword'
+    }
+    networkProfile: {
+      networkPolicy: 'azure'
+    }
+  }
+}
+
+```
+<details><summary>Positive test num. 4 - json file</summary>
+
+```json hl_lines="16"
 {
   "properties": {
     "template": {
@@ -137,10 +223,53 @@ Azure Kubernetes Service should have the Kubernetes dashboard disabled.<br>
 }
 
 ```
+</details>
 
 
 #### Code samples without security vulnerabilities
-```json title="Negative test num. 1 - json file"
+```bicep title="Negative test num. 1 - bicep file"
+resource aksCluster1 'Microsoft.ContainerService/managedClusters@2020-02-01' = {
+  name: 'aksCluster1'
+  location: resourceGroup().location
+  properties: {
+    kubernetesVersion: '1.15.7'
+    addonProfiles: {
+      kubeDashboard: {
+        enabled: false
+      }
+    }
+    dnsPrefix: 'dnsprefix'
+    agentPoolProfiles: [
+      {
+        name: 'agentpool'
+        count: 2
+        vmSize: 'Standard_A1'
+        osType: 'Linux'
+        storageProfile: 'ManagedDisks'
+      }
+    ]
+    linuxProfile: {
+      adminUsername: 'adminUserName'
+      ssh: {
+        publicKeys: [
+          {
+            keyData: 'keyData'
+          }
+        ]
+      }
+    }
+    servicePrincipalProfile: {
+      clientId: 'servicePrincipalAppId'
+      secret: 'servicePrincipalAppPassword'
+    }
+    networkProfile: {
+      networkPolicy: 'azure'
+    }
+  }
+}
+
+```
+```json title="Negative test num. 2 - json file"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -190,7 +319,51 @@ Azure Kubernetes Service should have the Kubernetes dashboard disabled.<br>
 }
 
 ```
-```json title="Negative test num. 2 - json file"
+```bicep title="Negative test num. 3 - bicep file"
+resource aksCluster1 'Microsoft.ContainerService/managedClusters@2020-02-01' = {
+  name: 'aksCluster1'
+  location: resourceGroup().location
+  properties: {
+    kubernetesVersion: '1.15.7'
+    addonProfiles: {
+      kubeDashboard: {
+        enabled: false
+      }
+    }
+    dnsPrefix: 'dnsprefix'
+    agentPoolProfiles: [
+      {
+        name: 'agentpool'
+        count: 2
+        vmSize: 'Standard_A1'
+        osType: 'Linux'
+        storageProfile: 'ManagedDisks'
+      }
+    ]
+    linuxProfile: {
+      adminUsername: 'adminUserName'
+      ssh: {
+        publicKeys: [
+          {
+            keyData: 'keyData'
+          }
+        ]
+      }
+    }
+    servicePrincipalProfile: {
+      clientId: 'servicePrincipalAppId'
+      secret: 'servicePrincipalAppPassword'
+    }
+    networkProfile: {
+      networkPolicy: 'azure'
+    }
+  }
+}
+
+```
+<details><summary>Negative test num. 4 - json file</summary>
+
+```json
 {
   "properties": {
     "template": {
@@ -249,7 +422,50 @@ Azure Kubernetes Service should have the Kubernetes dashboard disabled.<br>
 }
 
 ```
-```json title="Negative test num. 3 - json file"
+</details>
+<details><summary>Negative test num. 5 - bicep file</summary>
+
+```bicep
+resource aksCluster1 'Microsoft.ContainerService/managedClusters@2020-02-01' = {
+  name: 'aksCluster1'
+  location: resourceGroup().location
+  properties: {
+    kubernetesVersion: '1.15.7'
+    dnsPrefix: 'dnsprefix'
+    agentPoolProfiles: [
+      {
+        name: 'agentpool'
+        count: 2
+        vmSize: 'Standard_A1'
+        osType: 'Linux'
+        storageProfile: 'ManagedDisks'
+      }
+    ]
+    linuxProfile: {
+      adminUsername: 'adminUserName'
+      ssh: {
+        publicKeys: [
+          {
+            keyData: 'keyData'
+          }
+        ]
+      }
+    }
+    servicePrincipalProfile: {
+      clientId: 'servicePrincipalAppId'
+      secret: 'servicePrincipalAppPassword'
+    }
+    networkProfile: {
+      networkPolicy: 'azure'
+    }
+  }
+}
+
+```
+</details>
+<details><summary>Negative test num. 6 - json file</summary>
+
+```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -294,7 +510,48 @@ Azure Kubernetes Service should have the Kubernetes dashboard disabled.<br>
 }
 
 ```
-<details><summary>Negative test num. 4 - json file</summary>
+</details>
+<details><summary>Negative test num. 7 - bicep file</summary>
+
+```bicep
+resource aksCluster1 'Microsoft.ContainerService/managedClusters@2020-02-01' = {
+  name: 'aksCluster1'
+  location: resourceGroup().location
+  properties: {
+    kubernetesVersion: '1.15.7'
+    dnsPrefix: 'dnsprefix'
+    agentPoolProfiles: [
+      {
+        name: 'agentpool'
+        count: 2
+        vmSize: 'Standard_A1'
+        osType: 'Linux'
+        storageProfile: 'ManagedDisks'
+      }
+    ]
+    linuxProfile: {
+      adminUsername: 'adminUserName'
+      ssh: {
+        publicKeys: [
+          {
+            keyData: 'keyData'
+          }
+        ]
+      }
+    }
+    servicePrincipalProfile: {
+      clientId: 'servicePrincipalAppId'
+      secret: 'servicePrincipalAppPassword'
+    }
+    networkProfile: {
+      networkPolicy: 'azure'
+    }
+  }
+}
+
+```
+</details>
+<details><summary>Negative test num. 8 - json file</summary>
 
 ```json
 {
