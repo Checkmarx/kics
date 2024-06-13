@@ -99,16 +99,3 @@ jobs:
       #    password: ${{ secrets.DOCKER_PASSWORD }}
       #    readme-filepath: docs/dockerhub.md
       #    repository: checkmarx/kics
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          title: "docs(kicsbot): update images digest"
-          token: ${{ secrets.KICS_BOT_PAT }}
-          commit-message: "docs(kicsbot): update images digest"
-          delete-branch: true
-          branch: feature/kicsbot-update-queries-docs
-          body: |
-            **Automated Changes**
-            Updating docker images digests
-            Triggered by SHA: _${{ github.sha }}_
-          labels: documentation
