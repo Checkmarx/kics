@@ -1,0 +1,11 @@
+{
+  "id": "16071046-2f94-4939-a9f9-9cc3880688dc",
+  "queryName": "Backup Vault Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Amazon Backup Vault does not have encryption enabled. It shall be provided a key to encrypt the backups, preventing access from unauthorized users.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-backup-backupvault.html#cfn-backup-backupvault-encryptionkeyarn",
+  "platform": "CloudFormation",
+  "descriptionID": "3a2cd8ae",
+  "cloudProvider": "aws"
+}
