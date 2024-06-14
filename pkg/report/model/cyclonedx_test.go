@@ -273,7 +273,7 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	filePaths := make(map[string]string)
 
 	file1 := filepath.Join("..", "..", "..", "assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive.tf")
-	file2 := filepath.Join("..", "..", "..", "assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "negative1.tf")
+	file2 := filepath.Join("..", "..", "..", "assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "negative.tf")
 	file3 := filepath.Join("..", "..", "..", "test", "fixtures", "test_critical_custom_queries", "amazon_mq_broker_encryption_disabled", "test", "positive1.yaml")
 	filePaths[file1] = file1
 	filePaths[file2] = file2
