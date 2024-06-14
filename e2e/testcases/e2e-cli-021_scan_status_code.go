@@ -14,7 +14,7 @@ func init() { //nolint
 					"Access Control,Availability,Backup,Best Practices,Build Process,Encryption," +
 						"Insecure Configurations,Insecure Defaults,Networking and Firewall,Observability," +
 						"Resource Management,Secret Management,Supply-Chain,Structure and Semantics",
-					"-p", "/path/test/fixtures/all_auth_users_get_read_access/test/positive1.tf"},
+					"-p", "/path/test/fixtures/all_auth_users_get_read_access/test/positive.tf"},
 			},
 		},
 		WantStatus: []int{50, 0},

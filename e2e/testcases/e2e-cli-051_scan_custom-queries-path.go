@@ -8,13 +8,13 @@ func init() { //nolint
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "--queries-path", "/path/e2e/fixtures/samples/queries/valid/single_query",
-					"-p", "/path/e2e/fixtures/samples/bom-positive1.tf"},
+					"-p", "/path/e2e/fixtures/samples/bom-positive.tf"},
 				[]string{"scan", "--queries-path", "/path/e2e/fixtures/samples/queries/invalid/invalid_metadata",
-					"-p", "/path/e2e/fixtures/samples/bom-positive1.tf"},
+					"-p", "/path/e2e/fixtures/samples/bom-positive.tf"},
 				[]string{"scan", "--queries-path", "/path/e2e/fixtures/samples/queries/invalid/missing_metadata", "-p",
-					"/path/e2e/fixtures/samples/bom-positive1.tf"},
+					"/path/e2e/fixtures/samples/bom-positive.tf"},
 				[]string{"scan", "--queries-path", "/path/e2e/fixtures/samples/invalid_path",
-					"-p", "/path/e2e/fixtures/samples/bom-positive1.tf"},
+					"-p", "/path/e2e/fixtures/samples/bom-positive.tf"},
 			},
 		},
 		WantStatus: []int{50, 0, 0, 126},

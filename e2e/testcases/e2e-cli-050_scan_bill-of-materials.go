@@ -7,10 +7,10 @@ func init() { //nolint
 		Name: "should include bill of materials in results output [E2E-CLI-050]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-p", "/path/e2e/fixtures/samples/bom-positive1.tf",
+				[]string{"scan", "-p", "/path/e2e/fixtures/samples/bom-positive.tf",
 					"--bom", "-o", "/path/e2e/output"},
 
-				[]string{"scan", "-p", "/path/e2e/fixtures/samples/bom-positive1.tf",
+				[]string{"scan", "-p", "/path/e2e/fixtures/samples/bom-positive.tf",
 					"--m"},
 			},
 			ExpectedResult: []ResultsValidation{
