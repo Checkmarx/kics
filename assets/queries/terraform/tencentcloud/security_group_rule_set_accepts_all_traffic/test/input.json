@@ -2,7 +2,7 @@
 	"document": [
 		{
 			"file": "/Users/yanxiang/Tencent/Kics/kics/assets/queries/terraform/tencentcloud/security_group_rule_set_accepts_all_traffic/test/negative1.tf",
-			"id": "401f8aa1-91ab-4594-8cb5-c6166eedfdeb",
+			"id": "ff9c9092-8aa1-4400-90f0-65a0ece4367d",
 			"resource": {
 				"tencentcloud_security_group": {
 					"sg": {
@@ -32,7 +32,7 @@
 		},
 		{
 			"file": "/Users/yanxiang/Tencent/Kics/kics/assets/queries/terraform/tencentcloud/security_group_rule_set_accepts_all_traffic/test/negative2.tf",
-			"id": "491c7ce8-ef3a-490d-b302-1a57eb2c05c3",
+			"id": "9582b660-4758-4b9a-9e13-02417ad41ae7",
 			"resource": {
 				"tencentcloud_security_group": {
 					"sg": {
@@ -49,7 +49,7 @@
 		},
 		{
 			"file": "/Users/yanxiang/Tencent/Kics/kics/assets/queries/terraform/tencentcloud/security_group_rule_set_accepts_all_traffic/test/positive1.tf",
-			"id": "46c7e0c7-43e3-43d2-98f1-9e9e9c2bce98",
+			"id": "c9779697-c345-47d9-ab94-72aa931ca843",
 			"resource": {
 				"tencentcloud_security_group": {
 					"sg": {
@@ -64,6 +64,71 @@
 							"cidr_block": "0.0.0.0/0",
 							"port": "ALL",
 							"protocol": "ALL"
+						},
+						"security_group_id": "${tencentcloud_security_group.sg.id}"
+					}
+				}
+			}
+		},
+		{
+			"file": "/Users/yanxiang/Tencent/Kics/kics/assets/queries/terraform/tencentcloud/security_group_rule_set_accepts_all_traffic/test/positive2.tf",
+			"id": "50f8ab50-c14f-4c52-ac2d-a33d303c4cba",
+			"resource": {
+				"tencentcloud_security_group": {
+					"sg": {
+						"description": "Testing Rule Set Security",
+						"name": "tf-example"
+					}
+				},
+				"tencentcloud_security_group_rule_set": {
+					"base": {
+						"ingress": {
+							"action": "ACCEPT",
+							"cidr_block": "0.0.0.0/0"
+						},
+						"security_group_id": "${tencentcloud_security_group.sg.id}"
+					}
+				}
+			}
+		},
+		{
+			"file": "/Users/yanxiang/Tencent/Kics/kics/assets/queries/terraform/tencentcloud/security_group_rule_set_accepts_all_traffic/test/positive3.tf",
+			"id": "f26c82cb-d84d-4399-aae6-1cef2a73e08d",
+			"resource": {
+				"tencentcloud_security_group": {
+					"sg": {
+						"description": "Testing Rule Set Security",
+						"name": "tf-example"
+					}
+				},
+				"tencentcloud_security_group_rule_set": {
+					"base": {
+						"ingress": {
+							"action": "ACCEPT",
+							"ipv6_cidr_block": "::/0",
+							"port": "ALL",
+							"protocol": "ALL"
+						},
+						"security_group_id": "${tencentcloud_security_group.sg.id}"
+					}
+				}
+			}
+		},
+		{
+			"file": "/Users/yanxiang/Tencent/Kics/kics/assets/queries/terraform/tencentcloud/security_group_rule_set_accepts_all_traffic/test/positive4.tf",
+			"id": "d209b939-7a1b-4724-b7c8-1568ddd008a0",
+			"resource": {
+				"tencentcloud_security_group": {
+					"sg": {
+						"description": "Testing Rule Set Security",
+						"name": "tf-example"
+					}
+				},
+				"tencentcloud_security_group_rule_set": {
+					"base": {
+						"ingress": {
+							"action": "ACCEPT",
+							"ipv6_cidr_block": "::/0"
 						},
 						"security_group_id": "${tencentcloud_security_group.sg.id}"
 					}
