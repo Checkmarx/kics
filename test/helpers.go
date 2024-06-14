@@ -17,7 +17,7 @@ import (
 const (
 	// ValidUUIDRegex is a constant representing a regular expression rule to validate UUID string
 	ValidUUIDRegex    = `(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$`
-	positive          = "positive1.tf"
+	positive          = "positive.tf"
 	positiveYamlSonar = "../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml"
 	positiveYaml      = "test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml"
 )
@@ -172,7 +172,7 @@ var queryMedium2 = model.QueryResult{
 	Severity:  model.SeverityMedium,
 	Files: []model.VulnerableFile{
 		{
-			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive1.tf"),
+			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive.tf"),
 			Line:             2,
 			IssueType:        "IncorrectValue",
 			SearchKey:        "aws_guardduty_detector[positive1].enable",
@@ -203,7 +203,7 @@ var queryInfo = model.QueryResult{
 			VulnLines:        &[]model.CodeLine{},
 		},
 		{
-			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive1.tf"),
+			FileName:         filepath.Join("assets", "queries", "terraform", "aws", "guardduty_detector_disabled", "test", "positive.tf"),
 			Line:             1,
 			IssueType:        "MissingAttribute",
 			SearchKey:        "aws_guardduty_detector[{{positive1}}]",

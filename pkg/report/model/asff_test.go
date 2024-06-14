@@ -35,7 +35,7 @@ func TestBuildASFFReport(t *testing.T) {
 		UpdatedAt: *aws.String(time.Now().Format(time.RFC3339)),
 		Remediation: Remediation{
 			Recommendation: AsffRecommendation{
-				Text: *aws.String("Problem found on 'positive1.tf' file in line 1. Expected value: resource.aws_mq_broker[positive1].encryption_options is defined. Actual value: resource.aws_mq_broker[positive1].encryption_options is not defined."),
+				Text: *aws.String("Problem found on 'positive.tf' file in line 1. Expected value: resource.aws_mq_broker[positive1].encryption_options is defined. Actual value: resource.aws_mq_broker[positive1].encryption_options is not defined."),
 			},
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},
@@ -65,7 +65,7 @@ func TestBuildASFFReport(t *testing.T) {
 		UpdatedAt: *aws.String(time.Now().Format(time.RFC3339)),
 		Remediation: Remediation{
 			Recommendation: AsffRecommendation{
-				Text: *aws.String("Problem found on 'positive1.tf' file in line 1. Expected value: resource.aws_mq_broker[positive1].encryption_options is defined. Actual value: resource.aws_mq_broker[positive1].encryption_options is not defined."),
+				Text: *aws.String("Problem found on 'positive.tf' file in line 1. Expected value: resource.aws_mq_broker[positive1].encryption_options is defined. Actual value: resource.aws_mq_broker[positive1].encryption_options is not defined."),
 			},
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},
