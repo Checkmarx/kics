@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.5" serialNumber="urn:uuid:9e5b7188-3c15-4a21-aa84-668cab32cef9" xmlns:v="http://cyclonedx.org/schema/ext/vulnerability/1.0" version="1">
+	<metadata>
+		<timestamp>2024-06-14T20:12:20+08:00</timestamp>
+		<tools>
+			<tool>
+				<vendor>Checkmarx</vendor>
+				<name>KICS</name>
+				<version>development</version>
+			</tool>
+		</tools>
+	</metadata>
+	<components>
+		<component type="file" bom-ref="pkg:generic/../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-04174a2b45ae">
+			<name>../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml</name>
+			<version>0.0.0-04174a2b45ae</version>
+			<hashes>
+				<hash alg="SHA-256">04174a2b45ae406d5432590304b1773c9a46a95a2327b3cc164cb464dc57cef5</hash>
+			</hashes>
+			<purl>pkg:generic/../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-04174a2b45ae</purl>
+			<v:vulnerabilities>
+				<v:vulnerability ref="pkg:generic/../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-04174a2b45ae316278b3-87ac-444c-8f8f-a733a28da609">
+					<v:id>316278b3-87ac-444c-8f8f-a733a28da609</v:id>
+					<v:cwe></v:cwe>
+					<v:source>
+						<name>KICS</name>
+						<url>https://kics.io/</url>
+					</v:source>
+					<v:ratings>
+						<v:rating>
+							<v:severity>Critical</v:severity>
+							<v:method>Other</v:method>
+						</v:rating>
+					</v:ratings>
+					<v:description>[CloudFormation].[AmazonMQ Broker Encryption Disabled]: AmazonMQ Broker should have Encryption Options defined</v:description>
+					<v:recommendations>
+						<v:recommendation>
+							<Recommendation>Problem found in line 6. Expected value: Resources.BasicBroker.Properties.EncryptionOptions should be defined. Actual value: Resources.BasicBroker.Properties.EncryptionOptions is not defined.</Recommendation>
+						</v:recommendation>
+					</v:recommendations>
+				</v:vulnerability>
+			</v:vulnerabilities>
+		</component>
+	</components>
+</bom>
