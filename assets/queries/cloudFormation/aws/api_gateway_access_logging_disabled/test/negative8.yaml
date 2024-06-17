@@ -11,5 +11,3 @@ Resources:
       DeploymentId: !Ref TestDeployment
       DocumentationVersion: ""
       ApiId: "teste"
-      DefaultRouteSettings:
-        LoggingLevel: "OFF"
