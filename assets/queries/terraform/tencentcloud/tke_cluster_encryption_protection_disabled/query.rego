@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_kubernetes_cluster[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("tencentcloud_kubernetes_cluster[%s] should has 'tencentcloud_kubernetes_encryption_protection'", [name]),
+		"keyExpectedValue": sprintf("tencentcloud_kubernetes_cluster[%s] should have 'tencentcloud_kubernetes_encryption_protection' enabled", [name]),
 		"keyActualValue": sprintf("tencentcloud_kubernetes_cluster[%s] does not have 'tencentcloud_kubernetes_encryption_protection'", [name]),
         "searchLine":common_lib.build_search_line(["resource", "tencentcloud_kubernetes_cluster", name], []),
 	}
