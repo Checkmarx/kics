@@ -32,7 +32,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("tencentcloud_kubernetes_cluster[%s].log_agent.enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("tencentcloud_kubernetes_cluster[%s].log_agent.enabled should be 'true'", [name]),
+		"keyExpectedValue": sprintf("tencentcloud_kubernetes_cluster[%s].log_agent.enabled should be set to 'true'", [name]),
         "keyActualValue": sprintf("tencentcloud_kubernetes_cluster[%s].log_agent.enabled is not 'true'", [name]),
         "searchLine": common_lib.build_search_line(["resource", "tencentcloud_kubernetes_cluster", name, "log_agent", "enabled"], []),
 	}
