@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "tencentcloud_kubernetes_cluster", name, "master_config", "public_ip_assigned"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("tencentcloud_kubernetes_cluster[%s].master_config.public_ip_assigned should equal 'false'", [name]),
-		"keyActualValue": sprintf("tencentcloud_kubernetes_cluster[%s].master_config.public_ip_assigned is equal 'true'", [name]),
+		"keyActualValue": sprintf("tencentcloud_kubernetes_cluster[%s].master_config.public_ip_assigned is equal to 'true'", [name]),
 	}
 }
 
