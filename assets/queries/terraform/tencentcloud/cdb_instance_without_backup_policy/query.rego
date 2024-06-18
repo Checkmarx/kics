@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_mysql_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("tencentcloud_mysql_instance[%s] should has 'tencentcloud_mysql_backup_policy'", [name]),
+		"keyExpectedValue": sprintf("tencentcloud_mysql_instance[%s] should have 'tencentcloud_mysql_backup_policy'", [name]),
 		"keyActualValue": sprintf("tencentcloud_mysql_instance[%s] does not have 'tencentcloud_mysql_backup_policy'", [name]),
         "searchLine":common_lib.build_search_line(["resource", "tencentcloud_mysql_instance", name], []),
 	}
