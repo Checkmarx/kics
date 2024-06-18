@@ -172,7 +172,7 @@ CxPolicy[result] {
         "searchKey": sprintf("tencentcloud_kubernetes_cluster[%s].worker_config.internet_max_bandwidth_out", [name]),
         "searchLine": common_lib.build_search_line(["resource", "tencentcloud_kubernetes_cluster", name, "worker_config", index, "internet_max_bandwidth_out"], []),
         "issueType": "IncorrectValue",
-        "keyExpectedValue": sprintf("tencentcloud_kubernetes_cluster[%s].worker_config.internet_max_bandwidth_out should equal '0' or null", [name]),
+        "keyExpectedValue": sprintf("tencentcloud_kubernetes_cluster[%s].worker_config.internet_max_bandwidth_out should be equal to '0' or null", [name]),
         "keyActualValue": sprintf("tencentcloud_kubernetes_cluster[%s].worker_config.internet_max_bandwidth_out is defined and not equal to '0'", [name]),
     }
 }
