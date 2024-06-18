@@ -50,7 +50,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_security_group_rule_set[%s].ingress", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("tencentcloud_security_group_rule_set[%s] ingress should not set accept all traffic", [name]),
+		"keyExpectedValue": sprintf("tencentcloud_security_group_rule_set[%s] ingress should not be set to accept all traffic", [name]),
 		"keyActualValue": sprintf("tencentcloud_security_group_rule_set[%s] ingress accept all traffic", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "tencentcloud_security_group_rule_set", name, "ingress", index], []),
 	}
