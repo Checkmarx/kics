@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "(Beta) CVM Instance Using User Data",
+    "severity": "LOW",
+    "line": 41,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "(Beta) CVM Instance Using User Data",
+    "severity": "LOW",
+    "line": 41,
+    "fileName": "positive2.tf"
+  }
+]
