@@ -177,6 +177,9 @@ function exportToCSV(filename) {
         if (headerArray[j] == "query") {
           text = "Query ID,Query Name"
         }
+        if (headerArray[j] == "more info") {
+          text = "Query Details,Documentation"
+        }
       } else if (headerArray[j] == "help") {
         text = cols[j].children[0].href
       } else if (headerArray[j] == "query") {
@@ -184,6 +187,19 @@ function exportToCSV(filename) {
         text = `"${text.substring(lastIndex + 1)},${text.substring(0, lastIndex)}"`
       } else if (headerArray[j] == "description") {
         text = text.replace(/\(read more\)/i, '')
+      } else if (headerArray[j] == "more info") {
+        let elements = cols[j].getElementsByTagName('a')
+
+        let urls = {
+          'Documentation': "-",
+          'Query details': "-"
+        }
+
+        for (let element of elements) {
+          urls[element.innerText] = element.href
+        }
+
+        text = urls['Query details'] + "," + urls['Documentation']
       }
       row.push(text)
     }
