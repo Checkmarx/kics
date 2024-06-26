@@ -129,7 +129,7 @@ issues:
 run:
   timeout: 5m
   tests: false
-  exclude-dirs:
+  skip-dirs:
     - assets
     - docs
     - vendor
