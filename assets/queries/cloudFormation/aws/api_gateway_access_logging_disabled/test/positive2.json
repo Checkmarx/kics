@@ -1,19 +1,25 @@
 {
-  "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Router53",
-  "Resources": {
-    "MyStage": {
-      "Type": "AWS::ApiGatewayV2::Stage",
-      "Properties": {
-        "Description": "Prod Stage",
-        "AccessLogSettings": {
-            "DestinationArn": "dest",
-            "Format": "format"
-        },
-        "DeploymentId": "MyDeployment",
-        "ApiId": "CFNWebSocket",
-        "StageName": "Prod"
-      }
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "MyStage": {
+            "Type": "AWS::ApiGateway::Stage",
+            "Properties": {
+                "StageName": "Prod",
+                "Description": "Prod Stage",
+                "DeploymentId": {
+                    "Ref": "MyDeployment"
+                },
+                "MethodSettings": {
+                  "DetailedMetricsEnabled": true,
+                  "LoggingLevel": "INFO",
+                  "DataTraceEnabled": false,
+                  "ThrottlingBurstLimit": 10,
+                  "ThrottlingRateLimit": 10
+                },
+                "RestApiId": {
+                    "Ref": "CFNWebSocket"
+                }
+            }
+        }
     }
-  }
 }
