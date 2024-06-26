@@ -125,13 +125,12 @@ issues:
       linters:
         - gomnd
         - scopelint
-
-run:
-  timeout: 5m
-  tests: false
-  skip-dirs:
+  exclude-dirs:
     - assets
     - docs
     - vendor
     - pkg/parser/jsonfilter/parser
-    - pkg/parser/bicep/antlr
+    - pkg/parser/bicep/antlr  
+run:
+  timeout: 5m
+  tests: false
