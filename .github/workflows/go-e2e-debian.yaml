@@ -100,7 +100,7 @@ jobs:
           DOCKER_NAME=$(echo docker/Dockerfile.debian | sed 's/\//-/')
       - name: Archive test report
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: e2e-tests-report-$DOCKER_NAME
           path: e2e-report.html
