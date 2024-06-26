@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	databricks_job := input.document[i].resource.databricks_job[name]
 
-	is_associated_to_job(name, input.document[i])
+	not is_associated_to_job(name, input.document[i])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -22,14 +22,14 @@ CxPolicy[result] {
 is_associated_to_job(databricks_job_name, doc) {
 	[path, value] := walk(doc)
 	databricks_permissions_used := value.databricks_permissions[_]
-	not contains(databricks_permissions_used.job_id, sprintf("databricks_job.%s", [databricks_job_name]))
+	contains(databricks_permissions_used.job_id, sprintf("databricks_job.%s", [databricks_job_name]))
 }
 
 
 CxPolicy[result] {
 	databricks_cluster := input.document[i].resource.databricks_cluster[name]
 
-	is_associated_to_cluster(name, input.document[i])
+	not is_associated_to_cluster(name, input.document[i])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -45,7 +45,7 @@ CxPolicy[result] {
 is_associated_to_cluster(databricks_cluster_name, doc) {
 	[path, value] := walk(doc)
 	databricks_permissions_used := value.databricks_permissions[_]
-	not contains(databricks_permissions_used.cluster_id, sprintf("databricks_cluster.%s", [databricks_cluster_name]))
+	contains(databricks_permissions_used.cluster_id, sprintf("databricks_cluster.%s", [databricks_cluster_name]))
 }
 
 CxPolicy[result] {
