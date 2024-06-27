@@ -7,6 +7,6 @@
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/events/apigateway#compression",
   "platform": "ServerlessFW",
   "descriptionID": "2a9e728c",
-  "cwe": "",
+  "cwe": "311",
   "oldSeverity": "MEDIUM"
 }

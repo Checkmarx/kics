@@ -7,6 +7,6 @@
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/functions#tags",
   "platform": "ServerlessFW",
   "descriptionID": "39d4d6d2",
-  "cwe": "",
+  "cwe": "800",
   "oldSeverity": "MEDIUM"
 }
