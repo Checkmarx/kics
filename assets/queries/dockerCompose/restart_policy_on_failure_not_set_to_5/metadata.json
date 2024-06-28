@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/config/containers/start-containers-automatically/#use-a-restart-policy",
   "platform": "DockerCompose",
   "descriptionID": "d21fff2e",
-  "cwe": ""
+  "cwe": "693"
 }

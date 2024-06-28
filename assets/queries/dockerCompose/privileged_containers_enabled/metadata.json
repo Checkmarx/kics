@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/#privileged",
   "platform": "DockerCompose",
   "descriptionID": "029f6145",
-  "cwe": ""
+  "cwe": "250"
 }

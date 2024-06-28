@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#cap_add-cap_drop",
   "platform": "DockerCompose",
   "descriptionID": "686dd55f",
-  "cwe": ""
+  "cwe": "269"
 }

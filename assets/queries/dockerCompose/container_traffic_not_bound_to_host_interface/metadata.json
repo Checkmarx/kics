@@ -7,5 +7,5 @@
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#ports",
   "platform": "DockerCompose",
   "descriptionID": "909d1bcd",
-  "cwe": ""
+  "cwe": "693"
 }

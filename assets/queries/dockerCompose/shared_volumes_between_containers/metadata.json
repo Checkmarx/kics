@@ -6,5 +6,6 @@
     "descriptionText": "Volumes shared between containers can cause data corruption or can be used to share malicious files between containers.",
     "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes",
     "platform": "DockerCompose",
-    "descriptionID": "574aa3ab"
+    "descriptionID": "574aa3ab",
+    "cwe": "693"
 }
