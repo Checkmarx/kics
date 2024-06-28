@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#security_opt",
   "platform": "DockerCompose",
   "descriptionID": "83fb7a65",
+  "cloudProvider": "common",
   "cwe": "693"
 }
