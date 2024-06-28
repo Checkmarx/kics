@@ -7,6 +7,7 @@
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources",
   "platform": "DockerCompose",
   "descriptionID": "8fcb9f7d",
+  "oldSeverity": "MEDIUM",
   "cloudProvider": "common",
   "cwe": "770"
 }

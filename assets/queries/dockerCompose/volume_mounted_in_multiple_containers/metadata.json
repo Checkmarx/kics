@@ -8,5 +8,6 @@
   "platform": "DockerCompose",
   "descriptionID": "1c7ca167",
   "cloudProvider": "common",
+  "oldSeverity": "HIGH",
   "cwe": "668"
 }
