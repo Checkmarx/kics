@@ -3,7 +3,7 @@
   "queryName": "Serverless Function Without Tags",
   "severity": "LOW",
   "category": "Insecure Configurations",
-  "descriptionText": "Serverless Function should be have associated tags",
+  "descriptionText": "Serverless Function should have associated tags",
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/functions#tags",
   "platform": "ServerlessFW",
   "descriptionID": "39d4d6d2",
