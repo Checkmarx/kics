@@ -32,6 +32,7 @@
       "query_url": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteproperties-object",
       "severity": "MEDIUM",
       "platform": "AzureResourceManager",
+      "cwe": "319",
       "cloud_provider": "AZURE",
       "category": "Insecure Configurations",
       "experimental": false,
