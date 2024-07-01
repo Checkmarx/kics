@@ -7,6 +7,7 @@
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
   "platform": "Kubernetes",
   "descriptionID": "754a303a",
+  "cloudProvider": "common",
   "cwe": "311",
   "oldSeverity": "HIGH"
 }

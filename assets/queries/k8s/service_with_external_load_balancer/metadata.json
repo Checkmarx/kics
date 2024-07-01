@@ -7,5 +7,6 @@
   "descriptionUrl": "https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/",
   "platform": "Kubernetes",
   "descriptionID": "2e090344",
+  "cloudProvider": "common",
   "cwe": "552"
 }

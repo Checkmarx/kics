@@ -7,6 +7,7 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
   "platform": "Kubernetes",
   "descriptionID": "be3c67e3",
+  "cloudProvider": "common",
   "cwe": "665",
   "oldSeverity": "MEDIUM"
 }

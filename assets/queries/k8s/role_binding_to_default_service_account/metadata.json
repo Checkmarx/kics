@@ -7,6 +7,7 @@
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
   "platform": "Kubernetes",
   "descriptionID": "9879e8c2",
+  "cloudProvider": "common",
   "cwe": "665",
   "oldSeverity": "HIGH"
 }

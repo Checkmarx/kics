@@ -7,6 +7,7 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/storage/volumes/",
   "platform": "Kubernetes",
   "descriptionID": "0865e6f6",
+  "cloudProvider": "common",
   "cwe": "668",
   "oldSeverity": "LOW"
 }
