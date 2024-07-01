@@ -7,6 +7,6 @@
   "descriptionUrl": "https://developers.google.com/protocol-buffers/docs/reference/proto3-spec#enum_definition",
   "platform": "GRPC",
   "descriptionID": "a780a54d",
-  "cwe": "",
+  "cwe": "1099",
   "oldSeverity": "LOW"
 }
