@@ -239,6 +239,12 @@ func initCweCategories(cweIDs []string, guids map[string]string) []taxonomyDefin
 		return []taxonomyDefinitions{}
 	}
 
+	cweRCCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Research-Concepts-CWE.csv")
+	cweRCCsvList, err := readCWECsvInfo(cweRCCSVPath)
+	if err != nil {
+		return []taxonomyDefinitions{}
+	}
+
 	var taxonomyList []taxonomyDefinitions
 	for _, cweID := range cweIDs {
 		var matchingCweEntry cweCsv
@@ -251,6 +257,13 @@ func initCweCategories(cweIDs []string, guids map[string]string) []taxonomyDefin
 		}
 
 		for _, cweEntry := range cweHDCsvList {
+			if cweEntry.CweID == cweID {
+				matchingCweEntry = cweEntry
+				break
+			}
+		}
+
+		for _, cweEntry := range cweRCCsvList {
 			if cweEntry.CweID == cweID {
 				matchingCweEntry = cweEntry
 				break
@@ -429,6 +442,7 @@ func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
 	cweInfoPath := filepath.Join(absPath, "assets", "cwe_csv", "cwe_taxonomies_latest.json")
 	cweSDCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Software-Development-CWE.csv")
 	cweHDCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Hardware-Design-CWE.csv")
+	cweRCCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Research-Concepts-CWE.csv")
 
 	cweInfo, err := readCWEInfo(cweInfoPath)
 	if err != nil {
@@ -443,6 +457,11 @@ func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
 	}
 
 	cweHDCsvList, err := readCWECsvInfo(cweHDCSVPath)
+	if err != nil {
+		return sarifDescriptorReference{}
+	}
+
+	cweRCCsvList, err := readCWECsvInfo(cweRCCSVPath)
 	if err != nil {
 		return sarifDescriptorReference{}
 	}
@@ -463,13 +482,23 @@ func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
 		}
 	}
 
+	var matchingRCCweEntry cweCsv
+	for _, cweEntry := range cweRCCsvList {
+		if cweEntry.CweID == cweID {
+			matchingRCCweEntry = cweEntry
+			break
+		}
+	}
+
 	var referenceID string
 
-	if matchingSDCweEntry.CweID == "" && matchingHDCweEntry.CweID == "" {
+	if matchingSDCweEntry.CweID == "" && matchingHDCweEntry.CweID == "" && matchingRCCweEntry.CweID == "" {
 		return sarifDescriptorReference{}
-	} else if matchingSDCweEntry.CweID == "" && matchingHDCweEntry.CweID != "" {
+	} else if matchingSDCweEntry.CweID == "" && matchingHDCweEntry.CweID != "" && matchingRCCweEntry.CweID == "" {
 		referenceID = matchingHDCweEntry.CweID
-	} else if matchingSDCweEntry.CweID != "" && matchingHDCweEntry.CweID == "" {
+	} else if matchingSDCweEntry.CweID != "" && matchingHDCweEntry.CweID == "" && matchingRCCweEntry.CweID == "" {
+		referenceID = matchingSDCweEntry.CweID
+	} else if matchingSDCweEntry.CweID == "" && matchingHDCweEntry.CweID == "" && matchingRCCweEntry.CweID != "" {
 		referenceID = matchingSDCweEntry.CweID
 	}
 
