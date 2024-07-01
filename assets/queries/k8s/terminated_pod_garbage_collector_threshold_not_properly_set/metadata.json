@@ -7,5 +7,6 @@
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/",
   "platform": "Kubernetes",
   "descriptionID": "19ea96ee",
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "460"
 }

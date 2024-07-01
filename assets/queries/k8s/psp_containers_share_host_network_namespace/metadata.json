@@ -7,5 +7,6 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/",
   "platform": "Kubernetes",
   "descriptionID": "4b468f08",
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "250"
 }
