@@ -432,11 +432,10 @@ func readCWECsvInfo(filePath string) ([]cweCsv, error) {
 	return cweEntries, nil
 }
 
-// buildCweCategory builds the CWE category in taxonomies, with info from CWE and CSV
-func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
+func getCweData() (sarifTaxonomy, []cweCsv, []cweCsv, []cweCsv, error) {
 	absPath, err := filepath.Abs(".")
 	if err != nil {
-		return sarifDescriptorReference{}
+		return sarifTaxonomy{}, nil, nil, nil, err
 	}
 
 	cweInfoPath := filepath.Join(absPath, "assets", "cwe_csv", "cwe_taxonomies_latest.json")
@@ -446,25 +445,37 @@ func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
 
 	cweInfo, err := readCWEInfo(cweInfoPath)
 	if err != nil {
-		return sarifDescriptorReference{}
+		return sarifTaxonomy{}, nil, nil, nil, err
 	}
-
-	_ = cweInfo
 
 	cweSDCsvList, err := readCWECsvInfo(cweSDCSVPath)
 	if err != nil {
-		return sarifDescriptorReference{}
+		return sarifTaxonomy{}, nil, nil, nil, err
 	}
 
 	cweHDCsvList, err := readCWECsvInfo(cweHDCSVPath)
 	if err != nil {
-		return sarifDescriptorReference{}
+		return sarifTaxonomy{}, nil, nil, nil, err
 	}
 
 	cweRCCsvList, err := readCWECsvInfo(cweRCCSVPath)
 	if err != nil {
-		return sarifDescriptorReference{}
+		return sarifTaxonomy{}, nil, nil, nil, err
 	}
+
+	return cweInfo, cweSDCsvList, cweHDCsvList, cweRCCsvList, nil
+}
+
+// buildCweCategory builds the CWE category in taxonomies, with info from CWE and CSV
+func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
+
+	cweInfo, cweSDCsvList, cweHDCsvList, cweRCCsvList, err := getCweData()
+	if err != nil {
+		return sarifDescriptorReference{}
+
+	}
+
+	_ = cweInfo
 
 	var matchingSDCweEntry cweCsv
 	for _, cweEntry := range cweSDCsvList {
