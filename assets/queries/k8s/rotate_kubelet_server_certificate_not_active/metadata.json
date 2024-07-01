@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/",
   "platform": "Kubernetes",
   "descriptionID": "a4f48785",
-  "cwe": ""
+  "cwe": "295"
 }

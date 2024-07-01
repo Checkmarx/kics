@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/",
   "platform": "Kubernetes",
   "descriptionID": "6210afe6",
-  "cwe": ""
+  "cwe": "665"
 }

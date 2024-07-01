@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
   "platform": "Kubernetes",
   "descriptionID": "fc2c11f9",
-  "cwe": ""
+  "cwe": "1188"
 }

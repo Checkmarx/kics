@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
   "platform": "Kubernetes",
   "descriptionID": "38fa11ef",
-  "cwe": ""
+  "cwe": "732"
 }

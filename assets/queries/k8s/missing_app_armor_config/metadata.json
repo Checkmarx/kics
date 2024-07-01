@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/tutorials/clusters/apparmor/",
   "platform": "Kubernetes",
   "descriptionID": "59c17c0a",
-  "cwe": ""
+  "cwe": "284"
 }

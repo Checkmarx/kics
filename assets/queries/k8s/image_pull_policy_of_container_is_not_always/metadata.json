@@ -7,5 +7,5 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/#updating-images",
   "platform": "Kubernetes",
   "descriptionID": "201e3c8d",
-  "cwe": ""
+  "cwe": "665"
 }
