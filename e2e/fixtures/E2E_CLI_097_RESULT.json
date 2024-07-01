@@ -32,6 +32,8 @@
       "query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources",
       "severity": "MEDIUM",
       "platform": "DockerCompose",
+      "cwe": "770",
+			"cloud_provider": "COMMON",
       "category": "Resource Management",
       "experimental": false,
       "description": "Memory limits should be defined for each container. This prevents potential resource exhaustion by ensuring that containers consume not more than the designated amount of memory",

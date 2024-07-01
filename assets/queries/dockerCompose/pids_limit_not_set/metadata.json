@@ -7,5 +7,7 @@
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir",
   "platform": "DockerCompose",
   "descriptionID": "2d241407",
-  "cwe": ""
+  "oldSeverity": "MEDIUM",
+  "cloudProvider": "common",
+  "cwe": "770"
 }
