@@ -69,10 +69,6 @@ checkMemory(res, memory) {
 	checkRemainder(mem, res.Properties.ContainerDefinitions[_].Cpu)
 }
 
-contains(arr, elem) {
-	arr[_] = elem
-}
-
 checkRemainder(mem, cpu) {
 	not cpu == 256
 	not mem % 1024 == 0

@@ -1,0 +1,57 @@
+rules:
+  bugs:
+    not-equals-in-loop:
+      # https://docs.styra.com/regal/rules/bugs/not-equals-in-loop
+      # The way it's used here with multi-value rules aren't
+      # bugs per se, so we'll ignore this for the time being
+      level: ignore
+  idiomatic:
+    no-defined-entrypoint:
+      # https://docs.styra.com/regal/rules/idiomatic/no-defined-entrypoint
+      # No single entrypoint for this project
+      level: ignore
+    # temporary
+    non-raw-regex-pattern:
+      # https://docs.styra.com/regal/rules/idiomatic/non-raw-regex-pattern
+      # 118 violations — fixing these would remove a lot of redundant
+      # escaping from regexes, providing better readability
+      level: ignore
+    use-in-operator:
+      # https://docs.styra.com/regal/rules/idiomatic/use-in-operator
+      # 42 violations — this would be good to fix, but not critical
+      level: ignore
+    use-some-for-output-vars:
+      # https://docs.styra.com/regal/rules/idiomatic/use-some-for-output-vars
+      # These would be good to address, but would require a concentrated effort
+      level: ignore
+    equals-pattern-matching:
+      # Not critical
+      level: ignore
+  style:
+    # All of these are optional, but worth considering
+    avoid-get-and-list-prefix:
+      level: ignore
+    external-reference:
+      level: ignore
+    file-length:
+      level: ignore
+    line-length:
+      level: ignore
+    no-whitespace-comment:
+      level: ignore
+    opa-fmt:
+      level: ignore
+    prefer-some-in-iteration:
+      level: ignore
+    prefer-snake-case:
+      level: ignore
+    rule-length:
+      level: ignore
+    todo-comment:
+      # there's only one TODO comment in the project,
+      # which should be easy to deal with
+      level: ignore
+    use-assignment-operator:
+      # This is very easy to fix, but would need to be done
+      # in so many places
+      level: ignore

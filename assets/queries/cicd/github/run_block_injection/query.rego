@@ -177,10 +177,7 @@ CxPolicy[result] {
 
 
 
-containsPatterns(str, patterns) = matched {
-    matched := {pattern |
-        pattern := patterns[_]
-        regex.match(pattern, str)
-    }
+containsPatterns(str, patterns) := {pattern |
+    pattern := patterns[_]
+    regex.match(pattern, str)
 }
-
