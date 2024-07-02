@@ -466,6 +466,15 @@ func getCweData() (sarifTaxonomy, []cweCsv, []cweCsv, []cweCsv, error) {
 	return cweInfo, cweSDCsvList, cweHDCsvList, cweRCCsvList, nil
 }
 
+func buildMatchingCWEEntry(matchingCweEntry string, cweCSVList []cweCsv) cweCsv {
+	for _, cweEntry := range cweCSVList {
+		if cweEntry.CweID == matchingCweEntry {
+			return cweEntry
+		}
+	}
+	return cweCsv{}
+}
+
 // buildCweCategory builds the CWE category in taxonomies, with info from CWE and CSV
 func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
 
@@ -474,35 +483,15 @@ func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
 		return sarifDescriptorReference{}
 
 	}
-
 	_ = cweInfo
 
-	var matchingSDCweEntry cweCsv
-	for _, cweEntry := range cweSDCsvList {
-		if cweEntry.CweID == cweID {
-			matchingSDCweEntry = cweEntry
-			break
-		}
-	}
+	var matchingSDCweEntry, matchingHDCweEntry, matchingRCCweEntry cweCsv
 
-	var matchingHDCweEntry cweCsv
-	for _, cweEntry := range cweHDCsvList {
-		if cweEntry.CweID == cweID {
-			matchingHDCweEntry = cweEntry
-			break
-		}
-	}
-
-	var matchingRCCweEntry cweCsv
-	for _, cweEntry := range cweRCCsvList {
-		if cweEntry.CweID == cweID {
-			matchingRCCweEntry = cweEntry
-			break
-		}
-	}
+	matchingSDCweEntry = buildMatchingCWEEntry(cweID, cweSDCsvList)
+	matchingHDCweEntry = buildMatchingCWEEntry(cweID, cweHDCsvList)
+	matchingRCCweEntry = buildMatchingCWEEntry(cweID, cweRCCsvList)
 
 	var referenceID string
-
 	if matchingSDCweEntry.CweID == "" && matchingHDCweEntry.CweID == "" && matchingRCCweEntry.CweID == "" {
 		return sarifDescriptorReference{}
 	} else if matchingSDCweEntry.CweID == "" && matchingHDCweEntry.CweID != "" && matchingRCCweEntry.CweID == "" {
