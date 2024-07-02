@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "DynamoDB With Not Recommented Table Billing Mode",
+    "queryName": "DynamoDB With Not Recommended Table Billing Mode",
     "severity": "LOW",
     "line": 13,
     "fileName": "positive1.yaml"
   },
   {
-    "queryName": "DynamoDB With Not Recommented Table Billing Mode",
+    "queryName": "DynamoDB With Not Recommended Table Billing Mode",
     "severity": "LOW",
     "line": 16,
     "fileName": "positive2.json"

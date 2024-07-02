@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html#cfn-ecs-cluster-clustersettings",
   "platform": "CloudFormation",
   "descriptionID": "1751124e",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "cwe": "778"
 }
