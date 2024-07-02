@@ -8,6 +8,6 @@
   "platform": "GoogleDeploymentManager",
   "descriptionID": "c1eb34ef",
   "cloudProvider": "gcp",
-  "cwe": "",
+  "cwe": "732",
   "oldSeverity": "HIGH"
 }
