@@ -8,6 +8,6 @@
   "platform": "Crossplane",
   "descriptionID": "2643a873",
   "cloudProvider": "aws",
-  "cwe": "",
+  "cwe": "311",
   "oldSeverity": "HIGH"
 }
