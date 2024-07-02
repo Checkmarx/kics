@@ -8,6 +8,6 @@
   "platform": "CICD",
   "descriptionID": "9cb8402d",
   "cloudProvider": "common",
-  "cwe": "",
+  "cwe": "829",
   "oldSeverity": "MEDIUM"
 }
