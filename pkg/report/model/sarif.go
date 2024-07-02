@@ -227,8 +227,20 @@ func initCweCategories(cweIDs []string, guids map[string]string) []taxonomyDefin
 		return []taxonomyDefinitions{}
 	}
 
-	cweCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Software-Development-CWE.csv")
-	cweCsvList, err := readCWECsvInfo(cweCSVPath)
+	cweSDCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Software-Development-CWE.csv")
+	cweSDCsvList, err := readCWECsvInfo(cweSDCSVPath)
+	if err != nil {
+		return []taxonomyDefinitions{}
+	}
+
+	cweHDCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Hardware-Design-CWE.csv")
+	cweHDCsvList, err := readCWECsvInfo(cweHDCSVPath)
+	if err != nil {
+		return []taxonomyDefinitions{}
+	}
+
+	cweRCCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Research-Concepts-CWE.csv")
+	cweRCCsvList, err := readCWECsvInfo(cweRCCSVPath)
 	if err != nil {
 		return []taxonomyDefinitions{}
 	}
@@ -237,7 +249,21 @@ func initCweCategories(cweIDs []string, guids map[string]string) []taxonomyDefin
 	for _, cweID := range cweIDs {
 		var matchingCweEntry cweCsv
 
-		for _, cweEntry := range cweCsvList {
+		for _, cweEntry := range cweSDCsvList {
+			if cweEntry.CweID == cweID {
+				matchingCweEntry = cweEntry
+				break
+			}
+		}
+
+		for _, cweEntry := range cweHDCsvList {
+			if cweEntry.CweID == cweID {
+				matchingCweEntry = cweEntry
+				break
+			}
+		}
+
+		for _, cweEntry := range cweRCCsvList {
 			if cweEntry.CweID == cweID {
 				matchingCweEntry = cweEntry
 				break
@@ -406,44 +432,77 @@ func readCWECsvInfo(filePath string) ([]cweCsv, error) {
 	return cweEntries, nil
 }
 
-// buildCweCategory builds the CWE category in taxonomies, with info from CWE and CSV
-func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
+func getCweData() (cweInfos sarifTaxonomy, cweSD, cweHD, cweRC []cweCsv, cweErr error) {
 	absPath, err := filepath.Abs(".")
 	if err != nil {
-		return sarifDescriptorReference{}
+		return sarifTaxonomy{}, nil, nil, nil, err
 	}
 
 	cweInfoPath := filepath.Join(absPath, "assets", "cwe_csv", "cwe_taxonomies_latest.json")
-	cweCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Software-Development-CWE.csv")
+	cweSDCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Software-Development-CWE.csv")
+	cweHDCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Hardware-Design-CWE.csv")
+	cweRCCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Research-Concepts-CWE.csv")
 
 	cweInfo, err := readCWEInfo(cweInfoPath)
 	if err != nil {
-		return sarifDescriptorReference{}
+		return sarifTaxonomy{}, nil, nil, nil, err
 	}
 
-	_ = cweInfo
+	cweSDCsvList, err := readCWECsvInfo(cweSDCSVPath)
+	if err != nil {
+		return sarifTaxonomy{}, nil, nil, nil, err
+	}
 
-	cweCsvList, err := readCWECsvInfo(cweCSVPath)
+	cweHDCsvList, err := readCWECsvInfo(cweHDCSVPath)
+	if err != nil {
+		return sarifTaxonomy{}, nil, nil, nil, err
+	}
+
+	cweRCCsvList, err := readCWECsvInfo(cweRCCSVPath)
+	if err != nil {
+		return sarifTaxonomy{}, nil, nil, nil, err
+	}
+
+	return cweInfo, cweSDCsvList, cweHDCsvList, cweRCCsvList, nil
+}
+
+func buildMatchingCWEEntry(matchingCweEntry string, cweCSVList []cweCsv) cweCsv {
+	for _, cweEntry := range cweCSVList {
+		if cweEntry.CweID == matchingCweEntry {
+			return cweEntry
+		}
+	}
+	return cweCsv{}
+}
+
+// buildCweCategory builds the CWE category in taxonomies, with info from CWE and CSV
+func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
+	cweInfo, cweSDCsvList, cweHDCsvList, cweRCCsvList, err := getCweData()
 	if err != nil {
 		return sarifDescriptorReference{}
 	}
+	_ = cweInfo
+	var matchingSDCweEntry, matchingHDCweEntry, matchingRCCweEntry cweCsv
 
-	var matchingCweEntry cweCsv
-	for _, cweEntry := range cweCsvList {
-		if cweEntry.CweID == cweID {
-			matchingCweEntry = cweEntry
-			break
-		}
-	}
+	matchingSDCweEntry = buildMatchingCWEEntry(cweID, cweSDCsvList)
+	matchingHDCweEntry = buildMatchingCWEEntry(cweID, cweHDCsvList)
+	matchingRCCweEntry = buildMatchingCWEEntry(cweID, cweRCCsvList)
 
-	if matchingCweEntry.CweID == "" {
+	var referenceID string
+	if matchingSDCweEntry.CweID == "" && matchingHDCweEntry.CweID == "" && matchingRCCweEntry.CweID == "" {
 		return sarifDescriptorReference{}
+	} else if matchingSDCweEntry.CweID == "" && matchingHDCweEntry.CweID != "" && matchingRCCweEntry.CweID == "" {
+		referenceID = matchingHDCweEntry.CweID
+	} else if matchingSDCweEntry.CweID != "" && matchingHDCweEntry.CweID == "" && matchingRCCweEntry.CweID == "" {
+		referenceID = matchingSDCweEntry.CweID
+	} else if matchingSDCweEntry.CweID == "" && matchingHDCweEntry.CweID == "" && matchingRCCweEntry.CweID != "" {
+		referenceID = matchingSDCweEntry.CweID
 	}
 
 	newGUID := generateGUID()
 
 	cwe := sarifDescriptorReference{
-		ReferenceID:   matchingCweEntry.CweID,
+		ReferenceID:   referenceID,
 		ReferenceGUID: newGUID,
 		ToolComponent: sarifComponentReference{
 			ComponentReferenceGUID: "1489b0c4-d7ce-4d31-af66-6382a01202e3",
