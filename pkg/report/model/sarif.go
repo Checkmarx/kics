@@ -432,7 +432,7 @@ func readCWECsvInfo(filePath string) ([]cweCsv, error) {
 	return cweEntries, nil
 }
 
-func getCweData() (cweInfos sarifTaxonomy, cweSD []cweCsv, cweHD []cweCsv, cweRC []cweCsv, cweErr error) {
+func getCweData() (cweInfos sarifTaxonomy, cweSD, cweHD, cweRC []cweCsv, cweErr error) {
 	absPath, err := filepath.Abs(".")
 	if err != nil {
 		return sarifTaxonomy{}, nil, nil, nil, err
@@ -480,7 +480,6 @@ func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
 	cweInfo, cweSDCsvList, cweHDCsvList, cweRCCsvList, err := getCweData()
 	if err != nil {
 		return sarifDescriptorReference{}
-
 	}
 	_ = cweInfo
 	var matchingSDCweEntry, matchingHDCweEntry, matchingRCCweEntry cweCsv
