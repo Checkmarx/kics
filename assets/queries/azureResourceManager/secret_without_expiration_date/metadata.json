@@ -8,6 +8,6 @@
   "platform": "AzureResourceManager",
   "descriptionID": "bb5f96a2",
   "cloudProvider": "azure",
-  "cwe": "",
+  "cwe": "1390",
   "oldSeverity": "HIGH"
 }

@@ -32,6 +32,7 @@
       "query_url": "https://docs.microsoft.com/en-us/azure/templates/microsoft.compute/virtualmachines?tabs=json#linuxconfiguration-object",
       "severity": "MEDIUM",
       "platform": "AzureResourceManager",
+      "cwe": "522",
       "cloud_provider": "AZURE",
       "category": "Best Practices",
       "experimental": false,

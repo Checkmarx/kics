@@ -32,6 +32,7 @@
       "query_url": "https://docs.microsoft.com/en-us/azure/templates/microsoft.security/securitycontacts",
       "severity": "INFO",
       "platform": "AzureResourceManager",
+      "cwe": "778",
       "cloud_provider": "AZURE",
       "category": "Networking and Firewall",
       "experimental": false,
