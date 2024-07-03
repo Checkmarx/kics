@@ -16,5 +16,6 @@
       "descriptionText": ""
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "710"
 }

@@ -16,6 +16,7 @@
       "descriptionText": ""
     }
   },
-  "cwe": "",
+  "cwe": "20",
+  "cloudProvider": "common",
   "oldSeverity": "MEDIUM"
 }
