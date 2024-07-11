@@ -459,18 +459,13 @@ func buildMatchingCWEEntry(cweID string, cweCSVList []cweCsv) (cweInfos cweCsv, 
 
 // buildCweCategory builds the CWE category in taxonomies, with info from CWE and CSV
 func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
-	cweInfo, err := readCWETaxonomyInfo()
-	if err != nil {
-		return sarifDescriptorReference{}
-	}
-
 	cweSDCsvList, cweHDCsvList, cweRCCsvList, err := getAllCweInfos()
 	if err != nil {
 		return sarifDescriptorReference{}
 	}
-	_ = cweInfo
+
 	var matchingCweEntry cweCsv
-	var found = false
+	var found bool
 
 	matchingCweEntry, found = buildMatchingCWEEntry(cweID, cweSDCsvList)
 	if !found {
