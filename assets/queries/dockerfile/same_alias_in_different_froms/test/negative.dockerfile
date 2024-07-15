@@ -1,5 +1,5 @@
-FROM debian:jesse1 as build
+FROM debian:jesse1 AS build
 RUN stuff
 
-FROM debian:jesse1 as another-alias
+FROM debian:jesse1 AS another-alias
 RUN more_stuff

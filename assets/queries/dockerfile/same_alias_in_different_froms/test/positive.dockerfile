@@ -1,8 +1,8 @@
 FROM baseImage
 RUN Test
 
-FROM debian:jesse2 as build
+FROM debian:jesse2 AS build
 RUN stuff
 
-FROM debian:jesse1 as build
+FROM debian:jesse1 AS build
 RUN more_stuff
