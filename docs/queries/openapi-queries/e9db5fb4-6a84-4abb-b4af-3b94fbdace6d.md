@@ -18,7 +18,7 @@ hide:
 -   **Query id:** e9db5fb4-6a84-4abb-b4af-3b94fbdace6d
 -   **Query name:** Responses JSON Reference Does Not Exists (v2)
 -   **Platform:** OpenAPI
--   **Severity:** <span style="color:#00C">Info</span>
+-   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Structure and Semantics
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/openAPI/2.0/json_reference_does_not_exists_response)
 
@@ -28,7 +28,7 @@ Responses reference should exist on responses definition field<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Postitive test num. 1 - json file" hl_lines="14"
+```json title="Positive test num. 1 - json file" hl_lines="14"
 {
   "swagger": "2.0",
   "info": {
@@ -77,7 +77,7 @@ Responses reference should exist on responses definition field<br>
 }
 
 ```
-```yaml title="Postitive test num. 2 - yaml file" hl_lines="12"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="12"
 swagger: '2.0'
 info:
   title: Simple API Overview

@@ -1,12 +1,13 @@
 linters-settings:
   depguard:
-    list-type: blacklist
-    packages:
-      # logging is allowed only by logutils.Log, logrus
-      # is allowed to use only in logutils package
-      - github.com/sirupsen/logrus
-    packages-with-error-message:
-      - github.com/sirupsen/logrus: "logging is allowed only by logutils.Log"
+    rules:
+      prevent_bad_packages:
+        list-mode: lax
+        deny:
+          - pkg: github.com/sirupsen/logrus
+            desc: "logging is allowed only by logutils.Log"
+            # logging is allowed only by logutils.Log, logrus
+            # is allowed to use only in logutils package
   dupl:
     threshold: 100
   funlen:
@@ -48,7 +49,7 @@ linters-settings:
       - strings.SplitN
 
   govet:
-    check-shadowing: true
+    shadow: true
     settings:
       printf:
         funcs:
@@ -70,7 +71,6 @@ linters:
   disable-all: true
   enable:
     - bodyclose
-    - deadcode
     - depguard
     - dogsled
     - dupl
@@ -95,13 +95,11 @@ linters:
     - noctx
     - nolintlint
     - staticcheck
-    - structcheck
     - stylecheck
     - typecheck
     - unconvert
     - unparam
     - unused
-    - varcheck
     - whitespace
 
   # don't enable:
@@ -127,12 +125,12 @@ issues:
       linters:
         - gomnd
         - scopelint
-
-run:
-  timeout: 5m
-  tests: false
-  skip-dirs:
+  exclude-dirs:
     - assets
     - docs
     - vendor
     - pkg/parser/jsonfilter/parser
+    - pkg/parser/bicep/antlr  
+run:
+  timeout: 5m
+  tests: false

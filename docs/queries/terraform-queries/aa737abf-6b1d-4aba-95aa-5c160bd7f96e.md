@@ -18,7 +18,7 @@ hide:
 -   **Query id:** aa737abf-6b1d-4aba-95aa-5c160bd7f96e
 -   **Query name:** Image Pull Policy Of The Container Is Not Set To Always
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#CC0">Low</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Insecure Configurations
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/kubernetes/image_pull_policy_of_container_is_not_always)
 
@@ -28,7 +28,7 @@ Image Pull Policy of the container must be defined and set to Always<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="12"
+```tf title="Positive test num. 1 - tf file" hl_lines="12"
 resource "kubernetes_pod" "busybox" {
   metadata {
     name = "busybox-tf"
@@ -48,7 +48,7 @@ resource "kubernetes_pod" "busybox" {
 }
 
 ```
-```tf title="Postitive test num. 2 - tf file" hl_lines="30"
+```tf title="Positive test num. 2 - tf file" hl_lines="30"
 
 resource "kubernetes_deployment" "example" {
   metadata {

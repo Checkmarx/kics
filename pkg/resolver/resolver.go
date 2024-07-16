@@ -4,7 +4,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/rs/zerolog/log"
 )
 
@@ -59,7 +59,7 @@ func (r *Resolver) Resolve(filePath string, kind model.FileKind) (model.Resolved
 	if r, ok := r.resolvers[kind]; ok {
 		obj, err := r.Resolve(filePath)
 		if err != nil {
-			return model.ResolvedFiles{}, nil
+			return model.ResolvedFiles{}, err
 		}
 		log.Debug().Msgf("resolver.Resolve() rendered file: %s", filePath)
 		return obj, nil

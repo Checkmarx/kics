@@ -18,7 +18,7 @@ hide:
 -   **Query id:** bc3dabb6-fd50-40f8-b9ba-7429c9f1fb0e
 -   **Query name:** Metadata Label Is Invalid
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#CC0">Low</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Best Practices
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/kubernetes/metadata_label_is_invalid)
 
@@ -28,7 +28,7 @@ Check if any label in the metadata is invalid.<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="5"
+```tf title="Positive test num. 1 - tf file" hl_lines="5"
 resource "kubernetes_pod" "test" {
   metadata {
     name = "terraform-example"

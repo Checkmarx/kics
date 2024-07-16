@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 1afbb3fa-cf6c-4a3d-b730-95e9f4df343e
 -   **Query name:** ElastiCache Replication Group Not Encrypted At Transit
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Encryption
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/elasticache_replication_group_not_encrypted_at_transit)
 
@@ -28,7 +28,7 @@ ElastiCache Replication Group encryption should be enabled at Transit<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="1"
+```tf title="Positive test num. 1 - tf file" hl_lines="1"
 resource "aws_elasticache_replication_group" "example" {
   automatic_failover_enabled    = true
   availability_zones            = ["us-west-2a", "us-west-2b"]
@@ -40,7 +40,7 @@ resource "aws_elasticache_replication_group" "example" {
 }
 
 ```
-```tf title="Postitive test num. 2 - tf file" hl_lines="9"
+```tf title="Positive test num. 2 - tf file" hl_lines="9"
 resource "aws_elasticache_replication_group" "example" {
   automatic_failover_enabled    = true
   availability_zones            = ["us-west-2a", "us-west-2b"]

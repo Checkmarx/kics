@@ -5,10 +5,11 @@ import (
 	"path/filepath"
 	"regexp"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser/terraform/comment"
-	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
-	"github.com/Checkmarx/kics/pkg/parser/utils"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/comment"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
+	"github.com/Checkmarx/kics/v2/pkg/parser/utils"
+	masterUtils "github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/pkg/errors"
@@ -45,7 +46,14 @@ func NewDefaultWithVarsPath(terraformVarsPath string) *Parser {
 }
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, filename string, _ bool, _ int) ([]byte, error) {
+	// handle panic during resolve process
+	defer func() {
+		if r := recover(); r != nil {
+			errMessage := "Recovered from panic during resolve of file " + filename
+			masterUtils.HandlePanic(r, errMessage)
+		}
+	}()
 	getInputVariables(filepath.Dir(filename), string(fileContent), p.terraformVarsPath)
 	getDataSourcePolicy(filepath.Dir(filename))
 	return fileContent, nil
@@ -93,6 +101,14 @@ func processResourcesElements(resourcesElements model.Document, path string) err
 
 func processResources(doc model.Document, path string) error {
 	var resourcesElements model.Document
+
+	defer func() {
+		if r := recover(); r != nil {
+			errMessage := "Recovered from panic during process of resources in file " + path
+			masterUtils.HandlePanic(r, errMessage)
+		}
+	}()
+
 	for _, resources := range doc {
 		switch t := resources.(type) {
 		case []interface{}: // support the case of nameless resources - where we get a list of resources
@@ -116,6 +132,13 @@ func processResources(doc model.Document, path string) error {
 }
 
 func addExtraInfo(json []model.Document, path string) ([]model.Document, error) {
+	// handle panic during resource processing
+	defer func() {
+		if r := recover(); r != nil {
+			errMessage := "Recovered from panic during resource processing for file " + path
+			masterUtils.HandlePanic(r, errMessage)
+		}
+	}()
 	for _, documents := range json { // iterate over documents
 		if resources, ok := documents["resource"].(model.Document); ok {
 			err := processResources(resources, path)
@@ -145,6 +168,12 @@ func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error)
 // Parse execute parser for the content in a file
 func (p *Parser) Parse(path string, content []byte) ([]model.Document, []int, error) {
 	file, diagnostics := hclsyntax.ParseConfig(content, filepath.Base(path), hcl.Pos{Byte: 0, Line: 1, Column: 1})
+	defer func() {
+		if r := recover(); r != nil {
+			errMessage := "Recovered from panic during parsing of file " + path
+			masterUtils.HandlePanic(r, errMessage)
+		}
+	}()
 	if diagnostics != nil && diagnostics.HasErrors() && len(diagnostics.Errs()) > 0 {
 		err := diagnostics.Errs()[0]
 		return nil, []int{}, err

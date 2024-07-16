@@ -225,7 +225,7 @@ go run ./cmd/console/main.go generate-id
 ```
 
 - `queryName` describes the name of the vulnerability
-- `severity` can be filled with `HIGH`, `MEDIUM`, `LOW` or `INFO`
+- `severity` can be filled with `CRITICAL`, `HIGH`, `MEDIUM`, `LOW` or `INFO`
 - `category` pick one of the following:
     - Access Control
     - Availability
@@ -381,6 +381,8 @@ isTCPorUDP("UDP") = true
 To improve the KICS line detection mechanism, `searchLine` was introduced.
 
 SearchLine uses json path to get the correct line information from the payload (which can be seen with the flag `payload-lines`).
+
+For Ansible Hosts and Config files, there is no need to fill this parameter since the attributes can vary in different files. If you still want to use you will expect an inconsistent behaviour.
 
 Original Content:
 ```

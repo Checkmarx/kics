@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/rs/zerolog"
 )
 
@@ -46,6 +46,13 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	for _, key := range splitSanitized {
 		substr1, substr2 := GenerateSubstrings(key, extractedString)
 
+		// BICEP-specific tweaks in order to make bicep files compatible with ARM queries
+		if file.Kind == "BICEP" {
+			substr1 = strings.ReplaceAll(substr1, "resources", "resource")
+			substr1 = strings.ReplaceAll(substr1, "parameters", "param")
+			substr1 = strings.ReplaceAll(substr1, "variables", "variable")
+		}
+
 		detector, lines = detector.DetectCurrentLine(substr1, substr2, 0, lines)
 
 		if detector.IsBreak {
@@ -61,7 +68,8 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 		}
 	}
 
-	logwithfields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
+	var filePathSplit = strings.Split(file.FilePath, "/")
+	logwithfields.Warn().Msgf("Failed to detect line associated with identified result in file %s\n", filePathSplit[len(filePathSplit)-1])
 
 	return model.VulnerabilityLines{
 		Line:         undetectedVulnerabilityLine,

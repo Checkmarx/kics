@@ -6,10 +6,6 @@ KICS is a true community project. It's built as an open source from day one, and
 
 Within just minutes, you can start making a difference, by sharing your expertise with a community of thousands of security experts and software developers.
 
-#### Community Meetings
-
-You're welcome to join our monthly [community meetings](community.md)
-
 #### Contribution Options
 
 Good news! You don't have to contribute code. There are plenty of ways you can contribute to KICS project:
@@ -43,7 +39,7 @@ Use succinct but descriptive name (prefix with *feature/issue#-descriptive-name>
 5. Make your changes locally.
 6. Validate your changes to reassure they meet project quality and contribution standards:
    ```sh
-   golint .
+   golangci-lint run
    ```
    ```sh
    go mod vendor
@@ -146,45 +142,4 @@ And become one of our top contributors!
 
 ---
 
-## Top Contributors
-
 Special thanks to  **[Lior Kaplan](https://github.com/kaplanlior)** from **_Kaplan Open Source Consulting_** for his assistance in creating KICS. 
-
-The people listed below had made a huge contribution to KICS.
-
-- [Ruben Silva](https://github.com/Ruben-Silva)
-- [Rafaela Soares](https://github.com/rafaela-soares)
-- [João Martins](https://github.com/joaomartinscx)
-- [Joel Carvalho](https://github.com/joelcarvalhocheckmarx)
-- [Pedro Mimoso](https://github.com/pedro-mimoso)
-- [Nuno Araújo](https://github.com/NunoAraujoCX)
-- [Fábio Gonçalves](https://github.com/fabioGoncalvesCx)
-- [Mariana Carvalho](https://github.com/mcarvalhox)
-- [Jorge Cruz](https://github.com/jorge-cruz)
-- [João Oliveira](https://github.com/JoaoO1998)
-- [Diogo Lemos](https://github.com/diogo-lemos)
-- [Alex Roichman](https://github.com/Alexaro1cx)
-- [Adar Weidman](https://github.com/AdarWeidman)
-- [Eli Trop](https://github.com/elit-cx)
-- [Joel Sousa](https://github.com/joelsou5a)
-- [Sónia Antão](https://github.com/soniantao)
-- [Catarina Araújo](https://github.com/cataraujo190)
-- [Pedro Pereira](https://github.com/pedropereiraaa)
-- [Samuel Ferreira](https://github.com/samuel-ferreira)
-
-#### Core Team
-
-- [Rui Gomes](https://github.com/ruigomescx)
-- [Rogério Peixoto](https://github.com/rogeriopeixotocx)
-- [João Reigota](https://github.com/joaoReigota1)
-- [Felipe Avelar](https://github.com/felipe-avelar)
-- [Nuno Oliveira](https://github.com/nunoocx)
-- [Mark Mishaev](https://github.com/markmishaevcx)
-- [Igor Markov](https://github.com/IgorMarkov)
-- [Ori Bendet](https://github.com/oribendetcx)
-- [Erez Yalon](https://github.com/erezyalon)
-
-
-**Thank you all!**
-
-

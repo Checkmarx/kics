@@ -1,12 +1,11 @@
 package ansibleconfig
 
 import (
-	"regexp"
 	"strconv"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser/ansible/ini/comments"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/comments"
 	"github.com/bigkevmcd/go-configparser"
 )
 
@@ -14,7 +13,7 @@ import (
 type Parser struct {
 }
 
-func (p *Parser) Resolve(fileContent []byte, filename string) ([]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, _ string, _ bool, _ int) ([]byte, error) {
 	return fileContent, nil
 }
 
@@ -54,21 +53,13 @@ func refactorConfig(config *configparser.ConfigParser) (doc *model.Document) {
 			} else if floatValue, err := strconv.ParseFloat(value, 64); err == nil {
 				dictRefact[key] = floatValue
 			} else if strings.Contains(value, ",") {
-				re := regexp.MustCompile(`\w+`)
-				matches := re.FindAllString(value, -1)
-				if len(matches) > 0 {
-					dictRefact[key] = matches
-				} else {
-					dictRefact[key] = []string{}
+				elements := strings.Split(value, ",")
+
+				for i := 0; i < len(elements); i++ {
+					elements[i] = strings.TrimSpace(elements[i])
 				}
-			} else if strings.Contains(value, ":") {
-				re := regexp.MustCompile(`\w+`)
-				matches := re.FindAllString(value, -1)
-				if len(matches) > 0 {
-					dictRefact[key] = matches
-				} else {
-					dictRefact[key] = []string{}
-				}
+
+				dictRefact[key] = elements
 			} else if value == "[]" {
 				dictRefact[key] = []string{}
 			} else {

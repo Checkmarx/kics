@@ -18,7 +18,7 @@ hide:
 -   **Query id:** e39bee8c-fe54-4a3f-824d-e5e2d1cca40a
 -   **Query name:** IAM Role Policy passRole Allows All
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Access Control
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/iam_role_policy_passrole_allows_all)
 
@@ -28,7 +28,7 @@ Using the iam:passrole action with wildcards (*) in the resource can be overly p
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="5"
+```tf title="Positive test num. 1 - tf file" hl_lines="5"
 resource "aws_iam_role_policy" "test_policy" {
   name = "test_policy"
   role = aws_iam_role.test_role.id

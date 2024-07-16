@@ -5,14 +5,21 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/Checkmarx/kics/internal/metrics"
-	"github.com/Checkmarx/kics/pkg/kics"
-	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/v2/internal/metrics"
+	"github.com/Checkmarx/kics/v2/pkg/kics"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
 )
 
 type serviceSlice []*kics.Service
 
-func PrepareAndScan(ctx context.Context, scanID string, proBarBuilder progress.PbBuilder, services serviceSlice) error {
+func PrepareAndScan(
+	ctx context.Context,
+	scanID string,
+	openAPIResolveReferences bool,
+	maxResolverDepth int,
+	proBarBuilder progress.PbBuilder,
+	services serviceSlice,
+) error {
 	metrics.Metric.Start("prepare_sources")
 	var wg sync.WaitGroup
 	wgDone := make(chan bool)
@@ -21,7 +28,7 @@ func PrepareAndScan(ctx context.Context, scanID string, proBarBuilder progress.P
 
 	for _, service := range services {
 		wg.Add(1)
-		go service.PrepareSources(ctx, scanID, &wg, errCh)
+		go service.PrepareSources(ctx, scanID, openAPIResolveReferences, maxResolverDepth, &wg, errCh)
 	}
 
 	go func() {
@@ -48,7 +55,8 @@ func PrepareAndScan(ctx context.Context, scanID string, proBarBuilder progress.P
 }
 
 // StartScan will run concurrent scans by parser
-func StartScan(ctx context.Context, scanID string, proBarBuilder progress.PbBuilder, services serviceSlice) error {
+func StartScan(ctx context.Context, scanID string,
+	proBarBuilder progress.PbBuilder, services serviceSlice) error {
 	defer metrics.Metric.Stop()
 	metrics.Metric.Start("start_scan")
 	var wg sync.WaitGroup

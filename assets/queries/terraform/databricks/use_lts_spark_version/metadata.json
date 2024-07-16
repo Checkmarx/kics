@@ -1,0 +1,13 @@
+{
+  "id": "5a627dfa-a4dd-4020-a4c6-5f3caf4abcd6",
+  "queryName": "(Beta) Check use no LTS Spark Version",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "Spark Version is not a Long-term Support",
+  "descriptionUrl": "https://registry.terraform.io/providers/databricks/databricks/latest/docs/data-sources/spark_version",
+  "platform": "Terraform",
+  "descriptionID": "fdaa059f",
+  "cloudProvider": "common",
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
+}

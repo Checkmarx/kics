@@ -4,11 +4,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/storage"
-	"github.com/Checkmarx/kics/internal/tracker"
-	"github.com/Checkmarx/kics/pkg/descriptions"
-	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
-	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/v2/internal/storage"
+	"github.com/Checkmarx/kics/v2/internal/tracker"
+	"github.com/Checkmarx/kics/v2/pkg/descriptions"
+	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
 	"github.com/rs/zerolog/log"
 )
 
@@ -21,6 +21,7 @@ type Parameters struct {
 	ExcludeQueries              []string
 	ExcludeResults              []string
 	ExcludeSeverities           []string
+	ExperimentalQueries         bool
 	IncludeQueries              []string
 	InputData                   string
 	OutputName                  string
@@ -43,6 +44,12 @@ type Parameters struct {
 	ScanID                      string
 	BillOfMaterials             bool
 	ExcludeGitIgnore            bool
+	OpenAPIResolveReferences    bool
+	ParallelScanFlag            int
+	MaxFileSizeFlag             int
+	UseOldSeverities            bool
+	MaxResolverDepth            int
+	KicsComputeNewSimID         bool
 }
 
 // Client represents a scan client

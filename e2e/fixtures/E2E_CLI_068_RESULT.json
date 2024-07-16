@@ -1,0 +1,105 @@
+{
+	"kics_version": "development",
+	"files_scanned": 1,
+	"lines_scanned": 6,
+	"files_parsed": 1,
+	"lines_parsed": 6,
+	"lines_ignored": 0,
+	"files_failed_to_scan": 0,
+	"queries_total": 48,
+	"queries_failed_to_execute": 1,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 1,
+		"INFO": 0,
+		"LOW": 1,
+		"MEDIUM": 1,
+		"TRACE": 0
+	},
+	"total_counter": 3,
+	"total_bom_resources": 0,
+	"start": "2024-03-27T11:20:29.068037Z",
+	"end": "2024-03-27T11:20:30.0252697Z",
+	"paths": [
+		"/path/test/fixtures/dockerfile/corrupted_dockerfile"
+	],
+	"queries": [
+		{
+			"query_name": "Missing User Instruction",
+			"query_id": "fd54f200-402c-4333-a5a4-36ef6709af2f",
+			"query_url": "https://docs.docker.com/engine/reference/builder/#user",
+			"severity": "HIGH",
+			"platform": "Dockerfile",
+			"cwe": "250",
+			"category": "Build Process",
+			"experimental": false,
+			"description": "A user should be specified in the dockerfile, otherwise the image will run as root",
+			"description_id": "eb49caf6",
+			"files": [
+				{
+					"file_name": "/path/test/fixtures/dockerfile/corrupted_dockerfile",
+					"similarity_id": "821b0a105dd9ebb6b14489251615d94813a578feb68624113a52ba9c1668ecb7",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "FROM={{alpine:latest}}",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "The 'Dockerfile' should contain the 'USER' instruction",
+					"actual_value": "The 'Dockerfile' does not contain any 'USER' instruction"
+				}
+			]
+		},
+		{
+			"query_name": "Image Version Using 'latest'",
+			"query_id": "f45ea400-6bbe-4501-9fc7-1c3d75c32067",
+			"query_url": "https://docs.docker.com/develop/dev-best-practices/",
+			"severity": "MEDIUM",
+			"platform": "Dockerfile",
+			"cwe": "1357",
+			"category": "Best Practices",
+			"experimental": false,
+			"description": "When building images, always tag them with useful tags which codify version information, intended destination (prod or test, for instance), stability, or other information that is useful when deploying the application in different environments. Do not rely on the automatically-created latest tag",
+			"description_id": "22f535ec",
+			"files": [
+				{
+					"file_name": "/path/test/fixtures/dockerfile/corrupted_dockerfile",
+					"similarity_id": "a32938ae4d056569e5cfda73594f6cb276d4f9ee14a848fb6b642b14defee892",
+					"line": 1,
+					"issue_type": "IncorrectValue",
+					"search_key": "FROM={{alpine:latest}}",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "FROM alpine:latest:'version' where version should not be 'latest'",
+					"actual_value": "FROM alpine:latest'"
+				}
+			]
+		},
+		{
+			"query_name": "Healthcheck Instruction Missing",
+			"query_id": "b03a748a-542d-44f4-bb86-9199ab4fd2d5",
+			"query_url": "https://docs.docker.com/engine/reference/builder/#healthcheck",
+			"severity": "LOW",
+			"platform": "Dockerfile",
+			"cwe": "710",
+			"category": "Insecure Configurations",
+			"experimental": false,
+			"description": "Ensure that HEALTHCHECK is being used. The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working",
+			"description_id": "426121ee",
+			"files": [
+				{
+					"file_name": "/path/test/fixtures/dockerfile/corrupted_dockerfile",
+					"similarity_id": "ec1a1e998229f963313752def87ce5027e89997cfb4180c9b356414566f5a029",
+					"line": 1,
+					"issue_type": "MissingAttribute",
+					"search_key": "FROM={{alpine:latest}}",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+					"actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+				}
+			]
+		}
+	]
+}

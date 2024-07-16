@@ -18,7 +18,7 @@ hide:
 -   **Query id:** ffb02aca-0d12-475e-b77c-a726f7aeff4b
 -   **Query name:** Log Retention Is Not Set
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Observability
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/azure/log_retention_is_not_set)
 
@@ -28,7 +28,7 @@ Make sure that for PostgreSQL Database, server parameter 'log_retention' is set 
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="19 12 5"
+```tf title="Positive test num. 1 - tf file" hl_lines="19 12 5"
 resource "azurerm_postgresql_configuration" "positive1" {
     name                = "log_retention"
     resource_group_name = data.azurerm_resource_group.example.name

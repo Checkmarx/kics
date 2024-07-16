@@ -9,18 +9,21 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/assets"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/kics"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/parser"
-	buildahParser "github.com/Checkmarx/kics/pkg/parser/buildah"
-	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
-	protoParser "github.com/Checkmarx/kics/pkg/parser/grpc"
-	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
-	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
-	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/assets"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/kics"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser"
+	ansibleConfigParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/config"
+	ansibleHostsParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/hosts"
+	buildahParser "github.com/Checkmarx/kics/v2/pkg/parser/buildah"
+    bicepParser "github.com/Checkmarx/kics/v2/pkg/parser/bicep"
+	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker" 
+	protoParser "github.com/Checkmarx/kics/v2/pkg/parser/grpc"
+	jsonParser "github.com/Checkmarx/kics/v2/pkg/parser/json"
+	terraformParser "github.com/Checkmarx/kics/v2/pkg/parser/terraform"
+	yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
@@ -31,12 +34,15 @@ var (
 		"../assets/queries/terraform/aws_bom":               {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/aws":                   {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/azure":                 {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/databricks":            {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/gcp":                   {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/gcp_bom":               {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/github":                {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/kubernetes":            {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/general":               {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/terraform/alicloud":              {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/nifcloud":              {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
+		"../assets/queries/terraform/tencentcloud":          {FileKind: []model.FileKind{model.KindTerraform, model.KindJSON}, Platform: "terraform"},
 		"../assets/queries/crossplane/aws":                  {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
 		"../assets/queries/crossplane/azure":                {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
 		"../assets/queries/crossplane/gcp":                  {FileKind: []model.FileKind{model.KindYAML}, Platform: "crossplane"},
@@ -51,18 +57,22 @@ var (
 		"../assets/queries/ansible/aws":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/ansible/gcp":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/ansible/azure":                   {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/ansible/general":                 {FileKind: []model.FileKind{model.KindYAML}, Platform: "ansible"},
+		"../assets/queries/ansible/config":                  {FileKind: []model.FileKind{model.KindCFG}, Platform: "ansible"},
+		"../assets/queries/ansible/hosts":                   {FileKind: []model.FileKind{model.KindINI, model.KindYAML}, Platform: "ansible"},
 		"../assets/queries/dockerfile":                      {FileKind: []model.FileKind{model.KindDOCKER}, Platform: "dockerfile"},
 		"../assets/queries/dockerCompose":                   {FileKind: []model.FileKind{model.KindYAML}, Platform: "dockerCompose"},
 		"../assets/queries/openAPI/general":                 {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/3.0":                     {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
 		"../assets/queries/openAPI/2.0":                     {FileKind: []model.FileKind{model.KindYAML, model.KindJSON}, Platform: "openAPI"},
-		"../assets/queries/azureResourceManager":            {FileKind: []model.FileKind{model.KindJSON}, Platform: "azureResourceManager"},
+		"../assets/queries/azureResourceManager":            {FileKind: []model.FileKind{model.KindJSON, model.KindBICEP}, Platform: "azureResourceManager"},
 		"../assets/queries/googleDeploymentManager/gcp":     {FileKind: []model.FileKind{model.KindYAML}, Platform: "googleDeploymentManager"},
 		"../assets/queries/googleDeploymentManager/gcp_bom": {FileKind: []model.FileKind{model.KindYAML}, Platform: "googleDeploymentManager"},
 		"../assets/queries/grpc":                            {FileKind: []model.FileKind{model.KindPROTO}, Platform: "grpc"},
 		"../assets/queries/buildah":                         {FileKind: []model.FileKind{model.KindBUILDAH}, Platform: "buildah"},
 		"../assets/queries/serverlessFW":                    {FileKind: []model.FileKind{model.KindYAML, model.KindYML}, Platform: "serverlessFW"},
 		"../assets/queries/knative":                         {FileKind: []model.FileKind{model.KindYAML}, Platform: "knative"},
+		"../assets/queries/cicd/github":                     {FileKind: []model.FileKind{model.KindYAML}, Platform: "cicd"},
 	}
 
 	issueTypes = map[string]string{
@@ -162,7 +172,7 @@ func getFilesMetadatasWithContent(t testing.TB, filePath string, content []byte)
 	files := make(model.FileMetadatas, 0)
 
 	for _, parser := range combinedParser {
-		docs, err := parser.Parse(filePath, content)
+		docs, err := parser.Parse(filePath, content, true, false, 15)
 		for _, document := range docs.Docs {
 			require.NoError(t, err)
 			files = append(files, model.FileMetadata{
@@ -185,10 +195,13 @@ func getCombinedParser() []*parser.Parser {
 	bd, _ := parser.NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
+		Add(&bicepParser.Parser{}).
 		Add(terraformParser.NewDefault()).
 		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).
 		Add(&buildahParser.Parser{}).
+		Add(&ansibleConfigParser.Parser{}).
+		Add(&ansibleHostsParser.Parser{}).
 		Build([]string{""}, []string{""})
 	return bd
 }

@@ -8,12 +8,12 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/Checkmarx/kics/internal/console/flags"
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
-	"github.com/Checkmarx/kics/internal/constants"
-	sentryReport "github.com/Checkmarx/kics/internal/sentry"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/scan"
+	"github.com/Checkmarx/kics/v2/internal/console/flags"
+	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/scan"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
@@ -116,6 +116,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		ExcludeQueries:              flags.GetMultiStrFlag(flags.ExcludeQueriesFlag),
 		ExcludeResults:              flags.GetMultiStrFlag(flags.ExcludeResultsFlag),
 		ExcludeSeverities:           flags.GetMultiStrFlag(flags.ExcludeSeveritiesFlag),
+		ExperimentalQueries:         flags.GetBoolFlag(flags.ExperimentalQueriesFlag),
 		IncludeQueries:              flags.GetMultiStrFlag(flags.IncludeQueriesFlag),
 		InputData:                   flags.GetStrFlag(flags.InputDataFlag),
 		OutputName:                  flags.GetStrFlag(flags.OutputNameFlag),
@@ -138,6 +139,12 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 		ChangedDefaultQueryPath:     changedDefaultQueryPath,
 		BillOfMaterials:             flags.GetBoolFlag(flags.BomFlag),
 		ExcludeGitIgnore:            flags.GetBoolFlag(flags.ExcludeGitIgnore),
+		OpenAPIResolveReferences:    flags.GetBoolFlag(flags.OpenAPIReferencesFlag),
+		ParallelScanFlag:            flags.GetIntFlag(flags.ParallelScanFile),
+		MaxFileSizeFlag:             flags.GetIntFlag(flags.MaxFileSizeFlag),
+		UseOldSeverities:            flags.GetBoolFlag(flags.UseOldSeveritiesFlag),
+		MaxResolverDepth:            flags.GetIntFlag(flags.MaxResolverDepth),
+		KicsComputeNewSimID:         flags.GetBoolFlag(flags.KicsComputeNewSimIDFlag),
 	}
 
 	return &scanParams
@@ -145,10 +152,6 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 
 func executeScan(scanParams *scan.Parameters) error {
 	log.Debug().Msg("console.scan()")
-
-	for _, warn := range warnings {
-		log.Warn().Msgf(warn)
-	}
 
 	console := newConsole()
 

@@ -1,13 +1,13 @@
 [
   {
     "queryName": "DynamoDB Table Not Encrypted",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 18,
     "filename": "positive1.yaml"
   },
   {
     "queryName": "DynamoDB Table Not Encrypted",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 17,
     "filename": "positive2.yaml"
   }

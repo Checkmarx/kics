@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 	"github.com/stretchr/testify/require"
@@ -452,6 +452,42 @@ block "label_one" {
 				  }
 				}
 			  }
+`,
+			wantErr: false,
+		},
+		{
+			name: "should evaluate without problems (3)",
+			input: `locals {
+  namespace_secrets = { for n in ["string1", "string2", "string3"] : "${n}_default" => {
+    "roles/secretmanager.secretAccessor" = [
+      "serviceAccount:${module.test[local.name].email}",
+    ]
+    }
+  }
+}
+`,
+			want: `
+			{
+  "locals": {
+    "namespace_secrets": "${{ for n in [\"string1\", \"string2\", \"string3\"] : \"${n}_default\" => {\n    \"roles/secretmanager.secretAccessor\" = [\n      \"serviceAccount:${module.test[local.name].email}\",\n    ]\n    }\n  }}",
+    "_kics_lines": {
+      "_kics__default": {
+        "_kics_line": 1
+      },
+      "_kics_namespace_secrets": {
+        "_kics_line": 2
+      }
+    }
+  },
+  "_kics_lines": {
+    "_kics__default": {
+      "_kics_line": 0
+    },
+    "_kics_locals": {
+      "_kics_line": 1
+    }
+  }
+}
 `,
 			wantErr: false,
 		},

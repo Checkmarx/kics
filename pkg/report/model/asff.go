@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/rs/zerolog/log"
 )
 
@@ -33,6 +33,7 @@ type AwsSecurityFinding struct {
 	Title         string
 	Types         []string
 	UpdatedAt     string
+	CWE           string
 }
 
 // AsffRecommendation includes the recommendation to avoid the finding
@@ -143,13 +144,14 @@ func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.Vulner
 			},
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},
+		CWE:        *aws.String(query.CWE),
 	}
 
 	return finding
 }
 
 func getEnv(env string) string {
-	if len(os.Getenv(env)) > 0 {
+	if os.Getenv(env) != "" {
 		return os.Getenv(env)
 	}
 

@@ -1,14 +1,12 @@
 package printer
 
 import (
-	"io/ioutil"
-	"os"
 	"testing"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/console/flags"
+	"github.com/Checkmarx/kics/v2/internal/console/flags"
 	"github.com/spf13/cobra"
-	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/assert"
 )
 
 func Test_PrintScanDuration(t *testing.T) {
@@ -33,12 +31,12 @@ func Test_PrintScanDuration(t *testing.T) {
 		{
 			name:                    "should print scan duration",
 			cmd:                     mockCmd,
-			flagsListContent:        "",
+			flagsListContent:        ``,
 			persintentFlag:          true,
 			supportedPlatforms:      []string{"terraform"},
 			supportedCloudProviders: []string{"aws"},
 			elapsed:                 time.Duration(1),
-			expected:                "Scan duration: 1ns\n",
+			expected:                "Scan duration: 1ns",
 		},
 		{
 			name: "should print scan duration when ci flag is true",
@@ -53,7 +51,7 @@ func Test_PrintScanDuration(t *testing.T) {
 			supportedPlatforms:      []string{"terraform"},
 			supportedCloudProviders: []string{"aws"},
 			elapsed:                 time.Duration(1),
-			expected:                "Scan duration: 0ms\n",
+			expected:                "Scan duration: 0ms",
 		},
 	}
 
@@ -61,17 +59,13 @@ func Test_PrintScanDuration(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			flags.InitJSONFlags(test.cmd, test.flagsListContent, test.persintentFlag, test.supportedPlatforms, test.supportedCloudProviders)
 
-			rescueStdout := os.Stdout
-			r, w, _ := os.Pipe()
-			os.Stdout = w
+			myBuffer := LogSink{}
+			logger := NewLogger(&myBuffer)
 
-			PrintScanDuration(test.elapsed)
+			PrintScanDuration(&logger, test.elapsed)
+			aux := myBuffer.Index(0)
 
-			w.Close()
-			out, _ := ioutil.ReadAll(r)
-			os.Stdout = rescueStdout
-
-			require.Equal(t, test.expected, string(out))
+			assert.Contains(t, aux, test.expected)
 		})
 	}
 }

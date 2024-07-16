@@ -1,62 +1,122 @@
 [
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 8,
     "filename": "positive1.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 6,
     "filename": "positive2.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 36,
     "filename": "positive3.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 6,
     "filename": "positive4.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 37,
     "filename": "positive5.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 10,
     "filename": "positive6.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 8,
     "filename": "positive7.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 38,
     "filename": "positive8.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 8,
     "filename": "positive9.json"
   },
   {
     "queryName": "AKS With Authorized IP Ranges Disabled",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 39,
     "filename": "positive10.json"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive1.bicep"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "LOW",
+    "line": 2,
+    "filename": "positive2.bicep"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "LOW",
+    "line": 30,
+    "filename": "positive3.bicep"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "LOW",
+    "line": 2,
+    "filename": "positive4.bicep"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "LOW",
+    "line": 31,
+    "filename": "positive5.bicep"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "LOW",
+    "line": 1,
+    "filename": "positive6.bicep"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "LOW",
+    "line": 2,
+    "filename": "positive7.bicep"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "LOW",
+    "line": 30,
+    "filename": "positive8.bicep"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "LOW",
+    "line": 2,
+    "filename": "positive9.bicep"
+  },
+  {
+    "queryName": "AKS With Authorized IP Ranges Disabled",
+    "severity": "LOW",
+    "line": 31,
+    "filename": "positive10.bicep"
   }
 ]

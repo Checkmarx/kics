@@ -18,7 +18,7 @@ hide:
 -   **Query id:** b30981fa-a12e-49c7-a5bb-eeafb61d0f0f
 -   **Query name:** Global Parameter Definition Not Being Used
 -   **Platform:** OpenAPI
--   **Severity:** <span style="color:#00C">Info</span>
+-   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Best Practices
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/openAPI/2.0/unused_parameter_definition)
 
@@ -28,7 +28,7 @@ All global parameters definitions  should be in use<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Postitive test num. 1 - json file" hl_lines="26"
+```json title="Positive test num. 1 - json file" hl_lines="26"
 {
   "swagger": "2.0",
   "info": {
@@ -67,7 +67,7 @@ All global parameters definitions  should be in use<br>
 }
 
 ```
-```yaml title="Postitive test num. 2 - yaml file" hl_lines="16"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="16"
 swagger: "2.0"
 info:
   title: Simple API Overview

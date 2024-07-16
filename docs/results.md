@@ -44,43 +44,96 @@ JSON reports are sorted by severity (from high to info) and should looks like as
 
 ```json
 {
-    "files_scanned": 2,
-    "files_parsed": 2,
-    "files_failed_to_scan": 0,
-    "queries_total": 253,
-    "queries_failed_to_execute": 0,
-    "queries_failed_to_compute_similarity_id": 0,
-    "queries": [
-        {
-            "query_name": "Container Allow Privilege Escalation Is True",
-            "query_id": "c878abb4-cca5-4724-92b9-289be68bd47c",
-            "severity": "MEDIUM",
-            "platform": "Terraform",
-            "files": [
-                {
-                    "file_name": "assets/queries/terraform/kubernetes/container_allow_privilege_escalation_is_true/test/positive.tf",
-                    "similarity_id": "063ed2389809f5f01ff420b63634700a9545c5e5130a6506568f925cdb0f8e13",
-                    "line": 11,
-                    "issue_type": "IncorrectValue",
-                    "search_key": "kubernetes_pod[test3].spec.container.allow_privilege_escalation",
-                    "search_value": "",
-                    "expected_value": "Attribute 'allow_privilege_escalation' is undefined or false",
-                    "actual_value": "Attribute 'allow_privilege_escalation' is true",
-                    "value": null
-                }
-            ]
-        }
-    ],
-    "scan_id": "console",
-    "severity_counters": {
-        "HIGH": 0,
-        "INFO": 0,
-        "LOW": 0,
-        "MEDIUM": 1
-    },
-    "total_counter": 1
+	"kics_version": "development",
+	"files_scanned": 2,
+	"lines_scanned": 59,
+	"files_parsed": 2,
+	"lines_parsed": 59,
+	"lines_ignored": 0,
+	"files_failed_to_scan": 0,
+	"queries_total": 291,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 10,
+		"INFO": 0,
+		"LOW": 0,
+		"MEDIUM": 0,
+		"TRACE": 0
+	},
+	"total_counter": 10,
+	"total_bom_resources": 0,
+	"start": "2024-02-14T10:27:20.947552Z",
+	"end": "2024-02-14T10:28:03.7510399Z",
+	"paths": [
+		".\\assets\\queries\\ansible\\aws\\alb_listening_on_http\\"
+	],
+	"queries": [
+		{
+			"query_name": "ALB Listening on HTTP",
+			"query_id": "f81d63d2-c5d7-43a4-a5b5-66717a41c895",
+			"query_url": "https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html",
+			"severity": "HIGH",
+			"platform": "Ansible",
+			"cwe": "22",
+			"cloud_provider": "AWS",
+			"category": "Networking and Firewall",
+			"experimental": false,
+			"description": "AWS Application Load Balancer (alb) should not listen on HTTP",
+			"description_id": "3a7576e5",
+			"files": [
+				{
+					"file_name": "assets\\queries\\ansible\\aws\\alb_listening_on_http\\test\\positive.yaml",
+					"similarity_id": "02e577bf2456c31f64f2855f8345fa051c0fe2159e1f116bd392e02af5f4a4f9",
+					"line": 29,
+					"resource_type": "community.aws.elb_application_lb",
+					"resource_name": "my_elb_application2",
+					"issue_type": "MissingAttribute",
+					"search_key": "name={{my_elb_application2}}.{{community.aws.elb_application_lb}}.listeners",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'aws_elb_application_lb' Protocol should be 'HTTP'",
+					"actual_value": "'aws_elb_application_lb' Protocol is missing"
+				},
+				{
+					"file_name": "assets\\queries\\ansible\\aws\\alb_listening_on_http\\test\\positive.yaml",
+					"similarity_id": "a00c90f900058bb60c8eeeaf5236416079e5085fe0465b69aa51b5aa5b7442fe",
+					"line": 11,
+					"resource_type": "community.aws.elb_application_lb",
+					"resource_name": "my_elb_application",
+					"issue_type": "IncorrectValue",
+					"search_key": "name={{my_elb_application}}.{{community.aws.elb_application_lb}}.listeners.Protocol=HTTP",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'aws_elb_application_lb' Protocol should be 'HTTP'",
+					"actual_value": "'aws_elb_application_lb' Protocol it's not 'HTTP'"
+				}
+			]
+		}
+	]
 }
 ```
+**Overview of key-value pairs:**  									
+**kics_version**: The version of KICS used for the scan.   			
+**files_scanned**: The number of files scanned during the scan.   
+**lines_scanned**: The total number of lines scanned during the scan.   
+**files_parsed**: The number of files successfully parsed during the scan.    
+**lines_parsed**: The total number of lines successfully parsed during the scan.    
+**lines_ignored**: The number of lines ignored during the scan.    
+**files_failed_to_scan**: The number of files that failed to be scanned.    
+**queries_total**: The total number of queries executed during the scan.    
+**queries_failed_to_execute**: The number of queries that failed to execute.    
+**queries_failed_to_compute_similarity_id**: The number of queries that failed to compute similarity ID.   
+**scan_id**: An identifier for the scan.   
+**severity_counters**: A breakdown of the severity of the issues found during the scan.   
+**total_counter**: The total number of issues found during the scan.   
+**total_bom_resources**: The total number of Bill of Materials (BOM) resources found during the scan.   
+**start**: The start timestamp of the scan.   
+**end**: The end timestamp of the scan.    
+**paths**: The paths scanned during the scan.    
+**queries**: Information about individual queries executed during the scan, including their names, IDs, URLs, severities, platforms, CWEs, cloud providers, categories, experimental flags, descriptions, and details about the files where issues were found.   
 
 ## SARIF
 
@@ -96,61 +149,75 @@ SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.
             "tool": {
                 "driver": {
                     "name": "KICS",
-                    "version": "1.2.0",
+                    "version": "development",
                     "fullName": "Keeping Infrastructure as Code Secure",
                     "informationUri": "https://www.kics.io/",
                     "rules": [
                         {
-                            "id": "c878abb4-cca5-4724-92b9-289be68bd47c",
-                            "name": "Container Allow Privilege Escalation Is True",
+                            "id": "f81d63d2-c5d7-43a4-a5b5-66717a41c895",
+                            "name": "ALB Listening on HTTP",
                             "shortDescription": {
-                                "text": "Container Allow Privilege Escalation Is True"
+                                "text": "ALB Listening on HTTP"
                             },
                             "fullDescription": {
-                                "text": "Admission of privileged containers should be minimized"
+                                "text": "AWS Application Load Balancer (alb) should not listen on HTTP"
                             },
                             "defaultConfiguration": {
-                                "level": "warning"
+                                "level": "error"
                             },
-                            "helpUri": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#allow_privilege_escalation",
+                            "helpUri": "https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html",
                             "relationships": [
                                 {
                                     "target": {
-                                        "id": "CAT001",
-                                        "index": 5,
+                                        "id": "CAT009",
+                                        "index": 9,
                                         "toolComponent": {
                                             "name": "Categories",
-                                            "guid": "58cdcc6f-fe41-4724-bfb3-131a93df4c3f",
-                                            "index": 0
+                                            "guid": "58cdcc6f-fe41-4724-bfb3-131a93df4c3f"
+                                        }
+                                    }
+                                },
+                                {
+                                    "target": {
+                                        "id": "22",
+                                        "guid": "526eea66-dc1e-4417-9bc9-cf68292dc54d",
+                                        "toolComponent": {
+                                            "name": "CWE",
+                                            "guid": "1489b0c4-d7ce-4d31-af66-6382a01202e3"
                                         }
                                     }
                                 }
                             ]
-                        }
+                        },
+                        // More rules may exist before the rest.
                     ]
                 }
             },
             "results": [
                 {
-                    "ruleId": "c878abb4-cca5-4724-92b9-289be68bd47c",
+                    "ruleId": "f81d63d2-c5d7-43a4-a5b5-66717a41c895",
                     "ruleIndex": 0,
                     "kind": "fail",
                     "message": {
-                        "text": "Attribute 'allow_privilege_escalation' is true"
+                        "text": "'aws_elb_application_lb' Protocol is missing",
+                        "properties": {
+                            "platform": "Ansible"
+                        }
                     },
                     "locations": [
                         {
                             "physicalLocation": {
                                 "artifactLocation": {
-                                    "uri": "assets/queries/terraform/kubernetes/container_allow_privilege_escalation_is_true/test/positive.tf"
+                                    "uri": "assets\\queries\\ansible\\aws\\alb_listening_on_http\\test\\positive.yaml"
                                 },
                                 "region": {
-                                    "startLine": 11
+                                    "startLine": 29
                                 }
                             }
                         }
                     ]
-                }
+                },
+                // Additional results may exist before the rest.
             ],
             "taxonomies": [
                 {
@@ -164,8 +231,8 @@ SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.
                     },
                     "taxa": [
                         {
-                            "id": "CAT000",
                             "name": "Undefined Category",
+                            "id": "CAT000",
                             "shortDescription": {
                                 "text": "Category is not defined"
                             },
@@ -174,108 +241,8 @@ SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.
                             }
                         },
                         {
-                            "id": "CAT010",
-                            "name": "Observability",
-                            "shortDescription": {
-                                "text": "Logging and Monitoring"
-                            },
-                            "fullDescription": {
-                                "text": "Logging and Monitoring"
-                            }
-                        },
-                        {
-                            "id": "CAT011",
-                            "name": "Resource Management",
-                            "shortDescription": {
-                                "text": "Resource and privilege limit configuration"
-                            },
-                            "fullDescription": {
-                                "text": "Resource and privilege limit configuration"
-                            }
-                        },
-                        {
-                            "id": "CAT012",
-                            "name": "Secret Management",
-                            "shortDescription": {
-                                "text": "Secret and Key management"
-                            },
-                            "fullDescription": {
-                                "text": "Secret and Key management"
-                            }
-                        },
-                        {
-                            "id": "CAT013",
-                            "name": "Supply-Chain",
-                            "shortDescription": {
-                                "text": "Dependency version management"
-                            },
-                            "fullDescription": {
-                                "text": "Dependency version management"
-                            }
-                        },
-                        {
-                            "id": "CAT001",
-                            "name": "Access Control",
-                            "shortDescription": {
-                                "text": "Service permission and identity management"
-                            },
-                            "fullDescription": {
-                                "text": "Service permission and identity management"
-                            }
-                        },
-                        {
-                            "id": "CAT004",
-                            "name": "Best Practices",
-                            "shortDescription": {
-                                "text": "Metadata management"
-                            },
-                            "fullDescription": {
-                                "text": "Metadata management"
-                            }
-                        },
-                        {
-                            "id": "CAT005",
-                            "name": "Build Process",
-                            "shortDescription": {
-                                "text": "Insecure configurations when building/deploying Docker images"
-                            },
-                            "fullDescription": {
-                                "text": "Insecure configurations when building/deploying Docker images"
-                            }
-                        },
-                        {
-                            "id": "CAT007",
-                            "name": "Insecure Configurations",
-                            "shortDescription": {
-                                "text": "Configurations which expose the application unnecessarily"
-                            },
-                            "fullDescription": {
-                                "text": "Configurations which expose the application unnecessarily"
-                            }
-                        },
-                        {
-                            "id": "CAT009",
-                            "name": "Networking and Firewall",
-                            "shortDescription": {
-                                "text": "Network port exposure and firewall configuration"
-                            },
-                            "fullDescription": {
-                                "text": "Network port exposure and firewall configuration"
-                            }
-                        },
-                        {
-                            "id": "CAT002",
-                            "name": "Availability",
-                            "shortDescription": {
-                                "text": "Reliability and Scalability"
-                            },
-                            "fullDescription": {
-                                "text": "Reliability and Scalability"
-                            }
-                        },
-                        {
-                            "id": "CAT003",
                             "name": "Backup",
+                            "id": "CAT003",
                             "shortDescription": {
                                 "text": "Survivability and Recovery"
                             },
@@ -284,8 +251,98 @@ SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.
                             }
                         },
                         {
-                            "id": "CAT006",
+                            "name": "Structure and Semantics",
+                            "id": "CAT014",
+                            "shortDescription": {
+                                "text": "Malformed document structure or inadequate semantics"
+                            },
+                            "fullDescription": {
+                                "text": "Malformed document structure or inadequate semantics"
+                            }
+                        },
+                        {
+                            "name": "Availability",
+                            "id": "CAT002",
+                            "shortDescription": {
+                                "text": "Reliability and Scalability"
+                            },
+                            "fullDescription": {
+                                "text": "Reliability and Scalability"
+                            }
+                        },
+                        {
+                            "name": "Insecure Configurations",
+                            "id": "CAT007",
+                            "shortDescription": {
+                                "text": "Configurations which expose the application unnecessarily"
+                            },
+                            "fullDescription": {
+                                "text": "Configurations which expose the application unnecessarily"
+                            }
+                        },
+                        {
+                            "name": "Resource Management",
+                            "id": "CAT011",
+                            "shortDescription": {
+                                "text": "Resource and privilege limit configuration"
+                            },
+                            "fullDescription": {
+                                "text": "Resource and privilege limit configuration"
+                            }
+                        },
+                        {
+                            "name": "Supply-Chain",
+                            "id": "CAT013",
+                            "shortDescription": {
+                                "text": "Dependency version management"
+                            },
+                            "fullDescription": {
+                                "text": "Dependency version management"
+                            }
+                        },
+                        {
+                            "name": "Bill Of Materials",
+                            "id": "CAT015",
+                            "shortDescription": {
+                                "text": "List of resources provisioned"
+                            },
+                            "fullDescription": {
+                                "text": "List of resources provisioned"
+                            }
+                        },
+                        {
+                            "name": "Access Control",
+                            "id": "CAT001",
+                            "shortDescription": {
+                                "text": "Service permission and identity management"
+                            },
+                            "fullDescription": {
+                                "text": "Service permission and identity management"
+                            }
+                        },
+                        {
+                            "name": "Networking and Firewall",
+                            "id": "CAT009",
+                            "shortDescription": {
+                                "text": "Network port exposure and firewall configuration"
+                            },
+                            "fullDescription": {
+                                "text": "Network port exposure and firewall configuration"
+                            }
+                        },
+                        {
+                            "name": "Observability",
+                            "id": "CAT010",
+                            "shortDescription": {
+                                "text": "Logging and Monitoring"
+                            },
+                            "fullDescription": {
+                                "text": "Logging and Monitoring"
+                            }
+                        },
+                        {
                             "name": "Encryption",
+                            "id": "CAT006",
                             "shortDescription": {
                                 "text": "Data Security and Encryption configuration"
                             },
@@ -294,22 +351,114 @@ SARIF reports are sorted by severity (from high to info), following [SARIF v2.1.
                             }
                         },
                         {
-                            "id": "CAT008",
+                            "name": "Build Process",
+                            "id": "CAT005",
+                            "shortDescription": {
+                                "text": "Insecure configurations when building/deploying"
+                            },
+                            "fullDescription": {
+                                "text": "Insecure configurations when building/deploying"
+                            }
+                        },
+                        {
                             "name": "Insecure Defaults",
+                            "id": "CAT008",
                             "shortDescription": {
                                 "text": "Configurations that are insecure by default"
                             },
                             "fullDescription": {
                                 "text": "Configurations that are insecure by default"
+                            }
+                        },
+                        {
+                            "name": "Secret Management",
+                            "id": "CAT012",
+                            "shortDescription": {
+                                "text": "Secret and Key management"
+                            },
+                            "fullDescription": {
+                                "text": "Secret and Key management"
+                            }
+                        },
+                        {
+                            "name": "Best Practices",
+                            "id": "CAT004",
+                            "shortDescription": {
+                                "text": "Metadata management"
+                            },
+                            "fullDescription": {
+                                "text": "Metadata management"
                             }
                         }
                     ]
-                }
+                },
+                {
+                    "guid": "1489b0c4-d7ce-4d31-af66-6382a01202e3",
+                    "name": "CWE",
+                    "fullDescription": {
+                        "text": "The MITRE Common Weakness Enumeration"
+                    },
+                    "shortDescription": {
+                        "text": "The MITRE Common Weakness Enumeration"
+                    },
+                    "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.13.xml.zip",
+                    "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.13.pdf",
+                    "isComprehensive": true,
+                    "language": "en",
+                    "minimumRequiredLocalizedDataSemanticVersion": "4.13",
+                    "organization": "MITRE",
+                    "releaseDateUtc": "2023-10-26",
+                    "taxa": [
+                        {
+                            "guid": "526eea66-dc1e-4417-9bc9-cf68292dc54d",
+                            "id": "22",
+                            "shortDescription": {
+                                "text": "The product uses external input to construct a pathname that is intended to identify a file or directory that is located underneath a restricted parent directory, but the product does not properly neutralize special elements within the pathname that can cause the pathname to resolve to a location that is outside of the restricted directory."
+                            },
+                            "fullDescription": {
+                                "text": "Many file operations are intended to take place within a restricted directory. By using special elements such as .. and / separators, attackers can escape outside of the restricted location to access files or directories that are elsewhere on the system. One of the most common special elements is the ../ sequence, which in most modern operating systems is interpreted as the parent directory of the current location. This is referred to as relative path traversal. Path traversal also covers the use of absolute pathnames such as /usr/local/bin, which may also be useful in accessing unexpected files. This is referred to as absolute path traversal. In many programming languages, the injection of a null byte (the 0 or NUL) may allow an attacker to truncate a generated filename to widen the scope of attack. For example, the product may add .txt to any pathname, thus limiting the attacker to text files, but a null injection may effectively remove this restriction."
+                            },
+                            "helpUri": "https://cwe.mitre.org/data/definitions/22.html"
+                        }
+                    ]
+                },
+                // Additional taxonomies may exist before the rest.
             ]
         }
     ]
 }
 ```
+**Overview of key-value pairs:**     
+**$schema**: Specifies the URI of the JSON schema file that defines the SARIF format. It ensures that the SARIF file conforms to the specified schema.   
+**version**: Indicates the version of the SARIF format being used. In this case, it's version 2.1.0.   
+**runs**: Contains an array of runs. Each run represents the execution of a tool on a specific set of files.   
+**tool**: Describes the tool that produced the SARIF file. It includes information such as the tool name, version, full name, and URLs for more information about the tool.   
+**driver**: Describes the driver component of the tool. It includes information such as the tool name, version, full name, and URLs for more information about the tool.   
+**rules**: Contains an array of rules defined by the tool. Each rule represents a specific check or analysis that the tool performs.   
+**id**: A unique identifier for the rule.   
+**name**: The name of the rule.   
+**shortDescription**: A short description of the rule.   
+**fullDescription**: A full description of the rule.   
+**defaultConfiguration**: Specifies the default configuration for the rule. In this case, it indicates the default severity level.   
+**helpUri**: URL pointing to additional help or documentation for the rule.   
+**relationships**: Describes the relationships of the rule with other entities such as taxonomies or external standards.   
+**target**: Specifies the target of the relationship, which can be a category (in this case) or a Common Weakness Enumeration (CWE) entry.   
+**results**: Contains an array of results produced by the tool's analysis. Each result represents an issue or finding identified during the analysis.   
+**ruleId**: Specifies the ID of the rule associated with the result.   
+**ruleIndex**: Specifies the index of the rule associated with the result.   
+**kind**: Indicates the kind of result, such as "fail", "warning", or "note".   
+**message**: Contains information about the result message, including text and properties.   
+**locations**: Contains an array of locations associated with the result, specifying where the issue was found in the source code.   
+**physicalLocation**: Describes a physical location in the source code where the issue was found.   
+**artifactLocation**: Specifies the location of the artifact (file) containing the issue.   
+**uri**: The URI of the artifact (file) containing the issue.   
+**region**: Describes a region within the artifact where the issue was found, such as start line number.   
+**taxonomies**: Contains an array of taxonomies used to classify issues.   
+**guid**: A unique identifier for the taxonomy.   
+**name**: The name of the taxonomy.   
+**fullDescription**: A full description of the taxonomy.   
+**shortDescription**: A short description of the taxonomy.   
+**taxa**: Contains an array of taxonomic categories within the taxonomy.   
 
 ## Gitlab SAST
 
@@ -318,104 +467,118 @@ Gitlab SAST reports are sorted by severity (from high to info), following [Gitla
 
 ```json
 {
-    "schema": "https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v15.0.6/dist/sast-report-format.json",
-    "version": "15.0.6",
-    "scan": {
-        "analyzer": {
-              "id": "keeping-infrastructure-as-code-secure",
-              "name": "Keeping Infrastructure as Code Secure",
-              "version": "1.2.0",
-              "vendor":{
-                "name": "Checkmarx"
-            }
-        },
-        "start_time": "2021-05-26T17:22:13",
-        "end_time": "2021-05-26T17:22:13",
-        "status": "success",
-        "type": "sast",
-        "scanner": {
-            "id": "keeping-infrastructure-as-code-secure",
-            "name": "Keeping Infrastructure as Code Secure",
-            "url": "https://www.kics.io/",
-            "version": "development",
-            "vendor": {
-                "name": "Checkmarx"
-            }
-        }
-    },
-    "vulnerabilities": [
-        {
-            "id": "32e763ac363dfee1ea972d951fb3de00f5f7a8d3f9f57b93e55e2d51957794a6",
-            "severity": "High",
-            "name": "Container Is Privileged",
-            "links": [
-                {
-                    "url": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged"
-                }
-            ],
-            "location": {
-                "file": "assets/queries/terraform/kubernetes/container_is_privileged/test/positive.tf",
-                "start_line": 8,
-                "end_line": 8
-            },
-            "identifiers": [
-                {
-                    "type": "kics",
-                    "name": "Keeping Infrastructure as Code Secure",
-                    "url": "https://docs.kics.io/latest/queries/terraform-queries",
-                    "value": "87065ef8-de9b-40d8-9753-f4a4303e27a4"
-                }
-            ]
-        },
-        {
-            "id": "32e763ac363dfee1ea972d951fb3de00f5f7a8d3f9f57b93e55e2d51957794a6",
-            "severity": "High",
-            "name": "Container Is Privileged",
-            "links": [
-                {
-                    "url": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged"
-                }
-            ],
-            "location": {
-                "file": "assets/queries/terraform/kubernetes/container_is_privileged/test/positive.tf",
-                "start_line": 8,
-                "end_line": 8
-            },
-            "identifiers": [
-                {
-                    "type": "kics",
-                    "name": "Keeping Infrastructure as Code Secure",
-                    "url": "https://docs.kics.io/latest/queries/terraform-queries",
-                    "value": "87065ef8-de9b-40d8-9753-f4a4303e27a4"
-                }
-            ]
-        },
-        {
-            "id": "3d4f14f3ac2ebc0d2cb1710eec4f61fae359fe78ab244cb716485cb6c90846f6",
-            "severity": "High",
-            "name": "Container Is Privileged",
-            "links": [
-                {
-                    "url": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged"
-                }
-            ],
-            "location": {
-                "file": "assets/queries/terraform/kubernetes/container_is_privileged/test/positive.tf",
-                "start_line": 108,
-                "end_line": 108
-            },
-            "identifiers": [
-                {
-                    "type": "kics",
-                    "name": "Keeping Infrastructure as Code Secure",
-                    "url": "https://docs.kics.io/latest/queries/terraform-queries",
-                    "value": "87065ef8-de9b-40d8-9753-f4a4303e27a4"
-                }
-            ]
-        }
+	"schema": "https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v15.0.6/dist/sast-report-format.json",
+	"version": "15.0.6",
+	"scan": {
+		"analyzer": {
+			"id": "keeping-infrastructure-as-code-secure",
+			"name": "Keeping Infrastructure as Code Secure",
+			"version": "development",
+			"vendor": {
+				"name": "Checkmarx"
+			}
+		},
+		"start_time": "2024-02-14T10:27:20",
+		"end_time": "2024-02-14T10:28:03",
+		"status": "success",
+		"type": "sast",
+		"scanner": {
+			"id": "keeping-infrastructure-as-code-secure",
+			"name": "Keeping Infrastructure as Code Secure",
+			"url": "https://www.kics.io/",
+			"version": "development",
+			"vendor": {
+				"name": "Checkmarx"
+			}
+		}
+	},
+	"vulnerabilities": [
+		{
+			"id": "02e577bf2456c31f64f2855f8345fa051c0fe2159e1f116bd392e02af5f4a4f9",
+			"severity": "High",
+			"name": "ALB Listening on HTTP",
+            "cwe": "22",
+			"links": [
+				{
+					"url": "https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html"
+				}
+			],
+			"location": {
+				"file": "assets\\queries\\ansible\\aws\\alb_listening_on_http\\test\\positive.yaml",
+				"start_line": 29,
+				"end_line": 29
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/ansible-queries",
+					"value": "f81d63d2-c5d7-43a4-a5b5-66717a41c895"
+				}
+			]
+		},
+		{
+			"id": "a00c90f900058bb60c8eeeaf5236416079e5085fe0465b69aa51b5aa5b7442fe",
+			"severity": "High",
+			"name": "ALB Listening on HTTP",
+            "cwe": "22",
+			"links": [
+				{
+					"url": "https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html"
+				}
+			],
+			"location": {
+				"file": "assets\\queries\\ansible\\aws\\alb_listening_on_http\\test\\positive.yaml",
+				"start_line": 11,
+				"end_line": 11
+			},
+			"identifiers": [
+				{
+					"type": "kics",
+					"name": "Keeping Infrastructure as Code Secure",
+					"url": "https://docs.kics.io/latest/queries/ansible-queries",
+					"value": "f81d63d2-c5d7-43a4-a5b5-66717a41c895"
+				}
+			]
+		},
     ]
-}
+}  
 ```
+**Overview of key-value pairs:**   
+**schema**: Specifies the URI of the JSON schema file that defines the Gitlab SAST report format. It ensures that the report conforms to the specified schema.    
+**version**: Indicates the version of the Gitlab SAST report format being used.   
+**scan**: Contains information about the scan performed by the SAST tool.   
+**analyzer**: Provides details about the SAST tool used for analysis.   
+**id**: A unique identifier for the analyzer.   
+**name**: The name of the analyzer.   
+**version**: The version of the analyzer.   
+**vendor**: Information about the vendor of the analyzer.   
+**name**: The name of the vendor.   
+**start_time**: The start timestamp of the scan.   
+**end_time**: The end timestamp of the scan.   
+**status**: Indicates the status of the scan, whether it was successful or not.   
+**type**: Specifies the type of scan, in this case, SAST (Static Application Security Testing).   
+**scanner**: Provides details about the scanner used for the SAST analysis.   
+**id**: A unique identifier for the scanner.   
+**name**: The name of the scanner.   
+**url**: URL pointing to more information about the scanner.   
+**version**: The version of the scanner.   
+**vendor**: Information about the vendor of the scanner.   
+**name**: The name of the vendor.   
+**vulnerabilities**: Contains an array of vulnerabilities found during the scan.   
+**id**: A unique identifier for the vulnerability.   
+**severity**: The severity level of the vulnerability.   
+**name**: The name or description of the vulnerability.   
+**links**: URLs pointing to additional information or resources related to the vulnerability.   
+**location**: Provides information about where the vulnerability was found.   
+**file**: The path to the file containing the vulnerability.   
+**start_line**: The line number where the vulnerability starts.   
+**end_line**: The line number where the vulnerability ends.   
+**identifiers**: Provides additional identifiers for the vulnerability.   
+**type**: The type of identifier (e.g., kics).   
+**name**: The name or description of the identifier.   
+**url**: URL pointing to more information about the identifier. 
+
 
 ## JUnit
 
@@ -424,42 +587,36 @@ JUnit reports follow [JUnit XML specification by junit-team](https://github.com/
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="KICS vdevelopment" time="11.5808455s" failures="25">
-	<testsuite name="[Terraform]" failures="11" tests="11">
-		<testcase name="[Authentication Without MFA]: Users should authenticate with MFA (Multi-factor Authentication)">
-			<failure type="Authentication Without MFA" message="A problem was found on &#39;assets/queries/terraform/aws/iam_policy_grants_full_permissions/test/positive.tf&#39; file in line 20, The attributes &#39;policy.Statement.Condition&#39;, &#39;policy.Statement.Condition.BoolIfExists&#39;, and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; are defined and not null, but The attribute(s) &#39;policy.Statement.Condition&#39; or/and &#39;policy.Statement.Condition.BoolIfExists&#39; or/and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; is/are undefined or null."></failure>
-			<failure type="Authentication Without MFA" message="A problem was found on &#39;assets/queries/terraform/aws/iam_user_policy_without_mfa/test/negative.tf&#39; file in line 43, The attributes &#39;policy.Statement.Condition&#39;, &#39;policy.Statement.Condition.BoolIfExists&#39;, and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; are defined and not null, but The attribute(s) &#39;policy.Statement.Condition&#39; or/and &#39;policy.Statement.Condition.BoolIfExists&#39; or/and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; is/are undefined or null."></failure>
-			<failure type="Authentication Without MFA" message="A problem was found on &#39;assets/queries/terraform/aws/authentication_without_mfa/test/positive2.tf&#39; file in line 19, The attributes &#39;policy.Statement.Condition&#39;, &#39;policy.Statement.Condition.BoolIfExists&#39;, and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; are defined and not null, but The attribute(s) &#39;policy.Statement.Condition&#39; or/and &#39;policy.Statement.Condition.BoolIfExists&#39; or/and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; is/are undefined or null."></failure>
-			<failure type="Authentication Without MFA" message="A problem was found on &#39;assets/queries/terraform/aws/root_account_has_active_access_keys/test/negative.tf&#39; file in line 16, The attributes &#39;policy.Statement.Condition&#39;, &#39;policy.Statement.Condition.BoolIfExists&#39;, and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; are defined and not null, but The attribute(s) &#39;policy.Statement.Condition&#39; or/and &#39;policy.Statement.Condition.BoolIfExists&#39; or/and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; is/are undefined or null."></failure>
-			<failure type="Authentication Without MFA" message="A problem was found on &#39;assets/queries/terraform/aws/iam_user_policy_without_mfa/test/negative.tf&#39; file in line 18, &#39;policy.Statement.Principal.AWS&#39; contains &#39;:mfa/&#39; or &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; is set to true, but &#39;policy.Statement.Principal.AWS&#39; doesn&#39;t contain &#39;:mfa/&#39; or &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; is set to false."></failure>
-			<failure type="Authentication Without MFA" message="A problem was found on &#39;assets/queries/terraform/aws/iam_policies_attached_to_user/test/positive2.tf&#39; file in line 20, The attributes &#39;policy.Statement.Condition&#39;, &#39;policy.Statement.Condition.BoolIfExists&#39;, and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; are defined and not null, but The attribute(s) &#39;policy.Statement.Condition&#39; or/and &#39;policy.Statement.Condition.BoolIfExists&#39; or/and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; is/are undefined or null."></failure>
-			<failure type="Authentication Without MFA" message="A problem was found on &#39;assets/queries/terraform/aws/iam_policy_grants_full_permissions/test/negative.tf&#39; file in line 20, The attributes &#39;policy.Statement.Condition&#39;, &#39;policy.Statement.Condition.BoolIfExists&#39;, and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; are defined and not null, but The attribute(s) &#39;policy.Statement.Condition&#39; or/and &#39;policy.Statement.Condition.BoolIfExists&#39; or/and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; is/are undefined or null."></failure>
-			<failure type="Authentication Without MFA" message="A problem was found on &#39;assets/queries/terraform/aws/iam_user_policy_without_mfa/test/positive.tf&#39; file in line 18, The attributes &#39;policy.Statement.Condition&#39;, &#39;policy.Statement.Condition.BoolIfExists&#39;, and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; are defined and not null, but The attribute(s) &#39;policy.Statement.Condition&#39; or/and &#39;policy.Statement.Condition.BoolIfExists&#39; or/and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; is/are undefined or null."></failure>
-			<failure type="Authentication Without MFA" message="A problem was found on &#39;assets/queries/terraform/aws/root_account_has_active_access_keys/test/positive1.tf&#39; file in line 16, The attributes &#39;policy.Statement.Condition&#39;, &#39;policy.Statement.Condition.BoolIfExists&#39;, and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; are defined and not null, but The attribute(s) &#39;policy.Statement.Condition&#39; or/and &#39;policy.Statement.Condition.BoolIfExists&#39; or/and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; is/are undefined or null."></failure>
-			<failure type="Authentication Without MFA" message="A problem was found on &#39;assets/queries/terraform/aws/root_account_has_active_access_keys/test/positive2.tf&#39; file in line 16, The attributes &#39;policy.Statement.Condition&#39;, &#39;policy.Statement.Condition.BoolIfExists&#39;, and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; are defined and not null, but The attribute(s) &#39;policy.Statement.Condition&#39; or/and &#39;policy.Statement.Condition.BoolIfExists&#39; or/and &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; is/are undefined or null."></failure>
-			<failure type="Authentication Without MFA" message="A problem was found on &#39;assets/queries/terraform/aws/authentication_without_mfa/test/positive1.tf&#39; file in line 23, &#39;policy.Statement.Principal.AWS&#39; contains &#39;:mfa/&#39; or &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; is set to true, but &#39;policy.Statement.Principal.AWS&#39; doesn&#39;t contain &#39;:mfa/&#39; or &#39;policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent&#39; is set to false."></failure>
+<testsuites name="KICS development" time="37.8629413s" failures="10">
+	<testsuite name="Ansible" failures="2" tests="2">
+		<testcase cwe="22" name="ALB Listening on HTTP: assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml file in line 11" classname="Ansible">
+			<failure type="AWS Application Load Balancer (alb) should not listen on HTTP" message="[Severity: HIGH, Query description: AWS Application Load Balancer (alb) should not listen on HTTP] Problem found on &#39;assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml&#39; file in line 11. Expected value: &#39;aws_elb_application_lb&#39; Protocol should be &#39;HTTP&#39;. Actual value: &#39;aws_elb_application_lb&#39; Protocol it&#39;s not &#39;HTTP&#39;."></failure>
+		</testcase>
+		<testcase cwe="22" name="ALB Listening on HTTP: assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml file in line 29" classname="Ansible">
+			<failure type="AWS Application Load Balancer (alb) should not listen on HTTP" message="[Severity: HIGH, Query description: AWS Application Load Balancer (alb) should not listen on HTTP] Problem found on &#39;assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml&#39; file in line 29. Expected value: &#39;aws_elb_application_lb&#39; Protocol should be &#39;HTTP&#39;. Actual value: &#39;aws_elb_application_lb&#39; Protocol is missing."></failure>
 		</testcase>
 	</testsuite>
-	<testsuite name="[CloudFormation]" failures="14" tests="14">
-		<testcase name="[CloudWatch Metrics Disabled]: Checks if CloudWatch Metrics is Enabled">
-			<failure type="CloudWatch Metrics Disabled" message="A problem was found on &#39;assets/queries/cloudFormation/cloudwatch_metrics_disabled/test/positive4.json&#39; file in line 5, Resources.Prod.Properties.MethodSettings should be defined, but Resources.Prod.Properties.MethodSettings is undefined."></failure>
-			<failure type="CloudWatch Metrics Disabled" message="A problem was found on &#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/positive6.json&#39; file in line 13, Resources.GreetingApiProdStage2.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage2.Properties.MethodSettings[0].MetricsEnabled is undefined."></failure>
-			<failure type="CloudWatch Metrics Disabled" message="A problem was found on &#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/negative1.yaml&#39; file in line 12, Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled is undefined."></failure>
-			<failure type="CloudWatch Metrics Disabled" message="A problem was found on &#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/positive2.yaml&#39; file in line 12, Resources.GreetingApiProdStage1.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage1.Properties.MethodSettings[0].MetricsEnabled is undefined."></failure>
-			<failure type="CloudWatch Metrics Disabled" message="A problem was found on &#39;assets/queries/cloudFormation/cloudwatch_metrics_disabled/test/positive1.yaml&#39; file in line 18, Resources.Prod.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.Prod.Properties.MethodSettings[0].MetricsEnabled is set to false."></failure>
-			<failure type="CloudWatch Metrics Disabled" message="A problem was found on &#39;assets/queries/cloudFormation/cloudwatch_metrics_disabled/test/positive3.yaml&#39; file in line 6, Resources.Prod.Properties.MethodSettings should be defined, but Resources.Prod.Properties.MethodSettings is undefined."></failure>
-			<failure type="CloudWatch Metrics Disabled" message="A problem was found on &#39;assets/queries/cloudFormation/cloudwatch_metrics_disabled/test/positive2.json&#39; file in line 25, Resources.Prod.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.Prod.Properties.MethodSettings[0].MetricsEnabled is undefined."></failure>
-			<failure type="CloudWatch Metrics Disabled" message="A problem was found on &#39;assets/queries/cloudFormation/cloudwatch_metrics_disabled/test/positive1.yaml&#39; file in line 20, Resources.Prod.Properties.MethodSettings[1].MetricsEnabled should be set to true, but Resources.Prod.Properties.MethodSettings[1].MetricsEnabled is undefined."></failure>
-			<failure type="CloudWatch Metrics Disabled" message="A problem was found on &#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/negative2.json&#39; file in line 17, Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled is undefined."></failure>
-			<failure type="CloudWatch Metrics Disabled" message="A problem was found on &#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/positive4.json&#39; file in line 35, Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled is undefined."></failure>
-			<failure type="CloudWatch Metrics Disabled" message="A problem was found on &#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/positive5.json&#39; file in line 16, Resources.GreetingApiProdStage1.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage1.Properties.MethodSettings[0].MetricsEnabled is undefined."></failure>
-			<failure type="CloudWatch Metrics Disabled" message="A problem was found on &#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/positive1.yaml&#39; file in line 12, Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage.Properties.MethodSettings[0].MetricsEnabled is undefined."></failure>
-			<failure type="CloudWatch Metrics Disabled" message="A problem was found on &#39;assets/queries/cloudFormation/api_gateway_deployment_without_access_log_setting/test/positive3.yaml&#39; file in line 12, Resources.GreetingApiProdStage2.Properties.MethodSettings[0].MetricsEnabled should be set to true, but Resources.GreetingApiProdStage2.Properties.MethodSettings[0].MetricsEnabled is undefined."></failure>
-			<failure type="CloudWatch Metrics Disabled" message="A problem was found on &#39;assets/queries/cloudFormation/cloudwatch_metrics_disabled/test/positive2.json&#39; file in line 32, Resources.Prod.Properties.MethodSettings[1].MetricsEnabled should be set to true, but Resources.Prod.Properties.MethodSettings[1].MetricsEnabled is set to false."></failure>
-		</testcase>
-	</testsuite>
-</testsuites>
 ```
+
+**Overview of key-value pairs:**   
+**<?xml?\>**: This is the XML declaration indicating the version of XML being used and the character encoding.   
+**<testsuites\>**: This is the opening tag for the <testsuites\> element, which represents a collection of test suites. Here are the key-value pairs:   
+**name**: The name of the test suite.   
+**time**: The total time taken for executing all the tests in the test suite.   
+**failures**: The total number of test failures encountered in the test suite.   
+**<testsuite\>**: This is the opening tag for a specific test suite within the overall collection. Here are the key-value pairs:   
+**name**: The name of the test suite.   
+**failures**: The total number of test failures encountered in this specific test suite.   
+**tests**: The total number of tests executed in this specific test suite.   
+**<testcase\>**: This is the opening tag for a specific test case within the test suite. Here are the key-value pairs:   
+**name**: The name of the test case, which describes the scenario being tested.   
+**classname**: The name of the class to which this test case belongs.   
+**<failure\>**: This is the <failure\> tag indicating that the test case has failed. Here are the key-value pairs:   
+**type**: The type of failure or error encountered.   
+**message**: A descriptive message explaining the failure or error in detail.      
+**</testcase\>**: This is the closing tag for the <testcase\> element, marking the end of the specific test case.   
+**</testsuite\>**: This is the closing tag for the <testsuite\> element, marking the end of the specific test suite.   
+**</testsuites\>**: This is the closing tag for the <testsuites\> element, marking the end of the overall collection of test suites.   
 
 Also, you can check our [Jenkins integration section](integrations_jenkins.md) to check how to integrate this report with Jenkins JUnit plugin.
 
@@ -470,165 +627,72 @@ SonarQube reports, follow [SonarQube Import Format](https://docs.sonarqube.org/l
 
 ```json
 {
-    "issues": [
-        {
-            "engineId": "KICS 1.4.7",
-            "ruleId": "0afa6ab8-a047-48cf-be07-93a2f8c34cf7",
-            "severity": "MAJOR",
-            "type": "VULNERABILITY",
-            "primaryLocation": {
-                "message": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
-                "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/negative2.tf",
-                "textRange": {
-                    "startLine": 1
-                }
-            },
-            "secondaryLocations": [
-                {
-                    "message": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
-                    "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive4.tf",
-                    "textRange": {
-                        "startLine": 1
-                    }
-                },
-                {
-                    "message": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
-                    "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/negative1.tf",
-                    "textRange": {
-                        "startLine": 1
-                    }
-                },
-                {
-                    "message": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
-                    "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive1.tf",
-                    "textRange": {
-                        "startLine": 1
-                    }
-                },
-                {
-                    "message": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
-                    "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive2.tf",
-                    "textRange": {
-                        "startLine": 1
-                    }
-                },
-                {
-                    "message": "All Application Load Balancers (ALB) must be protected with Web Application Firewall (WAF) service",
-                    "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive3.tf",
-                    "textRange": {
-                        "startLine": 1
-                    }
-                }
-            ]
-        },
-        {
-            "engineId": "KICS development",
-            "ruleId": "6e3fd2ed-5c83-4c68-9679-7700d224d379",
-            "severity": "MAJOR",
-            "type": "CODE_SMELL",
-            "primaryLocation": {
-                "message": "It's considered a best practice when using Application Load Balancers to drop invalid header fields",
-                "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive5.tf",
-                "textRange": {
-                    "startLine": 1
-                }
-            },
-            "secondaryLocations": [
-                {
-                    "message": "It's considered a best practice when using Application Load Balancers to drop invalid header fields",
-                    "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive6.tf",
-                    "textRange": {
-                        "startLine": 1
-                    }
-                },
-                {
-                    "message": "It's considered a best practice when using Application Load Balancers to drop invalid header fields",
-                    "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/negative3.tf",
-                    "textRange": {
-                        "startLine": 1
-                    }
-                }
-            ]
-        },
-        {
-            "engineId": "KICS development",
-            "ruleId": "afecd1f1-6378-4f7e-bb3b-60c35801fdd4",
-            "severity": "MINOR",
-            "type": "CODE_SMELL",
-            "primaryLocation": {
-                "message": "Application Load Balancer should have deletion protection enabled",
-                "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive2.tf",
-                "textRange": {
-                    "startLine": 1
-                }
-            },
-            "secondaryLocations": [
-                {
-                    "message": "Application Load Balancer should have deletion protection enabled",
-                    "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive1.tf",
-                    "textRange": {
-                        "startLine": 7
-                    }
-                },
-                {
-                    "message": "Application Load Balancer should have deletion protection enabled",
-                    "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive6.tf",
-                    "textRange": {
-                        "startLine": 1
-                    }
-                },
-                {
-                    "message": "Application Load Balancer should have deletion protection enabled",
-                    "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive5.tf",
-                    "textRange": {
-                        "startLine": 9
-                    }
-                },
-                {
-                    "message": "Application Load Balancer should have deletion protection enabled",
-                    "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive4.tf",
-                    "textRange": {
-                        "startLine": 1
-                    }
-                },
-                {
-                    "message": "Application Load Balancer should have deletion protection enabled",
-                    "filePath": "assets/queries/terraform/aws/alb_deletion_protection_disabled/test/positive3.tf",
-                    "textRange": {
-                        "startLine": 7
-                    }
-                }
-            ]
-        }
+	"issues": [
+		{
+			"engineId": "KICS development",
+			"ruleId": "f81d63d2-c5d7-43a4-a5b5-66717a41c895",
+			"severity": "CRITICAL",
+			"cwe": "22",
+			"type": "VULNERABILITY",
+			"primaryLocation": {
+				"message": "AWS Application Load Balancer (alb) should not listen on HTTP",
+				"filePath": "assets\\queries\\ansible\\aws\\alb_listening_on_http\\test\\positive.yaml",
+				"textRange": {
+					"startLine": 11
+				}
+			},
+			"secondaryLocations": [
+				{
+					"message": "AWS Application Load Balancer (alb) should not listen on HTTP",
+					"filePath": "assets\\queries\\ansible\\aws\\alb_listening_on_http\\test\\positive.yaml",
+					"textRange": {
+						"startLine": 29
+					}
+				}
+			]
+		},
     ]
 }
 ```
+**Overview of key-value pairs:**   
+**engineId**: This key identifies the engine or tool that detected the issue.   
+**ruleId**: This key represents the unique identifier of the rule associated with the issue. It helps categorize and classify the issue based on predefined rules.   
+**severity**: This key indicates the severity level of the issue.   
+**type**: This key specifies the type of issue detected.   
+**primaryLocation**: This key provides information about the primary location of the issue within the codebase. It includes details such as the error message, file path, and starting line number where the issue occurs.   
+**message**: Describes the issue in detail.   
+**filePath**: Specifies the path to the file containing the code where the issue was detected.   
+**textRange**: Indicates the range of lines in the file where the issue occurs.   
+**secondaryLocations**: This key provides additional information about the issue, such as other locations in the codebase where similar problems may exist.   
+
 
 ## HTML
 
 You can export html report by using `--report-formats "html"`.
 HTML reports are sorted by severity (from high to info), the results will have query information, a list of files which vulnerability was found and a code snippet where the problem was detected as you can see in following example:
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/html_report.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/fc93fd1fa4ed3572b0732c787be61d4c82fff2e5/docs/img/html_report.png" width="850">
 
 ## PDF
 
 You can export a pdf report by using `--report-formats "pdf"`.
 PDF reports are sorted by severity (from high to info), the results will have query information and a list of files alongside the line where the result was found.
 
-<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/pdf-report.png" width="850">
+<img src="https://raw.githubusercontent.com/Checkmarx/kics/master/docs/img/pdf_report.png" width="850">
 
 ## CycloneDX
 
-Now, the CycloneDX report is only available in XML format since the vulnerability schema extension is not currently available in JSON. The guidelines used to build the CycloneDX report were the [bom schema 1.3](http://cyclonedx.org/schema/bom/1.3) and [vulnerability schema 1.0](https://github.com/CycloneDX/specification/blob/master/schema/ext/vulnerability-1.0.xsd).
+Now, the CycloneDX report is only available in XML format since the vulnerability schema extension is not currently available in JSON. The guidelines used to build the CycloneDX report were the [bom schema 1.5](http://cyclonedx.org/schema/bom/1.5) and [vulnerability schema 1.0](https://github.com/CycloneDX/specification/blob/master/schema/ext/vulnerability-1.0.xsd).                                                                                               
+**Note:** As of the latest update, the CycloneDX version utilized in the report is 1.5. However, it's important to clarify that no additional features or fields introduced in version 1.5 are currently utilized. The functionality remains consistent with the version 1.3 for KICS. Future updates will leverage the new features introduced in CycloneDX version 1.5.
+
 
 You can export CycloneDX report by using `--report-formats "cyclonedx"`. The generated report file will have a prefix `cyclonedx-` and looks like the following example:
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
-<bom xmlns="http://cyclonedx.org/schema/bom/1.3" serialNumber="urn:uuid:9f9c80f3-5795-476d-974f-85e6cf1daa65" xmlns:v="http://cyclonedx.org/schema/ext/vulnerability/1.0" version="1">
+<bom xmlns="http://cyclonedx.org/schema/bom/1.5" serialNumber="urn:uuid:031053e5-97fa-4776-bd4b-d8705b37748c" xmlns:v="http://cyclonedx.org/schema/ext/vulnerability/1.0" version="1">
 	<metadata>
-		<timestamp>2021-12-03T15:39:49Z</timestamp>
+		<timestamp>2024-02-14T12:21:17Z</timestamp>
 		<tools>
 			<tool>
 				<vendor>Checkmarx</vendor>
@@ -638,38 +702,86 @@ You can export CycloneDX report by using `--report-formats "cyclonedx"`. The gen
 		</tools>
 	</metadata>
 	<components>
-		<component type="file" bom-ref="pkg:generic/assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-68b4caecf5d5">
-			<name>assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf</name>
-			<version>0.0.0-68b4caecf5d5</version>
+		<component type="file" bom-ref="pkg:generic/assets/queries/ansible/aws/alb_listening_on_http/test/positive.yaml@0.0.0-eb8600d258a3">
+			<name>assets/queries/ansible/aws/alb_listening_on_http/test/positive.yaml</name>
+			<version>0.0.0-eb8600d258a3</version>
 			<hashes>
-				<hash alg="SHA-256">68b4caecf5d5130426a8b8f0222cdd7f31232b5c99a5bf0daf19099e26e2ec29</hash>
+				<hash alg="SHA-256">eb8600d258a39b160a0b1175422e4ea23274f007b0c66b3107fe3de73c4a7e89</hash>
 			</hashes>
-			<purl>pkg:generic/assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-68b4caecf5d5</purl>
+			<purl>pkg:generic/assets/queries/ansible/aws/alb_listening_on_http/test/positive.yaml@0.0.0-eb8600d258a3</purl>
 			<v:vulnerabilities>
-				<v:vulnerability ref="pkg:generic/assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-68b4caecf5d5e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10">
-					<v:id>e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10</v:id>
+				<v:vulnerability ref="pkg:generic/assets/queries/ansible/aws/alb_listening_on_http/test/positive.yaml@0.0.0-eb8600d258a3f81d63d2-c5d7-43a4-a5b5-66717a41c895">
+					<v:id>f81d63d2-c5d7-43a4-a5b5-66717a41c895</v:id>
+					<v:cwe>22</v:cwe>
 					<v:source>
 						<name>KICS</name>
 						<url>https://kics.io/</url>
 					</v:source>
 					<v:ratings>
 						<v:rating>
-							<v:severity>None</v:severity>
+							<v:severity>High</v:severity>
 							<v:method>Other</v:method>
 						</v:rating>
 					</v:ratings>
-					<v:description>[Terraform].[Resource Not Using Tags]: AWS services resource tags are an essential part of managing components</v:description>
+					<v:description>[Ansible].[ALB Listening on HTTP]: AWS Application Load Balancer (alb) should not listen on HTTP</v:description>
 					<v:recommendations>
 						<v:recommendation>
-							<Recommendation>In line 1, a result was found. &#39;aws_guardduty_detector[{{negative1}}].tags is undefined or null&#39;, but &#39;aws_guardduty_detector[{{negative1}}].tags is defined and not null&#39;</Recommendation>
+							<Recommendation>Problem found in line 11. Expected value: &#39;aws_elb_application_lb&#39; Protocol should be &#39;HTTP&#39;. Actual value: &#39;aws_elb_application_lb&#39; Protocol it&#39;s not &#39;HTTP&#39;.</Recommendation>
 						</v:recommendation>
 					</v:recommendations>
 				</v:vulnerability>
+				<v:vulnerability ref="pkg:generic/assets/queries/ansible/aws/alb_listening_on_http/test/positive.yaml@0.0.0-eb8600d258a3f81d63d2-c5d7-43a4-a5b5-66717a41c895">
+					<v:id>f81d63d2-c5d7-43a4-a5b5-66717a41c895</v:id>
+					<v:cwe>22</v:cwe>
+					<v:source>
+						<name>KICS</name>
+						<url>https://kics.io/</url>
+					</v:source>
+					<v:ratings>
+						<v:rating>
+							<v:severity>High</v:severity>
+							<v:method>Other</v:method>
+						</v:rating>
+					</v:ratings>
+					<v:description>[Ansible].[ALB Listening on HTTP]: AWS Application Load Balancer (alb) should not listen on HTTP</v:description>
+					<v:recommendations>
+						<v:recommendation>
+							<Recommendation>Problem found in line 29. Expected value: &#39;aws_elb_application_lb&#39; Protocol should be &#39;HTTP&#39;. Actual value: &#39;aws_elb_application_lb&#39; Protocol is missing.</Recommendation>
+						</v:recommendation>
+					</v:recommendations>
+                </v:vulnerability>
 			</v:vulnerabilities>
 		</component>
 	</components>
 </bom>
 ```
+
+**Overview of key-value pairs:**   
+**metadata**: This section provides metadata about the CycloneDX report, including the timestamp when the report was generated and details about the tools used to create the report.   
+**timestamp**: Indicates the date and time when the report was generated. For example, "2024-02-14T12:21:17Z" specifies February 14th, 2024, at 12:21:17 UTC.   
+**tools**: Specifies the tools involved in generating the CycloneDX report.   
+**vendor**: Indicates the name of the tool's vendor.   
+**name**: Specifies the name of the tool used.   
+**version**: Specifies the version of the tool used.   
+**components**: This section provides information about the components (such as files) included in the report.   
+**component**: Represents a specific component (file) included in the report.   
+**type**: Specifies the type of the component.   
+**bom-ref**: Provides a reference to the Bill of Materials (BOM) entry for the component.   
+**name**: Specifies the name of the component, a path for example.   
+**version**: Specifies the version of the component.   
+**hashes**: Provides hash values for the component to ensure integrity and detect changes.   
+**purl**: Specifies the Package URL (purl) for the component.   
+**v:vulnerabilities**: This section provides information about vulnerabilities associated with the component.   
+**v:vulnerability**: Represents a specific vulnerability associated with the component.   
+**ref**: Provides a reference to the vulnerability.   
+**v:id**: Specifies the ID of the vulnerability.   
+**v:cwe**: Specifies the Common Weakness Enumeration (CWE) ID associated with the vulnerability.   
+**v:source**: Provides information about the source of the vulnerability.   
+**v:ratings**: Provides ratings for the vulnerability, including severity and method.   
+**v:description**: Describes the vulnerability in detail.   
+**v:recommendations**: Provides recommendations for addressing the vulnerability.   
+**v:recommendation**: Specifies a recommendation for addressing the vulnerability.   
+**Recommendation**: Provides the recommendation text.   
 
 ## ASFF
 
@@ -684,35 +796,92 @@ For default, the ASFF report uses a default AWS account ID ("AWS_ACCOUNT_ID") an
 		"Compliance": {
 			"Status": "FAILED"
 		},
-		"CreatedAt": "2022-01-14T13:50:30Z",
-		"Description": "CloudTrail Log Files should have validation enabled",
-		"GeneratorId": "4d8681a2-3d30-4c89-8070-08acd142748e",
-		"Id": "AWS_REGION/AWS_ACCOUNT_ID/1dc18f740a5c4173264949fb366d3c3871d7d457c4db91f6d73a76caa9873000",
+		"CreatedAt": "2024-02-14T12:21:17Z",
+		"Description": "AWS Application Load Balancer (alb) should not listen on HTTP",
+		"GeneratorId": "f81d63d2-c5d7-43a4-a5b5-66717a41c895",
+		"Id": "AWS_REGION/AWS_ACCOUNT_ID/a00c90f900058bb60c8eeeaf5236416079e5085fe0465b69aa51b5aa5b7442fe",
 		"ProductArn": "arn:aws:securityhub:AWS_REGION:AWS_ACCOUNT_ID:product/AWS_ACCOUNT_ID/default",
 		"Remediation": {
 			"Recommendation": {
-				"Text": "In line 2 of file assets\\queries\\ansible\\aws\\cloudtrail_log_file_validation_disabled\\test\\positive.yaml, a result was found. cloudtrail.enable_log_file_validation and cloudtrail.log_file_validation_enabled are undefined, but cloudtrail.enable_log_file_validation or cloudtrail.log_file_validation_enabled is defined"
+				"Text": "Problem found on 'assets\\queries\\ansible\\aws\\alb_listening_on_http\\test\\positive.yaml' file in line 11. Expected value: 'aws_elb_application_lb' Protocol should be 'HTTP'. Actual value: 'aws_elb_application_lb' Protocol it's not 'HTTP'."
 			}
 		},
 		"Resources": [
 			{
-				"Id": "4d8681a2-3d30-4c89-8070-08acd142748e",
+				"Id": "f81d63d2-c5d7-43a4-a5b5-66717a41c895",
 				"Type": "Other"
 			}
 		],
 		"SchemaVersion": "2018-10-08",
 		"Severity": {
-			"Original": "LOW",
-			"Label": "LOW"
+			"Original": "HIGH",
+			"Label": "HIGH"
 		},
-		"Title": "CloudTrail Log File Validation Disabled",
+		"Title": "ALB Listening on HTTP",
 		"Types": [
 			"Software and Configuration Checks/Vulnerabilities/KICS"
 		],
-		"UpdatedAt": "2022-01-14T13:50:30Z"
-	}
+		"UpdatedAt": "2024-02-14T12:21:17Z",
+		"CWE": "22"
+	},
+	{
+		"AwsAccountId": "AWS_ACCOUNT_ID",
+		"Compliance": {
+			"Status": "FAILED"
+		},
+		"CreatedAt": "2024-02-14T12:21:17Z",
+		"Description": "AWS Application Load Balancer (alb) should not listen on HTTP",
+		"GeneratorId": "f81d63d2-c5d7-43a4-a5b5-66717a41c895",
+		"Id": "AWS_REGION/AWS_ACCOUNT_ID/02e577bf2456c31f64f2855f8345fa051c0fe2159e1f116bd392e02af5f4a4f9",
+		"ProductArn": "arn:aws:securityhub:AWS_REGION:AWS_ACCOUNT_ID:product/AWS_ACCOUNT_ID/default",
+		"Remediation": {
+			"Recommendation": {
+				"Text": "Problem found on 'assets\\queries\\ansible\\aws\\alb_listening_on_http\\test\\positive.yaml' file in line 29. Expected value: 'aws_elb_application_lb' Protocol should be 'HTTP'. Actual value: 'aws_elb_application_lb' Protocol is missing."
+			}
+		},
+		"Resources": [
+			{
+				"Id": "f81d63d2-c5d7-43a4-a5b5-66717a41c895",
+				"Type": "Other"
+			}
+		],
+		"SchemaVersion": "2018-10-08",
+		"Severity": {
+			"Original": "HIGH",
+			"Label": "HIGH"
+		},
+		"Title": "ALB Listening on HTTP",
+		"Types": [
+			"Software and Configuration Checks/Vulnerabilities/KICS"
+		],
+		"UpdatedAt": "2024-02-14T12:21:17Z",
+		"CWE": "22"
+	},
 ]
 ```
+
+**Overview of key-value pairs:**   
+**AwsAccountId**: Specifies the AWS account ID associated with the security finding.   
+**Compliance**: Provides information about compliance status related to the security finding.   
+**Status**: Indicates the compliance status.   
+**CreatedAt**: Specifies the timestamp when the security finding was created, in UTC format.   
+**Description**: Describes the security finding in detail.   
+**GeneratorId**: Specifies the ID of the generator or tool that produced the security finding.   
+**Id**: Uniquely identifies the security finding. It typically includes the AWS region, AWS account ID, and a unique identifier for the finding.   
+**ProductArn**: Represents the Amazon Resource Name (ARN) of the product associated with the security finding.   
+**Remediation**: Provides remediation information for addressing the security finding.   
+**Recommendation**: Contains recommendations for remediation, including specific actions to take.   
+**Resources**: Describes the affected AWS resources related to the security finding.   
+**Id**: Specifies the ID of the affected resource.   
+**Type**: Indicates the type of the affected resource.   
+**SchemaVersion**: Specifies the version of the ASFF schema used in the report.   
+**Severity**: Provides information about the severity of the security finding.   
+**Original**: Specifies the original severity level of the finding.   
+**Label**: Provides a labeled severity level.   
+**Title**: Provides a title or summary of the security finding.   
+**Types**: Specifies the types of vulnerabilities or security checks associated with the finding.   
+**UpdatedAt**: Specifies the timestamp when the security finding was last updated, in UTC format.   
+**CWE**: Specifies the Common Weakness Enumeration (CWE) ID associated with the finding, which helps categorize the type of vulnerability.   
 
 ## CSV
 
@@ -720,11 +889,35 @@ You can export CSV report by using `--report-formats "csv"`.
 
 CSV reports follow the [CSV structure](https://www.loc.gov/preservation/digital/formats/fdd/fdd000323.shtml#:~:text=CSV%20is%20a%20simple%20format,characters%20indicating%20a%20line%20break.).
 
-| query_name                                     | query_id                             | query_uri                                                                                             | severity | platform       | cloud_provider | category                | description_id | description                                                                    | cis_description_id | cis_description_title | cis_description_text | file_name                                                                                                   | similarity_id                                                    | line | issue_type     | search_key                                                      | search_line | search_value | expected_value                                                                          | actual_value                                                                           |
-| ---------------------------------------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------- | -------- | -------------- | -------------- | ----------------------- | -------------- | ------------------------------------------------------------------------------ | ------------------ | --------------------- | -------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ---- | -------------- | --------------------------------------------------------------- | ----------- | ------------ | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| EC2 Sensitive Port Is Publicly Exposed         | 494b03d3-bf40-4464-8524-7c56ad0700ed | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html | HIGH     | CloudFormation | AWS            | Networking and Firewall | 680b7e89       | The EC2 instance has a sensitive port connection exposed to the entire network |                    |                       |                      | ../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive2.json | 9730156b201b5098479a7b624d01931303a2f27c3991c7a786aeb2c10912894a | 27   | IncorrectValue | Resources.InstanceSecurityGroup.SecurityGroupIngress            | 0           | TCP,22       | SSH (TCP:22) should not be allowed in EC2 security group for instance Ec2Instance       | SSH (TCP:22) is allowed in EC2 security group for instance Ec2Instance                 |
-| EC2 Sensitive Port Is Publicly Exposed         | 494b03d3-bf40-4464-8524-7c56ad0700ed | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html | HIGH     | CloudFormation | AWS            | Networking and Firewall | 680b7e89       | The EC2 instance has a sensitive port connection exposed to the entire network |                    |                       |                      | ../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive1.yaml | a93a3f7320a60045c04cd950500a1c3cff5bc9a4aae7f1e0cde73033386e1242 | 15   | IncorrectValue | Resources.InstanceSecurityGroup.SecurityGroupIngress            | 0           | TCP,22       | SSH (TCP:22) should not be allowed in EC2 security group for instance Ec2Instance       | SSH (TCP:22) is allowed in EC2 security group for instance Ec2Instance                 |
-| Security Group With Unrestricted Access To SSH | 6e856af2-62d7-4ba2-adc1-73b62cef9cc1 | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html | HIGH     | CloudFormation | AWS            | Networking and Firewall | d515d6dc       | Security Groups allows all traffic for SSH (port:22)                           |                    |                       |                      | ../../assets/queries/cloudFormation/aws/security_groups_with_unrestricted_access_to_ssh/test/positive1.yaml | ca8ec85623eed6a5cb3d3b8c1b69d145778e28517d2adf5fb856a57f9870c430 | 15   | IncorrectValue | Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress | 0           |              | None of the Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress has port 22 | One of the Resources.InstanceSecurityGroup.Properties.SecurityGroupIngress has port 22 |
+| query_name           | query_id                            | query_uri                                                                                             | severity | platform | cwe | cloud_provider | category              | description_id | description                                                      | cis_description_id | cis_description_title | cis_description_text | file_name                                                                                             | similarity_id                                          | line | issue_type      | search_key                                                                                    | search_line | search_value | expected_value                                                                    | actual_value                                                                    |
+|----------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------|----------|----------|-----|-----------------|-----------------------|-----------------|------------------------------------------------------------------|---------------------|-----------------------|----------------------|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------|------|-----------------|----------------------------------------------------------------------------------------------|-------------|--------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| ALB Listening on HTTP | f81d63d2-c5d7-43a4-a5b5-66717a41c895 | https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html | HIGH     | Ansible  | 22  | AWS             | Networking and Firewall | 3a7576e5       | AWS Application Load Balancer (alb) should not listen on HTTP |                     |                       |                      | assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml                                  | a00c90f900058bb60c8eeeaf5236416079e5085fe0465b69aa51b5aa5b7442fe | 11   | IncorrectValue | name={{my_elb_application}}.{{community.aws.elb_application_lb}}.listeners.Protocol=HTTP | -1          |              | 'aws_elb_application_lb' Protocol should be 'HTTP'                                | 'aws_elb_application_lb' Protocol it's not 'HTTP'                                 |
+| ALB Listening on HTTP | f81d63d2-c5d7-43a4-a5b5-66717a41c895 | https://docs.ansible.com/ansible/latest/collections/community/aws/elb_application_lb_module.html | HIGH     | Ansible  | 22  | AWS             | Networking and Firewall | 3a7576e5       | AWS Application Load Balancer (alb) should not listen on HTTP |                     |                       |                      | assets\queries\ansible\aws\alb_listening_on_http\test\positive.yaml                                  | 02e577bf2456c31f64f2855f8345fa051c0fe2159e1f116bd392e02af5f4a4f9 | 29   | MissingAttribute | name={{my_elb_application2}}.{{community.aws.elb_application_lb}}.listeners         | -1          |              | 'aws_elb_application_lb' Protocol should be 'HTTP'                                | 'aws_elb_application_lb' Protocol is missing                                   |
+
+
+**Brief Explanation of CSV Columns:**   
+**query_name**: Specifies the name of the query.   
+**query_id**: Unique identifier for the query.   
+**query_uri**: URI link to documentation or reference material related to the query.   
+**severity**: Indicates the severity level of the vulnerability.   
+**platform**: Specifies the platform or technology stack targeted by the query.   
+**cwe**: Common Weakness Enumeration (CWE) ID associated with the vulnerability.   
+**cloud_provider**: Specifies the cloud provider related to the vulnerability.   
+**category**: Describes the category or type of vulnerability.   
+**description_id**: Unique identifier for the vulnerability description.   
+**description**: Detailed description of the vulnerability.   
+**cis_description_id**: Unique identifier for the CIS (Center for Internet Security) description.   
+**cis_description_title**: Title of the CIS description.   
+**cis_description_text**: Text of the CIS description.   
+**file_name**: Specifies the file name or path where the vulnerability was detected.   
+**similarity_id**: Unique identifier for similarity comparison.   
+**line**: Line number in the file where the vulnerability was detected.   
+**issue_type**: Type of issue or vulnerability detected.   
+**search_key**: Key used to search for the vulnerability.   
+**search_line**: Line number where the search was conducted.   
+**search_value**: Value searched for in the file.   
+**expected_value**: Expected value for the vulnerability.   
+**actual_value**: Actual value found in the file.
 
 ## Code Climate
 
@@ -734,64 +927,54 @@ Code climate report follow the [Code Climate Spec](https://github.com/codeclimat
 
 ```json
 [
-    {
-        "type": "issue",
-        "check_name": "Disk Encryption Disabled",
-        "description": "VM disks for critical VMs must be encrypted with Customer Supplied Encryption Keys (CSEK) or with Customer-managed encryption keys (CMEK), which means the attribute 'diskEncryptionKey' must be defined and its sub attributes 'rawKey' or 'kmsKeyName' must also be defined",
-        "categories": ["Security"],
-        "location": {
-            "path": "positive1.yaml",
-            "lines": {
-                "begin": 8
-            }
-        },
-        "severity": "major",
-        "fingerprint": "93b3ba78cf3f7aba06e480f40b10c754cb923118abb13e37106e56106406415f"
-    },
-    {
-        "type": "issue",
-        "check_name": "IP Forwarding Enabled",
-        "description": "Instances must not have IP forwarding enabled, which means the attribute 'canIpForward' must not be true",
-        "categories": ["Security"],
-        "location": {
-            "path": "positive1.yaml",
-            "lines": {
-                "begin": 16
-            }
-        },
-        "severity": "major",
-        "fingerprint": "ac9b7b7b621eeeaa28d50f5cb6a047dd53df706624b509bcc7db775e53de6db5"
-    },
-    {
-        "type": "issue",
-        "check_name": "Project-wide SSH Keys Are Enabled In VM Instances",
-        "description": "VM Instance should block project-wide SSH keys",
-        "categories": ["Security"],
-        "location": {
-            "path": "positive1.yaml",
-            "lines": {
-                "begin": 4
-            }
-        },
-        "severity": "major",
-        "fingerprint": "e84dabdbe179ec9bbe4fb5c0abe8fe8a0f8a3b679a8eef6cfc98d7e5403600ab"
-    },
-    {
-        "type": "issue",
-        "check_name": "Shielded VM Disabled",
-        "description": "Compute instances must be launched with Shielded VM enabled, which means the attribute 'shieldedInstanceConfig' must be defined and its sub attributes 'enableSecureBoot', 'enableVtpm' and 'enableIntegrityMonitoring' must be set to true",
-        "categories": ["Security"],
-        "location": {
-            "path": "positive1.yaml",
-            "lines": {
-                "begin": 4
-            }
-        },
-        "severity": "major",
-        "fingerprint": "1b9d4118a9e39702e46ce204115ae11fc9146c3cb0923a2fb232cabe1e8e103c"
-    }
+	{
+		"type": "issue",
+		"check_name": "ALB Listening on HTTP",
+		"cwe": "22",
+		"description": "AWS Application Load Balancer (alb) should not listen on HTTP",
+		"categories": [
+			"Security"
+		],
+		"location": {
+			"path": "assets\\queries\\ansible\\aws\\alb_listening_on_http\\test\\positive.yaml",
+			"lines": {
+				"begin": 11
+			}
+		},
+		"severity": "critical",
+		"fingerprint": "a00c90f900058bb60c8eeeaf5236416079e5085fe0465b69aa51b5aa5b7442fe"
+	},
+	{
+		"type": "issue",
+		"check_name": "ALB Listening on HTTP",
+		"cwe": "22",
+		"description": "AWS Application Load Balancer (alb) should not listen on HTTP",
+		"categories": [
+			"Security"
+		],
+		"location": {
+			"path": "assets\\queries\\ansible\\aws\\alb_listening_on_http\\test\\positive.yaml",
+			"lines": {
+				"begin": 29
+			}
+		},
+		"severity": "critical",
+		"fingerprint": "02e577bf2456c31f64f2855f8345fa051c0fe2159e1f116bd392e02af5f4a4f9"
+	}
 ]
 ```
+
+**Overview of key-value pairs:**   
+**type**: Specifies the type of issue reported.   
+**check_name**: Describes the name or identifier of the check performed.   
+**cwe**: Common Weakness Enumeration (CWE) ID associated with the issue.   
+**description**: Provides a detailed description of the issue detected.   
+**categories**: Indicates the categories or classifications of the issue.   
+**location**: Gives information about the path and lines where the issue occurred.   
+**path**: Specifies the file path where the issue was detected.   
+**lines**: Provides information about the lines affected by the issue, including the beginning line number.   
+**severity**: Indicates the severity level of the issue.   
+**fingerprint**: Unique identifier or fingerprint for the issue, used for tracking and reference purposes.   
 
 ## CLI Report
 
@@ -803,17 +986,19 @@ KICS displays the results in CLI. For detailed information, you can use `-v --lo
 
 ## Results Status Code
 
-| Code | Description                |
-| ---- | -------------------------- |
-| `0`  | No Results were Found      |
-| `50` | Found any `HIGH` Results   |
-| `40` | Found any `MEDIUM` Results |
-| `30` | Found any `LOW` Results    |
-| `20` | Found any `INFO` Results   |
+| Code | Description                 |
+| ---- | ----------------------------|
+| `0`  | No Results were Found       |
+| `60` | Found any `CRITICAL` Results|
+| `50` | Found any `HIGH` Results    |
+| `40` | Found any `MEDIUM` Results  |
+| `30` | Found any `LOW` Results     |
+| `20` | Found any `INFO` Results    |
 
 ## Error Status Code
 
 | Code  | Description      |
 | ----- | ---------------- |
+| `70`  | Remediation Error|
 | `126` | Engine Error     |
 | `130` | Signal-Interrupt |

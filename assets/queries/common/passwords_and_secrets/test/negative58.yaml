@@ -1,0 +1,74 @@
+name: Deploy
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: Github environment
+        required: false
+        type: string
+      githubRunner:
+        description: github runner lables
+        type: string
+        required: false
+      helmInstall:
+        description: install the helm release
+        type: string
+        required: false
+        default: true
+jobs:
+  push_deploy:
+    environment: ${{ inputs.environment }}
+    runs-on: ${{ fromJSON(inputs.githubRunner) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-tags: true
+          fetch-depth: 0
+      - name: Get secrets from Azure Key Vault
+        run: |
+          set -e
+          vault_name="${{ vars.AZURE_KV }}"
+          auth0_client_id=$(az keyvault secret show --vault-name $vault_name --name cel-auth0-client-id --query "value" -o tsv)
+          auth0_client_secret=$(az keyvault secret show --vault-name $vault_name --name cel-auth0-client-secret --query "value" -o tsv)
+          restapi_mgt_appid=$(az keyvault secret show --vault-name $vault_name --name cel-restapi-mgt-appid --query "value" -o tsv)
+          restapi_mgt_appsec=$(az keyvault secret show --vault-name $vault_name --name cel-restapi-mgt-appsec --query "value" -o tsv)
+          cel_projectmgr_db_user=$(az keyvault secret show --vault-name $vault_name --name cel-projectmgr-db-user --query "value" -o tsv)
+          cel_projectmgr_db_password=$(az keyvault secret show --vault-name $vault_name --name cel-projectmgr-db-password --query "value" -o tsv)
+          cel_project_export_key=$(az keyvault secret show --vault-name $vault_name --name cel-project-export-key --query "value" -o tsv)
+          # This escapes the commas in the vars.AUTH0_CNX_LIST env. variable by adding a backslash in front of it
+          auth0_cnx_list=$(echo ${{ vars.AUTH0_CNX_LIST }} | sed 's/,/\\,/')
+          # Mask secrets
+          echo "::add-mask::$auth0_client_id"
+          echo "::add-mask::$auth0_client_secret"
+          echo "::add-mask::$restapi_mgt_appid"
+          echo "::add-mask::$restapi_mgt_appsec"
+          echo "::add-mask::$cel_projectmgr_db_user"
+          echo "::add-mask::$cel_projectmgr_db_password"
+          echo "::add-mask::$cel_project_export_key"
+          echo "AUTH0_CLIENT_ID=$auth0_client_id" >> $GITHUB_ENV
+          echo "AUTH0_CLIENT_SECRET=$auth0_client_secret" >> $GITHUB_ENV
+          echo "RESTAPI_MGT_APPID=$restapi_mgt_appid" >> $GITHUB_ENV
+          echo "RESTAPI_MGT_APPSEC=$restapi_mgt_appsec" >> $GITHUB_ENV
+          echo "CEL_PROJECTMGR_DB_USER=$cel_projectmgr_db_user" >> $GITHUB_ENV
+          echo "CEL_PROJECTMGR_DB_PASSWORD=$cel_projectmgr_db_password" >> $GITHUB_ENV
+          echo "CEL_PROJECT_EXPORT_KEY=$cel_project_export_key" >> $GITHUB_ENV
+          echo "AUTH0_CNX_LIST=$auth0_cnx_list" >> $GITHUB_ENV
+      - name: Get EA secrets from Azure Key Vault
+        if: ${{ inputs.environment == 'ea' }}
+        run: |
+          set -e
+          vault_name="${{ vars.AZURE_KV }}"
+          auth0_client_id=$(az keyvault secret show --vault-name $vault_name --name cel-auth0-client-id-${{ inputs.environment }} --query value -o tsv)
+          auth0_client_secret=$(az keyvault secret show --vault-name $vault_name --name cel-auth0-client-secret-${{ inputs.environment }} --query value -o tsv)
+          restapi_mgt_appid=$(az keyvault secret show --vault-name $vault_name --name cel-restapi-mgt-appid-${{ inputs.environment }} --query value -o tsv)
+          restapi_mgt_appsec=$(az keyvault secret show --vault-name $vault_name --name cel-restapi-mgt-appsec-${{ inputs.environment }} --query value -o tsv)
+          # Mask secrets
+          echo "::add-mask::$auth0_client_id"
+          echo "::add-mask::$auth0_client_secret"
+          echo "::add-mask::$restapi_mgt_appid"
+          echo "::add-mask::$restapi_mgt_appsec"
+          echo "AUTH0_CLIENT_ID=${auth0_client_id}" >> $GITHUB_ENV
+          echo "AUTH0_CLIENT_SECRET=${auth0_client_secret}" >> $GITHUB_ENV
+          echo "RESTAPI_MGT_APPID=${restapi_mgt_appid}" >> $GITHUB_ENV
+          echo "RESTAPI_MGT_APPSEC=${restapi_mgt_appsec}" >> $GITHUB_ENV

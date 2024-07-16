@@ -17,6 +17,7 @@ func TestCreateSummary(t *testing.T) {
 			FileID:           "fileId",
 			FileName:         "fileName",
 			QueryID:          "QueryID",
+			CWE:              "22",
 			QueryName:        "query_name",
 			Severity:         SeverityHigh,
 			Line:             1,
@@ -45,11 +46,12 @@ func TestCreateSummary(t *testing.T) {
 			SeveritySummary: SeveritySummary{
 				ScanID: "scanID",
 				SeverityCounters: map[Severity]int{
-					SeverityTrace:  0,
-					SeverityInfo:   0,
-					SeverityLow:    0,
-					SeverityMedium: 0,
-					SeverityHigh:   0,
+					SeverityTrace:    0,
+					SeverityInfo:     0,
+					SeverityLow:      0,
+					SeverityMedium:   0,
+					SeverityHigh:     0,
+					SeverityCritical: 0,
 				},
 			},
 			Bom:          []QueryResult{},
@@ -68,11 +70,12 @@ func TestCreateSummary(t *testing.T) {
 			SeveritySummary: SeveritySummary{
 				ScanID: "scanID",
 				SeverityCounters: map[Severity]int{
-					SeverityTrace:  0,
-					SeverityInfo:   0,
-					SeverityLow:    0,
-					SeverityMedium: 0,
-					SeverityHigh:   1,
+					SeverityTrace:    0,
+					SeverityInfo:     0,
+					SeverityLow:      0,
+					SeverityMedium:   0,
+					SeverityHigh:     1,
+					SeverityCritical: 0,
 				},
 				TotalCounter: 1,
 			},
@@ -82,6 +85,7 @@ func TestCreateSummary(t *testing.T) {
 					QueryName: "query_name",
 					QueryID:   "QueryID",
 					Severity:  SeverityHigh,
+					CWE:       "22",
 					Files: []VulnerableFile{
 						{
 							FileName:         "fileName",

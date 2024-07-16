@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 1b3af2f9-af8c-4dfc-a0f1-a03adb70deb2
 -   **Query name:** Lambda Function With Privileged Role
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Insecure Configurations
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/lambda_function_with_privileged_role)
 
@@ -28,7 +28,7 @@ It is not advisable for AWS Lambda Functions to have privileged permissions.<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="4 23"
+```tf title="Positive test num. 1 - tf file" hl_lines="4 23"
 resource "aws_lambda_function" "positivefunction1" {
   filename      = "lambda_function_payload.zip"
   function_name = "lambda_function_name"

@@ -10,17 +10,18 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 )
 
 var cycloneDxSeverityLevelEquivalence = map[model.Severity]string{
-	"INFO":   "None",
-	"LOW":    "Low",
-	"MEDIUM": "Medium",
-	"HIGH":   "High",
+	"INFO":     "None",
+	"LOW":      "Low",
+	"MEDIUM":   "Medium",
+	"HIGH":     "High",
+	"CRITICAL": "Critical",
 }
 
 // CycloneDxReport includes all the properties considered relevant for the CycloneDX Report
@@ -83,6 +84,7 @@ type Vulnerability struct {
 
 	// vulnerability body information
 	ID              string           `xml:"v:id"`
+	CWE             string           `xml:"v:cwe"`
 	Source          Source           `xml:"v:source"`
 	Ratings         []Rating         `xml:"v:ratings>v:rating"`
 	Description     string           `xml:"v:description"`
@@ -169,6 +171,7 @@ func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) [
 			vuln := Vulnerability{
 				Ref: purl + query.QueryID,
 				ID:  query.QueryID,
+				CWE: query.CWE,
 				Source: Source{
 					Name: "KICS",
 					URL:  "https://kics.io/",
@@ -220,7 +223,7 @@ func InitCycloneDxReport() *CycloneDxReport {
 	}
 
 	return &CycloneDxReport{
-		XMLNS:        "http://cyclonedx.org/schema/bom/1.3",
+		XMLNS:        "http://cyclonedx.org/schema/bom/1.5",
 		XMLNSV:       "http://cyclonedx.org/schema/ext/vulnerability/1.0",
 		SerialNumber: "urn:uuid:" + uuid.New().String(),
 		Version:      1,
@@ -268,5 +271,6 @@ func BuildCycloneDxReport(summary *model.Summary, filePaths map[string]string) *
 
 		bom.Components.Components = append(bom.Components.Components, component)
 	}
+
 	return bom
 }

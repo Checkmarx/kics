@@ -20,6 +20,7 @@
         "category",
         "descriptionText",
         "descriptionUrl",
+        "cloudProvider",
         "platform",
         "descriptionID"
     ],
@@ -29,9 +30,21 @@
         },
         "queryName": {
             "type": "string",
-            "minLength": 8
+            "minLength": 8,
+            "maxLength": 120
         },
         "severity": {
+            "type": "string",
+            "enum": [
+                "TRACE",
+                "CRITICAL",
+                "HIGH",
+                "MEDIUM",
+                "LOW",
+                "INFO"
+            ]
+        },
+        "oldSeverity": {
             "type": "string",
             "enum": [
                 "TRACE",
@@ -63,7 +76,8 @@
         },
         "descriptionText": {
             "type": "string",
-            "minLength": 16
+            "minLength": 16,
+            "maxLength" : 500
         },
         "descriptionUrl": {
             "type": "string",
@@ -76,7 +90,9 @@
                 "aws",
                 "azure",
                 "common",
-                "gcp"
+                "gcp",
+                "nifcloud",
+                "tencentcloud"
             ]
         },
         "platform": {
@@ -85,6 +101,7 @@
                 "Ansible",
                 "AzureResourceManager",
                 "Buildah",
+                "CICD",
                 "CloudFormation",
                 "Crossplane",
                 "Common",
@@ -138,6 +155,15 @@
                     }
                 }
             }
+        },
+        "experimental": {
+            "type": "string",
+            "enum": [
+                "true"
+            ]
+        },
+        "cwe": {
+            "type": "string"
         }
     }
 }

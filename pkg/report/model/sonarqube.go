@@ -1,16 +1,17 @@
 package model
 
 import (
-	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 )
 
 // severitySonarQubeEquivalence maps the severity of the KICS to the SonarQube equivalent
 var severitySonarQubeEquivalence = map[model.Severity]string{
-	"INFO":   "INFO",
-	"LOW":    "MINOR",
-	"MEDIUM": "MAJOR",
-	"HIGH":   "CRITICAL",
+	"INFO":     "INFO",
+	"LOW":      "MINOR",
+	"MEDIUM":   "MAJOR",
+	"HIGH":     "CRITICAL",
+	"CRITICAL": "BLOCKER",
 }
 
 // categorySonarQubeEquivalence maps the category to the SonarQube equivalent
@@ -47,6 +48,7 @@ type Issue struct {
 	EngineID           string      `json:"engineId"`
 	RuleID             string      `json:"ruleId"`
 	Severity           string      `json:"severity"`
+	CWE                string      `json:"cwe,omitempty"`
 	Type               string      `json:"type"`
 	PrimaryLocation    *Location   `json:"primaryLocation"`
 	SecondaryLocations []*Location `json:"secondaryLocations,omitempty"`
@@ -88,6 +90,7 @@ func (s *SonarQubeReportBuilder) buildIssue(query *model.QueryResult) {
 		EngineID:           s.version,
 		RuleID:             query.QueryID,
 		Severity:           severitySonarQubeEquivalence[query.Severity],
+		CWE:                query.CWE,
 		Type:               categorySonarQubeEquivalence[query.Category],
 		PrimaryLocation:    buildLocation(0, query),
 		SecondaryLocations: buildSecondaryLocation(query),

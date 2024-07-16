@@ -1,27 +1,27 @@
 [
   {
     "queryName": "Private Cluster Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 2
   },
   {
     "queryName": "Private Cluster Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 31
   },
   {
     "queryName": "Private Cluster Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 48
   },
   {
     "queryName": "Private Cluster Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 66
   },
   {
     "queryName": "Private Cluster Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 85
   }
 ]

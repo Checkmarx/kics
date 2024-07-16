@@ -6,6 +6,7 @@
   "descriptionText": "Microsoft.Security securityContacts should have a phone number defined",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.security/securitycontacts?tabs=json",
   "platform": "AzureResourceManager",
+  "descriptionID": "8b9ef792",
   "cloudProvider": "azure",
-  "descriptionID": "8b9ef792"
+  "cwe": ""
 }

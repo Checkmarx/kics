@@ -4,9 +4,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/utils"
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
+	"github.com/Checkmarx/kics/v2/test"
 	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/require"
 )
@@ -58,11 +58,11 @@ func Test_detectLine(t *testing.T) { //nolint
 				VulnLines: &[]model.CodeLine{
 					{
 						Position: 2,
-						Line: `	bucket = "my-tf-test-bucket"`,
+						Line:     `	bucket = "my-tf-test-bucket"`,
 					},
 					{
 						Position: 3,
-						Line: `	acl    = "authenticated-read"`,
+						Line:     `	acl    = "authenticated-read"`,
 					},
 					{
 						Position: 4,
@@ -92,15 +92,15 @@ func Test_detectLine(t *testing.T) { //nolint
 				VulnLines: &[]model.CodeLine{
 					{
 						Position: 6,
-						Line: `	  Name        = "My bucket"`,
+						Line:     `	  Name        = "My bucket"`,
 					},
 					{
 						Position: 7,
-						Line: `	  Environment = "Dev.123"`,
+						Line:     `	  Environment = "Dev.123"`,
 					},
 					{
 						Position: 8,
-						Line: `	  Environment = "test"`,
+						Line:     `	  Environment = "test"`,
 					},
 				},
 				LineWithVulnerability: "",

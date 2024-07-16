@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 88fd05e0-ac0e-43d2-ba6d-fc0ba60ae1a6
 -   **Query name:** IAM Database Auth Not Enabled
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Encryption
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/iam_database_auth_not_enabled)
 
@@ -28,7 +28,7 @@ IAM Database Auth Enabled should be configured to true when using compatible eng
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="10"
+```tf title="Positive test num. 1 - tf file" hl_lines="10"
 resource "aws_db_instance" "positive1" {
   allocated_storage    = 20
   storage_type         = "gp2"
@@ -42,7 +42,7 @@ resource "aws_db_instance" "positive1" {
 }
 
 ```
-```tf title="Postitive test num. 2 - tf file" hl_lines="1"
+```tf title="Positive test num. 2 - tf file" hl_lines="1"
 resource "aws_db_instance" "positive1" {
   allocated_storage    = 20
   storage_type         = "gp2"
@@ -55,7 +55,7 @@ resource "aws_db_instance" "positive1" {
 }
 
 ```
-```tf title="Postitive test num. 3 - tf file" hl_lines="1"
+```tf title="Positive test num. 3 - tf file" hl_lines="1"
 module "db" {
   source  = "terraform-aws-modules/rds/aws"
   version = "~> 3.0"
@@ -130,7 +130,7 @@ module "db" {
 }
 
 ```
-<details><summary>Postitive test num. 4 - tf file</summary>
+<details><summary>Positive test num. 4 - tf file</summary>
 
 ```tf hl_lines="17"
 module "db" {

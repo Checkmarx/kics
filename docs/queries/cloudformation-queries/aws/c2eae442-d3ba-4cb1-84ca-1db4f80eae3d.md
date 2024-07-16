@@ -18,7 +18,7 @@ hide:
 -   **Query id:** c2eae442-d3ba-4cb1-84ca-1db4f80eae3d
 -   **Query name:** Lambda Function Without Dead Letter Queue
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#CC0">Low</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Insecure Configurations
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/lambda_function_without_dead_letter_queue)
 
@@ -28,7 +28,7 @@ AWS Lambda Function should be configured for a Dead Letter Queue(DLQ)<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="6"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="6"
 AWSTemplateFormatVersion: '2010-09-09'
 Description: VPC function.
 Resources:
@@ -57,7 +57,7 @@ Resources:
           Value: AWS Lambda Function
 
 ```
-```yaml title="Postitive test num. 2 - yaml file" hl_lines="27 6"
+```yaml title="Positive test num. 2 - yaml file" hl_lines="27 6"
 AWSTemplateFormatVersion: '2010-09-09'
 Description: VPC function.
 Resources:

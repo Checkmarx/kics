@@ -6,10 +6,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Checkmarx/kics/internal/tracker"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/printer"
-	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/v2/internal/tracker"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/printer"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
 	"github.com/stretchr/testify/require"
 )
 
@@ -88,12 +88,13 @@ func Test_GetSummary(t *testing.T) {
 				SeveritySummary: model.SeveritySummary{
 					ScanID: "",
 					SeverityCounters: map[model.Severity]int{
-						"TRACE":  0,
-						"INFO":   0,
-						"LOW":    0,
-						"MEDIUM": 0,
-						"HIGH":   0,
-						"":       1,
+						"TRACE":    0,
+						"INFO":     0,
+						"LOW":      0,
+						"MEDIUM":   0,
+						"HIGH":     0,
+						"CRITICAL": 0,
+						"":         1,
 					},
 					TotalCounter:      1,
 					TotalBOMResources: 0,

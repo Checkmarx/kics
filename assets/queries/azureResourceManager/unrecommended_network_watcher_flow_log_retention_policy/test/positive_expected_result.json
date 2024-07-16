@@ -1,74 +1,146 @@
 [
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 20,
     "fileName": "positive1.json"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 21,
     "fileName": "positive1.json"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 19,
     "fileName": "positive2.json"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 20,
     "fileName": "positive2.json"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 15,
     "fileName": "positive3.json"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 15,
     "fileName": "positive4.json"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 22,
     "fileName": "positive5.json"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 23,
     "fileName": "positive5.json"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 21,
     "fileName": "positive6.json"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 22,
     "fileName": "positive6.json"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 17,
     "fileName": "positive7.json"
   },
   {
     "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 17,
     "fileName": "positive8.json"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive3.bicep"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive4.bicep"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive5.bicep"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive5.bicep"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 9,
+    "fileName": "positive6.bicep"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive6.bicep"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive7.bicep"
+  },
+  {
+    "queryName": "Unrecommended Network Watcher Flow Log Retention Policy",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive8.bicep"
   }
 ]

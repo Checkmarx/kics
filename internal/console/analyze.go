@@ -6,11 +6,11 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/Checkmarx/kics/internal/console/flags"
-	sentryReport "github.com/Checkmarx/kics/internal/sentry"
-	"github.com/Checkmarx/kics/pkg/analyzer"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/internal/console/flags"
+	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+	"github.com/Checkmarx/kics/v2/pkg/analyzer"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
@@ -65,8 +65,9 @@ func analyze() error {
 
 func getAnalyzeParameters() *analyzer.Parameters {
 	analyzeParams := analyzer.Parameters{
-		Path:    flags.GetMultiStrFlag(flags.AnalyzePath),
-		Results: flags.GetStrFlag(flags.AnalyzeResults),
+		Path:        flags.GetMultiStrFlag(flags.AnalyzePath),
+		Results:     flags.GetStrFlag(flags.AnalyzeResults),
+		MaxFileSize: flags.GetIntFlag(flags.MaxFileSizeFlag),
 	}
 
 	return &analyzeParams
@@ -90,6 +91,7 @@ func executeAnalyze(analyzeParams *analyzer.Parameters) error {
 		Exc:               []string{""},
 		ExcludeGitIgnore:  false,
 		GitIgnoreFileName: "",
+		MaxFileSize:       analyzeParams.MaxFileSize,
 	}
 
 	analyzedPaths, err := analyzer.Analyze(analyzerStruct)

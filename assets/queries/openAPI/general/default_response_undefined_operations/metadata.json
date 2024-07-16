@@ -1,18 +1,21 @@
 {
   "id": "86e3702f-c868-44b2-b61d-ea5316c18110",
   "queryName": "Default Response Undefined On Operations (v3)",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "Operations responses should have a default response defined",
   "descriptionUrl": "https://swagger.io/specification/#responses-object",
   "platform": "OpenAPI",
+  "descriptionID": "fcdbb44e",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "5f34c7ae-4f3f-4cbb-8fe3-a11d6961062f",
       "queryName": "Default Response Undefined On Operations (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#responses-object"
+      "descriptionUrl": "https://swagger.io/specification/v2/#responses-object",
+      "descriptionText": ""
     }
   },
-  "aggregation": 2,
-  "descriptionID": "fcdbb44e"
+  "cwe": "",
+  "oldSeverity": "MEDIUM"
 }

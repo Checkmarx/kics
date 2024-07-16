@@ -9,8 +9,8 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/Checkmarx/kics/e2e/testcases"
-	"github.com/Checkmarx/kics/e2e/utils"
+	"github.com/Checkmarx/kics/v2/e2e/testcases"
+	"github.com/Checkmarx/kics/v2/e2e/utils"
 	"github.com/stretchr/testify/require"
 )
 
@@ -92,6 +92,7 @@ func Test_E2E_CLI(t *testing.T) {
 					// Check log file
 					logData, _ := utils.ReadFixture(tt.Args.ExpectedLog.LogFile, "output")
 					validation := tt.Args.ExpectedLog.ValidationFunc(logData)
+
 					require.Truef(t, validation, "The output log file 'output/%s' doesn't match the regex validation",
 						tt.Args.ExpectedLog.LogFile)
 				}

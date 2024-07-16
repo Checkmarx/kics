@@ -1,4 +1,3 @@
-// Package model (go:generate go run -mod=mod github.com/mailru/easyjson/easyjson ./$GOFILE)
 package model
 
 import (
@@ -6,13 +5,13 @@ import (
 	"sort"
 	"strings"
 
-	_ "github.com/mailru/easyjson/gen" // easyjson unmarshaler
 	"github.com/rs/zerolog/log"
 )
 
 // Constants to describe what kind of file refers
 const (
 	KindTerraform FileKind = "TF"
+	KindBICEP     FileKind = "BICEP"
 	KindJSON      FileKind = "JSON"
 	KindYAML      FileKind = "YAML"
 	KindYML       FileKind = "YML"
@@ -34,11 +33,12 @@ const (
 
 // Constants to describe vulnerability's severity
 const (
-	SeverityHigh   = "HIGH"
-	SeverityMedium = "MEDIUM"
-	SeverityLow    = "LOW"
-	SeverityInfo   = "INFO"
-	SeverityTrace  = "TRACE"
+	SeverityCritical = "CRITICAL"
+	SeverityHigh     = "HIGH"
+	SeverityMedium   = "MEDIUM"
+	SeverityLow      = "LOW"
+	SeverityInfo     = "INFO"
+	SeverityTrace    = "TRACE"
 )
 
 // Constants to describe issue's type
@@ -51,6 +51,7 @@ const (
 // Arrays to group all constants of one type
 var (
 	AllSeverities = []Severity{
+		SeverityCritical,
 		SeverityHigh,
 		SeverityMedium,
 		SeverityLow,
@@ -67,7 +68,9 @@ var (
 
 var (
 	// KICSCommentRgxp is the regexp to identify if a comment is a KICS comment
-	KICSCommentRgxp = regexp.MustCompile(`^((/{2})|#|;)*\s*kics-scan\s*`)
+	KICSCommentRgxp = regexp.MustCompile(`(^|\n)((/{2})|#|;)*\s*kics-scan\s*`)
+	// KICSGetContentCommentRgxp to gets the kics comment on the hel case
+	KICSGetContentCommentRgxp = regexp.MustCompile(`(^|\n)((/{2})|#|;)*\s*kics-scan([^\n]*)\n`)
 	// KICSCommentRgxpYaml is the regexp to identify if the comment has KICS comment at the end of the comment in YAML
 	KICSCommentRgxpYaml = regexp.MustCompile(`((/{2})|#)*\s*kics-scan\s*(ignore-line|ignore-block)\s*\n*$`)
 )
@@ -130,6 +133,7 @@ type FileMetadata struct {
 	LinesIgnore       []int
 	ResolvedFiles     map[string]ResolvedFile
 	LinesOriginalData *[]string
+	IsMinified        bool
 }
 
 // QueryMetadata is a representation of general information about a query
@@ -139,9 +143,11 @@ type QueryMetadata struct {
 	Content   string
 	Metadata  map[string]interface{}
 	Platform  string
+	CWE       string
 	// special field for generic queries
 	// represents how many queries are aggregated into a single rego file
-	Aggregation int
+	Aggregation  int
+	Experimental bool
 }
 
 // Vulnerability is a representation of a detected vulnerability in scanned files
@@ -150,15 +156,18 @@ type Vulnerability struct {
 	ID               int         `json:"id"`
 	ScanID           string      `db:"scan_id" json:"-"`
 	SimilarityID     string      `db:"similarity_id" json:"similarityID"`
+	OldSimilarityID  string      `db:"old_similarity_id" json:"oldSimilarityID"`
 	FileID           string      `db:"file_id" json:"-"`
 	FileName         string      `db:"file_name" json:"fileName"`
 	QueryID          string      `db:"query_id" json:"queryID"`
 	QueryName        string      `db:"query_name" json:"queryName"`
 	QueryURI         string      `json:"-"`
 	Category         string      `json:"category"`
+	Experimental     bool        `json:"experimental"`
 	Description      string      `json:"description"`
 	DescriptionID    string      `json:"descriptionID"`
 	Platform         string      `db:"platform" json:"platform"`
+	CWE              string      `db:"cwe" json:"cwe"`
 	Severity         Severity    `json:"severity"`
 	Line             int         `json:"line"`
 	VulnLines        *[]CodeLine `json:"vulnLines"`
@@ -243,12 +252,12 @@ func (m FileMetadatas) ToMap() map[string]FileMetadata {
 	return c
 }
 
-// Documents (easyjson:json)
+// Documents
 type Documents struct {
 	Documents []Document `json:"document"`
 }
 
-// Document (easyjson:json)
+// Document
 type Document map[string]interface{}
 
 // Combine merge documents from FileMetadatas using the ID as reference for Document ID and FileName as reference for file

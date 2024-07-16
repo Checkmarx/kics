@@ -3,11 +3,13 @@ package flags
 import (
 	"fmt"
 	"regexp"
+	"runtime"
 	"strings"
+	"time"
 
-	"github.com/Checkmarx/kics/internal/console/helpers"
-	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/internal/console/helpers"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
 var validMultiStrEnums = map[string]map[string]string{
@@ -62,6 +64,20 @@ func validateMultiStrEnum(flagName string) error {
 			strings.Join(invalidEnum, ", "),
 			strings.Join(validEnumsValues, "\n  "),
 		)
+	}
+	return nil
+}
+
+func validateWorkersFlag(flagName string) error {
+	workers := GetIntFlag(flagName)
+	if workers < 0 {
+		return fmt.Errorf("invalid argument --%s: value must be greater or equal to 0", flagName)
+	}
+	if workers > runtime.GOMAXPROCS(-1) {
+		now := time.Now()
+		timeStr := now.Format("03:04PM")
+		fmt.Println("\x1b[90m" + timeStr + " \x1b[31mWRN\x1b[0m Number of workers is greater than the number of logical CPUs")
+		return nil
 	}
 	return nil
 }

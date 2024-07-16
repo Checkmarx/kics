@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 6c2d627c-de0f-45fb-b33d-dad9bffbb421
 -   **Query name:** Cloud Storage Bucket Logging Not Enabled
 -   **Platform:** Crossplane
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Observability
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/crossplane/gcp/cloud_storage_bucket_logging_not_enabled)
 
@@ -28,7 +28,7 @@ Cloud storage bucket should have logging enabled<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="5"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="5"
 apiVersion: storage.gcp.crossplane.io/v1alpha3
 kind: Bucket
 metadata:

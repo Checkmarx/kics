@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -13,10 +13,11 @@ import (
 
 // QueryInspectorParameters is a struct that represents the optionn to select queries to be executed
 type QueryInspectorParameters struct {
-	IncludeQueries IncludeQueries
-	ExcludeQueries ExcludeQueries
-	InputDataPath  string
-	BomQueries     bool
+	IncludeQueries      IncludeQueries
+	ExcludeQueries      ExcludeQueries
+	ExperimentalQueries bool
+	InputDataPath       string
+	BomQueries          bool
 }
 
 // ExcludeQueries is a struct that represents the option to exclude queries by ids or by categories

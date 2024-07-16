@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 15ffbacc-fa42-4f6f-a57d-2feac7365caa
 -   **Query name:** Redshift Cluster Logging Disabled
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Observability
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/redshift_cluster_logging_disabled)
 
@@ -28,7 +28,7 @@ Make sure Logging is enabled for Redshift Cluster<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="9 13"
+```tf title="Positive test num. 1 - tf file" hl_lines="9 13"
 resource "aws_redshift_cluster" "positive1" {
   cluster_identifier = "tf-redshift-cluster"
   database_name      = "mydb"

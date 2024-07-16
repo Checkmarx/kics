@@ -11,12 +11,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Checkmarx/kics/internal/constants"
-	"gopkg.in/yaml.v3"
-
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/pkg/analyzer"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/rs/zerolog/log"
+	"gopkg.in/yaml.v3"
 )
 
 // ResolvedFile - used for caching the already resolved files
@@ -46,18 +45,37 @@ func NewResolver(
 	}
 }
 
+func isOpenAPI(fileContent []byte) bool {
+	regexToRun :=
+		[]*regexp.Regexp{analyzer.OpenAPIRegexInfo,
+			analyzer.OpenAPIRegexPath,
+			analyzer.OpenAPIRegex}
+	for _, regex := range regexToRun {
+		if !regex.Match(fileContent) {
+			return false
+		}
+	}
+	return true
+}
+
 // Resolve - replace or modifies in-memory content before parsing
-func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) []byte {
+func (r *Resolver) Resolve(fileContent []byte, path string,
+	resolveCount, maxResolverDepth int, resolvedFilesCache map[string]ResolvedFile,
+	resolveReferences bool) []byte {
 	// handle panic during resolve process
 	defer func() {
 		if r := recover(); r != nil {
 			err := fmt.Errorf("panic: %v", r)
-			log.Err(err).Msg("Recovered from panic during file resolve")
+			log.Err(err).Msg("Recovered from panic during resolve of file " + path)
 		}
 	}()
 
+	if !resolveReferences && isOpenAPI(fileContent) {
+		return fileContent
+	}
+
 	if utils.Contains(filepath.Ext(path), []string{".yml", ".yaml"}) {
-		return r.yamlResolve(fileContent, path, resolveCount, resolvedFilesCache)
+		return r.yamlResolve(fileContent, path, resolveCount, maxResolverDepth, resolvedFilesCache, resolveReferences)
 	}
 	var obj any
 	err := r.unmarshler(fileContent, &obj)
@@ -66,7 +84,7 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolveCount int, re
 	}
 
 	// resolve the paths
-	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, resolvedFilesCache, false)
+	obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, maxResolverDepth, resolvedFilesCache, false, resolveReferences)
 
 	b, err := json.MarshalIndent(obj, "", "")
 	if err == nil {
@@ -81,33 +99,46 @@ func (r *Resolver) walk(
 	fullObject interface{},
 	value any,
 	path string,
-	resolveCount int,
+	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
-	refBool bool) (any, bool) {
+	refBool, resolveReferences bool) (any, bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
 		if filepath.Base(path) != typedValue {
-			return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolveCount, resolvedFilesCache, refBool)
+			return r.resolvePath(
+				originalFileContent, fullObject, typedValue, path, resolveCount,
+				maxResolverDepth, resolvedFilesCache, refBool, resolveReferences)
 		}
 		return value, false
 	case []any:
 		for i, v := range typedValue {
-			typedValue[i], _ = r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, refBool)
+			typedValue[i], _ = r.walk(
+				originalFileContent, fullObject, v, path, resolveCount,
+				maxResolverDepth, resolvedFilesCache, refBool, resolveReferences)
 		}
 		return typedValue, false
 	case map[string]any:
-		return r.handleMap(originalFileContent, fullObject, typedValue, path, resolveCount, resolvedFilesCache)
+		return r.handleMap(
+			originalFileContent, fullObject, typedValue, path, resolveCount,
+			maxResolverDepth, resolvedFilesCache, resolveReferences)
 	default:
 		return value, false
 	}
 }
 
-func (r *Resolver) handleMap(originalFileContent []byte, fullObject interface{}, value map[string]interface{}, path string,
-	resolveCount int, resolvedFilesCache map[string]ResolvedFile) (any, bool) {
+func (r *Resolver) handleMap(
+	originalFileContent []byte,
+	fullObject interface{},
+	value map[string]interface{},
+	path string,
+	resolveCount, maxResolverDepth int,
+	resolvedFilesCache map[string]ResolvedFile,
+	resolveReferences bool,
+) (any, bool) {
 	for k, v := range value {
 		isRef := strings.Contains(strings.ToLower(k), "$ref")
-		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, resolvedFilesCache, isRef)
+		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, maxResolverDepth, resolvedFilesCache, isRef, resolveReferences)
 		// check if it is a ref then add new details
 		if valMap, ok := val.(map[string]interface{}); (ok || !res) && isRef {
 			// Create RefMetadata and add it to the resolved value map
@@ -127,7 +158,9 @@ func (r *Resolver) handleMap(originalFileContent []byte, fullObject interface{},
 	return value, false
 }
 
-func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int, resolvedFilesCache map[string]ResolvedFile) []byte {
+func (r *Resolver) yamlResolve(fileContent []byte, path string,
+	resolveCount, maxResolverDepth int, resolvedFilesCache map[string]ResolvedFile,
+	resolveReferences bool) []byte {
 	var obj yaml.Node
 	err := r.unmarshler(fileContent, &obj)
 	if err != nil {
@@ -137,7 +170,9 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolveCount int
 	fullObjectCopy := obj
 
 	// resolve the paths
-	obj, _ = r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolveCount, resolvedFilesCache, false)
+	obj, _ = r.yamlWalk(
+		fileContent, &fullObjectCopy, &obj, path, resolveCount,
+		maxResolverDepth, resolvedFilesCache, false, resolveReferences, false)
 
 	if obj.Kind == 1 && len(obj.Content) == 1 {
 		obj = *obj.Content[0]
@@ -156,23 +191,31 @@ func (r *Resolver) yamlWalk(
 	fullObject *yaml.Node,
 	value *yaml.Node,
 	path string,
-	resolveCount int,
+	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
-	refBool bool) (yaml.Node, bool) {
+	refBool, resolveReferences, ansibleVars bool) (yaml.Node, bool) {
 	// go over the value and replace paths with the real content
 	switch value.Kind {
 	case yaml.ScalarNode:
 		if filepath.Base(path) != value.Value {
-			return r.resolveYamlPath(originalFileContent, fullObject, value, path, resolveCount, resolvedFilesCache, refBool)
+			return r.resolveYamlPath(originalFileContent, fullObject,
+				value, path,
+				resolveCount, maxResolverDepth, resolvedFilesCache,
+				refBool, resolveReferences, ansibleVars)
 		}
 		return *value, false
 	default:
 		refBool := false
+		ansibleVars := false
 		for i := range value.Content {
 			if i >= 1 {
 				refBool = strings.Contains(value.Content[i-1].Value, "$ref")
+				ansibleVars = strings.Contains(value.Content[i-1].Value, "include_vars")
 			}
-			resolved, ok := r.yamlWalk(originalFileContent, fullObject, value.Content[i], path, resolveCount, resolvedFilesCache, refBool)
+			resolved, ok := r.yamlWalk(originalFileContent, fullObject,
+				value.Content[i], path,
+				resolveCount, maxResolverDepth, resolvedFilesCache,
+				refBool, resolveReferences, ansibleVars)
 
 			if i >= 1 && refBool && (resolved.Kind == yaml.MappingNode || !ok) {
 				// Create RefMetadata and add it to yaml Node
@@ -218,11 +261,11 @@ func (r *Resolver) resolveYamlPath(
 	fullObject *yaml.Node,
 	v *yaml.Node,
 	filePath string,
-	resolveCount int,
+	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
-	refBool bool) (yaml.Node, bool) {
+	refBool, resolveReferences, ansibleVars bool) (yaml.Node, bool) {
 	value := v.Value
-	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
+	if resolveCount >= maxResolverDepth || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
 		return *v, false
 	}
 	var splitPath []string
@@ -236,22 +279,16 @@ func (r *Resolver) resolveYamlPath(
 	} else { // external file resolve
 		value = checkServerlessFileReference(value)
 
-		path := filepath.Join(filepath.Dir(filePath), value)
-		onlyFilePath := getPathFromString(path)
-		_, err := os.Stat(path)
-		if err != nil {
+		exists, path, onlyFilePath, filename := findFilePath(filepath.Dir(filePath), value, ansibleVars, r.Extension)
+		if !exists {
 			return *v, false
 		}
-
-		if !contains(filepath.Ext(path), r.Extension) {
-			return *v, false
-		}
-
-		filename := filepath.Clean(onlyFilePath)
 
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[filename]; !ok {
-			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, true); isError {
+			if ret, isError := r.resolveFile(
+				value, onlyFilePath, resolveCount, maxResolverDepth,
+				resolvedFilesCache, true, resolveReferences); isError {
 				if retYaml, yamlNode := ret.(yaml.Node); yamlNode {
 					return retYaml, false
 				} else {
@@ -306,9 +343,9 @@ func (r *Resolver) returnResolveYamlPathValue(
 func (r *Resolver) resolveFile(
 	value string,
 	filePath string,
-	resolveCount int,
+	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
-	yamlResolve bool) (any, bool) {
+	yamlResolve, resolveReferences bool) (any, bool) {
 	// open the file with the content to replace
 	file, err := os.Open(filepath.Clean(filePath))
 	if err != nil {
@@ -324,7 +361,7 @@ func (r *Resolver) resolveFile(
 	// read the content
 	fileContent, _ := io.ReadAll(file)
 
-	resolvedFile := r.Resolve(fileContent, filePath, resolveCount+1, resolvedFilesCache)
+	resolvedFile := r.Resolve(fileContent, filePath, resolveCount+1, maxResolverDepth, resolvedFilesCache, resolveReferences)
 
 	if yamlResolve {
 		var obj yaml.Node
@@ -365,10 +402,10 @@ func (r *Resolver) resolvePath(
 	originalFileContent []byte,
 	fullObject interface{},
 	value, filePath string,
-	resolveCount int,
+	resolveCount, maxResolverDepth int,
 	resolvedFilesCache map[string]ResolvedFile,
-	refBool bool) (any, bool) {
-	if resolveCount > constants.MaxResolvedFiles || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
+	refBool bool, resolveReferences bool) (any, bool) {
+	if resolveCount >= maxResolverDepth || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
 		return value, false
 	}
 	var splitPath []string
@@ -393,7 +430,9 @@ func (r *Resolver) resolvePath(
 
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvedFilesCache[onlyFilePath]; !ok {
-			if ret, isError := r.resolveFile(value, onlyFilePath, resolveCount, resolvedFilesCache, false); isError {
+			if ret, isError := r.resolveFile(
+				value, onlyFilePath, resolveCount, maxResolverDepth,
+				resolvedFilesCache, false, resolveReferences); isError {
 				return ret, false
 			}
 		}
@@ -539,4 +578,42 @@ func checkServerlessFileReference(value string) string {
 		return matches[1]
 	}
 	return value
+}
+
+func findFilePath(
+	folderPath, filename string,
+	ansibleVars bool,
+	extensions []string) (exists bool, path, onlyFilePath, cleanFilePath string) {
+	path = filepath.Join(folderPath, filename)
+	if ansibleVars {
+		if exists, ansibleVarsPath := findAnsibleVarsPath(folderPath, filename); !exists {
+			return false, "", "", ""
+		} else {
+			path = ansibleVarsPath
+		}
+	} else if _, err := os.Stat(path); err != nil {
+		return false, "", "", ""
+	}
+
+	if !contains(filepath.Ext(path), extensions) {
+		return false, "", "", ""
+	}
+
+	onlyFilePath = getPathFromString(path)
+	return true, path, onlyFilePath, filepath.Clean(onlyFilePath)
+}
+
+func findAnsibleVarsPath(folderPath, filename string) (exists bool, ansibleVarsPath string) {
+	possiblePaths := []string{
+		filepath.Join(folderPath, "vars", filename),
+		filepath.Join(folderPath, filename),
+	}
+
+	for _, path := range possiblePaths {
+		if _, err := os.Stat(path); err == nil {
+			return true, path
+		}
+	}
+
+	return false, ""
 }

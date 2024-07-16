@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/test"
 	"github.com/stretchr/testify/require"
 )
 
@@ -20,6 +20,22 @@ func TestPrintASFFReport(t *testing.T) {
 				summary:  test.SummaryMock,
 				path:     filepath.Join(os.TempDir(), "testdir"),
 				filename: "output",
+			},
+		},
+		{
+			name: "asff report with cwe field complete",
+			caseTest: jsonCaseTest{
+				summary:  test.SimpleSummaryMockAsff,
+				path:     filepath.Join(os.TempDir(), "testdir"),
+				filename: "output2",
+			},
+		},
+		{
+			name: "asff report critical severity",
+			caseTest: jsonCaseTest{
+				summary:  test.SummaryMockCritical,
+				path:     filepath.Join(os.TempDir(), "testdir"),
+				filename: "output3",
 			},
 		},
 	}

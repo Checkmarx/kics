@@ -1,13 +1,13 @@
 [
   {
     "queryName": "EBS Volume Encryption Disabled",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 4,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "EBS Volume Encryption Disabled",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 1,
     "fileName": "positive2.tf"
   }

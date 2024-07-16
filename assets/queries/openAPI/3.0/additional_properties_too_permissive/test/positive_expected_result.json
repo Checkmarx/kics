@@ -1,37 +1,37 @@
 [
   {
     "queryName": "Additional Properties Too Permissive",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 24,
     "filename": "positive1.json"
   },
   {
     "queryName": "Additional Properties Too Permissive",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 34,
     "filename": "positive3.json"
   },
   {
     "queryName": "Additional Properties Too Permissive",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 14,
     "filename": "positive5.json"
   },
   {
     "queryName": "Additional Properties Too Permissive",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 19,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "Additional Properties Too Permissive",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 23,
     "filename": "positive4.yaml"
   },
   {
     "queryName": "Additional Properties Too Permissive",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 12,
     "filename": "positive6.yaml"
   }

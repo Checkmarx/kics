@@ -1,0 +1,67 @@
+{
+  "kics_version": "development",
+  "files_scanned": 2,
+  "lines_scanned": 68,
+  "files_parsed": 2,
+  "lines_parsed": 68,
+  "lines_ignored": 0,
+  "files_failed_to_scan": 0,
+  "queries_total": 1,
+  "queries_failed_to_execute": 0,
+  "queries_failed_to_compute_similarity_id": 0,
+  "scan_id": "console",
+  "severity_counters": {
+    "CRITICAL": 2,
+    "HIGH": 0,
+    "INFO": 0,
+    "LOW": 0,
+    "MEDIUM": 0,
+    "TRACE": 0
+  },
+  "total_counter": 2,
+  "total_bom_resources": 0,
+  "start": "2024-05-28T13:12:54.6010329+01:00",
+  "end": "2024-05-28T13:12:55.0824149+01:00",
+  "paths": [
+    "/path/test/fixtures/test_old_severity/test",
+    "/path/test/fixtures/test_old_severity/critical"
+  ],
+  "queries": [
+    {
+      "query_name": "Run Block Injection",
+      "query_id": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+      "query_url": "https://securitylab.github.com/research/github-actions-untrusted-input/",
+      "severity": "CRITICAL",
+      "platform": "CICD",
+      "cloud_provider": "COMMON",
+      "category": "Insecure Configurations",
+      "experimental": false,
+      "description": "GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event.",
+      "description_id": "02044a75",
+      "files": [
+        {
+          "file_name": "path\\test\\fixtures\\test_old_severity\\test\\positive1.yaml",
+          "similarity_id": "2197922dab336742ff58010e01218006c9b2c930a840018ef8b42fb1284f2a45",
+          "line": 10,
+          "issue_type": "IncorrectValue",
+          "search_key": "run={{if [ \"${{ github.event.issue.body }}\" ]; then\n  if [[ \"${{ github.event.issue.title }}\" =~ ^\\[Auto\\]* ]]; then\n    :\n  else\n    echo \"This issue does not need to generate a markdown file.\" 1\u003e\u00262\n    exit 1;\n  fi;\nelse\n  echo \"The description of the issue is empty.\" 1\u003e\u00262\n  exit 1;\nfi;\n}}",
+          "search_line": 10,
+          "search_value": "github.event.issue.body",
+          "expected_value": "Run block does not contain dangerous input controlled by user.",
+          "actual_value": "Run block contains dangerous input controlled by user."
+        },
+        {
+          "file_name": "path\\test\\fixtures\\test_old_severity\\test\\positive1.yaml",
+          "similarity_id": "efac914cab5fb466570dd3a71ee3edd8197a15928c56c2aabff00f54d05c5e6d",
+          "line": 10,
+          "issue_type": "IncorrectValue",
+          "search_key": "run={{if [ \"${{ github.event.issue.body }}\" ]; then\n  if [[ \"${{ github.event.issue.title }}\" =~ ^\\[Auto\\]* ]]; then\n    :\n  else\n    echo \"This issue does not need to generate a markdown file.\" 1\u003e\u00262\n    exit 1;\n  fi;\nelse\n  echo \"The description of the issue is empty.\" 1\u003e\u00262\n  exit 1;\nfi;\n}}",
+          "search_line": 10,
+          "search_value": "github.event.issue.title",
+          "expected_value": "Run block does not contain dangerous input controlled by user.",
+          "actual_value": "Run block contains dangerous input controlled by user."
+        }
+      ]
+    }
+  ]
+}

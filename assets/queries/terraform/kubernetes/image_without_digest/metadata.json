@@ -6,5 +6,7 @@
   "descriptionText": "Images should be specified together with their digests to ensure integrity",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image",
   "platform": "Terraform",
-  "descriptionID": "fec9b353"
+  "descriptionID": "fec9b353",
+  "cwe": "",
+  "cloudProvider": "common"
 }

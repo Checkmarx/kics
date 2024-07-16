@@ -6,5 +6,7 @@
   "descriptionText": "The Horizontal Pod Autoscaler must target a valid object",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/horizontal_pod_autoscaler#metric",
   "platform": "Terraform",
-  "descriptionID": "f4d95aa4"
+  "descriptionID": "f4d95aa4",
+  "cwe": "",
+  "cloudProvider": "common"
 }

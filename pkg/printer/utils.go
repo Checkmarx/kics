@@ -1,11 +1,10 @@
 package printer
 
 import (
-	"fmt"
 	"time"
 
-	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
-	"github.com/rs/zerolog/log"
+	consoleFlags "github.com/Checkmarx/kics/v2/internal/console/flags"
+	"github.com/rs/zerolog"
 )
 
 func validateFlags() error {
@@ -28,14 +27,12 @@ func validateFlags() error {
 }
 
 // PrintScanDuration prints the scan duration
-func PrintScanDuration(elapsed time.Duration) {
+func PrintScanDuration(logger *zerolog.Logger, elapsed time.Duration) {
 	if consoleFlags.GetBoolFlag(consoleFlags.CIFlag) {
 		elapsedStrFormat := "Scan duration: %vms\n"
-		fmt.Printf(elapsedStrFormat, elapsed.Milliseconds())
-		log.Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
+		(*logger).Info().Msgf(elapsedStrFormat, elapsed.Milliseconds())
 	} else {
 		elapsedStrFormat := "Scan duration: %v\n"
-		fmt.Printf(elapsedStrFormat, elapsed)
-		log.Info().Msgf(elapsedStrFormat, elapsed)
+		(*logger).Info().Msgf(elapsedStrFormat, elapsed)
 	}
 }

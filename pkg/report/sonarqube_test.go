@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/test"
 	"github.com/stretchr/testify/require"
 )
 
@@ -27,6 +27,24 @@ func TestPrintSonarQubeReport(t *testing.T) {
 				path:     "./testdir",
 				filename: "testout",
 				body:     test.SummaryMock,
+			},
+			wantErr: false,
+		},
+		{
+			name: "Test PrintSonarQubeReport with cwe field",
+			args: args{
+				path:     "./testdir",
+				filename: "testout2",
+				body:     test.SummaryMockCWE,
+			},
+			wantErr: false,
+		},
+		{
+			name: "Test PrintSonarQubeReport Critical Severity",
+			args: args{
+				path:     "./testdir",
+				filename: "testout2",
+				body:     test.SummaryMockCritical,
 			},
 			wantErr: false,
 		},

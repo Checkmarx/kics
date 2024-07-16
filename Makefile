@@ -68,7 +68,7 @@ generate: mod-tidy ## go generate
 
 .PHONY: generate-antlr
 generate-antlr: ## generate parser with ANTLRv4, needs JRE (Java Runtime Environment) on the system
-	@cd pkg/parser/jsonfilter/ && java -jar $(LIB)/antlr-4.11.1-complete.jar -Dlanguage=Go -visitor -no-listener -o parser JSONFilter.g4
+	@cd pkg/parser/jsonfilter/ && java -jar $(LIB)/antlr-4.13.1-complete.jar -Dlanguage=Go -visitor -no-listener -o parser JSONFilter.g4
 
 .PHONY: test
 test-short: # Run sanity unit tests
@@ -110,7 +110,7 @@ test-coverage-report: test-cover
 test-e2e: ## Run E2E tests
 test-e2e: build
 	$(call print-target)
-	E2E_KICS_BINARY=$(PWD)/bin/kics go test "github.com/Checkmarx/kics/e2e" -v -timeout 1500s
+	E2E_KICS_BINARY=$(PWD)/bin/kics go test "github.com/Checkmarx/kics/v2/e2e" -v -timeout 1500s
 
 .PHONY: cover
 cover: ## generate coverage report
@@ -131,7 +131,7 @@ dkr-compose: ## build docker image and runs docker-compose up
 .PHONY: dkr-build-antlr
 dkr-build-antlr: ## build ANTLRv4 docker image and generate parser based on given grammar
 	@docker build -t antlr4-generator:dev -f ./docker/Dockerfile.antlr .
-	@docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser/jsonfilter:/work -it antlr4-generator:dev
+	@docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser:/work -it antlr4-generator:dev
 
 .PHONY: release
 release: ## goreleaser --rm-dist
@@ -148,13 +148,13 @@ run-local: build
 .PHONY: generate-queries-docs
 generate-queries-docs: ## generate queries catalog md files
 	$(call print-target)
-	@pip3 install -r .github/generators/requirements.txt
-	@python3 -u .github/generators/docs_generator.py \
+	@pip3 install -r .github/scripts/docs-generator/requirements.txt
+	@python3 -u .github/scripts/docs-generator/docs-generator.py \
 		-p ./assets/queries/ \
 		-o ./docs/queries/ \
 		-f md \
-		-t .github/generators/templates
-	@python3 -u .github/scripts/docs-generator/query-page-generator/query-page-generator.py \
+		-t .github/scripts/docs-generator/templates
+	@python3 -u -B .github/scripts/docs-generator/query-page-generator/query-page-generator.py \
     	-p ./assets/queries/ \
         -o ./docs/queries/ \
         -f md \
@@ -174,3 +174,7 @@ help:
 define print-target
 	@printf "Executing target: \033[36m$@\033[0m\n"
 endef
+
+.PHONY: lint-docker-image
+lint-docker-image:
+	docker run -t --rm -v ./:/app -w /app golangci/golangci-lint:v1.57.2 golangci-lint run -v -c /app/.golangci.yml --timeout 20m

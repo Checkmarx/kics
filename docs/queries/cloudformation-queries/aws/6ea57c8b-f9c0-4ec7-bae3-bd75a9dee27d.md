@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 6ea57c8b-f9c0-4ec7-bae3-bd75a9dee27d
 -   **Query name:** SDB Domain Declared As A Resource
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#CC0">Low</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Resource Management
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/sdb_domain_declared_as_a_resource)
 
@@ -28,7 +28,7 @@ SimpleDB Domain resource should not be declared<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="8"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="8"
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "SDB Domain declared"
 Resources:
@@ -42,7 +42,7 @@ Resources:
       Description: "Some information"
 
 ```
-```json title="Postitive test num. 2 - json file" hl_lines="11"
+```json title="Positive test num. 2 - json file" hl_lines="11"
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "SDB Domain declared",

@@ -6,5 +6,7 @@
   "descriptionText": "A Kubernetes Pod should have a Service Account defined so to restrict Kubernetes API access, which means the attribute 'service_account_name' should be defined and not empty.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#service_account_name",
   "platform": "Terraform",
-  "descriptionID": "ce3648b0"
+  "descriptionID": "ce3648b0",
+  "cwe": "",
+  "cloudProvider": "common"
 }

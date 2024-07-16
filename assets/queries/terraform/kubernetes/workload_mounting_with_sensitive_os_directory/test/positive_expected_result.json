@@ -1,12 +1,12 @@
 [
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 53
   },
   {
     "queryName": "Workload Mounting With Sensitive OS Directory",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 112
   }
 ]

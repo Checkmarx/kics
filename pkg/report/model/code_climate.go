@@ -1,6 +1,6 @@
 package model
 
-import "github.com/Checkmarx/kics/pkg/model"
+import "github.com/Checkmarx/kics/v2/pkg/model"
 
 type lines struct {
 	Begin int `json:"begin"`
@@ -15,6 +15,7 @@ type location struct {
 type CodeClimateReport struct {
 	Type        string   `json:"type"`
 	CheckName   string   `json:"check_name"`
+	CWE         string   `json:"cwe,omitempty"`
 	Description string   `json:"description"`
 	Categories  []string `json:"categories"`
 	Location    location `json:"location"`
@@ -23,11 +24,12 @@ type CodeClimateReport struct {
 }
 
 var severityMap = map[string]string{
-	model.SeverityTrace:  "info",
-	model.SeverityInfo:   "info",
-	model.SeverityLow:    "minor",
-	model.SeverityMedium: "major",
-	model.SeverityHigh:   "critical",
+	model.SeverityTrace:    "info",
+	model.SeverityInfo:     "info",
+	model.SeverityLow:      "minor",
+	model.SeverityMedium:   "major",
+	model.SeverityHigh:     "critical",
+	model.SeverityCritical: "blocker",
 }
 
 // BuildCodeClimateReport builds the code climate report
@@ -39,6 +41,7 @@ func BuildCodeClimateReport(summary *model.Summary) []CodeClimateReport {
 			codeClimateReport = append(codeClimateReport, CodeClimateReport{
 				Type:        "issue",
 				CheckName:   summary.Queries[i].QueryName,
+				CWE:         summary.Queries[i].CWE,
 				Description: summary.Queries[i].Description,
 				Categories:  []string{"Security"},
 				Location: location{

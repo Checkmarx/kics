@@ -1,19 +1,19 @@
 [
   {
     "queryName": "Function App HTTP2 Disabled",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 9,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
-    "severity": "LOW",
+    "severity": "MEDIUM",
     "line": 13,
     "fileName": "positive3.tf"
   }

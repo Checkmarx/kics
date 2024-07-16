@@ -3,35 +3,35 @@
     "line": 13,
     "fileName": "positive1.yaml",
     "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
-    "severity": "MEDIUM"
+    "severity": "HIGH"
   },
   {
     "line": 24,
     "fileName": "positive2.yaml",
     "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
-    "severity": "MEDIUM"
+    "severity": "HIGH"
   },
   {
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 35,
     "fileName": "positive3.yaml",
     "queryName": "DMS Endpoint MongoDB Settings Password Exposed"
   },
   {
     "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 16,
     "fileName": "positive4.json"
   },
   {
     "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 26,
     "fileName": "positive5.json"
   },
   {
     "queryName": "DMS Endpoint MongoDB Settings Password Exposed",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 38,
     "fileName": "positive6.json"
   }

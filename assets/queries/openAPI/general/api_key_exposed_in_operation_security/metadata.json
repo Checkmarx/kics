@@ -3,16 +3,20 @@
   "queryName": "API Key Exposed In Operation Security (v3)",
   "severity": "LOW",
   "category": "Access Control",
-  "descriptionText": "API Keys should not be transported over network",
+  "descriptionText": "API Keys should be transported using a secure method such as HTTPS. Define a security scheme that uses a secure method to transport the API key.",
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
   "platform": "OpenAPI",
+  "descriptionID": "812604ac",
+  "aggregation": 2,
   "override": {
     "2.0": {
       "id": "392599e4-a4e2-403d-bc56-3fe05755782d",
       "queryName": "API Key Exposed In Operation Security (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#securityDefinitionsObject"
+      "descriptionUrl": "https://swagger.io/specification/v2/#securityDefinitionsObject",
+      "descriptionText": "API Keys should be transported using a secure method such as HTTPS. Define a security scheme that uses a secure method to transport the API key."
     }
   },
-  "aggregation": 2,
-  "descriptionID": "812604ac"
+  "cwe": "",
+  "oldSeverity": "LOW",
+  "cloudProvider": "common"
 }

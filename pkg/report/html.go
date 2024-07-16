@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/v2/internal/constants"
 	"github.com/rs/zerolog/log"
 	"github.com/tdewolff/minify/v2"
 	minifyCSS "github.com/tdewolff/minify/v2/css"

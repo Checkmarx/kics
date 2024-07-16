@@ -18,7 +18,7 @@ hide:
 -   **Query id:** 0ac9abbc-6d7a-41cf-af23-2e57ddb3dbfc
 -   **Query name:** Sensitive Port Is Exposed To Entire Network
 -   **Platform:** Ansible
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Networking and Firewall
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/ansible/azure/sensitive_port_is_exposed_to_entire_network)
 
@@ -28,7 +28,7 @@ A sensitive port, such as port 23 or port 110, is open for the whole network in 
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```yaml title="Postitive test num. 1 - yaml file" hl_lines="130 99 69 41 13 142 113 85 55 27"
+```yaml title="Positive test num. 1 - yaml file" hl_lines="130 99 69 41 13 142 113 85 55 27"
 ---
 - name: foo1
   azure_rm_securitygroup:

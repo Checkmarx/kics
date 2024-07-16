@@ -6,8 +6,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/engine/secrets"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/engine/secrets"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 )
 
 func maskPreviewLines(secretsPath string, scanResults *Results) error {
@@ -98,14 +98,14 @@ func maskSecret(rule *secrets.RegexQuery, lines *[]model.CodeLine, idx int) {
 	regex := rule.RegexStr
 	line := (*lines)[idx]
 
-	if len(rule.SpecialMask) > 0 {
+	if rule.SpecialMask != "" {
 		regex = "(.+)" + rule.SpecialMask
 	}
 
 	var re = regexp.MustCompile(regex)
 	match := re.FindString(line.Line)
 
-	if len(rule.SpecialMask) > 0 {
+	if rule.SpecialMask != "" {
 		match = line.Line[len(match):]
 	}
 

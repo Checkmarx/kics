@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	paths := [p |
-		[path, value] := walk(tf)
+		[path, _] := walk(tf)
 		p := path
 	]
 
@@ -18,8 +18,9 @@ CxPolicy[result] {
 
 	not_defined(document_indexes)
 
-	doc := input.document[document_indexes[0]]
-    contains(doc.file, ".tf")
+	indexes := document_indexes[i]
+	doc := input.document[indexes]
+	contains(doc.file, ".tf")
 
 	result := {
 		"documentId": doc.id,

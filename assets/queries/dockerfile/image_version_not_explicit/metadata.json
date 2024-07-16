@@ -6,5 +6,6 @@
   "descriptionText": "Always tag the version of an image explicitly",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#from",
   "platform": "Dockerfile",
-  "descriptionID": "4f469f06"
+  "descriptionID": "4f469f06",
+  "cwe": "1357"
 }

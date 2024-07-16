@@ -18,7 +18,7 @@ hide:
 -   **Query id:** b187edca-b81e-4fdc-aff4-aab57db45edb
 -   **Query name:** SQL DB Instance Publicly Accessible
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#ff0000">Critical</span>
 -   **Category:** Insecure Configurations
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/gcp/sql_db_instance_is_publicly_accessible)
 
@@ -28,7 +28,7 @@ Cloud SQL instances should not be publicly accessible.<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="24 41 56 6"
+```tf title="Positive test num. 1 - tf file" hl_lines="24 41 56 6"
 resource "google_sql_database_instance" "positive1" {
   name             = "master-instance"
   database_version = "POSTGRES_11"

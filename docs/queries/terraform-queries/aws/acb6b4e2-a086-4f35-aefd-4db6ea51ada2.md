@@ -18,7 +18,7 @@ hide:
 -   **Query id:** acb6b4e2-a086-4f35-aefd-4db6ea51ada2
 -   **Query name:** Elasticsearch Log Disabled
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Observability
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/elasticsearch_logs_disabled)
 
@@ -28,7 +28,7 @@ AWS Elasticsearch should have logs enabled<br>
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```tf title="Postitive test num. 1 - tf file" hl_lines="6"
+```tf title="Positive test num. 1 - tf file" hl_lines="6"
 resource "aws_elasticsearch_domain" "positive1" {
 
   log_publishing_options {
@@ -39,7 +39,7 @@ resource "aws_elasticsearch_domain" "positive1" {
 }
 
 ```
-```tf title="Postitive test num. 2 - tf file" hl_lines="1"
+```tf title="Positive test num. 2 - tf file" hl_lines="1"
 resource "aws_elasticsearch_domain" "positive2" {
   domain_name           = "example"
   elasticsearch_version = "1.5"

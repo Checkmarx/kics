@@ -1,0 +1,12 @@
+name: test-negative3
+on:
+  pull_request:
+    types: [opened, synchronize, edited, reopened]
+    branches:
+      - master
+jobs:
+  test-negative3:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Local action
+      uses: ./test.yml

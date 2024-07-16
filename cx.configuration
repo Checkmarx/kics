@@ -7,7 +7,7 @@
     "engineConfiguration": "",
     "incremental": "false",
     "forceScan" : "true",
-    "fileExcludes": "pkg/model/model_easyjson.go,*_test.go",
+    "fileExcludes": "*_test.go",
     "folderExcludes": "test,e2e/fixtures,e2e/testcases,.github,pkg/parser/jsonfilter/parser"
   }
 }

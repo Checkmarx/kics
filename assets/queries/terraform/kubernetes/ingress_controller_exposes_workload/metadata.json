@@ -6,5 +6,7 @@
   "descriptionText": "Ingress Controllers should not expose workload in order to avoid vulnerabilities and DoS attacks",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/ingress#http",
   "platform": "Terraform",
-  "descriptionID": "88c1dfb2"
+  "descriptionID": "88c1dfb2",
+  "cwe": "",
+  "cloudProvider": "common"
 }

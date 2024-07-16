@@ -6,5 +6,6 @@
   "descriptionText": "When using etcd commands, the '--peer-cert-file' and '--peer-key-file' should be defined",
   "descriptionUrl": "https://etcd.io/docs/v3.4/op-guide/security/",
   "platform": "Kubernetes",
-  "descriptionID": "f3bb5a8e"
+  "descriptionID": "f3bb5a8e",
+  "cwe": ""
 }

@@ -6,5 +6,8 @@
   "descriptionText": "Check if any label in the metadata is invalid.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#labels",
   "platform": "Terraform",
-  "descriptionID": "5448851e"
+  "descriptionID": "5448851e",
+  "cwe": "",
+  "cloudProvider": "common",
+  "oldSeverity": "LOW"
 }

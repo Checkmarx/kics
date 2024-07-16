@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	appsv1 "k8s.io/api/apps/v1"
@@ -169,7 +169,6 @@ func buildSupportedKinds() *supportedKinds {
 		},
 		"policy/v1beta1": {
 			"PodDisruptionBudget": &policyv1beta1.PodDisruptionBudgetList{},
-			"PodSecurityPolicy":   &policyv1beta1.PodSecurityPolicyList{},
 		},
 		"rbac.authorization.k8s.io/v1alpha1": {
 			"ClusterRoleBinding": &rbacv1alpha1.ClusterRoleBindingList{},

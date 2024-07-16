@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/test"
 	"github.com/stretchr/testify/require"
 )
 
@@ -22,6 +22,22 @@ var gitlabSASTTests = []struct {
 			filename: "test",
 		},
 		expectedResult: test.SummaryMock,
+	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCritical,
+			path:     "./testdir",
+			filename: "test2",
+		},
+		expectedResult: test.SummaryMockCritical,
+	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCWE,
+			path:     "./testdir",
+			filename: "test3",
+		},
+		expectedResult: test.SummaryMockCWE,
 	},
 }
 

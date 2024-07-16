@@ -6,8 +6,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser"
-	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
+	"github.com/Checkmarx/kics/v2/pkg/parser/jsonfilter/parser"
+	"github.com/antlr4-go/antlr/v4"
 	"github.com/stretchr/testify/require"
 )
 
