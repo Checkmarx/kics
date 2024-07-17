@@ -13,7 +13,7 @@
 #         uses: actions/checkout@v2.3.4
 #         with:
 #           fetch-depth: 0
-#       - uses: toko-bifrost/ms-teams-deploy-card@dcc94e4ce4088b1e6b6de5c9a3cda4ddcbe97d2e # 3.1.2
+#       - uses: toko-bifrost/ms-teams-deploy-card@master
 #         if: always()
 #         with:
 #           github-token: ${{ secrets.KICS_BOT_PAT }}
