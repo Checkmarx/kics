@@ -36,7 +36,7 @@ jobs:
         with:
           go-version: 1.22.x
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v5.1.0
+        uses: goreleaser/goreleaser-action@5742e2a039330cbb23ebf35f046f814d4c6ff811 #v5.1.0
         with:
           version: v0.160.0
           args: release --rm-dist --snapshot --skip-validate --config="./release/.goreleaser-apispec.yml"
@@ -46,7 +46,7 @@ jobs:
           DESCRIPTIONS_URL: ${{ secrets.DESCRIPTIONS_URL }}
           APISCANNER: "true"
       - name: delete release
-        uses: dev-drprasad/delete-tag-and-release@v1.0.1
+        uses: dev-drprasad/delete-tag-and-release@82600feb9527126eca69833f07bafe53279bd9b4 # v1.1
         with:
           delete_release: true # default: false
           tag_name: apispec # tag name to delete
