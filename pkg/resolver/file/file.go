@@ -470,8 +470,7 @@ func (r *Resolver) resolvePathReturnValue(
 		}
 		section, err := findSection(obj, splitPath[1])
 		// Check if there was an error finding the section or if the reference is circular
-		maxDepthCheckAux := maxResolverDepth
-		if err != nil || checkIfCircular(value, section, maxDepthCheckAux) {
+		if err != nil || checkIfCircular(value, section, maxResolverDepth) {
 			return value, false
 		}
 		if sectionMap, ok := section.(map[string]interface{}); ok {
