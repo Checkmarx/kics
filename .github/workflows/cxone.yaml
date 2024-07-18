@@ -12,7 +12,7 @@ on:
     - cron: '30 9 * * *'
 
 jobs:
-  cx-scan:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
