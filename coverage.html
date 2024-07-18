@@ -303,7 +303,7 @@
 				
 				<option value="file123">github.com/Checkmarx/kics/v2/pkg/report/sonarqube.go (90.9%)</option>
 				
-				<option value="file124">github.com/Checkmarx/kics/v2/pkg/resolver/file/file.go (70.4%)</option>
+				<option value="file124">github.com/Checkmarx/kics/v2/pkg/resolver/file/file.go (70.5%)</option>
 				
 				<option value="file125">github.com/Checkmarx/kics/v2/pkg/resolver/helm/helm.go (88.5%)</option>
 				
@@ -2576,13 +2576,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="36">{
+        for _, sample := range prof.Sample </span><span class="cov8" title="32">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="36">total += v
+                <span class="cov8" title="32">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2607,14 +2607,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov2" title="2">{
+        if math.IsNaN(metric) </span><span class="cov3" title="3">{
                 metric = 0
         }</span>
 
@@ -5686,7 +5686,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -20290,12 +20290,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="223">{
+        for variable := range s.varList </span><span class="cov7" title="222">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="614">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="680">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -31565,7 +31565,7 @@ func (r *Resolver) resolvePath(
                         return obj, false
                 }</span>
         }
-        <span class="cov1" title="1">return r.resolvePathReturnValue(value, filePath, splitPath, sameFileResolve, originalFileContent, obj)</span>
+        <span class="cov1" title="1">return r.resolvePathReturnValue(value, filePath, splitPath, sameFileResolve, originalFileContent, obj, maxResolverDepth)</span>
 }
 
 func (r *Resolver) resolvePathReturnValue(
@@ -31573,7 +31573,8 @@ func (r *Resolver) resolvePathReturnValue(
         splitPath []string,
         sameFileResolve bool,
         originalFileContent []byte,
-        obj any) (any, bool) <span class="cov1" title="1">{
+        obj any,
+        maxResolverDepth int) (any, bool) <span class="cov1" title="1">{
         if len(splitPath) &gt; 1 </span><span class="cov1" title="1">{
                 if sameFileResolve </span><span class="cov0" title="0">{
                         r.ResolvedFiles[filePath] = model.ResolvedFile{
@@ -31584,7 +31585,7 @@ func (r *Resolver) resolvePathReturnValue(
                 }</span>
                 <span class="cov1" title="1">section, err := findSection(obj, splitPath[1])
                 // Check if there was an error finding the section or if the reference is circular
-                if err != nil || checkIfCircular(value, section) </span><span class="cov0" title="0">{
+                if err != nil || checkIfCircular(value, section, maxResolverDepth) </span><span class="cov0" title="0">{
                         return value, false
                 }</span>
                 <span class="cov1" title="1">if sectionMap, ok := section.(map[string]interface{}); ok </span><span class="cov1" title="1">{
@@ -31652,26 +31653,28 @@ func findSection(object interface{}, sectionsString string) (interface{}, error)
         <span class="cov1" title="1">return object, nil</span>
 }
 
-func checkIfCircular(circularValue string, section interface{}) bool <span class="cov2" title="2">{
-        sectionAsMap, okMap := section.(map[string]interface{})
-        sectionAsList, okList := section.([]interface{})
-        if !okList &amp;&amp; !okMap </span><span class="cov1" title="1">{
-                return false
-        }</span>
-        <span class="cov1" title="1">if okMap </span><span class="cov1" title="1">{
-                for key, val := range sectionAsMap </span><span class="cov1" title="1">{
-                        // if there is a reference to the same value that was resolved it is a circular definition
-                        if key == "$ref" &amp;&amp; val == circularValue </span><span class="cov0" title="0">{
-                                return true
-                        }</span> else<span class="cov1" title="1"> if checkIfCircular(circularValue, val) </span><span class="cov0" title="0">{
-                                return true
-                        }</span>
-                }
-        } else<span class="cov0" title="0"> {
-                for _, listSection := range sectionAsList </span><span class="cov0" title="0">{
-                        if checkIfCircular(circularValue, listSection) </span><span class="cov0" title="0">{
-                                return true
-                        }</span>
+func checkIfCircular(circularValue string, section interface{}, maxResolverDepth int) bool <span class="cov2" title="2">{
+        if maxResolverDepth &gt; 0 </span><span class="cov2" title="2">{
+                sectionAsMap, okMap := section.(map[string]interface{})
+                sectionAsList, okList := section.([]interface{})
+                if !okList &amp;&amp; !okMap </span><span class="cov1" title="1">{
+                        return false
+                }</span>
+                <span class="cov1" title="1">if okMap </span><span class="cov1" title="1">{
+                        for key, val := range sectionAsMap </span><span class="cov1" title="1">{
+                                // if there is a reference to the same value that was resolved it is a circular definition
+                                if key == "$ref" &amp;&amp; val == circularValue </span><span class="cov0" title="0">{
+                                        return true
+                                }</span> else<span class="cov1" title="1"> if checkIfCircular(circularValue, val, maxResolverDepth-1) </span><span class="cov0" title="0">{
+                                        return true
+                                }</span>
+                        }
+                } else<span class="cov0" title="0"> {
+                        for _, listSection := range sectionAsList </span><span class="cov0" title="0">{
+                                if checkIfCircular(circularValue, listSection, maxResolverDepth-1) </span><span class="cov0" title="0">{
+                                        return true
+                                }</span>
+                        }
                 }
         }
         <span class="cov1" title="1">return false</span>
