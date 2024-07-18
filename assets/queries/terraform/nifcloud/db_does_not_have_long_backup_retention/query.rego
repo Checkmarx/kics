@@ -14,15 +14,15 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(dbInstance, name),
 		"searchKey": sprintf("nifcloud_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'nifcloud_db_instance[%s]' should have backup retention longer than 1 day", [name]),
-		"keyActualValue": sprintf("'nifcloud_db_instance[%s]' does not have backup retention period", [name]),
+		"keyExpectedValue": sprintf("'nifcloud_db_instance[%s]' should have backup retention of at least 7 days", [name]),
+		"keyActualValue": sprintf("'nifcloud_db_instance[%s]' doesn't define a backup retention period", [name]),
 	}
 }
 
 CxPolicy[result] {
 
 	dbInstance := input.document[i].resource.nifcloud_db_instance[name]
-	dbInstance.backup_retention_period < 2
+	dbInstance.backup_retention_period < 7
 
 	result := {
 		"documentId": input.document[i].id,
@@ -30,7 +30,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(dbInstance, name),
 		"searchKey": sprintf("nifcloud_db_instance[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'nifcloud_db_instance[%s]' should have backup retention longer than 1 day", [name]),
-		"keyActualValue": sprintf("'nifcloud_db_instance[%s]' has 1 day backup retention period", [name]),
+		"keyExpectedValue": sprintf("'nifcloud_db_instance[%s]' should have backup retention of at least 7 days", [name]),
+		"keyActualValue": sprintf("'nifcloud_db_instance[%s]' has backup retention period of '%s' which is less than minimum of 7 days", [name, dbInstance.backup_retention_period]),
 	}
 }

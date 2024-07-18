@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(dnsRecord, name),
 		"searchKey": sprintf("nifcloud_dns_record[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'nifcloud_dns_record[%s]' remove verified record", [name]),
-		"keyActualValue": sprintf("'nifcloud_dns_record[%s]' has risk of DNS records be used by others", [name]),
+		"keyExpectedValue": sprintf("'nifcloud_dns_record[%s]' should remove verified records.", [name]),
+		"keyActualValue": sprintf("'nifcloud_dns_record[%s]' has risk of DNS records to be used by others.", [name]),
 	}
 }

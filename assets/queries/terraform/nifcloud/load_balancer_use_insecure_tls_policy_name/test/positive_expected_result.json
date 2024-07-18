@@ -1,13 +1,13 @@
 [
 	{
-		"queryName": "(Beta) Nifcloud LB Use Insecure TLS Policy Name",
-		"severity": "HIGH",
+		"queryName": "Nifcloud LB Use Insecure TLS Policy Name",
+		"severity": "MEDIUM",
 		"line": 1,
 		"fileName": "positive1.tf"
 	},
 	{
-		"queryName": "(Beta) Nifcloud LB Use Insecure TLS Policy Name",
-		"severity": "HIGH",
+		"queryName": "Nifcloud LB Use Insecure TLS Policy Name",
+		"severity": "MEDIUM",
 		"line": 1,
 		"fileName": "positive2.tf"
 	}
