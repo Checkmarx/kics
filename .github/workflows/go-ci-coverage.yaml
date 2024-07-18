@@ -14,7 +14,7 @@ jobs:
       color: ${{ steps.testcov.outputs.color }}
     steps:
       - name: Checkout Source
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           fetch-depth: 0
       - name: Set up Go
@@ -47,7 +47,7 @@ jobs:
     needs: coverage
     steps:
       - name: Checkout Source
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           ref: gh-pages
       - name: Configure git commit author
