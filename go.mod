@@ -7,7 +7,7 @@ replace (
 	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
 	github.com/docker/docker => github.com/docker/docker v24.0.9+incompatible
 	github.com/jung-kurt/gofpdf => github.com/jung-kurt/gofpdf v1.16.3-0.20210918000319-0c885ad36193 // indirect
-	github.com/moby/buildkit => github.com/moby/buildkit v0.12.5
+	github.com/moby/buildkit => github.com/moby/buildkit v0.15.1-0.20240718011138-36ffdf7e6d63
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
 	golang.org/x/crypto => golang.org/x/crypto v0.21.1-0.20240404165943-d042a396a6de // indirect
@@ -36,7 +36,7 @@ require (
 	github.com/hashicorp/terraform-json v0.22.1
 	github.com/johnfercher/maroto v0.43.1-0.20230914003034-2e439ed90fe3
 	github.com/mackerelio/go-osstat v0.2.5
-	github.com/moby/buildkit v0.12.5
+	github.com/moby/buildkit v0.15.1-0.20240718011138-36ffdf7e6d63
 	github.com/open-policy-agent/opa v0.65.0
 	github.com/pkg/errors v0.9.1
 	github.com/relex/aini v1.6.0
@@ -70,7 +70,7 @@ require (
 	github.com/aws/smithy-go v1.20.2 // indirect
 	github.com/containerd/log v0.1.0 // indirect
 	github.com/containerd/typeurl/v2 v2.1.1 // indirect
-	github.com/distribution/reference v0.5.0 // indirect
+	github.com/distribution/reference v0.6.0 // indirect
 	github.com/evanphx/json-patch/v5 v5.6.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/go-ini/ini v1.67.0 // indirect
@@ -128,13 +128,13 @@ require (
 	github.com/boombuler/barcode v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/chai2010/gettext-go v1.0.2 // indirect
-	github.com/containerd/containerd v1.7.18 // indirect
+	github.com/containerd/containerd v1.7.19 // indirect
 	github.com/cyphar/filepath-securejoin v0.2.4 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
-	github.com/docker/cli v25.0.1+incompatible // indirect
+	github.com/docker/cli v27.0.3+incompatible // indirect
 	github.com/docker/distribution v2.8.3+incompatible // indirect
-	github.com/docker/docker v25.0.5+incompatible // indirect
-	github.com/docker/docker-credential-helpers v0.7.0 // indirect
+	github.com/docker/docker v27.0.3+incompatible // indirect
+	github.com/docker/docker-credential-helpers v0.8.2 // indirect
 	github.com/docker/go-connections v0.5.0 // indirect
 	github.com/docker/go-metrics v0.0.1 // indirect
 	github.com/docker/go-units v0.5.0 // indirect
@@ -169,7 +169,7 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/jung-kurt/gofpdf v1.16.3-0.20210918000319-0c885ad36193 // indirect
-	github.com/klauspost/compress v1.17.8 // indirect
+	github.com/klauspost/compress v1.17.9 // indirect
 	github.com/lann/builder v0.0.0-20180802200727-47ae307949d0 // indirect
 	github.com/lann/ps v0.0.0-20150810152359-62de8c46ede0 // indirect
 	github.com/lib/pq v1.10.9 // indirect
