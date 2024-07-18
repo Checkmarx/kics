@@ -102,6 +102,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
         with:
-          name: e2e-tests-report-dockerfile-debian
-          path: e2e-report.html
+          name: e2e-tests-report-dockerfile-$DOCKER_NAME
+          path: e2e-report-dockerfile-debian.html
           # dummy
