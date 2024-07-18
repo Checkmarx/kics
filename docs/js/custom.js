@@ -219,3 +219,10 @@ function downloadCSV(csv, filename) {
   document.body.appendChild(downloadLink)
   downloadLink.click()
 }
+
+function newWindowOpenerSafe(event, untrustedURL) {
+  event.preventDefault() // prevent the default link behavior
+  let newWindow=window.open()
+  newWindow.opener=null
+  newWindow.location=untrustedURL
+}
