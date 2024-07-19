@@ -14,8 +14,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(dbInstance, name),
 		"searchKey": sprintf("nifcloud_db_instance[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'nifcloud_db_instance[%s]' should not use publicly accessible set to true. You should limit all access to the minimum that is required for your application to function.", [name]),
-		"keyActualValue": sprintf("'nifcloud_db_instance[%s]' has publicly accessible set to true.", [name]),
+		"keyExpectedValue": sprintf("publicly_accessible should not be set to true on 'nifcloud_db_instance[%s]'. You should limit all access to the minimum that is required for your application to function.", [name]),
+		"keyActualValue": sprintf("'nifcloud_db_instance[%s]' has publicly_accessible set to true.", [name]),
 	}
 }
 
@@ -30,7 +30,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(dbInstance, name),
 		"searchKey": sprintf("nifcloud_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'nifcloud_db_instance[%s]' should have publicly accessible defined as the default value is set to true. You should limit all access to the minimum that is required for your application to function.", [name]),
-		"keyActualValue": sprintf("'nifcloud_db_instance[%s]' doesn't define publicly accessible.", [name]),
+		"keyExpectedValue": sprintf("'nifcloud_db_instance[%s]' should have publicly_accessible defined as value is set to true by default. You should limit all access to the minimum that is required for your application to function.", [name]),
+		"keyActualValue": sprintf("'nifcloud_db_instance[%s]' doesn't have publicly_accessible defined.", [name]),
 	}
 }

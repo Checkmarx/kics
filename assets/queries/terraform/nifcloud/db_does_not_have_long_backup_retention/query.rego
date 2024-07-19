@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("nifcloud_db_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'nifcloud_db_instance[%s]' should have backup retention of at least 7 days", [name]),
-		"keyActualValue": sprintf("'nifcloud_db_instance[%s]' doesn't define a backup retention period", [name]),
+		"keyActualValue": sprintf("'nifcloud_db_instance[%s]' doesn't have a backup retention period defined", [name]),
 	}
 }
 
