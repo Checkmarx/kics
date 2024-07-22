@@ -7,5 +7,6 @@
   "descriptionUrl": "https://kubernetes.io/docs/concepts/containers/images/",
   "platform": "Kubernetes",
   "descriptionID": "b0a009b5",
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "200"
 }
