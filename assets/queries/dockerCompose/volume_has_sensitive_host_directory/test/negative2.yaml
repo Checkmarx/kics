@@ -1,5 +1,7 @@
 version: '3'
 
+services:
+    image: docker
 volumes:
   wordpress-db-data:
      driver: local-persist
