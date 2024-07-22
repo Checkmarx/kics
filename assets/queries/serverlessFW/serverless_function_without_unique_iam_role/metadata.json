@@ -7,6 +7,7 @@
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml#functions",
   "platform": "ServerlessFW",
   "descriptionID": "071f8656",
-  "cwe": "",
+  "cloudProvider": "common",
+  "cwe": "732",
   "oldSeverity": "MEDIUM"
 }
