@@ -81,7 +81,7 @@ getDefaultValueFromParametersIfPresent(doc, valueToCheck) = [value, propertyType
 isParameterReference(valueToCheck) = parameterName {
 	startswith(valueToCheck, "[parameters('")
 	endswith(valueToCheck, "')]")
-	parameterName := trim_right(trim_left(valueToCheck, "[parameters('"),"')]")
+	parameterName := trim_right(trim_left(trim_left(valueToCheck, "[parameters"), "('"), "')]")
 }
 
 
