@@ -26,4 +26,4 @@ jobs:
           cx_tenant: ${{ secrets.AST_RND_SCANS_TENANT }}
           cx_client_id: ${{ secrets.AST_RND_SCANS_CLIENT_ID }}
           cx_client_secret: ${{ secrets.AST_RND_SCANS_CLIENT_SECRET }}
-          additional_params: --tags KICS,lang:go,commit-sha:${{ env.SHORT_SHA }} --project-groups sast-and-engines/kics --threshold "sast-high=1; sast-medium=1; sast-low=1; iac-security-high=1; iac-security-medium=1; iac-security-low=1"
+          additional_params: --tags KICS,lang:go,commit-sha:${{ env.SHORT_SHA }} --project-groups sast-and-engines/kics --threshold "sca-high=1; sca-medium=1; sca-low=1; sast-high=1; sast-medium=1; sast-low=1; iac-security-high=1; iac-security-medium=1; iac-security-low=1"
