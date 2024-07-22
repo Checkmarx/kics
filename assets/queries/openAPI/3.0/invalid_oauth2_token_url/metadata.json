@@ -7,5 +7,6 @@
   "descriptionUrl": "https://swagger.io/specification/#oauth-flow-object",
   "platform": "OpenAPI",
   "descriptionID": "78304c48",
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "285"
 }

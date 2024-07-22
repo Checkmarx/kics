@@ -16,6 +16,7 @@
       "descriptionText": "Array schema/parameter should have the field 'maxItems' set"
     }
   },
-  "cwe": "",
+  "cwe": "665",
+  "cloudProvider": "common",
   "oldSeverity": "HIGH"
 }

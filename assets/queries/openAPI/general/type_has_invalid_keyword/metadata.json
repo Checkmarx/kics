@@ -16,5 +16,6 @@
       "descriptionText": "Schema/Parameter/Header Object define type should not use a keyword of another type"
     }
   },
-  "cwe": ""
+  "cwe": "20",
+  "cloudProvider": "common"
 }

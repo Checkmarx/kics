@@ -7,6 +7,7 @@
   "descriptionUrl": "https://swagger.io/specification/#security-scheme-object",
   "platform": "OpenAPI",
   "descriptionID": "f29b5719",
-  "cwe": "",
+  "cloudProvider": "common",
+  "cwe": "284",
   "oldSeverity": "LOW"
 }

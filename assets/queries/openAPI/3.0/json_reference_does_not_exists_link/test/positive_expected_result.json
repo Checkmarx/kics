@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "Link JSON Reference Does Not Exists",
+    "queryName": "Link JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 26,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Link JSON Reference Does Not Exists",
+    "queryName": "Link JSON Reference Does Not Exist",
     "severity": "INFO",
     "line": 20,
     "filename": "positive2.yaml"

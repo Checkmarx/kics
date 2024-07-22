@@ -1,11 +1,12 @@
 {
   "id": "f29904c8-6041-4bca-b043-dfa0546b8079",
-  "queryName": "Callback JSON Reference Does Not Exists",
+  "queryName": "Callback JSON Reference Does Not Exist",
   "severity": "INFO",
   "category": "Structure and Semantics",
-  "descriptionText": "Callback reference should exists on components field",
+  "descriptionText": "Callback reference should exist on components field",
   "descriptionUrl": "https://swagger.io/specification/#components-object",
   "platform": "OpenAPI",
   "descriptionID": "9fb67487",
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "20"
 }

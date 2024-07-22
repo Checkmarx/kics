@@ -16,5 +16,6 @@
       "descriptionText": "String schema/parameter/header should have 'pattern' defined."
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "20"
 }

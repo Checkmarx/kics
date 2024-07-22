@@ -7,5 +7,6 @@
   "descriptionUrl": "https://swagger.io/specification/#parameter-object",
   "platform": "OpenAPI",
   "descriptionID": "4bbd104f",
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "20"
 }

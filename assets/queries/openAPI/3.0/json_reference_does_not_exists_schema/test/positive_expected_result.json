@@ -1,12 +1,12 @@
 [
   {
-    "queryName": "Schema JSON Reference Does Not Exists (v3)",
+    "queryName": "Schema JSON Reference Does Not Exist (v3)",
     "severity": "INFO",
     "line": 14,
     "filename": "positive1.json"
   },
   {
-    "queryName": "Schema JSON Reference Does Not Exists (v3)",
+    "queryName": "Schema JSON Reference Does Not Exist (v3)",
     "severity": "INFO",
     "line": 13,
     "filename": "positive2.yaml"

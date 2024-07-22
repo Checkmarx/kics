@@ -32,6 +32,8 @@
       "query_url": "https://swagger.io/specification/v2/#schemaObject",
       "severity": "INFO",
       "platform": "OpenAPI",
+      "cloudProvider": "common",
+      "cwe": "20",
       "category": "Structure and Semantics",
       "experimental": false,
       "description": "Every defined property must be unique throughout the whole API",

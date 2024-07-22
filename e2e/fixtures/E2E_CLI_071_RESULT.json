@@ -32,6 +32,8 @@
 			"query_url": "https://swagger.io/specification/#components-object",
 			"severity": "INFO",
 			"platform": "OpenAPI",
+			"cloudProvider": "common",
+  			"cwe": "710",
 			"category": "Best Practices",
 			"experimental": false,
 			"description": "Components schemas definitions should be referenced or removed from Open API definition",

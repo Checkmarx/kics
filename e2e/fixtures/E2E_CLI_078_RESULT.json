@@ -32,6 +32,8 @@
 			"query_url": "https://swagger.io/specification/v2/#schemaObject",
 			"severity": "MEDIUM",
 			"platform": "OpenAPI",
+			"cloudProvider": "common",
+  			"cwe": "20",
 			"category": "Insecure Configurations",
 			"experimental": false,
 			"description": "String schema/parameter/header should have 'pattern' defined.",

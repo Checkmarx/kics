@@ -1,11 +1,12 @@
 {
   "id": "376c9390-7e9e-4cb8-a067-fd31c05451fd",
-  "queryName": "Header JSON Reference Does Not Exists",
+  "queryName": "Header JSON Reference Does Not Exist",
   "severity": "INFO",
   "category": "Structure and Semantics",
-  "descriptionText": "Header reference should exists on components field",
+  "descriptionText": "Header reference should exist on components field",
   "descriptionUrl": "https://swagger.io/specification/#components-object",
   "platform": "OpenAPI",
   "descriptionID": "c90bc259",
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "20"
 }

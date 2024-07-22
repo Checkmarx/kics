@@ -16,5 +16,6 @@
       "descriptionText": "Global security field should be defined to prevent API to have insecure paths and have this rules defined on securityDefinitions"
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "284"
 }
