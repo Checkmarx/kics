@@ -8,6 +8,6 @@
   "platform": "Pulumi",
   "descriptionID": "406540e1",
   "cloudProvider": "azure",
-  "cwe": "",
+  "cwe": "319",
   "oldSeverity": "HIGH"
 }
