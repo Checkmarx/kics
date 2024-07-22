@@ -450,7 +450,7 @@ func (r *Resolver) resolvePath(
 			return obj, false
 		}
 	}
-	return r.resolvePathReturnValue(value, filePath, splitPath, sameFileResolve, originalFileContent, obj)
+	return r.resolvePathReturnValue(value, filePath, splitPath, sameFileResolve, originalFileContent, obj, maxResolverDepth)
 }
 
 func (r *Resolver) resolvePathReturnValue(
@@ -458,7 +458,8 @@ func (r *Resolver) resolvePathReturnValue(
 	splitPath []string,
 	sameFileResolve bool,
 	originalFileContent []byte,
-	obj any) (any, bool) {
+	obj any,
+	maxResolverDepth int) (any, bool) {
 	if len(splitPath) > 1 {
 		if sameFileResolve {
 			r.ResolvedFiles[filePath] = model.ResolvedFile{
@@ -469,7 +470,7 @@ func (r *Resolver) resolvePathReturnValue(
 		}
 		section, err := findSection(obj, splitPath[1])
 		// Check if there was an error finding the section or if the reference is circular
-		if err != nil || checkIfCircular(value, section) {
+		if err != nil || checkIfCircular(value, section, maxResolverDepth) {
 			return value, false
 		}
 		if sectionMap, ok := section.(map[string]interface{}); ok {
@@ -537,25 +538,27 @@ func findSection(object interface{}, sectionsString string) (interface{}, error)
 	return object, nil
 }
 
-func checkIfCircular(circularValue string, section interface{}) bool {
-	sectionAsMap, okMap := section.(map[string]interface{})
-	sectionAsList, okList := section.([]interface{})
-	if !okList && !okMap {
-		return false
-	}
-	if okMap {
-		for key, val := range sectionAsMap {
-			// if there is a reference to the same value that was resolved it is a circular definition
-			if key == "$ref" && val == circularValue {
-				return true
-			} else if checkIfCircular(circularValue, val) {
-				return true
-			}
+func checkIfCircular(circularValue string, section interface{}, maxResolverDepth int) bool {
+	if maxResolverDepth > 0 {
+		sectionAsMap, okMap := section.(map[string]interface{})
+		sectionAsList, okList := section.([]interface{})
+		if !okList && !okMap {
+			return false
 		}
-	} else {
-		for _, listSection := range sectionAsList {
-			if checkIfCircular(circularValue, listSection) {
-				return true
+		if okMap {
+			for key, val := range sectionAsMap {
+				// if there is a reference to the same value that was resolved it is a circular definition
+				if key == "$ref" && val == circularValue {
+					return true
+				} else if checkIfCircular(circularValue, val, maxResolverDepth-1) {
+					return true
+				}
+			}
+		} else {
+			for _, listSection := range sectionAsList {
+				if checkIfCircular(circularValue, listSection, maxResolverDepth-1) {
+					return true
+				}
 			}
 		}
 	}
