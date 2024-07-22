@@ -8,6 +8,6 @@
   "platform": "Ansible",
   "descriptionID": "d8ca5381",
   "cloudProvider": "azure",
-  "cwe": "",
+  "cwe": "732",
   "oldSeverity": "HIGH"
 }

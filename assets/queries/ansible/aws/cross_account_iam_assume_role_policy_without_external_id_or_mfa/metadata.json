@@ -8,6 +8,6 @@
   "platform": "Ansible",
   "descriptionID": "54f0a7dd",
   "cloudProvider": "aws",
-  "cwe": "",
+  "cwe": "285",
   "oldSeverity": "MEDIUM"
 }
