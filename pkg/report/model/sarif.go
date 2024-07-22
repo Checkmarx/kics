@@ -227,8 +227,20 @@ func initCweCategories(cweIDs []string, guids map[string]string) []taxonomyDefin
 		return []taxonomyDefinitions{}
 	}
 
-	cweCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Software-Development-CWE.csv")
-	cweCsvList, err := readCWECsvInfo(cweCSVPath)
+	cweSDCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Software-Development-CWE.csv")
+	cweSDCsvList, err := readCWECsvInfo(cweSDCSVPath)
+	if err != nil {
+		return []taxonomyDefinitions{}
+	}
+
+	cweHDCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Hardware-Design-CWE.csv")
+	cweHDCsvList, err := readCWECsvInfo(cweHDCSVPath)
+	if err != nil {
+		return []taxonomyDefinitions{}
+	}
+
+	cweRCCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Research-Concepts-CWE.csv")
+	cweRCCsvList, err := readCWECsvInfo(cweRCCSVPath)
 	if err != nil {
 		return []taxonomyDefinitions{}
 	}
@@ -236,15 +248,16 @@ func initCweCategories(cweIDs []string, guids map[string]string) []taxonomyDefin
 	var taxonomyList []taxonomyDefinitions
 	for _, cweID := range cweIDs {
 		var matchingCweEntry cweCsv
-
-		for _, cweEntry := range cweCsvList {
-			if cweEntry.CweID == cweID {
-				matchingCweEntry = cweEntry
-				break
-			}
+		var found bool
+		matchingCweEntry, found = buildMatchingCWEEntry(cweID, cweSDCsvList)
+		if !found {
+			matchingCweEntry, found = buildMatchingCWEEntry(cweID, cweHDCsvList)
+		}
+		if !found {
+			matchingCweEntry, found = buildMatchingCWEEntry(cweID, cweRCCsvList)
 		}
 
-		if matchingCweEntry.CweID == "" {
+		if !found {
 			continue
 		}
 
@@ -285,10 +298,8 @@ func initSarifTaxonomies() []sarifTaxonomy {
 		taxonomies = append(taxonomies, categories)
 	}
 
-	cweInfoPath := filepath.Join(".", "assets", "cwe_csv", "cwe_taxonomies_latest.json")
-
 	if cweTemplate.ToolComponent.ComponentReferenceName == "CWE" {
-		cweInfo, err := readCWEInfo(cweInfoPath)
+		cweInfo, err := readCWETaxonomyInfo()
 		if err != nil {
 			return taxonomies
 		}
@@ -340,9 +351,15 @@ func (sr *sarifReport) findSarifCategory(category string) int {
 	return 0
 }
 
-// readCWEInfo is responsible for reading the CWE taxonomy info from the json file
-func readCWEInfo(filePath string) (sarifTaxonomy, error) {
+// readCWETaxonomyInfo is responsible for reading the CWE taxonomy info from the json file
+func readCWETaxonomyInfo() (sarifTaxonomy, error) {
 	var wrapper cweTaxonomiesWrapper
+	absPath, err := filepath.Abs(".")
+	if err != nil {
+		return sarifTaxonomy{}, err
+	}
+
+	filePath := filepath.Join(absPath, "assets", "cwe_csv", "cwe_taxonomies_latest.json")
 	fileContent, err := os.ReadFile(filepath.Clean(filePath))
 	if err != nil {
 		return sarifTaxonomy{}, err
@@ -406,45 +423,66 @@ func readCWECsvInfo(filePath string) ([]cweCsv, error) {
 	return cweEntries, nil
 }
 
-// buildCweCategory builds the CWE category in taxonomies, with info from CWE and CSV
-func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
+func getAllCweInfos() (cweSD, cweHD, cweRC []cweCsv, cweErr error) {
+	var cweToFileName = map[string]string{
+		"SD": "Software-Development-CWE.csv",
+		"HD": "Hardware-Design-CWE.csv",
+		"RC": "Research-Concepts-CWE.csv",
+	}
+	mapCweInfos := map[string][]cweCsv{}
 	absPath, err := filepath.Abs(".")
 	if err != nil {
-		return sarifDescriptorReference{}
+		return nil, nil, nil, err
 	}
 
-	cweInfoPath := filepath.Join(absPath, "assets", "cwe_csv", "cwe_taxonomies_latest.json")
-	cweCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Software-Development-CWE.csv")
+	for cweKey, cweFileName := range cweToFileName {
+		cweInfoPath := filepath.Join(absPath, "assets", "cwe_csv", cweFileName)
 
-	cweInfo, err := readCWEInfo(cweInfoPath)
-	if err != nil {
-		return sarifDescriptorReference{}
+		cweInfo, err := readCWECsvInfo(cweInfoPath)
+		if err != nil {
+			return nil, nil, nil, err
+		}
+
+		mapCweInfos[cweKey] = cweInfo
 	}
+	return mapCweInfos["SD"], mapCweInfos["HD"], mapCweInfos["RC"], nil
+}
 
-	_ = cweInfo
+func buildMatchingCWEEntry(cweID string, cweCSVList []cweCsv) (cweInfos cweCsv, found bool) {
+	for _, cweEntry := range cweCSVList {
+		if cweEntry.CweID == cweID {
+			return cweEntry, true
+		}
+	}
+	return cweCsv{}, false
+}
 
-	cweCsvList, err := readCWECsvInfo(cweCSVPath)
+// buildCweCategory builds the CWE category in taxonomies, with info from CWE and CSV
+func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference {
+	cweSDCsvList, cweHDCsvList, cweRCCsvList, err := getAllCweInfos()
 	if err != nil {
 		return sarifDescriptorReference{}
 	}
 
 	var matchingCweEntry cweCsv
-	for _, cweEntry := range cweCsvList {
-		if cweEntry.CweID == cweID {
-			matchingCweEntry = cweEntry
-			break
-		}
+	var found bool
+
+	matchingCweEntry, found = buildMatchingCWEEntry(cweID, cweSDCsvList)
+	if !found {
+		matchingCweEntry, found = buildMatchingCWEEntry(cweID, cweHDCsvList)
 	}
 
-	if matchingCweEntry.CweID == "" {
+	if !found {
+		matchingCweEntry, found = buildMatchingCWEEntry(cweID, cweRCCsvList)
+	}
+
+	if !found {
 		return sarifDescriptorReference{}
 	}
 
-	newGUID := generateGUID()
-
 	cwe := sarifDescriptorReference{
 		ReferenceID:   matchingCweEntry.CweID,
-		ReferenceGUID: newGUID,
+		ReferenceGUID: generateGUID(),
 		ToolComponent: sarifComponentReference{
 			ComponentReferenceGUID: "1489b0c4-d7ce-4d31-af66-6382a01202e3",
 			ComponentReferenceName: "CWE",
