@@ -3,7 +3,7 @@
   "queryName": "Key Vault Not Recoverable",
   "severity": "HIGH",
   "category": "Backup",
-  "descriptionText": "Key Vault should have 'enableSoftDelete' and 'enablePurgeProtection' set to true",
+  "descriptionText": "",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.keyvault/2019-09-01/vaults?tabs=json#vaultproperties-object",
   "platform": "AzureResourceManager",
   "descriptionID": "8e3ca202",
