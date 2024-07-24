@@ -1,0 +1,29 @@
+name: Checkmarx One Scan
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '30 9 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - name: Add SHORT_SHA to env
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA::7}`" >> $GITHUB_ENV  
+      - name: Checkmarx One CLI Action
+        uses: checkmarx/ast-github-action@dd0f9365942f29a99c3be5bdb308958ede8f906b # v.2.0.25
+        with:
+          base_uri: ${{ secrets.AST_RND_SCANS_BASE_URI }}
+          cx_tenant: ${{ secrets.AST_RND_SCANS_TENANT }}
+          cx_client_id: ${{ secrets.AST_RND_SCANS_CLIENT_ID }}
+          cx_client_secret: ${{ secrets.AST_RND_SCANS_CLIENT_SECRET }}
+          additional_params: --tags KICS,lang:go,commit-sha:${{ env.SHORT_SHA }} --project-groups sast-and-engines/kics --threshold "sca-high=1; sca-medium=1; sca-low=1; sast-high=1; sast-medium=1; sast-low=1; iac-security-high=1; iac-security-medium=1; iac-security-low=1"
