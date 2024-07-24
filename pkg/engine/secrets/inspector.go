@@ -15,6 +15,7 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/detector"
 	"github.com/Checkmarx/kics/v2/pkg/detector/docker"
 	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
+	"github.com/Checkmarx/kics/v2/pkg/detector/terraform"
 	engine "github.com/Checkmarx/kics/v2/pkg/engine"
 	"github.com/Checkmarx/kics/v2/pkg/engine/similarity"
 	"github.com/Checkmarx/kics/v2/pkg/engine/source"
@@ -130,7 +131,8 @@ func NewInspector(
 
 	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
 		Add(helm.DetectKindLine{}, model.KindHELM).
-		Add(docker.DetectKindLine{}, model.KindDOCKER)
+		Add(docker.DetectKindLine{}, model.KindDOCKER).
+		Add(terraform.DetectKindLine{}, model.KindTerraform)
 
 	err = json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &SecretsQueryMetadata)
 	if err != nil {

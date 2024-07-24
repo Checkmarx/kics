@@ -16,6 +16,7 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/detector"
 	"github.com/Checkmarx/kics/v2/pkg/detector/docker"
 	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
+	"github.com/Checkmarx/kics/v2/pkg/detector/terraform"
 	"github.com/Checkmarx/kics/v2/pkg/engine/source"
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/open-policy-agent/opa/ast"
@@ -158,7 +159,8 @@ func NewInspector(
 	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
 		Add(helm.DetectKindLine{}, model.KindHELM).
 		Add(docker.DetectKindLine{}, model.KindDOCKER).
-		Add(docker.DetectKindLine{}, model.KindBUILDAH)
+		Add(docker.DetectKindLine{}, model.KindBUILDAH).
+		Add(terraform.DetectKindLine{}, model.KindTerraform)
 
 	queryExecTimeout := time.Duration(queryTimeout) * time.Second
 

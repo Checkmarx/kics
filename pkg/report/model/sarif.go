@@ -127,8 +127,15 @@ type sarifTool struct {
 	Driver sarifDriver `json:"driver"`
 }
 
+type sarifResourceLocation struct {
+	Line int `json:"line"`
+	Col  int `json:"col"`
+}
+
 type sarifRegion struct {
-	StartLine int `json:"startLine"`
+	StartLine     int                   `json:"startLine"`
+	StartResource sarifResourceLocation `json:"startResource"`
+	EndResource   sarifResourceLocation `json:"endResource"`
 }
 
 type sarifArtifactLocation struct {
@@ -591,6 +598,15 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string {
 			if line < 1 {
 				line = 1
 			}
+			resourceLocation := issue.Files[idx].ResourceLocation
+			startLocation := sarifResourceLocation{
+				Line: resourceLocation.ResourceStart.Line,
+				Col:  resourceLocation.ResourceStart.Col,
+			}
+			endLocation := sarifResourceLocation{
+				Line: resourceLocation.ResourceEnd.Line,
+				Col:  resourceLocation.ResourceEnd.Col,
+			}
 			result := sarifResult{
 				ResultRuleID:    issue.QueryID,
 				ResultRuleIndex: ruleIndex,
@@ -605,7 +621,11 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string {
 					{
 						PhysicalLocation: sarifPhysicalLocation{
 							ArtifactLocation: sarifArtifactLocation{ArtifactURI: issue.Files[idx].FileName},
-							Region:           sarifRegion{StartLine: line},
+							Region: sarifRegion{
+								StartLine:     line,
+								StartResource: startLocation,
+								EndResource:   endLocation,
+							},
 						},
 					},
 				},
