@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(vpnGateway, name),
 		"searchKey": sprintf("nifcloud_vpn_gateway[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'nifcloud_vpn_gateway[%s]' should include a security_group for security purposes", [name]),
-		"keyActualValue": sprintf("'nifcloud_vpn_gateway[%s]' does not have a security_group", [name]),
+		"keyExpectedValue": sprintf("'nifcloud_vpn_gateway[%s]' should include a security_group for security purposes.", [name]),
+		"keyActualValue": sprintf("'nifcloud_vpn_gateway[%s]' does not have a security_group defined.", [name]),
 	}
 }

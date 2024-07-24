@@ -23,7 +23,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("nifcloud_load_balancer[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'nifcloud_load_balancer[%s]' should not use outdated/insecure TLS versions for encryption. You should be using TLS v1.2+.", [name]),
-		"keyActualValue": sprintf("'nifcloud_load_balancer[%s]' use outdated SSL policy", [name]),
+		"keyActualValue": sprintf("'nifcloud_load_balancer[%s]' using outdated SSL policy.", [name]),
 	}
 }
 
@@ -39,6 +39,6 @@ CxPolicy[result] {
 		"searchKey": sprintf("nifcloud_load_balancer[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'nifcloud_load_balancer[%s]' should not use outdated/insecure TLS versions for encryption. You should be using TLS v1.2+.", [name]),
-		"keyActualValue": sprintf("'nifcloud_load_balancer[%s]' use outdated SSL policy", [name]),
+		"keyActualValue": sprintf("'nifcloud_load_balancer[%s]' using outdated SSL policy.", [name]),
 	}
 }

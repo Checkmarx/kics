@@ -14,8 +14,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(router, name),
 		"searchKey": sprintf("nifcloud_router[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'nifcloud_router[%s]' should use a private LAN to isolate the private side network from the shared network", [name]),
-		"keyActualValue": sprintf("'nifcloud_router[%s]' has common private network", [name]),
+		"keyExpectedValue": sprintf("'nifcloud_router[%s]' should use a private LAN to isolate the private side network from the shared network.", [name]),
+		"keyActualValue": sprintf("'nifcloud_router[%s]' has common private network.", [name]),
 	}
 }
 
@@ -30,7 +30,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(router, name),
 		"searchKey": sprintf("nifcloud_router[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'nifcloud_router[%s]' should use a private LAN to isolate the private side network from the shared network", [name]),
-		"keyActualValue": sprintf("'nifcloud_router[%s]' has common private network", [name]),
+		"keyExpectedValue": sprintf("'nifcloud_router[%s]' should use a private LAN to isolate the private side network from the shared network.", [name]),
+		"keyActualValue": sprintf("'nifcloud_router[%s]' has common private network.", [name]),
 	}
 }
