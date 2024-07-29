@@ -1,12 +1,5 @@
 FROM cgr.dev/chainguard/go@sha256:74bc9af1d45fd1c8d432a89148c5e413711204636b54ca05197b511bea7a18fb as build_env
 
-RUN adduser --disabled-password --gecos "" newuser
-RUN chmod 777 ./
-RUN chown -R newuser:newuser ./
-
-# Switch to the new user
-USER newuser
-
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
 
@@ -17,6 +10,13 @@ ARG SENTRY_DSN=""
 ARG DESCRIPTIONS_URL=""
 ARG TARGETOS
 ARG TARGETARCH
+
+RUN adduser --disabled-password --gecos "" newuser
+RUN chmod 777 ./
+RUN chown -R newuser:newuser ./
+
+# Switch to the new user
+USER newuser
 
 # Copy go mod and sum files
 COPY go.mod go.sum  ./
