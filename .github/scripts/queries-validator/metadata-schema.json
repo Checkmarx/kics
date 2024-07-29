@@ -10,12 +10,12 @@
         "description_text_pattern": {
             "type": "string",
             "minLength": 1,
-            "pattern": "^(?=.{1,500}$).*$"
+            "pattern": "^.{1,500}$"
         },
         "query_name_pattern": {
             "type": "string",
             "minLength": 1,
-            "pattern": "^(?=.{1,120}$)[a-zA-Z][a-zA-Z0-9_ \\-\"',:$.:()]*$'\""
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_ \\-\"',:$.()]{0,119}$"
         },
         "description_id_pattern": {
             "type": "string",
