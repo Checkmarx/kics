@@ -1,8 +1,8 @@
 FROM cgr.dev/chainguard/go@sha256:74bc9af1d45fd1c8d432a89148c5e413711204636b54ca05197b511bea7a18fb as build_env
 
 RUN adduser --disabled-password --gecos "" newuser
-RUN chmod 777 /app
-RUN chown -R newuser:newuser /app
+RUN chmod 777 ./
+RUN chown -R newuser:newuser ./
 
 # Switch to the new user
 USER newuser
