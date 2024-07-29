@@ -31,7 +31,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/git@sha256:adaa6682821bd466d2bd93b92a5ae71f8bf5539acdf551ddc50d67e791c52a50
+FROM cgr.dev/chainguard/wolfi-base@sha256:378e1d3d5ced3c8ea83c92784b081972bb235c813db8b56f936c50deac8357f3
     
 USER root
 
