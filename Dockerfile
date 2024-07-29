@@ -1,7 +1,6 @@
 FROM cgr.dev/chainguard/go@sha256:74bc9af1d45fd1c8d432a89148c5e413711204636b54ca05197b511bea7a18fb as build_env
 
-RUN useradd -m -s /bin/bash testuser
-RUN chmod 777 /e2e
+RUN adduser -u 1000 -h home/kics -s bin/bash -D kics
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -29,7 +28,9 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go
 
-USER testuser
+
+RUN chown -hR kics /app/ 
+USER kics
 
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
