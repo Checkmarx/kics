@@ -1,9 +1,10 @@
 FROM cgr.dev/chainguard/go@sha256:74bc9af1d45fd1c8d432a89148c5e413711204636b54ca05197b511bea7a18fb as build_env
 
-RUN adduser -u 1000 -h home/kics -s bin/bash -D kics
+RUN useradd -m -s /bin/bash newuser
 
-RUN chown -hR kics /app/ 
-USER kics
+RUN chmod 777 /app
+RUN chown -R newuser:newuser /app
+USER newuser
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
