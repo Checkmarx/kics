@@ -46,7 +46,7 @@ COPY --from=build_env /app/assets/cwe_csv /app/bin/assets/cwe_csv
 COPY --from=build_env /app/assets/libraries/* /app/bin/assets/libraries/
 
 WORKDIR /app/bin
-
+RUN chmod +x /app/bin/kics && chmod -R 777 /app/bin/assets
 # Healthcheck the container
 ENV PATH $PATH:/app/bin
 
