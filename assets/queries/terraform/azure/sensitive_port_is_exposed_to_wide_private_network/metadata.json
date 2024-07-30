@@ -9,6 +9,6 @@
   "descriptionID": "6b1bfbd5",
   "aggregation": 63,
   "cloudProvider": "azure",
-  "cwe": "",
+  "cwe": "200",
   "oldSeverity": "MEDIUM"
 }

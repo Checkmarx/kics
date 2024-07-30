@@ -8,5 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "ac707cad",
   "cloudProvider": "common",
-  "cwe": ""
+  "cwe": "710"
 }

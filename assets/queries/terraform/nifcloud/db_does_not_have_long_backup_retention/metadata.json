@@ -8,5 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "5fadf94a",
   "cloudProvider": "nifcloud",
-  "cwe": ""
+  "cwe": "754"
 }

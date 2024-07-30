@@ -7,6 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/deployment#affinity",
   "platform": "Terraform",
   "descriptionID": "4a5ad90d",
-  "cwe": "",
+  "cwe": "710",
   "cloudProvider": "common"
 }

@@ -9,6 +9,6 @@
   "descriptionID": "127a32be",
   "aggregation": 63,
   "cloudProvider": "aws",
-  "cwe": "",
+  "cwe": "200",
   "oldSeverity": "MEDIUM"
 }

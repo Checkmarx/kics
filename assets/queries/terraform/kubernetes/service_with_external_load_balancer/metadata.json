@@ -7,6 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service",
   "platform": "Terraform",
   "descriptionID": "18a78d03",
-  "cwe": "",
+  "cwe": "552",
   "cloudProvider": "common"
 }

@@ -8,5 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "fb6080ac",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "155"
 }

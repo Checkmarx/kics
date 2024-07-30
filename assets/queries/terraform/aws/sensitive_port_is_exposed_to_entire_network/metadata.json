@@ -9,5 +9,5 @@
   "descriptionID": "5be78364",
   "aggregation": 63,
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "200"
 }

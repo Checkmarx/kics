@@ -7,6 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/role#rule",
   "platform": "Terraform",
   "descriptionID": "cca5f42d",
-  "cwe": "",
+  "cwe": "269",
   "cloudProvider": "common"
 }

@@ -7,6 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#image_pull_policy",
   "platform": "Terraform",
   "descriptionID": "d2abf21b",
-  "cwe": "",
+  "cwe": "665",
   "cloudProvider": "common"
 }

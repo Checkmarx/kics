@@ -7,7 +7,7 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/role_binding#subject",
   "platform": "Terraform",
   "descriptionID": "a90a96ca",
-  "cwe": "",
+  "cwe": "665",
   "cloudProvider": "common",
   "oldSeverity": "HIGH"
 }
