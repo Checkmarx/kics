@@ -76,9 +76,7 @@ jobs:
           ls
       - name: Set Output Permissions
         run: |
-          mkdir ./output
           sudo chmod -R 777 ./e2e
-          sudo chmod -R 777 ./output
       - name: Run E2E Tests
         env:
           E2E_KICS_DOCKER: kics:e2e-tests-${{ github.sha }}
