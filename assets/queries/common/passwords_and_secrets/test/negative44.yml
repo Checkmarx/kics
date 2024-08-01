@@ -4,7 +4,7 @@ stages:
   - build
 
 variables:
-  GIT_PRIVATE_KEY: "heythisisaprivatekey!"
+  GIT_PRIVATE_KEY: $GIT_PRIVATE_KEY
 
 jobs:
   job_build:
