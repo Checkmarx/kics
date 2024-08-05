@@ -98,7 +98,7 @@ jobs:
           DOCKER_NAME=$(echo ${{ matrix.kics-docker }} | sed 's/\//-/')
       - name: Archive test report
         if: always()
-        uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32 # v3
+        uses: actions/upload-artifact@89ef406dd8d7e03cfd12d9e0a4a378f454709029 # v3
         with:
           name: e2e-tests-report-$DOCKER_NAME
           path: e2e-report.html
