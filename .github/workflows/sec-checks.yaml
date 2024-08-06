@@ -26,7 +26,7 @@ jobs:
         run: cat ./results.txt
       - name: Upload artifact
         if: always()
-        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
+        uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a # v4
         with:
           name: trivy-fs-scan-results
           path: ./results.txt
@@ -74,7 +74,7 @@ jobs:
         run: cat ./results.txt
       - name: Upload artifact
         if: always()
-        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
+        uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a # v4
         with:
           name: trivy-docker-image-scan-results
           path: ./results.txt
@@ -151,7 +151,7 @@ jobs:
         run: cat ./results.txt
       - name: Upload artifact
         if: always()
-        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
+        uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a # v4
         with:
           name: govulncheck-fs-scan-results
           path: ./results.txt
@@ -177,7 +177,7 @@ jobs:
         run: cat ./results.txt
       - name: Upload artifact
         if: always()
-        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
+        uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a # v4
         with:
           name: govulncheck-binary-scan-results
           path: ./results.txt
