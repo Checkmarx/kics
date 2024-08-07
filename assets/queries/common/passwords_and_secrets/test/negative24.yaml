@@ -1,0 +1,5 @@
+- hosts: all
+  remote_user: root
+  vars:
+    paypal_access_token: '{{ PAYPAL_ACCESS_TOKEN }}'
+

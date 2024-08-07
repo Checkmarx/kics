@@ -1,5 +1,6 @@
 Type: AWS::Glue::Connection
-Properties:
+Resources:
+  Properties:
     CatalogId: "1111111111111"
     ConnectionInput:
       ConnectionProperties:
@@ -8,18 +9,18 @@ Properties:
               - ""
               - - "mongodb://{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:*:1111111111111:secret:/test/resources/docdb-test:SecretString:endpoint::}}/test
+                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:endpoint::}}/test
           USERNAME:
             Fn::Join:
               - ""
               - - "{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:eu-west-1:*:secret:/test/resources/docdb-test:SecretString:username::}}
+                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:username::}}
           PASSWORD:
             Fn::Join:
               - ""
               - - "{{resolve:secretsmanager:arn:"
                 - Ref: AWS::Partition
-                - :secretsmanager:us-east-?:*:secret:tiny::}}
+                - :secretsmanager:eu-west-1:1111111111111:secret:/test/resources/docdb-test:SecretString:password::}}
           JDBC_ENFORCE_SSL: true
       ConnectionType: MONGODB
