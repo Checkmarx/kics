@@ -6,6 +6,7 @@ replace (
 	github.com/containerd/containerd => github.com/containerd/containerd v1.6.26
 	github.com/docker/cli => github.com/docker/cli v20.10.12+incompatible
 	github.com/jung-kurt/gofpdf => github.com/jung-kurt/gofpdf v1.16.3-0.20210918000319-0c885ad36193 // indirect
+	github.com/kataras/iris/v12 => github.com/kataras/iris/v12 v12.2.11-0.20240707172138-6776bf0dc945
 	github.com/moby/buildkit => github.com/moby/buildkit v0.12.5
 	github.com/opencontainers/image-spec => github.com/opencontainers/image-spec v1.0.2
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
