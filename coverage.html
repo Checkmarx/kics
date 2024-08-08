@@ -203,7 +203,7 @@
 				
 				<option value="file73">github.com/Checkmarx/kics/v2/pkg/parser/docker/comments.go (100.0%)</option>
 				
-				<option value="file74">github.com/Checkmarx/kics/v2/pkg/parser/docker/parser.go (95.7%)</option>
+				<option value="file74">github.com/Checkmarx/kics/v2/pkg/parser/docker/parser.go (94.2%)</option>
 				
 				<option value="file75">github.com/Checkmarx/kics/v2/pkg/parser/grpc/converter/converter.go (86.6%)</option>
 				
@@ -2607,7 +2607,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -5686,7 +5686,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -20291,12 +20291,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="219">{
+        for variable := range s.varList </span><span class="cov7" title="217">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="616">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="599">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -21158,7 +21158,7 @@ func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, e
                 }</span>
 
                 <span class="cov7" title="27">cmd.JSON = child.Attributes["json"]
-                for n := child.Next; n != nil; n = n.Next </span><span class="cov8" title="41">{
+                for n := child.Next; n != nil; n = n.Next </span><span class="cov8" title="42">{
                         cmd.Value = append(cmd.Value, n.Value)
                 }</span>
 
@@ -21233,8 +21233,8 @@ func (p *Parser) GetResolvedFiles() map[string]model.ResolvedFile <span class="c
 }</span>
 
 func resolveArgsAndEnvs(values []string, args map[string]string) []string <span class="cov9" title="48">{
-        for i := range values </span><span class="cov10" title="75">{
-                for arg := range args </span><span class="cov6" title="16">{
+        for i := range values </span><span class="cov10" title="76">{
+                for arg := range args </span><span class="cov6" title="12">{
                         ref1 := fmt.Sprintf("${%s}", arg)
                         values[i] = strings.Replace(values[i], ref1, args[arg], 1)
                         ref2 := fmt.Sprintf("$%s", arg)
@@ -21259,7 +21259,7 @@ func saveArgs(args map[string]string, argValue string) map[string]string <span c
 }
 
 func saveEnvs(envs map[string]string, envValues []string) map[string]string <span class="cov1" title="1">{
-        if len(envValues) == 2 </span><span class="cov1" title="1">{
+        if len(envValues) == 2 </span><span class="cov0" title="0">{
                 envs[envValues[0]] = envValues[1]
         }</span>
         <span class="cov1" title="1">return envs</span>
