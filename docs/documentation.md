@@ -52,12 +52,20 @@ Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/
     ./bin/kics scan -p '<path-of-your-project-to-scan>' --report-formats json -o ./results
     ```
 
-#### [Deprecated] Homebrew
+#### Homebrew
 
-KICS is available on Checkmarx [homebrew-tap](https://github.com/Checkmarx/homebrew-tap) only for versions until 1.5.1. It can be used as follows:
+KICS is available on homebrew-core. Install it with:
 
+```sh
+brew install kics
 ```
-brew install Checkmarx/tap/kics
+
+If you installed KICS from Checkmarx [homebrew-tap](https://github.com/Checkmarx/homebrew-tap) (for versions until 1.5.1), you can use the new formula as follows:
+
+```sh
+brew remove kics
+brew untap Checkmarx/tap/kics
+brew install kics
 ```
 
 To use KICS default queries add the KICS_QUERIES_PATH environmental variable to your shell profile, e.g:
