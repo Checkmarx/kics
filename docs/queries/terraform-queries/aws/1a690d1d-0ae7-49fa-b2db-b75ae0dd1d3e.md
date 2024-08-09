@@ -20,6 +20,7 @@ hide:
 -   **Platform:** Terraform
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Encryption
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/aurora_with_disabled_at_rest_encryption)
 
 ### Description
