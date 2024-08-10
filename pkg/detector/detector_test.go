@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/utils"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/pkg/utils"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
@@ -26,40 +26,6 @@ func (m mockkindDetectLine) DetectLine(file *model.FileMetadata, searchKey strin
 func (m mockDefaultDetector) DetectLine(file *model.FileMetadata, searchKey string, outputLines int, logWithFields *zerolog.Logger) model.VulnerabilityLines {
 	return model.VulnerabilityLines{
 		Line: 5,
-	}
-}
-
-func TestDetector_Add(t *testing.T) {
-	var mock mockkindDetectLine
-	det := initDetector()
-	type args struct {
-		kindDetector kindDetectLine
-		fileKind     model.FileKind
-	}
-	tests := []struct {
-		name string
-		args args
-	}{
-		{
-			name: "test_add",
-			args: args{
-				kindDetector: mock,
-				fileKind:     model.KindDOCKER,
-			},
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			det = det.Add(tt.args.kindDetector, tt.args.fileKind)
-			got, ok := det.detectors[tt.args.fileKind]
-			if !ok {
-				t.Errorf("Add(), mockKindDetectLine is not in detectors")
-			}
-			if !reflect.DeepEqual(got, mock) {
-				t.Errorf("Add() = %v, want = %v", got, mock)
-			}
-		})
 	}
 }
 

@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	build "github.com/Checkmarx/kics/v2/pkg/builder/model"
+	build "github.com/DataDog/kics/pkg/builder/model"
 	"github.com/stretchr/testify/require"
 )
 

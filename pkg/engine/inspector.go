@@ -11,13 +11,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Checkmarx/kics/v2/internal/metrics"
-	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
-	"github.com/Checkmarx/kics/v2/pkg/detector"
-	"github.com/Checkmarx/kics/v2/pkg/detector/docker"
-	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
-	"github.com/Checkmarx/kics/v2/pkg/engine/source"
-	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/DataDog/kics/internal/metrics"
+	"github.com/DataDog/kics/pkg/detector"
+	"github.com/DataDog/kics/pkg/detector/helm"
+	"github.com/DataDog/kics/pkg/detector/terraform"
+	"github.com/DataDog/kics/pkg/engine/source"
+	"github.com/DataDog/kics/pkg/model"
 	"github.com/open-policy-agent/opa/ast"
 	"github.com/open-policy-agent/opa/cover"
 	"github.com/open-policy-agent/opa/rego"
@@ -134,12 +133,12 @@ func NewInspector(
 
 	commonLibrary, err := queriesSource.GetQueryLibrary("common")
 	if err != nil {
-		sentryReport.ReportSentry(&sentryReport.Report{
-			Message:  fmt.Sprintf("Inspector failed to get library for %s platform", "common"),
-			Err:      err,
-			Location: "func NewInspector()",
-			Platform: "common",
-		}, true)
+		// sentryReport.ReportSentry(&sentryReport.Report{
+		// 	Message:  fmt.Sprintf("Inspector failed to get library for %s platform", "common"),
+		// 	Err:      err,
+		// 	Location: "func NewInspector()",
+		// 	Platform: "common",
+		// }, true)
 		return nil, errors.Wrap(err, "failed to get library")
 	}
 	platformLibraries := getPlatformLibraries(queriesSource, queries)
@@ -157,8 +156,7 @@ func NewInspector(
 
 	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
 		Add(helm.DetectKindLine{}, model.KindHELM).
-		Add(docker.DetectKindLine{}, model.KindDOCKER).
-		Add(docker.DetectKindLine{}, model.KindBUILDAH)
+		Add(terraform.DetectKindLine{}, model.KindTerraform)
 
 	queryExecTimeout := time.Duration(queryTimeout) * time.Second
 
@@ -189,12 +187,12 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
 	for platform := range supportedPlatforms {
 		platformLibrary, errLoadingPlatformLib := queriesSource.GetQueryLibrary(platform)
 		if errLoadingPlatformLib != nil {
-			sentryReport.ReportSentry(&sentryReport.Report{
-				Message:  fmt.Sprintf("Inspector failed to get library for %s platform", platform),
-				Err:      errLoadingPlatformLib,
-				Location: "func getPlatformLibraries()",
-				Platform: platform,
-			}, true)
+			// sentryReport.ReportSentry(&sentryReport.Report{
+			// 	Message:  fmt.Sprintf("Inspector failed to get library for %s platform", platform),
+			// 	Err:      errLoadingPlatformLib,
+			// 	Location: "func getPlatformLibraries()",
+			// 	Platform: platform,
+			// }, true)
 			continue
 		}
 		platformLibraries[platform] = platformLibrary
@@ -321,14 +319,14 @@ func (c *Inspector) Inspect(
 	for result := range results {
 		if result.err != nil {
 			fmt.Println()
-			sentryReport.ReportSentry(&sentryReport.Report{
-				Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", queries[result.queryID].Query),
-				Err:      result.err,
-				Location: "func Inspect()",
-				Platform: queries[result.queryID].Platform,
-				Metadata: queries[result.queryID].Metadata,
-				Query:    queries[result.queryID].Query,
-			}, true)
+			// sentryReport.ReportSentry(&sentryReport.Report{
+			// 	Message:  fmt.Sprintf("Inspector. query executed with error, query=%s", queries[result.queryID].Query),
+			// 	Err:      result.err,
+			// 	Location: "func Inspect()",
+			// 	Platform: queries[result.queryID].Platform,
+			// 	Metadata: queries[result.queryID].Metadata,
+			// 	Query:    queries[result.queryID].Query,
+			// }, true)
 
 			c.failedQueries[queries[result.queryID].Query] = result.err
 
@@ -486,14 +484,14 @@ func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultIte
 		return nil, false
 	}
 	if err != nil {
-		sentryReport.ReportSentry(&sentryReport.Report{
-			Message:  fmt.Sprintf("Inspector can't save vulnerability, query=%s", ctx.Query.Metadata.Query),
-			Err:      err,
-			Location: "func decodeQueryResults()",
-			Platform: ctx.Query.Metadata.Platform,
-			Metadata: ctx.Query.Metadata.Metadata,
-			Query:    ctx.Query.Metadata.Query,
-		}, true)
+		// sentryReport.ReportSentry(&sentryReport.Report{
+		// 	Message:  fmt.Sprintf("Inspector can't save vulnerability, query=%s", ctx.Query.Metadata.Query),
+		// 	Err:      err,
+		// 	Location: "func decodeQueryResults()",
+		// 	Platform: ctx.Query.Metadata.Platform,
+		// 	Metadata: ctx.Query.Metadata.Metadata,
+		// 	Query:    ctx.Query.Metadata.Query,
+		// }, true)
 
 		if _, ok := c.failedQueries[ctx.Query.Metadata.Query]; !ok {
 			c.failedQueries[ctx.Query.Metadata.Query] = err
@@ -620,14 +618,14 @@ func (q QueryLoader) LoadQuery(ctx context.Context, query *model.QueryMetadata) 
 		).PrepareForEval(ctx)
 
 		if err != nil {
-			sentryReport.ReportSentry(&sentryReport.Report{
-				Message:  fmt.Sprintf("Inspector failed to prepare query for evaluation, query=%s", query.Query),
-				Err:      err,
-				Location: "func NewInspector()",
-				Query:    query.Query,
-				Metadata: query.Metadata,
-				Platform: query.Platform,
-			}, true)
+			// sentryReport.ReportSentry(&sentryReport.Report{
+			// 	Message:  fmt.Sprintf("Inspector failed to prepare query for evaluation, query=%s", query.Query),
+			// 	Err:      err,
+			// 	Location: "func NewInspector()",
+			// 	Query:    query.Query,
+			// 	Metadata: query.Metadata,
+			// 	Platform: query.Platform,
+			// }, true)
 
 			return nil, err
 		}

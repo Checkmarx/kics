@@ -7,15 +7,15 @@ import (
 	"io"
 	"sync"
 
-	"github.com/Checkmarx/kics/v2/pkg/engine"
-	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
-	"github.com/Checkmarx/kics/v2/pkg/engine/secrets"
-	"github.com/Checkmarx/kics/v2/pkg/minified"
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/parser"
-	"github.com/Checkmarx/kics/v2/pkg/resolver"
+	"github.com/DataDog/kics/pkg/engine"
+	"github.com/DataDog/kics/pkg/engine/provider"
+	"github.com/DataDog/kics/pkg/engine/secrets"
+	"github.com/DataDog/kics/pkg/minified"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/pkg/parser"
+	"github.com/DataDog/kics/pkg/resolver"
 
-	"github.com/Checkmarx/kics/v2/pkg/utils"
+	"github.com/DataDog/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -51,15 +51,14 @@ type Tracker interface {
 // a parser to parse and provide files in format that KICS understand, a inspector that runs the scanning and a tracker to
 // update scanning numbers
 type Service struct {
-	SourceProvider   provider.SourceProvider
-	Storage          Storage
-	Parser           *parser.Parser
-	Inspector        *engine.Inspector
-	SecretsInspector *secrets.Inspector
-	Tracker          Tracker
-	Resolver         *resolver.Resolver
-	files            model.FileMetadatas
-	MaxFileSize      int
+	SourceProvider provider.SourceProvider
+	Storage        Storage
+	Parser         *parser.Parser
+	Inspector      *engine.Inspector
+	Tracker        Tracker
+	Resolver       *resolver.Resolver
+	files          model.FileMetadatas
+	MaxFileSize    int
 }
 
 // PrepareSources will prepare the sources to be scanned
@@ -95,15 +94,15 @@ func (s *Service) StartScan(
 	log.Debug().Msg("service.StartScan()")
 	defer wg.Done()
 
-	secretsVulnerabilities, err := s.SecretsInspector.Inspect(
-		ctx,
-		s.SourceProvider.GetBasePaths(),
-		s.files,
-		currentQuery,
-	)
-	if err != nil {
-		errCh <- errors.Wrap(err, "failed to inspect secrets")
-	}
+	// secretsVulnerabilities, err := s.SecretsInspector.Inspect(
+	// 	ctx,
+	// 	s.SourceProvider.GetBasePaths(),
+	// 	s.files,
+	// 	currentQuery,
+	// )
+	// if err != nil {
+	// 	errCh <- errors.Wrap(err, "failed to inspect secrets")
+	// }
 
 	vulnerabilities, err := s.Inspector.Inspect(
 		ctx,
@@ -116,9 +115,9 @@ func (s *Service) StartScan(
 	if err != nil {
 		errCh <- errors.Wrap(err, "failed to inspect files")
 	}
-	vulnerabilities = append(vulnerabilities, secretsVulnerabilities...)
+	// vulnerabilities = append(vulnerabilities, secretsVulnerabilities...)
 
-	updateMaskedSecrets(&vulnerabilities, s.SecretsInspector.SecretTracker)
+	// updateMaskedSecrets(&vulnerabilities, s.SecretsInspector.SecretTracker)
 
 	err = s.Storage.SaveVulnerabilities(ctx, vulnerabilities)
 	if err != nil {

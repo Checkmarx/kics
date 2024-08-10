@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/parser/grpc/converter"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/pkg/parser/grpc/converter"
 	"github.com/emicklei/proto"
 )
 
@@ -13,7 +13,7 @@ import (
 type Parser struct {
 }
 
-// Parse - parses dockerfile to Json
+// Parse - parses grpc to Json
 func (p *Parser) Parse(_ string, fileContent []byte) ([]model.Document, []int, error) {
 	reader := bytes.NewReader(fileContent)
 	parserProto := proto.NewParser(reader)
@@ -44,17 +44,17 @@ func (p *Parser) GetKind() model.FileKind {
 	return model.KindPROTO
 }
 
-// SupportedExtensions returns Dockerfile extensions
+// SupportedExtensions returns GRPC extensions
 func (p *Parser) SupportedExtensions() []string {
 	return []string{".proto"}
 }
 
-// SupportedTypes returns types supported by this parser, which are dockerfile
+// SupportedTypes returns types supported by this parser, which are grpc
 func (p *Parser) SupportedTypes() map[string]bool {
 	return map[string]bool{"grpc": true}
 }
 
-// GetCommentToken return the comment token of Docker - #
+// GetCommentToken return the comment token of GRPC - #
 func (p *Parser) GetCommentToken() string {
 	return "//"
 }

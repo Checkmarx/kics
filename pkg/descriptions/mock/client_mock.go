@@ -3,8 +3,8 @@ package mockclient
 import (
 	"net/http"
 
-	"github.com/Checkmarx/kics/v2/pkg/descriptions/model"
-	genModel "github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/DataDog/kics/pkg/descriptions/model"
+	genModel "github.com/DataDog/kics/pkg/model"
 )
 
 // MockHTTPClient - the mock http client

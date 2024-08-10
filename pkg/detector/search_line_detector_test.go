@@ -3,7 +3,7 @@ package detector
 import (
 	"testing"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/DataDog/kics/pkg/model"
 )
 
 func TestGetLineBySearchLine(t *testing.T) { //nolint

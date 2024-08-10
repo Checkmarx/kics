@@ -7,8 +7,8 @@ package mock
 import (
 	reflect "reflect"
 
-	source "github.com/Checkmarx/kics/v2/pkg/engine/source"
-	model "github.com/Checkmarx/kics/v2/pkg/model"
+	source "github.com/DataDog/kics/pkg/engine/source"
+	model "github.com/DataDog/kics/pkg/model"
 	gomock "github.com/golang/mock/gomock"
 )
 

@@ -7,7 +7,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/DataDog/kics/pkg/model"
 )
 
 type jsonLine struct {

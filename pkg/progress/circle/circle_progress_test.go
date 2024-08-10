@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Checkmarx/kics/v2/internal/constants"
+	"github.com/DataDog/kics/internal/constants"
 	"github.com/cheggaaa/pb/v3"
 	"github.com/stretchr/testify/require"
 )

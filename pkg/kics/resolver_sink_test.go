@@ -4,17 +4,15 @@ import (
 	"context"
 	"testing"
 
-	"github.com/Checkmarx/kics/v2/assets"
-	"github.com/Checkmarx/kics/v2/internal/storage"
-	"github.com/Checkmarx/kics/v2/internal/tracker"
-	"github.com/Checkmarx/kics/v2/pkg/engine"
-	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
-	"github.com/Checkmarx/kics/v2/pkg/engine/secrets"
-	"github.com/Checkmarx/kics/v2/pkg/engine/source"
-	"github.com/Checkmarx/kics/v2/pkg/parser"
-	yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
-	"github.com/Checkmarx/kics/v2/pkg/resolver"
-	"github.com/Checkmarx/kics/v2/pkg/resolver/helm"
+	"github.com/DataDog/kics/internal/storage"
+	"github.com/DataDog/kics/internal/tracker"
+	"github.com/DataDog/kics/pkg/engine"
+	"github.com/DataDog/kics/pkg/engine/provider"
+	"github.com/DataDog/kics/pkg/engine/source"
+	"github.com/DataDog/kics/pkg/parser"
+	yamlParser "github.com/DataDog/kics/pkg/parser/yaml"
+	"github.com/DataDog/kics/pkg/resolver"
+	"github.com/DataDog/kics/pkg/resolver/helm"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 )
@@ -153,21 +151,21 @@ func MockService(paths []string,
 		log.Error().Msgf(`Failed to build inspector for path %s with error: %v`, path, err)
 	}
 
-	regexRulesContent := assets.SecretsQueryRegexRulesJSON
+	// regexRulesContent := assets.SecretsQueryRegexRulesJSON
 
-	secretsInspector, err := secrets.NewInspector(
-		ctx,
-		map[string]bool{},
-		mockTracker,
-		&queryFilter,
-		false,
-		queryExecTimeout,
-		regexRulesContent,
-		false,
-	)
-	if err != nil {
-		log.Error().Msgf(`Failed to build secretsInspector with error: %v`, err)
-	}
+	// secretsInspector, err := secrets.NewInspector(
+	// 	ctx,
+	// 	map[string]bool{},
+	// 	mockTracker,
+	// 	&queryFilter,
+	// 	false,
+	// 	queryExecTimeout,
+	// 	regexRulesContent,
+	// 	false,
+	// )
+	// if err != nil {
+	// 	log.Error().Msgf(`Failed to build secretsInspector with error: %v`, err)
+	// }
 
 	mockResolver, err := resolver.NewBuilder().Add(&helm.Resolver{}).Build()
 	if err != nil {
@@ -175,13 +173,12 @@ func MockService(paths []string,
 	}
 
 	return Service{
-		SourceProvider:   filesSource,
-		Storage:          storage.NewMemoryStorage(),
-		Parser:           combinedParser[0],
-		Inspector:        inspector,
-		SecretsInspector: secretsInspector,
-		Tracker:          mockTracker,
-		MaxFileSize:      maxFileSizeFlag,
-		Resolver:         mockResolver,
+		SourceProvider: filesSource,
+		Storage:        storage.NewMemoryStorage(),
+		Parser:         combinedParser[0],
+		Inspector:      inspector,
+		Tracker:        mockTracker,
+		MaxFileSize:    maxFileSizeFlag,
+		Resolver:       mockResolver,
 	}
 }

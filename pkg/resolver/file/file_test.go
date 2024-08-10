@@ -3,8 +3,6 @@ package file
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -12,7 +10,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/v2/test"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+
+	"github.com/DataDog/kics/test"
 	"gopkg.in/yaml.v3"
 )
 

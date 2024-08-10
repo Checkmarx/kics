@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/utils"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/pkg/utils"
 	"github.com/rs/zerolog"
 )
 

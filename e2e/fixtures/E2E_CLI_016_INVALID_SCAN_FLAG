@@ -1,2 +1,0 @@
-Error: unknown flag: --invalid-flag
-{{.ScanHelp}}

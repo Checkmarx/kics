@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/DataDog/kics/pkg/model"
 	"github.com/stretchr/testify/require"
 )
 

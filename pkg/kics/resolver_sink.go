@@ -4,14 +4,12 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"fmt"
 	"regexp"
 	"sort"
 
-	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
-	"github.com/Checkmarx/kics/v2/pkg/minified"
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/utils"
+	"github.com/DataDog/kics/pkg/minified"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/pkg/utils"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 )
@@ -63,13 +61,13 @@ func (s *Service) resolverSink(
 		for _, document := range documents.Docs {
 			_, err = json.Marshal(document)
 			if err != nil {
-				sentryReport.ReportSentry(&sentryReport.Report{
-					Message:  fmt.Sprintf("failed to marshal content in file: %s", rfile.FileName),
-					Err:      err,
-					Location: "func resolverSink()",
-					FileName: rfile.FileName,
-					Kind:     kind,
-				}, true)
+				// sentryReport.ReportSentry(&sentryReport.Report{
+				// 	Message:  fmt.Sprintf("failed to marshal content in file: %s", rfile.FileName),
+				// 	Err:      err,
+				// 	Location: "func resolverSink()",
+				// 	FileName: rfile.FileName,
+				// 	Kind:     kind,
+				// }, true)
 				continue
 			}
 

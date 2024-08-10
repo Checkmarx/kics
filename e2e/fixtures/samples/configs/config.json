@@ -1,6 +1,0 @@
-{
-    "path": "/path/e2e/fixtures/samples/positive.yaml",
-    "verbose": true,
-    "type": "Dockerfile",
-    "queries-path": "/path/assets/queries"
-}

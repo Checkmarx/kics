@@ -8,12 +8,12 @@ import (
 	"regexp"
 	"strings"
 
-	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
-	"github.com/Checkmarx/kics/v2/pkg/analyzer"
-	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
-	"github.com/Checkmarx/kics/v2/pkg/utils"
+	consoleHelpers "github.com/DataDog/kics/internal/console/helpers"
+	"github.com/DataDog/kics/pkg/analyzer"
+	"github.com/DataDog/kics/pkg/engine/provider"
+	"github.com/DataDog/kics/pkg/model"
+	consolePrinter "github.com/DataDog/kics/pkg/printer"
+	"github.com/DataDog/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -130,11 +130,13 @@ func (c *Client) GetQueryPath() (provider.ExtractedPath, error) {
 		log.Debug().Msgf("Looking for queries in executable path and in current work directory")
 		defaultQueryPath, errDefaultQueryPath := consoleHelpers.GetDefaultQueryPath(c.ScanParams.QueriesPath[0])
 		if errDefaultQueryPath != nil {
+			fmt.Printf("%v\n", errDefaultQueryPath)
 			return extPath, errors.Wrap(errDefaultQueryPath, "unable to find queries")
 		}
 		queriesPath = append(queriesPath, defaultQueryPath)
 	}
 	c.ScanParams.QueriesPath = queriesPath
+	fmt.Printf("%v\n", c.ScanParams.QueriesPath)
 	return extPath, nil
 }
 

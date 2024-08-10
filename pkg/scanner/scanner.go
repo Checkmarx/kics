@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/Checkmarx/kics/v2/internal/metrics"
-	"github.com/Checkmarx/kics/v2/pkg/kics"
-	"github.com/Checkmarx/kics/v2/pkg/progress"
+	"github.com/DataDog/kics/internal/metrics"
+	"github.com/DataDog/kics/pkg/kics"
+	"github.com/DataDog/kics/pkg/progress"
 )
 
 type serviceSlice []*kics.Service
@@ -100,7 +100,7 @@ func (s serviceSlice) GetQueriesLength() int {
 	count := 0
 	for _, service := range s {
 		count += service.Inspector.LenQueriesByPlat(service.Parser.Platform)
-		count += service.SecretsInspector.GetQueriesLength()
+		// count += service.SecretsInspector.GetQueriesLength()
 	}
 	return count
 }

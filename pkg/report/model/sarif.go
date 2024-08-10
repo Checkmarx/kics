@@ -5,9 +5,10 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"strings"
 
-	"github.com/Checkmarx/kics/v2/internal/constants"
-	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/DataDog/kics/internal/constants"
+	"github.com/DataDog/kics/pkg/model"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 )
@@ -127,8 +128,18 @@ type sarifTool struct {
 	Driver sarifDriver `json:"driver"`
 }
 
+type sarifResourceLocation struct {
+	Line int `json:"line"`
+	Col  int `json:"col"`
+}
+
 type sarifRegion struct {
-	StartLine int `json:"startLine"`
+	StartLine   int `json:"startLine"`
+	EndLine     int `json:"endLine"`
+	StartColumn int `json:"startColumn"`
+	EndColumn   int `json:"endColumn"`
+	// StartResource sarifResourceLocation `json:"startResource"`
+	// EndResource   sarifResourceLocation `json:"endResource"`
 }
 
 type sarifArtifactLocation struct {
@@ -591,6 +602,16 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string {
 			if line < 1 {
 				line = 1
 			}
+			resourceLocation := issue.Files[idx].ResourceLocation
+			startLocation := sarifResourceLocation{
+				Line: resourceLocation.ResourceStart.Line,
+				Col:  resourceLocation.ResourceStart.Col,
+			}
+			endLocation := sarifResourceLocation{
+				Line: resourceLocation.ResourceEnd.Line,
+				Col:  resourceLocation.ResourceEnd.Col,
+			}
+			absoluteFilePath := strings.ReplaceAll(issue.Files[idx].FileName, "../", "")
 			result := sarifResult{
 				ResultRuleID:    issue.QueryID,
 				ResultRuleIndex: ruleIndex,
@@ -604,8 +625,15 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string {
 				ResultLocations: []sarifLocation{
 					{
 						PhysicalLocation: sarifPhysicalLocation{
-							ArtifactLocation: sarifArtifactLocation{ArtifactURI: issue.Files[idx].FileName},
-							Region:           sarifRegion{StartLine: line},
+							ArtifactLocation: sarifArtifactLocation{ArtifactURI: absoluteFilePath},
+							Region: sarifRegion{
+								StartLine:   line,
+								EndLine:     line + 1,
+								StartColumn: startLocation.Col,
+								EndColumn:   endLocation.Col,
+								// StartResource: startLocation,
+								// EndResource:   endLocation,
+							},
 						},
 					},
 				},

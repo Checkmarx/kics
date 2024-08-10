@@ -2,14 +2,13 @@ package scan
 
 import (
 	"context"
-	"github.com/Checkmarx/kics/v2/assets"
-	"github.com/Checkmarx/kics/v2/pkg/engine/source"
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
-	"github.com/Checkmarx/kics/v2/pkg/progress"
-	"github.com/stretchr/testify/require"
-	"path/filepath"
 	"testing"
+
+	"github.com/DataDog/kics/pkg/engine/source"
+	"github.com/DataDog/kics/pkg/model"
+	consolePrinter "github.com/DataDog/kics/pkg/printer"
+	"github.com/DataDog/kics/pkg/progress"
+	"github.com/stretchr/testify/require"
 )
 
 func Test_ExecuteScan(t *testing.T) {
@@ -67,53 +66,53 @@ func Test_ExecuteScan(t *testing.T) {
 	}
 }
 
-func Test_GetSecretsRegexRules(t *testing.T) {
-	tests := []struct {
-		name           string
-		scanParams     Parameters
-		expectedError  bool
-		expectedOutput string
-	}{
-		{
-			name: "default value",
-			scanParams: Parameters{
-				SecretsRegexesPath: "",
-			},
-			expectedOutput: assets.SecretsQueryRegexRulesJSON,
-			expectedError:  false,
-		},
-		{
-			name: "custom value",
-			scanParams: Parameters{
-				SecretsRegexesPath: filepath.Join("..", "..", "assets", "queries", "common", "passwords_and_secrets", "regex_rules.json"),
-			},
-			expectedOutput: assets.SecretsQueryRegexRulesJSON,
-			expectedError:  false,
-		},
-		{
-			name: "invalid path value",
-			scanParams: Parameters{
-				SecretsRegexesPath: filepath.Join("invalid", "path"),
-			},
-			expectedOutput: "",
-			expectedError:  true,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			c := &Client{}
-			c.ScanParams = &tt.scanParams
-			v, err := getSecretsRegexRules(c.ScanParams.SecretsRegexesPath)
+// func Test_GetSecretsRegexRules(t *testing.T) {
+// 	tests := []struct {
+// 		name           string
+// 		scanParams     Parameters
+// 		expectedError  bool
+// 		expectedOutput string
+// 	}{
+// 		{
+// 			name: "default value",
+// 			scanParams: Parameters{
+// 				SecretsRegexesPath: "",
+// 			},
+// 			expectedOutput: assets.SecretsQueryRegexRulesJSON,
+// 			expectedError:  false,
+// 		},
+// 		{
+// 			name: "custom value",
+// 			scanParams: Parameters{
+// 				SecretsRegexesPath: filepath.Join("..", "..", "assets", "queries", "common", "passwords_and_secrets", "regex_rules.json"),
+// 			},
+// 			expectedOutput: assets.SecretsQueryRegexRulesJSON,
+// 			expectedError:  false,
+// 		},
+// 		{
+// 			name: "invalid path value",
+// 			scanParams: Parameters{
+// 				SecretsRegexesPath: filepath.Join("invalid", "path"),
+// 			},
+// 			expectedOutput: "",
+// 			expectedError:  true,
+// 		},
+// 	}
+// 	for _, tt := range tests {
+// 		t.Run(tt.name, func(t *testing.T) {
+// 			c := &Client{}
+// 			c.ScanParams = &tt.scanParams
+// 			v, err := getSecretsRegexRules(c.ScanParams.SecretsRegexesPath)
 
-			require.Equal(t, tt.expectedOutput, v)
-			if tt.expectedError {
-				require.Error(t, err)
-			} else {
-				require.NoError(t, err)
-			}
-		})
-	}
-}
+// 			require.Equal(t, tt.expectedOutput, v)
+// 			if tt.expectedError {
+// 				require.Error(t, err)
+// 			} else {
+// 				require.NoError(t, err)
+// 			}
+// 		})
+// 	}
+// }
 
 func Test_CreateQueryFilter(t *testing.T) {
 	tests := []struct {

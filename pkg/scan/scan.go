@@ -3,28 +3,24 @@ package scan
 
 import (
 	"context"
-	"os"
 
-	"github.com/Checkmarx/kics/v2/assets"
-	"github.com/Checkmarx/kics/v2/pkg/engine"
-	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
-	"github.com/Checkmarx/kics/v2/pkg/engine/secrets"
-	"github.com/Checkmarx/kics/v2/pkg/engine/source"
-	"github.com/Checkmarx/kics/v2/pkg/kics"
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/parser"
-	ansibleConfigParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/config"
-	ansibleHostsParser "github.com/Checkmarx/kics/v2/pkg/parser/ansible/ini/hosts"
-	bicepParser "github.com/Checkmarx/kics/v2/pkg/parser/bicep"
-	buildahParser "github.com/Checkmarx/kics/v2/pkg/parser/buildah"
-	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
-	protoParser "github.com/Checkmarx/kics/v2/pkg/parser/grpc"
-	jsonParser "github.com/Checkmarx/kics/v2/pkg/parser/json"
-	terraformParser "github.com/Checkmarx/kics/v2/pkg/parser/terraform"
-	yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
-	"github.com/Checkmarx/kics/v2/pkg/resolver"
-	"github.com/Checkmarx/kics/v2/pkg/resolver/helm"
-	"github.com/Checkmarx/kics/v2/pkg/scanner"
+	"github.com/DataDog/kics/pkg/engine"
+	"github.com/DataDog/kics/pkg/engine/provider"
+	"github.com/DataDog/kics/pkg/engine/source"
+	"github.com/DataDog/kics/pkg/kics"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/pkg/parser"
+	ansibleConfigParser "github.com/DataDog/kics/pkg/parser/ansible/ini/config"
+	ansibleHostsParser "github.com/DataDog/kics/pkg/parser/ansible/ini/hosts"
+	bicepParser "github.com/DataDog/kics/pkg/parser/bicep"
+	buildahParser "github.com/DataDog/kics/pkg/parser/buildah"
+	protoParser "github.com/DataDog/kics/pkg/parser/grpc"
+	jsonParser "github.com/DataDog/kics/pkg/parser/json"
+	terraformParser "github.com/DataDog/kics/pkg/parser/terraform"
+	yamlParser "github.com/DataDog/kics/pkg/parser/yaml"
+	"github.com/DataDog/kics/pkg/resolver"
+	"github.com/DataDog/kics/pkg/resolver/helm"
+	"github.com/DataDog/kics/pkg/scanner"
 	"github.com/rs/zerolog/log"
 )
 
@@ -84,31 +80,30 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		return nil, err
 	}
 
-	secretsRegexRulesContent, err := getSecretsRegexRules(c.ScanParams.SecretsRegexesPath)
-	if err != nil {
-		return nil, err
-	}
+	// secretsRegexRulesContent, err := getSecretsRegexRules(c.ScanParams.SecretsRegexesPath)
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	isCustomSecretsRegexes := c.ScanParams.SecretsRegexesPath != ""
+	// isCustomSecretsRegexes := c.ScanParams.SecretsRegexesPath != ""
 
-	secretsInspector, err := secrets.NewInspector(
-		ctx,
-		c.ExcludeResultsMap,
-		c.Tracker,
-		queryFilter,
-		c.ScanParams.DisableSecrets,
-		c.ScanParams.QueryExecTimeout,
-		secretsRegexRulesContent,
-		isCustomSecretsRegexes,
-	)
-	if err != nil {
-		log.Err(err)
-		return nil, err
-	}
+	// secretsInspector, err := secrets.NewInspector(
+	// 	ctx,
+	// 	c.ExcludeResultsMap,
+	// 	c.Tracker,
+	// 	queryFilter,
+	// 	c.ScanParams.DisableSecrets,
+	// 	c.ScanParams.QueryExecTimeout,
+	// 	secretsRegexRulesContent,
+	// 	isCustomSecretsRegexes,
+	// )
+	// if err != nil {
+	// 	log.Err(err)
+	// 	return nil, err
+	// }
 
 	services, err := c.createService(
 		inspector,
-		secretsInspector,
 		extractedPaths.Path,
 		c.Tracker,
 		c.Storage,
@@ -200,19 +195,19 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 	return excludeResultsMap
 }
 
-func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err error) {
-	if regexRulesPath != "" {
-		b, err := os.ReadFile(regexRulesPath)
-		if err != nil {
-			return regexRulesContent, err
-		}
-		regexRulesContent = string(b)
-	} else {
-		regexRulesContent = assets.SecretsQueryRegexRulesJSON
-	}
+// func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err error) {
+// 	if regexRulesPath != "" {
+// 		b, err := os.ReadFile(regexRulesPath)
+// 		if err != nil {
+// 			return regexRulesContent, err
+// 		}
+// 		regexRulesContent = string(b)
+// 	} else {
+// 		regexRulesContent = assets.SecretsQueryRegexRulesJSON
+// 	}
 
-	return regexRulesContent, nil
-}
+// 	return regexRulesContent, nil
+// }
 
 func (c *Client) createQueryFilter() *source.QueryInspectorParameters {
 	excludeQueries := source.ExcludeQueries{
@@ -238,7 +233,6 @@ func (c *Client) createQueryFilter() *source.QueryInspectorParameters {
 
 func (c *Client) createService(
 	inspector *engine.Inspector,
-	secretsInspector *secrets.Inspector,
 	paths []string,
 	t kics.Tracker,
 	store kics.Storage,
@@ -253,7 +247,6 @@ func (c *Client) createService(
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefaultWithVarsPath(c.ScanParams.TerraformVarsPath)).
 		Add(&bicepParser.Parser{}).
-		Add(&dockerParser.Parser{}).
 		Add(&protoParser.Parser{}).
 		Add(&buildahParser.Parser{}).
 		Add(&ansibleConfigParser.Parser{}).
@@ -277,14 +270,13 @@ func (c *Client) createService(
 		services = append(
 			services,
 			&kics.Service{
-				SourceProvider:   filesSource,
-				Storage:          store,
-				Parser:           parser,
-				Inspector:        inspector,
-				SecretsInspector: secretsInspector,
-				Tracker:          t,
-				Resolver:         combinedResolver,
-				MaxFileSize:      c.ScanParams.MaxFileSizeFlag,
+				SourceProvider: filesSource,
+				Storage:        store,
+				Parser:         parser,
+				Inspector:      inspector,
+				Tracker:        t,
+				Resolver:       combinedResolver,
+				MaxFileSize:    c.ScanParams.MaxFileSizeFlag,
 			},
 		)
 	}

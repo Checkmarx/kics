@@ -1,0 +1,71 @@
+{
+	"kics_version": "development",
+	"files_scanned": 1,
+	"lines_scanned": 21,
+	"files_parsed": 1,
+	"lines_parsed": 21,
+	"files_failed_to_scan": 0,
+	"queries_total": 1,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"HIGH": 0,
+		"INFO": 0,
+		"LOW": 0,
+		"MEDIUM": 2,
+		"TRACE": 0
+	},
+	"total_counter": 2,
+	"total_bom_resources": 0,
+	"start": "2022-09-15T12:08:28.056244819+01:00",
+	"end": "2022-09-15T12:08:28.141468906+01:00",
+	"paths": [
+		"./../../test/assets/auto_remediation_sample.tf"
+	],
+	"queries": [
+		{
+			"query_name": "Ram Account Password Policy Not Required Numbers",
+			"query_id": "063234c0-91c0-4ab5-bbd0-47ddb5f23786",
+			"query_url": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#require_numbers",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cloud_provider": "ALICLOUD",
+			"category": "Secret Management",
+			"description": "Ram Account Password Policy should have 'require_numbers' set to true",
+			"description_id": "0ee40b1d",
+			"files": [
+				{
+					"file_name": "./../../test/assets/auto_remediation_sample.tf",
+					"similarity_id": "760d3bbce5e83fe48d20cbd70736bfac43fda67253238f31bde8206ba06c8821",
+					"line": 15,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate2",
+					"issue_type": "IncorrectValue",
+					"search_key": "alicloud_ram_account_password_policy[corporate2].require_numbers",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'require_numbers' is defined and set to true",
+					"actual_value": "'require_numbers' is false",
+					"remediation": "{\"after\":\"true\",\"before\":\"false\"}",
+					"remediation_type": "replacement"
+				},
+				{
+					"file_name": "./../../test/assets/auto_remediation_sample.tf",
+					"similarity_id": "608742229710b8b7d5605f6a1a0d2565646b9b5b21a74f149bb4a1c2c6a20b88",
+					"line": 4,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate1",
+					"issue_type": "IncorrectValue",
+					"search_key": "alicloud_ram_account_password_policy[corporate1].require_numbers",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'require_numbers' is defined and set to true",
+					"actual_value": "'require_numbers' is false",
+					"remediation": "{\"after\":\"true\",\"before\":\"false\"}",
+					"remediation_type": "replacement"
+				}
+			]
+		}
+	]
+}

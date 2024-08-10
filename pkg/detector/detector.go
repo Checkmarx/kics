@@ -1,7 +1,7 @@
 package detector
 
 import (
-	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/DataDog/kics/pkg/model"
 	"github.com/rs/zerolog"
 )
 

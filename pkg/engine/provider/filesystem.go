@@ -11,9 +11,8 @@ import (
 	"sync"
 	"syscall"
 
-	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/utils"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"github.com/yargevad/filepathx"
@@ -167,12 +166,12 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 		if info.IsDir() {
 			excluded, errRes := resolverSink(ctx, strings.ReplaceAll(path, "\\", "/"))
 			if errRes != nil {
-				sentryReport.ReportSentry(&sentryReport.Report{
-					Message:  fmt.Sprintf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name()),
-					Err:      errRes,
-					Location: "func walkDir()",
-					FileName: info.Name(),
-				}, true)
+				// sentryReport.ReportSentry(&sentryReport.Report{
+				// 	Message:  fmt.Sprintf("Filesystem files provider couldn't Resolve Directory, file=%s", info.Name()),
+				// 	Err:      errRes,
+				// 	Location: "func walkDir()",
+				// 	FileName: info.Name(),
+				// }, true)
 				return nil
 			}
 			if errAdd := s.AddExcluded(excluded); errAdd != nil {
@@ -194,12 +193,12 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 
 		err = sink(ctx, strings.ReplaceAll(path, "\\", "/"), c)
 		if err != nil {
-			sentryReport.ReportSentry(&sentryReport.Report{
-				Message:  fmt.Sprintf("Filesystem files provider couldn't parse file, file=%s", info.Name()),
-				Err:      err,
-				Location: "func walkDir()",
-				FileName: info.Name(),
-			}, true)
+			// sentryReport.ReportSentry(&sentryReport.Report{
+			// 	Message:  fmt.Sprintf("Filesystem files provider couldn't parse file, file=%s", info.Name()),
+			// 	Err:      err,
+			// 	Location: "func walkDir()",
+			// 	FileName: info.Name(),
+			// }, true)
 		}
 		return nil
 	})
@@ -221,12 +220,12 @@ func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error
 
 func closeFile(file *os.File, info os.FileInfo) {
 	if err := file.Close(); err != nil {
-		sentryReport.ReportSentry(&sentryReport.Report{
-			Message:  fmt.Sprintf("Filesystem couldn't close file, file=%s", info.Name()),
-			Err:      err,
-			Location: "func closeFile()",
-			FileName: info.Name(),
-		}, true)
+		// sentryReport.ReportSentry(&sentryReport.Report{
+		// 	Message:  fmt.Sprintf("Filesystem couldn't close file, file=%s", info.Name()),
+		// 	Err:      err,
+		// 	Location: "func closeFile()",
+		// 	FileName: info.Name(),
+		// }, true)
 	}
 }
 

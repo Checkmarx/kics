@@ -6,24 +6,21 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Checkmarx/kics/v2/assets"
-	"github.com/Checkmarx/kics/v2/internal/storage"
-	"github.com/Checkmarx/kics/v2/internal/tracker"
-	"github.com/Checkmarx/kics/v2/pkg/engine"
-	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
-	"github.com/Checkmarx/kics/v2/pkg/engine/secrets"
-	"github.com/Checkmarx/kics/v2/pkg/engine/source"
-	"github.com/Checkmarx/kics/v2/pkg/kics"
-	"github.com/Checkmarx/kics/v2/pkg/parser"
-	"github.com/Checkmarx/kics/v2/pkg/progress"
-	"github.com/Checkmarx/kics/v2/pkg/resolver"
-	"github.com/Checkmarx/kics/v2/pkg/resolver/helm"
+	"github.com/DataDog/kics/internal/storage"
+	"github.com/DataDog/kics/internal/tracker"
+	"github.com/DataDog/kics/pkg/engine"
+	"github.com/DataDog/kics/pkg/engine/provider"
+	"github.com/DataDog/kics/pkg/engine/source"
+	"github.com/DataDog/kics/pkg/kics"
+	"github.com/DataDog/kics/pkg/parser"
+	"github.com/DataDog/kics/pkg/progress"
+	"github.com/DataDog/kics/pkg/resolver"
+	"github.com/DataDog/kics/pkg/resolver/helm"
 	"github.com/stretchr/testify/require"
 
-	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
-	jsonParser "github.com/Checkmarx/kics/v2/pkg/parser/json"
-	terraformParser "github.com/Checkmarx/kics/v2/pkg/parser/terraform"
-	yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
+	jsonParser "github.com/DataDog/kics/pkg/parser/json"
+	terraformParser "github.com/DataDog/kics/pkg/parser/terraform"
+	yamlParser "github.com/DataDog/kics/pkg/parser/yaml"
 )
 
 var (
@@ -106,25 +103,24 @@ func createServices(types, cloudProviders []string) (serviceSlice, *storage.Memo
 		return nil, nil, err
 	}
 
-	secretsInspector, err := secrets.NewInspector(
-		context.Background(),
-		map[string]bool{},
-		t,
-		&source.QueryInspectorParameters{},
-		false,
-		60,
-		assets.SecretsQueryRegexRulesJSON,
-		false,
-	)
-	if err != nil {
-		return nil, nil, err
-	}
+	// secretsInspector, err := secrets.NewInspector(
+	// 	context.Background(),
+	// 	map[string]bool{},
+	// 	t,
+	// 	&source.QueryInspectorParameters{},
+	// 	false,
+	// 	60,
+	// 	assets.SecretsQueryRegexRulesJSON,
+	// 	false,
+	// )
+	// if err != nil {
+	// 	return nil, nil, err
+	// }
 
 	combinedParser, err := parser.NewBuilder().
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
-		Add(&dockerParser.Parser{}).
 		Build(types, cloudProviders)
 	if err != nil {
 		return nil, nil, err
@@ -143,13 +139,12 @@ func createServices(types, cloudProviders []string) (serviceSlice, *storage.Memo
 
 	for _, parser := range combinedParser {
 		services = append(services, &kics.Service{
-			SourceProvider:   filesSource,
-			Storage:          store,
-			Parser:           parser,
-			Inspector:        inspector,
-			SecretsInspector: secretsInspector,
-			Tracker:          t,
-			Resolver:         combinedResolver,
+			SourceProvider: filesSource,
+			Storage:        store,
+			Parser:         parser,
+			Inspector:      inspector,
+			Tracker:        t,
+			Resolver:       combinedResolver,
 		})
 	}
 	return services, store, nil

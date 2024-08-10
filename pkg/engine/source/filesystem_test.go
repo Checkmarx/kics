@@ -9,8 +9,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/test"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/test"
 )
 
 const (
@@ -358,19 +358,6 @@ func TestFilesystemSource_GetQueryLibrary(t *testing.T) { //nolint
 			wantErr:  false,
 		},
 		{
-			name: "get_generic_query_dockerfile",
-			fields: fields{
-				Source:              []string{"./assets/queries/template"},
-				Library:             "./assets/libraries",
-				ExperimentalQueries: true,
-			},
-			args: args{
-				platform: "dockerfile",
-			},
-			contains: "generic.dockerfile",
-			wantErr:  false,
-		},
-		{
 			name: "get_generic_query_k8s",
 			fields: fields{
 				Source:              []string{"./assets/queries/template"},
@@ -606,23 +593,6 @@ func Test_ReadMetadata(t *testing.T) {
 			want:    nil,
 			wantErr: false,
 		},
-		{
-			name: "read_metadata_template",
-			args: args{
-				queryDir: filepath.FromSlash("./test/fixtures/type-test01/template01"),
-			},
-			want: map[string]interface{}{
-				"category":        nil,
-				"descriptionText": "<TEXT>",
-				"descriptionUrl":  "#",
-				"id":              "<ID>",
-				"queryName":       "<QUERY_NAME>",
-				"severity":        model.SeverityHigh,
-				"platform":        "Dockerfile",
-				"aggregation":     float64(1),
-			},
-			wantErr: false,
-		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -675,13 +645,6 @@ func Test_getPlatform(t *testing.T) {
 				PlatformInMetadata: "CICD",
 			},
 			want: "cicd",
-		},
-		{
-			name: "get_platform_dockerfile",
-			args: args{
-				PlatformInMetadata: "Dockerfile",
-			},
-			want: "dockerfile",
 		},
 		{
 			name: "get_platform_k8s",
@@ -738,8 +701,6 @@ func TestListSupportedPlatforms(t *testing.T) {
 		"CICD",
 		"CloudFormation",
 		"Crossplane",
-		"Dockerfile",
-		"DockerCompose",
 		"GRPC",
 		"GoogleDeploymentManager",
 		"Knative",

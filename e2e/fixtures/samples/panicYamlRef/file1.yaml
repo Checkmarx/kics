@@ -1,9 +1,0 @@
-# file1.yaml 
-# This is a simple YAML file that references the second file. 
-
-
-data_file: 
-    $ref: "data.yaml"
-
-self_ref:
-    $ref: "#"

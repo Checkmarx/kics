@@ -1,0 +1,272 @@
+{
+	"kics_version": "development",
+	"files_scanned": 1,
+	"lines_scanned": 21,
+	"files_parsed": 1,
+	"lines_parsed": 21,
+	"files_failed_to_scan": 0,
+	"queries_total": 1040,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 1,
+		"INFO": 0,
+		"LOW": 0,
+		"MEDIUM": 10,
+		"TRACE": 0
+	},
+	"total_counter": 11,
+	"total_bom_resources": 0,
+	"start": "2022-09-15T11:21:34.01181857+01:00",
+	"end": "2022-09-15T11:21:54.272899889+01:00",
+	"paths": [
+		"./test/fixtures/kics_auto_remediation/"
+	],
+	"queries": [
+		{
+			"query_name": "Ram Account Password Policy Not Required Minimum Length",
+			"query_id": "a9dfec39-a740-4105-bbd6-721ba163c053",
+			"query_url": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#minimum_password_length",
+			"severity": "HIGH",
+			"platform": "Terraform",
+			"cloud_provider": "ALICLOUD",
+			"category": "Secret Management",
+			"description": "Ram Account Password Policy should have 'minimum_password_length' defined and set to 14 or above",
+			"description_id": "a8b47743",
+			"files": [
+				{
+					"file_name": "test/fixtures/kics_auto_remediation/terraform.tf",
+					"similarity_id": "80a4954a79644f5b6820f9aef1ad4a8e90a549959b676c700479197d74581a1b",
+					"line": 1,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate1",
+					"issue_type": "MissingAttribute",
+					"search_key": "alicloud_ram_account_password_policy[corporate1]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'minimum_password_length' is defined and set to 14 or above ",
+					"actual_value": "'minimum_password_length' is not defined",
+					"remediation": "minimum_password_length = 14",
+					"remediation_type": "addition"
+				}
+			]
+		},
+		{
+			"query_name": "RAM Account Password Policy Not Require at Least one Uppercase Character",
+			"query_id": "5e0fb613-ba9b-44c3-88f0-b44188466bfd",
+			"query_url": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#require_uppercase_characters",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cloud_provider": "ALICLOUD",
+			"category": "Secret Management",
+			"description": "Ram Account Password Policy should have 'require_uppercase_characters' set to true",
+			"description_id": "5adbc73e",
+			"files": [
+				{
+					"file_name": "test/fixtures/kics_auto_remediation/terraform.tf",
+					"similarity_id": "f8f7c3cfd1dacb148935807493dc480a2fd49ebeabcef7748f7774409ab61e19",
+					"line": 3,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate1",
+					"issue_type": "IncorrectValue",
+					"search_key": "alicloud_ram_account_password_policy[corporate1].require_uppercase_characters",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'require_uppercase_characters' is defined and set to true",
+					"actual_value": "'require_uppercase_characters' is false",
+					"remediation": "{\"after\":\"true\",\"before\":\"false\"}",
+					"remediation_type": "replacement"
+				},
+				{
+					"file_name": "test/fixtures/kics_auto_remediation/terraform.tf",
+					"similarity_id": "e516e4e23476196cfb03ab37c244ffd579cc689130689f77ca1be2fb3f026fcd",
+					"line": 14,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate2",
+					"issue_type": "IncorrectValue",
+					"search_key": "alicloud_ram_account_password_policy[corporate2].require_uppercase_characters",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'require_uppercase_characters' is defined and set to true",
+					"actual_value": "'require_uppercase_characters' is false",
+					"remediation": "{\"after\":\"true\",\"before\":\"false\"}",
+					"remediation_type": "replacement"
+				}
+			]
+		},
+		{
+			"query_name": "RAM Account Password Policy Not Required Symbols",
+			"query_id": "41a38329-d81b-4be4-aef4-55b2615d3282",
+			"query_url": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#require_symbols",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cloud_provider": "ALICLOUD",
+			"category": "Secret Management",
+			"description": "RAM account password security should require at least one symbol",
+			"description_id": "f3616c34",
+			"files": [
+				{
+					"file_name": "test/fixtures/kics_auto_remediation/terraform.tf",
+					"similarity_id": "1fc2d251036dc4777725e66c30c5476aad5bf49ca0a195e2a3398aa45f666bbc",
+					"line": 5,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate1",
+					"issue_type": "IncorrectValue",
+					"search_key": "resource.alicloud_ram_account_password_policy[corporate1].require_symbols",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "resource.alicloud_ram_account_password_policy[corporate1].require_symbols is set to 'true'",
+					"actual_value": "resource.alicloud_ram_account_password_policy[corporate1].require_symbols is configured as 'false'",
+					"remediation": "{\"after\":\"true\",\"before\":\"false\"}",
+					"remediation_type": "replacement"
+				},
+				{
+					"file_name": "test/fixtures/kics_auto_remediation/terraform.tf",
+					"similarity_id": "3b65a534141296ab72ce74ec01942f30e08576973c87578600f95ee96f877acc",
+					"line": 16,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate2",
+					"issue_type": "IncorrectValue",
+					"search_key": "resource.alicloud_ram_account_password_policy[corporate2].require_symbols",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "resource.alicloud_ram_account_password_policy[corporate2].require_symbols is set to 'true'",
+					"actual_value": "resource.alicloud_ram_account_password_policy[corporate2].require_symbols is configured as 'false'",
+					"remediation": "{\"after\":\"true\",\"before\":\"false\"}",
+					"remediation_type": "replacement"
+				}
+			]
+		},
+		{
+			"query_name": "Ram Account Password Policy Max Password Age Unrecommended",
+			"query_id": "2bb13841-7575-439e-8e0a-cccd9ede2fa8",
+			"query_url": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#max_password_age",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cloud_provider": "ALICLOUD",
+			"category": "Secret Management",
+			"description": "Ram Account Password Policy Password 'max_password_age' should be higher than 0 and lower than 91",
+			"description_id": "6056f5ca",
+			"files": [
+				{
+					"file_name": "test/fixtures/kics_auto_remediation/terraform.tf",
+					"similarity_id": "39c624feda2671e5b9697dd15e1561a2ca58c46f9ceb3b4fa2ea82426d2a549a",
+					"line": 11,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate2",
+					"issue_type": "MissingAttribute",
+					"search_key": "alicloud_ram_account_password_policy[corporate2]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'max_password_age' should be higher than 0 and lower than 91",
+					"actual_value": "'max_password_age' is not defined",
+					"remediation": "max_password_age = 12",
+					"remediation_type": "addition"
+				},
+				{
+					"file_name": "test/fixtures/kics_auto_remediation/terraform.tf",
+					"similarity_id": "5a59fcc29857f9f006f1588b873c763bdeac4b2a2dfeb67ba5fbd3c717f340a0",
+					"line": 1,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate1",
+					"issue_type": "MissingAttribute",
+					"search_key": "alicloud_ram_account_password_policy[corporate1]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'max_password_age' should be higher than 0 and lower than 91",
+					"actual_value": "'max_password_age' is not defined",
+					"remediation": "max_password_age = 12",
+					"remediation_type": "addition"
+				}
+			]
+		},
+		{
+			"query_name": "Ram Account Password Policy Not Require At Least one Lowercase Character",
+			"query_id": "89143358-cec6-49f5-9392-920c591c669c",
+			"query_url": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#require_lowercase_characters",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cloud_provider": "ALICLOUD",
+			"category": "Secret Management",
+			"description": "Ram Account Password Policy should have 'require_lowercase_characters' set to true",
+			"description_id": "b482b843",
+			"files": [
+				{
+					"file_name": "test/fixtures/kics_auto_remediation/terraform.tf",
+					"similarity_id": "ce810eae855cd0e35cbb35016e345d9bcf3a2b9334fdce76c90005dcbbda205c",
+					"line": 2,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate1",
+					"issue_type": "IncorrectValue",
+					"search_key": "alicloud_ram_account_password_policy[corporate1].require_lowercase_characters",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'require_lowercase_characters' is defined and set to true",
+					"actual_value": "'require_lowercase_characters' is false",
+					"remediation": "{\"after\":\"true\",\"before\":\"false\"}",
+					"remediation_type": "replacement"
+				},
+				{
+					"file_name": "test/fixtures/kics_auto_remediation/terraform.tf",
+					"similarity_id": "32309d2cbb3207da11d61823093fd8c312b4d037377b93ee605f81808ba59780",
+					"line": 13,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate2",
+					"issue_type": "IncorrectValue",
+					"search_key": "alicloud_ram_account_password_policy[corporate2].require_lowercase_characters",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'require_lowercase_characters' is defined and set to true",
+					"actual_value": "'require_lowercase_characters' is false",
+					"remediation": "{\"after\":\"true\",\"before\":\"false\"}",
+					"remediation_type": "replacement"
+				}
+			]
+		},
+		{
+			"query_name": "Ram Account Password Policy Not Required Numbers",
+			"query_id": "063234c0-91c0-4ab5-bbd0-47ddb5f23786",
+			"query_url": "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/ram_account_password_policy#require_numbers",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cloud_provider": "ALICLOUD",
+			"category": "Secret Management",
+			"description": "Ram Account Password Policy should have 'require_numbers' set to true",
+			"description_id": "0ee40b1d",
+			"files": [
+				{
+					"file_name": "test/fixtures/kics_auto_remediation/terraform.tf",
+					"similarity_id": "d3cd3e5e02d296738e514b7b981cd556f0ce12887018a1e63aba0457e09baff8",
+					"line": 15,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate2",
+					"issue_type": "IncorrectValue",
+					"search_key": "alicloud_ram_account_password_policy[corporate2].require_numbers",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'require_numbers' is defined and set to true",
+					"actual_value": "'require_numbers' is false",
+					"remediation": "{\"after\":\"true\",\"before\":\"false\"}",
+					"remediation_type": "replacement"
+				},
+				{
+					"file_name": "test/fixtures/kics_auto_remediation/terraform.tf",
+					"similarity_id": "3071de74f2c82d0f51e2f2b13c45a2ae709969356c9fbace9e42c2f207da5ca6",
+					"line": 4,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate1",
+					"issue_type": "IncorrectValue",
+					"search_key": "alicloud_ram_account_password_policy[corporate1].require_numbers",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'require_numbers' is defined and set to true",
+					"actual_value": "'require_numbers' is false"
+					"remediation": "{\"after\":\"true\",\"before\":\"false\"}"
+					"remediation_type": "replacement"
+				}
+			]
+		}
+	]
+}

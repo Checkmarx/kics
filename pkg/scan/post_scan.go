@@ -8,13 +8,13 @@ import (
 	"strings"
 	"time"
 
-	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
-	"github.com/Checkmarx/kics/v2/pkg/descriptions"
-	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	consolePrinter "github.com/Checkmarx/kics/v2/pkg/printer"
-	"github.com/Checkmarx/kics/v2/pkg/progress"
-	"github.com/Checkmarx/kics/v2/pkg/report"
+	consoleHelpers "github.com/DataDog/kics/internal/console/helpers"
+	"github.com/DataDog/kics/pkg/descriptions"
+	"github.com/DataDog/kics/pkg/engine/provider"
+	"github.com/DataDog/kics/pkg/model"
+	consolePrinter "github.com/DataDog/kics/pkg/printer"
+	"github.com/DataDog/kics/pkg/progress"
+	"github.com/DataDog/kics/pkg/report"
 	"github.com/rs/zerolog/log"
 )
 
@@ -106,14 +106,14 @@ func (c *Client) postScan(scanResults *Results) error {
 		}
 	}
 
-	// mask results preview if Secrets Scan is disabled
-	if c.ScanParams.DisableSecrets {
-		err := maskPreviewLines(c.ScanParams.SecretsRegexesPath, scanResults)
-		if err != nil {
-			log.Err(err)
-			return err
-		}
-	}
+	// // mask results preview if Secrets Scan is disabled
+	// if c.ScanParams.DisableSecrets {
+	// 	err := maskPreviewLines(c.ScanParams.SecretsRegexesPath, scanResults)
+	// 	if err != nil {
+	// 		log.Err(err)
+	// 		return err
+	// 	}
+	// }
 	sort.Strings(c.ScanParams.Path)
 	summary := c.getSummary(scanResults.Results, time.Now(), model.PathParameters{
 		ScannedPaths:      c.ScanParams.Path,

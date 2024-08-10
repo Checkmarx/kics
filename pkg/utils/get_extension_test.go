@@ -17,30 +17,9 @@ func TestGetExtension(t *testing.T) {
 		toCreate bool
 	}{
 		{
-			name:     "Get extension from a file named as Dockerfile and without extension defined ('Dockerfile')",
-			want:     "Dockerfile",
-			filePath: "../../Dockerfile",
-			toCreate: false,
-			err:      nil,
-		},
-		{
-			name:     "Get extension from a file not named as Dockerfile and without extension defined ('Dockerfile-example')",
-			want:     "possibleDockerfile",
-			filePath: "../../test/fixtures/dockerfile/Dockerfile-example",
-			toCreate: false,
-			err:      nil,
-		},
-		{
 			name:     "Get extension from a file with extension defined ('positive.tf')",
 			want:     ".tf",
 			filePath: "../../test/fixtures/all_auth_users_get_read_access/test/positive.tf",
-			toCreate: false,
-			err:      nil,
-		},
-		{
-			name:     "Get empty extension from a file not named as Dockerfile and without extension defined",
-			want:     "",
-			filePath: "../../test/fixtures/negative_dockerfile/CW671X02_EBM_EVENT_RULE",
 			toCreate: false,
 			err:      nil,
 		},

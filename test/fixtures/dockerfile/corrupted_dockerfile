@@ -1,5 +1,0 @@
-FROM alpine:latest
-
-COPY {{ file_path }} /test
-
-RUN echo "failure"

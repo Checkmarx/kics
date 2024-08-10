@@ -1,3 +1,0 @@
-path: fixtures/samples/positive.dockerfile
-queries-path: ../assets/queries
-timeout: 12

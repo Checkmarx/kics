@@ -7,32 +7,29 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/Checkmarx/kics/v2/internal/storage"
-	"github.com/Checkmarx/kics/v2/internal/tracker"
-	"github.com/Checkmarx/kics/v2/pkg/engine"
-	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
-	"github.com/Checkmarx/kics/v2/pkg/engine/secrets"
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/parser"
-	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
-	jsonParser "github.com/Checkmarx/kics/v2/pkg/parser/json"
-	terraformParser "github.com/Checkmarx/kics/v2/pkg/parser/terraform"
-	yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
-	"github.com/Checkmarx/kics/v2/pkg/resolver"
-	"github.com/Checkmarx/kics/v2/pkg/resolver/helm"
+	"github.com/DataDog/kics/internal/storage"
+	"github.com/DataDog/kics/internal/tracker"
+	"github.com/DataDog/kics/pkg/engine"
+	"github.com/DataDog/kics/pkg/engine/provider"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/pkg/parser"
+	jsonParser "github.com/DataDog/kics/pkg/parser/json"
+	terraformParser "github.com/DataDog/kics/pkg/parser/terraform"
+	yamlParser "github.com/DataDog/kics/pkg/parser/yaml"
+	"github.com/DataDog/kics/pkg/resolver"
+	"github.com/DataDog/kics/pkg/resolver/helm"
 )
 
 // TestService tests the functions [GetVulnerabilities(), GetScanSummary(),StartScan()] and all the methods called by them
 func TestService(t *testing.T) { //nolint
 	mockParser, mockFilesSource, mockResolver := createParserSourceProvider("../../test/fixtures/test_helm")
 	type fields struct {
-		SourceProvider   provider.SourceProvider
-		Storage          Storage
-		Parser           []*parser.Parser
-		Inspector        *engine.Inspector
-		SecretsInspector *secrets.Inspector
-		Tracker          Tracker
-		Resolver         *resolver.Resolver
+		SourceProvider provider.SourceProvider
+		Storage        Storage
+		Parser         []*parser.Parser
+		Inspector      *engine.Inspector
+		Tracker        Tracker
+		Resolver       *resolver.Resolver
 	}
 	type args struct {
 		ctx     context.Context
@@ -58,12 +55,11 @@ func TestService(t *testing.T) { //nolint
 						QueriesMetadata: make([]model.QueryMetadata, 0),
 					},
 				},
-				SecretsInspector: &secrets.Inspector{},
-				Parser:           mockParser,
-				Tracker:          &tracker.CITracker{},
-				Storage:          storage.NewMemoryStorage(),
-				SourceProvider:   mockFilesSource,
-				Resolver:         mockResolver,
+				Parser:         mockParser,
+				Tracker:        &tracker.CITracker{},
+				Storage:        storage.NewMemoryStorage(),
+				SourceProvider: mockFilesSource,
+				Resolver:       mockResolver,
 			},
 			args: args{
 				ctx:     nil,
@@ -81,13 +77,12 @@ func TestService(t *testing.T) { //nolint
 		s := make([]*Service, 0, len(tt.fields.Parser))
 		for _, parser := range tt.fields.Parser {
 			s = append(s, &Service{
-				SourceProvider:   tt.fields.SourceProvider,
-				Storage:          tt.fields.Storage,
-				Parser:           parser,
-				Inspector:        tt.fields.Inspector,
-				SecretsInspector: tt.fields.SecretsInspector,
-				Tracker:          tt.fields.Tracker,
-				Resolver:         tt.fields.Resolver,
+				SourceProvider: tt.fields.SourceProvider,
+				Storage:        tt.fields.Storage,
+				Parser:         parser,
+				Inspector:      tt.fields.Inspector,
+				Tracker:        tt.fields.Tracker,
+				Resolver:       tt.fields.Resolver,
 			})
 		}
 		t.Run(fmt.Sprintf(tt.name+"_get_vulnerabilities"), func(t *testing.T) {
@@ -149,7 +144,6 @@ func createParserSourceProvider(path string) ([]*parser.Parser,
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
-		Add(&dockerParser.Parser{}).
 		Build([]string{""}, []string{""})
 
 	mockFilesSource, _ := provider.NewFileSystemSourceProvider([]string{path}, []string{})

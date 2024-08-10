@@ -6,24 +6,22 @@ import (
 	"errors"
 	"time"
 
-	"github.com/Checkmarx/kics/v2/pkg/engine"
-	"github.com/Checkmarx/kics/v2/pkg/kics"
-	"github.com/Checkmarx/kics/v2/pkg/minified"
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/scan"
+	"github.com/DataDog/kics/pkg/engine"
+	"github.com/DataDog/kics/pkg/kics"
+	"github.com/DataDog/kics/pkg/minified"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/pkg/scan"
 	"github.com/open-policy-agent/opa/topdown"
 
-	"github.com/Checkmarx/kics/v2/internal/console/flags"
-	"github.com/Checkmarx/kics/v2/internal/tracker"
-	"github.com/Checkmarx/kics/v2/pkg/engine/source"
-	"github.com/Checkmarx/kics/v2/pkg/parser"
-	buildahParser "github.com/Checkmarx/kics/v2/pkg/parser/buildah"
-	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
-	protoParser "github.com/Checkmarx/kics/v2/pkg/parser/grpc"
-	jsonParser "github.com/Checkmarx/kics/v2/pkg/parser/json"
-	terraformParser "github.com/Checkmarx/kics/v2/pkg/parser/terraform"
-	yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
-	"github.com/Checkmarx/kics/v2/pkg/utils"
+	"github.com/DataDog/kics/internal/tracker"
+	"github.com/DataDog/kics/pkg/engine/source"
+	"github.com/DataDog/kics/pkg/parser"
+	buildahParser "github.com/DataDog/kics/pkg/parser/buildah"
+	protoParser "github.com/DataDog/kics/pkg/parser/grpc"
+	jsonParser "github.com/DataDog/kics/pkg/parser/json"
+	terraformParser "github.com/DataDog/kics/pkg/parser/terraform"
+	yamlParser "github.com/DataDog/kics/pkg/parser/yaml"
+	"github.com/DataDog/kics/pkg/utils"
 	"github.com/open-policy-agent/opa/rego"
 	"github.com/rs/zerolog/log"
 )
@@ -92,9 +90,6 @@ func getPayload(filePath string, content []byte, openAPIResolveReferences bool, 
 	var err error
 
 	switch ext {
-	case ".dockerfile", "Dockerfile", "possibleDockerfile", ".ubi8", ".debian":
-		p, err = parser.NewBuilder().Add(&dockerParser.Parser{}).Build([]string{""}, []string{""})
-
 	case ".tf":
 		p, err = parser.NewBuilder().Add(terraformParser.NewDefault()).Build([]string{""}, []string{""})
 
@@ -155,7 +150,7 @@ func getPayload(filePath string, content []byte, openAPIResolveReferences bool, 
 
 // runQuery runs a query and returns its results
 func runQuery(r *runQueryInfo) []model.Vulnerability {
-	queryExecTimeout := time.Duration(flags.GetIntFlag(flags.QueryExecTimeoutFlag)) * time.Second
+	queryExecTimeout := time.Duration(60) * time.Second
 
 	timeoutCtx, cancel := context.WithTimeout(context.Background(), queryExecTimeout)
 	defer cancel()
@@ -194,13 +189,43 @@ func runQuery(r *runQueryInfo) []model.Vulnerability {
 
 func initScan(queryID string) (*engine.Inspector, error) {
 	scanParams := &scan.Parameters{
-		QueriesPath:         flags.GetMultiStrFlag(flags.QueriesPath),
-		Platform:            flags.GetMultiStrFlag(flags.TypeFlag),
-		CloudProvider:       flags.GetMultiStrFlag(flags.CloudProviderFlag),
-		LibrariesPath:       flags.GetStrFlag(flags.LibrariesPath),
-		PreviewLines:        flags.GetIntFlag(flags.PreviewLinesFlag),
-		QueryExecTimeout:    flags.GetIntFlag(flags.QueryExecTimeoutFlag),
-		ExperimentalQueries: flags.GetBoolFlag(flags.ExperimentalQueriesFlag),
+		CloudProvider:       []string{""},
+		DisableFullDesc:     false,
+		ExcludeCategories:   []string{},
+		ExcludeQueries:      []string{},
+		ExcludeResults:      []string{},
+		ExcludeSeverities:   []string{},
+		ExcludePaths:        []string{},
+		ExperimentalQueries: false,
+		IncludeQueries:      []string{},
+		InputData:           "",
+		OutputName:          "kics-result",
+		OutputPath:          "/Users/bahar.shah/go/src/github.com/DataDog/innovation-week-cloud-to-tf",
+		Path: []string{
+			"/Users/bahar.shah/go/src/github.com/DataDog/innovation-week-cloud-to-tf/terraform/ami.tf",
+		},
+		PayloadPath:                 "",
+		PreviewLines:                3,
+		QueriesPath:                 []string{"./assets/queries"},
+		LibrariesPath:               "./assets/libraries",
+		ReportFormats:               []string{"sarif"},
+		Platform:                    []string{""},
+		TerraformVarsPath:           "",
+		QueryExecTimeout:            60,
+		LineInfoPayload:             false,
+		DisableSecrets:              true,
+		SecretsRegexesPath:          "",
+		ChangedDefaultQueryPath:     false,
+		ChangedDefaultLibrariesPath: false,
+		ScanID:                      "console",
+		BillOfMaterials:             false,
+		ExcludeGitIgnore:            false,
+		OpenAPIResolveReferences:    false,
+		ParallelScanFlag:            0,
+		MaxFileSizeFlag:             5,
+		UseOldSeverities:            false,
+		MaxResolverDepth:            15,
+		ExcludePlatform:             []string{""},
 	}
 
 	c := &scan.Client{

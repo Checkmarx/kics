@@ -44,8 +44,6 @@ var (
 		"CICD":                    "cicd",
 		"CloudFormation":          "cloudFormation",
 		"Crossplane":              "crossplane",
-		"Dockerfile":              "dockerfile",
-		"DockerCompose":           "dockerCompose",
 		"Knative":                 "knative",
 		"Kubernetes":              "k8s",
 		"OpenAPI":                 "openAPI",

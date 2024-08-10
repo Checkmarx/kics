@@ -9,10 +9,10 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/Checkmarx/kics/v2/internal/metrics"
-	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/utils"
+	"github.com/DataDog/kics/internal/metrics"
+	"github.com/DataDog/kics/pkg/engine/provider"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	ignore "github.com/sabhiram/go-gitignore"
@@ -55,7 +55,6 @@ var (
 	blueprintpRegexTargetScope                      = regexp.MustCompile(`("targetScope"|targetScope)\s*:`)
 	blueprintpRegexProperties                       = regexp.MustCompile(`("properties"|properties)\s*:`)
 	buildahRegex                                    = regexp.MustCompile(`buildah\s*from\s*\w+`)
-	dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:[\w\W]+(image|build)\s*:`)
 	crossPlaneRegex                                 = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
 	knativeRegex                                    = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+knative\.dev/v\w+\s*`)
 	pulumiNameRegex                                 = regexp.MustCompile(`name\s*:`)
@@ -73,22 +72,19 @@ var (
 	listKeywordsGoogleDeployment = []string{"resources"}
 	armRegexTypes                = []string{"blueprint", "templateArtifact", "roleAssignmentArtifact", "policyAssignmentArtifact"}
 	possibleFileTypes            = map[string]bool{
-		".yml":               true,
-		".yaml":              true,
-		".json":              true,
-		".dockerfile":        true,
-		"Dockerfile":         true,
-		"possibleDockerfile": true,
-		".debian":            true,
-		".ubi8":              true,
-		".tf":                true,
-		"tfvars":             true,
-		".proto":             true,
-		".sh":                true,
-		".cfg":               true,
-		".conf":              true,
-		".ini":               true,
-		".bicep":             true,
+		".yml":    true,
+		".yaml":   true,
+		".json":   true,
+		".debian": true,
+		".ubi8":   true,
+		".tf":     true,
+		"tfvars":  true,
+		".proto":  true,
+		".sh":     true,
+		".cfg":    true,
+		".conf":   true,
+		".ini":    true,
+		".bicep":  true,
 	}
 	supportedRegexes = map[string][]string{
 		"azureresourcemanager": append(armRegexTypes, arm),
@@ -96,7 +92,6 @@ var (
 		"cicd":                 {"cicd"},
 		"cloudformation":       {"cloudformation"},
 		"crossplane":           {"crossplane"},
-		"dockercompose":        {"dockercompose"},
 		"knative":              {"knative"},
 		"kubernetes":           {"kubernetes"},
 		"openapi":              {"openapi"},
@@ -124,7 +119,6 @@ const (
 	gdm        = "googledeploymentmanager"
 	ansible    = "ansible"
 	grpc       = "grpc"
-	dockerfile = "dockerfile"
 	crossplane = "crossplane"
 	knative    = "knative"
 	sizeMb     = 1048576
@@ -244,11 +238,6 @@ var types = map[string]regexSlice{
 	"buildah": {
 		[]*regexp.Regexp{
 			buildahRegex,
-		},
-	},
-	"dockercompose": {
-		[]*regexp.Regexp{
-			dockerComposeServicesRegex,
 		},
 	},
 	"pulumi": {
@@ -376,20 +365,6 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 		linesCount, _ := utils.LineCounter(a.filePath)
 
 		switch ext {
-		// Dockerfile (direct identification)
-		case ".dockerfile", "Dockerfile":
-			if a.isAvailableType(dockerfile) {
-				results <- dockerfile
-				locCount <- linesCount
-			}
-		// Dockerfile (indirect identification)
-		case "possibleDockerfile", ".ubi8", ".debian":
-			if a.isAvailableType(dockerfile) && isDockerfile(a.filePath) {
-				results <- dockerfile
-				locCount <- linesCount
-			} else {
-				unwanted <- a.filePath
-			}
 		// Terraform
 		case ".tf", "tfvars":
 			if a.isAvailableType(terraform) {
@@ -420,30 +395,6 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 			a.checkContent(results, unwanted, locCount, linesCount, ext)
 		}
 	}
-}
-
-func isDockerfile(path string) bool {
-	content, err := os.ReadFile(filepath.Clean(path))
-	if err != nil {
-		log.Error().Msgf("failed to analyze file: %s", err)
-		return false
-	}
-
-	regexes := []*regexp.Regexp{
-		regexp.MustCompile(`\s*FROM\s*`),
-		regexp.MustCompile(`\s*RUN\s*`),
-	}
-
-	check := true
-
-	for _, regex := range regexes {
-		if !regex.Match(content) {
-			check = false
-			break
-		}
-	}
-
-	return check
 }
 
 // overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
@@ -729,6 +680,7 @@ func multiPlatformTypeCheck(typesSelected *[]string) {
 }
 
 func (a *analyzerInfo) isAvailableType(typeName string) bool {
+	fmt.Printf("typeName is %v\n", a.typesFlag)
 	// no flag is set
 	if len(a.typesFlag) == 1 && a.typesFlag[0] == "" && len(a.excludeTypesFlag) == 1 && a.excludeTypesFlag[0] == "" {
 		return true

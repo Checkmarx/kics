@@ -3,7 +3,6 @@ package secrets
 import (
 	"context"
 	_ "embed" // Embed KICS regex rules
-	"encoding/json"
 	"fmt"
 	"math"
 	"regexp"
@@ -11,14 +10,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Checkmarx/kics/v2/assets"
-	"github.com/Checkmarx/kics/v2/pkg/detector"
-	"github.com/Checkmarx/kics/v2/pkg/detector/docker"
-	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
-	engine "github.com/Checkmarx/kics/v2/pkg/engine"
-	"github.com/Checkmarx/kics/v2/pkg/engine/similarity"
-	"github.com/Checkmarx/kics/v2/pkg/engine/source"
-	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/DataDog/kics/pkg/detector"
+	engine "github.com/DataDog/kics/pkg/engine"
+	"github.com/DataDog/kics/pkg/engine/similarity"
+	"github.com/DataDog/kics/pkg/model"
 	"github.com/rs/zerolog/log"
 )
 
@@ -41,17 +36,17 @@ type SecretTracker struct {
 }
 
 type Inspector struct {
-	ctx                   context.Context
-	tracker               engine.Tracker
+	// ctx                   context.Context
+	// tracker               engine.Tracker
 	detector              *detector.DetectLine
 	excludeResults        map[string]bool
 	regexQueries          []RegexQuery
 	allowRules            []AllowRule
 	vulnerabilities       []model.Vulnerability
 	queryExecutionTimeout time.Duration
-	foundLines            []int
-	mu                    sync.RWMutex
-	SecretTracker         []SecretTracker
+	// foundLines            []int
+	mu            sync.RWMutex
+	SecretTracker []SecretTracker
 }
 
 type Entropy struct {
@@ -100,79 +95,79 @@ type lineVulneInfo struct {
 	groups      []string
 }
 
-func NewInspector(
-	ctx context.Context,
-	excludeResults map[string]bool,
-	tracker engine.Tracker,
-	queryFilter *source.QueryInspectorParameters,
-	disableSecretsQuery bool,
-	executionTimeout int,
-	regexRulesContent string,
-	isCustomSecretsRegexes bool,
-) (*Inspector, error) {
-	passwordsAndSecretsQueryID, err := getPasswordsAndSecretsQueryID()
-	if err != nil {
-		return nil, err
-	}
-	excludeSecretsQuery := isValueInArray(passwordsAndSecretsQueryID, queryFilter.ExcludeQueries.ByIDs)
-	if disableSecretsQuery || excludeSecretsQuery && !isCustomSecretsRegexes {
-		return &Inspector{
-			ctx:                   ctx,
-			tracker:               tracker,
-			excludeResults:        excludeResults,
-			regexQueries:          make([]RegexQuery, 0),
-			allowRules:            make([]AllowRule, 0),
-			vulnerabilities:       make([]model.Vulnerability, 0),
-			queryExecutionTimeout: time.Duration(executionTimeout) * time.Second,
-			SecretTracker:         make([]SecretTracker, 0),
-		}, nil
-	}
+// func NewInspector(
+// 	ctx context.Context,
+// 	excludeResults map[string]bool,
+// 	tracker engine.Tracker,
+// 	queryFilter *source.QueryInspectorParameters,
+// 	disableSecretsQuery bool,
+// 	executionTimeout int,
+// 	regexRulesContent string,
+// 	isCustomSecretsRegexes bool,
+// ) (*Inspector, error) {
+// 	passwordsAndSecretsQueryID, err := getPasswordsAndSecretsQueryID()
+// 	if err != nil {
+// 		return nil, err
+// 	}
+// 	excludeSecretsQuery := isValueInArray(passwordsAndSecretsQueryID, queryFilter.ExcludeQueries.ByIDs)
+// 	if disableSecretsQuery || excludeSecretsQuery && !isCustomSecretsRegexes {
+// 		return &Inspector{
+// 			ctx:                   ctx,
+// 			tracker:               tracker,
+// 			excludeResults:        excludeResults,
+// 			regexQueries:          make([]RegexQuery, 0),
+// 			allowRules:            make([]AllowRule, 0),
+// 			vulnerabilities:       make([]model.Vulnerability, 0),
+// 			queryExecutionTimeout: time.Duration(executionTimeout) * time.Second,
+// 			SecretTracker:         make([]SecretTracker, 0),
+// 		}, nil
+// 	}
 
-	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
-		Add(helm.DetectKindLine{}, model.KindHELM).
-		Add(docker.DetectKindLine{}, model.KindDOCKER)
+// 	lineDetector := detector.NewDetectLine(tracker.GetOutputLines()).
+// 		Add(helm.DetectKindLine{}, model.KindHELM).
+// 		Add(terraform.DetectKindLine{}, model.KindTerraform)
 
-	err = json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &SecretsQueryMetadata)
-	if err != nil {
-		return nil, err
-	}
-	queryExecutionTimeout := time.Duration(executionTimeout) * time.Second
+// 	err = json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &SecretsQueryMetadata)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+// 	queryExecutionTimeout := time.Duration(executionTimeout) * time.Second
 
-	var allRegexQueries RegexRuleStruct
-	err = json.Unmarshal([]byte(regexRulesContent), &allRegexQueries)
-	if err != nil {
-		return nil, err
-	}
+// 	var allRegexQueries RegexRuleStruct
+// 	err = json.Unmarshal([]byte(regexRulesContent), &allRegexQueries)
+// 	if err != nil {
+// 		return nil, err
+// 	}
 
-	if isCustomSecretsRegexes {
-		err = validateCustomSecretsQueriesID(allRegexQueries.Rules)
-		if err != nil {
-			return nil, err
-		}
-	}
+// 	if isCustomSecretsRegexes {
+// 		err = validateCustomSecretsQueriesID(allRegexQueries.Rules)
+// 		if err != nil {
+// 			return nil, err
+// 		}
+// 	}
 
-	regexQueries, err := compileRegexQueries(queryFilter, allRegexQueries.Rules, isCustomSecretsRegexes, passwordsAndSecretsQueryID)
-	if err != nil {
-		return nil, err
-	}
+// 	regexQueries, err := compileRegexQueries(queryFilter, allRegexQueries.Rules, isCustomSecretsRegexes, passwordsAndSecretsQueryID)
+// 	if err != nil {
+// 		return nil, err
+// 	}
 
-	allowRules, err := CompileRegex(allRegexQueries.AllowRules)
-	if err != nil {
-		return nil, err
-	}
+// 	allowRules, err := CompileRegex(allRegexQueries.AllowRules)
+// 	if err != nil {
+// 		return nil, err
+// 	}
 
-	return &Inspector{
-		ctx:                   ctx,
-		detector:              lineDetector,
-		excludeResults:        excludeResults,
-		tracker:               tracker,
-		regexQueries:          regexQueries,
-		allowRules:            allowRules,
-		vulnerabilities:       make([]model.Vulnerability, 0),
-		queryExecutionTimeout: queryExecutionTimeout,
-		foundLines:            make([]int, 0),
-	}, nil
-}
+// 	return &Inspector{
+// 		ctx:                   ctx,
+// 		detector:              lineDetector,
+// 		excludeResults:        excludeResults,
+// 		tracker:               tracker,
+// 		regexQueries:          regexQueries,
+// 		allowRules:            allowRules,
+// 		vulnerabilities:       make([]model.Vulnerability, 0),
+// 		queryExecutionTimeout: queryExecutionTimeout,
+// 		foundLines:            make([]int, 0),
+// 	}, nil
+// }
 
 func (c *Inspector) inspectQuery(ctx context.Context, basePaths []string,
 	files model.FileMetadatas, i int) ([]model.Vulnerability, error) {
@@ -209,78 +204,78 @@ func (c *Inspector) Inspect(ctx context.Context, basePaths []string,
 	return c.vulnerabilities, nil
 }
 
-func compileRegexQueries(
-	queryFilter *source.QueryInspectorParameters,
-	allRegexQueries []RegexQuery,
-	isCustom bool,
-	passwordsAndSecretsQueryID string,
-) ([]RegexQuery, error) {
-	var regexQueries []RegexQuery
-	var includeSpecificSecretQuery bool
+// func compileRegexQueries(
+// 	queryFilter *source.QueryInspectorParameters,
+// 	allRegexQueries []RegexQuery,
+// 	isCustom bool,
+// 	passwordsAndSecretsQueryID string,
+// ) ([]RegexQuery, error) {
+// 	var regexQueries []RegexQuery
+// 	var includeSpecificSecretQuery bool
 
-	allSecretsQueryAndCustom := false
+// 	allSecretsQueryAndCustom := false
 
-	includeAllSecretsQuery := isValueInArray(passwordsAndSecretsQueryID, queryFilter.IncludeQueries.ByIDs)
+// 	includeAllSecretsQuery := isValueInArray(passwordsAndSecretsQueryID, queryFilter.IncludeQueries.ByIDs)
 
-	if includeAllSecretsQuery && isCustom { // merge case
-		var kicsRegexQueries RegexRuleStruct
-		err := json.Unmarshal([]byte(assets.SecretsQueryRegexRulesJSON), &kicsRegexQueries)
-		if err != nil {
-			return nil, err
-		}
-		allSecretsQueryAndCustom = true
-		regexQueries = kicsRegexQueries.Rules
-	}
+// 	// if includeAllSecretsQuery && isCustom { // merge case
+// 	// 	var kicsRegexQueries RegexRuleStruct
+// 	// 	err := json.Unmarshal([]byte(assets.SecretsQueryRegexRulesJSON), &kicsRegexQueries)
+// 	// 	if err != nil {
+// 	// 		return nil, err
+// 	// 	}
+// 	// 	allSecretsQueryAndCustom = true
+// 	// 	regexQueries = kicsRegexQueries.Rules
+// 	// }
 
-	for i := range allRegexQueries {
-		includeSpecificSecretQuery = isValueInArray(allRegexQueries[i].ID, queryFilter.IncludeQueries.ByIDs)
-		if len(queryFilter.IncludeQueries.ByIDs) > 0 && !allSecretsQueryAndCustom {
-			if includeAllSecretsQuery || includeSpecificSecretQuery {
-				regexQueries = append(regexQueries, allRegexQueries[i])
-			}
-		} else {
-			if !shouldExecuteQuery(
-				allRegexQueries[i].ID,
-				allRegexQueries[i].ID,
-				SecretsQueryMetadata["category"],
-				SecretsQueryMetadata["severity"],
-				queryFilter.ExcludeQueries.ByIDs,
-			) {
-				continue
-			}
-			if !shouldExecuteQuery(
-				SecretsQueryMetadata["category"],
-				allRegexQueries[i].ID,
-				SecretsQueryMetadata["category"],
-				SecretsQueryMetadata["severity"],
-				queryFilter.ExcludeQueries.ByCategories,
-			) {
-				continue
-			}
-			if !shouldExecuteQuery(
-				SecretsQueryMetadata["severity"],
-				allRegexQueries[i].ID,
-				SecretsQueryMetadata["category"],
-				SecretsQueryMetadata["severity"],
-				queryFilter.ExcludeQueries.BySeverities,
-			) {
-				continue
-			}
-			regexQueries = append(regexQueries, allRegexQueries[i])
-		}
-	}
-	for i := range regexQueries {
-		compiledRegexp, err := regexp.Compile(regexQueries[i].RegexStr)
-		if err != nil {
-			return regexQueries, err
-		}
-		regexQueries[i].Regex = compiledRegexp
-		for j := range regexQueries[i].AllowRules {
-			regexQueries[i].AllowRules[j].Regex = regexp.MustCompile(regexQueries[i].AllowRules[j].RegexStr)
-		}
-	}
-	return regexQueries, nil
-}
+// 	for i := range allRegexQueries {
+// 		includeSpecificSecretQuery = isValueInArray(allRegexQueries[i].ID, queryFilter.IncludeQueries.ByIDs)
+// 		if len(queryFilter.IncludeQueries.ByIDs) > 0 && !allSecretsQueryAndCustom {
+// 			if includeAllSecretsQuery || includeSpecificSecretQuery {
+// 				regexQueries = append(regexQueries, allRegexQueries[i])
+// 			}
+// 		} else {
+// 			if !shouldExecuteQuery(
+// 				allRegexQueries[i].ID,
+// 				allRegexQueries[i].ID,
+// 				SecretsQueryMetadata["category"],
+// 				SecretsQueryMetadata["severity"],
+// 				queryFilter.ExcludeQueries.ByIDs,
+// 			) {
+// 				continue
+// 			}
+// 			if !shouldExecuteQuery(
+// 				SecretsQueryMetadata["category"],
+// 				allRegexQueries[i].ID,
+// 				SecretsQueryMetadata["category"],
+// 				SecretsQueryMetadata["severity"],
+// 				queryFilter.ExcludeQueries.ByCategories,
+// 			) {
+// 				continue
+// 			}
+// 			if !shouldExecuteQuery(
+// 				SecretsQueryMetadata["severity"],
+// 				allRegexQueries[i].ID,
+// 				SecretsQueryMetadata["category"],
+// 				SecretsQueryMetadata["severity"],
+// 				queryFilter.ExcludeQueries.BySeverities,
+// 			) {
+// 				continue
+// 			}
+// 			regexQueries = append(regexQueries, allRegexQueries[i])
+// 		}
+// 	}
+// 	for i := range regexQueries {
+// 		compiledRegexp, err := regexp.Compile(regexQueries[i].RegexStr)
+// 		if err != nil {
+// 			return regexQueries, err
+// 		}
+// 		regexQueries[i].Regex = compiledRegexp
+// 		for j := range regexQueries[i].AllowRules {
+// 			regexQueries[i].AllowRules[j].Regex = regexp.MustCompile(regexQueries[i].AllowRules[j].RegexStr)
+// 		}
+// 	}
+// 	return regexQueries, nil
+// }
 
 // CompileRegex compiles the regex allow rules
 func CompileRegex(allowRules []AllowRule) ([]AllowRule, error) {
@@ -298,14 +293,14 @@ func (c *Inspector) GetQueriesLength() int {
 	return len(c.regexQueries)
 }
 
-func isValueInArray(value string, array []string) bool {
-	for i := range array {
-		if strings.EqualFold(value, array[i]) {
-			return true
-		}
-	}
-	return false
-}
+// func isValueInArray(value string, array []string) bool {
+// 	for i := range array {
+// 		if strings.EqualFold(value, array[i]) {
+// 			return true
+// 		}
+// 	}
+// 	return false
+// }
 
 func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, groups [][]string) {
 	if IsAllowRule(s, query, append(query.AllowRules, c.allowRules...)) {
@@ -527,7 +522,6 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 				VulnLines:        hideSecret(&linesVuln, issueLine, query, &c.SecretTracker),
 				IssueType:        "RedundantAttribute",
 				Platform:         SecretsQueryMetadata["platform"],
-				CWE:              SecretsQueryMetadata["cwe"],
 				Severity:         model.SeverityHigh,
 				QueryURI:         SecretsQueryMetadata["descriptionUrl"],
 				Category:         SecretsQueryMetadata["category"],
@@ -579,36 +573,36 @@ func calculateEntropy(token, charSet string) float64 {
 	return math.Log2(length) - freq/length
 }
 
-func shouldExecuteQuery(filterTarget, id, category, severity string, filter []string) bool {
-	if isValueInArray(filterTarget, filter) {
-		log.Debug().
-			Msgf("Excluding query ID: %s category: %s severity: %s",
-				id,
-				category,
-				severity)
-		return false
-	}
-	return true
-}
+// func shouldExecuteQuery(filterTarget, id, category, severity string, filter []string) bool {
+// 	if isValueInArray(filterTarget, filter) {
+// 		log.Debug().
+// 			Msgf("Excluding query ID: %s category: %s severity: %s",
+// 				id,
+// 				category,
+// 				severity)
+// 		return false
+// 	}
+// 	return true
+// }
 
-func getPasswordsAndSecretsQueryID() (string, error) {
-	var metadata = make(map[string]string)
-	err := json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &metadata)
-	if err != nil {
-		return "", err
-	}
-	return metadata["id"], nil
-}
+// func getPasswordsAndSecretsQueryID() (string, error) {
+// 	var metadata = make(map[string]string)
+// 	err := json.Unmarshal([]byte(assets.SecretsQueryMetadataJSON), &metadata)
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	return metadata["id"], nil
+// }
 
-func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
-	for i := range allRegexQueries {
-		re := regexp.MustCompile(`^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$`)
-		if !(re.MatchString(allRegexQueries[i].ID)) {
-			return fmt.Errorf("the query %s defines an invalid query ID (%s)", allRegexQueries[i].Name, allRegexQueries[i].ID)
-		}
-	}
-	return nil
-}
+// func validateCustomSecretsQueriesID(allRegexQueries []RegexQuery) error {
+// 	for i := range allRegexQueries {
+// 		re := regexp.MustCompile(`^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$`)
+// 		if !(re.MatchString(allRegexQueries[i].ID)) {
+// 			return fmt.Errorf("the query %s defines an invalid query ID (%s)", allRegexQueries[i].Name, allRegexQueries[i].ID)
+// 		}
+// 	}
+// 	return nil
+// }
 
 func (c *Inspector) checkContent(i, idx int, basePaths []string, files model.FileMetadatas) {
 	// lines ignore can have the lines from the resolved files

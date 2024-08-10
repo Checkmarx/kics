@@ -3,8 +3,8 @@ package progress
 import (
 	"sync"
 
-	"github.com/Checkmarx/kics/v2/pkg/progress/circle"
-	"github.com/Checkmarx/kics/v2/pkg/progress/counter"
+	"github.com/DataDog/kics/pkg/progress/circle"
+	"github.com/DataDog/kics/pkg/progress/counter"
 )
 
 // PBar is the interface for the types of available progress bars (Circle ,Counter)

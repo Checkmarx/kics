@@ -3,8 +3,8 @@ package report
 import (
 	"strings"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	reportModel "github.com/Checkmarx/kics/v2/pkg/report/model"
+	"github.com/DataDog/kics/pkg/model"
+	reportModel "github.com/DataDog/kics/pkg/report/model"
 )
 
 // PrintCycloneDxReport prints the CycloneDX report in the given path and filename with the given body

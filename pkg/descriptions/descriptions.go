@@ -3,7 +3,7 @@ package descriptions
 import (
 	"fmt"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/DataDog/kics/pkg/model"
 )
 
 var (

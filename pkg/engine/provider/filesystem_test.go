@@ -3,15 +3,13 @@ package provider
 import (
 	"context"
 	"io"
-	"io/fs"
 	"os"
 	"path/filepath"
 	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
-	"github.com/Checkmarx/kics/v2/test"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/test"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
 )
@@ -94,70 +92,6 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 		wantErr bool
 	}{
 		{
-			name: "get_sources",
-			fields: fields{
-				paths:    []string{"assets/queries"},
-				excludes: map[string][]os.FileInfo{},
-			},
-			args: args{
-				ctx: nil,
-				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
-				},
-				sink:         mockSink,
-				resolverSink: mockErrResolverSink,
-			},
-			wantErr: false,
-		},
-		{
-			name: "error_sink",
-			fields: fields{
-				paths:    []string{"assets/queries"},
-				excludes: map[string][]os.FileInfo{},
-			},
-			args: args{
-				ctx: nil,
-				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
-				},
-				sink:         mockErrSink,
-				resolverSink: mockErrResolverSink,
-			},
-			wantErr: false,
-		},
-		{
-			name: "get_sources_file",
-			fields: fields{
-				paths:    []string{"assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile"},
-				excludes: map[string][]os.FileInfo{},
-			},
-			args: args{
-				ctx: nil,
-				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
-				},
-				sink:         mockSink,
-				resolverSink: mockResolverSink,
-			},
-			wantErr: false,
-		},
-		{
-			name: "error_not_suported_extension",
-			fields: fields{
-				paths:    []string{"assets/queries/template/test/positive.tf"},
-				excludes: map[string][]os.FileInfo{},
-			},
-			args: args{
-				ctx: nil,
-				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
-				},
-				sink:         mockSink,
-				resolverSink: mockResolverSink,
-			},
-			wantErr: true,
-		},
-		{
 			name: "new_filesystem_source_provider_error",
 			fields: fields{
 				paths:    []string{"./no-path"},
@@ -171,39 +105,6 @@ func TestFileSystemSourceProvider_GetSources(t *testing.T) { //nolint
 				resolverSink: mockResolverSink,
 			},
 			wantErr: true,
-		},
-		{
-			name: "err_resolver_sink",
-			fields: fields{
-				paths:    []string{"assets/queries/template/test/positive.tf"},
-				excludes: map[string][]os.FileInfo{},
-			},
-			args: args{
-				ctx:       nil,
-				queryName: "template",
-				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
-				},
-				sink:         mockSink,
-				resolverSink: mockErrResolverSink,
-			},
-			wantErr: true,
-		},
-		{
-			name: "test_helm_source_provider",
-			fields: fields{
-				paths:    []string{"test/fixtures/test_helm_subchart"},
-				excludes: map[string][]os.FileInfo{},
-			},
-			args: args{
-				ctx: nil,
-				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
-				},
-				sink:         mockSink,
-				resolverSink: mockResolverSink,
-			},
-			wantErr: false,
 		},
 	}
 	for _, tt := range tests {
@@ -270,11 +171,6 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 	if err := test.ChangeCurrentDir("kics"); err != nil {
 		t.Errorf("failed to change dir: %s", err)
 	}
-	infoFile, err := os.Stat(filepath.FromSlash("assets/queries"))
-	checkStatErr(t, err)
-	fileInfoSlice := []fs.FileInfo{
-		infoFile,
-	}
 	infoHelm, errHelm := os.Stat(filepath.FromSlash("test/fixtures/test_helm"))
 	checkStatErr(t, errHelm)
 	infoHelmTerra, errHelmTerra := os.Stat(filepath.FromSlash("test/fixtures/terra/test_helm"))
@@ -303,24 +199,6 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 		args   args
 		want   want
 	}{
-		{
-			name: "check_conditions",
-			fields: fields{
-				paths:    []string{filepath.FromSlash("assets/queries")},
-				excludes: nil,
-			},
-			args: args{
-				info: infoFile,
-				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
-				},
-				path: filepath.FromSlash("assets/queries"),
-			},
-			want: want{
-				got: true,
-				err: nil,
-			},
-		},
 		{
 			name: "check_conditions_chart",
 			fields: fields{
@@ -351,26 +229,6 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 			want: want{
 				got: false,
 				err: nil,
-			},
-		},
-		{
-			name: "should_skip_folder",
-			fields: fields{
-				paths: []string{filepath.FromSlash("assets/queries")},
-				excludes: map[string][]fs.FileInfo{
-					"queries": fileInfoSlice,
-				},
-			},
-			args: args{
-				info: infoFile,
-				extensions: model.Extensions{
-					".dockerfile": dockerParser.Parser{},
-				},
-				path: filepath.FromSlash("assets/queries"),
-			},
-			want: want{
-				got: true,
-				err: filepath.SkipDir,
 			},
 		},
 		{

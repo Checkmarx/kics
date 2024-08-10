@@ -1,0 +1,5 @@
+
+
+handler: handler.hello
+role: eventRouterHandlerRole
+timeout: 30

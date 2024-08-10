@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Checkmarx/kics/v2/pkg/detector"
-	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/DataDog/kics/pkg/detector"
+	"github.com/DataDog/kics/pkg/model"
 	"github.com/agnivade/levenshtein"
 	"github.com/rs/zerolog"
 )

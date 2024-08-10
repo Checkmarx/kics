@@ -21,22 +21,23 @@ type SeveritySummary struct {
 
 // VulnerableFile contains information of a vulnerable file and where the vulnerability was found
 type VulnerableFile struct {
-	FileName         string      `json:"file_name"`
-	SimilarityID     string      `json:"similarity_id"`
-	OldSimilarityID  string      `json:"old_similarity_id,omitempty"`
-	Line             int         `json:"line"`
-	VulnLines        *[]CodeLine `json:"-"`
-	ResourceType     string      `json:"resource_type,omitempty"`
-	ResourceName     string      `json:"resource_name,omitempty"`
-	IssueType        IssueType   `json:"issue_type"`
-	SearchKey        string      `json:"search_key"`
-	SearchLine       int         `json:"search_line"`
-	SearchValue      string      `json:"search_value"`
-	KeyExpectedValue string      `json:"expected_value"`
-	KeyActualValue   string      `json:"actual_value"`
-	Value            *string     `json:"value,omitempty"`
-	Remediation      string      `json:"remediation,omitempty"`
-	RemediationType  string      `json:"remediation_type,omitempty"`
+	FileName         string           `json:"file_name"`
+	SimilarityID     string           `json:"similarity_id"`
+	OldSimilarityID  string           `json:"old_similarity_id,omitempty"`
+	Line             int              `json:"line"`
+	ResourceLocation ResourceLocation `json:"resource_location"`
+	VulnLines        *[]CodeLine      `json:"-"`
+	ResourceType     string           `json:"resource_type,omitempty"`
+	ResourceName     string           `json:"resource_name,omitempty"`
+	IssueType        IssueType        `json:"issue_type"`
+	SearchKey        string           `json:"search_key"`
+	SearchLine       int              `json:"search_line"`
+	SearchValue      string           `json:"search_value"`
+	KeyExpectedValue string           `json:"expected_value"`
+	KeyActualValue   string           `json:"actual_value"`
+	Value            *string          `json:"value,omitempty"`
+	Remediation      string           `json:"remediation,omitempty"`
+	RemediationType  string           `json:"remediation_type,omitempty"`
 }
 
 // QueryResult contains a query that tested positive ID, name, severity and a list of files that tested vulnerable
@@ -126,6 +127,7 @@ func getRelativePath(basePath, filePath string) string {
 	} else {
 		returnPath = relativePath
 	}
+	returnPath = strings.Replace(returnPath, "innovation-week-cloud-to-tf/", "", 1)
 	return returnPath
 }
 
@@ -231,6 +233,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 			Value:            item.Value,
 			Remediation:      item.Remediation,
 			RemediationType:  item.RemediationType,
+			ResourceLocation: item.ResourceLocation,
 		})
 
 		filePaths[resolvedPath] = item.FileName

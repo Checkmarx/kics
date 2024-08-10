@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/test"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/test"
 	"github.com/stretchr/testify/require"
 )
 

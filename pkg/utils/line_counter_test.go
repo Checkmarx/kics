@@ -13,18 +13,7 @@ func TestLineCounter(t *testing.T) {
 		filePath  string
 		wantError bool
 	}{
-		{
-			name:      "Get lines from non existent file",
-			want:      0,
-			filePath:  "../../Dockerfile2",
-			wantError: true,
-		},
-		{
-			name:      "Get lines from a dockerfile file",
-			want:      7,
-			filePath:  "../../test/fixtures/dockerfile/Dockerfile-example",
-			wantError: false,
-		},
+
 		{
 			name:      "Get lines from a yaml file",
 			want:      25,

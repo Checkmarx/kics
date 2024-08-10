@@ -1,2 +1,0 @@
-Error: initialization error - can't provide 'verbose' and 'ci' flags simultaneously
-{{.ScanHelp}}

@@ -9,10 +9,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/Checkmarx/kics/v2/assets"
-	"github.com/Checkmarx/kics/v2/internal/constants"
-	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
-	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/DataDog/kics/assets"
+	"github.com/DataDog/kics/internal/constants"
+	"github.com/DataDog/kics/pkg/model"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -297,12 +296,12 @@ func (s *FilesystemSource) iterateQueryDirs(queryDirs []string, queryParameters 
 	for _, queryDir := range queryDirs {
 		query, errRQ := ReadQuery(queryDir)
 		if errRQ != nil {
-			sentryReport.ReportSentry(&sentryReport.Report{
-				Message:  fmt.Sprintf("Query provider failed to read query, query=%s", path.Base(queryDir)),
-				Err:      errRQ,
-				Location: "func GetQueries()",
-				FileName: path.Base(queryDir),
-			}, true)
+			// sentryReport.ReportSentry(&sentryReport.Report{
+			// 	Message:  fmt.Sprintf("Query provider failed to read query, query=%s", path.Base(queryDir)),
+			// 	Err:      errRQ,
+			// 	Location: "func GetQueries()",
+			// 	FileName: path.Base(queryDir),
+			// }, true)
 			continue
 		}
 
@@ -411,12 +410,12 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) {
 func ReadMetadata(queryDir string) (map[string]interface{}, error) {
 	f, err := os.Open(filepath.Clean(path.Join(queryDir, MetadataFileName)))
 	if err != nil {
-		sentryReport.ReportSentry(&sentryReport.Report{
-			Message:  fmt.Sprintf("Queries provider can't read metadata, query=%s", path.Base(queryDir)),
-			Err:      err,
-			Location: "func ReadMetadata()",
-			FileName: path.Base(queryDir),
-		}, true)
+		// sentryReport.ReportSentry(&sentryReport.Report{
+		// 	Message:  fmt.Sprintf("Queries provider can't read metadata, query=%s", path.Base(queryDir)),
+		// 	Err:      err,
+		// 	Location: "func ReadMetadata()",
+		// 	FileName: path.Base(queryDir),
+		// }, true)
 
 		return nil, err
 	}
@@ -429,12 +428,12 @@ func ReadMetadata(queryDir string) (map[string]interface{}, error) {
 
 	var metadata map[string]interface{}
 	if err := json.NewDecoder(f).Decode(&metadata); err != nil {
-		sentryReport.ReportSentry(&sentryReport.Report{
-			Message:  fmt.Sprintf("Queries provider can't unmarshal metadata, query=%s", path.Base(queryDir)),
-			Err:      err,
-			Location: "func ReadMetadata()",
-			FileName: path.Base(queryDir),
-		}, true)
+		// sentryReport.ReportSentry(&sentryReport.Report{
+		// 	Message:  fmt.Sprintf("Queries provider can't unmarshal metadata, query=%s", path.Base(queryDir)),
+		// 	Err:      err,
+		// 	Location: "func ReadMetadata()",
+		// 	FileName: path.Base(queryDir),
+		// }, true)
 
 		return nil, err
 	}
@@ -449,8 +448,6 @@ var supPlatforms = &supportedPlatforms{
 	"CloudFormation":          "cloudFormation",
 	"Common":                  "common",
 	"Crossplane":              "crossplane",
-	"Dockerfile":              "dockerfile",
-	"DockerCompose":           "dockerCompose",
 	"Knative":                 "knative",
 	"Kubernetes":              "k8s",
 	"OpenAPI":                 "openAPI",

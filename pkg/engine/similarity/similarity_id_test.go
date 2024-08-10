@@ -182,26 +182,6 @@ var (
 			},
 			wantEquals: true,
 		},
-		{
-			name: "No changes, empty searchValue",
-			calls: []computeSimilarityIDParams{
-				{
-					basePaths:   []string{filepath.Join("my", "test")},
-					filePath:    filepath.Join("..", "test", "assets", "queries", "sample.dockerfile"),
-					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
-					searchKey:   "Resources.MySearchKeyExample",
-					searchValue: "",
-				},
-				{
-					basePaths:   []string{filepath.Join("my", "test")},
-					filePath:    filepath.Join("..", "test", "assets", "queries", "sample.dockerfile"),
-					queryID:     "e96ccbb0-8d74-49ef-87f8-b9613b63b6a8",
-					searchKey:   "Resources.MySearchKeyExample",
-					searchValue: "",
-				},
-			},
-			wantEquals: true,
-		},
 	}
 )
 

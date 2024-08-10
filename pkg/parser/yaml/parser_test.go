@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/DataDog/kics/pkg/model"
 	"github.com/stretchr/testify/require"
 )
 
@@ -35,7 +35,6 @@ func TestParser_SupportedTypes(t *testing.T) {
 		"knative":                 true,
 		"openapi":                 true,
 		"googledeploymentmanager": true,
-		"dockercompose":           true,
 		"pulumi":                  true,
 		"serverlessfw":            true,
 	}, p.SupportedTypes())

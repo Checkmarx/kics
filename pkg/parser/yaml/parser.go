@@ -3,10 +3,10 @@ package json
 import (
 	"bytes"
 
-	"github.com/Checkmarx/kics/v2/pkg/parser/utils"
+	"github.com/DataDog/kics/pkg/parser/utils"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/resolver/file"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/pkg/resolver/file"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
@@ -107,7 +107,6 @@ func (p *Parser) SupportedTypes() map[string]bool {
 		"knative":                 true,
 		"openapi":                 true,
 		"googledeploymentmanager": true,
-		"dockercompose":           true,
 		"pulumi":                  true,
 		"serverlessfw":            true,
 		"cicd":                    true,

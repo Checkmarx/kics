@@ -6,10 +6,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Checkmarx/kics/v2/internal/tracker"
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/printer"
-	"github.com/Checkmarx/kics/v2/pkg/progress"
+	"github.com/DataDog/kics/internal/tracker"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/pkg/printer"
+	"github.com/DataDog/kics/pkg/progress"
 	"github.com/stretchr/testify/require"
 )
 

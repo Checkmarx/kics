@@ -8,23 +8,18 @@ import (
 	"path/filepath"
 	"reflect"
 	"strings"
-	"sync"
 	"testing"
 	"time"
 
 	"github.com/open-policy-agent/opa/rego"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Checkmarx/kics/v2/assets"
-	"github.com/Checkmarx/kics/v2/internal/tracker"
-	"github.com/Checkmarx/kics/v2/pkg/detector"
-	"github.com/Checkmarx/kics/v2/pkg/detector/docker"
-	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
-	"github.com/Checkmarx/kics/v2/pkg/engine/source"
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/progress"
-	"github.com/Checkmarx/kics/v2/pkg/utils"
-	"github.com/Checkmarx/kics/v2/test"
+	"github.com/DataDog/kics/assets"
+	"github.com/DataDog/kics/internal/tracker"
+	"github.com/DataDog/kics/pkg/detector"
+	"github.com/DataDog/kics/pkg/engine/source"
+	"github.com/DataDog/kics/pkg/model"
+	"github.com/DataDog/kics/test"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
@@ -122,232 +117,6 @@ func TestInspector_GetCoverageReport(t *testing.T) {
 			}
 		})
 	}
-}
-
-// TestInspect tests the functions [Inspect()] and all the methods called by them
-func TestInspect(t *testing.T) { //nolint
-	inspDetector := detector.NewDetectLine(3).
-		Add(helm.DetectKindLine{}, model.KindHELM).
-		Add(docker.DetectKindLine{}, model.KindDOCKER)
-	ctx := context.Background()
-	opaQueries := make([]model.QueryMetadata, 0, 1)
-	opaQueries = append(opaQueries, model.QueryMetadata{
-		Query:     "add_instead_of_copy",
-		Platform:  "Dockerfile",
-		InputData: "{}",
-		Content: `package Cx
-
-			CxPolicy [ result ] {
-			  resource := input.document[i].command[name][_]
-			  resource.Cmd == "add"
-			  not tarfileChecker(resource.Value, ".tar")
-			  not tarfileChecker(resource.Value, ".tar.")
-
-				result := {
-					"documentId": 		input.document[i].id,
-					"searchKey": 	    sprintf("{{%s}}", [resource.Original]),
-					"issueType":		"IncorrectValue",
-					"keyExpectedValue": sprintf("'COPY' %s", [resource.Value[0]]),
-					"keyActualValue": 	sprintf("'ADD' %s", [resource.Value[0]])
-					  }
-			}
-
-			tarfileChecker(cmdValue, elem) {
-			  contains(cmdValue[_], elem)
-			}`,
-	})
-
-	mockedFileMetadataDocument := map[string]interface{}{
-		"id":   nil,
-		"file": nil,
-		"command": map[string]interface{}{
-			"openjdk:10-jdk": []map[string]interface{}{
-				{
-					"Cmd":       "add",
-					"EndLine":   8,
-					"JSON":      false,
-					"Original":  "ADD ${JAR_FILE} app.jar",
-					"StartLine": 8,
-					"SubCmd":    "",
-					"Value": []string{
-						"app.jar",
-					},
-				},
-			},
-		},
-	}
-
-	type fields struct {
-		queryLoader          QueryLoader
-		vb                   VulnerabilityBuilder
-		tracker              Tracker
-		enableCoverageReport bool
-		coverageReport       cover.Report
-		excludeResults       map[string]bool
-	}
-	type args struct {
-		ctx                 context.Context
-		scanID              string
-		files               model.FileMetadatas
-		kicsComputeNewSimID bool
-	}
-	tests := []struct {
-		name    string
-		fields  fields
-		args    args
-		want    []model.Vulnerability
-		wantErr bool
-	}{
-		{
-			name: "TestInspect",
-			fields: fields{
-				queryLoader: QueryLoader{
-					QueriesMetadata: opaQueries,
-					commonLibrary: source.RegoLibraries{
-						LibraryCode:      "package generic.common",
-						LibraryInputData: "",
-					},
-					platformLibraries: map[string]source.RegoLibraries{
-						"Dockerfile": {
-							LibraryCode:      "package generic.dockerfile",
-							LibraryInputData: "",
-						},
-					},
-				},
-				vb:                   DefaultVulnerabilityBuilder,
-				tracker:              &tracker.CITracker{},
-				enableCoverageReport: true,
-				coverageReport:       cover.Report{},
-				excludeResults:       map[string]bool{},
-			},
-			args: args{
-				ctx:    ctx,
-				scanID: "scanID",
-				files: model.FileMetadatas{
-					{
-						ID:                "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
-						ScanID:            "scanID",
-						Document:          mockedFileMetadataDocument,
-						OriginalData:      "orig_data",
-						Kind:              "DOCKERFILE",
-						FilePath:          "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
-						LinesOriginalData: utils.SplitLines("orig_data"),
-					},
-				},
-				kicsComputeNewSimID: true,
-			},
-			want: []model.Vulnerability{
-				{
-					ID:               0,
-					SimilarityID:     "fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe",
-					OldSimilarityID:  "fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe",
-					ScanID:           "scanID",
-					FileID:           "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
-					FileName:         "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
-					QueryID:          "Undefined",
-					QueryName:        "Anonymous",
-					QueryURI:         "https://github.com/Checkmarx/kics/",
-					Description:      "",
-					DescriptionID:    "Undefined",
-					Severity:         model.SeverityInfo,
-					Line:             1,
-					SearchLine:       -1,
-					VulnLines:        &[]model.CodeLine{},
-					IssueType:        "IncorrectValue",
-					SearchKey:        "{{ADD ${JAR_FILE} app.jar}}",
-					KeyExpectedValue: "'COPY' app.jar",
-					KeyActualValue:   "'ADD' app.jar",
-					Value:            nil,
-					Output:           `{"documentId":"3a3be8f7-896e-4ef8-9db3-d6c19e60510b","issueType":"IncorrectValue","keyActualValue":"'ADD' app.jar","keyExpectedValue":"'COPY' app.jar","searchKey":"{{ADD ${JAR_FILE} app.jar}}"}`, //nolint
-				},
-			},
-			wantErr: false,
-		},
-		{
-			name: "TestInspectExcludeResult",
-			fields: fields{
-				queryLoader: QueryLoader{
-					QueriesMetadata: opaQueries,
-					commonLibrary: source.RegoLibraries{
-						LibraryCode:      "package generic.common",
-						LibraryInputData: "",
-					},
-					platformLibraries: map[string]source.RegoLibraries{
-						"Dockerfile": {
-							LibraryCode:      "package generic.dockerfile",
-							LibraryInputData: "",
-						},
-					},
-				},
-				vb:                   DefaultVulnerabilityBuilder,
-				tracker:              &tracker.CITracker{},
-				enableCoverageReport: true,
-				coverageReport:       cover.Report{},
-				excludeResults:       map[string]bool{"fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe": true},
-			},
-			args: args{
-				ctx:    ctx,
-				scanID: "scanID",
-				files: model.FileMetadatas{
-					{
-						ID:                "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
-						ScanID:            "scanID",
-						Document:          mockedFileMetadataDocument,
-						OriginalData:      "orig_data",
-						Kind:              "DOCKERFILE",
-						FilePath:          "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
-						LinesOriginalData: utils.SplitLines("orig_data"),
-					},
-				},
-				kicsComputeNewSimID: true,
-			},
-			want:    []model.Vulnerability{},
-			wantErr: false,
-		},
-	}
-
-	wg := &sync.WaitGroup{}
-	for _, tt := range tests {
-		currentQuery := make(chan int64)
-		wg.Add(1)
-		proBarBuilder := progress.InitializePbBuilder(true, true, true)
-		progressBar := proBarBuilder.BuildCounter("Executing queries: ", len(tt.fields.queryLoader.QueriesMetadata), wg, currentQuery)
-
-		go progressBar.Start()
-		t.Run(tt.name, func(t *testing.T) {
-			c := &Inspector{
-				QueryLoader:          &tt.fields.queryLoader,
-				vb:                   tt.fields.vb,
-				tracker:              tt.fields.tracker,
-				enableCoverageReport: tt.fields.enableCoverageReport,
-				coverageReport:       tt.fields.coverageReport,
-				excludeResults:       tt.fields.excludeResults,
-				detector:             inspDetector,
-				queryExecTimeout:     time.Duration(60) * time.Second,
-				numWorkers:           1,
-				kicsComputeNewSimID:  tt.args.kicsComputeNewSimID,
-			}
-			got, err := c.Inspect(tt.args.ctx, tt.args.scanID, tt.args.files,
-				[]string{filepath.FromSlash("assets/queries/")}, []string{"Dockerfile"}, currentQuery)
-			if tt.wantErr {
-				if err == nil {
-					t.Errorf("Inspector.Inspect() = %v,\nwant %v", err, tt.want)
-				}
-			}
-			if !reflect.DeepEqual(got, tt.want) {
-				gotStrVulnerabilities, err := test.StringifyStruct(got)
-				require.Nil(t, err)
-				wantStrVulnerabilities, err := test.StringifyStruct(tt.want)
-				require.Nil(t, err)
-				t.Errorf("Inspector.Inspect() got %v,\nwant %v", gotStrVulnerabilities, wantStrVulnerabilities)
-			}
-		})
-
-		defer func() {
-			close(currentQuery)
-		}()
-	}
-	wg.Wait()
 }
 
 // TestNewInspector tests the functions [NewInspector()] and all the methods called by them
@@ -525,7 +294,7 @@ func TestEngine_contains(t *testing.T) {
 		{
 			name: "test_contains_k8s",
 			args: args{
-				s: []string{"terraform", "dockerfile", "cloudformation"},
+				s: []string{"terraform", "cloudformation"},
 				e: "terraform",
 			},
 			want: true,
@@ -533,7 +302,7 @@ func TestEngine_contains(t *testing.T) {
 		{
 			name: "test_not_contains",
 			args: args{
-				s: []string{"dockerfile", "cloudformation"},
+				s: []string{"cloudformation"},
 				e: "terraform",
 			},
 			want: false,
@@ -851,79 +620,6 @@ func TestInspector_checkComment(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := checkComment(tt.line, tt.lines); got != tt.want {
 				t.Errorf("checkComment() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
-func TestInspector_prepareQueries(t *testing.T) {
-	type args struct {
-		queries           []model.QueryMetadata
-		commonLibrary     source.RegoLibraries
-		platformLibraries map[string]source.RegoLibraries
-		tracker           Tracker
-	}
-
-	tests := []struct {
-		name string
-		args args
-		want QueryLoader
-	}{
-		{
-			name: "test_prepareQueries",
-			args: args{
-				queries: []model.QueryMetadata{
-					{
-						Metadata: map[string]interface{}{
-							"id":          "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
-							"aggregation": 3,
-						},
-						Query:       `package main`,
-						Aggregation: 3,
-					},
-				},
-				commonLibrary: source.RegoLibraries{
-					LibraryCode:      "",
-					LibraryInputData: "{}",
-				},
-				platformLibraries: map[string]source.RegoLibraries{
-					"Dockerfile": {
-						LibraryCode:      "",
-						LibraryInputData: "{}",
-					},
-				},
-				tracker: &tracker.CITracker{},
-			},
-			want: QueryLoader{
-				QueriesMetadata: []model.QueryMetadata{
-					{
-						Metadata: map[string]interface{}{
-							"id":          "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
-							"aggregation": 3,
-						},
-						Query:       `package main`,
-						Aggregation: 3,
-					},
-				},
-				querySum: 3,
-				commonLibrary: source.RegoLibraries{
-					LibraryCode:      "",
-					LibraryInputData: "{}",
-				},
-				platformLibraries: map[string]source.RegoLibraries{
-					"Dockerfile": {
-						LibraryCode:      "",
-						LibraryInputData: "{}",
-					},
-				},
-			},
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := prepareQueries(tt.args.queries, tt.args.commonLibrary, tt.args.platformLibraries, tt.args.tracker); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("prepareQueries() = %v, want %v", got, tt.want)
 			}
 		})
 	}

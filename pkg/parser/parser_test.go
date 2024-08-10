@@ -3,11 +3,10 @@ package parser
 import (
 	"testing"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
-	jsonParser "github.com/Checkmarx/kics/v2/pkg/parser/json"
-	terraformParser "github.com/Checkmarx/kics/v2/pkg/parser/terraform"
-	yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
+	"github.com/DataDog/kics/pkg/model"
+	jsonParser "github.com/DataDog/kics/pkg/parser/json"
+	terraformParser "github.com/DataDog/kics/pkg/parser/terraform"
+	yamlParser "github.com/DataDog/kics/pkg/parser/yaml"
 	"github.com/stretchr/testify/require"
 )
 
@@ -45,21 +44,6 @@ martin:
 		require.Contains(t, docs.Docs[0], "martin")
 		require.Equal(t, model.KindYAML, docs.Kind)
 	}
-
-	for _, parser := range p {
-		if _, ok := parser.extensions[".dockerfile"]; !ok {
-			continue
-		}
-		docs, err := parser.Parse("../../test/fixtures/test_extension/Dockerfile", []byte(`
-FROM foo
-COPY . /
-RUN echo hello
-`), true, false, 15)
-
-		require.NoError(t, err)
-		require.Len(t, docs.Docs, 1)
-		require.Equal(t, model.KindDOCKER, docs.Kind)
-	}
 }
 
 // TestParser_Empty tests the functions [Parse()] and all the methods called by them (tests an empty parser)
@@ -93,8 +77,6 @@ func TestParser_SupportedExtensions(t *testing.T) {
 	require.Contains(t, extensions, ".json")
 	require.Contains(t, extensions, ".tf")
 	require.Contains(t, extensions, ".yaml")
-	require.Contains(t, extensions, ".dockerfile")
-	require.Contains(t, extensions, "Dockerfile")
 }
 
 func initilizeBuilder() []*Parser {
@@ -102,7 +84,6 @@ func initilizeBuilder() []*Parser {
 		Add(&jsonParser.Parser{}).
 		Add(&yamlParser.Parser{}).
 		Add(terraformParser.NewDefault()).
-		Add(&dockerParser.Parser{}).
 		Build([]string{""}, []string{""})
 	return bd
 }
@@ -110,27 +91,9 @@ func initilizeBuilder() []*Parser {
 func TestIsValidExtension(t *testing.T) {
 	parser, _ := NewBuilder().
 		Add(&jsonParser.Parser{}).
-		Add(&dockerParser.Parser{}).
 		Build([]string{""}, []string{""})
 	require.True(t, parser[0].isValidExtension("../../test/fixtures/test_extension/test.json"), "test.json should be a valid extension")
-	require.True(t, parser[1].isValidExtension("../../test/fixtures/test_extension/Dockerfile"), "dockerfile should be a valid extension")
 	require.False(t, parser[0].isValidExtension("../../test/fixtures/test_extension/test.xml"), "test.xml should not be a valid extension")
-}
-
-func TestCommentsCommands(t *testing.T) {
-	parser, _ := NewBuilder().Add(&dockerParser.Parser{}).Build([]string{""}, []string{""})
-	commands := parser[0].CommentsCommands("../../test/fixtures/test_extension/Dockerfile", []byte(`
-	# kics-scan ignore
-	# kics-scan disable=ffdf4b37-7703-4dfe-a682-9d2e99bc6c09
-	FROM foo
-	COPY . /
-	RUN echo hello
-	`))
-	expectedCommands := model.CommentsCommands{
-		"ignore":  "",
-		"disable": "ffdf4b37-7703-4dfe-a682-9d2e99bc6c09",
-	}
-	require.Equal(t, expectedCommands, commands)
 }
 
 func TestParser_Contains(t *testing.T) {
@@ -156,20 +119,6 @@ func TestParser_Contains(t *testing.T) {
 				},
 			},
 			want: true,
-		},
-		{
-			name: "test contains invalid",
-			args: args{
-				types: []string{
-					"dockerfile",
-				},
-				supportedTypes: map[string]bool{
-					"cloudformation": true,
-					"terraform":      true,
-					"ansible":        true,
-				},
-			},
-			want: false,
 		},
 	}
 
