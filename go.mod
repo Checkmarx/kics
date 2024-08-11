@@ -37,7 +37,7 @@ require (
 	gopkg.in/yaml.v3 v3.0.1
 	helm.sh/helm/v3 v3.14.4
 	k8s.io/api v0.29.7
-	k8s.io/apimachinery v0.30.3
+	k8s.io/apimachinery v0.29.7
 	k8s.io/client-go v0.29.7
 	mvdan.cc/sh/v3 v3.8.0
 	sigs.k8s.io/controller-runtime v0.17.5
