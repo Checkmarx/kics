@@ -7,9 +7,9 @@ import (
 	"regexp"
 	"sort"
 
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/pkg/parser/jsonfilter/parser"
-	"github.com/DataDog/kics/pkg/utils"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/antlr4-go/antlr/v4"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"

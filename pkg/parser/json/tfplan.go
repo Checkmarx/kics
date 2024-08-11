@@ -3,7 +3,7 @@ package json
 import (
 	"encoding/json"
 
-	"github.com/DataDog/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/model"
 	hcl_plan "github.com/hashicorp/terraform-json"
 )
 

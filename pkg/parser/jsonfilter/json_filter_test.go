@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/DataDog/kics/pkg/parser/jsonfilter/parser"
+	"github.com/Checkmarx/kics/pkg/parser/jsonfilter/parser"
 	"github.com/antlr4-go/antlr/v4"
 	"github.com/stretchr/testify/require"
 )

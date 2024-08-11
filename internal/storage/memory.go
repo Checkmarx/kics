@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/DataDog/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
 )
 

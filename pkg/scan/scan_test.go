@@ -4,10 +4,10 @@ import (
 	"context"
 	"testing"
 
-	"github.com/DataDog/kics/pkg/engine/source"
-	"github.com/DataDog/kics/pkg/model"
-	consolePrinter "github.com/DataDog/kics/pkg/printer"
-	"github.com/DataDog/kics/pkg/progress"
+	"github.com/Checkmarx/kics/pkg/engine/source"
+	"github.com/Checkmarx/kics/pkg/model"
+	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/stretchr/testify/require"
 )
 

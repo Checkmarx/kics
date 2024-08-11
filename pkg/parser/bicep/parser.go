@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/pkg/parser/bicep/antlr/parser"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser/bicep/antlr/parser"
 	"github.com/antlr4-go/antlr/v4"
 )
 

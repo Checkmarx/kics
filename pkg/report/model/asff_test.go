@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/test"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/test"
 	"github.com/aws/aws-sdk-go-v2/aws"
 )
 

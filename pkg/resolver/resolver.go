@@ -4,7 +4,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/DataDog/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
 )
 

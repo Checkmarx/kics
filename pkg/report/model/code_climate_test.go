@@ -3,8 +3,8 @@ package model
 import (
 	"testing"
 
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/test"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
 

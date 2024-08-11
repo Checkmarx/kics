@@ -5,8 +5,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/DataDog/kics/pkg/engine/secrets"
-	"github.com/DataDog/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/engine/secrets"
+	"github.com/Checkmarx/kics/pkg/model"
 )
 
 // func maskPreviewLines(secretsPath string, scanResults *Results) error {

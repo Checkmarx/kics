@@ -3,8 +3,8 @@ package converter
 import (
 	"strings"
 
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/pkg/utils"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/emicklei/proto"
 )
 

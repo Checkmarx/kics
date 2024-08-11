@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/DataDog/kics/test"
+	"github.com/Checkmarx/kics/test"
 )
 
 var pdfTests = []reportTestCase{

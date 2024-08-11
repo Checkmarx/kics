@@ -8,7 +8,7 @@ import (
 	"os"
 	"testing"
 
-	mockclient "github.com/DataDog/kics/pkg/descriptions/mock"
+	mockclient "github.com/Checkmarx/kics/pkg/descriptions/mock"
 	"github.com/stretchr/testify/require"
 )
 

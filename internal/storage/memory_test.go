@@ -8,7 +8,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/DataDog/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/model"
 )
 
 // TestMemoryStorage_SaveFile tests the functions [SaveFile()]

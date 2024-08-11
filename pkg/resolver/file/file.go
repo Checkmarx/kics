@@ -11,9 +11,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/DataDog/kics/pkg/analyzer"
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/pkg/utils"
+	"github.com/Checkmarx/kics/pkg/analyzer"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
 )

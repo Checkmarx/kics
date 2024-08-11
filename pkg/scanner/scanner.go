@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/DataDog/kics/internal/metrics"
-	"github.com/DataDog/kics/pkg/kics"
-	"github.com/DataDog/kics/pkg/progress"
+	"github.com/Checkmarx/kics/internal/metrics"
+	"github.com/Checkmarx/kics/pkg/kics"
+	"github.com/Checkmarx/kics/pkg/progress"
 )
 
 type serviceSlice []*kics.Service

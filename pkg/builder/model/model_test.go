@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/DataDog/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/model"
 )
 
 type fields struct {

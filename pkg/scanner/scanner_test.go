@@ -6,20 +6,20 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/kics/internal/storage"
-	"github.com/DataDog/kics/internal/tracker"
-	"github.com/DataDog/kics/pkg/engine"
-	"github.com/DataDog/kics/pkg/engine/provider"
-	"github.com/DataDog/kics/pkg/engine/source"
-	"github.com/DataDog/kics/pkg/kics"
-	"github.com/DataDog/kics/pkg/parser"
-	"github.com/DataDog/kics/pkg/progress"
-	"github.com/DataDog/kics/pkg/resolver"
+	"github.com/Checkmarx/kics/internal/storage"
+	"github.com/Checkmarx/kics/internal/tracker"
+	"github.com/Checkmarx/kics/pkg/engine"
+	"github.com/Checkmarx/kics/pkg/engine/provider"
+	"github.com/Checkmarx/kics/pkg/engine/source"
+	"github.com/Checkmarx/kics/pkg/kics"
+	"github.com/Checkmarx/kics/pkg/parser"
+	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/pkg/resolver"
 	"github.com/stretchr/testify/require"
 
-	jsonParser "github.com/DataDog/kics/pkg/parser/json"
-	terraformParser "github.com/DataDog/kics/pkg/parser/terraform"
-	yamlParser "github.com/DataDog/kics/pkg/parser/yaml"
+	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
+	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
+	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 )
 
 var (

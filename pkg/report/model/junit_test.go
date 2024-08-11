@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/DataDog/kics/internal/constants"
-	"github.com/DataDog/kics/pkg/model"
+	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/stretchr/testify/require"
 	"helm.sh/helm/v3/pkg/time"
 )

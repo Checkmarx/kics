@@ -3,10 +3,10 @@ package parser
 import (
 	"testing"
 
-	"github.com/DataDog/kics/pkg/model"
-	jsonParser "github.com/DataDog/kics/pkg/parser/json"
-	terraformParser "github.com/DataDog/kics/pkg/parser/terraform"
-	yamlParser "github.com/DataDog/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/pkg/model"
+	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
+	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
+	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
 	"github.com/stretchr/testify/require"
 )
 

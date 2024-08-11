@@ -4,9 +4,9 @@ import (
 	"os"
 	"testing"
 
-	mockclient "github.com/DataDog/kics/pkg/descriptions/mock"
-	"github.com/DataDog/kics/pkg/descriptions/model"
-	"github.com/DataDog/kics/test"
+	mockclient "github.com/Checkmarx/kics/pkg/descriptions/mock"
+	"github.com/Checkmarx/kics/pkg/descriptions/model"
+	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
 

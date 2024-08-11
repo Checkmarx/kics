@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/pkg/parser/grpc/converter"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser/grpc/converter"
 	"github.com/emicklei/proto"
 )
 

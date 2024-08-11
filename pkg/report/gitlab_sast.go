@@ -3,7 +3,7 @@ package report
 import (
 	"strings"
 
-	reportModel "github.com/DataDog/kics/pkg/report/model"
+	reportModel "github.com/Checkmarx/kics/pkg/report/model"
 )
 
 // PrintGitlabSASTReport creates a report file on sarif format

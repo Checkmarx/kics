@@ -10,10 +10,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/DataDog/kics/pkg/detector"
-	engine "github.com/DataDog/kics/pkg/engine"
-	"github.com/DataDog/kics/pkg/engine/similarity"
-	"github.com/DataDog/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/detector"
+	engine "github.com/Checkmarx/kics/pkg/engine"
+	"github.com/Checkmarx/kics/pkg/engine/similarity"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
 )
 

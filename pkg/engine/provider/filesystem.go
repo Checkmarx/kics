@@ -11,8 +11,8 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/pkg/utils"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"github.com/yargevad/filepathx"

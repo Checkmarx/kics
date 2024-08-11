@@ -7,9 +7,9 @@ import (
 	"regexp"
 	"sort"
 
-	"github.com/DataDog/kics/pkg/minified"
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/pkg/utils"
+	"github.com/Checkmarx/kics/pkg/minified"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 )

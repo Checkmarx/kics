@@ -1,6 +1,6 @@
 package report
 
-import "github.com/DataDog/kics/internal/constants"
+import "github.com/Checkmarx/kics/internal/constants"
 
 const jsonExtension = ".json"
 

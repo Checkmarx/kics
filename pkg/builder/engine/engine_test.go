@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	build "github.com/DataDog/kics/pkg/builder/model"
+	build "github.com/Checkmarx/kics/pkg/builder/model"
 	"github.com/hashicorp/hcl/v2/hclsyntax"
 )
 

@@ -3,7 +3,7 @@ package console
 import (
 	"context"
 
-	"github.com/DataDog/kics/pkg/scan"
+	"github.com/Checkmarx/kics/pkg/scan"
 	"github.com/rs/zerolog/log"
 )
 

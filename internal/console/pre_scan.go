@@ -7,11 +7,11 @@ import (
 	"strings"
 
 	"code.cloudfoundry.org/bytefmt"
-	consoleHelpers "github.com/DataDog/kics/internal/console/helpers"
-	"github.com/DataDog/kics/internal/constants"
-	internalPrinter "github.com/DataDog/kics/pkg/printer"
-	"github.com/DataDog/kics/pkg/progress"
-	"github.com/DataDog/kics/pkg/scan"
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	"github.com/Checkmarx/kics/internal/constants"
+	internalPrinter "github.com/Checkmarx/kics/pkg/printer"
+	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/pkg/scan"
 	"github.com/mackerelio/go-osstat/memory"
 
 	"github.com/rs/zerolog/log"

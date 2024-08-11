@@ -1,4 +1,4 @@
-module github.com/DataDog/kics
+module github.com/Checkmarx/kics
 
 go 1.22.5
 

@@ -4,9 +4,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/pkg/utils"
-	"github.com/DataDog/kics/test"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/test"
 	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/require"
 )

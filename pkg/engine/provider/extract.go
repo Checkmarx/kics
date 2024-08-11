@@ -11,9 +11,9 @@ import (
 
 	"github.com/alexmullins/zip"
 
-	"github.com/DataDog/kics/pkg/kuberneter"
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/pkg/utils"
+	"github.com/Checkmarx/kics/pkg/kuberneter"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/rs/zerolog/log"
 
 	"github.com/hashicorp/go-getter"

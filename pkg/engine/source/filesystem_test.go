@@ -9,8 +9,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/test"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/test"
 )
 
 const (

@@ -4,8 +4,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/pkg/parser/ansible/ini/comments"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser/ansible/ini/comments"
 	"github.com/bigkevmcd/go-configparser"
 )
 

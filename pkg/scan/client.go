@@ -4,11 +4,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/DataDog/kics/internal/storage"
-	"github.com/DataDog/kics/internal/tracker"
-	"github.com/DataDog/kics/pkg/descriptions"
-	consolePrinter "github.com/DataDog/kics/pkg/printer"
-	"github.com/DataDog/kics/pkg/progress"
+	"github.com/Checkmarx/kics/internal/storage"
+	"github.com/Checkmarx/kics/internal/tracker"
+	"github.com/Checkmarx/kics/pkg/descriptions"
+	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
+	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/rs/zerolog/log"
 )
 

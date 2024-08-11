@@ -7,16 +7,16 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/DataDog/kics/internal/storage"
-	"github.com/DataDog/kics/internal/tracker"
-	"github.com/DataDog/kics/pkg/engine"
-	"github.com/DataDog/kics/pkg/engine/provider"
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/pkg/parser"
-	jsonParser "github.com/DataDog/kics/pkg/parser/json"
-	terraformParser "github.com/DataDog/kics/pkg/parser/terraform"
-	yamlParser "github.com/DataDog/kics/pkg/parser/yaml"
-	"github.com/DataDog/kics/pkg/resolver"
+	"github.com/Checkmarx/kics/internal/storage"
+	"github.com/Checkmarx/kics/internal/tracker"
+	"github.com/Checkmarx/kics/pkg/engine"
+	"github.com/Checkmarx/kics/pkg/engine/provider"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/parser"
+	jsonParser "github.com/Checkmarx/kics/pkg/parser/json"
+	terraformParser "github.com/Checkmarx/kics/pkg/parser/terraform"
+	yamlParser "github.com/Checkmarx/kics/pkg/parser/yaml"
+	"github.com/Checkmarx/kics/pkg/resolver"
 )
 
 // TestService tests the functions [GetVulnerabilities(), GetScanSummary(),StartScan()] and all the methods called by them

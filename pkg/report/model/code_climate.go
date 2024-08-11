@@ -1,6 +1,6 @@
 package model
 
-import "github.com/DataDog/kics/pkg/model"
+import "github.com/Checkmarx/kics/pkg/model"
 
 type lines struct {
 	Begin int `json:"begin"`

@@ -7,10 +7,10 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/DataDog/kics/pkg/analyzer"
-	"github.com/DataDog/kics/pkg/engine/provider"
-	"github.com/DataDog/kics/pkg/model"
-	consolePrinter "github.com/DataDog/kics/pkg/printer"
+	"github.com/Checkmarx/kics/pkg/analyzer"
+	"github.com/Checkmarx/kics/pkg/engine/provider"
+	"github.com/Checkmarx/kics/pkg/model"
+	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/stretchr/testify/require"
 )
 

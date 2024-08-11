@@ -1,6 +1,6 @@
 package model
 
-import "github.com/DataDog/kics/pkg/model"
+import "github.com/Checkmarx/kics/pkg/model"
 
 // PathItemType represents which type of path that item belongs on json representation
 type PathItemType string

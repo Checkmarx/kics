@@ -4,7 +4,7 @@ import (
 	"context"
 	"io"
 
-	"github.com/DataDog/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/model"
 )
 
 // Sink defines a sink function to be passed as reference to functions

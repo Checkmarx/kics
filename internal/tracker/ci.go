@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/DataDog/kics/internal/constants"
-	"github.com/DataDog/kics/pkg/model"
+	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/pkg/model"
 )
 
 // CITracker contains information of how many queries were loaded and executed

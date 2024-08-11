@@ -3,7 +3,7 @@ package report
 import (
 	"strings"
 
-	reportModel "github.com/DataDog/kics/pkg/report/model"
+	reportModel "github.com/Checkmarx/kics/pkg/report/model"
 )
 
 // PrintSonarQubeReport prints the SonarQube report in the given path and filename with the given body

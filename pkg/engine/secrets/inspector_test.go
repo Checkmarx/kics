@@ -3,9 +3,9 @@ package secrets
 import (
 	"testing"
 
-	"github.com/DataDog/kics/pkg/engine/source"
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/pkg/utils"
+	"github.com/Checkmarx/kics/pkg/engine/source"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/utils"
 	"github.com/stretchr/testify/require"
 )
 

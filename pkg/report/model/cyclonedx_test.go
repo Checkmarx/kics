@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/kics/internal/constants"
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/test"
+	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/assert"
 )
 

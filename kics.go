@@ -1,8 +1,8 @@
 package kics
 
 import (
-	"github.com/DataDog/kics/internal/console"
-	"github.com/DataDog/kics/pkg/scan"
+	"github.com/Checkmarx/kics/internal/console"
+	"github.com/Checkmarx/kics/pkg/scan"
 )
 
 func ExecuteKICSScan() {

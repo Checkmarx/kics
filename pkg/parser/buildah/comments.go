@@ -3,7 +3,7 @@ package buildah
 import (
 	"strings"
 
-	"github.com/DataDog/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/model"
 	"mvdan.cc/sh/v3/syntax"
 )
 

@@ -8,13 +8,13 @@ import (
 	"strings"
 	"time"
 
-	consoleHelpers "github.com/DataDog/kics/internal/console/helpers"
-	"github.com/DataDog/kics/pkg/descriptions"
-	"github.com/DataDog/kics/pkg/engine/provider"
-	"github.com/DataDog/kics/pkg/model"
-	consolePrinter "github.com/DataDog/kics/pkg/printer"
-	"github.com/DataDog/kics/pkg/progress"
-	"github.com/DataDog/kics/pkg/report"
+	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
+	"github.com/Checkmarx/kics/pkg/descriptions"
+	"github.com/Checkmarx/kics/pkg/engine/provider"
+	"github.com/Checkmarx/kics/pkg/model"
+	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
+	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/rs/zerolog/log"
 )
 

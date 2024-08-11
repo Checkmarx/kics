@@ -1,9 +1,9 @@
 package descriptions
 
 import (
-	"github.com/DataDog/kics/internal/constants"
-	"github.com/DataDog/kics/internal/tracker"
-	"github.com/DataDog/kics/pkg/model"
+	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/internal/tracker"
+	"github.com/Checkmarx/kics/pkg/model"
 )
 
 // CheckVersion - checks if using the latest version and saves that information in the tracker

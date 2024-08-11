@@ -3,10 +3,10 @@ package json
 import (
 	"bytes"
 
-	"github.com/DataDog/kics/pkg/parser/utils"
+	"github.com/Checkmarx/kics/pkg/parser/utils"
 
-	"github.com/DataDog/kics/pkg/model"
-	"github.com/DataDog/kics/pkg/resolver/file"
+	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/pkg/resolver/file"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"

@@ -9,9 +9,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/DataDog/kics/assets"
-	"github.com/DataDog/kics/internal/constants"
-	"github.com/DataDog/kics/pkg/model"
+	"github.com/Checkmarx/kics/assets"
+	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )

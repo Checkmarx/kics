@@ -5,7 +5,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/DataDog/kics/internal/constants"
+	"github.com/Checkmarx/kics/internal/constants"
 	"github.com/cheggaaa/pb/v3"
 )
 

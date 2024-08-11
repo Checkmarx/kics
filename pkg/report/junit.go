@@ -3,8 +3,8 @@ package report
 import (
 	"strings"
 
-	"github.com/DataDog/kics/pkg/model"
-	reportModel "github.com/DataDog/kics/pkg/report/model"
+	"github.com/Checkmarx/kics/pkg/model"
+	reportModel "github.com/Checkmarx/kics/pkg/report/model"
 )
 
 // PrintJUnitReport prints the JUnit report in the given path and filename with the given body

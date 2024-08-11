@@ -3,7 +3,7 @@ package provider
 import (
 	"testing"
 
-	"github.com/DataDog/kics/test"
+	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
 
