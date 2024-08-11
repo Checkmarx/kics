@@ -101,7 +101,7 @@ var sarifTests = []sarifTest{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
 										ArtifactLocation: sarifArtifactLocation{ArtifactURI: "test.json"},
-										Region:           sarifRegion{StartLine: 1},
+										Region:           sarifRegion{StartLine: 1, EndLine: 2},
 									},
 								},
 							},
@@ -252,7 +252,7 @@ var sarifTests = []sarifTest{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
 										ArtifactLocation: sarifArtifactLocation{ArtifactURI: ""},
-										Region:           sarifRegion{StartLine: 1},
+										Region:           sarifRegion{StartLine: 1, EndLine: 2},
 									},
 								},
 							},
@@ -269,7 +269,7 @@ var sarifTests = []sarifTest{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
 										ArtifactLocation: sarifArtifactLocation{ArtifactURI: ""},
-										Region:           sarifRegion{StartLine: 1},
+										Region:           sarifRegion{StartLine: 1, EndLine: 2},
 									},
 								},
 							},

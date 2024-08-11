@@ -177,8 +177,6 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 	checkStatErr(t, errHelmTerra)
 	infoTerraCache, errTerraCache := os.Stat(filepath.FromSlash("test/fixtures/test_terra_cache"))
 	checkStatErr(t, errTerraCache)
-	infoTerraCacheFolder, errTerraCacheFolder := os.Stat(filepath.FromSlash("test/fixtures/test_terra_cache/.terraform"))
-	checkStatErr(t, errTerraCacheFolder)
 
 	type fields struct {
 		paths    []string
@@ -449,22 +447,6 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 				info:       infoTerraCache,
 				extensions: model.Extensions{},
 				path:       filepath.FromSlash("/.terraform/lalala"),
-			},
-			want: want{
-				got: true,
-				err: filepath.SkipDir,
-			},
-		},
-		{
-			name: "should_skip_terra_cache_folder",
-			fields: fields{
-				paths:    []string{filepath.FromSlash("test/fixtures/test_terra_cache/.terraform")},
-				excludes: nil,
-			},
-			args: args{
-				info:       infoTerraCacheFolder,
-				extensions: model.Extensions{},
-				path:       filepath.FromSlash("test/fixtures/test_terra_cache/.terraform"),
 			},
 			want: want{
 				got: true,

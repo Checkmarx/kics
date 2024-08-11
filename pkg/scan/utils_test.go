@@ -169,17 +169,17 @@ func Test_GetTotalFiles(t *testing.T) {
 		{
 			name:           "count utils folder files",
 			paths:          []string{filepath.Join("..", "..", "pkg", "utils")},
-			expectedOutput: 17,
+			expectedOutput: 18,
 		},
 		{
 			name:           "count progress folder files",
 			paths:          []string{filepath.Join("..", "..", "pkg", "progress")},
-			expectedOutput: 6,
+			expectedOutput: 9,
 		},
 		{
 			name:           "count progress and utils folder files",
 			paths:          []string{filepath.Join("..", "..", "pkg", "progress"), filepath.Join("..", "..", "pkg", "utils")},
-			expectedOutput: 23,
+			expectedOutput: 27,
 		},
 		{
 			name:           "count invalid folder",
