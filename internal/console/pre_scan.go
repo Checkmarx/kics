@@ -6,13 +6,11 @@ import (
 	"runtime"
 	"strings"
 
-	"code.cloudfoundry.org/bytefmt"
 	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
 	"github.com/Checkmarx/kics/internal/constants"
 	internalPrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/scan"
-	"github.com/mackerelio/go-osstat/memory"
 
 	"github.com/rs/zerolog/log"
 )
@@ -146,13 +144,6 @@ func (console *console) preScan(params *scan.Parameters) {
 	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
 
 	log.Info().Msgf("Operating system: %s", runtime.GOOS)
-
-	mem, err := memory.Get()
-	if err != nil {
-		log.Err(err)
-	} else {
-		log.Info().Msgf("Total memory: %s", bytefmt.ByteSize(mem.Total))
-	}
 
 	cpu := consoleHelpers.GetNumCPU()
 	log.Info().Msgf("CPU: %.1f", cpu)
