@@ -143,7 +143,9 @@ func GetDefaultQueryPath(queriesPath string) (string, error) {
 
 // GetFulPath returns the full path of a partial path used for queries or experimental queries json path
 func GetFullPath(partialPath string) (string, error) {
-	executableDirPath := GetExecutableDirectory()
+	// executableDirPath := GetExecutableDirectory()
+	_, b, _, _ := runtime.Caller(0)
+	executableDirPath := filepath.Dir(b)
 	fullPath := filepath.Join(executableDirPath, partialPath)
 	if _, err := os.Stat(fullPath); os.IsNotExist(err) {
 		currentWorkDir, err := os.Getwd()
