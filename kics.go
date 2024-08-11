@@ -1,13 +1,9 @@
-package main
+package kics
 
 import (
 	"github.com/Checkmarx/kics/internal/console"
 	"github.com/Checkmarx/kics/pkg/scan"
 )
-
-func main() {
-	ExecuteKICSScan()
-}
 
 func ExecuteKICSScan() {
 	params := &scan.Parameters{
