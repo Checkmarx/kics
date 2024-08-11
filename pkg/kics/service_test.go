@@ -17,7 +17,6 @@ import (
 	terraformParser "github.com/DataDog/kics/pkg/parser/terraform"
 	yamlParser "github.com/DataDog/kics/pkg/parser/yaml"
 	"github.com/DataDog/kics/pkg/resolver"
-	"github.com/DataDog/kics/pkg/resolver/helm"
 )
 
 // TestService tests the functions [GetVulnerabilities(), GetScanSummary(),StartScan()] and all the methods called by them
@@ -148,7 +147,7 @@ func createParserSourceProvider(path string) ([]*parser.Parser,
 
 	mockFilesSource, _ := provider.NewFileSystemSourceProvider([]string{path}, []string{})
 
-	mockResolver, _ := resolver.NewBuilder().Add(&helm.Resolver{}).Build()
+	mockResolver, _ := resolver.NewBuilder().Build()
 
 	return mockParser, mockFilesSource, mockResolver
 }

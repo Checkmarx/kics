@@ -12,7 +12,6 @@ import (
 	"github.com/DataDog/kics/pkg/parser"
 	yamlParser "github.com/DataDog/kics/pkg/parser/yaml"
 	"github.com/DataDog/kics/pkg/resolver"
-	"github.com/DataDog/kics/pkg/resolver/helm"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 )
@@ -167,7 +166,7 @@ func MockService(paths []string,
 	// 	log.Error().Msgf(`Failed to build secretsInspector with error: %v`, err)
 	// }
 
-	mockResolver, err := resolver.NewBuilder().Add(&helm.Resolver{}).Build()
+	mockResolver, err := resolver.NewBuilder().Build()
 	if err != nil {
 		log.Error().Msgf(`Failed to build mockResolver with error: %v`, err)
 	}

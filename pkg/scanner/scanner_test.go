@@ -15,7 +15,6 @@ import (
 	"github.com/DataDog/kics/pkg/parser"
 	"github.com/DataDog/kics/pkg/progress"
 	"github.com/DataDog/kics/pkg/resolver"
-	"github.com/DataDog/kics/pkg/resolver/helm"
 	"github.com/stretchr/testify/require"
 
 	jsonParser "github.com/DataDog/kics/pkg/parser/json"
@@ -127,7 +126,6 @@ func createServices(types, cloudProviders []string) (serviceSlice, *storage.Memo
 	}
 
 	combinedResolver, err := resolver.NewBuilder().
-		Add(&helm.Resolver{}).
 		Build()
 	if err != nil {
 		return nil, nil, err

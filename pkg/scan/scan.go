@@ -19,7 +19,6 @@ import (
 	terraformParser "github.com/DataDog/kics/pkg/parser/terraform"
 	yamlParser "github.com/DataDog/kics/pkg/parser/yaml"
 	"github.com/DataDog/kics/pkg/resolver"
-	"github.com/DataDog/kics/pkg/resolver/helm"
 	"github.com/DataDog/kics/pkg/scanner"
 	"github.com/rs/zerolog/log"
 )
@@ -258,7 +257,6 @@ func (c *Client) createService(
 
 	// combinedResolver to be used to resolve files and templates
 	combinedResolver, err := resolver.NewBuilder().
-		Add(&helm.Resolver{}).
 		Build()
 	if err != nil {
 		return nil, err
