@@ -9,8 +9,6 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/alexmullins/zip"
-
 	"github.com/Checkmarx/kics/pkg/kuberneter"
 	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/utils"
@@ -217,17 +215,6 @@ func isEncrypted(sourceFile string) bool {
 	if filepath.Ext(sourceFile) != ".zip" {
 		return false
 	}
-	zipFile, err := zip.OpenReader(sourceFile)
-	if err != nil {
-		log.Error().Msgf("failed to open %s: %v", sourceFile, err)
-		return false
-	}
-	defer zipFile.Close()
-	for _, file := range zipFile.File {
-		if file.IsEncrypted() {
-			log.Error().Msgf("file %s is encrypted", sourceFile)
-			return true
-		}
-	}
+	log.Error().Msgf("file %s is zipped", sourceFile)
 	return false
 }
