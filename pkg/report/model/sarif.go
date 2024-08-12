@@ -3,6 +3,8 @@ package model
 import (
 	"encoding/csv"
 	"encoding/json"
+	"errors"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -117,11 +119,16 @@ type sarifRule struct {
 }
 
 type sarifDriver struct {
-	ToolName     string      `json:"name"`
-	ToolVersion  string      `json:"version"`
-	ToolFullName string      `json:"fullName"`
-	ToolURI      string      `json:"informationUri"`
-	Rules        []sarifRule `json:"rules"`
+	ToolName     string              `json:"name"`
+	ToolVersion  string              `json:"version"`
+	ToolFullName string              `json:"fullName"`
+	ToolURI      string              `json:"informationUri"`
+	Properties   sarifToolProperties `json:"properties"`
+	Rules        []sarifRule         `json:"rules"`
+}
+
+type sarifToolProperties struct {
+	Tags []string `json:"tags"`
 }
 
 type sarifTool struct {
@@ -203,6 +210,7 @@ type SarifReport interface {
 	BuildSarifIssue(issue *model.QueryResult) string
 	RebuildTaxonomies(cwes []string, guids map[string]string)
 	GetGUIDFromRelationships(idx int, cweID string) string
+	AddTags(summary *model.Summary) error
 }
 
 type sarifReport struct {
@@ -210,6 +218,14 @@ type sarifReport struct {
 	SarifVersion string     `json:"version"`
 	Runs         []SarifRun `json:"runs"`
 }
+
+const (
+	diffAwareConfigDigestTag = "DATADOG_DIFF_AWARE_CONFIG_DIGEST:%s"
+	diffAwareEnabledTag      = "DATADOG_DIFF_AWARE_ENABLED:%s"
+	executionTimeTag         = "DATADOG_EXECUTION_TIME_SECS:%v"
+	diffAwareBaseShaTag      = "DATADOG_DIFF_AWARE_BASE_SHA:%s"
+	diffAwareFileTag         = "DATADOG_DIFF_AWARE_FILE:%s"
+)
 
 func initSarifTool() sarifTool {
 	return sarifTool{
@@ -643,4 +659,19 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string {
 		return issue.CWE
 	}
 	return ""
+}
+
+func (sr *sarifReport) AddTags(summary *model.Summary) error {
+	if len(sr.Runs) != 1 {
+		return errors.New("sarifReport must have exactly one run")
+	}
+
+	scanDuration := summary.Times.End.Sub(summary.Times.Start).Seconds()
+	executionTimeTag := fmt.Sprintf(executionTimeTag, scanDuration)
+
+	sarifToolProperties := &sr.Runs[0].Tool.Driver.Properties
+
+	sarifToolProperties.Tags = append(sarifToolProperties.Tags, executionTimeTag)
+
+	return nil
 }
