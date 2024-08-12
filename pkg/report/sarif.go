@@ -28,6 +28,7 @@ func PrintSarifReport(path, filename string, body interface{}) error {
 				auxGUID[x] = guid
 			}
 		}
+		sarifReport.AddTags(&summary)
 		sarifReport.RebuildTaxonomies(auxID, auxGUID)
 		body = sarifReport
 	}

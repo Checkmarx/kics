@@ -63,6 +63,44 @@ type Client struct {
 	ProBarBuilder     *progress.PbBuilder
 }
 
+func GetDefaultParameters() *Parameters {
+	return &Parameters{
+		CloudProvider:               []string{""},
+		DisableFullDesc:             false,
+		ExcludeCategories:           []string{},
+		ExcludeQueries:              []string{},
+		ExcludeResults:              []string{},
+		ExcludeSeverities:           []string{},
+		ExcludePaths:                []string{},
+		ExperimentalQueries:         false,
+		IncludeQueries:              []string{},
+		InputData:                   "",
+		OutputName:                  "kics-result",
+		PayloadPath:                 "",
+		PreviewLines:                3,
+		QueriesPath:                 []string{"../../../assets/queries"},
+		LibrariesPath:               "../../../assets/libraries",
+		ReportFormats:               []string{"sarif"},
+		Platform:                    []string{""},
+		TerraformVarsPath:           "",
+		QueryExecTimeout:            60,
+		LineInfoPayload:             false,
+		DisableSecrets:              true,
+		SecretsRegexesPath:          "",
+		ChangedDefaultQueryPath:     false,
+		ChangedDefaultLibrariesPath: false,
+		ScanID:                      "console",
+		BillOfMaterials:             false,
+		ExcludeGitIgnore:            false,
+		OpenAPIResolveReferences:    false,
+		ParallelScanFlag:            0,
+		MaxFileSizeFlag:             5,
+		UseOldSeverities:            false,
+		MaxResolverDepth:            15,
+		ExcludePlatform:             []string{""},
+	}
+}
+
 // NewClient initializes the client with all the required parameters
 func NewClient(params *Parameters, proBarBuilder *progress.PbBuilder, customPrint *consolePrinter.Printer) (*Client, error) {
 	t, err := tracker.NewTracker(params.PreviewLines)

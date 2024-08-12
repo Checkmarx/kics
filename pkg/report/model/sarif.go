@@ -3,6 +3,8 @@ package model
 import (
 	"encoding/csv"
 	"encoding/json"
+	"errors"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -117,11 +119,16 @@ type sarifRule struct {
 }
 
 type sarifDriver struct {
-	ToolName     string      `json:"name"`
-	ToolVersion  string      `json:"version"`
-	ToolFullName string      `json:"fullName"`
-	ToolURI      string      `json:"informationUri"`
-	Rules        []sarifRule `json:"rules"`
+	ToolName     string              `json:"name"`
+	ToolVersion  string              `json:"version"`
+	ToolFullName string              `json:"fullName"`
+	ToolURI      string              `json:"informationUri"`
+	Properties   sarifToolProperties `json:"properties"`
+	Rules        []sarifRule         `json:"rules"`
+}
+
+type sarifToolProperties struct {
+	Tags []string `json:"tags"`
 }
 
 type sarifTool struct {
@@ -156,11 +163,23 @@ type sarifLocation struct {
 }
 
 type sarifResult struct {
-	ResultRuleID    string          `json:"ruleId"`
-	ResultRuleIndex int             `json:"ruleIndex"`
-	ResultKind      string          `json:"kind"`
-	ResultMessage   sarifMessage    `json:"message"`
-	ResultLocations []sarifLocation `json:"locations"`
+	ResultRuleID        string                   `json:"ruleId"`
+	ResultRuleIndex     int                      `json:"ruleIndex"`
+	ResultKind          string                   `json:"kind"`
+	ResultMessage       sarifMessage             `json:"message"`
+	ResultLocations     []sarifLocation          `json:"locations"`
+	PartialFingerprints SarifPartialFingerprints `json:"partialFingerprints,omitempty"` // TODO
+	ResultLevel         string                   `json:"level"`
+}
+
+type SarifPartialFingerprints struct {
+	Sha                string `json:"SHA,omitempty"`
+	DatadogFingerprint string `json:"DATADOG_FINGERPRINT,omitempty"`
+	CommitSha          string `json:"commitSha,omitempty"`
+	Email              string `json:"email,omitempty"`
+	Author             string `json:"author,omitempty"`
+	Date               string `json:"date,omitempty"`
+	CommitMessage      string `json:"commitMessage,omitempty"`
 }
 
 type taxonomyDefinitions struct {
@@ -203,6 +222,7 @@ type SarifReport interface {
 	BuildSarifIssue(issue *model.QueryResult) string
 	RebuildTaxonomies(cwes []string, guids map[string]string)
 	GetGUIDFromRelationships(idx int, cweID string) string
+	AddTags(summary *model.Summary) error
 }
 
 type sarifReport struct {
@@ -210,6 +230,15 @@ type sarifReport struct {
 	SarifVersion string     `json:"version"`
 	Runs         []SarifRun `json:"runs"`
 }
+
+const (
+	diffAwareConfigDigestTag = "DATADOG_DIFF_AWARE_CONFIG_DIGEST:%s"
+	diffAwareEnabledTag      = "DATADOG_DIFF_AWARE_ENABLED:%v"
+	diffAwareBaseShaTag      = "DATADOG_DIFF_AWARE_BASE_SHA:%s"
+	diffAwareFileTag         = "DATADOG_DIFF_AWARE_FILE:%s"
+	executionTimeTag         = "DATADOG_EXECUTION_TIME_SECS:%v"
+	ruleTypeProperty         = "DATADOG_RULE_TYPE:IAC_SCANNING"
+)
 
 func initSarifTool() sarifTool {
 	return sarifTool{
@@ -219,6 +248,14 @@ func initSarifTool() sarifTool {
 			ToolFullName: constants.Fullname,
 			ToolURI:      constants.URL,
 			Rules:        make([]sarifRule, 0),
+			Properties: sarifToolProperties{
+				Tags: []string{
+					fmt.Sprintf(diffAwareEnabledTag, true),
+					fmt.Sprintf(diffAwareConfigDigestTag, "TODO"),
+					fmt.Sprintf(diffAwareBaseShaTag, "TODO"),
+					fmt.Sprintf(diffAwareFileTag, "TODO"),
+				},
+			},
 		},
 	}
 }
@@ -528,7 +565,9 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 			DefaultConfiguration: sarifConfiguration{Level: severityLevelEquivalence[queryMetadata.severity]},
 			Relationships:        relationships,
 			HelpURI:              helpURI,
-			RuleProperties:       nil,
+			RuleProperties: sarifProperties{
+				"tags": []string{ruleTypeProperty},
+			},
 		}
 		if cisMetadata.id != "" {
 			rule.RuleFullDescription.Text = cisMetadata.descriptionText
@@ -607,15 +646,16 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string {
 				Line: resourceLocation.ResourceStart.Line,
 				Col:  resourceLocation.ResourceStart.Col,
 			}
-			endLocation := sarifResourceLocation{
-				Line: resourceLocation.ResourceEnd.Line,
-				Col:  resourceLocation.ResourceEnd.Col,
-			}
+			// endLocation := sarifResourceLocation{
+			// 	Line: resourceLocation.ResourceEnd.Line,
+			// 	Col:  resourceLocation.ResourceEnd.Col,
+			// }
 			absoluteFilePath := strings.ReplaceAll(issue.Files[idx].FileName, "../", "")
 			result := sarifResult{
 				ResultRuleID:    issue.QueryID,
 				ResultRuleIndex: ruleIndex,
 				ResultKind:      kind,
+				ResultLevel:     severityLevelEquivalence[issue.Severity],
 				ResultMessage: sarifMessage{
 					Text: issue.Files[idx].KeyActualValue,
 					MessageProperties: sarifProperties{
@@ -630,7 +670,7 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string {
 								StartLine:   line,
 								EndLine:     line + 1,
 								StartColumn: startLocation.Col,
-								EndColumn:   endLocation.Col,
+								EndColumn:   0,
 								// StartResource: startLocation,
 								// EndResource:   endLocation,
 							},
@@ -643,4 +683,21 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string {
 		return issue.CWE
 	}
 	return ""
+}
+
+func (sr *sarifReport) AddTags(summary *model.Summary) error {
+	if len(sr.Runs) != 1 {
+		return errors.New("sarifReport must have exactly one run")
+	}
+
+	scanDuration := summary.Times.End.Sub(summary.Times.Start).Seconds()
+	executionTimeTag := fmt.Sprintf(executionTimeTag, scanDuration)
+
+	sarifToolProperties := &sr.Runs[0].Tool.Driver.Properties
+	sarifToolProperties.Tags = append(
+		sarifToolProperties.Tags,
+		executionTimeTag,
+	)
+
+	return nil
 }

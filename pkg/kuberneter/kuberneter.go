@@ -12,7 +12,6 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
-	"k8s.io/apimachinery/pkg/api/meta"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 )
 
@@ -112,17 +111,17 @@ func (info *k8sAPICall) listKinds(apiVersion string, kinds map[string]interface{
 			log.Info().Msgf("failed to list %s: %s", apiVersion, err)
 		}
 
-		objList, err := meta.ExtractList(resource)
-		if err != nil {
-			log.Info().Msgf("failed to extract list: %s", err)
-		}
+		// // objList, err := meta.ExtractList(resource)
+		// // if err != nil {
+		// // 	log.Info().Msgf("failed to extract list: %s", err)
+		// // }
 
-		log.Info().Msgf("KICS found %d %s(s) in %s from %s", len(objList), kind, getNamespace(namespace), apiVersion)
+		// log.Info().Msgf("KICS found %d %s(s) in %s from %s", len(objList), kind, getNamespace(namespace), apiVersion)
 
-		for i := range objList {
-			item := objList[i]
-			sb = info.getResource(item, apiVersion, kind, sb)
-		}
+		// for i := range objList {
+		// 	item := objList[i]
+		// 	sb = info.getResource(item, apiVersion, kind, sb)
+		// }
 
 		if sb.String() != "" {
 			info.saveK8sResources(kind, sb.String(), apiVersionFolder)
