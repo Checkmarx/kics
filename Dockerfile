@@ -31,7 +31,7 @@ USER nonroot
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM checkmarx.jfrog.io/ast-docker/chainguard/git-sed@sha256:ed242a82d4b5ff439c5d189d5f99063d6d13b3bba55c4b92b69b589d44d28a7b 
+FROM cgr.dev/chainguard/git:latest
 
 ENV TERM xterm-256color
 
