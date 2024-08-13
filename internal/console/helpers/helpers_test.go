@@ -6,6 +6,7 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/test"
 	"github.com/rs/zerolog"
@@ -171,7 +172,7 @@ func TestHelpers_GenerateReport(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := GenerateReport(tt.args.path, tt.args.filename, tt.args.body, tt.args.formats, progress.PbBuilder{})
+			err := GenerateReport(tt.args.path, tt.args.filename, tt.args.body, tt.args.formats, progress.PbBuilder{}, model.SCIInfo{})
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GenerateReport() = %v, wantErr = %v", err, tt.wantErr)
 			}

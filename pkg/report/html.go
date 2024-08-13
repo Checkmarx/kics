@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/internal/constants"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/rs/zerolog/log"
 	"github.com/tdewolff/minify/v2"
 	minifyCSS "github.com/tdewolff/minify/v2/css"
@@ -77,7 +78,7 @@ func getVersion() string {
 }
 
 // PrintHTMLReport creates a report file on HTML format
-func PrintHTMLReport(path, filename string, body interface{}) error {
+func PrintHTMLReport(path, filename string, body interface{}, sciInfo model.SCIInfo) error {
 	if !strings.HasSuffix(filename, ".html") {
 		filename += ".html"
 	}

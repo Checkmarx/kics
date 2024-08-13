@@ -51,7 +51,7 @@ func TestPrintSarifReport(t *testing.T) {
 			if err := os.MkdirAll(test.caseTest.path, os.ModePerm); err != nil {
 				t.Fatal(err)
 			}
-			err := PrintSarifReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
+			err := PrintSarifReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary, model.SCIInfo{})
 			checkFileExists(t, err, &test, "sarif")
 			jsonResult, err := os.ReadFile(filepath.Join(test.caseTest.path, test.caseTest.filename+".sarif"))
 			require.NoError(t, err)

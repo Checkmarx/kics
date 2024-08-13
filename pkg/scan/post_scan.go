@@ -76,10 +76,11 @@ func (c *Client) resolveOutputs(
 		c.ScanParams.OutputName,
 		summary, c.ScanParams.ReportFormats,
 		proBarBuilder,
+		c.ScanParams.SCIInfo,
 	)
 }
 
-func printOutput(outputPath, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder) error {
+func printOutput(outputPath, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder, sciInfo model.SCIInfo) error {
 	log.Debug().Msg("console.printOutput()")
 	if outputPath == "" {
 		return nil
@@ -89,7 +90,7 @@ func printOutput(outputPath, filename string, body interface{}, formats []string
 	}
 
 	log.Debug().Msgf("Output formats provided [%v]", strings.Join(formats, ","))
-	err := consoleHelpers.GenerateReport(outputPath, filename, body, formats, proBarBuilder)
+	err := consoleHelpers.GenerateReport(outputPath, filename, body, formats, proBarBuilder, sciInfo)
 
 	return err
 }

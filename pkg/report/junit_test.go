@@ -48,7 +48,7 @@ func TestPrintJUnitReport(t *testing.T) {
 			if err := os.MkdirAll(test.caseTest.path, os.ModePerm); err != nil {
 				t.Fatal(err)
 			}
-			err := PrintJUnitReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
+			err := PrintJUnitReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary, model.SCIInfo{})
 			require.NoError(t, err)
 			require.FileExists(t, filepath.Join(test.caseTest.path, "junit-"+test.caseTest.filename+".xml"))
 			os.RemoveAll(test.caseTest.path)

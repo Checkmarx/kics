@@ -280,7 +280,7 @@ func Test_PrintOutput(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := printOutput(tt.outputPath, tt.filename, tt.body, tt.formats, tt.proBarBuilder)
+			err := printOutput(tt.outputPath, tt.filename, tt.body, tt.formats, tt.proBarBuilder, model.SCIInfo{})
 			os.Remove(filepath.Join("..", "..", tt.filename+".json"))
 			require.NoError(t, err)
 		})

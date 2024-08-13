@@ -7,6 +7,7 @@ import (
 	"github.com/Checkmarx/kics/internal/storage"
 	"github.com/Checkmarx/kics/internal/tracker"
 	"github.com/Checkmarx/kics/pkg/descriptions"
+	"github.com/Checkmarx/kics/pkg/model"
 	consolePrinter "github.com/Checkmarx/kics/pkg/printer"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/rs/zerolog/log"
@@ -50,6 +51,7 @@ type Parameters struct {
 	UseOldSeverities            bool
 	MaxResolverDepth            int
 	KicsComputeNewSimID         bool
+	SCIInfo                     model.SCIInfo
 }
 
 // Client represents a scan client

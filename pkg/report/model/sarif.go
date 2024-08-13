@@ -168,7 +168,7 @@ type sarifResult struct {
 	ResultKind          string                   `json:"kind"`
 	ResultMessage       sarifMessage             `json:"message"`
 	ResultLocations     []sarifLocation          `json:"locations"`
-	PartialFingerprints SarifPartialFingerprints `json:"partialFingerprints,omitempty"` // TODO
+	PartialFingerprints SarifPartialFingerprints `json:"partialFingerprints,omitempty"`
 	ResultLevel         string                   `json:"level"`
 }
 
@@ -222,7 +222,7 @@ type SarifReport interface {
 	BuildSarifIssue(issue *model.QueryResult) string
 	RebuildTaxonomies(cwes []string, guids map[string]string)
 	GetGUIDFromRelationships(idx int, cweID string) string
-	AddTags(summary *model.Summary) error
+	AddTags(summary *model.Summary, diffAware *model.DiffAware) error
 }
 
 type sarifReport struct {
@@ -243,19 +243,11 @@ const (
 func initSarifTool() sarifTool {
 	return sarifTool{
 		Driver: sarifDriver{
-			ToolName:     "KICS",
+			ToolName:     "Datadog IaC Scanning",
 			ToolVersion:  constants.Version,
 			ToolFullName: constants.Fullname,
 			ToolURI:      constants.URL,
 			Rules:        make([]sarifRule, 0),
-			Properties: sarifToolProperties{
-				Tags: []string{
-					fmt.Sprintf(diffAwareEnabledTag, true),
-					fmt.Sprintf(diffAwareConfigDigestTag, "TODO"),
-					fmt.Sprintf(diffAwareBaseShaTag, "TODO"),
-					fmt.Sprintf(diffAwareFileTag, "TODO"),
-				},
-			},
 		},
 	}
 }
@@ -685,18 +677,36 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string {
 	return ""
 }
 
-func (sr *sarifReport) AddTags(summary *model.Summary) error {
+func (sr *sarifReport) AddTags(summary *model.Summary, diffAware *model.DiffAware) error {
 	if len(sr.Runs) != 1 {
 		return errors.New("sarifReport must have exactly one run")
 	}
+	tagsToAppend := []string{}
+	executionTimeTag := GetScanDurationTag(*summary)
+	diffAwareEnabledTag := GetDiffAwareEnabledTag(*diffAware)
 
-	scanDuration := summary.Times.End.Sub(summary.Times.Start).Seconds()
-	executionTimeTag := fmt.Sprintf(executionTimeTag, scanDuration)
+	tagsToAppend = append(tagsToAppend, executionTimeTag, diffAwareEnabledTag)
+
+	if diffAware.Enabled {
+		if diffAware.BaseSha == "" || diffAware.Files == "" || diffAware.ConfigDigest == "" {
+			return fmt.Errorf(
+				"diffAware enabled but base sha %s, files %s, config digest %s provided",
+				diffAware.BaseSha,
+				diffAware.Files,
+				diffAware.ConfigDigest,
+			)
+		}
+		diffAwareConfigDigestTag := GetDiffAwareConfigDigestTag(*diffAware)
+		diffAwareBaseShaTag := GetDiffAwareBaseShaTag(*diffAware)
+		diffAwareFileTag := GetDiffAwareFilesTag(*diffAware)
+
+		tagsToAppend = append(tagsToAppend, diffAwareConfigDigestTag, diffAwareBaseShaTag, diffAwareFileTag)
+	}
 
 	sarifToolProperties := &sr.Runs[0].Tool.Driver.Properties
 	sarifToolProperties.Tags = append(
 		sarifToolProperties.Tags,
-		executionTimeTag,
+		tagsToAppend...,
 	)
 
 	return nil

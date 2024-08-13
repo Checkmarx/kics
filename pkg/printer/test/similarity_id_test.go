@@ -23,14 +23,14 @@ package test
 // 	fixtureDir = "fixtures"
 // )
 
-// type testCaseParamsType struct {
-// 	queryDir          string // mandatory - query path inside assets directory
-// 	platform          string // mandatory - query platform type
-// 	queryID           string
-// 	samplePath        string
-// 	sampleFixturePath string
-// 	queryFixturePath  string
-// }
+type testCaseParamsType struct {
+	queryDir          string // mandatory - query path inside assets directory
+	platform          string // mandatory - query platform type
+	queryID           string
+	samplePath        string
+	sampleFixturePath string
+	queryFixturePath  string
+}
 
 // type testParamsType struct {
 // 	queryDir      string // mandatory
@@ -47,19 +47,21 @@ package test
 // 	expectedFunction func(t *testing.T, condition bool)
 // }
 
-// var (
-// 	fileExtension = map[string][]string{
-// 		"ansible":                 {".yaml", ".yml"},
-// 		"azureResourceManager":    {".json"},
-// 		"buildah":                 {".sh"},
-// 		"cicd":                    {".yaml", ".yml"},
-// 		"cloudFormation":          {".json", ".yaml", ".yml"},
-// 		"googleDeploymentManager": {".yaml", ".yml"},
-// 		"grpc":                    {".proto"},
-// 		"k8s":                     {".yaml", ".yml"},
-// 		"openapi":                 {".json", ".yaml", ".yml"},
-// 		"terraform":               {".tf"},
-// 	}
+var (
+	fileExtension = map[string][]string{
+		"ansible":                 {".yaml", ".yml"},
+		"azureResourceManager":    {".json"},
+		"buildah":                 {".sh"},
+		"cicd":                    {".yaml", ".yml"},
+		"cloudFormation":          {".json", ".yaml", ".yml"},
+		"googleDeploymentManager": {".yaml", ".yml"},
+		"grpc":                    {".proto"},
+		"k8s":                     {".yaml", ".yml"},
+		"openapi":                 {".json", ".yaml", ".yml"},
+		"terraform":               {".tf"},
+	}
+)
+
 // 	testTable = []testCaseType{
 // 		{
 // 			name: "Changed Sample and Query SimID Should Be Equal",
