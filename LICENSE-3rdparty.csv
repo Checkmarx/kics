@@ -1,0 +1,145 @@
+Component,Origin,License,Copyright
+cloud.google.com/go/compute/metadata,https://github.com/googleapis/google-cloud-go/blob/compute/metadata,Apache-2.0,Copyright 2014 Google LLC
+cloud.google.com/go/iam,https://github.com/googleapis/google-cloud-go/blob/iam/v1.1.5/iam,Apache-2.0,Copyright 2016 Google LLC
+cloud.google.com/go/internal,https://github.com/googleapis/google-cloud-go/blob/v0.110.10,Apache-2.0,Copyright 2014 Google LLC
+cloud.google.com/go/storage,https://github.com/googleapis/google-cloud-go/blob/storage/v1.30.1/storage,Apache-2.0,Copyright 2022 Google LLC
+toml,https://github.com/BurntSushi/toml,MIT,Copyright (c) 2013 TOML authors
+kics,https://github.com/Checkmarx/kics,Apache-2.0,
+xxhash,https://github.com/OneOfOne/xxhash,Apache-2.0,"(c) 2012-2014, Yann Collet"
+ewma,https://github.com/VividCortex/ewma,MIT,Copyright (c) 2013 VividCortex
+levenshtein,https://github.com/agext/levenshtein,Apache-2.0,Copyright 2016 ALRUX Inc.
+levenshtein,https://github.com/agnivade/levenshtein,MIT,Copyright (c) 2015 Agniva De Sarker
+v4,https://github.com/antlr4-go/antlr,BSD-3-Clause,Copyright (c) 2012-2023 The ANTLR Project
+textseg,https://github.com/apparentlymart/go-textseg,MIT,Copyright (c) 2017 Martin Atkins
+aws-sdk-go,https://github.com/aws/aws-sdk-go,Apache-2.0,"Copyright 2015 Amazon.com, Inc. or its affiliates
+Copyright 2014-2015 Stripe, Inc."
+aws-sdk-go-v2,https://github.com/aws/aws-sdk-go-v2,Apache-2.0,"Copyright 2015 Amazon.com, Inc. or its affiliates
+Copyright 2014-2015 Stripe, Inc."
+singleflight,https://github.com/aws/aws-sdk-go-v2/blob/v1.30.3/internal/sync/singleflight,BSD-3-Clause,Copyright (c) 2009 The Go Authors
+singleflight,https://github.com/aws/aws-sdk-go/blob/v1.44.122/internal/sync/singleflight,BSD-3-Clause,Copyright (c) 2009 The Go Authors
+smithy-go,https://github.com/aws/smithy-go,Apache-2.0,"Copyright Amazon.com, Inc. or its affiliates"
+singleflight,https://github.com/aws/smithy-go/blob/v1.20.3/internal/sync/singleflight,BSD-3-Clause,"Copyright Amazon.com, Inc. or its affiliates"
+netrc,https://github.com/bgentry/go-netrc,MIT,"Original version Copyright © 2010 Fazlul Shahriar <fshahriar@gmail.com>. Newer
+portions Copyright © 2014 Blake Gentry <blakesgentry@gmail.com>"
+go-configparser,https://github.com/bigkevmcd/go-configparser,MIT,Copyright (c) 2013-15 Kevin McDermott
+barcode,https://github.com/boombuler/barcode,MIT,Copyright (c) 2014 Florian Sundermann
+v3,https://github.com/cheggaaa/pb,BSD-3-Clause,"Copyright (c) 2012-2015, Sergey Cherepanov"
+spew,https://github.com/davecgh/go-spew,ISC,Copyright (c) 2012-2016 Dave Collins <dave@davec.name>
+v3,https://github.com/emicklei/go-restful,MIT,"Copyright (c) 2012,2013 Ernest Micklei"
+proto,https://github.com/emicklei/proto,MIT,Copyright (c) 2017 Ernest Micklei
+v5,https://github.com/evanphx/json-patch,BSD-3-Clause,"Copyright (c) 2014, Evan Phoenix"
+color,https://github.com/fatih/color,MIT,Copyright (c) 2013 Fatih Arslan
+yaml,https://github.com/ghodss/yaml,MIT,Copyright (c) 2014 Sam Ghods
+logr,https://github.com/go-logr/logr,Apache-2.0,Copyright 2023 The logr Authors
+jsonpointer,https://github.com/go-openapi/jsonpointer,Apache-2.0,
+jsonreference,https://github.com/go-openapi/jsonreference,Apache-2.0,
+swag,https://github.com/go-openapi/swag,Apache-2.0,Copyright 2015 go-swagger maintainers
+glob,https://github.com/gobwas/glob,MIT,Copyright (c) 2016 Sergey Kamardin
+gocsv,https://github.com/gocarina/gocsv,MIT,Copyright (c) 2014 Jonathan Picques
+protobuf,https://github.com/gogo/protobuf,BSD-3-Clause,"Copyright (c) 2013, The GoGo Authors"
+lru,https://github.com/golang/groupcache,Apache-2.0,Copyright 2013 Google Inc.
+protobuf,https://github.com/golang/protobuf,BSD-3-Clause,Copyright 2010 The Go Authors
+gnostic-models,https://github.com/google/gnostic-models,Apache-2.0,"Copyright 2017-2022, Google LLC."
+cmp,https://github.com/google/go-cmp,BSD-3-Clause,Copyright (c) 2017 The Go Authors
+gofuzz,https://github.com/google/gofuzz,Apache-2.0,Copyright 2014 Google Inc
+profile,https://github.com/google/pprof,Apache-2.0,Copyright 2017 Google Inc
+s2a-go,https://github.com/google/s2a-go,Apache-2.0,Copyright 2022 Google LLC
+shlex,https://github.com/google/shlex,Apache-2.0,Copyright 2012 Google Inc
+uuid,https://github.com/google/uuid,BSD-3-Clause,"Copyright (c) 2009,2014 Google Inc"
+client,https://github.com/googleapis/enterprise-certificate-proxy,Apache-2.0,Copyright 2023 Google LLC
+v2,https://github.com/googleapis/gax-go,BSD-3-Clause,"Copyright 2016, Google Inc."
+color,https://github.com/gookit/color,MIT,Copyright (c) 2016 inhere
+go-cleanhttp,https://github.com/hashicorp/go-cleanhttp,MPL-2.0,"Copyright (c) 2015 HashiCorp, Inc"
+go-getter,https://github.com/hashicorp/go-getter,MPL-2.0,"Copyright (c) 2015 HashiCorp, Inc."
+go-safetemp,https://github.com/hashicorp/go-safetemp,MPL-2.0,"Copyright (c) 2018 HashiCorp, Inc."
+go-version,https://github.com/hashicorp/go-version,MPL-2.0,"Copyright (c) HashiCorp, Inc."
+hcl,https://github.com/hashicorp/hcl,MPL-2.0,"Copyright (c) HashiCorp, Inc."
+v2,https://github.com/hashicorp/hcl,MPL-2.0,"Copyright (c) HashiCorp, Inc."
+terraform-json,https://github.com/hashicorp/terraform-json,MPL-2.0,"Copyright (c) 2019 HashiCorp, Inc."
+mergo,https://github.com/imdario/mergo,BSD-3-Clause,"Copyright (c) 2013 Dario Castañé.
+Copyright (c) 2012 The Go Authors."
+go-jmespath,https://github.com/jmespath/go-jmespath,Apache-2.0,Copyright 2015 James Saryerwinnie
+maroto,https://github.com/johnfercher/maroto,MIT,Copyright (c) 2019 Johnathan Fercher da Rosa
+intern,https://github.com/josharian/intern,MIT,Copyright (c) 2019 Josh Bleecher Snyder
+go,https://github.com/json-iterator/go,MIT,Copyright (c) 2016 json-iterator
+gofpdf,https://github.com/jung-kurt/gofpdf,MIT,Copyright (c) 2017 Kurt Jung and contributors acknowledged in the documentation
+compress,https://github.com/klauspost/compress,Apache-2.0,"Copyright (c) 2012 The Go Authors. 
+Copyright (c) 2019 Klaus Post. "
+snapref,https://github.com/klauspost/compress/blob/v1.17.0/internal/snapref,BSD-3-Clause,Copyright (c) 2011 The Snappy-Go Authors
+xxhash,https://github.com/klauspost/compress/blob/v1.17.0/zstd/internal/xxhash,MIT,Copyright (c) 2016 Caleb Spare
+easyjson,https://github.com/mailru/easyjson,MIT,Copyright (c) 2016 Mail.Ru Group
+go-colorable,https://github.com/mattn/go-colorable,MIT,Copyright (c) 2016 Yasuhiro Matsumoto
+go-isatty,https://github.com/mattn/go-isatty,MIT,Copyright (c) Yasuhiro MATSUMOTO <mattn.jp@gmail.com>
+go-runewidth,https://github.com/mattn/go-runewidth,MIT,Copyright (c) 2016 Yasuhiro Matsumoto
+go-homedir,https://github.com/mitchellh/go-homedir,MIT,Copyright (c) 2013 Mitchell Hashimoto
+go-testing-interface,https://github.com/mitchellh/go-testing-interface,MIT,Copyright (c) 2016 Mitchell Hashimoto
+go-wordwrap,https://github.com/mitchellh/go-wordwrap,MIT,Copyright (c) 2014 Mitchell Hashimoto
+concurrent,https://github.com/modern-go/concurrent,Apache-2.0,
+reflect2,https://github.com/modern-go/reflect2,Apache-2.0,
+goautoneg,https://github.com/munnerz/goautoneg,BSD-3-Clause,"Copyright (c) 2011, Open Knowledge Foundation Ltd."
+opa,https://github.com/open-policy-agent/opa,Apache-2.0,Copyright 2016 The OPA Authors
+gojsonschema,https://github.com/open-policy-agent/opa/blob/v0.49.2/internal/gojsonschema,Apache-2.0,Copyright 2015 xeipuuv
+gqlparser,https://github.com/open-policy-agent/opa/blob/v0.49.2/internal/gqlparser,MIT,Copyright (c) 2018 Adam Scarr
+jwx,https://github.com/open-policy-agent/opa/blob/v0.49.2/internal/jwx,MIT,Copyright (c) 2015 lestrrat
+semver,https://github.com/open-policy-agent/opa/blob/v0.49.2/internal/semver,Apache-2.0,"Copyright 2013-2015 CoreOS, Inc."
+errors,https://github.com/pkg/errors,BSD-2-Clause,"Copyright (c) 2015, Dave Cheney <dave@cheney.net>"
+go-metrics,https://github.com/rcrowley/go-metrics,BSD-2-Clause,Copyright 2012 Richard Crowley
+aini,https://github.com/relex/aini,MIT,Copyright (c) 2020 RELEX Oy
+uniseg,https://github.com/rivo/uniseg,MIT,Copyright (c) 2019 Oliver Kuederle
+zerolog,https://github.com/rs/zerolog,MIT,Copyright (c) 2017 Olivier Poitrey
+golang-pdf417,https://github.com/ruudk/golang-pdf417,MIT,Copyright (c) 2018 Ruud Kamphuis
+go-gitignore,https://github.com/sabhiram/go-gitignore,MIT,Copyright (c) 2015 Shaba Abhiram
+pflag,https://github.com/spf13/pflag,BSD-3-Clause,"Copyright (c) 2012 Alex Ogier
+Copyright (c) 2012 The Go Authors"
+patricia,https://github.com/tchap/go-patricia,MIT,Copyright (c) 2014 The AUTHORS
+minify,https://github.com/tdewolff/minify,MIT,Copyright (c) 2015 Taco de Wolff
+parse,https://github.com/tdewolff/parse,MIT,Copyright (c) 2015 Taco de Wolff
+gjson,https://github.com/tidwall/gjson,MIT,Copyright (c) 2016 Josh Baker
+match,https://github.com/tidwall/match,MIT,Copyright (c) 2016 Josh Baker
+pretty,https://github.com/tidwall/pretty,MIT,Copyright (c) 2017 Josh Baker
+xz,https://github.com/ulikunitz/xz,BSD-3-Clause,Copyright (c) 2014-2021  Ulrich Kunitz
+gojsonpointer,https://github.com/xeipuuv/gojsonpointer,Apache-2.0,Copyright 2015 xeipuuv ( https://github.com/xeipuuv )
+gojsonreference,https://github.com/xeipuuv/gojsonreference,Apache-2.0,Copyright 2015 xeipuuv ( https://github.com/xeipuuv )
+terminfo,https://github.com/xo/terminfo,MIT,Copyright (c) 2016 Anmol Sethi
+filepathx,https://github.com/yargevad/filepathx,MIT,Copyright 2016 The filepathx Authors
+glob-intersection,https://github.com/yashtewari/glob-intersection,Apache-2.0,
+cty,https://github.com/zclconf/go-cty,MIT,Copyright (c) 2017-2018 Martin Atkins
+go.opencensus.io,https://github.com/census-instrumentation/opencensus-go,Apache-2.0,"Copyright 2017, OpenCensus Authors"
+golang.org/x/crypto,https://cs.opensource.google/go/x/crypto,BSD-3-Clause,Copyright (c) 2009 The Go Authors
+golang.org/x/exp,https://cs.opensource.google/go/x/exp,BSD-3-Clause,Copyright (c) 2009 The Go Authors
+golang.org/x/net,https://cs.opensource.google/go/x/net,BSD-3-Clause,Copyright (c) 2009 The Go Authors
+golang.org/x/oauth2,https://cs.opensource.google/go/x/oauth2,BSD-3-Clause,Copyright (c) 2009 The Go Authors
+golang.org/x/sync/semaphore,https://cs.opensource.google/go/x/sync,BSD-3-Clause,Copyright (c) 2009 The Go Authors
+golang.org/x/sys/unix,https://cs.opensource.google/go/x/sys,BSD-3-Clause,Copyright (c) 2009 The Go Authors
+golang.org/x/term,https://cs.opensource.google/go/x/term,BSD-3-Clause,Copyright (c) 2009 The Go Authors
+golang.org/x/text,https://cs.opensource.google/go/x/text,BSD-3-Clause,Copyright (c) 2009 The Go Authors
+golang.org/x/time/rate,https://cs.opensource.google/go/x/time,BSD-3-Clause,Copyright (c) 2009 The Go Authors
+golang.org/x/tools/godoc,https://cs.opensource.google/go/x/tools,BSD-3-Clause,Copyright (c) 2009 The Go Authors
+golang.org/x/xerrors,https://cs.opensource.google/go/x/xerrors,BSD-3-Clause,Copyright (c) 2019 The Go Authors
+google.golang.org/api,https://github.com/googleapis/google-api-go-client,BSD-3-Clause,Copyright (c) 2011 Google Inc
+google.golang.org/api/internal/third_party/uritemplates,https://github.com/googleapis/google-api-go-client/blob/v0.149.0/internal/third_party/uritemplates,BSD-3-Clause,Copyright (c) 2013 Joshua Tacoma
+google.golang.org/genproto/googleapis/api,https://github.com/googleapis/go-genproto/blob/8c6c420018be/googleapis/api,Apache-2.0,Copyright 2023 Google LLC
+google.golang.org/genproto/googleapis/rpc,https://github.com/googleapis/go-genproto/blob/8c6c420018be/googleapis/rpc,Apache-2.0,Copyright 2022 Google LLC
+google.golang.org/genproto/googleapis/type,https://github.com/googleapis/go-genproto,Apache-2.0,Copyright 2023 Google LLC
+google.golang.org/grpc,https://github.com/grpc/grpc-go,Apache-2.0,Copyright 2014 gRPC authors
+google.golang.org/protobuf,https://github.com/protocolbuffers/protobuf-go,BSD-3-Clause,Copyright (c) 2018 The Go Authors
+gopkg.in/inf.v0,https://github.com/go-inf/inf,BSD-3-Clause,"Copyright (c) 2012 Péter Surányi. Portions Copyright (c) 2009 The Go
+Authors"
+gopkg.in/yaml.v2,https://github.com/go-yaml/yaml,Apache-2.0,Copyright 2011-2016 Canonical Ltd
+gopkg.in/yaml.v3,https://github.com/go-yaml/yaml,MIT,Copyright (c) 2006-2010 Kirill Simonov
+k8s.io/api,https://github.com/kubernetes/api,Apache-2.0,Copyright 2017 The Kubernetes Authors
+k8s.io/apimachinery/pkg,https://github.com/kubernetes/apimachinery,Apache-2.0,Copyright 2021 The Kubernetes Authors
+k8s.io/apimachinery/third_party/forked/golang,https://github.com/kubernetes/apimachinery/blob/v0.29.7/third_party/forked/golang,BSD-3-Clause,Copyright (c) 2009 The Go Authors
+k8s.io/client-go,https://github.com/kubernetes/client-go,Apache-2.0,Copyright 2014 The Kubernetes Authors
+k8s.io/klog/v2,https://github.com/kubernetes/klog,Apache-2.0,Copyright 2021 The Kubernetes Authors
+k8s.io/kube-openapi/pkg,https://github.com/kubernetes/kube-openapi,Apache-2.0,Copyright 2017 The Kubernetes Authors
+k8s.io/kube-openapi/pkg/internal/third_party/go-json-experiment/json,https://github.com/kubernetes/kube-openapi/blob/70dd3763d340/pkg/internal/third_party/go-json-experiment/json,BSD-3-Clause,Copyright (c) 2020 The Go Authors
+k8s.io/kube-openapi/pkg/validation/spec,https://github.com/kubernetes/kube-openapi/blob/70dd3763d340/pkg/validation/spec,Apache-2.0,Copyright 2015 go-swagger maintainers
+k8s.io/utils,https://github.com/kubernetes/utils,Apache-2.0,Copyright 2018 The Kubernetes Authors
+k8s.io/utils/internal/third_party/forked/golang/net,https://github.com/kubernetes/utils/blob/3b25d923346b/internal/third_party/forked/golang,BSD-3-Clause,Copyright (c) 2012 The Go Authors
+mvdan.cc/sh/v3,https://github.com/mvdan/sh,BSD-3-Clause,"Copyright (c) 2016, Daniel Martí"
+sigs.k8s.io/controller-runtime/pkg,https://github.com/kubernetes-sigs/controller-runtime,Apache-2.0,Copyright 2018 The Kubernetes Authors
+sigs.k8s.io/json,https://github.com/kubernetes-sigs/json,Apache-2.0,Copyright 2021 The Kubernetes Authors
+sigs.k8s.io/structured-merge-diff/v4,https://github.com/kubernetes-sigs/structured-merge-diff,Apache-2.0,Copyright 2018 The Kubernetes Authors
+sigs.k8s.io/yaml,https://github.com/kubernetes-sigs/yaml,Apache-2.0,Copyright (c) 2014 Sam Ghods
+sigs.k8s.io/yaml/goyaml.v2,https://github.com/kubernetes-sigs/yaml/blob/v1.4.0/goyaml.v2,Apache-2.0,Copyright 2011-2016 Canonical Ltd.
