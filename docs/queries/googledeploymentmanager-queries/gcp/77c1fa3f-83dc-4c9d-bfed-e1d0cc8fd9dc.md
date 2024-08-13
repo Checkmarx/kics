@@ -20,6 +20,7 @@ hide:
 -   **Platform:** GoogleDeploymentManager
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Access Control
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/googleDeploymentManager/gcp/cloud_storage_bucket_is_publicly_accessible)
 
 ### Description
