@@ -8,7 +8,7 @@ import (
 )
 
 // PrintJUnitReport prints the JUnit report in the given path and filename with the given body
-func PrintJUnitReport(path, filename string, body interface{}) error {
+func PrintJUnitReport(path, filename string, body interface{}, sciInfo model.SCIInfo) error {
 	if !strings.HasPrefix(filename, "junit-") {
 		filename = "junit-" + filename
 	}

@@ -48,7 +48,7 @@ func TestPrintGitlabSASTReport(t *testing.T) {
 			if err := os.MkdirAll(test.caseTest.path, os.ModePerm); err != nil {
 				t.Fatal(err)
 			}
-			err := PrintGitlabSASTReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
+			err := PrintGitlabSASTReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary, model.SCIInfo{})
 			require.NoError(t, err)
 			require.FileExists(t, filepath.Join(test.caseTest.path, "gl-sast-"+test.caseTest.filename+".json"))
 			os.RemoveAll(test.caseTest.path)

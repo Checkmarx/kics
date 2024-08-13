@@ -15,6 +15,7 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/Checkmarx/kics/internal/metrics"
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/pkg/progress"
 	"github.com/Checkmarx/kics/pkg/report"
 	"github.com/hashicorp/hcl"
@@ -25,7 +26,7 @@ import (
 
 const divisor = float32(100000)
 
-var reportGenerators = map[string]func(path, filename string, body interface{}) error{
+var reportGenerators = map[string]func(path, filename string, body interface{}, sciInfo model.SCIInfo) error{
 	"json":        report.PrintJSONReport,
 	"sarif":       report.PrintSarifReport,
 	"html":        report.PrintHTMLReport,
@@ -98,7 +99,7 @@ func FileAnalyzer(path string) (string, error) {
 }
 
 // GenerateReport execute each report function to generate report
-func GenerateReport(path, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder) error {
+func GenerateReport(path, filename string, body interface{}, formats []string, proBarBuilder progress.PbBuilder, sciInfo model.SCIInfo) error {
 	log.Debug().Msgf("helpers.GenerateReport()")
 	metrics.Metric.Start("generate_report")
 
@@ -110,7 +111,7 @@ func GenerateReport(path, filename string, body interface{}, formats []string, p
 
 	for _, format := range formats {
 		format = strings.ToLower(format)
-		if err = reportGenerators[format](path, filename, body); err != nil {
+		if err = reportGenerators[format](path, filename, body, sciInfo); err != nil {
 			log.Error().Msgf("Failed to generate %s report", format)
 			break
 		}

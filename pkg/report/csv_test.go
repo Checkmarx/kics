@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
@@ -46,7 +47,7 @@ func TestPrintCSVReport(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			err := PrintCSVReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
+			err := PrintCSVReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary, model.SCIInfo{})
 			require.NoError(t, err)
 
 			require.FileExists(t, filepath.Join(test.caseTest.path, test.caseTest.filename+".csv"))

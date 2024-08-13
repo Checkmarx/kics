@@ -61,7 +61,7 @@ func TestPrintCycloneDxReport(t *testing.T) {
 			if err := os.MkdirAll(tt.args.path, os.ModePerm); err != nil {
 				t.Fatal(err)
 			}
-			if err := PrintCycloneDxReport(tt.args.path, tt.args.filename, tt.args.body); (err != nil) != tt.wantErr {
+			if err := PrintCycloneDxReport(tt.args.path, tt.args.filename, tt.args.body, model.SCIInfo{}); (err != nil) != tt.wantErr {
 				t.Errorf("PrintCycloneDxReport() error = %v, wantErr %v", err, tt.wantErr)
 			}
 			require.FileExists(t, filepath.Join(tt.args.path, "cyclonedx-"+tt.args.filename+".xml"))

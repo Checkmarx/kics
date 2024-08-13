@@ -57,7 +57,7 @@ func TestPrintJSONReport(t *testing.T) {
 			if err = os.MkdirAll(test.caseTest.path, os.ModePerm); err != nil {
 				t.Fatal(err)
 			}
-			err = PrintJSONReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary)
+			err = PrintJSONReport(test.caseTest.path, test.caseTest.filename, test.caseTest.summary, model.SCIInfo{})
 			require.NoError(t, err)
 			require.FileExists(t, filepath.Join(test.caseTest.path, test.caseTest.filename+".json"))
 			var jsonResult []byte

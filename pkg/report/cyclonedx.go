@@ -8,7 +8,7 @@ import (
 )
 
 // PrintCycloneDxReport prints the CycloneDX report in the given path and filename with the given body
-func PrintCycloneDxReport(path, filename string, body interface{}) error {
+func PrintCycloneDxReport(path, filename string, body interface{}, sciInfo model.SCIInfo) error {
 	filePaths := make(map[string]string)
 
 	if !strings.HasPrefix(filename, "cyclonedx-") {

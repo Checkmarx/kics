@@ -287,7 +287,7 @@ func createFooterArea(m pdf.Maroto) {
 }
 
 // PrintPdfReport creates a report file on the PDF format
-func PrintPdfReport(path, filename string, body interface{}) error {
+func PrintPdfReport(path, filename string, body interface{}, sciInfo model.SCIInfo) error {
 	startTime := time.Now()
 	log.Info().Msg("Started generating pdf report")
 

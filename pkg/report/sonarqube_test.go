@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/Checkmarx/kics/pkg/model"
 	"github.com/Checkmarx/kics/test"
 	"github.com/stretchr/testify/require"
 )
@@ -54,7 +55,7 @@ func TestPrintSonarQubeReport(t *testing.T) {
 			if err := os.MkdirAll(tt.args.path, os.ModePerm); err != nil {
 				t.Fatal(err)
 			}
-			if err := PrintSonarQubeReport(tt.args.path, tt.args.filename, tt.args.body); (err != nil) != tt.wantErr {
+			if err := PrintSonarQubeReport(tt.args.path, tt.args.filename, tt.args.body, model.SCIInfo{}); (err != nil) != tt.wantErr {
 				t.Errorf("PrintSonarQubeReport() error = %v, wantErr %v", err, tt.wantErr)
 			}
 			require.FileExists(t, filepath.Join(tt.args.path, "sonarqube-"+tt.args.filename+".json"))

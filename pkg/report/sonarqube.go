@@ -3,11 +3,12 @@ package report
 import (
 	"strings"
 
+	"github.com/Checkmarx/kics/pkg/model"
 	reportModel "github.com/Checkmarx/kics/pkg/report/model"
 )
 
 // PrintSonarQubeReport prints the SonarQube report in the given path and filename with the given body
-func PrintSonarQubeReport(path, filename string, body interface{}) error {
+func PrintSonarQubeReport(path, filename string, body interface{}, sciInfo model.SCIInfo) error {
 	if !strings.HasSuffix(filename, ".json") {
 		filename += ".json"
 	}
