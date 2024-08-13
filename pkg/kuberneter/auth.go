@@ -1,4 +1,10 @@
 /*
+ * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+ *
+ * This product includes software developed at Datadog (https://www.datadoghq.com)  Copyright 2024 Datadog, Inc.
+ */
+
+/*
 Package kuberneter implements calls to the Kubernetes API in order to scan the runtime information of the resources
 */
 package kuberneter
