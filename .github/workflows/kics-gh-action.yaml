@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - name: Run KICS Scan
-        uses: checkmarx/kics-github-action@252e73959bd4809a14863cbfbb42d7a90d5a4860 # v2.1.1
+        uses: checkmarx/kics-github-action@530ac1f8efe6202b0f12c9a6e952597ae707b755 # v2.1.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: "./Dockerfile"

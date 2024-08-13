@@ -7,7 +7,6 @@ import (
 	"strings"
 	"testing"
 	"text/template"
-	"time"
 
 	"github.com/Checkmarx/kics/v2/e2e/testcases"
 	"github.com/Checkmarx/kics/v2/e2e/utils"
@@ -30,7 +29,7 @@ func Test_E2E_CLI(t *testing.T) {
 		}
 	}
 
-	scanStartTime := time.Now()
+	//scanStartTime := time.Now()
 
 	if testing.Short() {
 		t.Skip("skipping E2E tests in short mode.")
@@ -122,13 +121,13 @@ func Test_E2E_CLI(t *testing.T) {
 	t.Cleanup(func() {
 		err := os.RemoveAll("output")
 		if err != nil {
-			t.Logf("\nError when trying to remove tests output folder %v\n", err)
+			t.Logf("\nError when trying to remove tests output folder %v\n", err.Error())
 		}
 		err = os.RemoveAll("tmp-kics-ar")
 		if err != nil {
-			t.Logf("\nError when trying to remove tmp-kics-ar folder %v\n", err)
+			t.Logf("\nError when trying to remove tmp-kics-ar folder %v\n", err.Error())
 		}
-		t.Logf("E2E tests ::ellapsed time:: %v", time.Since(scanStartTime))
+		t.Logf("E2E tests ::ellapsed time:: %v", err.Error())
 	})
 }
 
