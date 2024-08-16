@@ -20,6 +20,7 @@ hide:
 -   **Platform:** Terraform
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Encryption
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/gcp/kms_crypto_key_publicly_accessible)
 
 ### Description

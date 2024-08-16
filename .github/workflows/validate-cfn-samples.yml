@@ -11,7 +11,7 @@ jobs:
   validate-cfn-syntax:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           persist-credentials: false
       - uses: actions/setup-python@v4
@@ -19,7 +19,7 @@ jobs:
           python-version: '3.x'
       - name: Get commit changed files
         if: github.event_name != 'workflow_dispatch'
-        uses: lots0logs/gh-action-get-changed-files@2.2.2
+        uses: lots0logs/gh-action-get-changed-files@6cb5164a823dbf3318b7c8032a333b4b7ed425b2 # 2.2.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Get cfn-python-lint

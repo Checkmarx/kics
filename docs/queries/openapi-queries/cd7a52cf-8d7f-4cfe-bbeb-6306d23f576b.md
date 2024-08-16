@@ -20,6 +20,7 @@ hide:
 -   **Platform:** OpenAPI
 -   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Structure and Semantics
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/openAPI/3.0/encoding_map_key_mismatch_schema_defined_properties)
 
 ### Description
