@@ -20,6 +20,7 @@ hide:
 -   **Platform:** Terraform
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Access Control
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/alicloud/ram_security_preference_not_enforce_mfa)
 
 ### Description
