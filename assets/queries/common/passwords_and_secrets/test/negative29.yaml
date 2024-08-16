@@ -1,0 +1,51 @@
+name: Example Workflow
+
+on: workflow_call
+
+jobs:
+  build-deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    runs-on: ubuntu
+
+    steps:
+      - uses: actions/checkout@v4
+
+---
+
+name: Example Workflow
+
+on: workflow_call
+
+jobs:
+  build-deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: read
+
+    runs-on: ubuntu
+
+    steps:
+      - uses: actions/checkout@v4
+
+---
+
+name: Example Workflow
+
+on: workflow_call
+
+jobs:
+  build-deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: none
+
+    runs-on: ubuntu
+
+    steps:
+      - uses: actions/checkout@v4

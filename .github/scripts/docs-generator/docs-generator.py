@@ -96,7 +96,7 @@ for path in all_metadata:
                                   f"{platform.lower()}-queries",
                                   cloud_provider if cloud_provider != 'common' else '',
                                   q_id).replace('\\', '/')
-        meta_dict['descriptionText'] = f'<a href="{query_page}" target="_blank">Query details</a>'
+        meta_dict['descriptionText'] = f'<a href="{query_page}" onclick="newWindowOpenerSafe(event, \'{query_page}\')">Query details</a>'
         template_dict[platform][sub_platform][severity][category][q_id] = meta_dict
 #
 # template dict ex:

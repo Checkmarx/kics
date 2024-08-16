@@ -20,6 +20,7 @@ hide:
 -   **Platform:** Crossplane
 -   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Observability
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/crossplane/aws/cloudwatch_without_retention_period_specified)
 
 ### Description

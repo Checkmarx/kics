@@ -527,6 +527,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 				VulnLines:        hideSecret(&linesVuln, issueLine, query, &c.SecretTracker),
 				IssueType:        "RedundantAttribute",
 				Platform:         SecretsQueryMetadata["platform"],
+				CWE:              SecretsQueryMetadata["cwe"],
 				Severity:         model.SeverityHigh,
 				QueryURI:         SecretsQueryMetadata["descriptionUrl"],
 				Category:         SecretsQueryMetadata["category"],
