@@ -478,10 +478,11 @@ var testNewInspectorInputs = []struct {
 			"severity": "HIGH",
 			"category": "Secret Management",
 			"descriptionText": "Query to find passwords and secrets in infrastructure code.",
-			"descriptionUrl": "https://kics.io/",
+			"descriptionUrl": "https://docs.kics.io/latest/secrets/",
 			"platform": "Common",
 			"descriptionID": "d69d8a89",
-			"cloudProvider": "common"
+			"cloudProvider": "common",
+			"cwe": "798"
 		  }`,
 		disableSecrets: false,
 		wantRegLen:     1,
@@ -508,10 +509,11 @@ var testNewInspectorInputs = []struct {
 			"severity": "HIGH",
 			"category": "Secret Management",
 			"descriptionText": "Query to find passwords and secrets in infrastructure code.",
-			"descriptionUrl": "https://kics.io/",
+			"descriptionUrl": "https://docs.kics.io/latest/secrets/",
 			"platform": "Common",
 			"descriptionID": "d69d8a89",
-			"cloudProvider": "common"
+			"cloudProvider": "common",
+			"cwe": "798"
 		  }`,
 		disableSecrets: true,
 		wantRegLen:     0,
@@ -538,10 +540,11 @@ var testNewInspectorInputs = []struct {
 			"severity": "HIGH",
 			"category": "Secret Management",
 			"descriptionText": "Query to find passwords and secrets in infrastructure code.",
-			"descriptionUrl": "https://kics.io/",
+			"descriptionUrl": "https://docs.kics.io/latest/secrets/",
 			"platform": "Common",
 			"descriptionID": "d69d8a89",
-			"cloudProvider": "common"
+			"cloudProvider": "common",
+			"cwe": "798"
 		  }`,
 		disableSecrets: false,
 		wantRegLen:     1,

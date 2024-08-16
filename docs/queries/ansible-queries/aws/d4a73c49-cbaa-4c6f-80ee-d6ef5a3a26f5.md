@@ -20,6 +20,7 @@ hide:
 -   **Platform:** Ansible
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Observability
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/ansible/aws/cloudtrail_logging_disabled)
 
 ### Description
