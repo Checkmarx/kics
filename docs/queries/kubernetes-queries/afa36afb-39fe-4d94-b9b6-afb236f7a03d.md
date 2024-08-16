@@ -20,6 +20,7 @@ hide:
 -   **Platform:** Kubernetes
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Build Process
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/k8s/pod_security_policy_admission_control_plugin_not_set)
 
 ### Description

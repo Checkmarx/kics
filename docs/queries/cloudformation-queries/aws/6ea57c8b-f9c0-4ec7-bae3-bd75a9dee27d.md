@@ -20,6 +20,7 @@ hide:
 -   **Platform:** CloudFormation
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Resource Management
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/sdb_domain_declared_as_a_resource)
 
 ### Description
