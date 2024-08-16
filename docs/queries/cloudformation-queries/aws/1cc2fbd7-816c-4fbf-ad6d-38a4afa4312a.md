@@ -20,6 +20,7 @@ hide:
 -   **Platform:** CloudFormation
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Networking and Firewall
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/security_group_egress_cidr_open_to_world)
 
 ### Description

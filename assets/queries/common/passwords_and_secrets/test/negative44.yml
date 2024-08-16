@@ -1,0 +1,20 @@
+on: workflow_call
+
+stages:
+  - build
+
+variables:
+  GIT_PRIVATE_KEY: $GIT_PRIVATE_KEY
+
+jobs:
+  job_build:
+    stage: build
+    script:
+      - if [[ -z "${GIT_PRIVATE_KEY:-}" ]]; then
+          echo "Missing GIT_PRIVATE_KEY variable!"
+          exit 1
+        fi
+      - echo "Private key is set."
+
+    steps:
+      - uses: actions/checkout@v4

@@ -1,5 +1,5 @@
 ---
-title: (Beta) CLB Instance Log Setting Disabled
+title: Beta - CLB Instance Log Setting Disabled
 hide:
   toc: true
   navigation: true
@@ -16,10 +16,11 @@ hide:
 </style>
 
 -   **Query id:** ada01ed1-b10c-4f2a-b110-b20fa4f9baa6
--   **Query name:** (Beta) CLB Instance Log Setting Disabled
+-   **Query name:** Beta - CLB Instance Log Setting Disabled
 -   **Platform:** Terraform
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Encryption
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/tencentcloud/clb_instance_log_setting_disabled)
 
 ### Description
