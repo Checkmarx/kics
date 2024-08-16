@@ -20,6 +20,7 @@ hide:
 -   **Platform:** Terraform
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Insecure Defaults
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/kubernetes/service_account_token_automount_not_disabled)
 
 ### Description
