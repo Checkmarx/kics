@@ -20,6 +20,7 @@ hide:
 -   **Platform:** Kubernetes
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Insecure Configurations
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/k8s/shared_host_pid_namespace)
 
 ### Description
