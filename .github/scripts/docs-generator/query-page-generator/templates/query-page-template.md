@@ -20,6 +20,7 @@ hide:
 -   **Platform:** <PLATFORM>
 -   **Severity:** <SEVERITY>
 -   **Category:** <CATEGORY>
+-   **CWE:** <CWE>
 -   **URL:** [Github](<GITHUB_URL>)
 
 ### Description
