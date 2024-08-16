@@ -20,6 +20,7 @@ hide:
 -   **Platform:** ServerlessFW
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Access Control
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/serverlessFW/serverless_role_with_full_privileges)
 
 ### Description
