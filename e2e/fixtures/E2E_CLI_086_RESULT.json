@@ -32,6 +32,7 @@
       "query_url": "https://docs.kics.io/latest/secrets/",
       "severity": "HIGH",
       "platform": "Common",
+      "cwe": "798",
       "cloud_provider": "COMMON",
       "category": "Secret Management",
       "experimental": false,
