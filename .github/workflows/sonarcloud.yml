@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'Checkmarx/kics'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarCloud Scan
