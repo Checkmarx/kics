@@ -20,6 +20,7 @@ hide:
 -   **Platform:** AzureResourceManager
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Insecure Configurations
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/aks_dashboard_enabled)
 
 ### Description
