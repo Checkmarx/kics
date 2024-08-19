@@ -20,6 +20,7 @@ hide:
 -   **Platform:** Dockerfile
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Build Process
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/706.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/706.html')">706</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/copy_from_references_current_from_alias)
 
 ### Description

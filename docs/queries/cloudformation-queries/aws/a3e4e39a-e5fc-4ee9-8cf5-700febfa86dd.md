@@ -20,6 +20,7 @@ hide:
 -   **Platform:** CloudFormation
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Best Practices
+-   **CWE:** Ongoing
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/security_group_ingress_has_cidr_not_recommended)
 
 ### Description
