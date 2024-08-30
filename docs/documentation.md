@@ -27,7 +27,7 @@ Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/
 
 #### Build from Sources
 
-1. Download and install Go 1.16 or higher from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>.
+1. Download and install Go 1.16 (1.22 recommended) or higher from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>.
 2. Clone the repository:
     ```sh
     git clone https://github.com/Checkmarx/kics.git
@@ -59,7 +59,7 @@ KICS is available on Checkmarx [homebrew-tap](https://github.com/Checkmarx/homeb
 ```
 brew install Checkmarx/tap/kics
 ```
-
+#### Default Queries
 To use KICS default queries add the KICS_QUERIES_PATH environmental variable to your shell profile, e.g:
 
 ```
