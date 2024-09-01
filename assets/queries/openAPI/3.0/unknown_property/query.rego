@@ -1,5 +1,7 @@
 package Cx
 
+import future.keywords.in
+
 import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
@@ -36,7 +38,7 @@ CxPolicy[result] {
 	objType == "array"
 	is_array(value)
 	value[x][field]
-	not known_field(objValues, field)
+	not field in objValues
 
 	result := {
 		"documentId": doc.id,
@@ -61,7 +63,7 @@ CxPolicy[result] {
 
 	any([objType == "simple", objType == "map"])
 	value[field]
-	not known_field(objValues, field)
+	not field in objValues
 
 	result := {
 		"documentId": doc.id,
@@ -81,7 +83,7 @@ CxPolicy[result] {
 	path[minus(count(path), 3)] == "callbacks"
 
 	value[x]
-	not known_field(map_objects.paths, x)
+	not x in map_objects.paths
 
 	result := {
 		"documentId": doc.id,
@@ -105,10 +107,6 @@ openapi := {
 
 known_openapi_object_field(field) {
 	field == openapi[_]
-}
-
-known_field(object, value) {
-	object[_] == value
 }
 
 flow := {
