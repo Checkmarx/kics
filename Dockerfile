@@ -1,4 +1,4 @@
-FROM cgr.dev/chainguard/go@sha256:4f11a0dfbd73832405bc3f611e53b4dbd61a1d1d23d205f2665cabfbd295a109 as build_env
+FROM cgr.dev/chainguard/go@sha256:27d8b84203a3acb1bdeb128874d2b89749a6fb3582535e7703680a9f46e08422 as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -31,7 +31,7 @@ USER nonroot
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/git@sha256:51620806588a4738b536e1f328206b17ae2a988b2a424a6a37c419041eb2b9a9
+FROM cgr.dev/chainguard/busybox@sha256:464c46b551bb3187f893f48d29556a944720d4680d35dfd9ece956493b15c33b
 
 ENV TERM xterm-256color
 
