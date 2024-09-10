@@ -99,7 +99,7 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - name: Run Gosec Security Scanner
-        uses: securego/gosec@0ce4453ddd8cca1291d2056cf903b545baad95a0
+        uses: securego/gosec@6fbd381238e97e1d1f3358f0d6d65de78dcf9245
         with:
           args: "-no-fail -fmt sarif -out results.sarif ./..."
       - name: Show results
