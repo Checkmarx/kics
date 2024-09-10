@@ -47,7 +47,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
       - name: Set Permissions
         run: |
-          sudo chmod -R 770 ${PWD}/assets/queries
+          sudo chmod -R 777 ${PWD}/assets/queries
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
       - name: Run docker image and generate results.json
