@@ -45,7 +45,7 @@ jobs:
             COMMIT=${GITHUB_SHA}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
-      - name: Set Output Permissions
+      - name: Set Permissions
         run: |
           sudo chmod -R 777 ${PWD}/assets/queries
       - name: Image digest

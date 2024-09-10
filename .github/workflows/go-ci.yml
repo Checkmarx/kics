@@ -102,6 +102,10 @@ jobs:
         uses: securego/gosec@master
         with:
           args: "-no-fail -fmt sarif -out results.sarif ./..."
+      - name: Show results
+        run: |
+          cat results-dir/results.sarif
+          cat results-dir/results.json
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3
         with:
