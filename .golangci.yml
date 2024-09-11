@@ -32,7 +32,7 @@ linters-settings:
   gocyclo:
     min-complexity: 15
   goimports:
-    local-prefixes: github.com/golangci/golangci-lint@a1d6c560de1a193a0c68ffed68cd5928ef39e884
+    local-prefixes: github.com/golangci/golangci-lint
   gomnd:
     # don't include the "operation" and "assign"
     checks:
