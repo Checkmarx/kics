@@ -4,7 +4,6 @@ FROM cgr.dev/chainguard/go@sha256:1b27d8f2f9bb49434e38fbb7456cb8b72b6652235bb07e
 WORKDIR /app
 
 ENV GOPRIVATE=github.com/Checkmarx/*
-ENV GIT_VERSION=2.46.0
 ARG VERSION="development"
 ARG COMMIT="NOCOMMIT"
 ARG SENTRY_DSN=""
@@ -32,13 +31,7 @@ USER nonroot
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/bash@sha256:2faccc3e8ab049d82dec0e4d2dd8b45718c71ce640608584d95a39092b5006b5
-
-RUN curl -LO https://github.com/git/git/archive/refs/tags/v${GIT_VERSION}.tar.gz && \
-    tar -zxf v${GIT_VERSION}.tar.gz && \
-    mv git-${GIT_VERSION}/bin/git /usr/local/bin/git && \
-    chmod +x /usr/local/bin/git && \
-    rm -rf git-${GIT_VERSION} v${GIT_VERSION}.tar.gz
+FROM cgr.dev/chainguard/busybox@sha256:02e248d0c2ad1cb8c110f550a0a9d881699e09879de2b8fed91ef03b3abef05c
 
 ENV TERM xterm-256color
 
