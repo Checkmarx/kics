@@ -4,6 +4,7 @@ FROM cgr.dev/chainguard/go@sha256:1b27d8f2f9bb49434e38fbb7456cb8b72b6652235bb07e
 WORKDIR /app
 
 ENV GOPRIVATE=github.com/Checkmarx/*
+ENV GIT_VERSION=2.46.0
 ARG VERSION="development"
 ARG COMMIT="NOCOMMIT"
 ARG SENTRY_DSN=""
@@ -25,13 +26,13 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
     -ldflags "-s -w -X github.com/Checkmarx/kics/v2/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/v2/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/v2/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/v2/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go
-
+    
 USER nonroot
 
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/busybox@sha256:02e248d0c2ad1cb8c110f550a0a9d881699e09879de2b8fed91ef03b3abef05c
+FROM cgr.dev/chainguard/git:latest-glibc@sha256:6234bec5d1a6a3d46ae11117b5d803846366b728297503e00396d4203b8a0cc5
 
 ENV TERM xterm-256color
 
