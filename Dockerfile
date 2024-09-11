@@ -4,7 +4,6 @@ FROM cgr.dev/chainguard/go@sha256:1b27d8f2f9bb49434e38fbb7456cb8b72b6652235bb07e
 WORKDIR /app
 
 ENV GOPRIVATE=github.com/Checkmarx/*
-ENV GIT_VERSION=2.46.0
 ARG VERSION="development"
 ARG COMMIT="NOCOMMIT"
 ARG SENTRY_DSN=""
@@ -26,7 +25,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
     -ldflags "-s -w -X github.com/Checkmarx/kics/v2/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/v2/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/v2/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/v2/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go
-    
+
 USER nonroot
 
 # Runtime image
