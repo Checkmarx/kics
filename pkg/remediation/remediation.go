@@ -156,7 +156,9 @@ func addition(r *Remediation, lines *[]string) []string {
 func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, similarityID string) []string {
 	remediated := []byte(strings.Join(remediatedLines, "\n"))
 
-	if err := os.WriteFile(filePath, remediated, 0600); err != nil {
+	mode := os.FileMode(0600)
+
+	if err := os.WriteFile(filePath, remediated, mode); err != nil {
 		log.Error().Msgf("failed to write file: %s", err)
 		return lines
 	}

@@ -42,7 +42,7 @@ func (i *Info) getIgnoreBlockLines(comments []syntax.Comment, start, end int) {
 			kicsIgnore := getKicsIgnore(comment.Text)
 
 			if model.CommentCommand(kicsIgnore) == model.IgnoreBlock {
-				if int(comment.Hash.Line()) == start-1 {
+				if int(comment.Hash.Line()) == start-1 { //nolint:gosec
 					i.IgnoreLines = append(i.IgnoreLines, model.Range(start, end)...)
 					i.IgnoreBlockLines = append(i.IgnoreBlockLines, model.Range(start, end)...)
 				}

@@ -226,7 +226,7 @@ func contributionAppeal(customPrint *consolePrinter.Printer, queriesPath []strin
 		msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
 		contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n"
 
-		output := customPrint.ContributionMessage.Sprintf(msg + contributionPage)
+		output := customPrint.ContributionMessage.Sprintf("%s", msg+contributionPage)
 		fmt.Println(output)
 	}
 }
