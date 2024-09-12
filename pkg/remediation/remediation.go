@@ -153,10 +153,14 @@ func addition(r *Remediation, lines *[]string) []string {
 	return remediation
 }
 
+const (
+	FilePermMode = 0600 // File permissions mode with read and write only
+)
+
 func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, similarityID string) []string {
 	remediated := []byte(strings.Join(remediatedLines, "\n"))
 
-	mode := os.FileMode(0600)
+	mode := os.FileMode(FilePermMode)
 
 	if err := os.WriteFile(filePath, remediated, mode); err != nil {
 		log.Error().Msgf("failed to write file: %s", err)
