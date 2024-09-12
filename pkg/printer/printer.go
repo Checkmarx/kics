@@ -280,15 +280,15 @@ func NewPrinter(minimal bool) *Printer {
 func (p *Printer) PrintBySev(content, sev string) string {
 	switch strings.ToUpper(sev) {
 	case model.SeverityCritical:
-		return p.Critical.Sprintf(content)
+		return p.Critical.Sprintf("%s", content)
 	case model.SeverityHigh:
-		return p.High.Sprintf(content)
+		return p.High.Sprintf("%s", content)
 	case model.SeverityMedium:
-		return p.Medium.Sprintf(content)
+		return p.Medium.Sprintf("%s", content)
 	case model.SeverityLow:
-		return p.Low.Sprintf(content)
+		return p.Low.Sprintf("%s", content)
 	case model.SeverityInfo:
-		return p.Info.Sprintf(content)
+		return p.Info.Sprintf("%s", content)
 	}
 	return content
 }
