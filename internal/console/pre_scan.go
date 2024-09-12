@@ -135,7 +135,7 @@ func newConsole() *console {
 func (console *console) preScan() {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
-		log.Warn().Msgf(warn)
+		log.Warn().Msgf("%s", warn)
 	}
 
 	printer := internalPrinter.NewPrinter(flags.GetBoolFlag(flags.MinimalUIFlag))

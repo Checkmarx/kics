@@ -17,7 +17,7 @@ func getKicsIgnore(comment string) string {
 
 func (i *Info) getIgnoreLines(comment *syntax.Comment) {
 	// get normal comments
-	i.IgnoreLines = append(i.IgnoreLines, int(comment.Hash.Line()))
+	i.IgnoreLines = append(i.IgnoreLines, int(comment.Hash.Line())) //nolint:gosec
 
 	if model.KICSCommentRgxp.MatchString(comment.Text) {
 		kicsIgnore := getKicsIgnore(comment.Text)
@@ -25,10 +25,10 @@ func (i *Info) getIgnoreLines(comment *syntax.Comment) {
 		switch model.CommentCommand(kicsIgnore) {
 		case model.IgnoreLine:
 			// get kics-scan ignore-line
-			i.IgnoreLines = append(i.IgnoreLines, int(comment.Hash.Line())+1)
+			i.IgnoreLines = append(i.IgnoreLines, int(comment.Hash.Line())+1) //nolint:gosec
 		case model.IgnoreBlock:
 			// get kics-scan ignore-block for ignoreFromBlock
-			i.IgnoreBlockLines = append(i.IgnoreBlockLines, int(comment.Pos().Line()))
+			i.IgnoreBlockLines = append(i.IgnoreBlockLines, int(comment.Pos().Line())) //nolint:gosec
 		}
 	}
 }

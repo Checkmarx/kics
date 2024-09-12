@@ -295,7 +295,7 @@ func (p *Printer) PrintBySev(content, sev string) string {
 
 // Bold returns the output in a bold format
 func (p *Printer) Bold(content string) string {
-	return color.Bold.Sprintf(content)
+	return color.Bold.Sprintf("%s", content)
 }
 
 func validQueryID(queryID string) bool {
