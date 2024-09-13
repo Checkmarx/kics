@@ -35,7 +35,7 @@ func ReportSentry(report *Report, shouldLog bool) {
 	})
 
 	if shouldLog {
-		log.Err(report.Err).Msgf(report.Message)
+		log.Err(report.Err).Msgf("%s", report.Message)
 		log.Debug().Msgf("Error Report: \n%+v\n", report.string())
 	}
 }
