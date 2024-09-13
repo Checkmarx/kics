@@ -135,7 +135,7 @@ func newConsole() *console {
 func (console *console) preScan() {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
-		log.Warn().Msgf(warn)
+		log.Warn().Msgf("%s", warn)
 	}
 
 	printer := internalPrinter.NewPrinter(flags.GetBoolFlag(flags.MinimalUIFlag))
@@ -143,7 +143,7 @@ func (console *console) preScan() {
 
 	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
 	fmt.Println(versionMsg)
-	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
+	log.Info().Msgf("%s", strings.ReplaceAll(versionMsg, "\n", ""))
 
 	log.Info().Msgf("Operating system: %s", runtime.GOOS)
 
