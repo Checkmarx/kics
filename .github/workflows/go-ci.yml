@@ -7,7 +7,7 @@ on:
 jobs:
   lint:
     name: lint
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - name: Set up Go
@@ -16,9 +16,9 @@ jobs:
           go-version-file: go.mod
           cache: false
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@a4f60bb28d35aeee14e6880718e0c85ff1882e64 # v6.0.1
+        uses: golangci/golangci-lint-action@aaa42aa0628b4ae2578232a66b541047968fac86 # v6.1.0
         with:
-          version: v1.57.2
+          version: v1.61.0
           args: -c .golangci.yml --timeout 20m
   go-generate:
     name: go-generate
@@ -39,7 +39,7 @@ jobs:
     name: unit-tests
     strategy:
       matrix:
-        go-version: [1.22.x]
+        go-version: [1.23.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
@@ -99,10 +99,13 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - name: Run Gosec Security Scanner
-        uses: securego/gosec@master
+        uses: securego/gosec@6fbd381238e97e1d1f3358f0d6d65de78dcf9245 # v2.20.0
         with:
           args: "-no-fail -fmt sarif -out results.sarif ./..."
+      - name: Show results
+        run: |
+          cat results.sarif
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@2bbafcdd7fbf96243689e764c2f15d9735164f33
         with:
           sarif_file: results.sarif
