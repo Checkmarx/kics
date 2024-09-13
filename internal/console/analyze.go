@@ -77,7 +77,7 @@ func executeAnalyze(analyzeParams *analyzer.Parameters) error {
 	log.Debug().Msg("console.scan()")
 
 	for _, warn := range warnings {
-		log.Warn().Msgf(warn)
+		log.Warn().Msgf("%s", warn)
 	}
 
 	console := newConsole()
