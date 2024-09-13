@@ -255,7 +255,7 @@
 				
 				<option value="file99">github.com/Checkmarx/kics/v2/pkg/progress/progress.go (100.0%)</option>
 				
-				<option value="file100">github.com/Checkmarx/kics/v2/pkg/remediation/remediation.go (84.2%)</option>
+				<option value="file100">github.com/Checkmarx/kics/v2/pkg/remediation/remediation.go (84.5%)</option>
 				
 				<option value="file101">github.com/Checkmarx/kics/v2/pkg/remediation/scan.go (64.8%)</option>
 				
@@ -580,7 +580,7 @@ func executeAnalyze(analyzeParams *analyzer.Parameters) error <span class="cov1"
         log.Debug().Msg("console.scan()")
 
         for _, warn := range warnings </span><span class="cov9" title="20">{
-                log.Warn().Msgf(warn)
+                log.Warn().Msgf("%s", warn)
         }</span>
 
         <span class="cov1" title="1">console := newConsole()
@@ -1790,7 +1790,7 @@ func newConsole() *console <span class="cov5" title="10">{
 func (console *console) preScan() <span class="cov5" title="10">{
         log.Debug().Msg("console.scan()")
         for _, warn := range warnings </span><span class="cov10" title="93">{
-                log.Warn().Msgf(warn)
+                log.Warn().Msgf("%s", warn)
         }</span>
 
         <span class="cov5" title="10">printer := internalPrinter.NewPrinter(flags.GetBoolFlag(flags.MinimalUIFlag))
@@ -1798,7 +1798,7 @@ func (console *console) preScan() <span class="cov5" title="10">{
 
         versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
         fmt.Println(versionMsg)
-        log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
+        log.Info().Msgf("%s", strings.ReplaceAll(versionMsg, "\n", ""))
 
         log.Info().Msgf("Operating system: %s", runtime.GOOS)
 
@@ -2576,13 +2576,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="38">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="49">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="38">total += v
+                <span class="cov9" title="49">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2607,7 +2607,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="15">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2659,7 +2659,7 @@ func ReportSentry(report *Report, shouldLog bool) <span class="cov10" title="186
         }</span>)
 
         <span class="cov10" title="186">if shouldLog </span><span class="cov10" title="186">{
-                log.Err(report.Err).Msgf(report.Message)
+                log.Err(report.Err).Msgf("%s", report.Message)
                 log.Debug().Msgf("Error Report: \n%+v\n", report.string())
         }</span>
 }
@@ -7434,18 +7434,18 @@ func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, gro
 
         for _, group := range groups </span><span class="cov3" title="6">{
                 splitedText := strings.Split(s, "\n")
-                max := -1
+                maxSplit := -1
                 for i, splited := range splitedText </span><span class="cov4" title="21">{
                         if len(groups) &lt; query.Multiline.DetectLineGroup </span><span class="cov4" title="16">{
-                                if strings.Contains(splited, group[query.Multiline.DetectLineGroup]) &amp;&amp; i &gt; max </span><span class="cov0" title="0">{
-                                        max = i
+                                if strings.Contains(splited, group[query.Multiline.DetectLineGroup]) &amp;&amp; i &gt; maxSplit </span><span class="cov0" title="0">{
+                                        maxSplit = i
                                 }</span>
                         }
                 }
-                <span class="cov3" title="6">if max == -1 </span><span class="cov3" title="6">{
+                <span class="cov3" title="6">if maxSplit == -1 </span><span class="cov3" title="6">{
                         continue</span>
                 }
-                <span class="cov0" title="0">secret, newGroups := c.isSecret(strings.Join(append(splitedText[:max], splitedText[max+1:]...), "\n"), query)
+                <span class="cov0" title="0">secret, newGroups := c.isSecret(strings.Join(append(splitedText[:maxSplit], splitedText[maxSplit+1:]...), "\n"), query)
                 if !secret </span><span class="cov0" title="0">{
                         continue</span>
                 }
@@ -20291,12 +20291,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="221">{
+        for variable := range s.varList </span><span class="cov7" title="210">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="578">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="655">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -20720,7 +20720,7 @@ func getKicsIgnore(comment string) string <span class="cov6" title="5">{
 
 func (i *Info) getIgnoreLines(comment *syntax.Comment) <span class="cov9" title="10">{
         // get normal comments
-        i.IgnoreLines = append(i.IgnoreLines, int(comment.Hash.Line()))
+        i.IgnoreLines = append(i.IgnoreLines, int(comment.Hash.Line())) //nolint:gosec
 
         if model.KICSCommentRgxp.MatchString(comment.Text) </span><span class="cov4" title="3">{
                 kicsIgnore := getKicsIgnore(comment.Text)
@@ -20728,10 +20728,10 @@ func (i *Info) getIgnoreLines(comment *syntax.Comment) <span class="cov9" title=
                 switch model.CommentCommand(kicsIgnore) </span>{
                 case model.IgnoreLine:<span class="cov1" title="1">
                         // get kics-scan ignore-line
-                        i.IgnoreLines = append(i.IgnoreLines, int(comment.Hash.Line())+1)</span>
+                        i.IgnoreLines = append(i.IgnoreLines, int(comment.Hash.Line())+1)</span> //nolint:gosec
                 case model.IgnoreBlock:<span class="cov3" title="2">
                         // get kics-scan ignore-block for ignoreFromBlock
-                        i.IgnoreBlockLines = append(i.IgnoreBlockLines, int(comment.Pos().Line()))</span>
+                        i.IgnoreBlockLines = append(i.IgnoreBlockLines, int(comment.Pos().Line()))</span> //nolint:gosec
                 }
         }
 }
@@ -20745,7 +20745,7 @@ func (i *Info) getIgnoreBlockLines(comments []syntax.Comment, start, end int) <s
                         kicsIgnore := getKicsIgnore(comment.Text)
 
                         if model.CommentCommand(kicsIgnore) == model.IgnoreBlock </span><span class="cov1" title="1">{
-                                if int(comment.Hash.Line()) == start-1 </span><span class="cov1" title="1">{
+                                if int(comment.Hash.Line()) == start-1 </span><span class="cov1" title="1">{ //nolint:gosec
                                         i.IgnoreLines = append(i.IgnoreLines, model.Range(start, end)...)
                                         i.IgnoreBlockLines = append(i.IgnoreBlockLines, model.Range(start, end)...)
                                 }</span>
@@ -20909,8 +20909,8 @@ func (i *Info) getStmtInfo(stmt *syntax.Stmt, args []*syntax.Word) Command <span
                         cmd := "buildah " + strings.TrimSpace(getWordValue(args[1]))
                         fullCmd := strings.TrimSpace(getFullCommand(args))
                         value := strings.TrimPrefix(fullCmd, cmd)
-                        start := int(args[0].Pos().Line())
-                        end := int(args[len(args)-1].End().Line())
+                        start := int(args[0].Pos().Line())         //nolint:gosec
+                        end := int(args[len(args)-1].End().Line()) //nolint:gosec
 
                         command = Command{
                                 Cmd:       cmd,
@@ -27433,22 +27433,22 @@ func NewPrinter(minimal bool) *Printer <span class="cov5" title="11">{
 func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" title="88">{
         switch strings.ToUpper(sev) </span>{
         case model.SeverityCritical:<span class="cov6" title="13">
-                return p.Critical.Sprintf(content)</span>
+                return p.Critical.Sprintf("%s", content)</span>
         case model.SeverityHigh:<span class="cov8" title="47">
-                return p.High.Sprintf(content)</span>
+                return p.High.Sprintf("%s", content)</span>
         case model.SeverityMedium:<span class="cov6" title="19">
-                return p.Medium.Sprintf(content)</span>
+                return p.Medium.Sprintf("%s", content)</span>
         case model.SeverityLow:<span class="cov4" title="7">
-                return p.Low.Sprintf(content)</span>
+                return p.Low.Sprintf("%s", content)</span>
         case model.SeverityInfo:<span class="cov1" title="1">
-                return p.Info.Sprintf(content)</span>
+                return p.Info.Sprintf("%s", content)</span>
         }
         <span class="cov1" title="1">return content</span>
 }
 
 // Bold returns the output in a bold format
 func (p *Printer) Bold(content string) string <span class="cov8" title="34">{
-        return color.Bold.Sprintf(content)
+        return color.Bold.Sprintf("%s", content)
 }</span>
 
 func validQueryID(queryID string) bool <span class="cov5" title="8">{
@@ -27849,10 +27849,16 @@ func addition(r *Remediation, lines *[]string) []string <span class="cov1" title
         return remediation</span>
 }
 
+const (
+        FilePermMode = 0600 // File permissions mode with read and write only
+)
+
 func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, similarityID string) []string <span class="cov8" title="3">{
         remediated := []byte(strings.Join(remediatedLines, "\n"))
 
-        if err := os.WriteFile(filePath, remediated, os.ModePerm); err != nil </span><span class="cov0" title="0">{
+        mode := os.FileMode(FilePermMode)
+
+        if err := os.WriteFile(filePath, remediated, mode); err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("failed to write file: %s", err)
                 return lines
         }</span>
@@ -32537,18 +32543,18 @@ func isSecret(line string, rule *secrets.RegexQuery, allowRules *[]secrets.Allow
 
         for _, group := range groups </span><span class="cov1" title="1">{
                 splitedText := strings.Split(line, "\n")
-                max := -1
+                maxSplit := -1
                 for i, splited := range splitedText </span><span class="cov1" title="1">{
                         if len(groups) &lt; rule.Multiline.DetectLineGroup </span><span class="cov0" title="0">{
-                                if strings.Contains(splited, group[rule.Multiline.DetectLineGroup]) &amp;&amp; i &gt; max </span><span class="cov0" title="0">{
-                                        max = i
+                                if strings.Contains(splited, group[rule.Multiline.DetectLineGroup]) &amp;&amp; i &gt; maxSplit </span><span class="cov0" title="0">{
+                                        maxSplit = i
                                 }</span>
                         }
                 }
-                <span class="cov1" title="1">if max == -1 </span><span class="cov1" title="1">{
+                <span class="cov1" title="1">if maxSplit == -1 </span><span class="cov1" title="1">{
                         continue</span>
                 }
-                <span class="cov0" title="0">secret, newGroups := isSecret(strings.Join(append(splitedText[:max], splitedText[max+1:]...), "\n"), rule, allowRules)
+                <span class="cov0" title="0">secret, newGroups := isSecret(strings.Join(append(splitedText[:maxSplit], splitedText[maxSplit+1:]...), "\n"), rule, allowRules)
                 if !secret </span><span class="cov0" title="0">{
                         continue</span>
                 }
@@ -33101,7 +33107,7 @@ func contributionAppeal(customPrint *consolePrinter.Printer, queriesPath []strin
                 msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
                 contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n"
 
-                output := customPrint.ContributionMessage.Sprintf(msg + contributionPage)
+                output := customPrint.ContributionMessage.Sprintf("%s", msg+contributionPage)
                 fmt.Println(output)
         }</span>
 }
@@ -33115,8 +33121,8 @@ func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) <s
         if !s.LatestVersion.Latest </span><span class="cov1" title="1">{
                 message := fmt.Sprintf("A new version 'v%s' of KICS is available, please consider updating", s.LatestVersion.LatestVersionTag)
 
-                fmt.Println(customPrint.VersionMessage.Sprintf(message))
-                log.Warn().Msgf(message)
+                fmt.Println(customPrint.VersionMessage.Sprintf("%s", message))
+                log.Warn().Msgf("%s", message)
         }</span>
 }
 
@@ -33506,7 +33512,7 @@ var randmu sync.Mutex
 const tempDirFormat = 1e9
 
 func reseed() uint32 <span class="cov1" title="1">{
-        return uint32(time.Now().UnixNano() + int64(os.Getpid()))
+        return uint32(int32(time.Now().UnixNano()) + int32(os.Getpid())) //nolint:gosec
 }</span>
 
 // NextRandom returns a random number
