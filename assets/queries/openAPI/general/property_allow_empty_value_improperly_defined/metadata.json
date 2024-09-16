@@ -12,8 +12,7 @@
     "2.0": {
       "id": "0bc1477d-0922-478b-ae16-674a7634a1a8",
       "queryName": "Property 'allowEmptyValue' Improperly Defined (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
     }
   },
   "cloudProvider": "common",

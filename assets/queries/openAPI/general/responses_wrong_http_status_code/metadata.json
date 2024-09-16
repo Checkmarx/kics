@@ -12,8 +12,7 @@
     "2.0": {
       "id": "069a5378-2091-43f0-aa3b-ee8f20996e99",
       "queryName": "Responses With Wrong HTTP Status Code (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
     }
   },
   "cloudProvider": "common",

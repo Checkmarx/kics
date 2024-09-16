@@ -12,8 +12,7 @@
     "2.0": {
       "id": "5f34c7ae-4f3f-4cbb-8fe3-a11d6961062f",
       "queryName": "Default Response Undefined On Operations (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#responses-object",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#responses-object"
     }
   },
   "cwe": "665",

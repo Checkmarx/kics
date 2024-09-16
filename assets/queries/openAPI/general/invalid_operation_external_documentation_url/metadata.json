@@ -12,8 +12,7 @@
     "2.0": {
       "id": "25635c31-ee32-4708-88e5-fced87516f51",
       "queryName": "Invalid Operation External Documentation URL (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#externalDocumentationObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#externalDocumentationObject"
     }
   },
   "cloudProvider": "common",

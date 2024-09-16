@@ -12,8 +12,7 @@
     "2.0": {
       "id": "51978067-3b22-4c29-aaf3-96bf0bc28897",
       "queryName": "Header Parameter Named as 'Content-Type' (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
     }
   },
   "cloudProvider": "common",

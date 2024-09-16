@@ -12,8 +12,7 @@
     "2.0": {
       "id": "d83bebc8-4e5e-4241-b783-cba9fb5a1c9a",
       "queryName": "Invalid Contact Email (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#contactObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#contactObject"
     }
   },
   "cloudProvider": "common",

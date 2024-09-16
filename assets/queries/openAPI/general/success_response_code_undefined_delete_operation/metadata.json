@@ -12,8 +12,7 @@
     "2.0": {
       "id": "ad432855-b7fb-4429-92a3-93b5ce34f0b1",
       "queryName": "Success Response Code Undefined for Delete Operation (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object"
     }
   },
   "cwe": "665",

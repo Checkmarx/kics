@@ -12,8 +12,7 @@
     "2.0": {
       "id": "a1ee6ebe-3877-42ec-b9a6-e524e7d06aa2",
       "queryName": "Operation Without Successful HTTP Status Code (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operationObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#operationObject"
     }
   },
   "cloudProvider": "common",

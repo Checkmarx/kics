@@ -12,8 +12,7 @@
     "2.0": {
       "id": "949376f1-f560-4c6d-a016-63424ca931bb",
       "queryName": "Schema Discriminator Property Not String (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schema-object",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#schema-object"
     }
   },
   "cloudProvider": "common",

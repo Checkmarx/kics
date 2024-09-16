@@ -12,8 +12,7 @@
     "2.0": {
       "id": "967575e5-eb44-4c24-aadb-7e33608ed30a",
       "queryName": "Schema Object is Empty (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
     }
   },
   "cloudProvider": "common",

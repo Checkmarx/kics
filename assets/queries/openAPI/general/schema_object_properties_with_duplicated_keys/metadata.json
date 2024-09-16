@@ -12,8 +12,7 @@
     "2.0": {
       "id": "ded017bf-fb13-4f8d-868b-84aebcc572ad",
       "queryName": "Schema Object Properties With Duplicated Keys (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
     }
   },
   "cloudProvider": "common",

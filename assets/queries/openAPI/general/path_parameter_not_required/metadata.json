@@ -12,8 +12,7 @@
     "2.0": {
       "id": "ccd0613f-cb77-4684-a892-183bd2674d12",
       "queryName": "Path Parameter Not Required (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
     }
   },
   "cloudProvider": "common",

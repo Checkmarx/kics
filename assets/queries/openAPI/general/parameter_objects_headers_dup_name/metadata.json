@@ -12,8 +12,7 @@
     "2.0": {
       "id": "bd2cbef5-62c4-40f1-af07-4b7f9ced6616",
       "queryName": "Parameter Objects Headers With Duplicated Name (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
     }
   },
   "cloudProvider": "common",
