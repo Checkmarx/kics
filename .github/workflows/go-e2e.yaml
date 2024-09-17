@@ -74,10 +74,12 @@ jobs:
         run: |
           pwd
           ls
-      - name: Set Output Permissions as User 65532
+      - name: Create User with UID 65532
         run: |
-          sudo useradd -u 65532 -r -s /bin/bash customuser || true
-      - name: Run commands as user 65532
+          sudo useradd -u 65532 -r -m -d /home/customuser -s /bin/bash customuser || true
+          sudo mkdir -p /home/customuser
+          sudo chown -R customuser:customuser /home/customuser
+      - name: Run commands as UID 65532
         run: |
           sudo su -s /bin/bash -c "pwd && ls" \#65532
       - name: Set Output Permissions
