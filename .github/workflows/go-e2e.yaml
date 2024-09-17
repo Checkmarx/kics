@@ -76,14 +76,11 @@ jobs:
           ls
       - name: Set Output Permissions as User 65532
         run: |
+          sudo useradd -u 65532 -r -s /bin/bash customuser || true
           sudo -u \#65532 chmod -R 777 ./e2e
       - name: Run commands as user 65532
         run: |
           sudo su -s /bin/bash -c "pwd && ls" \#65532
-      - name: Set Output Permissions
-        run: |
-          sudo useradd -u 65532 -r -s /bin/bash customuser || true
-          sudo chmod -R 777 ./e2e
       - name: Run E2E Tests
         env:
           E2E_KICS_DOCKER: kics:e2e-tests-${{ github.sha }}
