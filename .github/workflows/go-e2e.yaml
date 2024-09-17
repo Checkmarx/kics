@@ -82,6 +82,7 @@ jobs:
           sudo su -s /bin/bash -c "pwd && ls" \#65532
       - name: Set Output Permissions
         run: |
+          sudo useradd -u 65532 -r -s /bin/bash customuser || true
           sudo chmod -R 777 ./e2e
       - name: Run E2E Tests
         env:
