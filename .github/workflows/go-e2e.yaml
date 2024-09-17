@@ -14,9 +14,6 @@ jobs:
         os: [ubuntu-latest]
         kics-docker: ["Dockerfile", "docker/Dockerfile.ubi8"]
     runs-on: ${{ matrix.os }}
-    container:
-      image: ${{ matrix.kics-docker }}
-      options: --user 65532
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@85880fa0301c86cca9da44039ee3bb12d3bedbfa # 0.12.1
@@ -77,6 +74,12 @@ jobs:
         run: |
           pwd
           ls
+      - name: Set Output Permissions as User 65532
+        run: |
+          sudo -u \#65532 chmod -R 777 ./e2e
+      - name: Run commands as user 65532
+        run: |
+          sudo su -s /bin/bash -c "pwd && ls" \#65532
       - name: Set Output Permissions
         run: |
           sudo chmod -R 777 ./e2e
