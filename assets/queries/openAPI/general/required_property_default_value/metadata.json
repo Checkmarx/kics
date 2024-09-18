@@ -12,9 +12,9 @@
     "2.0": {
       "id": "f7ab6c83-ef89-40e1-8a99-32e2599fb665",
       "queryName": "Required Property With Default Value (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "710"
 }
