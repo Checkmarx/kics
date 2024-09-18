@@ -12,9 +12,9 @@
     "2.0": {
       "id": "f7fa95b7-d819-484c-9a2b-665dd1bba25e",
       "queryName": "Invalid Schema External Documentation URL (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#externalDocumentationObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#externalDocumentationObject"
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "710"
 }
