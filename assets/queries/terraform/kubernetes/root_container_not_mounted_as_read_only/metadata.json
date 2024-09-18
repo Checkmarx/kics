@@ -7,6 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#read_only_root_filesystem",
   "platform": "Terraform",
   "descriptionID": "b7afed50",
-  "cwe": "",
+  "cwe": "668",
   "cloudProvider": "common"
 }

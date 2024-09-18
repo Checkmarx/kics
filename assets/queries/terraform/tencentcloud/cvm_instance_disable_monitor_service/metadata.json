@@ -8,5 +8,5 @@
   "platform": "Terraform",
   "descriptionID": "e689820e",
   "cloudProvider": "tencentcloud",
-  "cwe": ""
+  "cwe": "778"
 }
