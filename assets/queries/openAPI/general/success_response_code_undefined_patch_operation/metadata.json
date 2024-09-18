@@ -12,10 +12,10 @@
     "2.0": {
       "id": "f36e87cc-a209-4f37-8571-66833e4aead7",
       "queryName": "Success Response Code Undefined for Patch Operation (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object"
     }
   },
-  "cwe": "",
+  "cwe": "665",
+  "cloudProvider": "common",
   "oldSeverity": "MEDIUM"
 }
