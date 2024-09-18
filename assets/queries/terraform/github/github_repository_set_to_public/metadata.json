@@ -7,6 +7,6 @@
   "descriptionUrl": "https://www.terraform.io/docs/providers/github/r/repository.html",
   "platform": "Terraform",
   "descriptionID": "4df8b842",
-  "cwe": "",
+  "cwe": "668",
   "cloudProvider": "common"
 }

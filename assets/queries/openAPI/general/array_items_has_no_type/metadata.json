@@ -16,6 +16,7 @@
       "descriptionText": "Schema/Parameter array items type should be defined"
     }
   },
-  "cwe": "",
+  "cwe": "665",
+  "cloudProvider": "common",
   "oldSeverity": "HIGH"
 }
