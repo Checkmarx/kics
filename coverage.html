@@ -291,7 +291,7 @@
 				
 				<option value="file117">github.com/Checkmarx/kics/v2/pkg/report/model/junit.go (94.4%)</option>
 				
-				<option value="file118">github.com/Checkmarx/kics/v2/pkg/report/model/sarif.go (68.6%)</option>
+				<option value="file118">github.com/Checkmarx/kics/v2/pkg/report/model/sarif.go (71.2%)</option>
 				
 				<option value="file119">github.com/Checkmarx/kics/v2/pkg/report/model/sarif_categories.go (100.0%)</option>
 				
@@ -2576,13 +2576,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="49">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="43">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="49">total += v
+                <span class="cov9" title="43">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2607,7 +2607,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="17">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3248,7 +3248,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
 
         <span class="cov4" title="26">go func() </span><span class="cov4" title="26">{
                 // close channel results when the worker has finished writing into it
-                defer func() </span><span class="cov4" title="26">{
+                defer func() </span><span class="cov4" title="25">{
                         close(unwanted)
                         close(results)
                         close(locCount)
@@ -20291,12 +20291,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="210">{
+        for variable := range s.varList </span><span class="cov7" title="222">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="655">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="674">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -29921,7 +29921,7 @@ type sarifReport struct {
         Runs         []SarifRun `json:"runs"`
 }
 
-func initSarifTool() sarifTool <span class="cov3" title="5">{
+func initSarifTool() sarifTool <span class="cov2" title="5">{
         return sarifTool{
                 Driver: sarifDriver{
                         ToolName:     "KICS",
@@ -29933,12 +29933,12 @@ func initSarifTool() sarifTool <span class="cov3" title="5">{
         }
 }</span>
 
-func initSarifCategories() []taxonomyDefinitions <span class="cov3" title="5">{
+func initSarifCategories() []taxonomyDefinitions <span class="cov2" title="5">{
         allCategories := []taxonomyDefinitions{noCategory}
-        for _, category := range categories </span><span class="cov7" title="75">{
+        for _, category := range categories </span><span class="cov6" title="75">{
                 allCategories = append(allCategories, category)
         }</span>
-        <span class="cov3" title="5">return allCategories</span>
+        <span class="cov2" title="5">return allCategories</span>
 }
 
 // initCweCategories is responsible for building the CWE taxa field, inside taxonomies
@@ -29948,33 +29948,46 @@ func initCweCategories(cweIDs []string, guids map[string]string) []taxonomyDefin
                 return []taxonomyDefinitions{}
         }</span>
 
-        <span class="cov1" title="1">cweCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Software-Development-CWE.csv")
-        cweCsvList, err := readCWECsvInfo(cweCSVPath)
+        <span class="cov1" title="1">cweSDCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Software-Development-CWE.csv")
+        cweSDCsvList, err := readCWECsvInfo(cweSDCSVPath)
+        if err != nil </span><span class="cov0" title="0">{
+                return []taxonomyDefinitions{}
+        }</span>
+
+        <span class="cov1" title="1">cweHDCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Hardware-Design-CWE.csv")
+        cweHDCsvList, err := readCWECsvInfo(cweHDCSVPath)
+        if err != nil </span><span class="cov0" title="0">{
+                return []taxonomyDefinitions{}
+        }</span>
+
+        <span class="cov1" title="1">cweRCCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Research-Concepts-CWE.csv")
+        cweRCCsvList, err := readCWECsvInfo(cweRCCSVPath)
         if err != nil </span><span class="cov0" title="0">{
                 return []taxonomyDefinitions{}
         }</span>
 
         <span class="cov1" title="1">var taxonomyList []taxonomyDefinitions
-        for _, cweID := range cweIDs </span><span class="cov2" title="2">{
+        for _, cweID := range cweIDs </span><span class="cov2" title="4">{
                 var matchingCweEntry cweCsv
+                var found bool
+                matchingCweEntry, found = buildMatchingCWEEntry(cweID, cweSDCsvList)
+                if !found </span><span class="cov1" title="1">{
+                        matchingCweEntry, found = buildMatchingCWEEntry(cweID, cweHDCsvList)
+                }</span>
+                <span class="cov2" title="4">if !found </span><span class="cov0" title="0">{
+                        matchingCweEntry, found = buildMatchingCWEEntry(cweID, cweRCCsvList)
+                }</span>
 
-                for _, cweEntry := range cweCsvList </span><span class="cov3" title="7">{
-                        if cweEntry.CweID == cweID </span><span class="cov2" title="2">{
-                                matchingCweEntry = cweEntry
-                                break</span>
-                        }
-                }
-
-                <span class="cov2" title="2">if matchingCweEntry.CweID == "" </span><span class="cov0" title="0">{
+                <span class="cov2" title="4">if !found </span><span class="cov0" title="0">{
                         continue</span>
                 }
 
-                <span class="cov2" title="2">guid, exists := guids[cweID]
+                <span class="cov2" title="4">guid, exists := guids[cweID]
                 if !exists </span><span class="cov0" title="0">{
                         continue</span>
                 }
 
-                <span class="cov2" title="2">taxonomy := taxonomyDefinitions{
+                <span class="cov2" title="4">taxonomy := taxonomyDefinitions{
                         DefinitionID:               matchingCweEntry.CweID,
                         DefinitionGUID:             guid,
                         DefinitionFullDescription:  matchingCweEntry.FullDescription,
@@ -29987,11 +30000,11 @@ func initCweCategories(cweIDs []string, guids map[string]string) []taxonomyDefin
         <span class="cov1" title="1">return taxonomyList</span>
 }
 
-func initSarifTaxonomies() []sarifTaxonomy <span class="cov3" title="5">{
+func initSarifTaxonomies() []sarifTaxonomy <span class="cov2" title="5">{
         var taxonomies []sarifTaxonomy
         // Categories
 
-        if targetTemplate.ToolComponent.ComponentReferenceName == "Categories" </span><span class="cov3" title="5">{
+        if targetTemplate.ToolComponent.ComponentReferenceName == "Categories" </span><span class="cov2" title="5">{
                 categories := sarifTaxonomy{
                         TaxonomyGUID: targetTemplate.ToolComponent.ComponentReferenceGUID,
                         TaxonomyName: targetTemplate.ToolComponent.ComponentReferenceName,
@@ -30006,11 +30019,9 @@ func initSarifTaxonomies() []sarifTaxonomy <span class="cov3" title="5">{
                 taxonomies = append(taxonomies, categories)
         }</span>
 
-        <span class="cov3" title="5">cweInfoPath := filepath.Join(".", "assets", "cwe_csv", "cwe_taxonomies_latest.json")
-
-        if cweTemplate.ToolComponent.ComponentReferenceName == "CWE" </span><span class="cov3" title="5">{
-                cweInfo, err := readCWEInfo(cweInfoPath)
-                if err != nil </span><span class="cov3" title="5">{
+        <span class="cov2" title="5">if cweTemplate.ToolComponent.ComponentReferenceName == "CWE" </span><span class="cov2" title="5">{
+                cweInfo, err := readCWETaxonomyInfo()
+                if err != nil </span><span class="cov2" title="5">{
                         return taxonomies
                 }</span>
                 <span class="cov0" title="0">cweTaxonomy := sarifTaxonomy{
@@ -30033,7 +30044,7 @@ func initSarifTaxonomies() []sarifTaxonomy <span class="cov3" title="5">{
         <span class="cov0" title="0">return taxonomies</span>
 }
 
-func initSarifRun() []SarifRun <span class="cov3" title="5">{
+func initSarifRun() []SarifRun <span class="cov2" title="5">{
         return []SarifRun{
                 {
                         Tool:       initSarifTool(),
@@ -30044,7 +30055,7 @@ func initSarifRun() []SarifRun <span class="cov3" title="5">{
 }</span>
 
 // NewSarifReport creates and start a new sarif report with default values respecting SARIF schema 2.1.0
-func NewSarifReport() SarifReport <span class="cov3" title="4">{
+func NewSarifReport() SarifReport <span class="cov2" title="4">{
         return &amp;sarifReport{
                 Schema:       "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
                 SarifVersion: "2.1.0",
@@ -30053,7 +30064,7 @@ func NewSarifReport() SarifReport <span class="cov3" title="4">{
 }</span>
 
 func (sr *sarifReport) findSarifCategory(category string) int <span class="cov2" title="3">{
-        for idx, taxonomy := range sr.Runs[0].Taxonomies[0].TaxonomyDefinitions </span><span class="cov6" title="48">{
+        for idx, taxonomy := range sr.Runs[0].Taxonomies[0].TaxonomyDefinitions </span><span class="cov5" title="48">{
                 if taxonomy.DefinitionName == category </span><span class="cov0" title="0">{
                         return idx
                 }</span>
@@ -30061,11 +30072,17 @@ func (sr *sarifReport) findSarifCategory(category string) int <span class="cov2"
         <span class="cov2" title="3">return 0</span>
 }
 
-// readCWEInfo is responsible for reading the CWE taxonomy info from the json file
-func readCWEInfo(filePath string) (sarifTaxonomy, error) <span class="cov4" title="8">{
+// readCWETaxonomyInfo is responsible for reading the CWE taxonomy info from the json file
+func readCWETaxonomyInfo() (sarifTaxonomy, error) <span class="cov2" title="5">{
         var wrapper cweTaxonomiesWrapper
+        absPath, err := filepath.Abs(".")
+        if err != nil </span><span class="cov0" title="0">{
+                return sarifTaxonomy{}, err
+        }</span>
+
+        <span class="cov2" title="5">filePath := filepath.Join(absPath, "assets", "cwe_csv", "cwe_taxonomies_latest.json")
         fileContent, err := os.ReadFile(filepath.Clean(filePath))
-        if err != nil </span><span class="cov4" title="8">{
+        if err != nil </span><span class="cov2" title="5">{
                 return sarifTaxonomy{}, err
         }</span>
 
@@ -30077,18 +30094,18 @@ func readCWEInfo(filePath string) (sarifTaxonomy, error) <span class="cov4" titl
         <span class="cov0" title="0">return wrapper.Taxonomies, nil</span>
 }
 
-func generateGUID() string <span class="cov10" title="400">{
+func generateGUID() string <span class="cov10" title="1448">{
         id := uuid.New()
         return id.String()
 }</span>
 
 // readCWECsvInfo is responsible for reading the CWE taxonomy info from the corresponding csv file
-func readCWECsvInfo(filePath string) ([]cweCsv, error) <span class="cov1" title="1">{
+func readCWECsvInfo(filePath string) ([]cweCsv, error) <span class="cov3" title="6">{
         file, err := os.Open(filepath.Clean(filePath))
-        if err != nil </span><span class="cov0" title="0">{
+        if err != nil </span><span class="cov2" title="3">{
                 return nil, err
         }</span>
-        <span class="cov1" title="1">defer file.Close()
+        <span class="cov2" title="3">defer file.Close()
 
         reader := csv.NewReader(file)
         reader.FieldsPerRecord = -1 // Note: -1 means records may have a variable number of fields in the csv file
@@ -30098,11 +30115,11 @@ func readCWECsvInfo(filePath string) ([]cweCsv, error) <span class="cov1" title=
                 return nil, err
         }</span>
 
-        <span class="cov1" title="1">var cweEntries []cweCsv
+        <span class="cov2" title="3">var cweEntries []cweCsv
         numRecords := 23
 
-        for _, record := range records </span><span class="cov10" title="400">{
-                if len(record) &gt;= numRecords </span><span class="cov10" title="400">{
+        for _, record := range records </span><span class="cov10" title="1448">{
+                if len(record) &gt;= numRecords </span><span class="cov10" title="1448">{
                         cweEntry := cweCsv{
                                 CweID: record[0],
                                 FullDescription: cweMessage{
@@ -30116,56 +30133,77 @@ func readCWECsvInfo(filePath string) ([]cweCsv, error) <span class="cov1" title=
                         }
 
                         // Check if Extended Description is empty, fill it with Description if so
-                        if cweEntry.FullDescription.Text == "" </span><span class="cov7" title="98">{
+                        if cweEntry.FullDescription.Text == "" </span><span class="cov8" title="334">{
                                 cweEntry.FullDescription.Text = record[4]
                         }</span>
 
-                        <span class="cov10" title="400">cweEntries = append(cweEntries, cweEntry)</span>
+                        <span class="cov10" title="1448">cweEntries = append(cweEntries, cweEntry)</span>
                 }
         }
 
-        <span class="cov1" title="1">return cweEntries, nil</span>
+        <span class="cov2" title="3">return cweEntries, nil</span>
+}
+
+func getAllCweInfos() (cweSD, cweHD, cweRC []cweCsv, cweErr error) <span class="cov2" title="3">{
+        var cweToFileName = map[string]string{
+                "SD": "Software-Development-CWE.csv",
+                "HD": "Hardware-Design-CWE.csv",
+                "RC": "Research-Concepts-CWE.csv",
+        }
+        mapCweInfos := map[string][]cweCsv{}
+        absPath, err := filepath.Abs(".")
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, nil, nil, err
+        }</span>
+
+        <span class="cov2" title="3">for cweKey, cweFileName := range cweToFileName </span><span class="cov2" title="3">{
+                cweInfoPath := filepath.Join(absPath, "assets", "cwe_csv", cweFileName)
+
+                cweInfo, err := readCWECsvInfo(cweInfoPath)
+                if err != nil </span><span class="cov2" title="3">{
+                        return nil, nil, nil, err
+                }</span>
+
+                <span class="cov0" title="0">mapCweInfos[cweKey] = cweInfo</span>
+        }
+        <span class="cov0" title="0">return mapCweInfos["SD"], mapCweInfos["HD"], mapCweInfos["RC"], nil</span>
+}
+
+func buildMatchingCWEEntry(cweID string, cweCSVList []cweCsv) (cweInfos cweCsv, found bool) <span class="cov2" title="5">{
+        for _, cweEntry := range cweCSVList </span><span class="cov9" title="787">{
+                if cweEntry.CweID == cweID </span><span class="cov2" title="4">{
+                        return cweEntry, true
+                }</span>
+        }
+        <span class="cov1" title="1">return cweCsv{}, false</span>
 }
 
 // buildCweCategory builds the CWE category in taxonomies, with info from CWE and CSV
 func (sr *sarifReport) buildCweCategory(cweID string) sarifDescriptorReference <span class="cov2" title="3">{
-        absPath, err := filepath.Abs(".")
-        if err != nil </span><span class="cov0" title="0">{
-                return sarifDescriptorReference{}
-        }</span>
-
-        <span class="cov2" title="3">cweInfoPath := filepath.Join(absPath, "assets", "cwe_csv", "cwe_taxonomies_latest.json")
-        cweCSVPath := filepath.Join(absPath, "assets", "cwe_csv", "Software-Development-CWE.csv")
-
-        cweInfo, err := readCWEInfo(cweInfoPath)
+        cweSDCsvList, cweHDCsvList, cweRCCsvList, err := getAllCweInfos()
         if err != nil </span><span class="cov2" title="3">{
                 return sarifDescriptorReference{}
         }</span>
 
-        <span class="cov0" title="0">_ = cweInfo
-
-        cweCsvList, err := readCWECsvInfo(cweCSVPath)
-        if err != nil </span><span class="cov0" title="0">{
-                return sarifDescriptorReference{}
-        }</span>
-
         <span class="cov0" title="0">var matchingCweEntry cweCsv
-        for _, cweEntry := range cweCsvList </span><span class="cov0" title="0">{
-                if cweEntry.CweID == cweID </span><span class="cov0" title="0">{
-                        matchingCweEntry = cweEntry
-                        break</span>
-                }
-        }
+        var found bool
 
-        <span class="cov0" title="0">if matchingCweEntry.CweID == "" </span><span class="cov0" title="0">{
+        matchingCweEntry, found = buildMatchingCWEEntry(cweID, cweSDCsvList)
+        if !found </span><span class="cov0" title="0">{
+                matchingCweEntry, found = buildMatchingCWEEntry(cweID, cweHDCsvList)
+        }</span>
+
+        <span class="cov0" title="0">if !found </span><span class="cov0" title="0">{
+                matchingCweEntry, found = buildMatchingCWEEntry(cweID, cweRCCsvList)
+        }</span>
+
+        <span class="cov0" title="0">if !found </span><span class="cov0" title="0">{
                 return sarifDescriptorReference{}
         }</span>
 
-        <span class="cov0" title="0">newGUID := generateGUID()
-
-        cwe := sarifDescriptorReference{
+        <span class="cov0" title="0">cwe := sarifDescriptorReference{
                 ReferenceID:   matchingCweEntry.CweID,
-                ReferenceGUID: newGUID,
+                ReferenceGUID: generateGUID(),
                 ToolComponent: sarifComponentReference{
                         ComponentReferenceGUID: "1489b0c4-d7ce-4d31-af66-6382a01202e3",
                         ComponentReferenceName: "CWE",
@@ -30285,7 +30323,7 @@ func (sr *sarifReport) RebuildTaxonomies(cwes []string, guids map[string]string)
 }
 
 // BuildSarifIssue creates a new entries in Results (one for each file) and new entry in Rules and Taxonomy if necessary
-func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string <span class="cov3" title="4">{
+func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string <span class="cov2" title="4">{
         if len(issue.Files) &gt; 0 </span><span class="cov2" title="3">{
                 metadata := ruleMetadata{
                         queryID:          issue.QueryID,
