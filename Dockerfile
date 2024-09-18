@@ -31,7 +31,7 @@ USER nonroot
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/bash:latest
+FROM cgr.dev/chainguard/busybox:latest
 
 ENV TERM xterm-256color
 
