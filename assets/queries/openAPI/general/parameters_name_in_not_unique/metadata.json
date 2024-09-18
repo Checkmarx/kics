@@ -12,9 +12,9 @@
     "2.0": {
       "id": "ab871897-ec02-4835-9818-702536ee1dda",
       "queryName": "Parameters Name In Combination Not Unique (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#parameterObject"
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "20"
 }

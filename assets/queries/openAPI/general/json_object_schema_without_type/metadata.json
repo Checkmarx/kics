@@ -12,9 +12,9 @@
     "2.0": {
       "id": "62d52544-82ef-4b75-8308-cad49d50212b",
       "queryName": "JSON Object Schema Without Type (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "20"
 }
