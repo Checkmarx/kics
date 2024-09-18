@@ -7,7 +7,7 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#privileged",
   "platform": "Terraform",
   "descriptionID": "5ca96212",
-  "cwe": "",
+  "cwe": "732",
   "cloudProvider": "common",
   "oldSeverity": "MEDIUM"
 }
