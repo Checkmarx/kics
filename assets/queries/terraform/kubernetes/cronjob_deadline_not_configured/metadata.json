@@ -7,6 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cron_job#starting_deadline_seconds",
   "platform": "Terraform",
   "descriptionID": "030edc62",
-  "cwe": "",
+  "cwe": "400",
   "cloudProvider": "common"
 }

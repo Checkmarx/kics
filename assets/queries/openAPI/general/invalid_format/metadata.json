@@ -12,9 +12,9 @@
     "2.0": {
       "id": "caf1793e-95dd-4b18-8d90-8f3c0ab5bddf",
       "queryName": "Invalid Format (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/"
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "665"
 }

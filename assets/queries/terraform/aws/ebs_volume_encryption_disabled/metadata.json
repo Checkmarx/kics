@@ -8,6 +8,6 @@
   "platform": "Terraform",
   "descriptionID": "977695a1",
   "cloudProvider": "aws",
-  "cwe": "",
+  "cwe": "311",
   "oldSeverity": "MEDIUM"
 }

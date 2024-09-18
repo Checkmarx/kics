@@ -12,10 +12,10 @@
     "2.0": {
       "id": "6e96ed39-bf45-4089-99ba-f1fe7cf6966f",
       "queryName": "Response Code Missing (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object"
     }
   },
-  "cwe": "",
+  "cwe": "665",
+  "cloudProvider": "common",
   "oldSeverity": "MEDIUM"
 }
