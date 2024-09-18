@@ -12,9 +12,9 @@
     "2.0": {
       "id": "609cd557-66b4-41fa-8edd-2abc6c7cfd08",
       "queryName": "Path Without Operation (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#pathItemObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#pathItemObject"
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "710"
 }

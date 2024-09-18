@@ -3,9 +3,10 @@
   "queryName": "Operation Object Without 'produces'",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
-  "descriptionText": "Operation Object should have 'produces' feild defined for 'GET'operation",
+  "descriptionText": "Operation Object should have 'produces' field defined for 'GET'operation",
   "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
   "platform": "OpenAPI",
   "descriptionID": "1736226c",
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "665"
 }
