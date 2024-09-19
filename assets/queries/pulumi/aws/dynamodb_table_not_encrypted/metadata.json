@@ -8,6 +8,6 @@
   "platform": "Pulumi",
   "descriptionID": "fb6a0c51",
   "cloudProvider": "aws",
-  "cwe": "",
+  "cwe": "311",
   "oldSeverity": "MEDIUM"
 }

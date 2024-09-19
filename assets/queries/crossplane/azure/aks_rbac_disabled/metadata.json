@@ -8,5 +8,5 @@
   "platform": "Crossplane",
   "descriptionID": "b9f4440e",
   "cloudProvider": "azure",
-  "cwe": ""
+  "cwe": "311"
 }
