@@ -7,5 +7,6 @@
   "descriptionUrl": "https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/#understanding-the-encryption-at-rest-configuration",
   "platform": "Kubernetes",
   "descriptionID": "c60a5ece",
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "311"
 }
