@@ -8,6 +8,6 @@
   "platform": "CloudFormation",
   "descriptionID": "a85a7099",
   "cloudProvider": "aws",
-  "cwe": "",
+  "cwe": "668",
   "oldSeverity": "MEDIUM"
 }

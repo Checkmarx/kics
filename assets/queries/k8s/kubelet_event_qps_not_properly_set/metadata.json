@@ -7,5 +7,6 @@
   "descriptionUrl": "https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/",
   "platform": "Kubernetes",
   "descriptionID": "3163b76e",
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "778"
 }
