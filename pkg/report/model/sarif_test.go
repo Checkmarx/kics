@@ -346,10 +346,12 @@ func TestBuildSarifIssue(t *testing.T) {
 }
 
 func TestInitCweCategories(t *testing.T) {
-	cweIDs := []string{"22", "41"}
-	guids := map[string]string{"22": "1489b0c4-d7ce-4d31-af66-6382a01202e3", "41": "1489b0c4-d7ce-4d31-af66-6382a01202e4"}
+	cweIDs := []string{"22", "41", "203", "1188"}
+	guids := map[string]string{"22": "1489b0c4-d7ce-4d31-af66-6382a01202e3", "41": "1489b0c4-d7ce-4d31-af66-6382a01202e4", "203": "1489b0c4-d7ce-4d31-af66-6382a01202e5", "1188": "1489b0c4-d7ce-4d31-af66-6382a01202e6"}
 	expectedShortDescription22 := "The product uses external input to construct a pathname that is intended to identify a file or directory that is located underneath a restricted parent directory, but the product does not properly neutralize special elements within the pathname that can cause the pathname to resolve to a location that is outside of the restricted directory."
 	expectedShortDescription41 := "The product is vulnerable to file system contents disclosure through path equivalence. Path equivalence involves the use of special characters in file and directory names. The associated manipulations are intended to generate multiple names for the same object."
+	expectedShortDescription203 := "The product behaves differently or sends different responses under different circumstances in a way that is observable to an unauthorized actor, which exposes security-relevant information about the state of the product, such as whether a particular operation was successful or not."
+	expectedShortDescription1188 := "The product initializes or sets a resource with a default that is intended to be changed by the administrator, but the default is not secure."
 
 	currentDir, err := os.Getwd()
 	if err != nil {
@@ -366,7 +368,7 @@ func TestInitCweCategories(t *testing.T) {
 
 	result := initCweCategories(cweIDs, guids)
 
-	require.Len(t, result, 2)
+	require.Len(t, result, 4)
 	// Test for CWE-ID 22
 	require.Equal(t, "22", result[0].DefinitionID)
 	require.Equal(t, "1489b0c4-d7ce-4d31-af66-6382a01202e3", result[0].DefinitionGUID)
@@ -377,4 +379,14 @@ func TestInitCweCategories(t *testing.T) {
 	require.Equal(t, "1489b0c4-d7ce-4d31-af66-6382a01202e4", result[1].DefinitionGUID)
 	require.Equal(t, expectedShortDescription41, result[1].DefinitionShortDescription.Text)
 	require.Equal(t, "https://cwe.mitre.org/data/definitions/41.html", result[1].HelpURI)
+	// Test for CWE-ID 203
+	require.Equal(t, "203", result[2].DefinitionID)
+	require.Equal(t, "1489b0c4-d7ce-4d31-af66-6382a01202e5", result[2].DefinitionGUID)
+	require.Equal(t, expectedShortDescription203, result[2].DefinitionShortDescription.Text)
+	require.Equal(t, "https://cwe.mitre.org/data/definitions/203.html", result[2].HelpURI)
+	// Test for CWE-ID 1188
+	require.Equal(t, "1188", result[3].DefinitionID)
+	require.Equal(t, "1489b0c4-d7ce-4d31-af66-6382a01202e6", result[3].DefinitionGUID)
+	require.Equal(t, expectedShortDescription1188, result[3].DefinitionShortDescription.Text)
+	require.Equal(t, "https://cwe.mitre.org/data/definitions/1188.html", result[3].HelpURI)
 }

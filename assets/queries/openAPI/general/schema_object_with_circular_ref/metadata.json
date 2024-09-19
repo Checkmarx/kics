@@ -12,9 +12,9 @@
     "2.0": {
       "id": "cbff2508-85c9-4448-a8b3-770070edf5ca",
       "queryName": "Schema Object With Circular Ref (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#definitionsObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#definitionsObject"
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "20"
 }

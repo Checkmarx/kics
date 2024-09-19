@@ -8,5 +8,5 @@
   "platform": "CloudFormation",
   "descriptionID": "a4bd80b0",
   "cloudProvider": "aws",
-  "cwe": ""
+  "cwe": "284"
 }
