@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-pointintimerecoveryspecification.html",
   "platform": "CloudFormation",
   "descriptionID": "a0a51171",
-  "cloudProvider": "aws"
+  "cloudProvider": "aws",
+  "cwe": "710"
 }
