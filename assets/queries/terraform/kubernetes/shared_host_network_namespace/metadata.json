@@ -7,6 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#host_network",
   "platform": "Terraform",
   "descriptionID": "bf155ca7",
-  "cwe": "",
+  "cwe": "200",
   "cloudProvider": "common"
 }

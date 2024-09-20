@@ -32,6 +32,7 @@
       "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html",
       "severity": "MEDIUM",
       "platform": "CloudFormation",
+      "cwe": "665",
       "cloud_provider": "AWS",
       "category": "Networking and Firewall",
       "experimental": false,
