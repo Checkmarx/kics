@@ -7,5 +7,7 @@
   "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#network_mode",
   "platform": "DockerCompose",
   "descriptionID": "25acba10",
-  "cwe": ""
+  "cloudProvider": "common",
+  "oldSeverity": "MEDIUM",
+  "cwe": "668"
 }

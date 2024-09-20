@@ -14,7 +14,7 @@
     {
       "queryName": "Volume Has Sensitive Host Directory",
       "severity": "HIGH",
-      "line": 12,
+      "line": 14,
       "filename": "positive3.yaml"
     },
     {
