@@ -1,0 +1,12 @@
+{
+  "id": "6425c98b-ca4e-41fe-896a-c78772c131f8",
+  "queryName": "PostgreSQL Server Infrastructure Encryption Disabled",
+  "severity": "LOW",
+  "category": "Encryption",
+  "descriptionText": "PostgreSQL Server Infrastructure Encryption should be enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server#infrastructure_encryption_enabled",
+  "platform": "Terraform",
+  "descriptionID": "b982dca0",
+  "cloudProvider": "azure",
+  "cwe": "311"
+}

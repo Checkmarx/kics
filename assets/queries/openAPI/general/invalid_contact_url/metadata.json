@@ -12,9 +12,9 @@
     "2.0": {
       "id": "c7000383-16d0-4509-8cd3-585e5ea2e2f2",
       "queryName": "Invalid Contact URL (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#contactObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#contactObject"
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "710"
 }

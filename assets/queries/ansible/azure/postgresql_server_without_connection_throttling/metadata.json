@@ -1,0 +1,12 @@
+{
+  "id": "a9becca7-892a-4af7-b9e1-44bf20a4cd9a",
+  "queryName": "PostgreSQL Server Without Connection Throttling",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensure that Connection Throttling is set for the PostgreSQL server",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html",
+  "platform": "Ansible",
+  "descriptionID": "47504c54",
+  "cloudProvider": "azure",
+  "cwe": "770"
+}

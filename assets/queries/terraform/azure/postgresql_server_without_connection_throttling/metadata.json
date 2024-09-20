@@ -1,0 +1,12 @@
+{
+  "id": "2b3c671f-1b76-4741-8789-ed1fe0785dc4",
+  "queryName": "PostgreSQL Server Without Connection Throttling",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensure that Connection Throttling is set for the PostgreSQL server",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
+  "platform": "Terraform",
+  "descriptionID": "6f6649db",
+  "cloudProvider": "azure",
+  "cwe": "770"
+}
