@@ -7,6 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/stateful_set#selector",
   "platform": "Terraform",
   "descriptionID": "efa415db",
-  "cwe": "",
+  "cwe": "754",
   "cloudProvider": "common"
 }

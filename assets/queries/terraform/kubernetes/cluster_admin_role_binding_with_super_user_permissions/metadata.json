@@ -7,6 +7,6 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/cluster_role_binding#name",
   "platform": "Terraform",
   "descriptionID": "3cfeabe4",
-  "cwe": "",
+  "cwe": "250",
   "cloudProvider": "common"
 }

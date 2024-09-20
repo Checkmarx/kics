@@ -316,18 +316,18 @@ func (c *Inspector) isSecret(s string, query *RegexQuery) (isSecretRet bool, gro
 
 	for _, group := range groups {
 		splitedText := strings.Split(s, "\n")
-		max := -1
+		maxSplit := -1
 		for i, splited := range splitedText {
 			if len(groups) < query.Multiline.DetectLineGroup {
-				if strings.Contains(splited, group[query.Multiline.DetectLineGroup]) && i > max {
-					max = i
+				if strings.Contains(splited, group[query.Multiline.DetectLineGroup]) && i > maxSplit {
+					maxSplit = i
 				}
 			}
 		}
-		if max == -1 {
+		if maxSplit == -1 {
 			continue
 		}
-		secret, newGroups := c.isSecret(strings.Join(append(splitedText[:max], splitedText[max+1:]...), "\n"), query)
+		secret, newGroups := c.isSecret(strings.Join(append(splitedText[:maxSplit], splitedText[maxSplit+1:]...), "\n"), query)
 		if !secret {
 			continue
 		}
@@ -527,6 +527,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 				VulnLines:        hideSecret(&linesVuln, issueLine, query, &c.SecretTracker),
 				IssueType:        "RedundantAttribute",
 				Platform:         SecretsQueryMetadata["platform"],
+				CWE:              SecretsQueryMetadata["cwe"],
 				Severity:         model.SeverityHigh,
 				QueryURI:         SecretsQueryMetadata["descriptionUrl"],
 				Category:         SecretsQueryMetadata["category"],

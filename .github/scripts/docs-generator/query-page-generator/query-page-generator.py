@@ -181,12 +181,20 @@ def generate_md_docs(queries_database : str, output_path : str, template_file_pa
         doc_template = f.read()
 
     for key, query_data in queries_database.items():
+        cwe = query_data.get('cwe', '')
+        if cwe == '':
+            cwe = 'Ongoing'
+        else:
+            cwe_url = f'https://cwe.mitre.org/data/definitions/{cwe}.html'
+            cwe = f'<a href="{cwe_url}" onclick="newWindowOpenerSafe(event, \'{cwe_url}\')">{cwe}</a>'
+
         query_doc = doc_template
         query_doc = doc_template.replace('<QUERY_ID>', key).replace(
             '<QUERY_NAME>', query_data.get('queryName')).replace(
             '<PLATFORM>', query_data.get('platform')).replace(
             '<SEVERITY>', format_severity(query_data.get('severity'))).replace(
             '<CATEGORY>', query_data.get('category')).replace(
+            '<CWE>', cwe).replace(
             '<GITHUB_URL>', query_data.get('githubUrl')).replace(
             '<DESCRIPTION_TEXT>', query_data.get('descriptionText')).replace(
             '<DESCRIPTION_URL>', query_data.get('descriptionUrl')).replace(

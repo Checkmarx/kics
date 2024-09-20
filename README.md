@@ -262,9 +262,9 @@ KICS is used by various companies and organizations, some are listed below. If y
 -   [Firefly](https://www.firefly.ai/) ([Firefly Integrates With Checkmarx's KICS](https://www.firefly.ai/blog/firefly-integrates-with-checkmarxs-kics-to-enable-seamless-cloud-governance-from-code-to-cloud))
 -   [Redpanda](https://redpanda.com/)
 -   [Keptn](https://github.com/keptn) / [Keptn Lifecycle Toolkit](https://keptn.sh)
-
+ 
 **Keeping Infrastructure as Code Secure!**
-
+ 
 ---
 
 &copy; 2024 Checkmarx Ltd. All Rights Reserved.

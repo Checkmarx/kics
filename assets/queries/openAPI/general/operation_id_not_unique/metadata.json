@@ -12,9 +12,9 @@
     "2.0": {
       "id": "21245007-91c4-40e5-964e-40c85d1e5aa6",
       "queryName": "OperationId Not Unique (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operationObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#operationObject"
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "665"
 }

@@ -12,9 +12,9 @@
     "2.0": {
       "id": "b2468463-3ac4-4930-890c-f35b2bf4485d",
       "queryName": "Path Is Ambiguous (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#pathItemObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#pathItemObject"
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "20"
 }
