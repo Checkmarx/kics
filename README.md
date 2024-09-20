@@ -264,7 +264,7 @@ KICS is used by various companies and organizations, some are listed below. If y
 -   [Keptn](https://github.com/keptn) / [Keptn Lifecycle Toolkit](https://keptn.sh)
  
 **Keeping Infrastructure as Code Secure!**
- 
+
 ---
 
 &copy; 2024 Checkmarx Ltd. All Rights Reserved.
