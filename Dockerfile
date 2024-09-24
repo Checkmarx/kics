@@ -1,4 +1,4 @@
-FROM checkmarx/go-fips:1.22.7-r0 as build_env
+FROM checkmarx/go-fips:1.22.7-r0@sha256:3f05240c34de4f1ba1259368f980ba615c4198cb0594493dfa3a477363dac1cf as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -31,7 +31,7 @@ USER nonroot
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM checkmarx/git-fips:2.46.0-r0
+FROM checkmarx/git-fips:2.46.0-r0@sha256:455fa5c3e1d8f64ef004b111b9a90e90225f919b95c9c18c38765937d9a217e3
 
 ENV TERM xterm-256color
 
