@@ -1,0 +1,13 @@
+{
+  "id": "0bc534c5-13d1-4353-a7fe-b8665d5c1d7d",
+  "queryName": "Dynamodb VPC Endpoint Without Route Table Association",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "Dynamodb VPC Endpoint should be associated with Route Table Association",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint#vpc_id",
+  "platform": "Terraform",
+  "descriptionID": "e4334087",
+  "cloudProvider": "aws",
+  "cwe": "285",
+  "oldSeverity": "MEDIUM"
+}

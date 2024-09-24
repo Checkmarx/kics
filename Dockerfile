@@ -1,4 +1,4 @@
-FROM cgr.dev/chainguard/go:latest as build_env
+FROM checkmarx/go-fips:1.22.7-r0 as build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -31,7 +31,7 @@ USER nonroot
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/busybox:latest
+FROM checkmarx/git-fips:2.46.0-r0
 
 ENV TERM xterm-256color
 

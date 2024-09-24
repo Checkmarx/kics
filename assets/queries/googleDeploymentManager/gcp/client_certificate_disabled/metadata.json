@@ -8,5 +8,5 @@
   "platform": "GoogleDeploymentManager",
   "descriptionID": "e74562aa",
   "cloudProvider": "gcp",
-  "cwe": ""
+  "cwe": "1188"
 }

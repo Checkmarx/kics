@@ -1,0 +1,13 @@
+{
+  "id": "bf500309-da53-4dd3-bcf7-95f7974545a5",
+  "queryName": "PostgreSQL Database Server SSL Disabled",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Microsoft.DBforPostgreSQL/servers sslEnforcement property should be set to 'Enabled'",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/2017-12-01/servers?tabs=json",
+  "platform": "AzureResourceManager",
+  "descriptionID": "67cfaa3b",
+  "cloudProvider": "azure",
+  "cwe": "732",
+  "oldSeverity": "HIGH"
+}

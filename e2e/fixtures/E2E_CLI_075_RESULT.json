@@ -32,6 +32,7 @@
 			"query_url": "https://docs.ansible.com/ansible-tower/latest/html/administration/security_best_practices.html#understand-the-architecture-of-ansible-and-tower",
 			"severity": "MEDIUM",
 			"platform": "Ansible",
+			"cwe": "668",
 			"cloud_provider": "COMMON",
 			"category": "Best Practices",
 			"experimental": false,

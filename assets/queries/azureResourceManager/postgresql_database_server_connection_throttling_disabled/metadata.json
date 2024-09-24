@@ -1,0 +1,12 @@
+{
+  "id": "a6d774b6-d9ea-4bf4-8433-217bf15d2fb8",
+  "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Microsoft.DBforPostgreSQL/servers/configurations should have 'connection_throttling' property set to 'on'",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/servers/configurations?tabs=json",
+  "platform": "AzureResourceManager",
+  "descriptionID": "2eb0e3a8",
+  "cloudProvider": "azure",
+  "cwe": "770"
+}

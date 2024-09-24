@@ -7,5 +7,6 @@
   "descriptionUrl": "https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml#logs",
   "platform": "ServerlessFW",
   "descriptionID": "15262598",
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "778"
 }

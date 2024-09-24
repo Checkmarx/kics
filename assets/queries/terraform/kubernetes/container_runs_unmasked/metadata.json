@@ -7,7 +7,7 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_security_policy#allowed_proc_mount_types",
   "platform": "Terraform",
   "descriptionID": "bbb3aa40",
-  "cwe": "",
+  "cwe": "1188",
   "cloudProvider": "common",
   "oldSeverity": "MEDIUM"
 }
