@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.38">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.35f28582.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -1914,19 +1914,19 @@
 <p>There are multiple ways to get KICS up and running:</p>
 <h4 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h4>
 <p>KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> and can be used as follows:</p>
-<p>To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see Scan Command Options section below)</p>
+<p>To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the <code>-p</code> KICS parameter (see Scan Command Options section below)</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>checkmarx/kics:latest
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-t<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;{path_to_host_folder_to_scan}&quot;</span>:/path<span class="w"> </span>checkmarx/kics<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span>/path<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;/path/&quot;</span>
 </code></pre></div>
 <p>You can see the list of available tags in <a href="https://hub.docker.com/r/checkmarx/kics/tags?page=1&amp;ordering=-name">dockerhub</a></p>
 <p>ℹ️ <strong>UBI Based Images</strong></p>
-<p>When using <a href="https://catalog.redhat.com">UBI8</a> based image, the KICS process will run under the <code>kics</code> user and <code>kics</code> group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the <code>-u</code> flag that overrides the username:group or UID:GID. e.g:</p>
+<p>When using <a href="https://catalog.redhat.com">UBI8</a> based image, the KICS process will run under the <code>kics</code> user and <code>kics</code> group with default UID=1000 and GID=1000. When using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the <code>-u</code> flag that overrides the username:group or UID:GID. e.g:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-u<span class="w"> </span><span class="nv">$UID</span>:<span class="nv">$GID</span><span class="w"> </span>-v<span class="w"> </span><span class="nv">$PWD</span>:/path<span class="w"> </span>checkmarx/kics:ubi8<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span>/path/assets/queries/dockerfile<span class="w"> </span>-o<span class="w"> </span>/path<span class="w"> </span>-v
 </code></pre></div>
 <p>Another option is <a href="https://github.com/Checkmarx/kics/blob/master/docker/Dockerfile.ubi8">rebuilding the dockerfile</a> providing build arguments e.g: <code>--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup</code></p>
 <h4 id="build_from_sources">Build from Sources<a class="headerlink" href="#build_from_sources" title="Permanent link">&para;</a></h4>
 <ol>
-<li>Download and install Go 1.16 or higher from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>.</li>
+<li>Download and install Go 1.16 or higher (1.22 recommended) from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>.</li>
 <li>Clone the repository:
     <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Checkmarx/kics.git
 </code></pre></div></li>
@@ -1951,6 +1951,7 @@
 <p>KICS is available on Checkmarx <a href="https://github.com/Checkmarx/homebrew-tap">homebrew-tap</a> only for versions until 1.5.1. It can be used as follows:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>brew install Checkmarx/tap/kics
 </code></pre></div>
+<h4 id="default_queries">Default Queries<a class="headerlink" href="#default_queries" title="Permanent link">&para;</a></h4>
 <p>To use KICS default queries add the KICS_QUERIES_PATH environmental variable to your shell profile, e.g:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>echo &#39;export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries&#39; &gt;&gt; ~/.zshrc
 </code></pre></div>
@@ -2021,10 +2022,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "toc.integrate"], "search": "../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "toc.integrate"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
+      <script src="../assets/javascripts/bundle.d6f25eb3.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       

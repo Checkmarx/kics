@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.38">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.35f28582.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#scan_a_directory" class="md-skip">
+        <a href="#installation" class="md-skip">
           Skip to content
         </a>
       
@@ -438,27 +438,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scan_a_directory" class="md-nav__link">
+  <a href="#installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Scan a directory
+      Installation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#scan_a_single_file" class="md-nav__link">
+  <a href="#scan_examples" class="md-nav__link">
     <span class="md-ellipsis">
-      Scan a single file
+      Scan Examples
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#scan_example" class="md-nav__link">
+  <a href="#next_steps" class="md-nav__link">
     <span class="md-ellipsis">
-      Scan Example
+      Next Steps
     </span>
   </a>
   
@@ -1912,14 +1912,62 @@
 
   <h1>Getting Started</h1>
 
-<h2 id="scan_a_directory">Scan a directory<a class="headerlink" href="#scan_a_directory" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p /path -o &quot;/path/&quot;
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<p>There are multiple ways to get KICS up and running:</p>
+<h4 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h4>
+<p>KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> and can be used as follows:</p>
+<p>To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see Scan Command Options section below)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>checkmarx/kics:latest
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-t<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;{path_to_host_folder_to_scan}&quot;</span>:/path<span class="w"> </span>checkmarx/kics<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span>/path<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;/path/&quot;</span>
 </code></pre></div>
-<h2 id="scan_a_single_file">Scan a single file<a class="headerlink" href="#scan_a_single_file" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker run -t -v {path_to_host_folder}:/path checkmarx/kics:latest scan -p /path/{filename}.{extension} -o &quot;/path/&quot;
+<p>You can see the list of available tags in <a href="https://hub.docker.com/r/checkmarx/kics/tags?page=1&amp;ordering=-name">dockerhub</a></p>
+<p>ℹ️ <strong>UBI Based Images</strong></p>
+<p>When using <a href="https://catalog.redhat.com">UBI8</a> based image, the KICS process will run under the <code>kics</code> user and <code>kics</code> group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the <code>-u</code> flag that overrides the username:group or UID:GID. e.g:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-u<span class="w"> </span><span class="nv">$UID</span>:<span class="nv">$GID</span><span class="w"> </span>-v<span class="w"> </span><span class="nv">$PWD</span>:/path<span class="w"> </span>checkmarx/kics:ubi8<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span>/path/assets/queries/dockerfile<span class="w"> </span>-o<span class="w"> </span>/path<span class="w"> </span>-v
 </code></pre></div>
-<h2 id="scan_example">Scan Example<a class="headerlink" href="#scan_example" title="Permanent link">&para;</a></h2>
+<p>Another option is <a href="https://github.com/Checkmarx/kics/blob/master/docker/Dockerfile.ubi8">rebuilding the dockerfile</a> providing build arguments e.g: <code>--build-arg UID=999 --build-arg GID=999 --build-arg KUSER=myuser --build-arg KUSER=mygroup</code></p>
+<h4 id="build_from_sources">Build from Sources<a class="headerlink" href="#build_from_sources" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Download and install Go 1.16 (1.22 recommended) or higher from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>.</li>
+<li>Clone the repository:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Checkmarx/kics.git
+</code></pre></div></li>
+<li>
+<p>Build the binaries:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>kics
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>go<span class="w"> </span>mod<span class="w"> </span>vendor
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>make<span class="w"> </span>build
+</code></pre></div></p>
+<p>or </p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>kics
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>go<span class="w"> </span>mod<span class="w"> </span>vendor
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>LINUX/MAC:<span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>./bin/kics<span class="w"> </span>cmd/console/main.go
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>WINDOWS:<span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>./bin/kics.exe<span class="w"> </span>cmd/console/main.go<span class="w"> </span><span class="o">(</span>make<span class="w"> </span>sure<span class="w"> </span>to<span class="w"> </span>create<span class="w"> </span>the<span class="w"> </span>bin<span class="w"> </span>folder<span class="o">)</span>
+</code></pre></div>
+4. Kick a scan!
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>./bin/kics<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;&lt;path-of-your-project-to-scan&gt;&#39;</span><span class="w"> </span>--report-formats<span class="w"> </span>json<span class="w"> </span>-o<span class="w"> </span>./results
+</code></pre></div></p>
+</li>
+</ol>
+<h2 id="scan_examples">Scan Examples<a class="headerlink" href="#scan_examples" title="Permanent link">&para;</a></h2>
+<h4 id="scan_a_directory">Scan a directory<a class="headerlink" href="#scan_a_directory" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker run -t -v {path_to_host_folder_to_scan}:/path checkmarx/kics:latest scan -p /path -o &quot;/path/&quot;
+</code></pre></div>
+<h4 id="scan_a_single_file">Scan a single file<a class="headerlink" href="#scan_a_single_file" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker run -t -v {path_to_host_folder}:/path checkmarx/kics:latest scan -p /path/{filename}.{extension} -o &quot;/path/&quot;
+</code></pre></div>
+<h4 id="scan_example">Scan Example<a class="headerlink" href="#scan_example" title="Permanent link">&para;</a></h4>
 <p><a href="https://raw.githubusercontent.com/Checkmarx/kics/23c62655308523e1bf6aa8ae5852848deb263651/docs/img/faster.gif"><img alt="" src="https://raw.githubusercontent.com/Checkmarx/kics/23c62655308523e1bf6aa8ae5852848deb263651/docs/img/faster.gif" /></a></p>
+<h2 id="next_steps">Next Steps<a class="headerlink" href="#next_steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../configuration-file/">Understand how to configure KICS</a> so you can have a better KICS experience.</li>
+<li><a href="../commands/">Explore KICS commands</a> to see what you can do with KICS.</li>
+<li><a href="../platforms/">Explore supported platforms</a> to see which files you can scan with KICS.</li>
+<li><a href="../queries/">Explore the queries internals</a> for better understanding how KICS works.</li>
+<li><a href="../creating-queries/">Create a new query</a> to learn how to create your own custom queries.</li>
+<li><a href="../results/">Explore the output results format</a> and quickly fix the issues detected.</li>
+<li><a href="../CONTRIBUTING/">Contribute</a> if you want to go the extra mile.</li>
+</ul>
 
 
 
@@ -1970,10 +2018,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "toc.integrate"], "search": "../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "toc.integrate"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
+      <script src="../assets/javascripts/bundle.d6f25eb3.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
