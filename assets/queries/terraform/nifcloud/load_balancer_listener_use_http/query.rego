@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(lb_listener, name),
 		"searchKey": sprintf("nifcloud_load_balancer_listener[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'nifcloud_load_balancer_listener[%s]' should switch to HTTPS to benefit from TLS security features", [name]),
-		"keyActualValue": sprintf("'nifcloud_load_balancer_listener[%s]' use HTTP port", [name]),
+		"keyExpectedValue": sprintf("'nifcloud_load_balancer_listener[%s]' should switch to HTTPS to benefit from TLS security features.", [name]),
+		"keyActualValue": sprintf("'nifcloud_load_balancer_listener[%s]' using HTTP port.", [name]),
 	}
 }

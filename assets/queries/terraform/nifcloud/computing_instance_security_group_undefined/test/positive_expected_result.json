@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Beta - Nifcloud Computing Undefined Security Group To Instance",
+		"queryName": "Nifcloud Computing Undefined Security Group To Instance",
 		"severity": "HIGH",
 		"line": 1,
 		"fileName": "positive.tf"
