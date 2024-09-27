@@ -20,7 +20,7 @@ hide:
 -   **Platform:** Terraform
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Networking and Firewall
--   **CWE:** Ongoing
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/732.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/732.html')">732</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/gcp/ssh_access_is_not_restricted)
 
 ### Description
