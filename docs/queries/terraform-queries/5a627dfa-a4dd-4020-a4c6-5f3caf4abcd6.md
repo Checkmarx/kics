@@ -20,7 +20,7 @@ hide:
 -   **Platform:** Terraform
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Best Practices
--   **CWE:** Ongoing
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/807.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/807.html')">807</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/databricks/use_lts_spark_version)
 
 ### Description
