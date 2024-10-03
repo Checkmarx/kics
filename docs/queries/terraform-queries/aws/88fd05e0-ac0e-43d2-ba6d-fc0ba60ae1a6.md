@@ -20,7 +20,7 @@ hide:
 -   **Platform:** Terraform
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Encryption
--   **CWE:** Ongoing
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/285.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/285.html')">285</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/iam_database_auth_not_enabled)
 
 ### Description

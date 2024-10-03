@@ -40,7 +40,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(elb, name),
 		"searchKey": sprintf("nifcloud_elb[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'nifcloud_elb[%s]' should switch to HTTPS to benefit from TLS security features", [name]),
-		"keyActualValue": sprintf("'nifcloud_elb[%s]' use HTTP protocol", [name]),
+		"keyExpectedValue": sprintf("'nifcloud_elb[%s]' should switch to HTTPS to benefit from TLS security features.", [name]),
+		"keyActualValue": sprintf("'nifcloud_elb[%s]' using HTTP protocol.", [name]),
 	}
 }

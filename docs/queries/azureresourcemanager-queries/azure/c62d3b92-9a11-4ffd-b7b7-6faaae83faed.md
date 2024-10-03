@@ -20,7 +20,7 @@ hide:
 -   **Platform:** AzureResourceManager
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Insecure Configurations
--   **CWE:** Ongoing
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/200.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/200.html')">200</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/aks_dashboard_enabled)
 
 ### Description
