@@ -20,11 +20,11 @@ hide:
 -   **Platform:** OpenAPI
 -   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Best Practices
--   **CWE:** Ongoing
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/710.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/710.html')">710</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/openAPI/2.0/unused_parameter_definition)
 
 ### Description
-All global parameters definitions  should be in use<br>
+All global parameters definitions should be in use<br>
 [Documentation](https://swagger.io/specification/v2/#parametersDefinitionsObject)
 
 ### Code samples

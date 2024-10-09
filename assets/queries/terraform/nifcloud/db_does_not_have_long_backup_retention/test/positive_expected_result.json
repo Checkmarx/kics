@@ -1,13 +1,13 @@
 [
 	{
-		"queryName": "Beta - Nifcloud RDB Has Backup Retention Less Than 2 Day",
-		"severity": "MEDIUM",
+		"queryName": "Nifcloud Low RDB Backup Retention Period",
+		"severity": "LOW",
 		"line": 1,
 		"fileName": "positive1.tf"
 	},
 	{
-		"queryName": "Beta - Nifcloud RDB Has Backup Retention Less Than 2 Day",
-		"severity": "MEDIUM",
+		"queryName": "Nifcloud Low RDB Backup Retention Period",
+		"severity": "LOW",
 		"line": 1,
 		"fileName": "positive2.tf"
 	}

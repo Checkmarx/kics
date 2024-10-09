@@ -20,7 +20,7 @@ hide:
 -   **Platform:** Terraform
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Best Practices
--   **CWE:** Ongoing
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/665.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/665.html')">665</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/azure/key_vault_secrets_content_type_undefined)
 
 ### Description

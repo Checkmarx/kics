@@ -1,7 +1,7 @@
 [
 	{
-		"queryName": "Beta - Nifcloud Computing Undefined Description To Security Group",
-		"severity": "LOW",
+		"queryName": "Nifcloud Computing Undefined Description To Security Group",
+		"severity": "INFO",
 		"line": 1,
 		"fileName": "positive.tf"
 	}
