@@ -18,8 +18,9 @@ hide:
 -   **Query id:** 0ac9abbc-6d7a-41cf-af23-2e57ddb3dbfc
 -   **Query name:** Sensitive Port Is Exposed To Entire Network
 -   **Platform:** Ansible
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Networking and Firewall
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/200.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/200.html')">200</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/ansible/azure/sensitive_port_is_exposed_to_entire_network)
 
 ### Description

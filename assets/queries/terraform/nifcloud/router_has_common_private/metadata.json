@@ -1,0 +1,12 @@
+{
+  "id": "30c2760c-740e-4672-9d7f-2c29e0cb385d",
+  "queryName": "Nifcloud Router Has Common Private Network",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "The Router has common private network",
+  "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/router#network_id",
+  "platform": "Terraform",
+  "descriptionID": "ca6704da",
+  "cloudProvider": "nifcloud",
+  "cwe": "285"
+}

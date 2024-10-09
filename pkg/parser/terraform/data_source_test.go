@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/parser/terraform/converter"
+	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
 	"github.com/stretchr/testify/require"
 	"github.com/zclconf/go-cty/cty/gocty"
 )

@@ -6,8 +6,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/engine/secrets"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/engine/secrets"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 )
 
 func maskPreviewLines(secretsPath string, scanResults *Results) error {
@@ -98,14 +98,14 @@ func maskSecret(rule *secrets.RegexQuery, lines *[]model.CodeLine, idx int) {
 	regex := rule.RegexStr
 	line := (*lines)[idx]
 
-	if len(rule.SpecialMask) > 0 {
+	if rule.SpecialMask != "" {
 		regex = "(.+)" + rule.SpecialMask
 	}
 
 	var re = regexp.MustCompile(regex)
 	match := re.FindString(line.Line)
 
-	if len(rule.SpecialMask) > 0 {
+	if rule.SpecialMask != "" {
 		match = line.Line[len(match):]
 	}
 
@@ -126,18 +126,18 @@ func isSecret(line string, rule *secrets.RegexQuery, allowRules *[]secrets.Allow
 
 	for _, group := range groups {
 		splitedText := strings.Split(line, "\n")
-		max := -1
+		maxSplit := -1
 		for i, splited := range splitedText {
 			if len(groups) < rule.Multiline.DetectLineGroup {
-				if strings.Contains(splited, group[rule.Multiline.DetectLineGroup]) && i > max {
-					max = i
+				if strings.Contains(splited, group[rule.Multiline.DetectLineGroup]) && i > maxSplit {
+					maxSplit = i
 				}
 			}
 		}
-		if max == -1 {
+		if maxSplit == -1 {
 			continue
 		}
-		secret, newGroups := isSecret(strings.Join(append(splitedText[:max], splitedText[max+1:]...), "\n"), rule, allowRules)
+		secret, newGroups := isSecret(strings.Join(append(splitedText[:maxSplit], splitedText[maxSplit+1:]...), "\n"), rule, allowRules)
 		if !secret {
 			continue
 		}

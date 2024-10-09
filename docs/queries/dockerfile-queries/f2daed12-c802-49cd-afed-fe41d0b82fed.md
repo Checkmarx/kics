@@ -18,8 +18,9 @@ hide:
 -   **Query id:** f2daed12-c802-49cd-afed-fe41d0b82fed
 -   **Query name:** Same Alias In Different Froms
 -   **Platform:** Dockerfile
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Build Process
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/694.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/694.html')">694</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/same_alias_in_different_froms)
 
 ### Description

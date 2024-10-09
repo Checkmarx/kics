@@ -1,0 +1,12 @@
+{
+  "id": "8d7758a7-d9cd-499a-a83e-c9bdcbff728d",
+  "queryName": "Nifcloud NAS Has Public Ingress NAS Security Group Rule",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "An ingress NAS security group rule allows traffic from /0",
+  "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/nas_security_group#cidr_ip",
+  "platform": "Terraform",
+  "descriptionID": "5cf1f2e2",
+  "cloudProvider": "nifcloud",
+  "cwe": "285"
+}

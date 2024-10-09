@@ -1,7 +1,8 @@
 [
-	{
-		"queryName": "Using Platform Flag with FROM Command",
-		"severity": "MEDIUM",
-		"line": 6
-	}
+  {
+    "queryName": "Using Platform Flag with FROM Command",
+    "severity": "INFO",
+    "line": 6,
+    "fileName": "positive1.dockerfile"
+  }
 ]

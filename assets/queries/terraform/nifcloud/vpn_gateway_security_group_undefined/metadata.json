@@ -1,0 +1,12 @@
+{
+  "id": "b3535a48-910c-47f8-8b3b-14222f29ef80",
+  "queryName": "Nifcloud VPN Gateway Undefined Security Group",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Missing security group for VPN gateway",
+  "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/vpn_gateway#security_group",
+  "platform": "Terraform",
+  "descriptionID": "ba50cd20",
+  "cloudProvider": "nifcloud",
+  "cwe": "285"
+}

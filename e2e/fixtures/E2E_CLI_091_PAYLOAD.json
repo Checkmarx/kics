@@ -1,0 +1,372 @@
+{
+  "document": [
+    {
+      "file": "file",
+      "id": "0",
+      "parameters": {},
+      "resources": [
+        {
+          "apiVersion": "2020-01-01-preview",
+          "identifier": "security_contact",
+          "name": "security contact",
+          "properties": {
+            "alertNotifications": {
+              "minimalSeverity": "High",
+              "state": "On"
+            },
+            "emails": "sample@email.com",
+            "notificationsByRole": {
+              "roles": [
+                "Owner"
+              ],
+              "state": "On"
+            },
+            "phone": "9999999"
+          },
+          "type": "Microsoft.Security/securityContacts"
+        }
+      ],
+      "variables": {}
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "parameters": {},
+      "resources": [
+        {
+          "apiVersion": "2020-01-01-preview",
+          "identifier": "security_contact",
+          "name": "security contact",
+          "properties": {
+            "alertNotifications": {
+              "minimalSeverity": "High",
+              "state": "On"
+            },
+            "emails": "sample@email.com",
+            "notificationsByRole": {
+              "roles": [
+                "Owner"
+              ],
+              "state": "On"
+            },
+            "phone": "9999999"
+          },
+          "type": "Microsoft.Security/securityContacts"
+        }
+      ],
+      "variables": {}
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "parameters": {},
+      "resources": [
+        {
+          "apiVersion": "2020-01-01-preview",
+          "identifier": "security_contact",
+          "name": "security contact",
+          "properties": {
+            "alertNotifications": {
+              "minimalSeverity": "High",
+              "state": "Off"
+            },
+            "emails": "sample@email.com",
+            "notificationsByRole": {
+              "roles": [
+                "Owner"
+              ],
+              "state": "On"
+            },
+            "phone": "9999999"
+          },
+          "type": "Microsoft.Security/securityContacts"
+        }
+      ],
+      "variables": {}
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "parameters": {},
+      "resources": [
+        {
+          "apiVersion": "2020-01-01-preview",
+          "identifier": "security_contact",
+          "name": "security contact",
+          "properties": {
+            "alertNotifications": {
+              "minimalSeverity": "High",
+              "state": "On"
+            },
+            "emails": "sample@email.com",
+            "phone": "9999999"
+          },
+          "type": "Microsoft.Security/securityContacts"
+        }
+      ],
+      "variables": {}
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "parameters": {},
+      "resources": [
+        {
+          "apiVersion": "2020-01-01-preview",
+          "identifier": "security_contact",
+          "name": "security contact",
+          "properties": {
+            "alertNotifications": {
+              "minimalSeverity": "High",
+              "state": "On"
+            },
+            "emails": "sample@email.com",
+            "notificationsByRole": {
+              "roles": [
+                "Owner"
+              ],
+              "state": "Off"
+            },
+            "phone": "9999999"
+          },
+          "type": "Microsoft.Security/securityContacts"
+        }
+      ],
+      "variables": {}
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "parameters": {},
+      "resources": [
+        {
+          "apiVersion": "2020-01-01-preview",
+          "identifier": "security_contact",
+          "name": "security contact",
+          "properties": {
+            "alertNotifications": {
+              "minimalSeverity": "High",
+              "state": "On"
+            },
+            "emails": "sample@email.com",
+            "notificationsByRole": {
+              "roles": [
+                "Owner"
+              ]
+            },
+            "phone": "9999999"
+          },
+          "type": "Microsoft.Security/securityContacts"
+        }
+      ],
+      "variables": {}
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "parameters": {},
+      "resources": [
+        {
+          "apiVersion": "2020-01-01-preview",
+          "identifier": "security_contact",
+          "name": "security contact",
+          "properties": {
+            "emails": "sample@email.com",
+            "notificationsByRole": {
+              "roles": [
+                "Owner"
+              ],
+              "state": "On"
+            },
+            "phone": "9999999"
+          },
+          "type": "Microsoft.Security/securityContacts"
+        }
+      ],
+      "variables": {}
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "parameters": {},
+      "resources": [
+        {
+          "apiVersion": "2020-01-01-preview",
+          "identifier": "security_contact",
+          "name": "security contact",
+          "properties": {
+            "alertNotifications": {
+              "minimalSeverity": "High"
+            },
+            "emails": "sample@email.com",
+            "notificationsByRole": {
+              "roles": [
+                "Owner"
+              ],
+              "state": "On"
+            },
+            "phone": "9999999"
+          },
+          "type": "Microsoft.Security/securityContacts"
+        }
+      ],
+      "variables": {}
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "parameters": {},
+      "resources": [
+        {
+          "apiVersion": "2020-01-01-preview",
+          "identifier": "security_contact",
+          "name": "security contact",
+          "properties": {
+            "alertNotifications": {
+              "minimalSeverity": "High",
+              "state": "On"
+            },
+            "emails": "sample@email.com",
+            "phone": "9999999"
+          },
+          "type": "Microsoft.Security/securityContacts"
+        }
+      ],
+      "variables": {}
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "parameters": {},
+      "resources": [
+        {
+          "apiVersion": "2020-01-01-preview",
+          "identifier": "security_contact",
+          "name": "security contact",
+          "properties": {
+            "alertNotifications": {
+              "minimalSeverity": "High",
+              "state": "On"
+            },
+            "emails": "sample@email.com",
+            "notificationsByRole": {
+              "roles": [
+                "Owner"
+              ],
+              "state": "Off"
+            },
+            "phone": "9999999"
+          },
+          "type": "Microsoft.Security/securityContacts"
+        }
+      ],
+      "variables": {}
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "parameters": {},
+      "resources": [
+        {
+          "apiVersion": "2020-01-01-preview",
+          "identifier": "security_contact",
+          "name": "security contact",
+          "properties": {
+            "alertNotifications": {
+              "minimalSeverity": "High",
+              "state": "On"
+            },
+            "emails": "sample@email.com",
+            "notificationsByRole": {
+              "roles": [
+                "Owner"
+              ]
+            },
+            "phone": "9999999"
+          },
+          "type": "Microsoft.Security/securityContacts"
+        }
+      ],
+      "variables": {}
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "parameters": {},
+      "resources": [
+        {
+          "apiVersion": "2020-01-01-preview",
+          "identifier": "security_contact",
+          "name": "security contact",
+          "properties": {
+            "alertNotifications": {
+              "minimalSeverity": "High",
+              "state": "Off"
+            },
+            "emails": "sample@email.com",
+            "notificationsByRole": {
+              "roles": [
+                "Owner"
+              ],
+              "state": "On"
+            },
+            "phone": "9999999"
+          },
+          "type": "Microsoft.Security/securityContacts"
+        }
+      ],
+      "variables": {}
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "parameters": {},
+      "resources": [
+        {
+          "apiVersion": "2020-01-01-preview",
+          "identifier": "security_contact",
+          "name": "security contact",
+          "properties": {
+            "emails": "sample@email.com",
+            "notificationsByRole": {
+              "roles": [
+                "Owner"
+              ],
+              "state": "On"
+            },
+            "phone": "9999999"
+          },
+          "type": "Microsoft.Security/securityContacts"
+        }
+      ],
+      "variables": {}
+    },
+    {
+      "file": "file",
+      "id": "0",
+      "parameters": {},
+      "resources": [
+        {
+          "apiVersion": "2020-01-01-preview",
+          "identifier": "security_contact",
+          "name": "security contact",
+          "properties": {
+            "alertNotifications": {
+              "minimalSeverity": "High"
+            },
+            "emails": "sample@email.com",
+            "notificationsByRole": {
+              "roles": [
+                "Owner"
+              ],
+              "state": "On"
+            },
+            "phone": "9999999"
+          },
+          "type": "Microsoft.Security/securityContacts"
+        }
+      ],
+      "variables": {}
+    }
+  ]
+}

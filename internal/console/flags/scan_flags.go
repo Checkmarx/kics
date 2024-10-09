@@ -35,5 +35,9 @@ const (
 	SecretsRegexesPathFlag  = "secrets-regexes-path" //nolint:gosec
 	ExcludeGitIgnore        = "exclude-gitignore"
 	OpenAPIReferencesFlag   = "enable-openapi-refs"
+	ParallelScanFile        = "parallel"
 	MaxFileSizeFlag         = "max-file-size"
+	UseOldSeveritiesFlag    = "old-severities"
+	MaxResolverDepth        = "max-resolver-depth"
+	KicsComputeNewSimIDFlag = "kics_compute_new_simid"
 )

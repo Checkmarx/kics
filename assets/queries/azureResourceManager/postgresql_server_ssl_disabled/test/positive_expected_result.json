@@ -1,0 +1,50 @@
+[
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "MEDIUM",
+    "line": 13,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "MEDIUM",
+    "line": 13,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "MEDIUM",
+    "line": 13,
+    "fileName": "positive3.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server SSL Disabled",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive4.bicep"
+  }
+]

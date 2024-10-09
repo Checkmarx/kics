@@ -18,8 +18,9 @@ hide:
 -   **Query id:** 1b3af2f9-af8c-4dfc-a0f1-a03adb70deb2
 -   **Query name:** Lambda Function With Privileged Role
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Insecure Configurations
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/284.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/284.html')">284</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/lambda_function_with_privileged_role)
 
 ### Description

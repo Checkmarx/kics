@@ -10,7 +10,7 @@ jobs:
     name: kics-github-action
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Mkdir results-dir
         # make sure results dir is created
         run: mkdir -p results-dir
@@ -37,6 +37,6 @@ jobs:
           cat results-dir/results.sarif
           cat results-dir/results.json
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v1
+        uses: github/codeql-action/upload-sarif@2bbafcdd7fbf96243689e764c2f15d9735164f33
         with:
           sarif_file: results-dir/results.sarif

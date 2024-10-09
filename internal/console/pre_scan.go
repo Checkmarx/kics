@@ -9,12 +9,12 @@ import (
 	"strings"
 
 	"code.cloudfoundry.org/bytefmt"
-	"github.com/Checkmarx/kics/internal/console/flags"
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
-	"github.com/Checkmarx/kics/internal/constants"
-	"github.com/Checkmarx/kics/internal/metrics"
-	internalPrinter "github.com/Checkmarx/kics/pkg/printer"
-	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/v2/internal/console/flags"
+	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
+	"github.com/Checkmarx/kics/v2/internal/constants"
+	"github.com/Checkmarx/kics/v2/internal/metrics"
+	internalPrinter "github.com/Checkmarx/kics/v2/pkg/printer"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
 	"github.com/mackerelio/go-osstat/memory"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
@@ -135,7 +135,7 @@ func newConsole() *console {
 func (console *console) preScan() {
 	log.Debug().Msg("console.scan()")
 	for _, warn := range warnings {
-		log.Warn().Msgf(warn)
+		log.Warn().Msgf("%s", warn)
 	}
 
 	printer := internalPrinter.NewPrinter(flags.GetBoolFlag(flags.MinimalUIFlag))
@@ -143,7 +143,7 @@ func (console *console) preScan() {
 
 	versionMsg := fmt.Sprintf("\nScanning with %s\n\n", constants.GetVersion())
 	fmt.Println(versionMsg)
-	log.Info().Msgf(strings.ReplaceAll(versionMsg, "\n", ""))
+	log.Info().Msgf("%s", strings.ReplaceAll(versionMsg, "\n", ""))
 
 	log.Info().Msgf("Operating system: %s", runtime.GOOS)
 
@@ -158,6 +158,7 @@ func (console *console) preScan() {
 	log.Info().Msgf("CPU: %.1f", cpu)
 
 	log.Info().Msgf("Max file size permitted for scanning: %d MB", flags.GetIntFlag(flags.MaxFileSizeFlag))
+	log.Info().Msgf("Max resolver depth permitted for resolving files: %d", flags.GetIntFlag(flags.MaxResolverDepth))
 
 	noProgress := flags.GetBoolFlag(flags.NoProgressFlag)
 	if strings.EqualFold(flags.GetStrFlag(flags.LogLevelFlag), "debug") {

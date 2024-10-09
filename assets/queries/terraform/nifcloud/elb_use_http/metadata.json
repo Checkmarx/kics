@@ -1,0 +1,12 @@
+{
+  "id": "e2de2b80-2fc2-4502-a764-40930dfcc70a",
+  "queryName": "Nifcloud ELB Using HTTP Protocol",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "The ELB using HTTP protocol",
+  "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/elb#protocol",
+  "platform": "Terraform",
+  "descriptionID": "051c06d1",
+  "cloudProvider": "nifcloud",
+  "cwe": "319"
+}

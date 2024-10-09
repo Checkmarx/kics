@@ -12,9 +12,9 @@
     "2.0": {
       "id": "71beb6ab-8b70-4816-a9ac-a0ff1fb22a62",
       "queryName": "Properties Missing Required Property (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#schemaObject"
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "20"
 }

@@ -1,6 +1,6 @@
 ## Buildah Queries List
 This page contains all queries from Buildah.
 
-|            Query             |Severity|Category|Description|Help|
-|------------------------------|--------|--------|-----------|----|
-|Run Using apt<br/><sup><sub>a1bc27c6-7115-48d8-bf9d-5a7e836845ba</sub></sup>|<span style="color:#C60">Medium</span>|Supply-Chain|apt is discouraged by the linux distributions as an unattended tool as its interface may suffer changes between versions. Better use the more stable apt-get and apt-cache (<a href="../buildah-queries/a1bc27c6-7115-48d8-bf9d-5a7e836845ba" target="_blank">read more</a>)|<a href="https://github.com/containers/buildah/blob/main/docs/buildah-run.1.md">Documentation</a><br/>|
+|            Query             |Severity|Category|More info|
+|------------------------------|--------|--------|-----------|
+|Run Using apt<br/><sup><sub>a1bc27c6-7115-48d8-bf9d-5a7e836845ba</sub></sup>|<span style="color:#edd57e">Low</span>|Supply-Chain|<a href="../buildah-queries/a1bc27c6-7115-48d8-bf9d-5a7e836845ba" onclick="newWindowOpenerSafe(event, '../buildah-queries/a1bc27c6-7115-48d8-bf9d-5a7e836845ba')">Query details</a><br><a href="https://github.com/containers/buildah/blob/main/docs/buildah-run.1.md">Documentation</a><br/>|

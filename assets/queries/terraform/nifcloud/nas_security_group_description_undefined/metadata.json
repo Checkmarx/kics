@@ -1,0 +1,12 @@
+{
+  "id": "e840c54a-7a4c-405f-b8c1-c49a54b87d11",
+  "queryName": "Nifcloud NAS Undefined Description To NAS Security Group",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "It's considered a best practice for NAS Security Group to have a description",
+  "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/nas_security_group#description",
+  "platform": "Terraform",
+  "descriptionID": "ae325808",
+  "cloudProvider": "nifcloud",
+  "cwe": "665"
+}

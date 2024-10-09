@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/Checkmarx/kics/internal/metrics"
-	"github.com/Checkmarx/kics/pkg/kics"
-	"github.com/Checkmarx/kics/pkg/progress"
+	"github.com/Checkmarx/kics/v2/internal/metrics"
+	"github.com/Checkmarx/kics/v2/pkg/kics"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
 )
 
 type serviceSlice []*kics.Service
@@ -16,6 +16,7 @@ func PrepareAndScan(
 	ctx context.Context,
 	scanID string,
 	openAPIResolveReferences bool,
+	maxResolverDepth int,
 	proBarBuilder progress.PbBuilder,
 	services serviceSlice,
 ) error {
@@ -27,7 +28,7 @@ func PrepareAndScan(
 
 	for _, service := range services {
 		wg.Add(1)
-		go service.PrepareSources(ctx, scanID, openAPIResolveReferences, &wg, errCh)
+		go service.PrepareSources(ctx, scanID, openAPIResolveReferences, maxResolverDepth, &wg, errCh)
 	}
 
 	go func() {

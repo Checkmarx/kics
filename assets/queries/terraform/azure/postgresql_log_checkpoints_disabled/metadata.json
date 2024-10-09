@@ -1,0 +1,12 @@
+{
+  "id": "3790d386-be81-4dcf-9850-eaa7df6c10d9",
+  "queryName": "PostgreSQL Log Checkpoints Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Make sure that for Postgre SQL Database Server, parameter 'log_checkpoints' is set to 'ON'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
+  "platform": "Terraform",
+  "descriptionID": "06d14345",
+  "cloudProvider": "azure",
+  "cwe": "778"
+}

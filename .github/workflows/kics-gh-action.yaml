@@ -9,9 +9,9 @@ jobs:
   kics-scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - name: Run KICS Scan
-        uses: checkmarx/kics-github-action@v1.7.0
+        uses: checkmarx/kics-github-action@252e73959bd4809a14863cbfbb42d7a90d5a4860 # v2.1.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: "./Dockerfile"
@@ -20,7 +20,7 @@ jobs:
           output_path: ./results
           output_formats: json,html
           type: dockerfile
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
         with:
           name: results
           path: ./results

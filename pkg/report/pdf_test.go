@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/test"
 )
 
 var pdfTests = []reportTestCase{
@@ -21,6 +21,20 @@ var pdfTests = []reportTestCase{
 			summary:  test.SummaryMock,
 			path:     "./testdir/newdir",
 			filename: "testpdf2",
+		},
+	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCWE,
+			path:     "./testdir/newdir",
+			filename: "testpdf3",
+		},
+	},
+	{
+		caseTest: jsonCaseTest{
+			summary:  test.SummaryMockCritical,
+			path:     "./testdir/newdir",
+			filename: "testpdf4",
 		},
 	},
 }

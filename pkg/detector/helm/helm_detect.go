@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/detector"
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/detector"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/agnivade/levenshtein"
 	"github.com/rs/zerolog"
 )
@@ -39,7 +39,10 @@ const (
 func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	outputLines int, logWithFields *zerolog.Logger) model.VulnerabilityLines {
 	searchKey = fmt.Sprintf("%s.%s", strings.TrimRight(strings.TrimLeft(file.HelmID, "# "), ":"), searchKey)
-	lines := *file.LinesOriginalData
+
+	lines := make([]string, len(*file.LinesOriginalData))
+	copy(lines, *file.LinesOriginalData)
+
 	curLineRes := detectCurlLine{
 		foundRes: false,
 		lineRes:  0,
@@ -93,7 +96,8 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 		}
 	}
 
-	logWithFields.Warn().Msgf("Failed to detect line, query response %s", searchKey)
+	var filePathSplit = strings.Split(file.FilePath, "/")
+	logWithFields.Warn().Msgf("Failed to detect line associated with identified result in file %s\n", filePathSplit[len(filePathSplit)-1])
 
 	return model.VulnerabilityLines{
 		Line:         undetectedVulnerabilityLine,

@@ -18,8 +18,9 @@ hide:
 -   **Query id:** 4d7ee40f-fc5d-427d-8cac-dffbe22d42d1
 -   **Query name:** Authorization Mode Node Not Set
 -   **Platform:** Kubernetes
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Insecure Configurations
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/285.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/285.html')">285</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/k8s/authorization_mode_node_not_set)
 
 ### Description

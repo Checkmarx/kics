@@ -18,8 +18,9 @@ hide:
 -   **Query id:** c66ebeaa-676c-40dc-a3ff-3e49395dcd5e
 -   **Query name:** Servers Array Undefined
 -   **Platform:** OpenAPI
--   **Severity:** <span style="color:#00C">Info</span>
+-   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Structure and Semantics
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/665.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/665.html')">665</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/openAPI/3.0/servers_undefined)
 
 ### Description

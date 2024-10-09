@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Beta - VPC Flow Logs Disabled",
+    "severity": "LOW",
+    "line": 97,
+    "filename": "positive1.tf"
+  }
+]

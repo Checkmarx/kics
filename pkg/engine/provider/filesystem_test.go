@@ -9,9 +9,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	dockerParser "github.com/Checkmarx/kics/pkg/parser/docker"
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	dockerParser "github.com/Checkmarx/kics/v2/pkg/parser/docker"
+	"github.com/Checkmarx/kics/v2/test"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
 )
@@ -277,6 +277,13 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 	}
 	infoHelm, errHelm := os.Stat(filepath.FromSlash("test/fixtures/test_helm"))
 	checkStatErr(t, errHelm)
+	infoHelmTerra, errHelmTerra := os.Stat(filepath.FromSlash("test/fixtures/terra/test_helm"))
+	checkStatErr(t, errHelmTerra)
+	infoTerraCache, errTerraCache := os.Stat(filepath.FromSlash("test/fixtures/test_terra_cache"))
+	checkStatErr(t, errTerraCache)
+	infoTerraCacheFolder, errTerraCacheFolder := os.Stat(filepath.FromSlash("test/fixtures/test_terra_cache/.terraform"))
+	checkStatErr(t, errTerraCacheFolder)
+
 	type fields struct {
 		paths    []string
 		excludes map[string][]os.FileInfo
@@ -331,6 +338,22 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 			},
 		},
 		{
+			name: "check_conditions_chart, with terra on path not skip",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("test/fixtures/terra/test_helm")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoHelmTerra,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("test/fixtures/terra/test_helm"),
+			},
+			want: want{
+				got: false,
+				err: nil,
+			},
+		},
+		{
 			name: "should_skip_folder",
 			fields: fields{
 				paths: []string{filepath.FromSlash("assets/queries")},
@@ -344,6 +367,246 @@ func TestFileSystemSourceProvider_checkConditions(t *testing.T) {
 					".dockerfile": dockerParser.Parser{},
 				},
 				path: filepath.FromSlash("assets/queries"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terra_cache for .terra",
+			fields: fields{
+				paths:    []string{filepath.FromSlash(".terra")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash(".terra"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terragrunt_cache for .terragrunt-cache",
+			fields: fields{
+				paths:    []string{filepath.FromSlash(".terragrunt-cache")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash(".terragrunt-cache"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terra_cache for terra, exclude by missing chart.yaml",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("terra")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("terra"),
+			},
+			want: want{
+				got: true,
+				err: nil,
+			},
+		},
+		{
+			name: "check_condition_ignore_terra_cache for .terraform",
+			fields: fields{
+				paths:    []string{filepath.FromSlash(".terraform")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash(".terraform"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terra_cache for .terraform, exclude by missing chart.yaml",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("terraform")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("terraform"),
+			},
+			want: want{
+				got: true,
+				err: nil,
+			},
+		},
+		{
+			name: "check_condition_ignore_terra_cache for .terra/lalala",
+			fields: fields{
+				paths:    []string{filepath.FromSlash(".terra/lalala")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash(".terra/lalala"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terragrunt_cache for .terragrunt-cache/lalala",
+			fields: fields{
+				paths:    []string{filepath.FromSlash(".terragrunt-cache/lalala")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash(".terragrunt-cache/lalala"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terra_cache for .terraform/lalala",
+			fields: fields{
+				paths:    []string{filepath.FromSlash(".terraform/lalala")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash(".terraform/lalala"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terra_cache for /.terra",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("/.terra")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("/.terra"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terra_cache for /.terraform",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("/.terraform")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("/.terraform"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terragrunt_cache for /.terragrunt-cache",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("/.terragrunt-cache")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("/.terragrunt-cache"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terra_cache for /.terra/lalala",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("/.terra/lalala")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("/.terra/lalala"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terragrunt_cache for /.terragrunt-cache/lalala",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("/.terragrunt-cache/lalala")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("/.terragrunt-cache/lalala"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "check_condition_ignore_terra_cache for /.terraform/lalala",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("/.terraform/lalala")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCache,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("/.terraform/lalala"),
+			},
+			want: want{
+				got: true,
+				err: filepath.SkipDir,
+			},
+		},
+		{
+			name: "should_skip_terra_cache_folder",
+			fields: fields{
+				paths:    []string{filepath.FromSlash("test/fixtures/test_terra_cache/.terraform")},
+				excludes: nil,
+			},
+			args: args{
+				info:       infoTerraCacheFolder,
+				extensions: model.Extensions{},
+				path:       filepath.FromSlash("test/fixtures/test_terra_cache/.terraform"),
 			},
 			want: want{
 				got: true,

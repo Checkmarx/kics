@@ -1,0 +1,12 @@
+{
+  "id": "fe405074-7e18-40f9-9aef-024aa1d0a889",
+  "queryName": "Beta - TKE Cluster Log Agent Is Not Enabled",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "TKE cluster log agent should be enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/kubernetes_cluster#log_agent",
+  "platform": "Terraform",
+  "descriptionID": "86b32da4",
+  "cloudProvider": "tencentcloud",
+  "cwe": "778"
+}

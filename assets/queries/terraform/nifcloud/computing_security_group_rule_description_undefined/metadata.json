@@ -1,0 +1,12 @@
+{
+  "id": "e4610872-0b1c-4fb7-ab57-d81c0afdb291",
+  "queryName": "Nifcloud Computing Undefined Description To Security Group Rule",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "It's considered a best practice for Security Group Rules to have a description",
+  "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/security_group_rule#description",
+  "platform": "Terraform",
+  "descriptionID": "66ed83ab",
+  "cloudProvider": "nifcloud",
+  "cwe": "665"
+}

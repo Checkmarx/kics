@@ -1,13 +1,13 @@
 [
   {
     "queryName": "CloudTrail Logging Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 69,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "CloudTrail Logging Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 84,
     "fileName": "positive1.yaml"
   },
@@ -15,11 +15,11 @@
     "line": 98,
     "fileName": "positive2.json",
     "queryName": "CloudTrail Logging Disabled",
-    "severity": "HIGH"
+    "severity": "MEDIUM"
   },
   {
     "queryName": "CloudTrail Logging Disabled",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 118,
     "fileName": "positive2.json"
   }

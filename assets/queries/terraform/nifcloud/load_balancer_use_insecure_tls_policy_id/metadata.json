@@ -1,0 +1,12 @@
+{
+  "id": "944439c7-b4b8-476a-8f83-14641ea876ba",
+  "queryName": "Nifcloud LB Using Insecure TLS Policy ID",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "The LB using insecure TLS policy",
+  "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/load_balancer#ssl_policy_id",
+  "platform": "Terraform",
+  "descriptionID": "4e6e920b",
+  "cloudProvider": "nifcloud",
+  "cwe": "295"
+}

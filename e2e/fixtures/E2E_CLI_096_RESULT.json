@@ -1,0 +1,69 @@
+{
+  "kics_version": "development",
+  "files_scanned": 1,
+  "lines_scanned": 66,
+  "files_parsed": 1,
+  "lines_parsed": 66,
+  "lines_ignored": 0,
+  "files_failed_to_scan": 0,
+  "queries_total": 1,
+  "queries_failed_to_execute": 0,
+  "queries_failed_to_compute_similarity_id": 0,
+  "scan_id": "console",
+  "severity_counters": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "INFO": 0,
+    "LOW": 0,
+    "MEDIUM": 2,
+    "TRACE": 0
+  },
+  "total_counter": 2,
+  "total_bom_resources": 0,
+  "start": "2024-04-29T15:47:48.2304103+01:00",
+  "end": "2024-04-29T15:47:52.5595973+01:00",
+  "paths": [
+    "/path/test/fixtures/new_similarity_id"
+  ],
+  "queries": [
+    {
+      "query_name": "Memory Not Limited",
+      "query_id": "bb9ac4f7-e13b-423d-a010-c74a1bfbe492",
+      "query_url": "https://docs.docker.com/compose/compose-file/compose-file-v3/#resources",
+      "severity": "MEDIUM",
+      "platform": "DockerCompose",
+      "cwe": "770",
+			"cloud_provider": "COMMON",
+      "category": "Resource Management",
+      "experimental": false,
+      "description": "Memory limits should be defined for each container. This prevents potential resource exhaustion by ensuring that containers consume not more than the designated amount of memory",
+      "description_id": "8fcb9f7d",
+      "files": [
+        {
+          "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
+          "similarity_id": "074e833d4a971ef74dcaca53f1af93c15f90ea6627fded399529a4b7c2e8ce59",
+          "old_similarity_id": "d961aaad4a5f76c10bbb5af77b2ee8bd88dd2f977d6af847bd03d12b54569820",
+          "line": 4,
+          "issue_type": "MissingAttribute",
+          "search_key": "services.ui.deploy",
+          "search_line": 4,
+          "search_value": "",
+          "expected_value": "'deploy.resources' should be defined",
+          "actual_value": "'deploy.resources' is not defined"
+        },
+        {
+          "file_name": "path\\test\\fixtures\\new_similarity_id\\stack.yml",
+          "similarity_id": "7a2fb2748dcebcb8a4169e65b71a5f51dff8b3dabca853847b9f7568485c5e37",
+          "old_similarity_id": "d961aaad4a5f76c10bbb5af77b2ee8bd88dd2f977d6af847bd03d12b54569820",
+          "line": 4,
+          "issue_type": "MissingAttribute",
+          "search_key": "services.api.deploy",
+          "search_line": 4,
+          "search_value": "",
+          "expected_value": "'deploy.resources' should be defined",
+          "actual_value": "'deploy.resources' is not defined"
+        }
+      ]
+    }
+  ]
+}

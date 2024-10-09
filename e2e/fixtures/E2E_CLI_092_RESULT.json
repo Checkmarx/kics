@@ -1,0 +1,226 @@
+{
+	"kics_version": "development",
+	"files_scanned": 1,
+	"lines_scanned": 41,
+	"files_parsed": 1,
+	"lines_parsed": 41,
+	"lines_ignored": 0,
+	"files_failed_to_scan": 0,
+	"queries_total": 504,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 2,
+		"INFO": 0,
+		"LOW": 4,
+		"MEDIUM": 1,
+		"TRACE": 0
+	},
+	"total_counter": 7,
+	"total_bom_resources": 0,
+	"start": "2024-03-27T10:38:38.1816373Z",
+	"end": "2024-03-27T10:38:46.3157519Z",
+	"paths": [
+		"/path/e2e/fixtures/samples/tmp-gitignore/project"
+	],
+	"queries": [
+		{
+			"query_name": "CMK Unencrypted Storage",
+			"query_id": "ffee2785-c347-451e-89f3-11aeb08e5c84",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
+			"severity": "HIGH",
+			"platform": "CloudFormation",
+			"cwe": "312",
+			"cloud_provider": "AWS",
+			"category": "Encryption",
+			"experimental": false,
+			"description": "Ensure that storage is encrypted.",
+			"description_id": "ba38e42e",
+			"files": [
+				{
+					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
+					"similarity_id": "f78771454bbc8c7cc4e703809be527acff71494fe75912fcce99078f7107b9e3",
+					"line": 9,
+					"resource_type": "AWS::RDS::DBInstance",
+					"resource_name": "DBInstanceSample1",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.DBInstanceSample1.Properties.StorageEncrypted",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Resources.DBInstanceSample1.Properties.StorageEncrypted should be true",
+					"actual_value": "Resources.DBInstanceSample1.Properties.StorageEncrypted is false"
+				}
+			]
+		},
+		{
+			"query_name": "RDS Storage Not Encrypted",
+			"query_id": "5beacce3-4020-4a3d-9e1d-a36f953df630",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
+			"severity": "HIGH",
+			"platform": "CloudFormation",
+			"cwe": "312",
+			"cloud_provider": "AWS",
+			"category": "Encryption",
+			"experimental": false,
+			"description": "RDS Storage should be encrypted, which means the attribute 'StorageEncrypted' should be set to 'true'",
+			"description_id": "f052de92",
+			"files": [
+				{
+					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
+					"similarity_id": "2b6cae0f077151fd53e3fc7dcaccaed7125184ec732cbc86854cf125ee7a1aaa",
+					"line": 9,
+					"resource_type": "AWS::RDS::DBInstance",
+					"resource_name": "DBInstanceSample1",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.DBInstanceSample1.Properties.StorageEncrypted",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Resources.DBInstanceSample1.Properties.StorageEncrypted should be set to true",
+					"actual_value": "Resources.DBInstanceSample1.Properties.StorageEncrypted is set to false"
+				}
+			]
+		},
+		{
+			"query_name": "RDS Multi-AZ Deployment Disabled",
+			"query_id": "2b1d4935-9acf-48a7-8466-10d18bf51a69",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
+			"severity": "MEDIUM",
+			"platform": "CloudFormation",
+			"cwe": "284",
+			"cloud_provider": "AWS",
+			"category": "Availability",
+			"experimental": false,
+			"description": "AWS RDS Instance should have a multi-az deployment",
+			"description_id": "4bdb6677",
+			"files": [
+				{
+					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
+					"similarity_id": "9136af90b60b79ccfe4dbdcc396c69b1907d62c31e4ef5d8882d9edf0f1b85cb",
+					"line": 6,
+					"resource_type": "AWS::RDS::DBInstance",
+					"resource_name": "DBInstanceSample1",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.DBInstanceSample1.Properties",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "The RDS DBInstance 'DBInstanceSample1' should have Multi-Availability Zone enabled",
+					"actual_value": "The RDS DBInstance 'DBInstanceSample1' MultiAZ property is undefined and by default disabled"
+				}
+			]
+		},
+		{
+			"query_name": "Automatic Minor Upgrades Disabled",
+			"query_id": "f0104061-8bfc-4b45-8a7d-630eb502f281",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html",
+			"severity": "LOW",
+			"platform": "CloudFormation",
+			"cwe": "710",
+			"cloud_provider": "AWS",
+			"category": "Best Practices",
+			"experimental": false,
+			"description": "RDS instance should have automatic minor upgrades enabled, which means the attribute 'AutoMinorVersionUpgrade' must be set to true.",
+			"description_id": "e2908402",
+			"files": [
+				{
+					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
+					"similarity_id": "d03ad958902a729200308edf6dd83cf3bb6a32d29dfb78945154a849a005fc6f",
+					"line": 6,
+					"resource_type": "AWS::RDS::DBInstance",
+					"resource_name": "DBInstanceSample1",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.DBInstanceSample1.Properties",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'Resources.DBInstanceSample1.Properties.AutoMinorVersionUpgrade' should be defined",
+					"actual_value": "'Resources.DBInstanceSample1.Properties.AutoMinorVersionUpgrade' is undefined"
+				}
+			]
+		},
+		{
+			"query_name": "IAM Access Analyzer Not Enabled",
+			"query_id": "8d29754a-2a18-460d-a1ba-9509f8d359da",
+			"query_url": "https://docs.amazonaws.cn/en_us/AWSCloudFormation/latest/UserGuide/aws-resource-accessanalyzer-analyzer.html",
+			"severity": "LOW",
+			"platform": "CloudFormation",
+			"cwe": "778",
+			"cloud_provider": "AWS",
+			"category": "Best Practices",
+			"experimental": false,
+			"description": "IAM Access Analyzer should be enabled and configured to continuously monitor resource permissions",
+			"description_id": "24a6978e",
+			"files": [
+				{
+					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
+					"similarity_id": "784e2d544fa3390808bed7b05bf0a64a8ddcc6637f34e3bba38225c10af90b91",
+					"line": 3,
+					"resource_type": "n/a",
+					"resource_name": "n/a",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "'AWS::AccessAnalyzer::Analyzer' should be set",
+					"actual_value": "'AWS::AccessAnalyzer::Analyzer' is undefined"
+				}
+			]
+		},
+		{
+			"query_name": "Low RDS Backup Retention Period",
+			"query_id": "e649a218-d099-4550-86a4-1231e1fcb60d",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html",
+			"severity": "LOW",
+			"platform": "CloudFormation",
+			"cwe": "778",
+			"cloud_provider": "AWS",
+			"category": "Backup",
+			"experimental": false,
+			"description": "AWS RDS backup retention policy should be at least 7 days",
+			"description_id": "55094eb2",
+			"files": [
+				{
+					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
+					"similarity_id": "0269a014ca0130a13a79b7a78c7614060c0b02d48f08be43e54182191ef64692",
+					"line": 6,
+					"resource_type": "AWS::RDS::DBInstance",
+					"resource_name": "DBInstanceSample1",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.DBInstanceSample1.Properties",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "The RDS DBInstance 'DBInstanceSample1' resource should have backup retention period of at least 7 days",
+					"actual_value": "The RDS DBInstance 'DBInstanceSample1' resource doesn't define a backup retention period and no RDS Cluster are defined"
+				}
+			]
+		},
+		{
+			"query_name": "RDS DB Instance With Deletion Protection Disabled",
+			"query_id": "2c161e58-cb52-454f-abea-6470c37b5e6e",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-database-instance.html#cfn-rds-dbinstance-deletionprotection",
+			"severity": "LOW",
+			"platform": "CloudFormation",
+			"cwe": "459",
+			"cloud_provider": "AWS",
+			"category": "Backup",
+			"experimental": false,
+			"description": "RDS DBInstance should have deletion protection set to true",
+			"description_id": "606a0602",
+			"files": [
+				{
+					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
+					"similarity_id": "2387b70c01b920c2d38a1c8a143101a0730ef5fa938e1d7e69b74d4d95cf78cf",
+					"line": 6,
+					"resource_type": "AWS::RDS::DBInstance",
+					"resource_name": "DBInstanceSample1",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.DBInstanceSample1.Properties",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Resources.DBInstanceSample1.Properties.DeletionProtection should be defined",
+					"actual_value": "Resources.DBInstanceSample1.Properties.DeletionProtection is undefined"
+				}
+			]
+		}
+	]
+}

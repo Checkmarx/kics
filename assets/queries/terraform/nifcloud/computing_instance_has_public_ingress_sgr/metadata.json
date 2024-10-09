@@ -1,0 +1,12 @@
+{
+  "id": "b2ea2367-8dc9-4231-a035-d0b28bfa3dde",
+  "queryName": "Nifcloud Computing Has Public Ingress Security Group Rule",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "An ingress security group rule allows traffic from /0",
+  "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/security_group_rule#cidr_ip",
+  "platform": "Terraform",
+  "descriptionID": "54f48b3e",
+  "cloudProvider": "nifcloud",
+  "cwe": "668"
+}

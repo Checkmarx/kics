@@ -1,25 +1,25 @@
 [
   {
     "queryName": "Redshift Publicly Accessible",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 4,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "Redshift Publicly Accessible",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 17,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "Redshift Publicly Accessible",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 5,
     "fileName": "positive2.json"
   },
   {
     "queryName": "Redshift Publicly Accessible",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 30,
     "fileName": "positive2.json"
   }

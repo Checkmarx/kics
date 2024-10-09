@@ -9,7 +9,7 @@ import (
 
 	"encoding/json"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/pkg/errors"
 	"mvdan.cc/sh/v3/syntax"
 )
@@ -51,7 +51,7 @@ const (
 )
 
 // Resolve - replace or modifies in-memory content before parsing
-func (p *Parser) Resolve(fileContent []byte, _ string, _ bool) ([]byte, error) {
+func (p *Parser) Resolve(fileContent []byte, _ string, _ bool, _ int) ([]byte, error) {
 	return fileContent, nil
 }
 
@@ -134,8 +134,8 @@ func (i *Info) getStmtInfo(stmt *syntax.Stmt, args []*syntax.Word) Command {
 			cmd := "buildah " + strings.TrimSpace(getWordValue(args[1]))
 			fullCmd := strings.TrimSpace(getFullCommand(args))
 			value := strings.TrimPrefix(fullCmd, cmd)
-			start := int(args[0].Pos().Line())
-			end := int(args[len(args)-1].End().Line())
+			start := int(args[0].Pos().Line())         //nolint:gosec
+			end := int(args[len(args)-1].End().Line()) //nolint:gosec
 
 			command = Command{
 				Cmd:       cmd,

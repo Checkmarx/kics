@@ -1,0 +1,13 @@
+{
+    "id": "8c978947-0ff6-485c-b0c2-0bfca6026466",
+    "queryName": "Shared Volumes Between Containers",
+    "severity": "INFO",
+    "category": "Insecure Configurations",
+    "descriptionText": "Volumes shared between containers can cause data corruption or can be used to share malicious files between containers.",
+    "descriptionUrl": "https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes",
+    "platform": "DockerCompose",
+    "descriptionID": "574aa3ab",
+    "oldSeverity": "INFO",
+    "cloudProvider": "common",
+    "cwe": "693"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "e7dada38-af20-4899-8955-dabea84ab1f0",
+  "queryName": "Nifcloud Router Undefined Security Group",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Missing security group for Router",
+  "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/router#security_group",
+  "platform": "Terraform",
+  "descriptionID": "4cd22b80",
+  "cloudProvider": "nifcloud",
+  "cwe": "285"
+}

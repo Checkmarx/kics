@@ -1,9 +1,8 @@
 name: go-test-race
 
 on:
-  push:
-    branches:
-      - "master"
+  pull_request:
+    branches: [master]
 
 jobs:
   go-test-race:
@@ -11,15 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
-        uses: actions/checkout@v3
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           fetch-depth: 0
-      - name: Set up Go 1.20.x
-        uses: actions/setup-go@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
-          go-version: 1.20.x
+          go-version-file: go.mod
       - name: Check out code into the Go module directory
-        uses: actions/checkout@v3
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           persist-credentials: false
       - name: Get cache paths
@@ -28,7 +27,7 @@ jobs:
           echo "::set-output name=go-build::$(go env GOCACHE)"
           echo "::set-output name=go-mod::$(go env GOMODCACHE)"
       - name: Cache dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
         with:
           path: ${{ steps.go-cache-paths.outputs.go-build }}
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
@@ -41,12 +40,12 @@ jobs:
           go mod vendor
       - name: Test and Generate Report
         run: |
-          go test -race -timeout 9999s -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
+          go test -tags="parallelScans" -race -timeout 9999s -mod=vendor -v $(go list ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
           result_code=${PIPESTATUS[0]}
           exit $result_code
       - name: Archive test logs
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
         with:
           name: unit-test-${{ runner.os }}-${{ github.event.pull_request.head.sha }}.log
           path: unit-test.log

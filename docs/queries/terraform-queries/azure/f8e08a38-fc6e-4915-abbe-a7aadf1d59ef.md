@@ -18,8 +18,9 @@ hide:
 -   **Query id:** f8e08a38-fc6e-4915-abbe-a7aadf1d59ef
 -   **Query name:** Key Vault Secrets Content Type Undefined
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#CC0">Low</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Best Practices
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/665.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/665.html')">665</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/azure/key_vault_secrets_content_type_undefined)
 
 ### Description

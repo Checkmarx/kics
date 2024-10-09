@@ -18,8 +18,9 @@ hide:
 -   **Query id:** ffb02aca-0d12-475e-b77c-a726f7aeff4b
 -   **Query name:** Log Retention Is Not Set
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Observability
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/778.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/778.html')">778</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/azure/log_retention_is_not_set)
 
 ### Description

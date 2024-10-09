@@ -18,8 +18,9 @@ hide:
 -   **Query id:** babdedcf-d859-43da-9a7b-6d72e661a8fd
 -   **Query name:** IAM Role Allows All Principals To Assume
 -   **Platform:** Ansible
--   **Severity:** <span style="color:#CC0">Low</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Access Control
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/284.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/284.html')">284</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/ansible/aws/iam_role_allows_all_principals_to_assume)
 
 ### Description

@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
-        uses: actions/checkout@v3
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - uses: actions/setup-python@v4
         with:
           python-version: "3.x"
@@ -19,7 +19,7 @@ jobs:
           pip3 install -r .github/scripts/extract-kics-info/requirements.txt
           python3 .github/scripts/extract-kics-info/extract-info.py
       - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
+        uses: svenstaro/upload-release-action@04733e069f2d7f7f0b4aebc4fbdbce8613b03ccd # v2.9.0
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: .github/scripts/extract-kics-info/extracted-info.zip

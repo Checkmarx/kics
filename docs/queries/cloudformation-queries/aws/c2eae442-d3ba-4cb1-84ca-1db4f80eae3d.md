@@ -18,8 +18,9 @@ hide:
 -   **Query id:** c2eae442-d3ba-4cb1-84ca-1db4f80eae3d
 -   **Query name:** Lambda Function Without Dead Letter Queue
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#CC0">Low</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Insecure Configurations
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/390.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/390.html')">390</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/lambda_function_without_dead_letter_queue)
 
 ### Description

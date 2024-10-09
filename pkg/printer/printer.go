@@ -7,10 +7,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 
-	consoleFlags "github.com/Checkmarx/kics/internal/console/flags"
-	"github.com/Checkmarx/kics/pkg/model"
+	consoleFlags "github.com/Checkmarx/kics/v2/internal/console/flags"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/gookit/color"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -18,7 +18,6 @@ import (
 )
 
 const (
-	wordWrapCount     = 5
 	charsLimitPerLine = 255
 )
 
@@ -70,6 +69,7 @@ var (
 // Line is the color to print the line with the vulnerability
 // minVersion is a bool that if true will print the results output in a minimum version
 type Printer struct {
+	Critical            color.RGBColor
 	Medium              color.RGBColor
 	High                color.RGBColor
 	Low                 color.RGBColor
@@ -102,19 +102,9 @@ func WordWrap(s, indentation string, limit int) string {
 }
 
 // PrintResult prints on output the summary results
-func PrintResult(summary *model.Summary, failedQueries map[string]error, printer *Printer, usingCustomQueries bool) error {
+func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bool) error {
 	log.Debug().Msg("helpers.PrintResult()")
-	fmt.Printf("Files scanned: %d\n", summary.ScannedFiles)
-	fmt.Printf("Parsed files: %d\n", summary.ParsedFiles)
-	fmt.Printf("Queries loaded: %d\n", summary.TotalQueries)
-
-	fmt.Printf("Queries failed to execute: %d\n\n", summary.FailedToExecuteQueries)
-	for queryName, err := range failedQueries {
-		fmt.Printf("\t- %s:\n", queryName)
-		fmt.Printf("%s", WordWrap(err.Error(), "\t\t", wordWrapCount))
-	}
-
-	fmt.Printf("------------------------------------\n\n")
+	fmt.Printf("\n\n")
 	for index := range summary.Queries {
 		idx := len(summary.Queries) - index - 1
 		if summary.Queries[idx].Severity == model.SeverityTrace {
@@ -142,26 +132,31 @@ func PrintResult(summary *model.Summary, failedQueries map[string]error, printer
 			}
 			fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
 
-			queryCloudProvider := summary.Queries[idx].CloudProvider
-			if queryCloudProvider != "" {
-				queryCloudProvider = strings.ToLower(queryCloudProvider) + "/"
+			if summary.Queries[idx].CWE != "" {
+				fmt.Printf("%s %s\n", printer.Bold("CWE:"), summary.Queries[idx].CWE)
 			}
 
 			// checks if should print queries URL DOCS based on the use of custom queries and invalid ids
-			if !usingCustomQueries {
-				if validQueryID(summary.Queries[idx].QueryID) {
-					fmt.Printf("%s %s\n\n",
-						printer.Bold("Learn more about this vulnerability:"),
-						fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s%s",
-							strings.ToLower(summary.Queries[idx].Platform),
-							queryCloudProvider,
-							summary.Queries[idx].QueryID))
+			if !usingCustomQueries && validQueryID(summary.Queries[idx].QueryID) {
+				queryURLId := summary.Queries[idx].QueryID
+				queryURLPlatform := strings.ToLower(summary.Queries[idx].Platform)
+
+				if queryURLPlatform == "common" && strings.Contains(strings.ToLower(summary.Queries[idx].QueryName), "passwords and secrets") {
+					queryURLId = "a88baa34-e2ad-44ea-ad6f-8cac87bc7c71"
 				}
+
+				fmt.Printf("%s %s\n\n",
+					printer.Bold("Learn more about this vulnerability:"),
+					fmt.Sprintf("https://docs.kics.io/latest/queries/%s-queries/%s%s",
+						queryURLPlatform,
+						normalizeURLCloudProvider(summary.Queries[idx].CloudProvider),
+						queryURLId))
 			}
 		}
 		printFiles(&summary.Queries[idx], printer)
 	}
 	fmt.Printf("\nResults Summary:\n")
+	printSeverityCounter(model.SeverityCritical, summary.SeveritySummary.SeverityCounters[model.SeverityCritical], printer.Critical)
 	printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
 	printSeverityCounter(model.SeverityMedium, summary.SeveritySummary.SeverityCounters[model.SeverityMedium], printer.Medium)
 	printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
@@ -268,6 +263,7 @@ func IsInitialized() bool {
 // NewPrinter initializes a new Printer
 func NewPrinter(minimal bool) *Printer {
 	return &Printer{
+		Critical:            color.HEX("#ff0000"),
 		Medium:              color.HEX("#ff7213"),
 		High:                color.HEX("#bb2124"),
 		Low:                 color.HEX("#edd57e"),
@@ -283,21 +279,23 @@ func NewPrinter(minimal bool) *Printer {
 // PrintBySev will print the output with the specific severity color given the severity of the result
 func (p *Printer) PrintBySev(content, sev string) string {
 	switch strings.ToUpper(sev) {
+	case model.SeverityCritical:
+		return p.Critical.Sprintf("%s", content)
 	case model.SeverityHigh:
-		return p.High.Sprintf(content)
+		return p.High.Sprintf("%s", content)
 	case model.SeverityMedium:
-		return p.Medium.Sprintf(content)
+		return p.Medium.Sprintf("%s", content)
 	case model.SeverityLow:
-		return p.Low.Sprintf(content)
+		return p.Low.Sprintf("%s", content)
 	case model.SeverityInfo:
-		return p.Info.Sprintf(content)
+		return p.Info.Sprintf("%s", content)
 	}
 	return content
 }
 
 // Bold returns the output in a bold format
 func (p *Printer) Bold(content string) string {
-	return color.Bold.Sprintf(content)
+	return color.Bold.Sprintf("%s", content)
 }
 
 func validQueryID(queryID string) bool {
@@ -307,4 +305,14 @@ func validQueryID(queryID string) bool {
 		return utils.ValidateUUID(queryID)
 	}
 	return true
+}
+
+func normalizeURLCloudProvider(cloudProvider string) string {
+	cloudProvider = strings.ToLower(cloudProvider)
+	if cloudProvider == "common" {
+		cloudProvider = ""
+	} else if cloudProvider != "" {
+		cloudProvider += "/"
+	}
+	return cloudProvider
 }

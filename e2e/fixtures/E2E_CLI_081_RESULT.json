@@ -1,0 +1,58 @@
+{
+  "kics_version": "development",
+  "files_scanned": 1,
+  "lines_scanned": 78,
+  "files_parsed": 1,
+  "lines_parsed": 78,
+  "lines_ignored": 0,
+  "files_failed_to_scan": 0,
+  "queries_total": 43,
+  "queries_failed_to_execute": 0,
+  "queries_failed_to_compute_similarity_id": 0,
+  "scan_id": "console",
+  "severity_counters": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "INFO": 0,
+    "LOW": 0,
+    "MEDIUM": 1,
+    "TRACE": 0
+  },
+  "total_counter": 1,
+  "total_bom_resources": 0,
+  "start": "2024-05-28T12:31:17.0374916+01:00",
+  "end": "2024-05-28T12:31:21.6206031+01:00",
+  "paths": [
+    "/path/test/fixtures/test_output_path"
+  ],
+  "queries": [
+    {
+      "query_name": "Azure Instance Using Basic Authentication",
+      "query_id": "6797f581-0433-4768-ae3e-7ceb2f8b138e",
+      "query_url": "https://docs.microsoft.com/en-us/azure/templates/microsoft.compute/virtualmachines?tabs=json#linuxconfiguration-object",
+      "severity": "MEDIUM",
+      "platform": "AzureResourceManager",
+      "cwe": "522",
+      "cloud_provider": "AZURE",
+      "category": "Best Practices",
+      "experimental": false,
+      "description": "Azure Instances should use SSH Key instead of basic authentication",
+      "description_id": "98ba05ca",
+      "files": [
+        {
+          "file_name": "/path/test/fixtures/test_output_path/positive1.json",
+          "similarity_id": "42d73d5b2fa1fbcb1145ea43b7dc4ec20f92adda85c61161b6a7714b6cd86219",
+          "line": 53,
+          "resource_type": "Microsoft.Compute/virtualMachines",
+          "resource_name": "[variables('vmName')]",
+          "issue_type": "IncorrectValue",
+          "search_key": "resources.name=[variables('vmName')].properties.osProfile.linuxConfiguration.disablePasswordAuthentication",
+          "search_line": 53,
+          "search_value": "",
+          "expected_value": "'disablePasswordAuthentication' should be set to true",
+          "actual_value": "'disablePasswordAuthentication' property value is set to false"
+        }
+      ]
+    }
+  ]
+}

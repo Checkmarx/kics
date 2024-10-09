@@ -18,8 +18,9 @@ hide:
 -   **Query id:** 1afbb3fa-cf6c-4a3d-b730-95e9f4df343e
 -   **Query name:** ElastiCache Replication Group Not Encrypted At Transit
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Encryption
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/311.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/311.html')">311</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/elasticache_replication_group_not_encrypted_at_transit)
 
 ### Description

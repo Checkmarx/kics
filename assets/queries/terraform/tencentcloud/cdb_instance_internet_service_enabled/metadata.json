@@ -1,0 +1,12 @@
+{
+  "id": "5d820574-4a60-4916-b049-0810b8629731",
+  "queryName": "Beta - CDB Instance Internet Service Enabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "CDB Instance Internet should have internet service disabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/mysql_instance#internet_service",
+  "platform": "Terraform",
+  "descriptionID": "2d49b723",
+  "cloudProvider": "tencentcloud",
+  "cwe": "284"
+}

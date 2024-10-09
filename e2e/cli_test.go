@@ -9,8 +9,8 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/Checkmarx/kics/e2e/testcases"
-	"github.com/Checkmarx/kics/e2e/utils"
+	"github.com/Checkmarx/kics/v2/e2e/testcases"
+	"github.com/Checkmarx/kics/v2/e2e/utils"
 	"github.com/stretchr/testify/require"
 )
 
@@ -92,6 +92,7 @@ func Test_E2E_CLI(t *testing.T) {
 					// Check log file
 					logData, _ := utils.ReadFixture(tt.Args.ExpectedLog.LogFile, "output")
 					validation := tt.Args.ExpectedLog.ValidationFunc(logData)
+
 					require.Truef(t, validation, "The output log file 'output/%s' doesn't match the regex validation",
 						tt.Args.ExpectedLog.LogFile)
 				}
@@ -121,11 +122,11 @@ func Test_E2E_CLI(t *testing.T) {
 	t.Cleanup(func() {
 		err := os.RemoveAll("output")
 		if err != nil {
-			t.Logf("\nError when trying to remove tests output folder\n")
+			t.Logf("\nError when trying to remove tests output folder %v\n", err)
 		}
 		err = os.RemoveAll("tmp-kics-ar")
 		if err != nil {
-			t.Logf("\nError when trying to remove tmp-kics-ar folder\n")
+			t.Logf("\nError when trying to remove tmp-kics-ar folder %v\n", err)
 		}
 		t.Logf("E2E tests ::ellapsed time:: %v", time.Since(scanStartTime))
 	})

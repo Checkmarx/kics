@@ -31,8 +31,13 @@
                             "INFO",
                             "MINOR",
                             "MAJOR",
-                            "CRITICAL"
+                            "CRITICAL",
+                            "BLOCKER"
                         ]
+                    },
+                    "cwe": {
+                        "type": "string",
+                        "minLength": 0
                     },
                     "type": {
                         "type": "string",

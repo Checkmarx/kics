@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "Nifcloud LB Using Insecure TLS Policy ID",
+		"severity": "MEDIUM",
+		"line": 1,
+		"fileName": "positive1.tf"
+	},
+	{
+		"queryName": "Nifcloud LB Using Insecure TLS Policy ID",
+		"severity": "MEDIUM",
+		"line": 1,
+		"fileName": "positive2.tf"
+	}
+]

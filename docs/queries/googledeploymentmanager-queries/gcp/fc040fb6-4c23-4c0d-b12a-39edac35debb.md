@@ -18,8 +18,9 @@ hide:
 -   **Query id:** fc040fb6-4c23-4c0d-b12a-39edac35debb
 -   **Query name:** Disk Encryption Disabled
 -   **Platform:** GoogleDeploymentManager
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Encryption
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/326.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/326.html')">326</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/googleDeploymentManager/gcp/disk_encryption_disabled)
 
 ### Description

@@ -10,20 +10,20 @@ jobs:
       TITLE: ${{ github.event.issue.title }}
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       with:
         persist-credentials: false
         sparse-checkout: |
           .github/scripts/pr-issue-info/issue-fail.md
           .github/scripts/pr-issue-info/get_title_types.py
           .github/issue-title-types.yaml
-    - name: Set up Python 
+    - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: "3.x"
     - name: Install dependencies
       run: python3 -m pip install --upgrade pip pyyaml
-    - name: Check issue title 
+    - name: Check issue title
       env:
         FILE_PATH: .github/issue-title-types.yaml
       run: |
@@ -69,7 +69,7 @@ jobs:
       TITLE: ${{ github.event.issue.title }}
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       with:
         persist-credentials: false
         sparse-checkout: |
@@ -81,7 +81,7 @@ jobs:
       run: echo "USERNAME=${{ github.event.issue.user.login }}" >> $GITHUB_ENV
     - name: Check user username
       run: |
-        response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics-core-team/members")
+        response=$(curl -s -H "Authorization: token ${{ secrets.KICS_BOT_PAT }}" "https://api.github.com/orgs/Checkmarx/teams/kics/members")
         team_members=$(echo "$response" | jq -r '.[].login')
         if echo "${team_members[@]}" | grep -Pq "^$USERNAME$"; then
           echo "Contributor belongs to Checkmarx organization"
@@ -120,7 +120,7 @@ jobs:
         if echo "$TITLE $BODY" | grep -iqP "(\\b|_)bugs?(\\b|_)" || echo "$BODY" | grep -iqP "steps to reproduce" || echo "$BODY" | grep -iqP "actual behavior" || echo "$BODY" | grep -iqP "expected behavior"; then
           echo "Adding 'bug' label..."
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels -d '{"labels": ["bug"]}'
-        else 
+        else
           if echo "$LABELS" | grep -q "bug"; then
             echo "Removing 'bug' label..."
             curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels/bug
@@ -131,13 +131,13 @@ jobs:
         if echo "$TITLE $BODY" | grep -iqP "(\\b|_)quer(y|ies)(\\b|_)" || echo "$BODY" | grep -iqP "### Platform" || echo "$BODY" | grep -iqP "### Provider"; then
           echo "Adding 'query' label... "
           curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels -d '{"labels": ["query"]}'
-        else 
+        else
           if echo "$LABELS" | grep -q "query"; then
             echo "Removing 'query' label..."
             curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X DELETE -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels/query
           fi
         fi
-    - name: Set up Python 
+    - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: "3.x"

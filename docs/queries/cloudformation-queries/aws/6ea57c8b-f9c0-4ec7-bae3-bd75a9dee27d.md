@@ -18,8 +18,9 @@ hide:
 -   **Query id:** 6ea57c8b-f9c0-4ec7-bae3-bd75a9dee27d
 -   **Query name:** SDB Domain Declared As A Resource
 -   **Platform:** CloudFormation
--   **Severity:** <span style="color:#CC0">Low</span>
+-   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Resource Management
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/665.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/665.html')">665</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/sdb_domain_declared_as_a_resource)
 
 ### Description

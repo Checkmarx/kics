@@ -258,3 +258,11 @@ getPath(path) = result {
 	count(path) == 0
 	result := ""
 }
+
+createSearchKey(elem) = search {
+	not elem.Name.Ref
+	search := sprintf("=%s", [elem.Name])
+} else = search {
+	elem.Name.Ref
+	search := sprintf(".Ref=%s", [elem.Name.Ref])
+}

@@ -1,0 +1,12 @@
+{
+  "id": "940ddce2-26bd-4e31-a9b4-382714f73231",
+  "queryName": "Nifcloud RDB Undefined Description To DB Security Group",
+  "severity": "INFO",
+  "category": "Best Practices",
+  "descriptionText": "Missing description for DB security group",
+  "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/db_security_group#description",
+  "platform": "Terraform",
+  "descriptionID": "badc7874",
+  "cloudProvider": "nifcloud",
+  "cwe": "665"
+}

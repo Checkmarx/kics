@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Nifcloud DNS Has Verified Record",
+		"severity": "LOW",
+		"line": 1,
+		"fileName": "positive.tf"
+	}
+]

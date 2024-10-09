@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/test"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/test"
 	"github.com/stretchr/testify/require"
 )
 
@@ -35,8 +35,17 @@ func TestPrintCycloneDxReport(t *testing.T) {
 			name: "Test2 PrintCycloneDxReport", // Able to get sha-256: reports vulnerabilities
 			args: args{
 				path:     "./testdir",
-				filename: "testout",
+				filename: "testout2",
 				body:     test.ExampleSummaryMock,
+			},
+			wantErr: false,
+		},
+		{
+			name: "Test3 PrintCycloneDxReport", // Able to get sha-256: reports vulnerabilities
+			args: args{
+				path:     "./testdir",
+				filename: "testout3",
+				body:     test.SummaryMockCritical,
 			},
 			wantErr: false,
 		},

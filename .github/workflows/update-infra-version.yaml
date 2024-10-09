@@ -12,17 +12,17 @@ jobs:
     if: "!github.event.release.prerelease"
     steps:
       - name: Checkout project
-        uses: actions/checkout@v3
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           fetch-depth: 0
       - name: Update Terraform Cloud Integration
-        uses: peter-evans/repository-dispatch@v2
+        uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0 # v3
         with:
           token: ${{ secrets.KICS_BOT_PAT }}
           repository: ${{ secrets.TFC_REPO_PATH }}
           event-type: new-release
       - name: Update Infra
-        uses: peter-evans/repository-dispatch@v2
+        uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0 # v3
         with:
           token: ${{ secrets.KICS_BOT_PAT }}
           repository: ${{ secrets.INFRA_REPO }}

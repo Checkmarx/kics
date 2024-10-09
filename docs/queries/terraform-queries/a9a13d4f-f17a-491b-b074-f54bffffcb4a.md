@@ -18,8 +18,9 @@ hide:
 -   **Query id:** a9a13d4f-f17a-491b-b074-f54bffffcb4a
 -   **Query name:** Service Account Token Automount Not Disabled
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Insecure Defaults
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/665.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/665.html')">665</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/kubernetes/service_account_token_automount_not_disabled)
 
 ### Description

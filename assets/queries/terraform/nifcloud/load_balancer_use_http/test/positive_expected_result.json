@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Nifcloud LB Using HTTP Port",
+		"severity": "MEDIUM",
+		"line": 1,
+		"fileName": "positive.tf"
+	}
+]

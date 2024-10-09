@@ -1,0 +1,13 @@
+{
+  "id": "20f14e1a-a899-4e79-9f09-b6a84cd4649b",
+  "queryName": "Run Block Injection",
+  "oldSeverity": "INFO",
+  "severity": "CRITICAL",
+  "category": "Insecure Configurations",
+  "descriptionText": "GitHub Actions workflows can be triggered by a variety of events. Every workflow trigger is provided with a GitHub context that contains information about the triggering event, such as which user triggered it, the branch name, and other event context details. Some of this event data, like the base repository name, hash value of a changeset, or pull request number, is unlikely to be controlled or used for injection by the user that triggered the event.",
+  "descriptionUrl": "https://securitylab.github.com/research/github-actions-untrusted-input/",
+  "platform": "CICD",
+  "descriptionID": "02044a75",
+  "cloudProvider": "common",
+  "cwe": ""
+}

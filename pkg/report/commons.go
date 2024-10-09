@@ -11,18 +11,19 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	reportModel "github.com/Checkmarx/kics/pkg/report/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	reportModel "github.com/Checkmarx/kics/v2/pkg/report/model"
 	"github.com/gocarina/gocsv"
 	"github.com/rs/zerolog/log"
 )
 
 var (
 	stringsSeverity = map[string]model.Severity{
-		"high":   model.AllSeverities[0],
-		"medium": model.AllSeverities[1],
-		"low":    model.AllSeverities[2],
-		"info":   model.AllSeverities[3],
+		"critical": model.AllSeverities[0],
+		"high":     model.AllSeverities[1],
+		"medium":   model.AllSeverities[2],
+		"low":      model.AllSeverities[3],
+		"info":     model.AllSeverities[4],
 	}
 
 	templateFuncs = template.FuncMap{
@@ -61,7 +62,6 @@ func getCurrentTime() string {
 
 func fileCreationReport(path, filename string) {
 	log.Info().Str("fileName", filename).Msgf("Results saved to file %s", path)
-	fmt.Printf("Results saved to file %s\n", path)
 }
 
 func closeFile(path, filename string, file *os.File) {

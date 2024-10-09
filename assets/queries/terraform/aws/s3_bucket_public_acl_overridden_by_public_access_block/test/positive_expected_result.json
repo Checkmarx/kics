@@ -1,19 +1,19 @@
 [
   {
     "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 16,
     "filename": "positive1.tf"
   },
   {
     "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 7,
     "filename": "positive2.tf"
   },
   {
     "queryName": "S3 Bucket Public ACL Overridden By Public Access Block",
-    "severity": "LOW",
+    "severity": "HIGH",
     "line": 20,
     "filename": "positive3.tf"
   }

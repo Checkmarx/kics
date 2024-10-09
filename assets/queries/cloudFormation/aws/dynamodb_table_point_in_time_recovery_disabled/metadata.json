@@ -1,0 +1,12 @@
+{
+  "id": "0f04217d-488f-4e7a-bec8-f16159686cd6",
+  "queryName": "DynamoDB Table Point In Time Recovery Disabled",
+  "severity": "MEDIUM",
+  "category": "Best Practices",
+  "descriptionText": "It's considered a best practice to have point in time recovery enabled for DynamoDB Table",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dynamodb-table-pointintimerecoveryspecification.html",
+  "platform": "CloudFormation",
+  "descriptionID": "a0a51171",
+  "cloudProvider": "aws",
+  "cwe": "710"
+}

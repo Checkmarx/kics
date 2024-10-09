@@ -2,10 +2,10 @@ package buildah
 
 import (
 	"encoding/json"
-	"github.com/Checkmarx/kics/pkg/model"
 	"reflect"
 	"testing"
 
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/stretchr/testify/require"
 )
 
@@ -93,7 +93,8 @@ func TestParser_Parse(t *testing.T) {
 			]`,
 			want1:   []int{1, 3, 5},
 			wantErr: false,
-		}, {
+		},
+		{
 			name: "Buildah with normal comments + kics-scan ignore-line parse",
 			p:    &Parser{},
 			args: args{
@@ -137,7 +138,8 @@ func TestParser_Parse(t *testing.T) {
 			]`,
 			want1:   []int{1, 3, 4, 6},
 			wantErr: false,
-		}, {
+		},
+		{
 			name: "Buildah with kics-scan ignore-block related to from parse",
 			p:    &Parser{},
 			args: args{
@@ -318,7 +320,7 @@ func TestParser_Resolve(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			p := &Parser{}
-			got, err := p.Resolve(tt.args.fileContent, tt.args.filename, true)
+			got, err := p.Resolve(tt.args.fileContent, tt.args.filename, true, 15)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Parser.Resolve() error = %v, wantErr %v", err, tt.wantErr)
 				return

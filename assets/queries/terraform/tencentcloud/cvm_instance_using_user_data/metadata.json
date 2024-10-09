@@ -1,0 +1,12 @@
+{
+  "id": "5bb6fa08-5e84-4760-a54a-cdcd66626976",
+  "queryName": "Beta - CVM Instance Using User Data",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "CVM instances should use roles to be granted access",
+  "descriptionUrl": "https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/instance#user_data",
+  "platform": "Terraform",
+  "descriptionID": "7b10c908",
+  "cloudProvider": "tencentcloud",
+  "cwe": "284"
+}

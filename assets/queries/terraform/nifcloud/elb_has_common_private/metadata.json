@@ -1,0 +1,12 @@
+{
+  "id": "5061f84c-ab66-4660-90b9-680c9df346c0",
+  "queryName": "Nifcloud ELB Has Common Private Network",
+  "severity": "LOW",
+  "category": "Networking and Firewall",
+  "descriptionText": "The ELB has common private network",
+  "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/elb#network_id",
+  "platform": "Terraform",
+  "descriptionID": "40e5b2b8",
+  "cloudProvider": "nifcloud",
+  "cwe": "285"
+}

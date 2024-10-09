@@ -18,8 +18,9 @@ hide:
 -   **Query id:** 1743f5f1-0bb0-4934-acef-c80baa5dadfa
 -   **Query name:** User With Privilege Escalation By Actions 'iam:CreatePolicyVersion'
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Access Control
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/269.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/269.html')">269</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/user_with_privilege_escalation_by_actions_iam_CreatePolicyVersion)
 
 ### Description

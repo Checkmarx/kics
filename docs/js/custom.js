@@ -1,30 +1,40 @@
-var sortAsc = true;
-var headerArray = [];
+let sortAsc = true;
+let headerArray = [];
+
+
+
+const isHome = document.getElementsByClassName('md-header__button md-logo')[0].href === window.location.href;
 
 (function () {
   removeElement(".nav-item a[rel='prev']", true)
   removeElement(".nav-item a[rel='next']", true)
+  console.log(isHome)
+  if (isHome) {
+    removeElement("div.md-sidebar.md-sidebar--primary", false);
+    removeElement("article.md-content__inner.md-typeset > h1", false)
+  }
 
-  var kics = document.querySelectorAll(".md-ellipsis")
+
+  let kics = document.querySelectorAll(".md-ellipsis")
   kics[0].setAttribute("style", "display:none;")
 
   // For queries pages
   if (window.location.href.includes('/queries/') && window.location.href.includes('-queries')) {
     removeElement("div.md-sidebar.md-sidebar--secondary", false)
 
-    var updateTableHeader = document.getElementsByTagName("th")
+    let updateTableHeader = document.getElementsByTagName("th")
 
-    for (var t of updateTableHeader) {
+    for (let t of updateTableHeader) {
       t.classList.add("queries-th")
     }
 
     //add filter and sort
-    var tableHeader = document.querySelectorAll(":not(.modal-body) > table > thead > tr > th")
-    for (var i = 0; i < tableHeader.length; i++) {
+    let tableHeader = document.querySelectorAll(":not(.modal-body) > table > thead > tr > th")
+    for (let i = 0; i < tableHeader.length; i++) {
       const index = i;
       headerArray.push(tableHeader[i].innerText.toLowerCase())
       const headerText = sanitize(tableHeader[i].innerText)
-      if (!tableHeader[i].innerText.toLowerCase().includes("help")) {
+      if (!tableHeader[i].innerText.toLowerCase().includes("more info")) {
         const spanSort = document.createElement("span")
         spanSort.innerText = headerText
 
@@ -49,8 +59,8 @@ var headerArray = [];
         tableHeader[i].style.verticalAlign = "initial";
       }
     }
-    // var untreatedName = document.getElementsByClassName("md-nav__link md-nav__link--active")[0].innerText
-    // var treatedName = untreatedName.replace(/\s+/g, '').toLowerCase()
+    // let untreatedName = document.getElementsByClassName("md-nav__link md-nav__link--active")[0].innerText
+    // let treatedName = untreatedName.replace(/\s+/g, '').toLowerCase()
     // treatedName = htmlEncode(treatedName)
     const csvFilename = `kics-queries.csv`
     const table = document.querySelector(":not(.modal-body) > table")
@@ -78,12 +88,12 @@ function pasteFilter(numberOfColumns) {
 }
 
 function filterQueryTable(numberOfColumns) {
-  var allLines = document.querySelectorAll(":not(.modal-body) > table > tbody > tr")
+  let allLines = document.querySelectorAll(":not(.modal-body) > table > tbody > tr")
 
-  var hideRow = new Set();
-  for (var i = 0; i < numberOfColumns; i++) {
+  let hideRow = new Set();
+  for (let i = 0; i < numberOfColumns; i++) {
     const input = document.querySelector(`#query-filter-${i}`)
-    var textToFilter = ""
+    let textToFilter = ""
     if (input) {
       textToFilter = input.value
     }
@@ -116,10 +126,12 @@ function sortFunction(index) {
     }
   }
   const severityOrder = {
-    "high": 0,
-    "medium": 1,
-    "low": 2,
-    "info": 3,
+    "critical": 0,
+    "high": 1,
+    "medium": 2,
+    "low": 3,
+    "info": 4,
+    "trace": 5,
   }
   return function (a, b) {
     const severityA = severityOrder[a.children[index].innerText.toLowerCase().trim()]
@@ -132,7 +144,7 @@ function sortFunction(index) {
 }
 
 function executeSort(index) {
-  var allLines = Array.prototype.slice.call(document.querySelectorAll(":not(.modal-body) > table > tbody > tr"))
+  let allLines = Array.prototype.slice.call(document.querySelectorAll(":not(.modal-body) > table > tbody > tr"))
   let sortedLines = allLines.sort(sortFunction(index))
 
   const body = document.querySelector(":not(.modal-body) > table > tbody ")
@@ -142,7 +154,7 @@ function executeSort(index) {
 }
 
 function removeElement(querySelector, parentElement) {
-  var element = document.querySelector(querySelector);
+  let element = document.querySelector(querySelector);
   if (element) {
     if (parentElement) {
       element = element.parentElement;
@@ -152,26 +164,42 @@ function removeElement(querySelector, parentElement) {
 }
 
 function exportToCSV(filename) {
-  var csv = [];
-  var rows = document.querySelectorAll(":not(.modal-body) > table tr");
+  let csv = [];
+  let rows = document.querySelectorAll(":not(.modal-body) > table tr");
 
   for (let r of rows) {
-    var row = []
-    var cols = r.querySelectorAll("td, th")
-    for (var j = 0; j < cols.length; j++) {
-      var text = `"${cols[j].innerText.replace(/\n/g, " ").replaceAll(/"/g, '').trim()}"`
+    let row = []
+    let cols = r.querySelectorAll("td, th")
+    for (let j = 0; j < cols.length; j++) {
+      let text = `"${cols[j].innerText.replace(/\n/g, " ").replaceAll(/"/g, '').trim()}"`
       if (cols[j].tagName == "TH") {
         text = text.match(/[0-9a-zA-Z ]+/)[0]
         if (headerArray[j] == "query") {
           text = "Query ID,Query Name"
         }
+        if (headerArray[j] == "more info") {
+          text = "Query Details,Documentation"
+        }
       } else if (headerArray[j] == "help") {
         text = cols[j].children[0].href
       } else if (headerArray[j] == "query") {
-        var lastIndex = text.lastIndexOf(" ")
+        let lastIndex = text.lastIndexOf(" ")
         text = `"${text.substring(lastIndex + 1)},${text.substring(0, lastIndex)}"`
       } else if (headerArray[j] == "description") {
         text = text.replace(/\(read more\)/i, '')
+      } else if (headerArray[j] == "more info") {
+        let elements = cols[j].getElementsByTagName('a')
+
+        let urls = {
+          'Documentation': "-",
+          'Query details': "-"
+        }
+
+        for (let element of elements) {
+          urls[element.innerText] = element.href
+        }
+
+        text = urls['Query details'] + "," + urls['Documentation']
       }
       row.push(text)
     }
@@ -190,4 +218,11 @@ function downloadCSV(csv, filename) {
   downloadLink.style.display = "none"
   document.body.appendChild(downloadLink)
   downloadLink.click()
+}
+
+function newWindowOpenerSafe(event, untrustedURL) {
+  event.preventDefault() // prevent the default link behavior
+  let newWindow=window.open()
+  newWindow.opener=null
+  newWindow.location=untrustedURL
 }

@@ -1,6 +1,6 @@
 package model
 
-import "github.com/Checkmarx/kics/pkg/model"
+import "github.com/Checkmarx/kics/v2/pkg/model"
 
 // CSVReport struct contains all the info to create the csv report
 type CSVReport struct {
@@ -9,6 +9,7 @@ type CSVReport struct {
 	QueryURI                    string `csv:"query_uri"`
 	Severity                    string `csv:"severity"`
 	Platform                    string `csv:"platform"`
+	CWE                         string `csv:"cwe,omitempty"`
 	CloudProvider               string `csv:"cloud_provider"`
 	Category                    string `csv:"category"`
 	DescriptionID               string `csv:"description_id"`
@@ -39,6 +40,7 @@ func BuildCSVReport(summary *model.Summary) []CSVReport {
 				QueryURI:                    summary.Queries[i].QueryURI,
 				Severity:                    string(summary.Queries[i].Severity),
 				Platform:                    summary.Queries[i].Platform,
+				CWE:                         summary.Queries[i].CWE,
 				CloudProvider:               summary.Queries[i].CloudProvider,
 				Category:                    summary.Queries[i].Category,
 				DescriptionID:               summary.Queries[i].DescriptionID,

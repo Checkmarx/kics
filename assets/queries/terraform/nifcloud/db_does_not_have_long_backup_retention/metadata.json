@@ -1,0 +1,12 @@
+{
+  "id": "e5071f76-cbe7-468d-bb2b-d10f02d2b713",
+  "queryName": "Nifcloud Low RDB Backup Retention Period",
+  "severity": "LOW",
+  "category": "Backup",
+  "descriptionText": "Nifcloud RDB backup retention should be at least 7 days",
+  "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/db_instance#backup_retention_period",
+  "platform": "Terraform",
+  "descriptionID": "5fadf94a",
+  "cloudProvider": "nifcloud",
+  "cwe": "754"
+}

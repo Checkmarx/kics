@@ -1,0 +1,12 @@
+{
+  "id": "ab759fde-e1e8-4b0e-ad73-ba856e490ed8",
+  "queryName": "ECS Cluster with Container Insights Disabled",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "ECS Cluster should enable container insights",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-cluster.html#cfn-ecs-cluster-clustersettings",
+  "platform": "CloudFormation",
+  "descriptionID": "1751124e",
+  "cloudProvider": "aws",
+  "cwe": "778"
+}

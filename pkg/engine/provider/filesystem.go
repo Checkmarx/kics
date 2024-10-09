@@ -6,13 +6,14 @@ import (
 	ioFs "io/fs"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"sync"
 	"syscall"
 
-	sentryReport "github.com/Checkmarx/kics/internal/sentry"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/utils"
+	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"github.com/yargevad/filepathx"
@@ -26,8 +27,11 @@ type FileSystemSourceProvider struct {
 	mu       sync.RWMutex
 }
 
-// ErrNotSupportedFile - error representing when a file format is not supported by KICS
-var ErrNotSupportedFile = errors.New("invalid file format")
+var (
+	queryRegexExcludeTerraCache = regexp.MustCompile(fmt.Sprintf(`^(.*?%s)?\.terra.*`, regexp.QuoteMeta(string(os.PathSeparator))))
+	// ErrNotSupportedFile - error representing when a file format is not supported by KICS
+	ErrNotSupportedFile = errors.New("invalid file format")
+)
 
 // NewFileSystemSourceProvider initializes a FileSystemSourceProvider with path and files that will be ignored
 func NewFileSystemSourceProvider(paths, excludes []string) (*FileSystemSourceProvider, error) {
@@ -202,7 +206,7 @@ func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string,
 }
 
 func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error) {
-	ext := utils.GetExtension(scanPath)
+	ext, _ := utils.GetExtension(scanPath)
 
 	if !extensions.Include(ext) {
 		return nil, ErrNotSupportedFile
@@ -230,7 +234,18 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 	path string, resolved bool) (bool, error) {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
+
 	if info.IsDir() {
+		// exclude terraform cache folders
+		if queryRegexExcludeTerraCache.MatchString(path) {
+			log.Info().Msgf("Directory ignored: %s", path)
+
+			err := s.AddExcluded([]string{info.Name()})
+			if err != nil {
+				return true, err
+			}
+			return true, filepath.SkipDir
+		}
 		if f, ok := s.excludes[info.Name()]; ok && containsFile(f, info) {
 			log.Info().Msgf("Directory ignored: %s", path)
 			return true, filepath.SkipDir
@@ -246,7 +261,7 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
 		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil
 	}
-	ext := utils.GetExtension(path)
+	ext, _ := utils.GetExtension(path)
 	if !extensions.Include(ext) {
 		log.Trace().Msgf("File ignored: %s", path)
 		return true, nil

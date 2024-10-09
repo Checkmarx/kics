@@ -1,0 +1,12 @@
+{
+  "id": "3ed47402-e322-465f-a0f0-8681135a17b0",
+  "queryName": "Beta - TKE Cluster Encryption Protection Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "TKE Cluster should have encryption protection enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/kubernetes_encryption_protection",
+  "platform": "Terraform",
+  "descriptionID": "1220fcb9",
+  "cloudProvider": "tencentcloud",
+  "cwe": "311"
+}

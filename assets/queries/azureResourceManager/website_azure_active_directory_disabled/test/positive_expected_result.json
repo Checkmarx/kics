@@ -34,5 +34,41 @@
     "severity": "LOW",
     "line": 17,
     "fileName": "positive6.json"
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive3.bicep"
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 2,
+    "fileName": "positive4.bicep"
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive5.bicep"
+  },
+  {
+    "queryName": "Website Azure Active Directory Disabled",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive6.bicep"
   }
 ]

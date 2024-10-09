@@ -6,12 +6,12 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/Checkmarx/kics/assets"
-	"github.com/Checkmarx/kics/internal/tracker"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/progress"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/assets"
+	"github.com/Checkmarx/kics/v2/internal/tracker"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/progress"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/stretchr/testify/require"
 )
 
@@ -478,10 +478,11 @@ var testNewInspectorInputs = []struct {
 			"severity": "HIGH",
 			"category": "Secret Management",
 			"descriptionText": "Query to find passwords and secrets in infrastructure code.",
-			"descriptionUrl": "https://kics.io/",
+			"descriptionUrl": "https://docs.kics.io/latest/secrets/",
 			"platform": "Common",
 			"descriptionID": "d69d8a89",
-			"cloudProvider": "common"
+			"cloudProvider": "common",
+			"cwe": "798"
 		  }`,
 		disableSecrets: false,
 		wantRegLen:     1,
@@ -508,10 +509,11 @@ var testNewInspectorInputs = []struct {
 			"severity": "HIGH",
 			"category": "Secret Management",
 			"descriptionText": "Query to find passwords and secrets in infrastructure code.",
-			"descriptionUrl": "https://kics.io/",
+			"descriptionUrl": "https://docs.kics.io/latest/secrets/",
 			"platform": "Common",
 			"descriptionID": "d69d8a89",
-			"cloudProvider": "common"
+			"cloudProvider": "common",
+			"cwe": "798"
 		  }`,
 		disableSecrets: true,
 		wantRegLen:     0,
@@ -538,10 +540,11 @@ var testNewInspectorInputs = []struct {
 			"severity": "HIGH",
 			"category": "Secret Management",
 			"descriptionText": "Query to find passwords and secrets in infrastructure code.",
-			"descriptionUrl": "https://kics.io/",
+			"descriptionUrl": "https://docs.kics.io/latest/secrets/",
 			"platform": "Common",
 			"descriptionID": "d69d8a89",
-			"cloudProvider": "common"
+			"cloudProvider": "common",
+			"cwe": "798"
 		  }`,
 		disableSecrets: false,
 		wantRegLen:     1,

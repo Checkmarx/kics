@@ -141,6 +141,7 @@
                     "severity": {
                         "type": "string",
                         "enum": [
+                            "Critical",
                             "High",
                             "Medium",
                             "Low",
@@ -151,6 +152,10 @@
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 255
+                    },
+                    "cwe":{
+                        "type": "string",
+                        "minLength": 0
                     },
                     "links": {
                         "type": "array",

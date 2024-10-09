@@ -1,0 +1,12 @@
+{
+  "id": "d135a36e-c474-452f-b891-76db1e6d1cd5",
+  "queryName": "Beta - Security Group Rule Set Accepts All Traffic",
+  "severity": "HIGH",
+  "category": "Networking and Firewall",
+  "descriptionText": "Security Group Rule Set accepts all traffic",
+  "descriptionUrl": "https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/security_group_rule_set#ingress",
+  "platform": "Terraform",
+  "descriptionID": "24df00d9",
+  "cloudProvider": "tencentcloud",
+  "cwe": "285"
+}

@@ -51,6 +51,7 @@ var (
 		"OpenAPI":                 "openAPI",
 		"Terraform":               "terraform",
 		"AzureResourceManager":    "azureResourceManager",
+		"Bicep":                   "bicep",
 		"GoogleDeploymentManager": "googleDeploymentManager",
 		"GRPC":                    "grpc",
 		"Buildah":                 "buildah",
@@ -60,6 +61,7 @@ var (
 
 	// AvailableSeverities - All severities available
 	AvailableSeverities = []string{
+		"critical",
 		"high",
 		"medium",
 		"low",
@@ -79,11 +81,12 @@ var (
 
 	// AvailableCloudProviders - All cloud providers available
 	AvailableCloudProviders = map[string]string{
-		"alicloud": "",
-		"aws":      "",
-		"azure":    "",
-		"gcp":      "",
-		"nifcloud": "",
+		"alicloud":     "",
+		"aws":          "",
+		"azure":        "",
+		"gcp":          "",
+		"nifcloud":     "",
+		"tencentcloud": "",
 	}
 )
 
@@ -123,9 +126,6 @@ const (
 
 	// LogFormatPretty - print log more readable
 	LogFormatPretty = "pretty"
-
-	// MaxResolvedFiles - max files kics will resolve to prevent circular cycles
-	MaxResolvedFiles = 50
 )
 
 // GetRelease - returns the current release in the format 'kics@version' to be used by sentry

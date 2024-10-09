@@ -3,7 +3,7 @@ package buildah
 import (
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 	"mvdan.cc/sh/v3/syntax"
 )
 
@@ -17,7 +17,7 @@ func getKicsIgnore(comment string) string {
 
 func (i *Info) getIgnoreLines(comment *syntax.Comment) {
 	// get normal comments
-	i.IgnoreLines = append(i.IgnoreLines, int(comment.Hash.Line()))
+	i.IgnoreLines = append(i.IgnoreLines, int(comment.Hash.Line())) //nolint:gosec
 
 	if model.KICSCommentRgxp.MatchString(comment.Text) {
 		kicsIgnore := getKicsIgnore(comment.Text)
@@ -25,10 +25,10 @@ func (i *Info) getIgnoreLines(comment *syntax.Comment) {
 		switch model.CommentCommand(kicsIgnore) {
 		case model.IgnoreLine:
 			// get kics-scan ignore-line
-			i.IgnoreLines = append(i.IgnoreLines, int(comment.Hash.Line())+1)
+			i.IgnoreLines = append(i.IgnoreLines, int(comment.Hash.Line())+1) //nolint:gosec
 		case model.IgnoreBlock:
 			// get kics-scan ignore-block for ignoreFromBlock
-			i.IgnoreBlockLines = append(i.IgnoreBlockLines, int(comment.Pos().Line()))
+			i.IgnoreBlockLines = append(i.IgnoreBlockLines, int(comment.Pos().Line())) //nolint:gosec
 		}
 	}
 }
@@ -42,7 +42,7 @@ func (i *Info) getIgnoreBlockLines(comments []syntax.Comment, start, end int) {
 			kicsIgnore := getKicsIgnore(comment.Text)
 
 			if model.CommentCommand(kicsIgnore) == model.IgnoreBlock {
-				if int(comment.Hash.Line()) == start-1 {
+				if int(comment.Hash.Line()) == start-1 { //nolint:gosec
 					i.IgnoreLines = append(i.IgnoreLines, model.Range(start, end)...)
 					i.IgnoreBlockLines = append(i.IgnoreBlockLines, model.Range(start, end)...)
 				}

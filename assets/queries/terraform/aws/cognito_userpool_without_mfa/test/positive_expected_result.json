@@ -1,17 +1,17 @@
 [
   {
     "queryName": "Cognito UserPool Without MFA",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 1
   },
   {
     "queryName": "Cognito UserPool Without MFA",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 16
   },
   {
     "queryName": "Cognito UserPool Without MFA",
-    "severity": "MEDIUM",
+    "severity": "LOW",
     "line": 32
   }
 ]

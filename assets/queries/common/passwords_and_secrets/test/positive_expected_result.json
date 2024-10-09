@@ -50,13 +50,13 @@
   {
     "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
-    "line": 3,
+    "line": 4,
     "fileName": "positive8.json"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
-    "line": 6,
+    "line":7,
     "fileName": "positive8.json"
   },
   {
@@ -404,7 +404,19 @@
   {
     "queryName": "Passwords And Secrets - Generic Private Key",
     "severity": "HIGH",
-    "line": 5,
+    "line": 7,
     "fileName": "positive49.yml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password on YAML files when value in tuple",
+    "severity": "HIGH",
+    "line": 56,
+    "fileName": "positive50.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password on YAML files when value in tuple",
+    "severity": "HIGH",
+    "line": 68,
+    "fileName": "positive50.yaml"
   }
 ]

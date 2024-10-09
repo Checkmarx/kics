@@ -1,0 +1,56 @@
+{
+  "kics_version": "development",
+  "files_scanned": 1,
+  "lines_scanned": 19,
+  "files_parsed": 1,
+  "lines_parsed": 19,
+  "lines_ignored": 0,
+  "files_failed_to_scan": 0,
+  "queries_total": 17,
+  "queries_failed_to_execute": 0,
+  "queries_failed_to_compute_similarity_id": 0,
+  "scan_id": "console",
+  "severity_counters": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "INFO": 1,
+    "LOW": 0,
+    "MEDIUM": 0,
+    "TRACE": 0
+  },
+  "total_counter": 1,
+  "total_bom_resources": 0,
+  "start": "2024-05-06T15:45:28.1028682+01:00",
+  "end": "2024-05-06T15:45:29.6882643+01:00",
+  "paths": [
+    "/path/test/fixtures/resolve_references"
+  ],
+  "queries": [
+    {
+      "query_name": "Components Schema Definition Is Unused",
+      "query_id": "962fa01e-b791-4dcc-b04a-4a3e7389be5e",
+      "query_url": "https://swagger.io/specification/#components-object",
+      "severity": "INFO",
+      "platform": "OpenAPI",
+      "cloudProvider": "common",
+      "cwe": "710",
+      "category": "Best Practices",
+      "experimental": false,
+      "description": "Components schemas definitions should be referenced or removed from Open API definition",
+      "description_id": "5cdc0f3b",
+      "files": [
+        {
+          "file_name": "path\\test\\fixtures\\resolve_references\\swagger.yaml",
+          "similarity_id": "ff39e561509c13315ce34a0be602a974d63231b70cb5cdf778109e062302f8eb",
+          "line": 17,
+          "issue_type": "IncorrectValue",
+          "search_key": "components.schemas.{{MyResponse}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Schema should be used as reference somewhere",
+          "actual_value": "Schema is not used as reference"
+        }
+      ]
+    }
+  ]
+}

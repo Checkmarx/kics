@@ -5,9 +5,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/Checkmarx/kics/internal/console/flags"
-	"github.com/Checkmarx/kics/pkg/engine/source"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/internal/console/flags"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/require"
 )
@@ -111,7 +111,7 @@ func Test_RemediateFile(t *testing.T) {
 
 			tmpFileName := filepath.Join(os.TempDir(), "temporary-remediation"+utils.NextRandom()+filepath.Ext(filePathCopyFrom))
 			tmpFile := CreateTempFile(filePathCopyFrom, tmpFileName)
-			s.RemediateFile(tmpFile, tt.args.remediate, false)
+			s.RemediateFile(tmpFile, tt.args.remediate, false, 15)
 
 			os.Remove(tmpFile)
 			require.Equal(t, s.ActualRemediationDoneNumber, tt.actualRemediationDoneNumber)

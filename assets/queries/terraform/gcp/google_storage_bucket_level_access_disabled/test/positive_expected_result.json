@@ -1,12 +1,12 @@
 [
   {
     "queryName": "Google Storage Bucket Level Access Disabled",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 6
   },
   {
     "queryName": "Google Storage Bucket Level Access Disabled",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 20
   }
 ]

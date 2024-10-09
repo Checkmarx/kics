@@ -18,8 +18,9 @@ hide:
 -   **Query id:** e39bee8c-fe54-4a3f-824d-e5e2d1cca40a
 -   **Query name:** IAM Role Policy passRole Allows All
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Access Control
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/284.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/284.html')">284</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/iam_role_policy_passrole_allows_all)
 
 ### Description

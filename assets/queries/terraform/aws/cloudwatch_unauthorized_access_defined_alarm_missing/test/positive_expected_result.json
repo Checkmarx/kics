@@ -1,25 +1,25 @@
 [
   {
     "queryName": "CloudWatch Unauthorized Access Alarm Missing",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "CloudWatch Unauthorized Access Alarm Missing",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 1,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "CloudWatch Unauthorized Access Alarm Missing",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 1,
     "fileName": "positive3.tf"
   },
   {
     "queryName": "CloudWatch Unauthorized Access Alarm Missing",
-    "severity": "HIGH",
+    "severity": "CRITICAL",
     "line": 1,
     "fileName": "positive4.tf"
   }

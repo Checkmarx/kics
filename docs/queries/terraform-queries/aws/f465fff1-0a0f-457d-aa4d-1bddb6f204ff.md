@@ -18,8 +18,9 @@ hide:
 -   **Query id:** f465fff1-0a0f-457d-aa4d-1bddb6f204ff
 -   **Query name:** Role With Privilege Escalation By Actions 'iam:AttachRolePolicy'
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Access Control
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/269.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/269.html')">269</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/role_with_privilege_escalation_by_actions_iam_AttachRolePolicy)
 
 ### Description

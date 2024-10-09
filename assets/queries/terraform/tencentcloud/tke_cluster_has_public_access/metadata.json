@@ -1,0 +1,12 @@
+{
+  "id": "df6928ed-02f4-421f-9a67-a529860dd7e7",
+  "queryName": "Beta - TKE Cluster Has Public Access",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "TKE Cluster 'public_ip_assigned' should be set to false",
+  "descriptionUrl": "https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/kubernetes_cluster#public_ip_assigned",
+  "platform": "Terraform",
+  "descriptionID": "6570e731",
+  "cloudProvider": "tencentcloud",
+  "cwe": "732"
+}

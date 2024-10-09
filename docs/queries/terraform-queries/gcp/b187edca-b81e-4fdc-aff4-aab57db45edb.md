@@ -18,8 +18,9 @@ hide:
 -   **Query id:** b187edca-b81e-4fdc-aff4-aab57db45edb
 -   **Query name:** SQL DB Instance Publicly Accessible
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#ff0000">Critical</span>
 -   **Category:** Insecure Configurations
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/732.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/732.html')">732</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/gcp/sql_db_instance_is_publicly_accessible)
 
 ### Description

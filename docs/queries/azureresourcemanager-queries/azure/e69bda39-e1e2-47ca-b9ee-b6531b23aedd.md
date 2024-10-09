@@ -18,9 +18,10 @@ hide:
 -   **Query id:** e69bda39-e1e2-47ca-b9ee-b6531b23aedd
 -   **Query name:** PostgreSQL Database Server Log Connections Disabled
 -   **Platform:** AzureResourceManager
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Networking and Firewall
--   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/postgres_sql_server_log_connections_disabled)
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/778.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/778.html')">778</a>
+-   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/postgresql_server_log_connections_disabled)
 
 ### Description
 Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' property set to 'on'<br>
@@ -28,7 +29,53 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 
 ### Code samples
 #### Code samples with security vulnerabilities
-```json title="Positive test num. 1 - json file" hl_lines="40"
+```bicep title="Positive test num. 1 - bicep file" hl_lines="31"
+resource MyDBServer1 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
+  kind: ''
+  location: resourceGroup().location
+  name: 'MyDBServer1'
+  properties: {
+    sslEnforcement: 'Disabled'
+    version: '11'
+    administratorLogin: 'root'
+    administratorLoginPassword: '12345'
+    storageMB: '2048'
+    createMode: 'Default'
+    collation: 'SQL_Latin1_General_CP1_CI_AS'
+    creationDate: '2019-04-01T00:00:00Z'
+    lastModifiedDate: '2019-04-01T00:00:00Z'
+    maxSizeUnits: 'SizeUnit.megabytes'
+    isReadOnly: 'false'
+    isAutoUpgradeEnabled: 'true'
+    isStateful: 'false'
+    isExternal: 'false'
+  }
+  sku: {
+    name: 'S0'
+    tier: 'Basic'
+    capacity: 1
+    family: 'GeneralPurpose'
+  }
+}
+
+resource MyDBServer1_log_connections 'Microsoft.DBforPostgreSQL/servers/configurations@2017-12-01' = {
+  parent: MyDBServer1
+  name: 'log_connections'
+  properties: {
+    configurationSets: [
+      {
+        configurationSetType: 'Microsoft.DBforPostgreSQL/servers/configurations/dbconfig'
+        configurationSet: {
+          name: 'dbconfig'
+        }
+      }
+    ]
+  }
+  location: resourceGroup().location
+}
+
+```
+```json title="Positive test num. 2 - json file" hl_lines="40"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -87,7 +134,48 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 }
 
 ```
-```json title="Positive test num. 2 - json file" hl_lines="45"
+```bicep title="Positive test num. 3 - bicep file" hl_lines="33"
+resource MyDBServer2 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
+  kind: ''
+  location: resourceGroup().location
+  name: 'MyDBServer2'
+  properties: {
+    sslEnforcement: 'Disabled'
+    version: '11'
+    administratorLogin: 'root'
+    administratorLoginPassword: '12345'
+    storageMB: '2048'
+    createMode: 'Default'
+    collation: 'SQL_Latin1_General_CP1_CI_AS'
+    creationDate: '2019-04-01T00:00:00Z'
+    lastModifiedDate: '2019-04-01T00:00:00Z'
+    maxSizeUnits: 'SizeUnit.megabytes'
+    isReadOnly: 'false'
+    isAutoUpgradeEnabled: 'true'
+    isStateful: 'false'
+    isExternal: 'false'
+  }
+  sku: {
+    name: 'S0'
+    tier: 'Basic'
+    capacity: 1
+    family: 'GeneralPurpose'
+  }
+}
+
+resource MyDBServer2_log_connections 'Microsoft.DBforPostgreSQL/servers/configurations@2017-12-01' = {
+  parent: MyDBServer2
+  name: 'log_connections'
+  properties: {
+    value: 'off'
+  }
+  location: resourceGroup().location
+}
+
+```
+<details><summary>Positive test num. 4 - json file</summary>
+
+```json hl_lines="45"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -143,7 +231,52 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 }
 
 ```
-```json title="Positive test num. 3 - json file" hl_lines="44"
+</details>
+<details><summary>Positive test num. 5 - bicep file</summary>
+
+```bicep hl_lines="32"
+resource MyDBServer3 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
+  kind: ''
+  location: resourceGroup().location
+  name: 'MyDBServer3'
+  properties: {
+    sslEnforcement: 'Disabled'
+    version: '11'
+    administratorLogin: 'root'
+    administratorLoginPassword: '12345'
+    storageMB: '2048'
+    createMode: 'Default'
+    collation: 'SQL_Latin1_General_CP1_CI_AS'
+    creationDate: '2019-04-01T00:00:00Z'
+    lastModifiedDate: '2019-04-01T00:00:00Z'
+    maxSizeUnits: 'SizeUnit.megabytes'
+    isReadOnly: 'false'
+    isAutoUpgradeEnabled: 'true'
+    isStateful: 'false'
+    isExternal: 'false'
+  }
+  sku: {
+    name: 'S0'
+    tier: 'Basic'
+    capacity: 1
+    family: 'GeneralPurpose'
+  }
+}
+
+resource MyDBServer_log_connections 'Microsoft.DBforPostgreSQL/servers/configurations@2017-12-01' = {
+  name: 'MyDBServer/log_connections'
+  properties: {
+    value: 'off'
+  }
+  location: resourceGroup().location
+  dependsOn: ['MyDBServer']
+}
+
+```
+</details>
+<details><summary>Positive test num. 6 - json file</summary>
+
+```json hl_lines="44"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -199,7 +332,57 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 }
 
 ```
-<details><summary>Positive test num. 4 - json file</summary>
+</details>
+<details><summary>Positive test num. 7 - bicep file</summary>
+
+```bicep hl_lines="31"
+resource MyDBServer3 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
+  kind: ''
+  location: resourceGroup().location
+  name: 'MyDBServer3'
+  properties: {
+    sslEnforcement: 'Disabled'
+    version: '11'
+    administratorLogin: 'root'
+    administratorLoginPassword: '12345'
+    storageMB: '2048'
+    createMode: 'Default'
+    collation: 'SQL_Latin1_General_CP1_CI_AS'
+    creationDate: '2019-04-01T00:00:00Z'
+    lastModifiedDate: '2019-04-01T00:00:00Z'
+    maxSizeUnits: 'SizeUnit.megabytes'
+    isReadOnly: 'false'
+    isAutoUpgradeEnabled: 'true'
+    isStateful: 'false'
+    isExternal: 'false'
+  }
+  sku: {
+    name: 'S0'
+    tier: 'Basic'
+    capacity: 1
+    family: 'GeneralPurpose'
+  }
+}
+
+resource MyDBServer_log_connections 'Microsoft.DBforPostgreSQL/servers/configurations@2017-12-01' = {
+  name: 'MyDBServer/log_connections'
+  properties: {
+    configurationSets: [
+      {
+        configurationSetType: 'Microsoft.DBforPostgreSQL/servers/configurations/dbconfig'
+        configurationSet: {
+          name: 'dbconfig'
+        }
+      }
+    ]
+  }
+  location: resourceGroup().location
+  dependsOn: ['MyDBServer']
+}
+
+```
+</details>
+<details><summary>Positive test num. 8 - json file</summary>
 
 ```json hl_lines="43"
 {
@@ -265,7 +448,56 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 
 ```
 </details>
-<details><summary>Positive test num. 5 - json file</summary>
+<details><summary>Positive test num. 9 - bicep file</summary>
+
+```bicep hl_lines="31"
+resource MyDBServer1 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
+  kind: ''
+  location: resourceGroup().location
+  name: 'MyDBServer1'
+  properties: {
+    sslEnforcement: 'Disabled'
+    version: '11'
+    administratorLogin: 'root'
+    administratorLoginPassword: '12345'
+    storageMB: '2048'
+    createMode: 'Default'
+    collation: 'SQL_Latin1_General_CP1_CI_AS'
+    creationDate: '2019-04-01T00:00:00Z'
+    lastModifiedDate: '2019-04-01T00:00:00Z'
+    maxSizeUnits: 'SizeUnit.megabytes'
+    isReadOnly: 'false'
+    isAutoUpgradeEnabled: 'true'
+    isStateful: 'false'
+    isExternal: 'false'
+  }
+  sku: {
+    name: 'S0'
+    tier: 'Basic'
+    capacity: 1
+    family: 'GeneralPurpose'
+  }
+}
+
+resource MyDBServer1_log_connections 'Microsoft.DBforPostgreSQL/servers/configurations@2017-12-01' = {
+  parent: MyDBServer1
+  name: 'log_connections'
+  properties: {
+    configurationSets: [
+      {
+        configurationSetType: 'Microsoft.DBforPostgreSQL/servers/configurations/dbconfig'
+        configurationSet: {
+          name: 'dbconfig'
+        }
+      }
+    ]
+  }
+  location: resourceGroup().location
+}
+
+```
+</details>
+<details><summary>Positive test num. 10 - json file</summary>
 
 ```json hl_lines="42"
 {
@@ -336,7 +568,49 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 
 ```
 </details>
-<details><summary>Positive test num. 6 - json file</summary>
+<details><summary>Positive test num. 11 - bicep file</summary>
+
+```bicep hl_lines="33"
+resource MyDBServer2 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
+  kind: ''
+  location: resourceGroup().location
+  name: 'MyDBServer2'
+  properties: {
+    sslEnforcement: 'Disabled'
+    version: '11'
+    administratorLogin: 'root'
+    administratorLoginPassword: '12345'
+    storageMB: '2048'
+    createMode: 'Default'
+    collation: 'SQL_Latin1_General_CP1_CI_AS'
+    creationDate: '2019-04-01T00:00:00Z'
+    lastModifiedDate: '2019-04-01T00:00:00Z'
+    maxSizeUnits: 'SizeUnit.megabytes'
+    isReadOnly: 'false'
+    isAutoUpgradeEnabled: 'true'
+    isStateful: 'false'
+    isExternal: 'false'
+  }
+  sku: {
+    name: 'S0'
+    tier: 'Basic'
+    capacity: 1
+    family: 'GeneralPurpose'
+  }
+}
+
+resource MyDBServer2_log_connections 'Microsoft.DBforPostgreSQL/servers/configurations@2017-12-01' = {
+  parent: MyDBServer2
+  name: 'log_connections'
+  properties: {
+    value: 'off'
+  }
+  location: resourceGroup().location
+}
+
+```
+</details>
+<details><summary>Positive test num. 12 - json file</summary>
 
 ```json hl_lines="47"
 {
@@ -403,7 +677,49 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 
 ```
 </details>
-<details><summary>Positive test num. 7 - json file</summary>
+<details><summary>Positive test num. 13 - bicep file</summary>
+
+```bicep hl_lines="32"
+resource MyDBServer3 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
+  kind: ''
+  location: resourceGroup().location
+  name: 'MyDBServer3'
+  properties: {
+    sslEnforcement: 'Disabled'
+    version: '11'
+    administratorLogin: 'root'
+    administratorLoginPassword: '12345'
+    storageMB: '2048'
+    createMode: 'Default'
+    collation: 'SQL_Latin1_General_CP1_CI_AS'
+    creationDate: '2019-04-01T00:00:00Z'
+    lastModifiedDate: '2019-04-01T00:00:00Z'
+    maxSizeUnits: 'SizeUnit.megabytes'
+    isReadOnly: 'false'
+    isAutoUpgradeEnabled: 'true'
+    isStateful: 'false'
+    isExternal: 'false'
+  }
+  sku: {
+    name: 'S0'
+    tier: 'Basic'
+    capacity: 1
+    family: 'GeneralPurpose'
+  }
+}
+
+resource MyDBServer_log_connections 'Microsoft.DBforPostgreSQL/servers/configurations@2017-12-01' = {
+  name: 'MyDBServer/log_connections'
+  properties: {
+    value: 'off'
+  }
+  location: resourceGroup().location
+  dependsOn: ['MyDBServer']
+}
+
+```
+</details>
+<details><summary>Positive test num. 14 - json file</summary>
 
 ```json hl_lines="46"
 {
@@ -470,7 +786,56 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 
 ```
 </details>
-<details><summary>Positive test num. 8 - json file</summary>
+<details><summary>Positive test num. 15 - bicep file</summary>
+
+```bicep hl_lines="31"
+resource MyDBServer3 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
+  kind: ''
+  location: resourceGroup().location
+  name: 'MyDBServer3'
+  properties: {
+    sslEnforcement: 'Disabled'
+    version: '11'
+    administratorLogin: 'root'
+    administratorLoginPassword: '12345'
+    storageMB: '2048'
+    createMode: 'Default'
+    collation: 'SQL_Latin1_General_CP1_CI_AS'
+    creationDate: '2019-04-01T00:00:00Z'
+    lastModifiedDate: '2019-04-01T00:00:00Z'
+    maxSizeUnits: 'SizeUnit.megabytes'
+    isReadOnly: 'false'
+    isAutoUpgradeEnabled: 'true'
+    isStateful: 'false'
+    isExternal: 'false'
+  }
+  sku: {
+    name: 'S0'
+    tier: 'Basic'
+    capacity: 1
+    family: 'GeneralPurpose'
+  }
+}
+
+resource MyDBServer_log_connections 'Microsoft.DBforPostgreSQL/servers/configurations@2017-12-01' = {
+  name: 'MyDBServer/log_connections'
+  properties: {
+    configurationSets: [
+      {
+        configurationSetType: 'Microsoft.DBforPostgreSQL/servers/configurations/dbconfig'
+        configurationSet: {
+          name: 'dbconfig'
+        }
+      }
+    ]
+  }
+  location: resourceGroup().location
+  dependsOn: ['MyDBServer']
+}
+
+```
+</details>
+<details><summary>Positive test num. 16 - json file</summary>
 
 ```json hl_lines="45"
 {
@@ -547,7 +912,41 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 
 
 #### Code samples without security vulnerabilities
-```json title="Negative test num. 1 - json file"
+```bicep title="Negative test num. 1 - bicep file"
+resource MyDBServerNeg1 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
+  kind: ''
+  location: resourceGroup().location
+  name: 'MyDBServerNeg1'
+  properties: {
+    sslEnforcement: 'Disabled'
+    version: '11'
+    administratorLogin: 'root'
+    administratorLoginPassword: '12345'
+    storageMB: '2048'
+    createMode: 'Default'
+    collation: 'SQL_Latin1_General_CP1_CI_AS'
+    creationDate: '2019-04-01T00:00:00Z'
+    lastModifiedDate: '2019-04-01T00:00:00Z'
+    maxSizeUnits: 'SizeUnit.megabytes'
+    isReadOnly: 'false'
+    isAutoUpgradeEnabled: 'true'
+    isStateful: 'false'
+    isExternal: 'false'
+  }
+}
+
+resource MyDBServerNeg1_log_connections 'Microsoft.DBforPostgreSQL/servers/configurations@2017-12-01' = {
+  parent: MyDBServerNeg1
+  name: 'log_connections'
+  properties: {
+    value: 'on'
+  }
+  location: resourceGroup().location
+  dependsOn: ['Microsoft.DBforPostgreSQL/servers/MyDBServer']
+}
+
+```
+```json title="Negative test num. 2 - json file"
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -593,7 +992,48 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 }
 
 ```
-```json title="Negative test num. 2 - json file"
+```bicep title="Negative test num. 3 - bicep file"
+resource MyDBServer3 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
+  kind: ''
+  location: resourceGroup().location
+  name: 'MyDBServer3'
+  properties: {
+    sslEnforcement: 'Disabled'
+    version: '11'
+    administratorLogin: 'root'
+    administratorLoginPassword: '12345'
+    storageMB: '2048'
+    createMode: 'Default'
+    collation: 'SQL_Latin1_General_CP1_CI_AS'
+    creationDate: '2019-04-01T00:00:00Z'
+    lastModifiedDate: '2019-04-01T00:00:00Z'
+    maxSizeUnits: 'SizeUnit.megabytes'
+    isReadOnly: 'false'
+    isAutoUpgradeEnabled: 'true'
+    isStateful: 'false'
+    isExternal: 'false'
+  }
+  sku: {
+    name: 'S0'
+    tier: 'Basic'
+    capacity: 1
+    family: 'GeneralPurpose'
+  }
+}
+
+resource MyDBServer_log_connections 'Microsoft.DBforPostgreSQL/servers/configurations@2017-12-01' = {
+  name: 'MyDBServer/log_connections'
+  properties: {
+    value: 'on'
+  }
+  location: resourceGroup().location
+  dependsOn: ['MyDBServer']
+}
+
+```
+<details><summary>Negative test num. 4 - json file</summary>
+
+```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -649,7 +1089,47 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 }
 
 ```
-```json title="Negative test num. 3 - json file"
+</details>
+<details><summary>Negative test num. 5 - bicep file</summary>
+
+```bicep
+resource MyDBServerNeg1 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
+  kind: ''
+  location: resourceGroup().location
+  name: 'MyDBServerNeg1'
+  properties: {
+    sslEnforcement: 'Disabled'
+    version: '11'
+    administratorLogin: 'root'
+    administratorLoginPassword: '12345'
+    storageMB: '2048'
+    createMode: 'Default'
+    collation: 'SQL_Latin1_General_CP1_CI_AS'
+    creationDate: '2019-04-01T00:00:00Z'
+    lastModifiedDate: '2019-04-01T00:00:00Z'
+    maxSizeUnits: 'SizeUnit.megabytes'
+    isReadOnly: 'false'
+    isAutoUpgradeEnabled: 'true'
+    isStateful: 'false'
+    isExternal: 'false'
+  }
+}
+
+resource MyDBServerNeg1_log_connections 'Microsoft.DBforPostgreSQL/servers/configurations@2017-12-01' = {
+  parent: MyDBServerNeg1
+  name: 'log_connections'
+  properties: {
+    value: 'on'
+  }
+  location: resourceGroup().location
+  dependsOn: ['Microsoft.DBforPostgreSQL/servers/MyDBServer']
+}
+
+```
+</details>
+<details><summary>Negative test num. 6 - json file</summary>
+
+```json
 {
   "properties": {
     "template": {
@@ -704,7 +1184,50 @@ Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' p
 }
 
 ```
-<details><summary>Negative test num. 4 - json file</summary>
+</details>
+<details><summary>Negative test num. 7 - bicep file</summary>
+
+```bicep
+resource MyDBServer3 'Microsoft.DBforPostgreSQL/servers@2017-12-01' = {
+  kind: ''
+  location: resourceGroup().location
+  name: 'MyDBServer3'
+  properties: {
+    sslEnforcement: 'Disabled'
+    version: '11'
+    administratorLogin: 'root'
+    administratorLoginPassword: '12345'
+    storageMB: '2048'
+    createMode: 'Default'
+    collation: 'SQL_Latin1_General_CP1_CI_AS'
+    creationDate: '2019-04-01T00:00:00Z'
+    lastModifiedDate: '2019-04-01T00:00:00Z'
+    maxSizeUnits: 'SizeUnit.megabytes'
+    isReadOnly: 'false'
+    isAutoUpgradeEnabled: 'true'
+    isStateful: 'false'
+    isExternal: 'false'
+  }
+  sku: {
+    name: 'S0'
+    tier: 'Basic'
+    capacity: 1
+    family: 'GeneralPurpose'
+  }
+}
+
+resource MyDBServer_log_connections 'Microsoft.DBforPostgreSQL/servers/configurations@2017-12-01' = {
+  name: 'MyDBServer/log_connections'
+  properties: {
+    value: 'on'
+  }
+  location: resourceGroup().location
+  dependsOn: ['MyDBServer']
+}
+
+```
+</details>
+<details><summary>Negative test num. 8 - json file</summary>
 
 ```json
 {

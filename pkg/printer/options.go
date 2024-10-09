@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	consoleHelpers "github.com/Checkmarx/kics/internal/console/helpers"
-	"github.com/Checkmarx/kics/internal/constants"
+	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
+	"github.com/Checkmarx/kics/v2/internal/constants"
 	"github.com/gookit/color"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
@@ -137,4 +137,24 @@ func LogLevel(opt interface{}, changed bool) error {
 		zerolog.SetGlobalLevel(zerolog.FatalLevel)
 	}
 	return nil
+}
+
+type LogSink struct {
+	logs []string
+}
+
+func NewLogger(logs *LogSink) zerolog.Logger {
+	if logs == nil {
+		return log.Logger
+	}
+	return zerolog.New(logs)
+}
+
+func (l *LogSink) Write(p []byte) (n int, err error) {
+	l.logs = append(l.logs, string(p))
+	return len(p), nil
+}
+
+func (l *LogSink) Index(i int) string {
+	return l.logs[i]
 }

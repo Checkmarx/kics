@@ -1,7 +1,7 @@
 [
   {
     "queryName": "Hardcoded AWS Access Key",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 7
   }
 ]

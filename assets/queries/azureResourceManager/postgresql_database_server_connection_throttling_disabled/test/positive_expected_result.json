@@ -1,0 +1,74 @@
+[
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 45,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 47,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 36,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive3.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 36,
+    "fileName": "positive4.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive5.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Connection Throttling Disabled",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive6.bicep"
+  }
+]

@@ -221,6 +221,7 @@
                                                     "Severity": {
                                                         "type": "string",
                                                         "enum": [
+                                                            "Critical",
                                                             "High",
                                                             "Medium",
                                                             "Low",
@@ -256,6 +257,10 @@
                                                     }
                                                 }
                                             }
+                                        },
+                                        "CWE": {
+                                            "type": "string",
+                                            "minLength": 0
                                         }
                                     }
                                 }

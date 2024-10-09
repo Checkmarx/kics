@@ -18,8 +18,9 @@ hide:
 -   **Query id:** bbe3dd3d-fea9-4b68-a785-cfabe2bbbc54
 -   **Query name:** Policy Without Principal
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C60">Medium</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Access Control
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/284.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/284.html')">284</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/policy_without_principal)
 
 ### Description
@@ -192,3 +193,41 @@ resource "aws_glue_resource_policy" "exampleX" {
 }
 
 ```
+<details><summary>Negative test num. 4 - tf file</summary>
+
+```tf
+data "aws_iam_policy_document" "example" {
+  statement {
+    actions = [
+      "cloudwatch:PutMetricData",
+    ]
+
+    resources = ["*"]
+  }
+}
+
+data "aws_iam_policy_document" "lambda_assume" {
+  statement {
+    actions = [
+      "sts:AssumeRole",
+    ]
+    principals {
+      type = "Service"
+      identifiers = [
+        "lambda.amazonaws.com"
+      ]
+    }
+  }
+}
+
+resource "aws_iam_role" "example" {
+  name               = "example-role"
+  assume_role_policy = data.aws_iam_policy_document.lambda_assume.json
+
+  inline_policy {
+    name   = "default"
+    policy = data.aws_iam_policy_document.example.json
+  }
+}
+```
+</details>

@@ -18,8 +18,9 @@ hide:
 -   **Query id:** 6c2d627c-de0f-45fb-b33d-dad9bffbb421
 -   **Query name:** Cloud Storage Bucket Logging Not Enabled
 -   **Platform:** Crossplane
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Observability
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/778.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/778.html')">778</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/crossplane/gcp/cloud_storage_bucket_logging_not_enabled)
 
 ### Description

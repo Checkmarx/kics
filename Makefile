@@ -68,7 +68,7 @@ generate: mod-tidy ## go generate
 
 .PHONY: generate-antlr
 generate-antlr: ## generate parser with ANTLRv4, needs JRE (Java Runtime Environment) on the system
-	@cd pkg/parser/jsonfilter/ && java -jar $(LIB)/antlr-4.11.1-complete.jar -Dlanguage=Go -visitor -no-listener -o parser JSONFilter.g4
+	@cd pkg/parser/jsonfilter/ && java -jar $(LIB)/antlr-4.13.1-complete.jar -Dlanguage=Go -visitor -no-listener -o parser JSONFilter.g4
 
 .PHONY: test
 test-short: # Run sanity unit tests
@@ -110,7 +110,7 @@ test-coverage-report: test-cover
 test-e2e: ## Run E2E tests
 test-e2e: build
 	$(call print-target)
-	E2E_KICS_BINARY=$(PWD)/bin/kics go test "github.com/Checkmarx/kics/e2e" -v -timeout 1500s
+	E2E_KICS_BINARY=$(PWD)/bin/kics go test "github.com/Checkmarx/kics/v2/e2e" -v -timeout 1500s
 
 .PHONY: cover
 cover: ## generate coverage report
@@ -123,15 +123,30 @@ docker: ## build docker image
 	$(call print-target)
 	@docker build --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} -t "kics:${IMAGE_TAG}" .
 
+.PHONY: podman
+podman: ## build podman image
+	$(call print-target)
+	@podman build --build-arg VERSION=${VERSION} --build-arg COMMIT=${COMMIT} -t "kics:${IMAGE_TAG}" .
+
 .PHONY: docker-compose
 dkr-compose: ## build docker image and runs docker-compose up
 	$(call print-target)
 	VERSION=${VERSION} COMMIT=${COMMIT} IMAGE_TAG=${IMAGE_TAG} docker-compose up --build
 
+.PHONY: podman-compose
+podman-compose: ## build podman image and runs podman-compose up
+	$(call print-target)
+	VERSION=${VERSION} COMMIT=${COMMIT} IMAGE_TAG=${IMAGE_TAG} podman-compose up --build
+
 .PHONY: dkr-build-antlr
 dkr-build-antlr: ## build ANTLRv4 docker image and generate parser based on given grammar
 	@docker build -t antlr4-generator:dev -f ./docker/Dockerfile.antlr .
-	@docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser/jsonfilter:/work -it antlr4-generator:dev
+	@docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser:/work -it antlr4-generator:dev
+
+.PHONY: podman-build-antlr
+podman-build-antlr: ## build ANTLRv4 podman image and generate parser based on given grammar
+	@podman build -t antlr4-generator:dev -f ./docker/Dockerfile.antlr .
+	@podman run --rm -u $(id -u ${USER}):$(id -g ${USER}) -v $(pwd)/pkg/parser:/work -it antlr4-generator:dev
 
 .PHONY: release
 release: ## goreleaser --rm-dist
@@ -174,3 +189,11 @@ help:
 define print-target
 	@printf "Executing target: \033[36m$@\033[0m\n"
 endef
+
+.PHONY: lint-docker-image
+lint-docker-image:
+	docker run -t --rm -v ./:/app -w /app golangci/golangci-lint:v1.57.2 golangci-lint run -v -c /app/.golangci.yml --timeout 20m
+
+.PHONY: lint-podman-image
+lint-podman-image:
+	podman run -t --rm -v ./:/app -w /app golangci/golangci-lint:v1.57.2 golangci-lint run -v -c /app/.golangci.yml --timeout 20m

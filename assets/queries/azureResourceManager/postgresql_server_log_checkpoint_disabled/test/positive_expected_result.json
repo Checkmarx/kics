@@ -1,0 +1,98 @@
+[
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 43,
+    "fileName": "positive1.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 45,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 44,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 43,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 45,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 47,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 46,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 45,
+    "fileName": "positive8.json"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 40,
+    "fileName": "positive1.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive2.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 32,
+    "fileName": "positive3.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive4.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 40,
+    "fileName": "positive5.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 33,
+    "fileName": "positive6.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 32,
+    "fileName": "positive7.bicep"
+  },
+  {
+    "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive8.bicep"
+  }
+]

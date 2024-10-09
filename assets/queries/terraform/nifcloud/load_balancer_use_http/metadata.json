@@ -1,0 +1,12 @@
+{
+  "id": "94e47f3f-b90b-43a1-a36d-521580bae863",
+  "queryName": "Nifcloud LB Using HTTP Port",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "The LB using HTTP port",
+  "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/load_balancer#load_balancer_port",
+  "platform": "Terraform",
+  "descriptionID": "fc3831f9",
+  "cloudProvider": "nifcloud",
+  "cwe": "319"
+}

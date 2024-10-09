@@ -18,8 +18,9 @@ hide:
 -   **Query id:** cd7a52cf-8d7f-4cfe-bbeb-6306d23f576b
 -   **Query name:** Encoding Map Key Mismatch Schema Defined Properties
 -   **Platform:** OpenAPI
--   **Severity:** <span style="color:#00C">Info</span>
+-   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Structure and Semantics
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/20.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/20.html')">20</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/openAPI/3.0/encoding_map_key_mismatch_schema_defined_properties)
 
 ### Description

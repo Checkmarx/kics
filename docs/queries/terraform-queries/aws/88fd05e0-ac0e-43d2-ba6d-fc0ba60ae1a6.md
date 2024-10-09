@@ -18,8 +18,9 @@ hide:
 -   **Query id:** 88fd05e0-ac0e-43d2-ba6d-fc0ba60ae1a6
 -   **Query name:** IAM Database Auth Not Enabled
 -   **Platform:** Terraform
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Encryption
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/285.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/285.html')">285</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/iam_database_auth_not_enabled)
 
 ### Description

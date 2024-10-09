@@ -3,8 +3,8 @@ package converter
 import (
 	"strings"
 
-	"github.com/Checkmarx/kics/pkg/model"
-	"github.com/Checkmarx/kics/pkg/utils"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/emicklei/proto"
 )
 
@@ -140,6 +140,8 @@ func newJSONProto() *JSONProto {
 	}
 }
 
+const kicsLinesKey = "_kics_"
+
 // Convert converts a proto file to a JSONProto struct
 func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) {
 	jproto := newJSONProto()
@@ -162,14 +164,14 @@ func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) {
 		case *proto.Message:
 			jproto.processCommentProto(element.Comment, element.Position.Line, element)
 			jproto.Messages[element.Name] = jproto.convertMessage(element)
-			messageLines["_kics_"+element.Name] = model.LineObject{
+			messageLines[kicsLinesKey+element.Name] = model.LineObject{
 				Line: element.Position.Line,
 				Arr:  make([]map[string]*model.LineObject, 0),
 			}
 		case *proto.Service:
 			jproto.processCommentProto(element.Comment, element.Position.Line, element)
 			jproto.convertService(element)
-			serviceLines["_kics_"+element.Name] = model.LineObject{
+			serviceLines[kicsLinesKey+element.Name] = model.LineObject{
 				Line: element.Position.Line,
 				Arr:  make([]map[string]*model.LineObject, 0),
 			}
@@ -184,7 +186,7 @@ func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) {
 			jproto.Imports[element.Filename] = Import{
 				Kind: element.Kind,
 			}
-			importLines["_kics_"+element.Filename] = model.LineObject{
+			importLines[kicsLinesKey+element.Filename] = model.LineObject{
 				Line: element.Position.Line,
 				Arr:  make([]map[string]*model.LineObject, 0),
 			}
@@ -199,7 +201,7 @@ func Convert(nodes *proto.Proto) (file *JSONProto, linesIgnore []int) {
 		case *proto.Enum:
 			jproto.processCommentProto(element.Comment, element.Position.Line, element)
 			jproto.Enum[element.Name] = jproto.convertEnum(element)
-			enumLines["_kics_"+element.Name] = model.LineObject{
+			enumLines[kicsLinesKey+element.Name] = model.LineObject{
 				Line: element.Position.Line,
 				Arr:  make([]map[string]*model.LineObject, 0),
 			}
@@ -245,7 +247,7 @@ func (j *JSONProto) convertMessage(n *proto.Message) Message {
 		switch field := field.(type) {
 		case *proto.NormalField:
 			j.processCommentProto(field.Comment, field.Position.Line, field)
-			message.Lines["_kics_"+field.Name] = model.LineObject{
+			message.Lines[kicsLinesKey+field.Name] = model.LineObject{
 				Line: field.Position.Line,
 			}
 			message.Field[field.Name] = &Field{
@@ -269,13 +271,13 @@ func (j *JSONProto) convertMessage(n *proto.Message) Message {
 		case *proto.Oneof:
 			j.processCommentProto(field.Comment, field.Position.Line, field)
 			message.OneOf[field.Name] = j.convertOneOf(field)
-			message.Lines["_kics_"+field.Name] = model.LineObject{
+			message.Lines[kicsLinesKey+field.Name] = model.LineObject{
 				Line: field.Position.Line,
 			}
 		case *proto.Enum:
 			j.processCommentProto(field.Comment, field.Position.Line, field)
 			message.Enum[field.Name] = j.convertEnum(field)
-			message.Lines["_kics_"+field.Name] = model.LineObject{
+			message.Lines[kicsLinesKey+field.Name] = model.LineObject{
 				Line: field.Position.Line,
 			}
 		case *proto.MapField:
@@ -290,19 +292,19 @@ func (j *JSONProto) convertMessage(n *proto.Message) Message {
 				},
 				KeyType: field.KeyType,
 			}
-			message.Lines["_kics_"+field.Name] = model.LineObject{
+			message.Lines[kicsLinesKey+field.Name] = model.LineObject{
 				Line: field.Position.Line,
 			}
 		case *proto.Message:
 			j.processCommentProto(field.Comment, field.Position.Line, field)
 			message.InnerMessage[field.Name] = j.convertMessage(field)
-			message.Lines["_kics_"+field.Name] = model.LineObject{
+			message.Lines[kicsLinesKey+field.Name] = model.LineObject{
 				Line: field.Position.Line,
 			}
 		case *proto.Option:
 			j.processCommentProto(field.Comment, field.Position.Line, field)
 			message.Options[field.Name] = j.convertSingleOption(field)
-			message.Lines["_kics_"+field.Name] = model.LineObject{
+			message.Lines[kicsLinesKey+field.Name] = model.LineObject{
 				Line: field.Position.Line,
 			}
 		}
@@ -339,7 +341,7 @@ func (j *JSONProto) convertEnum(n *proto.Enum) Enum {
 					"_kics__default": {Line: elem.Position.Line},
 				},
 			}
-			enum.Lines["_kics_"+elem.Name] = model.LineObject{
+			enum.Lines[kicsLinesKey+elem.Name] = model.LineObject{
 				Line: elem.Position.Line,
 			}
 		case *proto.Reserved:
@@ -353,7 +355,7 @@ func (j *JSONProto) convertEnum(n *proto.Enum) Enum {
 		case *proto.Option:
 			j.processCommentProto(elem.Comment, elem.Position.Line, elem)
 			enum.Options[elem.Name] = j.convertSingleOption(elem)
-			enum.Lines["_kics_"+elem.Name] = model.LineObject{
+			enum.Lines[kicsLinesKey+elem.Name] = model.LineObject{
 				Line: elem.Position.Line,
 			}
 		}
@@ -391,13 +393,13 @@ func (j *JSONProto) convertOneOf(n *proto.Oneof) OneOf {
 					"_kics__default": {Line: elem.Position.Line},
 				},
 			}
-			oneof.Lines["_kics_"+elem.Name] = model.LineObject{
+			oneof.Lines[kicsLinesKey+elem.Name] = model.LineObject{
 				Line: elem.Position.Line,
 			}
 		case *proto.Option:
 			j.processCommentProto(elem.Comment, elem.Position.Line, elem)
 			oneof.Options[elem.Name] = j.convertSingleOption(elem)
-			oneof.Lines["_kics_"+elem.Name] = model.LineObject{
+			oneof.Lines[kicsLinesKey+elem.Name] = model.LineObject{
 				Line: elem.Position.Line,
 			}
 		}
@@ -435,13 +437,13 @@ func (j *JSONProto) convertService(n *proto.Service) {
 		case *proto.RPC:
 			j.processCommentProto(rpc.Comment, rpc.Position.Line, rpc)
 			service.RPC[rpc.Name] = j.convertRPC(rpc)
-			service.Lines["_kics_"+rpc.Name] = model.LineObject{
+			service.Lines[kicsLinesKey+rpc.Name] = model.LineObject{
 				Line: rpc.Position.Line,
 			}
 		case *proto.Option:
 			j.processCommentProto(rpc.Comment, rpc.Position.Line, rpc)
 			service.Options[rpc.Name] = j.convertSingleOption(rpc)
-			service.Lines["_kics_"+rpc.Name] = model.LineObject{
+			service.Lines[kicsLinesKey+rpc.Name] = model.LineObject{
 				Line: rpc.Position.Line,
 			}
 		}

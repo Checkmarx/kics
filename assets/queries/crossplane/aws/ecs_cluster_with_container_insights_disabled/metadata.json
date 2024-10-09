@@ -1,0 +1,12 @@
+{
+  "id": "0c7a76d9-7dc5-499e-81ac-9245839177cb",
+  "queryName": "ECS Cluster with Container Insights Disabled",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "ECS Cluster should enable container insights",
+  "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/ecs.aws.crossplane.io/Cluster/v1alpha1@v0.42.0#spec-forProvider-settings",
+  "platform": "Crossplane",
+  "descriptionID": "a6911ebd",
+	"cloudProvider": "aws",
+  "cwe": "778"
+}

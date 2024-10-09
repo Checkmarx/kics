@@ -1,7 +1,7 @@
 {
   "id": "1908a8ee-927d-4166-8f18-241152170cc1",
   "queryName": "Success Response Code Undefined for Patch Operation (v3)",
-  "severity": "MEDIUM",
+  "severity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "Patch should define at least one success response (200, 201, 202 or 204)",
   "descriptionUrl": "https://swagger.io/specification/#operation-object",
@@ -12,9 +12,10 @@
     "2.0": {
       "id": "f36e87cc-a209-4f37-8571-66833e4aead7",
       "queryName": "Success Response Code Undefined for Patch Operation (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object"
     }
   },
-  "cwe": ""
+  "cwe": "665",
+  "cloudProvider": "common",
+  "oldSeverity": "MEDIUM"
 }

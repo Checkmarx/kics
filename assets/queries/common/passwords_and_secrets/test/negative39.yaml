@@ -1,51 +1,27 @@
-name: Example Workflow
-
-on: workflow_call
-
-jobs:
-  build-deploy:
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-
-    runs-on: ubuntu
-
-    steps:
-      - uses: actions/checkout@v3
-
----
-
-name: Example Workflow
-
-on: workflow_call
-
-jobs:
-  build-deploy:
-    permissions:
-      contents: read
-      pages: write
-      id-token: read
-
-    runs-on: ubuntu
-
-    steps:
-      - uses: actions/checkout@v3
-
----
-
-name: Example Workflow
-
-on: workflow_call
-
-jobs:
-  build-deploy:
-    permissions:
-      contents: read
-      pages: write
-      id-token: none
-
-    runs-on: ubuntu
-
-    steps:
-      - uses: actions/checkout@v3
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  somecode:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: somecodename
+      Description: somecodedesc
+      TimeoutInMinutes: 10
+      QueuedTimeoutInMinutes: 10
+      ServiceRole: someservicerole
+      EncryptionKey: somekey
+      Artifacts:
+        Type: someartifact
+      Cache:
+        Type: somecache
+        Modes:
+          - mode1
+          - mode2
+      Environment:
+        ComputeType: somecomputetype
+        Image: someimage
+        Type: someenv
+        ImagePullCredentialsType: somepulltype
+      Source:
+        Type: somesource
+        Location: somelocation
+        GitCloneDepth: 1

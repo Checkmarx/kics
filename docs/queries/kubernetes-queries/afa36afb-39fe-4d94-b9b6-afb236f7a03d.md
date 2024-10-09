@@ -18,8 +18,9 @@ hide:
 -   **Query id:** afa36afb-39fe-4d94-b9b6-afb236f7a03d
 -   **Query name:** Pod Security Policy Admission Control Plugin Not Set
 -   **Platform:** Kubernetes
--   **Severity:** <span style="color:#C00">High</span>
+-   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Build Process
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/284.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/284.html')">284</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/k8s/pod_security_policy_admission_control_plugin_not_set)
 
 ### Description
