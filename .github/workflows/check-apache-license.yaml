@@ -33,7 +33,7 @@ jobs:
         fi
     - name: Delete comment if license is fixed
       if: env.TAG_EXISTS == 'true'
-      uses: thollander/actions-comment-pull-request@b07c7f86be67002023e6cb13f57df3f21cdd3411
+      uses: thollander/actions-comment-pull-request@ce644a4ba466eb7e94ddef442fbaf2ac1ae7af35
       with:
         message: |
           Deleting comment...
@@ -42,7 +42,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
     - name: Add comment if no license
       if: env.CHECK_FAILED == 'true'
-      uses: thollander/actions-comment-pull-request@b07c7f86be67002023e6cb13f57df3f21cdd3411
+      uses: thollander/actions-comment-pull-request@ce644a4ba466eb7e94ddef442fbaf2ac1ae7af35
       with:
         filePath: .github/scripts/pr-issue-info/apache-check.md
         comment_tag: apache_license
