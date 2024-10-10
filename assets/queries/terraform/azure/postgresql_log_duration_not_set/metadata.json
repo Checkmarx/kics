@@ -1,0 +1,12 @@
+{
+  "id": "16e0879a-c4ae-4ff8-a67d-a2eed5d67b8f",
+  "queryName": "PostgreSQL Log Duration Not Set",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_duration' is set to 'ON'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
+  "platform": "Terraform",
+  "descriptionID": "2961eac3",
+  "cloudProvider": "azure",
+  "cwe": "778"
+}

@@ -20,6 +20,7 @@ hide:
 -   **Platform:** Terraform
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Insecure Configurations
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/665.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/665.html')">665</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/kubernetes/image_pull_policy_of_container_is_not_always)
 
 ### Description

@@ -7,6 +7,16 @@
             "minLength": 1,
             "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-4{1}[a-f0-9]{3}-[89ab]{1}[a-f0-9]{3}-[a-f0-9]{12}$"
         },
+        "description_text_pattern": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^.{1,500}$"
+        },
+        "query_name_pattern": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_ \\-\"',:$.()]{0,119}$"
+        },
         "description_id_pattern": {
             "type": "string",
             "minLength": 1,
@@ -22,15 +32,17 @@
         "descriptionUrl",
         "cloudProvider",
         "platform",
-        "descriptionID"
+        "descriptionID", 
+        "cwe"
     ],
     "properties": {
         "id": {
             "$ref": "#/definitions/query_id_pattern"
         },
         "queryName": {
+            "$ref": "#/definitions/query_name_pattern",
             "type": "string",
-            "minLength": 8,
+            "minLength": 1,
             "maxLength": 120
         },
         "severity": {
@@ -75,8 +87,9 @@
             ]
         },
         "descriptionText": {
+            "$ref": "#/definitions/description_text_pattern",
             "type": "string",
-            "minLength": 16,
+            "minLength": 1,
             "maxLength" : 500
         },
         "descriptionUrl": {

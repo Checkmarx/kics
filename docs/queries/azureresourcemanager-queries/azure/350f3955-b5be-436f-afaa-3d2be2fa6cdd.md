@@ -20,6 +20,7 @@ hide:
 -   **Platform:** AzureResourceManager
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Encryption
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/311.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/311.html')">311</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/azure_managed_disk_without_encryption)
 
 ### Description

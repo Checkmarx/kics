@@ -20,7 +20,8 @@ hide:
 -   **Platform:** AzureResourceManager
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Networking and Firewall
--   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/postgres_sql_server_log_connections_disabled)
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/778.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/778.html')">778</a>
+-   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/postgresql_server_log_connections_disabled)
 
 ### Description
 Microsoft.DBforPostgreSQL/servers/configurations should have 'log_connections' property set to 'on'<br>

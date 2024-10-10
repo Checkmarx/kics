@@ -1,12 +1,12 @@
 [
 	{
-		"queryName": "(Beta) Nifcloud Router Has Common Private Network",
+		"queryName": "Nifcloud Router Has Common Private Network",
 		"severity": "LOW",
 		"line": 1,
 		"fileName": "positive1.tf"
 	},
 	{
-		"queryName": "(Beta) Nifcloud Router Has Common Private Network",
+		"queryName": "Nifcloud Router Has Common Private Network",
 		"severity": "LOW",
 		"line": 1,
 		"fileName": "positive2.tf"

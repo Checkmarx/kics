@@ -20,6 +20,7 @@ hide:
 -   **Platform:** Common
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Secret Management
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/798.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/798.html')">798</a>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/common/passwords_and_secrets)
 
 ### Description
@@ -1117,7 +1118,7 @@ Parameters:
   SecretNamePrefix:
       Description: 'Used to create resource-based authorization policy for "secretsmanager:GetSecretValue" action. E.g. All Athena JDBC Federation secret names can be prefixed with "AthenaJdbcFederation" and authorization policy will allow "arn:${AWS::Partition}:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:AthenaJdbcFederatione*". Parameter value in this case should be "AthenaJdbcFederation". If you do not have a prefix, you can manually update the IAM policy to add allow any secret names.'
       Type: String
-
+Resources:
 ```
 </details>
 <details><summary>Positive test num. 40 - tf file</summary>
@@ -1216,22 +1217,27 @@ resource "google_container_cluster" "primary1" {
 </details>
 <details><summary>Positive test num. 44 - yml file</summary>
 
-```yml hl_lines="5"
+```yml hl_lines="7"
+on: workflow_call
+
 stages:
   - build
 
 variables:
   GIT_PRIVATE_KEY: "heythisisaprivatekey!"
 
-job_build:
-  stage: build
-  script:
-    - if [[ -z "${GIT_PRIVATE_KEY:-}" ]]; then
-        echo "Missing GIT_PRIVATE_KEY variable!"
-        exit 1
-      fi
-    - echo "Private key is set."
+jobs:
+  job_build:
+    stage: build
+    script:
+      - if [[ -z "${GIT_PRIVATE_KEY:-}" ]]; then
+          echo "Missing GIT_PRIVATE_KEY variable!"
+          exit 1
+        fi
+      - echo "Private key is set."
 
+    steps:
+      - uses: actions/checkout@v4
 ```
 </details>
 <details><summary>Positive test num. 45 - tf file</summary>
@@ -1556,13 +1562,15 @@ resource "google_container_cluster" "primary2" {
 </details>
 <details><summary>Positive test num. 49 - json file</summary>
 
-```json hl_lines="3 6"
+```json hl_lines="4 7"
 {
-  "service-1": {
-    "password": "abcdefg"
-  },
-  "service-2": {
-    "password": "abcdefg"
+  "Resources": {
+    "service-1": {
+      "password": "abcdefg"
+    },
+    "service-2": {
+      "password": "abcdefg"
+    }
   }
 }
 
@@ -1667,28 +1675,7 @@ provider "slack" {
 
 ```
 </details>
-<details><summary>Negative test num. 5 - yaml file</summary>
-
-```yaml
-#cloud formation test
-Resources:
-  RDSCluster:
-    Type: "AWS::RDS::DBCluster"
-    Properties:
-      MasterUserPassword: !Ref PasswordMaster
-      DBClusterIdentifier: my-serverless-cluster
-      Engine: aurora
-      EngineVersion: 5.6.10a
-      EngineMode: serverless
-      ScalingConfiguration:
-        AutoPause: true
-        MinCapacity: 4
-        MaxCapacity: 32
-        SecondsUntilAutoPause: 1000
-
-```
-</details>
-<details><summary>Negative test num. 6 - tf file</summary>
+<details><summary>Negative test num. 5 - tf file</summary>
 
 ```tf
 provider "stripe" {
@@ -1697,7 +1684,7 @@ provider "stripe" {
 
 ```
 </details>
-<details><summary>Negative test num. 7 - tf file</summary>
+<details><summary>Negative test num. 6 - tf file</summary>
 
 ```tf
 resource "aws_ecs_task_definition" "webapp" {
@@ -1788,7 +1775,7 @@ EOF
 
 ```
 </details>
-<details><summary>Negative test num. 8 - tf file</summary>
+<details><summary>Negative test num. 7 - tf file</summary>
 
 ```tf
 provider "heroku" {
@@ -1798,7 +1785,7 @@ provider "heroku" {
 
 ```
 </details>
-<details><summary>Negative test num. 9 - tf file</summary>
+<details><summary>Negative test num. 8 - tf file</summary>
 
 ```tf
 provider "github" {
@@ -1807,7 +1794,7 @@ provider "github" {
 
 ```
 </details>
-<details><summary>Negative test num. 10 - tf file</summary>
+<details><summary>Negative test num. 9 - tf file</summary>
 
 ```tf
 provider "cloudflare" {
@@ -1818,7 +1805,7 @@ provider "cloudflare" {
 
 ```
 </details>
-<details><summary>Negative test num. 11 - yaml file</summary>
+<details><summary>Negative test num. 10 - yaml file</summary>
 
 ```yaml
 Parameters:
@@ -1836,7 +1823,7 @@ Resources:
 
 ```
 </details>
-<details><summary>Negative test num. 12 - yaml file</summary>
+<details><summary>Negative test num. 11 - yaml file</summary>
 
 ```yaml
 Parameters:
@@ -1868,6 +1855,27 @@ Resources:
 
 ```
 </details>
+<details><summary>Negative test num. 12 - yaml file</summary>
+
+```yaml
+#cloud formation test
+Resources:
+  RDSCluster:
+    Type: "AWS::RDS::DBCluster"
+    Properties:
+      MasterUserPassword: !Ref PasswordMaster
+      DBClusterIdentifier: my-serverless-cluster
+      Engine: aurora
+      EngineVersion: 5.6.10a
+      EngineMode: serverless
+      ScalingConfiguration:
+        AutoPause: true
+        MinCapacity: 4
+        MaxCapacity: 32
+        SecondsUntilAutoPause: 1000
+
+```
+</details>
 <details><summary>Negative test num. 13 - yaml file</summary>
 
 ```yaml
@@ -1891,26 +1899,7 @@ provider "mailgun" {
 
 ```
 </details>
-<details><summary>Negative test num. 15 - yaml file</summary>
-
-```yaml
-#ansible test
-- name: create a cluster
-  google.cloud.gcp_container_cluster:
-    name: my-cluster
-    initial_node_count: 2
-    node_config:
-      machine_type: n1-standard-4
-      disk_size_gb: 500
-    location: us-central1-a
-    project: test_project
-    auth_kind: serviceaccount
-    service_account_file: "/tmp/auth.pem"
-    state: present
-
-```
-</details>
-<details><summary>Negative test num. 16 - tf file</summary>
+<details><summary>Negative test num. 15 - tf file</summary>
 
 ```tf
 provider "stripe" {
@@ -1919,7 +1908,7 @@ provider "stripe" {
 
 ```
 </details>
-<details><summary>Negative test num. 17 - yaml file</summary>
+<details><summary>Negative test num. 16 - yaml file</summary>
 
 ```yaml
 - hosts: all
@@ -1929,7 +1918,7 @@ provider "stripe" {
 
 ```
 </details>
-<details><summary>Negative test num. 18 - yaml file</summary>
+<details><summary>Negative test num. 17 - yaml file</summary>
 
 ```yaml
 - hosts: all
@@ -1940,7 +1929,7 @@ provider "stripe" {
 
 ```
 </details>
-<details><summary>Negative test num. 19 - yaml file</summary>
+<details><summary>Negative test num. 18 - yaml file</summary>
 
 ```yaml
 apiVersion: v1
@@ -1956,7 +1945,7 @@ spec:
 
 ```
 </details>
-<details><summary>Negative test num. 20 - yaml file</summary>
+<details><summary>Negative test num. 19 - yaml file</summary>
 
 ```yaml
 apiVersion: v1
@@ -1981,7 +1970,7 @@ users:
 
 ```
 </details>
-<details><summary>Negative test num. 21 - tf file</summary>
+<details><summary>Negative test num. 20 - tf file</summary>
 
 ```tf
 resource "aws_lambda_function" "analysis_lambda4" {
@@ -1998,7 +1987,7 @@ resource "aws_lambda_function" "analysis_lambda4" {
 
 ```
 </details>
-<details><summary>Negative test num. 22 - tf file</summary>
+<details><summary>Negative test num. 21 - tf file</summary>
 
 ```tf
 provider rancher2 {
@@ -2008,7 +1997,7 @@ provider rancher2 {
 
 ```
 </details>
-<details><summary>Negative test num. 23 - yaml file</summary>
+<details><summary>Negative test num. 22 - yaml file</summary>
 
 ```yaml
 name: Example Workflow
@@ -2065,36 +2054,26 @@ jobs:
 
 ```
 </details>
-<details><summary>Negative test num. 24 - tf file</summary>
+<details><summary>Negative test num. 23 - yaml file</summary>
 
-```tf
-#this code is a correct code for which the query should not find any result
-resource "google_container_cluster" "primary" {
-  name               = "marcellus-wallace"
-  location           = "us-central1-a"
-  initial_node_count = 3
-
-  master_auth {
-    client_certificate_config {
-      issue_client_certificate = true
-    }
-  }
-
-  timeouts {
-    create = "30m"
-    update = "40m"
-  }
-}
-
-resource "google_secret_manager_secret_version" "secret-version-basic" {
-  secret = var.my_google_secret
-
-  secret_data = "secret-data"
-}
+```yaml
+#ansible test
+- name: create a cluster
+  google.cloud.gcp_container_cluster:
+    name: my-cluster
+    initial_node_count: 2
+    node_config:
+      machine_type: n1-standard-4
+      disk_size_gb: 500
+    location: us-central1-a
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
 
 ```
 </details>
-<details><summary>Negative test num. 25 - yaml file</summary>
+<details><summary>Negative test num. 24 - yaml file</summary>
 
 ```yaml
 apiVersion: v1
@@ -2121,7 +2100,7 @@ spec:
         allowPrivilegeEscalation: false
 ```
 </details>
-<details><summary>Negative test num. 26 - yaml file</summary>
+<details><summary>Negative test num. 25 - yaml file</summary>
 
 ```yaml
 - name: 'aws_codebuild integration tests'
@@ -2163,17 +2142,17 @@ spec:
 
 ```
 </details>
-<details><summary>Negative test num. 27 - yaml file</summary>
+<details><summary>Negative test num. 26 - yaml file</summary>
 
 ```yaml
 Conditions:
   HasKmsKey: !Not [!Equals [!Ref ParentKmsKeyStack, '']]
   HasSecretName: !Not [!Equals [!Ref ParentKmsKeyStack, '']]
   HasPassword: !Not [!Equals [!Ref DBPassword, '']]
-
+Resources:
 ```
 </details>
-<details><summary>Negative test num. 28 - yaml file</summary>
+<details><summary>Negative test num. 27 - yaml file</summary>
 
 ```yaml
 Resources:
@@ -2227,7 +2206,7 @@ Resources:
 
 ```
 </details>
-<details><summary>Negative test num. 29 - tf file</summary>
+<details><summary>Negative test num. 28 - tf file</summary>
 
 ```tf
 locals {
@@ -2238,7 +2217,7 @@ locals {
 
 ```
 </details>
-<details><summary>Negative test num. 30 - dockerfile file</summary>
+<details><summary>Negative test num. 29 - dockerfile file</summary>
 
 ```dockerfile
 FROM baseImage
@@ -2252,7 +2231,7 @@ RUN apk add --no-cache git \
 
 ```
 </details>
-<details><summary>Negative test num. 31 - tf file</summary>
+<details><summary>Negative test num. 30 - tf file</summary>
 
 ```tf
 resource "aws_instance" "instance" {
@@ -2267,7 +2246,7 @@ resource "aws_instance" "instance" {
 
 ```
 </details>
-<details><summary>Negative test num. 32 - yaml file</summary>
+<details><summary>Negative test num. 31 - yaml file</summary>
 
 ```yaml
 Resources:
@@ -2283,11 +2262,12 @@ Resources:
 
 ```
 </details>
-<details><summary>Negative test num. 33 - yaml file</summary>
+<details><summary>Negative test num. 32 - yaml file</summary>
 
 ```yaml
 Type: AWS::Glue::Connection
-Properties:
+Resources:
+  Properties:
     CatalogId: "1111111111111"
     ConnectionInput:
       ConnectionProperties:
@@ -2314,7 +2294,7 @@ Properties:
 
 ```
 </details>
-<details><summary>Negative test num. 34 - yaml file</summary>
+<details><summary>Negative test num. 33 - yaml file</summary>
 
 ```yaml
 AWSTemplateFormatVersion: "2010-09-09"
@@ -2347,20 +2327,41 @@ Resources:
 
 ```
 </details>
-<details><summary>Negative test num. 35 - dockerfile file</summary>
+<details><summary>Negative test num. 34 - tf file</summary>
 
-```dockerfile
-FROM baseImage
+```tf
+#this code is a correct code for which the query should not find any result
+resource "google_container_cluster" "primary" {
+  name               = "marcellus-wallace"
+  location           = "us-central1-a"
+  initial_node_count = 3
 
-RUN command
+  master_auth {
+    client_certificate_config {
+      issue_client_certificate = true
+    }
+  }
+
+  timeouts {
+    create = "30m"
+    update = "40m"
+  }
+}
+
+resource "google_secret_manager_secret_version" "secret-version-basic" {
+  secret = var.my_google_secret
+
+  secret_data = "secret-data"
+}
 
 ```
 </details>
-<details><summary>Negative test num. 36 - yaml file</summary>
+<details><summary>Negative test num. 35 - yaml file</summary>
 
 ```yaml
 Type: AWS::Glue::Connection
-Properties:
+Resources:
+  Properties:
     CatalogId: "1111111111111"
     ConnectionInput:
       ConnectionProperties:
@@ -2387,7 +2388,7 @@ Properties:
 
 ```
 </details>
-<details><summary>Negative test num. 37 - yaml file</summary>
+<details><summary>Negative test num. 36 - yaml file</summary>
 
 ```yaml
 ---
@@ -2553,7 +2554,7 @@ Resources:
 
 ```
 </details>
-<details><summary>Negative test num. 38 - tf file</summary>
+<details><summary>Negative test num. 37 - tf file</summary>
 
 ```tf
 data "terraform_remote_state" "intnet" {
@@ -2569,7 +2570,7 @@ data "terraform_remote_state" "intnet" {
 
 ```
 </details>
-<details><summary>Negative test num. 39 - tf file</summary>
+<details><summary>Negative test num. 38 - tf file</summary>
 
 ```tf
 #this is a problematic code where the query should report a result(s)
@@ -2595,27 +2596,32 @@ resource "google_container_cluster" "primary1" {
 
 ```
 </details>
-<details><summary>Negative test num. 40 - yml file</summary>
+<details><summary>Negative test num. 39 - yml file</summary>
 
 ```yml
+on: workflow_call
+
 stages:
   - build
 
 variables:
   GIT_PRIVATE_KEY: $GIT_PRIVATE_KEY
 
-job_build:
-  stage: build
-  script:
-    - if [[ -z "${GIT_PRIVATE_KEY:-}" ]]; then
-        echo "Missing GIT_PRIVATE_KEY variable!"
-        exit 1
-      fi
-    - echo "Private key is set."
+jobs:
+  job_build:
+    stage: build
+    script:
+      - if [[ -z "${GIT_PRIVATE_KEY:-}" ]]; then
+          echo "Missing GIT_PRIVATE_KEY variable!"
+          exit 1
+        fi
+      - echo "Private key is set."
 
+    steps:
+      - uses: actions/checkout@v4
 ```
 </details>
-<details><summary>Negative test num. 41 - yml file</summary>
+<details><summary>Negative test num. 40 - yml file</summary>
 
 ```yml
 - name: "Configure the MySQL user "
@@ -2629,7 +2635,7 @@ job_build:
 
 ```
 </details>
-<details><summary>Negative test num. 42 - yaml file</summary>
+<details><summary>Negative test num. 41 - yaml file</summary>
 
 ```yaml
 name: Deploy
@@ -2706,6 +2712,15 @@ jobs:
           echo "AUTH0_CLIENT_SECRET=${auth0_client_secret}" >> $GITHUB_ENV
           echo "RESTAPI_MGT_APPID=${restapi_mgt_appid}" >> $GITHUB_ENV
           echo "RESTAPI_MGT_APPSEC=${restapi_mgt_appsec}" >> $GITHUB_ENV
+```
+</details>
+<details><summary>Negative test num. 42 - dockerfile file</summary>
+
+```dockerfile
+FROM baseImage
+
+RUN command
+
 ```
 </details>
 <details><summary>Negative test num. 43 - json file</summary>

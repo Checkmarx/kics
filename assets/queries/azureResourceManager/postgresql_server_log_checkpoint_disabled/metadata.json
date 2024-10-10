@@ -1,0 +1,12 @@
+{
+  "id": "f9112910-c7bb-4864-9f5e-2059ba413bb7",
+  "queryName": "PostgreSQL Database Server Log Checkpoints Disabled",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Microsoft.DBforPostgreSQL/servers/configurations should have 'log_checkpoint' property set to 'on'",
+  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.dbforpostgresql/2017-12-01/servers/configurations?tabs=json",
+  "platform": "AzureResourceManager",
+  "descriptionID": "be873a2e",
+  "cloudProvider": "azure",
+  "cwe": "778"
+}

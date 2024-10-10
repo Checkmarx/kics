@@ -126,18 +126,18 @@ func isSecret(line string, rule *secrets.RegexQuery, allowRules *[]secrets.Allow
 
 	for _, group := range groups {
 		splitedText := strings.Split(line, "\n")
-		max := -1
+		maxSplit := -1
 		for i, splited := range splitedText {
 			if len(groups) < rule.Multiline.DetectLineGroup {
-				if strings.Contains(splited, group[rule.Multiline.DetectLineGroup]) && i > max {
-					max = i
+				if strings.Contains(splited, group[rule.Multiline.DetectLineGroup]) && i > maxSplit {
+					maxSplit = i
 				}
 			}
 		}
-		if max == -1 {
+		if maxSplit == -1 {
 			continue
 		}
-		secret, newGroups := isSecret(strings.Join(append(splitedText[:max], splitedText[max+1:]...), "\n"), rule, allowRules)
+		secret, newGroups := isSecret(strings.Join(append(splitedText[:maxSplit], splitedText[maxSplit+1:]...), "\n"), rule, allowRules)
 		if !secret {
 			continue
 		}

@@ -51,7 +51,7 @@ The **result** defines the specific data used to present the *vulnerability* in 
 #### Metadata
 
 Each query has a metadata.json companion file with all the relevant information about the *vulnerability*, including
-the severity, category and its description.
+the severity, category and its description. Additional fields can be found on queries metadata file, such as descriptionID, cloudProvider or cwe.
 
 For example, the JSON code above is the metadata corresponding to the query in the beginning of this document.
 ```json
@@ -66,10 +66,9 @@ For example, the JSON code above is the metadata corresponding to the query in t
 }
 ```
 
-
 #### Organization
-Filesystem-wise, KICS queries are organized per IaC technology or tool (e.g., terraform, k8s, dockerfile, etc.) and grouped
-under provider (e.g., aws, gcp, azure, etc.) when applicable.
+
+Filesystem-wise, KICS queries are organized per IaC technology or tool/platform (e.g., terraform, k8s, dockerfile, etc.) and grouped under provider (e.g., aws, gcp, azure, etc.) when applicable.
 
 Per each query created, it is mandatory the creation of **test cases** with, at least, one negative and positive case and a JSON file
 with data about the expected results, as shown below:
@@ -135,3 +134,25 @@ And the file tree should be as follows:
 #### Query Dependencies
 
 If you want to use the functions defined in your own library, you should use the flag `-b` to indicate the directory where the libraries are placed. The functions need to be grouped by platform and the library name should follow the following format: `<platform>.rego`. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named `terraform.rego` wherever you want.
+
+#### Default Queries
+
+To use KICS default queries add the KICS_QUERIES_PATH environmental variable to your shell profile, e.g:
+
+```
+echo 'export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries' >> ~/.zshrc
+```
+
+#### Custom Queries
+
+You can provide your own path to the queries directory with `-q` CLI option (see CLI Options section below), otherwise the default directory will be used. The default _./assets/queries_ is built-in in the image. You can use this to provide a path to your own custom queries. Check [create a new query guide](creating-queries.md) to learn how to define your own queries.
+
+#### Password and Secrets
+
+Since the Password and Secrets mechanism uses generic regexes, we advise you to tweak the rules of the secret to your context. Please, see the [Password and Secrets documentation](https://github.com/Checkmarx/kics/blob/master/docs/secrets.md#new-rules-addition) to know how you can use your own rules.
+
+---
+
+**Note**: KICS does not execute scan by default as of [version 1.3.0](https://github.com/Checkmarx/kics/releases/tag/v1.3.0).
+
+**Note**: KICS deprecated the availability of binaries in the GitHub releases assets as of [version 1.5.2](https://github.com/Checkmarx/kics/releases/tag/v1.5.2), it is advised to update all systems (pipelines, integrations, etc.) to use the [KICS Docker Images](https://hub.docker.com/r/checkmarx/kics).

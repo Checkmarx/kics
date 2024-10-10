@@ -20,7 +20,8 @@ hide:
 -   **Platform:** Ansible
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Observability
--   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/ansible/azure/postgre_sql_server_without_connection_throttling)
+-   **CWE:** <a href="https://cwe.mitre.org/data/definitions/770.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/770.html')">770</a>
+-   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/ansible/azure/postgresql_server_without_connection_throttling)
 
 ### Description
 Ensure that Connection Throttling is set for the PostgreSQL server<br>

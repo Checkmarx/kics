@@ -226,7 +226,7 @@ func contributionAppeal(customPrint *consolePrinter.Printer, queriesPath []strin
 		msg := "\nAre you using a custom query? If so, feel free to contribute to KICS!\n"
 		contributionPage := "Check out how to do it: https://github.com/Checkmarx/kics/blob/master/docs/CONTRIBUTING.md\n"
 
-		output := customPrint.ContributionMessage.Sprintf(msg + contributionPage)
+		output := customPrint.ContributionMessage.Sprintf("%s", msg+contributionPage)
 		fmt.Println(output)
 	}
 }
@@ -240,8 +240,8 @@ func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) {
 	if !s.LatestVersion.Latest {
 		message := fmt.Sprintf("A new version 'v%s' of KICS is available, please consider updating", s.LatestVersion.LatestVersionTag)
 
-		fmt.Println(customPrint.VersionMessage.Sprintf(message))
-		log.Warn().Msgf(message)
+		fmt.Println(customPrint.VersionMessage.Sprintf("%s", message))
+		log.Warn().Msgf("%s", message)
 	}
 }
 
