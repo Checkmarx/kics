@@ -7,3 +7,5 @@ ignore:
       location: "/usr/bin/terraform"
   - package:
       location: "/usr/local/bin/terraform"
+exclude:
+  - './.github/scripts/**'
