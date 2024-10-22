@@ -94,6 +94,7 @@ jobs:
           severity-cutoff: low
           fail-build: true
       - name: Inspect action report
+        if: always()
         run: cat ${{ steps.grype-fs-scan.outputs.json }}
   grype-docker-image:
     name: Grype docker image scan
