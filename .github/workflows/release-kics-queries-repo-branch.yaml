@@ -7,7 +7,8 @@ jobs:
   create-branch:
     runs-on: ubuntu-latest
     env:
-      REPO_NAME: "kics-queries-repo"
+      REPO_NAME: ${{ secrets.REPO_NAME }}
+      ORG_NAME: ${{ secrets.ORG_NAME }}
     steps:
     - name: Checkout code
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
@@ -18,15 +19,16 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global url."https://${{ secrets.CHECKMARXDEV_GIT_TOKEN }}@github.com".insteadOf "https://github.com"
 
-    - name: Clone kics-queries-repo from CheckmarxDev
+    - name: Clone internal repository
       run: |
           cd ..
-          git clone https://github.com/CheckmarxDev/$REPO_NAME.git
+          git clone https://github.com/$ORG_NAME/$REPO_NAME.git
 
     - name: Create new branch for release ${{ github.event.release.name }}
       run: |
           cd ../$REPO_NAME
-          git checkout -b ${{ github.event.release.name }}
+          git checkout --orphan ${{ github.event.release.name }}
+          find . -mindepth 1 -not -path './.*' -not -name 'README.md' -delete
 
     - name: Copy queries to new branch
       run: |
@@ -35,11 +37,11 @@ jobs:
 
     - name: Modify circleci configuration
       run: |
-          sed -i 's/branch_name_template_to_replace/${{ github.event.release.name }}/g' ../$REPO_NAME/.circleci/config.yml
+          sed -i 's/BRANCJ_NAME_TEMPLATE_TO_REPLACE/${{ github.event.release.name }}/g' ../$REPO_NAME/.circleci/config.yml
 
     - name: Push branch
       run: |
           cd ../$REPO_NAME
           git add .
-          git commit -m "Add queries from release ${{ github.event.release.name }} to $REPO_NAME"
+          git commit -m "AUTO: Add queries from release ${{ github.event.release.name }} to $REPO_NAME"
           git push origin ${{ github.event.release.name }}
