@@ -26,10 +26,12 @@ RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go
 
+USER nonroot
+
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/git@sha256:d57ec2037d7cec38c4bf1f04df9d3c363bb6b7de138f3dcddaf2295180a5d0d6
+FROM cgr.dev/chainguard/git@sha256:cab77e1ef3224b526e4a65639be63f77943dc3ac9f4298165b2ddfa82cc94b42
 
 ENV TERM xterm-256color
 
@@ -42,8 +44,6 @@ COPY --from=build_env /app/assets/cwe_csv /app/bin/assets/cwe_csv
 COPY --from=build_env /app/assets/libraries/* /app/bin/assets/libraries/
 
 WORKDIR /app/bin
-
-USER 65532
 
 # Healthcheck the container
 ENV PATH $PATH:/app/bin
