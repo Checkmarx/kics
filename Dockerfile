@@ -29,7 +29,7 @@ RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/git@sha256:34742885a9caf5905d348f1651401bf281f4873112027b6f0d9a179d92fb4579
+FROM cgr.dev/chainguard/git@sha256:d57ec2037d7cec38c4bf1f04df9d3c363bb6b7de138f3dcddaf2295180a5d0d6
 
 ENV TERM xterm-256color
 
