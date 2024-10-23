@@ -1,4 +1,4 @@
-name: release-kics-queries-repo-branch
+name: release-kics-cxone
 on:
   release:
     types:
