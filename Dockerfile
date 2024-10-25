@@ -26,12 +26,12 @@ RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go
 
-USER nonroot
-
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/git@sha256:e149ac6fa8f7a8cfb6a63eb6a9ba9b6b45abd07dd18979c18e9c65ff8a6ca329
+FROM cgr.dev/chainguard/git@sha256:409a3061913f7f4f42ee04c33327254615374656a5b86596c229c9065e0524c7
+
+USER 65532
 
 ENV TERM xterm-256color
 
