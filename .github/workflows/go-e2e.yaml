@@ -83,7 +83,7 @@ jobs:
           sudo chmod -R 777 ./e2e/output  # Sets full permissions for output
       - name: Run docker image and generate results.json
         run: |
-          docker run --user $(id -u):$(id -g) -v ${PWD}/e2e:/path scan --output-path /path/e2e/output --output-name E2E_CLI_041_RESULT --report-formats json,sarif,glsast -p git::https://github.com/dockersamples/example-voting-app
+          docker run --user "$(id -u):$(id -g)" -v "${PWD}/e2e:/path" scan --output-path "/path/e2e/output" --output-name "E2E_CLI_041_RESULT" --report-formats "json,sarif,glsast" -p "git::https://github.com/dockersamples/example-voting-app"
       - name: Run E2E Tests
         env:
           E2E_KICS_DOCKER: kics:e2e-tests-${{ github.sha }}
