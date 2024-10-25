@@ -21,17 +21,15 @@ RUN go mod download -x
 COPY . .
 
 # Build the Go app
-RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
+RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
     -ldflags "-s -w -X github.com/Checkmarx/kics/v2/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/v2/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/v2/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/v2/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go
 
-USER nonroot
-
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM cgr.dev/chainguard/git@sha256:d007b76406e3e77d8f35b26620ffd1f82d71c61d0c900530c2ac4666a96822b8
+FROM cgr.dev/chainguard/git@sha256:409a3061913f7f4f42ee04c33327254615374656a5b86596c229c9065e0524c7
 
 ENV TERM xterm-256color
 
@@ -44,6 +42,8 @@ COPY --from=build_env /app/assets/cwe_csv /app/bin/assets/cwe_csv
 COPY --from=build_env /app/assets/libraries/* /app/bin/assets/libraries/
 
 WORKDIR /app/bin
+
+USER 65532
 
 # Healthcheck the container
 ENV PATH $PATH:/app/bin
