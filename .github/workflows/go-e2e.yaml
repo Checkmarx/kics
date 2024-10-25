@@ -77,16 +77,16 @@ jobs:
       - name: Set Output Permissions
         run: |
           sudo chmod -R 777 ./e2e
-      - name: Create and Set Output Permissions
-        run: |
-          mkdir -p ./e2e/output  # Creates output folder if it doesn't exist
-          sudo chmod -R 777 ./e2e/output  # Sets full permissions for output
+      # - name: Create and Set Output Permissions
+      #   run: |
+      #     mkdir -p ./e2e/output  # Creates output folder if it doesn't exist
+      #     sudo chmod -R 777 ./e2e/output  # Sets full permissions for output
       - name: Run E2E Tests
         env:
           E2E_KICS_DOCKER: kics:e2e-tests-${{ github.sha }}
           E2E_KICS_QUERIES_PATH: ${{ steps.getbin.outputs.queries }}
         run: |
-          go test -tags dev "github.com/Checkmarx/kics/v2/e2e" -timeout 1500s -json
+          go test -tags dev "github.com/Checkmarx/kics/v2/e2e" -timeout 1500s -json > results.json
       - name: Generate E2E Report
         if: always()
         env:
@@ -100,9 +100,10 @@ jobs:
       - name: Get docker name
         run: |
           DOCKER_NAME=$(echo ${{ matrix.kics-docker }} | sed 's/\//-/')
+          echo $DOCKER_NAME
       - name: Archive test report
         if: always()
         uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32 # v3
         with:
-          name: e2e-tests-report-$DOCKER_NAME
+          name: e2e-tests-report-{{ env.DOCKER_NAME }}
           path: e2e-report.html
