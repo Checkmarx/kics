@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -96,6 +97,7 @@ func runKicsDocker(kicsArgs []string, descriptionServer, kicsDockerImage string)
 	}
 	baseDir := filepath.Dir(cwd)
 	dockerArgs := []string{"run", "-e", descriptionServer, "--add-host=host.docker.internal:host-gateway",
+		"--user", fmt.Sprintf("%d:%d", os.Getuid(), os.Getgid()),
 		"-v", baseDir + ":/path", kicsDockerImage}
 	completeArgs := append(dockerArgs, kicsArgs...) //nolint
 	return "docker", completeArgs
