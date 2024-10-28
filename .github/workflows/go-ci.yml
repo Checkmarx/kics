@@ -56,7 +56,7 @@ jobs:
         shell: bash
         run: echo "GO_BUILD=$(go env GOCACHE)" >>$GITHUB_OUTPUT
       - name: Cache dependencies
-        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
+        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
         with:
           path: ${{ steps.go-cache-paths.outputs.GO_BUILD }}
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
