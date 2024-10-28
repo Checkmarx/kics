@@ -49,7 +49,7 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
       - name: Run docker image and generate results.json
         run: |
-          docker run -v ${PWD}/assets/queries:/path \
+          docker run --user $(id -u):$(id -g) -v ${PWD}/assets/queries:/path \
             kics:${{ github.sha }} scan \
             --silent \
             --disable-full-descriptions \
