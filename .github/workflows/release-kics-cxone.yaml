@@ -35,6 +35,7 @@ jobs:
     - name: Modify circleci configuration
       run: |
           sed -i 's/BRANCH_NAME_TEMPLATE_TO_REPLACE/${{ github.event.release.name }}/g' ../${{ secrets.CHECKMARXDEV_KICS_RELEASER }}/.circleci/config.yml
+          sed -i 's/BRANCH_NAME_TEMPLATE_TO_REPLACE/${{ github.event.release.name }}/g' ../${{ secrets.CHECKMARXDEV_KICS_RELEASER }}/.github/workflows/*.yaml
 
     - name: Push branch
       run: |
