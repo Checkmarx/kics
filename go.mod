@@ -22,7 +22,7 @@ require (
 	github.com/bigkevmcd/go-configparser v0.0.0-20230427073640-c6b631f70126
 	github.com/cheggaaa/pb/v3 v3.1.5
 	github.com/emicklei/proto v1.13.2
-	github.com/getsentry/sentry-go v0.28.2-0.20240729102758-eb05e4b3014c
+	github.com/getsentry/sentry-go v0.29.2-0.20241029153937-ec151c768820
 	github.com/gocarina/gocsv v0.0.0-20240520201108-78e41c74b4b1
 	github.com/golang/mock v1.6.0
 	github.com/google/pprof v0.0.0-20240528025155-186aa0362fba
@@ -230,13 +230,13 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	k8s.io/api v0.31.1
+	k8s.io/api v0.31.2
 	k8s.io/apiextensions-apiserver v0.31.1 // indirect
-	k8s.io/apimachinery v0.31.1
-	k8s.io/apiserver v0.31.1 // indirect
+	k8s.io/apimachinery v0.31.2
+	k8s.io/apiserver v0.31.2 // indirect
 	k8s.io/cli-runtime v0.31.1 // indirect
-	k8s.io/client-go v0.31.1
-	k8s.io/component-base v0.31.1 // indirect
+	k8s.io/client-go v0.31.2
+	k8s.io/component-base v0.31.2 // indirect
 	k8s.io/klog/v2 v2.130.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20240228011516-70dd3763d340 // indirect
 	k8s.io/kubectl v0.31.1 // indirect
