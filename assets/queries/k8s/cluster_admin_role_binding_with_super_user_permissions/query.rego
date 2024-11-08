@@ -1,5 +1,7 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
 	some resource in input.document
 	metadata := resource.metadata

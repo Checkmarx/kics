@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 #FOR VERSION 3
 CxPolicy[result] {
