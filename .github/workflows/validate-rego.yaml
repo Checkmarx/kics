@@ -20,4 +20,4 @@ jobs:
         with:
           version: v0.11.0
       - name: Run Regal Linter
-        run: regal lint --config kics/assets/.regal/rego_config.yaml --format=github ${{ env.REGO_FILES_PATH }}
+        run: regal lint --format=github ${{ env.REGO_FILES_PATH }}
