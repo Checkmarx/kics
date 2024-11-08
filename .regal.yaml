@@ -35,12 +35,6 @@ rules:
     # All of these are optional, but worth considering
     avoid-get-and-list-prefix:
       level: ignore
-    prefer-snake-case:
-      level: ignore
-    line-length:
-      level: warn
-    rule-length:
-      level: warn
     external-reference:
       level: ignore
     file-length:
@@ -52,7 +46,7 @@ rules:
     opa-fmt:
       level: ignore
     prefer-some-in-iteration:
-      level: ignore
+      level: warn
     prefer-snake-case:
       level: ignore
     rule-length:

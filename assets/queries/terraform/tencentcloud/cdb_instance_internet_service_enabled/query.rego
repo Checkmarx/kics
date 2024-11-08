@@ -4,6 +4,7 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
+	some i, name
 	resource := input.document[i].resource.tencentcloud_mysql_instance[name]
 	resource.internet_service == 1
 

@@ -4,6 +4,7 @@ import data.generic.ansible as ansLib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
+	some id, t, m
 	task := ansLib.tasks[id][t]
 	modules := {"community.aws.cloudfront_distribution", "cloudfront_distribution"}
 	cloudfront := task[modules[m]]
@@ -24,6 +25,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
+	some id, t, m, a
 	task := ansLib.tasks[id][t]
 	modules := {"community.aws.cloudfront_distribution", "cloudfront_distribution"}
 	cloudfront := task[modules[m]]

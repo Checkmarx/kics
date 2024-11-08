@@ -1,6 +1,7 @@
 package Cx
 
 CxPolicy[result] {
+	some i, name
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "maintainer"
 

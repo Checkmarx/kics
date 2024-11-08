@@ -6,6 +6,8 @@ import data.generic.common as common_lib
 modules := {"community.aws.efs", "efs"}
 
 CxPolicy[result] {
+	some id, t
+	some m in modules
 	task := ansLib.tasks[id][t]
 	efs := task[modules[m]]
 	ansLib.checkState(efs)

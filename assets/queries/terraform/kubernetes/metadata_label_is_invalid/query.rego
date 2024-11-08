@@ -3,11 +3,12 @@ package Cx
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
+	some i, resourceType, name, key
 	resource := input.document[i].resource[resourceType]
 
 	labels := resource[name].metadata.labels
 
-	regex.match("^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$", labels[key]) == false
+	regex.match(`^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$`, labels[key]) == false
 
 	result := {
 		"documentId": input.document[i].id,
