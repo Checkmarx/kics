@@ -15,11 +15,11 @@ rules:
       # https://docs.styra.com/regal/rules/idiomatic/non-raw-regex-pattern
       # 118 violations — fixing these would remove a lot of redundant
       # escaping from regexes, providing better readability
-      level: ignore
+      level: warn
     use-in-operator:
       # https://docs.styra.com/regal/rules/idiomatic/use-in-operator
       # 42 violations — this would be good to fix, but not critical
-      level: ignore
+      level: warn
     use-some-for-output-vars:
       # https://docs.styra.com/regal/rules/idiomatic/use-some-for-output-vars
       # These would be good to address, but would require a concentrated effort
