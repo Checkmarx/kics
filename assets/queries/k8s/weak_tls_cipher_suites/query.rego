@@ -13,7 +13,7 @@ strongCiphersConfig = [
 ]
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	specInfo := k8s_lib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}
@@ -36,7 +36,7 @@ CxPolicy[result] {
 command = {"kube-apiserver", "kubelet"}
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	specInfo := k8s_lib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}

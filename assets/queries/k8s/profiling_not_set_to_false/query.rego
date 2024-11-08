@@ -8,7 +8,7 @@ kubernetesCommand := {"kube-apiserver", "kube-controller-manager", "kube-schedul
 kubernetesCommandWithoutDeprecation := {"kube-apiserver", "kube-controller-manager"}
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	specInfo := k8sLib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}
@@ -30,7 +30,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	specInfo := k8sLib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}

@@ -7,7 +7,7 @@ CxPolicy[result] {
 	statefulset.kind == "StatefulSet"
 
 	count({x |
-		resource := input.document[x]
+		some resource in input.document
 		resource.kind == "Service"
 		resource.spec.clusterIP == "None"
 		statefulset.metadata.namespace == resource.metadata.namespace

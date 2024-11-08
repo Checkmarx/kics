@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 import data.generic.k8s as k8s_lib
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	specInfo := k8s_lib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}

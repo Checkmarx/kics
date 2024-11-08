@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 
 #FOR VERSION 3
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	version := resource.version
 	to_number(version) >= 3
 	service_parameters := resource.services[name]
@@ -22,7 +22,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	version := resource.version
 	to_number(version) >= 3
 	service_parameters := resource.services[name]
@@ -39,7 +39,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	version := resource.version
 	to_number(version) >= 3
 	service_parameters := resource.services[name]
@@ -56,7 +56,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	version := resource.version
 	to_number(version) >= 3
 	service_parameters := resource.services[name]
@@ -75,7 +75,7 @@ CxPolicy[result] {
 
 #FOR VERSION 2
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	version := resource.version
 	to_number(version) < 3
 	service_parameters := resource.services[name]

@@ -6,7 +6,7 @@ import data.generic.k8s as k8sLib
 flags := {"--peer-cert-file", "--peer-key-file"}
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	specInfo := k8sLib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}

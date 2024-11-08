@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	startswith(resource.apiVersion, "serving.knative.dev")
 	resource.kind == "Service"
 	metadata := resource.metadata
@@ -24,7 +24,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	startswith(resource.apiVersion, "serving.knative.dev")
 	resource.kind == "Service"
 	metadata := resource.metadata

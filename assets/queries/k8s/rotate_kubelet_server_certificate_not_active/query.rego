@@ -6,7 +6,7 @@ import data.generic.k8s as k8sLib
 commandList = {"kubelet", "kube-controller-manager"}
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	specInfo := k8sLib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}
@@ -30,7 +30,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	resource.kind == "KubeletConfiguration"
 	featureGates := resource.featureGates
 	featureGates.RotateKubeletServerCertificate == false

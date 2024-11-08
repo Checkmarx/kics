@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	volumes_shared := resource.volumes
 	_ := volumes_shared[v1]
 	service_parameters := resource.services[name]
@@ -22,7 +22,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	service_parameters := resource.services[name]
 	volumes := service_parameters.volumes
 	volume := volumes[v]

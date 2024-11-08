@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	resource.kind == k8sLib.valid_pod_spec_kind_list[_]
 	specInfo := k8sLib.getSpecInfo(resource)
@@ -31,7 +31,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	not common_lib.inArray(k8sLib.valid_pod_spec_kind_list, resource.kind)
 	specInfo := k8sLib.getSpecInfo(resource)
@@ -58,7 +58,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	resource.kind == "PersistentVolume"
 	hostPath := resource.spec.hostPath

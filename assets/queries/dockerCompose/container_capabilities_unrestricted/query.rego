@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	service_parameters := resource.services[name]
 	common_lib.valid_key(service_parameters, "cap_add")
 
@@ -18,7 +18,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	service_parameters := resource.services[name]
 	not common_lib.valid_key(service_parameters, "cap_drop")
 

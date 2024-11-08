@@ -17,7 +17,7 @@ resources := {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	resource.kind == "Policy"
 	startswith(resource.apiVersion, "audit")
 	res_rules := {res_rule | rule := resource.rules[_]; rule.resources[_].resources[_] == resources[x].resource; res_rule := {"resource": resources[x].resource, "level": rule.level}}

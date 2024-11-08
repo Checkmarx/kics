@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	service_parameters := resource.services[name]
 	version := resource.version
 	to_number(version) < 3
@@ -20,7 +20,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	service_parameters := resource.services[name]
 	version := resource.version
 	to_number(version) < 3

@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	service_parameters := resource.services[name]
 	sec_opt_array := service_parameters.security_opt
 	sec_opt := sec_opt_array[a]

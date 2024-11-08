@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	service_parameters := resource.services[name]
 	restart := service_parameters.restart
 	splitted := split(restart, ":")
@@ -21,7 +21,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	service_parameters := resource.services[name]
 	deploy := service_parameters.deploy
 	restart_policy := deploy.restart_policy

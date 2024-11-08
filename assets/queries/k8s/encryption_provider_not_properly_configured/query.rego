@@ -6,7 +6,7 @@ import data.generic.k8s as k8sLib
 providerList := {"aescbc", "kms", "secretbox"}
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	resource.kind == "EncryptionConfiguration"
 	not containsProvider(resource)
 

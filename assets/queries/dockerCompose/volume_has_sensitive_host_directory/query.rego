@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	service_parameters := resource.services[name]
 	volumes := service_parameters.volumes
 	volume := volumes[v]
@@ -22,7 +22,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	service_parameters := resource.services[name]
 	volumes := service_parameters.volumes
 	volume := volumes[v]
@@ -40,7 +40,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	volume := resource.volumes[name]
 	host_path := volume.driver_opts.device
 	common_lib.isOSDir(host_path)
@@ -56,7 +56,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	volume := resource.volumes[name]
 	host_path := volume.driver_opts.mountpoint
 	common_lib.isOSDir(host_path)
