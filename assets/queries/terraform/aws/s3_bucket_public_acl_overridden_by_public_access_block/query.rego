@@ -4,7 +4,6 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
 	# version before TF AWS 4.0
 	resource := input.document[i].resource.aws_s3_bucket[name]
 	publicAccessACL(resource.acl)
@@ -36,8 +35,10 @@ CxPolicy[result] {
 
 	options = {"block_public_acls", "block_public_policy", "ignore_public_acls", "restrict_public_buckets"}
 
-	count({x | keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket_public_access_block", options[x]);
-			   module[keyToCheck] == true }) == 4
+	count({x |
+		keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket_public_access_block", options[x])
+		module[keyToCheck] == true
+	}) == 4
 
 	result := {
 		"documentId": input.document[i].id,

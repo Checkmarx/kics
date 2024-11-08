@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.pulumi as plm_lib
 
-valid_types := ["aws:apigateway:Stage","aws:apigatewayv2:Stage"]
+valid_types := ["aws:apigateway:Stage", "aws:apigatewayv2:Stage"]
 
 CxPolicy[result] {
 	resource := input.document[i].resources[name]

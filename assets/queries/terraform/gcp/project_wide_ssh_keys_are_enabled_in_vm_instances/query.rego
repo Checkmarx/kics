@@ -22,7 +22,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	compute := input.document[i].resource.google_compute_instance[name]
-	not common_lib.valid_key(compute,"metadata")
+	not common_lib.valid_key(compute, "metadata")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -37,7 +37,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	compute := input.document[i].resource.google_compute_instance[name]
-	not common_lib.valid_key(compute.metadata,"block-project-ssh-keys")
+	not common_lib.valid_key(compute.metadata, "block-project-ssh-keys")
 
 	result := {
 		"documentId": input.document[i].id,

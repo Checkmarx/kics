@@ -68,6 +68,4 @@ CxPolicy[result] {
 
 containsArray(array, elem) {
 	startswith(array[_], elem)
-} else = false {
-	true
-}
+} else = false

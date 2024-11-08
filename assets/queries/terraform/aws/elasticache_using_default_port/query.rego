@@ -39,4 +39,3 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_elasticache_cluster", name, "port"], []),
 	}
 }
-

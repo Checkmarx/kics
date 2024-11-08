@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.domain_endpoint_options.enforce_https should be set to 'true'", [task.name, modules[m]]),
 		"keyActualValue": sprintf("name={{%s}}.{{%s}}.domain_endpoint_options.enforce_https is set to 'false'", [task.name, modules[m]]),
-		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m],"domain_endpoint_options","enforce_https"], []),
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "domain_endpoint_options", "enforce_https"], []),
 	}
 }
 
@@ -39,7 +39,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("name={{%s}}.{{%s}}.domain_endpoint_options.enforce_https should be defined and set to 'true'", [task.name, modules[m]]),
 		"keyActualValue": sprintf("name={{%s}}.{{%s}}.domain_endpoint_options.enforce_https is not set", [task.name, modules[m]]),
-		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m],"domain_endpoint_options"], []),
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "domain_endpoint_options"], []),
 	}
 }
 

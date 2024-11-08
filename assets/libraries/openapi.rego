@@ -88,8 +88,10 @@ check_reference_unexisting_swagger(doc, reference, type) = checkRef {
 	object.get(doc[type], checkRef, "undefined") == "undefined"
 }
 
-concat_path(path) = concat(".", [x | 
-	x := resolve_path(path[_]); x != ""])
+concat_path(path) = concat(".", [x |
+	x := resolve_path(path[_])
+	x != ""
+])
 
 resolve_path(pathItem) = resolved {
 	any([contains(pathItem, "."), contains(pathItem, "="), contains(pathItem, "/")])
@@ -97,9 +99,7 @@ resolve_path(pathItem) = resolved {
 } else = resolved {
 	is_number(pathItem)
 	resolved := ""
-} else = pathItem {
-	true
-}
+} else = pathItem
 
 # It verifies if the path contains an operation. If true, keeps the operation type and the response code related to it
 is_operation(path) = info {
@@ -233,7 +233,7 @@ api_key_exposed(doc, version, s) {
 	version == "2.0"
 	doc.securityDefinitions[s].type == "apiKey"
 	scheme := doc.schemes[_]
-    scheme == "http"
+	scheme == "http"
 } else {
 	version == "2.0"
 	doc.securityDefinitions[s].type == "apiKey"
@@ -267,7 +267,7 @@ concat_default_value(path, defaultValue) = searchKey {
 }
 
 get_name(p, name) = sk {
-	p[minus(count(p), 1)] == "components"
+	p[count(p) - 1] == "components"
 	sk := name
 } else = sk {
 	sk := concat("", ["name=", name])

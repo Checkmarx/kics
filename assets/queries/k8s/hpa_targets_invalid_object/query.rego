@@ -18,7 +18,7 @@ CxPolicy[result] {
 	}
 }
 
-checkIsValidObject(resource) {	
+checkIsValidObject(resource) {
 	resource.object != null
 	resource.object.metric != null
 	resource.object.target != null

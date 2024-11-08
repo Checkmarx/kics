@@ -38,4 +38,3 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_eks_cluster", name, "resources"], []),
 	}
 }
-

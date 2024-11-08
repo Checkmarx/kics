@@ -50,11 +50,9 @@ CxPolicy[result] {
 
 matchResource(resource, serviceSelector) = result {
 	labels := getLabelsToMatch(resource)
-	count([ x | x := serviceSelector[k]; x == labels[k]]) == count(serviceSelector)
+	count([x | x := serviceSelector[k]; x == labels[k]]) == count(serviceSelector)
 	result := resource
-} else = false {
-	true
-}
+} else = false
 
 getLabelsToMatch(document) = labels {
 	matchLabelsKinds := {"Deployment", "DaemonSet", "ReplicaSet", "StatefulSet", "Job"}
@@ -85,6 +83,4 @@ matchPort(port, servicePort) {
 } else {
 	not servicePort.targetPort
 	port.containerPort == servicePort.port
-} else = false {
-	true
-}
+} else = false

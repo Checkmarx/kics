@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -21,6 +21,5 @@ CxPolicy[result] {
 		"keyExpectedValue": "'pricingTier' should be set to standard",
 		"keyActualValue": sprintf("'pricingTier' %s is set to %s", [val_type, val]),
 		"searchLine": common_lib.build_search_line(path, ["properties", "pricingTier"]),
-
 	}
 }
