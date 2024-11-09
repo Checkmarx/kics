@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 import future.keywords.in
 
 CxPolicy[result] {
-	some doc in input.document
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::S3::Bucket"
@@ -13,7 +13,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(prop, "LoggingConfiguration")
 
 	result := {
-		"documentId": doc.id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), name]),

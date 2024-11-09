@@ -12,7 +12,6 @@ CxPolicy[result] {
 	content = value.content
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
-	some x in content
 	contentElement := content[x]
 	not common_lib.valid_key(contentElement, "schema")
 
@@ -32,7 +31,6 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	content = value.content
 	openapi_lib.is_operation(path) == {}
-	some x in content
 	contentElement := content[x]
 	not common_lib.valid_key(contentElement, "schema")
 

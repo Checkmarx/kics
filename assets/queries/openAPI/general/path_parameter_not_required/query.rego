@@ -10,8 +10,6 @@ CxPolicy[result] {
 	version != "undefined"
 
 	[path, value] := walk(doc)
-	some n in value.parameters
-
 	param := value.parameters[n]
 	param_method := param["in"]
 	param_method == "path"

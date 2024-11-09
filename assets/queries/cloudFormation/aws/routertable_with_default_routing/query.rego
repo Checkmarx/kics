@@ -7,7 +7,6 @@ import future.keywords.in
 CxPolicy[result] {
 	some doc in input.document
 	[path, Resources] := walk(docs)
-	some key in Resources
 
 	resource := Resources[key]
 	resource.Type == "AWS::EC2::Route"
@@ -29,7 +28,6 @@ CxPolicy[result] {
 CxPolicy[result] {
 	some doc in input.document
 	[path, Resources] := walk(docs)
-	some key in Resources
 
 	resource := Resources[key]
 	resource.Type == "AWS::EC2::Route"
@@ -51,7 +49,6 @@ CxPolicy[result] {
 CxPolicy[result] {
 	some doc in input.document
 	[path, Resources] := walk(docs)
-	some key in Resources
 
 	resource := Resources[key]
 	resource.Type == "AWS::EC2::Route"

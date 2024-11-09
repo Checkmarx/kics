@@ -5,7 +5,6 @@ import data.generic.terraform as tf_lib
 import future.keywords.in
 
 CxPolicy[result] {
-	some i
 	some doc in input.document
 	resource := doc.resource.alicloud_kms_key[name]
 	seconds_in_a_year := 31536000
@@ -29,7 +28,6 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some i
 	some doc in input.document
 	resource := doc.resource.alicloud_kms_key[name]
 	not common_lib.valid_key(resource, "automatic_rotation")
@@ -49,7 +47,6 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some i
 	some doc in input.document
 	resource := doc.resource.alicloud_kms_key[name]
 	resource.automatic_rotation == "Disabled"

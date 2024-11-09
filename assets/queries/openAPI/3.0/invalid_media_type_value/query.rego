@@ -8,7 +8,6 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
-	some mime in value.content
 	content = value.content[mime]
 
 	not openapi_lib.is_valid_mime(mime)

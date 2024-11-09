@@ -8,8 +8,6 @@ CxPolicy[result] {
 	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
-	some n in doc.paths
-
 	response := doc.paths[n].post.responses
 
 	not common_lib.valid_key(response, "200")

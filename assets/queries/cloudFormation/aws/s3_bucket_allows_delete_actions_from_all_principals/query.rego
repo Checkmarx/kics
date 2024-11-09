@@ -5,9 +5,9 @@ import data.generic.common as common_lib
 import future.keywords.in
 
 CxPolicy[result] {
-	some doc in input.document
+	some docs in input.document
+	some name
 	[path, Resources] := walk(docs)
-	some name in Resources
 
 	resource := Resources[name]
 	resource.Type == "AWS::S3::BucketPolicy"
@@ -20,7 +20,7 @@ CxPolicy[result] {
 	cf_lib.checkAction(statement.Action, "delete")
 
 	result := {
-		"documentId": doc.id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.PolicyDocument", [cf_lib.getPath(path), name]),

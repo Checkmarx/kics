@@ -7,7 +7,7 @@ CxPolicy[result] {
 	some statefulset in input.document
 	statefulset.kind == "StatefulSet"
 
-	count({ resource |
+	count({resource |
 		some resource in input.document
 		resource.kind == "Service"
 		resource.spec.clusterIP == "None"

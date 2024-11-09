@@ -11,7 +11,6 @@ CxPolicy[result] {
 	properties := resource.Properties
 
 	engines := {"memcached": 11211, "redis": 6379}
-	some e in engines
 	enginePort := engines[e]
 
 	lower(properties.Engine) == e

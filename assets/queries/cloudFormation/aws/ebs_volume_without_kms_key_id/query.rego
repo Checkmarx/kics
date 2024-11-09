@@ -6,7 +6,6 @@ import future.keywords.in
 
 CxPolicy[result] {
 	some document in input.document
-	some key in document.Resources
 	resource := document.Resources[key]
 	resource.Type == "AWS::EC2::Volume"
 

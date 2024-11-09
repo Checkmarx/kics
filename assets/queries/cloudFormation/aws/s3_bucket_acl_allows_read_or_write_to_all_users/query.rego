@@ -4,17 +4,17 @@ import data.generic.cloudformation as cf_lib
 import future.keywords.in
 
 CxPolicy[result] {
-	some doc in input.document
+	some docs in input.document
 	[path, Resources] := walk(docs)
-	some name in Resources
-	
+	some name
+
 	resource := Resources[name]
 	properties := resource.Properties
 	resource.Type == "AWS::S3::Bucket"
 	properties.AccessControl == "PublicReadWrite"
 
 	result := {
-		"documentId": doc.id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.AccessControl", [cf_lib.getPath(path), name]),

@@ -5,7 +5,7 @@ import future.keywords.in
 
 # same namespace but has no ingress rules
 CxPolicy[result] {
-	some doc in input.document
+	some pod in input.document
 	pod.kind == "Pod"
 
 	policyList := [policy | policy := input.document[j]; policy.kind == "NetworkPolicy"]

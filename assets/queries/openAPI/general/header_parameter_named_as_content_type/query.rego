@@ -9,8 +9,6 @@ CxPolicy[result] {
 	version != "undefined"
 
 	[path, value] := walk(doc)
-	some n in value.parameters
-	
 	params := value.parameters[n]
 	openapi_lib.improperly_defined(params, "Content-Type")
 

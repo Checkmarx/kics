@@ -7,7 +7,6 @@ CxPolicy[result] {
 	metadata := document.metadata
 	labels := metadata.labels
 
-	some key in labels
 	value := labels[key]
 	regex.match("^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$", value) == false
 

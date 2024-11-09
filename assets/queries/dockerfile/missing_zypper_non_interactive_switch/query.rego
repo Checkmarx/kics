@@ -4,7 +4,7 @@ import data.generic.dockerfile as dockerLib
 import future.keywords.in
 
 CxPolicy[result] {
-	document in input.document
+	some document in input.document
 	commands = document.command
 
 	commands[img][c].Cmd == "run"
@@ -25,7 +25,7 @@ CxPolicy[result] {
 }
 
 commandHasNonInteractiveSwitch(command) {
-	regex.match(`zypper \\w+ (-y|--no-confirm)`, command)
+	regex.match(`zypper \w+ (-y|--no-confirm)`, command)
 }
 
 commandHasZypperUsage(command) {

@@ -9,8 +9,6 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	[path, value] := walk(doc)
-	some n in value.parameters
-
 	param := value.parameters[n]
 	param_method := param["in"]
 	param_method != "body"

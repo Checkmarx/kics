@@ -7,7 +7,6 @@ CxPolicy[result] {
 	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
-	some requestBody in doc.components.requestBodies
 	doc.components.requestBodies[requestBody]
 	openapi_lib.check_unused_reference(doc, requestBody, "requestBodies")
 

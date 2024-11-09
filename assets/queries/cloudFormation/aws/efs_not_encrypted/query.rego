@@ -5,7 +5,6 @@ import future.keywords.in
 
 CxPolicy[result] {
 	some document in input.document
-	some key in document.Resources
 
 	resource = document.Resources[key]
 	resource.Type == "AWS::EFS::FileSystem"
@@ -13,7 +12,7 @@ CxPolicy[result] {
 	properties.Encrypted == false
 
 	result := {
-		"documentId": doc.id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.Encrypted", [key]),

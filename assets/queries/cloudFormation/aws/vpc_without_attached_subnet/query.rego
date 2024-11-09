@@ -6,7 +6,6 @@ import future.keywords.in
 CxPolicy[result] {
 	some docs in input.document
 	[path, Resources] := walk(docs)
-	some name in Resources
 
 	resource := Resources[name]
 	resource.Type == "AWS::EC2::VPC"

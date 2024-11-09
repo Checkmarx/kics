@@ -6,11 +6,9 @@ import future.keywords.in
 
 CxPolicy[result] {
 	some document in input.document
-	some name in document.Resources
 	resource := document.Resources[name]
 	resource.Type == "AWS::CloudTrail::Trail"
 	attributes := {"CloudWatchLogsLogGroupArn", "CloudWatchLogsRoleArn"}
-	some a in attributes
 	attr := attributes[a]
 
 	not common_lib.valid_key(resource.Properties, attr)

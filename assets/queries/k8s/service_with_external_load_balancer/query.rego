@@ -13,7 +13,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(metadata, "annotations")
 
 	result := {
-		"documentId": doc.id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
@@ -36,7 +36,7 @@ CxPolicy[result] {
 	not checkLoadBalancer(annotations)
 
 	result := {
-		"documentId": doc.id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.annotations", [metadata.name]),

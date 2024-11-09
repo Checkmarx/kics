@@ -15,7 +15,7 @@ CxPolicy[result] {
 	destribution_config.logging.enabled == false
 
 	result := {
-		"documentId": doc.id,
+		"documentId": docs.id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig.logging.enabled", [cp_lib.getPath(path), resource.metadata.name]),
@@ -37,7 +37,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(destribution_config.logging, "enabled")
 
 	result := {
-		"documentId": doc.id,
+		"documentId": docs.id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig.logging", [cp_lib.getPath(path), resource.metadata.name]),
@@ -49,7 +49,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some doc in input.document
+	some docs in input.document
 	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "cloudfront.aws.crossplane.io")
 	resource.kind == "Distribution"
@@ -59,7 +59,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(destribution_config, "logging")
 
 	result := {
-		"documentId": doc.id,
+		"documentId": docs.id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig", [cp_lib.getPath(path), resource.metadata.name]),
