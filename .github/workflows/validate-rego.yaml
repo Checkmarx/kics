@@ -18,4 +18,4 @@ jobs:
         with:
           version: v0.11.0
       - name: Run Regal Linter
-        run: regal lint --format=github assets
+        run: regal lint --format=github assets --config-file=.regal/config.yml
