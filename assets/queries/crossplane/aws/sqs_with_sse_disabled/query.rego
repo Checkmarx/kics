@@ -5,7 +5,7 @@ import data.generic.crossplane as cp_lib
 import future.keywords.in
 
 CxPolicy[result] {
-	some docs in input.document\
+	some docs in input.document
 	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "sqs.aws.crossplane.io")
 	resource.kind == "Queue"
