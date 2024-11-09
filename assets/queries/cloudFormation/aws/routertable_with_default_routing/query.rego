@@ -47,7 +47,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some doc in input.document
+	some docs in input.document
 	[path, Resources] := walk(docs)
 
 	resource := Resources[key]
@@ -57,7 +57,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(properties, "NatGatewayId")
 
 	result := {
-		"documentId": doc.id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), key]),

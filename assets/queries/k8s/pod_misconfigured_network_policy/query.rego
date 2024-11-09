@@ -34,7 +34,7 @@ CxPolicy[result] {
 
 # if it's not the same namespace pod must be matched explicitly
 CxPolicy[result] {
-	some doc in input.document
+	some pod in input.document
 	pod.kind == "Pod"
 
 	policyList := [policy | policy := input.document[j]; policy.kind == "NetworkPolicy"]
