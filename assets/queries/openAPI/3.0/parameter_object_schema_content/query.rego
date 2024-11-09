@@ -39,7 +39,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some doc in input.document\
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 	params := doc.components.parameters[n]
 	not common_lib.valid_key(params, "RefMetadata")
