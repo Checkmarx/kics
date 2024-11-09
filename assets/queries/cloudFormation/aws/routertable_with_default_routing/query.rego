@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 import future.keywords.in
 
 CxPolicy[result] {
-	some doc in input.document
+	some docs in input.document
 	[path, Resources] := walk(docs)
 
 	resource := Resources[key]
@@ -15,7 +15,7 @@ CxPolicy[result] {
 	properties.DestinationCidrBlock == "0.0.0.0/0"
 
 	result := {
-		"documentId": doc.id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("%s%s.Properties.DestinationCidrBlock", [cf_lib.getPath(path), key]),
@@ -26,7 +26,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some doc in input.document
+	some docs in input.document
 	[path, Resources] := walk(docs)
 
 	resource := Resources[key]
@@ -36,7 +36,7 @@ CxPolicy[result] {
 	properties.DestinationIpv6CidrBlock == "::/0"
 
 	result := {
-		"documentId": doc.id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("%s%s.Properties.DestinationIpv6CidrBlock", [cf_lib.getPath(path), key]),

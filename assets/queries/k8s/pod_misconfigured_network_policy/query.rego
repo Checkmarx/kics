@@ -12,8 +12,6 @@ CxPolicy[result] {
 
 	# if network policies are present
 	count(policyList) > 0
-
-	some k in policyList
 	netPolicy = policyList[k]
 	isSameNamespace(pod, netPolicy)
 
@@ -41,8 +39,6 @@ CxPolicy[result] {
 
 	# if network policies are present
 	count(policyList) > 0
-
-	some k in policyList
 	netPolicy = policyList[k]
 
 	# if it's not in the same namespace there should be a matching labels rule
