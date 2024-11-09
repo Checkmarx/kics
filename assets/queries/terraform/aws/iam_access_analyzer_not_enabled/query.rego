@@ -1,8 +1,8 @@
 package Cx
 
 import data.generic.common as common_lib
-import input as tf
 import future.keywords.in
+import input as tf
 
 CxPolicy[result] {
 	paths := [p |
