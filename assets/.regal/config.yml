@@ -44,7 +44,7 @@ rules:
     no-whitespace-comment:
       level: ignore
     opa-fmt:
-      level: ignore
+      level: error
     prefer-some-in-iteration:
       level: warn
     prefer-snake-case:

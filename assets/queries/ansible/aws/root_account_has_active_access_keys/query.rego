@@ -1,10 +1,12 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import future.keywords.in
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	modules := {"community.aws.iam", "iam"}
+	some m in modules
 	iam := task[modules[m]]
 	ansLib.checkState(iam)
 

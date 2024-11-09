@@ -1,13 +1,14 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 	paths := doc.paths[path][oper].servers[n]
 
-	regex.match("^(http:)", paths.url)
+	regex.match(`^(http:)`, paths.url)
 
 	result := {
 		"documentId": doc.id,

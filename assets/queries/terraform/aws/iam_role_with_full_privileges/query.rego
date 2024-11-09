@@ -2,13 +2,14 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_iam_role[name]
 
 	policy := common_lib.json_unmarshal(resource.assume_role_policy)
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	common_lib.equalsOrInArray(statement.Resource, "*")
