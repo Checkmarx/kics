@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
+	some p, name, protocol, idx, i
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ElasticLoadBalancing::LoadBalancer"
 
 	listener := resource.Properties.Listeners[idx]
 
 	protocols := {"InstanceProtocol", "Protocol"}
-	protocol := protocols[p]
+	some protocol in protocols[p]
 	not is_secure(listener, protocol)
 
 	result := {

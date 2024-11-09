@@ -1,10 +1,12 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import future.keywords.in
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	modules := {"azure.azcollection.azure_rm_sqlfirewallrule", "azure_rm_sqlfirewallrule"}
+	some m in modules
 	fwRule := task[modules[m]]
 	ansLib.checkState(fwRule)
 

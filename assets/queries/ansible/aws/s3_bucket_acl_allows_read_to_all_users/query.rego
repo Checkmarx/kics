@@ -1,10 +1,12 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import future.keywords.in
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	modules := {"amazon.aws.aws_s3", "aws_s3"}
+	some m in modules
 	s3 := task[modules[m]]
 	ansLib.checkState(s3)
 

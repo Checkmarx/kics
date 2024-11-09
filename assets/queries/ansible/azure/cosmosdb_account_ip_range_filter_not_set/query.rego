@@ -5,6 +5,7 @@ import data.generic.ansible as ansLib
 CxPolicy[result] {
 	modules := {"azure.azcollection.azure_rm_cosmosdbaccount", "azure_rm_cosmosdbaccount"}
 	task := ansLib.tasks[id][t]
+	some m in modules
 	cosmosdbaccount := task[modules[m]]
 	ansLib.checkState(cosmosdbaccount)
 

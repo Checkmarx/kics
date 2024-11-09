@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_oss_bucket[name]
@@ -30,14 +31,14 @@ is_equal(secure, target) {
 is_secure_transport(policyValue) {
 	policy := common_lib.json_unmarshal(policyValue)
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	some statement in st
 	statement.Effect == "Deny"
 	is_equal(statement.Condition.Bool["acs:SecureTransport"], "false")
 	tf_lib.anyPrincipal(statement)
 } else {
 	policy := common_lib.json_unmarshal(policyValue)
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	some statement in st
 	statement.Effect == "Allow"
 	is_equal(statement.Condition.Bool["acs:SecureTransport"], "true")
 	tf_lib.anyPrincipal(statement)
