@@ -15,7 +15,7 @@ CxPolicy[result] {
 	k8sLib.hasFlag(container, "--protect-kernel-defaults=false")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
@@ -27,7 +27,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	doc.kind == "KubeletConfiguration"
 	not common_lib.valid_key(doc, "protectKernelDefaults")
 
@@ -43,7 +43,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	doc.kind == "KubeletConfiguration"
 	doc.protectKernelDefaults == false
 

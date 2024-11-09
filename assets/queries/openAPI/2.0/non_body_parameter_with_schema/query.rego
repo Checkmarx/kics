@@ -2,14 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	[path, value] := walk(doc)
+	some n in value.parameters
+
 	param := value.parameters[n]
-	param.in != "body"
+	param_method := param["in"]
+	param_method != "body"
 	common_lib.valid_key(param, "schema")
 
 	searchKey := openapi_lib.concat_default_value(openapi_lib.concat_path(path), "parameters")

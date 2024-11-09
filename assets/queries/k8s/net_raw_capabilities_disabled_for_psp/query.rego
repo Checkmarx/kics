@@ -1,16 +1,17 @@
 package Cx
 
 import data.generic.common as commonLib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	document.kind == "PodSecurityPolicy"
 	metadata := document.metadata
 	spec := document.spec
 	not commonLib.compareArrays(spec.requiredDropCapabilities, ["ALL", "NET_RAW"])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.requiredDropCapabilities", [metadata.name]),

@@ -7,7 +7,6 @@ import future.keywords.in
 CxPolicy[result] {
 	some doc in input.document
 	[path, Resources] := walk(docs)
-	some name in Resources
 	resource := Resources[name]
 	resource.Type == "AWS::S3::Bucket"
 	prop := resource.Properties

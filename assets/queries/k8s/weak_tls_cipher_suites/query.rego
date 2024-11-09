@@ -23,7 +23,7 @@ CxPolicy[result] {
 	not k8s_lib.startWithFlag(container, "--tls-cipher-suites")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
@@ -47,7 +47,7 @@ CxPolicy[result] {
 	hasWeakCipher(container, "--tls-cipher-suites")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
@@ -59,7 +59,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	doc.kind == "KubeletConfiguration"
 	not common_lib.valid_key(doc, "tlsCipherSuites")
 
@@ -75,7 +75,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	doc.kind == "KubeletConfiguration"
 	cipher := doc.tlsCipherSuites[_]
 	not common_lib.inArray(strongCiphersConfig, cipher)
@@ -98,10 +98,10 @@ hasWeakCipher(container, flag) {
 }
 
 cipherSplit(arr, item) {
-	element := arr[_]
+	some element in arr
 	startswith(element, item)
 	options := split(element, "=")
 	ciphers := split(options[1], ",")
-	cipher := ciphers[_]
+	some cipher in ciphers
 	not common_lib.inArray(strongCiphersConfig, cipher)
 }

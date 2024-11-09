@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.azureresourcemanager as arm_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts"
@@ -16,7 +17,7 @@ CxPolicy[result] {
 	not contains_azure_service(bp_val)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties.networkAcls", [common_lib.concat_path(path), value.name]),

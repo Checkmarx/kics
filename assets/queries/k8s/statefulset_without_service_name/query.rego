@@ -7,7 +7,7 @@ CxPolicy[result] {
 	some statefulset in input.document
 	statefulset.kind == "StatefulSet"
 
-	count({x |
+	count({ resource |
 		some resource in input.document
 		resource.kind == "Service"
 		resource.spec.clusterIP == "None"
@@ -19,7 +19,7 @@ CxPolicy[result] {
 	metadata := statefulset.metadata.name
 
 	result := {
-		"documentId": resource.id,
+		"documentId": statefulset.id,
 		"resourceType": statefulset.kind,
 		"resourceName": metadata,
 		"searchKey": sprintf("metadata.name=%s.spec.serviceName", [metadata]),

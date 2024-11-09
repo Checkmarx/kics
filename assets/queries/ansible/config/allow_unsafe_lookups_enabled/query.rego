@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import future.keywords.in
 
 CxPolicy[result] {
-	defaultsGroup := input.document[i].groups.defaults
+	some doc in input.document
+	defaultsGroup := doc.groups.defaults
 
 	defaultsGroup.allow_unsafe_lookups == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceName": "defaults",
 		"resourceType": "n/a",
 		"searchKey": "defaults.allow_unsafe_lookups",

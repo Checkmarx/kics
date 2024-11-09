@@ -1,11 +1,13 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
+	some name in doc.components.securitySchemes
 	security_scheme := doc.components.securitySchemes[name]
 	security_scheme.type == "http"
 	security_scheme.scheme == "oauth"

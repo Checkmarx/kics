@@ -3,10 +3,9 @@ package Cx
 import future.keywords.in
 
 CxPolicy[result] {
-	some i, c
 	some document in input.document
 	document.kind == "RoleBinding"
-	some subjects in document.subjects
+	subjects := document.subjects
 	subjects[c].kind == "ServiceAccount"
 	subjects[c].name == "default"
 

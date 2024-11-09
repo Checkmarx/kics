@@ -1,12 +1,14 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
+	some mime in value.content
 	content = value.content[mime]
 
 	not openapi_lib.is_valid_mime(mime)

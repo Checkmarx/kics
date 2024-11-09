@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
 	content = value.content
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
+	some x in content
 	contentElement := content[x]
 	not common_lib.valid_key(contentElement, "schema")
 
@@ -24,12 +26,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
 	content = value.content
 	openapi_lib.is_operation(path) == {}
+	some x in content
 	contentElement := content[x]
 	not common_lib.valid_key(contentElement, "schema")
 

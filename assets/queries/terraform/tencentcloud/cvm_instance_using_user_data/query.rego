@@ -2,13 +2,14 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 check_user_datas(mdata) {
 	count(regex.find_n(`secretId\s*=|TENCENTCLOUD_SECRET_ID\s*=|secretKey\s*=|TENCENTCLOUD_SECRET_KEY\s*=`, mdata, -1)) > 0
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	resource := doc.resource.tencentcloud_instance[name]
 
 	decoded := base64.decode(resource.user_data)
@@ -26,7 +27,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	resource := doc.resource.tencentcloud_instance[name]
 
 	dataRaw := resource.user_data_raw

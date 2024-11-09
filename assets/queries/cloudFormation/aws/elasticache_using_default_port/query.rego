@@ -6,8 +6,6 @@ import future.keywords.in
 
 CxPolicy[result] {
 	some document in input.document
-	some name in document.Resources
-
 	resource := document.Resources[name]
 	resource.Type = "AWS::ElastiCache::ReplicationGroup"
 	properties := resource.Properties

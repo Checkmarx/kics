@@ -2,15 +2,19 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
 	[path, value] := walk(doc)
+	some n in value.parameters
+
 	param := value.parameters[n]
-	param.in == "path"
+	param_method := param["in"]
+	param_method == "path"
 	issueType := not_required(param)
 
 	result := {

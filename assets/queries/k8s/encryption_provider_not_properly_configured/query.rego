@@ -12,7 +12,7 @@ CxPolicy[result] {
 	not containsProvider(resource)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": "n/a",
 		"searchKey": "kind={{EncryptionConfiguration}}.providers",
@@ -23,8 +23,8 @@ CxPolicy[result] {
 }
 
 containsProvider(resource) {
-	providerToCheck := providerList[_]
-	innerResources := resource.resources[_]
+	some providerToCheck in providerList
+	some innerResources in resource.resources
 	providers_det := innerResources.providers
 	common_lib.valid_key(providers_det[_], providerToCheck)
 }

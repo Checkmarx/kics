@@ -6,8 +6,6 @@ import future.keywords.in
 
 CxPolicy[result] {
 	some document in input.document
-	some key in document.Resources
-
 	resource := document.Resources[key]
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties
@@ -26,8 +24,6 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	some document in input.document
-	some key in document.Resources
-
 	resource := document.Resources[key]
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties

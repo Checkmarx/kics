@@ -7,7 +7,7 @@ CxPolicy[result] {
 	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
-	some parameter in doc.components.parameters
+	doc.components.parameters[parameter]
 	openapi_lib.check_unused_reference(doc, parameter, "parameters")
 
 	result := {

@@ -2,11 +2,14 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
+	some n in doc.paths
+
 	response := doc.paths[n].post.responses
 
 	not common_lib.valid_key(response, "200")

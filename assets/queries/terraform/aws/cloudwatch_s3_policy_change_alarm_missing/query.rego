@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 expressionArr := [
 	{
@@ -57,13 +58,13 @@ expressionArr := [
 
 #{ ($.eventSource = \"s3.amazonaws.com\") && (($.eventName = PutBucketAcl) || ($.eventName = PutBucketPolicy) || ($.eventName = PutBucketCors) || ($.eventName = PutBucketLifecycle) || ($.eventName = PutBucketReplication) || ($.eventName = DeleteBucketPolicy) || ($.eventName = DeleteBucketCors) || ($.eventName = DeleteBucketLifecycle) || ($.eventName = DeleteBucketReplication)) }
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	_ := doc.resource.aws_cloudwatch_log_metric_filter[name]
 
 	count([alarm | alarm := doc.resource.aws_cloudwatch_metric_alarm[_]; contains(alarm.metric_name, name)]) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_cloudwatch_log_metric_filter",
 		"resourceName": name,
 		"searchKey": sprintf("aws_cloudwatch_log_metric_filter[%s]", [name]),
@@ -85,7 +86,7 @@ check_expression_missing(filter) {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	resources := doc.resource.aws_cloudwatch_log_metric_filter
 
 	resourceNames := [resourceName |
@@ -95,10 +96,10 @@ CxPolicy[result] {
 		resourceName := path[count(path) - 1]
 	]
 
-	resourceName := resourceNames[_]
+	some resourceName in resourceNames
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_cloudwatch_log_metric_filter",
 		"resourceName": resourceName,
 		"searchKey": sprintf("aws_cloudwatch_log_metric_filter.%s", [resourceName]),

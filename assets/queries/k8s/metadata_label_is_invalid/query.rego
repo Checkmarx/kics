@@ -1,16 +1,18 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 	labels := metadata.labels
 
-	some key
+	some key in labels
 	value := labels[key]
 	regex.match("^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$", value) == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.labels.%s", [metadata.name, key]),

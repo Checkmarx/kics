@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	some i
-	resource := input.document[i].resource.alicloud_kms_key[name]
+	some doc in input.document
+	resource := doc.resource.alicloud_kms_key[name]
 	seconds_in_a_year := 31536000
 	getSeconds(resource) > seconds_in_a_year
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "alicloud_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_kms_key[%s].rotation_interval", [name]),
@@ -28,11 +30,12 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	some i
-	resource := input.document[i].resource.alicloud_kms_key[name]
+	some doc in input.document
+	resource := doc.resource.alicloud_kms_key[name]
 	not common_lib.valid_key(resource, "automatic_rotation")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "alicloud_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_kms_key[%s].rotation_interval", [name]),
@@ -47,11 +50,12 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	some i
-	resource := input.document[i].resource.alicloud_kms_key[name]
+	some doc in input.document
+	resource := doc.resource.alicloud_kms_key[name]
 	resource.automatic_rotation == "Disabled"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "alicloud_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_kms_key[%s].rotation_interval", [name]),

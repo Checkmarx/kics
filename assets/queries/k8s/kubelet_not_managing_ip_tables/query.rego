@@ -16,7 +16,7 @@ CxPolicy[result] {
 	k8sLib.hasFlag(container, "--make-iptables-util-chains=false")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
@@ -33,7 +33,7 @@ CxPolicy[result] {
 	resource.makeIPTablesUtilChains == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.makeIPTablesUtilChains",
