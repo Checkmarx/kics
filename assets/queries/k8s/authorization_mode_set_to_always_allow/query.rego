@@ -16,7 +16,7 @@ CxPolicy[result] {
 	k8sLib.hasFlagWithValue(container, "--authorization-mode", "AlwaysAllow")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
@@ -33,7 +33,7 @@ CxPolicy[result] {
 	resource.authorization.mode == "AlwaysAllow"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.authorization.mode",

@@ -19,7 +19,7 @@ CxPolicy[result] {
 	k8sLib.hasFlag(container, "--profiling=true")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
@@ -41,7 +41,7 @@ CxPolicy[result] {
 	not k8sLib.startWithFlag(container, "--profiling")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
@@ -53,12 +53,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	document.kind == "KubeSchedulerConfiguration"
 	document.enableProfiling == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": "n/a",
 		"searchKey": "kind={{KubeSchedulerConfiguration}}.enableProfiling",
@@ -69,12 +69,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	document.kind == "KubeSchedulerConfiguration"
 	not common_lib.valid_key(document, "enableProfiling")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": "n/a",
 		"searchKey": "kind={{KubeSchedulerConfiguration}}",

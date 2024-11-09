@@ -15,7 +15,7 @@ CxPolicy[result] {
 	not k8sLib.hasFlagEqualOrGreaterThanValue(container, "--audit-log-maxbackup", 10)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
@@ -36,7 +36,7 @@ CxPolicy[result] {
 	not k8sLib.startWithFlag(container, "--audit-log-maxbackup")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),

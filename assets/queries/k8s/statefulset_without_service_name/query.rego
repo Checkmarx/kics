@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 import future.keywords.in
 
 CxPolicy[result] {
-	statefulset := input.document[i]
+	some statefulset in input.document
 	statefulset.kind == "StatefulSet"
 
 	count({x |
@@ -19,7 +19,7 @@ CxPolicy[result] {
 	metadata := statefulset.metadata.name
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": statefulset.kind,
 		"resourceName": metadata,
 		"searchKey": sprintf("metadata.name=%s.spec.serviceName", [metadata]),

@@ -13,7 +13,7 @@ CxPolicy[result] {
 	volumes := specInfo.spec.volumes
 	volumes[j].hostPath.path
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path", [metadata.name, specInfo.path, volumes[j].name]),
@@ -44,7 +44,7 @@ CxPolicy[result] {
 	volumes := specInfo.spec.volumes
 	volumes[j].hostPath.path
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path", [metadata.name, specInfo.path, volumes[j].name]),
@@ -74,7 +74,7 @@ CxPolicy[result] {
 	volumes := resource.spec.template.spec.volumes
 	volumes[j].hostPath.path
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.volumes.name={{%s}}.hostPath.path", [metadata.name, volumes[j].name]),
@@ -102,7 +102,7 @@ CxPolicy[result] {
 	volumes := resource.spec.template.spec.volumes
 	volumes[j].hostPath.path
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.volumes.name={{%s}}.hostPath.path", [metadata.name, volumes[j].name]),
@@ -129,7 +129,7 @@ CxPolicy[result] {
 	metadata.namespace != "kube-system"
 	path := resource.spec.hostPath.path
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.hostPath.path", [metadata.name]),
@@ -156,7 +156,7 @@ CxPolicy[result] {
 	not metadata.namespace
 	path := resource.spec.hostPath.path
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.hostPath.path", [metadata.name]),

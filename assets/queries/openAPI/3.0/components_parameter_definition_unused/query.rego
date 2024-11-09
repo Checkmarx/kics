@@ -1,12 +1,13 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
-	doc.components.parameters[parameter]
+	some parameter in doc.components.parameters
 	openapi_lib.check_unused_reference(doc, parameter, "parameters")
 
 	result := {

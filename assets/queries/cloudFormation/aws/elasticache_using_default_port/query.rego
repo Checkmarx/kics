@@ -2,21 +2,25 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
+	some name in document.Resources
+
 	resource := document.Resources[name]
 	resource.Type = "AWS::ElastiCache::ReplicationGroup"
 	properties := resource.Properties
 
 	engines := {"memcached": 11211, "redis": 6379}
+	some e in engines
 	enginePort := engines[e]
 
 	lower(properties.Engine) == e
 	properties.Port == enginePort
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Port", [name]),

@@ -16,7 +16,7 @@ CxPolicy[result] {
 	k8sLib.hasFlag(container, "--rotate-certificates=false")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
@@ -33,7 +33,7 @@ CxPolicy[result] {
 	resource.rotateCertificates == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.rotateCertificates",
@@ -49,7 +49,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(resource, "rotateCertificates")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": "n/a",
 		"searchKey": "kind={{KubeletConfiguration}}.rotateCertificates",

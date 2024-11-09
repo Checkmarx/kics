@@ -13,7 +13,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(spec, "timeoutSeconds")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec", [metadata.name]),
@@ -34,7 +34,7 @@ CxPolicy[result] {
 	timeoutSeconds == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.timeoutSeconds", [metadata.name]),

@@ -19,8 +19,7 @@ CxPolicy[result] {
 
 	not_defined(document_indexes)
 
-	some indexes in document_indexes[i]
-	indexes := document_indexes[i]
+	some indexes in document_indexes
 	doc := input.document[indexes]
 	contains(doc.file, ".tf")
 

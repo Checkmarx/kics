@@ -27,7 +27,7 @@ CxPolicy[result] {
 	not hasResourceLevel(resource_rule, levels, res_rules)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": "n/a",
 		"searchKey": "kind={{Policy}}.rules",

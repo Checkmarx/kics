@@ -11,7 +11,7 @@ CxPolicy[result] {
 	subjects[c].name == "default"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": document.metadata.name,
 		"searchKey": sprintf("subjects.name=%s", [subjects[c].name]),

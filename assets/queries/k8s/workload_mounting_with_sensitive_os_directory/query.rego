@@ -12,7 +12,7 @@ CxPolicy[result] {
 	volumes := specInfo.spec.volumes
 	common_lib.isOSDir(volumes[j].hostPath.path)
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path", [metadata.name, specInfo.path, volumes[j].name]),
@@ -39,7 +39,7 @@ CxPolicy[result] {
 	volumes := specInfo.spec.volumes
 	common_lib.isOSDir(volumes[j].hostPath.path)
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path", [metadata.name, specInfo.path, volumes[j].name]),
@@ -65,7 +65,7 @@ CxPolicy[result] {
 	hostPath := resource.spec.hostPath
 	common_lib.isOSDir(hostPath.path)
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.hostPath.path", [metadata.name]),

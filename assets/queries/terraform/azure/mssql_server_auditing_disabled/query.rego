@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource
+	some doc in input.document
+	resource := doc.resource
 
 	server := resource.azurerm_mssql_server[name]
 
 	not resource.azurerm_mssql_server_extended_auditing_policy[name]
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_mssql_server",
 		"resourceName": tf_lib.get_resource_name(server, name),
 		"searchKey": sprintf("azurerm_mssql_server[%s]", [name]),

@@ -1,7 +1,9 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	statefulset := input.document[i]
+	some statefulset in input.document
 	statefulset.kind == "StatefulSet"
 	statefulset.spec.replicas > 1
 	metadata := statefulset.metadata
@@ -9,7 +11,7 @@ CxPolicy[result] {
 	hasPodDisruptionBudget(statefulset) == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": statefulset.id,
 		"resourceType": statefulset.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.selector.matchLabels", [metadata.name]),
@@ -20,7 +22,7 @@ CxPolicy[result] {
 }
 
 hasPodDisruptionBudget(statefulset) = result {
-	pdb := input.document[j]
+	some pdb in input.document
 	pdb.kind == "PodDisruptionBudget"
 	result := containsLabel(pdb, statefulset.spec.selector.matchLabels)
 } else = false
