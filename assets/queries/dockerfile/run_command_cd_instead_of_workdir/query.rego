@@ -1,7 +1,10 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some doc in input.document
+	resource := doc.command[name][_]
 	resource.Cmd == "run"
 	run_command := resource.Value[_]
 	values := split(run_command, " ")
@@ -10,7 +13,7 @@ CxPolicy[result] {
 	not is_full_path(path)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Using WORKDIR to change directory",
@@ -19,7 +22,7 @@ CxPolicy[result] {
 }
 
 is_full_path(path) {
-	regex.match("^[a-zA-Z]:[\\/]", path)
+	regex.match(`^[a-zA-Z]:[\/]`, path)
 } else {
 	startswith(path, "/")
 	not contains(path, "/.")

@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	uses := input.document[i].jobs[j].steps[k].uses
+	some doc in input.document
+	uses := doc.jobs[j].steps[k].uses
 	not isAllowed(uses)
 	not isPinned(uses)
 	not isRelative(uses)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("uses={{%s}}", [uses]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Action pinned to a full length commit SHA.",
@@ -24,7 +26,7 @@ isAllowed(use) {
 }
 
 isPinned(use) {
-	regex.match("@[a-f0-9]{40}$", use)
+	regex.match(`@[a-f0-9]{40}$`, use)
 }
 
 isRelative(use) {

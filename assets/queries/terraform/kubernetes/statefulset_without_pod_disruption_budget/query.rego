@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_stateful_set[name]
+	some doc in input.document
+	resource := doc.resource.kubernetes_stateful_set[name]
 
 	resource.spec.replicas > 1
 
@@ -18,7 +20,7 @@ CxPolicy[result] {
 	not hasPodDisruptionBudget(labelValue, key)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "kubernetes_stateful_set",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_stateful_set[%s].spec.selector.match_labels", [name]),
@@ -29,7 +31,8 @@ CxPolicy[result] {
 }
 
 hasPodDisruptionBudget(lValue, lKey) {
-	pod := input.document[_].resource[resourceType]
+	some doc in input.document
+	pod := doc.resource[resourceType]
 	resourceType == "kubernetes_pod_disruption_budget"
 
 	labels := pod[podName].spec.selector.match_labels
@@ -40,5 +43,5 @@ hasPodDisruptionBudget(lValue, lKey) {
 } else = false
 
 hasReference(label) {
-	regex.match("kubernetes_pod_disruption_budget.[a-zA-Z-_0-9]+", label)
+	regex.match(`kubernetes_pod_disruption_budget.[a-zA-Z-_0-9]+`, label)
 }

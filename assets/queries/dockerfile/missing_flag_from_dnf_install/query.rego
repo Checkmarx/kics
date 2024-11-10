@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some doc in input.document
+	resource := doc.command[name][_]
 	resource.Cmd == "run"
 	values := resource.Value[0]
 	commands = dockerLib.getCommands(values)
@@ -14,7 +16,7 @@ CxPolicy[result] {
 	not hasYesFlag(c)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
@@ -37,5 +39,5 @@ hasInstallCommandWithoutFlag(command) = c {
 }
 
 hasYesFlag(command) {
-	regex.match("\\b(microdnf|dnf *install (-y|-[\\D]{1}y|-y[\\D]{1}|-yes|--assumeyes))\\b [\\w\\W]*", command)
+	regex.match(`\b(microdnf|dnf *install (-y|-[\D]{1}y|-y[\D]{1}|-yes|--assumeyes))\b [\w\W]*`, command)
 }

@@ -1,12 +1,14 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.enum[name]
 
-	regex.match("(^[A-Z][a-z0-9]+)+", name) == false
+	regex.match(`(^[A-Z][a-z0-9]+)+`, name) == false
 
 	result := {
 		"documentId": doc.id,

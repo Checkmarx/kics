@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 	doc.paths[name]
@@ -25,6 +26,6 @@ CxPolicy[result] {
 }
 
 clean_name(name) = result {
-	templates := regex.find_n("\\{.*\\}", name, -1)
+	templates := regex.find_n(`\{.*\}`, name, -1)
 	result := replace(name, templates[_], "")
 }

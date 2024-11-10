@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].command[name]
+	some doc in input.document
+	resource := doc.command[name]
 	dockerLib.check_multi_stage(name, input.document[i].command)
 
-	not contains(resource, "healthcheck")
+	not healthcheck_exists(resource)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
@@ -17,6 +19,7 @@ CxPolicy[result] {
 	}
 }
 
-contains(cmd, elem) {
-	cmd[_].Cmd = elem
+healthcheck_exists(resource) {
+	some cmd in resource
+	cmd.Cmd == "healthcheck"
 }
