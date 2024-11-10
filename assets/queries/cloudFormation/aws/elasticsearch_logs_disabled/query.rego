@@ -2,11 +2,12 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 LogTypes := ["INDEX_SLOW_LOGS", "SEARCH_SLOW_LOGS", "ES_APPLICATION_LOGS", "AUDIT_LOGS"]
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
@@ -15,7 +16,7 @@ CxPolicy[result] {
 	logs.Enabled == "false"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.LogPublishingOptions.%s.Enabled", [cf_lib.getPath(path), name, logName]),
@@ -27,7 +28,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
@@ -36,7 +37,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(logs, "Enabled")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.LogPublishingOptions.%s", [cf_lib.getPath(path), name, logName]),
@@ -48,7 +49,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
@@ -56,7 +57,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(properties, "LogPublishingOptions")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
@@ -66,7 +67,3 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties"], []),
 	}
 }
-
-contains(array, elem) {
-	array[_] == elem
-} else = false

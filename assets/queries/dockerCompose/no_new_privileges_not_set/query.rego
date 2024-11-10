@@ -20,5 +20,5 @@ CxPolicy[result] {
 }
 
 no_new_privileges(sec_opt) {
-	sec_opt[_] == "no-new-privileges:true"
+	"no-new-privileges:true" in sec_opt
 }

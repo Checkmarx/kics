@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_eks_cluster[name]
+	some doc in input.document
+	resource := doc.resource.aws_eks_cluster[name]
 
 	resource.vpc_config.endpoint_public_access == true
-	resource.vpc_config.public_access_cidrs[_] == "0.0.0.0/0"
+	"0.0.0.0/0" in resource.vpc_config.public_access_cidrs
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_eks_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_eks_cluster[%s].vpc_config.public_access_cidrs", [name]),
@@ -19,15 +21,16 @@ CxPolicy[result] {
 	}
 }
 
-#default vaule of cidrs is "0.0.0.0/0"
+# default value of cidrs is "0.0.0.0/0"
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_eks_cluster[name]
+	some doc in input.document
+	resource := doc.resource.aws_eks_cluster[name]
 
 	resource.vpc_config.endpoint_public_access == true
 	not resource.vpc_config.public_access_cidrs
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_eks_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_eks_cluster[%s].vpc_config.public_access_cidrs", [name]),

@@ -1,6 +1,7 @@
 package generic.k8s
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 getSpecInfo(document) = specInfo { # this one can be also used for the result
 	templates := {"job_template", "jobTemplate"}
@@ -55,7 +56,7 @@ hasFlagWithValue(container, flag, value) {
 
 hasValue(values, value) {
 	splittedValues := split(values, ",")
-	splittedValues[_] == value
+	value in splittedValues
 }
 
 startAndEndWithFlag(container, flag, ext) {

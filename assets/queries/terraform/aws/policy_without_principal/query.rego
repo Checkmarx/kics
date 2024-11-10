@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i].resource
+	some docs in input.document
+	doc := docs.resource
 	[path, value] := walk(doc)
 	not is_iam_identity_based_policy(path[0])
 
@@ -15,7 +17,7 @@ CxPolicy[result] {
 	not has_principal(statement)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": path[0],
 		"resourceName": path[1],
 		"searchKey": sprintf("%s[%s].policy", [path[0], path[1]]),
@@ -27,8 +29,7 @@ CxPolicy[result] {
 }
 
 is_iam_identity_based_policy(resource) {
-	iam_identity_based_policy := {"aws_iam_group_policy", "aws_iam_policy", "aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_role"}
-	resource == iam_identity_based_policy[_]
+	resource in {"aws_iam_group_policy", "aws_iam_policy", "aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_role"}
 }
 
 has_principal(statement) {

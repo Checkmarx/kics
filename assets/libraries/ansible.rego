@@ -1,5 +1,7 @@
 package generic.ansible
 
+import future.keywords.in
+
 # Global variable with all tasks in input
 tasks := TasksPerDocument
 

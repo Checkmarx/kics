@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "2.0"
 	keywords := {
 		"numeric": {"minimum", "maximum", "exclusiveMaximum", "exclusiveMinimum", "multipleOf"},
@@ -15,7 +16,7 @@ CxPolicy[result] {
 	value.enum
 	count(value.enum) > 0
 	value[keyword]
-	keyword == keywords[type][_]
+	keyword in keywords[type]
 
 	result := {
 		"documentId": doc.id,

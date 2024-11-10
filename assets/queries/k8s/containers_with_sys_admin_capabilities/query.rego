@@ -2,19 +2,21 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
 	types = {"initContainers", "containers"}
-	containers := specInfo.spec[types[x]]
+	some x in types
+	containers := specInfo.spec[x]
 
-	containers[index].securityContext.capabilities.add[_] == "SYS_ADMIN"
+	"SYS_ADMIN" in containers[index].securityContext.capabilities.add
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"issueType": "IncorrectValue",

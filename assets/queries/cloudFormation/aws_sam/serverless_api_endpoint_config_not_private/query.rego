@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == "AWS::Serverless::Api"
 
 	not common_lib.valid_key(resource.Properties, "EndpointConfiguration")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
@@ -22,14 +24,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == "AWS::Serverless::Api"
 	endpointConfig := resource.Properties.EndpointConfiguration
 
 	not common_lib.valid_key(endpointConfig, "Types")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.EndpointConfiguration", [name]),
@@ -41,14 +44,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == "AWS::Serverless::Api"
 	endpointConfig := resource.Properties.EndpointConfiguration
 
 	not contains_private(endpointConfig.Types)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.EndpointConfiguration.Types", [name]),
@@ -60,5 +64,5 @@ CxPolicy[result] {
 }
 
 contains_private(types) {
-	types[_] == "PRIVATE"
+	"PRIVATE" in types
 }

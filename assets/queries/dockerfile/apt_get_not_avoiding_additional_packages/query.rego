@@ -5,7 +5,7 @@ import future.keywords.in
 
 CxPolicy[result] {
 	some doc in input.document
-	resource := doc.command[name][_]
+	some resource in doc.command[name]
 
 	resource.Cmd == "run"
 	count(resource.Value) == 1
@@ -28,15 +28,15 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	some doc in input.document
-	resource := doc.command[name][_]
+	some resource in doc.command[name]
 
 	resource.Cmd == "run"
 	count(resource.Value) > 1
 
 	commands := resource.Value
 
-	commands[_] == "apt-get"
-	commands[_] == "install"
+	"apt-get" in commands
+	"install" in commands
 
 	not avoidAdditionalPackages(commands)
 

@@ -1,5 +1,7 @@
 package generic.openapi
 
+import future.keywords.in
+
 check_openapi(doc) = version {
 	object.get(doc, "openapi", "undefined") != "undefined"
 	regex.match(`^3\.0\.\d+$`, doc.openapi)
@@ -16,7 +18,7 @@ is_valid_url(url) {
 }
 
 improperly_defined(params, value) {
-	params.in == "header"
+	params["in"] == "header"
 	params.name == value
 }
 

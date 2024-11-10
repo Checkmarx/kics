@@ -1,9 +1,10 @@
 package generic.terraform
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 check_cidr(rule) {
-	rule.cidr_blocks[_] == "0.0.0.0/0"
+	"0.0.0.0/0" in rule.cidr_blocks
 } else {
 	rule.cidr_block == "0.0.0.0/0"
 }
@@ -16,7 +17,7 @@ portOpenToInternet(rule, port) {
 }
 
 portOpenToInternet(rules, port) {
-	rule := rules[_]
+	rule in rules
 	check_cidr(rule)
 	rule.protocol == "tcp"
 	containsPort(rule, port)
@@ -444,7 +445,7 @@ getStatement(policy) = st {
 
 is_publicly_accessible(policy) {
 	statements := getStatement(policy)
-	statement := statements[_]
+	some statement in statements
 	statement.Effect == "Allow"
 	anyPrincipal(statement)
 }
@@ -530,7 +531,7 @@ has_target_resource(bucketName, resourceName) {
 allows_action_from_all_principals(json_policy, action) {
 	policy := common_lib.json_unmarshal(json_policy)
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	some statement in st
 	statement.Effect == "Allow"
 	anyPrincipal(statement)
 	common_lib.containsOrInArrayContains(statement.Action, action)

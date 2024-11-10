@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 readVerbs := ["get", "watch", "list"]
 
 CxPolicy[result] {
+	some doc in input.document
 	resourceTypes := ["kubernetes_role", "kubernetes_cluster_role"]
-	resource := input.document[i].resource[resourceTypes[t]][name]
+	resource := doc.resource[resourceTypes[t]][name]
 	allowsSecrets(resource.rule)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resourceTypes[t],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].rule", [resourceTypes[t], name]),
@@ -23,12 +25,12 @@ CxPolicy[result] {
 allowsSecrets(rules) {
 	is_array(rules)
 	some r
-	rules[r].resources[_] == "secrets"
+	"secrets" in rules[r].resources
 	rules[r].verbs[_] == readVerbs[_]
 }
 
 allowsSecrets(rule) {
 	is_object(rule)
-	rule.resources[_] == "secrets"
+	"secrets" in rule.resources
 	rule.verbs[_] == readVerbs[_]
 }

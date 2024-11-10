@@ -2,20 +2,21 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 slowLogs := ["INDEX_SLOW_LOGS", "SEARCH_SLOW_LOGS"]
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
 	common_lib.valid_key(resource.Properties, "LogPublishingOptions")
-	logs := [logName | contains(slowLogs, logName); log := resource.Properties.LogPublishingOptions[logName]]
+	logs := [logName | containsElem(slowLogs, logName); log := resource.Properties.LogPublishingOptions[logName]]
 	count(logs) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.LogPublishingOptions", [cf_lib.getPath(path), name]),
@@ -27,7 +28,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
@@ -36,7 +37,7 @@ CxPolicy[result] {
 	logs.Enabled == "false"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.LogPublishingOptions.%s.Enabled", [cf_lib.getPath(path), name, logName]),
@@ -48,7 +49,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
@@ -56,7 +57,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(properties, "LogPublishingOptions")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
@@ -67,6 +68,6 @@ CxPolicy[result] {
 	}
 }
 
-contains(array, elem) {
-	array[_] == elem
+containsElem(array, elem) {
+	elem in array
 } else = false

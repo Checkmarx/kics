@@ -1,13 +1,14 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 
 	kinds := {"Role", "ClusterRole"}
-	document.kind == kinds[_]
+	document.kind in kinds
 
 	verbs := {"update", "patch", "create", "*"}
 	document.rules[j].resources[_] == "pods/portforward"

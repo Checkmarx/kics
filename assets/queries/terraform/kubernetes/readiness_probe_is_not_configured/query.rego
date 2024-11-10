@@ -2,11 +2,13 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 types := {"init_container", "container"}
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some doc in input.document
+	resource := doc.resource[resourceType]
 
 	not resource_equal(resourceType)
 
@@ -18,7 +20,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(container, "readiness_probe")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
@@ -29,7 +31,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some doc in input.document
+	resource := doc.resource[resourceType]
 
 	not resource_equal(resourceType)
 
@@ -37,12 +40,12 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]]
 
 	is_array(container) == true
-	containersType := container[_]
+	some containersType in container
 
 	not common_lib.valid_key(containersType, "readiness_probe")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
@@ -54,6 +57,5 @@ CxPolicy[result] {
 
 resource_equal(type) {
 	resources := {"kubernetes_cron_job", "kubernetes_job"}
-
-	type == resources[_]
+	type in resources
 }

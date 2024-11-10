@@ -2,6 +2,8 @@ rules:
   bugs:
     not-equals-in-loop:
       level: ignore
+    rule-shadows-builtin:
+      level: warn
   idiomatic:
     no-defined-entrypoint:
       # https://docs.styra.com/regal/rules/idiomatic/no-defined-entrypoint

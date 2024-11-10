@@ -11,7 +11,7 @@ CxPolicy[result] {
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
-	aptGet := regex.find_n("apt-get (-(-)?[a-zA-Z]+ *)*install", commands, -1)
+	aptGet := regex.find_n(`apt-get (-(-)?[a-zA-Z]+ *)*install`, commands, -1)
 	aptGet != null
 
 	packages = dockerLib.getPackages(commands, aptGet)
