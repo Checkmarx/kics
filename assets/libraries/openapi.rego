@@ -119,7 +119,7 @@ is_operation(path) = info {
 
 is_numeric_type(type) {
 	numeric := {"integer", "number"}
-	type == numeric[_]
+	type in numeric
 }
 
 # It verifies if the string schema does not have the 'field' defined

@@ -1,8 +1,10 @@
 rules:
   bugs:
     not-equals-in-loop:
+      # https://docs.styra.com/regal/rules/bugs/not-equals-in-loop
       level: ignore
     rule-shadows-builtin:
+      # https://docs.styra.com/regal/rules/bugs/rule-shadows-builtin
       level: warn
   idiomatic:
     no-defined-entrypoint:
@@ -11,46 +13,47 @@ rules:
       level: ignore
     # temporary
     non-raw-regex-pattern:
+      # https://docs.styra.com/regal/rules/idiomatic/non-raw-regex-pattern 
       # removing redundant escaping from regexes would provide better readability
       level: warn
     use-in-operator:
       # https://docs.styra.com/regal/rules/idiomatic/use-in-operator
-      # 42 violations — this would be good to fix, but not critical
       level: warn
     use-some-for-output-vars:
       # https://docs.styra.com/regal/rules/idiomatic/use-some-for-output-vars
       # These would be good to address, but would require a concentrated effort
       level: ignore
-    equals-pattern-matching:
-      level: ignore
-    no-undefined-references:
-      level: warn
-    consistent-naming: 
-      level: warn
   style:
     avoid-get-and-list-prefix:
+      # https://docs.styra.com/regal/rules/style/avoid-get-and-list-prefix
       level: ignore
     external-reference:
+      # https://docs.styra.com/regal/rules/style/external-reference
       level: ignore
     file-length:
+      # https://docs.styra.com/regal/rules/style/file-length
       level: ignore
     line-length:
+      # https://docs.styra.com/regal/rules/style/line-length
       level: ignore
     no-whitespace-comment:
-      level: ignore
+      # https://docs.styra.com/regal/rules/style/no-whitespace-comment
+      level: warn
     opa-fmt:
+      # https://docs.styra.com/regal/rules/style/opa-fmt
       level: error
     prefer-some-in-iteration:
+      # https://docs.styra.com/regal/rules/style/prefer-some-in-iteration
       level: warn
     prefer-snake-case:
+      # https://docs.styra.com/regal/rules/style/prefer-snake-case
       level: ignore
     rule-length:
+      # https://docs.styra.com/regal/rules/style/rule-length
       level: ignore
     todo-comment:
+      # https://docs.styra.com/regal/rules/style/todo-comment
       level: ignore
-    no-trailing-whitespace:
-      level: warn
-    alphabetical-order:
-      level: warn
     use-assignment-operator:
+      # https://docs.styra.com/regal/rules/style/use-assignment-operator
       level: ignore

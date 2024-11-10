@@ -10,7 +10,7 @@ CxPolicy[result] {
 	kinds := {"Role", "ClusterRole"}
 	document.kind in kinds
 
-	"impersonate" in document.rules[j].verbs 
+	"impersonate" in document.rules[j].verbs
 
 	result := {
 		"documentId": document.id,

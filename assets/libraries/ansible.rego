@@ -110,7 +110,7 @@ isPortInRule(rule, portNumber) {
 }
 
 isPortInRule(rule, portNumber) {
-	rule.ports[_] == portNumber
+	portNumber in rule.ports
 }
 
 isPortInRule(rule, portNumber) {
