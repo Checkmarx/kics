@@ -415,10 +415,10 @@ get_policy(p) = policy {
 
 is_cross_account(statement) {
 	is_string(statement.Principal.AWS)
-	regex.match("(^[0-9]{12}$)|(^arn:aws:(iam|sts)::[0-9]{12})", statement.Principal.AWS)
+	regex.match(`(^[0-9]{12}$)|(^arn:aws:(iam|sts)::[0-9]{12})`, statement.Principal.AWS)
 } else {
 	is_array(statement.Principal.AWS)
-	regex.match("(^[0-9]{12}$)|(^arn:aws:(iam|sts)::[0-9]{12})", statement.Principal.AWS[_])
+	regex.match(`(^[0-9]{12}$)|(^arn:aws:(iam|sts)::[0-9]{12})`, statement.Principal.AWS[_])
 }
 
 is_assume_role(statement) {

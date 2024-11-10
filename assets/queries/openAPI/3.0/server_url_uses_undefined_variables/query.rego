@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	server := doc.servers[s]
@@ -20,7 +21,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	server := doc.paths[path][operation].servers[s]
@@ -36,7 +37,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	server := doc.paths[path].servers[s]
@@ -84,7 +85,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	server := doc.paths[path][operation].responses[r].links[l].server
@@ -103,14 +104,14 @@ CxPolicy[result] {
 
 variables_undefined(server) {
 	url := server.url
-	url_variables := regex.find_n("{[a-zA-Z]+}", url, -1)
+	url_variables := regex.find_n(`{[a-zA-Z]+}`, url, -1)
 	url_variables != []
 	not common_lib.valid_key(server, "variables")
 }
 
 variables_undefined(server) {
 	url := server.url
-	url_variables := regex.find_n("{[a-zA-Z]+}", url, -1)
+	url_variables := regex.find_n(`{[a-zA-Z]+}`, url, -1)
 	url_variables != []
 	var := replace(url_variables[j], "{", "")
 	clean_var := replace(var, "}", "")

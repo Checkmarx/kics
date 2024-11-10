@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 privilegeEscalationActions := data.common_lib.aws_privilege_escalation_actions
 
@@ -55,14 +56,14 @@ CxPolicy[result] {
 	attachment := document[_].resource[attachments[_]][attachment_id]
 	is_attachment(attachment, role_id)
 
-	not regex.match("arn:aws.*:iam::.*", attachment.policy_arn)
+	not regex.match(`arn:aws.*:iam::.*`, attachment.policy_arn)
 
 	attached_customer_managed_policy_id := split(attachment.policy_arn, ".")[1]
 	customer_managed_policy = document[p].resource.aws_iam_policy[attached_customer_managed_policy_id]
 
 	policy := common_lib.json_unmarshal(customer_managed_policy.policy)
 	statements := tf_lib.getStatement(policy)
-	statement := statements[_]
+	some statement in statements
 	matching_actions := hasPrivilegedPermissions(statement)
 	count(matching_actions) > 0
 

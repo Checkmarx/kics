@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
@@ -26,7 +27,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
@@ -49,5 +50,5 @@ CxPolicy[result] {
 limited_regex(value) {
 	not contains(value.pattern, "+")
 	not contains(value.pattern, "*")
-	not regex.match("[^\\\\]{\\d+,}", value.pattern)
+	not regex.match(`[^\\\\]{\d+,}`, value.pattern)
 }

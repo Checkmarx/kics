@@ -1,17 +1,19 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some doc in input.document
+	resource := doc.command[name][_]
 	resource.Cmd == "run"
 
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
-	virtual := regex.find_n("\\-\\-virtual\\s.?[a-zA-Z\\-]+\\s", commands, -1)
+	virtual := regex.find_n(`\-\-virtual\s.?[a-zA-Z\\-]+\s`, commands, -1)
 	commands_trim = replace(commands, virtual[0], "")
-	apk := regex.find_n("apk (-(-)?[a-zA-Z]+ *)*add", commands_trim, -1)
+	apk := regex.find_n(`apk (-(-)?[a-zA-Z]+ *)*add`, commands_trim, -1)
 	apk != null
 
 	packages = dockerLib.getPackages(commands_trim, apk)
@@ -22,7 +24,7 @@ CxPolicy[result] {
 	analyzePackages(j, packages[j], packages, length)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
@@ -31,15 +33,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some doc in input.document
+	resource := doc.command[name][_]
 	resource.Cmd == "run"
 
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
-	virtual := regex.find_n("\\-t\\s.?[a-zA-Z\\-]+\\s", commands, -1)
+	virtual := regex.find_n(`\-t\s.?[a-zA-Z\-]+\s`, commands, -1)
 	commands_trim = replace(commands, virtual[0], "")
-	apk := regex.find_n("apk (-(-)?[a-zA-Z]+ *)*add", commands_trim, -1)
+	apk := regex.find_n(`apk (-(-)?[a-zA-Z]+ *)*add`, commands_trim, -1)
 	apk != null
 
 	packages = dockerLib.getPackages(commands_trim, apk)
@@ -50,7 +53,7 @@ CxPolicy[result] {
 	analyzePackages(j, packages[j], packages, length)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
@@ -59,14 +62,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some doc in input.document
+	resource := doc.command[name][_]
 	resource.Cmd == "run"
 
 	count(resource.Value) == 1
 	commands := resource.Value[0]
-	not regex.match("\\-\\-virtual\\s.?[a-zA-Z\\-]+\\s", commands)
-	not regex.match("\\-t\\s.?[a-zA-Z\\-]+\\s", commands)
-	apk := regex.find_n("apk (-(-)?[a-zA-Z]+ *)*add", commands, -1)
+	not regex.match(`\-\-virtual\s.?[a-zA-Z\-]+\s`, commands)
+	not regex.match(`\-t\s.?[a-zA-Z\-]+\s`, commands)
+	apk := regex.find_n(`apk (-(-)?[a-zA-Z]+ *)*add`, commands, -1)
 	apk != null
 
 	packages = dockerLib.getPackages(commands, apk)
@@ -77,7 +81,7 @@ CxPolicy[result] {
 	analyzePackages(j, packages[j], packages, length)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
@@ -86,7 +90,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some doc in input.document
+	resource := doc.command[name][_]
 	resource.Cmd == "run"
 
 	count(resource.Value) > 1
@@ -96,11 +101,11 @@ CxPolicy[result] {
 	resource.Value[j] != "apk"
 	resource.Value[j] != "add"
 
-	regex.match("^[a-zA-Z]", resource.Value[j]) == true
+	regex.match(`^[a-zA-Z]`, resource.Value[j]) == true
 	not dockerLib.withVersion(resource.Value[j])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "RUN instruction with 'apk add <package>' should use package pinning form 'apk add <package>=<version>'",
@@ -110,13 +115,13 @@ CxPolicy[result] {
 
 analyzePackages(j, currentPackage, packages, length) {
 	j == length - 1
-	regex.match("^[a-zA-Z]", currentPackage) == true
+	regex.match(`^[a-zA-Z]`, currentPackage) == true
 	not dockerLib.withVersion(currentPackage)
 }
 
 analyzePackages(j, currentPackage, packages, length) {
 	j != length - 1
-	regex.match("^[a-zA-Z]", currentPackage) == true
+	regex.match(`^[a-zA-Z]`, currentPackage) == true
 	packages[j + 1] != "-v"
 	not dockerLib.withVersion(currentPackage)
 }

@@ -1,17 +1,20 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some doc in input.document
+	resource := doc.command[name][_]
 	resource.Cmd == "run"
 	commands := resource.Value[0]
 
-	aptGet := regex.find_n("apt-get (-(-)?[a-zA-Z]+ *)*install", commands, -1)
+	aptGet := regex.find_n(`apt-get (-(-)?[a-zA-Z]+ *)*install`, commands, -1)
 	aptGet != null
 
 	not hasClean(resource.Value[0], aptGet[0])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, commands]),
 		"issueType": "IncorrectValue", #"MissingAttribute" / "RedundantAttribute"
 		"keyExpectedValue": "After using apt-get install, the apt-get lists should be deleted",

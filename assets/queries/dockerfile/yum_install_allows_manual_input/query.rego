@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some doc in input.document
+	resource := doc.command[name][_]
 	resource.Cmd == "run"
 	count(resource.Value) == 1
 
@@ -13,7 +15,7 @@ CxPolicy[result] {
 	not avoidManualInput(command)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("{{%s}} should avoid manual input", [resource.Original]),
@@ -22,7 +24,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some doc in input.document
+	resource := doc.command[name][_]
 	resource.Cmd == "run"
 	count(resource.Value) > 1
 
@@ -31,7 +34,7 @@ CxPolicy[result] {
 	not avoidManualInputInList(resource.Value)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("{{%s}} should avoid manual input", [resource.Original]),
@@ -40,19 +43,19 @@ CxPolicy[result] {
 }
 
 isYumInstall(command) {
-	regex.match("yum (-(-)?[a-zA-Z]+ *)*(group|local)?install", command)
+	regex.match(`yum (-(-)?[a-zA-Z]+ *)*(group|local)?install`, command)
 }
 
 avoidManualInput(command) {
-	regex.match("yum (-(-)?[a-zA-Z]+ *)*(-y|-yes|--assumeyes) (-(-)?[a-zA-Z]+ *)*(group|local)?install", command)
+	regex.match(`yum (-(-)?[a-zA-Z]+ *)*(-y|-yes|--assumeyes) (-(-)?[a-zA-Z]+ *)*(group|local)?install`, command)
 }
 
 avoidManualInput(command) {
-	regex.match("yum (-(-)?[a-zA-Z]+ *)*(group|local)?install (-(-)?[a-zA-Z]+ *)*(-y|-yes|--assumeyes)", command)
+	regex.match(`yum (-(-)?[a-zA-Z]+ *)*(group|local)?install (-(-)?[a-zA-Z]+ *)*(-y|-yes|--assumeyes)`, command)
 }
 
 avoidManualInput(command) {
-	regex.match("yum (-(-)?[a-zA-Z]+ *)*(group|local)?install ([A-Za-z0-9-:=.$_]+ *)*(-y|-yes|--assumeyes)", command)
+	regex.match(`yum (-(-)?[a-zA-Z]+ *)*(group|local)?install ([A-Za-z0-9-:=.$_]+ *)*(-y|-yes|--assumeyes)`, command)
 }
 
 avoidManualInputInList(command) {

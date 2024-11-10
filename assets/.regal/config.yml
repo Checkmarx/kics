@@ -1,9 +1,6 @@
 rules:
   bugs:
     not-equals-in-loop:
-      # https://docs.styra.com/regal/rules/bugs/not-equals-in-loop
-      # The way it's used here with multi-value rules aren't
-      # bugs per se, so we'll ignore this for the time being
       level: ignore
   idiomatic:
     no-defined-entrypoint:
@@ -12,9 +9,7 @@ rules:
       level: ignore
     # temporary
     non-raw-regex-pattern:
-      # https://docs.styra.com/regal/rules/idiomatic/non-raw-regex-pattern
-      # 118 violations — fixing these would remove a lot of redundant
-      # escaping from regexes, providing better readability
+      # removing redundant escaping from regexes would provide better readability
       level: warn
     use-in-operator:
       # https://docs.styra.com/regal/rules/idiomatic/use-in-operator
@@ -25,14 +20,12 @@ rules:
       # These would be good to address, but would require a concentrated effort
       level: ignore
     equals-pattern-matching:
-      # Not critical
       level: ignore
     no-undefined-references:
       level: warn
     consistent-naming: 
       level: warn
   style:
-    # All of these are optional, but worth considering
     avoid-get-and-list-prefix:
       level: ignore
     external-reference:
@@ -58,6 +51,4 @@ rules:
     alphabetical-order:
       level: warn
     use-assignment-operator:
-      # This is very easy to fix, but would need to be done
-      # in so many places
       level: ignore

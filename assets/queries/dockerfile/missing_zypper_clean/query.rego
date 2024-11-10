@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	commands = document.command
 
 	commands[img][c].Cmd == "run"
@@ -51,7 +52,7 @@ commandHasZypperUsage(command) {
 }
 
 commandHasZypperUsage(command) {
-	output := regex.find_n("zypper (-(-)?[a-zA-Z]+ *)*install", command, -1)
+	output := regex.find_n(`zypper (-(-)?[a-zA-Z]+ *)*install`, command, -1)
 	output != null
 	index := indexof(command, output[0])
 	index != -1
