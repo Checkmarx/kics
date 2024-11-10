@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	some doc in input.document
