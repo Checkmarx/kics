@@ -1,5 +1,7 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
 	some doc in input.document
 	resource := doc.command[name][_]
