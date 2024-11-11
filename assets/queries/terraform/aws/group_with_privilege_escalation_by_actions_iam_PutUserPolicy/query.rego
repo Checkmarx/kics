@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	# get a AWS IAM group
-	group := input.document[i].resource.aws_iam_group[targetGroup]
+	some doc in input.document
+	group := doc.resource.aws_iam_group[targetGroup]
 
 	common_lib.group_unrecommended_permission_policy_scenarios(targetGroup, "iam:PutUserPolicy")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_iam_group",
 		"resourceName": tf_lib.get_resource_name(group, targetGroup),
 		"searchKey": sprintf("aws_iam_group[%s]", [targetGroup]),

@@ -11,7 +11,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.WORKDIR={{%s}}", [name, resource.Value[0]]),
-		"issueType": "IncorrectValue", #"MissingAttribute" / "RedundantAttribute"
+		"issueType": "IncorrectValue", # "MissingAttribute" / "RedundantAttribute"
 		"keyExpectedValue": "'WORKDIR' Command has absolute path",
 		"keyActualValue": "'WORKDIR' Command doesn't have absolute path",
 	}

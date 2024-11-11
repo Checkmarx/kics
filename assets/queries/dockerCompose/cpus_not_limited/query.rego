@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import future.keywords.in
 
-#FOR VERSION 3
+# FOR VERSION 3
 CxPolicy[result] {
 	some resource in input.document
 	version := resource.version
@@ -74,7 +74,7 @@ CxPolicy[result] {
 	}
 }
 
-#FOR VERSION 2
+# FOR VERSION 2
 CxPolicy[result] {
 	some resource in input.document
 	version := resource.version

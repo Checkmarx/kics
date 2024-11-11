@@ -527,7 +527,7 @@ has_target_resource(bucketName, resourceName) {
 	split(resource.bucket, ".")[1] == bucketName
 }
 
-#Checks if an action is allowed for all principals
+# Checks if an action is allowed for all principals
 allows_action_from_all_principals(json_policy, action) {
 	policy := common_lib.json_unmarshal(json_policy)
 	st := common_lib.get_statement(policy)

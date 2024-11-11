@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 import future.keywords.in
 
-#CxPolicy for resource iam policy
+# CxPolicy for resource iam policy
 CxPolicy[result] {
 	some doc in input.document
 	resourceType := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy"}

@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 aws_cli_config_files = {"/etc/awscli.conf", "/etc/aws/config", "/etc/aws/credentials", "~/.aws/credentials", "~/.aws/config", "$HOME/.aws/credentials", "$HOME/.aws/config"}
 
@@ -16,7 +17,7 @@ check_aws_api_keys_or_config_files(remote) {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	resource := doc.resource.aws_instance[name]
 
 	check_aws_api_keys(resource.user_data)
@@ -33,7 +34,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	resource := doc.resource.aws_instance[name]
 
 	decoded := base64.decode(resource.user_data_base64)
@@ -51,7 +52,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	resource := doc.resource.aws_instance[name]
 
 	remote := resource.provisioner["remote-exec"]
@@ -69,7 +70,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	resource := doc.resource.aws_instance[name]
 
 	file := resource.provisioner.file
@@ -89,13 +90,14 @@ CxPolicy[result] {
 #######################################################################################################
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some doc in input.document
+	module := doc.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "user_data")
 
 	check_aws_api_keys(module[keyToCheck])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
@@ -107,14 +109,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some doc in input.document
+	module := doc.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "user_data_base64")
 
 	decoded := base64.decode(module[keyToCheck])
 	check_aws_api_keys(decoded)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
