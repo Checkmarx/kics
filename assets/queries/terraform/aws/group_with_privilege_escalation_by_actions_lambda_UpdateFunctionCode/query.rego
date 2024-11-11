@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	# get a AWS IAM group
