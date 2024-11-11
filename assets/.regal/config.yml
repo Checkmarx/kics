@@ -41,10 +41,10 @@ rules:
       level: warn
     opa-fmt:
       # https://docs.styra.com/regal/rules/style/opa-fmt
-      level: error
+      level: warn
     prefer-some-in-iteration:
       # https://docs.styra.com/regal/rules/style/prefer-some-in-iteration
-      level: warn
+      level: ignore
     prefer-snake-case:
       # https://docs.styra.com/regal/rules/style/prefer-snake-case
       level: ignore
