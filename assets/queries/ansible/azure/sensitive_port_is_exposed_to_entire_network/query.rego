@@ -4,7 +4,7 @@ import data.generic.ansible as ansLib
 import data.generic.common as commonLib
 
 CxPolicy[result] {
-	#############	inputs
+	############# inputs
 	tcpPortsMap := commonLib.tcpPortsMap
 
 	task := ansLib.tasks[id][t]

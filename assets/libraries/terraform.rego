@@ -17,7 +17,7 @@ portOpenToInternet(rule, port) {
 }
 
 portOpenToInternet(rules, port) {
-	rule in rules
+	some rule in rules
 	check_cidr(rule)
 	rule.protocol == "tcp"
 	containsPort(rule, port)

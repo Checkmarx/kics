@@ -39,8 +39,6 @@ CxPolicy[result] {
 	}
 }
 
-isResFalse(answer) {
-	answer == "false"
-} else {
-	answer == false
-}
+isResFalse("false") = true 
+
+isResFalse(false) = true

@@ -2,10 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 # This rules verifies anyOf and oneOf
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
@@ -24,7 +25,7 @@ CxPolicy[result] {
 
 # This rules verifies allOf
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
@@ -40,11 +41,9 @@ CxPolicy[result] {
 	}
 }
 
-check_schema_type(type) {
-	type == "object"
-} else {
-	type == "array"
-}
+check_schema_type("object") = true
+
+check_schema_type("array") = true
 
 get_schema_list(value) = result {
 	common_lib.valid_key(value, "anyOf")

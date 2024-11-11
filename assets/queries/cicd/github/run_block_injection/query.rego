@@ -1,10 +1,12 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	input.document[i].on.pull_request_target
-	run := input.document[i].jobs[j].steps[k].run
+	some doc in input.document
+	doc.on.pull_request_target
+	run := doc.jobs[j].steps[k].run
 
 	patterns := [
 		"github.head_ref",
@@ -20,7 +22,7 @@ CxPolicy[result] {
 	matched = containsPatterns(run, patterns)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("run={{%s}}", [run]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
@@ -31,8 +33,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	input.document[i].on.issues
-	run := input.document[i].jobs[j].steps[k].run
+	some doc in input.document
+	doc.on.issues
+	run := doc.jobs[j].steps[k].run
 
 	patterns := [
 		"github.event.issue.body",
@@ -42,7 +45,7 @@ CxPolicy[result] {
 	matched = containsPatterns(run, patterns)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("run={{%s}}", [run]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
@@ -53,8 +56,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	input.document[i].on.issue_comment
-	run := input.document[i].jobs[j].steps[k].run
+	some doc in input.document
+	doc.on.issue_comment
+	run := doc.jobs[j].steps[k].run
 
 	patterns := [
 		"github.event.comment.body",
@@ -65,7 +69,7 @@ CxPolicy[result] {
 	matched = containsPatterns(run, patterns)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("run={{%s}}", [run]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
@@ -76,8 +80,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	input.document[i].on.discussion
-	run := input.document[i].jobs[j].steps[k].run
+	some doc in input.document
+	doc.on.discussion
+	run := doc.jobs[j].steps[k].run
 
 	patterns := [
 		"github.event.discussion.body",
@@ -87,7 +92,7 @@ CxPolicy[result] {
 	matched = containsPatterns(run, patterns)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("run={{%s}}", [run]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
@@ -98,8 +103,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	input.document[i].on.discussion_comment
-	run := input.document[i].jobs[j].steps[k].run
+	some doc in input.document
+	doc.on.discussion_comment
+	run := doc.jobs[j].steps[k].run
 
 	patterns := [
 		"github.event.comment.body",
@@ -110,7 +116,7 @@ CxPolicy[result] {
 	matched = containsPatterns(run, patterns)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("run={{%s}}", [run]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
@@ -121,8 +127,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	input.document[i].on.workflow_run
-	run := input.document[i].jobs[j].steps[k].run
+	some doc in input.document
+	doc.on.workflow_run
+	run := doc.jobs[j].steps[k].run
 
 	patterns := [
 		"github.event.workflow.path",
@@ -136,7 +143,7 @@ CxPolicy[result] {
 	matched = containsPatterns(run, patterns)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("run={{%s}}", [run]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
@@ -147,8 +154,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	input.document[i].on.author
-	run := input.document[i].jobs[j].steps[k].run
+	some doc in input.document
+	doc.on.author
+	run := doc.jobs[j].steps[k].run
 
 	patterns := [
 		"github.*.authors.name",
@@ -158,7 +166,7 @@ CxPolicy[result] {
 	matched = containsPatterns(run, patterns)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("run={{%s}}", [run]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Run block does not contain dangerous input controlled by user.",
@@ -170,7 +178,8 @@ CxPolicy[result] {
 
 containsPatterns(str, patterns) = matched {
 	matched := {pattern |
-		pattern := patterns[_]
+		some pattern in patterns
 		regex.match(pattern, str)
 	}
+	count(matched) > 0 # This ensures that at least one pattern is matched before the assignment
 }

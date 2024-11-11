@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource[res][name]
+	some doc in input.document
+	resource := doc.resource[res][name]
 	tf_lib.check_resource_tags(res)
 
 	check_default_tags == false
 	not common_lib.valid_key(resource, "tags")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": res,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[{{%s}}]", [res, name]),
@@ -22,14 +24,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[res][name]
+	some doc in input.document
+	resource := doc.resource[res][name]
 	tf_lib.check_resource_tags(res)
 
 	check_default_tags == false
 	not check_different_tag(resource.tags)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": res,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[{{%s}}].tags", [res, name]),

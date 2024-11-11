@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	broker := input.document[i].resource.aws_mq_broker[name]
+	some doc in input.document
+	broker := doc.resource.aws_mq_broker[name]
 	logs := broker.logs
 
 	categories := ["general", "audit"]
@@ -13,7 +15,7 @@ CxPolicy[result] {
 	logs[type] == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_mq_broker",
 		"resourceName": tf_lib.get_specific_resource_name(broker, "aws_mq_broker", name),
 		"searchKey": sprintf("aws_mq_broker[%s].logs.%s", [name, type]),
@@ -24,7 +26,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	broker := input.document[i].resource.aws_mq_broker[name]
+	some doc in input.document
+	broker := doc.resource.aws_mq_broker[name]
 	logs := broker.logs
 
 	categories := ["general", "audit"]
@@ -34,7 +37,7 @@ CxPolicy[result] {
 	not has_key(logs, type)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_mq_broker",
 		"resourceName": tf_lib.get_specific_resource_name(broker, "aws_mq_broker", name),
 		"searchKey": sprintf("aws_mq_broker[%s].logs", [name]),
@@ -45,12 +48,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	broker := input.document[i].resource.aws_mq_broker[name]
+	some doc in input.document
+	broker := doc.resource.aws_mq_broker[name]
 
 	not broker.logs
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_mq_broker",
 		"resourceName": tf_lib.get_specific_resource_name(broker, "aws_mq_broker", name),
 		"searchKey": sprintf("aws_mq_broker[%s]", [name]),
@@ -61,5 +65,5 @@ CxPolicy[result] {
 }
 
 has_key(obj, key) {
-	_ = obj[key]
+	key in obj
 }

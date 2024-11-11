@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
@@ -22,11 +23,9 @@ CxPolicy[result] {
 	}
 }
 
-check_paths_object(paths) {
-	count(paths) == 0
-}
-
 # In yaml an empty object is parsed into null
 check_paths_object(paths) {
-	paths == null
+    paths == null
+} else {
+    count(paths) == 0
 }

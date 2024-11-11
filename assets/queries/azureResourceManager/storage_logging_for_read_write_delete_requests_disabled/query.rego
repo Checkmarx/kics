@@ -4,22 +4,22 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	cats := ["StorageRead", "StorageWrite", "StorageDelete"]
-
-	doc := input.document[i]
+	
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts/queueServices/providers/diagnosticsettings"
 
-	#array containing data that will be used to help build the following objects
+	# array containing data that will be used to help build the following objects
 	valSlice := [x | x := {sprintf("%s", [value.properties.logs[n].category]): [value.properties.logs[n].enabled, n]}]
 
-	#object that maps category names to their respective enabled values
+	# object that maps category names to their respective enabled values
 	unionObject := {k: v |
 		some i, k
 		v := valSlice[i][k][0]
 	}
 
-	#object that maps category names to their respective index values in the document
+	# object that maps category names to their respective index values in the document
 	catIndexObject := {k: v |
 		some i, k
 		v := valSlice[i][k][1]
@@ -28,7 +28,7 @@ CxPolicy[result] {
 	issue := actual_issue(unionObject, catIndexObject, cats[l])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties.logs.%s", [common_lib.concat_path(path), value.name, cats[l]]),

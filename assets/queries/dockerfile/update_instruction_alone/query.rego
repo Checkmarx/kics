@@ -1,8 +1,11 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
 	# Check if there is a command that runs install before update
-	resource := input.document[i].command[name][_]
+	some doc in input.document
+	resource := doc.command[name][_]
 	resource.Cmd == "run"
 	count(resource.Value) == 1
 	command := resource.Value[0]
@@ -21,7 +24,7 @@ CxPolicy[result] {
 	not checkFollowedBy(update, install)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Instruction 'RUN %s %s' should be followed by 'RUN %s %s' in the same 'RUN' statement", [packageManager, pkg_installer[packageManager], packageManager, pkg_updater[packageManager]]),
@@ -30,8 +33,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	#Check if there is Update Command without Install Command
-	resource := input.document[i].command[name][n]
+	# Check if there is Update Command without Install Command
+	some doc in input.document
+	resource := doc.command[name][n]
 	commandRefactor := getRunCommand(resource)
 	packages := [l | commandRefactor[0] == pkg[l]]
 	count(packages) > 0
@@ -44,7 +48,7 @@ CxPolicy[result] {
 	count(install) == 0
 
 	#Check if any of the next commands is RUN install Command and there is not Update Command
-	nextResources := array.slice(input.document[i].command[name], n + 1, count(input.document[i].command[name]))
+	nextResources := array.slice(doc.command[name], n + 1, count(doc.command[name]))
 	nextResource := nextResources[_]
 	nextCommandRefactor := getRunCommand(nextResource)
 	nextPackages := [l | nextCommandRefactor[0] == pkg[l]]
@@ -59,7 +63,7 @@ CxPolicy[result] {
 	count(nextUpdate) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, nextResource.Value[0]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Instruction 'RUN %s %s' should be combined with 'RUN %s %s' in the same 'RUN' statement", [nextPackageManager, pkg_installer[nextPackageManager], nextPackageManager, pkg_updater[nextPackageManager]]),

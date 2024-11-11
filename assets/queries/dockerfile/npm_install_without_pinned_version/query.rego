@@ -1,7 +1,10 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	runCmd := input.document[i].command[name][_]
+	some doc in input.document
+	runCmd := doc.command[name][_]
 	is_run_cmd(runCmd)
 
 	cmd := concat(" ", runCmd.Value)
@@ -22,7 +25,7 @@ CxPolicy[result] {
 	not valid_match(token)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, runCmd.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' uses npm install with a pinned version", [runCmd.Original]),
@@ -45,10 +48,10 @@ valid_match(token) {
 	scopeEnd := indexof(token, "/")
 	packageID := substring(token, scopeEnd + 1, count(token) - scopeEnd)
 	atIndex := indexof(packageID, "@")
-	atIndex != -1 #package must refer the version or tag
+	atIndex != -1 # package must refer the version or tag
 } else {
 	hasScope := re_match("@.+/.*", token)
 	not hasScope
 	atIndex := indexof(token, "@")
-	atIndex != -1 #package must refer the version or tag
+	atIndex != -1 # package must refer the version or tag
 }

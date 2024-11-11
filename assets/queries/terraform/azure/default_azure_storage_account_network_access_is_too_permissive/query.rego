@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_storage_account[var0]
+	some doc in input.document
+	resource := doc.resource.azurerm_storage_account[var0]
 	resource_name := tf_lib.get_resource_name(resource, var0)
 	networkRules := get_network_rules(resource, var0)
 
@@ -14,7 +16,7 @@ CxPolicy[result] {
 	issue := prepare_issue(res1, res2, var0, networkRules.type, networkRules.key)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_storage_account",
 		"resourceName": resource_name,
 		"searchKey": issue.searchKey,
@@ -86,7 +88,8 @@ prepare_issue(res1, res2, resource_id, rules_type, rules_key) = issue {
 }
 
 get_network_rules(storage_account, storage_account_name) = rules {
-	networkRules := input.document[i].resource.azurerm_storage_account_network_rules[var1]
+	some doc in input.document
+	networkRules := doc.resource.azurerm_storage_account_network_rules[var1]
 	networkRules.storage_account_id == sprintf("${azurerm_storage_account.%s.id}", [storage_account_name])
 	rules := {
 		"rules": object.union(networkRules, {"name": var1}),
@@ -124,5 +127,5 @@ aclsDefaultActionAllow(network_rules) = reason {
 }
 
 has_key(x, k) {
-	_ = x[k]
+	some k in x
 }

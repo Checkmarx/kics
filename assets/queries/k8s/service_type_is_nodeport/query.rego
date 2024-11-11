@@ -1,9 +1,10 @@
 package Cx
 
-import data.generic.k8s as k8s
+import data.generic.k8s
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 	kind := document.kind
 	listKinds := ["Service"]
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	lower(spec.type) == "nodeport"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.type", [metadata.name]),
