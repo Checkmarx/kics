@@ -44,6 +44,6 @@ CxPolicy[result] {
 	}
 }
 
-isFalse(false) = true 
+isFalse(false) = true
 
 isFalse("false") = true

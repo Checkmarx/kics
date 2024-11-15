@@ -47,7 +47,7 @@ CxPolicy[result] {
 	}
 }
 
-isAttrTrue("true") = true 
+isAttrTrue("true") = true
 
 isAttrTrue(true) = true
 

@@ -47,7 +47,7 @@ CxPolicy[result] {
 	install := [x | x := getDetail(commandRefactor, pkg_installer[packageManager][_]); count(x) > 0]
 	count(install) == 0
 
-	#Check if any of the next commands is RUN install Command and there is not Update Command
+	# Check if any of the next commands is RUN install Command and there is not Update Command
 	nextResources := array.slice(doc.command[name], n + 1, count(doc.command[name]))
 	nextResource := nextResources[_]
 	nextCommandRefactor := getRunCommand(nextResource)
@@ -110,9 +110,7 @@ getRunCommand(resource) = commandRefactor {
 	commandRefactor := [x | x := commandList[_]; x != ""]
 }
 
-getDetail(commandRefactor, value) = list {
-	list := [u | commandRefactor[u] == value]
-}
+getDetail(commandRefactor, value) := [u | commandRefactor[u] == value]
 
 checkFollowedBy(first, after) {
 	first[_] < after[_]

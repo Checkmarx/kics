@@ -65,5 +65,5 @@ CxPolicy[result] {
 }
 
 has_key(obj, key) {
-	key in obj
+	_ = obj[key]
 }

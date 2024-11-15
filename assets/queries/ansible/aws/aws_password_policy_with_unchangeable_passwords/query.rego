@@ -22,9 +22,12 @@ CxPolicy[result] {
 	}
 }
 
-issueType(str) = "MissingAttribute" {
-	str == ""
-} else = "IncorrectValue"
+issueType(str) = issueType {
+    issueType = "MissingAttribute"
+    str == ""
+} else = issueType {
+    issueType = "IncorrectValue"
+}
 
 checkAllowPass(pwPolicy) = ".allow_pw_change" {
 	ansLib.isAnsibleFalse(pwPolicy.allow_pw_change)

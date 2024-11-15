@@ -5,7 +5,7 @@ import future.keywords.in
 
 CxPolicy[result] {
 	cats := ["StorageRead", "StorageWrite", "StorageDelete"]
-	
+
 	some doc in input.document
 	[path, value] = walk(doc)
 

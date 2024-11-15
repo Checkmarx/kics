@@ -62,5 +62,5 @@ CxPolicy[result] {
 }
 
 exist(obj, key) {
-	key in obj
+	_ = obj[key]
 }

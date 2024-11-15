@@ -25,7 +25,7 @@ CxPolicy[result] {
 issueType("") = "MissingAttribute"
 
 issueType(str) = "IncorrectValue" {
-    str != ""
+	str != ""
 }
 
 checkPwReusePrevent(pwPolicy) = ".password_reuse_prevent" {
