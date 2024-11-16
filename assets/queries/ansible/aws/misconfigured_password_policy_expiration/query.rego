@@ -24,7 +24,11 @@ CxPolicy[result] {
 
 issueType(str) = "MissingAttribute" {
 	str == ""
-} else = "IncorrectValue"
+}
+
+issueType(str) = "IncorrectValue" {
+	str != ""
+}
 
 checkPwMaxAge(pwPolicy) = ".pw_max_age" {
 	pwPolicy.pw_max_age > 90

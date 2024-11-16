@@ -1,10 +1,11 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 # components schemas map
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version == "3.0"
 
@@ -26,7 +27,7 @@ CxPolicy[result] {
 
 # schema object
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
@@ -73,14 +74,12 @@ check_properties(value, properties, m) {
 	count(set) > 0
 }
 
-get_properties(schema) = properties {
-	properties := {x |
-		[path, value] := walk(schema)
-		prop := value.properties
-		filter_paths(path)
-		prop[name]
-		x := {"path": path, "value": name}
-	}
+get_properties(schema) = {x |
+	[path, value] := walk(schema)
+	prop := value.properties
+	filter_paths(path)
+	prop[name]
+	x := {"path": path, "value": name}
 }
 
 filter_paths(path) {

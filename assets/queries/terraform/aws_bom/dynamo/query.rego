@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_dynamodb_table[name]
+	some doc in input.document
+	resource := doc.resource.aws_dynamodb_table[name]
 
 	info := get_accessibility(resource, name)
 
@@ -20,7 +22,7 @@ CxPolicy[result] {
 	final_bom_output = common_lib.get_bom_output(bom_output, info.policy)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("aws_dynamodb_table[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",
@@ -43,7 +45,7 @@ get_accessibility(resource, name) = info {
 
 policy_accessibility(policy, table_name) = info {
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	common_lib.any_principal(statement.Principal)
@@ -60,9 +62,9 @@ policy_accessibility(policy, table_name) = info {
 	info := {"accessibility": "hasPolicy", "policy": policy}
 }
 
+has_all_or_dynamob_arn("*", _)
+
 has_all_or_dynamob_arn(arn, table_name) {
-	arn == "*"
-} else {
 	startswith(arn, "arn:aws:dynamodb:")
 	suffix := concat("", [":table/", table_name])
 	endswith(arn, suffix)
@@ -70,7 +72,7 @@ has_all_or_dynamob_arn(arn, table_name) {
 
 get_resource_arn(resources) = val {
 	is_array(resources)
-	val := resources[_]
+	some val in resources
 } else = val {
 	val := resources
 }

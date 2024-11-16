@@ -24,8 +24,8 @@ CxPolicy[result] {
 }
 
 # In yaml an empty object is parsed into null
+check_paths_object(null) = true
+
 check_paths_object(paths) {
-	paths == null
-} else {
 	count(paths) == 0
 }

@@ -23,10 +23,10 @@ CxPolicy[result] {
 }
 
 issueType(str) = issueType {
-    issueType = "MissingAttribute"
-    str == ""
+	issueType = "MissingAttribute"
+	str == ""
 } else = issueType {
-    issueType = "IncorrectValue"
+	issueType = "IncorrectValue"
 }
 
 checkAllowPass(pwPolicy) = ".allow_pw_change" {

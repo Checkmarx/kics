@@ -28,9 +28,7 @@ CxPolicy[result] {
 	}
 }
 
-getTrustedPath(container) = path {
-	path := split(flagValue(container, "--trusted-ca-file"), "=")[1]
-}
+getTrustedPath(container) = split(flagValue(container, "--trusted-ca-file"), "=")[1]
 
 flagValue(container, flag) = val {
 	val := getFlag(container.command, flag)
@@ -39,7 +37,7 @@ flagValue(container, flag) = val {
 }
 
 getFlag(arr, item) = array_item {
-	array_item = arr[_]
+	some array_item in arr
 	startswith(array_item, item)
 }
 

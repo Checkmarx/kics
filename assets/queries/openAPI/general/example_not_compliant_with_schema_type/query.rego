@@ -120,11 +120,9 @@ check_type(type, exampleType) {
 	exampleType == type
 }
 
-check_number_type(type) {
-	type == "number"
-} else {
-	type == "integer"
-}
+check_number_type("number")
+
+check_number_type("integer")
 
 # get_ref() - returns the object based on the type (schema, examples). If the object is a ref gets the object from the ref
 get_ref(obj, docs, type, version) = example {
