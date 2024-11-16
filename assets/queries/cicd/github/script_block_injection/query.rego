@@ -5,13 +5,13 @@ import future.keywords.in
 
 CxPolicy[result] {
 	some doc in input.document
-	input.doc.on.pull_request_target
+	doc.on.pull_request_target
 
-	uses := input.doc.jobs[j].steps[k].uses
+	uses := doc.jobs[j].steps[k].uses
 
 	startswith(uses, "actions/github-script")
 
-	script := input.doc.jobs[j].steps[k]["with"].script
+	script := doc.jobs[j].steps[k]["with"].script
 
 	patterns := [
 		"github.head_ref",
@@ -27,7 +27,7 @@ CxPolicy[result] {
 	matched = containsPatterns(script, patterns)
 
 	result := {
-		"documentId": input.doc.id,
+		"documentId": doc.id,
 		"searchKey": sprintf("script={{%s}}", [script]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Script block does not contain dangerous input controlled by user.",
