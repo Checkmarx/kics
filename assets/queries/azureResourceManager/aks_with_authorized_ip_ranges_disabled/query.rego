@@ -1,4 +1,4 @@
-documentpackage Cx
+package Cx
 
 import data.generic.common as common_lib
 import future.keywords.in
