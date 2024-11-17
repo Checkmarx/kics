@@ -3,7 +3,7 @@ package Cx
 import data.generic.cloudformation as cf_lib
 import future.keywords.in
 
-CxPolicy[result] {~
+CxPolicy[result] {
 	some doc in input.document
 	resource := doc.Resources[name]
 	resource.Type == "AWS::CloudTrail::Trail"
