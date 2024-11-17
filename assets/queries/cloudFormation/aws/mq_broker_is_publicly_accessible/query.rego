@@ -5,7 +5,7 @@ import future.keywords.in
 
 CxPolicy[result] {
 	some document in input.document
-	resource = document[i].Resources[name]
+	resource = document.Resources[name]
 	resource.Type == "AWS::AmazonMQ::Broker"
 	properties := resource.Properties
 

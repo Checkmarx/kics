@@ -26,7 +26,7 @@ CxPolicy[result] {
 	is_public(subnets)
 
 	result := {
-		"documentId": document.id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.DBSubnetGroupName", [cf_lib.getPath(path), name]),

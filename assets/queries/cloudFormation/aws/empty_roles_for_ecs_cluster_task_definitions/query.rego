@@ -1,12 +1,10 @@
 package Cx
 
-import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
-import future.keywords.in
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
-	some document in input.document
-	resource := document.Resources[name]
+	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
 
 	isInCluster(resource, i)
@@ -14,7 +12,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(resource.Properties, "TaskDefinition")
 
 	result := {
-		"documentId": document.id,
+		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
@@ -25,8 +23,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some document in input.document
-	resource := document.Resources[name]
+	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
 
 	isInCluster(resource, i)
@@ -36,7 +33,7 @@ CxPolicy[result] {
 	existsTaskDefinition(taskDefinition, i) == null
 
 	result := {
-		"documentId": document.id,
+		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.TaskDefinition", [name]),
@@ -47,8 +44,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some document in input.document
-	resource := document.Resources[name]
+	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
 
 	isInCluster(resource, i)
@@ -61,7 +57,7 @@ CxPolicy[result] {
 	hasTaskRole(taskDef) == false
 
 	result := {
-		"documentId": document.id,
+		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.TaskDefinition", [name]),
@@ -74,27 +70,30 @@ CxPolicy[result] {
 isInCluster(service, i) {
 	cluster := service.Properties.Cluster
 	is_string(cluster)
-	some document in input.document
-	document.Resources[cluster]
+	input.document[i].Resources[cluster]
 } else {
 	cluster := service.Properties.Cluster
 	is_object(cluster)
 	common_lib.valid_key(cluster, "Ref")
-} else = false
+} else = false {
+	true
+}
 
 existsTaskDefinition(taskDefName, i) = taskDef {
 	is_string(taskDefName)
-	some document in input.document
-	document.Resources[taskDefName].Type == "AWS::ECS::TaskDefinition"
-	taskDef := document.Resources[taskDefName]
+	input.document[i].Resources[taskDefName].Type == "AWS::ECS::TaskDefinition"
+	taskDef := input.document[i].Resources[taskDefName]
 } else = taskDef {
 	is_object(taskDefName)
 	ref := taskDefName.Ref
-	some document in input.document
-	document.Resources[ref].Type == "AWS::ECS::TaskDefinition"
-	taskDef := document.Resources[ref]
-} else = null
+	input.document[i].Resources[ref].Type == "AWS::ECS::TaskDefinition"
+	taskDef := input.document[i].Resources[ref]
+} else = null {
+	true
+}
 
 hasTaskRole(taskDef) {
 	common_lib.valid_key(taskDef.Properties, "TaskRoleArn")
-} else = false
+} else = false {
+	true
+}

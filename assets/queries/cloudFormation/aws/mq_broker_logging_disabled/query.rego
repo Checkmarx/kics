@@ -12,7 +12,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(properties, "Logs")
 
 	result := {
-		"documentId": documentid,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
@@ -34,7 +34,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(properties.Logs, lTypes)
 
 	result := {
-		"documentId": documentid,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Logs", [name]),

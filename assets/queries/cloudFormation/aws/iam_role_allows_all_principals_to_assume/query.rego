@@ -21,7 +21,7 @@ CxPolicy[result] {
 	common_lib.allowsAllPrincipalsToAssume(aws, statement)
 
 	result := {
-		"documentId": document.id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.AssumeRolePolicyDocument", [cf_lib.getPath(path), name]),

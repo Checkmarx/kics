@@ -2,14 +2,15 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::S3::Bucket"
 
-	docs2 := input.document[_]
+	some docs2 in input.document
 	[_, Resources2] := walk(docs2)
 	resource2 := Resources2[name2]
 	resource2.Type == "AWS::S3::BucketPolicy"
