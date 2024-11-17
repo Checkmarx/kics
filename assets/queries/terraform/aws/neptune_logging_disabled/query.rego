@@ -10,7 +10,7 @@ validTypeConcat := concat(", ", validTypes)
 CxPolicy[result] {
 	some doc in input.document
 	resource := doc.resource.aws_neptune_cluster[name]
-	not exist(resource, "enable_cloudwatch_logs_exports")
+	not "enable_cloudwatch_logs_exports" in object.keys(resource)
 
 	result := {
 		"documentId": doc.id,
@@ -58,8 +58,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("aws_neptune_cluster.enable_cloudwatch_logs_exports should have all following values: %s", [validTypeConcat]),
 		"keyActualValue": sprintf("aws_neptune_cluster.enable_cloudwatch_logs_exports has the following missing values: %s", [concat(", ", missingTypes)]),
 	}
-}
-
-exist(obj, key) {
-	_ = obj[key]
 }

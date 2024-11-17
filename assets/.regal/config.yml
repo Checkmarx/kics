@@ -14,7 +14,6 @@ rules:
     # temporary
     non-raw-regex-pattern:
       # https://docs.styra.com/regal/rules/idiomatic/non-raw-regex-pattern 
-      # removing redundant escaping from regexes would provide better readability
       level: warn
     use-in-operator:
       # https://docs.styra.com/regal/rules/idiomatic/use-in-operator
@@ -23,6 +22,12 @@ rules:
       # https://docs.styra.com/regal/rules/idiomatic/use-some-for-output-vars
       # These would be good to address, but would require a concentrated effort
       level: ignore
+    custom-has-key-construct:
+      # https://docs.styra.com/regal/rules/idiomatic/custom-has-key-construct
+      level: warn
+    equals-pattern-matching:
+      # https://docs.styra.com/regal/rules/idiomatic/equals-pattern-matching
+      level: warn
   style:
     avoid-get-and-list-prefix:
       # https://docs.styra.com/regal/rules/style/avoid-get-and-list-prefix

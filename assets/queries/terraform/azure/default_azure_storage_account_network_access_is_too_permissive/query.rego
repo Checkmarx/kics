@@ -111,7 +111,7 @@ get_network_rules(storage_account, storage_account_name) = rules {
 }
 
 publicNetworkAccessEnabled(sa) = reason {
-	not has_key(sa, "public_network_access_enabled")
+	not "public_network_access_enabled" in object.keys(sa)
 	reason := "not defined"
 } else = reason {
 	sa.public_network_access_enabled == true
@@ -124,8 +124,4 @@ aclsDefaultActionAllow(network_rules) = reason {
 } else = reason {
 	lower(network_rules.default_action) == "allow"
 	reason := "allow"
-}
-
-has_key(x, k) {
-	_ = x[k]
 }

@@ -34,7 +34,7 @@ CxPolicy[result] {
 
 	some j
 	type := categories[j]
-	not has_key(logs, type)
+	not type in object.keys(logs)
 
 	result := {
 		"documentId": doc.id,
@@ -62,8 +62,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'logs' should be set and enabling general AND audit logging",
 		"keyActualValue": "'logs' is undefined",
 	}
-}
-
-has_key(obj, key) {
-	_ = obj[key]
 }
