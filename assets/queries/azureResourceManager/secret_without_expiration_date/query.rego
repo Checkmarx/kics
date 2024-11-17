@@ -1,11 +1,12 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 resourceTypes := ["Microsoft.KeyVault/vaults/secrets", "secrets"]
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 
 	[path, value] := walk(doc)
 
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(value.properties, "attributes")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
@@ -25,7 +26,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 
 	[path, value] := walk(doc)
 
@@ -33,7 +34,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(value.properties.attributes, "exp")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.attributes", [common_lib.concat_path(path), value.name]),

@@ -4,7 +4,7 @@ import data.generic.azureresourcemanager as arm_lib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 
 	[path, value] = walk(doc)
 
@@ -14,7 +14,7 @@ CxPolicy[result] {
 	issue := prepare_issue(doc, value)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),

@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == "AWS::ApiGateway::Stage"
 
 	not has_waf_associated(resource.Properties.StageName)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.StageName", [name]),
@@ -22,7 +24,8 @@ CxPolicy[result] {
 }
 
 has_waf_associated(stage) {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == "AWS::WAFv2::WebACLAssociation"
 
 	contains(resource.Properties.ResourceArn, "arn:aws:apigateway:")

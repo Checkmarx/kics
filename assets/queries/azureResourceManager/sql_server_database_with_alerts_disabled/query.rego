@@ -1,10 +1,11 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] := walk(doc)
 	value.type == types[x]
 

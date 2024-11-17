@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.ansible as ansLib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	defaultsGroup := input.document[i].groups.defaults
+	some doc in input.document
+	defaultsGroup := doc.groups.defaults
 
 	not common_lib.valid_key(defaultsGroup, "become")
 	common_lib.valid_key(defaultsGroup, "become_user")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": "defaults.become_user",
@@ -21,13 +23,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	defaultsGroup := input.document[i].groups.defaults
+	some doc in input.document
+	defaultsGroup := doc.groups.defaults
 
 	defaultsGroup.become == false
 	common_lib.valid_key(defaultsGroup, "become_user")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": "defaults.become",

@@ -1,17 +1,19 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
-import data.generic.common as common_lib
+import data.generic.common as common_lib	
+import future.keywords.in
+
 
 CxPolicy[result] {
-	document := input.document
+	some document in input.document
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
 	not check_resources_type("AWS::ApiGateway::Stage")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),
@@ -22,7 +24,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document
+	some document in input.document
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
@@ -30,7 +32,7 @@ CxPolicy[result] {
 	not settings_are_equal(document[i].Resources, name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),
@@ -41,7 +43,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document
+	some document in input.document
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
@@ -51,7 +53,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(resource.Properties, "StageDescription")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.StageDescription", [name]),
@@ -62,7 +64,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document
+	some document in input.document
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
@@ -72,7 +74,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(resource.Properties.StageDescription, "AccessLogSetting")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.StageDescription.AccessLogSetting", [name]),

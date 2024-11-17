@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.ansible as ansLib
 import data.generic.common as commonLib
+import future.keywords.in
 
 CxPolicy[result] {
-	playbook := input.document[i].playbooks[_]
+	some doc in input.document
+	some playbook in doc.playbooks
 	playbook.become == false
 	commonLib.valid_key(playbook, "become_user")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": "become",
@@ -20,12 +22,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	playbook := input.document[i].playbooks[_]
+	some doc in input.document
+	some playbook in doc.playbooks
 	not commonLib.valid_key(playbook, "become")
 	commonLib.valid_key(playbook, "become_user")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("become_user={{%s}}", [playbook.become_user]),

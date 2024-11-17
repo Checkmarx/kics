@@ -1,0 +1,105 @@
+{
+	"kics_version": "development",
+	"files_scanned": 6,
+	"lines_scanned": 208,
+	"files_parsed": 6,
+	"lines_parsed": 208,
+	"lines_ignored": 0,
+	"files_failed_to_scan": 0,
+	"queries_total": 1,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 0,
+		"INFO": 0,
+		"LOW": 0,
+		"MEDIUM": 4,
+		"TRACE": 0
+	},
+	"total_counter": 4,
+	"total_bom_resources": 0,
+	"start": "2024-11-17T11:35:54.5007211Z",
+	"end": "2024-11-17T11:35:55.4985561Z",
+	"paths": [
+		"assets\\queries\\terraform\\azure\\default_azure_storage_account_network_access_is_too_permissive\\test"
+	],
+	"queries": [
+		{
+			"query_name": "Default Azure Storage Account Network Access Is Too Permissive",
+			"query_id": "a5613650-32ec-4975-a305-31af783153ea",
+			"query_url": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account_network_rules#default_action",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cwe": "285",
+			"cloud_provider": "AZURE",
+			"category": "Insecure Defaults",
+			"experimental": false,
+			"description": "Default Azure Storage Account network access should be set to Deny",
+			"description_id": "a5613650",
+			"files": [
+				{
+					"file_name": "assets\\queries\\terraform\\azure\\default_azure_storage_account_network_access_is_too_permissive\\test\\positive1.tf",
+					"similarity_id": "b0c02d8a0c381f3d8674f33f8788ba8ff8f71e3796dddf4f3e877f661824e54b",
+					"line": 30,
+					"resource_type": "azurerm_storage_account",
+					"resource_name": "positive1storageaccount",
+					"issue_type": "IncorrectValue",
+					"search_key": "azurerm_storage_account[positive1].network_rules.default_action",
+					"search_line": 30,
+					"search_value": "",
+					"expected_value": "azurerm_storage_account.network_rules.default_action should be set to 'Deny'",
+					"actual_value": "azurerm_storage_account.network_rules.default_action is set to 'Allow'",
+					"remediation": "{\"after\":\"Deny\",\"before\":\"Allow\"}",
+					"remediation_type": "replacement"
+				},
+				{
+					"file_name": "assets\\queries\\terraform\\azure\\default_azure_storage_account_network_access_is_too_permissive\\test\\positive3.tf",
+					"similarity_id": "c65b52b860952ca37dfa9814d80d3822b2587b74353cf19090755ab771cd3dac",
+					"line": 12,
+					"resource_type": "azurerm_storage_account",
+					"resource_name": "positive3storageaccount",
+					"issue_type": "IncorrectValue",
+					"search_key": "azurerm_storage_account[positive3].public_network_access_enabled",
+					"search_line": 12,
+					"search_value": "",
+					"expected_value": "azurerm_storage_account.public_network_access_enabled should be set to 'false'",
+					"actual_value": "azurerm_storage_account.public_network_access_enabled set to 'true'",
+					"remediation": "{\"after\":\"false\",\"before\":\"true\"}",
+					"remediation_type": "replacement"
+				},
+				{
+					"file_name": "assets\\queries\\terraform\\azure\\default_azure_storage_account_network_access_is_too_permissive\\test\\positive2.tf",
+					"similarity_id": "800c9aaee0362a2df58f8dce39d69556f8c38d593d53c0a5227a1609cfe9be11",
+					"line": 38,
+					"resource_type": "azurerm_storage_account",
+					"resource_name": "positive2storageaccount",
+					"issue_type": "IncorrectValue",
+					"search_key": "azurerm_storage_account_network_rules[positive2].default_action",
+					"search_line": 38,
+					"search_value": "",
+					"expected_value": "azurerm_storage_account_network_rules.default_action should be set to 'Deny'",
+					"actual_value": "azurerm_storage_account_network_rules.default_action is set to 'Allow'",
+					"remediation": "{\"after\":\"Deny\",\"before\":\"Allow\"}",
+					"remediation_type": "replacement"
+				},
+				{
+					"file_name": "assets\\queries\\terraform\\azure\\default_azure_storage_account_network_access_is_too_permissive\\test\\positive4.tf",
+					"similarity_id": "13651c63c48215b21b344e036b7562796ff8117a203f8c64d3648b65351a9804",
+					"line": 6,
+					"resource_type": "azurerm_storage_account",
+					"resource_name": "positive4storageaccount",
+					"issue_type": "MissingAttribute",
+					"search_key": "azurerm_storage_account[positive4].public_network_access_enabled",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "azurerm_storage_account.public_network_access_enabled should be set to 'false'",
+					"actual_value": "azurerm_storage_account.public_network_access_enabled is not set (default is 'true')",
+					"remediation": "public_network_access_enabled = false",
+					"remediation_type": "addition"
+				}
+			]
+		}
+	]
+}

@@ -1,10 +1,11 @@
-package Cx
+documentpackage Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 # IP Ranges are not implemented (apiVersion < 2019-02-01)
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 
 	[path, value] = walk(doc)
 
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	is_invalid_api_version(value)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.apiVersion", [common_lib.concat_path(path), value.name]),
@@ -25,7 +26,7 @@ CxPolicy[result] {
 
 # IP Ranges initial implementation (2019-02-01 <= apiVersion <= 2019-06-01)
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 
 	[path, value] = walk(doc)
 
@@ -36,7 +37,7 @@ CxPolicy[result] {
 	issue := prepare_issue_old_api(value)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
@@ -49,7 +50,7 @@ CxPolicy[result] {
 
 # IP Ranges actual implementation (2019-06-01 < apiVersion)
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 
 	[path, value] = walk(doc)
 
@@ -62,7 +63,7 @@ CxPolicy[result] {
 	issue := prepare_issue_new_api(value)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),

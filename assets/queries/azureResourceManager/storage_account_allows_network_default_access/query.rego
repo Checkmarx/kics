@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.azureresourcemanager as arm_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts"
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	to_number(split(value.apiVersion, "-")[0]) < 2017
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.apiVersion=%s", [common_lib.concat_path(path), value.name, value.apiVersion]),
@@ -25,7 +26,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts"
@@ -34,7 +35,7 @@ CxPolicy[result] {
 	pathValue := is_network_acl_undefined(value)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, pathValue.sk]),
@@ -46,7 +47,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts"
@@ -56,7 +57,7 @@ CxPolicy[result] {
 	lower(val) == "allow"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties.networkAcls.defaultAction", [common_lib.concat_path(path), value.name]),
