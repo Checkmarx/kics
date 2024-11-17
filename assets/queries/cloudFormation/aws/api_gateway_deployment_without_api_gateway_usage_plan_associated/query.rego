@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
-	not check_resources_type(documentResources)
+	not check_resources_type(document.Resources)
 
 	result := {
 		"documentId": document.id,
@@ -27,7 +27,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::ApiGateway::Deployment"
 
 	properties := resource.Properties
-	not settings_are_equal(documentResources, properties.RestApiId, properties.StageName)
+	not settings_are_equal(document.Resources, properties.RestApiId, properties.StageName)
 
 	result := {
 		"documentId": document.id,
