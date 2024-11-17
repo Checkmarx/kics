@@ -5,7 +5,7 @@ import future.keywords.in
 
 CxPolicy[result] {
 	some document in input.document
-	resource = documentResources[name]
+	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
 	not check_resources_type(documentResources)
@@ -23,7 +23,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	some document in input.document
-	resource = documentResources[name]
+	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
 	properties := resource.Properties

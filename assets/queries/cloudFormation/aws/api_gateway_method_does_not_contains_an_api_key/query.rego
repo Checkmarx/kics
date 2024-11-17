@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 import future.keywords.in
 
 CxPolicy[result] {
-	some doc in input.document
+	some document in input.document
 	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Method"
 
@@ -23,7 +23,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some doc in input.document
+	some document in input.document
 	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Method"
 

@@ -4,10 +4,9 @@ import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib	
 import future.keywords.in
 
-
 CxPolicy[result] {
 	some document in input.document
-	resource = document[i].Resources[name]
+	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
 	not check_resources_type("AWS::ApiGateway::Stage")
@@ -25,11 +24,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	some document in input.document
-	resource = document[i].Resources[name]
+	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
 	check_resources_type("AWS::ApiGateway::Stage")
-	not settings_are_equal(document[i].Resources, name)
+	not settings_are_equal(document.Resources, name)
 
 	result := {
 		"documentId": document.id,
@@ -44,11 +43,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	some document in input.document
-	resource = document[i].Resources[name]
+	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
 	check_resources_type("AWS::ApiGateway::Stage")
-	settings_are_equal(document[i].Resources, name)
+	settings_are_equal(document.Resources, name)
 
 	not common_lib.valid_key(resource.Properties, "StageDescription")
 
@@ -65,11 +64,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	some document in input.document
-	resource = document[i].Resources[name]
+	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
 	check_resources_type("AWS::ApiGateway::Stage")
-	settings_are_equal(document[i].Resources, name)
+	settings_are_equal(document.Resources, name)
 
 	not common_lib.valid_key(resource.Properties.StageDescription, "AccessLogSetting")
 
