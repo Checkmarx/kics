@@ -127,5 +127,5 @@ aclsDefaultActionAllow(network_rules) = reason {
 }
 
 has_key(x, k) {
-	k in x
+    _ = x[k]
 }
