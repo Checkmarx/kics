@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::EC2::Instance"
 
 	instanceType := get_instance_type(resource.Properties)
@@ -12,7 +14,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(resource.Properties, "EbsOptimized")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.EbsOptimized", [name]),
@@ -23,7 +25,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::EC2::Instance"
 
 	resource.Properties.EbsOptimized == false
@@ -31,7 +34,7 @@ CxPolicy[result] {
 	not common_lib.is_aws_ebs_optimized_by_default(instanceType)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.EbsOptimized", [name]),

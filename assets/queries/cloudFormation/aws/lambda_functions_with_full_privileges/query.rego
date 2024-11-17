@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resources := input.document[i].Resources
+	some document in input.document
+	resources := document.Resources
 	resource := resources[name]
 
 	resource.Type == "AWS::Lambda::Function"
@@ -19,7 +21,7 @@ CxPolicy[result] {
 	check_policy(policy.PolicyDocument)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Policies.PolicyDocument", [role]),
@@ -32,7 +34,7 @@ CxPolicy[result] {
 
 check_policy(policy) {
 	st := common_lib.get_statement(common_lib.get_policy(policy))
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	common_lib.containsOrInArrayContains(statement.Resource, "*")

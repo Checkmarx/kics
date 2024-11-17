@@ -2,12 +2,14 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as commonLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::ECS::Service"
 	resource.Properties.LaunchType == "FARGATE"
-	taskDef := input.document[i].Resources[name2]
+	taskDef := document.Resources[name2]
 	taskDef.Type == "AWS::ECS::TaskDefinition"
 
 	memory := {
@@ -24,7 +26,7 @@ CxPolicy[result] {
 	searchkey = sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": searchkey,
@@ -35,10 +37,11 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::ECS::Service"
 	resource.Properties.LaunchType == "FARGATE"
-	taskDef := input.document[i].Resources[name2]
+	taskDef := document.Resources[name2]
 	taskDef.Type == "AWS::ECS::TaskDefinition"
 	cpuMem := {256, 512, 1024, 2048, 4096}
 	cpu := taskDef.Properties.ContainerDefinitions[_].Cpu
@@ -47,7 +50,7 @@ CxPolicy[result] {
 	searchkey := sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": searchkey,

@@ -2,16 +2,17 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	some document in input.document
+	resource = document.Resources[name]
 	resource.Type == "AWS::AmazonMQ::Broker"
 	properties := resource.Properties
 	not common_lib.valid_key(properties, "Logs")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": documentid,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
@@ -22,8 +23,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	some document in input.document
+	resource = document.Resources[name]
 	resource.Type == "AWS::AmazonMQ::Broker"
 	properties := resource.Properties
 	common_lib.valid_key(properties, "Logs")
@@ -33,7 +34,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(properties.Logs, lTypes)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": documentid,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Logs", [name]),
@@ -44,8 +45,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	some document in input.document
+	resource = document.Resources[name]
 	resource.Type == "AWS::AmazonMQ::Broker"
 	properties := resource.Properties
 	common_lib.valid_key(properties, "Logs")
@@ -56,7 +57,7 @@ CxPolicy[result] {
 	properties.Logs[logTypes[j]] == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": documentid,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Logs.%s", [name, logTypes[j]]),

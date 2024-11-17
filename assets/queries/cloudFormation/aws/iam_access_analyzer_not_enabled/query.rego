@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import input as cf
+import future.keywords.in
 
 extensions := {".json", ".yaml"}
 
 CxPolicy[result] {
-	resources := input.document[i].Resources
+	some doc in input.document
+	resources := doc.Resources
 	count(resources) > 0
 	count({i | resources[_].Type == "AWS::AccessAnalyzer::Analyzer"}) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": "Resources",

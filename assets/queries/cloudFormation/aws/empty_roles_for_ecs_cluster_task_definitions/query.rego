@@ -4,7 +4,8 @@ import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::ECS::Service"
 
 	isInCluster(resource, i)
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(resource.Properties, "TaskDefinition")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
@@ -23,7 +24,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::ECS::Service"
 
 	isInCluster(resource, i)
@@ -33,7 +35,7 @@ CxPolicy[result] {
 	existsTaskDefinition(taskDefinition, i) == null
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.TaskDefinition", [name]),
@@ -44,7 +46,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::ECS::Service"
 
 	isInCluster(resource, i)
@@ -57,7 +60,7 @@ CxPolicy[result] {
 	hasTaskRole(taskDef) == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.TaskDefinition", [name]),
@@ -70,7 +73,8 @@ CxPolicy[result] {
 isInCluster(service, i) {
 	cluster := service.Properties.Cluster
 	is_string(cluster)
-	input.document[i].Resources[cluster]
+	some document in input.document
+	document.Resources[cluster]
 } else {
 	cluster := service.Properties.Cluster
 	is_object(cluster)
@@ -79,13 +83,15 @@ isInCluster(service, i) {
 
 existsTaskDefinition(taskDefName, i) = taskDef {
 	is_string(taskDefName)
-	input.document[i].Resources[taskDefName].Type == "AWS::ECS::TaskDefinition"
-	taskDef := input.document[i].Resources[taskDefName]
+	some document in input.document
+	document.Resources[taskDefName].Type == "AWS::ECS::TaskDefinition"
+	taskDef := document.Resources[taskDefName]
 } else = taskDef {
 	is_object(taskDefName)
 	ref := taskDefName.Ref
-	input.document[i].Resources[ref].Type == "AWS::ECS::TaskDefinition"
-	taskDef := input.document[i].Resources[ref]
+	some document in input.document
+	document.Resources[ref].Type == "AWS::ECS::TaskDefinition"
+	taskDef := document.Resources[ref]
 } else = null
 
 hasTaskRole(taskDef) {

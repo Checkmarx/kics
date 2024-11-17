@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::EMR::SecurityConfiguration"
 
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption", [key]),
@@ -23,7 +24,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::EMR::SecurityConfiguration"
 
@@ -31,7 +32,7 @@ CxPolicy[result] {
 	properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption", [key]),
@@ -42,7 +43,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::EMR::SecurityConfiguration"
 
@@ -50,7 +51,7 @@ CxPolicy[result] {
 	properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption", [key]),
@@ -61,7 +62,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::EMR::SecurityConfiguration"
 
@@ -70,7 +71,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(encryptionConfiguration, "EncryptionConfiguration")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration", [key]),
@@ -81,7 +82,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::EMR::SecurityConfiguration"
 
@@ -89,7 +90,7 @@ CxPolicy[result] {
 	localDiskEncryptionConfiguration := properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration
 	not common_lib.valid_key(localDiskEncryptionConfiguration, "EncryptionKeyProviderType")
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration", [key]),

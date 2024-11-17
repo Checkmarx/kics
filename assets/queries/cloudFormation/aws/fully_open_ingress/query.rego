@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as commonLib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	resource := doc.Resources[name]
 	resource.Type == "AWS::ECS::Service"
 
@@ -28,7 +29,7 @@ CxPolicy[result] {
 	commonLib.inArray(securityGroupList, doc.Resources[k].Properties.GroupId)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": doc.Resources[k].Type,
 		"resourceName": cf_lib.get_resource_name(doc.Resources[k], k),
 		"searchKey": sprintf("Resources.%s.Properties.CidrIp", [k]),

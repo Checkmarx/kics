@@ -2,12 +2,14 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	entry1 := input.document[i].Resources[name]
+	some document in input.document
+	entry1 := document.Resources[name]
 	entry1.Type == "AWS::EC2::NetworkAclEntry"
 
-	entry2 := input.document[i].Resources[_]
+	some entry2 in document.Resources
 	entry2.Type == "AWS::EC2::NetworkAclEntry"
 
 	entry1 != entry2
@@ -22,7 +24,7 @@ CxPolicy[result] {
 	compareRuleNumber(entry1, entry2)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": entry1.Type,
 		"resourceName": cf_lib.get_resource_name(entry1, name),
 		"searchKey": sprintf("Resources.%s.Properties.RuleNumber", [name]),

@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources
+	some document in input.document
+	resource := document.Resources
 	elem := resource[key]
 	elem.Type == "AWS::ECS::TaskDefinition"
 	efs := elem.Properties.volumes[index].efsVolumeConfiguration
@@ -12,7 +14,7 @@ CxPolicy[result] {
 	not value == "ENABLED"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": elem.Type,
 		"resourceName": cf_lib.get_resource_name(elem, key),
 		"searchKey": sprintf("Resources.%s.Properties.volumes", [key]),
@@ -24,14 +26,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources
+	some document in input.document
+	resource := document.Resources
 	elem := resource[key]
 	elem.Type == "AWS::ECS::TaskDefinition"
 	efs := elem.Properties.volumes[index].efsVolumeConfiguration
 	not efs.TransitEncryption
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": elem.Type,
 		"resourceName": cf_lib.get_resource_name(elem, key),
 		"searchKey": sprintf("Resources.%s.Properties.volumes", [key]),

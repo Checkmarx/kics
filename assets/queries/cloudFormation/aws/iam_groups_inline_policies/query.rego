@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == "AWS::IAM::Group"
 	policies := resource.Properties.Policies
 	policies != []
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Policies", [name]),

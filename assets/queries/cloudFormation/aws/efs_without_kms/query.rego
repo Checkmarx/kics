@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource = document.Resources[name]
 	resource.Type == "AWS::EFS::FileSystem"
 	properties := resource.Properties

@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	some policyName
 	document.Resources[policyName].Type == "AWS::IAM::Policy"
 	policy := document.Resources[policyName]

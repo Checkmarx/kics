@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as commonLib
+import future.keywords.in
 
 isAccessibleFromEntireNetwork(ingress) {
 	endswith(ingress.CidrIp, "/0")
@@ -30,8 +31,8 @@ getProtocolPorts(protocols, tcpPortsMap, udpPortsMap) = portsMap {
 }
 
 CxPolicy[result] {
-	#############	document and resource
-	resources := input.document[i].Resources
+	some document in input.document
+	resources := document.Resources
 
 	ec2InstanceList = [{"name": key, "properties": ec2Instance} |
 		ec2Instance := resources[key]
@@ -55,7 +56,6 @@ CxPolicy[result] {
 	protocol := protocols[m]
 	portsMap = getProtocolPorts(protocols, commonLib.tcpPortsMap, cf_lib.udpPortsMap)
 
-	#############	Checks
 	isAccessibleFromEntireNetwork(ingress)
 
 	# is in ports range
@@ -64,9 +64,8 @@ CxPolicy[result] {
 	portNumber = portRange[idx]
 	portName := portsMap[portNumber]
 
-	#############	Result
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "AWS::EC2::SecurityGroup",
 		"resourceName": cf_lib.get_resource_name(secGroup.properties, secGroup.name),
 		"searchKey": sprintf("Resources.%s.SecurityGroupIngress", [secGroup.name]),

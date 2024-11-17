@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources
+	some document in input.document
+	resource := document.Resources
 	elem := resource[key]
 	elem.Type == "AWS::ECS::Cluster"
 
 	not common_lib.valid_key(elem.Properties, "ClusterSettings")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": elem.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties", [key]),
@@ -23,7 +25,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources
+	some document in input.document
+	resource := document.Resources
 	elem := resource[key]
 	elem.Type == "AWS::ECS::Cluster"
 
@@ -32,7 +35,7 @@ CxPolicy[result] {
 	not container_insights(taskDefinitionList)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": elem.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.ClusterSettings", [key]),

@@ -2,13 +2,14 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 validTypes := {"profiler", "audit"}
 
 validTypeConcat := concat(", ", validTypes)
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::DocDB::DBCluster"
 	properties := resource.Properties
@@ -16,7 +17,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(properties, "EnableCloudwatchLogsExports")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "AWS::DocDB::DBCluster",
 		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties", [key]),
@@ -28,7 +29,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::DocDB::DBCluster"
 	properties := resource.Properties
@@ -40,7 +41,7 @@ CxPolicy[result] {
 	count(missingTypes) > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "AWS::DocDB::DBCluster",
 		"resourceName": key,
 		"searchKey": sprintf("Resources.%s.Properties.EnableCloudwatchLogsExports", [key]),

@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	subnetGroupName := get_name(resource.Properties.DBSubnetGroupName)
 
 	# get subnet group
-	docsAux := input.document[_]
+	some docsAux in input.document
 	[_, ResourcesAux] := walk(docsAux)
 	sg := ResourcesAux[subnetGroupName]
 	sg.Type == "AWS::RDS::DBSubnetGroup"
@@ -25,7 +26,7 @@ CxPolicy[result] {
 	is_public(subnets)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.DBSubnetGroupName", [cf_lib.getPath(path), name]),
@@ -50,9 +51,10 @@ unrestricted_cidr(sb) {
 }
 
 is_public(subnets) {
-	subnet := subnets[_]
+	some subnet in subnets
+	some document in input.document
 	subnetName := get_name(subnet)
-	sb := input.document[_].Resources[subnetName]
+	sb := document.Resources[subnetName]
 	sb.Type == "AWS::EC2::Subnet"
 	unrestricted_cidr(sb)
 }

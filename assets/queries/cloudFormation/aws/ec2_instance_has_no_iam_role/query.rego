@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i].Resources
+	some document in input.document
+	doc := document.Resources
 	resource := doc[name]
 	resource.Type == "AWS::EC2::Instance"
 
 	common_lib.valid_key(resource.Properties, "IamInstanceProfile") == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
@@ -22,7 +24,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i].Resources
+	some document in input.document
+	doc := document.Resources
 	resource := doc[name]
 	resource.Type == "AWS::EC2::Instance"
 
@@ -32,7 +35,7 @@ CxPolicy[result] {
 	common_lib.valid_key(doc, iamProfile) == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.IamInstanceProfile", [name]),
@@ -43,7 +46,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i].Resources
+	some document in input.document
+	doc := document.Resources
 	resource := doc[name]
 	resource.Type == "AWS::EC2::Instance"
 
@@ -54,7 +58,7 @@ CxPolicy[result] {
 	common_lib.valid_key(doc[iamProfile].Properties, "Roles") == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [iamProfile]),

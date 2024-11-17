@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i].Resources
+	some document in input.document
+	doc := document.Resources
 	resource := doc[name]
 	resource.Type == "AWS::EC2::Instance"
 
@@ -15,7 +17,7 @@ CxPolicy[result] {
 	contains(lower(get_sg_name(sgInfo)), "default")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.%s", [name, sgs[s]]),
