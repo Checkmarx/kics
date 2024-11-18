@@ -57,7 +57,7 @@ CxPolicy[result] {
 	properties.Logs[logTypes[j]] == false
 
 	result := {
-		"documentId": documentid,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Logs.%s", [name, logTypes[j]]),

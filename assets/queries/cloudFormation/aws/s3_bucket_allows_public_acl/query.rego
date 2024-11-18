@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 import future.keywords.in
 
 CxPolicy[result] {
-	some doc in input.document
+	some document in input.document
 	resource := document.Resources[name]
 	resource.Type == "AWS::S3::Bucket"
 
@@ -18,14 +18,14 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'PublicAccessBlockConfiguration' should be defined", [name]),
-		"keyActualValue": sprintf("'PublicAccessBlockConfiguration' is not defined", [name]),
+		"keyExpectedValue": "'PublicAccessBlockConfiguration' should be defined",
+		"keyActualValue": "'PublicAccessBlockConfiguration' is not defined",
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties"], []),
 	}
 }
 
 CxPolicy[result] {
-	some doc in input.document
+	some document in input.document
 	resource := document.Resources[name]
 	resource.Type == "AWS::S3::Bucket"
 
@@ -38,14 +38,14 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'BlockPublicAcls' should be defined and set to true in the 'PublicAccessBlockConfiguration'", [name]),
-		"keyActualValue": sprintf("'BlockPublicAcls' is not defined in the 'PublicAccessBlockConfiguration'", [name]),
+		"keyExpectedValue": "'BlockPublicAcls' should be defined and set to true in the 'PublicAccessBlockConfiguration'",
+		"keyActualValue": "'BlockPublicAcls' is not defined in the 'PublicAccessBlockConfiguration'",
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "PublicAccessBlockConfiguration"], []),
 	}
 }
 
 CxPolicy[result] {
-	some doc in input.document
+	some document in input.document
 	resource := document.Resources[name]
 	resource.Type == "AWS::S3::Bucket"
 
@@ -58,8 +58,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration.BlockPublicAcls", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'BlockPublicAcls' should be set to true", [name]),
-		"keyActualValue": sprintf("'BlockPublicAcls' is set to false", [name]),
+		"keyExpectedValue": "'BlockPublicAcls' should be set to true",
+		"keyActualValue": "'BlockPublicAcls' is set to false",
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "PublicAccessBlockConfiguration", "BlockPublicAcls"], []),
 	}
 }
