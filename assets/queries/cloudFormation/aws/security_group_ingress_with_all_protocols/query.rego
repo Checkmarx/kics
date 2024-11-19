@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+impor future.keywords.in
 
 CxPolicy[result] {
 	some docs in input.document
