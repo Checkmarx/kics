@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::EC2::SecurityGroup"
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(resource.Properties, "GroupDescription")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), name]),
@@ -23,7 +24,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::EC2::SecurityGroup"
@@ -33,7 +34,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(prop, "Description")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.%s", [cf_lib.getPath(path), name, properties[index]]),
@@ -45,7 +46,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resourceTypes := {"AWS::EC2::SecurityGroupIngress", "AWS::EC2::SecurityGroupEgress"}
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 
@@ -54,7 +55,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(resource.Properties, "Description")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), name]),
