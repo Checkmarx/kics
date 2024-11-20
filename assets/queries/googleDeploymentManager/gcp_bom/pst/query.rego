@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	pubsub_topic := input.document[i].resources[idx]
+	some document in input.document
+	pubsub_topic := document.resources[idx]
 	pubsub_topic.type == "pubsub.v1.topic"
 
 	bom_output = {
@@ -16,7 +18,7 @@ CxPolicy[result] {
 	}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("resources.name={{%s}}", [pubsub_topic.name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

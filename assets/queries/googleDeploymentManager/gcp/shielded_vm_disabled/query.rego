@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resources[idx]
+	some document in input.document
+	resource := document.resources[idx]
 	resource.type == "compute.v1.instance"
 
 	not common_lib.valid_key(resource.properties, "shieldedInstanceConfig")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
@@ -23,14 +25,15 @@ CxPolicy[result] {
 fields := {"enableSecureBoot", "enableVtpm", "enableIntegrityMonitoring"}
 
 CxPolicy[result] {
-	resource := input.document[i].resources[idx]
+	some document in input.document
+	resource := document.resources[idx]
 	resource.type == "compute.v1.instance"
 
-	field := fields[_]
+	some field in fields
 	not common_lib.valid_key(resource.properties.shieldedInstanceConfig, field)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.shieldedInstanceConfig", [resource.name]),
@@ -42,14 +45,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[idx]
+	some document in input.document
+	resource := document.resources[idx]
 	resource.type == "compute.v1.instance"
 
-	field := fields[_]
+	some field in fields
 	resource.properties.shieldedInstanceConfig[field] == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.shieldedInstanceConfig.%s", [resource.name, field]),

@@ -3,7 +3,7 @@ package Cx
 import future.keywords.in
 
 CxPolicy[result] {
-	some i, name
+	some name
 	some document in input.document
 	resource := document.command[name][_]
 	resource.Cmd == "maintainer"

@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resources[idx]
+	some document in input.document
+	resource := document.resources[idx]
 	resource.type == "container.v1.cluster"
 
 	not common_lib.valid_key(resource.properties, "nodePools")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
@@ -21,13 +23,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[idx]
+	some document in input.document
+	resource := document.resources[idx]
 	resource.type == "container.v1.cluster"
 
 	not common_lib.valid_key(resource.properties.nodePools, "management")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.nodePools", [resource.name]),
@@ -39,13 +42,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[idx]
+	some document in input.document
+	resource := document.resources[idx]
 	resource.type == "container.v1.cluster"
 
 	not common_lib.valid_key(resource.properties.nodePools.management, "autoUpgrade")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.nodePools.management", [resource.name]),
@@ -57,13 +61,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[idx]
+	some document in input.document
+	resource := document.resources[idx]
 	resource.type == "container.v1.cluster"
 
 	resource.properties.nodePools.management.autoUpgrade == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.nodePools.management.autoUpgrade", [resource.name]),

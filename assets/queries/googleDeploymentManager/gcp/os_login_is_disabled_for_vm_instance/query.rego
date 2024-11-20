@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resources[idx]
+	some document in input.document
+	resource := document.resources[idx]
 	resource.type == "compute.v1.instance"
 
 	resource.properties.metadata.items[j].key == "enable-oslogin"
 	resource.properties.metadata.items[j].value == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.metadata.items[%d]", [resource.name, j]),

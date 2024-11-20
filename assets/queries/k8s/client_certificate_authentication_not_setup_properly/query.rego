@@ -52,7 +52,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	doc.kind == "KubeletConfiguration"
 	notValidClientCAFile(doc)
 
@@ -76,7 +76,7 @@ notValidClientCAFile(doc) {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	doc.kind == "KubeletConfiguration"
 	not endswith(doc.authentication.x509.clientCAFile, ".pem")
 	not endswith(doc.authentication.x509.clientCAFile, ".crt")

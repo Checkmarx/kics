@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	s_bucket := input.document[i].resources[idx]
+	some document in input.document
+	s_bucket := document.resources[idx]
 	s_bucket.type == "storage.v1.bucket"
 
 	bom_output = {
@@ -16,7 +18,7 @@ CxPolicy[result] {
 	}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("resources.name={{%s}}", [s_bucket.name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

@@ -19,7 +19,7 @@ shell_possibilities := {
 }
 
 CxPolicy[result] {
-	some document in input.keywords
+	some document in input.document
 	resource := document.command[name][_]
 	resource.Cmd == "run"
 	value := resource.Value

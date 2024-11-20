@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resources[idx]
+	some document in input.document
+	resource := document.resources[idx]
 	resource.type == "sqladmin.v1beta4.instance"
 
 	startswith(resource.properties.databaseVersion, "MYSQL")
@@ -11,7 +13,7 @@ CxPolicy[result] {
 	resource.properties.settings.databaseFlags[f].value == "on"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.settings.databaseFlags[%d]", [resource.name, f]),
