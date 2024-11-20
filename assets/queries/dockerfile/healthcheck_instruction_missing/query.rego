@@ -6,7 +6,7 @@ import future.keywords.in
 CxPolicy[result] {
 	some doc in input.document
 	resource := doc.command[name]
-	dockerLib.check_multi_stage(name, input.document[i].command)
+	dockerLib.check_multi_stage(name, doc.command)
 
 	not healthcheck_exists(resource)
 

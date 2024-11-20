@@ -1,12 +1,15 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	resource := input.document[i].command[name]
+	some document in input.document
+	resource := document.command[name]
 
 	contains(resource[j].Flags[f], "--chown")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource[j].Original]),
 		"category": "Best Practices",
 		"issueType": "IncorrectValue",

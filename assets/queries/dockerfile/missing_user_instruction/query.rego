@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].command[name]
-	dockerLib.check_multi_stage(name, input.document[i].command)
+	some document in input.document
+	resource := document.command[name]
+	dockerLib.check_multi_stage(name, document.command)
 
 	not name == "scratch"
 	not has_user_instruction(resource)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("FROM={{%s}}", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The 'Dockerfile' should contain the 'USER' instruction",

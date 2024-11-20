@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	command := input.document[i].command[name][_]
+	some document in input.document
+	command := document.command[name][_]
 	command.Cmd == "run"
 
 	# Split the commands (e.g., RUN command1 && command2 && command3)
@@ -11,7 +13,7 @@ CxPolicy[result] {
 	containsApkAddWithoutNoCache(runCommands)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, command.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'RUN' should not contain 'apk add' command without '--no-cache' switch",

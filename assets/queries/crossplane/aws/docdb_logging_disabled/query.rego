@@ -2,13 +2,14 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.crossplane as cp_lib
+import future.keywords.in
 
 validTypes := {"profiler", "audit"}
 
 validTypeConcat := concat(", ", validTypes)
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, resource] := walk(docs)
 	resource.kind == "DBCluster"
 	spec = resource.spec
@@ -16,7 +17,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(spec.forProvider, "enableCloudwatchLogsExports")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": "DBCluster",
 		"resourceName": resource.metadata.name,
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider", [cp_lib.getPath(path), resource.metadata.name]),
@@ -28,7 +29,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, resource] := walk(docs)
 	resource.kind == "DBCluster"
 
@@ -42,7 +43,7 @@ CxPolicy[result] {
 	count(missingTypes) > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": "DBCluster",
 		"resourceName": resource.metadata.name,
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.enableCloudwatchLogsExports", [cp_lib.getPath(path), resource.metadata.name]),

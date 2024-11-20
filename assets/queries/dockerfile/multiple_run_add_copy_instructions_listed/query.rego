@@ -1,10 +1,12 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].command[name]
-	dockerLib.check_multi_stage(name, input.document[i].command)
+	some document in input.document
+	resource := document.command[name]
+	dockerLib.check_multi_stage(name, document.command)
 
 	instructions := {"copy", "add", "run"}
 	some j
@@ -23,7 +25,7 @@ CxPolicy[result] {
 	countCmdInst > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, lineCounter[0].Original]),
 		"issueType": "RedundantAttribute",
 		"keyExpectedValue": sprintf("There isn´t any %s instruction that could be grouped", [upperName]),

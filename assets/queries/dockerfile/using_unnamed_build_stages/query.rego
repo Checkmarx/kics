@@ -1,7 +1,10 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	commands := input.document[i].command[name][_]
+	some document in input.document
+	commands := document.command[name][_]
 
 	commands.Cmd == "copy"
 	flags := commands.Flags
@@ -10,7 +13,7 @@ CxPolicy[result] {
 	to_number(flag_split[1]) > -1
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, commands.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "COPY '--from' should reference a previously defined FROM alias",

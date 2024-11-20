@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 shell_possibilities := {
 	"/bin/bash",
@@ -18,7 +19,8 @@ shell_possibilities := {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some document in input.keywords
+	resource := document.command[name][_]
 	resource.Cmd == "run"
 	value := resource.Value
 
@@ -30,7 +32,7 @@ CxPolicy[result] {
 
 	result := {
 		"debug": sprintf("%s", [value[v]]),
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("{{%s}} should use the SHELL command to change the default shell", [resource.Original]),
@@ -39,7 +41,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some document in input.document
+	resource := document.command[name][_]
 	resource.Cmd == "run"
 	value := resource.Value
 	run_values := split(value[v], " ")
@@ -47,7 +50,7 @@ CxPolicy[result] {
 	contains(command, "powershell")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("{{%s}} should use the SHELL command to change the default shell", [resource.Original]),

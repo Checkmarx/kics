@@ -1,13 +1,16 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	command := input.document[i].command[name][_]
+	some document in input.document
+	command := document.command[name][_]
 	command.Cmd == "expose"
 
 	containsPortOutOfRange(command.Value)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, command.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'EXPOSE' should not contain ports out of range [0, 65535]",

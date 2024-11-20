@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resources := input.document[i].Resources
+	some document in input.document
+	resources := document.Resources
 	resource := resources[k]
 	resource.Type == "AWS::Serverless::Function"
 
@@ -13,7 +15,7 @@ CxPolicy[result] {
 	k != j
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, k),
 		"searchKey": sprintf("Resources.%s.Properties.Role", [k]),

@@ -1,7 +1,10 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some document in input.keywords
+	resource := document.command[name][_]
 	resource.Cmd == "copy"
 
 	contains(resource.Flags[x], "--from=")
@@ -10,7 +13,7 @@ CxPolicy[result] {
 	isAliasCurrentFromAlias(name, aux_split[1])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "COPY --from should not reference the current FROM alias",
@@ -19,7 +22,8 @@ CxPolicy[result] {
 }
 
 isAliasCurrentFromAlias(currentName, currentAlias) = allow {
-	resource := input.document[i].command[name][_]
+	some document in input.document
+	resource := document.command[name][_]
 	currentName == name
 
 	resource.Cmd == "from"
