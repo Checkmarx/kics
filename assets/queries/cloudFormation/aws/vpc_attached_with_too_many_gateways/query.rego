@@ -1,16 +1,17 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::EC2::VPC"
 
 	gatewayAttachments := {gatewayAttachment |
 		[_, ResourcesAux] := walk(input.document[_])
-		resource := ResourcesAux[_]
+		some resource in ResourcesAux
 		resource.Type == "AWS::EC2::VPCGatewayAttachment"
 		refers(resource.Properties.VpcId, name)
 		gatewayAttachment := resource
@@ -19,7 +20,7 @@ CxPolicy[result] {
 	count(gatewayAttachments) > 3
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s", [cf_lib.getPath(path), name]),

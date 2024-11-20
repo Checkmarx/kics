@@ -2,10 +2,11 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	bucket_resource := document[i].Resources[name]
+	some document in input.document
+	bucket_resource := document.Resources[name]
 	bucket_resource.Type == "AWS::S3::Bucket"
 
 	info := get_resource_accessibility(bucket_resource, name)
@@ -23,7 +24,7 @@ CxPolicy[result] {
 	final_bom_output := common_lib.get_bom_output(bom_output, info.policy)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

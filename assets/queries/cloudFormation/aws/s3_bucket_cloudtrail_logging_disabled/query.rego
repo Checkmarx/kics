@@ -1,16 +1,15 @@
 package Cx
 
-import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
-import future.keywords.in
+import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
-	some docs in input.document
+	docs := input.document[i]
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::S3::Bucket"
 
-	some docs2 in input.document
+	docs2 := input.document[_]
 	[_, Resources2] := walk(docs2)
 	resource2 := Resources2[name2]
 	resource2.Type == "AWS::S3::BucketPolicy"
@@ -24,7 +23,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), name]),
+		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path),name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("S3 bucket '%s' should have logging enabled", [name]),
 		"keyActualValue": sprintf("S3 bucket '%s' doesn't have logging enabled", [name]),

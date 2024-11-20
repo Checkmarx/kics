@@ -2,10 +2,11 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	sns_topic := document[i].Resources[name]
+	some document in input.document
+	sns_topic := document.Resources[name]
 	sns_topic.Type == "AWS::SNS::Topic"
 
 	info := cf_lib.get_resource_accessibility(name, "AWS::SNS::TopicPolicy", "Topics")
@@ -22,7 +23,7 @@ CxPolicy[result] {
 	final_bom_output := common_lib.get_bom_output(bom_output, info.policy)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

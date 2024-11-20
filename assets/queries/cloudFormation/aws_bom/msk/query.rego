@@ -2,10 +2,11 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	msk := document[i].Resources[name]
+	some document in input.document
+	msk := document.Resources[name]
 	msk.Type == "AWS::MSK::Cluster"
 
 	bom_output = {
@@ -18,7 +19,7 @@ CxPolicy[result] {
 	}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

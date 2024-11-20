@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::EC2::VPC"
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	not with_network_firewall(name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s", [cf_lib.getPath(path), name]),
@@ -25,7 +26,7 @@ CxPolicy[result] {
 
 with_network_firewall(vpcName) {
 	[_, Resources] := walk(input.document[_])
-	resource := Resources[_]
+	some resource in Resources
 	resource.Type == "AWS::NetworkFirewall::Firewall"
 
 	vpcName == get_name(resource.Properties.VpcId)

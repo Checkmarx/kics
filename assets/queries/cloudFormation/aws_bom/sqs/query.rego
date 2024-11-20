@@ -2,10 +2,11 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	sqs_queue := document[i].Resources[name]
+	some document in input.document
+	sqs_queue := document.Resources[name]
 	sqs_queue.Type == "AWS::SQS::Queue"
 
 	info := cf_lib.get_resource_accessibility(name, "AWS::SQS::QueuePolicy", "Queues")
@@ -22,7 +23,7 @@ CxPolicy[result] {
 	final_bom_output := common_lib.get_bom_output(bom_output, info.policy)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",
