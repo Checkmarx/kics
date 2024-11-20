@@ -4,7 +4,7 @@ import data.generic.dockerfile as dockerLib
 import future.keywords.in
 
 CxPolicy[result] {
-	some document in input.keywords.in
+	some document in input.document
 	resource := document.command[name][_]
 	resource.Cmd == "add"
 
