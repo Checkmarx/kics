@@ -22,7 +22,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		excludeGitIgnore     bool
 		MaxFileSize          int
 	}{
-		/* {
+		{
 			name:      "analyze_test_dir_single_path",
 			paths:     []string{filepath.FromSlash("../../test/fixtures/analyzer_test")},
 			wantTypes: []string{"ansible", "azureresourcemanager", "cicd", "cloudformation", "crossplane", "dockercompose", "dockerfile", "googledeploymentmanager", "knative", "kubernetes", "openapi", "pulumi", "serverlessfw", "terraform"},
@@ -423,7 +423,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			excludeGitIgnore:     false,
 			MaxFileSize:          -1,
 		},
-		*/{
+		{
 			name:                 "analyze_test_bicep",
 			paths:                []string{filepath.FromSlash("../../test/fixtures/bicep_test")},
 			wantTypes:            []string{"bicep"},
