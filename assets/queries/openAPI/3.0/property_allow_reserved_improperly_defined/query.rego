@@ -54,5 +54,5 @@ CxPolicy[result] {
 
 improperly_defined(params) {
 	common_lib.valid_key(params, "allowReserved")
-	params.in != "query"
+	params["in"] != "query"
 }

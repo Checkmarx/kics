@@ -12,7 +12,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	params := value.parameters[n]
 	common_lib.valid_key(params, "allowEmptyValue")
-	all([params.in != "query", params.in != "formData"])
+	all([params["in"] != "query", params["in"] != "formData"])
 
 	result := {
 		"documentId": doc.id,
