@@ -26,7 +26,7 @@ check_simple(value) {
 	value.style == "simple"
 } else {
 	ins := {"path", "header"}
-	value.in == ins[_]
+	value["in"] == ins[_]
 	not common_lib.valid_key(value, "style")
 }
 
