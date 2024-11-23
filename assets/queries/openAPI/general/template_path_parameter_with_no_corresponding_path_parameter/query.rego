@@ -14,7 +14,7 @@ CxPolicy[result] {
 	parameter := path[verb].parameters[param]
 
 	count([parameter |
-		parameter.in == "path"
+		parameter["in"] == "path"
 		parameter.name == path_param
 		parameter := path[verb].parameters[param]
 	]) == 0
