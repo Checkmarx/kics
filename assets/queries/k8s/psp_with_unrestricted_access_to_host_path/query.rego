@@ -1,16 +1,17 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 	document.kind == "PodSecurityPolicy"
 
 	not common_lib.valid_key(document.spec, "allowedHostPaths")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec", [metadata.name]),
@@ -22,7 +23,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 	document.kind == "PodSecurityPolicy"
 
@@ -30,7 +31,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(hostPath, "readOnly")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.allowedHostPaths", [metadata.name]),
@@ -42,7 +43,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 	document.kind == "PodSecurityPolicy"
 
@@ -50,7 +51,7 @@ CxPolicy[result] {
 	hostPath.readOnly != true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.allowedHostPaths.readOnly", [metadata.name]),

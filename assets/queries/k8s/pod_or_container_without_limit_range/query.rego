@@ -2,11 +2,12 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "PersistentVolumeClaim"]
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	k8sLib.checkKind(document.kind, listKinds)
 	metadata := document.metadata
 

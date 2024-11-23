@@ -1,11 +1,12 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 	spec := document.spec
 	containers := spec[types[x]]
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	common_lib.valid_key(ports[k], "hostPort")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name=%s.spec.%s.name=%s.ports", [metadata.name, types[x], containers[c].name]),
@@ -24,7 +25,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 	spec := document.spec.template.spec
 	containers := spec[types[x]]
@@ -32,7 +33,7 @@ CxPolicy[result] {
 	common_lib.valid_key(ports[k], "hostPort")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name=%s.spec.template.spec.%s.name=%s.ports", [metadata.name, types[x], containers[c].name]),

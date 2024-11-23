@@ -14,7 +14,7 @@ CxPolicy[result] {
 	not k8sLib.hasFlagWithValue(container, "--enable-admission-plugins", "PodSecurityPolicy")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),

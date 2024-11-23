@@ -1,17 +1,18 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	document[i].kind == "PodSecurityPolicy"
-	metadata := document[i].metadata
-	spec := document[i].spec
+	some document in input.document
+	document.kind == "PodSecurityPolicy"
+	metadata := document.metadata
+	spec := document.spec
 	not common_lib.valid_key(spec, "requiredDropCapabilities")
 
 	result := {
-		"documentId": input.document[i].id,
-		"resourceType": document[i].kind,
+		"documentId": document.id,
+		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec", [metadata.name]),
 		"issueType": "MissingAttribute",

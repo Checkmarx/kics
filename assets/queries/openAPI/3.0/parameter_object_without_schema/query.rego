@@ -1,16 +1,17 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
 	parameters = value.parameters
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
-	param := parameters[_]
+	some param in parameters
 	openapi_lib.is_missing_attribute_and_ref(param, "schema")
 
 	result := {
@@ -23,13 +24,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
 	parameters = value.parameters
 	openapi_lib.is_operation(path) == {}
-	param := parameters[_]
+	some param in parameters
 	openapi_lib.is_missing_attribute_and_ref(param, "schema")
 
 	result := {

@@ -10,7 +10,7 @@ CxPolicy[result] {
 	document.spec.hostIPC == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.hostIPC", [metadata.name]),

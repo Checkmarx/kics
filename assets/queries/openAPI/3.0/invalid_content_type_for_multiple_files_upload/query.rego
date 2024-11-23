@@ -1,11 +1,12 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 options := {"file", "filename"}
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	property := doc.paths[path][operation].requestBody.content[c].schema.properties[p]
@@ -25,7 +26,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	property := doc.components.requestBodies[r].content[c].schema.properties[p]

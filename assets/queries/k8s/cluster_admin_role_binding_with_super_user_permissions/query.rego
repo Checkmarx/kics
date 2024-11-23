@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resource.roleRef.name == "cluster-admin"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.roleRef.name=cluster-admin", [metadata.name]),

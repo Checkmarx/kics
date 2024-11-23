@@ -2,10 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
+import future.keywords.in	
 
 # policy for examples
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	version := openapi_lib.check_openapi(docs)
 	version == "3.0"
 
@@ -19,7 +20,7 @@ CxPolicy[result] {
 	count(items) > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"searchKey": sprintf("%s.examples.%s", [openapi_lib.concat_path(path), name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.examples.%s' should not be compliant with the schema type", [concat(".", path)]),
@@ -30,7 +31,7 @@ CxPolicy[result] {
 
 # policy for example
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	version := openapi_lib.check_openapi(docs)
 	version == "3.0"
 
@@ -43,7 +44,7 @@ CxPolicy[result] {
 	count(items) > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"searchKey": sprintf("%s.example", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.example should not be compliant with the schema type", [concat(".", path)]),
@@ -54,7 +55,7 @@ CxPolicy[result] {
 
 # policy for example
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	version := openapi_lib.check_openapi(docs)
 	version == "2.0"
 
@@ -67,7 +68,7 @@ CxPolicy[result] {
 	count(items) > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"searchKey": sprintf("%s.example", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.example should not be compliant with the schema type", [openapi_lib.concat_path(path)]),
@@ -77,7 +78,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	version := openapi_lib.check_openapi(docs)
 	version == "2.0"
 
@@ -87,7 +88,7 @@ CxPolicy[result] {
 	count(items) > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"searchKey": sprintf("definitions.%s.example", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("definitions.%s.example should not be compliant with the schema type", [name]),

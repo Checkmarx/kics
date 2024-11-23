@@ -2,11 +2,12 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
@@ -15,7 +16,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containers[index].resources.limits, "cpu")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
@@ -26,7 +27,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
@@ -35,7 +36,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containers[index].resources, "limits")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
@@ -46,7 +47,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
@@ -55,7 +56,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containers[index], "resources")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",

@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.pulumi as plm_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resources[name]
+	some document in input.document
+	resource := document.resources[name]
 	resource.type == "aws:ec2:Instance"
 
 	not common_lib.is_aws_ebs_optimized_by_default(resource.properties.instanceType)
 	not common_lib.valid_key(resource.properties, "ebsOptimized")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": name,
 		"searchKey": sprintf("resources[%s].properties", [name]),
@@ -23,7 +25,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[name]
+	some document in input.document
+	resource := document.resources[name]
 	resource.type == "aws:ec2:Instance"
 
 	not common_lib.is_aws_ebs_optimized_by_default(resource.properties.instanceType)
@@ -31,7 +34,7 @@ CxPolicy[result] {
 	ebsOptimized == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties.ebsOptimized", [name]),

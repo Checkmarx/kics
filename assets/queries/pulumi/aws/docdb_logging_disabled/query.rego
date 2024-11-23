@@ -1,19 +1,21 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 validTypes := {"profiler", "audit"}
 
 validTypeConcat := concat(", ", validTypes)
 
 CxPolicy[result] {
-	resource := input.document[i].resources[name]
+	some document in input.document
+	resource := document.resources[name]
 	resource.type == "aws:docdb:Cluster"
 	properties := resource.properties
 	not common_lib.valid_key(properties, "enabledCloudwatchLogsExports")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": name,
 		"searchKey": sprintf("resources[%s].properties", [name]),
@@ -25,7 +27,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[name]
+	some document in input.document
+	resource := document.resources[name]
 	resource.type == "aws:docdb:Cluster"
 	properties := resource.properties
 	logs := properties.enabledCloudwatchLogsExports
@@ -36,7 +39,7 @@ CxPolicy[result] {
 	count(missingTypes) > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": name,
 		"searchKey": sprintf("resources[%s].properties.enabledCloudwatchLogsExports", [name]),

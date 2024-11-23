@@ -1,16 +1,17 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	kind := document.kind
 	kind == "Secret"
 
 	not hasExternalStorageSecretProviderClass(input)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": document.metadata.name,
 		"issueType": "MissingAttribute",
@@ -22,7 +23,7 @@ CxPolicy[result] {
 }
 
 hasExternalStorageSecretProviderClass(input_data) {
-	document := input_data.document[i]
+	some document in input_data.document
 	document.kind == "SecretProviderClass"
 	spec := document.spec
 	common_lib.valid_key(spec, "provider")

@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 	common_lib.valid_key(doc, "security")
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	is_array(doc.security)
 	count(doc.security) > 0
 
-	securityItem := doc.security[_]
+	some securityItem in doc.security
 	securityItem == {}
 
 	result := {
@@ -26,7 +27,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 	common_lib.valid_key(doc, "security")

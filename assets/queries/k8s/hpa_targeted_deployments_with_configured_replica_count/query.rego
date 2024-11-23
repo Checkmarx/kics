@@ -1,9 +1,12 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	metadata := input.document[i].metadata
-	replicasCheck := input.document[i].spec.replicas
-	kindCheck := input.document[i].kind
+	some document in input.document
+	metadata := document.metadata
+	replicasCheck := document.spec.replicas
+	kindCheck := document.kind
 	scaleKindCheck := input.document[j].spec.scaleTargetRef.kind
 
 	metadata.name == input.document[j].spec.scaleTargetRef.name
@@ -11,8 +14,8 @@ CxPolicy[result] {
 	scaleKindCheck == "Deployment"
 
 	result := {
-		"documentId": input.document[i].id,
-		"resourceType": input.document[i].kind,
+		"documentId": document.id,
+		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.replicas", [metadata.name]),
 		"issueType": "IncorrectValue",

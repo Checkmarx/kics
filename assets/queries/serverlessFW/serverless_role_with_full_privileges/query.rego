@@ -2,15 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.serverlessfw as sfw_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	iam := document.provider.iam
 	statement := iam.role.statements[stt]
 	check_policy(statement)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": sfw_lib.resourceTypeMapping("iam", document.provider.name),
 		"resourceName": iam.role.name,
 		"searchKey": sprintf("provider.iam.role.statements[%d]", [stt]),

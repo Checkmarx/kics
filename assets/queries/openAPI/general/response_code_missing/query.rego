@@ -2,16 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 	response := doc.paths[n][oper].responses
 	oper != "head"
 
 	responses := {"500", "429", "400"}
-	wantedResponses := responses[_]
+	some wantedResponses in responses
 	not common_lib.valid_key(response, wantedResponses)
 
 	result := {
@@ -27,7 +28,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 	response := doc.paths[n][oper].responses
@@ -49,7 +50,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 	response := doc.paths[n][oper].responses
@@ -71,7 +72,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 	response := doc.paths[n][oper].responses
@@ -92,13 +93,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 	response := doc.paths[n][oper].responses
 	common_lib.valid_key(doc, "security")
 	responses := {"401", "403"}
-	wantedResponses := responses[_]
+	some wantedResponses in responses
 
 	not common_lib.valid_key(response, wantedResponses)
 

@@ -2,11 +2,12 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
@@ -16,7 +17,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(cap, "drop")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.securityContext.capabilities", [metadata.name, types[x], containers[c].name]),
@@ -27,7 +28,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
@@ -36,7 +37,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containers[k].securityContext, "capabilities")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name={{%s}}.securityContext", [metadata.name, types[x], containers[k].name]),
@@ -47,7 +48,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
@@ -56,7 +57,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containers[k], "securityContext")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.%s.name=%s", [metadata.name, types[x], containers[k].name]),

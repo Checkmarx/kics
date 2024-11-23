@@ -1,11 +1,12 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 containers := ["containers", "initContainers"]
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 	specInfo := k8sLib.getSpecInfo(document)
 
@@ -15,7 +16,7 @@ CxPolicy[result] {
 	env_name := specInfo.spec[containers[c]][j].env[k].name
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.env.name={{%s}}.valueFrom.secretKeyRef", [metadata.name, specInfo.path, containers[c], env_name]),
@@ -26,7 +27,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 	specInfo := k8sLib.getSpecInfo(document)
 
@@ -35,7 +36,7 @@ CxPolicy[result] {
 	container_name := specInfo.spec[containers[c]][j].name
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.envFrom", [metadata.name, specInfo.path, containers[c], container_name]),

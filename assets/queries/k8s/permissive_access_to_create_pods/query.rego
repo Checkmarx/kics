@@ -2,13 +2,14 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8s_lib
+import future.keywords.in
 
 create := "create"
 
 pods := "pods"
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	rules := document.rules
 	metadata := document.metadata
 
@@ -17,7 +18,7 @@ CxPolicy[result] {
 	rules[j].resources[k] == pods
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.rules.verbs.%s", [metadata.name, create]),
@@ -29,7 +30,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	rules := document.rules
 	metadata := document.metadata
 
@@ -39,7 +40,7 @@ CxPolicy[result] {
 	isWildCardValue(rules[j].resources[k])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.rules.verbs.%s", [metadata.name, create]),
@@ -51,7 +52,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	rules := document.rules
 	metadata := document.metadata
 
@@ -60,7 +61,7 @@ CxPolicy[result] {
 	rules[j].resources[k] == pods
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.rules.verbs.%s", [metadata.name, rules[j].verbs[l]]),
@@ -72,7 +73,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	rules := document.rules
 	metadata := document.metadata
 
@@ -82,7 +83,7 @@ CxPolicy[result] {
 	isWildCardValue(rules[j].resources[k])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.rules.verbs.%s", [metadata.name, rules[j].verbs[l]]),

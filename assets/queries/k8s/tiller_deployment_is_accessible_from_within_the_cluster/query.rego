@@ -1,11 +1,12 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 
 	isTiller(document)
 
@@ -17,7 +18,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(container, "args")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name=%s.spec.%s", [metadata.name, types[x]]),
@@ -28,7 +29,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 
 	isTiller(document)
 
@@ -42,7 +43,7 @@ CxPolicy[result] {
 	not listenLocal(container.args)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name=%s.spec.%s.args", [metadata.name, types[x]]),
@@ -54,7 +55,7 @@ CxPolicy[result] {
 
 # template container
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 
 	isTillerTemplate(document)
 
@@ -64,7 +65,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(container, "args")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name=%s.spec.template.spec.%s", [metadata.name, types[x]]),
@@ -75,7 +76,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 
 	isTillerTemplate(document)
 
@@ -86,7 +87,7 @@ CxPolicy[result] {
 	not listenLocal(container.args)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name=%s.spec.template.spec.%s.args", [metadata.name, types[x]]),
