@@ -15,7 +15,7 @@ CxPolicy[result] {
 	paramTwo := parameters[keyTwo]
 	keyOne != keyTwo
 	paramOne.name == paramTwo.name
-	paramOne.in == paramTwo.in
+	paramOne["in"] == paramTwo["in"]
 
 	partialSk := openapi_lib.concat_default_value(openapi_lib.concat_path(path), "parameters")
 	sk := openapi_lib.get_complete_search_key(keyOne, partialSk, "name")
