@@ -10,7 +10,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	param := value.parameters[n]
 	param.type == "file"
-	param.in != "formData"
+	param["in"] != "formData"
 
 	searchKey := openapi_lib.concat_default_value(openapi_lib.concat_path(path), "parameters")
 

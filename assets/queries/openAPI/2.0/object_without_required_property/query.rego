@@ -30,7 +30,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	param := value.parameters[n]
-	param.in != "body"
+	param["in"] != "body"
 
 	partialSk := openapi_lib.concat_default_value(openapi_lib.concat_path(path), "parameters")
 

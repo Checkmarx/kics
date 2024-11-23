@@ -10,7 +10,7 @@ CxPolicy[result] {
 	path := doc.paths[name]
 
 	param := path[verb].parameters[p]
-	param.in == "path"
+	param["in"] == "path"
 
 	matches := openapi_lib.is_path_template(name)
 	count([path_param |

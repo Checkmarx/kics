@@ -9,7 +9,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	param := value.parameters[n]
-	param.in == "body"
+	param["in"] == "body"
 
 	property := param[x]
 	not allowed(x)

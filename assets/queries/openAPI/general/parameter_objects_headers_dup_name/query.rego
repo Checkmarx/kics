@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	param := value.parameters[n]
-	param.in == "header"
+	param["in"] == "header"
 
 	dup := check_dup(value.parameters)
 	lower(param.name) == dup[m]
