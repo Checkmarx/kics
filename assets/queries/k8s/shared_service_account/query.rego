@@ -1,10 +1,9 @@
 package Cx
 
 import data.generic.k8s as k8sLib
-import future.keywords.in
 
 CxPolicy[result] {
-	some document in input.document
+	document := input.document[i]
 	metadata := document.metadata
 	specInfo := k8sLib.getSpecInfo(document)
 	serviceAccount := specInfo.spec.serviceAccountName
@@ -17,7 +16,7 @@ CxPolicy[result] {
 	serviceAccount == serviceAccount_other
 
 	result := {
-		"documentId": document.id,
+		"documentId": input.document[i].id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.serviceAccountName", [metadata.name, specInfo.path]),
