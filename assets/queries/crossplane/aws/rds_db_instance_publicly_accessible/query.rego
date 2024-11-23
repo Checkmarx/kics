@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.crossplane as cp_lib
+import future.keywords.in
 
 getForProvider(apiVersion, kind, name, docs) = forProvider {
-	doc := docs[_]
+	some doc in docs
 	[_, resource] := walk(doc)
 	startswith(resource.apiVersion, apiVersion)
 	resource.kind == kind
@@ -23,7 +24,7 @@ existsInternetGateway(dbSubnetGroupName) {
 
 	vpcId := EC2SforProvider.vpcId
 
-	IGdocs := input.document[_]
+	some IGdocs in input.document
 	[_, IGresource] := walk(IGdocs)
 	startswith(IGresource.apiVersion, "network.aws.crossplane.io")
 	IGresource.kind == "InternetGateway"
@@ -35,7 +36,7 @@ existsInternetGateway(dbSubnetGroupName) {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "database.aws.crossplane.io")
 	resource.kind == "RDSInstance"
@@ -49,7 +50,7 @@ CxPolicy[result] {
 	existsInternetGateway(dbSubnetGroupName) == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("metadata.name={{%s}}.spec.forProvider.dbSubnetGroupName", [resource.metadata.name]),
@@ -60,7 +61,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "database.aws.crossplane.io")
 	resource.kind == "RDSInstance"
@@ -69,7 +70,7 @@ CxPolicy[result] {
 	forProvider.publiclyAccessible == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("metadata.name={{%s}}.spec.forProvider.publiclyAccessible", [resource.metadata.name]),
