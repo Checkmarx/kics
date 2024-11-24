@@ -2,17 +2,19 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 resource_type := {"aws_s3_bucket_policy", "aws_s3_bucket"}
 
 CxPolicy[result] {
-	res_type := resource_type[_]
-	resource := input.document[i].resource[res_type][name]
+	some res_type in resource_type
+	some document in input.document
+	resource := document.resource[res_type][name]
 
 	all_permissions(resource.policy)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": res_type,
 		"resourceName": tf_lib.get_specific_resource_name(resource, res_type, name),
 		"searchKey": sprintf("%s[%s].policy", [res_type, name]),
@@ -24,14 +26,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
-	res_type := resource_type[_]
+	some document in input.document
+	module := document.module[name]
+	some res_type in resource_type
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, res_type, "policy")
 
 	all_permissions(module[keyToCheck])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].policy", [name]),
@@ -45,7 +48,7 @@ CxPolicy[result] {
 all_permissions(policyValue) {
 	policy := common_lib.json_unmarshal(policyValue)
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	common_lib.containsOrInArrayContains(statement.Action, "*")

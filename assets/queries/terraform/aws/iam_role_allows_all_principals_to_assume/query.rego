@@ -5,7 +5,8 @@ import data.generic.terraform as tf_lib
 import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_iam_role[name]
+	some document in input.document
+	resource := document.resource.aws_iam_role[name]
 	policyResource := resource.assume_role_policy
 
 	policy := common_lib.json_unmarshal(policyResource)
@@ -18,7 +19,7 @@ CxPolicy[result] {
 	common_lib.allowsAllPrincipalsToAssume(aws, statement)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_iam_role",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_role[%s].assume_role_policy.Principal.AWS", [name]),

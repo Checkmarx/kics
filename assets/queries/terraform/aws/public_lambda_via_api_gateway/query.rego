@@ -1,10 +1,12 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_lambda_function[name]
-	permissionResource := input.document[i].resource.aws_lambda_permission[permissionName]
+	some document in input.document
+	resource := document.resource.aws_lambda_function[name]
+	permissionResource := document.resource.aws_lambda_permission[permissionName]
 
 	contains(permissionResource.function_name, concat(".", ["aws_lambda_function", name]))
 	permissionResource.action == "lambda:InvokeFunction"
@@ -12,7 +14,7 @@ CxPolicy[result] {
 	re_match("/\\*/\\*$", permissionResource.source_arn)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_lambda_permission",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_lambda_permission[%s].source_arn", [permissionName]),

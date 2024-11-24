@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	instance := input.document[i].resource.aws_instance[name]
+	some document in input.document
+	instance := document.resource.aws_instance[name]
 	containsAccessKey(instance.user_data)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_instance",
 		"resourceName": tf_lib.get_resource_name(instance, name),
 		"searchKey": sprintf("aws_instance[%s].user_data", [name]),
@@ -20,13 +22,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "user_data")
 
 	containsAccessKey(module[keyToCheck])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].user_data", [name]),

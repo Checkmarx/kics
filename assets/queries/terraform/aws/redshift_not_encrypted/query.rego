@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.aws_redshift_cluster[name]
+	some document in input.document
+	cluster := document.resource.aws_redshift_cluster[name]
 	not common_lib.valid_key(cluster, "encrypted")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_redshift_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("aws_redshift_cluster[%s]", [name]),
@@ -22,11 +24,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.aws_redshift_cluster[name]
+	some document in input.document
+	cluster := document.resource.aws_redshift_cluster[name]
 	cluster.encrypted == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_redshift_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("aws_redshift_cluster[%s].encrypted", [name]),

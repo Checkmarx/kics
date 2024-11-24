@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as commonLib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	awsElasticsearchDomain := input.document[i].resource.aws_elasticsearch_domain[name]
+	some document in input.document
+	awsElasticsearchDomain := document.resource.aws_elasticsearch_domain[name]
 	logType := awsElasticsearchDomain.log_publishing_options.log_type
 
 	not commonLib.inArray(["INDEX_SLOW_LOGS", "SEARCH_SLOW_LOGS"], logType)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_elasticsearch_domain",
 		"resourceName": tf_lib.get_resource_name(awsElasticsearchDomain, name),
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}].log_publishing_options.log_type", [name]),

@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as commonLib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	route := input.document[i].resource.aws_route53_record[name]
+	some document in input.document
+	route := document.resource.aws_route53_record[name]
 	count(route.records) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_route53_record",
 		"resourceName": tf_lib.get_resource_name(route, name),
 		"searchKey": sprintf("aws_route53_record[%s].records", [name]),

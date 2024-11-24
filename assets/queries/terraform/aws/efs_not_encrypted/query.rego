@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	efs := input.document[i].resource.aws_efs_file_system[name]
+	some document in input.document
+	efs := document.resource.aws_efs_file_system[name]
 	efs.encrypted == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_efs_file_system",
 		"resourceName": tf_lib.get_resource_name(efs, name),
 		"searchKey": sprintf("aws_efs_file_system[%s].encrypted", [name]),
@@ -25,11 +27,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	efs := input.document[i].resource.aws_efs_file_system[name]
+	some document in input.document
+	efs := document.resource.aws_efs_file_system[name]
 	not common_lib.valid_key(efs, "encrypted")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_efs_file_system",
 		"resourceName": tf_lib.get_resource_name(efs, name),
 		"searchKey": sprintf("aws_efs_file_system[%s]", [name]),

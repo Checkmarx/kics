@@ -1,13 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	msk_cluster := input.document[i].resource.aws_msk_cluster[name]
+	some document in input.document
+	msk_cluster := document.resource.aws_msk_cluster[name]
 	tech := msk_cluster.logging_info.broker_logs[instanceType]
 	not tech.enabled
+	
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_msk_cluster",
 		"resourceName": tf_lib.get_specific_resource_name(msk_cluster, "aws_msk_cluster", name),
 		"searchKey": sprintf(getSearchKey(msk_cluster, instanceType), [name, instanceType]),
@@ -18,7 +21,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	msk_cluster := input.document[i].resource.aws_msk_cluster[name]
+	some document in input.document
+	msk_cluster := document.resource.aws_msk_cluster[name]
 
 	msk_cluster.logging_info
 
@@ -27,7 +31,7 @@ CxPolicy[result] {
 	not msk_cluster.logging_info.broker_logs.s3
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_msk_cluster",
 		"resourceName": tf_lib.get_specific_resource_name(msk_cluster, "aws_msk_cluster", name),
 		"searchKey": sprintf("msk_cluster[%s].logging_info.broker_logs", [name]),
@@ -38,11 +42,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	msk_cluster := input.document[i].resource.aws_msk_cluster[name]
+	some document in input.document
+	msk_cluster := document.resource.aws_msk_cluster[name]
 	not msk_cluster.logging_info
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_msk_cluster",
 		"resourceName": tf_lib.get_specific_resource_name(msk_cluster, "aws_msk_cluster", name),
 		"searchKey": sprintf("aws_msk_cluster[%s]", [name]),

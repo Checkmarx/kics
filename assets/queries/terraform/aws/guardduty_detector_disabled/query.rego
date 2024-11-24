@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	awsGuardDuty := input.document[i].resource.aws_guardduty_detector[name]
+	some document in input.document
+	awsGuardDuty := document.resource.aws_guardduty_detector[name]
 	detector := awsGuardDuty.enable
 
 	detector == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_guardduty_detector",
 		"resourceName": tf_lib.get_resource_name(awsGuardDuty, name),
 		"searchKey": sprintf("aws_guardduty_detector[%s].enable", [name]),

@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_kms_key[name]
+	some document in input.document
+	resource := document.resource.aws_kms_key[name]
 
 	resource.is_enabled == true
 
@@ -13,7 +15,7 @@ CxPolicy[result] {
 	not resource.deletion_window_in_days
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kms_key[%s]", [name]),
@@ -27,7 +29,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_kms_key[name]
+	some document in input.document
+	resource := document.resource.aws_kms_key[name]
 
 	resource.is_enabled == true
 
@@ -36,7 +39,7 @@ CxPolicy[result] {
 	resource.deletion_window_in_days > 30
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kms_key[%s].deletion_window_in_days", [name]),

@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_ecr_repository[name]
+	some document in input.document
+	resource := document.resource.aws_ecr_repository[name]
 
 	not common_lib.valid_key(resource, "encryption_configuration")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_ecr_repository",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ecr_repository[%s]", [name]),
@@ -20,13 +22,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_ecr_repository[name]
+	some document in input.document
+	resource := document.resource.aws_ecr_repository[name]
 
 	common_lib.valid_key(resource, "encryption_configuration")
 	not valid_encryption_configuration(resource)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_ecr_repository",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ecr_repository[%s].encryption_configuration", [name]),

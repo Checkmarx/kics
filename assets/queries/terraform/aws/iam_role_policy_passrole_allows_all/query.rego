@@ -2,20 +2,22 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_iam_role_policy[name]
+	some document in input.document
+	resource := document.resource.aws_iam_role_policy[name]
 	policy := resource.policy
 
 	out := common_lib.json_unmarshal(policy)
 	st := common_lib.get_statement(out)
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	check_passrole(statement)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_iam_role_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_role_policy[%s].policy", [name]),

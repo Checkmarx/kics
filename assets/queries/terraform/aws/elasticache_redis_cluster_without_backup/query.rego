@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.aws_elasticache_cluster[name]
+	some document in input.document
+	cluster := document.resource.aws_elasticache_cluster[name]
 
 	cluster.engine == "redis"
 	not common_lib.valid_key(cluster, "snapshot_retention_limit")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_elasticache_cluster",
 		"resourceName": tf_lib.get_specific_resource_name(cluster, "aws_elasticache_cluster", name),
 		"searchKey": sprintf("aws_elasticache_cluster[%s]", [name]),
@@ -24,13 +26,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.aws_elasticache_cluster[name]
+	some document in input.document
+	cluster := document.resource.aws_elasticache_cluster[name]
 
 	cluster.engine == "redis"
 	cluster.snapshot_retention_limit = 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_elasticache_cluster",
 		"resourceName": tf_lib.get_specific_resource_name(cluster, "aws_elasticache_cluster", name),
 		"searchKey": sprintf("aws_elasticache_cluster[%s].snapshot_retention_limit", [name]),

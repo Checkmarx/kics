@@ -49,7 +49,7 @@ rules:
       level: warn
     prefer-some-in-iteration:
       # https://docs.styra.com/regal/rules/style/prefer-some-in-iteration
-      level: ignore
+      level: warn
     prefer-snake-case:
       # https://docs.styra.com/regal/rules/style/prefer-snake-case
       level: ignore

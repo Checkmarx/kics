@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_elasticache_cluster[name]
+	some document in input.document
+	resource := document.resource.aws_elasticache_cluster[name]
 	min_version_string := "4.0.10"
 
 	eval_version_number(resource.engine_version) < eval_version_number(min_version_string)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_elasticache_cluster",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_elasticache_cluster", name),
 		"searchKey": sprintf("aws_elasticache_cluster[%s].engine_version", [name]),

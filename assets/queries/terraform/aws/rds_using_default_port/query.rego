@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	db := input.document[i].resource.aws_db_instance[name]
+	some document in input.document
+	db := document.resource.aws_db_instance[name]
 
 	enginePort := common_lib.engines[e]
 
@@ -12,7 +14,7 @@ CxPolicy[result] {
 	db.port == enginePort
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_db_instance",
 		"resourceName": tf_lib.get_resource_name(db, name),
 		"searchKey": sprintf("aws_db_instance[%s].port", [name]),

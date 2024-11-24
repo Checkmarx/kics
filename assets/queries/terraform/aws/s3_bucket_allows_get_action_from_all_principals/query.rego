@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	pl := {"aws_s3_bucket_policy", "aws_s3_bucket"}
-	resource := input.document[i].resource[pl[r]][name]
+	some document in input.document
+	resource := document.resource[pl[r]][name]
 	tf_lib.allows_action_from_all_principals(resource.policy, "get")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": pl[r],
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("%s[%s].policy.Action", [pl[r], name]),
@@ -21,12 +23,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "policy")
 	tf_lib.allows_action_from_all_principals(module[keyToCheck], "get")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].%s.Action", [name, keyToCheck]),

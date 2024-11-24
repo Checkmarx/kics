@@ -2,22 +2,24 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resourceType := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy"}
-	resource := input.document[i].resource[resourceType[idx]][name]
+	some document in input.document
+	resource := document.resource[resourceType[idx]][name]
 
 	policy := common_lib.json_unmarshal(resource.policy)
 
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	common_lib.equalsOrInArray(statement.Resource, "*")
 	common_lib.equalsOrInArray(statement.Action, "*")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType[idx],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].policy", [resourceType[idx], name]),

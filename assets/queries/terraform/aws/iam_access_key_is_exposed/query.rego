@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	access_key := input.document[i].resource.aws_iam_access_key[name]
+	some document in input.document
+	access_key := document.resource.aws_iam_access_key[name]
 
 	lower(object.get(access_key, "status", "Active")) == "active"
 
 	access_key.user == "root"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_iam_access_key",
 		"resourceName": tf_lib.get_resource_name(access_key, name),
 		"searchKey": sprintf("aws_iam_access_key[%s].user", [name]),

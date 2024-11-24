@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_db_instance[name]
+	some document in input.document
+	resource := document.resource.aws_db_instance[name]
 	resource.iam_database_authentication_enabled == false
 	common_lib.valid_for_iam_engine_and_version_check(resource, "engine", "engine_version", "instance_class")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_db_instance[%s].iam_database_authentication_enabled", [name]),
@@ -26,7 +28,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "iam_database_authentication_enabled")
 
 	module[keyToCheck] == false
@@ -34,7 +37,7 @@ CxPolicy[result] {
 	common_lib.valid_for_iam_engine_and_version_check(module, "engine", "engine_version", "instance_class")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].iam_database_authentication_enabled", [name]),
@@ -51,12 +54,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_db_instance[name]
+	some document in input.document
+	resource := document.resource.aws_db_instance[name]
 	not common_lib.valid_key(resource, "iam_database_authentication_enabled")
 	common_lib.valid_for_iam_engine_and_version_check(resource, "engine", "engine_version", "instance_class")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_db_instance[%s]", [name]),
@@ -70,7 +74,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "iam_database_authentication_enabled")
 
 	not common_lib.valid_key(module, keyToCheck)
@@ -78,7 +83,7 @@ CxPolicy[result] {
 	common_lib.valid_for_iam_engine_and_version_check(module, "engine", "engine_version", "instance_class")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),

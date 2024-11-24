@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_glue_data_catalog_encryption_settings[name]
+	some document in input.document
+	resource := document.resource.aws_glue_data_catalog_encryption_settings[name]
 
 	resource.data_catalog_encryption_settings.encryption_at_rest.catalog_encryption_mode != "SSE-KMS"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_glue_data_catalog_encryption_settings",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.encryption_at_rest.catalog_encryption_mode", [name]),
@@ -21,12 +23,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_glue_data_catalog_encryption_settings[name]
+	some document in input.document
+	resource := document.resource.aws_glue_data_catalog_encryption_settings[name]
 
 	not common_lib.valid_key(resource.data_catalog_encryption_settings.encryption_at_rest, "sse_aws_kms_key_id")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_glue_data_catalog_encryption_settings",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.encryption_at_rest", [name]),
@@ -38,12 +41,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_glue_data_catalog_encryption_settings[name]
+	some document in input.document
+	resource := document.resource.aws_glue_data_catalog_encryption_settings[name]
 
 	resource.data_catalog_encryption_settings.connection_password_encryption.return_connection_password_encrypted != true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_glue_data_catalog_encryption_settings",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.connection_password_encryption.return_connection_password_encrypted", [name]),
@@ -60,12 +64,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_glue_data_catalog_encryption_settings[name]
+	some document in input.document
+	resource := document.resource.aws_glue_data_catalog_encryption_settings[name]
 
 	not common_lib.valid_key(resource.data_catalog_encryption_settings.connection_password_encryption, "aws_kms_key_id")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_glue_data_catalog_encryption_settings",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_data_catalog_encryption_settings[%s].data_catalog_encryption_settings.connection_password_encryption", [name]),

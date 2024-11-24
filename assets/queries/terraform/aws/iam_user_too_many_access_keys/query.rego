@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_iam_access_key[name]
+	some document in input.document
+	resource := document.resource.aws_iam_access_key[name]
 
 	user := split(resource.user, ".")[1]
 
 	count({x | r := input.document[_].resource.aws_iam_access_key[x]; split(r.user, ".")[1] == user}) > 1
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_iam_access_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_access_key[%s].user", [name]),

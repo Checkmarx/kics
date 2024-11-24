@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	password_policy := input.document[i].resource.aws_neptune_cluster[name]
+	some document in input.document
+	password_policy := document.resource.aws_neptune_cluster[name]
 	not common_lib.valid_key(password_policy, "iam_database_authentication_enabled")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_neptune_cluster",
 		"resourceName": tf_lib.get_resource_name(password_policy, name),
 		"searchKey": sprintf("aws_neptune_cluster[%s]", [name]),
@@ -22,11 +24,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	password_policy := input.document[i].resource.aws_neptune_cluster[name]
+	some document in input.document
+	password_policy := document.resource.aws_neptune_cluster[name]
 	password_policy.iam_database_authentication_enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_neptune_cluster",
 		"resourceName": tf_lib.get_resource_name(password_policy, name),
 		"searchKey": sprintf("aws_neptune_cluster[%s].iam_database_authentication_enabled", [name]),

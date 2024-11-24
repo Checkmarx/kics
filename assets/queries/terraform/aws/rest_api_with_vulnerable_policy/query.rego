@@ -2,20 +2,22 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_api_gateway_rest_api_policy[name]
+	some document in input.document
+	resource := document.resource.aws_api_gateway_rest_api_policy[name]
 
 	policy := common_lib.json_unmarshal(resource.policy)
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	not common_lib.valid_key(statement, "Condition")
 	common_lib.has_wildcard(statement, "execute-api:*")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_api_gateway_rest_api_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_rest_api_policy[%s].policy", [name]),

@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	# get a AWS IAM role
-	role := input.document[i].resource.aws_iam_role[targetRole]
+	some document in input.document
+	role := document.resource.aws_iam_role[targetRole]
 
 	common_lib.role_unrecommended_permission_policy_scenarios(targetRole, "glue:UpdateDevEndpoint")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_iam_role",
 		"resourceName": tf_lib.get_resource_name(role, targetRole),
 		"searchKey": sprintf("aws_iam_role[%s]", [targetRole]),

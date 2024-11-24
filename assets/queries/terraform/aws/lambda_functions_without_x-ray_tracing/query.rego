@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource = input.document[i].resource.aws_lambda_function[name]
+	some document in input.document
+	resource := document.resource.aws_lambda_function[name]
 
 	resource.tracing_config.mode == "PassThrough"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_lambda_function",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_lambda_function[%s].tracing_config.mode", [name]),
@@ -26,12 +28,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource = input.document[i].resource.aws_lambda_function[name]
+	some document in input.document
+	resource := document.resource.aws_lambda_function[name]
 
 	not common_lib.valid_key(resource, "tracing_config")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_lambda_function",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_lambda_function[%s]", [name]),

@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_cloudfront_distribution[name]
+	some document in input.document
+	resource := document.resource.aws_cloudfront_distribution[name]
 	resource.viewer_certificate.cloudfront_default_certificate == false
 	not checkMinProtocolVersion(resource.viewer_certificate.minimum_protocol_version)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_cloudfront_distribution",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s].viewer_certificate.minimum_protocol_version", [name]),

@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.aws_elasticache_cluster[name]
+	some document in input.document
+	cluster := document.resource.aws_elasticache_cluster[name]
 
 	lower(cluster.engine) == "memcached"
 	to_number(cluster.num_cache_nodes) > 1
 	not cluster.az_mode
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_elasticache_cluster",
 		"resourceName": tf_lib.get_specific_resource_name(cluster, "aws_elasticache_cluster", name),
 		"searchLine": common_lib.build_search_line(["resource", "aws_elasticache_cluster", name], []),
@@ -25,14 +27,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.aws_elasticache_cluster[name]
+	some document in input.document
+	cluster := document.resource.aws_elasticache_cluster[name]
 
 	lower(cluster.engine) == "memcached"
 	to_number(cluster.num_cache_nodes) > 1
 	lower(cluster.az_mode) != "cross-az"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_elasticache_cluster",
 		"resourceName": tf_lib.get_specific_resource_name(cluster, "aws_elasticache_cluster", name),
 		"searchLine": common_lib.build_search_line(["resource", "aws_elasticache_cluster", name, "az_mode"], []),

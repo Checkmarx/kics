@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	rds := input.document[i].resource.aws_db_cluster_snapshot[name]
+	some document in input.document
+	rds := document.resource.aws_db_cluster_snapshot[name]
 	db := rds.db_cluster_identifier
 	dbName := split(db, ".")[1]
 
 	not rds_cluster_encrypted(dbName)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_db_cluster_snapshot",
 		"resourceName": tf_lib.get_resource_name(rds, name),
 		"searchKey": sprintf("aws_db_cluster_snapshot[%s]", [name]),
@@ -23,6 +25,7 @@ CxPolicy[result] {
 }
 
 rds_cluster_encrypted(rdsName) {
-	rds := input.document[i].resource.aws_rds_cluster[rdsName]
+	some document in input.document
+	rds := document.resource.aws_rds_cluster[rdsName]
 	rds.storage_encrypted == true
 }

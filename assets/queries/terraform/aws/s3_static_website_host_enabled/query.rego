@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 # version before TF AWS 4.0
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_s3_bucket[name]
+	some document in input.document
+	resource := document.resource.aws_s3_bucket[name]
 	count(resource.website) > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_s3_bucket",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("resource.aws_s3_bucket[%s].website", [name]),
@@ -21,13 +23,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "website")
 
 	count(module[keyToCheck]) > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].website", [name]),
@@ -40,12 +43,13 @@ CxPolicy[result] {
 
 # version after TF AWS 4.0
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_s3_bucket[bucketName]
+	some document in input.document
+	resource := document.resource.aws_s3_bucket[bucketName]
 
 	tf_lib.has_target_resource(bucketName, "aws_s3_bucket_website_configuration")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_s3_bucket",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", bucketName),
 		"searchKey": sprintf("aws_s3_bucket[%s]", [bucketName]),

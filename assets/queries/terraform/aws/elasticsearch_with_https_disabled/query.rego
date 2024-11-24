@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_elasticsearch_domain[name]
+	some document in input.document
+	resource := document.resource.aws_elasticsearch_domain[name]
 	resource.domain_endpoint_options.enforce_https == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_elasticsearch_domain",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_elasticsearch_domain[{{%s}}]", [name]),

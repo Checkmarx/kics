@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	msk_cluster := input.document[i].resource.aws_msk_cluster[name]
+	some document in input.document
+	msk_cluster := document.resource.aws_msk_cluster[name]
 
 	msk_cluster.broker_node_group_info.connectivity_info.public_access.type == "SERVICE_PROVIDED_EIPS"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_msk_cluster",
 		"resourceName": tf_lib.get_specific_resource_name(msk_cluster, "aws_msk_cluster", name),
 		"searchKey": sprintf("aws_msk_cluster[%s].broker_node_group_info.connectivity_info.public_access.type", [name]),
