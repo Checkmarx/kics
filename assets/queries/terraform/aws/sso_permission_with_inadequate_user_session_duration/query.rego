@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_ssoadmin_permission_set[name]
+	some doc in input.document
+	resource := doc.resource.aws_ssoadmin_permission_set[name]
 	session_duration := resource.session_duration
 
 	more_than_one_hour(session_duration)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_ssoadmin_permission_set_inline_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ssoadmin_permission_set[%s].session_duration", [name]),

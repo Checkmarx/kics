@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
+	some doc in input.document
+	cluster := doc.resource.azurerm_kubernetes_cluster[name]
 
 	# before azurerm 3.0
 	rbac := cluster.role_based_access_control
@@ -12,7 +14,7 @@ CxPolicy[result] {
 	rbac.enabled != true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].role_based_access_control.enabled", [name]),
@@ -29,13 +31,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
+	some doc in input.document
+	cluster := doc.resource.azurerm_kubernetes_cluster[name]
 
 	# after azurerm 3.0
 	cluster.role_based_access_control_enabled != true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].role_based_access_control_enabled", [name]),

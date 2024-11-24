@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_cloudformation_stack[name]
+	some doc in input.document
+	resource := doc.resource.aws_cloudformation_stack[name]
 
 	not common_lib.valid_key(resource, "template_body")
 	not common_lib.valid_key(resource, "template_url")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_cloudformation_stack",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudformation_stack[%s]", [name]),

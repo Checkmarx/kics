@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	aws_sns_topic_resource := input.document[i].resource.aws_sns_topic[name]
+	some doc in input.document
+	aws_sns_topic_resource := doc.resource.aws_sns_topic[name]
 
 	info := tf_lib.get_accessibility(aws_sns_topic_resource, name, "aws_sns_topic_policy", "arn")
 
@@ -20,7 +22,7 @@ CxPolicy[result] {
 	final_bom_output := common_lib.get_bom_output(bom_output, info.policy)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("aws_sns_topic[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

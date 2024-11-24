@@ -2,12 +2,14 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_identitystore_user[name]
+	some doc in input.document
+	resource := doc.resource.aws_identitystore_user[name]
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_identitystore_user",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_identitystore_user[%s]", [name]),

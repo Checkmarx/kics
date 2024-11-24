@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 resources := {
 	"aws_cloudfront_distribution",
@@ -12,12 +13,13 @@ resources := {
 }
 
 CxPolicy[result] {
-	target := input.document[i].resource[resources[idx]][name]
+	some doc in input.document
+	target := doc.resource[resources[idx]][name]
 
 	not has_shield_advanced(name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resources[idx],
 		"resourceName": tf_lib.get_resource_name(target, name),
 		"searchKey": sprintf("%s[%s]", [resources[idx], name]),

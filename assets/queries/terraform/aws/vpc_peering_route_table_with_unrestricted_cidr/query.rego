@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_route[name]
+	some doc in input.document
+	resource := doc.resource.aws_route[name]
 
 	common_lib.valid_key(resource, "vpc_peering_connection_id")
 
 	open_cidr(resource)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_route",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_route[%s]", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_route_table[name]
+	some doc in input.document
+	resource := doc.resource.aws_route_table[name]
 
 	route_table_open_cidr(resource.route)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_route",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_route_table[%s].route", [name]),

@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	org := input.document[i].resource.aws_organizations_organization[name]
+	some doc in input.document
+	org := doc.resource.aws_organizations_organization[name]
 
 	org.feature_set == "CONSOLIDATED_BILLING"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_organizations_organization",
 		"resourceName": tf_lib.get_resource_name(org, name),
 		"searchKey": sprintf("aws_organizations_organization[%s].feature_set", [name]),

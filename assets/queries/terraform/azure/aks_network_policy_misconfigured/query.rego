@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
+	some doc in input.document
+	cluster := doc.resource.azurerm_kubernetes_cluster[name]
 	profile := cluster.network_profile
 	policy := profile.network_policy
 
 	not validPolicy(policy)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].network_profile.network_policy", [name]),
@@ -28,12 +30,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
+	some doc in input.document
+	cluster := doc.resource.azurerm_kubernetes_cluster[name]
 	profile := cluster.network_profile
 	not common_lib.valid_key(profile, "network_policy")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].network_profile", [name]),
@@ -47,11 +50,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
+	some doc in input.document
+	cluster := doc.resource.azurerm_kubernetes_cluster[name]
 	not common_lib.valid_key(cluster, "network_profile")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s]", [name]),

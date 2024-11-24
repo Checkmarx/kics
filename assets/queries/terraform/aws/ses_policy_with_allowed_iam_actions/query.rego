@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_ses_identity_policy[name]
+	some doc in input.document
+	resource := doc.resource.aws_ses_identity_policy[name]
 
 	tf_lib.allows_action_from_all_principals(resource.policy, "*")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_ses_identity_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ses_identity_policy[%s].policy", [name]),

@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_db_instance[name]
+	some doc in input.document
+	resource := doc.resource.aws_db_instance[name]
 
 	accessibility := get_accessibility(resource)
 
@@ -21,7 +23,7 @@ CxPolicy[result] {
 	final_bom_output = common_lib.get_bom_output(bom_output, "")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("aws_db_instance[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",
@@ -32,7 +34,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_rds_cluster_instance[name]
+	some doc in input.document
+	resource := doc.resource.aws_rds_cluster_instance[name]
 
 	bom_output = {
 		"resource_type": "aws_rds_cluster_instance",
@@ -47,7 +50,7 @@ CxPolicy[result] {
 	final_bom_output = common_lib.get_bom_output(bom_output, "")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("aws_rds_cluster_instance[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

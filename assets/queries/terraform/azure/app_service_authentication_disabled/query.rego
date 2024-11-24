@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	resource := doc.resource.azurerm_app_service[name]
 
 	not common_lib.valid_key(resource, "auth_settings")
@@ -24,7 +25,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	resource := doc.resource.azurerm_app_service[name]
 
 	resource.auth_settings.enabled == false

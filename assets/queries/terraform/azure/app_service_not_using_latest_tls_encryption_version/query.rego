@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	app := input.document[i].resource.azurerm_app_service[name]
+	some doc in input.document
+	app := doc.resource.azurerm_app_service[name]
 
 	is_number(app.site_config.min_tls_version)
 	app.site_config.min_tls_version != 1.2
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_app_service",
 		"resourceName": tf_lib.get_resource_name(app, name),
 		"searchKey": sprintf("azurerm_app_service[%s].site_config.min_tls_version", [name]),
@@ -27,13 +29,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	app := input.document[i].resource.azurerm_app_service[name]
+	some doc in input.document
+	app := doc.resource.azurerm_app_service[name]
 
 	not is_number(app.site_config.min_tls_version)
 	app.site_config.min_tls_version != "1.2"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_app_service",
 		"resourceName": tf_lib.get_resource_name(app, name),
 		"searchKey": sprintf("azurerm_app_service[%s].site_config.min_tls_version", [name]),

@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	efs_file_system := input.document[i].resource.aws_efs_file_system[name]
+	some doc in input.document
+	efs_file_system := doc.resource.aws_efs_file_system[name]
 
 	info := tf_lib.get_accessibility(efs_file_system, name, "aws_efs_file_system_policy", "file_system_id")
 
@@ -20,7 +22,7 @@ CxPolicy[result] {
 	final_bom_output := common_lib.get_bom_output(bom_output, info.policy)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("aws_efs_file_system[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

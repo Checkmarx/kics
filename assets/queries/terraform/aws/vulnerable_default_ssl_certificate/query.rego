@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.resource.aws_cloudfront_distribution[name]
 
 	not common_lib.valid_key(resource, "viewer_certificate")
@@ -21,7 +22,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.resource.aws_cloudfront_distribution[name]
 
 	resource.viewer_certificate.cloudfront_default_certificate
@@ -38,7 +39,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.resource.aws_cloudfront_distribution[name]
 
 	hasCustomConfig(resource.viewer_certificate)

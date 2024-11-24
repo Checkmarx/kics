@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource
+	some doc in input.document
+	resource := doc.resource
 	stack := resource.aws_cloudformation_stack_set_instance[name]
 	not common_lib.valid_key(stack, "retain_stack")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_cloudformation_stack_set_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudformation_stack_set_instance[%s]", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource
+	some doc in input.document
+	resource := doc.resource
 	stack := resource.aws_cloudformation_stack_set_instance[name]
 	stack.retain_stack == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_cloudformation_stack_set_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudformation_stack_set_instance[%s].retain_stack", [name]),

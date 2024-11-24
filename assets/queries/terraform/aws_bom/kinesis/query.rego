@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_kinesis_stream[name]
+	some doc in input.document
+	resource := doc.resource.aws_kinesis_stream[name]
 
 	bom_output = {
 		"resource_type": "aws_kinesis_stream",
@@ -18,7 +20,7 @@ CxPolicy[result] {
 	final_bom_output = common_lib.get_bom_output(bom_output, "")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("aws_kinesis_stream[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	bucket_resource := input.document[i].resource.aws_s3_bucket[name]
+	some doc in input.document
+	bucket_resource := doc.resource.aws_s3_bucket[name]
 
 	info := get_accessibility(bucket_resource, name)
 
@@ -21,7 +23,7 @@ CxPolicy[result] {
 	final_bom_output = common_lib.get_bom_output(bom_output, info.policy)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("aws_s3_bucket[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",
@@ -66,7 +68,8 @@ is_public_access_blocked(s3BucketPublicAccessBlock) {
 
 get_accessibility(bucket, bucketName) = accessibility {
 	# cases when public access is blocked by aws_s3_bucket_public_access_block
-	s3BucketPublicAccessBlock := input.document[i].resource.aws_s3_bucket_public_access_block[_]
+	some doc in input.document
+	s3BucketPublicAccessBlock := doc.resource.aws_s3_bucket_public_access_block[_]
 	split(s3BucketPublicAccessBlock.bucket, ".")[1] == bucketName
 	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")
 	is_public_access_blocked(s3BucketPublicAccessBlock)

@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	# get a AWS IAM user
-	user := input.document[i].resource.aws_iam_user[targetUser]
+	some doc in input.document
+	user := doc.resource.aws_iam_user[targetUser]
 
 	common_lib.user_unrecommended_permission_policy_scenarios(targetUser, "lambda:UpdateFunctionCode")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_iam_user",
 		"resourceName": tf_lib.get_resource_name(user, targetUser),
 		"searchKey": sprintf("aws_iam_user[%s]", [targetUser]),

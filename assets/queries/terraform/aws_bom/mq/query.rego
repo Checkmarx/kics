@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	aws_mq_broker_resource := input.document[i].resource.aws_mq_broker[name]
+	some doc in input.document
+	aws_mq_broker_resource := doc.resource.aws_mq_broker[name]
 
 	bom_output = {
 		"resource_type": "aws_mq_broker",
@@ -20,7 +22,7 @@ CxPolicy[result] {
 	}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("aws_mq_broker[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

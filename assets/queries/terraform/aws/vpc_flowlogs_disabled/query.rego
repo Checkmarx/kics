@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource
+	some doc in input.document
+	resource := doc.resource
 	awsVpc := resource.aws_vpc[name_vpc]
 	awsVpcId := sprintf("${aws_vpc.%s.id}", [name_vpc])
 
@@ -12,7 +14,7 @@ CxPolicy[result] {
 	not common_lib.inArray(awsFlowLogsId, awsVpcId)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_vpc",
 		"resourceName": name_vpc,
 		"searchKey": sprintf("aws_vpc[%s]", [name_vpc]),
@@ -24,11 +26,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	awsFlowLogsId := input.document[i].resource.aws_flow_log[name_logs]
+	some doc in input.document
+	awsFlowLogsId := doc.resource.aws_flow_log[name_logs]
 	not common_lib.valid_key(awsFlowLogsId, "vpc_id")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_flow_log",
 		"resourceName": name_logs,
 		"searchKey": sprintf("aws_flow_log[%s]", [name_logs]),
@@ -40,13 +43,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some doc in input.document
+	module := doc.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_flow_log", "enable_flow_log")
 
 	module[keyToCheck] == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("%s.%s", [name, keyToCheck]),
@@ -58,13 +62,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some doc in input.document
+	module := doc.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_flow_log", "enable_flow_log")
 
 	not common_lib.valid_key(module, keyToCheck)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("%s", [name]),

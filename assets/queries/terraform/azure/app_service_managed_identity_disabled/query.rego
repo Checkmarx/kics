@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	function := input.document[i].resource.azurerm_app_service[name]
+	some doc in input.document
+	function := doc.resource.azurerm_app_service[name]
 
 	not common_lib.valid_key(function, "identity")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_app_service",
 		"resourceName": tf_lib.get_resource_name(function, name),
 		"searchKey": sprintf("azurerm_app_service[%s]", [name]),

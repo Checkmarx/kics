@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 decode_and_check_private_key(user_base64_data) {
 	decoded_user_data := base64.decode(user_base64_data)
@@ -9,13 +10,14 @@ decode_and_check_private_key(user_base64_data) {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_launch_configuration[name]
+	some doc in input.document
+	resource := doc.resource.aws_launch_configuration[name]
 	user_data := resource.user_data_base64
 	not user_data == null
 	decode_and_check_private_key(user_data)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_launch_configuration",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_launch_configuration[%s].user_data_base64", [name]),
@@ -27,14 +29,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some doc in input.document
+	module := doc.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_launch_configuration", "user_data_base64")
 	user_data := module.user_data_base64
 	not user_data == null
 	decode_and_check_private_key(user_data)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].user_data_base64", [name]),
