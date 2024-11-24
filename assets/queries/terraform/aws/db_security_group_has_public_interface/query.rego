@@ -2,17 +2,19 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_db_security_group[name]
+	some document in input.document
+	resource := document.resource.aws_db_security_group[name]
 
 	cidrs := {"0.0.0.0/0", "::/0"}
-	cidrValue := cidrs[_]
+	some cidrValue in cidrs
 
 	resource.ingress.cidr == cidrValue
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_db_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_db_security_group[%s].ingress.cidr", [name]),
@@ -24,15 +26,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_db_security_group[name]
+	some document in input.document
+	resource := document.resource.aws_db_security_group[name]
 
 	cidrs := {"0.0.0.0/0", "::/0"}
-	cidrValue := cidrs[_]
+	some cidrValue in cidrs
 
 	resource.ingress[idx].cidr == cidrValue
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_db_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_db_security_group[%s].ingress.cidr", [name]),
