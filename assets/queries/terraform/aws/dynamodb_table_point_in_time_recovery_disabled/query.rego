@@ -6,7 +6,7 @@ import future.keywords.in
 
 CxPolicy[result] {
 	some document in input.document
-	resource := document.resource.aws_dynamodb_table[name]
+	resource := document.resource[name]
 	name == "aws_dynamodb_table"
 	res := resource[m]
 	res.point_in_time_recovery.enabled == false
