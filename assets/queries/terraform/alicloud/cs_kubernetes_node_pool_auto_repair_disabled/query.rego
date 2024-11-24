@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_cs_kubernetes_node_pool[name]
+	some document in input.document
+	resource := document.resource.alicloud_cs_kubernetes_node_pool[name]
 
 	auto_repair := resource.management.auto_repair
 	auto_repair == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_cs_kubernetes_node_pool",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_cs_kubernetes_node_pool[%s].resource.management.auto_repair ", [name]),
@@ -27,11 +29,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_cs_kubernetes_node_pool[name]
+	some document in input.document
+	resource := document.resource.alicloud_cs_kubernetes_node_pool[name]
 	not common_lib.valid_key(resource, "management")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_cs_kubernetes_node_pool",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_cs_kubernetes_node_pool[%s]", [name]),
@@ -43,11 +46,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_cs_kubernetes_node_pool[name]
+	some document in input.document
+	resource := document.resource.alicloud_cs_kubernetes_node_pool[name]
 	not common_lib.valid_key(resource.management, "auto_repair")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_cs_kubernetes_node_pool",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_cs_kubernetes_node_pool[%s].management", [name]),

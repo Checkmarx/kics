@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_db_instance[name]
+	some document in input.document
+	resource := document.resource.alicloud_db_instance[name]
 	resource.address == "0.0.0.0/0"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s].address", [name]),

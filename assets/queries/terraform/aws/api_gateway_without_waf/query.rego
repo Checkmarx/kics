@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	apiGateway := input.document[i].resource.aws_api_gateway_stage[name]
+	some document in input.document
+	apiGateway := document.resource.aws_api_gateway_stage[name]
 
 	not has_waf_associated(name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_api_gateway_stage",
 		"resourceName": tf_lib.get_resource_name(apiGateway, name),
 		"searchKey": sprintf("aws_api_gateway_stage[%s]", [name]),
@@ -23,9 +25,9 @@ CxPolicy[result] {
 has_waf_associated(apiGatewayName) {
 	targetResources := {"aws_wafregional_web_acl_association", "aws_wafv2_web_acl_association"}
 
-	waf := targetResources[_]
+	some waf in targetResources
 
-	resource := input.document[_].resource[waf][_]
+	resource := document.resource[waf][_]
 
 	associatedResource := split(resource.resource_arn, ".")
 

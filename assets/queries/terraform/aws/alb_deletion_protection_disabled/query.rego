@@ -2,17 +2,19 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 lbs := {"aws_lb", "aws_alb"}
 
 CxPolicy[result] {
 	loadBalancer := lbs[l]
-	lb := input.document[i].resource[loadBalancer][name]
+	some document in input.document
+	lb := document.resource[loadBalancer][name]
 
 	not common_lib.valid_key(lb, "enable_deletion_protection")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": loadBalancer,
 		"resourceName": tf_lib.get_resource_name(lb, name),
 		"searchKey": sprintf("%s[%s]", [loadBalancer, name]),
@@ -27,12 +29,13 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	loadBalancer := lbs[l]
-	lb := input.document[i].resource[loadBalancer][name]
+	some document in input.document
+	lb := document.resource[loadBalancer][name]
 
 	lb.enable_deletion_protection == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": loadBalancer,
 		"resourceName": tf_lib.get_resource_name(lb, name),
 		"searchKey": sprintf("%s[%s].enable_deletion_protection", [loadBalancer, name]),
@@ -49,13 +52,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_lb", "enable_deletion_protection")
 
 	not common_lib.valid_key(module, "enable_deletion_protection")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
@@ -69,13 +73,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_lb", "enable_deletion_protection")
 
 	module.enable_deletion_protection == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].enable_deletion_protection", [name]),

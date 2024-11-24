@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	ami := input.document[i].resource.aws_ami[name]
+	some document in input.document
+	ami := document.resource.aws_ami[name]
 	ami.ebs_block_device.encrypted == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_ami",
 		"resourceName": tf_lib.get_resource_name(ami, name),
 		"searchKey": sprintf("aws_ami[%s].ebs_block_device.encrypted", [name]),
@@ -25,11 +27,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	ami := input.document[i].resource.aws_ami[name]
+	some document in input.document
+	ami := document.resource.aws_ami[name]
 	common_lib.valid_key(ami, "ebs_block_device")
 	not common_lib.valid_key(ami.ebs_block_device, "encrypted")
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_ami",
 		"resourceName": tf_lib.get_resource_name(ami, name),
 		"searchKey": sprintf("aws_ami[%s].ebs_block_device", [name]),
@@ -43,11 +46,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	ami := input.document[i].resource.aws_ami[name]
+	some document in input.document
+	ami := document.resource.aws_ami[name]
 	not common_lib.valid_key(ami, "ebs_block_device")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_ami",
 		"resourceName": tf_lib.get_resource_name(ami, name),
 		"searchKey": sprintf("aws_ami[%s]", [name]),

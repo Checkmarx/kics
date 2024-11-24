@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_api_gateway_stage[name]
+	some document in input.document
+	resource := document.resource.aws_api_gateway_stage[name]
 	resource.xray_tracing_enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_api_gateway_stage",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_stage[%s].xray_tracing_enabled", [name]),
@@ -25,11 +27,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_api_gateway_stage[name]
+	some document in input.document
+	resource := document.resource.aws_api_gateway_stage[name]
 	not common_lib.valid_key(resource, "xray_tracing_enabled")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_api_gateway_stage",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_stage[%s].xray_tracing_enabled", [name]),

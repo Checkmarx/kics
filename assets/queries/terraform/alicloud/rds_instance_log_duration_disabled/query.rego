@@ -2,15 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	some i
-	resource := input.document[i].resource.alicloud_db_instance[name].parameters
+	some document in input.document
+	resource := document.resource.alicloud_db_instance[name].parameters
 	resource[parameter].name == "log_duration"
 	resource[parameter].value == "OFF"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s].parameters[%d].value", [name, parameter]),
@@ -27,13 +28,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some i
-	resource := input.document[i].resource.alicloud_db_instance[name]
+	some document in input.document
+	resource := document.resource.alicloud_db_instance[name]
 	common_lib.valid_key(resource, "parameters")
 	not has_log_duration(resource)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s].parameters", [name]),
@@ -50,12 +51,12 @@ has_log_duration(resource) {
 }
 
 CxPolicy[result] {
-	some i
-	resource := input.document[i].resource.alicloud_db_instance[name]
+	some document in input.document
+	resource := document.resource.alicloud_db_instance[name]
 	not common_lib.valid_key(resource, "parameters")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s]]", [name]),

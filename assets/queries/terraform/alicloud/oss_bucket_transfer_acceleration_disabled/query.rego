@@ -2,15 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	some i
-	resource := input.document[i].resource.alicloud_oss_bucket[name]
+	some document in input.document
+	resource := document.resource.alicloud_oss_bucket[name]
 
 	resource.transfer_acceleration.enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_oss_bucket",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_oss_bucket", name),
 		"searchKey": sprintf("alicloud_oss_bucket[%s].transfer_acceleration.enabled", [name]),
@@ -27,13 +28,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some i
-	resource := input.document[i].resource.alicloud_oss_bucket[name]
+	some document in input.document
+	resource := document.resource.alicloud_oss_bucket[name]
 
 	not common_lib.valid_key(resource, "transfer_acceleration")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_oss_bucket",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_oss_bucket", name),
 		"searchKey": sprintf("alicloud_oss_bucket[%s]", [name]),

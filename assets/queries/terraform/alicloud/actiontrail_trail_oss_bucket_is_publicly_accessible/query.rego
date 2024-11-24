@@ -2,10 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	some i
-	actiontrail := input.document[i].resource.alicloud_actiontrail_trail[name]
+	some document in input.document
+	actiontrail := document.resource.alicloud_actiontrail_trail[name]
 	bucket_name := actiontrail.oss_bucket_name
 	bucket := input.document[_].resource.alicloud_oss_bucket[_]
 	possibilities := {"public-read", "public-read-write"}
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	bucket.acl == possibilities[p]
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_oss_bucket",
 		"resourceName": tf_lib.get_specific_resource_name(actiontrail, "alicloud_oss_bucket", name),
 		"searchKey": sprintf("alicloud_oss_bucket[%s].acl", [name]),

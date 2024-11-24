@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_api_gateway_method_settings[name].settings
+	some doc in input.document
+	resource := doc.resource.aws_api_gateway_method_settings[name].settings
 	resource.metrics_enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_api_gateway_method_settings",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_method_settings[%s].settings.metrics_enabled", [name]),
@@ -25,11 +27,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_api_gateway_method_settings[name].settings
+	some doc in input.document
+	resource := doc.resource.aws_api_gateway_method_settings[name].settings
 	not common_lib.valid_key(resource, "metrics_enabled")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_api_gateway_method_settings",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_method_settings[%s].settings", [name]),

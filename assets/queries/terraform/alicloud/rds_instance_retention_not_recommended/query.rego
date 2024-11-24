@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_db_instance[name]
+	some document in input.document
+	resource := document.resource.alicloud_db_instance[name]
 	not common_lib.valid_key(resource, "sql_collector_status")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),
@@ -22,11 +24,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_db_instance[name]
+	some document in input.document
+	resource := document.resource.alicloud_db_instance[name]
 	resource.sql_collector_status == "Disabled"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s].sql_collector_status", [name]),
@@ -43,11 +46,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_db_instance[name]
+	some document in input.document
+	resource := document.resource.alicloud_db_instance[name]
 	not common_lib.valid_key(resource, "sql_collector_config_value")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),
@@ -61,11 +65,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_db_instance[name]
+	some document in input.document
+	resource := document.resource.alicloud_db_instance[name]
 	resource.sql_collector_config_value == 30
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s].sql_collector_config_value", [name]),

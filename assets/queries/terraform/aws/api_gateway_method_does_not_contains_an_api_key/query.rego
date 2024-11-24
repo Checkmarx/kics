@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	api = document.resource.aws_api_gateway_method[name]
 
 	not common_lib.valid_key(api, "api_key_required")
@@ -24,7 +25,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	api = document.resource.aws_api_gateway_method[name]
 
 	api.api_key_required != true

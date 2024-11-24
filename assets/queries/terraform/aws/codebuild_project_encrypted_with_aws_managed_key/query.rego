@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_codebuild_project[name]
+	some doc in input.document
+	resource := doc.resource.aws_codebuild_project[name]
 
 	tf_lib.uses_aws_managed_key(resource.encryption_key, "alias/aws/s3")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_codebuild_project",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_codebuild_project[%s].encryption_key", [name]),

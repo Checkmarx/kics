@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_cs_kubernetes[name]
+	some document in input.document
+	resource := document.resource.alicloud_cs_kubernetes[name]
 
 	not common_lib.valid_key(resource, "pod_vswitch_ids")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_cs_kubernetes",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_cs_kubernetes[%s]", [name]),
@@ -21,12 +23,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_cs_kubernetes[name]
+	some document in input.document
+	resource := document.resource.alicloud_cs_kubernetes[name]
 
 	not addons_with_terway(resource)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_cs_kubernetes",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_cs_kubernetes[%s]", [name]),

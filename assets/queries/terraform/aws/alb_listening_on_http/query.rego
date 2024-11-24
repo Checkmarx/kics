@@ -2,11 +2,13 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 lb := {"aws_alb_listener", "aws_lb_listener"}
 
 CxPolicy[result] {
-	resource := input.document[i].resource[lb[idx]][name]
+	some document in input.document
+	resource := document.resource[lb[idx]][name]
 
 	check_application(resource)
 	is_http(resource)
@@ -14,7 +16,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(resource.default_action, "redirect")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": lb[idx],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].default_action", [lb[idx], name]),
@@ -26,7 +28,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[lb[idx]][name]
+	some document in input.document
+	resource := document.resource[lb[idx]][name]
 
 	check_application(resource)
 	is_http(resource)
@@ -34,7 +37,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(resource.default_action.redirect, "protocol")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": lb[idx],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].default_action.redirect", [lb[idx], name]),
@@ -48,7 +51,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[lb[idx]][name]
+	some document in input.document
+	resource := document.resource[lb[idx]][name]
 
 	check_application(resource)
 	is_http(resource)
@@ -56,7 +60,7 @@ CxPolicy[result] {
 	upper(resource.default_action.redirect.protocol) != "HTTPS"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": lb[idx],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].default_action.redirect.protocol", [lb[idx], name]),
@@ -92,7 +96,8 @@ check_application(resource) {
 	lbs := {"aws_alb", "aws_lb"}
 	lb_info := split(resource.load_balancer_arn, ".")
 	lb_name = lb_info[1]
-	lb := input.document[_].resource[lbs[idx]][name]
+	some doc in input.document
+	lb := doc.resource[lbs[idx]][name]
 	lb_name == name
 	is_application(lb)
 }

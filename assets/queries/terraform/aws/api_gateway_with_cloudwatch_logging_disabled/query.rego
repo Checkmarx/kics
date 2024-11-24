@@ -1,13 +1,15 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_api_gateway_stage[name]
+	some document in input.document
+	resource := document.resource.aws_api_gateway_stage[name]
 	not haveLogs(resource.stage_name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_api_gateway_stage",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_stage[%s]", [name]),
@@ -18,7 +20,8 @@ CxPolicy[result] {
 }
 
 haveLogs(stageName) {
-	log := input.document[i].resource.aws_cloudwatch_log_group[_]
+	some document in input.document
+	some log in document.resource.aws_cloudwatch_log_group
 	stageName_escaped := replace(replace(stageName, "$", "\\$"), ".", "\\.")
 	regexPattern := sprintf("API-Gateway-Execution-Logs_\\${aws_api_gateway_rest_api\\.\\w+\\.id}/%s$", [stageName_escaped])
 	regex.match(regexPattern, log.name)

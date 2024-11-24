@@ -2,10 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	some i
-	resource := input.document[i].resource.alicloud_security_group_rule[name]
+	some document in input.document
+	resource := document.resource.alicloud_security_group_rule[name]
 	resource.type == "ingress"
 	resource.cidr_ip == "0.0.0.0/0"
 	isTCPorUDP(resource.ip_protocol)
@@ -15,7 +16,7 @@ CxPolicy[result] {
 	tf_lib.containsPort(resource, portNumber)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_security_group_rule",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_security_group_rule[%s].port_range", [name]),

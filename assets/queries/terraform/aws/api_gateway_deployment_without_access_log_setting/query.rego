@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	deployment = document.resource.aws_api_gateway_deployment[name]
 
 	count({x | resource := input.document[_].resource[x]; x == "aws_api_gateway_stage"}) == 0
@@ -21,7 +22,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	deployment = document.resource.aws_api_gateway_deployment[name]
 
 	count({x | resource := input.document[_].resource[x]; x == "aws_api_gateway_stage"}) != 0
@@ -40,7 +41,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	deployment = document.resource.aws_api_gateway_deployment[name]
 
 	count({x | resource := input.document[_].resource[x]; x == "aws_api_gateway_stage"}) != 0

@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource
+	some document in input.document
+	resource := document.resource
 	stack := resource.alicloud_ros_stack_instance[name]
 	not common_lib.valid_key(stack, "retain_stacks")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_ros_stack_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_ros_stack_instance[%s]", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource
+	some document in input.document
+	resource := document.resource
 	stack := resource.alicloud_ros_stack_instance[name]
 	stack.retain_stacks == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_ros_stack_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_ros_stack_instance[%s].retain_stacks", [name]),

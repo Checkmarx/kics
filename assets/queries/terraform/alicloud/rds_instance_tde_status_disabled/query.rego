@@ -2,20 +2,21 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 supported_mysql_engines := {"5.6", "5.7", "8"}
 
 supported_sql_engines := {"08r2_ent_ha", "2012_ent_ha", "2016_ent_ha", "2017_ent", "2019_std_ha", "2019_ent"}
 
 CxPolicy[result] {
-	some i
-	resource := input.document[i].resource.alicloud_db_instance[name]
+	some document in input.document
+	resource := document.resource.alicloud_db_instance[name]
 	resource.engine == "MySQL"
 	resource.engine_version == supported_mysql_engines[_]
 	resource.tde_status == "Disabled"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s].tde_status", [name]),
@@ -32,14 +33,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some i
-	resource := input.document[i].resource.alicloud_db_instance[name]
+	some document in input.document
+	resource := document.resource.alicloud_db_instance[name]
 	resource.engine == "MySQL"
 	resource.engine_version == supported_mysql_engines[_]
 	not common_lib.valid_key(resource, "tde_status")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),
@@ -53,14 +54,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some i
-	resource := input.document[i].resource.alicloud_db_instance[name]
+	some document in input.document
+	resource := document.resource.alicloud_db_instance[name]
 	resource.engine == "SQLServer"
 	resource.engine_version == supported_sql_engines[_]
 	resource.tde_status == "Disabled"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s].tde_status", [name]),
@@ -77,14 +78,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some i
-	resource := input.document[i].resource.alicloud_db_instance[name]
+	some document in input.document
+	resource := document.resource.alicloud_db_instance[name]
 	resource.engine == "SQLServer"
 	resource.engine_version == supported_sql_engines[_]
 	not common_lib.valid_key(resource, "tde_status")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),

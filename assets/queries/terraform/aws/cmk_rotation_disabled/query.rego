@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_kms_key[name]
+	some doc in input.document
+	resource := doc.resource.aws_kms_key[name]
 
 	not key_set_to_false(resource)
 	not common_lib.valid_key(resource, "enable_key_rotation")
 	customer_master_key_spec_set_to_symmetric(resource)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kms_key[%s]", [name]),
@@ -22,14 +24,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_kms_key[name]
+	some doc in input.document
+	resource := doc.resource.aws_kms_key[name]
 
 	not key_set_to_false(resource)
 	resource.enable_key_rotation == true
 	not customer_master_key_spec_set_to_symmetric(resource)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kms_key[%s]", [name]),
@@ -40,14 +43,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_kms_key[name]
+	some doc in input.document
+	resource := doc.resource.aws_kms_key[name]
 
 	not key_set_to_false(resource)
 	resource.enable_key_rotation == false
 	customer_master_key_spec_set_to_symmetric(resource)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kms_key[%s]", [name]),

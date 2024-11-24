@@ -2,11 +2,13 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	ram_policy := input.document[i].resource.alicloud_ram_policy[name]
+	some document in input.document
+	ram_policy := document.resource.alicloud_ram_policy[name]
 
-	is_admin_policy(ram_policy.document)
+	is_admin_policy(ram_policy)
 
 	policy_attachment_possibilities := {"alicloud_ram_user_policy_attachment", "alicloud_ram_group_policy_attachment", "alicloud_ram_role_policy_attachment"}
 	attachment := policy_attachment_possibilities[pap]
@@ -17,7 +19,7 @@ CxPolicy[result] {
 	target_policy_name == name
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": attachment,
 		"resourceName": tf_lib.get_resource_name(attachment, n),
 		"searchKey": sprintf("%s[%s].policy_name", [attachment, n]),
@@ -31,7 +33,7 @@ CxPolicy[result] {
 is_admin_policy(ram_policy) {
 	u_policy := common_lib.json_unmarshal(ram_policy)
 	statement := common_lib.get_statement(u_policy)
-	st := statement[_]
+	some st in statement
 	st.Effect == "Allow"
 	common_lib.containsOrInArrayContains(st.Resource, "*")
 	common_lib.containsOrInArrayContains(st.Action, "*")

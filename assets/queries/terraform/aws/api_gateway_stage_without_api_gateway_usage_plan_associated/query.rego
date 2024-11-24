@@ -1,15 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	stage = document.resource.aws_api_gateway_stage[name]
 
 	not settings_are_equal(document.resource, stage.rest_api_id, stage.stage_name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_api_gateway_stage",
 		"resourceName": tf_lib.get_resource_name(stage, name),
 		"searchKey": sprintf("aws_api_gateway_stage[%s]", [name]),

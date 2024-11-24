@@ -2,14 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	some i
-	resource := input.document[i].resource.alicloud_ram_account_password_policy[name]
+	some document in input.document
+	resource := document.resource.alicloud_ram_account_password_policy[name]
 	not common_lib.valid_key(resource, "password_reuse_prevention")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_ram_account_password_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_ram_account_password_policy[%s]", [name]),
@@ -23,12 +24,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some i
-	resource := input.document[i].resource.alicloud_ram_account_password_policy[name]
+	some document in input.document
+	resource := document.resource.alicloud_ram_account_password_policy[name]
 	resource.password_reuse_prevention > 24
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_ram_account_password_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_ram_account_password_policy[%s].password_reuse_prevention", [name]),

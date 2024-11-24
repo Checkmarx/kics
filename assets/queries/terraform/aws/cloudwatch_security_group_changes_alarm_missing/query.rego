@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as commonLib
+import future.keywords.in
 
 expressionArr := [
 	{
@@ -37,14 +38,14 @@ expressionArr := [
 
 # { ($.eventName = AuthorizeSecurityGroupIngress) || ($.eventName = AuthorizeSecurityGroupEgress) || ($.eventName = RevokeSecurityGroupIngress) || ($.eventName = RevokeSecurityGroupEgress) || ($.eventName = CreateSecurityGroup) || ($.eventName = DeleteSecurityGroup)}
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	resources := doc.resource.aws_cloudwatch_log_metric_filter
 
 	allPatternsCount := count([x | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern); x = filter])
 	count([x | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern); not check_expression_missing(path[0], filter, doc); x = filter]) == allPatternsCount
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_cloudwatch_log_metric_filter",
 		"resourceName": "unknown",
 		"searchKey": "resource",

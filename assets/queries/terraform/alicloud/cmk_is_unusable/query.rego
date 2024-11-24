@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_kms_key[name]
+	some document in input.document
+	resource := document.resource.alicloud_kms_key[name]
 
 	resource.is_enabled == false
 
 	remediation := {"before": "false", "after": "true"}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_kms_key[%s].is_enabled", [name]),
@@ -25,12 +27,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_kms_key[name]
+	some document in input.document
+	resource := document.resource.alicloud_kms_key[name]
 
 	not common_lib.valid_key(resource, "is_enabled")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_kms_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_kms_key[%s]", [name]),

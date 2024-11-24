@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource[name]
+	some document in input.document
+	resource := document.resource[name]
 	types := {"aws_alb", "aws_lb"}
 	name == types[x]
 	res := resource[m]
@@ -12,7 +14,7 @@ CxPolicy[result] {
 	res.drop_invalid_header_fields == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": types[x],
 		"resourceName": tf_lib.get_resource_name(res, m),
 		"searchKey": sprintf("%s[{{%s}}].drop_invalid_header_fields", [types[x], m]),
@@ -29,7 +31,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[name]
+	some document in input.document
+	resource := document.resource[name]
 	types := {"aws_alb", "aws_lb"}
 	name == types[x]
 	res := resource[m]
@@ -37,7 +40,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(res, "drop_invalid_header_fields")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": types[x],
 		"resourceName": tf_lib.get_resource_name(res, m),
 		"searchKey": sprintf("%s[{{%s}}]", [types[x], m]),
@@ -51,7 +54,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 
 	keyToCheckLbt := common_lib.get_module_equivalent_key("aws", module.source, "aws_lb", "load_balancer_type")
 	check_load_balancer_type(module, keyToCheckLbt)
@@ -60,7 +64,7 @@ CxPolicy[result] {
 	module[keyToCheckDihf] == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].drop_invalid_header_fields", [name]),
@@ -77,7 +81,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 
 	keyToCheckLbt := common_lib.get_module_equivalent_key("aws", module.source, "aws_lb", "load_balancer_type")
 	check_load_balancer_type(module, keyToCheckLbt)
@@ -86,7 +91,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(module, keyToCheckDihf)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),

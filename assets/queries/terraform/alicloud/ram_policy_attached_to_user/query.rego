@@ -2,12 +2,14 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_ram_user_policy_attachment[a]
+	some document in input.document
+	resource := document.resource.alicloud_ram_user_policy_attachment[a]
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_ram_user_policy_attachment",
 		"resourceName": tf_lib.get_resource_name(resource, a),
 		"searchKey": sprintf("alicloud_ram_user_policy_attachment[%s]", [a]),
