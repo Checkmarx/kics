@@ -43,6 +43,7 @@ CxPolicy[result] {
 
 # version after TF AWS 4.0
 CxPolicy[result] {
+	input.document[_].resource.aws_s3_bucket[bucketName]
 	some document in input.document
 	acl := document.resource.aws_s3_bucket_acl[name]
 	split(acl.bucket, ".")[1] == bucketName
