@@ -5,8 +5,8 @@ import data.generic.terraform as tf_lib
 import future.keywords.in
 
 CxPolicy[result] {
-	some doc in input.document
-	resource := doc.resource.aws_iam_user_policy[name]
+	some document in input.document
+	resource := document.resource.aws_iam_user_policy[name]
 
 	policy := common_lib.json_unmarshal(resource.policy)
 	st := common_lib.get_statement(policy)
@@ -28,8 +28,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some doc in input.document
-	resource := doc.resource.aws_iam_user_policy[name]
+	some document in input.document
+	resource := document.resource.aws_iam_user_policy[name]
 
 	policy := common_lib.json_unmarshal(resource.policy)
 	st := common_lib.get_statement(policy)

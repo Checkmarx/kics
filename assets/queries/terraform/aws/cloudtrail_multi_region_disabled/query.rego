@@ -6,7 +6,7 @@ import future.keywords.in
 
 CxPolicy[result] {
 	some document in input.document
-	cloudtrail := doc.resource.aws_cloudtrail[name]
+	cloudtrail := document.resource.aws_cloudtrail[name]
 	not common_lib.valid_key(cloudtrail, "is_multi_region_trail")
 
 	result := {

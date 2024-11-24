@@ -8,7 +8,7 @@ CxPolicy[result] {
 	some document in input.document
 	ram_policy := document.resource.alicloud_ram_policy[name]
 
-	is_admin_policy(ram_policy)
+	is_admin_policy(ram_policy.document)
 
 	policy_attachment_possibilities := {"alicloud_ram_user_policy_attachment", "alicloud_ram_group_policy_attachment", "alicloud_ram_role_policy_attachment"}
 	attachment := policy_attachment_possibilities[pap]

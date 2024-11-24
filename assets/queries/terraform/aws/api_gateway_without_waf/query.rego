@@ -26,8 +26,8 @@ has_waf_associated(apiGatewayName) {
 	targetResources := {"aws_wafregional_web_acl_association", "aws_wafv2_web_acl_association"}
 
 	some waf in targetResources
-
-	resource := document.resource[waf][_]
+	some document in input.document
+	some resource in document.resource[waf]
 
 	associatedResource := split(resource.resource_arn, ".")
 

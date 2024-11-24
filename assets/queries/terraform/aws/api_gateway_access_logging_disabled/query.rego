@@ -63,8 +63,7 @@ CxPolicy[result] {
 	api := document.resource.aws_api_gateway_stage[name]
 
 	x := [methodSettings |
-		some doc in input.document
-		methodSettings := doc.resource.aws_api_gateway_method_settings[_]
+		methodSettings := document.resource.aws_api_gateway_method_settings[_]
 		split(methodSettings.stage_name, ".")[1] == name
 	]
 
