@@ -281,16 +281,16 @@ func BicepParserInit() {
 // NewbicepParser produces a new parser instance for the optional input antlr.TokenStream.
 func NewbicepParser(input antlr.TokenStream) *bicepParser {
 	BicepParserInit()
-	this := new(bicepParser)
-	this.BaseParser = antlr.NewBaseParser(input)
-	staticData := &BicepParserStaticData
-	this.Interpreter = antlr.NewParserATNSimulator(this, staticData.atn, staticData.decisionToDFA, staticData.PredictionContextCache)
-	this.RuleNames = staticData.RuleNames
-	this.LiteralNames = staticData.LiteralNames
-	this.SymbolicNames = staticData.SymbolicNames
-	this.GrammarFileName = "bicep.g4"
+    this := new(bicepParser)
+    this.BaseParser = antlr.NewBaseParser(input)
+    staticData := &BicepParserStaticData
+    this.Interpreter = antlr.NewParserATNSimulator(this, staticData.atn, staticData.decisionToDFA, staticData.PredictionContextCache)
+    this.RuleNames = staticData.RuleNames
+    this.LiteralNames = staticData.LiteralNames
+    this.SymbolicNames = staticData.SymbolicNames
+    this.GrammarFileName = "bicep.g4"
 
-	return this
+    return this
 }
 
 // bicepParser tokens.

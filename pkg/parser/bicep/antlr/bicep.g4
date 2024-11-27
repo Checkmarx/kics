@@ -288,9 +288,16 @@ NUMBER: [0-9]+ ('.' [0-9]+)?;
 // NL -> ("\n" | "\r")+
 NL: [\r\n]+;
 
+// Add rules to capture single-line and multi-line comments
 SINGLE_LINE_COMMENT: '//' ~[\r\n]* -> channel(HIDDEN);
 
-MULTI_LINE_COMMENT: '/*' .*? '*/' -> skip;
+MULTI_LINE_COMMENT: '/*' .*? '*/' -> channel(HIDDEN);
+
+// Add rule to handle comments
+comment
+    : SINGLE_LINE_COMMENT
+    | MULTI_LINE_COMMENT
+    ;
 
 SPACES: [ \t]+ -> skip;
 

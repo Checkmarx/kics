@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/IgnoreMap"
 	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/antlr/parser"
 	"github.com/antlr4-go/antlr/v4"
 )
@@ -197,7 +198,16 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 	if err != nil {
 		return nil, nil, err
 	}
+
 	lexer := parser.NewbicepLexer(stream)
+
+	// Call the GetLinesInfo method to get the line information
+	linesInfo := lexer.GetLinesInfo()
+
+	// Build the ignoreMap from the linesInfo, which is a map of commands to ignore
+	IgnoreMaps := IgnoreMap.ProcessLines(linesInfo)
+
+	linesToIgnore := IgnoreMap.GetIgnoreLines(IgnoreMaps)
 
 	tokenStream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	bicepParser := parser.NewbicepParser(tokenStream)
@@ -227,7 +237,7 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 		return nil, nil, err
 	}
 
-	return []model.Document{doc}, nil, nil
+	return []model.Document{doc}, linesToIgnore, nil
 }
 
 func (s *BicepVisitor) VisitProgram(ctx *parser.ProgramContext) interface{} {
@@ -855,7 +865,7 @@ func (p *Parser) SupportedTypes() map[string]bool {
 	return map[string]bool{"bicep": true, "azureresourcemanager": true}
 }
 
-// GetCommentToken return the comment token of Bicep files - #
+// Return the comment token for Bicep files
 func (p *Parser) GetCommentToken() string {
 	return "//"
 }

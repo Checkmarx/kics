@@ -7,6 +7,8 @@ import (
 	"github.com/antlr4-go/antlr/v4"
 	"sync"
 	"unicode"
+	"bufio"
+	"strings"
 )
 
 // Suppress unused import error
@@ -19,6 +21,132 @@ type bicepLexer struct {
 	channelNames []string
 	modeNames    []string
 	// TODO: EOF string
+}
+
+type BlockInfo struct {
+    BlockType string
+    StartLine int
+    EndLine   int
+}
+
+type LineInfo struct {
+    Type   string
+    Bytes  struct {
+        Bytes  []byte
+        String string
+    }
+    Range struct {
+        Start struct {
+            Line   int
+            Column int
+            Byte   int
+        }
+        End struct {
+            Line   int
+            Column int
+            Byte   int
+        }
+    }
+	Block BlockInfo
+}
+
+func (l *bicepLexer) GetLinesInfo() []LineInfo {
+    var linesInfo []LineInfo
+    input := l.GetInputStream().GetText(0, l.GetInputStream().Size()-1)
+    scanner := bufio.NewScanner(strings.NewReader(input))
+    lineNumber := 0
+    byteOffset := 0
+
+    var currentBlock BlockInfo
+    blockStack := []BlockInfo{}
+
+    for scanner.Scan() {
+        line := scanner.Text()
+        trimmedLine := strings.TrimSpace(line) // Trim leading and trailing whitespace
+        lineBytes := []byte(line)
+        lineLength := len(lineBytes)
+
+        // Create a new lexer instance for the current line
+        lineLexer := NewbicepLexer(antlr.NewInputStream(line))
+        tokens := lineLexer.GetAllTokens()
+
+		if len(blockStack) > 0 {
+            currentBlock = blockStack[len(blockStack)-1]
+        }
+
+		if strings.HasSuffix(trimmedLine, "{") {
+			currentBlock = BlockInfo{
+                BlockType: trimmedLine,
+                StartLine: lineNumber,
+            }
+            blockStack = append(blockStack, currentBlock)
+		} else if strings.Contains(trimmedLine, "}") {
+			if len(blockStack) > 0 {
+				currentBlock.EndLine = lineNumber
+				for i := range linesInfo {
+					if linesInfo[i].Block.StartLine == currentBlock.StartLine {
+						linesInfo[i].Block.EndLine = lineNumber
+					}
+				}
+				blockStack = blockStack[:len(blockStack)-1]
+			}
+		}
+
+        // Determine the type of the line based on the tokens
+        lineType := "other"
+        if len(tokens) > 0 {
+            lineType = l.SymbolicNames[tokens[0].GetTokenType()]
+        }
+
+        lineInfo := LineInfo{
+            Type: lineType,
+            Bytes: struct {
+                Bytes  []byte
+                String string
+            }{
+                Bytes:  lineBytes,
+                String: line,
+            },
+            Range: struct {
+                Start struct {
+                    Line   int
+                    Column int
+                    Byte   int
+                }
+                End struct {
+                    Line   int
+                    Column int
+                    Byte   int
+                }
+            }{
+                Start: struct {
+                    Line   int
+                    Column int
+                    Byte   int
+                }{
+                    Line:   lineNumber,
+                    Column: 0,
+                    Byte:   byteOffset,
+                },
+                End: struct {
+                    Line   int
+                    Column int
+                    Byte   int
+                }{
+                    Line:   lineNumber,
+                    Column: lineLength,
+                    Byte:   byteOffset + lineLength,
+                },
+            },
+            Block: currentBlock,
+        }
+
+        linesInfo = append(linesInfo, lineInfo)
+        lineNumber++
+        byteOffset += lineLength + 1 // +1 for the newline character
+    }
+
+    return linesInfo
 }
 
 var BicepLexerLexerStaticData struct {
