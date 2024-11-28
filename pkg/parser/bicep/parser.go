@@ -237,7 +237,7 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 		return nil, nil, err
 	}
 
-	return []model.Document{doc}, nil, nil
+	return []model.Document{doc}, linesToIgnore, nil
 }
 
 func (s *BicepVisitor) VisitProgram(ctx *parser.ProgramContext) interface{} {
@@ -865,7 +865,7 @@ func (p *Parser) SupportedTypes() map[string]bool {
 	return map[string]bool{"bicep": true, "azureresourcemanager": true}
 }
 
-// Return the comment token for Bicep files
+// GetCommentToken return the comment token of Bicep files - #
 func (p *Parser) GetCommentToken() string {
 	return "//"
 }

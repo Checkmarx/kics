@@ -64,8 +64,8 @@ func ProcessLines(lines []parser.LineInfo) (ig IgnoreMap) {
 	ignoreBlocks := make([]Pos, 0)
 	ignoreComments := make([]Pos, 0)
 	for i := range lines {
-		// token is not a comment
-		if lines[i].Type != "SINGLE_LINE_COMMENT" || i+1 > len(lines) {
+		// line is not a comment
+		if lines[i].Type != "SINGLE_LINE_COMMENT" || i+1 >= len(lines) {
 			continue
 		}
 		// case: CONFIGURATION = X # comment

@@ -22,10 +22,10 @@ var (
 				}
 				properties: {
 					accessTier: accessTier
-					// This is a non-skipped comment
+					// This is a non-kics comment
 					minimumTlsVersion: 'TLS1_2'
 					publicNetworkAccess: 'Enabled'
-					allowBlobPublicAccess: false // Also a non-skipped comment
+					allowBlobPublicAccess: false // Also a non-kics comment
 					allowSharedKeyAccess: false
 					defaultToOAuthAuthentication: true
 					supportsHttpsTrafficOnly: true
