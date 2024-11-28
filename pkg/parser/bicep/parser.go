@@ -237,7 +237,7 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 		return nil, nil, err
 	}
 
-	return []model.Document{doc}, linesToIgnore, nil
+	return []model.Document{doc}, nil, nil
 }
 
 func (s *BicepVisitor) VisitProgram(ctx *parser.ProgramContext) interface{} {
