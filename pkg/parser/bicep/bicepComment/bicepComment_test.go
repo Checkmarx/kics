@@ -1,4 +1,4 @@
-package IgnoreMap
+package bicepComment
 
 import (
 	"reflect"

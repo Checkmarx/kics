@@ -1,4 +1,4 @@
-package IgnoreMap
+package bicepComment
 
 import (
 	"strings"
@@ -7,7 +7,7 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/antlr/parser"
 )
 
-type comment parser.LineInfo
+type bicepComment parser.LineInfo
 
 type Pos struct {
 	Line       int
@@ -17,8 +17,8 @@ type Pos struct {
 	BlockEnd   int
 }
 
-// position returns the position of the comment
-func (c *comment) position() Pos {
+// linePosition returns the position of the comment in the file
+func (c *bicepComment) linePosition() Pos {
 	return Pos{
 		Line:       c.Range.End.Line + 1,
 		Column:     c.Range.End.Column,
@@ -28,10 +28,12 @@ func (c *comment) position() Pos {
 	}
 }
 
-// value returns the value of a comment
-func (c *comment) value() (value model.CommentCommand) {
+// commentContent returns the content of a comment as a model.CommentCommand
+func (c *bicepComment) commentContent() (value model.CommentCommand) {
 	comment := strings.ToLower(string(c.Bytes.Bytes))
-	comment = strings.TrimSpace(comment) // Trim leading and trailing whitespace
+
+	// Trim leading and trailing whitespace
+	comment = strings.TrimSpace(comment)
 
 	// check if we are working with kics command
 	if model.KICSCommentRgxp.MatchString(comment) {
@@ -44,7 +46,7 @@ func (c *comment) value() (value model.CommentCommand) {
 	return model.CommentCommand(comment)
 }
 
-// Ignore is a map of commands to ignore
+// IgnoreMap is a map of all lines and and blocks
 type IgnoreMap map[model.CommentCommand][]Pos
 
 // Build builds the Ignore map
@@ -58,13 +60,13 @@ func (i *IgnoreMap) build(ignoreLine, ignoreBlock, ignoreComment []Pos) {
 	*i = ignoreStruct
 }
 
-// ProcessLines goes over the lines and returns the kics commands
+// ProcessLines goes over the lines and returns a map of lines and blocks relations
 func ProcessLines(lines []parser.LineInfo) (ig IgnoreMap) {
 	ignoreLines := make([]Pos, 0)
 	ignoreBlocks := make([]Pos, 0)
 	ignoreComments := make([]Pos, 0)
 	for i := range lines {
-		// line is not a comment
+		// line is not a comment or is the last line
 		if lines[i].Type != "SINGLE_LINE_COMMENT" || i+1 >= len(lines) {
 			continue
 		}
@@ -72,8 +74,8 @@ func ProcessLines(lines []parser.LineInfo) (ig IgnoreMap) {
 		if i > 0 && lines[i-1].Range.Start.Line == lines[i].Range.Start.Line {
 			continue
 		}
-		ignoreLines, ignoreBlocks, ignoreComments = processComment((*comment)(&lines[i]),
-			(*comment)(&lines[i+1]), ignoreLines, ignoreBlocks, ignoreComments)
+		ignoreLines, ignoreBlocks, ignoreComments = processComment((*bicepComment)(&lines[i]),
+			(*bicepComment)(&lines[i+1]), ignoreLines, ignoreBlocks, ignoreComments)
 	}
 	ig = make(map[model.CommentCommand][]Pos)
 	ig.build(ignoreLines, ignoreBlocks, ignoreComments)
@@ -81,22 +83,22 @@ func ProcessLines(lines []parser.LineInfo) (ig IgnoreMap) {
 }
 
 // processComment analyzes the comment to determine which type of kics command the comment is
-func processComment(comment *comment, tokenToIgnore *comment,
+func processComment(comment *bicepComment, tokenToIgnore *bicepComment,
 	ignoreLine, ignoreBlock, ignoreComments []Pos) (ignoreLineR, ignoreBlockR, ignoreCommentsR []Pos) {
 	ignoreLineR = ignoreLine
 	ignoreBlockR = ignoreBlock
 	ignoreCommentsR = ignoreComments
 
-	switch comment.value() {
+	switch comment.commentContent() {
 	case model.IgnoreLine:
 		// comment is of type kics ignore-line
-		ignoreLineR = append(ignoreLineR, tokenToIgnore.position())
+		ignoreLineR = append(ignoreLineR, tokenToIgnore.linePosition())
 	case model.IgnoreBlock:
 		// comment is of type kics ignore-block
-		ignoreBlockR = append(ignoreBlockR, tokenToIgnore.position())
+		ignoreBlockR = append(ignoreBlockR, tokenToIgnore.linePosition())
 	default:
 		// comment is not of type kics ignore
-		ignoreCommentsR = append(ignoreCommentsR, Pos{Line: comment.position().Line - 1})
+		ignoreCommentsR = append(ignoreCommentsR, Pos{Line: comment.linePosition().Line - 1})
 		return
 	}
 

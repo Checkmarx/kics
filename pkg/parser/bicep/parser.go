@@ -6,8 +6,8 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/IgnoreMap"
 	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/antlr/parser"
+	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/bicepComment"
 	"github.com/antlr4-go/antlr/v4"
 )
 
@@ -205,9 +205,10 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 	linesInfo := lexer.GetLinesInfo()
 
 	// Build the ignoreMap from the linesInfo, which is a map of commands to ignore
-	IgnoreMaps := IgnoreMap.ProcessLines(linesInfo)
+	IgnoreMaps := bicepComment.ProcessLines(linesInfo)
 
-	linesToIgnore := IgnoreMap.GetIgnoreLines(IgnoreMaps)
+	// Get the lines to ignore from the kics scans based on the ignoreMap
+	linesToIgnore := bicepComment.GetIgnoreLines(IgnoreMaps)
 
 	tokenStream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	bicepParser := parser.NewbicepParser(tokenStream)
