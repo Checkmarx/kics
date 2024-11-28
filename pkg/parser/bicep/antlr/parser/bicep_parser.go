@@ -281,7 +281,7 @@ func BicepParserInit() {
 // NewbicepParser produces a new parser instance for the optional input antlr.TokenStream.
 func NewbicepParser(input antlr.TokenStream) *bicepParser {
 	BicepParserInit()
-    this := new(bicepParser)
+	this := new(bicepParser)
     this.BaseParser = antlr.NewBaseParser(input)
     staticData := &BicepParserStaticData
     this.Interpreter = antlr.NewParserATNSimulator(this, staticData.atn, staticData.decisionToDFA, staticData.PredictionContextCache)
