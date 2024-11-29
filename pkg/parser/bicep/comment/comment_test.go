@@ -1,4 +1,4 @@
-package bicepComment
+package comment
 
 import (
 	"reflect"

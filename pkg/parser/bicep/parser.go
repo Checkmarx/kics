@@ -7,7 +7,7 @@ import (
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/antlr/parser"
-	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/bicepComment"
+	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/comment"
 	"github.com/antlr4-go/antlr/v4"
 )
 
@@ -205,7 +205,7 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 	linesInfo := lexer.GetLinesInfo()
 
 	// Build the ignoreMap from the linesInfo, which is a map of commands to ignore
-	IgnoreMaps := bicepComment.ProcessLines(linesInfo)
+	IgnoreMaps := comment.ProcessLines(linesInfo)
 
 	// Get the lines to ignore from the kics scans based on the ignoreMap
 	linesToIgnore := bicepComment.GetIgnoreLines(IgnoreMaps)

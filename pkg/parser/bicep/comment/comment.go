@@ -1,4 +1,4 @@
-package bicepComment
+package comment
 
 import (
 	"strings"
@@ -7,7 +7,7 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/antlr/parser"
 )
 
-type bicepComment parser.LineInfo
+type comment parser.LineInfo
 
 type Pos struct {
 	Line       int
@@ -18,7 +18,7 @@ type Pos struct {
 }
 
 // linePosition returns the position of the comment in the file
-func (c *bicepComment) linePosition() Pos {
+func (c *comment) linePosition() Pos {
 	return Pos{
 		Line:       c.Range.End.Line + 1,
 		Column:     c.Range.End.Column,
@@ -29,7 +29,7 @@ func (c *bicepComment) linePosition() Pos {
 }
 
 // commentContent returns the content of a comment as a model.CommentCommand
-func (c *bicepComment) commentContent() (value model.CommentCommand) {
+func (c *comment) commentContent() (value model.CommentCommand) {
 	comment := strings.ToLower(string(c.Bytes.Bytes))
 
 	// Trim leading and trailing whitespace
@@ -74,8 +74,8 @@ func ProcessLines(lines []parser.LineInfo) (ig IgnoreMap) {
 		if i > 0 && lines[i-1].Range.Start.Line == lines[i].Range.Start.Line {
 			continue
 		}
-		ignoreLines, ignoreBlocks, ignoreComments = processComment((*bicepComment)(&lines[i]),
-			(*bicepComment)(&lines[i+1]), ignoreLines, ignoreBlocks, ignoreComments)
+		ignoreLines, ignoreBlocks, ignoreComments = processComment((*comment)(&lines[i]),
+			(*comment)(&lines[i+1]), ignoreLines, ignoreBlocks, ignoreComments)
 	}
 	ig = make(map[model.CommentCommand][]Pos)
 	ig.build(ignoreLines, ignoreBlocks, ignoreComments)
@@ -83,7 +83,7 @@ func ProcessLines(lines []parser.LineInfo) (ig IgnoreMap) {
 }
 
 // processComment analyzes the comment to determine which type of kics command the comment is
-func processComment(comment *bicepComment, tokenToIgnore *bicepComment,
+func processComment(comment *comment, tokenToIgnore *comment,
 	ignoreLine, ignoreBlock, ignoreComments []Pos) (ignoreLineR, ignoreBlockR, ignoreCommentsR []Pos) {
 	ignoreLineR = ignoreLine
 	ignoreBlockR = ignoreBlock
