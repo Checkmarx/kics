@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
-import future.keywords.in	
+import future.keywords.in
 
 # policy for examples
 CxPolicy[result] {

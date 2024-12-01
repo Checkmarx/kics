@@ -8,7 +8,7 @@ CxPolicy[result] {
 	msk_cluster := document.resource.aws_msk_cluster[name]
 	tech := msk_cluster.logging_info.broker_logs[instanceType]
 	not tech.enabled
-	
+
 	result := {
 		"documentId": document.id,
 		"resourceType": "aws_msk_cluster",

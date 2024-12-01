@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 import future.keywords.in
 
 CxPolicy[result] {
@@ -79,9 +79,7 @@ isInCluster(service, document) {
 	cluster := service.Properties.Cluster
 	is_object(cluster)
 	common_lib.valid_key(cluster, "Ref")
-} else = false {
-	true
-}
+} else = false
 
 existsTaskDefinition(taskDefName, document) = taskDef {
 	is_string(taskDefName)
@@ -92,12 +90,8 @@ existsTaskDefinition(taskDefName, document) = taskDef {
 	ref := taskDefName.Ref
 	document.Resources[ref].Type == "AWS::ECS::TaskDefinition"
 	taskDef := document.Resources[ref]
-} else = null {
-	true
-}
+} else = null
 
 hasTaskRole(taskDef) {
 	common_lib.valid_key(taskDef.Properties, "TaskRoleArn")
-} else = false {
-	true
-}
+} else = false

@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 import future.keywords.in
 
 CxPolicy[result] {
-	some document in input.document	
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties
@@ -24,7 +24,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some document in input.document	
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties
@@ -43,7 +43,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	some document in input.document	
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties

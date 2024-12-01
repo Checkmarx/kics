@@ -4,7 +4,7 @@ import data.generic.terraform as tf_lib
 import future.keywords.in
 
 CxPolicy[result] {
-	some i, resourceType, name, key
+	some resourceType, name, key
 	some document in input.document
 	resource := document.resource[resourceType]
 

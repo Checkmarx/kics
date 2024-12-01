@@ -7,7 +7,7 @@ CxPolicy[result] {
 	some doc in input.document
 	sql_server := doc.resource.azurerm_sql_server[name]
 	not adAdminExists(sql_server.name, sql_server.resource_group_name, name)
-	
+
 	result := {
 		"documentId": doc.id,
 		"resourceType": "azurerm_sql_server",
