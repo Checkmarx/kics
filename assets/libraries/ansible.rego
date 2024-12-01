@@ -7,7 +7,7 @@ tasks := TasksPerDocument
 
 # Builds an object that stores all tasks for each document id
 TasksPerDocument[id] = result {
-	document := input.document[i]
+	some document in input.document
 	id := document.id
 	result := getTasks(document)
 }

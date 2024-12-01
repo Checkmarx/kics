@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as commonLib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod_security_policy[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod_security_policy[name]
 
 	spec := resource.spec
 	not commonLib.compareArrays(spec.required_drop_capabilities, ["ALL", "NET_RAW"])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod_security_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec.required_drop_capabilities", [name]),

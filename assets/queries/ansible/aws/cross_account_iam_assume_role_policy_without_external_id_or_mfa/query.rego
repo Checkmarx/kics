@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.ansible as ans_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 modules := {"community.aws.iam_role", "iam_role"}
 
@@ -12,7 +13,7 @@ CxPolicy[result] {
 
 	policy := iamRole.assume_role_policy_document
 	st := common_lib.get_statement(common_lib.get_policy(policy))
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 

@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.tencentcloud_kubernetes_cluster[name]
+	some document in input.document
+	cluster := document.resource.tencentcloud_kubernetes_cluster[name]
 	not common_lib.valid_key(cluster, "log_agent")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("tencentcloud_kubernetes_cluster[%s]", [name]),
@@ -20,14 +22,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.tencentcloud_kubernetes_cluster[name]
+	some document in input.document
+	cluster := document.resource.tencentcloud_kubernetes_cluster[name]
 	common_lib.valid_key(cluster, "log_agent")
 
 	log_agent := cluster.log_agent
 	log_agent.enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("tencentcloud_kubernetes_cluster[%s].log_agent.enabled", [name]),

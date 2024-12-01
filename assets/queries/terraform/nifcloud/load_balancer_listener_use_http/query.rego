@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	lb_listener := input.document[i].resource.nifcloud_load_balancer_listener[name]
+	some document in input.document
+	lb_listener := document.resource.nifcloud_load_balancer_listener[name]
 	lb_listener.load_balancer_port == 80
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "nifcloud_load_balancer_listener",
 		"resourceName": tf_lib.get_resource_name(lb_listener, name),
 		"searchKey": sprintf("nifcloud_load_balancer_listener[%s]", [name]),

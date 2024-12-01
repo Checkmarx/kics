@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_kubernetes_cluster[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_kubernetes_cluster[name]
 	not any_kubernetes_encryption_protection(name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_kubernetes_cluster[%s]", [name]),
@@ -20,7 +22,7 @@ CxPolicy[result] {
 }
 
 any_kubernetes_encryption_protection(resource_name) {
-	encryption := input.document[_].resource.tencentcloud_kubernetes_encryption_protection[_]
+	some encryption in input.document[_].resource.tencentcloud_kubernetes_encryption_protection
 	split_name := split(encryption.cluster_id, ".")[1]
 	split_name == resource_name
 }

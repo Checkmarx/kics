@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	redis := input.document[i].resource.google_redis_instance[name]
+	some document in input.document
+	redis := document.resource.google_redis_instance[name]
 
 	bom_output = {
 		"resource_type": "google_redis_instance",
@@ -16,7 +18,7 @@ CxPolicy[result] {
 	}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("google_redis_instance[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",
@@ -35,7 +37,7 @@ check_accessability(redis_instance) = acc_status {
 }
 
 has_public_firewall(authorized_network) {
-	firewall := input.document[_].resource.google_compute_firewall[_]
+	some firewall in input.document[_].resource.google_compute_firewall
 
 	common_lib.is_ingress(firewall)
 	common_lib.is_unrestricted(firewall.source_ranges[_])

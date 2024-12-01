@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	dbSecurityGroupRule := input.document[i].resource.nifcloud_db_security_group[name]
+	some document in input.document
+	dbSecurityGroupRule := document.resource.nifcloud_db_security_group[name]
 	cidr := split(getRules(dbSecurityGroupRule.rule)[_].cidr_ip, "/")
 	to_number(cidr[1]) < 1
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "nifcloud_db_security_group",
 		"resourceName": tf_lib.get_resource_name(dbSecurityGroupRule, name),
 		"searchKey": sprintf("nifcloud_db_security_group[%s]", [name]),

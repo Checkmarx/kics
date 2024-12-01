@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.ansible as ansLib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	snsTopicCommunity := task[modules[m]]
 	ansLib.checkState(snsTopicCommunity)
 	st := common_lib.get_statement(common_lib.get_policy(snsTopicCommunity.policy))
-	statement := st[_]
+	some statement in st
 
 	statement.Effect == "Allow"
 	common_lib.any_principal(statement)

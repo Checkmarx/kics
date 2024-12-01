@@ -1,13 +1,15 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	output := input.document[i].output[outputName]
+	some document in input.document
+	output := document.output[outputName]
 	not common_lib.valid_key(output, "description")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("output.{{%s}}", [outputName]),
@@ -18,11 +20,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	description := input.document[i].output[outputName].description
+	some document in input.document
+	description := document.output[outputName].description
 	count(trim(description, " ")) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("output.{{%s}}.description", [outputName]),

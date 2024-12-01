@@ -2,19 +2,21 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	elb_listener := input.document[i].resource.nifcloud_elb_listener[name]
+	some document in input.document
+	elb_listener := document.resource.nifcloud_elb_listener[name]
 
-	elbRef := getElbNetworkInterface(input.document[i].resource, elb_listener.elb_id)
-	elbNetworkInterface := getNetworkInterfaces(elbRef.network_interface)[_]
+	elbRef := getElbNetworkInterface(document.resource, elb_listener.elb_id)
+	some elbNetworkInterface in getNetworkInterfaces(elbRef.network_interface)
 	elbNetworkInterface.network_id == "net-COMMON_GLOBAL"
 	elbNetworkInterface.is_vip_network == true
 
 	elb_listener.protocol == "HTTP"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "nifcloud_elb_listener",
 		"resourceName": tf_lib.get_resource_name(elb_listener, name),
 		"searchKey": sprintf("nifcloud_elb_listener[%s]", [name]),

@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_instance[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_instance[name]
 	resource.allocate_public_ip == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_instance[%s].allocate_public_ip", [name]),

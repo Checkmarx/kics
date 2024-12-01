@@ -522,7 +522,8 @@ matches(target, name) {
 }
 
 has_target_resource(bucketName, resourceName) {
-	resource := input.document[i].resource[resourceName][_]
+	some document in input.document
+	some resource in document.resource[resourceName]
 
 	split(resource.bucket, ".")[1] == bucketName
 }

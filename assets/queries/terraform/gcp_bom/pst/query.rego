@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	pubsub_topic := input.document[i].resource.google_pubsub_topic[name]
+	some document in input.document
+	pubsub_topic := document.resource.google_pubsub_topic[name]
 
 	bom_output = {
 		"resource_type": "google_pubsub_topic",
@@ -16,7 +18,7 @@ CxPolicy[result] {
 	}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("google_pubsub_topic[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",
@@ -34,14 +36,16 @@ check_encrytion(resource) = enc_status {
 }
 
 get_accessibility(topic_name) = accessibility_status {
-	iam_binding := input.document[i].resource.google_pubsub_topic_iam_binding[_]
+	some document in input.document
+	some iam_binding in document.resource.google_pubsub_topic_iam_binding
 	topicRefArray := split(iam_binding.topic, ".")
 	topicRefArray[1] == topic_name
 	iam_binding.role == "roles/pubsub.publisher"
 	checkMembers(iam_binding)
 	accessibility_status := "public"
 } else = accessibility_status {
-	iam_binding := input.document[i].resource.google_pubsub_topic_iam_member[_]
+	some document in input.document
+	some iam_binding in document.resource.google_pubsub_topic_iam_member
 	topicRefArray := split(iam_binding.topic, ".")
 	topicRefArray[1] == topic_name
 	iam_binding.role == "roles/pubsub.publisher"

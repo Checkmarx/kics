@@ -1,11 +1,13 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	types := {"kubernetes_pod": "spec.container", "kubernetes_deployment": "spec.template.spec.container"}
 	resource_prefix := types[x]
-	resource := input.document[i].resource[x][name]
+	some document in input.document
+	resource := document.resource[x][name]
 
 	path := checkPath(resource)
 
@@ -13,7 +15,7 @@ CxPolicy[result] {
 
 	not contains(path.image, ":latest")
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": x,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.image_pull_policy", [x, name, resource_prefix]),

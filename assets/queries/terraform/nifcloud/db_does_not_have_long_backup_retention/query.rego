@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	dbInstance := input.document[i].resource.nifcloud_db_instance[name]
+	some document in input.document
+	dbInstance := document.resource.nifcloud_db_instance[name]
 	not common_lib.valid_key(dbInstance, "backup_retention_period")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "nifcloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(dbInstance, name),
 		"searchKey": sprintf("nifcloud_db_instance[%s]", [name]),
@@ -19,11 +21,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	dbInstance := input.document[i].resource.nifcloud_db_instance[name]
+	some document in input.document
+	dbInstance := document.resource.nifcloud_db_instance[name]
 	dbInstance.backup_retention_period < 7
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "nifcloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(dbInstance, name),
 		"searchKey": sprintf("nifcloud_db_instance[%s]", [name]),

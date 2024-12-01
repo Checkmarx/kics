@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	vpnGateway := input.document[i].resource.nifcloud_vpn_gateway[name]
+	some document in input.document
+	vpnGateway := document.resource.nifcloud_vpn_gateway[name]
 	not common_lib.valid_key(vpnGateway, "security_group")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "nifcloud_vpn_gateway",
 		"resourceName": tf_lib.get_resource_name(vpnGateway, name),
 		"searchKey": sprintf("nifcloud_vpn_gateway[%s]", [name]),

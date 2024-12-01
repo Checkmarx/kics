@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 outdatedSSLPolicies := {
 	"1",
@@ -12,11 +13,12 @@ outdatedSSLPolicies := {
 }
 
 CxPolicy[result] {
-	lb := input.document[i].resource.nifcloud_load_balancer[name]
+	some document in input.document
+	lb := document.resource.nifcloud_load_balancer[name]
 	not common_lib.valid_key(lb, "ssl_policy_id")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "nifcloud_load_balancer",
 		"resourceName": tf_lib.get_resource_name(lb, name),
 		"searchKey": sprintf("nifcloud_load_balancer[%s]", [name]),
@@ -27,11 +29,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	lb := input.document[i].resource.nifcloud_load_balancer[name]
+	some document in input.document
+	lb := document.resource.nifcloud_load_balancer[name]
 	lb.ssl_policy_id == outdatedSSLPolicies[_]
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "nifcloud_load_balancer",
 		"resourceName": tf_lib.get_resource_name(lb, name),
 		"searchKey": sprintf("nifcloud_load_balancer[%s]", [name]),

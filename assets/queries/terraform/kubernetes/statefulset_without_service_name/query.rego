@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	stateful := input.document[i].resource.kubernetes_stateful_set[name]
+	some document in input.document
+	stateful := document.resource.kubernetes_stateful_set[name]
 
 	count({x |
 		resource := input.document[_].resource.kubernetes_service[x]
@@ -14,7 +16,7 @@ CxPolicy[result] {
 	}) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_stateful_set",
 		"resourceName": tf_lib.get_resource_name(stateful, name),
 		"searchKey": sprintf("kubernetes_stateful_set[%s].spec.service_name", [name]),
