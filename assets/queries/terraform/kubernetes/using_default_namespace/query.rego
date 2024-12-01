@@ -2,11 +2,13 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 listKinds := {"kubernetes_ingress", "kubernetes_config_map", "kubernetes_secret", "kubernetes_service", "kubernetes_cron_job", "kubernetes_service_account", "kubernetes_role", "kubernetes_role_binding", "kubernetes_pod", "kubernetes_deployment", "kubernetes_daemonset", "kubernetes_job", "kubernetes_stateful_set", "kubernetes_replication_controller"}
 
 CxPolicy[result] {
-	resource := input.document[i].resource
+	some document in input.document
+	resource := document.resource
 
 	common_lib.valid_key(resource, listKinds[x])
 	k8 := resource[listKinds[x]][name]
@@ -14,7 +16,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(k8.metadata, "namespace")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": listKinds[x],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].metadata", [listKinds[x], name]),
@@ -25,12 +27,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource
+	some document in input.document
+	resource := document.resource
 
 	resource[listKinds[x]][name].metadata.namespace == "default"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": listKinds[x],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].metadata.namespace", [listKinds[x], name]),

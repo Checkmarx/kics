@@ -2,11 +2,12 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 
 	specInfo := k8sLib.getSpecInfo(document)
@@ -26,7 +27,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 
 	specInfo := k8sLib.getSpecInfo(document)
@@ -36,13 +37,13 @@ CxPolicy[result] {
 	not common_lib.valid_key(containerCtx, "allowPrivilegeEscalation")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.allowPrivilegeEscalation should be set and should be set to false", [metadata.name, specInfo.path, types[x], container.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.allowPrivilegeEscalation is undefined", [metadata.name, specInfo.path, types[x], container.name]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], c, "securityContext"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], c, "securityContext"]),
 	}
 }

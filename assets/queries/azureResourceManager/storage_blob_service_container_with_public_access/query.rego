@@ -1,12 +1,13 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 publicOptions := {"Container", "Blob"}
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts/blobServices/containers"
@@ -15,7 +16,7 @@ CxPolicy[result] {
 	val == publicOptions[o]
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties.publicAccess", [common_lib.concat_path(path), value.name]),
@@ -27,7 +28,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts/blobServices"
@@ -39,19 +40,19 @@ CxPolicy[result] {
 	val == publicOptions[o]
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.resources.name=%s.properties.publicAccess", [common_lib.concat_path(path), value.name, childValue.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource with type 'containers' shouldn't have 'publicAccess' %s set to 'Container' or 'Blob'",[val_type]),
+		"keyExpectedValue": sprintf("resource with type 'containers' shouldn't have 'publicAccess' %s set to 'Container' or 'Blob'", [val_type]),
 		"keyActualValue": sprintf("resource with type 'containers' has 'publicAccess' property set to '%s'", [publicOptions[o]]),
 		"searchLine": common_lib.build_search_line(childPath, ["properties", "publicAccess"]),
 	}
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts"
@@ -63,10 +64,10 @@ CxPolicy[result] {
 	val == publicOptions[o]
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
-        "searchKey": sprintf("%s.name=%s.resources.name=%s.properties.publicAccess", [common_lib.concat_path(path), value.name, childValue.name]),
+		"searchKey": sprintf("%s.name=%s.resources.name=%s.properties.publicAccess", [common_lib.concat_path(path), value.name, childValue.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource with type 'blobServices/containers' shouldn't have 'publicAccess' %s set to 'Container' or 'Blob'", [val_type]),
 		"keyActualValue": sprintf("resource with type 'blobServices/containers' has 'publicAccess' property set to '%s'", [publicOptions[o]]),
@@ -74,11 +75,9 @@ CxPolicy[result] {
 	}
 }
 
-
-
 CxPolicy[result] {
-	doc := input.document[i]
-    
+	some doc in input.document
+
 	[path, value] = walk(doc)
 	value.type == "Microsoft.Storage/storageAccounts"
 
@@ -87,15 +86,15 @@ CxPolicy[result] {
 
 	[subchildPath, subchildValue] := walk(childValue.resources)
 	subchildValue.type == "containers"
-    
+
 	[val, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, subchildValue.properties.publicAccess)
 	val == publicOptions[o]
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
-        "searchKey": sprintf("%s.name=%s.resources.name=%s.resources.name=%s.properties.publicAccess", [common_lib.concat_path(path), value.name, childValue.name, subchildValue.name]),
+		"searchKey": sprintf("%s.name=%s.resources.name=%s.resources.name=%s.properties.publicAccess", [common_lib.concat_path(path), value.name, childValue.name, subchildValue.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource with type 'containers' shouldn't have 'publicAccess' %s set to 'Container' or 'Blob'", [val_type]),
 		"keyActualValue": sprintf("resource with type 'containers' has 'publicAccess' property set to '%s'", [publicOptions[o]]),

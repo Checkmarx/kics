@@ -1,16 +1,17 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	properties_json = document.resource.aws_batch_job_definition[name].container_properties
 	properties := json.unmarshal(properties_json)
 	properties.privileged == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_batch_job_definition",
 		"resourceName": tf_lib.get_resource_name(document.resource.aws_batch_job_definition[name], name),
 		"searchKey": sprintf("aws_batch_job_definition[%s].container_properties.privileged", [name]),
@@ -20,7 +21,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_batch_job_definition[%s].container_properties.privileged is 'true'", [name]),
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}

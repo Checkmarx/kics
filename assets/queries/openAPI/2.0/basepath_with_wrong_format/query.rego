@@ -1,12 +1,13 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "2.0"
 
-	not regex.match("^/", doc.basePath)
+	not regex.match(`^/`, doc.basePath)
 
 	result := {
 		"documentId": doc.id,

@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	db := input.document[i].resource.aws_db_instance[name]
+	some document in input.document
+	db := document.resource.aws_db_instance[name]
 
 	not db.enabled_cloudwatch_logs_exports
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_db_instance",
 		"resourceName": tf_lib.get_resource_name(db, name),
 		"searchKey": sprintf("aws_db_instance[%s]", [name]),
@@ -21,12 +23,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	db := input.document[i].resource.aws_db_instance[name]
+	some document in input.document
+	db := document.resource.aws_db_instance[name]
 
 	count(db.enabled_cloudwatch_logs_exports) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_db_instance",
 		"resourceName": tf_lib.get_resource_name(db, name),
 		"searchKey": sprintf("aws_db_instance[%s].enabled_cloudwatch_logs_exports", [name]),
@@ -38,12 +41,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "enabled_cloudwatch_logs_exports")
 	not module[keyToCheck]
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
@@ -55,12 +59,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "enabled_cloudwatch_logs_exports")
 	count(module[keyToCheck]) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].enabled_cloudwatch_logs_exports", [name]),

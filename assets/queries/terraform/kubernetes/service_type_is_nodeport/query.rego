@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_service[name]
+	some document in input.document
+	resource := document.resource.kubernetes_service[name]
 
 	resource.spec.type == "NodePort"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_service",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_service[%s].spec.type", [name]),

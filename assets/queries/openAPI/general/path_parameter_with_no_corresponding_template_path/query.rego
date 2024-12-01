@@ -1,15 +1,16 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 	path := doc.paths[name]
 
 	param := path[verb].parameters[p]
-	param.in == "path"
+	param["in"] == "path"
 
 	matches := openapi_lib.is_path_template(name)
 	count([path_param |

@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
+	some document in input.document
+	resource := document.resource.google_container_cluster[primary]
 	not resource.ip_allocation_policy
 	not resource.networking_mode
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
@@ -19,12 +21,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
+	some document in input.document
+	resource := document.resource.google_container_cluster[primary]
 	not resource.ip_allocation_policy
 	resource.networking_mode
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
@@ -35,12 +38,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
+	some document in input.document
+	resource := document.resource.google_container_cluster[primary]
 	resource.ip_allocation_policy
 	resource.networking_mode == "ROUTES"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),

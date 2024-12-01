@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	deployment := input.document[i]
+	some deployment in input.document
 	object.get(deployment, "kind", "undefined") == "Deployment"
 
 	metadata := deployment.metadata
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(deployment.spec.template.spec, "affinity")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": deployment.id,
 		"resourceType": deployment.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec", [metadata.name]),
@@ -24,7 +25,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	deployment := input.document[i]
+	some deployment in input.document
 	object.get(deployment, "kind", "undefined") == "Deployment"
 
 	to_number(deployment.spec.replicas) > 2
@@ -34,7 +35,7 @@ CxPolicy[result] {
 
 	metadata := deployment.metadata
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": deployment.id,
 		"resourceType": deployment.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity", [metadata.name]),
@@ -45,7 +46,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	deployment := input.document[i]
+	some deployment in input.document
 	object.get(deployment, "kind", "undefined") == "Deployment"
 
 	to_number(deployment.spec.replicas) > 2
@@ -60,7 +61,7 @@ CxPolicy[result] {
 
 	metadata := deployment.metadata
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": deployment.id,
 		"resourceType": deployment.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity", [metadata.name]),
@@ -71,7 +72,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	deployment := input.document[i]
+	some deployment in input.document
 	object.get(deployment, "kind", "undefined") == "Deployment"
 
 	to_number(deployment.spec.replicas) > 2
@@ -89,7 +90,7 @@ CxPolicy[result] {
 
 	metadata := deployment.metadata
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": deployment.id,
 		"resourceType": deployment.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.podAffinityTerm", [metadata.name]),
@@ -100,7 +101,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	deployment := input.document[i]
+	some deployment in input.document
 	object.get(deployment, "kind", "undefined") == "Deployment"
 
 	to_number(deployment.spec.replicas) > 2
@@ -123,7 +124,7 @@ CxPolicy[result] {
 
 	metadata := deployment.metadata
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": deployment.id,
 		"resourceType": deployment.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution.podAffinityTerm.labelSelector.matchLabels", [metadata.name]),
@@ -134,7 +135,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	deployment := input.document[i]
+	some deployment in input.document
 	object.get(deployment, "kind", "undefined") == "Deployment"
 
 	to_number(deployment.spec.replicas) > 2
@@ -152,7 +153,7 @@ CxPolicy[result] {
 
 	metadata := deployment.metadata
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": deployment.id,
 		"resourceType": deployment.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution", [metadata.name]),
@@ -163,7 +164,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	deployment := input.document[i]
+	some deployment in input.document
 	object.get(deployment, "kind", "undefined") == "Deployment"
 
 	to_number(deployment.spec.replicas) > 2
@@ -186,7 +187,7 @@ CxPolicy[result] {
 
 	metadata := deployment.metadata
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": deployment.id,
 		"resourceType": deployment.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution.labelSelector.matchLabels", [metadata.name]),
@@ -199,6 +200,4 @@ CxPolicy[result] {
 match_labels(templateLabels, selectorLabels) {
 	some Key
 	templateLabels[Key] == selectorLabels[Key]
-} else = false {
-	true
-}
+} else = false

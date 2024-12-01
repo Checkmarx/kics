@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some doc in input.document
+	some resource in doc.command[name]
 
 	resource.Cmd == "run"
 	count(resource.Value) == 1
@@ -12,11 +14,11 @@ CxPolicy[result] {
 	commandsSplit = dockerLib.getCommands(commands)
 
 	some j
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install", commandsSplit[j]) == true
+	regex.match(`apt-get (-(-)?[a-zA-Z]+ *)*install`, commandsSplit[j]) == true
 	not avoidAdditionalPackages(commandsSplit[j])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' uses '--no-install-recommends' flag to avoid installing additional packages", [resource.Original]),
@@ -25,20 +27,21 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some doc in input.document
+	some resource in doc.command[name]
 
 	resource.Cmd == "run"
 	count(resource.Value) > 1
 
 	commands := resource.Value
 
-	commands[_] == "apt-get"
-	commands[_] == "install"
+	"apt-get" in commands
+	"install" in commands
 
 	not avoidAdditionalPackages(commands)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s' uses '--no-install-recommends' flag to avoid installing additional packages", [resource.Original]),
@@ -54,5 +57,5 @@ avoidAdditionalPackages(cmd) {
 
 avoidAdditionalPackages(cmd) {
 	is_array(cmd) == true
-    dockerLib.arrayContains(cmd, {"--no-install-recommends", "apt::install-recommends=false"})
+	dockerLib.arrayContains(cmd, {"--no-install-recommends", "apt::install-recommends=false"})
 }

@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 	path := doc.paths[name]
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	parameter := path[verb].parameters[param]
 
 	count([parameter |
-		parameter.in == "path"
+		parameter["in"] == "path"
 		parameter.name == path_param
 		parameter := path[verb].parameters[param]
 	]) == 0
@@ -29,7 +30,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 	path := doc.paths[name]

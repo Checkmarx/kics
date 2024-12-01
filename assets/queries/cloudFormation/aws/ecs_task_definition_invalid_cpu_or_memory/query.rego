@@ -1,13 +1,15 @@
 package Cx
 
-import data.generic.common as commonLib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as commonLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::ECS::Service"
 	resource.Properties.LaunchType == "FARGATE"
-	taskDef := input.document[i].Resources[name2]
+	taskDef := document.Resources[name2]
 	taskDef.Type == "AWS::ECS::TaskDefinition"
 
 	memory := {
@@ -20,11 +22,11 @@ CxPolicy[result] {
 
 	checkMemory(taskDef, memory) == true
 
-    getkey := cf_lib.createSearchKey(taskDef.Properties.ContainerDefinitions[_])
-    searchkey = sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey])
+	getkey := cf_lib.createSearchKey(taskDef.Properties.ContainerDefinitions[_])
+	searchkey = sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": searchkey,
@@ -35,19 +37,20 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::ECS::Service"
 	resource.Properties.LaunchType == "FARGATE"
-	taskDef := input.document[i].Resources[name2]
+	taskDef := document.Resources[name2]
 	taskDef.Type == "AWS::ECS::TaskDefinition"
 	cpuMem := {256, 512, 1024, 2048, 4096}
 	cpu := taskDef.Properties.ContainerDefinitions[_].Cpu
 	not commonLib.inArray(cpuMem, cpu)
 	getkey := cf_lib.createSearchKey(taskDef.Properties.ContainerDefinitions[_])
-    searchkey := sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey])
+	searchkey := sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": searchkey,
@@ -69,13 +72,7 @@ checkMemory(res, memory) {
 	checkRemainder(mem, res.Properties.ContainerDefinitions[_].Cpu)
 }
 
-contains(arr, elem) {
-	arr[_] = elem
-}
-
 checkRemainder(mem, cpu) {
 	not cpu == 256
 	not mem % 1024 == 0
 }
-
-

@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.databricks_ip_access_list[name]
+	some document in input.document
+	resource := document.resource.databricks_ip_access_list[name]
 
 	some j
 	isEntireNetwork(resource.ip_addresses[j])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "databricks_ip_access_list",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("databricks_ip_access_list[%s].ip_addresses", [name]),

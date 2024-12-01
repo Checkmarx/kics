@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 types := {"initContainers", "containers"}
 
@@ -71,7 +72,7 @@ checkSeccompProfile(specInfo, container, containerType, document, metadata) = re
 
 # seccompProfile since Kubernetes v1.19
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 
 	specInfo := k8sLib.getSpecInfo(document)
@@ -81,7 +82,7 @@ CxPolicy[result] {
 
 # seccomp annotations until Kubernetes v1.19, deprecated and removed with v1.25
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 
 	[path, value] = walk(document)

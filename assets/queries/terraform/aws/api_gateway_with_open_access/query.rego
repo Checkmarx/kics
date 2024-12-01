@@ -1,10 +1,11 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource = document.resource.aws_api_gateway_method[name]
 
 	resource.authorization == "NONE"
@@ -21,7 +22,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_api_gateway_method", name, "http_method"], []),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [resource.http_method]),
-			"after": "OPTIONS"
+			"after": "OPTIONS",
 		}),
 		"remediationType": "replacement",
 	}

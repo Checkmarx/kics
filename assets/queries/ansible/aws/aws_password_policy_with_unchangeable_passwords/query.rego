@@ -22,11 +22,9 @@ CxPolicy[result] {
 	}
 }
 
-issueType(str) = "MissingAttribute" {
-	str == ""
-} else = "IncorrectValue" {
-	true
-}
+issueType("") = "MissingAttribute"
+
+issueType(_) = "IncorrectValue"
 
 checkAllowPass(pwPolicy) = ".allow_pw_change" {
 	ansLib.isAnsibleFalse(pwPolicy.allow_pw_change)
@@ -35,6 +33,4 @@ checkAllowPass(pwPolicy) = ".allow_pw_change" {
 } else = "" {
 	not pwPolicy.allow_pw_change
 	not pwPolicy.allow_password_change
-} else = "none" {
-	true
-}
+} else = "none"

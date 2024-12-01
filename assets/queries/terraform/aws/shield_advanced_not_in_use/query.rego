@@ -2,23 +2,24 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 resources := {
 	"aws_cloudfront_distribution",
 	"aws_lb",
 	"aws_globalaccelerator_accelerator",
 	"aws_eip",
-	"aws_route53_zone"
+	"aws_route53_zone",
 }
 
-
 CxPolicy[result] {
-	target := input.document[i].resource[resources[idx]][name]
+	some doc in input.document
+	target := doc.resource[resources[idx]][name]
 
 	not has_shield_advanced(name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resources[idx],
 		"resourceName": tf_lib.get_resource_name(target, name),
 		"searchKey": sprintf("%s[%s]", [resources[idx], name]),
@@ -35,8 +36,8 @@ has_shield_advanced(name) {
 }
 
 matches(shield, name) {
-	split(shield.resource_arn,".")[1] == name
+	split(shield.resource_arn, ".")[1] == name
 } else {
-	target := split(shield.resource_arn,"/")[1]
-	split(target,".")[1] == name
+	target := split(shield.resource_arn, "/")[1]
+	split(target, ".")[1] == name
 }

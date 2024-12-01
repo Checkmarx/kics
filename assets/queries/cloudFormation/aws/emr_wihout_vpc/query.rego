@@ -1,11 +1,12 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	some document in input.document
+	resource = document.Resources[name]
 	resource.Type == "AWS::EMR::Cluster"
 	properties := resource.Properties
 
@@ -14,7 +15,7 @@ CxPolicy[result] {
 	count({x | attr := attrs[x]; common_lib.valid_key(properties.Instances, attr)}) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Instances", [name]),

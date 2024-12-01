@@ -1,20 +1,22 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 waf_resources := [
-    "aws_wafv2_web_acl_association",
-    "aws_wafregional_web_acl_association",
+	"aws_wafv2_web_acl_association",
+	"aws_wafregional_web_acl_association",
 ]
 
 CxPolicy[result] {
 	lb := {"aws_alb", "aws_lb"}
-	resource := input.document[i].resource[lb[idx]][name]
+	some document in input.document
+	resource := document.resource[lb[idx]][name]
 	not is_internal_alb(resource)
 	count({x | x := associated_waf(name)}) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": lb[idx],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s]", [lb[idx], name]),
@@ -29,7 +31,8 @@ is_internal_alb(resource) {
 }
 
 associated_waf(name) {
-	waf := input.document[_].resource[waf_resources[_]][_]
+	some document in input.document
+	waf := document.resource[waf_resources[_]][_]
 	attribute := waf.resource_arn
 	attribute_split := split(attribute, ".")
 	options := {"${aws_alb", "${aws_lb"}

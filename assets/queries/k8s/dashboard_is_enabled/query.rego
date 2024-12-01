@@ -1,20 +1,21 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	metadata := document[i].metadata
+	some document in input.document
+	metadata := document.metadata
 
-	specInfo := k8sLib.getSpecInfo(document[i])
+	specInfo := k8sLib.getSpecInfo(document)
 
 	types := {"initContainers", "containers"}
 	containers := specInfo.spec[types[x]]
 	check_image_content(containers[j])
 
 	result := {
-		"documentId": input.document[i].id,
-		"resourceType": document[i].kind,
+		"documentId": document.id,
+		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.image", [metadata.name, specInfo.path, types[x], containers[j].name]),
 		"issueType": "IncorrectValue",

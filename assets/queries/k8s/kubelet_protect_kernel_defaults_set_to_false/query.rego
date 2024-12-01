@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	specInfo := k8sLib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}
@@ -14,21 +15,21 @@ CxPolicy[result] {
 	k8sLib.hasFlag(container, "--protect-kernel-defaults=false")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--protect-kernel-defaults flag should not be set to false",
 		"keyActualValue": "--protect-kernel-defaults flag is set to false",
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}
 }
 
 CxPolicy[result] {
-	doc :=input.document[i]
-    doc.kind == "KubeletConfiguration"
-    not common_lib.valid_key(doc, "protectKernelDefaults")
+	some doc in input.document
+	doc.kind == "KubeletConfiguration"
+	not common_lib.valid_key(doc, "protectKernelDefaults")
 
 	result := {
 		"documentId": doc.id,
@@ -42,9 +43,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc :=input.document[i]
-    doc.kind == "KubeletConfiguration"
-    doc.protectKernelDefaults == false
+	some doc in input.document
+	doc.kind == "KubeletConfiguration"
+	doc.protectKernelDefaults == false
 
 	result := {
 		"documentId": doc.id,
@@ -56,4 +57,3 @@ CxPolicy[result] {
 		"keyActualValue": "protectKernelDefaults flag is set to false",
 	}
 }
-

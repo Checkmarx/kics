@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_key_vault_key[name]
+	some document in input.document
+	resource := document.resource.azurerm_key_vault_key[name]
 
 	not resource.expiration_date
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_key_vault_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_key_vault_key[%s]", [name]),

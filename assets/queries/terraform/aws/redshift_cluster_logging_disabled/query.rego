@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_redshift_cluster[name]
+	some document in input.document
+	resource := document.resource.aws_redshift_cluster[name]
 	resource.logging.enable == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_redshift_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_redshift_cluster[%s].logging.enable", [name]),
@@ -18,18 +20,19 @@ CxPolicy[result] {
 		"keyActualValue": "'aws_redshift_cluster.logging' is false",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_redshift_cluster[name]
+	some document in input.document
+	resource := document.resource.aws_redshift_cluster[name]
 	not common_lib.valid_key(resource, "logging")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_redshift_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_redshift_cluster[%s]", [name]),

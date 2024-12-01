@@ -1,17 +1,19 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod[name]
 
 	spec := resource.spec
 
 	not common_lib.valid_key(spec, "security_context")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].spec", [name]),
@@ -24,7 +26,8 @@ CxPolicy[result] {
 types := {"init_container", "container"}
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
@@ -33,7 +36,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containers, "security_context")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
@@ -44,18 +47,19 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
-	containersType := containers[_]
+	some containersType in containers
 
 	not common_lib.valid_key(containersType, "security_context")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),

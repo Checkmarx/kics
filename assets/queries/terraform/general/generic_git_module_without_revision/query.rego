@@ -1,12 +1,15 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	module := input.document[i].module[moduleName]
+	some document in input.document
+	module := document.module[moduleName]
 	startswith(module.source, "git::")
 	not contains(module.source, "?ref=")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module.{{%s}}.source", [moduleName]),

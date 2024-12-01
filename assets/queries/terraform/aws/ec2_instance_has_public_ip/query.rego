@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_instance[name]
+	some document in input.document
+	resource := document.resource.aws_instance[name]
 
 	not common_lib.valid_key(resource, "associate_public_ip_address")
 	not common_lib.valid_key(resource, "network_interface")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance.%s", [name]),
@@ -22,7 +24,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "associate_public_ip_address")
 	netInterfaceKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "network_interface")
 
@@ -30,7 +33,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(module, keyToCheck)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
@@ -42,13 +45,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_instance[name]
+	some document in input.document
+	resource := document.resource.aws_instance[name]
 
 	isTrue(resource.associate_public_ip_address)
 	not common_lib.valid_key(resource, "network_interface")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance.%s.associate_public_ip_address", [name]),
@@ -60,7 +64,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "associate_public_ip_address")
 	netInterfaceKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "network_interface")
 
@@ -68,7 +73,7 @@ CxPolicy[result] {
 	isTrue(module[keyToCheck])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].associate_public_ip_address", [name]),

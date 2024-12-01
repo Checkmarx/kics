@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_kinesis_stream[name]
+	some document in input.document
+	resource := document.resource.aws_kinesis_stream[name]
 
 	not resource.encryption_type
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_kinesis_stream",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_stream[%s]", [name]),
@@ -19,12 +21,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_kinesis_stream[name]
+	some document in input.document
+	resource := document.resource.aws_kinesis_stream[name]
 
 	resource.encryption_type == "NONE"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_kinesis_stream",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_stream[%s].encryption_type", [name]),
@@ -35,14 +38,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_kinesis_stream[name]
+	some document in input.document
+	resource := document.resource.aws_kinesis_stream[name]
 
 	resource.encryption_type == "KMS"
 
 	not resource.kms_key_id
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_kinesis_stream",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_stream[%s]", [name]),

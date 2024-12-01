@@ -2,20 +2,21 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
-	resource := doc.resource.aws_iam_user_policy[name]
+	some document in input.document
+	resource := document.resource.aws_iam_user_policy[name]
 
 	policy := common_lib.json_unmarshal(resource.policy)
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	not_exists_mfa(statement) == "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_iam_user_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_user_policy[%s].policy", [name]),
@@ -27,28 +28,27 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
-	resource := doc.resource.aws_iam_user_policy[name]
+	some document in input.document
+	resource := document.resource.aws_iam_user_policy[name]
 
 	policy := common_lib.json_unmarshal(resource.policy)
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	not_exists_mfa(statement) == "false"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_iam_user_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_user_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-	    "keyExpectedValue": "'policy.Statement.Principal.AWS' should contain ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' should be set to true",
+		"keyExpectedValue": "'policy.Statement.Principal.AWS' should contain ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' should be set to true",
 		"keyActualValue": "'policy.Statement.Principal.AWS' doesn't contain ':mfa/' or 'policy.Statement.Condition.BoolIfExists.aws:MultiFactorAuthPresent' is set to false",
 		"searchLine": common_lib.build_search_line(["resource", "aws_iam_user_policy", name, "policy"], []),
 	}
 }
-
 
 not_exists_mfa(statement) = mfa {
 	not common_lib.valid_key(statement.Condition.BoolIfExists, "aws:MultiFactorAuthPresent")
@@ -74,4 +74,3 @@ not_exists_mfa(statement) = mfa {
 	not contains(user, ":mfa/")
 	mfa := "false"
 }
-

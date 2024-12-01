@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.ansible as ans_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 modules := {"community.aws.iam_managed_policy", "iam_managed_policy"}
 
@@ -12,7 +13,7 @@ CxPolicy[result] {
 
 	policy := common_lib.get_policy(common_lib.get_policy(awsApiGateway.policy))
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	aws := statement.Principal.AWS

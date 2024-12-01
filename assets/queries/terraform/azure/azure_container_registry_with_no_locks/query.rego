@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resourceRegistry := input.document[i].resource.azurerm_container_registry[name]
-	resourceLock := input.document[i].resource.azurerm_management_lock[k]
+	some document in input.document
+	resourceRegistry := document.resource.azurerm_container_registry[name]
+	resourceLock := document.resource.azurerm_management_lock[k]
 
 	scopeSplitted := split(resourceLock.scope, ".")
 	not re_match(scopeSplitted[1], name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_container_registry",
 		"resourceName": tf_lib.get_resource_name(resourceRegistry, name),
 		"searchKey": sprintf("azurerm_container_registry[%s]", [name]),

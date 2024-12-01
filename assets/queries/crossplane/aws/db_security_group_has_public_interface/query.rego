@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.crossplane as cp_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, resource] := walk(docs)
 	resource.kind == "SecurityGroup"
 	ingressRules := resource.spec.forProvider.ingress
@@ -15,7 +16,7 @@ CxPolicy[result] {
 	ipRange.cidrIp == "0.0.0.0/0"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.ingress.ipRanges.cidrIp={{%s}}", [cp_lib.getPath(path), resource.metadata.name, ipRange.cidrIp]),

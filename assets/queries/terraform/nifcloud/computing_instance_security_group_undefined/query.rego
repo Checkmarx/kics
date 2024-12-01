@@ -1,15 +1,16 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-
-	instance := input.document[i].resource.nifcloud_instance[name]
-    not common_lib.valid_key(instance, "security_group")
+	some document in input.document
+	instance := document.resource.nifcloud_instance[name]
+	not common_lib.valid_key(instance, "security_group")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "nifcloud_instance",
 		"resourceName": tf_lib.get_resource_name(instance, name),
 		"searchKey": sprintf("nifcloud_instance[%s]", [name]),

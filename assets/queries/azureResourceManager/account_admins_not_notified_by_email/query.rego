@@ -1,17 +1,18 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
-	doc := input.document[i]
+	some doc in input.document
 
 	[path, value] := walk(doc)
 	value.type == types[_]
 
 	properties := value.properties
-	
+
 	[state_value, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.state)
 	[emailAccountAdmins_value, emailAccountAdmins_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.emailAccountAdmins)
 
@@ -19,7 +20,7 @@ CxPolicy[result] {
 	emailAccountAdmins_value == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.emailAccountAdmins", [common_lib.concat_path(path), value.name]),
@@ -32,7 +33,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
-	doc := input.document[i]
+	some doc in input.document
 
 	[path, value] := walk(doc)
 	value.type == types[_]
@@ -40,12 +41,12 @@ CxPolicy[result] {
 	properties := value.properties
 
 	[state_value, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.state)
-	
+
 	lower(state_value) == "enabled"
 	not common_lib.valid_key(properties, "emailAccountAdmins")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),

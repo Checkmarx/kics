@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	databricks_group := input.document[i].resource.databricks_group[name]
+	some document in input.document
+	databricks_group := document.resource.databricks_group[name]
 
 	without_instance_profile(name)
 	without_user(name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_databricks_group",
 		"resourceName": tf_lib.get_resource_name(databricks_group, name),
 		"searchKey": sprintf("databricks_group[%s]", [name]),

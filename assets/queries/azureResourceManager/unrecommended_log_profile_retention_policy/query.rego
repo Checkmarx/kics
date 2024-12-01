@@ -1,10 +1,11 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "microsoft.insights/logprofiles"
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	val == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties.retentionPolicy.enabled", [common_lib.concat_path(path), value.name]),
@@ -24,7 +25,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "microsoft.insights/logprofiles"
@@ -33,7 +34,7 @@ CxPolicy[result] {
 	all([days <= 365, days != 0])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties.retentionPolicy.days", [common_lib.concat_path(path), value.name]),

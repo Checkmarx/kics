@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	document.kind == "PodSecurityPolicy"
 	spec := document.spec
 
@@ -23,7 +24,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 
 	specInfo := k8sLib.getSpecInfo(document)
@@ -47,7 +48,7 @@ check_unsafe(sysctl) {
 		"net.ipv4.ip_local_port_range", "net/ipv4/ip_local_port_range",
 		"net.ipv4.ip_unprivileged_port_start", "net/ipv4/ip_unprivileged_port_start",
 		"net.ipv4.tcp_syncookies", "net/ipv4/tcp_syncookies",
-		"net.ipv4.ping_group_range", "net/ipv4/tcp_syncookies",
+		"net.ipv4.ping_group_range",
 	}
 	not safeSysctls[sysctl]
 }

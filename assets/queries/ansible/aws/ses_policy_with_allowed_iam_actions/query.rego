@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.ansible as ans_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 modules := {"community.aws.aws_ses_identity_policy", "aws.aws_ses_identity_policy"}
 
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	ans_lib.checkState(sesPolicy)
 
 	st := common_lib.get_statement(common_lib.get_policy(sesPolicy.policy))
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	common_lib.containsOrInArrayContains(statement.Action, "*")

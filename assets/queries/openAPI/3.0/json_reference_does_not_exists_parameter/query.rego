@@ -1,13 +1,14 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
-	ref := value["RefMetadata"]["$ref"]
+	ref := value.RefMetadata["$ref"]
 	checkComponents := openapi_lib.check_reference_unexisting(doc, ref, "parameters")
 
 	result := {

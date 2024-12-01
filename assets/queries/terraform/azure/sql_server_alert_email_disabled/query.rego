@@ -2,15 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
-	resource := doc.resource.azurerm_mssql_server_security_alert_policy[name]
+	some document in input.document
+	resource := document.resource.azurerm_mssql_server_security_alert_policy[name]
 
 	not common_lib.valid_key(resource, "email_account_admins")
 
 	result := {
-		"documentId": doc.id,
+		"documentId": document.id,
 		"resourceType": "azurerm_mssql_server_security_alert_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_mssql_server_security_alert_policy[%s]", [name]),
@@ -24,13 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
-	resource := doc.resource.azurerm_mssql_server_security_alert_policy[name]
+	some document in input.document
+	resource := document.resource.azurerm_mssql_server_security_alert_policy[name]
 
 	resource.email_account_admins == false
 
 	result := {
-		"documentId": doc.id,
+		"documentId": document.id,
 		"resourceType": "azurerm_mssql_server_security_alert_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_mssql_server_security_alert_policy[%s].email_account_admins", [name]),
@@ -40,7 +41,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_mssql_server_security_alert_policy", name, "email_account_admins"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 
@@ -12,7 +13,7 @@ CxPolicy[result] {
 
 	policy := resource.Properties.AssumeRolePolicyDocument
 	st := common_lib.get_statement(common_lib.get_policy(policy))
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	aws := statement.Principal.AWS
@@ -20,7 +21,7 @@ CxPolicy[result] {
 	common_lib.allowsAllPrincipalsToAssume(aws, statement)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.AssumeRolePolicyDocument", [cf_lib.getPath(path), name]),

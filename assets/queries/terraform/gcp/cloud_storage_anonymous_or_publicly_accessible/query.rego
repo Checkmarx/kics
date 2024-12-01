@@ -1,13 +1,15 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_storage_bucket_iam_binding[name]
+	some document in input.document
+	resource := document.resource.google_storage_bucket_iam_binding[name]
 	count(resource.members) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_storage_bucket_iam_binding",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_storage_bucket_iam_binding[%s].members", [name]),
@@ -18,12 +20,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_storage_bucket_iam_binding[name]
-	member := resource.members[_]
+	some document in input.document
+	resource := document.resource.google_storage_bucket_iam_binding[name]
+	some member in resource.members
 	contains(member, "allUsers")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_storage_bucket_iam_binding",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_storage_bucket_iam_binding[%s].members", [name]),
@@ -34,12 +37,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_storage_bucket_iam_binding[name]
-	member := resource.members[_]
+	some document in input.document
+	resource := document.resource.google_storage_bucket_iam_binding[name]
+	some member in resource.members
 	contains(member, "allAuthenticatedUsers")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_storage_bucket_iam_binding",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_storage_bucket_iam_binding[%s].members", [name]),

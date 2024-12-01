@@ -1,13 +1,15 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	entry1 := input.document[i].Resources[name]
+	some document in input.document
+	entry1 := document.Resources[name]
 	entry1.Type == "AWS::EC2::NetworkAclEntry"
 
-	entry2 := input.document[i].Resources[_]
+	some entry2 in document.Resources
 	entry2.Type == "AWS::EC2::NetworkAclEntry"
 
 	entry1 != entry2
@@ -22,7 +24,7 @@ CxPolicy[result] {
 	compareRuleNumber(entry1, entry2)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": entry1.Type,
 		"resourceName": cf_lib.get_resource_name(entry1, name),
 		"searchKey": sprintf("Resources.%s.Properties.RuleNumber", [name]),
@@ -34,22 +36,20 @@ CxPolicy[result] {
 
 getRef(obj) = obj.Ref {
 	common_lib.valid_key(obj, "Ref")
-} else = obj {
-	true
-}
+} else = obj
 
 getTraffic(entry) = "egress" {
-	lower(sprintf("%v",[entry.Properties.Egress])) == "true"
+	lower(sprintf("%v", [entry.Properties.Egress])) == "true"
 } else = "ingress" {
-	lower(sprintf("%v",[entry.Properties.Egress])) == "false"
+	lower(sprintf("%v", [entry.Properties.Egress])) == "false"
 } else = "egress" {
-	lower(sprintf("%v",[entry.Properties.Ingress])) == "false"
+	lower(sprintf("%v", [entry.Properties.Ingress])) == "false"
 } else = "ingress" {
-	lower(sprintf("%v",[entry.Properties.Ingress])) == "true"
+	lower(sprintf("%v", [entry.Properties.Ingress])) == "true"
 }
 
-compareRuleNumber(entry1, entry2){
-    ruleNumberEntry1 := to_number(entry1.Properties.RuleNumber)
-    ruleNumberEntry2 := to_number(entry2.Properties.RuleNumber)
-    ruleNumberEntry1 == ruleNumberEntry2
+compareRuleNumber(entry1, entry2) {
+	ruleNumberEntry1 := to_number(entry1.Properties.RuleNumber)
+	ruleNumberEntry2 := to_number(entry2.Properties.RuleNumber)
+	ruleNumberEntry1 == ruleNumberEntry2
 }

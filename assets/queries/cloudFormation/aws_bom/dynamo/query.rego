@@ -2,10 +2,11 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	resource := document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::DynamoDB::Table"
 
 	info := get_accessibility(resource)
@@ -22,7 +23,7 @@ CxPolicy[result] {
 	final_bom_output := common_lib.get_bom_output(bom_output, info.policy)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",
@@ -32,25 +33,26 @@ CxPolicy[result] {
 	}
 }
 
-get_accessibility(resource) = info{
-	info:= check_vpc_endpoint(resource)
+get_accessibility(resource) = info {
+	info := check_vpc_endpoint(resource)
 } else = info {
-	info := {"accessibility":"private", "policy": ""}
+	info := {"accessibility": "private", "policy": ""}
 }
 
-check_vpc_endpoint(resource) = info{
-	values := [x | 
+check_vpc_endpoint(resource) = info {
+	values := [x |
 		vpc_endpoint := input.document[_].Resources[_]
 		vpc_endpoint.Type == "AWS::EC2::VPCEndpoint"
 		policy_doc := vpc_endpoint.Properties.PolicyDocument
-		x := policy_accessibility(policy_doc, resource.Properties.TableName)]
+		x := policy_accessibility(policy_doc, resource.Properties.TableName)
+	]
 
-    info := get_info(values)
+	info := get_info(values)
 }
 
 policy_accessibility(policy, table_name) = info {
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	common_lib.any_principal(statement.Principal)
@@ -59,35 +61,35 @@ policy_accessibility(policy, table_name) = info {
 	resources_arn := get_resource_arn(statement.Resource)
 	has_all_or_dynamob_arn(resources_arn, table_name)
 
-	info := {"accessibility":"public", "policy": policy}
-} else  = info {
-	common_lib.get_statement(policy)
-	info := {"accessibility":"private", "policy": policy}
+	info := {"accessibility": "public", "policy": policy}
 } else = info {
-	info := {"accessibility":"hasPolicy", "policy": policy}
+	common_lib.get_statement(policy)
+	info := {"accessibility": "private", "policy": policy}
+} else = info {
+	info := {"accessibility": "hasPolicy", "policy": policy}
 }
 
 get_resource_arn(resources) = val {
 	is_array(resources)
-	val := resources[_]
+	some val in resources
 } else = val {
 	val := resources
 }
 
-has_all_or_dynamob_arn(arn, table_name){
-	arn == "*"
-} else {
+has_all_or_dynamob_arn("*", _)
+
+has_all_or_dynamob_arn(arn, table_name) {
 	startswith(arn, "arn:aws:dynamodb:")
-	suffix := concat( "", [":table/", table_name])
+	suffix := concat("", [":table/", table_name])
 	endswith(arn, suffix)
 }
 
-get_encryption(resource) = encryption{
-    sse := resource.Properties.SSESpecification
-    sse.SSEEnabled == true
-    encryption := "encrypted"
-} else = encryption{
-    encryption := "unencrypted"
+get_encryption(resource) = encryption {
+	sse := resource.Properties.SSESpecification
+	sse.SSEEnabled == true
+	encryption := "encrypted"
+} else = encryption {
+	encryption := "unencrypted"
 }
 
 dynamo_actions := {
@@ -154,7 +156,7 @@ dynamo_actions := {
 	"dynamodb:RestoreTableFromBackup",
 	"dynamodb:DeleteBackup",
 	"dynamodb:PartiQLDelete",
-	"dynamodb:*"
+	"dynamodb:*",
 }
 
 check_actions(actions) {
@@ -163,9 +165,9 @@ check_actions(actions) {
 	common_lib.equalsOrInArray(actions, "*")
 }
 
-get_info(info_arr)= info{
-	val := [ x | info_arr[x].accessibility == "public" ]
+get_info(info_arr) = info {
+	val := [x | info_arr[x].accessibility == "public"]
 	info := info_arr[val[0]]
-} else = info{
+} else = info {
 	info := info_arr[0]
 }

@@ -2,20 +2,22 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_sqs_queue_policy[name]
+	some doc in input.document
+	resource := doc.resource.aws_sqs_queue_policy[name]
 
 	policy := common_lib.json_unmarshal(resource.policy)
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	check_principal(statement.Principal, "*")
 	tf_lib.anyPrincipal(statement)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_sqs_queue_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_sqs_queue_policy[%s].policy", [name]),

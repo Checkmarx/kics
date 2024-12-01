@@ -1,12 +1,13 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 types := ["Microsoft.Sql/servers/databases/auditingSettings", "auditingSettings"]
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 
 	[path, value] = walk(doc)
 
@@ -17,7 +18,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(properties, "retentionDays")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s.properties", [common_lib.concat_path(path), value.name]),
@@ -29,7 +30,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 
 	[path, value] = walk(doc)
 
@@ -41,7 +42,7 @@ CxPolicy[result] {
 	val_rd < 90
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.retentionDays", [common_lib.concat_path(path), value.name]),

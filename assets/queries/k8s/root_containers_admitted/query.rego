@@ -1,7 +1,9 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	document.kind == "PodSecurityPolicy"
 	spec := document.spec
 
@@ -23,7 +25,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	document.kind == "PodSecurityPolicy"
 	spec := document.spec
 
@@ -43,7 +45,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	document.kind == "PodSecurityPolicy"
 	spec := document.spec
 	groups := {"fsGroup", "supplementalGroups"}
@@ -64,7 +66,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	document.kind == "PodSecurityPolicy"
 	spec := document.spec
 	groups := {"fsGroup", "supplementalGroups"}

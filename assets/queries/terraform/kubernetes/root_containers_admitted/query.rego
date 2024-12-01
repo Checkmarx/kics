@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod_security_policy[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod_security_policy[name]
 
 	privilege := {"privileged", "allow_privilege_escalation"}
 
 	resource.spec[privilege[p]] == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod_security_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec.%s", [name, privilege[p]]),
@@ -21,12 +23,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod_security_policy[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod_security_policy[name]
 
 	resource.spec.run_as_user.rule != "MustRunAsNonRoot"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod_security_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec.run_as_user.rule", [name]),
@@ -37,14 +40,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod_security_policy[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod_security_policy[name]
 
 	groups := {"fs_group", "supplemental_groups"}
 
 	resource.spec[groups[p]].rule != "MustRunAs"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod_security_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec.%s.rule", [name, groups[p]]),
@@ -55,7 +59,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod_security_policy[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod_security_policy[name]
 
 	groups := {"fs_group", "supplemental_groups"}
 
@@ -63,7 +68,7 @@ CxPolicy[result] {
 	resource.spec[groups[p]].range.min == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod_security_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod_security_policy[%s].spec.%s.range.min", [name, groups[p]]),

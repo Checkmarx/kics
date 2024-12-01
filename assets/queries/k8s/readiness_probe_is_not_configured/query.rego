@@ -1,17 +1,18 @@
 package Cx
 
-import data.generic.k8s as k8sLib
 import data.generic.common as common_lib
+import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
 	listKinds := ["Job", "CronJob"]
 	not k8sLib.checkKind(document.kind, listKinds)
 
-	container := specInfo.spec.containers[_]
+	some container in specInfo.spec.containers
 	not common_lib.valid_key(container, "readinessProbe")
 
 	result := {

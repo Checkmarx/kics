@@ -1,17 +1,19 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::S3::Bucket"
 
 	Properties := resource.Properties
-	not common_lib.valid_key(Properties, "PublicAccessBlockConfiguration") 
+	not common_lib.valid_key(Properties, "PublicAccessBlockConfiguration")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
@@ -23,14 +25,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::S3::Bucket"
 
 	PublicAccessBlockConfiguration := resource.Properties.PublicAccessBlockConfiguration
-	not common_lib.valid_key(PublicAccessBlockConfiguration, "BlockPublicPolicy") 
+	not common_lib.valid_key(PublicAccessBlockConfiguration, "BlockPublicPolicy")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration", [name]),
@@ -42,14 +45,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::S3::Bucket"
 
 	PublicAccessBlockConfiguration := resource.Properties.PublicAccessBlockConfiguration
-	PublicAccessBlockConfiguration.BlockPublicPolicy == false 
+	PublicAccessBlockConfiguration.BlockPublicPolicy == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration.BlockPublicPolicy", [name]),

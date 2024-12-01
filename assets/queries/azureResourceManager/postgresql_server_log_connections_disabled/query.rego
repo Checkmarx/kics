@@ -1,10 +1,11 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[parentPath, parentValue] = walk(doc)
 	parentValue.type == "Microsoft.DBforPostgreSQL/servers"
 	parentName := parentValue.name
@@ -15,7 +16,7 @@ CxPolicy[result] {
 	val == "off"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": parentValue.type,
 		"resourceName": parentName,
 		"searchKey": sprintf("%s.name={{%s}}.resources.name=log_connections.properties.value", [common_lib.concat_path(parentPath), parentName]),
@@ -27,7 +28,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[parentPath, parentValue] = walk(doc)
 	parentValue.type == "Microsoft.DBforPostgreSQL/servers"
 	parentName := parentValue.name
@@ -37,7 +38,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(childValue.properties, "value")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": parentValue.type,
 		"resourceName": parentName,
 		"searchKey": sprintf("%s.name={{%s}}.resources.name=log_connections", [common_lib.concat_path(parentPath), parentName]),
@@ -49,7 +50,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 	value.type == "Microsoft.DBforPostgreSQL/servers/configurations"
 	endswith(value.name, "log_connections")
@@ -69,7 +70,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 	value.type == "Microsoft.DBforPostgreSQL/servers/configurations"
 	endswith(value.name, "log_connections")

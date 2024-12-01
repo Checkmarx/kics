@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resources[idx]
+	some document in input.document
+	resource := document.resources[idx]
 	resource.type == "container.v1.cluster"
 
 	not common_lib.valid_key(resource.properties, "masterAuth")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
@@ -21,14 +23,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[idx]
+	some document in input.document
+	resource := document.resources[idx]
 	resource.type == "container.v1.cluster"
 
 	not common_lib.valid_key(resource.properties.masterAuth, "username")
 	not common_lib.valid_key(resource.properties.masterAuth, "password")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.masterAuth", [resource.name]),
@@ -40,14 +43,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[idx]
+	some document in input.document
+	resource := document.resources[idx]
 	resource.type == "container.v1.cluster"
 
 	not count(resource.properties.masterAuth.username) > 0
 	not count(resource.properties.masterAuth.password) > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.masterAuth", [resource.name]),

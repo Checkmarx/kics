@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resources := document.Resources
 
 	resources[resourceName].Type == "AWS::S3::Bucket"
@@ -24,7 +25,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resources := document.Resources
 
 	resources[resourceName].Type == "AWS::S3::Bucket"
@@ -86,13 +87,15 @@ isValidSslPolicyStatement(stmt) {
 	action := st.Action[i]
 	isUnsafeAction(action)
 	equalsFalse(st.Condition.Bool["aws:SecureTransport"])
-} 
+}
+
 else {
 	is_object(stmt)
 	stmt.Effect == "Deny"
 	isUnsafeAction(stmt.Action)
 	equalsFalse(stmt.Condition.Bool["aws:SecureTransport"])
 }
+
 else {
 	is_array(stmt)
 	st := stmt[s]
@@ -107,7 +110,8 @@ else {
 	action := st.Action[i]
 	isUnsafeAction(action)
 	not equalsFalse(st.Condition.Bool["aws:SecureTransport"])
-} 
+}
+
 else {
 	is_object(stmt)
 	stmt.Effect == "Allow"

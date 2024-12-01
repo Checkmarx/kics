@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_iam_access_key[name]
+	some document in input.document
+	resource := document.resource.aws_iam_access_key[name]
 	contains(lower(resource.user), "root")
 	not common_lib.valid_key(resource, "status")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_iam_access_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_access_key[%s]", [name]),
@@ -20,12 +22,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_iam_access_key[name]
+	some document in input.document
+	resource := document.resource.aws_iam_access_key[name]
 	contains(lower(resource.user), "root")
 	resource.status == "Active"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_iam_access_key",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_access_key[%s].status", [name]),

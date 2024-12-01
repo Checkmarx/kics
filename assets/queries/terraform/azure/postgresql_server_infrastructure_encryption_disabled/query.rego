@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	pg := input.document[i].resource.azurerm_postgresql_server[name]
+	some document in input.document
+	pg := document.resource.azurerm_postgresql_server[name]
 
 	not common_lib.valid_key(pg, "infrastructure_encryption_enabled")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_postgresql_server",
 		"resourceName": tf_lib.get_resource_name(pg, name),
 		"searchKey": sprintf("azurerm_postgresql_server[%s]", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	pg := input.document[i].resource.azurerm_postgresql_server[name]
+	some document in input.document
+	pg := document.resource.azurerm_postgresql_server[name]
 
 	pg.infrastructure_encryption_enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_postgresql_server",
 		"resourceName": tf_lib.get_resource_name(pg, name),
 		"searchKey": sprintf("azurerm_postgresql_server[%s].infrastructure_encryption_enabled", [name]),
@@ -38,7 +41,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_postgresql_server", name, "infrastructure_encryption_enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

@@ -2,24 +2,25 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some doc in input.document
 	resources := {"aws_sns_topic", "aws_sns_topic_policy"}
-	resource := document.resource[resources[r]][name]
+	resource := doc.resource[resources[r]][name]
 	policy := resource.policy
 
 	validate_json(policy)
 
 	pol := common_lib.json_unmarshal(policy)
 	st := common_lib.get_statement(pol)
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	statement.NotAction
 
 	result := {
-		"documentId": document.id,
+		"documentId": doc.id,
 		"resourceType": resources[r],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].policy", [resources[r], name]),
@@ -31,7 +32,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some doc in input.document
+	module := doc.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_sns_topic_policy", "policy")
 
 	policy := module[keyToCheck]
@@ -40,13 +42,13 @@ CxPolicy[result] {
 
 	pol := common_lib.json_unmarshal(policy)
 	st := common_lib.get_statement(pol)
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	statement.NotAction
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].policy", [name]),

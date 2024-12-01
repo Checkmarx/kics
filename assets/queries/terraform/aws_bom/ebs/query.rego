@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	ebs_volume := input.document[i].resource.aws_ebs_volume[name]
+	some doc in input.document
+	ebs_volume := doc.resource.aws_ebs_volume[name]
 
 	bom_output = {
 		"resource_type": "aws_ebs_volume",
@@ -16,7 +18,7 @@ CxPolicy[result] {
 	}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("aws_ebs_volume[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

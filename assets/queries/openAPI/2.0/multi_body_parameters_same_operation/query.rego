@@ -1,13 +1,14 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	op := doc.paths[path][operation]
-	bodyParameters := [x | p := op.parameters[_]; p.in == "body"; x := p]
+	bodyParameters := [x | p := op.parameters[_]; p["in"] == "body"; x := p]
 	count(bodyParameters) > 1
 
 	result := {

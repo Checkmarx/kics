@@ -1,10 +1,11 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.resource.aws_lambda_permission[name]
 
 	resource.action != "lambda:InvokeFunction"
@@ -20,7 +21,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_lambda_permission[name].action is %s", [name, resource.action]),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [resource.action]),
-			"after": "lambda:InvokeFunction"
+			"after": "lambda:InvokeFunction",
 		}),
 		"remediationType": "replacement",
 	}

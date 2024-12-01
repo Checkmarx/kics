@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.ansible as ans_lib
 import data.generic.common as common_lib
-
+import future.keywords.in
 
 CxPolicy[result] {
 	task := ans_lib.tasks[id][t]
@@ -11,7 +11,7 @@ CxPolicy[result] {
 	ans_lib.checkState(aws_kms)
 
 	st := common_lib.get_statement(common_lib.get_policy(aws_kms.policy))
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	not common_lib.valid_key(statement, "Condition")

@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].data.databricks_spark_version[name]
+	some document in input.document
+	resource := document.data.databricks_spark_version[name]
 
 	not resource.long_term_support
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "databricks_spark_version",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("databricks_spark_version[%s].long_term_support", [name]),
@@ -19,13 +21,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.databricks_cluster[name]
+	some document in input.document
+	resource := document.resource.databricks_cluster[name]
 
 	not isLtsVersion(resource.spark_version)
 	not contains(resource.spark_version, "data.databricks_spark_version")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "databricks_spark_version",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("databricks_cluster[%s].spark_version", [name]),

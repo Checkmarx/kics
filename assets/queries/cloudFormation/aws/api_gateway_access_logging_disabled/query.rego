@@ -1,18 +1,19 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	some document in input.document
+	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGatewayV2::Stage"
 
 	properties := resource.Properties
 	searchKeyValid := common_lib.valid_non_empty_key(properties, "DefaultRouteSettings")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties%s", [name, searchKeyValid]),
@@ -23,8 +24,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	some document in input.document
+	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGatewayV2::Stage"
 
 	properties := resource.Properties
@@ -32,7 +33,7 @@ CxPolicy[result] {
 	searchKeyValid := common_lib.valid_non_empty_key(defaultRouteSettings, "LoggingLevel")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.DefaultRouteSettings%s", [name, searchKeyValid]),
@@ -43,8 +44,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	some document in input.document
+	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGatewayV2::Stage"
 
 	properties := resource.Properties
@@ -52,7 +53,7 @@ CxPolicy[result] {
 	loggingLevel == "OFF"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.DefaultRouteSettings.LoggingLevel", [name]),
@@ -63,15 +64,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	some document in input.document
+	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Stage"
 
 	properties := resource.Properties
 	searchKeyValid := common_lib.valid_non_empty_key(properties, "MethodSettings")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties%s", [name, searchKeyValid]),
@@ -82,8 +83,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	some document in input.document
+	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Stage"
 
 	properties := resource.Properties
@@ -91,7 +92,7 @@ CxPolicy[result] {
 	searchKeyValid := common_lib.valid_non_empty_key(methodSettings, "LoggingLevel")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.MethodSettings%s", [name, searchKeyValid]),
@@ -102,8 +103,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	some document in input.document
+	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Stage"
 
 	properties := resource.Properties
@@ -111,7 +112,7 @@ CxPolicy[result] {
 	loggingLevel == "OFF"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.MethodSettings.LoggingLevel", [name]),
@@ -122,7 +123,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	resource := doc.Resources[stage]
 	resource.Type == "AWS::ApiGatewayV2::Stage"
 	properties := resource.Properties
@@ -141,7 +142,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	resource := doc.Resources[stage]
 	resource.Type == "AWS::ApiGateway::Stage"
 	properties := resource.Properties

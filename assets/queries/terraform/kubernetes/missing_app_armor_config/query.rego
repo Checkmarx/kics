@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod[name]
 	metadata := resource.metadata
 	metadata.annotations[key]
 	expectedKey := "container.apparmor.security.beta.kubernetes.io"
 	not startswith(key, expectedKey)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].metadata.annotations", [name]),
@@ -21,12 +23,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod[name]
 	metadata := resource.metadata
 	not metadata.annotations
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].metadata", [name]),

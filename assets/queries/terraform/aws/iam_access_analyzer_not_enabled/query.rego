@@ -1,7 +1,8 @@
 package Cx
 
-import input as tf
 import data.generic.common as common_lib
+import future.keywords.in
+import input as tf
 
 CxPolicy[result] {
 	paths := [p |
@@ -18,7 +19,7 @@ CxPolicy[result] {
 
 	not_defined(document_indexes)
 
-	indexes := document_indexes[i]
+	some indexes in document_indexes
 	doc := input.document[indexes]
 	contains(doc.file, ".tf")
 

@@ -1,10 +1,11 @@
 package Cx
 
-import data.generic.k8s as k8sLib
 import data.generic.common as common_lib
+import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	kind := document.kind
 	listKinds := ["Pod"]
 	k8sLib.checkKind(kind, listKinds)
@@ -26,7 +27,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	kind := document.kind
 	listKinds := ["Pod"]
 	k8sLib.checkKind(kind, listKinds)

@@ -1,10 +1,11 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
-CxPolicy[result] {	
-	docs := input.document[i]
+CxPolicy[result] {
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
@@ -13,10 +14,10 @@ CxPolicy[result] {
 	not common_lib.valid_key(properties, "EncryptionAtRestOptions")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path),name]),
+		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions should be defined and not null", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions is undefined or null", [name]),
@@ -24,7 +25,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
@@ -33,10 +34,10 @@ CxPolicy[result] {
 	properties.EncryptionAtRestOptions.Enabled != true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties.EncryptionAtRestOptions.Enabled", [cf_lib.getPath(path),name]),
+		"searchKey": sprintf("%s%s.Properties.EncryptionAtRestOptions.Enabled", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions should be enabled", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.EncryptionAtRestOptions is disabled", [name]),

@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::EC2::SecurityGroupIngress"
@@ -13,10 +14,10 @@ CxPolicy[result] {
 	properties.FromPort != properties.ToPort
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path),name]),
+		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.FromPort should equal to Resources.%s.Properties.ToPort", [name, name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.FromPort is not equal to Resources.%s.Properties.ToPort", [name, name]),
@@ -24,7 +25,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::EC2::SecurityGroup"
@@ -34,10 +35,10 @@ CxPolicy[result] {
 	properties.SecurityGroupIngress[index].FromPort != properties.SecurityGroupIngress[index].ToPort
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties.SecurityGroupIngress", [cf_lib.getPath(path),name]),
+		"searchKey": sprintf("%s%s.Properties.SecurityGroupIngress", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].FromPort should equal to Resources.%s.Properties.SecurityGroupIngress[%d].ToPort", [name, index, name, index]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].FromPort is not equal to Resources.%s.Properties.SecurityGroupIngress[%d].ToPort", [name, index, name, index]),

@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_role_definition[name]
+	some document in input.document
+	resource := document.resource.azurerm_role_definition[name]
 
 	actions := resource.permissions.actions
 
 	allows_custom_roles_creation(actions)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_role_definition",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_role_definition[%s].permissions.actions", [name]),

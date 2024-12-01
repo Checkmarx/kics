@@ -1,14 +1,16 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	expr := input.document[i].resource.aws_iam_account_password_policy[name]
+	some document in input.document
+	expr := document.resource.aws_iam_account_password_policy[name]
 	not expr.max_password_age
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_iam_account_password_policy",
 		"resourceName": tf_lib.get_resource_name(expr, name),
 		"searchKey": sprintf("aws_iam_account_password_policy[%s]", [name]),
@@ -22,11 +24,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	expr := input.document[i].resource.aws_iam_account_password_policy[name]
+	some document in input.document
+	expr := document.resource.aws_iam_account_password_policy[name]
 	expr.max_password_age > 90
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_iam_account_password_policy",
 		"resourceName": tf_lib.get_resource_name(expr, name),
 		"searchKey": sprintf("aws_iam_account_password_policy[%s].max_password_age", [name]),
@@ -36,7 +39,7 @@ CxPolicy[result] {
 		"keyActualValue": "'max_password_age' is higher than 90",
 		"remediation": json.marshal({
 			"before": sprintf("%d", [expr.max_password_age]),
-			"after": "90"
+			"after": "90",
 		}),
 		"remediationType": "replacement",
 	}

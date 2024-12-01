@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
+	some doc in input.document
+	cluster := doc.resource.azurerm_kubernetes_cluster[name]
 
 	not common_lib.valid_key(cluster, "disk_encryption_set_id")
 	is_not_ephemeral(cluster)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s]", [name]),
@@ -21,9 +23,8 @@ CxPolicy[result] {
 	}
 }
 
-
-is_not_ephemeral(cluster){
-	not common_lib.valid_key(cluster.default_node_pool, "os_disk_type") 
+is_not_ephemeral(cluster) {
+	not common_lib.valid_key(cluster.default_node_pool, "os_disk_type")
 } else {
 	disk_type := cluster.default_node_pool.os_disk_type
 	disk_type != "Ephemeral"

@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 types := {"initContainers", "containers"}
 
@@ -17,14 +18,14 @@ getMetadataInfo(document) = metadataInfo {
 	metadataInfo := {"metadata": metadata, "path": ""}
 }
 
+isValidAppArmorProfile("runtime/default") = true
+
 isValidAppArmorProfile(profile) {
-	profile == "runtime/default"
-} else {
 	startswith(profile, "localhost/")
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 
 	specInfo := k8sLib.getSpecInfo(document)
@@ -49,7 +50,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 
 	specInfo := k8sLib.getSpecInfo(document)
@@ -70,6 +71,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s should specify an AppArmor profile for container {{%s}}", [metadata.name, annotationsPath, container]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s does not specify an AppArmor profile for container {{%s}}", [metadata.name, annotationsPath, container]),
-		"searchLine": common_lib.build_search_line(split(annotationsPath, "."), [])
+		"searchLine": common_lib.build_search_line(split(annotationsPath, "."), []),
 	}
 }

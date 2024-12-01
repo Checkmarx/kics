@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 types := {"initContainers", "containers"}
 
@@ -23,7 +24,6 @@ checkUser(specInfo, container, containerType, document, metadata) = result {
 
 # pod defines runAsUser and container inherits this setting
 checkUser(specInfo, container, containerType, document, metadata) = result {
-
 	nested_info := common_lib.get_nested_values_info(container, ["securityContext", "runAsUser"])
 	nested_info.valid == false
 
@@ -61,7 +61,7 @@ checkUser(specInfo, container, containerType, document, metadata) = result {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 
 	specInfo := k8sLib.getSpecInfo(document)

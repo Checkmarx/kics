@@ -1,10 +1,12 @@
 package Cx
 
 import data.generic.ansible as ansLib
+import future.keywords.in
 
 CxPolicy[result] {
 	modules := {"azure.azcollection.azure_rm_cosmosdbaccount", "azure_rm_cosmosdbaccount"}
 	task := ansLib.tasks[id][t]
+	some m in modules
 	cosmosdbaccount := task[modules[m]]
 	ansLib.checkState(cosmosdbaccount)
 

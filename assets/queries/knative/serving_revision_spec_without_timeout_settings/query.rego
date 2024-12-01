@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	startswith(resource.apiVersion, "serving.knative.dev")
 	resource.kind == "Service"
 	metadata := resource.metadata
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(spec, "timeoutSeconds")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec", [metadata.name]),
@@ -24,7 +25,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	startswith(resource.apiVersion, "serving.knative.dev")
 	resource.kind == "Service"
 	metadata := resource.metadata
@@ -33,7 +34,7 @@ CxPolicy[result] {
 	timeoutSeconds == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.timeoutSeconds", [metadata.name]),

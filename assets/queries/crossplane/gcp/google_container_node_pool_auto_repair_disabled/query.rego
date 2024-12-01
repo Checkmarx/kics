@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.crossplane as cp_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "container.gcp.crossplane.io")
 	resource.kind == "NodePool"
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(forProvider, "management")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider", [cp_lib.getPath(path), resource.metadata.name]),
@@ -25,7 +26,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "container.gcp.crossplane.io")
 	resource.kind == "NodePool"
@@ -35,19 +36,19 @@ CxPolicy[result] {
 	not common_lib.valid_key(management, "autoRepair")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.management", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "autoRepair should be defined and set to true",
 		"keyActualValue": "autoRepair is not defined",
-		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider","management"]),
+		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider", "management"]),
 	}
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "container.gcp.crossplane.io")
 	resource.kind == "NodePool"
@@ -57,13 +58,13 @@ CxPolicy[result] {
 	management.autoRepair == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.management.autoRepair", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "autoRepair should be set to true",
 		"keyActualValue": "autoRepair is set to false",
-		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider","management", "autoRepair"]),
+		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider", "management", "autoRepair"]),
 	}
 }

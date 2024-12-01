@@ -2,18 +2,20 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.pulumi as plm_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resources[name]
+	some document in input.document
+	resource := document.resources[name]
 	resource.type == "kubernetes:core/v1:Pod"
 
 	metadata := resource.properties.metadata
-	annotations := metadata.annotations	
+	annotations := metadata.annotations
 	annotations != null
 	not hasExpectedKey(annotations)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties.metadata.annotations", [name]),
@@ -24,21 +26,22 @@ CxPolicy[result] {
 	}
 }
 
-hasExpectedKey(annotations){
+hasExpectedKey(annotations) {
 	annotations[key]
 	expectedKey := "container.apparmor.security.beta.kubernetes.io"
 	startswith(key, expectedKey)
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[name]
+	some document in input.document
+	resource := document.resources[name]
 	resource.type == "kubernetes:core/v1:Pod"
 
 	metadata := resource.properties.metadata
-	not common_lib.valid_key(metadata , "annotations")
+	not common_lib.valid_key(metadata, "annotations")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties.metadata", [name]),

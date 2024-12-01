@@ -1,17 +1,18 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.DBforMySQL/servers"
 	not common_lib.valid_key(value.properties, "sslEnforcement")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
@@ -23,7 +24,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.DBforMySQL/servers"
@@ -31,7 +32,7 @@ CxPolicy[result] {
 	val == "Disabled"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.sslEnforcement", [common_lib.concat_path(path), value.name]),

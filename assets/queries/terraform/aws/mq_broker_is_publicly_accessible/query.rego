@@ -1,14 +1,16 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	broker := input.document[i].resource.aws_mq_broker[name]
+	some document in input.document
+	broker := document.resource.aws_mq_broker[name]
 	broker.publicly_accessible == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_mq_broker",
 		"resourceName": tf_lib.get_specific_resource_name(broker, "aws_mq_broker", name),
 		"searchKey": sprintf("aws_mq_broker[%s].publicly_accessible", [name]),
@@ -18,7 +20,7 @@ CxPolicy[result] {
 		"keyActualValue": "'publicly_accessible' is set to true",
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}

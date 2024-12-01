@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
-#default of block_public_policy is false
+# default of block_public_policy is false
 CxPolicy[result] {
-	pubACL := input.document[i].resource.aws_s3_bucket_public_access_block[name]
+	some document in input.document
+	pubACL := document.resource.aws_s3_bucket_public_access_block[name]
 	not common_lib.valid_key(pubACL, "block_public_policy")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_s3_bucket_public_access_block",
 		"resourceName": tf_lib.get_resource_name(pubACL, name),
 		"searchKey": sprintf("aws_s3_bucket_public_access_block[%s].block_public_policy", [name]),
@@ -21,11 +23,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	pubACL := input.document[i].resource.aws_s3_bucket_public_access_block[name]
+	some document in input.document
+	pubACL := document.resource.aws_s3_bucket_public_access_block[name]
 	pubACL.block_public_policy == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_s3_bucket_public_access_block",
 		"resourceName": tf_lib.get_resource_name(pubACL, name),
 		"searchKey": sprintf("aws_s3_bucket_public_access_block[%s].block_public_policy", [name]),
@@ -37,12 +40,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "block_public_policy")
 	not common_lib.valid_key(module, keyToCheck)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
@@ -54,12 +58,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "block_public_policy")
 	module[keyToCheck] == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].%s", [name, keyToCheck]),

@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource
+	some doc in input.document
+	resource := doc.resource
 	aws_dms_replication_instance := resource.aws_dms_replication_instance[name]
 	aws_dms_replication_instance.publicly_accessible == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_dms_replication_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_dms_replication_instance[%s].publicly_accessible", [name]),

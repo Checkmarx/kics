@@ -1,13 +1,15 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	webhook := input.document[i].resource.github_organization_webhook[name]
+	some document in input.document
+	webhook := document.resource.github_organization_webhook[name]
 	webhook.configuration.insecure_ssl == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "github_organization_webhook",
 		"resourceName": tf_lib.get_resource_name(webhook, name),
 		"searchKey": sprintf("github_organization_webhook[%s].configuration.insecure_ssl", [name]),

@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as commonLib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	deployment = document.resource.aws_api_gateway_deployment[name]
 
 	not settings_are_equal(document.resource, deployment.rest_api_id, deployment.stage_name)

@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_nas_file_system[name]
+	some document in input.document
+	resource := document.resource.alicloud_nas_file_system[name]
 	not common_lib.valid_key(resource, "encrypt_type")
-	
+
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_nas_file_system",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_nas_file_system[%s]", [name]),
@@ -22,11 +24,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.alicloud_nas_file_system[name]
+	some document in input.document
+	resource := document.resource.alicloud_nas_file_system[name]
 	resource.encrypt_type != "2"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_nas_file_system",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_nas_file_system[%s]", [name]),
@@ -36,7 +39,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_nas_file_system", name, "encrypt_type"], []),
 		"remediation": json.marshal({
 			"before": resource.encrypt_type,
-			"after": "2"
+			"after": "2",
 		}),
 		"remediationType": "replacement",
 	}

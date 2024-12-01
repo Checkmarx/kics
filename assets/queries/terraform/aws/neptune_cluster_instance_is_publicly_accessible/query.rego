@@ -1,15 +1,17 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	neptuneClusterInstance := input.document[i].resource.aws_neptune_cluster_instance[name]
+	some document in input.document
+	neptuneClusterInstance := document.resource.aws_neptune_cluster_instance[name]
 
 	neptuneClusterInstance.publicly_accessible == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_neptune_cluster_instance",
 		"resourceName": tf_lib.get_resource_name(neptuneClusterInstance, name),
 		"searchKey": sprintf("aws_neptune_cluster_instance[%s].publicly_accessible", [name]),
@@ -19,7 +21,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_neptune_cluster_instance[%s].publicly_accessible is set to true", [name]),
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}

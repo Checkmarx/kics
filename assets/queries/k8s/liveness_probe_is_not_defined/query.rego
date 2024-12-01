@@ -1,15 +1,16 @@
 package Cx
 
-import data.generic.k8s as k8sLib
 import data.generic.common as common_lib
+import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	specInfo := k8sLib.getSpecInfo(document)
 	metadata := document.metadata
 
 	kind := document.kind
-    listKinds := ["Job", "CronJob"]
+	listKinds := ["Job", "CronJob"]
 
 	not k8sLib.checkKind(kind, listKinds)
 
@@ -17,7 +18,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containers[index], "livenessProbe")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.containers.name={{%s}}", [metadata.name, specInfo.path, containers[index].name]),

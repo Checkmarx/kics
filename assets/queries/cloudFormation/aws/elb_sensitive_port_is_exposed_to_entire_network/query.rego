@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 isAccessibleFromEntireNetwork(ingress) {
 	endswith(ingress.CidrIp, "/0")
@@ -51,8 +52,8 @@ getLinkedSecGroupList(elb, resources) = elbSecGroupName {
 }
 
 CxPolicy[result] {
-	#############	document and resource
-	resources := input.document[i].Resources
+	some document in input.document
+	resources := document.Resources
 	loadBalancerList := [{"name": key, "properties": loadBalancer} |
 		loadBalancer := resources[key]
 		contains(loadBalancer.Type, "ElasticLoadBalancing")
@@ -75,18 +76,15 @@ CxPolicy[result] {
 	protocol := protocols[n]
 	portsMap = getProtocolPorts(protocols, common_lib.tcpPortsMap, cf_lib.udpPortsMap)
 
-	#############	Checks
 	isAccessibleFromEntireNetwork(ingress)
 
-	# is in ports range
 	portRange := numbers.range(ingress.FromPort, ingress.ToPort)
 	portsMap[portRange[idx]]
 	portNumber = portRange[idx]
 	portName := portsMap[portNumber]
 
-	##############	Result
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": secGroup.properties.Type,
 		"resourceName": cf_lib.get_resource_name(secGroup.properties, secGroup.name),
 		"searchKey": sprintf("Resources.%s.SecurityGroupIngress", [secGroup.name]),

@@ -1,17 +1,18 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 
 	document.Resources[queuePolicyName].Type == "AWS::SQS::QueuePolicy"
 	queuePolicy := document.Resources[queuePolicyName]
 
 	policy := queuePolicy.Properties.PolicyDocument
 	st := common_lib.get_statement(common_lib.get_policy(policy))
-	statement := st[_]
+	some statement in st
 	common_lib.is_allow_effect(statement)
 
 	resultData := is_unsafe_statement(statement)
@@ -49,7 +50,7 @@ has_wildcard_principal(p) {
 }
 
 has_star_or_star_after_colon(str) {
-	regex.match("^(\\w*:)*\\*$", str)
+	regex.match(`^(\w*:)*\*$`, str)
 }
 
 has_dangerous_action(action) = result {

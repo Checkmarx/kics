@@ -1,15 +1,16 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
 	[path, value] := walk(doc)
 	param := value.parameters[n]
-	param.in == "header"
+	param["in"] == "header"
 
 	dup := check_dup(value.parameters)
 	lower(param.name) == dup[m]
@@ -31,7 +32,7 @@ CxPolicy[result] {
 }
 
 check_dup(params) = dup {
-	nameArr := [x | p := params[n]; p.in == "header"; x := lower(p.name)]
+	nameArr := [x | p := params[n]; p["in"] == "header"; x := lower(p.name)]
 	arr := {x | idx := nameArr[s]; idx == nameArr[d]; s != d; x := idx}
 	dup := arr
 }

@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.ansible as ans_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 modules := {"amazon.aws.s3_bucket", "s3_bucket"}
 
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	ans_lib.checkState(s3_bucket)
 
 	st := common_lib.get_statement(common_lib.get_policy(s3_bucket.policy))
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 

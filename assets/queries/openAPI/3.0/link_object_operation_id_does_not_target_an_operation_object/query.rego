@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	op := doc.components.links[l].operationId
@@ -19,7 +20,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	op := doc.components.responses[r].links[l].operationId
@@ -35,7 +36,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	op := doc.paths[path][operation].responses[r].links[l].operationId

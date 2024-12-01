@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	domain := input.document[i].resource.aws_elasticsearch_domain[name]
+	some document in input.document
+	domain := document.resource.aws_elasticsearch_domain[name]
 	rest := domain.encrypt_at_rest
 
 	not rest.kms_key_id
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_elasticsearch_domain",
 		"resourceName": tf_lib.get_resource_name(domain, name),
 		"searchKey": sprintf("aws_elasticsearch_domain[%s].encrypt_at_rest", [name]),

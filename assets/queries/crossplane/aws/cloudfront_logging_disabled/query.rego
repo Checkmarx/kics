@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.crossplane as cp_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "cloudfront.aws.crossplane.io")
 	resource.kind == "Distribution"
@@ -14,7 +15,7 @@ CxPolicy[result] {
 	destribution_config.logging.enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig.logging.enabled", [cp_lib.getPath(path), resource.metadata.name]),
@@ -26,7 +27,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "cloudfront.aws.crossplane.io")
 	resource.kind == "Distribution"
@@ -36,7 +37,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(destribution_config.logging, "enabled")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig.logging", [cp_lib.getPath(path), resource.metadata.name]),
@@ -48,7 +49,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "cloudfront.aws.crossplane.io")
 	resource.kind == "Distribution"
@@ -58,10 +59,10 @@ CxPolicy[result] {
 	not common_lib.valid_key(destribution_config, "logging")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
-		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig", [cp_lib.getPath(path),resource.metadata.name]),
+		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "CloudFront logging enabled attribute should be defined and set to true",
 		"keyActualValue": "CloudFront logging is not defined",

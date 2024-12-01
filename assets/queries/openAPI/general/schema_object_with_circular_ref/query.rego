@@ -1,10 +1,11 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
@@ -17,11 +18,11 @@ CxPolicy[result] {
 		"3.0": "#/components/schemas/",
 	}
 
-	trim_prefix(properties["RefMetadata"]["$ref"], refPaths[version]) == path[minus(count(path), 1)]
+	trim_prefix(properties.RefMetadata["$ref"], refPaths[version]) == path[count(path) - 1]
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.%s.$ref=%s", [openapi_lib.concat_path(path), types[prop], properties["RefMetadata"]["$ref"]]),
+		"searchKey": sprintf("%s.%s.$ref=%s", [openapi_lib.concat_path(path), types[prop], properties.RefMetadata["$ref"]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s.%s should not reference own schema", [concat(".", path), types[prop]]),
 		"keyActualValue": sprintf("%s.%s reference own schema", [concat(".", path), types[prop]]),

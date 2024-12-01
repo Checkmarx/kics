@@ -1,10 +1,11 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.KeyVault/vaults"
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(value.properties, fields[x])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
@@ -21,12 +22,12 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' should have '%s' property defined", [fields[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' doesn't have '%s' property defined", [fields[x]]),
 		"searchLine": common_lib.build_search_line(path, ["properties"]),
-		"searchValue": sprintf("%s",[fields[x]]),
+		"searchValue": sprintf("%s", [fields[x]]),
 	}
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.KeyVault/vaults"
@@ -37,7 +38,7 @@ CxPolicy[result] {
 	val == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.%s", [common_lib.concat_path(path), value.name, fields[x]]),
@@ -45,6 +46,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' %s should have '%s' property set to true", [type, fields[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' doesn't have '%s' property set to true", [fields[x]]),
 		"searchLine": common_lib.build_search_line(path, ["properties", fields[x]]),
-		"searchValue": sprintf("%s",[fields[x]]),
+		"searchValue": sprintf("%s", [fields[x]]),
 	}
 }

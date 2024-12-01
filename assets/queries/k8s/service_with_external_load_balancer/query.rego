@@ -1,18 +1,19 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	object.get(document, "kind", "undefined") == "Service"
 
-    metadata = document.metadata
+	metadata = document.metadata
 	document.spec.type == "LoadBalancer"
 
 	not common_lib.valid_key(metadata, "annotations")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
@@ -23,19 +24,19 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	object.get(document, "kind", "undefined") == "Service"
 
-    metadata = document.metadata
+	metadata = document.metadata
 	document.spec.type == "LoadBalancer"
 
 	common_lib.valid_key(metadata, "annotations")
 
-    annotations = metadata.annotations
-    not checkLoadBalancer(annotations)
+	annotations = metadata.annotations
+	not checkLoadBalancer(annotations)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.annotations", [metadata.name]),
@@ -46,11 +47,11 @@ CxPolicy[result] {
 }
 
 checkLoadBalancer(annotation) {
-    annotation["networking.gke.io/load-balancer-type"] == "Internal"
+	annotation["networking.gke.io/load-balancer-type"] == "Internal"
 }
 
 checkLoadBalancer(annotation) {
-    annotation["cloud.google.com/load-balancer-type"] == "Internal"
+	annotation["cloud.google.com/load-balancer-type"] == "Internal"
 }
 
 checkLoadBalancer(annotation) {

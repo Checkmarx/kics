@@ -1,10 +1,12 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	deployment := input.document[i].Resources[name]
+	some doc in input.document
+	deployment := doc.Resources[name]
 	deployment.Type == "AWS::ApiGateway::Deployment"
 	stageDescription := deployment.Properties.StageDescription
 
@@ -13,7 +15,7 @@ CxPolicy[result] {
 	stageDescription.CachingEnabled == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": deployment.Type,
 		"resourceName": cf_lib.get_resource_name(deployment, name),
 		"searchKey": sprintf("Resources.%s.Properties.StageDescription", [name]),
@@ -24,7 +26,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	deployment := input.document[i].Resources[name]
+	some doc in input.document
+	deployment := doc.Resources[name]
 	deployment.Type == "AWS::ApiGateway::Deployment"
 	stageDescription := deployment.Properties.StageDescription
 
@@ -33,7 +36,7 @@ CxPolicy[result] {
 	stageDescription.CachingEnabled == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": deployment.Type,
 		"resourceName": cf_lib.get_resource_name(deployment, name),
 		"searchKey": sprintf("Resources.%s.Properties.StageDescription.CacheDataEncrypted", [name]),

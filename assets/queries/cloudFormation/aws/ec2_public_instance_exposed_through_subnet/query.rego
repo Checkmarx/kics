@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resources := input.document[i].Resources
+	some document in input.document
+	resources := document.Resources
 	resource := resources[j]
 	resource.Type == "AWS::EC2::Instance"
 
@@ -25,7 +27,7 @@ CxPolicy[result] {
 	HasPublicDestinationCidr(resources[l])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, j),
 		"searchKey": sprintf("Resources.%s", [subnetName]),

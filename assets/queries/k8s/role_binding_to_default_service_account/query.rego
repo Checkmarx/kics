@@ -1,14 +1,16 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	document.kind == "RoleBinding"
 	subjects := document.subjects
 	subjects[c].kind == "ServiceAccount"
 	subjects[c].name == "default"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": document.metadata.name,
 		"searchKey": sprintf("subjects.name=%s", [subjects[c].name]),

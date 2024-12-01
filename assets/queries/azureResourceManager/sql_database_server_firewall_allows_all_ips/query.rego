@@ -1,10 +1,11 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
+	some doc in input.document
 	types := ["Microsoft.Sql/servers/firewallRules", "firewallRules", "firewallrules"]
-	doc := input.document[i]
 
 	[path, value] := walk(doc)
 	value.type == types[x]
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	check_all_ips(properties.startIpAddress, properties.endIpAddress)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.endIpAddress", [common_lib.concat_path(path), value.name]),
@@ -26,6 +27,6 @@ CxPolicy[result] {
 
 check_all_ips(start, end) {
 	ipsOpts := ["0.0.0.0", "0.0.0.0/0"]
-	start == ipsOpts[_]
+	start in ipsOpts
 	end == "255.255.255.255"
 }

@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azure_virtual_network[name]
+	some document in input.document
+	resource := document.resource.azure_virtual_network[name]
 	not common_lib.valid_key(resource.subnet, "security_group")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azure_virtual_network",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azure_virtual_network[%s].subnet", [name]),
@@ -19,11 +21,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azure_virtual_network[name]
+	some document in input.document
+	resource := document.resource.azure_virtual_network[name]
 	count(resource.subnet.security_group) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azure_virtual_network",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azure_virtual_network[%s].subnet.security_group", [name]),

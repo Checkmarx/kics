@@ -1,16 +1,17 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	resources := document[i].Resources[name]
+	some document in input.document
+	resources := document.Resources[name]
 	port := 22
 
 	check_security_groups_ingress(resources.Properties, port)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resources.Type,
 		"resourceName": cf_lib.get_resource_name(resources, name),
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress", [name]),

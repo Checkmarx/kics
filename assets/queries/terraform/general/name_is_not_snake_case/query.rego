@@ -2,15 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
-	res_type := doc.resource[type]
+	some document in input.document
+	res_type := document.resource[type]
 	res_type[name]
 	not is_snake_case(name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": type,
 		"resourceName": tf_lib.get_resource_name(res_type, name),
 		"searchKey": sprintf("resource.%s.%s", [type, name]),
@@ -22,12 +23,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
-	module := doc.module[name]
+	some document in input.document
+	module := document.module[name]
 	not is_snake_case(name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module.%s", [name]),

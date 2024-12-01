@@ -1,18 +1,20 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_vpc_endpoint[name]
+	some document in input.document
+	resource := document.resource.aws_vpc_endpoint[name]
 
 	serviceNameSplit := split(resource.service_name, ".")
-	serviceNameSplit[minus(count(serviceNameSplit), 1)] == "dynamodb"
+	serviceNameSplit[count(serviceNameSplit) - 1] == "dynamodb"
 	vpcNameRef := split(resource.vpc_id, ".")[1]
 
 	not has_route_association(vpcNameRef)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_vpc_endpoint",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_vpc_endpoint[%s].vpc_id", [name]),

@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	function := input.document[i].resource.azurerm_function_app[name]
+	some document in input.document
+	function := document.resource.azurerm_function_app[name]
 
 	not common_lib.valid_key(function, "auth_settings")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_function_app",
 		"resourceName": tf_lib.get_resource_name(function, name),
 		"searchKey": sprintf("azurerm_function_app[%s]", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	function := input.document[i].resource.azurerm_function_app[name]
+	some document in input.document
+	function := document.resource.azurerm_function_app[name]
 
 	function.auth_settings.enabled != true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_function_app",
 		"resourceName": tf_lib.get_resource_name(function, name),
 		"searchKey": sprintf("azurerm_function_app[%s].auth_settings.enabled", [name]),
@@ -38,7 +41,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name, "auth_settings", "enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

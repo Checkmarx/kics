@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_vpc[vpcName]
+	some doc in input.document
+	resource := doc.resource.aws_vpc[vpcName]
 
 	not with_network_firewall(vpcName)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_vpc",
 		"resourceName": vpcName,
 		"searchKey": sprintf("aws_vpc[%s]", [vpcName]),

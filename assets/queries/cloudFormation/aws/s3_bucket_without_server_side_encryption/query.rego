@@ -1,10 +1,11 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import future.keywords.in
 
 # return every bucket as result if there are no policies defined
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resources := document.Resources
 	some resource
 	resources[resource].Type == "AWS::S3::Bucket"

@@ -1,16 +1,17 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-
-	nasSecurityGroupRule := input.document[i].resource.nifcloud_nas_security_group[name]
+	some document in input.document
+	nasSecurityGroupRule := document.resource.nifcloud_nas_security_group[name]
 	cidr := split(getRules(nasSecurityGroupRule.rule)[_].cidr_ip, "/")
 	to_number(cidr[1]) < 1
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "nifcloud_nas_security_group",
 		"resourceName": tf_lib.get_resource_name(nasSecurityGroupRule, name),
 		"searchKey": sprintf("nifcloud_nas_security_group[%s]", [name]),
@@ -20,8 +21,8 @@ CxPolicy[result] {
 	}
 }
 
-getRules (rule) = output {
-	not is_array(rule) 
+getRules(rule) = output {
+	not is_array(rule)
 	output := [rule]
 } else = output {
 	output := rule

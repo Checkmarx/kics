@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 
@@ -14,7 +16,7 @@ CxPolicy[result] {
 	service_account_name == name_service
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.service_account_name", [resourceType, name, specInfo.path]),

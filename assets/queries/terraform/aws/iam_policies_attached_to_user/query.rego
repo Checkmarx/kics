@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 resourcesTest = ["aws_iam_policy_attachment", "aws_iam_user_policy", "aws_iam_user_policy_attachment"]
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourcesTest[idx]][name]
+	some document in input.document
+	resource := document.resource[resourcesTest[idx]][name]
 	resource.user
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourcesTest[idx],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[{{%s}}].user", [resourcesTest[idx], name]),
@@ -20,13 +22,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourcesTest[idx]][name]
+	some document in input.document
+	resource := document.resource[resourcesTest[idx]][name]
 	resource.users != null
 	is_array(resource.users)
 	count(resource.users) > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourcesTest[idx],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[{{%s}}].users", [resourcesTest[idx], name]),

@@ -1,12 +1,13 @@
 package Cx
 
-listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress", "Configuration", "Service", "Revision", "ContainerSource"]
-
 import data.generic.common as common_lib
 import data.generic.k8s as k8s_lib
+import future.keywords.in
+
+listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress", "Configuration", "Service", "Revision", "ContainerSource"]
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 
 	kind := document.kind
 	k8s_lib.checkKind(kind, listKinds)
@@ -16,7 +17,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(metadata, "namespace")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
@@ -28,7 +29,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 
 	kind := document.kind
 	k8s_lib.checkKind(kind, listKinds)
@@ -39,7 +40,7 @@ CxPolicy[result] {
 	metadata.namespace == options[x]
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"issueType": "IncorrectValue",

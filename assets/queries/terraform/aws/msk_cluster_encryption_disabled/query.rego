@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	msk_cluster := input.document[i].resource.aws_msk_cluster[name]
+	some doc in input.document
+	msk_cluster := doc.resource.aws_msk_cluster[name]
 	problems := checkEncryption(msk_cluster)
 	problems != "none"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_msk_cluster",
 		"resourceName": tf_lib.get_specific_resource_name(msk_cluster, "aws_msk_cluster", name),
 		"searchKey": getSearchKey(problems, name),
@@ -30,9 +32,7 @@ checkEncryption(msk_cluster) = ".encryption_in_transit.in_cluster,encryption_in_
 	encryptionInTransit.in_cluster == false
 } else = "" {
 	not msk_cluster.encryption_info
-} else = "none" {
-	true
-}
+} else = "none"
 
 getSearchKey(problems, name) = str {
 	problemsSplited := split(problems, ",")
@@ -44,8 +44,9 @@ getSearchKey(problems, name) = str {
 	str := concat("", [defaultSearchValue, problems])
 }
 
-getIssueType(problems) = "MissingAttribute" {
+getIssueType(problems) = issueType {
+	issueType = "MissingAttribute"
 	problems == ""
-} else = "IncorrectValue" {
-	true
+} else = issueType {
+	issueType = "IncorrectValue"
 }

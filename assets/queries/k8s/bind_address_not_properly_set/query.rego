@@ -2,11 +2,12 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 commandList := {"kube-controller-manager", "kube-scheduler"}
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	specInfo := k8sLib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}
@@ -16,7 +17,7 @@ CxPolicy[result] {
 	not k8sLib.hasFlag(container, "--bind-address=127.0.0.1")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),

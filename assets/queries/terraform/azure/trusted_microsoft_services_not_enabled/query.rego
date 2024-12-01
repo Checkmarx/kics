@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_storage_account[name]
+	some document in input.document
+	resource := document.resource.azurerm_storage_account[name]
 	not common_lib.valid_key(resource, "network_rules")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_storage_account",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_storage_account[%s]", [name]),
@@ -19,13 +21,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	network_rules := input.document[i].resource.azurerm_storage_account[name].network_rules
+	some document in input.document
+	network_rules := document.resource.azurerm_storage_account[name].network_rules
 	not common_lib.valid_key(network_rules, "bypass")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_storage_account",
-		"resourceName": tf_lib.get_resource_name(input.document[i].resource.azurerm_storage_account[name], name),
+		"resourceName": tf_lib.get_resource_name(network_rules, name),
 		"searchKey": sprintf("azurerm_storage_account[%s].network_rules", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'network_rules.bypass' should be defined and not null",
@@ -34,12 +37,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_storage_account[name]
+	some document in input.document
+	resource := document.resource.azurerm_storage_account[name]
 	bypass := resource.network_rules.bypass
 	not common_lib.inArray(bypass, "AzureServices")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_storage_account",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_storage_account[%s].network_rules.bypass", [name]),
@@ -50,11 +54,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_storage_account_network_rules[name]
+	some document in input.document
+	resource := document.resource.azurerm_storage_account_network_rules[name]
 	not common_lib.valid_key(resource, "bypass")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_storage_account_network_rules",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_storage_account_network_rules[%s]", [name]),
@@ -65,12 +70,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	network_rules := input.document[i].resource.azurerm_storage_account_network_rules[name]
+	some document in input.document
+	network_rules := document.resource.azurerm_storage_account_network_rules[name]
 	bypass := network_rules.bypass
 	not common_lib.inArray(bypass, "AzureServices")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_storage_account_network_rules",
 		"resourceName": tf_lib.get_resource_name(network_rules, name),
 		"searchKey": sprintf("azurerm_storage_account_network_rules[%s].bypass", [name]),

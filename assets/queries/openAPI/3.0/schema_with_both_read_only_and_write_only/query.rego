@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema := doc.paths[path][operation].responses[r].content[c].schema
@@ -21,7 +22,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema := doc.paths[path].parameters[parameter].schema
@@ -38,7 +39,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema := doc.paths[path][operation].parameters[parameter].schema
@@ -55,7 +56,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema := doc.paths[path][operation].requestBody.content[c].schema
@@ -72,7 +73,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema := doc.components.requestBodies[r].content[c].schema
@@ -89,7 +90,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema := doc.components.parameters[parameter].schema
@@ -106,7 +107,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema := doc.components.responses[r].content[c].schema
@@ -123,7 +124,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema := doc.components.schemas[s]

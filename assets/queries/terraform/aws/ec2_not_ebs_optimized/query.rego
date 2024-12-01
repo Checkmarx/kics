@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_instance[name]
+	some document in input.document
+	resource := document.resource.aws_instance[name]
 
 	instanceType := get_instance_type(resource, "instance_type")
 	not common_lib.is_aws_ebs_optimized_by_default(instanceType)
 	resource.ebs_optimized == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance[{{%s}}].ebs_optimized", [name]),
@@ -21,14 +23,15 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "ebs_optimized"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "ebs_optimized")
 
 	instanceTypeKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "instance_type")
@@ -37,7 +40,7 @@ CxPolicy[result] {
 	module[keyToCheck] == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].ebs_optimized", [name]),
@@ -47,21 +50,22 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["module", name, "ebs_optimized"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_instance[name]
+	some document in input.document
+	resource := document.resource.aws_instance[name]
 
 	instanceType := get_instance_type(resource, "instance_type")
 	not common_lib.is_aws_ebs_optimized_by_default(instanceType)
 	not common_lib.valid_key(resource, "ebs_optimized")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_instance[{{%s}}]", [name]),
@@ -75,7 +79,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "ebs_optimized")
 	instanceTypeKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_instance", "instance_type")
 
@@ -84,7 +89,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(module, keyToCheck)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),

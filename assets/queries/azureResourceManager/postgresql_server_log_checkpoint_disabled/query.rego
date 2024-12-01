@@ -1,10 +1,11 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[parentPath, parentValue] = walk(doc)
 	parentValue.type == "Microsoft.DBforPostgreSQL/servers"
 	[childPath, childValue] := walk(parentValue)
@@ -14,7 +15,7 @@ CxPolicy[result] {
 	val == "off"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": parentValue.type,
 		"resourceName": parentValue.name,
 		"searchKey": sprintf("%s.name={{%s}}.resources.name=log_checkpoints.properties.value", [common_lib.concat_path(parentPath), parentValue.name]),
@@ -26,7 +27,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[parentPath, parentValue] = walk(doc)
 	parentValue.type == "Microsoft.DBforPostgreSQL/servers"
 	[childPath, childValue] := walk(parentValue)
@@ -35,7 +36,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(childValue.properties, "value")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": parentValue.type,
 		"resourceName": parentValue.name,
 		"searchKey": sprintf("%s.name={{%s}}.resources.name=log_checkpoints", [common_lib.concat_path(parentPath), parentValue.name]),
@@ -47,7 +48,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 	value.type == "Microsoft.DBforPostgreSQL/servers/configurations"
 	endswith(value.name, "log_checkpoints")
@@ -55,7 +56,7 @@ CxPolicy[result] {
 	val == "off"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.value", [common_lib.concat_path(path), value.name]),
@@ -67,14 +68,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 	value.type == "Microsoft.DBforPostgreSQL/servers/configurations"
 	endswith(value.name, "log_checkpoints")
 	not common_lib.valid_key(value.properties, "value")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),

@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_glue_security_configuration[name]
+	some document in input.document
+	resource := document.resource.aws_glue_security_configuration[name]
 
 	configs := {
 		"cloudwatch_encryption": "cloudwatch_encryption_mode",
@@ -18,7 +20,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(encryptionConfig[configKey], configValue)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_glue_security_configuration",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_security_configuration[%s].%s", [name, configKey]),
@@ -30,7 +32,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_glue_security_configuration[name]
+	some document in input.document
+	resource := document.resource.aws_glue_security_configuration[name]
 
 	configs := {
 		"cloudwatch_encryption",
@@ -41,7 +44,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(resource.encryption_configuration[config], "kms_key_arn")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_glue_security_configuration",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_security_configuration[%s].encryption_configuration.%s", [name, config]),
@@ -53,12 +56,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_glue_security_configuration[name]
+	some document in input.document
+	resource := document.resource.aws_glue_security_configuration[name]
 
 	searchKeyInfo := wrong_config(resource.encryption_configuration)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_glue_security_configuration",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_glue_security_configuration[%s].%s", [name, searchKeyInfo.path]),

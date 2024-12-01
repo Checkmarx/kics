@@ -1,17 +1,18 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
 	[path, value] := walk(doc)
 	prop := value.properties
 	req := prop[name].required
-	requiredProperty := req[_]
+	some requiredProperty in req
 	properties := prop[name].properties
 	not common_lib.valid_key(properties, requiredProperty)
 

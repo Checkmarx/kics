@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some doc in input.document
+	resource := doc.command[name][_]
 	resource.Cmd == "run"
 
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
-	aptGet := regex.find_n("apt-get (-(-)?[a-zA-Z]+ *)*install", commands, -1)
+	aptGet := regex.find_n(`apt-get (-(-)?[a-zA-Z]+ *)*install`, commands, -1)
 	aptGet != null
 
 	packages = dockerLib.getPackages(commands, aptGet)
@@ -19,7 +21,7 @@ CxPolicy[result] {
 	analyzePackages(j, packageName, packages, length)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, commands]),
 		"searchValue": packageName,
 		"issueType": "MissingAttribute",
@@ -29,7 +31,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some doc in input.document
+	resource := doc.command[name][_]
 	resource.Cmd == "run"
 
 	count(resource.Value) > 1
@@ -41,11 +44,11 @@ CxPolicy[result] {
 
 	packageName := resource.Value[j]
 
-	regex.match("^[a-zA-Z]", packageName) == true
+	regex.match(`^[a-zA-Z]`, packageName) == true
 	not dockerLib.withVersion(packageName)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"searchValue": packageName,
 		"issueType": "IncorrectValue",
@@ -56,13 +59,13 @@ CxPolicy[result] {
 
 analyzePackages(j, currentPackage, packages, length) {
 	j == length - 1
-	regex.match("^[a-zA-Z]", currentPackage) == true
+	regex.match(`^[a-zA-Z]`, currentPackage) == true
 	not dockerLib.withVersion(currentPackage)
 }
 
 analyzePackages(j, currentPackage, packages, length) {
 	j != length - 1
-	regex.match("^[a-zA-Z]", currentPackage) == true
-	packages[plus(j, 1)] != "-v"
+	regex.match(`^[a-zA-Z]`, currentPackage) == true
+	packages[j + 1] != "-v"
 	not dockerLib.withVersion(currentPackage)
 }

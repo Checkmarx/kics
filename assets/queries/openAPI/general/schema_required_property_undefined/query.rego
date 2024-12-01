@@ -1,16 +1,17 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	version := openapi_lib.check_openapi(docs)
 	version != "undefined"
 
 	[path, value] := walk(docs)
 	schema = value.schema
 
-	requiredProperty := schema.required[_]
+	some requiredProperty in schema.required
 
 	all([property | property != requiredProperty; _ := schema.properties[property]])
 	result := {
@@ -24,14 +25,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	version := openapi_lib.check_openapi(docs)
 	version != "undefined"
 
 	[path, value] := walk(docs)
 	schema = value.schemas[schemaName]
 
-	requiredProperty := schema.required[_]
+	some requiredProperty in schema.required
 
 	all([property | property != requiredProperty; _ := schema.properties[property]])
 	newPath := [path[_], schemaName]

@@ -2,15 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
-	resource := doc.resource.azurerm_mssql_server[name]
+	some document in input.document
+	resource := document.resource.azurerm_mssql_server[name]
 
 	not common_lib.valid_key(resource, "public_network_access_enabled")
 
 	result := {
-		"documentId": doc.id,
+		"documentId": document.id,
 		"resourceType": "azurerm_mssql_server",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_mssql_server[%s]", [name]),
@@ -24,13 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
-	resource := doc.resource.azurerm_mssql_server[name]
+	some document in input.document
+	resource := document.resource.azurerm_mssql_server[name]
 
 	resource.public_network_access_enabled == true
 
 	result := {
-		"documentId": doc.id,
+		"documentId": document.id,
 		"resourceType": "azurerm_mssql_server",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_mssql_server[%s].public_network_access_enabled", [name]),
@@ -40,7 +41,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_mssql_server", name, "public_network_access_enabled"], []),
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}

@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_sql_database_instance[name]
+	some document in input.document
+	resource := document.resource.google_sql_database_instance[name]
 	ip_configuration := resource.settings.ip_configuration
 
 	count(ip_configuration.authorized_networks) > 0
@@ -14,7 +16,7 @@ CxPolicy[result] {
 	contains(authorized_network[j].value, "0.0.0.0")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_sql_database_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.authorized_networks.value=%s", [name, authorized_network[j].value]),
@@ -25,15 +27,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_sql_database_instance[name]
+	some document in input.document
+	resource := document.resource.google_sql_database_instance[name]
 	ip_configuration := resource.settings.ip_configuration
 
-	not common_lib.valid_key(ip_configuration,"authorized_networks")
+	not common_lib.valid_key(ip_configuration, "authorized_networks")
 
 	ip_configuration.ipv4_enabled
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_sql_database_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.ipv4_enabled", [name]),
@@ -44,16 +47,17 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_sql_database_instance[name]
+	some document in input.document
+	resource := document.resource.google_sql_database_instance[name]
 	ip_configuration := resource.settings.ip_configuration
 
-    not common_lib.valid_key(ip_configuration,"authorized_networks")
+	not common_lib.valid_key(ip_configuration, "authorized_networks")
 
 	not ip_configuration.ipv4_enabled
-	not common_lib.valid_key(ip_configuration,"private_network")
+	not common_lib.valid_key(ip_configuration, "private_network")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_sql_database_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration", [name]),
@@ -64,13 +68,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_sql_database_instance[name]
+	some document in input.document
+	resource := document.resource.google_sql_database_instance[name]
 	settings := resource.settings
 
-	not common_lib.valid_key(settings,"ip_configuration")
+	not common_lib.valid_key(settings, "ip_configuration")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_sql_database_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_sql_database_instance[%s].settings", [name]),
@@ -81,10 +86,9 @@ CxPolicy[result] {
 }
 
 getAuthorizedNetworks(networks) = list {
-    is_array(networks)
-    list := networks
+	is_array(networks)
+	list := networks
 } else = list {
-    is_object(networks)
-    list := [networks]
+	is_object(networks)
+	list := [networks]
 } else = null
-

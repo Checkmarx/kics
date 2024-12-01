@@ -2,11 +2,12 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-
 	# version before TF AWS 4.0
-	resource := input.document[i].resource.aws_s3_bucket[name]
+	some document in input.document
+	resource := document.resource.aws_s3_bucket[name]
 	publicAccessACL(resource.acl)
 
 	# version after TF AWS 4.0
@@ -17,7 +18,7 @@ CxPolicy[result] {
 	public(publicBlockACL)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_s3_bucket",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].acl", [name]),
@@ -29,18 +30,21 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheckAcl := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket_public_access_block", "acl")
 
 	publicAccessACL(module[keyToCheckAcl])
 
 	options = {"block_public_acls", "block_public_policy", "ignore_public_acls", "restrict_public_buckets"}
 
-	count({x | keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket_public_access_block", options[x]);
-			   module[keyToCheck] == true }) == 4
+	count({x |
+		keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket_public_access_block", options[x])
+		module[keyToCheck] == true
+	}) == 4
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].acl", [name]),
@@ -55,7 +59,8 @@ CxPolicy[result] {
 	# version before TF AWS 4.0
 	input.document[_].resource.aws_s3_bucket[bucketName]
 
-	acl := input.document[i].resource.aws_s3_bucket_acl[name]
+	some document in input.document
+	acl := document.resource.aws_s3_bucket_acl[name]
 	split(acl.bucket, ".")[1] == bucketName
 
 	publicAccessACL(acl.acl)
@@ -67,7 +72,7 @@ CxPolicy[result] {
 	public(publicBlockACL)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_s3_bucket_acl",
 		"resourceName": tf_lib.get_resource_name(acl, name),
 		"searchKey": sprintf("aws_s3_bucket_acl[%s].acl", [name]),

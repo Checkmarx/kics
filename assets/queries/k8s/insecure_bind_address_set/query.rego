@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	specInfo := k8sLib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}
@@ -14,14 +15,13 @@ CxPolicy[result] {
 	k8sLib.startWithFlag(container, "--insecure-bind-address")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--insecure-bind-address flag should not be set",
 		"keyActualValue": "--insecure-bind-address flag is set",
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}
 }
-

@@ -2,16 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.serverlessfw as sfw_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	functions := document.functions
 	function := functions[fname]
 	tracing := function.tracing
 	tracing != "Active"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": sfw_lib.resourceTypeMapping("function", document.provider.name),
 		"resourceName": fname,
 		"searchKey": sprintf("functions.%s.tracing", [fname]),
@@ -23,14 +24,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	functions := document.functions
 	function := functions[fname]
 
 	not common_lib.valid_key(function, "tracing")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": sfw_lib.resourceTypeMapping("function", document.provider.name),
 		"resourceName": fname,
 		"searchKey": sprintf("functions.%s", [fname]),

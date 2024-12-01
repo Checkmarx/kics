@@ -1,11 +1,12 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	elasticache := document[i].Resources[name]
+	some document in input.document
+	elasticache := document.Resources[name]
 	elasticache.Type == "AWS::ElastiCache::CacheCluster"
 
 	bom_output = {
@@ -20,7 +21,7 @@ CxPolicy[result] {
 	}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",
@@ -32,14 +33,16 @@ CxPolicy[result] {
 
 get_accessibility(elasticache) = accessibility {
 	count({
-		x | securityGroupInfo := cf_lib.get_name(elasticache.Properties.CacheSecurityGroupNames[x]);
+	x |
+		securityGroupInfo := cf_lib.get_name(elasticache.Properties.CacheSecurityGroupNames[x])
 		is_unrestricted(securityGroupInfo)
 	}) > 0
 
 	accessibility := "at least one security group associated with the elasticache is unrestricted"
 } else = accessibility {
 	count({
-		x | securityGroupInfo := cf_lib.get_name(elasticache.Properties.CacheSecurityGroupNames[x]);
+	x |
+		securityGroupInfo := cf_lib.get_name(elasticache.Properties.CacheSecurityGroupNames[x])
 		not is_unrestricted(securityGroupInfo)
 	}) == count(elasticache.Properties.CacheSecurityGroupNames)
 
@@ -51,7 +54,7 @@ get_accessibility(elasticache) = accessibility {
 is_unrestricted(securityGroupName) {
 	document := input.document
 	ingress := document[j].Resources[_]
-    ingress.Type == "AWS::ElastiCache::SecurityGroupIngress"
+	ingress.Type == "AWS::ElastiCache::SecurityGroupIngress"
 
 	securityElastiCacheGroupName := cf_lib.get_name(ingress.Properties.CacheSecurityGroupName)
 
@@ -69,5 +72,3 @@ unrestricted_cidr(ec2SecurityGroup) {
 	options := {"0.0.0.0/0", "::/0"}
 	ec2SecurityGroup.Properties.SecurityGroupIngress[j].CidrIp == options[_]
 }
-
-

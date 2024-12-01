@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	db := input.document[i].resource.aws_db_instance[name]
+	some document in input.document
+	db := document.resource.aws_db_instance[name]
 
 	# get subnet group name
 	subnetGroupName := get_name(db.db_subnet_group_name)
@@ -19,7 +21,7 @@ CxPolicy[result] {
 	is_public(subnets)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_db_instance",
 		"resourceName": tf_lib.get_resource_name(db, name),
 		"searchKey": sprintf("aws_db_instance[%s].db_subnet_group_name", [name]),
@@ -30,13 +32,13 @@ CxPolicy[result] {
 	}
 }
 
-options := { "${aws_db_subnet_group", "${aws_subnet" }
+options := {"${aws_db_subnet_group", "${aws_subnet"}
 
 get_name(nameValue) = name {
 	contains(nameValue, options[_])
 	name := split(nameValue, ".")[1]
 } else = name {
-	op := options[_]
+	some op in options
 	not contains(nameValue, options[op])
 	name := nameValue
 }
@@ -48,7 +50,7 @@ unrestricted_cidr(sb) {
 }
 
 is_public(subnets) {
-	subnet := subnets[_]
+	some subnet in subnets
 	subnetName := get_name(subnet)
 	sb := input.document[_].resource.aws_subnet[subnetName]
 	unrestricted_cidr(sb)

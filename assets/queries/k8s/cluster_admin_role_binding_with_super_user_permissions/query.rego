@@ -1,13 +1,15 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	resource.kind == "ClusterRoleBinding"
 	resource.roleRef.name == "cluster-admin"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.roleRef.name=cluster-admin", [metadata.name]),

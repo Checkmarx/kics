@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::EC2::SecurityGroup"
@@ -16,7 +17,7 @@ CxPolicy[result] {
 	rule.ToPort >= 3389
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.SecurityGroupIngress", [cf_lib.getPath(path), name]),

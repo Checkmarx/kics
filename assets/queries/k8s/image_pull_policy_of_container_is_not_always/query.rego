@@ -1,11 +1,12 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 
 	specInfo := k8sLib.getSpecInfo(document)

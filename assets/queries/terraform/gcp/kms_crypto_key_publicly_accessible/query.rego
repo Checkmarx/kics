@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	kmsPolicy := input.document[i].resource.google_kms_crypto_key_iam_policy[name]
+	some doc in input.document
+	kmsPolicy := doc.resource.google_kms_crypto_key_iam_policy[name]
 
 	policyName := split(kmsPolicy.policy_data, ".")[2]
 
 	publicly_accessible(policyName)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "google_kms_crypto_key_iam_policy",
 		"resourceName": tf_lib.get_resource_name(kmsPolicy, name),
 		"searchKey": sprintf("google_kms_crypto_key_iam_policy[%s].policy_data", [name]),
@@ -29,9 +31,8 @@ publicly_accessible(policyName) {
 	check_member(policy.binding, options[_])
 }
 
-
 check_member(attribute, search) {
-	attribute.members[_] == search
+	search in attribute.members
 } else {
 	attribute.member == search
 }

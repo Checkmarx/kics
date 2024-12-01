@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	restAPI := input.document[i].resource.aws_api_gateway_rest_api[name]
+	some document in input.document
+	restAPI := document.resource.aws_api_gateway_rest_api[name]
 
 	not has_rest_api_associated(name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_api_gateway_rest_api",
 		"resourceName": tf_lib.get_resource_name(restAPI, name),
 		"searchKey": sprintf("aws_api_gateway_rest_api[%s]", [name]),
@@ -21,7 +23,8 @@ CxPolicy[result] {
 }
 
 has_rest_api_associated(apiName) {
-	authorizer := input.document[_].resource.aws_api_gateway_authorizer[name]
+	some doc in input.document
+	authorizer := doc.resource.aws_api_gateway_authorizer[name]
 	attributeSplit := split(authorizer.rest_api_id, ".")
 
 	attributeSplit[0] == "${aws_api_gateway_rest_api"

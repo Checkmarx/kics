@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.github_repository[example]
+	some document in input.document
+	resource := document.resource.github_repository[example]
 	not common_lib.valid_key(resource, "private")
 	not common_lib.valid_key(resource, "visibility")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "github_repository",
 		"resourceName": tf_lib.get_resource_name(resource, example),
 		"searchKey": sprintf("github_repository[%s]", [example]),
@@ -20,12 +22,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.github_repository[example]
+	some document in input.document
+	resource := document.resource.github_repository[example]
 	resource.private == false
 	not resource.visibility
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "github_repository",
 		"resourceName": tf_lib.get_resource_name(resource, example),
 		"searchKey": sprintf("github_repository[%s].private", [example]),
@@ -36,11 +39,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.github_repository[example]
+	some document in input.document
+	resource := document.resource.github_repository[example]
 	resource.visibility == "public"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "github_repository",
 		"resourceName": tf_lib.get_resource_name(resource, example),
 		"searchKey": sprintf("github_repository[%s].visibility", [example]),

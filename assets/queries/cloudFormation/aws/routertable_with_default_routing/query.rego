@@ -2,10 +2,12 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
+
 	resource := Resources[key]
 	resource.Type == "AWS::EC2::Route"
 
@@ -13,7 +15,7 @@ CxPolicy[result] {
 	properties.DestinationCidrBlock == "0.0.0.0/0"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("%s%s.Properties.DestinationCidrBlock", [cf_lib.getPath(path), key]),
@@ -24,8 +26,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
+
 	resource := Resources[key]
 	resource.Type == "AWS::EC2::Route"
 
@@ -33,7 +36,7 @@ CxPolicy[result] {
 	properties.DestinationIpv6CidrBlock == "::/0"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("%s%s.Properties.DestinationIpv6CidrBlock", [cf_lib.getPath(path), key]),
@@ -44,8 +47,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
+
 	resource := Resources[key]
 	resource.Type == "AWS::EC2::Route"
 
@@ -53,7 +57,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(properties, "NatGatewayId")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), key]),

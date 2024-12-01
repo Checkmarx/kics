@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	launch_permissions := input.document[i].resource.aws_ami_launch_permission
+	some document in input.document
+	launch_permissions := document.resource.aws_ami_launch_permission
 
 	account_id := launch_permissions[name].account_id
 	image_id := launch_permissions[name].image_id
@@ -11,7 +13,7 @@ CxPolicy[result] {
 	count([account | launch_permissions[j].image_id == image_id; account := launch_permissions[j].account_id]) > 1
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_ami_launch_permission",
 		"resourceName": tf_lib.get_resource_name(launch_permissions[name], name),
 		"searchKey": sprintf("aws_ami_launch_permission[%s].image_id", [name]),

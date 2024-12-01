@@ -1,16 +1,18 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resources := input.document[i].Resources[name]
+	some document in input.document
+	resources := document.Resources[name]
 	resources.Type == "AWS::KMS::Key"
 	keyRotation := resources.Properties.EnableKeyRotation
 	keyRotation == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resources.Type,
 		"resourceName": cf_lib.get_resource_name(resources, name),
 		"searchKey": sprintf("Resources.%s.Properties.EnableKeyRotation", [name]),
@@ -21,13 +23,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resources := input.document[i].Resources[name]
+	some document in input.document
+	resources := document.Resources[name]
 	resources.Type == "AWS::KMS::Key"
 	properties := resources.Properties
 	not common_lib.valid_key(properties, "EnableKeyRotation")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resources.Type,
 		"resourceName": cf_lib.get_resource_name(resources, name),
 		"searchKey": sprintf("Resources.%s.Properties.EnableKeyRotation", [name]),

@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	key := input.document[i].resource.azurerm_key_vault_secret[name]
+	some document in input.document
+	key := document.resource.azurerm_key_vault_secret[name]
 
 	not common_lib.valid_key(key, "content_type")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_key_vault_secret",
 		"resourceName": tf_lib.get_resource_name(key, name),
 		"searchKey": sprintf("azurerm_key_vault_secret[%s]", [name]),

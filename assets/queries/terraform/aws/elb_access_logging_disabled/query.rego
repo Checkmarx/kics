@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_elb[name]
+	some document in input.document
+	resource := document.resource.aws_elb[name]
 	not common_lib.valid_key(resource, "access_logs")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_elb",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_elb[{{%s}}]", [name]),
@@ -22,12 +24,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_elb[name]
+	some document in input.document
+	resource := document.resource.aws_elb[name]
 	logsEnabled := resource.access_logs.enabled
 	logsEnabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_elb",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_elb[{{%s}}].access_logs.enabled", [name]),
@@ -37,19 +40,20 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_elb", name, "access_logs", "enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_elb", "access_logs")
 	not common_lib.valid_key(module, keyToCheck)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s]", [name]),
@@ -63,13 +67,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_elb", "access_logs")
-	logsEnabled := input.document[i].module[name]
+	logsEnabled := document.module[name]
 	logsEnabled[keyToCheck].enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].%s.enabled", [name, keyToCheck]),
@@ -79,7 +84,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck, "enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

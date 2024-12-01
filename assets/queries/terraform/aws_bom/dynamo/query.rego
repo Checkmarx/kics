@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_dynamodb_table[name]
+	some doc in input.document
+	resource := doc.resource.aws_dynamodb_table[name]
 
 	info := get_accessibility(resource, name)
 
@@ -20,7 +22,7 @@ CxPolicy[result] {
 	final_bom_output = common_lib.get_bom_output(bom_output, info.policy)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("aws_dynamodb_table[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",
@@ -30,55 +32,56 @@ CxPolicy[result] {
 	}
 }
 
-get_accessibility(resource, name) = info{
-	values := [x | 
-    vpc_endpoint_policy := input.document[_].resource.aws_vpc_endpoint_policy[_]
-    policy := common_lib.json_unmarshal(vpc_endpoint_policy.policy)
-    x := policy_accessibility(policy, resource.name)]
-    info := get_info(values)
+get_accessibility(resource, name) = info {
+	values := [x |
+		vpc_endpoint_policy := input.document[_].resource.aws_vpc_endpoint_policy[_]
+		policy := common_lib.json_unmarshal(vpc_endpoint_policy.policy)
+		x := policy_accessibility(policy, resource.name)
+	]
+	info := get_info(values)
 } else = info {
-	info := {"accessibility":"private", "policy": ""}
+	info := {"accessibility": "private", "policy": ""}
 }
 
 policy_accessibility(policy, table_name) = info {
 	st := common_lib.get_statement(policy)
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	common_lib.any_principal(statement.Principal)
 	check_actions(statement.Action)
 
 	resources_arn := get_resource_arn(statement.Resource)
-	has_all_or_dynamob_arn(resources_arn, table_name)	
+	has_all_or_dynamob_arn(resources_arn, table_name)
 
-	info := {"accessibility":"public", "policy": policy}
-} else  = info {
-	common_lib.get_statement(policy)
-	info := {"accessibility":"private", "policy": policy}
+	info := {"accessibility": "public", "policy": policy}
 } else = info {
-	info := {"accessibility":"hasPolicy", "policy": policy}
+	common_lib.get_statement(policy)
+	info := {"accessibility": "private", "policy": policy}
+} else = info {
+	info := {"accessibility": "hasPolicy", "policy": policy}
 }
 
-has_all_or_dynamob_arn(arn, table_name){
-	arn == "*"
-} else {
+has_all_or_dynamob_arn("*", _)
+
+has_all_or_dynamob_arn(arn, table_name) {
 	startswith(arn, "arn:aws:dynamodb:")
-	suffix := concat( "", [":table/", table_name])
+	suffix := concat("", [":table/", table_name])
 	endswith(arn, suffix)
 }
 
 get_resource_arn(resources) = val {
 	is_array(resources)
-	val := resources[_]
+	some val in resources
 } else = val {
 	val := resources
 }
 
-get_encryption(resource) = encryption{
+get_encryption(resource) = encryption {
 	sse := resource.server_side_encryption
 	sse.enabled == true
 	encryption := "encrypted"
-} else = encryption{
+} else = encryption {
 	encryption := "unencrypted"
 }
 
@@ -146,7 +149,7 @@ dynamo_actions := {
 	"dynamodb:RestoreTableFromBackup",
 	"dynamodb:DeleteBackup",
 	"dynamodb:PartiQLDelete",
-	"dynamodb:*"
+	"dynamodb:*",
 }
 
 check_actions(actions) {
@@ -155,12 +158,9 @@ check_actions(actions) {
 	common_lib.equalsOrInArray(actions, "*")
 }
 
-get_info(info_arr)= info{
-	val := [ x | info_arr[x].accessibility == "public" ]
+get_info(info_arr) = info {
+	val := [x | info_arr[x].accessibility == "public"]
 	info := info_arr[val[0]]
-} else = info{
+} else = info {
 	info := info_arr[0]
 }
-
-
-

@@ -1,19 +1,20 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i]
-	service_parameters := resource.services[name]	
-    ipc := service_parameters.ipc    
- 	ipc == "host"
-    
+	some resource in input.document
+	service_parameters := resource.services[name]
+	ipc := service_parameters.ipc
+	ipc == "host"
+
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
-		"searchKey": sprintf("services.%s.privileged",[name]),
+		"searchKey": sprintf("services.%s.privileged", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Docker compose file to have 'ipc' attribute not set to host, or not set",
 		"keyActualValue": "Docker compose file has 'ipc' attribute as host",
-		"searchLine":  common_lib.build_search_line(["services", name, "ipc"], []),
+		"searchLine": common_lib.build_search_line(["services", name, "ipc"], []),
 	}
 }

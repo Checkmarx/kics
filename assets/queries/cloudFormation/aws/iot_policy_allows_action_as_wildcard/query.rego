@@ -1,21 +1,23 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resources := input.document[i].Resources[name]
+	some document in input.document
+	resources := document.Resources[name]
 	resources.Type == "AWS::IoT::Policy"
 
 	policy := resources.Properties.PolicyDocument
 	st := common_lib.get_statement(common_lib.get_policy(policy))
-	statement := st[_]
+	some statement in st
 
 	common_lib.is_allow_effect(statement)
 	common_lib.equalsOrInArray(statement.Action, "*")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resources.Type,
 		"resourceName": cf_lib.get_resource_name(resources, name),
 		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument", [name]),

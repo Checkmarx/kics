@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.resource.aws_lambda_permission[name]
 
 	contains(resource.principal, "*")

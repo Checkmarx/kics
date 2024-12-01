@@ -1,16 +1,18 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::CloudFormation::StackSet"
 
 	not common_lib.valid_key(resource.Properties, "AutoDeployment")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
@@ -21,16 +23,17 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::CloudFormation::StackSet"
 
 	common_lib.valid_key(resource.Properties, "AutoDeployment")
 
-    autoDeployment := resource.Properties.AutoDeployment
+	autoDeployment := resource.Properties.AutoDeployment
 	not common_lib.valid_key(autoDeployment, "Enabled")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.AutoDeployment", [name]),
@@ -41,15 +44,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::CloudFormation::StackSet"
 
-    autoDeployment := resource.Properties.AutoDeployment
+	autoDeployment := resource.Properties.AutoDeployment
 
-    autoDeployment.Enabled == false
+	autoDeployment.Enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.AutoDeployment.Enabled", [name]),
@@ -60,15 +64,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::CloudFormation::StackSet"
-    autoDeployment := resource.Properties.AutoDeployment
+	autoDeployment := resource.Properties.AutoDeployment
 
-    autoDeployment.Enabled
+	autoDeployment.Enabled
 	not common_lib.valid_key(autoDeployment, "RetainStacksOnAccountRemoval")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.AutoDeployment", [name]),
@@ -79,16 +84,17 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::CloudFormation::StackSet"
-    autoDeployment := resource.Properties.AutoDeployment
+	autoDeployment := resource.Properties.AutoDeployment
 
-    autoDeployment.Enabled
+	autoDeployment.Enabled
 
-    autoDeployment.RetainStacksOnAccountRemoval == false
+	autoDeployment.RetainStacksOnAccountRemoval == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.AutoDeployment.RetainStacksOnAccountRemoval", [name]),
@@ -97,4 +103,3 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("Resources.%s.Properties.AutoDeployment.RetainStacksOnAccountRemoval is false", [name]),
 	}
 }
-

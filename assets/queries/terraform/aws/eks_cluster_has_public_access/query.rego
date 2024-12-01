@@ -1,14 +1,16 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_eks_cluster[name]
+	some document in input.document
+	resource := document.resource.aws_eks_cluster[name]
 	resource.vpc_config.endpoint_public_access == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_eks_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_eks_cluster[%s].vpc_config.endpoint_public_access", [name]),
@@ -18,7 +20,7 @@ CxPolicy[result] {
 		"keyActualValue": "'vpc_config.endpoint_public_access' is equal 'true'",
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}

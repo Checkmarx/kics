@@ -2,20 +2,22 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 checkedFields = {
 	"enabled",
-	"mfa_delete"
+	"mfa_delete",
 }
 
 # version before TF AWS 4.0
 CxPolicy[result] {
-	bucket := input.document[i].resource.aws_s3_bucket[name]
+	some document in input.document
+	bucket := document.resource.aws_s3_bucket[name]
 	not common_lib.valid_key(bucket, "lifecycle_rule")
 	not common_lib.valid_key(bucket.versioning, checkedFields[j])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_s3_bucket",
 		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].versioning", [name]),
@@ -28,12 +30,13 @@ CxPolicy[result] {
 
 # version before TF AWS 4.0
 CxPolicy[result] {
-	bucket := input.document[i].resource.aws_s3_bucket[name]
+	some document in input.document
+	bucket := document.resource.aws_s3_bucket[name]
 	not common_lib.valid_key(bucket, "lifecycle_rule")
 	bucket.versioning[checkedFields[j]] != true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_s3_bucket",
 		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].versioning.%s", [name, checkedFields[j]]),
@@ -45,14 +48,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
 
 	not common_lib.valid_key(module, "lifecycle_rule")
-	not common_lib.valid_key(module[keyToCheck],  checkedFields[c])
+	not common_lib.valid_key(module[keyToCheck], checkedFields[c])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].versioning", [name]),
@@ -64,14 +68,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
 
 	not common_lib.valid_key(module, "lifecycle_rule")
 	module[keyToCheck][checkedFields[c]] != true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].versioning.%s", [name, checkedFields[c]]),
@@ -88,12 +93,13 @@ CxPolicy[result] {
 
 	not tf_lib.has_target_resource(bucketName, "aws_s3_bucket_lifecycle_configuration")
 
-	bucket_versioning := input.document[i].resource.aws_s3_bucket_versioning[name]
+	some document in input.document
+	bucket_versioning := document.resource.aws_s3_bucket_versioning[name]
 	split(bucket_versioning.bucket, ".")[1] == bucketName
 	bucket_versioning.versioning_configuration.mfa_delete == "Disabled"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_s3_bucket_versioning",
 		"resourceName": tf_lib.get_resource_name(bucket_versioning, name),
 		"searchKey": sprintf("aws_s3_bucket_versioning[%s].versioning_configuration.mfa_delete", [name]),
@@ -110,12 +116,13 @@ CxPolicy[result] {
 
 	not tf_lib.has_target_resource(bucketName, "aws_s3_bucket_lifecycle_configuration")
 
-	bucket_versioning := input.document[i].resource.aws_s3_bucket_versioning[name]
+	some document in input.document
+	bucket_versioning := document.resource.aws_s3_bucket_versioning[name]
 	split(bucket_versioning.bucket, ".")[1] == bucketName
 	bucket_versioning.versioning_configuration.status != "Enabled"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_s3_bucket_versioning",
 		"resourceName": tf_lib.get_resource_name(bucket_versioning, name),
 		"searchKey": sprintf("aws_s3_bucket_versioning[%s].versioning_configuration.status", [name]),
@@ -128,16 +135,16 @@ CxPolicy[result] {
 
 # version after TF AWS 4.0
 CxPolicy[result] {
-	
 	input.document[_].resource.aws_s3_bucket[bucketName]
 
 	not tf_lib.has_target_resource(bucketName, "aws_s3_bucket_lifecycle_configuration")
-	bucket_versioning := input.document[i].resource.aws_s3_bucket_versioning[name]
+	some document in input.document
+	bucket_versioning := document.resource.aws_s3_bucket_versioning[name]
 	split(bucket_versioning.bucket, ".")[1] == bucketName
 	not common_lib.valid_key(bucket_versioning.versioning_configuration, "mfa_delete")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_s3_bucket_versioning",
 		"resourceName": tf_lib.get_resource_name(bucket_versioning, name),
 		"searchKey": sprintf("aws_s3_bucket_versioning[%s].versioning_configuration", [name]),

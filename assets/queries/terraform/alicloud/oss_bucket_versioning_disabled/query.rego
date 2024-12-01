@@ -2,15 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	some i
-	resource := input.document[i].resource.alicloud_oss_bucket[name]
+	some document in input.document
+	resource := document.resource.alicloud_oss_bucket[name]
 
-    resource.versioning.status == "Suspended"
+	resource.versioning.status == "Suspended"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_oss_bucket",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_oss_bucket", name),
 		"searchKey": sprintf("alicloud_oss_bucket[%s].versioning.status", [name]),
@@ -19,21 +20,21 @@ CxPolicy[result] {
 		"keyActualValue": "'versioning.status' is suspended",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "versioning", "status"], []),
 		"remediation": json.marshal({
-            "before": "Suspended",
-            "after": "Enabled"
-        }),
-        "remediationType": "replacement",
+			"before": "Suspended",
+			"after": "Enabled",
+		}),
+		"remediationType": "replacement",
 	}
 }
 
 CxPolicy[result] {
-	some i
-	resource := input.document[i].resource.alicloud_oss_bucket[name]
+	some document in input.document
+	resource := document.resource.alicloud_oss_bucket[name]
 
-    not common_lib.valid_key(resource, "versioning")
+	not common_lib.valid_key(resource, "versioning")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "alicloud_oss_bucket",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_oss_bucket", name),
 		"searchKey": sprintf("alicloud_oss_bucket[%s]", [name]),
@@ -42,6 +43,6 @@ CxPolicy[result] {
 		"keyActualValue": "'versioning' is missing",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
 		"remediation": "versioning {\n\t\tstatus = \"Enabled\"\n\t}",
-        "remediationType": "addition",
+		"remediationType": "addition",
 	}
 }

@@ -1,10 +1,11 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::MSK::Cluster"
 
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(properties, "EncryptionInfo")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties", [key]),
@@ -23,7 +24,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::MSK::Cluster"
 
@@ -31,7 +32,7 @@ CxPolicy[result] {
 	properties.EncryptionInfo.EncryptionInTransit.ClientBroker != "TLS"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.EncryptionInfo.EncryptionInTransit.ClientBroker", [key]),
@@ -42,7 +43,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::MSK::Cluster"
 
@@ -50,7 +51,7 @@ CxPolicy[result] {
 	isResFalse(properties.EncryptionInfo.EncryptionInTransit.InCluster)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.EncryptionInfo.EncryptionInTransit.InCluster", [key]),
@@ -60,8 +61,6 @@ CxPolicy[result] {
 	}
 }
 
-isResFalse(answer) {
-	answer == "false"
-} else {
-	answer == false
-}
+isResFalse("false") = true
+
+isResFalse(false) = true

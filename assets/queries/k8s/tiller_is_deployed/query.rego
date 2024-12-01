@@ -1,13 +1,15 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 
 	checkMetadata(document.metadata)
 	metadata := document.metadata
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
@@ -20,7 +22,7 @@ CxPolicy[result] {
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 
 	some j
 	contains(object.get(document.spec[types[x]][j], "image", "undefined"), "tiller")
@@ -28,7 +30,7 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.%s", [metadata.name, types[x]]),
@@ -39,14 +41,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 
 	checkMetadata(document.spec.template.metadata)
 
 	metadata := document.metadata
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.metadata", [metadata.name]),
@@ -57,7 +59,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 
 	some j
 	contains(object.get(document.spec.template.spec[types[x]][j], "image", "undefined"), "tiller")
@@ -65,7 +67,7 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.%s", [metadata.name, types[x]]),

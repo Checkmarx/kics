@@ -1,17 +1,19 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i].Resources
+	some document in input.document
+	doc := document.Resources
 	resource := doc[name]
 	resource.Type == "AWS::EC2::Instance"
 
 	resource.Properties.Monitoring == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Monitoring", [name]),
@@ -22,14 +24,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i].Resources
+	some document in input.document
+	doc := document.Resources
 	resource := doc[name]
 	resource.Type == "AWS::EC2::Instance"
 
 	not common_lib.valid_key(resource.Properties, "Monitoring")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Monitoring", [name]),

@@ -2,18 +2,20 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 blocks := {"ingress", "egress"}
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_default_security_group[name]
+	some doc in input.document
+	resource := doc.resource.aws_default_security_group[name]
 
 	common_lib.valid_key(resource, "vpc_id")
 	block := blocks[b]
 	common_lib.valid_key(resource, block)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_default_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_default_security_group[{{%s}}].%s", [name, block]),
@@ -24,7 +26,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_default_security_group[name]
+	some doc in input.document
+	resource := doc.resource.aws_default_security_group[name]
 
 	common_lib.valid_key(resource, "vpc_id")
 
@@ -33,15 +36,15 @@ CxPolicy[result] {
 	acceptAll := {"0.0.0.0/0", "::/0"}
 
 	# ingress or egress
-	rules := resource[block][_]
+	some rules in resource[block]
 
 	# ingress.cidr_blocks or ingress.ipv6_cidr_blocks or egress.cidr_blocks or egress.ipv6_cidr_blocks
-	cidr := rules[cidrs[c]][_]
+	some cidr in rules[cidrs[c]]
 
 	cidr == acceptAll[a]
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_default_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_default_security_group[{{%s}}].%s.%s", [name, block, cidrs[c]]),

@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	# before azurerm 3.0
-	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name].addon_profile
+	some doc in input.document
+	cluster := doc.resource.azurerm_kubernetes_cluster[name].addon_profile
 
 	not common_lib.valid_key(cluster, "azure_policy")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].addon_profile", [name]),
@@ -22,14 +24,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-
 	# before azurerm 3.0
-	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name].addon_profile.azure_policy
+	some doc in input.document
+	cluster := doc.resource.azurerm_kubernetes_cluster[name].addon_profile.azure_policy
 
 	cluster.enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].addon_profile.azure_policy.enabled", [name]),
@@ -39,21 +41,21 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name, "addon_profile", "azure_policy", "enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
 }
 
 CxPolicy[result] {
-
 	# after azurerm 3.0
 
-	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
+	some doc in input.document
+	cluster := doc.resource.azurerm_kubernetes_cluster[name]
 	cluster.azure_policy_enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s].azure_policy_enabled", [name]),
@@ -63,20 +65,21 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name, "azure_policy_enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
 }
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
+	some doc in input.document
+	cluster := doc.resource.azurerm_kubernetes_cluster[name]
 
 	not common_lib.valid_key(cluster, "addon_profile") # before version 3.0
 	not common_lib.valid_key(cluster, "azure_policy_enabled") # after version 3.0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("azurerm_kubernetes_cluster[%s]", [name]),

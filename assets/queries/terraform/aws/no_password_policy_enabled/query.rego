@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_iam_user_login_profile[name]
+	some document in input.document
+	resource := document.resource.aws_iam_user_login_profile[name]
 
 	resource.password_reset_required == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_iam_user_login_profile",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_user_login_profile[%s].password_reset_required", [name]),
@@ -17,19 +19,20 @@ CxPolicy[result] {
 		"keyActualValue": "Attribute 'password_reset_required' is false",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_iam_user_login_profile[name]
+	some document in input.document
+	resource := document.resource.aws_iam_user_login_profile[name]
 
 	resource.password_length < 14
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_iam_user_login_profile",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_user_login_profile[%s].password_length", [name]),
@@ -38,7 +41,7 @@ CxPolicy[result] {
 		"keyActualValue": "Attribute 'password_length' is smaller than 14",
 		"remediation": json.marshal({
 			"before": sprintf("%d", [resource.password_length]),
-			"after": "15"
+			"after": "15",
 		}),
 		"remediationType": "replacement",
 	}

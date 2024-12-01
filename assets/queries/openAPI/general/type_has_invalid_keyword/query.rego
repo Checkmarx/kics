@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 specificKeywords := {
 	"numeric": ["multipleOf", "maximum", "minimum", "exclusiveMaximum", "exclusiveMinimum"],
@@ -11,7 +12,7 @@ specificKeywords := {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
@@ -28,15 +29,13 @@ CxPolicy[result] {
 	}
 }
 
-check_keywords(value) = invalidKeys {
-	invalidKeys := { invalidKeyword |
-        keywords := specificKeywords[type]
-		typeName := get_value_type(value.type)
-		type != typeName
-		value[key]
-		common_lib.inArray(keywords, key)
-		invalidKeyword := key
-    }
+check_keywords(value) = {invalidKeyword |
+	keywords := specificKeywords[type]
+	typeName := get_value_type(value.type)
+	type != typeName
+	value[key]
+	common_lib.inArray(keywords, key)
+	invalidKeyword := key
 }
 
 get_value_type(type) = typeName {
@@ -45,4 +44,3 @@ get_value_type(type) = typeName {
 } else = typeName {
 	typeName := type
 }
-

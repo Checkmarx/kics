@@ -3,15 +3,14 @@ package Cx
 import data.generic.ansible as ansLib
 import data.generic.common as common_lib
 
-
 CxPolicy[result] {
 	task := ansLib.tasks[id][e]
-    action := task[m]
-    action.mode == "preserve"
-    
-    modules_with_preserve := ["copy", "template"]
-    count([x | x := modules_with_preserve[mp]; x == m]) == 0
-    
+	action := task[m]
+	action.mode == "preserve"
+
+	modules_with_preserve := ["copy", "template"]
+	count([x | x := modules_with_preserve[mp]; x == m]) == 0
+
 	result := {
 		"documentId": id,
 		"resourceType": m,
@@ -25,20 +24,20 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][_]
-    modules := [
-        "archive", "community.general.archive", "assemble", "ansible.builtin.assemble", "copy", "ansible.builtin.copy", "file", "ansible.builtin.file", 
-        "get_url", "ansible.builtin.get_url", "template", "ansible.builtin.template",
-    ]
+	modules := [
+		"archive", "community.general.archive", "assemble", "ansible.builtin.assemble", "copy", "ansible.builtin.copy", "file", "ansible.builtin.file",
+		"get_url", "ansible.builtin.get_url", "template", "ansible.builtin.template",
+	]
 	action := task[modules[m]]
 
-    state := object.get(action, "state", "none")
+	state := object.get(action, "state", "none")
 	state != "absent"
-    state != "link"
+	state != "link"
 
 	not common_lib.valid_key(action, "recurse")
-    not file_module(action, modules[m])
-    
-    not common_lib.valid_key(action, "mode")
+	not file_module(action, modules[m])
+
+	not common_lib.valid_key(action, "mode")
 
 	result := {
 		"documentId": id,
@@ -51,25 +50,24 @@ CxPolicy[result] {
 	}
 }
 
-
 CxPolicy[result] {
 	task := ansLib.tasks[id][_]
-    modules := {
-        "blockinfile": false,
-        "ansible.builtin.blockinfile": false,
-        "htpasswd": true,
-        "community.general.htpasswd": true,
-        "ini_file": true,
-        "community.general.ini_file": true,
-        "lineinfile": false,
-        "ansible.builtin.lineinfile": false,
-    }
+	modules := {
+		"blockinfile": false,
+		"ansible.builtin.blockinfile": false,
+		"htpasswd": true,
+		"community.general.htpasswd": true,
+		"ini_file": true,
+		"community.general.ini_file": true,
+		"lineinfile": false,
+		"ansible.builtin.lineinfile": false,
+	}
 
 	action := task[m]
-    not common_lib.valid_key(action, "mode")
+	not common_lib.valid_key(action, "mode")
 
-    bool := modules[m]
-    object.get(action, "create", bool) == true
+	bool := modules[m]
+	object.get(action, "create", bool) == true
 
 	result := {
 		"documentId": id,
@@ -82,10 +80,10 @@ CxPolicy[result] {
 	}
 }
 
-file_module(action, module_name){
-    module_name == "file"
-    object.get(action, "state", "file") == "file"
+file_module(action, module_name) {
+	module_name == "file"
+	object.get(action, "state", "file") == "file"
 } else {
 	module_name == "ansible.builtin.file"
-    object.get(action, "state", "file") == "file"
+	object.get(action, "state", "file") == "file"
 }

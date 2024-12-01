@@ -1,15 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	resource := doc.resource.aws_security_group[securityGroupName]
 
 	not is_used(securityGroupName, doc, resource)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, securityGroupName),
 		"searchKey": sprintf("aws_security_group[%s]", [securityGroupName]),
@@ -21,7 +22,7 @@ CxPolicy[result] {
 
 is_used(securityGroupName, doc, resource) {
 	[path, value] := walk(doc)
-	securityGroupUsed := value.security_groups[_]
+	some securityGroupUsed in value.security_groups
 	contains(securityGroupUsed, sprintf("aws_security_group.%s", [securityGroupName]))
 }
 
@@ -35,27 +36,27 @@ is_used(securityGroupName, doc, resource) {
 # check security groups assigned to aws_elasticache_instance resources
 is_used(securityGroupName, doc, resource) {
 	[path, value] := walk(doc)
-	securityGroupUsed := value.security_group_ids[_]
+	some securityGroupUsed in value.security_group_ids
 	contains(securityGroupUsed, sprintf("aws_security_group.%s", [securityGroupName]))
 }
 
 # check security groups assigned to aws_instance resources
 is_used(securityGroupName, doc, resource) {
 	[path, value] := walk(doc)
-	securityGroupUsed := value.vpc_security_group_ids[_]
+	some securityGroupUsed in value.vpc_security_group_ids
 	contains(securityGroupUsed, sprintf("aws_security_group.%s", [securityGroupName]))
 }
 
 # check security groups assigned to aws_eks_cluster resources
 is_used(securityGroupName, doc, resource) {
 	[path, value] := walk(doc)
-	securityGroupUsed := value.vpc_config.security_group_ids[_]
+	some securityGroupUsed in value.vpc_config.security_group_ids
 	contains(securityGroupUsed, sprintf("aws_security_group.%s", [securityGroupName]))
 }
 
 is_used(securityGroupName, doc, resource) {
 	sec_group_used := resource.name
-    [path, value] := walk(doc)
-	securityGroupUsed := value.security_groups[_]
+	[path, value] := walk(doc)
+	some securityGroupUsed in value.security_groups
 	sec_group_used == securityGroupUsed
 }

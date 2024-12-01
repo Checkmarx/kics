@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.resource.aws_globalaccelerator_accelerator[name]
 
 	not common_lib.valid_key(resource, "attributes")
@@ -24,7 +25,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.resource.aws_globalaccelerator_accelerator[name].attributes
 
 	not common_lib.valid_key(resource, "flow_logs_enabled")
@@ -44,7 +45,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	logs := document.resource.aws_globalaccelerator_accelerator[name].attributes.flow_logs_enabled
 
 	logs == false
@@ -60,7 +61,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_globalaccelerator_accelerator[{{%s}}].flow_logs_enabled is false", [name]),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

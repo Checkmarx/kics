@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	defaultsGroup := input.document[i].groups.defaults
+	some doc in input.document
+	defaultsGroup := doc.groups.defaults
 
-    not common_lib.valid_key(defaultsGroup, "no_log")
+	not common_lib.valid_key(defaultsGroup, "no_log")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": "defaults",
 		"issueType": "IncorrectValue",
 		"resourceType": "n/a",
@@ -19,12 +21,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	defaultsGroup := input.document[i].groups.defaults
+	some doc in input.document
+	defaultsGroup := doc.groups.defaults
 
-    defaultsGroup.no_log == false
+	defaultsGroup.no_log == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": "defaults.no_log",
 		"issueType": "IncorrectValue",
 		"resourceType": "n/a",

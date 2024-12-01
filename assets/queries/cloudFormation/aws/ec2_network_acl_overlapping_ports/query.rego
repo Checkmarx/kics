@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	prop1 := document.Resources[name1]
 	prop2 := document.Resources[name2]
 
@@ -24,7 +25,7 @@ CxPolicy[result] {
 	check_overlap(range1, range2)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": prop1.Type,
 		"resourceName": cf_lib.get_resource_name(prop1, name1),
 		"searchKey": sprintf("Resources.%s.Properties.PortRange", [name1]),

@@ -1,14 +1,15 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	[path, value] := walk(doc)
 	param := value.parameters[n]
-	param.in == "body"
+	param["in"] == "body"
 
 	property := param[x]
 	not allowed(x)

@@ -2,17 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.pulumi as plm_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resources[name]
+	some document in input.document
+	resource := document.resources[name]
 	resource.type == "aws:elasticache:Cluster"
 
 	resource.properties.engine == "redis"
 	not common_lib.valid_key(resource.properties, "snapshotRetentionLimit")
 
-
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties", [name]),
@@ -24,7 +25,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[name]
+	some document in input.document
+	resource := document.resources[name]
 	resource.type == "aws:elasticache:Cluster"
 
 	resource.properties.engine == "redis"
@@ -32,7 +34,7 @@ CxPolicy[result] {
 	snapshotRetentionLimit == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties.snapshotRetentionLimit", [name]),

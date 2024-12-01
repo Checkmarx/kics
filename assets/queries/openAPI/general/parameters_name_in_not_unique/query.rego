@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
@@ -14,7 +15,7 @@ CxPolicy[result] {
 	paramTwo := parameters[keyTwo]
 	keyOne != keyTwo
 	paramOne.name == paramTwo.name
-	paramOne.in == paramTwo.in
+	paramOne["in"] == paramTwo["in"]
 
 	partialSk := openapi_lib.concat_default_value(openapi_lib.concat_path(path), "parameters")
 	sk := openapi_lib.get_complete_search_key(keyOne, partialSk, "name")

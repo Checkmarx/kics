@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema_properties := doc.paths[path][operation].responses[r].content[c].schema.properties
@@ -22,7 +23,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema_properties := doc.paths[path][operation].requestBody.content[c].schema.properties
@@ -40,7 +41,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema_properties := doc.components.requestBodies[r].content[c].schema.properties
@@ -58,7 +59,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	schema_properties := doc.components.responses[r].content[c].schema.properties

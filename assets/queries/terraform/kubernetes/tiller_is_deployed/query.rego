@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	checkMetadata(resource[name].metadata)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].metadata", [resourceType, name]),
@@ -21,7 +23,8 @@ CxPolicy[result] {
 types := {"init_container", "container"}
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	spec := resource[name].spec
 	containers := spec[types[x]]
@@ -31,7 +34,7 @@ CxPolicy[result] {
 	contains(object.get(containers[y], "image", "undefined"), "tiller")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.%s", [resourceType, name, types[x]]),
@@ -42,7 +45,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	spec := resource[name].spec
 	containers := spec[types[x]]
@@ -51,7 +55,7 @@ CxPolicy[result] {
 	contains(object.get(containers, "image", "undefined"), "tiller")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.%s.image", [resourceType, name, types[x]]),
@@ -62,14 +66,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	spec := resource[name].spec
 
 	checkMetadata(spec.template.metadata)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.metadata", [resourceType, name]),
@@ -80,7 +85,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	spec := resource[name].spec.template.spec
 	containers := spec[types[x]]
@@ -90,7 +96,7 @@ CxPolicy[result] {
 	contains(object.get(containers, "image", "undefined"), "tiller")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.spec.%s.image", [resourceType, name, types[x]]),
@@ -101,7 +107,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	spec := resource[name].spec.template.spec
 	containers := spec[types[x]]
@@ -111,7 +118,7 @@ CxPolicy[result] {
 	contains(object.get(containers[y], "image", "undefined"), "tiller")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.%s", [resourceType, name, types[x]]),

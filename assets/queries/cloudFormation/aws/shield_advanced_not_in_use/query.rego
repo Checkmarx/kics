@@ -1,24 +1,26 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 resources := {
 	"AWS::CloudFront::Distribution",
 	"AWS::ElasticLoadBalancing::LoadBalancer",
 	"AWS::GlobalAccelerator::Accelerator",
 	"AWS::EC2::EIP",
-	"AWS::Route53::HostedZone"
+	"AWS::Route53::HostedZone",
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == resources[idx]
 
 	not has_shield_advanced(resources[idx])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),
@@ -30,9 +32,10 @@ CxPolicy[result] {
 }
 
 has_shield_advanced(resource) {
-	shield := input.document[i].Resources[_]
+	some doc in input.document
+	some shield in doc.Resources
 	shield.Type == "AWS::FMS::Policy"
 
 	shield.Properties.SecurityServicePolicyData.Type == "SHIELD_ADVANCED"
-	shield.Properties.ResourceTypeList[_] == resource
+	resource in shield.Properties.ResourceTypeList
 }

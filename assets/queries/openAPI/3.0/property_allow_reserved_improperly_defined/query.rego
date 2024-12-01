@@ -1,10 +1,11 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 	params := doc.paths[name].parameters[n]
 
@@ -20,7 +21,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 	params := doc.paths[name][oper].parameters[n]
 
@@ -36,7 +37,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 	params := doc.components.parameters[n]
 
@@ -53,5 +54,5 @@ CxPolicy[result] {
 
 improperly_defined(params) {
 	common_lib.valid_key(params, "allowReserved")
-	params.in != "query"
+	params["in"] != "query"
 }

@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as commonLib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_api_gateway_rest_api[name]
+	some document in input.document
+	resource := document.resource.aws_api_gateway_rest_api[name]
 
 	not resource.minimum_compression_size
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_api_gateway_rest_api",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_rest_api[%s]", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_api_gateway_rest_api[name]
+	some document in input.document
+	resource := document.resource.aws_api_gateway_rest_api[name]
 
 	not commonLib.between(resource.minimum_compression_size, 0, 10485759)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_api_gateway_rest_api",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_rest_api[%s].minimum_compression_size", [name]),
@@ -38,7 +41,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("Attribute 'minimum_compression_size' is %d", [resource.minimum_compression_size]),
 		"remediation": json.marshal({
 			"before": sprintf("%d", [resource.minimum_compression_size]),
-			"after": "0"
+			"after": "0",
 		}),
 		"remediationType": "replacement",
 	}

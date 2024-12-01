@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod[name]
 
 	spec := resource.spec
-    not common_lib.valid_key(spec, "service_account_name")
+	not common_lib.valid_key(spec, "service_account_name")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].spec", [name]),
@@ -21,13 +23,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod[name]
 
 	service_account_name := resource.spec.service_account_name
-    service_account_name == ""
+	service_account_name == ""
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].spec.service_account_name", [name]),

@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].command[name]
+	some doc in input.document
+	resource := doc.command[name]
 
 	wget := getWget(resource[_])
 	curl := getCurl(resource[_])
@@ -12,7 +14,7 @@ CxPolicy[result] {
 	count(wget) > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, curl[0]]),
 		"issueType": "RedundantAttribute",
 		"keyExpectedValue": "Exclusively using 'wget' or 'curl'",
@@ -26,7 +28,7 @@ getWget(cmd) = wget {
 
 	commandsList = dockerLib.getCommands(cmd.Value[0])
 
-	wget := [x | instruction := commandsList[i]; not contains(instruction, "install "); regex.match("^( )*wget", instruction) == true; x := cmd.Original]
+	wget := [x | instruction := commandsList[i]; not contains(instruction, `install `); regex.match(`^( )*wget`, instruction) == true; x := cmd.Original]
 }
 
 getWget(cmd) = wget {
@@ -44,7 +46,7 @@ getCurl(cmd) = curl {
 
 	commandsList = dockerLib.getCommands(cmd.Value[0])
 
-	curl := [x | instruction := commandsList[i]; not contains(instruction, "install "); regex.match("^( )*curl", instruction) == true; x := cmd.Original]
+	curl := [x | instruction := commandsList[i]; not contains(instruction, `install `); regex.match(`^( )*curl`, instruction) == true; x := cmd.Original]
 }
 
 getCurl(cmd) = curl {

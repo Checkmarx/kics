@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_api_gateway_domain_name[name]
+	some document in input.document
+	resource := document.resource.aws_api_gateway_domain_name[name]
 
 	not common_lib.valid_key(resource, "security_policy")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_api_gateway_domain_name",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_domain_name[%s]", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_api_gateway_domain_name[name]
+	some document in input.document
+	resource := document.resource.aws_api_gateway_domain_name[name]
 
 	resource.security_policy != "TLS_1_2"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_api_gateway_domain_name",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_domain_name[%s].security_policy", [name]),
@@ -37,8 +40,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("aws_api_gateway_domain_name[%s].security_policy should be set to TLS_1_2", [name]),
 		"keyActualValue": sprintf("aws_api_gateway_domain_name[%s].security_policy is set to %s", [name, resource.security_policy]),
 		"remediation": json.marshal({
-			"before": sprintf("%s",[resource.security_policy]),
-			"after": "TLS_1_2"
+			"before": sprintf("%s", [resource.security_policy]),
+			"after": "TLS_1_2",
 		}),
 		"remediationType": "replacement",
 	}

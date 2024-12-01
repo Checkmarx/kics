@@ -1,16 +1,18 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == "AWS::Config::ConfigurationAggregator"
 
-    not hasAggregationSources(resource.Properties)
+	not hasAggregationSources(resource.Properties)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
@@ -21,15 +23,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == "AWS::Config::ConfigurationAggregator"
 
-    accSources := resource.Properties.AccountAggregationSources
+	accSources := resource.Properties.AccountAggregationSources
 	accs := accSources[j]
-    not common_lib.valid_key(accs,"AllAwsRegions")
+	not common_lib.valid_key(accs, "AllAwsRegions")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.AccountAggregationSources", [name]),
@@ -40,15 +43,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == "AWS::Config::ConfigurationAggregator"
 
-    accSources := resource.Properties.AccountAggregationSources
+	accSources := resource.Properties.AccountAggregationSources
 
-    accSources[j].AllAwsRegions == false
+	accSources[j].AllAwsRegions == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.AccountAggregationSources", [name]),
@@ -59,15 +63,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == "AWS::Config::ConfigurationAggregator"
 
-    orgSource := resource.Properties.OrganizationAggregationSource
+	orgSource := resource.Properties.OrganizationAggregationSource
 
-    not common_lib.valid_key(orgSource,"AllAwsRegions")
+	not common_lib.valid_key(orgSource, "AllAwsRegions")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.OrganizationAggregationSource", [name]),
@@ -78,15 +83,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == "AWS::Config::ConfigurationAggregator"
 
-    orgSource := resource.Properties.OrganizationAggregationSource
+	orgSource := resource.Properties.OrganizationAggregationSource
 
-    orgSource.AllAwsRegions == false
+	orgSource.AllAwsRegions == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.OrganizationAggregationSource.AllAwsRegions", [name]),
@@ -97,6 +103,6 @@ CxPolicy[result] {
 }
 
 hasAggregationSources(resource) {
-    aggregators := ["AccountAggregationSources","OrganizationAggregationSource"]
+	aggregators := ["AccountAggregationSources", "OrganizationAggregationSource"]
 	common_lib.valid_key(resource, aggregators[_])
 }

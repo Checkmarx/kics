@@ -1,13 +1,15 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_bigquery_dataset[name]
+	some document in input.document
+	resource := document.resource.google_bigquery_dataset[name]
 	publiclyAccessible(resource.access)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_bigquery_dataset",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "google_bigquery_dataset", name),
 		"searchKey": sprintf("google_bigquery_dataset[%s].access.special_group", [name]),

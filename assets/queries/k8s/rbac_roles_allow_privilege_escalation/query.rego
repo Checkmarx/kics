@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 
 	kinds := {"Role", "ClusterRole"}
@@ -22,6 +23,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.rules[%d].verbs should not include the 'bind' and/or 'escalate' permission", [metadata.name, j]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.rules[%d].verbs includes the 'bind' and/or 'escalate' permission", [metadata.name, j]),
-		"searchLine": common_lib.build_search_line(["rules", j], ["verbs"])
+		"searchLine": common_lib.build_search_line(["rules", j], ["verbs"]),
 	}
 }

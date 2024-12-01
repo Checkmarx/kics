@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	dataflow_job := input.document[i].resource.google_dataflow_job[name]
+	some document in input.document
+	dataflow_job := document.resource.google_dataflow_job[name]
 
 	bom_output = {
 		"resource_type": "google_dataflow_job",
@@ -16,7 +18,7 @@ CxPolicy[result] {
 	}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("google_dataflow_job[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

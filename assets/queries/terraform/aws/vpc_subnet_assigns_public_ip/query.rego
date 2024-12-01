@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_subnet[name]
+	some doc in input.document
+	resource := doc.resource.aws_subnet[name]
 
 	resource.map_public_ip_on_launch == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_subnet",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_subnet[%s].map_public_ip_on_launch", [name]),
@@ -19,20 +21,21 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_subnet", name, "map_public_ip_on_launch"], []),
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some doc in input.document
+	module := doc.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_subnet", "map_public_ip_on_launch")
 
 	module[keyToCheck] == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("%s.%s", [name, keyToCheck]),
@@ -42,20 +45,21 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck], []),
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some doc in input.document
+	module := doc.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_subnet", "map_public_ip_on_launch")
 
 	not common_lib.valid_key(module, keyToCheck)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("%s", [name]),

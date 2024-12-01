@@ -1,18 +1,19 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties
-	
+
 	properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled", [key]),
@@ -23,7 +24,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties
@@ -31,7 +32,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(properties, "PointInTimeRecoverySpecification")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties", [key]),
@@ -42,7 +43,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties
@@ -51,7 +52,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(specification, "PointInTimeRecoveryEnabled")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.PointInTimeRecoverySpecification", [key]),

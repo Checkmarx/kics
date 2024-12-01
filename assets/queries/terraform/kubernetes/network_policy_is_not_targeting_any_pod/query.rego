@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_network_policy[name]
+	some doc in input.document
+	resource := doc.resource.kubernetes_network_policy[name]
 
 	common_lib.valid_key(resource.spec.pod_selector, "match_labels")
 
@@ -16,7 +18,7 @@ CxPolicy[result] {
 	not findTargettedPod(labelValue, key)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "kubernetes_network_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_network_policy[%s].spec.pod_selector.match_labels", [name]),
@@ -34,10 +36,8 @@ findTargettedPod(lValue, lKey) {
 	some key
 	key == lKey
 	labels[key] == lValue
-} else = false {
-	true
-}
+} else = false
 
 hasReference(label) {
-	regex.match("kubernetes_[_a-zA-Z]+.[a-zA-Z-_0-9]+", label)
+	regex.match(`kubernetes_[_a-zA-Z]+.[a-zA-Z-_0-9]+`, label)
 }

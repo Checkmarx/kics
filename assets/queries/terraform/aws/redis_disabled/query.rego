@@ -1,14 +1,16 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_elasticache_cluster[name]
+	some document in input.document
+	resource := document.resource.aws_elasticache_cluster[name]
 	resource.engine != "redis"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_elasticache_cluster",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_elasticache_cluster", name),
 		"searchKey": sprintf("resource.aws_elasticache_cluster[%s].engine", [name]),
@@ -18,7 +20,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("resource.aws_elasticache_cluster[%s].engine doesn't enable Redis", [name]),
 		"remediation": json.marshal({
 			"before": "memcached",
-			"after": "redis"
+			"after": "redis",
 		}),
 		"remediationType": "replacement",
 	}

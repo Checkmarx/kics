@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	not metadata.namespace
 	resource.kind == k8sLib.valid_pod_spec_kind_list[_]
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	volumes := specInfo.spec.volumes
 	volumes[j].hostPath.path
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path", [metadata.name, specInfo.path, volumes[j].name]),
@@ -29,12 +30,12 @@ CxPolicy[result] {
 			"default",
 			volumes[j].hostPath.path,
 		]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j ,"hostPath", "path"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j, "hostPath", "path"]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	namespace := metadata.namespace
 	namespace != "kube-system"
@@ -43,10 +44,10 @@ CxPolicy[result] {
 	volumes := specInfo.spec.volumes
 	volumes[j].hostPath.path
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path", [metadata.name,specInfo.path, volumes[j].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path", [metadata.name, specInfo.path, volumes[j].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resource name '%s' of kind '%s' in non kube-system namespace '%s' should not have hostPath '%s' mounted", [
 			metadata.name,
@@ -60,12 +61,12 @@ CxPolicy[result] {
 			metadata.namespace,
 			volumes[j].hostPath.path,
 		]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j ,"hostPath", "path"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j, "hostPath", "path"]),
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	namespace := metadata.namespace
 	namespace != "kube-system"
@@ -73,7 +74,7 @@ CxPolicy[result] {
 	volumes := resource.spec.template.spec.volumes
 	volumes[j].hostPath.path
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.volumes.name={{%s}}.hostPath.path", [metadata.name, volumes[j].name]),
@@ -94,14 +95,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	not metadata.namespace
 	not common_lib.inArray(k8sLib.valid_pod_spec_kind_list, resource.kind)
 	volumes := resource.spec.template.spec.volumes
 	volumes[j].hostPath.path
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.spec.volumes.name={{%s}}.hostPath.path", [metadata.name, volumes[j].name]),
@@ -122,13 +123,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	resource.kind == "PersistentVolume"
 	metadata.namespace != "kube-system"
 	path := resource.spec.hostPath.path
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.hostPath.path", [metadata.name]),
@@ -149,13 +150,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i]
+	some resource in input.document
 	metadata := resource.metadata
 	resource.kind == "PersistentVolume"
 	not metadata.namespace
 	path := resource.spec.hostPath.path
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": resource.id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.hostPath.path", [metadata.name]),

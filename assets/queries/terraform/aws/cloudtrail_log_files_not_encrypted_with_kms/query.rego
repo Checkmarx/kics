@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	cloudtrail := input.document[i].resource.aws_cloudtrail[name]
+	some document in input.document
+	cloudtrail := document.resource.aws_cloudtrail[name]
 	not common_lib.valid_key(cloudtrail, "kms_key_id")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_cloudtrail",
 		"resourceName": tf_lib.get_resource_name(cloudtrail, name),
 		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),

@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.crossplane as cp_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "elbv2.aws.crossplane.io")
 	resource.kind == "Listener"
@@ -13,7 +14,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(forProvider, "sslPolicy")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider", [cp_lib.getPath(path), resource.metadata.name]),
@@ -25,7 +26,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, resource] := walk(docs)
 	startswith(resource.apiVersion, "elbv2.aws.crossplane.io")
 	resource.kind == "Listener"
@@ -35,7 +36,7 @@ CxPolicy[result] {
 	common_lib.weakCipher(policy)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.sslPolicy", [cp_lib.getPath(path), resource.metadata.name]),

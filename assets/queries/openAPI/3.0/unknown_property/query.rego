@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
@@ -22,7 +23,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
@@ -31,7 +32,7 @@ CxPolicy[result] {
 	objValues := objectValues[objType][object]
 
 	index := {"array": 1, "simple": 1, "map": 2}
-	path[minus(count(path), index[objType])] == object
+	path[count(path) - index[objType]] == object
 
 	objType == "array"
 	is_array(value)
@@ -48,7 +49,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
@@ -57,7 +58,7 @@ CxPolicy[result] {
 	objValues := objectValues[objType][object]
 
 	index := {"array": 1, "simple": 1, "map": 2}
-	path[minus(count(path), index[objType])] == object
+	path[count(path) - index[objType]] == object
 
 	any([objType == "simple", objType == "map"])
 	value[field]
@@ -73,12 +74,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
 
-	path[minus(count(path), 3)] == "callbacks"
+	path[count(path) - 3] == "callbacks"
 
 	value[x]
 	not known_field(map_objects.paths, x)
@@ -104,11 +105,11 @@ openapi := {
 }
 
 known_openapi_object_field(field) {
-	field == openapi[_]
+	field in openapi
 }
 
 known_field(object, value) {
-	object[_] == value
+	value in object
 }
 
 flow := {

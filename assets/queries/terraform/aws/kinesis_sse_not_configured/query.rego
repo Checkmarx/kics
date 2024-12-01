@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_kinesis_firehose_delivery_stream[name]
+	some document in input.document
+	resource := document.resource.aws_kinesis_firehose_delivery_stream[name]
 
 	resource.kinesis_source_configuration
 	not resource.kinesis_source_configuration.kinesis_stream_arn
 	resource.server_side_encryption.enabled == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_kinesis_firehose_delivery_stream",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_firehose_delivery_stream[%s].server_side_encryption.enabled", [name]),
@@ -21,13 +23,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_kinesis_firehose_delivery_stream[name]
+	some document in input.document
+	resource := document.resource.aws_kinesis_firehose_delivery_stream[name]
 
 	not resource.server_side_encryption
 	not resource.kinesis_source_configuration.kinesis_stream_arn
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_kinesis_firehose_delivery_stream",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_firehose_delivery_stream[%s]", [name]),
@@ -38,7 +41,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_kinesis_firehose_delivery_stream[name]
+	some document in input.document
+	resource := document.resource.aws_kinesis_firehose_delivery_stream[name]
 
 	not resource.kinesis_source_configuration
 
@@ -46,7 +50,7 @@ CxPolicy[result] {
 	resource.server_side_encryption.enabled != true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_kinesis_firehose_delivery_stream",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_firehose_delivery_stream[%s].server_side_encryption.enabled", [name]),
@@ -57,7 +61,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_kinesis_firehose_delivery_stream[name]
+	some document in input.document
+	resource := document.resource.aws_kinesis_firehose_delivery_stream[name]
 
 	not resource.kinesis_source_configuration
 
@@ -68,7 +73,7 @@ CxPolicy[result] {
 	not validKeyType(key_type)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_kinesis_firehose_delivery_stream",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_firehose_delivery_stream[%s].server_side_encryption.key_type", [name]),
@@ -79,7 +84,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_kinesis_firehose_delivery_stream[name]
+	some document in input.document
+	resource := document.resource.aws_kinesis_firehose_delivery_stream[name]
 
 	not resource.kinesis_source_configuration
 
@@ -92,7 +98,7 @@ CxPolicy[result] {
 	not resource.server_side_encryption.key_arn
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_kinesis_firehose_delivery_stream",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_kinesis_firehose_delivery_stream[%s].server_side_encryption", [name]),

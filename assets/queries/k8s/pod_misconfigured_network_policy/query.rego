@@ -1,62 +1,64 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 # same namespace but has no ingress rules
 CxPolicy[result] {
-	pod := input.document[i]
+	some pod in input.document
 	pod.kind == "Pod"
 
-    policyList := [policy | policy := input.document[j]; policy.kind == "NetworkPolicy"]
-    # if network policies are present
-    count(policyList) > 0
+	policyList := [policy | policy := input.document[j]; policy.kind == "NetworkPolicy"]
 
-    netPolicy = policyList[k]
-    isSameNamespace(pod, netPolicy)
+	# if network policies are present
+	count(policyList) > 0
+	netPolicy = policyList[k]
+	isSameNamespace(pod, netPolicy)
 
-    # if no ingress and no egress policies are defined
-    not policyHasEgress(netPolicy)
-    not policyHasIngress(netPolicy)
+	# if no ingress and no egress policies are defined
+	not policyHasEgress(netPolicy)
+	not policyHasIngress(netPolicy)
 
-    result := {
+	result := {
 		"documentId": pod.id,
 		"resourceType": pod.kind,
 		"resourceName": pod.metadata.name,
 		"searchKey": sprintf("metadata.name=%s", [pod.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Pod %s should have ingress and egress rules in matching NetworkPolicy", [pod.metadata.name]),
-		"keyActualValue": sprintf("Pod %s has no ingress or egress rules in matching NetworkPolicy", [pod.metadata.name])
+		"keyActualValue": sprintf("Pod %s has no ingress or egress rules in matching NetworkPolicy", [pod.metadata.name]),
 	}
 }
 
 # if it's not the same namespace pod must be matched explicitly
 CxPolicy[result] {
-	pod := input.document[i]
+	some pod in input.document
 	pod.kind == "Pod"
 
-    policyList := [policy | policy := input.document[j]; policy.kind == "NetworkPolicy"]
-    # if network policies are present
-    count(policyList) > 0
+	policyList := [policy | policy := input.document[j]; policy.kind == "NetworkPolicy"]
 
-    netPolicy = policyList[k]
-    # if it's not in the same namespace there should be a matching labels rule
-    not isSameNamespace(pod, netPolicy)
+	# if network policies are present
+	count(policyList) > 0
+	netPolicy = policyList[k]
 
-    # if there are matching labels
+	# if it's not in the same namespace there should be a matching labels rule
+	not isSameNamespace(pod, netPolicy)
+
+	# if there are matching labels
 	pod.metadata.labels[key] == netPolicy.spec.podSelector.matchLabels[key]
 
-    # if no ingress and no egress policies are defined
-    not policyHasIngress(netPolicy)
-    not policyHasEgress(netPolicy)
+	# if no ingress and no egress policies are defined
+	not policyHasIngress(netPolicy)
+	not policyHasEgress(netPolicy)
 
-    result := {
+	result := {
 		"documentId": pod.id,
 		"resourceType": pod.kind,
 		"resourceName": pod.metadata.name,
 		"searchKey": sprintf("metadata.name=%s", [pod.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Pod %s should have ingress and egress rules in matching NetworkPolicy", [pod.metadata.name]),
-		"keyActualValue": sprintf("Pod %s has no ingress or egress rules in matching NetworkPolicy", [pod.metadata.name])
+		"keyActualValue": sprintf("Pod %s has no ingress or egress rules in matching NetworkPolicy", [pod.metadata.name]),
 	}
 }
 
@@ -76,7 +78,7 @@ policyHasIngress(netPolicy) {
 # OR if policyType array contains Egress listed
 policyHasEgress(netPolicy) {
 	not common_lib.valid_key(netPolicy.spec, "policyTypes")
-    count(netPolicy.spec.egress) > 0
+	count(netPolicy.spec.egress) > 0
 } else {
 	lower(netPolicy.spec.policyTypes[_]) == lower("Egress")
 }

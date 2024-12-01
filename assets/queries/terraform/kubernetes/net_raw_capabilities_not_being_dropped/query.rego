@@ -1,12 +1,14 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+import future.keywords.in
 
 types := {"init_container", "container"}
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
@@ -17,7 +19,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containerCapabilities, "drop")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
@@ -28,7 +30,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
@@ -40,7 +43,7 @@ CxPolicy[result] {
 	not drop(dropList, options)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
@@ -51,7 +54,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
@@ -62,7 +66,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containerSecurity, "capabilities")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
@@ -73,18 +77,19 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
-	containersType := containers[_]
+	some containersType in containers
 
 	not common_lib.valid_key(containersType, "security_context")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
@@ -95,7 +100,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
@@ -104,7 +110,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containers.security_context.capabilities, "drop")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.security_context.capabilities", [resourceType, name, specInfo.path, types[x]]),
@@ -115,7 +121,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
@@ -126,7 +133,7 @@ CxPolicy[result] {
 	not drop(containers.security_context.capabilities.drop, options)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.security_context.capabilities.drop", [resourceType, name, specInfo.path, types[x]]),
@@ -137,7 +144,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
@@ -146,7 +154,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containers.security_context, "capabilities")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.security_context", [resourceType, name, specInfo.path, types[x]]),
@@ -157,7 +165,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
@@ -166,7 +175,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containers, "security_context")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),

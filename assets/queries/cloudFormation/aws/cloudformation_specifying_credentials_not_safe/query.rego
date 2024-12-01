@@ -1,10 +1,12 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == "AWS::EC2::Instance"
 	metadata := resource.Metadata[mdata]
 	mdata == "AWS::CloudFormation::Authentication"
@@ -13,7 +15,7 @@ CxPolicy[result] {
 	common_lib.valid_key(creds, "accessKeyId")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Metadata.%s.%s.accessKeyId", [name, mdata, accessCreds]),
@@ -24,7 +26,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == "AWS::EC2::Instance"
 	metadata := resource.Metadata[mdata]
 	mdata == "AWS::CloudFormation::Authentication"
@@ -33,7 +36,7 @@ CxPolicy[result] {
 	common_lib.valid_key(creds, "secretKey")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Metadata.%s.%s.secretKey", [name, mdata, accessCreds]),
@@ -44,7 +47,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some doc in input.document
+	resource := doc.Resources[name]
 	resource.Type == "AWS::EC2::Instance"
 	metadata := resource.Metadata[mdata]
 	mdata == "AWS::CloudFormation::Authentication"
@@ -53,7 +57,7 @@ CxPolicy[result] {
 	common_lib.valid_key(creds, "password")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Metadata.%s.%s.password", [name, mdata, accessCreds]),

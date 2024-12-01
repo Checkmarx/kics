@@ -1,15 +1,16 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
 	[path, value] := walk(doc)
-	value["RefMetadata"]["alone"] == false
+	value.RefMetadata.alone == false
 
 	result := {
 		"documentId": doc.id,

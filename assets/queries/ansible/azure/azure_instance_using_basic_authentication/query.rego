@@ -1,14 +1,16 @@
 package Cx
 
 import future.keywords.if
+import future.keywords.in
 
 CxPolicy[result] {
-	vm := input.document[i].playbooks[k].azure_rm_virtualmachine
-    is_linux_vm(vm)
-    not vm.ssh_password_enabled == false
-    not vm.linux_config.disable_password_authentication == false
+	some doc in input.document
+	vm := doc.playbooks[k].azure_rm_virtualmachine
+	is_linux_vm(vm)
+	not vm.ssh_password_enabled == false
+	not vm.linux_config.disable_password_authentication == false
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azure_rm_virtualmachine",
 		"resourceName": vm.name,
 		"searchKey": sprintf("azure_rm_virtualmachine[%s].ssh_public_keys", [vm.name]),
@@ -18,8 +20,8 @@ CxPolicy[result] {
 	}
 }
 
-is_linux_vm(vm) {
-    lower(vm.os_type) == "linux"
-} else {
-    not vm.os_type
+is_linux_vm(vm) if {
+	lower(vm.os_type) == "linux"
+} else if {
+	not vm.os_type
 }

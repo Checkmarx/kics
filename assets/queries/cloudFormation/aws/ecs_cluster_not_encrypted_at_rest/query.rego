@@ -1,10 +1,12 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources
+	some document in input.document
+	resource := document.Resources
 	elem := resource[key]
 	elem.Type == "AWS::ECS::Service"
 	clustername := elem.Properties.Cluster
@@ -15,7 +17,7 @@ CxPolicy[result] {
 	taskDefinition.Properties.Volumes[j].EFSVolumeConfiguration.TransitEncryption == "DISABLED"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": elem.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.Volumes", [taskdefinitionkey]),
@@ -26,7 +28,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources
+	some document in input.document
+	resource := document.Resources
 	elem := resource[key]
 	elem.Type == "AWS::ECS::Service"
 	clustername := elem.Properties.Cluster
@@ -34,7 +37,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(resource, taskdefinitionkey)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": elem.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s", [taskdefinitionkey]),

@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.resource.aws_cloudfront_distribution[name]
 	resource.enabled == true
 
@@ -25,7 +26,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.resource.aws_cloudfront_distribution[name]
 	resource.enabled == true
 
@@ -42,14 +43,14 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudfront_distribution", name, "viewer_certificate", "cloudfront_default_certificate"], []),
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.resource.aws_cloudfront_distribution[name]
 	resource.enabled == true
 
@@ -69,14 +70,14 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_cloudfront_distribution", name, "viewer_certificate", "minimum_protocol_version"], []),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [protocol_version]),
-			"after": "TLSv1.2_2021"
+			"after": "TLSv1.2_2021",
 		}),
 		"remediationType": "replacement",
 	}
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.resource.aws_cloudfront_distribution[name]
 	resource.enabled == true
 

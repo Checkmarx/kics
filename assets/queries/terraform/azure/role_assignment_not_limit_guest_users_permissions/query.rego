@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	role_assign := input.document[i].resource.azurerm_role_assignment[name]
+	some document in input.document
+	role_assign := document.resource.azurerm_role_assignment[name]
 	role_assign.role_definition_name == "Guest"
 
 	ref := split(role_assign.role_definition_id, ".")
@@ -12,7 +14,7 @@ CxPolicy[result] {
 	not restricted(role_definition)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_role_assignment",
 		"resourceName": tf_lib.get_resource_name(role_assign, name),
 		"searchKey": sprintf("azurerm_role_assignment[%s].role_definition_id", [name]),

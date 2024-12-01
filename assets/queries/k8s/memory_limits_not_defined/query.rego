@@ -2,11 +2,12 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 types := {"initContainers", "containers"}
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	specInfo := k8sLib.getSpecInfo(document)
 	container := specInfo.spec[types[t]][c]
 
@@ -23,6 +24,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.resources.limits.memory should be defined", [metadata.name, specInfo.path, types[t], container.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.resources.limits.memory is undefined", [metadata.name, specInfo.path, types[t], container.name]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[t], c, "resources", "limits"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[t], c, "resources", "limits"]),
 	}
 }

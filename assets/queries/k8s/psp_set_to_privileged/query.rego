@@ -1,7 +1,9 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	document.kind == "PodSecurityPolicy"
 
 	spec := document.spec

@@ -1,13 +1,15 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.databricks_cluster[name]
+	some document in input.document
+	resource := document.resource.databricks_cluster[name]
 	not resource.autoscale.min_workers
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "databricks_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("databricks_cluster[%s].autoscale", [name]),
@@ -18,11 +20,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.databricks_cluster[name]
+	some document in input.document
+	resource := document.resource.databricks_cluster[name]
 	not resource.autoscale.max_workers
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "databricks_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("databricks_cluster[%s].autoscale", [name]),

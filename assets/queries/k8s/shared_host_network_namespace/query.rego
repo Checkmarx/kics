@@ -1,16 +1,17 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 	specInfo := k8sLib.getSpecInfo(document)
 
 	specInfo.spec.hostNetwork == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.hostNetwork", [metadata.name, specInfo.path]),

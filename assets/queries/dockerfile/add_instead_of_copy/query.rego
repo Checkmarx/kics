@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	some document in input.document
+	resource := document.command[name][_]
 	resource.Cmd == "add"
 
 	not dockerLib.arrayContains(resource.Value, {".tar", ".tar."})
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'COPY' %s", [resource.Value[0]]),

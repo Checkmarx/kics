@@ -2,9 +2,10 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::CloudFront::Distribution"
@@ -14,7 +15,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(distributionConfig, "WebACLId")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.DistributionConfig", [cf_lib.getPath(path), name]),
@@ -22,10 +23,10 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId should be defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId is undefined", [name]),
 	}
-} 
+}
 
 CxPolicy[result] {
-	docs := input.document[i]
+	some docs in input.document
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::CloudFront::Distribution"
@@ -35,7 +36,7 @@ CxPolicy[result] {
 	distributionConfig.WebACLId == ""
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": docs.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.DistributionConfig.WebACLId", [cf_lib.getPath(path), name]),
@@ -43,4 +44,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId should be properly defined", [distributionConfig.WebACLId]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId contains invalid value", [distributionConfig.WebACLId]),
 	}
-} 
+}

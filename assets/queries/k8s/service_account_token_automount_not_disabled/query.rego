@@ -2,12 +2,14 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 knativeKinds := ["Configuration", "Service", "Revision", "ContainerSource"]
-listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob" ]
+
+listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob"]
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	k8sLib.checkKindWithKnative(document, listKinds, knativeKinds)
 	metadata := document.metadata
 
@@ -16,7 +18,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	k8sLib.checkKindWithKnative(document, listKinds, knativeKinds)
 	metadata := document.metadata
 
@@ -26,7 +28,7 @@ CxPolicy[result] {
 
 	serviceAccountName := object.get(specInfo.spec, "serviceAccountName", "default")
 	SAWithAutoMount := [x |
-		res := input.document[_]
+		some res in input.document
 		res.kind == "ServiceAccount"
 		res.metadata.name == serviceAccountName
 		common_lib.valid_key(res, "automountServiceAccountToken")
@@ -66,7 +68,7 @@ checkAutomount(specInfo, document, metadata) = result {
 	serviceAccountName := object.get(specInfo.spec, "serviceAccountName", "default")
 
 	SAWithAutoMount := [x |
-		res := input.document[_]
+		some res in input.document
 		res.kind == "ServiceAccount"
 		res.metadata.name == serviceAccountName
 		res.automountServiceAccountToken == true

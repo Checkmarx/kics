@@ -12,15 +12,15 @@
     "fileName": "positive1.yaml"
   },
   {
-    "severity": "LOW",
-    "line": 7,
-    "fileName": "positive2.json",
-    "queryName": "CDN Configuration Is Missing"
-  },
-  {
-    "fileName": "positive2.json",
     "queryName": "CDN Configuration Is Missing",
     "severity": "LOW",
-    "line": 15
+    "line": 7,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "CDN Configuration Is Missing",
+    "line": 15,
+    "severity": "LOW",
+    "fileName": "positive2.json"
   }
 ]

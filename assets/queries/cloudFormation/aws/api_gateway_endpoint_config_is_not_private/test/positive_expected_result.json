@@ -18,9 +18,9 @@
     "fileName": "positive2.json"
   },
   {
-    "line": 14,
-    "fileName": "positive2.json",
     "queryName": "API Gateway Endpoint Config is Not Private",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive2.json"
   }
 ]

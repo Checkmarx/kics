@@ -1,11 +1,12 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	mq := document[i].Resources[name]
+	some document in input.document
+	mq := document.Resources[name]
 	mq.Type == "AWS::AmazonMQ::Broker"
 
 	bom_output = {
@@ -20,7 +21,7 @@ CxPolicy[result] {
 	}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

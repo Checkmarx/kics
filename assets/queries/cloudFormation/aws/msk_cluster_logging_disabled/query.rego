@@ -1,16 +1,18 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resources := input.document[i].Resources[name]
+	some document in input.document
+	resources := document.Resources[name]
 	resources.Type == "AWS::MSK::Cluster"
 	properties := resources.Properties
 	not common_lib.valid_key(properties, "LoggingInfo")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resources.Type,
 		"resourceName": cf_lib.get_resource_name(resources, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
@@ -21,8 +23,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	some document in input.document
+	resource = document.Resources[name]
 	resource.Type == "AWS::MSK::Cluster"
 	properties := resource.Properties
 
@@ -33,7 +35,7 @@ CxPolicy[result] {
 	not properties.LoggingInfo.BrokerLogs.S3
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.LoggingInfo.BrokerLogs", [name]),
@@ -44,8 +46,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	some document in input.document
+	resource = document.Resources[name]
 	resource.Type == "AWS::MSK::Cluster"
 	properties := resource.Properties
 	logsName := properties.LoggingInfo.BrokerLogs[log]
@@ -53,7 +55,7 @@ CxPolicy[result] {
 	not func(logs)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.LoggingInfo.BrokerLogs.%s.Enabled", [name, log]),

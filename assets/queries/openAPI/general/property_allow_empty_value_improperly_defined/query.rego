@@ -1,17 +1,18 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
 	[path, value] := walk(doc)
 	params := value.parameters[n]
 	common_lib.valid_key(params, "allowEmptyValue")
-	all([params.in != "query", params.in != "formData"])
+	all([params["in"] != "query", params["in"] != "formData"])
 
 	result := {
 		"documentId": doc.id,

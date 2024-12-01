@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_elasticsearch_domain[name]
+	some document in input.document
+	resource := document.resource.aws_elasticsearch_domain[name]
 
 	not has_policy(name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_elasticsearch_domain",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_elasticsearch_domain[%s]", [name]),
@@ -21,12 +23,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_elasticsearch_domain[name]
+	some document in input.document
+	resource := document.resource.aws_elasticsearch_domain[name]
 
 	without_iam_auth(name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_elasticsearch_domain",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_elasticsearch_domain[%s]", [name]),
@@ -38,16 +41,18 @@ CxPolicy[result] {
 }
 
 has_policy(name) {
-	policy := input.document[i].resource.aws_elasticsearch_domain_policy[_]
+	some document in input.document
+	policy := document.resource.aws_elasticsearch_domain_policy[_]
 	split(policy.domain_name, ".")[1] == name
 }
 
 without_iam_auth(name) {
-	policy := input.document[i].resource.aws_elasticsearch_domain_policy[_]
+	some document in input.document
+	policy := document.resource.aws_elasticsearch_domain_policy[_]
 	split(policy.domain_name, ".")[1] == name
 
 	p := common_lib.json_unmarshal(policy.access_policies)
-	st := p.Statement[_]
+	some st in p.Statement
 	st.Effect == "Allow"
 	common_lib.any_principal(st)
 }

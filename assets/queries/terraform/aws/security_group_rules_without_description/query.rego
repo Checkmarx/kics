@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_security_group[name]
+	some document in input.document
+	resource := document.resource.aws_security_group[name]
 	types := {"ingress", "egress"}
 	resourceType := resource[types[y]]
-    not is_array(resourceType)
+	not is_array(resourceType)
 	not common_lib.valid_key(resourceType, "description")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_security_group[{{%s}}].%s", [name, types[y]]),
@@ -23,15 +25,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_security_group[name]
+	some document in input.document
+	resource := document.resource.aws_security_group[name]
 	types := {"ingress", "egress"}
 	resourceType := resource[types[y]]
-    is_array(resourceType)
-    currentResource := resourceType[resourceIndex]
+	is_array(resourceType)
+	currentResource := resourceType[resourceIndex]
 	not common_lib.valid_key(currentResource, "description")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_security_group[{{%s}}].%s", [name, types[y]]),
@@ -43,11 +46,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_security_group_rule[name]
+	some document in input.document
+	resource := document.resource.aws_security_group_rule[name]
 	not common_lib.valid_key(resource, "description")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_security_group_rule",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_security_group_rule[{{%s}}].description", [name]),

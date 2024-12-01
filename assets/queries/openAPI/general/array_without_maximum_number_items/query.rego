@@ -1,10 +1,11 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
@@ -19,13 +20,13 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "Array schema has 'maxItems' set",
 		"keyExpectedValue": "Array schema has 'maxItems' undefined",
-		"searchLine": common_lib.build_search_line(path, []) ,
+		"searchLine": common_lib.build_search_line(path, []),
 		"overrideKey": version,
 	}
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
@@ -39,7 +40,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "Array schema has 'maxItems' set",
 		"keyExpectedValue": "Array schema has 'maxItems' undefined",
-		"searchLine": common_lib.build_search_line(path, []) ,
+		"searchLine": common_lib.build_search_line(path, []),
 		"overrideKey": version,
 	}
 }

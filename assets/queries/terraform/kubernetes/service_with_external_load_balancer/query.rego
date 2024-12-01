@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_service[name]
+	some document in input.document
+	resource := document.resource.kubernetes_service[name]
 	resource.spec.type == "LoadBalancer"
 	not common_lib.valid_key(resource.metadata, "annotations")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_service",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_service[%s].metadata.name", [name]),
@@ -20,12 +22,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_service[name]
+	some document in input.document
+	resource := document.resource.kubernetes_service[name]
 	common_lib.valid_key(resource.metadata, "annotations")
 	not checkLoadBalancer(resource.metadata.annotations)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_service",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_service[%s].metadata.name.annotations", [name]),

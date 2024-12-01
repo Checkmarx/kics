@@ -2,18 +2,19 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.pulumi as plm_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resources[name]
+	some document in input.document
+	resource := document.resources[name]
 	resource.type == "aws:elasticache:Cluster"
 
 	resource.properties.engine == "memcached"
-	resource.properties.numCacheNodes >1
+	resource.properties.numCacheNodes > 1
 	not common_lib.valid_key(resource.properties, "azMode")
 
-
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties", [name]),
@@ -25,15 +26,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resources[name]
+	some document in input.document
+	resource := document.resources[name]
 	resource.type == "aws:elasticache:Cluster"
 
 	resource.properties.engine == "memcached"
-	resource.properties.numCacheNodes >1
+	resource.properties.numCacheNodes > 1
 	resource.properties.azMode != "cross-az"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties.azMode", [name]),

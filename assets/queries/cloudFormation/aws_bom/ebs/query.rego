@@ -1,11 +1,12 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	ebs_volume := document[i].Resources[name]
+	some document in input.document
+	ebs_volume := document.Resources[name]
 	ebs_volume.Type == "AWS::EC2::Volume"
 
 	bom_output = {
@@ -18,7 +19,7 @@ CxPolicy[result] {
 	}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("Resources.%s", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

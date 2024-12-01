@@ -22,10 +22,10 @@ CxPolicy[result] {
 	}
 }
 
-issueType(str) = "MissingAttribute" {
-	str == ""
-} else = "IncorrectValue" {
-	true
+issueType("") = "MissingAttribute"
+
+issueType(str) = "IncorrectValue" {
+	str != ""
 }
 
 checkPwReusePrevent(pwPolicy) = ".password_reuse_prevent" {
@@ -38,6 +38,4 @@ checkPwReusePrevent(pwPolicy) = ".password_reuse_prevent" {
 	not pwPolicy.password_reuse_prevent
 	not pwPolicy.pw_reuse_prevent
 	not pwPolicy.prevent_reuse
-} else = "none" {
-	true
-}
+} else = "none"

@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Properties.PolicyName == "AWSSupportAccess"
 	resource.Type == "AWS::IAM::Policy"
 
 	not hasAttributeList(resource.Properties, "Roles")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),
@@ -21,14 +23,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Properties.PolicyName == "AWSSupportAccess"
 	resource.Type == "AWS::IAM::Policy"
 
 	not hasAttributeList(resource.Properties, "Users")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),
@@ -39,14 +42,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Properties.PolicyName == "AWSSupportAccess"
 	resource.Type == "AWS::IAM::Policy"
 
 	not hasAttributeList(resource.Properties, "Groups")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),
@@ -58,6 +62,4 @@ CxPolicy[result] {
 
 hasAttributeList(resource, attribute) {
 	count(resource[attribute]) > 0
-} else = false {
-	true
-}
+} else = false

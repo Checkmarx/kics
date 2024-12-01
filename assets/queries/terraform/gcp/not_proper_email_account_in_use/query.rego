@@ -1,15 +1,17 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	members := input.document[i].resource.google_project_iam_binding[name].members
-	mail := members[_]
+	some document in input.document
+	members := document.resource.google_project_iam_binding[name].members
+	some mail in members
 
 	contains(mail, "gmail.com")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_project_iam_binding",
 		"resourceName": tf_lib.get_resource_name(members, name),
 		"searchKey": sprintf("google_project_iam_binding[%s].members.%s", [name, mail]),

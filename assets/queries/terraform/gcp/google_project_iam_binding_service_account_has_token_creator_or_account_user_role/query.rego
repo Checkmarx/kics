@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	projectIam := input.document[i].resource.google_project_iam_binding[name]
+	some document in input.document
+	projectIam := document.resource.google_project_iam_binding[name]
 	startswith(projectIam.member, "serviceAccount:")
 	contains(projectIam.role, "roles/iam.serviceAccountTokenCreator")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_project_iam_binding",
 		"resourceName": tf_lib.get_resource_name(projectIam, name),
 		"searchKey": sprintf("google_project_iam_binding[%s].role", [name]),
@@ -19,12 +21,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	projectIam := input.document[i].resource.google_project_iam_binding[name]
+	some document in input.document
+	projectIam := document.resource.google_project_iam_binding[name]
 	inArray(projectIam.members, "serviceAccount:")
 	contains(projectIam.role, "roles/iam.serviceAccountTokenCreator")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_project_iam_binding",
 		"resourceName": tf_lib.get_resource_name(projectIam, name),
 		"searchKey": sprintf("google_project_iam_binding[%s].role", [name]),
@@ -35,12 +38,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	projectIam := input.document[i].resource.google_project_iam_binding[name]
+	some document in input.document
+	projectIam := document.resource.google_project_iam_binding[name]
 	startswith(projectIam.member, "serviceAccount:")
 	contains(projectIam.role, "roles/iam.serviceAccountUser")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_project_iam_binding",
 		"resourceName": tf_lib.get_resource_name(projectIam, name),
 		"searchKey": sprintf("google_project_iam_binding[%s].role", [name]),
@@ -51,12 +55,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	projectIam := input.document[i].resource.google_project_iam_binding[name]
+	some document in input.document
+	projectIam := document.resource.google_project_iam_binding[name]
 	inArray(projectIam.members, "serviceAccount:")
 	contains(projectIam.role, "roles/iam.serviceAccountUser")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_project_iam_binding",
 		"resourceName": tf_lib.get_resource_name(projectIam, name),
 		"searchKey": sprintf("google_project_iam_binding[%s].role", [name]),

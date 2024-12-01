@@ -1,13 +1,14 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	metadata := document.metadata
 
 	specInfo := k8sLib.getSpecInfo(document)
-	volume := specInfo.spec.volumes[_]
+	some volume in specInfo.spec.volumes
 
 	volume.hostPath.path == "/var/run/docker.sock"
 

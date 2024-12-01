@@ -2,17 +2,18 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
-CxPolicy[result] { #Resource Type DB  and StorageEncrypted is False
-	document := input.document[i]
+CxPolicy[result] { # Resource Type DB  and StorageEncrypted is False
+	some document in input.document
 	resource := document.Resources[key]
-    common_lib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}, resource.Type)
+	common_lib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}, resource.Type)
 
-    properties := resource.Properties
+	properties := resource.Properties
 	cf_lib.isCloudFormationFalse(properties.StorageEncrypted)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.StorageEncrypted", [key]),
@@ -23,15 +24,15 @@ CxPolicy[result] { #Resource Type DB  and StorageEncrypted is False
 }
 
 CxPolicy[result] { # DBTypes any DB, but without storage encrypted is undefined
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
-    common_lib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}, resource.Type)
+	common_lib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}, resource.Type)
 
 	properties := resource.Properties
 	not common_lib.valid_key(properties, "StorageEncrypted")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties", [key]),
@@ -42,7 +43,7 @@ CxPolicy[result] { # DBTypes any DB, but without storage encrypted is undefined
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::Redshift::Cluster"
 
@@ -50,7 +51,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(properties, "Encrypted")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties", [key]),
@@ -61,13 +62,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	resource := document.Resources[key]
 	resource.Type == "AWS::Redshift::Cluster"
 	cf_lib.isCloudFormationFalse(resource.Properties.Encrypted)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key),
 		"searchKey": sprintf("Resources.%s.Properties.Encrypted", [key]),

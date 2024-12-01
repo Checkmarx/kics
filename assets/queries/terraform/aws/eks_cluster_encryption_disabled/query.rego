@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.aws_eks_cluster[name]
+	some document in input.document
+	cluster := document.resource.aws_eks_cluster[name]
 
 	not common_lib.valid_key(cluster, "encryption_config")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_eks_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("aws_eks_cluster[%s]", [name]),
@@ -21,14 +23,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	cluster := input.document[i].resource.aws_eks_cluster[name]
+	some document in input.document
+	cluster := document.resource.aws_eks_cluster[name]
 
 	resources := cluster.encryption_config.resources
 
 	count({x | resource := resources[x]; resource == "secrets"}) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_eks_cluster",
 		"resourceName": tf_lib.get_resource_name(cluster, name),
 		"searchKey": sprintf("aws_eks_cluster[%s].encryption_config.resources", [name]),
@@ -38,4 +41,3 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_eks_cluster", name, "resources"], []),
 	}
 }
-

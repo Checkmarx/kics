@@ -1,17 +1,17 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
-
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	some document in input.document
+	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
-	not check_resources_type(document[i].Resources)
+	not check_resources_type(document.Resources)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),
@@ -22,15 +22,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document
-	resource = document[i].Resources[name]
+	some document in input.document
+	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Deployment"
 
 	properties := resource.Properties
-	not settings_are_equal(document[i].Resources, properties.RestApiId, properties.StageName)
+	not settings_are_equal(document.Resources, properties.RestApiId, properties.StageName)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s", [name]),

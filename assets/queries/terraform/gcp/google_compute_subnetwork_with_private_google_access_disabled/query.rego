@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_compute_subnetwork[name]
+	some document in input.document
+	resource := document.resource.google_compute_subnetwork[name]
 	not common_lib.valid_key(resource, "private_ip_google_access")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_compute_subnetwork",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_compute_subnetwork[%s]", [name]),
@@ -22,11 +24,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_compute_subnetwork[name]
+	some document in input.document
+	resource := document.resource.google_compute_subnetwork[name]
 	resource.private_ip_google_access == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_compute_subnetwork",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_compute_subnetwork[%s].private_ip_google_access", [name]),
@@ -36,7 +39,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "google_compute_subnetwork", name, "private_ip_google_access"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

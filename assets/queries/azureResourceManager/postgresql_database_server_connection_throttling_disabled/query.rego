@@ -2,11 +2,12 @@ package Cx
 
 import data.generic.azureresourcemanager as arm_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	types := ["configurations", "Microsoft.DBforPostgreSQL/servers/configurations"]
 
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.DBforPostgreSQL/servers"
@@ -16,12 +17,12 @@ CxPolicy[result] {
 	children.type == types[_]
 	endswith(children.name, "connection_throttling")
 
-	[c_value, c_type]:= arm_lib.getDefaultValueFromParametersIfPresent(doc, children.properties.value)
+	[c_value, c_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, children.properties.value)
 
 	lower(c_value) != "on"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": children.type,
 		"resourceName": children.name,
 		"searchKey": sprintf("%s.name=%s.properties.value", [common_lib.concat_path(childrenArr[c].path), children.name]),
@@ -34,7 +35,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	types := ["configurations", "Microsoft.DBforPostgreSQL/servers/configurations"]
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 	value.type == "Microsoft.DBforPostgreSQL/servers"
 	childrenArr := arm_lib.get_children(doc, value, path)
@@ -46,7 +47,7 @@ CxPolicy[result] {
 	]) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s", [common_lib.concat_path(path), value.name]),

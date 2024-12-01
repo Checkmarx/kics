@@ -1,11 +1,13 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
-valid_disk_resources := {"compute.beta.disk","compute.v1.disk"}
+valid_disk_resources := {"compute.beta.disk", "compute.v1.disk"}
 
 CxPolicy[result] {
-	gc_disk := input.document[i].resources[idx]
+	some document in input.document
+	gc_disk := document.resources[idx]
 	gc_disk.type == valid_disk_resources[_]
 
 	bom_output = {
@@ -18,7 +20,7 @@ CxPolicy[result] {
 	}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("resources.name={{%s}}", [gc_disk.name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",
@@ -42,7 +44,7 @@ check_encrytion(properties) = enc_status {
 	enc_status := "encrypted"
 }
 
-check_key_empty(diskEncryptionKey){
+check_key_empty(diskEncryptionKey) {
 	common_lib.valid_key(diskEncryptionKey, "rawKey")
 	common_lib.emptyOrNull(diskEncryptionKey.rawKey)
 } else {

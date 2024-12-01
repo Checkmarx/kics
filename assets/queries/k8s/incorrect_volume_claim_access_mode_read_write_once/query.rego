@@ -1,13 +1,14 @@
 package Cx
 
-CxPolicy[result] {
-	document := input.document[i]
+import future.keywords.in
 
+CxPolicy[result] {
+	some document in input.document
 	document.kind == "StatefulSet"
 
 	volumeClaims := document.spec.volumeClaimTemplates
 
-	vClaimsWitReadWriteOnce := [vClaims | contains(volumeClaims[v].spec.accessModes, "ReadWriteOnce") == true; vClaims := volumeClaims[v].metadata.name]
+	vClaimsWitReadWriteOnce := [vClaims | containsString(volumeClaims[v].spec.accessModes, "ReadWriteOnce") == true; vClaims := volumeClaims[v].metadata.name]
 	count(vClaimsWitReadWriteOnce) == 0
 
 	metadata := document.metadata
@@ -24,13 +25,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	document := input.document[i]
-
+	some document in input.document
 	document.kind == "StatefulSet"
 
 	volumeClaims := document.spec.volumeClaimTemplates
 
-	vClaimsWitReadWriteOnce := [vClaims | contains(volumeClaims[v].spec.accessModes, "ReadWriteOnce") == true; vClaims := volumeClaims[v].metadata.name]
+	vClaimsWitReadWriteOnce := [vClaims | containsString(volumeClaims[v].spec.accessModes, "ReadWriteOnce") == true; vClaims := volumeClaims[v].metadata.name]
 	count(vClaimsWitReadWriteOnce) > 1
 
 	metadata := document.metadata
@@ -46,6 +46,6 @@ CxPolicy[result] {
 	}
 }
 
-contains(array, string) {
-	array[_] == string
+containsString(array, string) {
+	string in array
 }

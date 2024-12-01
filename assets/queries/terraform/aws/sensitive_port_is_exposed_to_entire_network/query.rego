@@ -1,10 +1,12 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as commonLib
+import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_security_group[name]
+	some doc in input.document
+	resource := doc.resource.aws_security_group[name]
 
 	portContent := commonLib.tcpPortsMap[port]
 	portNumber = port
@@ -16,7 +18,7 @@ CxPolicy[result] {
 	isTCPorUDP(protocol)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_security_group[%s].ingress", [name]),
@@ -28,12 +30,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_security_group[name]
+	some doc in input.document
+	resource := doc.resource.aws_security_group[name]
 
 	portContent := commonLib.tcpPortsMap[port]
 	portNumber = port
 	portName = portContent
-    ingress := resource.ingress[j]
+	ingress := resource.ingress[j]
 	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
 
 	endswith(ingress.cidr_blocks[_], "/0")
@@ -41,7 +44,7 @@ CxPolicy[result] {
 	isTCPorUDP(protocol)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_security_group[%s].ingress", [name]),

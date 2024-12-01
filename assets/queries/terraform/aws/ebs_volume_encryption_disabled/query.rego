@@ -2,14 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
-	resource := doc.resource.aws_ebs_volume[name]
+	some document in input.document
+	resource := document.resource.aws_ebs_volume[name]
 	not common_lib.valid_key(resource, "encrypted")
 
 	result := {
-		"documentId": doc.id,
+		"documentId": document.id,
 		"resourceType": "aws_ebs_volume",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ebs_volume[%s]", [name]),
@@ -23,12 +24,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
-	resource := doc.resource.aws_ebs_volume[name]
+	some document in input.document
+	resource := document.resource.aws_ebs_volume[name]
 	resource.encrypted == false
 
 	result := {
-		"documentId": doc.id,
+		"documentId": document.id,
 		"resourceType": "aws_ebs_volume",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ebs_volume[%s].encrypted", [name]),
@@ -38,7 +39,7 @@ CxPolicy[result] {
 		"keyActualValue": "One of 'aws_ebs_volume.encrypted' is 'false'",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

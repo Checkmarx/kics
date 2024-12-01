@@ -1,13 +1,14 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	[path, value] := walk(doc)
-	ref := value.parameters[n]["RefMetadata"]["$ref"]
+	ref := value.parameters[n].RefMetadata["$ref"]
 	count(path) > 0
 	openapi_lib.incorrect_ref_swagger(ref, "parameters")
 

@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	some document in input.document
+	resource := document.Resources[name]
 	resource.Type == "AWS::ECS::Service"
 	role := resource.Properties.Role
 
@@ -11,7 +13,7 @@ CxPolicy[result] {
 	policy != "undefined"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.Role", [name]),
@@ -23,12 +25,12 @@ CxPolicy[result] {
 
 getInlinePolicy(role) = policy {
 	is_string(role)
-	input.document[_].Resources[role].Type == "AWS::IAM::Policy"
+	some document in input.document
+	document.Resources[role].Type == "AWS::IAM::Policy"
 	policy := role
 } else = policy {
 	is_object(role)
-	input.document[_].Resources[role.Ref].Type == "AWS::IAM::Policy"
+	some document in input.document
+	document.Resources[role.Ref].Type == "AWS::IAM::Policy"
 	policy := role.Ref
-} else = "undefined" {
-	true
-}
+} else = "undefined"

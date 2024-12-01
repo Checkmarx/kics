@@ -1,20 +1,22 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
-	dockerLib.check_multi_stage(name, input.document[i].command)
+	some document in input.document
+	resource := document.command[name][_]
+	dockerLib.check_multi_stage(name, document.command)
 
 	resource.Cmd == "run"
 	command := resource.Value[0]
 
 	containsInstallCommand(command)
-	not containsDnfClean(input.document[i].command[name], resource._kics_line)
+	not containsDnfClean(document.command[name], resource._kics_line)
 	not containsCleanAfterInstall(command)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "After installing a package with dnf, command 'dnf clean all' should run.",

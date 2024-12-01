@@ -2,16 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
-	resource := doc.resource.aws_network_acl[name]
+	some document in input.document
+	resource := document.resource.aws_network_acl[name]
 
 	is_array(resource.ingress)
 	tf_lib.portOpenToInternet(resource.ingress[idx], 3389)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_network_acl",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_network_acl[%s].ingress", [name]),
@@ -23,15 +24,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
-	net_acl := doc.resource.aws_network_acl[netAclName]
-	net_acl_rule := doc.resource.aws_network_acl_rule[netAclRuleName]
+	some document in input.document
+	net_acl := document.resource.aws_network_acl[netAclName]
+	net_acl_rule := document.resource.aws_network_acl_rule[netAclRuleName]
 	split(net_acl_rule.network_acl_id, ".")[1] == netAclName
 
 	tf_lib.portOpenToInternet(net_acl_rule, 3389)
 
 	result := {
-		"documentId": doc.id,
+		"documentId": document.id,
 		"resourceType": "aws_network_acl_rule",
 		"resourceName": netAclRuleName,
 		"searchKey": sprintf("aws_network_acl_rule[%s]", [netAclRuleName]),
@@ -43,14 +44,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
-	resource := doc.resource.aws_network_acl[name]
+	some document in input.document
+	resource := document.resource.aws_network_acl[name]
 
 	not is_array(resource.ingress)
 	tf_lib.portOpenToInternet(resource.ingress, 3389)
 
 	result := {
-		"documentId": doc.id,
+		"documentId": document.id,
 		"resourceType": "aws_network_acl",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_network_acl[%s].ingress", [name]),
@@ -62,7 +63,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	module := input.document[i].module[name]
+	some document in input.document
+	module := document.module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_default_vpc", "default_network_acl_ingress")
 	common_lib.valid_key(module, keyToCheck)
 	rule := module[keyToCheck][idx]
@@ -70,7 +72,7 @@ CxPolicy[result] {
 	tf_lib.portOpenToInternet(rule, 3389)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].%s", [name, keyToCheck]),

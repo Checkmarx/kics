@@ -1,19 +1,20 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resourceBucket := input.document[indexBucket].Resources[nameBucket]
 	resourceBucket.Type == "AWS::S3::Bucket"
 
 	policyStatements := [policyStatement |
-		resourcePolicy := input.document[indexBucket].Resources[_]
+		some resourcePolicy in input.document[indexBucket].Resources
 		resourcePolicy.Type == "AWS::S3::BucketPolicy"
 		check_ref(resourcePolicy.Properties.Bucket, resourceBucket, nameBucket)
 		policy := resourcePolicy.Properties.PolicyDocument
 		st := common_lib.get_statement(common_lib.get_policy(policy))
-		policyStatement := st[_]
+		some policyStatement in st
 		common_lib.is_allow_effect(policyStatement)
 	]
 
@@ -31,7 +32,7 @@ CxPolicy[result] {
 	}
 }
 
-check_ref(obj, bucketResource , logicName) {
+check_ref(obj, bucketResource, logicName) {
 	obj.Ref == logicName
 } else {
 	obj == logicName

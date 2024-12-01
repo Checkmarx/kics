@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	iam_group := input.document[i].resource.aws_iam_group[name]
+	some document in input.document
+	iam_group := document.resource.aws_iam_group[name]
 
 	without_users(name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_iam_group",
 		"resourceName": tf_lib.get_resource_name(iam_group, name),
 		"searchKey": sprintf("aws_iam_group[%s]", [name]),

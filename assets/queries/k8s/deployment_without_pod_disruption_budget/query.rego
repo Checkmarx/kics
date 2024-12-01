@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
-	deployment := input.document[i]
+	some deployment in input.document
 	deployment.kind == "Deployment"
 	deployment.spec.replicas > 1
 	metadata := deployment.metadata
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	hasPodDisruptionBudget(deployment) == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": deployment.id,
 		"resourceType": deployment.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.selector.matchLabels", [metadata.name]),
@@ -22,12 +23,10 @@ CxPolicy[result] {
 }
 
 hasPodDisruptionBudget(statefulset) = result {
-	pdb := input.document[j]
+	some pdb in input.document
 	pdb.kind == "PodDisruptionBudget"
 	result := containsLabel(pdb, statefulset.spec.selector.matchLabels)
-} else = false {
-	true
-}
+} else = false
 
 containsLabel(array, label) {
 	array.spec.selector.matchLabels[_] == label[_]

@@ -2,17 +2,19 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_ssm_document[name]
+	some doc in input.document
+	resource := doc.resource.aws_ssm_document[name]
 
 	resource.document_type == "Session"
 
 	content := common_lib.json_unmarshal(resource.content)
-    not common_lib.valid_key(content, "inputs")
+	not common_lib.valid_key(content, "inputs")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_ssm_document",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ssm_document[%s].content", [name]),
@@ -24,15 +26,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_ssm_document[name]
+	some doc in input.document
+	resource := doc.resource.aws_ssm_document[name]
 
 	resource.document_type == "Session"
 
 	content := common_lib.json_unmarshal(resource.content)
-    not common_lib.valid_key(content.inputs, "kmsKeyId")
+	not common_lib.valid_key(content.inputs, "kmsKeyId")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_ssm_document",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ssm_document[%s].content", [name]),

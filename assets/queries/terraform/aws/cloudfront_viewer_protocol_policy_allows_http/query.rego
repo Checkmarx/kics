@@ -1,13 +1,15 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_cloudfront_distribution[name]
+	some document in input.document
+	resource := document.resource.aws_cloudfront_distribution[name]
 	path := check_allow_all(resource.default_cache_behavior)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_cloudfront_distribution",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s].default_cache_behavior.viewer_protocol_policy", [name]),
@@ -18,11 +20,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_cloudfront_distribution[name]
+	some document in input.document
+	resource := document.resource.aws_cloudfront_distribution[name]
 	path = check_allow_all(resource.ordered_cache_behavior)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_cloudfront_distribution",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("resource.aws_cloudfront_distribution[%s].ordered_cache_behavior.{{%s}}.viewer_protocol_policy", [name, path[_].path_pattern]),

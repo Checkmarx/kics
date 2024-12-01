@@ -1,16 +1,18 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_compute_instance[name]
+	some document in input.document
+	resource := document.resource.google_compute_instance[name]
 	scopes := resource.service_account.scopes
 
 	some j
 	scopes[j] == "cloud-platform"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_compute_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_compute_instance[%s].service_account.scopes", [name]),

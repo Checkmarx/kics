@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	gc_disk := input.document[i].resource.google_compute_disk[name]
+	some document in input.document
+	gc_disk := document.resource.google_compute_disk[name]
 
 	bom_output = {
 		"resource_type": "google_compute_disk",
@@ -16,7 +18,7 @@ CxPolicy[result] {
 	}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("google_compute_disk[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

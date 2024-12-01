@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	active := input.document[i].resource.azurerm_service_fabric_cluster[name].azure_active_directory
+	some document in input.document
+	active := document.resource.azurerm_service_fabric_cluster[name].azure_active_directory
 
 	not common_lib.valid_key(active, "tenant_id")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_service_fabric_cluster",
 		"resourceName": tf_lib.get_resource_name(active, name),
 		"searchKey": sprintf("azurerm_service_fabric_cluster[%s].azure_active_directory", [name]),
@@ -21,12 +23,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	azure := input.document[i].resource.azurerm_service_fabric_cluster[name]
+	some document in input.document
+	azure := document.resource.azurerm_service_fabric_cluster[name]
 
 	not common_lib.valid_key(azure, "azure_active_directory")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_service_fabric_cluster",
 		"resourceName": tf_lib.get_resource_name(azure, name),
 		"searchKey": sprintf("azurerm_service_fabric_cluster[%s]", [name]),

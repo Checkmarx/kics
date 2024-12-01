@@ -2,10 +2,12 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
-#pod
+# pod
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod[name]
 
 	metadata := resource.metadata
 	common_lib.valid_key(metadata, "annotations")
@@ -14,7 +16,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].metadata.annotations", [name]),
@@ -25,7 +27,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod[name]
 
 	metadata := resource.metadata
 	common_lib.valid_key(metadata, "annotations")
@@ -38,7 +41,7 @@ CxPolicy[result] {
 	seccomp != "runtime/default"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].metadata.annotations", [name]),
@@ -49,13 +52,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod[name]
 
 	metadata := resource.metadata
 	not common_lib.valid_key(metadata, "annotations")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].metadata", [name]),
@@ -67,13 +71,14 @@ CxPolicy[result] {
 
 # cron_job
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_cron_job[name]
+	some document in input.document
+	resource := document.resource.kubernetes_cron_job[name]
 
 	metadata := resource.spec.job_template.spec.template.metadata
 	not common_lib.valid_key(metadata, "annotations")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_cron_job",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.metadata", [name]),
@@ -84,7 +89,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_cron_job[name]
+	some document in input.document
+	resource := document.resource.kubernetes_cron_job[name]
 
 	metadata := resource.spec.job_template.spec.template.metadata
 	common_lib.valid_key(metadata, "annotations")
@@ -93,7 +99,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_cron_job",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.metadata.annotations", [name]),
@@ -104,7 +110,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_cron_job[name]
+	some document in input.document
+	resource := document.resource.kubernetes_cron_job[name]
 
 	metadata := resource.spec.job_template.spec.template.metadata
 	common_lib.valid_key(metadata, "annotations")
@@ -116,7 +123,7 @@ CxPolicy[result] {
 	seccomp != "runtime/default"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_cron_job",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.metadata.annotations", [name]),
@@ -126,11 +133,12 @@ CxPolicy[result] {
 	}
 }
 
-#general
+# general
 resources := {"kubernetes_cron_job", "kubernetes_pod"}
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	resourceType != resources[x]
 
@@ -138,7 +146,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(metadata, "annotations")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.metadata", [resourceType, name]),
@@ -149,7 +157,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	resourceType != resources[x]
 
@@ -160,7 +169,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(annotations, "${seccomp.security.alpha.kubernetes.io/defaultProfileName}")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.metadata.annotations", [resourceType, name]),
@@ -171,7 +180,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	resourceType != resources[x]
 
@@ -186,7 +196,7 @@ CxPolicy[result] {
 	seccomp != "runtime/default"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.metadata.annotations", [resourceType, name]),

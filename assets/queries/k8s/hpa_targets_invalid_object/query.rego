@@ -1,16 +1,19 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
-	resource := input.document[i].spec.metrics[index]
-	input.document[i].kind == "HorizontalPodAutoscaler"
+	some document in input.document
+	resource := document.spec.metrics[index]
+	document.kind == "HorizontalPodAutoscaler"
 
 	resource.type == "Object"
 	not checkIsValidObject(resource)
 
 	result := {
-		"documentId": input.document[i].id,
-		"resourceType": input.document[i].kind,
-		"resourceName": input.document[i].metadata.name,
+		"documentId": document.id,
+		"resourceType": document.kind,
+		"resourceName": document.metadata.name,
 		"searchKey": "spec.metrics",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("spec.metrics[%d] is a valid object ", [index]),
@@ -18,7 +21,7 @@ CxPolicy[result] {
 	}
 }
 
-checkIsValidObject(resource) {	
+checkIsValidObject(resource) {
 	resource.object != null
 	resource.object.metric != null
 	resource.object.target != null

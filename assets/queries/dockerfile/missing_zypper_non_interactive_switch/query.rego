@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	document := input.document[i]
+	some document in input.document
 	commands = document.command
 
 	commands[img][c].Cmd == "run"
@@ -24,18 +25,18 @@ CxPolicy[result] {
 }
 
 commandHasNonInteractiveSwitch(command) {
-	regex.match("zypper \\w+ (-y|--no-confirm)", command)
+	regex.match(`zypper \w+ (-y|--no-confirm)`, command)
 }
 
 commandHasZypperUsage(command) {
-    list := ["zypper in", "zypper remove", "zypper rm", "zypper source-install", "zypper si", "zypper patch"][_]
-	index := indexof(command, list)
+	some zypper_command in ["zypper in", "zypper remove", "zypper rm", "zypper source-install", "zypper si", "zypper patch"]
+	index := indexof(command, zypper_command)
 	index != -1
 }
 
 commandHasZypperUsage(command) {
-    output := regex.find_n("zypper (-(-)?[a-zA-Z]+ *)*install", command, -1)
-    output != null
-    index := indexof(command, output[0])
-    index != -1
+	output := regex.find_n(`zypper (-(-)?[a-zA-Z]+ *)*install`, command, -1)
+	output != null
+	index := indexof(command, output[0])
+	index != -1
 }

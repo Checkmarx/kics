@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resources[idx]
+	some document in input.document
+	resource := document.resources[idx]
 	resource.type == "compute.v1.firewall"
 	properties := resource.properties
 
@@ -12,13 +14,13 @@ CxPolicy[result] {
 	isRDPport(properties.allowed[a])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.allowed", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'allowed.ports' to not include RDP port 3389",
-		"keyActualValue": "'allowed.ports' includes RDP port 3389", 
+		"keyActualValue": "'allowed.ports' includes RDP port 3389",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "allowed", a], []),
 	}
 }
@@ -36,7 +38,7 @@ isRDPport(allow) {
 	to_number(allow.ports[j]) == 3389
 } else {
 	not allow.ports
-    isTCPorUDP(allow.IPProtocol)
+	isTCPorUDP(allow.IPProtocol)
 }
 
 isInBounds(low, high) {

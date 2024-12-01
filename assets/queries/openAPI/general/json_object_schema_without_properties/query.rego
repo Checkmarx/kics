@@ -1,14 +1,15 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	version := openapi_lib.check_openapi(doc)
 	version != "undefined"
 
 	[path, value] := walk(doc)
-	schema_ref = value.schema["RefMetadata"]["$ref"]
+	schema_ref = value.schema.RefMetadata["$ref"]
 	openapi_lib.undefined_field_in_json_object(doc, schema_ref, "properties", version)
 
 	result := {

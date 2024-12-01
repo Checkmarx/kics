@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.pulumi as plm_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resources[name]
+	some document in input.document
+	resource := document.resources[name]
 	resource.type == "azure-native:cache:Redis"
 
 	resource.properties.enableNonSslPort == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource.type,
 		"resourceName": plm_lib.getResourceName(resource, name),
 		"searchKey": sprintf("resources[%s].properties.enableNonSslPort", [name]),

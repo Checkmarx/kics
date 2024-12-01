@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_workspaces_workspace[name]
+	some doc in input.document
+	resource := doc.resource.aws_workspaces_workspace[name]
 	volumes := get_volumes(resource.workspace_properties)
 	volumesKey := volumes[n].key
 
 	not common_lib.valid_key(resource, volumesKey)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_workspaces_workspace",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_workspaces_workspace[{{%s}}].workspace_properties.%s", [name, volumes[n].value]),
@@ -22,13 +24,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_workspaces_workspace[name]
+	some doc in input.document
+	resource := doc.resource.aws_workspaces_workspace[name]
 	volumes := get_volumes(resource.workspace_properties)
 
 	resource[volumes[n].key] == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "aws_workspaces_workspace",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_workspaces_workspace[{{%s}}].%s", [name, volumes[n].key]),

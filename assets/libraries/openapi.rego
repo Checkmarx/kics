@@ -1,8 +1,10 @@
 package generic.openapi
 
+import future.keywords.in
+
 check_openapi(doc) = version {
 	object.get(doc, "openapi", "undefined") != "undefined"
-	regex.match("^3\\.0\\.\\d+$", doc.openapi)
+	regex.match(`^3\.0\.\d+$`, doc.openapi)
 	version = "3.0"
 } else = version {
 	object.get(doc, "swagger", "undefined") != "undefined"
@@ -16,7 +18,7 @@ is_valid_url(url) {
 }
 
 improperly_defined(params, value) {
-	params.in == "header"
+	params["in"] == "header"
 	params.name == value
 }
 
@@ -88,9 +90,10 @@ check_reference_unexisting_swagger(doc, reference, type) = checkRef {
 	object.get(doc[type], checkRef, "undefined") == "undefined"
 }
 
-concat_path(path) = concatenated {
-	concatenated := concat(".", [x | x := resolve_path(path[_]); x != ""])
-}
+concat_path(path) = concat(".", [x |
+	x := resolve_path(path[_])
+	x != ""
+])
 
 resolve_path(pathItem) = resolved {
 	any([contains(pathItem, "."), contains(pathItem, "="), contains(pathItem, "/")])
@@ -98,9 +101,7 @@ resolve_path(pathItem) = resolved {
 } else = resolved {
 	is_number(pathItem)
 	resolved := ""
-} else = pathItem {
-	true
-}
+} else = pathItem
 
 # It verifies if the path contains an operation. If true, keeps the operation type and the response code related to it
 is_operation(path) = info {
@@ -118,7 +119,7 @@ is_operation(path) = info {
 
 is_numeric_type(type) {
 	numeric := {"integer", "number"}
-	type == numeric[_]
+	type in numeric
 }
 
 # It verifies if the string schema does not have the 'field' defined
@@ -133,9 +134,7 @@ undefined_field_in_numeric_schema(value, field) {
 	object.get(value, field, "undefined") == "undefined"
 }
 
-is_path_template(path) = matches {
-	matches := regex.find_n(`\{([A-Za-z]+[A-Za-z-_]*[A-Za-z]+)\}`, path, -1)
-}
+is_path_template(path) = regex.find_n(`\{([A-Za-z]+[A-Za-z-_]*[A-Za-z]+)\}`, path, -1)
 
 # It verifies if the 'field' is consistent with the 'type'
 invalid_field(field, type) {
@@ -236,7 +235,7 @@ api_key_exposed(doc, version, s) {
 	version == "2.0"
 	doc.securityDefinitions[s].type == "apiKey"
 	scheme := doc.schemes[_]
-    scheme == "http"
+	scheme == "http"
 } else {
 	version == "2.0"
 	doc.securityDefinitions[s].type == "apiKey"
@@ -270,7 +269,7 @@ concat_default_value(path, defaultValue) = searchKey {
 }
 
 get_name(p, name) = sk {
-	p[minus(count(p), 1)] == "components"
+	p[count(p) - 1] == "components"
 	sk := name
 } else = sk {
 	sk := concat("", ["name=", name])

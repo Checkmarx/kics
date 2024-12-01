@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.aws_ecs_service[name]
+	some document in input.document
+	resource := document.resource.aws_ecs_service[name]
 
 	not checkContent(resource)
 	checkDesiredCount(resource)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "aws_ecs_service",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_ecs_service[%s]", [name]),

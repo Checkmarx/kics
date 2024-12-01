@@ -1,9 +1,10 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	server := doc.servers[s]
@@ -21,7 +22,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	server := doc.paths[path][operation].servers[s]
@@ -39,7 +40,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	server := doc.paths[path].servers[s]
@@ -57,7 +58,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	server := doc.components.links[l].server
@@ -75,7 +76,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	server := doc.components.responses[r].links[l].server
@@ -93,7 +94,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	server := doc.paths[path][operation].responses[r].links[l].server
@@ -118,12 +119,12 @@ exists(var, vars) {
 }
 
 variables_not_used(var, url) {
-	url_variables := regex.find_n("{[a-zA-Z]+}", url, -1)
+	url_variables := regex.find_n(`{[a-zA-Z]+}`, url, -1)
 	url_variables != []
 	not exists(var, url_variables)
 }
 
 variables_not_used(var, url) {
-	url_variables := regex.find_n("{[a-zA-Z]+}", url, -1)
+	url_variables := regex.find_n(`{[a-zA-Z]+}`, url, -1)
 	url_variables == []
 }

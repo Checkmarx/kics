@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 create := "create"
 
@@ -9,12 +10,13 @@ resourceTypes := ["kubernetes_role", "kubernetes_cluster_role"]
 pods := "pods"
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceTypes[t]][name]
+	some doc in input.document
+	resource := doc.resource[resourceTypes[t]][name]
 	resource.rule[ru].verbs[l] == create
 	resource.rule[ru].resources[r] == pods
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resourceTypes[t],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, create]),
@@ -25,12 +27,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceTypes[t]][name]
+	some doc in input.document
+	resource := doc.resource[resourceTypes[t]][name]
 	resource.rule[ru].verbs[l] == create
 	isWildCardValue(resource.rule[ru].resources[r])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resourceTypes[t],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, create]),
@@ -41,12 +44,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceTypes[t]][name]
+	some doc in input.document
+	resource := doc.resource[resourceTypes[t]][name]
 	isWildCardValue(resource.rule[ru].verbs[l])
 	resource.rule[ru].resources[r] == pods
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resourceTypes[t],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, resource.rule[ru].verbs[l]]),
@@ -57,12 +61,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceTypes[t]][name]
+	some doc in input.document
+	resource := doc.resource[resourceTypes[t]][name]
 	isWildCardValue(resource.rule[ru].verbs[l])
 	isWildCardValue(resource.rule[ru].resources[r])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resourceTypes[t],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, resource.rule[ru].verbs[l]]),
@@ -73,12 +78,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceTypes[t]][name]
+	some doc in input.document
+	resource := doc.resource[resourceTypes[t]][name]
 	resource.rule.verbs[l] == create
 	resource.rule.resources[r] == pods
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resourceTypes[t],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, create]),
@@ -89,12 +95,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceTypes[t]][name]
+	some doc in input.document
+	resource := doc.resource[resourceTypes[t]][name]
 	resource.rule.verbs[l] == create
 	isWildCardValue(resource.rule.resources[r])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resourceTypes[t],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, create]),
@@ -105,12 +112,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceTypes[t]][name]
+	some doc in input.document
+	resource := doc.resource[resourceTypes[t]][name]
 	isWildCardValue(resource.rule.verbs[l])
 	resource.rule.resources[r] == pods
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resourceTypes[t],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, resource.rule.verbs[l]]),
@@ -121,12 +129,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceTypes[t]][name]
+	some doc in input.document
+	resource := doc.resource[resourceTypes[t]][name]
 	isWildCardValue(resource.rule.verbs[l])
 	isWildCardValue(resource.rule.resources[r])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resourceTypes[t],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].rule.verbs.%s", [resourceTypes[t], name, resource.rule.verbs[l]]),
@@ -137,5 +146,5 @@ CxPolicy[result] {
 }
 
 isWildCardValue(val) {
-	regex.match(".*\\*.*", val)
+	regex.match(`.*\*.*`, val)
 }

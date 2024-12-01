@@ -1,10 +1,11 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 	value.type == "Microsoft.ContainerService/managedClusters"
 
@@ -23,7 +24,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc := input.document[i]
+	some doc in input.document
 	[path, value] = walk(doc)
 	value.type == "Microsoft.ContainerService/managedClusters"
 
@@ -36,8 +37,8 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties.enableRBAC", [common_lib.concat_path(path), value.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' %s set to true",[enableRBAC_type]),
-		"keyActualValue": sprintf("resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true",[enableRBAC_type]),
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.ContainerService/managedClusters' should have the 'enableRBAC' %s set to true", [enableRBAC_type]),
+		"keyActualValue": sprintf("resource with type 'Microsoft.ContainerService/managedClusters' doesn't have 'enableRBAC' set to true", [enableRBAC_type]),
 		"searchLine": common_lib.build_search_line(path, ["properties", "enableRBAC"]),
 	}
 }
