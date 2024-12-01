@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_deployment[name]
+	some document in input.document
+	resource := document.resource.kubernetes_deployment[name]
 
 	resource.spec.replicas > 2
 
 	not common_lib.valid_key(resource.spec.template.spec, "affinity")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_deployment",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_deployment[%s].spec.template.spec", [name]),
@@ -22,7 +24,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_deployment[name]
+	some document in input.document
+	resource := document.resource.kubernetes_deployment[name]
 
 	resource.spec.replicas > 2
 
@@ -30,7 +33,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(affinity, "pod_anti_affinity")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_deployment",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity", [name]),
@@ -41,7 +44,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_deployment[name]
+	some document in input.document
+	resource := document.resource.kubernetes_deployment[name]
 
 	resource.spec.replicas > 2
 
@@ -54,7 +58,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(podAntiAffinity, "required_during_scheduling_ignored_during_execution")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_deployment",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity", [name]),
@@ -65,7 +69,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_deployment[name]
+	some document in input.document
+	resource := document.resource.kubernetes_deployment[name]
 
 	resource.spec.replicas > 2
 
@@ -81,7 +86,7 @@ CxPolicy[result] {
 	object.get(pref.pod_affinity_term, "topology_key", "undefined") != "kubernetes.io/hostname"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_deployment",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity", [name]),
@@ -92,7 +97,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_deployment[name]
+	some document in input.document
+	resource := document.resource.kubernetes_deployment[name]
 
 	resource.spec.replicas > 2
 
@@ -113,7 +119,7 @@ CxPolicy[result] {
 	match_labels(templateLabels, selectorLabels) == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_deployment",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity", [name]),
@@ -124,7 +130,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_deployment[name]
+	some document in input.document
+	resource := document.resource.kubernetes_deployment[name]
 
 	resource.spec.replicas > 2
 
@@ -140,7 +147,7 @@ CxPolicy[result] {
 	object.get(pref, "topology_key", "undefined") != "kubernetes.io/hostname"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_deployment",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity", [name]),
@@ -151,7 +158,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_deployment[name]
+	some document in input.document
+	resource := document.resource.kubernetes_deployment[name]
 
 	resource.spec.replicas > 2
 
@@ -172,7 +180,7 @@ CxPolicy[result] {
 	match_labels(templateLabels, selectorLabels) == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_deployment",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity", [name]),

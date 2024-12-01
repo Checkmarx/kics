@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	pg := input.document[i].resource.azurerm_postgresql_server[name]
+	some document in input.document
+	pg := document.resource.azurerm_postgresql_server[name]
 
 	not common_lib.valid_key(pg, "threat_detection_policy")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_postgresql_server",
 		"resourceName": tf_lib.get_resource_name(pg, name),
 		"searchKey": sprintf("azurerm_postgresql_server[%s]", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	pg := input.document[i].resource.azurerm_postgresql_server[name]
+	some document in input.document
+	pg := document.resource.azurerm_postgresql_server[name]
 
 	pg.threat_detection_policy.enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_postgresql_server",
 		"resourceName": tf_lib.get_resource_name(pg, name),
 		"searchKey": sprintf("azurerm_postgresql_server[%s].threat_detection_policy.enabled", [name]),

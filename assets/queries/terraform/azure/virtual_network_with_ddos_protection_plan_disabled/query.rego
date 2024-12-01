@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_virtual_network[name]
+	some document in input.document
+	resource := document.resource.azurerm_virtual_network[name]
 
 	not common_lib.valid_key(resource, "ddos_protection_plan")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_virtual_network",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_virtual_network[%s]", [name]),
@@ -21,12 +23,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_virtual_network[name]
+	some document in input.document
+	resource := document.resource.azurerm_virtual_network[name]
 
 	resource.ddos_protection_plan.enable == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_virtual_network",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_virtual_network[%s].ddos_protection_plan.enable", [name]),

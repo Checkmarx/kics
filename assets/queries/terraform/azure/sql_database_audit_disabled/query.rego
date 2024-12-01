@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_sql_database[name]
+	some document in input.document
+	resource := document.resource.azurerm_sql_database[name]
 
 	not resource.threat_detection_policy
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_sql_database",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_sql_database[%s].threat_detection_policy", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_sql_database[name]
+	some document in input.document
+	resource := document.resource.azurerm_sql_database[name]
 
 	resource.threat_detection_policy.state == "Disabled"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_sql_database",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_sql_database[%s].threat_detection_policy.state", [name]),

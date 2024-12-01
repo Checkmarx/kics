@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	network := input.document[i].resource.azurerm_network_watcher_flow_log[name]
+	some document in input.document
+	network := document.resource.azurerm_network_watcher_flow_log[name]
 	network.enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_network_watcher_flow_log",
 		"resourceName": tf_lib.get_resource_name(network, name),
 		"searchKey": sprintf("azurerm_network_watcher_flow_log[%s].enable", [name]),

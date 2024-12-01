@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod[name]
 
 	not common_lib.valid_key(resource.spec, "automount_service_account_token")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].spec", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_pod[name]
+	some document in input.document
+	resource := document.resource.kubernetes_pod[name]
 
 	resource.spec.automount_service_account_token == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_pod",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_pod[%s].spec.automount_service_account_token", [name]),
@@ -47,14 +50,15 @@ CxPolicy[result] {
 listKinds := {"kubernetes_deployment", "kubernetes_daemonset", "kubernetes_job", "kubernetes_stateful_set", "kubernetes_replication_controller"}
 
 CxPolicy[result] {
-	resource := input.document[i].resource
+	some document in input.document
+	resource := document.resource
 
 	k8 := resource[listKinds[x]][name].spec.template.spec
 
 	not common_lib.valid_key(k8, "automount_service_account_token")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": listKinds[x],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.spec", [listKinds[x], name]),
@@ -68,12 +72,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource
+	some document in input.document
+	resource := document.resource
 
 	resource[listKinds[x]][name].spec.template.spec.automount_service_account_token == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": listKinds[x],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].spec.template.spec.automount_service_account_token", [listKinds[x], name]),
@@ -90,12 +95,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_cron_job[name]
+	some document in input.document
+	resource := document.resource.kubernetes_cron_job[name]
 
 	not common_lib.valid_key(resource.spec.jobTemplate.spec.template.spec, "automount_service_account_token")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_cron_job",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_cron_job[%s].spec.jobTemplate.spec.template.spec", [name]),
@@ -109,12 +115,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.kubernetes_cron_job[name]
+	some document in input.document
+	resource := document.resource.kubernetes_cron_job[name]
 
 	resource.spec.job_template.spec.template.spec.automount_service_account_token == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "kubernetes_cron_job",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_cron_job[%s].spec.job_template.spec.template.spec.automount_service_account_token", [name]),

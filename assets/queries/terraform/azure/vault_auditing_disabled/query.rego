@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_key_vault[name]
+	some document in input.document
+	resource := document.resource.azurerm_key_vault[name]
 
 	count({x |
 		diagnosticResource := input.document[x].resource.azurerm_monitor_diagnostic_setting[_]
@@ -11,7 +13,7 @@ CxPolicy[result] {
 	}) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_key_vault",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_key_vault[%s]", [name]),

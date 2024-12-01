@@ -2,16 +2,18 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	network_rules := input.document[i].resource.azurerm_storage_account[name].network_rules
+	some document in input.document
+	network_rules := document.resource.azurerm_storage_account[name].network_rules
 
 	network_rules.ip_rules[l] == "0.0.0.0/0"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_storage_account",
-		"resourceName": tf_lib.get_resource_name(input.document[i].resource.azurerm_storage_account[name], name),
+		"resourceName": tf_lib.get_resource_name(document.resource.azurerm_storage_account[name], name),
 		"searchKey": sprintf("azurerm_storage_account[%s].network_rules.ip_rules", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'network_rules.ip_rules' should not contain 0.0.0.0/0",
@@ -21,13 +23,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	network_rules := input.document[i].resource.azurerm_storage_account[name].network_rules
+	some document in input.document
+	network_rules := document.resource.azurerm_storage_account[name].network_rules
 	not common_lib.valid_key(network_rules, "ip_rules")
 	network_rules.default_action == "Allow"
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_storage_account",
-		"resourceName": tf_lib.get_resource_name(input.document[i].resource.azurerm_storage_account[name], name),
+		"resourceName": tf_lib.get_resource_name(document.resource.azurerm_storage_account[name], name),
 		"searchKey": sprintf("azurerm_storage_account[%s].network_rules", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'network_rules.ip_rules' should be defined and not null",
@@ -37,11 +40,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	rules := input.document[i].resource.azurerm_storage_account_network_rules[name]
+	some document in input.document
+	rules := document.resource.azurerm_storage_account_network_rules[name]
 
 	rules.ip_rules[l] == "0.0.0.0/0"
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_storage_account_network_rules",
 		"resourceName": tf_lib.get_resource_name(rules, name),
 		"searchKey": sprintf("azurerm_storage_account_network_rules[%s].ip_rules", [name]),
@@ -53,11 +57,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	rules := input.document[i].resource.azurerm_storage_account_network_rules[name]
+	some document in input.document
+	rules := document.resource.azurerm_storage_account_network_rules[name]
 	not common_lib.valid_key(rules, "ip_rules")
 	rules.default_action == "Allow"
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_storage_account_network_rules",
 		"resourceName": tf_lib.get_resource_name(rules, name),
 		"searchKey": sprintf("azurerm_storage_account_network_rules[%s]", [name]),
@@ -69,12 +74,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	storage := input.document[i].resource.azurerm_storage_account[name]
+	some document in input.document
+	storage := document.resource.azurerm_storage_account[name]
 
 	storage.allow_blob_public_access != false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_storage_account",
 		"resourceName": tf_lib.get_resource_name(storage, name),
 		"searchKey": sprintf("azurerm_storage_account[%s].allow_blob_public_access", [name]),

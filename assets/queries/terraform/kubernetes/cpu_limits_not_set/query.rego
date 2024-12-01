@@ -2,22 +2,24 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 types := {"init_container", "container"}
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
-	containerTypes := containers[_]
+	some containerTypes in containers
 
 	not common_lib.valid_key(containerTypes.resources.limits, "cpu")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
@@ -28,7 +30,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
@@ -38,7 +41,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containers.resources.limits, "cpu")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.resources.limits", [resourceType, name, specInfo.path, types[x]]),
@@ -49,18 +52,19 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
-	containerTypes := containers[_]
+	some containerTypes in containers
 
 	not common_lib.valid_key(containerTypes, "resources")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
@@ -71,7 +75,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
@@ -80,7 +85,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containers, "resources")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
@@ -91,18 +96,19 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
-	containerTypes := containers[_]
+	some containerTypes in containers
 
 	not common_lib.valid_key(containerTypes.resources, "limits")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
@@ -113,7 +119,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource[resourceType]
+	some document in input.document
+	resource := document.resource[resourceType]
 
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
@@ -123,7 +130,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(containers.resources, "limits")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.resources", [resourceType, name, specInfo.path, types[x]]),

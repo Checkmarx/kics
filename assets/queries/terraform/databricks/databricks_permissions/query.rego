@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	databricks_job := input.document[i].resource.databricks_job[name]
+	some document in input.document
+	databricks_job := document.resource.databricks_job[name]
 
-	is_associated_to_job(name, input.document[i])
+	is_associated_to_job(name, document)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "databricks_job",
 		"resourceName": tf_lib.get_specific_resource_name(databricks_job, "databricks_job", name),
 		"searchKey": sprintf("databricks_job[%s]", [name]),
@@ -21,17 +23,18 @@ CxPolicy[result] {
 
 is_associated_to_job(databricks_job_name, doc) {
 	[path, value] := walk(doc)
-	databricks_permissions_used := value.databricks_permissions[_]
+	some databricks_permissions_used in value.databricks_permissions
 	not contains(databricks_permissions_used.job_id, sprintf("databricks_job.%s", [databricks_job_name]))
 }
 
 CxPolicy[result] {
-	databricks_cluster := input.document[i].resource.databricks_cluster[name]
+	some document in input.document
+	databricks_cluster := document.resource.databricks_cluster[name]
 
-	is_associated_to_cluster(name, input.document[i])
+	is_associated_to_cluster(name, document)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "databricks_cluster",
 		"resourceName": tf_lib.get_specific_resource_name(databricks_cluster, "databricks_cluster", name),
 		"searchKey": sprintf("databricks_cluster[%s]", [name]),
@@ -48,13 +51,14 @@ is_associated_to_cluster(databricks_cluster_name, doc) {
 }
 
 CxPolicy[result] {
-	databricks_permissions := input.document[i].resource.databricks_permissions[name]
+	some document in input.document
+	databricks_permissions := document.resource.databricks_permissions[name]
 
 	databricks_permissions.access_control.permission_level == "IS_OWNER"
 	not databricks_permissions.access_control.service_principal_name
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "databricks_permissions",
 		"resourceName": tf_lib.get_specific_resource_name(databricks_permissions, "databricks_permissions", name),
 		"searchKey": sprintf("databricks_permissions.[%s]", [name]),
@@ -65,14 +69,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	databricks_permissions := input.document[i].resource.databricks_permissions[name]
+	some document in input.document
+	databricks_permissions := document.resource.databricks_permissions[name]
 
 	some j
 	databricks_permissions.access_control[j].permission_level == "IS_OWNER"
 	not databricks_permissions.access_control[j].service_principal_name
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "databricks_permissions",
 		"resourceName": tf_lib.get_specific_resource_name(databricks_permissions, "databricks_permissions", name),
 		"searchKey": sprintf("databricks_permissions.[%s]", [name]),

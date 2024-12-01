@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	function := input.document[i].resource.azurerm_function_app[name]
+	some document in input.document
+	function := document.resource.azurerm_function_app[name]
 
 	not common_lib.valid_key(function.site_config, "ftps_state")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_function_app",
 		"resourceName": tf_lib.get_resource_name(function, name),
 		"searchKey": sprintf("azurerm_function_app[%s].site_config'", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	function := input.document[i].resource.azurerm_function_app[name]
+	some document in input.document
+	function := document.resource.azurerm_function_app[name]
 
 	function.site_config.ftps_state == "AllAllowed"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_function_app",
 		"resourceName": tf_lib.get_resource_name(function, name),
 		"searchKey": sprintf("azurerm_function_app[%s].site_config.ftps_state", [name]),

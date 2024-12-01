@@ -1,13 +1,15 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_sql_active_directory_administrator[name]
+	some document in input.document
+	resource := document.resource.azurerm_sql_active_directory_administrator[name]
 	count(resource.login) == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_sql_active_directory_administrator",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_sql_active_directory_administrator[%s].login", [name]),
@@ -18,11 +20,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_sql_active_directory_administrator[name]
+	some document in input.document
+	resource := document.resource.azurerm_sql_active_directory_administrator[name]
 	check_predictable(resource.login)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_sql_active_directory_administrator",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_sql_active_directory_administrator[%s].login", [name]),

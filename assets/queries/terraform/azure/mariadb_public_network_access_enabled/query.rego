@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	mariadbServer := input.document[i].resource.azurerm_mariadb_server[name]
+	some document in input.document
+	mariadbServer := document.resource.azurerm_mariadb_server[name]
 
 	not common_lib.valid_key(mariadbServer, "public_network_access_enabled")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_mariadb_server",
 		"resourceName": tf_lib.get_resource_name(mariadbServer, name),
 		"searchKey": sprintf("azurerm_mariadb_server[%s]", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	mariadbServer := input.document[i].resource.azurerm_mariadb_server[name]
+	some document in input.document
+	mariadbServer := document.resource.azurerm_mariadb_server[name]
 
 	mariadbServer.public_network_access_enabled == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_mariadb_server",
 		"resourceName": tf_lib.get_resource_name(mariadbServer, name),
 		"searchKey": sprintf("azurerm_mariadb_server[%s].public_network_access_enabled", [name]),

@@ -2,17 +2,19 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	computeNetwork := input.document[i].resource.google_compute_network[name]
+	some document in input.document
+	computeNetwork := document.resource.google_compute_network[name]
 
-	firewall := input.document[_].resource.google_compute_firewall[_]
+	some firewall in document.resource.google_compute_firewall
 
 	tf_lib.matches(firewall.network, name)
 	contains(firewall.name, "default")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_compute_network",
 		"resourceName": tf_lib.get_resource_name(computeNetwork, name),
 		"searchKey": sprintf("google_compute_network[%s]", [name]),

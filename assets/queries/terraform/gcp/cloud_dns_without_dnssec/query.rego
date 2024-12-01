@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_dns_managed_zone[name]
+	some document in input.document
+	resource := document.resource.google_dns_managed_zone[name]
 
 	withoutDNSSec(resource.dnssec_config)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_dns_managed_zone",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_dns_managed_zone[%s].dnssec_config.state", [name]),

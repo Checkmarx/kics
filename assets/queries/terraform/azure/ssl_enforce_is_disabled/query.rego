@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_postgresql_server[var0]
+	some document in input.document
+	resource := document.resource.azurerm_postgresql_server[var0]
 	not common_lib.valid_key(resource, "ssl_enforcement_enabled")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_postgresql_server",
 		"resourceName": tf_lib.get_resource_name(resource, var0),
 		"searchKey": sprintf("azurerm_postgresql_server[%s].ssl_enforcement_enabled", [var0]),
@@ -22,11 +24,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_postgresql_server[var0]
+	some document in input.document
+	resource := document.resource.azurerm_postgresql_server[var0]
 	resource.ssl_enforcement_enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_postgresql_server",
 		"resourceName": tf_lib.get_resource_name(resource, var0),
 		"searchKey": sprintf("azurerm_postgresql_server[%s].ssl_enforcement_enabled", [var0]),

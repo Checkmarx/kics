@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_storage_table[name]
+	some document in input.document
+	resource := document.resource.azurerm_storage_table[name]
 
 	permissions := resource.acl.access_policy.permissions
 
@@ -12,7 +14,7 @@ CxPolicy[result] {
 	count({x | permission := p[x]; contains(permissions, permission)}) == 4
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_storage_table",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_storage_table[%s].acl.permissions", [name]),

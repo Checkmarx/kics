@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as commonLib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_network_security_rule[name]
+	some document in input.document
+	resource := document.resource.azurerm_network_security_rule[name]
 
 	portContent := commonLib.tcpPortsMap[port]
 	portNumber = port
 	portName = portContent
-	protocol := tf_lib.getProtocolList(resource.protocol)[_]
+	some protocol in tf_lib.getProtocolList(resource.protocol)
 
 	upper(resource.access) == "ALLOW"
 	upper(resource.direction) == "INBOUND"
@@ -19,7 +21,7 @@ CxPolicy[result] {
 	isTCPorUDP(protocol)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_network_security_rule",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_network_security_rule[%s].destination_port_range", [name]),

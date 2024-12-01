@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_storage_bucket[name]
+	some document in input.document
+	resource := document.resource.google_storage_bucket[name]
 	not common_lib.valid_key(resource, "logging")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_storage_bucket",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_storage_bucket[%s]", [name]),

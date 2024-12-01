@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	firewall := input.document[i].resource.azurerm_sql_firewall_rule[name]
+	some document in input.document
+	firewall := document.resource.azurerm_sql_firewall_rule[name]
 	firewall.start_ip_address = "0.0.0.0"
 	checkEndIP(firewall.end_ip_address)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_sql_firewall_rule",
 		"resourceName": tf_lib.get_resource_name(firewall, name),
 		"searchKey": sprintf("azurerm_sql_firewall_rule[%s]", [name]),

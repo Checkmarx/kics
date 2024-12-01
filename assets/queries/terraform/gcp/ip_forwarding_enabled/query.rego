@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	dt := input.document[i].resource.google_compute_instance[appserver]
+	some document in input.document
+	dt := document.resource.google_compute_instance[appserver]
 	dt.can_ip_forward == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_compute_instance",
 		"resourceName": tf_lib.get_resource_name(dt, appserver),
 		"searchKey": sprintf("google_compute_instance[%s].can_ip_forward", [appserver]),

@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as commonLib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	config := input.document[i].resource.azurerm_postgresql_configuration[name]
+	some document in input.document
+	config := document.resource.azurerm_postgresql_configuration[name]
 	config.name == "log_retention_days"
 
 	not commonLib.between(to_number(config.value), 4, 7)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_postgresql_configuration",
 		"resourceName": tf_lib.get_resource_name(config, name),
 		"searchKey": sprintf("azurerm_postgresql_configuration[%s].value", [name]),

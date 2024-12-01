@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	g_fsi := input.document[i].resource.google_filestore_instance[name]
+	some document in input.document
+	g_fsi := document.resource.google_filestore_instance[name]
 
 	bom_output = {
 		"resource_type": "google_filestore_instance",
@@ -16,7 +18,7 @@ CxPolicy[result] {
 	}
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"searchKey": sprintf("google_filestore_instance[%s]", [name]),
 		"issueType": "BillOfMaterials",
 		"keyExpectedValue": "",

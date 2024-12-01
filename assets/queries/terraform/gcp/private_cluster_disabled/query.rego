@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
+	some document in input.document
+	resource := document.resource.google_container_cluster[primary]
 	not common_lib.valid_key(resource, "private_cluster_config")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
@@ -19,13 +21,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
+	some document in input.document
+	resource := document.resource.google_container_cluster[primary]
 
 	resource.private_cluster_config
 	not bothDefined(resource.private_cluster_config)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s].private_cluster_config", [primary]),
@@ -36,13 +39,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
+	some document in input.document
+	resource := document.resource.google_container_cluster[primary]
 
 	bothDefined(resource.private_cluster_config)
 	not bothTrue(resource.private_cluster_config)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s].private_cluster_config", [primary]),

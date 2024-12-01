@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	app := input.document[i].resource.azurerm_function_app[name]
+	some document in input.document
+	app := document.resource.azurerm_function_app[name]
 
 	not common_lib.valid_key(app, "site_config")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_function_app",
 		"resourceName": tf_lib.get_resource_name(app, name),
 		"searchKey": sprintf("azurerm_function_app[%s]", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	app := input.document[i].resource.azurerm_function_app[name]
+	some document in input.document
+	app := document.resource.azurerm_function_app[name]
 
 	not common_lib.valid_key(app.site_config, "http2_enabled")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_function_app",
 		"resourceName": tf_lib.get_resource_name(app, name),
 		"searchKey": sprintf("azurerm_function_app[%s].site_config", [name]),
@@ -42,12 +45,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	app := input.document[i].resource.azurerm_function_app[name]
+	some document in input.document
+	app := document.resource.azurerm_function_app[name]
 
 	app.site_config.http2_enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_function_app",
 		"resourceName": tf_lib.get_resource_name(app, name),
 		"searchKey": sprintf("azurerm_function_app[%s].site_config.http2_enabled", [name]),

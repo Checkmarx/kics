@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
+	some document in input.document
+	resource := document.resource.google_container_cluster[primary]
 
 	not bothDefined(resource)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s]", [primary]),
@@ -21,13 +23,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
+	some document in input.document
+	resource := document.resource.google_container_cluster[primary]
 
 	bothDefined(resource)
 	not resource.addons_config.network_policy_config
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s].addons_config", [primary]),
@@ -39,11 +42,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
+	some document in input.document
+	resource := document.resource.google_container_cluster[primary]
 	resource.network_policy.enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s].network_policy.enabled", [primary]),
@@ -60,12 +64,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_container_cluster[primary]
+	some document in input.document
+	resource := document.resource.google_container_cluster[primary]
 	resource.network_policy.enabled == true
 	resource.addons_config.network_policy_config.disabled == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, primary),
 		"searchKey": sprintf("google_container_cluster[%s].addons_config.network_policy_config.disabled", [primary]),

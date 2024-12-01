@@ -2,10 +2,12 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 # ingress ipv4
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_security_group_rule_set[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_security_group_rule_set[name]
 	ingressCheck := resource.ingress
 
 	common_lib.valid_key(ingressCheck, "action")
@@ -19,7 +21,7 @@ CxPolicy[result] {
 	ingressCheck.port == "ALL"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_security_group_rule_set",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_security_group_rule_set[%s].ingress", [name]),
@@ -31,7 +33,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_security_group_rule_set[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_security_group_rule_set[name]
 	ingressCheck := resource.ingress[index]
 
 	common_lib.valid_key(ingressCheck, "action")
@@ -45,7 +48,7 @@ CxPolicy[result] {
 	ingressCheck.port == "ALL"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_security_group_rule_set",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_security_group_rule_set[%s].ingress", [name]),
@@ -57,7 +60,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_security_group_rule_set[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_security_group_rule_set[name]
 	ingressCheck := resource.ingress
 
 	common_lib.valid_key(ingressCheck, "action")
@@ -69,7 +73,7 @@ CxPolicy[result] {
 	ingressCheck.action == "ACCEPT"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_security_group_rule_set",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_security_group_rule_set[%s].ingress", [name]),
@@ -81,7 +85,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_security_group_rule_set[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_security_group_rule_set[name]
 	ingressCheck := resource.ingress[index]
 
 	common_lib.valid_key(ingressCheck, "action")
@@ -93,7 +98,7 @@ CxPolicy[result] {
 	ingressCheck.action == "ACCEPT"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_security_group_rule_set",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_security_group_rule_set[%s].ingress", [name]),
@@ -106,7 +111,8 @@ CxPolicy[result] {
 
 # ingress ipv6
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_security_group_rule_set[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_security_group_rule_set[name]
 	ingressCheck := resource.ingress
 
 	common_lib.valid_key(ingressCheck, "action")
@@ -120,7 +126,7 @@ CxPolicy[result] {
 	ingressCheck.port == "ALL"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_security_group_rule_set",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_security_group_rule_set[%s].ingress", [name]),
@@ -132,7 +138,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_security_group_rule_set[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_security_group_rule_set[name]
 	ingressCheck := resource.ingress[index]
 
 	common_lib.valid_key(ingressCheck, "action")
@@ -146,7 +153,7 @@ CxPolicy[result] {
 	ingressCheck.port == "ALL"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_security_group_rule_set",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_security_group_rule_set[%s].ingress", [name]),
@@ -158,7 +165,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_security_group_rule_set[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_security_group_rule_set[name]
 	ingressCheck := resource.ingress
 
 	common_lib.valid_key(ingressCheck, "action")
@@ -170,7 +178,7 @@ CxPolicy[result] {
 	ingressCheck.ipv6_cidr_block == "::/0"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_security_group_rule_set",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_security_group_rule_set[%s].ingress", [name]),
@@ -182,7 +190,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_security_group_rule_set[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_security_group_rule_set[name]
 	ingressCheck := resource.ingress[index]
 
 	common_lib.valid_key(ingressCheck, "action")
@@ -194,7 +203,7 @@ CxPolicy[result] {
 	ingressCheck.ipv6_cidr_block == "::/0"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_security_group_rule_set",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_security_group_rule_set[%s].ingress", [name]),

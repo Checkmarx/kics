@@ -1,13 +1,15 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.databricks_cluster[name]
+	some document in input.document
+	resource := document.resource.databricks_cluster[name]
 	resource.azure_attributes.availability == "SPOT_AZURE"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "databricks_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("databricks_cluster[%s].azure_attributes.availability", [name]),
@@ -18,11 +20,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.databricks_cluster[name]
+	some document in input.document
+	resource := document.resource.databricks_cluster[name]
 	resource.azure_attributes.first_on_demand == 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "databricks_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("databricks_cluster[%s].azure_attributes.first_on_demand", [name]),
@@ -33,11 +36,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.databricks_cluster[name].azure_attributes
+	some document in input.document
+	resource := document.resource.databricks_cluster[name].azure_attributes
 	not resource.first_on_demand
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "databricks_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("databricks_cluster[%s].azure_attributes.first_on_demand", [name]),

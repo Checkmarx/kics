@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	nodePool := input.document[i].resource.google_container_node_pool[name]
+	some document in input.document
+	nodePool := document.resource.google_container_node_pool[name]
 	nodePool.management.auto_repair == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_node_pool",
 		"resourceName": tf_lib.get_resource_name(nodePool, name),
 		"searchKey": sprintf("google_container_node_pool[%s].management.auto_repair", [name]),
@@ -25,11 +27,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	nodePool := input.document[i].resource.google_container_node_pool[name]
+	some document in input.document
+	nodePool := document.resource.google_container_node_pool[name]
 	not common_lib.valid_key(nodePool, "management")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_node_pool",
 		"resourceName": tf_lib.get_resource_name(nodePool, name),
 		"searchKey": sprintf("google_container_node_pool[%s].management", [name]),

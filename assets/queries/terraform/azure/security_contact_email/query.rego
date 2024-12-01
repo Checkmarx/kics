@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	scc := input.document[i].resource.azurerm_security_center_contact[name]
+	some document in input.document
+	scc := document.resource.azurerm_security_center_contact[name]
 
 	not common_lib.valid_key(scc, "email")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_security_center_contact",
 		"resourceName": tf_lib.get_resource_name(scc, name),
 		"searchKey": sprintf("azurerm_security_center_contact[%s]", [name]),

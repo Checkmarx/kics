@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	compute := input.document[i].resource.google_compute_instance[name]
+	some document in input.document
+	compute := document.resource.google_compute_instance[name]
 	metadata := compute.metadata
 	ssh_keys_enabled := metadata["block-project-ssh-keys"]
 	not isTrue(ssh_keys_enabled)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_compute_instance",
 		"resourceName": tf_lib.get_resource_name(compute, name),
 		"searchKey": sprintf("google_compute_instance[%s].metadata.block-project-ssh-keys", [name]),
@@ -21,11 +23,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	compute := input.document[i].resource.google_compute_instance[name]
+	some document in input.document
+	compute := document.resource.google_compute_instance[name]
 	not common_lib.valid_key(compute, "metadata")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_compute_instance",
 		"resourceName": tf_lib.get_resource_name(compute, name),
 		"searchKey": sprintf("google_compute_instance[%s]", [name]),
@@ -36,11 +39,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	compute := input.document[i].resource.google_compute_instance[name]
+	some document in input.document
+	compute := document.resource.google_compute_instance[name]
 	not common_lib.valid_key(compute.metadata, "block-project-ssh-keys")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_compute_instance",
 		"resourceName": tf_lib.get_resource_name(compute, name),
 		"searchKey": sprintf("google_compute_instance[%s].metadata", [name]),

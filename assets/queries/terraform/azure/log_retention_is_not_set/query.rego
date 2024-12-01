@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_postgresql_configuration[var0]
+	some document in input.document
+	resource := document.resource.azurerm_postgresql_configuration[var0]
 
 	is_string(resource.name)
 	name := lower(resource.name)
@@ -16,7 +18,7 @@ CxPolicy[result] {
 	value != "ON"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_postgresql_configuration",
 		"resourceName": tf_lib.get_resource_name(resource, var0),
 		"searchKey": sprintf("azurerm_postgresql_configuration[%s].value", [var0]),

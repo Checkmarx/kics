@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource_type := ["azurerm_sql_database", "azurerm_sql_server"]
-	resource := input.document[i].resource[resource_type[t]][name]
+	some document in input.document
+	resource := document.resource[resource_type[t]][name]
 
 	not common_lib.valid_key(resource.extended_auditing_policy, "retention_in_days")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource_type[t],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].extended_auditing_policy", [resource_type[t], name]),
@@ -25,13 +27,14 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource_type := ["azurerm_sql_database", "azurerm_sql_server"]
-	resource := input.document[i].resource[resource_type[t]][name]
+	some document in input.document
+	resource := document.resource[resource_type[t]][name]
 
 	var := resource.extended_auditing_policy.retention_in_days
 	var <= 90
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resource_type[t],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].extended_auditing_policy.retention_in_days", [resource_type[t], name]),

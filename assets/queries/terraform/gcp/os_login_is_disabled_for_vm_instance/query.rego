@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	compute := input.document[i].resource.google_compute_instance[name]
+	some document in input.document
+	compute := document.resource.google_compute_instance[name]
 	metadata := compute.metadata
 	oslogin := object.get(metadata, "enable-oslogin", "undefined")
 	isFalse(oslogin)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_compute_instance",
 		"resourceName": tf_lib.get_resource_name(compute, name),
 		"searchKey": sprintf("google_compute_instance[%s].metadata.enable-oslogin", [name]),

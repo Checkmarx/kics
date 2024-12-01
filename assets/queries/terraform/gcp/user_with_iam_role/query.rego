@@ -2,17 +2,19 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 options := {"user:", "allUsers", "allAuthenticatedUsers"}
 
 CxPolicy[result] {
-	resource := input.document[i].data.google_iam_policy[name]
+	some document in input.document
+	resource := document.data.google_iam_policy[name]
 
 	tf_lib.check_member(resource.binding, options[_])
 	common_lib.valid_key(resource.binding, "role")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_iam_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_iam_policy[%s].binding.role", [name]),
@@ -25,13 +27,14 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resources := {"google_project_iam_binding", "google_project_iam_member"}
-	resource := input.document[i].resource[resources[idx]][name]
+	some document in input.document
+	resource := document.resource[resources[idx]][name]
 
 	tf_lib.check_member(resource, options[_])
 	common_lib.valid_key(resource, "role")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": resources[idx],
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].role", [resources[idx], name]),

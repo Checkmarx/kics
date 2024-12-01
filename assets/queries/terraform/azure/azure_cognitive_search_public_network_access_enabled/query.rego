@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	search := input.document[i].resource.azurerm_search_service[name]
+	some document in input.document
+	search := document.resource.azurerm_search_service[name]
 
 	not common_lib.valid_key(search, "public_network_access_enabled")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_search_service",
 		"resourceName": tf_lib.get_resource_name(search, name),
 		"searchKey": sprintf("azurerm_search_service[%s]", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	search := input.document[i].resource.azurerm_search_service[name]
+	some document in input.document
+	search := document.resource.azurerm_search_service[name]
 
 	search.public_network_access_enabled == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_search_service",
 		"resourceName": tf_lib.get_resource_name(search, name),
 		"searchKey": sprintf("azurerm_search_service[%s].public_network_access_enabled", [name]),

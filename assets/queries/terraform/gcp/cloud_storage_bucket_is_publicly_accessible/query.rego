@@ -1,9 +1,11 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	iam_member := input.document[i].resource.google_storage_bucket_iam_member[name]
+	some document in input.document
+	iam_member := document.resource.google_storage_bucket_iam_member[name]
 	public_access_users := ["allUsers", "allAuthenticatedUsers"]
 
 	not iam_member.members
@@ -11,7 +13,7 @@ CxPolicy[result] {
 	public_access_users[j] == iam_member.member
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_storage_bucket_iam_member",
 		"resourceName": tf_lib.get_resource_name(iam_member, name),
 		"searchKey": sprintf("google_storage_bucket_iam_member[%s].member", [name]),
@@ -22,14 +24,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	iam_member := input.document[i].resource.google_storage_bucket_iam_member[name]
+	some document in input.document
+	iam_member := document.resource.google_storage_bucket_iam_member[name]
 	public_access_users := ["allUsers", "allAuthenticatedUsers"]
 
 	some j, k
 	public_access_users[j] == iam_member.members[k]
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_storage_bucket_iam_member",
 		"resourceName": tf_lib.get_resource_name(iam_member, name),
 		"searchKey": sprintf("google_storage_bucket_iam_member[%s].members", [name]),

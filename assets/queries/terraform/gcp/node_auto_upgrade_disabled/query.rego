@@ -2,12 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_container_node_pool[name]
+	some document in input.document
+	resource := document.resource.google_container_node_pool[name]
 	not common_lib.valid_key(resource, "management")
+
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_node_pool",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_container_node_pool[%s]", [name]),
@@ -21,12 +24,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	management := input.document[i].resource.google_container_node_pool[name].management
+	some document in input.document
+	management := document.resource.google_container_node_pool[name].management
 	not common_lib.valid_key(management, "auto_upgrade")
+
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_node_pool",
-		"resourceName": tf_lib.get_resource_name(input.document[i].resource.google_container_node_pool[name], name),
+		"resourceName": tf_lib.get_resource_name(document.resource.google_container_node_pool[name], name),
 		"searchKey": sprintf("google_container_node_pool[%s].management", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "management.auto_upgrade should be defined and not null",
@@ -38,12 +43,14 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	management := input.document[i].resource.google_container_node_pool[name].management
+	some document in input.document
+	management := document.resource.google_container_node_pool[name].management
 	management.auto_upgrade == false
+
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_container_node_pool",
-		"resourceName": tf_lib.get_resource_name(input.document[i].resource.google_container_node_pool[name], name),
+		"resourceName": tf_lib.get_resource_name(document.resource.google_container_node_pool[name], name),
 		"searchKey": sprintf("google_container_node_pool[%s].management.auto_upgrade", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "management.auto_upgrade should be true",

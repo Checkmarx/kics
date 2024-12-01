@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	door := input.document[i].resource.azurerm_frontdoor[name].frontend_endpoint
+	some document in input.document
+	door := document.resource.azurerm_frontdoor[name].frontend_endpoint
 
 	not common_lib.valid_key(door, "web_application_firewall_policy_link_id")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_frontdoor",
 		"resourceName": tf_lib.get_resource_name(door, name),
 		"searchKey": sprintf("azurerm_frontdoor[%s].frontend_endpoint", [name]),

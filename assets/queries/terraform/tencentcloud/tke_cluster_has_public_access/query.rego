@@ -2,10 +2,12 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 # master_config
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_kubernetes_cluster[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_kubernetes_cluster[name]
 	masterConfig := resource.master_config
 
 	common_lib.valid_key(masterConfig, "public_ip_assigned")
@@ -15,7 +17,7 @@ CxPolicy[result] {
 	masterConfig.internet_max_bandwidth_out > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_kubernetes_cluster[%s].master_config.public_ip_assigned", [name]),
@@ -27,7 +29,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_kubernetes_cluster[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_kubernetes_cluster[name]
 	masterConfig := resource.master_config[index]
 
 	common_lib.valid_key(masterConfig, "public_ip_assigned")
@@ -37,7 +40,7 @@ CxPolicy[result] {
 	masterConfig.internet_max_bandwidth_out > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_kubernetes_cluster[%s].master_config.public_ip_assigned", [name]),
@@ -49,7 +52,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_kubernetes_cluster[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_kubernetes_cluster[name]
 	masterConfig := resource.master_config
 
 	not common_lib.valid_key(masterConfig, "public_ip_assigned")
@@ -58,7 +62,7 @@ CxPolicy[result] {
 	masterConfig.internet_max_bandwidth_out > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_kubernetes_cluster[%s].master_config.internet_max_bandwidth_out", [name]),
@@ -70,7 +74,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_kubernetes_cluster[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_kubernetes_cluster[name]
 	masterConfig := resource.master_config[index]
 
 	not common_lib.valid_key(masterConfig, "public_ip_assigned")
@@ -79,7 +84,7 @@ CxPolicy[result] {
 	masterConfig.internet_max_bandwidth_out > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_kubernetes_cluster[%s].master_config.internet_max_bandwidth_out", [name]),
@@ -92,7 +97,8 @@ CxPolicy[result] {
 
 # worker_config
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_kubernetes_cluster[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_kubernetes_cluster[name]
 	workerConfig := resource.worker_config
 
 	common_lib.valid_key(workerConfig, "public_ip_assigned")
@@ -102,7 +108,7 @@ CxPolicy[result] {
 	workerConfig.internet_max_bandwidth_out > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_kubernetes_cluster[%s].worker_config.public_ip_assigned", [name]),
@@ -114,7 +120,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_kubernetes_cluster[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_kubernetes_cluster[name]
 	workerConfig := resource.worker_config[index]
 
 	common_lib.valid_key(workerConfig, "public_ip_assigned")
@@ -124,7 +131,7 @@ CxPolicy[result] {
 	workerConfig.internet_max_bandwidth_out > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_kubernetes_cluster[%s].worker_config.public_ip_assigned", [name]),
@@ -136,7 +143,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_kubernetes_cluster[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_kubernetes_cluster[name]
 	workerConfig := resource.worker_config
 
 	not common_lib.valid_key(workerConfig, "public_ip_assigned")
@@ -145,7 +153,7 @@ CxPolicy[result] {
 	workerConfig.internet_max_bandwidth_out > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_kubernetes_cluster[%s].worker_config.internet_max_bandwidth_out", [name]),
@@ -157,7 +165,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.tencentcloud_kubernetes_cluster[name]
+	some document in input.document
+	resource := document.resource.tencentcloud_kubernetes_cluster[name]
 	workerConfig := resource.worker_config[index]
 
 	not common_lib.valid_key(workerConfig, "public_ip_assigned")
@@ -166,7 +175,7 @@ CxPolicy[result] {
 	workerConfig.internet_max_bandwidth_out > 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "tencentcloud_kubernetes_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("tencentcloud_kubernetes_cluster[%s].worker_config.internet_max_bandwidth_out", [name]),

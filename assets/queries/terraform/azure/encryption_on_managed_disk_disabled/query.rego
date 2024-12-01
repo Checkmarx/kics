@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource
+	some document in input.document
+	resource := document.resource
 	encryption := resource.azurerm_managed_disk[name]
 	not common_lib.valid_key(encryption, "encryption_settings")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_managed_disk",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_managed_disk[%s]", [name]),
@@ -23,12 +25,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource
+	some document in input.document
+	resource := document.resource
 	encryption := resource.azurerm_managed_disk[name]
 	encryption.encryption_settings.enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_managed_disk",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_managed_disk[%s].encryption_settings.enabled", [name]),

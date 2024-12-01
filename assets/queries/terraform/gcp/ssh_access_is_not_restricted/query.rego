@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	firewall := input.document[i].resource.google_compute_firewall[name]
+	some document in input.document
+	firewall := document.resource.google_compute_firewall[name]
 	common_lib.is_ingress(firewall)
 	common_lib.is_unrestricted(firewall.source_ranges[_]) # Allow traffic from anywhere
 	allowed := getAllowed(firewall)
@@ -12,7 +14,7 @@ CxPolicy[result] {
 	ports := isSSHport(allowed[a])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_compute_firewall",
 		"resourceName": tf_lib.get_resource_name(firewall, name),
 		"searchKey": sprintf("google_compute_firewall[%s].allow.ports=%s", [name, ports]),

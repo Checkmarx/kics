@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	storageBucket := input.document[i].resource.google_storage_bucket[name]
+	some document in input.document
+	storageBucket := document.resource.google_storage_bucket[name]
 	storageBucket.uniform_bucket_level_access == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_storage_bucket",
 		"resourceName": tf_lib.get_resource_name(storageBucket, name),
 		"searchKey": sprintf("google_storage_bucket[%s].uniform_bucket_level_access", [name]),
@@ -25,11 +27,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	storageBucket := input.document[i].resource.google_storage_bucket[name]
+	some document in input.document
+	storageBucket := document.resource.google_storage_bucket[name]
 	not common_lib.valid_key(storageBucket, "uniform_bucket_level_access")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_storage_bucket",
 		"resourceName": tf_lib.get_resource_name(storageBucket, name),
 		"searchKey": sprintf("google_storage_bucket[%s]", [name]),

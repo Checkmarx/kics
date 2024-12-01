@@ -1,14 +1,16 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_project_iam_audit_config[name]
+	some document in input.document
+	resource := document.resource.google_project_iam_audit_config[name]
 
 	resource.service != "allServices"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_project_iam_audit_config",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_project_iam_audit_config[%s].service", [name]),
@@ -19,7 +21,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_project_iam_audit_config[name]
+	some document in input.document
+	resource := document.resource.google_project_iam_audit_config[name]
 
 	count(resource.audit_log_config) < 3
 
@@ -29,7 +32,7 @@ CxPolicy[result] {
 	audit_log_config.log_type != "ADMIN_READ"
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_project_iam_audit_config",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_project_iam_audit_config[%s].audit_log_config.log_type", [name]),
@@ -40,14 +43,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.google_project_iam_audit_config[name]
+	some document in input.document
+	resource := document.resource.google_project_iam_audit_config[name]
 	audit_log_config = resource.audit_log_config[_]
 
 	exempted_members = audit_log_config.exempted_members
 	count(exempted_members) != 0
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "google_project_iam_audit_config",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_project_iam_audit_config[%s].audit_log_config.exempted_members", [name]),

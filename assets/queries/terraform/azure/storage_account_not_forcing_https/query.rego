@@ -2,13 +2,15 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_storage_account[var0]
+	some document in input.document
+	resource := document.resource.azurerm_storage_account[var0]
 	not common_lib.valid_key(resource, "enable_https_traffic_only")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_storage_account",
 		"resourceName": tf_lib.get_resource_name(resource, var0),
 		"searchKey": sprintf("azurerm_storage_account[%s]", [var0]),
@@ -22,11 +24,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_storage_account[var0]
+	some document in input.document
+	resource := document.resource.azurerm_storage_account[var0]
 	resource.enable_https_traffic_only == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_storage_account",
 		"resourceName": tf_lib.get_resource_name(resource, var0),
 		"searchKey": sprintf("azurerm_storage_account[%s].enable_https_traffic_only", [var0]),

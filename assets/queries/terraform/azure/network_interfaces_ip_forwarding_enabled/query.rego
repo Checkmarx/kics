@@ -2,14 +2,16 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	ip := input.document[i].resource.azurerm_network_interface[name]
+	some document in input.document
+	ip := document.resource.azurerm_network_interface[name]
 
 	ip.enable_ip_forwarding == true
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_network_interface",
 		"resourceName": tf_lib.get_resource_name(ip, name),
 		"searchKey": sprintf("azurerm_network_interface[%s].enable_ip_forwarding", [name]),

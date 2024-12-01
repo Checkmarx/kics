@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
-	monitor := input.document[i].resource.azurerm_monitor_log_profile[name]
+	some document in input.document
+	monitor := document.resource.azurerm_monitor_log_profile[name]
 
 	monitor.retention_policy.enabled == true
 	not common_lib.valid_key(monitor.retention_policy, "days")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_monitor_log_profile",
 		"resourceName": tf_lib.get_resource_name(monitor, name),
 		"searchKey": sprintf("azurerm_monitor_log_profile[%s].retention_policy", [name]),
@@ -24,12 +26,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	monitor := input.document[i].resource.azurerm_monitor_log_profile[name]
+	some document in input.document
+	monitor := document.resource.azurerm_monitor_log_profile[name]
 
 	monitor.retention_policy.enabled == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_monitor_log_profile",
 		"resourceName": tf_lib.get_resource_name(monitor, name),
 		"searchKey": sprintf("azurerm_monitor_log_profile[%s].retention_policy.enabled", [name]),
@@ -46,14 +49,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	monitor := input.document[i].resource.azurerm_monitor_log_profile[name]
+	some document in input.document
+	monitor := document.resource.azurerm_monitor_log_profile[name]
 
 	retentionPolicy := monitor.retention_policy
 	retentionPolicy.enabled == true
 	common_lib.between(retentionPolicy.days, 1, 364)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": document.id,
 		"resourceType": "azurerm_monitor_log_profile",
 		"resourceName": tf_lib.get_resource_name(monitor, name),
 		"searchKey": sprintf("azurerm_monitor_log_profile[%s].retention_policy.days", [name]),
