@@ -49,7 +49,8 @@ rules:
       level: warn
     prefer-some-in-iteration:
       # https://docs.styra.com/regal/rules/style/prefer-some-in-iteration
-      level: warn
+      # 10000+ violations fixed but way more to go
+      level: ignore
     prefer-snake-case:
       # https://docs.styra.com/regal/rules/style/prefer-snake-case
       level: ignore
@@ -58,6 +59,7 @@ rules:
       level: ignore
     todo-comment:
       # https://docs.styra.com/regal/rules/style/todo-comment
+      # only one TODO comment in the codebase to fix this issue
       level: ignore
     use-assignment-operator:
       # https://docs.styra.com/regal/rules/style/use-assignment-operator
