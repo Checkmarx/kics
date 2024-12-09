@@ -6,7 +6,7 @@ There are multiple ways to get KICS up and running:
 
 KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> and can be used as follows:
 
-To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the -p KICS parameter (see Scan Command Options section below)
+To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the `-p` KICS parameter (see Scan Command Options section below)
 
 ```shell
 docker pull checkmarx/kics:latest
@@ -17,7 +17,7 @@ You can see the list of available tags in [dockerhub](https://hub.docker.com/r/c
 
 ℹ️ **UBI Based Images**
 
-When using [UBI8](https://catalog.redhat.com) based image, the KICS process will run under the `kics` user and `kics` group with default UID=1000 and GID=1000, when using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the `-u` flag that overrides the username:group or UID:GID. e.g:
+When using [UBI8](https://catalog.redhat.com) based image, the KICS process will run under the `kics` user and `kics` group with default UID=1000 and GID=1000. When using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the `-u` flag that overrides the username:group or UID:GID. e.g:
 
 ```sh
 docker run -it -u $UID:$GID -v $PWD:/path checkmarx/kics:ubi8 scan -p /path/assets/queries/dockerfile -o /path -v
@@ -27,7 +27,7 @@ Another option is [rebuilding the dockerfile](https://github.com/Checkmarx/kics/
 
 #### Build from Sources
 
-1. Download and install Go 1.16 or higher from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>.
+1. Download and install Go 1.16 or higher (1.22 recommended) from <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a>.
 2. Clone the repository:
     ```sh
     git clone https://github.com/Checkmarx/kics.git
@@ -59,6 +59,8 @@ KICS is available on Checkmarx [homebrew-tap](https://github.com/Checkmarx/homeb
 ```
 brew install Checkmarx/tap/kics
 ```
+
+#### Default Queries
 
 To use KICS default queries add the KICS_QUERIES_PATH environmental variable to your shell profile, e.g:
 
