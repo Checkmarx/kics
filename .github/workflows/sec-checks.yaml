@@ -19,7 +19,7 @@ jobs:
           format: 'table'
           output: './results.txt'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW'
-          skip-dirs: ./github/**
+          skip-dirs: ./.github/**
           exit-code: '1'
         # trivy-config: trivy.yaml
       - name: Inspect action report
