@@ -1,6 +1,6 @@
 package testcases
 
-// E2E-CLI-098 - KICS  scan and ignore references
+// E2E-CLI-098
 // should perform the scan successfully and return exit code 0
 // this test sample contains a different query_id
 // that is not a UUID, but contains a prefix ('t:', 'p:', or 'a:') + uint64
