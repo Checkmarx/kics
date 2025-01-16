@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Allow Unsafe Lookups Enabled In Defaults",
+		"queryName": "Allow Unsafe Lookups Enabled",
 		"severity": "HIGH",
 		"line": 19
 	}
