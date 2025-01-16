@@ -13,7 +13,8 @@ func init() { //nolint
 					"--output-name", "E2E_CLI_098_RESULT",
 					"-q", "\"/path/test/fixtures/new_queryid_validation\"",
 					"-p", "\"/path/test/fixtures/new_queryid_validation/Dockerfile\"",
-					"-i", "t:8820143918834007824",
+					// QueryID 'a:123' does not exist, however, since the first one does, it should perform the scan successfully
+					"-i", "t:8820143918834007824,a:123",
 				},
 			},
 			ExpectedResult: []ResultsValidation{
