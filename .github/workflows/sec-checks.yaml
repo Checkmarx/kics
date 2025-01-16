@@ -176,6 +176,12 @@ jobs:
       - name: Inspect action report
         if: always()
         run: cat ./results.txt
+      - name: Upload artifact
+        if: always()
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
+        with:
+          name: govulncheck-binary-scan-results
+          path: ./results.txt
       - name: Inspect final dependencies from binary
         if: github.event_name == 'pull_request'
         run: |
@@ -185,7 +191,5 @@ jobs:
         if: always()
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
         with:
-          name: govulncheck-binary-scan-results
-          path: |
-            ./results.txt
-            ./binary_dependencies.txt
+          name: binary-dependencies
+          path: ./binary_dependencies.txt
