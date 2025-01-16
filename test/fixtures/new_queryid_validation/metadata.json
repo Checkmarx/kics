@@ -1,0 +1,12 @@
+{
+  "id": "t:8820143918834007824",
+  "queryName": "Last User Is 'root'",
+  "severity": "HIGH",
+  "category": "Best Practices",
+  "descriptionText": "Leaving the last user as root can cause security risks. Change to another user after running the commands the need privileges",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#user",
+  "platform": "Dockerfile",
+  "descriptionID": "f445bd25",
+  "cwe": "250",
+  "oldSeverity": "MEDIUM"
+}
