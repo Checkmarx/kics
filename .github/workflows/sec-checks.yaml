@@ -19,6 +19,7 @@ jobs:
           format: 'table'
           output: './results.txt'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW'
+          skip-dirs: '.github'
           exit-code: '1'
         # trivy-config: trivy.yaml
       - name: Inspect action report
@@ -181,3 +182,14 @@ jobs:
         with:
           name: govulncheck-binary-scan-results
           path: ./results.txt
+      - name: Inspect final dependencies from binary
+        if: github.event_name == 'pull_request'
+        run: |
+          strings ./bin/kics | grep -P "dep\t" | sort -u > binary_dependencies.txt
+          cat binary_dependencies.txt
+      - name: Upload artifact
+        if: always()
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
+        with:
+          name: binary-dependencies
+          path: ./binary_dependencies.txt

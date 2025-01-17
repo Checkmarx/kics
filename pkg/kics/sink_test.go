@@ -2,7 +2,6 @@ package kics
 
 import (
 	"encoding/json"
-	"regexp"
 	"testing"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
@@ -125,19 +124,22 @@ func TestKics_prepareDocument(t *testing.T) {
 
 func TestKics_resolveCRLFFile(t *testing.T) {
 	tests := []struct {
-		name string
-		body string
+		name     string
+		body     string
+		expected string
 	}{
 		{
-			name: "CRLF File 1",
-			body: "Resources:\r\nDemoSecurityGroup:\r\nType: 'AWS::EC2::SecurityGroup'\r\nProperties:\r\nVpcId: !Ref myVPC\r\nGroupDescription: Ports open to the world\r\nSecurityGroupIngress:\r\n- Description: Allowing port 22 for everyone\r\nIpProtocol: tcp\r\nFromPort: 22\r\nToPort: 22\r\nCidrIp: \"0.0.0.0/0\"\r\n# kics-scan ignore-block\r\n- Description: Allowing port 80 for everyone\r\nIpProtocol: tcp\r\nFromPort: 80\r\nToPort: 80\r\nCidrIp: \"0.0.0.0/0\"",
+			name:     "CRLF File should not contain '\\r'",
+			body:     "Resources:\r\nDemoSecurityGroup:\r\nType: 'AWS::EC2::SecurityGroup'\r\nProperties:\r\nVpcId: !Ref myVPC\r\nGroupDescription: Ports open to the world\r\nSecurityGroupIngress:\r\n- Description: Allowing port 22 for everyone\r\nIpProtocol: tcp\r\nFromPort: 22\r\nToPort: 22\r\nCidrIp: \"0.0.0.0/0\"\r\n# kics-scan ignore-block\r\n- Description: Allowing port 80 for everyone\r\nIpProtocol: tcp\r\nFromPort: 80\r\nToPort: 80\r\nCidrIp: \"0.0.0.0/0\"",
+			expected: "Resources:\nDemoSecurityGroup:\nType: 'AWS::EC2::SecurityGroup'\nProperties:\nVpcId: !Ref myVPC\nGroupDescription: Ports open to the world\nSecurityGroupIngress:\n- Description: Allowing port 22 for everyone\nIpProtocol: tcp\nFromPort: 22\nToPort: 22\nCidrIp: \"0.0.0.0/0\"\n# kics-scan ignore-block\n- Description: Allowing port 80 for everyone\nIpProtocol: tcp\nFromPort: 80\nToPort: 80\nCidrIp: \"0.0.0.0/0\"",
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			resolved := resolveCRLFFile([]byte(tt.body))
-			require.NotRegexp(t, regexp.MustCompile("[\r\n]"), resolved, tt.name+" is matching with [\\r\\n] regexp")
+			require.Equal(t, tt.expected, string(resolved), "Resolved content does not match expected output")
+			require.NotContains(t, string(resolved), "\r", "Resolved content contains '\\r'")
 		})
 	}
 }
