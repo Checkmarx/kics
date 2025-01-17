@@ -1,3 +1,3 @@
 FROM alpine:2.6
-USER root
+USER guest
 RUN npm install
