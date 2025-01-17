@@ -8,4 +8,4 @@ ignore:
   - package:
       location: "/usr/local/bin/terraform"
 exclude:
-  - './.github/scripts/report/**' # test files
+  - './.github/scripts/**' # test files
