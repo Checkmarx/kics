@@ -192,6 +192,11 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="Bicep" src="docs/img/logo-bicep.png" width="85">
 </a>
 </td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#nifcloud_for_terraform">
+<img alt="NIFCloud" src="docs/img/logo-nifcloud.png" width="110">
+</a>
+</td>
 </tr></table>
 
 ### Beta Features
@@ -202,8 +207,6 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="Databricks" src="docs/img/logo-databricks.png" width="200">
 </picture>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img alt="NIFCloud" src="docs/img/logo-nifcloud.png" width="110">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <picture>
 <source media="(prefers-color-scheme: light)" srcset="docs/img/logo-tencentcloud.png" width="180">
 <source media="(prefers-color-scheme: dark)" srcset="docs/img/logo-tencentcloud-dark.png" width="180">
