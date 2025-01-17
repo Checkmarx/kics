@@ -193,7 +193,7 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 </a>
 </td>
 <td>
-<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#nifcloud_for_terraform">
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#nifcloud-for-terraform">
 <img alt="NIFCloud" src="docs/img/logo-nifcloud.png" width="110">
 </a>
 </td>
