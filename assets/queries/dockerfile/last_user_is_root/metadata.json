@@ -7,6 +7,7 @@
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#user",
   "platform": "Dockerfile",
   "descriptionID": "f445bd25",
+  "cloudProvider": "common",
   "cwe": "250",
   "oldSeverity": "MEDIUM"
 }
