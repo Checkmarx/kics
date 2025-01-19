@@ -184,6 +184,10 @@ cdktf synth
 
 You can also run the command `cdktf synth --json` to display it in the terminal.
 
+### NIFCloud for Terraform
+
+KICS supports scanning NIFCloud under Terraform file extension (`.tf`).
+
 ### Terraform variables path
 
 When using vars in a terraform file there are 2 ways of passing the file in which a variable's value is present.

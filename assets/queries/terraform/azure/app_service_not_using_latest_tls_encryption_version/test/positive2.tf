@@ -1,4 +1,4 @@
-resource "azurerm_app_service" "negative1" {
+resource "azurerm_app_service" "positive2" {
   name                = "example-app-service"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -7,6 +7,6 @@ resource "azurerm_app_service" "negative1" {
   site_config {
     dotnet_framework_version = "v4.0"
     scm_type                 = "LocalGit"
-    min_tls_version = 1.3
+    min_tls_version = 1.2
   }
 }
