@@ -67,7 +67,7 @@
 				
 				<option value="file5">github.com/Checkmarx/kics/v2/internal/console/flags/flags_utils.go (86.1%)</option>
 				
-				<option value="file6">github.com/Checkmarx/kics/v2/internal/console/flags/validate.go (50.0%)</option>
+				<option value="file6">github.com/Checkmarx/kics/v2/internal/console/flags/validate.go (62.5%)</option>
 				
 				<option value="file7">github.com/Checkmarx/kics/v2/internal/console/flags/validate_multi_str.go (87.9%)</option>
 				
@@ -251,7 +251,7 @@
 				
 				<option value="file97">github.com/Checkmarx/kics/v2/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file98">github.com/Checkmarx/kics/v2/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file98">github.com/Checkmarx/kics/v2/pkg/progress/counter/counter_progress.go (95.5%)</option>
 				
 				<option value="file99">github.com/Checkmarx/kics/v2/pkg/progress/progress.go (100.0%)</option>
 				
@@ -958,10 +958,17 @@ var flagValidationFuncs = flagValidationFuncsMap{
         "validatePath":                      validatePath,
 }
 
-func isQueryID(id string) bool <span class="cov5" title="5">{
-        re := regexp.MustCompile(`^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$`)
-        return re.MatchString(id)
-}</span>
+func isQueryID(id string) bool <span class="cov6" title="9">{
+        uuidRegex := regexp.MustCompile(`^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$`)
+        isQueryID := uuidRegex.MatchString(id)
+        if !isQueryID </span><span class="cov5" title="6">{
+                // (t:|p:|a:) matches strings starting with 't:', 'p:', or 'a:'
+                // (\d{1,20}) ensures the numeric part has 1 to 20 digits (uint64 validation)
+                cxoneRegex := regexp.MustCompile(`^(t:|p:|a:)(\d{1,20})$`)
+                isQueryID = cxoneRegex.MatchString(id)
+        }</span>
+        <span class="cov6" title="9">return isQueryID</span>
+}
 
 func convertSliceToDummyMap(slice []string) map[string]string <span class="cov5" title="5">{
         returnMap := make(map[string]string, len(slice))
@@ -2576,13 +2583,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="47">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="48">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="47">total += v
+                <span class="cov9" title="48">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2607,14 +2614,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov3" title="3">{
+        if math.IsNaN(metric) </span><span class="cov2" title="2">{
                 metric = 0
         }</span>
 
@@ -5686,7 +5693,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -6077,7 +6084,7 @@ func NewInspector(
 
 func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries <span class="cov4" title="5">{
         supportedPlatforms := make(map[string]string)
-        for _, query := range queries </span><span class="cov9" title="42">{
+        for _, query := range queries </span><span class="cov9" title="44">{
                 supportedPlatforms[query.Platform] = ""
         }</span>
         <span class="cov4" title="5">platformLibraries := make(map[string]source.RegoLibraries)
@@ -6237,7 +6244,7 @@ func (c *Inspector) Inspect(
 // LenQueriesByPlat returns the number of queries by platforms
 func (c *Inspector) LenQueriesByPlat(platforms []string) int <span class="cov2" title="2">{
         count := 0
-        for _, query := range c.QueryLoader.QueriesMetadata </span><span class="cov8" title="21">{
+        for _, query := range c.QueryLoader.QueriesMetadata </span><span class="cov8" title="22">{
                 if contains(platforms, query.Platform) </span><span class="cov4" title="5">{
                         c.tracker.TrackQueryExecuting(query.Aggregation)
                         count++
@@ -6431,19 +6438,19 @@ func checkComment(line int, ignoreLines []int) bool <span class="cov3" title="3"
 
 // contains is a simple method to check if a slice
 // contains an entry
-func contains(s []string, e string) bool <span class="cov8" title="27">{
+func contains(s []string, e string) bool <span class="cov8" title="28">{
         if e == "common" </span><span class="cov2" title="2">{
                 return true
         }</span>
-        <span class="cov8" title="25">if e == "k8s" </span><span class="cov1" title="1">{
+        <span class="cov8" title="26">if e == "k8s" </span><span class="cov1" title="1">{
                 e = "kubernetes"
         }</span>
-        <span class="cov8" title="25">for _, a := range s </span><span class="cov8" title="26">{
+        <span class="cov8" title="26">for _, a := range s </span><span class="cov8" title="27">{
                 if strings.EqualFold(a, e) </span><span class="cov5" title="8">{
                         return true
                 }</span>
         }
-        <span class="cov7" title="17">return false</span>
+        <span class="cov7" title="18">return false</span>
 }
 
 func isDisabled(queries, queryID string, output bool) bool <span class="cov4" title="4">{
@@ -6471,7 +6478,7 @@ func prepareQueries(queries []model.QueryMetadata, commonLibrary source.RegoLibr
         platformLibraries map[string]source.RegoLibraries, tracker Tracker) QueryLoader <span class="cov5" title="6">{
         // track queries loaded
         sum := 0
-        for _, metadata := range queries </span><span class="cov10" title="43">{
+        for _, metadata := range queries </span><span class="cov10" title="45">{
                 tracker.TrackQueryLoad(metadata.Aggregation)
                 sum += metadata.Aggregation
         }</span>
@@ -20291,12 +20298,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="212">{
+        for variable := range s.varList </span><span class="cov7" title="217">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="651">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="659">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -27616,7 +27623,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov3" title="2">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -27625,26 +27632,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov3" title="2">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov0" title="0">p.wg.Done()</span>
+                <span class="cov3" title="2">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file99" style="display: none">package progress
