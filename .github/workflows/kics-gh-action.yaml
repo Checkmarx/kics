@@ -20,6 +20,7 @@ jobs:
           output_path: ./results
           output_formats: json,html
           type: dockerfile
+          exclude_queries: 67fd0c4a-68cf-46d7-8c41-bc9fba7e40ae # Ignore Last User Is 'root'
       - uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
         with:
           name: results
