@@ -43,7 +43,7 @@ COPY --from=build_env /app/assets/libraries/* /app/bin/assets/libraries/
 
 WORKDIR /app/bin
 
-USER 65532
+USER root
 
 # Healthcheck the container
 ENV PATH $PATH:/app/bin
