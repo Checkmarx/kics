@@ -46,7 +46,7 @@ jobs:
         fi
     - name: Delete comment if title is fixed
       if: env.TAG_EXISTS == 'true'
-      uses: thollander/actions-comment-pull-request@b07c7f86be67002023e6cb13f57df3f21cdd3411
+      uses: thollander/actions-comment-pull-request@e4a76dd2b0a3c2027c3fd84147a67c22ee4c90fa
       with:
         message: |
           Deleting comment, please refresh the page...
@@ -55,7 +55,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
     - name: Add comment if title fails
       if: env.TITLE_CHECK_FAILED == 'true'
-      uses: thollander/actions-comment-pull-request@b07c7f86be67002023e6cb13f57df3f21cdd3411
+      uses: thollander/actions-comment-pull-request@e4a76dd2b0a3c2027c3fd84147a67c22ee4c90fa
       with:
         filePath: .github/scripts/pr-issue-info/title-fail.md
         comment_tag: title_check
