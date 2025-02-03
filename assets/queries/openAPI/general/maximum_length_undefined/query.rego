@@ -12,7 +12,7 @@ CxPolicy[result] {
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
 	openapi_lib.undefined_field_in_string_type(value, "maxLength")
-    checkForSanitizers(value)
+    checkForSecureStringFormats(value)
 	not limited_regex(value)
 
 	result := {
@@ -34,7 +34,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	openapi_lib.is_operation(path) == {}
 	openapi_lib.undefined_field_in_string_type(value, "maxLength")
-	checkForSanitizers(value)
+	checkForSecureStringFormats(value)
 	not limited_regex(value)
 
 	result := {
@@ -54,7 +54,7 @@ limited_regex(value){
 	not regex.match("[^\\\\]{\\d+,}", value.pattern)
 }
 
-checkForSanitizers(value) {
+checkForSecureStringFormats(value) {
 	openapi_lib.undefined_field_in_string_type(value, "enum")   # enums have the maxLength implicit
 	checkStringFormat(value)
 }
