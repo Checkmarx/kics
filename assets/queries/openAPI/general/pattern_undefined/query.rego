@@ -19,8 +19,8 @@ CxPolicy[result] {
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"searchLine": common_lib.build_search_line(path, ["type"]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'pattern', 'format' or 'enum' should be defined",
-		"keyActualValue": "neither 'pattern', 'format' or 'enum' are defined",
+		"keyExpectedValue": "'pattern' should be defined",
+		"keyActualValue": "'pattern' is undefined",
 		"overrideKey": version,
 	}
 }
@@ -40,8 +40,8 @@ CxPolicy[result] {
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"searchLine": common_lib.build_search_line(path, ["type"]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'pattern', 'format' or 'enum' should be defined",
-		"keyActualValue": "neither 'pattern', 'format' or 'enum' are defined",
+		"keyExpectedValue": "'pattern' should be defined",
+		"keyActualValue": "'pattern' is undefined",
 		"overrideKey": version,
 	}
 }
