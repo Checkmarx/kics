@@ -12,7 +12,7 @@ CxPolicy[result] {
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
 	openapi_lib.undefined_field_in_string_type(value, "pattern")
-	checkForSanitizers(value)
+	checkForSecureStringFormats(value)
 
 	result := {
 		"documentId": doc.id,
@@ -33,7 +33,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	openapi_lib.is_operation(path) == {}
 	openapi_lib.undefined_field_in_string_type(value, "pattern")
-	checkForSanitizers(value)
+	checkForSecureStringFormats(value)
 
 	result := {
 		"documentId": doc.id,
@@ -46,7 +46,7 @@ CxPolicy[result] {
 	}
 }
 
-checkForSanitizers(value) {
+checkForSecureStringFormats(value) {
 	openapi_lib.undefined_field_in_string_type(value, "enum")   # enums have an implicit pattern
 	checkStringFormat(value)
 }
