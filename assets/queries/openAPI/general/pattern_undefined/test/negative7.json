@@ -63,6 +63,14 @@
               "black",
               "white"
             ]
+          },
+          "message": {
+            "type": "string",
+            "format": "date"
+          },
+          "extra": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [

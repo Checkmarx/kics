@@ -11,7 +11,8 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
-	checkStringFields(value)
+	openapi_lib.undefined_field_in_string_type(value, "pattern")
+	checkForSanitizers(value)
 
 	result := {
 		"documentId": doc.id,
@@ -31,7 +32,8 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	openapi_lib.is_operation(path) == {}
-	checkStringFields(value)
+	openapi_lib.undefined_field_in_string_type(value, "pattern")
+	checkForSanitizers(value)
 
 	result := {
 		"documentId": doc.id,
@@ -44,8 +46,14 @@ CxPolicy[result] {
 	}
 }
 
-checkStringFields(value) {
-	openapi_lib.undefined_field_in_string_type(value, "pattern")
-	openapi_lib.undefined_field_in_string_type(value, "format")
-	openapi_lib.undefined_field_in_string_type(value, "enum")
+checkForSanitizers(value) {
+	openapi_lib.undefined_field_in_string_type(value, "enum")   # enums have the maxLength implicit
+	checkStringFormat(value)
+}
+
+checkStringFormat(value) {
+    openapi_lib.undefined_field_in_string_type(value, "format")
+} else {
+    value["format"] != "date"       # date and date-time formats
+    value["format"] != "date-time"  # have the maxLength implicit
 }
