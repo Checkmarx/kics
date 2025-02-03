@@ -47,7 +47,7 @@ CxPolicy[result] {
 }
 
 checkForSanitizers(value) {
-	openapi_lib.undefined_field_in_string_type(value, "enum")   # enums have the maxLength implicit
+	openapi_lib.undefined_field_in_string_type(value, "enum")   # enums have an implicit pattern
 	checkStringFormat(value)
 }
 
@@ -55,5 +55,5 @@ checkStringFormat(value) {
     openapi_lib.undefined_field_in_string_type(value, "format")
 } else {
     value["format"] != "date"       # date and date-time formats
-    value["format"] != "date-time"  # have the maxLength implicit
+    value["format"] != "date-time"  # have an implicit pattern
 }
