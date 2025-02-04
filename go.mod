@@ -24,7 +24,7 @@ require (
 	github.com/hashicorp/terraform-json v0.22.1
 	github.com/johnfercher/maroto v1.0.0
 	github.com/mackerelio/go-osstat v0.2.5
-	github.com/moby/buildkit v0.18.1-0.20250114211737-dd069229019d
+	github.com/moby/buildkit v0.19.0
 	github.com/open-policy-agent/opa v0.68.0
 	github.com/pkg/errors v0.9.1
 	github.com/relex/aini v1.6.0
