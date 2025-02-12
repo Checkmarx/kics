@@ -36,7 +36,7 @@ check_iam_resource(statement) {
 	regex.match("(^arn:aws:lambda:.*:.*:function:[a-zA-Z0-9_-]+$)", statement.Resource[_])
 } else {
     is_array(statement.resources)
-    regex.match("(^\"\\$\\{\\s*aws_lambda_function\\.[^.]+\\.arn\\\\s*}:[*]\"$)", statement.resources[_])
+    regex.match("(^\"\\$\\{\\s*aws_lambda_function\\.[^.]+\\.arn\\s*\\}:[*]\"$)", statement.resources[_])
     regex.match("(^aws_lambda_function\\.[^.]+\\.arn$)", statement.resources[_])
 }
 
