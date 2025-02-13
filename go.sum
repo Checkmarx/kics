@@ -677,8 +677,8 @@ github.com/mitchellh/mapstructure v1.5.0 h1:jeMsZIYE/09sWLaz43PL7Gy6RuMjD2eJVyua
 github.com/mitchellh/mapstructure v1.5.0/go.mod h1:bFUtVrKA4DC2yAKiSyO/QUcy7e+RRV2QTWOzhPopBRo=
 github.com/mitchellh/reflectwalk v1.0.2 h1:G2LzWKi524PWgd3mLHV8Y5k7s6XUvT0Gef6zxSIeXaQ=
 github.com/mitchellh/reflectwalk v1.0.2/go.mod h1:mSTlrgnPZtwu0c4WaC2kGObEpuNDbx0jmZXqmk4esnw=
-github.com/moby/buildkit v0.18.1-0.20250114211737-dd069229019d h1:jSMnqy0Ce8R3g9M63eafNJ7XljfEdY9yQU944td+0G0=
-github.com/moby/buildkit v0.18.1-0.20250114211737-dd069229019d/go.mod h1:4WYJLet/NI2p1o2rPQ6CIFpyyyvwvPz/TVISmwqqpHI=
+github.com/moby/buildkit v0.19.0 h1:w9G1p7sArvCGNkpWstAqJfRQTXBKukMyMK1bsah1HNo=
+github.com/moby/buildkit v0.19.0/go.mod h1:WiHBFTgWV8eB1AmPxIWsAlKjUACAwm3X/14xOV4VWew=
 github.com/moby/locker v1.0.1 h1:fOXqR41zeveg4fFODix+1Ch4mj/gT0NE1XJbp/epuBg=
 github.com/moby/locker v1.0.1/go.mod h1:S7SDdo5zpBK84bzzVlKr2V0hz+7x9hWbYC/kq7oQppc=
 github.com/moby/spdystream v0.5.0 h1:7r0J1Si3QO/kjRitvSLVVFUjxMEb/YLj6S9FF62JBCU=
