@@ -9,7 +9,7 @@ CxPolicy[result] {
     uses := input.document[i].jobs[j].steps[k].uses
 
     startswith(uses, "actions/github-script")
-    
+
     script := input.document[i].jobs[j].steps[k]["with"].script
 
 	patterns := [
@@ -43,7 +43,7 @@ CxPolicy[result] {
 	uses := input.document[i].jobs[j].steps[k].uses
 
     startswith(uses, "actions/github-script")
-    
+
     script := input.document[i].jobs[j].steps[k]["with"].script
 
 	patterns := [
@@ -67,11 +67,11 @@ CxPolicy[result] {
 CxPolicy[result] {
 
 	input.document[i].on["issue_comment"]
-	
+
 	uses := input.document[i].jobs[j].steps[k].uses
 
     startswith(uses, "actions/github-script")
-    
+
     script := input.document[i].jobs[j].steps[k]["with"].script
 
 	patterns := [
@@ -96,11 +96,11 @@ CxPolicy[result] {
 CxPolicy[result] {
 
 	input.document[i].on["discussion"]
-	
+
 	uses := input.document[i].jobs[j].steps[k].uses
 
     startswith(uses, "actions/github-script")
-    
+
     script := input.document[i].jobs[j].steps[k]["with"].script
 
 	patterns := [
@@ -124,11 +124,11 @@ CxPolicy[result] {
 CxPolicy[result] {
 
 	input.document[i].on["discussion_comment"]
-	
+
 	uses := input.document[i].jobs[j].steps[k].uses
 
     startswith(uses, "actions/github-script")
-    
+
     script := input.document[i].jobs[j].steps[k]["with"].script
 
 	patterns := [
@@ -153,11 +153,11 @@ CxPolicy[result] {
 CxPolicy[result] {
 
 	input.document[i].on["workflow_run"]
-	
+
 	uses := input.document[i].jobs[j].steps[k].uses
 
     startswith(uses, "actions/github-script")
-    
+
     script := input.document[i].jobs[j].steps[k]["with"].script
 
 	patterns := [
@@ -185,11 +185,11 @@ CxPolicy[result] {
 CxPolicy[result] {
 
 	input.document[i].on["author"]
-	
+
 	uses := input.document[i].jobs[j].steps[k].uses
 
     startswith(uses, "actions/github-script")
-    
+
     script := input.document[i].jobs[j].steps[k]["with"].script
 
 	patterns := [
@@ -211,10 +211,7 @@ CxPolicy[result] {
 }
 
 
-containsPatterns(str, patterns) = matched {
-    matched := {pattern |
-        pattern := patterns[_]
-        regex.match(pattern, str)
-    }
+containsPatterns(str, patterns) := {pattern |
+    pattern := patterns[_]
+    regex.match(pattern, str)
 }
-
