@@ -1,0 +1,11 @@
+{
+    "id": "864f6629-d291-453d-b66d-239f24dbfa34",
+    "queryName": "Absence of Firewall Rules in Exposed Port",
+    "severity": "MEDIUM",
+    "category": "Networking and Firewall",
+    "descriptionText": "In order to perform an action as a different user with the become_user, you must define become and set to 'true'",
+    "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/posix/firewalld_module.html",
+    "platform": "Ansible",
+    "descriptionID": "5b378945",
+    "cloudProvider": "common"
+  }
