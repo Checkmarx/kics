@@ -1,0 +1,11 @@
+{
+  "id": "e338c1af-2471-41b1-af28-929a28227e41",
+  "queryName": "RDS Multi-AZ Deployment Disabled",
+  "severity": "MEDIUM",
+  "category": "Backup",
+  "descriptionText": "AWS RDS Instance should have a multi-az deployment",
+  "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/rds/instance/#multiaz_yaml",
+  "platform": "Pulumi",
+  "descriptionID": "1381057e",
+  "cloudProvider": "aws"
+}
