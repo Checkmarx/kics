@@ -1,0 +1,44 @@
+[
+  {
+    "queryName": "Upgrade Instruction Alone",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive1.dockerfile"
+  },
+  {
+    "queryName": "Upgrade Instruction Alone",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive2.dockerfile"
+  },
+  {
+    "queryName": "Upgrade Instruction Alone",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive3.dockerfile"
+  },
+  {
+    "queryName": "Upgrade Instruction Alone",
+    "severity": "MEDIUM",
+    "line": 3,
+    "fileName": "positive4.dockerfile"
+  },
+  {
+    "queryName": "Upgrade Instruction Alone",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive5.dockerfile"
+  },
+  {
+    "queryName": "Upgrade Instruction Alone",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive6.dockerfile"
+  },
+  {
+    "queryName": "Upgrade Instruction Alone",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive7.dockerfile"
+  }
+]
