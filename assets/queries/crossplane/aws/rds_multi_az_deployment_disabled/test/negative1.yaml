@@ -1,0 +1,7 @@
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstance
+metadata:
+  name: sample-cluster3
+spec: 
+  forProvider:
+    multiAZ: true
