@@ -1,0 +1,12 @@
+{
+  "id": "ada01ed1-b10c-4f2a-b110-b20fa4f9baa6",
+  "queryName": "Beta - CLB Instance Log Setting Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "CLB Instance should set log enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/clb_instance#log_set_id",
+  "platform": "Terraform",
+  "descriptionID": "86f56f55",
+  "cloudProvider": "tencentcloud",
+  "cwe": "778"
+}

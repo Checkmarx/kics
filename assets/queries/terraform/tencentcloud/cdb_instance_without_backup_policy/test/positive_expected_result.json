@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Beta - CDB Instance Without Backup Policy",
+    "severity": "MEDIUM",
+    "line": 23,
+    "fileName": "positive1.tf"
+  }
+]

@@ -12,10 +12,10 @@
     "2.0": {
       "id": "4f0b30e3-a498-4dd7-b3f2-f4b6471a8d5a",
       "queryName": "Success Response Code Undefined for Head Operation (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#operation-object"
     }
   },
-  "cwe": "",
+  "cwe": "665",
+  "cloudProvider": "common",
   "oldSeverity": "MEDIUM"
 }

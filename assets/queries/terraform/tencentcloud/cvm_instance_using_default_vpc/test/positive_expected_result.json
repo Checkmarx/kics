@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - CVM Instance Using Default VPC",
+    "severity": "LOW",
+    "line": 22,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - CVM Instance Using Default VPC",
+    "severity": "LOW",
+    "line": 23,
+    "fileName": "positive1.tf"
+  }
+]

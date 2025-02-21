@@ -1,0 +1,12 @@
+{
+  "id": "a3240001-40db-47b7-abb9-2bcd6a04c430",
+  "queryName": "Beta - VPC Flow Logs Disabled",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "VPC resources should have Flow Log enabled",
+  "descriptionUrl": "https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/vpc_flow_log_config#enable",
+  "platform": "Terraform",
+  "descriptionID": "46e139af",
+  "cloudProvider": "tencentcloud",
+  "cwe": "778"
+}

@@ -1,7 +1,7 @@
 [
 	{
 		"queryName": "Nifcloud NAS Undefined Description To NAS Security Group",
-		"severity": "LOW",
+		"severity": "INFO",
 		"line": 1,
 		"fileName": "positive.tf"
 	}

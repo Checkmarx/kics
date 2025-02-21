@@ -13,27 +13,46 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           fetch-depth: 0
       - name: Check out the tag
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           ref: ${{ github.event.inputs.version }}
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@5927c834f5b4fdf503fca6f4c7eccda82949e1ee # v2
         with:
           image: tonistiigi/binfmt:latest
           platforms: linux/amd64,linux/arm64
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@c47758b77c9736f4b2ef4073d4d51994fabfe349 # v3.7.1
       - name: Login to DockerHub
-        uses: docker/login-action@v2.1.0
+        uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Get current date
+        run: echo "CREATED_AT=$(date --rfc-3339=seconds)" >> $GITHUB_ENV
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
+        with:
+          images: "checkmarx/kics"
+          labels: |
+            org.opencontainers.image.title=KICS
+            org.opencontainers.image.version=${{ github.event.inputs.version }}
+            org.opencontainers.image.vendor=Checkmarx
+            org.opencontainers.image.authors=KICS
+            org.opencontainers.image.description=Find security vulnerabilities, compliance issues, and infrastructure misconfigurations early in the development cycle of your infrastructure-as-code with KICS by Checkmarx.
+            org.opencontainers.image.documentation=https://docs.kics.io
+            org.opencontainers.image.url=https://github.com/Checkmarx/kics
+            org.opencontainers.image.source=https://github.com/Checkmarx/kics
+            org.opencontainers.image.licenses=Apache-2.0
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.created=${{ env.CREATED_AT }}
       - name: Push Github Action Image to Docker Hub
-        uses: docker/build-push-action@v5.0.0
+        uses: docker/build-push-action@4f58ea79222b3b9dc2c8bbdd6debcef730109a75 # v6.9.0
         id: build_gh_action
         with:
           context: .
@@ -45,12 +64,13 @@ jobs:
             COMMIT=${{ github.sha }}
             SENTRY_DSN=${{ secrets.SENTRY_DSN }}
             DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+          labels: ${{ steps.meta.outputs.labels }}
       - name: Check out the repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           fetch-depth: 0
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
         with:
           title: "docs(kicsbot): update images digest"
           token: ${{ secrets.KICS_BOT_PAT }}

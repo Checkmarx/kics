@@ -1,0 +1,12 @@
+{
+  "id": "7ab33ac0-e4a3-418f-a673-50da4e34df21",
+  "queryName": "PostgreSQL Log Checkpoints Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Make sure that for Postgre SQL Database Server, parameter 'log_checkpoints' is set to 'ON'",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html",
+  "platform": "Ansible",
+  "descriptionID": "ddcfea46",
+  "cloudProvider": "azure",
+  "cwe": "20"
+}

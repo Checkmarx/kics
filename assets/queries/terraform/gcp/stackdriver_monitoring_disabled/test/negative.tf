@@ -12,7 +12,7 @@ resource "google_container_cluster" "negative1" {
 }
 
 # Monitoring service defaults to Stackdriver, so it's okay to be undefined
-resource "google_container_cluster" "negative1" {
+resource "google_container_cluster" "negative2" {
   name               = "marcellus-wallace"
   location           = "us-central1-a"
   initial_node_count = 3

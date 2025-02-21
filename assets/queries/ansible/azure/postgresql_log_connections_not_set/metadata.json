@@ -1,0 +1,12 @@
+{
+  "id": "7b47138f-ec0e-47dc-8516-e7728fe3cc17",
+  "queryName": "PostgreSQL Log Connections Not Set",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_connections' is set to 'ON'",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_postgresqlconfiguration_module.html",
+  "platform": "Ansible",
+  "descriptionID": "774a65e4",
+  "cloudProvider": "azure",
+  "cwe": "778"
+}

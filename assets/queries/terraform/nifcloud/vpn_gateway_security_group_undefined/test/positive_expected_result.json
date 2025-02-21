@@ -1,6 +1,6 @@
 [
 	{
-		"queryName": "Nifcloud Vpn Gateway Undefined Security Group To Vpn Gateway",
+		"queryName": "Nifcloud VPN Gateway Undefined Security Group",
 		"severity": "HIGH",
 		"line": 1,
 		"fileName": "positive.tf"

@@ -1,0 +1,13 @@
+{
+  "id": "77783205-c4ca-4f80-bb80-c777f267c547",
+  "queryName": "APT-GET Missing Flags To Avoid Manual Input",
+  "severity": "LOW",
+  "category": "Supply-Chain",
+  "descriptionText": "Check if apt-get calls use flags to avoid user manual input.",
+  "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
+  "platform": "Dockerfile",
+  "descriptionID": "2064113b",
+  "cloudProvider": "common",
+  "cwe": "710",
+  "oldSeverity": "MEDIUM"
+}

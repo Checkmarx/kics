@@ -3,10 +3,10 @@
   "queryName": "Nifcloud RDB Has Public DB Ingress Security Group Rule",
   "severity": "HIGH",
   "category": "Networking and Firewall",
-  "descriptionText": "An db ingress security group rule allows traffic from /0",
+  "descriptionText": "A DB ingress security group rule allows traffic from /0",
   "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/db_security_group#cidr_ip",
   "platform": "Terraform",
   "descriptionID": "05a9f362",
   "cloudProvider": "nifcloud",
-  "cwe": ""
+  "cwe": "284"
 }

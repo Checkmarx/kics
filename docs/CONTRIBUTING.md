@@ -39,7 +39,7 @@ Use succinct but descriptive name (prefix with *feature/issue#-descriptive-name>
 5. Make your changes locally.
 6. Validate your changes to reassure they meet project quality and contribution standards:
    ```sh
-   golint .
+   golangci-lint run
    ```
    ```sh
    go mod vendor

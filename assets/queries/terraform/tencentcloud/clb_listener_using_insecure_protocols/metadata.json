@@ -1,0 +1,12 @@
+{
+  "id": "fe08b81c-12e9-4b5e-9006-4218fca750fd",
+  "queryName": "Beta - CLB Listener Using Insecure Protocols",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "CLB Listener protocol must not use insecure protocols",
+  "descriptionUrl": "https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/clb_listener#protocol",
+  "platform": "Terraform",
+  "descriptionID": "e129d0f1",
+  "cloudProvider": "tencentcloud",
+  "cwe": "284"
+}

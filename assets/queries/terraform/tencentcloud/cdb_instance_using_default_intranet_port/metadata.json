@@ -1,0 +1,12 @@
+{
+  "id": "18d6aa4b-7570-4d95-9c75-90363ef1abd9",
+  "queryName": "Beta - CDB Instance Internet Using Default Intranet Port",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "CDB Instance Internet should not use have default intranet port",
+  "descriptionUrl": "https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/mysql_instance#intranet_port",
+  "platform": "Terraform",
+  "descriptionID": "dd780613",
+  "cloudProvider": "tencentcloud",
+  "cwe": "668"
+}

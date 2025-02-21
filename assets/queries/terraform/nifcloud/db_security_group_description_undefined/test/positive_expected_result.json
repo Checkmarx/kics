@@ -1,7 +1,7 @@
 [
 	{
 		"queryName": "Nifcloud RDB Undefined Description To DB Security Group",
-		"severity": "LOW",
+		"severity": "INFO",
 		"line": 1,
 		"fileName": "positive.tf"
 	}

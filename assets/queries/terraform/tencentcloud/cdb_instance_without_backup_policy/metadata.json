@@ -1,0 +1,12 @@
+{
+  "id": "ca94be07-7de3-4ae7-85ef-67e0462ec694",
+  "queryName": "Beta - CDB Instance Without Backup Policy",
+  "severity": "MEDIUM",
+  "category": "Backup",
+  "descriptionText": "CDB Instance should have set Backup Policy",
+  "descriptionUrl": "https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/mysql_backup_policy",
+  "platform": "Terraform",
+  "descriptionID": "f0daf852",
+  "cloudProvider": "tencentcloud",
+  "cwe": "754"
+}

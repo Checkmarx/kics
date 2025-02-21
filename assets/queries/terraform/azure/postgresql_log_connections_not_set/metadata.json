@@ -1,0 +1,12 @@
+{
+  "id": "c640d783-10c5-4071-b6c1-23507300d333",
+  "queryName": "PostgreSQL Log Connections Not Set",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Make sure that for PostgreSQL Database, server parameter 'log_connections' is set to 'ON'",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_configuration",
+  "platform": "Terraform",
+  "descriptionID": "743324e3",
+  "cloudProvider": "azure",
+  "cwe": "778"
+}

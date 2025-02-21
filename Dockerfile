@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 cgr.dev/chainguard/go@sha256:08d316c0f1d271a94cc9fe70e926f531cb3714f87ac9025e6bb64f5e55650541 as build_env
+FROM checkmarx/go:1.23.5-r1@sha256:c7ad1d8f075e123f4b477bbe364b9c793b2d2c6cdbd299f4900e7e473913a1fa AS build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -21,17 +21,15 @@ RUN go mod download -x
 COPY . .
 
 # Build the Go app
-RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
-    -ldflags "-s -w -X github.com/Checkmarx/kics/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
+RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
+    -ldflags "-s -w -X github.com/Checkmarx/kics/v2/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/v2/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/v2/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/v2/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
     -a -installsuffix cgo \
     -o bin/kics cmd/console/main.go
-
-USER nonroot
 
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM --platform=linux/amd64 cgr.dev/chainguard/git@sha256:9857edbfddf33eeeaf6a048502609ab0b2ed16273fc2ce93f49af98a31b6919d
+FROM checkmarx/git:2.47.0-r0@sha256:b80cefbc536108e0e8e4305f01fd76445533133f3e2d1fedc4cb64754e915a14
 
 ENV TERM xterm-256color
 
@@ -44,6 +42,8 @@ COPY --from=build_env /app/assets/cwe_csv /app/bin/assets/cwe_csv
 COPY --from=build_env /app/assets/libraries/* /app/bin/assets/libraries/
 
 WORKDIR /app/bin
+
+USER root
 
 # Healthcheck the container
 ENV PATH $PATH:/app/bin

@@ -3,10 +3,10 @@
   "queryName": "Nifcloud RDB Has Common Private Network",
   "severity": "LOW",
   "category": "Networking and Firewall",
-  "descriptionText": "The rdb has common private network",
+  "descriptionText": "The RDB has common private network",
   "descriptionUrl": "https://registry.terraform.io/providers/nifcloud/nifcloud/latest/docs/resources/db_instance#network_id",
   "platform": "Terraform",
   "descriptionID": "89f1ff38",
   "cloudProvider": "nifcloud",
-  "cwe": ""
+  "cwe": "285"
 }

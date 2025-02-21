@@ -1,0 +1,12 @@
+{
+  "id": "c6473dae-8477-4119-88b7-b909b435ce7b",
+  "queryName": "Logging of Sensitive Data In Defaults",
+  "severity": "LOW",
+  "category": "Best Practices",
+  "descriptionText": "To keep sensitive values out of logs, tasks that expose them need to be marked defining 'no_log' and setting to True",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/reference_appendices/logging.html#protecting-sensitive-data-with-no-log",
+  "platform": "Ansible",
+  "descriptionID": "0eca35f3",
+  "cloudProvider": "common",
+  "cwe": "532"
+}

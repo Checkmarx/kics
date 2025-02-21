@@ -1,0 +1,12 @@
+{
+  "id": "93bb2065-63ec-45a2-a466-f106b56f2e32",
+  "queryName": "Beta - CVM Instance Using Default Security Group",
+  "severity": "LOW",
+  "category": "Access Control",
+  "descriptionText": "CVM instances should not use default security group(s)",
+  "descriptionUrl": "https://registry.terraform.io/providers/tencentcloudstack/tencentcloud/latest/docs/resources/instance#orderly_security_groups",
+  "platform": "Terraform",
+  "descriptionID": "8b32294d",
+  "cloudProvider": "tencentcloud",
+  "cwe": "732"
+}

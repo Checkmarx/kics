@@ -134,8 +134,8 @@ func (i *Info) getStmtInfo(stmt *syntax.Stmt, args []*syntax.Word) Command {
 			cmd := "buildah " + strings.TrimSpace(getWordValue(args[1]))
 			fullCmd := strings.TrimSpace(getFullCommand(args))
 			value := strings.TrimPrefix(fullCmd, cmd)
-			start := int(args[0].Pos().Line())
-			end := int(args[len(args)-1].End().Line())
+			start := int(args[0].Pos().Line())         //nolint:gosec
+			end := int(args[len(args)-1].End().Line()) //nolint:gosec
 
 			command = Command{
 				Cmd:       cmd,

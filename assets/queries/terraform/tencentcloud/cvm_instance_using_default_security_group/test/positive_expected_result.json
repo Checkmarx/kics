@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "Beta - CVM Instance Using Default Security Group",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - CVM Instance Using Default Security Group",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive2.tf"
+  }
+]

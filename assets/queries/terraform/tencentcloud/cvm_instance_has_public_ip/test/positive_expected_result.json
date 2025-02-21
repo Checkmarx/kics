@@ -1,0 +1,8 @@
+[
+  {
+    "queryName": "Beta - CVM Instance Has Public IP",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive1.tf"
+  }
+]

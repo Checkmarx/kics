@@ -7,7 +7,7 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod#limits",
   "platform": "Terraform",
   "descriptionID": "9dd8e356",
-  "cwe": "",
+  "cwe": "400",
   "cloudProvider": "common",
   "oldSeverity": "MEDIUM"
 }

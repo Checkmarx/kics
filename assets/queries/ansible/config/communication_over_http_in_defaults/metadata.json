@@ -1,0 +1,12 @@
+{
+  "id": "d7dc9350-74bc-485b-8c85-fed22d276c43",
+  "queryName": "Communication Over HTTP In Defaults",
+  "severity": "MEDIUM",
+  "category": "Insecure Configurations",
+  "descriptionText": "Using HTTP URLs (without encryption) could lead to security vulnerabilities and risks",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/plugins/httpapi.html",
+  "platform": "Ansible",
+  "descriptionID": "8c03b0c0",
+  "cloudProvider": "common",
+  "cwe": "319"
+}

@@ -1,9 +1,9 @@
 {
   "id": "b16e8501-ef3c-44e1-a543-a093238099c9",
   "queryName": "Using Platform Flag with FROM Command",
-  "severity": "LOW",
+  "severity": "INFO",
   "category": "Best Practices",
-  "descriptionText": "'FROM' instruction should use the flag '--platform'",
+  "descriptionText": "'FROM' instruction should not use the flag '--platform'",
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#from",
   "platform": "Dockerfile",
   "descriptionID": "5bd0baab",

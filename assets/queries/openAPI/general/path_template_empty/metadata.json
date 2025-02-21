@@ -12,9 +12,9 @@
     "2.0": {
       "id": "c201b7ad-6173-4598-a407-5edb04a1bcd7",
       "queryName": "Path Template is Empty (v2)",
-      "descriptionUrl": "https://swagger.io/specification/v2/#pathsObject",
-      "descriptionText": ""
+      "descriptionUrl": "https://swagger.io/specification/v2/#pathsObject"
     }
   },
-  "cwe": ""
+  "cloudProvider": "common",
+  "cwe": "665"
 }

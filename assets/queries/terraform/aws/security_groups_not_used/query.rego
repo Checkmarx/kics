@@ -32,6 +32,13 @@ is_used(securityGroupName, doc, resource) {
 	contains(securityGroupUsed, sprintf("aws_security_group.%s", [securityGroupName]))
 }
 
+# check security groups assigned to aws_elasticache_instance resources
+is_used(securityGroupName, doc, resource) {
+	[path, value] := walk(doc)
+	securityGroupUsed := value.security_group_ids[_]
+	contains(securityGroupUsed, sprintf("aws_security_group.%s", [securityGroupName]))
+}
+
 # check security groups assigned to aws_instance resources
 is_used(securityGroupName, doc, resource) {
 	[path, value] := walk(doc)
