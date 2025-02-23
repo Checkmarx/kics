@@ -67,3 +67,21 @@ rules:
     use-assignment-operator:
       # https://docs.styra.com/regal/rules/style/use-assignment-operator
       level: ignore
+    directory-package-mismatch:
+      # https://docs.styra.com/regal/rules/idiomatic/directory-package-mismatch
+      level: ignore
+    use-contains:
+      # https://docs.styra.com/regal/rules/idiomatic/use-contains
+      level: ignore
+    use-if:
+      # https://docs.styra.com/regal/rules/idiomatic/use-if
+      level: ignore
+    unused-output-variable:
+      # https://docs.styra.com/regal/rules/bugs/unused-output-variable
+      level: ignore
+    rule-name-repeats-package:
+      # https://docs.styra.com/regal/rules/style/rule-name-repeats-package
+      level: ignore
+    use-rego-v1:
+      # https://docs.styra.com/regal/rules/imports/use-rego-v1
+      level: ignore
