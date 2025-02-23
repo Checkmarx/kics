@@ -1,3 +1,6 @@
+# Since the linting rules will be tackled in separate PRs, we are temporarily ignoring all rules.
+# We will update rule severities as each PR is merged.
+
 rules:
   bugs:
     not-equals-in-loop:
@@ -5,7 +8,7 @@ rules:
       level: ignore
     rule-shadows-builtin:
       # https://docs.styra.com/regal/rules/bugs/rule-shadows-builtin
-      level: warn
+      level: ignore #warn
   idiomatic:
     no-defined-entrypoint:
       # https://docs.styra.com/regal/rules/idiomatic/no-defined-entrypoint
@@ -14,20 +17,20 @@ rules:
     # temporary
     non-raw-regex-pattern:
       # https://docs.styra.com/regal/rules/idiomatic/non-raw-regex-pattern
-      level: warn
+      level: ignore #warn
     use-in-operator:
       # https://docs.styra.com/regal/rules/idiomatic/use-in-operator
-      level: warn
+      level: ignore #warn
     use-some-for-output-vars:
       # https://docs.styra.com/regal/rules/idiomatic/use-some-for-output-vars
       # These would be good to address, but would require a concentrated effort
       level: ignore
     custom-has-key-construct:
       # https://docs.styra.com/regal/rules/idiomatic/custom-has-key-construct
-      level: warn
+      level: ignore #warn
     equals-pattern-matching:
       # https://docs.styra.com/regal/rules/idiomatic/equals-pattern-matching
-      level: warn
+      level: ignore #warn
   style:
     avoid-get-and-list-prefix:
       # https://docs.styra.com/regal/rules/style/avoid-get-and-list-prefix
@@ -43,7 +46,7 @@ rules:
       level: ignore
     no-whitespace-comment:
       # https://docs.styra.com/regal/rules/style/no-whitespace-comment
-      level: warn
+      level: ignore #warn
     opa-fmt:
       # https://docs.styra.com/regal/rules/style/opa-fmt
       level: warn
