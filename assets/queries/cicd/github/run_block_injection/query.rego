@@ -114,7 +114,6 @@ CxPolicy[result] {
 
 	matched = containsPatterns(run, patterns)
 
-
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("run={{%s}}", [run]),
