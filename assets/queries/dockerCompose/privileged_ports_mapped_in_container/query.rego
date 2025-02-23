@@ -29,7 +29,9 @@ is_privileged_port(port) {
 	both_ports := split(port, ":")
 	host_port := both_ports[0]
 	to_number(host_port) < 1024
-} else { #COVERS "CONTAINER" port from short syntax "HOST:CONTAINER"
+} #COVERS "CONTAINER" port from short syntax "HOST:CONTAINER"
+
+else {
 	both_ports := split(port, ":")
 	container_port := both_ports[1]
 	to_number(container_port) < 1024
