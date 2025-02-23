@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources
@@ -43,7 +43,7 @@ CxPolicy[result] {
 	}
 }
 
-container_insights(settings){
+container_insights(settings) {
 	settings[0].Name == "containerInsights"
 	settings[0].Value == "enabled"
 }

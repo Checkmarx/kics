@@ -22,6 +22,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.rules[%d].%s should list the minimal set of needed objects or actions", [metadata.name, j, k]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.rules[%d].%s uses wildcards to specify objects or actions", [metadata.name, j, k]),
-		"searchLine": common_lib.build_search_line(["rules", j], [k])
+		"searchLine": common_lib.build_search_line(["rules", j], [k]),
 	}
 }

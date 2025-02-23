@@ -15,8 +15,8 @@ CxPolicy[result] {
 	yum != null
 
 	packages = dockerLib.getPackages(commands, yum)
-    refactorPackages = [ x | x := packages[_]; x != ""]
-    length := count(refactorPackages)
+	refactorPackages = [x | x := packages[_]; x != ""]
+	length := count(refactorPackages)
 
 	count({x | x := refactorPackages[_]; x == flags[_]}) == 0
 
@@ -71,6 +71,6 @@ analyzePackages(j, currentPackage, _, length) {
 analyzePackages(j, currentPackage, packages, length) {
 	j != length - 1
 	regex.match("^[a-zA-Z]", currentPackage) == true
-	packages[plus(j, 1)] != "-v"
+	packages[j + 1] != "-v"
 	not dockerLib.withVersion(currentPackage)
 }

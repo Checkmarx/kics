@@ -10,7 +10,6 @@ CxPolicy[result] {
 	resource.properties.engine == "redis"
 	not common_lib.valid_key(resource.properties, "snapshotRetentionLimit")
 
-
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,

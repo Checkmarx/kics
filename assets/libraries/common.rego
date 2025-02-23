@@ -35,9 +35,7 @@ resolve_path(pathItem) = resolved {
 } else = resolved {
 	is_number(pathItem)
 	resolved := ""
-} else = pathItem {
-	true
-}
+} else = pathItem
 
 json_unmarshal(s) = result {
 	s == null
@@ -263,16 +261,12 @@ allowsAllPrincipalsToAssume(resource, statement) {
 
 compareArrays(arrayOne, arrayTwo) {
 	upper(arrayOne[_]) == upper(arrayTwo[_])
-} else = false {
-	true
-}
+} else = false
 
 valid_key(obj, key) {
 	_ = obj[key]
 	not is_null(obj[key])
-} else = false {
-	true
-}
+} else = false
 
 getDays(date, daysInMonth) = days {
 	index := date[1] - 2
@@ -321,9 +315,7 @@ check_selector(filter, value, op, name) {
 	selector := find_selector_by_value(filter, value)
 	selector._op == op
 	selector._selector == name
-} else = false {
-	true
-}
+} else = false
 
 find_selector_by_value(filter, str) = rtn {
 	[_, fvalue] := walk(filter)
@@ -358,7 +350,6 @@ get_tag_name_if_exists(resource) = name {
 	key == "Name"
 	name := tag
 }
-
 
 get_encryption_if_exists(resource) = encryption {
 	resource.encrypted == true
@@ -412,7 +403,7 @@ is_allow_effect(statement) {
 } else {
 	statement.Effect == "Allow"
 } else {
-    statement.effect == "Allow"
+	statement.effect == "Allow"
 }
 
 get_policy(p) = policy {
@@ -575,7 +566,6 @@ weakCipher(aux) {
 	weak_ciphers_GnuTLS_Format[_] == aux
 }
 
-
 #aurora is equivelent to mysql 5.6 https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.Availability
 #all aurora-postgresql versions that do not support IAM auth are deprecated Source:console.aws (launch rds instance)
 valid_for_iam_engine_and_version_check(resource, engineVar, engineVersionVar, instanceClassVar) {
@@ -723,16 +713,16 @@ get_latest_software_version(name) = version {
 get_version(name) = version {
 	val := get_latest_software_version(name)
 	splited := split(val, ".")
-	version := concat(".", [splited[0],splited[1]])
+	version := concat(".", [splited[0], splited[1]])
 }
 
 contains_element(arr, element) {
-    element == arr[_]
+	element == arr[_]
 }
 
-contains_with_size(arr, element){
-	count(arr)>0
-    test := arr[j]
+contains_with_size(arr, element) {
+	count(arr) > 0
+	test := arr[j]
 	contains(test, element)
 }
 

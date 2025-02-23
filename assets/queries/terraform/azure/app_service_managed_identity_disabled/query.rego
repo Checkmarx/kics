@@ -19,4 +19,3 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_app_service", name], []),
 	}
 }
-

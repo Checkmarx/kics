@@ -6,13 +6,15 @@ import data.generic.k8s as k8sLib
 listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress"]
 
 CxPolicy[result] {
-    nsSearch := [nsSearch |res = input.document[_];
-					res.kind == listKinds[_]; 
-					nspace := res.metadata.namespace;
-                    nsSearch := {"namespace": nspace,"res": res.id, "name": res.metadata.name, "kind": res.kind}]
+	nsSearch := [nsSearch |
+		res = input.document[_]
+		res.kind == listKinds[_]
+		nspace := res.metadata.namespace
+		nsSearch := {"namespace": nspace, "res": res.id, "name": res.metadata.name, "kind": res.kind}
+	]
 
-    namespaces := {ns | ns:=nsSearch[_].namespace }
-    namespacesContac:= concat(", ",namespaces)
+	namespaces := {ns | ns := nsSearch[_].namespace}
+	namespacesContac := concat(", ", namespaces)
 
 	result := {
 		"documentId": nsSearch[0].res,

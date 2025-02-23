@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -9,7 +9,7 @@ CxPolicy[result] {
 	version != "undefined"
 
 	[path, value] := walk(doc)
-	value["RefMetadata"]["alone"] == false
+	value.RefMetadata.alone == false
 
 	result := {
 		"documentId": doc.id,
