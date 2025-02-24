@@ -11,7 +11,7 @@ rules:
       level: warn
     var-shadows-builtin:
       # https://docs.styra.com/regal/rules/bugs/var-shadows-builtin
-      level: ignore
+      level: warn
     unused-output-variable:
       # https://docs.styra.com/regal/rules/bugs/unused-output-variable
       level: ignore
