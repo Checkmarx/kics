@@ -26,7 +26,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
 	prop := resource.Properties
 
-	contains(prop.LoadBalancerAttributes, "access_logs.s3.enabled")
+	array_contains(prop.LoadBalancerAttributes, "access_logs.s3.enabled")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -39,7 +39,7 @@ CxPolicy[result] {
 	}
 }
 
-contains(arr, elem) {
+array_contains(arr, elem) {
 	arr[i].Key == elem
 	arr[i].Value == false
 }

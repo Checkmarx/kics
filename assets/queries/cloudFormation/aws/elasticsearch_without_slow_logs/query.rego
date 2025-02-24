@@ -11,7 +11,7 @@ CxPolicy[result] {
 	resource := Resources[name]
 	resource.Type == "AWS::Elasticsearch::Domain"
 	common_lib.valid_key(resource.Properties, "LogPublishingOptions")
-	logs := [logName | contains(slowLogs, logName); log := resource.Properties.LogPublishingOptions[logName]]
+	logs := [logName | array_contains(slowLogs, logName); log := resource.Properties.LogPublishingOptions[logName]]
 	count(logs) == 0
 
 	result := {
@@ -67,6 +67,6 @@ CxPolicy[result] {
 	}
 }
 
-contains(array, elem) {
+array_contains(array, elem) {
 	array[_] == elem
 } else = false
