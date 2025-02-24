@@ -8,7 +8,7 @@ rules:
       level: ignore
     rule-shadows-builtin:
       # https://docs.styra.com/regal/rules/bugs/rule-shadows-builtin
-      level: ignore #warn
+      level: warn
     var-shadows-builtin:
       # https://docs.styra.com/regal/rules/bugs/var-shadows-builtin
       level: ignore
