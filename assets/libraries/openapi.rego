@@ -20,7 +20,7 @@ improperly_defined(params, value) {
 	params.name == value
 }
 
-incorrect_ref(ref, object) {
+incorrect_ref(reference, obj_type) {
 	references := {
 		"schemas": "#/components/schemas/",
 		"responses": "#/components/responses/",
@@ -32,17 +32,17 @@ incorrect_ref(ref, object) {
 		"parameters": "#/components/parameters/",
 	}
 
-	not startswith(ref, references[object])
+	not startswith(reference, references[obj_type])
 }
 
-incorrect_ref_swagger(ref, object) {
+incorrect_ref_swagger(reference, obj_type) {
 	references := {
 		"parameters": "#/parameters/",
 		"responses": "#/responses/",
 		"schemas": "#/definitions/",
 	}
 
-	not startswith(ref, references[object])
+	not startswith(reference, references[obj_type])
 }
 
 content_allowed(operation, code) {
@@ -69,9 +69,9 @@ undefined_field_in_json_object(doc, schema_ref, field, version) {
 }
 
 check_unused_reference(doc, referenceName, type) {
-	ref := sprintf("#/components/%s/%s", [type, referenceName])
+	reference := sprintf("#/components/%s/%s", [type, referenceName])
 
-	count({ref | [_, value] := walk(doc); ref == value["$ref"]}) == 0
+	count({reference | [_, value] := walk(doc); reference == value["$ref"]}) == 0
 }
 
 check_reference_unexisting(doc, reference, type) = checkComponents {
@@ -294,10 +294,10 @@ get_discriminator(schema, version) = discriminator {
 	discriminator := {"obj": schema.discriminator, "path": "discriminator"}
 }
 
-check_definitions(doc, object, name) {
+check_definitions(doc, obj_type, name) {
 	[path, value] := walk(doc)
-	ref := value["$ref"]
-	count({x | ref == sprintf("#/%s/%s", [object, name]); x := ref}) == 0
+	reference := value["$ref"]
+	count({x | reference == sprintf("#/%s/%s", [obj_type, name]); x := reference}) == 0
 }
 
 is_valid_mime(mime) {

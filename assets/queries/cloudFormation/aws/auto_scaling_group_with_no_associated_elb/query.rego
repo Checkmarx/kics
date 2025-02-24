@@ -23,7 +23,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::AutoScaling::AutoScalingGroup"
 	elbs := resource.Properties.LoadBalancerNames
-	check_size(elbs)
+	check_array_size(elbs)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -36,7 +36,7 @@ CxPolicy[result] {
 	}
 }
 
-check_size(array) {
+check_array_size(array) {
 	is_array(array)
 	count(array) == 0
 }
