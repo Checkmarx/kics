@@ -22,8 +22,8 @@ CxPolicy[result] {
 }
 
 more_than_one_hour(session_duration) {
-	time := (get_hours_value(session_duration) + get_minutes_value(session_duration)) + get_seconds_value(session_duration)
-	time > 3600
+	time_period := (get_hours_value(session_duration) + get_minutes_value(session_duration)) + get_seconds_value(session_duration)
+	time_period > 3600
 }
 
 get_hours_value(session_duration) := duration {

@@ -34,6 +34,6 @@ CxPolicy[result] {
 	}
 }
 
-arrayContains(array, elem) {
-	startswith(array[_], elem)
+arrayContains(array_obj, elem) {
+	startswith(array_obj[_], elem)
 }

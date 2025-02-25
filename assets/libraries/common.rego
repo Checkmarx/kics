@@ -57,9 +57,9 @@ calc_IP_value(ip) = result {
 }
 
 # Checks if a value is within a range
-between(value, min, max) {
-	value >= min
-	value <= max
+between(value, lowerBound, upperBound) {
+	value >= lowerBound
+	value <= upperBound
 }
 
 # Checks if a list contains an item
@@ -305,8 +305,8 @@ unsecured_cors_rule(methods, headers, origins) {
 }
 
 get_module_equivalent_key(provider, moduleName, resource, key) = keyInResource {
-	providers := data.common_lib.modules[provider]
-	module := providers[moduleName]
+	provider_modules := data.common_lib.modules[provider]
+	module := provider_modules[moduleName]
 	inArray(module.resources, resource)
 	keyInResource := module.inputs[key]
 }
@@ -493,11 +493,11 @@ has_wildcard(statement, typeAction) {
 # array_vals := ["elem1", "elem2", "elem4"]
 #
 # return_value := {"valid": false, "searchKey": "elem1.elem2"}
-get_nested_values_info(object, array_vals) = return_value {
+get_nested_values_info(obj, array_vals) = return_value {
 	arr := [x |
 		some i, _ in array_vals
 		path := array.slice(array_vals, 0, i + 1)
-		walk(object, [path, _]) # evaluates to false if path is not in object
+		walk(obj, [path, _]) # evaluates to false if path is not in object
 		x := path[i]
 	]
 

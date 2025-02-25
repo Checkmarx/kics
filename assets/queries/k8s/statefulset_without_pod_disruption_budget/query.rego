@@ -25,6 +25,6 @@ hasPodDisruptionBudget(statefulset) = result {
 	result := containsLabel(pdb, statefulset.spec.selector.matchLabels)
 } else = false
 
-containsLabel(array, targetLabel) {
-	array.spec.selector.matchLabels[_] == targetLabel[_]
+containsLabel(array_obj, targetLabel) {
+	array_obj.spec.selector.matchLabels[_] == targetLabel[_]
 }

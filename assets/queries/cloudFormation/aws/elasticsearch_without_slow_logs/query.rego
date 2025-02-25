@@ -67,6 +67,6 @@ CxPolicy[result] {
 	}
 }
 
-array_contains(array, elem) {
-	array[_] == elem
+array_contains(array_obj, elem) {
+	array_obj[_] == elem
 } else = false
