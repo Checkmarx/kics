@@ -36,7 +36,7 @@ CxPolicy[result] {
 	}
 }
 
-check_array_size(array) {
-	is_array(array)
-	count(array) == 0
+check_array_size(array_obj) {
+	is_array(array_obj)
+	count(array_obj) == 0
 }

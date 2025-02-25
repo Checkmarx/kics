@@ -46,6 +46,6 @@ CxPolicy[result] {
 	}
 }
 
-array_contains(array, string) {
-	array[_] == string
+array_contains(array_obj, string) {
+	array_obj[_] == string
 }

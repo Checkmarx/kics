@@ -176,6 +176,6 @@ CxPolicy[result] {
 	}
 }
 
-drop(array, elem) {
-	upper(array[_]) == elem[_]
+drop(array_obj, elem) {
+	upper(array_obj[_]) == elem[_]
 }
