@@ -7,6 +7,10 @@ updates:
     commit-message:
       prefix: "ci"
       include: "scope"
+    groups:
+      all:
+        patterns:
+          - "*"
   - package-ecosystem: "gomod"
     directory: "/"
     schedule:
@@ -14,6 +18,10 @@ updates:
     commit-message:
       prefix: "build"
       include: "scope"
+    groups:
+      all:
+        patterns:
+          - "*"
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
@@ -21,3 +29,7 @@ updates:
     commit-message:
       prefix: "ci"
       include: "scope"
+    groups:
+      all:
+        patterns:
+          - "*"
