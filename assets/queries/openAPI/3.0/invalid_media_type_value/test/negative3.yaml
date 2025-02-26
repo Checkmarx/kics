@@ -47,8 +47,6 @@ paths:
                   properties:
                     content:
                       type: string
-
-
       responses:
         '201':
           description: Pet added successfully
@@ -68,4 +66,3 @@ paths:
           content:
             application/json:
               example: { "name": "Fido", "species": "dog" }
-
