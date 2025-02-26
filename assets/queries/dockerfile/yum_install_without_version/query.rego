@@ -9,7 +9,7 @@ CxPolicy[result] {
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
-	yum := regex.find_n("yum (-(-)?[a-zA-Z]+ *)*(group|local)?install", commands, -1)
+	yum := regex.find_n(`yum (-(-)?[a-zA-Z]+ *)*(group|local)?install`, commands, -1)
 	yum != null
 
 	packages = dockerLib.getPackages(commands, yum)

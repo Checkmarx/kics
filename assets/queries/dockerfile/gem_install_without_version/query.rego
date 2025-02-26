@@ -9,7 +9,7 @@ CxPolicy[result] {
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
-	gem := regex.find_n("gem (-(-)?[a-zA-Z]+ *)*install", commands, -1)
+	gem := regex.find_n(`gem (-(-)?[a-zA-Z]+ *)*install`, commands, -1)
 	gem != null
 
 	packages := dockerLib.getPackages(commands, gem)

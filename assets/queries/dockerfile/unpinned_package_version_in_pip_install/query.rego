@@ -11,7 +11,7 @@ CxPolicy[result] {
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
-	yum := regex.find_n("pip(3)? (-(-)?[a-zA-Z]+ *)*install", commands, -1)
+	yum := regex.find_n(`pip(3)? (-(-)?[a-zA-Z]+ *)*install`, commands, -1)
 	yum != null
 
 	packages = dockerLib.getPackages(commands, yum)

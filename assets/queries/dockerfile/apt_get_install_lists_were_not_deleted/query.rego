@@ -5,7 +5,7 @@ CxPolicy[result] {
 	resource.Cmd == "run"
 	commands := resource.Value[0]
 
-	aptGet := regex.find_n("apt-get (-(-)?[a-zA-Z]+ *)*install", commands, -1)
+	aptGet := regex.find_n(`apt-get (-(-)?[a-zA-Z]+ *)*install`, commands, -1)
 	aptGet != null
 
 	not hasClean(resource.Value[0], aptGet[0])

@@ -25,7 +25,7 @@ CxPolicy[result] {
 }
 
 containsCleanAfterYum(command) {
-	yumInstallCommand := regex.find_n("yum (-[a-zA-Z]+ *)*install", command, -1)
+	yumInstallCommand := regex.find_n(`yum (-[a-zA-Z]+ *)*install`, command, -1)
 
 	install := indexof(command, yumInstallCommand[0])
 	install != -1

@@ -51,7 +51,7 @@ commandHasZypperUsage(command) {
 }
 
 commandHasZypperUsage(command) {
-	output := regex.find_n("zypper (-(-)?[a-zA-Z]+ *)*install", command, -1)
+	output := regex.find_n(`zypper (-(-)?[a-zA-Z]+ *)*install`, command, -1)
 	output != null
 	index := indexof(command, output[0])
 	index != -1

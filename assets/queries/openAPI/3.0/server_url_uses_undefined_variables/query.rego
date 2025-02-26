@@ -103,14 +103,14 @@ CxPolicy[result] {
 
 variables_undefined(server) {
 	url := server.url
-	url_variables := regex.find_n("{[a-zA-Z]+}", url, -1)
+	url_variables := regex.find_n(`{[a-zA-Z]+}`, url, -1)
 	url_variables != []
 	not common_lib.valid_key(server, "variables")
 }
 
 variables_undefined(server) {
 	url := server.url
-	url_variables := regex.find_n("{[a-zA-Z]+}", url, -1)
+	url_variables := regex.find_n(`{[a-zA-Z]+}`, url, -1)
 	url_variables != []
 	var := replace(url_variables[j], "{", "")
 	clean_var := replace(var, "}", "")

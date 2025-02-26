@@ -9,9 +9,9 @@ CxPolicy[result] {
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
-	virtual := regex.find_n("\\-\\-virtual\\s.?[a-zA-Z\\-]+\\s", commands, -1)
+	virtual := regex.find_n(`\-\-virtual\s.?[a-zA-Z\-]+\s`, commands, -1)
 	commands_trim = replace(commands, virtual[0], "")
-	apk := regex.find_n("apk (-(-)?[a-zA-Z]+ *)*add", commands_trim, -1)
+	apk := regex.find_n(`apk (-(-)?[a-zA-Z]+ *)*add`, commands_trim, -1)
 	apk != null
 
 	packages = dockerLib.getPackages(commands_trim, apk)
@@ -37,9 +37,9 @@ CxPolicy[result] {
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
-	virtual := regex.find_n("\\-t\\s.?[a-zA-Z\\-]+\\s", commands, -1)
+	virtual := regex.find_n(`\-t\s.?[a-zA-Z\-]+\s`, commands, -1)
 	commands_trim = replace(commands, virtual[0], "")
-	apk := regex.find_n("apk (-(-)?[a-zA-Z]+ *)*add", commands_trim, -1)
+	apk := regex.find_n(`apk (-(-)?[a-zA-Z]+ *)*add`, commands_trim, -1)
 	apk != null
 
 	packages = dockerLib.getPackages(commands_trim, apk)
