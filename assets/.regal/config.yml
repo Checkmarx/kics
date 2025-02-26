@@ -38,7 +38,7 @@ rules:
     # temporary
     non-raw-regex-pattern:
       # https://docs.styra.com/regal/rules/idiomatic/non-raw-regex-pattern
-      level: ignore #warn
+      level: warn
     use-in-operator:
       # https://docs.styra.com/regal/rules/idiomatic/use-in-operator
       level: ignore #warn
