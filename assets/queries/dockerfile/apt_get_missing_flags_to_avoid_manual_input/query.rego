@@ -44,7 +44,7 @@ CxPolicy contains result {
 }
 
 isAptGet(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install", command)
+	regex.match(`apt-get (-(-)?[a-zA-Z]+ *)*install`, command)
 }
 
 avoidManualInputInList(command) {
@@ -58,13 +58,13 @@ avoidManualInputInList(command) {
 }
 
 avoidManualInput(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*(-([A-Za-z])*y|--yes|-qq|-q=2|--assume-yes|(-q|--quiet)(.*(-q|--quiet)){1}) (-(-)?[a-zA-Z]+ *)*install", command)
+	regex.match(`apt-get (-(-)?[a-zA-Z]+ *)*(-([A-Za-z])*y|--yes|-qq|-q=2|--assume-yes|(-q|--quiet)(.*(-q|--quiet)){1}) (-(-)?[a-zA-Z]+ *)*install`, command)
 }
 
 avoidManualInput(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install (-(-)?[a-zA-Z]+ *)*(-([A-Za-z])*y|--yes|-qq|-q=2|--assume-yes|(-q|--quiet)(.*(-q|--quiet)){1})", command)
+	regex.match(`apt-get (-(-)?[a-zA-Z]+ *)*install (-(-)?[a-zA-Z]+ *)*(-([A-Za-z])*y|--yes|-qq|-q=2|--assume-yes|(-q|--quiet)(.*(-q|--quiet)){1})`, command)
 }
 
 avoidManualInput(command) {
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install ([A-Za-z0-9\\W]+ *)*(-([A-Za-z])*y|--yes|-qq|-q=2|--assume-yes|(-q|--quiet)(.*(-q|--quiet)){1})", command)
+	regex.match(`apt-get (-(-)?[a-zA-Z]+ *)*install ([A-Za-z0-9\W]+ *)*(-([A-Za-z])*y|--yes|-qq|-q=2|--assume-yes|(-q|--quiet)(.*(-q|--quiet)){1})`, command)
 }

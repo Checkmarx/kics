@@ -55,7 +55,7 @@ CxPolicy[result] {
 	attachment := document[_].resource[attachments[_]][attachment_id]
 	is_attachment(attachment, role_id)
 
-	not regex.match("arn:aws.*:iam::.*", attachment.policy_arn)
+	not regex.match(`arn:aws.*:iam::.*`, attachment.policy_arn)
 
 	attached_customer_managed_policy_id := split(attachment.policy_arn, ".")[1]
 	customer_managed_policy = document[p].resource.aws_iam_policy[attached_customer_managed_policy_id]

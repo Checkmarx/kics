@@ -37,7 +37,7 @@ CxPolicy[result] {
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "gem"
-	regex.match("^[a-zA-Z]", resource.Value[j]) == true
+	regex.match(`^[a-zA-Z]`, resource.Value[j]) == true
 	not dockerLib.withVersion(resource.Value[j])
 
 	result := {
@@ -51,13 +51,13 @@ CxPolicy[result] {
 
 analyzePackages(j, currentPackage, packages, length) {
 	j == length - 1
-	regex.match("^[a-zA-Z]", currentPackage) == true
+	regex.match(`^[a-zA-Z]`, currentPackage) == true
 	not dockerLib.withVersion(currentPackage)
 }
 
 analyzePackages(j, currentPackage, packages, length) {
 	j != length - 1
-	regex.match("^[a-zA-Z]", currentPackage) == true
+	regex.match(`^[a-zA-Z]`, currentPackage) == true
 	packages[j + 1] != "-v"
 	not dockerLib.withVersion(currentPackage)
 }

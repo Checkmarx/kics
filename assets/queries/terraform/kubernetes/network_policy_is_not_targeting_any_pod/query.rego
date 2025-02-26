@@ -37,5 +37,5 @@ findTargettedPod(lValue, lKey) {
 } else = false
 
 hasReference(label) {
-	regex.match("kubernetes_[_a-zA-Z]+.[a-zA-Z-_0-9]+", label)
+	regex.match(`kubernetes_[_a-zA-Z]+.[a-zA-Z-_0-9]+`, label)
 }

@@ -12,7 +12,7 @@ CxPolicy[result] {
 	commandsSplit = dockerLib.getCommands(commands)
 
 	some j
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install", commandsSplit[j]) == true
+	regex.match(`apt-get (-(-)?[a-zA-Z]+ *)*install`, commandsSplit[j]) == true
 	not avoidAdditionalPackages(commandsSplit[j])
 
 	result := {

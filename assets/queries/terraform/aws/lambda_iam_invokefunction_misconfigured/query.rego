@@ -27,26 +27,26 @@ CxPolicy[result] {
 
 check_iam_resource(statement) {
 	is_string(statement.Resource)
-	regex.match("(^arn:aws:lambda:.*:.*:function:[a-zA-Z0-9_-]+:[*]$)", statement.Resource)
-	regex.match("(^arn:aws:lambda:.*:.*:function:[a-zA-Z0-9_-]+$)", statement.Resource)
+	regex.match(`(^arn:aws:lambda:.*:.*:function:[a-zA-Z0-9_-]+:[*]$)`, statement.Resource)
+	regex.match(`(^arn:aws:lambda:.*:.*:function:[a-zA-Z0-9_-]+$)`, statement.Resource)
 } else {
 	is_array(statement.Resource)
-	regex.match("(^arn:aws:lambda:.*:.*:function:[a-zA-Z0-9_-]+:[*]$)", statement.Resource[_])
-	regex.match("(^arn:aws:lambda:.*:.*:function:[a-zA-Z0-9_-]+$)", statement.Resource[_])
+	regex.match(`(^arn:aws:lambda:.*:.*:function:[a-zA-Z0-9_-]+:[*]$)`, statement.Resource[_])
+	regex.match(`(^arn:aws:lambda:.*:.*:function:[a-zA-Z0-9_-]+$)`, statement.Resource[_])
 } else {
 	is_array(statement.resources)
-	regex.match("(^aws_lambda_function\\.[^.]\\.arn:[*]$)", statement.resources[_])
-	regex.match("(^aws_lambda_function\\.[^.]\\.arn$)", statement.resources[_])
+	regex.match(`(^aws_lambda_function\.[^.]\.arn:[*]$)`, statement.resources[_])
+	regex.match(`(^aws_lambda_function\.[^.]\.arn$)`, statement.resources[_])
 }
 
 check_iam_action(statement) {
-	any([regex.match("(^lambda:InvokeFunction$|^lambda:[*]$)", statement.actions[_]), statement.actions[_] == "*"])
+	any([regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, statement.actions[_]), statement.actions[_] == "*"])
 } else {
-	any([regex.match("(^lambda:InvokeFunction$|^lambda:[*]$)", statement.Actions[_]), statement.Actions[_] == "*"])
+	any([regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, statement.Actions[_]), statement.Actions[_] == "*"])
 } else {
 	is_array(statement.Action)
-	any([regex.match("(^lambda:InvokeFunction$|^lambda:[*]$)", statement.Action[_]), statement.Action[_] == "*"])
+	any([regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, statement.Action[_]), statement.Action[_] == "*"])
 } else {
 	is_string(statement.Action)
-	any([regex.match("(^lambda:InvokeFunction$|^lambda:[*]$)", statement.Action), statement.Action == "*"])
+	any([regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, statement.Action), statement.Action == "*"])
 }

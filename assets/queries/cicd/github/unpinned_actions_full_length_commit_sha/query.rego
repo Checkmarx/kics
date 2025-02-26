@@ -24,7 +24,7 @@ isAllowed(use) {
 }
 
 isPinned(use) {
-	regex.match("@[a-f0-9]{40}$", use)
+	regex.match(`@[a-f0-9]{40}$`, use)
 }
 
 isRelative(use) {

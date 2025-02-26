@@ -24,7 +24,7 @@ CxPolicy[result] {
 }
 
 commandHasNonInteractiveSwitch(command) {
-	regex.match("zypper \\w+ (-y|--no-confirm)", command)
+	regex.match(`zypper \w+ (-y|--no-confirm)`, command)
 }
 
 commandHasZypperUsage(command) {
@@ -34,7 +34,7 @@ commandHasZypperUsage(command) {
 }
 
 commandHasZypperUsage(command) {
-	output := regex.find_n("zypper (-(-)?[a-zA-Z]+ *)*install", command, -1)
+	output := regex.find_n(`zypper (-(-)?[a-zA-Z]+ *)*install`, command, -1)
 	output != null
 	index := indexof(command, output[0])
 	index != -1

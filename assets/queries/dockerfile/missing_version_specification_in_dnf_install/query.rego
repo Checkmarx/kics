@@ -37,9 +37,9 @@ CxPolicy[result] {
 	isDnf(resource.Value)
 
 	resource.Value[j] != "dnf"
-	regex.match("(in|rei)n?(stall)?", resource.Value[j]) == false
+	regex.match(`(in|rei)n?(stall)?`, resource.Value[j]) == false
 
-	regex.match("^[a-zA-Z]", resource.Value[j]) == true
+	regex.match(`^[a-zA-Z]`, resource.Value[j]) == true
 	not dockerLib.withVersion(resource.Value[j])
 
 	result := {
@@ -53,18 +53,18 @@ CxPolicy[result] {
 
 analyzePackages(j, currentPackage, packages, length) {
 	j == length - 1
-	regex.match("^[a-zA-Z]", currentPackage) == true
+	regex.match(`^[a-zA-Z]`, currentPackage) == true
 	not dockerLib.withVersion(currentPackage)
 }
 
 analyzePackages(j, currentPackage, packages, length) {
 	j != length - 1
-	regex.match("^[a-zA-Z]", currentPackage) == true
+	regex.match(`^[a-zA-Z]`, currentPackage) == true
 	packages[j + 1] != "-v"
 	not dockerLib.withVersion(currentPackage)
 }
 
 isDnf(command) {
 	contains(command[x], "dnf")
-	regex.match("(in|rei)n?(stall)?", command[j]) == true
+	regex.match(`(in|rei)n?(stall)?`, command[j]) == true
 }

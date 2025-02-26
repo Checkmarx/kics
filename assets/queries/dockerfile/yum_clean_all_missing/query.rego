@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	command := resource.Value[0]
 
-	output := regex.match("yum (-[a-zA-Z]+ *)*install", command)
+	output := regex.match(`yum (-[a-zA-Z]+ *)*install`, command)
 	output == true
 
 	not containsCleanAfterYum(command)

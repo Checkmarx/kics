@@ -51,7 +51,7 @@ CxPolicy[result] {
 limited_regex(value) {
 	not contains(value.pattern, "+")
 	not contains(value.pattern, "*")
-	not regex.match("[^\\\\]{\\d+,}", value.pattern)
+	not regex.match(`[^\\\\]{\\d+,}`, value.pattern)
 }
 
 checkForSecureStringFormats(value) {

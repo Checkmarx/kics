@@ -19,7 +19,7 @@ CxPolicy[result] {
 }
 
 is_full_path(path) {
-	regex.match("^[a-zA-Z]:[\\/]", path)
+	regex.match(`^[a-zA-Z]:[\/]`, path)
 } else {
 	startswith(path, "/")
 	not contains(path, "/.")

@@ -26,10 +26,10 @@ CxPolicy[result] {
 
 is_port_range(allow) {
 	is_array(allow)
-	regex.match("[0-9]+-[0-9]+", allow[_].ports[_])
+	regex.match(`[0-9]+-[0-9]+`, allow[_].ports[_])
 	allow[_].ports[_] != "0-65535"
 } else {
 	is_object(allow)
-	regex.match("[0-9]+-[0-9]+", allow.ports[_])
+	regex.match(`[0-9]+-[0-9]+`, allow.ports[_])
 	allow.ports[_] != "0-65535"
 }

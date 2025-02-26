@@ -49,7 +49,7 @@ has_wildcard_principal(p) {
 }
 
 has_star_or_star_after_colon(str) {
-	regex.match("^(\\w*:)*\\*$", str)
+	regex.match(`(\w*:)*\*$`, str)
 }
 
 has_dangerous_action(action) = result {
