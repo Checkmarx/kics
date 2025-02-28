@@ -1,0 +1,116 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Pet Store API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com/v1"
+    }
+  ],
+  "paths": {
+    "/pets": {
+      "get": {
+        "summary": "Get a list of pets",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "example": { "pets": ["dog", "cat"] }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new pet",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Fido",
+                    "pattern": "^[A-Za-z]{1,20}$"
+                  },
+                  "species": {
+                    "type": "string",
+                    "example": "dog"
+                  },
+                  "color": {
+                    "type": "string",
+                    "enum": ["brown", "grey", "black", "white"]
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "weight": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "someSubType": {
+                    "type": "object",
+                    "properties": {
+                      "content": {
+                        "type": "object",
+                        "properties": {
+                          "content": {
+                            "type": "object",
+                            "properties": {
+                              "key1": {
+                                "type": "string"
+                              },
+                              "key2": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Pet added successfully"
+          }
+        }
+      }
+    },
+    "/pets/{petId}": {
+      "get": {
+        "summary": "Get details of a specific pet",
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "example": { "name": "Fido", "species": "dog" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
