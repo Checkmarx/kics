@@ -30,7 +30,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	#Check if there is Update Command without Install Command
+	# Check if there is Update Command without Install Command
 	resource := input.document[i].command[name][n]
 	commandRefactor := getRunCommand(resource)
 	packages := [l | commandRefactor[0] == pkg[l]]

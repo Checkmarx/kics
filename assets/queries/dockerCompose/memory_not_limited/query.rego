@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-#FOR VERSION 3
+# For version 3
 CxPolicy[result] {
 	resource := input.document[i]
 	version := resource.version
@@ -73,7 +73,7 @@ CxPolicy[result] {
 	}
 }
 
-#FOR VERSION 2
+# For version 2
 CxPolicy[result] {
 	resource := input.document[i]
 	version := resource.version
