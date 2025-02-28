@@ -1,5 +1,7 @@
 package generic.ansible
 
+import future.keywords.in
+
 # Global variable with all tasks in input
 tasks := TasksPerDocument
 
@@ -93,7 +95,7 @@ allowsPort(allowed, port) {
 	low <= portNumber
 	high >= portNumber
 } else {
-	allowed.ports[_] == port
+	port in allowed.ports
 } else = false
 
 # Checks if a given port is included in a network rule
@@ -108,7 +110,7 @@ isPortInRule(rule, portNumber) {
 }
 
 isPortInRule(rule, portNumber) {
-	rule.ports[_] == portNumber
+	portNumber in rule.ports
 }
 
 isPortInRule(rule, portNumber) {

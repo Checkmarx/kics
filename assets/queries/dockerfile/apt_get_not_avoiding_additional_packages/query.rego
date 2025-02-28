@@ -1,11 +1,12 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	resource in input.document[i].command[name]
 
-	resource.Cmd == "run"
+	"run" in resource.Cmd
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
@@ -25,15 +26,15 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	resource in input.document[i].command[name]
 
-	resource.Cmd == "run"
+	"run" in resource.Cmd
 	count(resource.Value) > 1
 
 	commands := resource.Value
 
-	commands[_] == "apt-get"
-	commands[_] == "install"
+	"apt-get" in commands
+	"install" in commands
 
 	not avoidAdditionalPackages(commands)
 
