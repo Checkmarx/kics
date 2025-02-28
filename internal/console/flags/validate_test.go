@@ -22,6 +22,26 @@ func TestFlags_isQueryID(t *testing.T) {
 			id:       "test",
 			expected: false,
 		},
+		{
+			name:     "for prefix 't:' should return that query id is valid",
+			id:       "t:12345678901234567890",
+			expected: true,
+		},
+		{
+			name:     "for prefix 'p:' should return that query id is valid",
+			id:       "p:8820143918834007824",
+			expected: true,
+		},
+		{
+			name:     "for prefix 'a:' should return that query id is valid",
+			id:       "a:8820143918834007824",
+			expected: true,
+		},
+		{
+			name:     "should return that query id is invalid because uint exceeds 20 length",
+			id:       "t:123456789012345678901",
+			expected: false,
+		},
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
