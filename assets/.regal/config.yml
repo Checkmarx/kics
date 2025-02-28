@@ -41,7 +41,7 @@ rules:
       level: warn
     use-in-operator:
       # https://docs.styra.com/regal/rules/idiomatic/use-in-operator
-      level: ignore #warn
+      level: warn
     use-some-for-output-vars:
       # https://docs.styra.com/regal/rules/idiomatic/use-some-for-output-vars
       # These would be good to address, but would require a concentrated effort
