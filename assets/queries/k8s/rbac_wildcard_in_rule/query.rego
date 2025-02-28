@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	attr := {"apiGroups", "resources", "verbs"}
 	common_lib.valid_key(document.rules[j], attr[k])
 
-	document.rules[j][k][_] == "*"
+	"*" in document.rules[j][k]
 
 	result := {
 		"documentId": document.id,
