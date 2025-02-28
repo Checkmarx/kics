@@ -32,23 +32,23 @@ ingressControllerExposesWorload(service_name, service_port) {
 	name == service_name
 }
 
-contentRule(spec) { #rule[r] and path
+contentRule(spec) { # rule[r] and path
 	is_array(spec.rule)
 	backend := spec.rule[r].http.path.backend
 	ingressControllerExposesWorload(backend.service_name, backend.service_port)
-} #rule and path
+} # rule and path
 
 else {
 	backend := spec.rule.http.path.backend
 	ingressControllerExposesWorload(backend.service_name, backend.service_port)
-} #rule[r] and path[p]
+} # rule[r] and path[p]
 
 else {
 	is_array(spec.rule)
 	is_array(spec.rule[r].http.path)
 	backend := spec.rule[r].http.path[p].backend
 	ingressControllerExposesWorload(backend.service_name, backend.service_port)
-} #rule and path[p]
+} # rule and path[p]
 
 else {
 	is_array(spec.rule.http.path)

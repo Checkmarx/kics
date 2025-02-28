@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-#allow_users_to_change_password default is true
+# allow_users_to_change_password default is true
 CxPolicy[result] {
 	pol := input.document[i].resource.aws_iam_account_password_policy[name]
 	pol.allow_users_to_change_password == false

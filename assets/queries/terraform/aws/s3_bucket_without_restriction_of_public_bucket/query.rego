@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-#default of restrict_public_buckets is false
+# default of restrict_public_buckets is false
 CxPolicy[result] {
 	pubACL := input.document[i].resource.aws_s3_bucket_public_access_block[name]
 	not common_lib.valid_key(pubACL, "restrict_public_buckets")

@@ -19,7 +19,7 @@ CxPolicy[result] {
 	}
 }
 
-#default vaule of cidrs is "0.0.0.0/0"
+# default value of cidrs is "0.0.0.0/0"
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_eks_cluster[name]
 

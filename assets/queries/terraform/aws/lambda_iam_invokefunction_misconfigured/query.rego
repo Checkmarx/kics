@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-#CxPolicy for resource iam policy
+# CxPolicy for resource iam policy
 CxPolicy[result] {
 	resourceType := {"aws_iam_role_policy", "aws_iam_user_policy", "aws_iam_group_policy", "aws_iam_policy"}
 	resource := input.document[i].resource[resourceType[idx]][name]

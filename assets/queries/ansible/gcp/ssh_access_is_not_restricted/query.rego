@@ -10,7 +10,7 @@ CxPolicy[result] {
 	ansLib.checkState(instance)
 
 	common_lib.is_ingress(instance)
-	common_lib.is_unrestricted(instance.source_ranges[_]) #Allow traffic ingressing from anywhere
+	common_lib.is_unrestricted(instance.source_ranges[_]) # Allow traffic ingressing from anywhere
 	allowed := instance.allowed
 	ansLib.allowsPort(allowed[k], "22")
 

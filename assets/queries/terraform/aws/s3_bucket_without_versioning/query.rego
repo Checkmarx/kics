@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-#default of versioning is false
+# default of versioning is false
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[bucketName]
 	not common_lib.valid_key(bucket, "versioning") # version before TF AWS 4.0
@@ -40,7 +40,7 @@ CxPolicy[result] {
 	}
 }
 
-#default of enabled is false
+# default of enabled is false
 # version before TF AWS 4.0
 CxPolicy[result] {
 	bucket := input.document[i].resource.aws_s3_bucket[name]

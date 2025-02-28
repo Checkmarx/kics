@@ -6,7 +6,7 @@ CxPolicy[result] {
 	isRunCmd(runCmd)
 
 	value := runCmd.Value
-	count(value) == 1 #command is in a single string
+	count(value) == 1 # command is in a single string
 
 	cmd := value[0]
 
@@ -35,7 +35,7 @@ CxPolicy[result] {
 	isRunCmd(runCmd)
 
 	value := runCmd.Value
-	count(value) > 1 #command is in several tokens
+	count(value) > 1 # command is in several tokens
 
 	shellIdx := getShellIdx(value)
 	shellIdx != -1
