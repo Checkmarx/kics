@@ -3,7 +3,7 @@ package Cx
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
-CxPolicy[result] { #Resource Type DB  and StorageEncrypted is False
+CxPolicy[result] { # Resource Type DB  and StorageEncrypted is False
 	document := input.document[i]
 	resource := document.Resources[key]
 	common_lib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::RDS::GlobalCluster"}, resource.Type)
