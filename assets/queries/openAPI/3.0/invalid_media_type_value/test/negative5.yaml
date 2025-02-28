@@ -46,7 +46,15 @@ paths:
                   type: 'object'
                   properties:
                     content:
-                      type: string
+                      type: 'object'
+                      properties:
+                        content:
+                          type: object
+                          properties:
+                            key1:
+                              type: string
+                            key2:
+                              type: integer
       responses:
         '201':
           description: Pet added successfully
