@@ -50,9 +50,9 @@ json_unmarshal(s) = result {
 calc_IP_value(ip) = result {
 	ips := split(ip, ".")
 
-	#calculate the value of an ip
-	#a.b.c.d
-	#a*16777216 + b*65536 + c*256 + d
+	# calculate the value of an ip
+	# a.b.c.d
+	# a*16777216 + b*65536 + c*256 + d
 	result = (((to_number(ips[0]) * 16777216) + (to_number(ips[1]) * 65536)) + (to_number(ips[2]) * 256)) + to_number(ips[3])
 }
 
@@ -566,8 +566,8 @@ weakCipher(aux) {
 	weak_ciphers_GnuTLS_Format[_] == aux
 }
 
-#aurora is equivelent to mysql 5.6 https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.Availability
-#all aurora-postgresql versions that do not support IAM auth are deprecated Source:console.aws (launch rds instance)
+# aurora is equivelent to mysql 5.6 https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.Availability
+# all aurora-postgresql versions that do not support IAM auth are deprecated Source:console.aws (launch rds instance)
 valid_for_iam_engine_and_version_check(resource, engineVar, engineVersionVar, instanceClassVar) {
 	key_list := [engineVar, engineVersionVar]
 	contains(lower(resource[engineVar]), "mariadb")
