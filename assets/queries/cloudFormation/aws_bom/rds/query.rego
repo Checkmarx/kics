@@ -33,7 +33,7 @@ CxPolicy[result] {
 	}
 }
 
-## get accessibility functions
+# get accessibility functions
 get_resource_accessibility(resource) = accessibility {
 	resource.Properties.PubliclyAccessible == true
 	accessibility := "public"
@@ -67,7 +67,7 @@ has_vpc_gateway_attached(subnet_gp_name) {
 	res_vpc_gateway.Properties.VpcId == vpc_name
 }
 
-## get encryption functions
+# get encryption functions
 get_db_instance_encryption(resource) = encryption {
 	engine := lower(resource.Properties.Engine)
 	not contains(engine, "aurora")
@@ -112,7 +112,7 @@ get_encryption(resource) = encryption {
 	encryption := "unencrypted"
 }
 
-#get encytion for instances with aurora engines
+# get encytion for instances with aurora engines
 get_enc_for_aurora(resource) = encryption {
 	cluster_name := resource.Properties.DBClusterIdentifier
 
