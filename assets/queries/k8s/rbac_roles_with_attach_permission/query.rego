@@ -7,12 +7,12 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	kinds := {"Role", "ClusterRole"}
-	document.kind == kinds[_]
+	document.kind in kinds
 
 	resources := {"pods/attach", "pods/*"}
 	verbs := {"create", "*"}
-	document.rules[j].resources[_] == resources[_]
-	document.rules[j].verbs[_] == verbs[_]
+	document.rules[j].resources in resources
+	document.rules[j].verbs in verbs
 
 	result := {
 		"documentId": document.id,

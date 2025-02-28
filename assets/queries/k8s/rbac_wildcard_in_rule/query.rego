@@ -7,7 +7,7 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	kinds := {"Role", "ClusterRole"}
-	document.kind == kinds[_]
+	document.kind in kinds
 
 	attr := {"apiGroups", "resources", "verbs"}
 	common_lib.valid_key(document.rules[j], attr[k])

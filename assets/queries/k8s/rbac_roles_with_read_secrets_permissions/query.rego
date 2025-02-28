@@ -7,11 +7,11 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	kinds := {"Role", "ClusterRole"}
-	document.kind == kinds[_]
+	document.kind in kinds
 
 	readVerbs := {"get", "watch", "list"}
-	document.rules[j].resources[_] == "secrets"
-	document.rules[j].verbs[_] == readVerbs[_]
+	"secrets" in document.rules[j].resources
+	document.rules[j].verbs in readVerbs
 
 	result := {
 		"documentId": document.id,
