@@ -79,7 +79,7 @@ rules:
       level: ignore
     no-whitespace-comment:
       # https://docs.styra.com/regal/rules/style/no-whitespace-comment
-      level: ignore #warn
+      level: warn
     opa-fmt:
       # https://docs.styra.com/regal/rules/style/opa-fmt
       level: warn
