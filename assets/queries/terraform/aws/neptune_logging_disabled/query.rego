@@ -56,7 +56,3 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_neptune_cluster.enable_cloudwatch_logs_exports has the following missing values: %s", [concat(", ", missingTypes)]),
 	}
 }
-
-exist(obj, key) {
-	_ = obj[key]
-}
