@@ -79,7 +79,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_account[var0]
 	resource_name := tf_lib.get_resource_name(resource, var0)
-	"public_network_access_enabled" not in object.keys(resource)
+	not "public_network_access_enabled" in object.keys(resource)
 
 	result := {
 		"documentId": input.document[i].id,
