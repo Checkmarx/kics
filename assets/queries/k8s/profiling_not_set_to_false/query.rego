@@ -17,7 +17,7 @@ CxPolicy[result] {
 	common_lib.inArray(container.command, command)
 
 	has_flag := k8sLib.hasFlag(container, "--profiling=true")
-    has_flag
+	has_flag
 
 	result := {
 		"documentId": input.document[i].id,

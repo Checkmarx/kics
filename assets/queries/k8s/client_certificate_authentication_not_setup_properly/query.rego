@@ -39,7 +39,7 @@ CxPolicy[result] {
 	crt := k8sLib.startAndEndWithFlag(container, "--client-ca-file", ".crt")
 	pem := k8sLib.startAndEndWithFlag(container, "--client-ca-file", ".pem")
 
-    start_flag
+	start_flag
 	not crt
 	not pem
 

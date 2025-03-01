@@ -10,8 +10,8 @@ CxPolicy[result] {
 	elbNetworkInterface.network_id == "net-COMMON_GLOBAL"
 	elbNetworkInterface.is_vip_network == true
 
-	http := elb.protocol == "HTTP"
-	http
+	is_http := elb.protocol == "HTTP"
+	is_http
 
 	result := {
 		"documentId": input.document[i].id,

@@ -17,7 +17,7 @@ CxPolicy[result] {
 	resource2.Properties.Bucket.Ref == name
 	resource2.Properties.PolicyDocument.Statement[0].Principal.Service == "cloudtrail.amazonaws.com"
 
-    valid_key := common_lib.valid_key(resource.Properties, "LoggingConfiguration")
+	valid_key := common_lib.valid_key(resource.Properties, "LoggingConfiguration")
 	not valid_key
 
 	result := {

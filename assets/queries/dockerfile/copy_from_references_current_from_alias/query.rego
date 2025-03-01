@@ -21,7 +21,7 @@ CxPolicy[result] {
 isAliasCurrentFromAlias(currentName, currentAlias) = allow {
 	resource := input.document[i].command[name][_]
 	name_equal := currentName == name
-    name_equal
+	name_equal
 
 	resource.Cmd == "from"
 	previousAlias := resource.Value[2]

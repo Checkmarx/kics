@@ -17,8 +17,8 @@ CxPolicy[result] {
 	starts_with_flag := k8sLib.startWithFlag(container, "--feature-gates=")
 	has_feature := contains_feature(container, "RotateKubeletServerCertificate=false")
 
-    starts_with_flag
-    has_feature
+	starts_with_flag
+	has_feature
 
 	result := {
 		"documentId": input.document[i].id,

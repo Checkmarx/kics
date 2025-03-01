@@ -18,7 +18,7 @@ CxPolicy[result] {
 
 	upper_access == "ALLOW"
 	upper_inbound == "INBOUND"
-	end_with
+	ends_with
 	port_contains
 	isTCPorUDP(protocol)
 
