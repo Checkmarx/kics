@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_account[var0]
@@ -108,7 +109,7 @@ get_network_rules(storage_account, storage_account_name) = rules {
 }
 
 publicNetworkAccessEnabled(sa) = reason {
-	"public_network_access_enabled" not in object.keys(sa)
+	not "public_network_access_enabled" in object.keys(sa)
 	reason := "not defined"
 } else = reason {
 	sa.public_network_access_enabled == true
