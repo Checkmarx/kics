@@ -51,7 +51,7 @@ rules:
       level: warn
     equals-pattern-matching:
       # https://docs.styra.com/regal/rules/idiomatic/equals-pattern-matching
-      level: ignore #warn
+      level: warn
     use-contains:
       # https://docs.styra.com/regal/rules/idiomatic/use-contains
       level: ignore
