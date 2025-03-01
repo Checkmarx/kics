@@ -1,5 +1,7 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
 	document := input.document[i]
 
@@ -47,5 +49,5 @@ CxPolicy[result] {
 }
 
 array_contains(array_obj, string) {
-	array_obj[_] == string
+	string in array_obj
 }

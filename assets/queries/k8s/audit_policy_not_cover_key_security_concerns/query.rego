@@ -40,5 +40,5 @@ CxPolicy[result] {
 hasResourceLevel(resource, levels, res_rules) {
 	rule := res_rules[_]
 	rule.resource == resource
-	rule.level == levels[_]
+	rule.level in levels
 }

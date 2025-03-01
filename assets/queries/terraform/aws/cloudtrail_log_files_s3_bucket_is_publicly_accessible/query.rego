@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 publicAcl := {"public-read", "public-read-write"}
 
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	cloudtrail := input.document[_].resource.aws_cloudtrail[name]
 	s3BucketName := split(cloudtrail.s3_bucket_name, ".")[1]
 	bucket := input.document[i].resource.aws_s3_bucket[s3BucketName]
-	bucket.acl == publicAcl[_]
+	bucket.acl in publicAcl
 
 	result := {
 		"documentId": input.document[i].id,
@@ -27,7 +28,7 @@ CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "acl")
 
-	module[keyToCheck] == publicAcl[_]
+	module[keyToCheck] in publicAcl
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "n/a",
@@ -46,7 +47,7 @@ CxPolicy[result] {
 	input.document[_].resource.aws_s3_bucket[s3BucketName]
 	acl := input.document[i].resource.aws_s3_bucket_acl[name]
 	split(acl.bucket, ".")[1] == s3BucketName
-	acl.acl == publicAcl[_]
+	acl.acl in publicAcl
 
 	result := {
 		"documentId": input.document[i].id,

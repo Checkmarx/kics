@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	s_bucket := input.document[i].resource.google_storage_bucket[name]
@@ -39,7 +40,7 @@ get_accessibility(bucket_name) = accessibility_status {
 	access_control := input.document[i].resource.google_storage_bucket_access_control[_]
 	bucketRefArray := split(access_control.bucket, ".")
 	bucketRefArray[1] == bucket_name
-	access_control.entity == consideredPublicPolicyMembers[_]
+	access_control.entity in consideredPublicPolicyMembers
 	accessibility_status := "public"
 } else = accessibility_status {
 	iam_binding := input.document[i].resource.google_storage_bucket_iam_binding[_]

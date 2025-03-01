@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 resources := {
 	"AWS::CloudFront::Distribution",
@@ -34,5 +35,5 @@ has_shield_advanced(resource) {
 	shield.Type == "AWS::FMS::Policy"
 
 	shield.Properties.SecurityServicePolicyData.Type == "SHIELD_ADVANCED"
-	shield.Properties.ResourceTypeList[_] == resource
+	resource in shield.Properties.ResourceTypeList
 }

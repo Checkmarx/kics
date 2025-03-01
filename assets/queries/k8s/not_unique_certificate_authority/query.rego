@@ -2,7 +2,6 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8s_lib
-import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i]
@@ -39,7 +38,7 @@ flagValue(container, flag) = val {
 }
 
 getFlag(arr, item) = array_item {
-	array_item in arr
+	array_item = arr[_]
 	startswith(array_item, item)
 }
 

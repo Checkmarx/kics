@@ -454,11 +454,11 @@ is_recommended_tls(field) {
 
 is_unrestricted(sourceRange) {
 	cidrs := {"0.0.0.0/0", "::/0"}
-	sourceRange == cidrs[_]
+	sourceRange in cidrs
 }
 
 check_principals(statement) {
-	statement.principals.identifiers[_] == "*"
+	"*" in statement.principals.identifiers
 	statement.principals.type == "AWS"
 } else {
 	is_object(statement.Principal) == true
@@ -717,7 +717,7 @@ get_version(name) = version {
 }
 
 contains_element(arr, element) {
-	element == arr[_]
+	element in arr
 }
 
 contains_with_size(arr, element) {

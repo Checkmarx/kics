@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 slowLogs := ["INDEX_SLOW_LOGS", "SEARCH_SLOW_LOGS"]
 
@@ -68,5 +69,5 @@ CxPolicy[result] {
 }
 
 array_contains(array_obj, elem) {
-	array_obj[_] == elem
+	elem in array_obj
 } else = false

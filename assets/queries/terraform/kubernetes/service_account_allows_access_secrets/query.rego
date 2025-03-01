@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as commonLib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resources_types := ["kubernetes_role", "kubernetes_cluster_role"]
@@ -42,7 +43,7 @@ bindingExists(name, kind) {
 
 contentRule(rule, ruleTaint) {
 	resources := rule.resources
-	resources[_] == "secrets"
+	"secrets" in resources
 
 	verbs := rule.verbs
 	commonLib.compareArrays(ruleTaint, verbs)
@@ -51,7 +52,7 @@ contentRule(rule, ruleTaint) {
 contentRule(rule, ruleTaint) {
 	is_array(rule)
 	resources := rule[r].resources
-	resources[_] == "secrets"
+	"secrets" in resources
 
 	verbs := rule[r].verbs
 	commonLib.compareArrays(ruleTaint, verbs)

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i].resources[idx]
@@ -66,7 +67,7 @@ valid_disk_resources := ["compute.beta.disk", "compute.v1.disk"]
 
 CxPolicy[result] {
 	resource := input.document[i].resources[idx]
-	resource.type == valid_disk_resources[_]
+	resource.type in valid_disk_resources
 
 	disk := resource.properties
 	not common_lib.valid_key(disk, "diskEncryptionKey")
@@ -85,7 +86,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resources[idx]
-	resource.type == valid_disk_resources[_]
+	resource.type in valid_disk_resources
 
 	disk := resource.properties
 	not common_lib.valid_key(disk.diskEncryptionKey, "rawKey")
@@ -105,7 +106,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resources[idx]
-	resource.type == valid_disk_resources[_]
+	resource.type in valid_disk_resources
 
 	disk := resource.properties
 	disk.diskEncryptionKey[fields[f]] == ""
