@@ -6,14 +6,14 @@ import future.keywords.in
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 
-	"run" in resource.Cmd
+	resource.Cmd == "run"
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
 	commandsSplit = dockerLib.getCommands(commands)
 
 	some j
-	regex.match(`apt-get (-(-)?[a-zA-Z]+ *)*install`, commandsSplit[j]) == true
+	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install", commandsSplit[j]) == true
 	not avoidAdditionalPackages(commandsSplit[j])
 
 	result := {
@@ -28,7 +28,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 
-	"run" in resource.Cmd
+	resource.Cmd == "run"
 	count(resource.Value) > 1
 
 	commands := resource.Value
@@ -55,5 +55,5 @@ avoidAdditionalPackages(cmd) {
 
 avoidAdditionalPackages(cmd) {
 	is_array(cmd) == true
-	dockerLib.arrayContains(cmd, {"--no-install-recommends", "apt::install-recommends=false"})
+    dockerLib.arrayContains(cmd, {"--no-install-recommends", "apt::install-recommends=false"})
 }
