@@ -18,7 +18,7 @@ is_valid_url(url) {
 }
 
 improperly_defined(params, value) {
-	params.in == "header"
+	params["in"] == "header"
 	params.name == value
 }
 
