@@ -4,7 +4,8 @@ import data.generic.dockerfile as dockerLib
 
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
-	dockerLib.check_multi_stage(name, input.document[i].command)
+	is_multi_stage := dockerLib.check_multi_stage(name, input.document[i].command)
+    is_multi_stage
 
 	resource.Cmd == "cmd"
 	resource.JSON == false
@@ -20,7 +21,8 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
-	dockerLib.check_multi_stage(name, input.document[i].command)
+	is_multi_stage := dockerLib.check_multi_stage(name, input.document[i].command)
+    is_multi_stage
 
 	resource.Cmd == "entrypoint"
 	resource.JSON == false
