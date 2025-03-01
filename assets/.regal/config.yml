@@ -127,7 +127,7 @@ rules:
       level: ignore
     import-after-rule:
       # https://docs.styra.com/regal/rules/imports/import-after-rule
-      level: ignore
+      level: warn
   performance:
     non-loop-expression:
       # https://docs.styra.com/regal/rules/performance/non-loop-expression
