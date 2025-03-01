@@ -43,7 +43,8 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]][j]
 	cmd := command[_]
 	common_lib.inArray(container.command, cmd)
-	hasWeakCipher(container, "--tls-cipher-suites")
+	has_weak_cipher := hasWeakCipher(container, "--tls-cipher-suites")
+    has_weak_cipher
 
 	result := {
 		"documentId": input.document[i].id,

@@ -12,8 +12,11 @@ CxPolicy[result] {
 	types := {"initContainers", "containers"}
 	container := specInfo.spec[types[x]][j]
 	tls := tlsFlagList[_]
-	common_lib.inArray(container.command, "kube-apiserver")
-	not k8s_lib.startWithFlag(container, tls)
+	is_array := common_lib.inArray(container.command, "kube-apiserver")
+	flag := k8s_lib.startWithFlag(container, tls)
+
+	is_array
+	not flag
 
 	result := {
 		"documentId": input.document[i].id,

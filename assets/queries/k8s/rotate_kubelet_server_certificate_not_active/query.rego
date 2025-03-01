@@ -14,8 +14,11 @@ CxPolicy[result] {
 	command := commandList[_]
 
 	common_lib.inArray(container.command, command)
-	k8sLib.startWithFlag(container, "--feature-gates=")
-	contains_feature(container, "RotateKubeletServerCertificate=false")
+	starts_with_flag := k8sLib.startWithFlag(container, "--feature-gates=")
+	has_feature := contains_feature(container, "RotateKubeletServerCertificate=false")
+
+    starts_with_flag
+    has_feature
 
 	result := {
 		"documentId": input.document[i].id,

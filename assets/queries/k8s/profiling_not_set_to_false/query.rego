@@ -15,7 +15,9 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]][j]
 	command := kubernetesCommand[_]
 	common_lib.inArray(container.command, command)
-	k8sLib.hasFlag(container, "--profiling=true")
+
+	has_flag := k8sLib.hasFlag(container, "--profiling=true")
+    has_flag
 
 	result := {
 		"documentId": input.document[i].id,
@@ -37,7 +39,9 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]][j]
 	command := kubernetesCommandWithoutDeprecation[_]
 	common_lib.inArray(container.command, command)
-	not k8sLib.startWithFlag(container, "--profiling")
+
+	flag := k8sLib.startWithFlag(container, "--profiling")
+	not flag
 
 	result := {
 		"documentId": input.document[i].id,

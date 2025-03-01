@@ -11,8 +11,11 @@ CxPolicy[result] {
 	portName = portContent
 	protocol := tf_lib.getProtocolList(resource.ingress.protocol)[_]
 
-	isSmallPublicNetwork(resource)
-	tf_lib.containsPort(resource.ingress, portNumber)
+	is_small_net := isSmallPublicNetwork(resource)
+	port_contains := tf_lib.containsPort(resource.ingress, portNumber)
+
+	is_small_net
+	port_contains
 	isTCPorUDP(protocol)
 
 	result := {
