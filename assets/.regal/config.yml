@@ -48,7 +48,7 @@ rules:
       level: ignore
     custom-has-key-construct:
       # https://docs.styra.com/regal/rules/idiomatic/custom-has-key-construct
-      level: warn
+      level: ignore #warn
     equals-pattern-matching:
       # https://docs.styra.com/regal/rules/idiomatic/equals-pattern-matching
       level: ignore #warn
