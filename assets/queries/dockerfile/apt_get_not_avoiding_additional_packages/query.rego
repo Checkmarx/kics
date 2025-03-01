@@ -4,7 +4,7 @@ import data.generic.dockerfile as dockerLib
 import future.keywords.in
 
 CxPolicy[result] {
-	resource in input.document[i].command[name]
+	resource := input.document[i].command[name][_]
 
 	"run" in resource.Cmd
 	count(resource.Value) == 1
@@ -26,7 +26,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource in input.document[i].command[name]
+	resource := input.document[i].command[name][_]
 
 	"run" in resource.Cmd
 	count(resource.Value) > 1
