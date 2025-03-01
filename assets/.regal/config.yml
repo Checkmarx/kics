@@ -8,10 +8,10 @@ rules:
       level: ignore
     rule-shadows-builtin:
       # https://docs.styra.com/regal/rules/bugs/rule-shadows-builtin
-      level: warn
+      level: warning
     var-shadows-builtin:
       # https://docs.styra.com/regal/rules/bugs/var-shadows-builtin
-      level: warn
+      level: warning
     unused-output-variable:
       # https://docs.styra.com/regal/rules/bugs/unused-output-variable
       level: ignore
@@ -38,20 +38,20 @@ rules:
     # temporary
     non-raw-regex-pattern:
       # https://docs.styra.com/regal/rules/idiomatic/non-raw-regex-pattern
-      level: warn
+      level: warning
     use-in-operator:
       # https://docs.styra.com/regal/rules/idiomatic/use-in-operator
-      level: warn
+      level: warning
     use-some-for-output-vars:
       # https://docs.styra.com/regal/rules/idiomatic/use-some-for-output-vars
       # These would be good to address, but would require a concentrated effort
       level: ignore
     custom-has-key-construct:
       # https://docs.styra.com/regal/rules/idiomatic/custom-has-key-construct
-      level: warn
+      level: warning
     equals-pattern-matching:
       # https://docs.styra.com/regal/rules/idiomatic/equals-pattern-matching
-      level: warn
+      level: warning
     use-contains:
       # https://docs.styra.com/regal/rules/idiomatic/use-contains
       level: ignore
@@ -79,10 +79,10 @@ rules:
       level: ignore
     no-whitespace-comment:
       # https://docs.styra.com/regal/rules/style/no-whitespace-comment
-      level: warn
+      level: warning
     opa-fmt:
       # https://docs.styra.com/regal/rules/style/opa-fmt
-      level: warn
+      level: warning
     prefer-some-in-iteration:
       # https://docs.styra.com/regal/rules/style/prefer-some-in-iteration
       # 10000+ violations fixed but way more to go
@@ -127,7 +127,7 @@ rules:
       level: ignore
     import-after-rule:
       # https://docs.styra.com/regal/rules/imports/import-after-rule
-      level: warn
+      level: warning
   performance:
     non-loop-expression:
       # https://docs.styra.com/regal/rules/performance/non-loop-expression
