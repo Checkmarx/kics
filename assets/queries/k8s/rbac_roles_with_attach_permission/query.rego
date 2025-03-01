@@ -12,8 +12,8 @@ CxPolicy[result] {
 
 	resources := {"pods/attach", "pods/*"}
 	verbs := {"create", "*"}
-	document.rules[j].resources in resources
-	document.rules[j].verbs in verbs
+	document.rules[j].resources[_] == resources[_]
+	document.rules[j].verbs[_] == verbs[_]
 
 	result := {
 		"documentId": document.id,

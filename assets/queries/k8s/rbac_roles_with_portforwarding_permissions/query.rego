@@ -11,8 +11,8 @@ CxPolicy[result] {
 	document.kind in kinds
 
 	verbs := {"update", "patch", "create", "*"}
-	"pods/portforward" in document.rules[j].resources
-	document.rules[j].verbs in verbs
+	document.rules[j].resources[_] == "pods/portforward"
+	document.rules[j].verbs[_] == verbs[_]
 
 	result := {
 		"documentId": document.id,

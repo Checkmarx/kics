@@ -2,13 +2,14 @@ package Cx
 
 import data.generic.azureresourcemanager as arm_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
 	doc := input.document[i]
 
 	[path, value] := walk(doc)
-	value.type == types[_]
+	value.type in types
 
 	properties := value.properties
 
@@ -35,7 +36,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 
 	[path, value] := walk(doc)
-	value.type == types[_]
+	value.type in types
 
 	properties := value.properties
 
