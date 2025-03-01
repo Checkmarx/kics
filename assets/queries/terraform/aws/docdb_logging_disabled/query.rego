@@ -9,7 +9,7 @@ validTypeConcat := concat(", ", validTypes)
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_docdb_cluster[name]
-	not exist(resource, "enabled_cloudwatch_logs_exports")
+	"enabled_cloudwatch_logs_exports" not in object.keys(resource)
 
 	result := {
 		"documentId": input.document[i].id,
