@@ -39,7 +39,7 @@ flagValue(container, flag) = val {
 }
 
 getFlag(arr, item) = array_item {
-	array_item in arr
+	some array_item in arr
 	startswith(array_item, item)
 }
 
