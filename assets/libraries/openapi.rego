@@ -1,5 +1,7 @@
 package generic.openapi
 
+import future.keywords.in
+
 check_openapi(doc) = version {
 	object.get(doc, "openapi", "undefined") != "undefined"
 	regex.match(`^3\.0\.\d+$`, doc.openapi)
@@ -116,7 +118,7 @@ is_operation(path) = info {
 
 is_numeric_type(type) {
 	numeric := {"integer", "number"}
-	type == numeric[_]
+	type in numeric
 }
 
 # It verifies if the string schema does not have the 'field' defined

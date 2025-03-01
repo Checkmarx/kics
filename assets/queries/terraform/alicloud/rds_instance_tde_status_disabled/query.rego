@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 supported_mysql_engines := {"5.6", "5.7", "8"}
 
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_db_instance[name]
 	resource.engine == "MySQL"
-	resource.engine_version == supported_mysql_engines[_]
+	resource.engine_version in supported_mysql_engines
 	resource.tde_status == "Disabled"
 
 	result := {
@@ -35,7 +36,7 @@ CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_db_instance[name]
 	resource.engine == "MySQL"
-	resource.engine_version == supported_mysql_engines[_]
+	resource.engine_version in supported_mysql_engines
 	not common_lib.valid_key(resource, "tde_status")
 
 	result := {
@@ -56,7 +57,7 @@ CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_db_instance[name]
 	resource.engine == "SQLServer"
-	resource.engine_version == supported_sql_engines[_]
+	resource.engine_version in supported_sql_engines
 	resource.tde_status == "Disabled"
 
 	result := {
@@ -80,7 +81,7 @@ CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_db_instance[name]
 	resource.engine == "SQLServer"
-	resource.engine_version == supported_sql_engines[_]
+	resource.engine_version in supported_sql_engines
 	not common_lib.valid_key(resource, "tde_status")
 
 	result := {

@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 outdatedSSLPolicies := {
 	"1",
@@ -28,7 +29,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	lb := input.document[i].resource.nifcloud_load_balancer[name]
-	lb.ssl_policy_id == outdatedSSLPolicies[_]
+	lb.ssl_policy_id in outdatedSSLPolicies
 
 	result := {
 		"documentId": input.document[i].id,

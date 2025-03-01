@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -91,11 +92,11 @@ swagger := {
 }
 
 known_swagger_object_field(field) {
-	field == swagger[_]
+	field in swagger
 }
 
 known_field(obj, value) {
-	obj[_] == value
+	value in obj
 }
 
 parameters_properties := {

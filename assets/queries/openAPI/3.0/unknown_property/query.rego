@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -104,11 +105,11 @@ openapi := {
 }
 
 known_openapi_object_field(field) {
-	field == openapi[_]
+	field in openapi
 }
 
 known_field(obj, value) {
-	obj[_] == value
+	value in obj
 }
 
 flow := {

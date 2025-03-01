@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	s_bucket := input.document[i].resources[idx]
@@ -41,7 +42,7 @@ get_accessibility(bucket_res) = accessibility_status {
 	type == "storage.v1.bucketaccesscontrol"
 	ac_properties := access_control.properties
 	ac_properties.bucket == bucket_res.name
-	ac_properties.entity == consideredPublicPolicyMembers[_]
+	ac_properties.entity in consideredPublicPolicyMembers
 	accessibility_status := "public"
 } else = accessibility_status {
 	acl_list := bucket_res.properties.acl

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i]
@@ -21,7 +22,7 @@ CxPolicy[result] {
 }
 
 has_cap_drop(service_parameters) {
-	service_parameters.cap_drop[_] == "NET_BIND_SERVICE"
+	"NET_BIND_SERVICE" in service_parameters.cap_drop
 }
 
 is_privileged_port(port) {

@@ -11,7 +11,7 @@ CxPolicy[result] {
 	document.kind in kinds
 
 	readVerbs := {"get", "watch", "list"}
-	document.rules[j].resources[_] == "secrets"
+	"secrets" in document.rules[j].resources
 	document.rules[j].verbs[_] == readVerbs[_]
 
 	result := {

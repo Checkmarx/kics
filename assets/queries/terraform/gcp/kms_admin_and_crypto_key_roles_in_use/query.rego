@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_project_iam_policy[name]
@@ -26,6 +27,6 @@ CxPolicy[result] {
 has_cryptokey_roles_in_use(policy, targetMembers) {
 	roles := {"roles/cloudkms.cryptoKeyDecrypter", "roles/cloudkms.cryptoKeyEncrypter", "roles/cloudkms.cryptoKeyEncrypterDecrypter"}
 	binding := policy.binding[_]
-	binding.role == roles[_]
+	binding.role in roles
 	binding.members[_] == targetMembers[_]
 }

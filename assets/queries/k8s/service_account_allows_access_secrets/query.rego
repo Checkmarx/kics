@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as commonLib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -18,7 +19,7 @@ CxPolicy[result] {
 
 	some resource
 	resources := document.rules[resource].resources
-	resources[_] == "secrets"
+	"secrets" in resources
 
 	rules := document.rules[resource].verbs
 	commonLib.compareArrays(ruleTaint, rules)

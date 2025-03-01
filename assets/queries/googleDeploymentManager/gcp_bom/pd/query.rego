@@ -1,12 +1,13 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 valid_disk_resources := {"compute.beta.disk", "compute.v1.disk"}
 
 CxPolicy[result] {
 	gc_disk := input.document[i].resources[idx]
-	gc_disk.type == valid_disk_resources[_]
+	gc_disk.type in valid_disk_resources
 
 	bom_output = {
 		"resource_type": gc_disk.type,
