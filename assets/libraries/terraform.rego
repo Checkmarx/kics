@@ -1,9 +1,10 @@
 package generic.terraform
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 check_cidr(rule) {
-	rule.cidr_blocks[_] == "0.0.0.0/0"
+	"0.0.0.0/0" in rule.cidr_blocks
 } else {
 	rule.cidr_block == "0.0.0.0/0"
 }

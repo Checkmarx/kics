@@ -42,7 +42,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_project_iam_audit_config[name]
-	audit_log_config in resource.audit_log_config
+	some audit_log_config in resource.audit_log_config
 
 	exempted_members = audit_log_config.exempted_members
 	count(exempted_members) != 0
