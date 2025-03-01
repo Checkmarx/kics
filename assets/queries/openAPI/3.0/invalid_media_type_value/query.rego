@@ -9,7 +9,8 @@ CxPolicy[result] {
     [path, value] := walk(doc)
     content = value.content[mime]
 
-    is_object(content)
+    # Ensure "content" inside "properties" is treated as a field name, not an OpenAPI content spec.
+    not path[count(path) - 1] == "properties"
     not openapi_lib.is_valid_mime(mime)
 
     result := {
