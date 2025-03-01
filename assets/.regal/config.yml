@@ -131,7 +131,7 @@ rules:
   performance:
     non-loop-expression:
       # https://docs.styra.com/regal/rules/performance/non-loop-expression
-      level: ignore
+      level: warning
     defer-assignment:
       # https://docs.styra.com/regal/rules/performance/defer-assignment
       level: ignore
