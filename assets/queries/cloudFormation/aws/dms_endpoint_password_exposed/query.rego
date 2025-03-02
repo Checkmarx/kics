@@ -31,10 +31,10 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::DMS::Endpoint"
 
-	properties := resource.Properties
 	not common_lib.valid_key(document, "Parameters")
-	defaultToken := properties.Password
 
+	properties := resource.Properties
+	defaultToken := properties.Password
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
 	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
@@ -54,13 +54,14 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::DMS::Endpoint"
 
-	properties := resource.Properties
 	common_lib.valid_key(document, "Parameters")
+
+	properties := resource.Properties
 	paramName := properties.Password
 	not common_lib.valid_key(document.Parameters, paramName)
 
 	defaultToken := paramName
-    regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
+	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
 	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
 	result := {

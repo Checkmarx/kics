@@ -6,8 +6,8 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
 
-	portContent := commonLib.tcpPortsMap[port]
 	portNumber = port
+	portContent := commonLib.tcpPortsMap[port]
 	portName = portContent
 
 	protocol := tf_lib.getProtocolList(resource.ingress.protocol)[_]

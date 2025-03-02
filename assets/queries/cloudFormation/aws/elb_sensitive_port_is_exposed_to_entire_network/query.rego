@@ -59,7 +59,6 @@ CxPolicy[result] {
 	]
 
 	elb := loadBalancerList[j]
-	elbType := getELBType(elb.properties)
 
 	securityGroupList = [{"name": key, "properties": secGroup} |
 		secGroup := resources[key]
@@ -85,6 +84,7 @@ CxPolicy[result] {
 	portNumber = portRange[idx]
 	portName := portsMap[portNumber]
 
+	elbType := getELBType(elb.properties)
 	##############	Result
 	result := {
 		"documentId": input.document[i].id,

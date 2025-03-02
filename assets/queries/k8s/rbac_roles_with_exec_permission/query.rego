@@ -13,7 +13,7 @@ CxPolicy[result] {
 	resources := {"pods/exec", "pods/*"}
 	document.rules[j].resources[_] == resources[_]
 
-    verbs := {"create", "*"}
+	verbs := {"create", "*"}
 	document.rules[j].verbs[_] == verbs[_]
 
 	result := {

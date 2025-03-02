@@ -31,9 +31,9 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::DirectoryService::MicrosoftAD"
 
-	properties := resource.Properties
 	not common_lib.valid_key(document, "Parameters")
 
+	properties := resource.Properties
 	defaultToken := properties.Password
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
 	not cf_lib.hasSecretManager(defaultToken, document.Resources)
@@ -54,8 +54,9 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::DirectoryService::MicrosoftAD"
 
-	properties := resource.Properties
 	common_lib.valid_key(document, "Parameters")
+
+	properties := resource.Properties
 	paramName := properties.Password
 	not common_lib.valid_key(document.Parameters, paramName)
 

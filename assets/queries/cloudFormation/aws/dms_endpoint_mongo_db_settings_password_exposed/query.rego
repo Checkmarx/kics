@@ -31,11 +31,10 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::DMS::Endpoint"
 
-	properties := resource.Properties
 	not common_lib.valid_key(document, "Parameters")
 
+	properties := resource.Properties
 	defaultToken := properties.MongoDbSettings.Password
-
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
 	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
