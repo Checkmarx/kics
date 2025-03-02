@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_account[var0]
 	networkRules := input.document[i].resource.azurerm_storage_account_network_rules[var1]
 	networkRules.storage_account_id == sprintf("${azurerm_storage_account.%s.id}", [var0])
-	lower(networkRules.default_action) == "allow
+	lower(networkRules.default_action) == "allow"
 	resource_name := tf_lib.get_resource_name(resource, var0)
 
 	result := {
