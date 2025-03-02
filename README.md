@@ -270,4 +270,4 @@ KICS is used by various companies and organizations, some are listed below. If y
 
 ---
 
-&copy; 2024 Checkmarx Ltd. All Rights Reserved.
+&copy; 2025 Checkmarx Ltd. All Rights Reserved.
