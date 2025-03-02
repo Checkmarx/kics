@@ -15,9 +15,9 @@ CxPolicy[result] {
 	command := commandList[_]
 	common_lib.inArray(container.command, command)
 
-# Iterate over all containers and ensure none match has_flag
-    flagged_containers := {c | c := specInfo.spec[types[x]][_] ; has_flag(c)}
-    not container in flagged_containers
+	# Iterate over all containers and ensure none match has_flag
+	flagged_containers := {c | c := specInfo.spec[types[x]][_]; has_flag(c)}
+	not container in flagged_containers
 
 	result := {
 		"documentId": input.document[i].id,
@@ -32,5 +32,5 @@ CxPolicy[result] {
 }
 
 has_flag(container) {
-    k8sLib.hasFlag(container, "--bind-address=127.0.0.1")
+	k8sLib.hasFlag(container, "--bind-address=127.0.0.1")
 }

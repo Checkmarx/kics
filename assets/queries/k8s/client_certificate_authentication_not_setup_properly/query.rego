@@ -36,12 +36,9 @@ CxPolicy[result] {
 	common_lib.inArray(container.command, cmd)
 
 	start_flag := k8sLib.startWithFlag(container, "--client-ca-file")
-	crt := k8sLib.startAndEndWithFlag(container, "--client-ca-file", ".crt")
-	pem := k8sLib.startAndEndWithFlag(container, "--client-ca-file", ".pem")
-
 	start_flag
-	not crt
-	not pem
+	not k8sLib.startAndEndWithFlag(container, "--client-ca-file", ".crt")
+	not k8sLib.startAndEndWithFlag(container, "--client-ca-file", ".pem")
 
 	result := {
 		"documentId": input.document[i].id,
