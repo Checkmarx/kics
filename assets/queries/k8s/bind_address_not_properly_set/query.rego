@@ -14,8 +14,7 @@ CxPolicy[result] {
 	command := commandList[_]
 	common_lib.inArray(container.command, command)
 
-	has_flag := k8sLib.hasFlag(container, "--bind-address=127.0.0.1")
-	not has_flag
+	not has_flag(container)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -27,4 +26,8 @@ CxPolicy[result] {
 		"keyActualValue": "--bind-address flag is set to a 127.0.01",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}
+}
+
+has_flag(container) {
+	k8sLib.hasFlag(container, "--bind-address=127.0.0.1")
 }
