@@ -16,6 +16,10 @@ CxPolicy[result] {
 	is_os_dir(volumeMounts[v].mountPath)
 	volumeMounts[v].readOnly == false
 
+    volumes := specInfo.spec["volumes"]
+	not is_configMap(volumeMounts[v].name, volumes)
+	not is_secret(volumeMounts[v].name, volumes)
+
 	result := {
 		"documentId": document.id,
 		"resourceType": document.kind,
@@ -38,6 +42,10 @@ CxPolicy[result] {
 	is_os_dir(volumeMounts[v].mountPath)
 	not common_lib.valid_key(volumeMounts[v], "readOnly")
 
+	volumes := specInfo.spec["volumes"]
+	not is_configMap(volumeMounts[v].name, volumes)
+	not is_secret(volumeMounts[v].name, volumes)
+
 	result := {
 		"documentId": document.id,
 		"resourceType": document.kind,
@@ -54,4 +62,14 @@ is_os_dir(mountPath) {
 	startswith(mountPath, hostSensitiveDir[_])
 } else {
 	mountPath == "/"
+}
+
+is_configMap(mount_name, volumes) {
+    volumes[m].name == mount_name
+    common_lib.valid_key(volumes[m], "configMap")
+}
+
+is_secret(mount_name, volumes) {
+    volumes[m].name == mount_name
+    common_lib.valid_key(volumes[m], "secret")
 }
