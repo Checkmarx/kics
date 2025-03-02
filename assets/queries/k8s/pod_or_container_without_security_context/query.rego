@@ -5,11 +5,12 @@ import data.generic.k8s as k8sLib
 
 CxPolicy[result] {
 	document := input.document[i]
+	document.kind == "Pod"
+
     metadata := document.metadata
+
 	specInfo := k8sLib.getSpecInfo(document)
 	spec := specInfo.spec
-
-	document.kind == "Pod"
 
 	not common_lib.valid_key(spec, "securityContext")
 
