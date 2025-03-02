@@ -23,7 +23,7 @@ jobs:
       - name: Setup OPA
         uses: open-policy-agent/setup-opa@v2
         with:
-          version: latest
+          version: "v0.68.0"
 
       - name: Run Regal Linter
         run: regal lint --format=github assets --config-file=assets/.regal/config.yml
