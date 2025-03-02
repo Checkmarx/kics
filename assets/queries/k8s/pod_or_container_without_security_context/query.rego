@@ -6,10 +6,9 @@ import data.generic.k8s as k8sLib
 CxPolicy[result] {
 	document := input.document[i]
 	specInfo := k8sLib.getSpecInfo(document)
+	spec := specInfo.spec
 
 	metadata := document.metadata
-
-	spec := specInfo.spec
 
 	document.kind == "Pod"
 
