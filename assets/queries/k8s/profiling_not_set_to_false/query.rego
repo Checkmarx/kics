@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 kubernetesCommand := {"kube-apiserver", "kube-controller-manager", "kube-scheduler"}
 
@@ -40,8 +41,8 @@ CxPolicy[result] {
 	command := kubernetesCommandWithoutDeprecation[_]
 	common_lib.inArray(container.command, command)
 
-	flag := k8sLib.startWithFlag(container, "--profiling")
-	not flag
+	flagged_containers := {c | c := specInfo.spec[types[x]][_]; k8sLib.startWithFlag(c, "--profiling")}
+	not container in flagged_containers
 
 	result := {
 		"documentId": input.document[i].id,

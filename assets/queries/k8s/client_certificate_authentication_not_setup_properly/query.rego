@@ -35,11 +35,11 @@ CxPolicy[result] {
 	cmd := command[_]
 	common_lib.inArray(container.command, cmd)
 
-    start_flag := k8sLib.startWithFlag(container, "--client-ca-file")
-    valid_certificate := valid_client_ca_flag(container)
+	start_flag := k8sLib.startWithFlag(container, "--client-ca-file")
+	valid_certificate := valid_client_ca_flag(container)
 
-    start_flag
-    valid_certificate
+	start_flag
+	valid_certificate
 
 	result := {
 		"documentId": input.document[i].id,
@@ -54,8 +54,8 @@ CxPolicy[result] {
 }
 
 valid_client_ca_flag(container) {
-    not k8sLib.startAndEndWithFlag(container, "--client-ca-file", ".crt")
-    not k8sLib.startAndEndWithFlag(container, "--client-ca-file", ".pem")
+	not k8sLib.startAndEndWithFlag(container, "--client-ca-file", ".crt")
+	not k8sLib.startAndEndWithFlag(container, "--client-ca-file", ".pem")
 }
 
 CxPolicy[result] {

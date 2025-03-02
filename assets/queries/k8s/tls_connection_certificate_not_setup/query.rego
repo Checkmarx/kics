@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8s_lib
+import future.keywords.in
 
 tlsFlagList := {"--tls-cert-file", "--tls-private-key-file"}
 
@@ -13,10 +14,10 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]][j]
 	tls := tlsFlagList[_]
 	in_array := common_lib.inArray(container.command, "kube-apiserver")
-	flag := k8s_lib.startWithFlag(container, tls)
+	flagged_containers := {c | c := specInfo.spec[types[x]][_] ; k8s_lib.startWithFlag(c, tls)}
 
 	in_array
-	not flag
+	not container in flagged_containers
 
 	result := {
 		"documentId": input.document[i].id,
