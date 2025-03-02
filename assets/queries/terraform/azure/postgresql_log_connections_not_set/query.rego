@@ -8,11 +8,11 @@ CxPolicy[result] {
 	is_string(resource.name)
 	is_string(resource.value)
 
-	name := lower(resource.name)
-	name == "log_connections"
+    name := lower(resource.name)
+    value := upper(resource.value)
 
-	value := upper(resource.value)
-	value != "ON"
+    name == "log_connections"
+    value != "ON"
 
 	result := {
 		"documentId": input.document[i].id,
