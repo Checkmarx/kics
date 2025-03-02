@@ -64,9 +64,8 @@ CxPolicy[result] {
 	properties := resource.Properties
 	properties.BasicAuthConfig.EnableBasicAuth == true
 
-	paramName := properties.BasicAuthConfig.Password
 	not common_lib.valid_key(document, "Parameters")
-
+	paramName := properties.BasicAuthConfig.Password
 	defaultToken := paramName
 
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
