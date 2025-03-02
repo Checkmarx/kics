@@ -23,7 +23,7 @@ rules:
       level: ignore
     sprintf-arguments-mismatch:
       # https://docs.styra.com/regal/rules/bugs/sprintf-arguments-mismatch
-      level: ignore
+      level: warning
     inconsistent-args:
       # https://docs.styra.com/regal/rules/bugs/inconsistent-args
       level: ignore
