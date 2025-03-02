@@ -7,7 +7,7 @@ types := {"initContainers", "containers"}
 
 CxPolicy[result] {
 	document := input.document[i]
-    specInfo = k8sLib.getSpecInfo(document)
+	specInfo = k8sLib.getSpecInfo(document)
 	container := specInfo.spec[types[x]][_]
 
 	capabilities := container.securityContext.capabilities

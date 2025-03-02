@@ -7,7 +7,6 @@ commandList = {"kubelet", "kube-controller-manager"}
 
 CxPolicy[result] {
 	resource := input.document[i]
-	metadata := resource.metadata
 	specInfo := k8sLib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}
 	container := specInfo.spec[types[x]][j]
@@ -15,10 +14,12 @@ CxPolicy[result] {
 
 	common_lib.inArray(container.command, command)
 	starts_with_flag := k8sLib.startWithFlag(container, "--feature-gates=")
-	has_feature := contains_feature(container, "RotateKubeletServerCertificate=false")
-
 	starts_with_flag
+
+	has_feature := contains_feature(container, "RotateKubeletServerCertificate=false")
 	has_feature
+
+	metadata := resource.metadata
 
 	result := {
 		"documentId": input.document[i].id,

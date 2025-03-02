@@ -8,11 +8,10 @@ CxPolicy[result] {
 
 	is_string(resource.name)
 	name := lower(resource.name)
+	name == "connection_throttling"
 
 	is_string(resource.value)
 	value := upper(resource.value)
-
-	name == "connection_throttling"
 	value != "ON"
 
 	result := {

@@ -41,13 +41,13 @@ CxPolicy[result] {
 
 	ingress := module[ingressKey][idx]
 	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
+	isTCPorUDP(protocol)
+
+	port_contains := tf_lib.containsPort(ingress, portNumber)
+	port_contains
 
 	is_private_ip := common_lib.isPrivateIP(ingress.cidr_blocks[_])
-	port_contains := tf_lib.containsPort(ingress, portNumber)
-
 	is_private_ip
-	port_contains
-	isTCPorUDP(protocol)
 
 	result := {
 		"documentId": input.document[i].id,
