@@ -85,6 +85,7 @@ CxPolicy[result] {
 	portName := portsMap[portNumber]
 
 	elbType := getELBType(elb.properties)
+
 	##############	Result
 	result := {
 		"documentId": input.document[i].id,

@@ -38,14 +38,15 @@ CxPolicy[result] {
 	portNumber = port
 	portName = portContent
 	ingress := resource.ingress[j]
+
 	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
+	isTCPorUDP(protocol)
 
 	ends_with := endswith(ingress.cidr_blocks[_], "/0")
-	port_contains := tf_lib.containsPort(ingress, portNumber)
-
 	ends_with
+
+	port_contains := tf_lib.containsPort(ingress, portNumber)
 	port_contains
-	isTCPorUDP(protocol)
 
 	result := {
 		"documentId": input.document[i].id,
