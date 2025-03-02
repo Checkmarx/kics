@@ -6,11 +6,12 @@ import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i]
-	metadata := resource.metadata
 	resource.kind in k8sLib.valid_pod_spec_kind_list
 	specInfo := k8sLib.getSpecInfo(resource)
 	volumes := specInfo.spec.volumes
 	common_lib.isOSDir(volumes[j].hostPath.path)
+	metadata := resource.metadata
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
@@ -33,11 +34,12 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
-	metadata := resource.metadata
 	not common_lib.inArray(k8sLib.valid_pod_spec_kind_list, resource.kind)
 	specInfo := k8sLib.getSpecInfo(resource)
 	volumes := specInfo.spec.volumes
 	common_lib.isOSDir(volumes[j].hostPath.path)
+	metadata := resource.metadata
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
@@ -60,10 +62,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
-	metadata := resource.metadata
 	resource.kind == "PersistentVolume"
 	hostPath := resource.spec.hostPath
 	common_lib.isOSDir(hostPath.path)
+	metadata := resource.metadata
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
