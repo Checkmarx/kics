@@ -6,13 +6,13 @@ import future.keywords.in
 
 CxPolicy[result] {
 	document := input.document[i]
-	specInfo := k8sLib.getSpecInfo(document)
-	metadata := document.metadata
 
+	specInfo := k8sLib.getSpecInfo(document)
 	types = {"initContainers", "containers"}
 	containers := specInfo.spec[types[x]]
 
 	"SYS_ADMIN" in containers[index].securityContext.capabilities.add
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
