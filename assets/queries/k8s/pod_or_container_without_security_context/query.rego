@@ -8,11 +8,10 @@ CxPolicy[result] {
 	specInfo := k8sLib.getSpecInfo(document)
 	spec := specInfo.spec
 
-	metadata := document.metadata
-
 	document.kind == "Pod"
 
 	not common_lib.valid_key(spec, "securityContext")
+    metadata := document.metadata
 
 	result := {
 		"documentId": document.id,
