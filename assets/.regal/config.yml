@@ -123,8 +123,8 @@ rules:
       # https://docs.styra.com/regal/rules/imports/use-rego-v1
       level: ignore
     redundant-alias:
-      # https://docs.styra.com/regal/rules/performance/non-loop-expression
-      level: ignore
+      # https://docs.styra.com/regal/rules/imports/redundant-alias
+      level: warning
     import-after-rule:
       # https://docs.styra.com/regal/rules/imports/import-after-rule
       level: warning
