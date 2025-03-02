@@ -68,8 +68,8 @@ get_accessibility(bucket, bucketName) = accessibility {
 	# cases when public access is blocked by aws_s3_bucket_public_access_block
 	s3BucketPublicAccessBlock := input.document[i].resource.aws_s3_bucket_public_access_block[_]
 	split(s3BucketPublicAccessBlock.bucket, ".")[1] == bucketName
-	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")
 	is_public_access_blocked(s3BucketPublicAccessBlock)
+	acc := tf_lib.get_accessibility(bucket, bucketName, "aws_s3_bucket_policy", "bucket")
 	accessibility = {"accessibility": "private", "policy": acc.policy}
 } else = accessibility {
 	# cases when there is a unrestriced policy

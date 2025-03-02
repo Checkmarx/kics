@@ -12,6 +12,7 @@ CxPolicy[result] {
 	specInfo := k8sLib.getSpecInfo(resource)
 	volumes := specInfo.spec.volumes
 	volumes[j].hostPath.path
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
@@ -124,10 +125,13 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
-	metadata := resource.metadata
 	resource.kind == "PersistentVolume"
+
+	metadata := resource.metadata
 	metadata.namespace != "kube-system"
+
 	path := resource.spec.hostPath.path
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
@@ -151,10 +155,13 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
-	metadata := resource.metadata
 	resource.kind == "PersistentVolume"
+
+	metadata := resource.metadata
 	not metadata.namespace
+
 	path := resource.spec.hostPath.path
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,

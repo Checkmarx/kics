@@ -50,9 +50,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_lb", "enable_deletion_protection")
-
 	not common_lib.valid_key(module, "enable_deletion_protection")
+
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_lb", "enable_deletion_protection")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -70,9 +70,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_lb", "enable_deletion_protection")
-
 	module.enable_deletion_protection == false
+
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_lb", "enable_deletion_protection")
 
 	result := {
 		"documentId": input.document[i].id,

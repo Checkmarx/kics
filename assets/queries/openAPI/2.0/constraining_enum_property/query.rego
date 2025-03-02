@@ -12,10 +12,11 @@ CxPolicy[result] {
 	}
 
 	[path, value] := walk(doc)
-	type := get_type(value.type)
 	value.enum
 	count(value.enum) > 0
 	value[keyword]
+
+	type := get_type(value.type)
 	keyword in keywords[type]
 
 	result := {

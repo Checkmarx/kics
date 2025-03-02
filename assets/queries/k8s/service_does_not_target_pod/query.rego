@@ -7,7 +7,6 @@ import future.keywords.in
 CxPolicy[result] {
 	service := input.document[i]
 	service.kind == "Service"
-	metadata := service.metadata
 
 	common_lib.valid_key(service.spec, "selector")
 
@@ -16,6 +15,8 @@ CxPolicy[result] {
 
 	servicePorts := service.spec.ports[_]
 	not confirmPorts(resources, servicePorts)
+
+	metadata := service.metadata
 
 	result := {
 		"documentId": service.id,
@@ -31,12 +32,13 @@ CxPolicy[result] {
 CxPolicy[result] {
 	service := input.document[i]
 	service.kind == "Service"
-	metadata := service.metadata
 
 	common_lib.valid_key(service.spec, "selector")
 
 	resources := [x | x := input.document[_]; matchResource(x, service.spec.selector)]
 	count(resources) == 0
+
+	metadata := service.metadata
 
 	result := {
 		"documentId": service.id,

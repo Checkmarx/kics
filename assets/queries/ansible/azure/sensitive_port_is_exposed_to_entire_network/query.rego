@@ -16,18 +16,21 @@ CxPolicy[result] {
 	portContent := tcpPortsMap[port]
 	portNumber = port
 	portName = portContent
+
 	protocol := getProtocolList(resource.protocol)[_]
+	isTCPorUDP(protocol)
 
 	access_upper := upper(resource.access)
-	is_inbound := inbound_direction(resource)
-	is_wildcard_prefix := endswith(resource.source_address_prefix, "/0")
-	port_matches := containsDestinationPort(portNumber, resource)
-
 	access_upper == "ALLOW"
+
+	is_inbound := inbound_direction(resource)
 	is_inbound
+
+	is_wildcard_prefix := endswith(resource.source_address_prefix, "/0")
 	is_wildcard_prefix
+
+	port_matches := containsDestinationPort(portNumber, resource)
 	port_matches
-	isTCPorUDP(protocol)
 
 	result := {
 		"documentId": id,

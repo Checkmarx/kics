@@ -9,18 +9,21 @@ CxPolicy[result] {
 	portContent := commonLib.tcpPortsMap[port]
 	portNumber = port
 	portName = portContent
+
 	protocol := tf_lib.getProtocolList(resource.protocol)[_]
+	isTCPorUDP(protocol)
 
 	upper_access := upper(resource.access)
-	upper_inbound := upper(resource.direction)
-	ends_with := endswith(resource.source_address_prefix, "/0")
-	port_contains := tf_lib.containsPort(resource, portNumber)
-
 	upper_access == "ALLOW"
+
+	upper_inbound := upper(resource.direction)
 	upper_inbound == "INBOUND"
+
+	ends_with := endswith(resource.source_address_prefix, "/0")
 	ends_with
+
+	port_contains := tf_lib.containsPort(resource, portNumber)
 	port_contains
-	isTCPorUDP(protocol)
 
 	result := {
 		"documentId": input.document[i].id,

@@ -10,13 +10,14 @@ CxPolicy[result] {
 	resource := input.document[i]
 	metadata := resource.metadata
 	specInfo := k8s_lib.getSpecInfo(resource)
+
 	types := {"initContainers", "containers"}
 	container := specInfo.spec[types[x]][j]
-	tls := tlsFlagList[_]
 	in_array := common_lib.inArray(container.command, "kube-apiserver")
-	flagged_containers := {c | c := specInfo.spec[types[x]][_]; k8s_lib.startWithFlag(c, tls)}
-
 	in_array
+
+	tls := tlsFlagList[_]
+	flagged_containers := {c | c := specInfo.spec[types[x]][_]; k8s_lib.startWithFlag(c, tls)}
 	not container in flagged_containers
 
 	result := {

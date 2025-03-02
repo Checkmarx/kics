@@ -10,13 +10,13 @@ CxPolicy[result] {
 	portNumber = port
 	portName = portContent
 	protocol := tf_lib.getProtocolList(resource.ingress.protocol)[_]
+	isTCPorUDP(protocol)
 
 	is_small_net := isSmallPublicNetwork(resource)
-	port_contains := tf_lib.containsPort(resource.ingress, portNumber)
-
 	is_small_net
+
+	port_contains := tf_lib.containsPort(resource.ingress, portNumber)
 	port_contains
-	isTCPorUDP(protocol)
 
 	result := {
 		"documentId": input.document[i].id,

@@ -31,7 +31,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-    isRoleKind(document.kind)
+	isRoleKind(document.kind)
 
 	rules := document.rules
 	rules[j].verbs[l] == create

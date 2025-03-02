@@ -2,10 +2,10 @@ package Cx
 
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
 	object.get(document, "kind", "undefined") == "PodSecurityPolicy"
-
 	object.get(document.spec, "hostNetwork", "undefined") == true
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,

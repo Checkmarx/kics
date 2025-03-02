@@ -24,10 +24,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	keyToCheck1 := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "storage_encrypted")
-	keyToCheck2 := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "kms_key_id")
 
+	keyToCheck1 := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "storage_encrypted")
 	module[keyToCheck1] == false
+
+	keyToCheck2 := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "kms_key_id")
 	not common_lib.valid_key(module, keyToCheck2)
 
 	result := {
@@ -62,10 +63,11 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	keyToCheck1 := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "storage_encrypted")
-	keyToCheck2 := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "kms_key_id")
 
+	keyToCheck1 := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "storage_encrypted")
 	not common_lib.valid_key(module, keyToCheck1)
+
+	keyToCheck2 := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "kms_key_id")
 	not common_lib.valid_key(module, keyToCheck2)
 
 	result := {

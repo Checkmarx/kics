@@ -8,7 +8,7 @@ CxPolicy[result] {
 
 	kinds := {"Role", "ClusterRole"}
 	document.kind in kinds
-    "pods/portforward" in document.rules[j].resources
+	"pods/portforward" in document.rules[j].resources
 
 	verbs := {"update", "patch", "create", "*"}
 	document.rules[j].verbs[_] == verbs[_]

@@ -8,9 +8,9 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts"
-	resourceName := value.name
-
 	to_number(split(value.apiVersion, "-")[0]) < 2017
+
+	resourceName := value.name
 
 	result := {
 		"documentId": input.document[i].id,

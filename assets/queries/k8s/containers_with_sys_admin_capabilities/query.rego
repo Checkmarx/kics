@@ -7,8 +7,8 @@ import future.keywords.in
 CxPolicy[result] {
 	document := input.document[i]
 
-	specInfo := k8sLib.getSpecInfo(document)
 	types = {"initContainers", "containers"}
+	specInfo := k8sLib.getSpecInfo(document)
 	containers := specInfo.spec[types[x]]
 
 	"SYS_ADMIN" in containers[index].securityContext.capabilities.add

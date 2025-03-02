@@ -4,10 +4,10 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
 	document.kind == "PodSecurityPolicy"
-
 	not common_lib.valid_key(document.spec, "allowedHostPaths")
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
@@ -23,11 +23,12 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
 	document.kind == "PodSecurityPolicy"
 
 	hostPath := document.spec.allowedHostPaths[idx]
 	not common_lib.valid_key(hostPath, "readOnly")
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
@@ -43,11 +44,12 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
 	document.kind == "PodSecurityPolicy"
 
 	hostPath := document.spec.allowedHostPaths[idx]
 	hostPath.readOnly != true
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,

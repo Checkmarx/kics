@@ -11,8 +11,9 @@ CxPolicy[result] {
 	document.kind in kinds
 
 	resources := {"pods/attach", "pods/*"}
-	verbs := {"create", "*"}
 	document.rules[j].resources[_] == resources[_]
+
+	verbs := {"create", "*"}
 	document.rules[j].verbs[_] == verbs[_]
 
 	result := {

@@ -46,9 +46,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
-
 	not common_lib.valid_key(module, "lifecycle_rule")
+
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
 	not common_lib.valid_key(module[keyToCheck], checkedFields[c])
 
 	result := {
@@ -65,9 +65,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
-
 	not common_lib.valid_key(module, "lifecycle_rule")
+
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
 	module[keyToCheck][checkedFields[c]] != true
 
 	result := {

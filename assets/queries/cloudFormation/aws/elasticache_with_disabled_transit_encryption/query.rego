@@ -10,6 +10,7 @@ CxPolicy[result] {
 	properties := resource.Properties
 	lower(properties.Engine) == "redis"
 	properties.TransitEncryptionEnabled == false
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
@@ -24,8 +25,9 @@ CxPolicy[result] {
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
-	properties := resource.Properties
 	resource.Type = "AWS::ElastiCache::ReplicationGroup"
+
+	properties := resource.Properties
 	lower(properties.Engine) == "redis"
 	not common_lib.valid_key(properties, "TransitEncryptionEnabled")
 

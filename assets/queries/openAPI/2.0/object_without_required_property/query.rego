@@ -30,10 +30,9 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	param := value.parameters[n]
 	param.in != "body"
+	not common_lib.valid_key(param, "type")
 
 	partialSk := openapi_lib.concat_default_value(openapi_lib.concat_path(path), "parameters")
-
-	not common_lib.valid_key(param, "type")
 
 	result := {
 		"documentId": doc.id,

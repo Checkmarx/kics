@@ -58,9 +58,9 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::Amplify::App"
 
-	properties := resource.Properties
 	not common_lib.valid_key(document, "Parameters")
 
+	properties := resource.Properties
 	paramName := properties.OauthToken
 	count(paramName) >= 50
 

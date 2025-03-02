@@ -89,10 +89,11 @@ allowsPort(allowed, port) {
 	some i
 	contains(allowed.ports[i], "-")
 	port_bounds := split(allowed.ports[i], "-")
-	low := to_number(port_bounds[0])
-	high := to_number(port_bounds[1])
 
+    low := to_number(port_bounds[0])
 	low <= portNumber
+
+	high := to_number(port_bounds[1])
 	high >= portNumber
 } else {
 	port in allowed.ports
