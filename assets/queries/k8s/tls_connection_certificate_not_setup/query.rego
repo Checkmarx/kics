@@ -14,7 +14,7 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]][j]
 	tls := tlsFlagList[_]
 	in_array := common_lib.inArray(container.command, "kube-apiserver")
-	flagged_containers := {c | c := specInfo.spec[types[x]][_] ; k8s_lib.startWithFlag(c, tls)}
+	flagged_containers := {c | c := specInfo.spec[types[x]][_]; k8s_lib.startWithFlag(c, tls)}
 
 	in_array
 	not container in flagged_containers
