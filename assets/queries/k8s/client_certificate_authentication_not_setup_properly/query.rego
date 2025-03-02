@@ -35,10 +35,9 @@ CxPolicy[result] {
 	cmd := command[_]
 	common_lib.inArray(container.command, cmd)
 
-	start_flag := k8sLib.startWithFlag(container, "--client-ca-file")
-	start_flag
-	not k8sLib.startAndEndWithFlag(container, "--client-ca-file", ".crt")
-	not k8sLib.startAndEndWithFlag(container, "--client-ca-file", ".pem")
+    start_flag := k8sLib.startWithFlag(container, "--client-ca-file")
+    start_flag
+    valid_client_ca_flag(container)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -50,6 +49,11 @@ CxPolicy[result] {
 		"keyActualValue": "Client Certification is not properly set",
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}
+}
+
+valid_client_ca_flag(container) {
+    not k8sLib.startAndEndWithFlag(container, "--client-ca-file", ".crt")
+    not k8sLib.startAndEndWithFlag(container, "--client-ca-file", ".pem")
 }
 
 CxPolicy[result] {
