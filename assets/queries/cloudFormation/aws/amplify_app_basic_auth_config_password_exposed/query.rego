@@ -10,10 +10,9 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	properties.BasicAuthConfig.EnableBasicAuth == true
+
 	paramName := properties.BasicAuthConfig.Password
-
 	defaultToken := document.Parameters[paramName].Default
-
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
 	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
@@ -35,12 +34,12 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	properties.BasicAuthConfig.EnableBasicAuth == true
-	paramName := properties.BasicAuthConfig.Password
 	common_lib.valid_key(document, "Parameters")
+
+	paramName := properties.BasicAuthConfig.Password
 	not common_lib.valid_key(document.Parameters, paramName)
 
 	defaultToken := paramName
-
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
 	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
@@ -62,11 +61,10 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	properties.BasicAuthConfig.EnableBasicAuth == true
-	paramName := properties.BasicAuthConfig.Password
 	not common_lib.valid_key(document, "Parameters")
 
+	paramName := properties.BasicAuthConfig.Password
 	defaultToken := paramName
-
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
 	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
