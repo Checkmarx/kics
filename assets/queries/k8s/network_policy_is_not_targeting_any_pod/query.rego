@@ -4,12 +4,13 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
 
 	object.get(document, "kind", "undefined") == "NetworkPolicy"
 
 	targetLabels := document.spec.podSelector.matchLabels
 	findTargettedPod(targetLabels[key], key) == false
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,

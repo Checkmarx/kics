@@ -6,11 +6,11 @@ CxPolicy[result] {
 	deployment := input.document[i]
 	object.get(deployment, "kind", "undefined") == "Deployment"
 
-	metadata := deployment.metadata
-
 	to_number(deployment.spec.replicas) > 2
 
 	not common_lib.valid_key(deployment.spec.template.spec, "affinity")
+
+	metadata := deployment.metadata
 
 	result := {
 		"documentId": input.document[i].id,

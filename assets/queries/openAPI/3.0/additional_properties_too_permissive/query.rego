@@ -12,6 +12,7 @@ CxPolicy[result] {
 	schema := value.schema
 	schema.type == "object"
 	issue := test_schema(schema)
+
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.schema%s", [openapi_lib.concat_path(path), issue.path]),
@@ -46,9 +47,10 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	multiSchemas := get_schema_list(value)
 	schema := multiSchemas.schemas[_]
-	issue := test_schema(schema)
 	schema.type != "object"
 	schema.type != "array"
+	issue := test_schema(schema)
+
 	result := {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), multiSchemas.kind]),

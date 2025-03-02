@@ -4,9 +4,9 @@ CxPolicy[result] {
 	statefulset := input.document[i]
 	statefulset.kind == "StatefulSet"
 	statefulset.spec.replicas > 1
-	metadata := statefulset.metadata
 
 	hasPodDisruptionBudget(statefulset) == false
+	metadata := statefulset.metadata
 
 	result := {
 		"documentId": input.document[i].id,

@@ -5,14 +5,15 @@ import future.keywords.in
 
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
 
 	kinds := {"Role", "ClusterRole"}
 	document.kind in kinds
 
-	readVerbs := {"get", "watch", "list"}
 	"secrets" in document.rules[j].resources
+	readVerbs := {"get", "watch", "list"}
 	document.rules[j].verbs[_] == readVerbs[_]
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": document.id,

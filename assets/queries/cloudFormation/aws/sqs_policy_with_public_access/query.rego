@@ -29,9 +29,9 @@ CxPolicy[result] {
 }
 
 is_unsafe_statement(stmt) = result {
-	action := has_dangerous_action(stmt.Action)
 	not common_lib.valid_key(stmt, "Condition")
 	has_wildcard_principal(stmt.Principal)
+	action := has_dangerous_action(stmt.Action)
 	result := action
 }
 

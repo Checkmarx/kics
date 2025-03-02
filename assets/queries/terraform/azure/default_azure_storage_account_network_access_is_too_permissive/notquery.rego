@@ -55,9 +55,10 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_account[var0]
-	resource_name := tf_lib.get_resource_name(resource, var0)
 	"public_network_access_enabled" in object.keys(resource)
 	resource.public_network_access_enabled
+
+	resource_name := tf_lib.get_resource_name(resource, var0)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -78,8 +79,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_account[var0]
-	resource_name := tf_lib.get_resource_name(resource, var0)
 	not "public_network_access_enabled" in object.keys(resource)
+
+	resource_name := tf_lib.get_resource_name(resource, var0)
 
 	result := {
 		"documentId": input.document[i].id,

@@ -8,8 +8,9 @@ CxPolicy[result] {
 	actiontrail := input.document[i].resource.alicloud_actiontrail_trail[name]
 	bucket_name := actiontrail.oss_bucket_name
 	bucket := input.document[_].resource.alicloud_oss_bucket[_]
-	possibilities := {"public-read", "public-read-write"}
 	bucket.bucket == bucket_name
+
+	possibilities := {"public-read", "public-read-write"}
 	bucket.acl == possibilities[p]
 
 	result := {

@@ -8,11 +8,10 @@ CxPolicy[result] {
 
 	is_string(resource.name)
 	name := lower(resource.name)
+	name == "log_duration"
 
 	is_string(resource.value)
 	value := upper(resource.value)
-
-	name == "log_duration"
 	value != "ON"
 
 	result := {

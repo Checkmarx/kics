@@ -9,12 +9,13 @@ pods := "pods"
 
 CxPolicy[result] {
 	document := input.document[i]
-	rules := document.rules
-	metadata := document.metadata
-
 	isRoleKind(document.kind)
+
+	rules := document.rules
 	rules[j].verbs[l] == create
 	rules[j].resources[k] == pods
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
@@ -30,13 +31,14 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	rules := document.rules
-	metadata := document.metadata
+    isRoleKind(document.kind)
 
-	isRoleKind(document.kind)
+	rules := document.rules
 	rules[j].verbs[l] == create
 	notCustom(rules[j].apiGroups)
 	isWildCardValue(rules[j].resources[k])
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
@@ -52,12 +54,13 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	rules := document.rules
-	metadata := document.metadata
-
 	isRoleKind(document.kind)
+
+	rules := document.rules
 	isWildCardValue(rules[j].verbs[l])
 	rules[j].resources[k] == pods
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
@@ -73,13 +76,14 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	rules := document.rules
-	metadata := document.metadata
-
 	isRoleKind(document.kind)
+
+	rules := document.rules
 	isWildCardValue(rules[j].verbs[l])
 	notCustom(rules[j].apiGroups)
 	isWildCardValue(rules[j].resources[k])
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,

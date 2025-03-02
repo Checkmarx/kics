@@ -36,9 +36,9 @@ CxPolicy[result] {
 	common_lib.inArray(container.command, cmd)
 
 	start_flag := k8sLib.startWithFlag(container, "--client-ca-file")
-	valid_certificate := valid_client_ca_flag(container)
-
 	start_flag
+
+	valid_certificate := valid_client_ca_flag(container)
 	valid_certificate
 
 	result := {

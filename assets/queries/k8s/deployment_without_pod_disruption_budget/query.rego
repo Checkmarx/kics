@@ -6,9 +6,9 @@ CxPolicy[result] {
 	deployment := input.document[i]
 	deployment.kind == "Deployment"
 	deployment.spec.replicas > 1
-	metadata := deployment.metadata
-
 	hasPodDisruptionBudget(deployment) == false
+
+	metadata := deployment.metadata
 
 	result := {
 		"documentId": input.document[i].id,

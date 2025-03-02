@@ -9,9 +9,9 @@ options := {"runAsUser", "runAsNonRoot"}
 
 runsAsRoot(ctx) {
 	runAsNonRoot := object.get(ctx, "runAsNonRoot", false)
-	runAsUser := object.get(ctx, "runAsUser", 0)
-
 	runAsNonRoot == false
+
+	runAsUser := object.get(ctx, "runAsUser", 0)
 	to_number(runAsUser) == 0
 }
 

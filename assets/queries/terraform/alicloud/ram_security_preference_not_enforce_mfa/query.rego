@@ -6,8 +6,9 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	ram_users := [ram_users | docs := input.document; resource := docs[i].resource.alicloud_ram_user[name]; ram_users := {"id": docs[i].id, "name": name, "resource": resource}]
 	count(ram_users) > 0
-	ram_user := ram_users[0]
 	not has_preference(input.document)
+
+	ram_user := ram_users[0]
 
 	result := {
 		"documentId": ram_user.id,

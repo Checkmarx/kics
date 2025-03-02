@@ -16,11 +16,11 @@ CxPolicy[result] {
 
 	packages = dockerLib.getPackages(commands, yum)
 	refactorPackages = [x | x := packages[_]; x != ""]
-	length := count(refactorPackages)
 
 	count({x | x := refactorPackages[_]; x == flags[_]}) == 0
 
 	some j
+	length := count(refactorPackages)
 	analyzePackages(j, refactorPackages[j], packages, length)
 
 	result := {
