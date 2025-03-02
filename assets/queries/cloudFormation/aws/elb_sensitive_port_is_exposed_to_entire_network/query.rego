@@ -66,9 +66,9 @@ CxPolicy[result] {
 	]
 
 	elbSecGroupList := getLinkedSecGroupList(elb.properties, resources)
+	secGroup := securityGroupList[k]
 	secGroup.name == elbSecGroupList[l]
 
-	secGroup := securityGroupList[k]
 	ingress := secGroup.properties.Properties.SecurityGroupIngress[m]
 
 	protocols := getProtocolList(ingress.IpProtocol)
