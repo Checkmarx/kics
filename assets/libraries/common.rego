@@ -313,8 +313,8 @@ get_module_equivalent_key(provider, moduleName, resource, key) = keyInResource {
 
 check_selector(filter, value, op, name) {
 	selector := find_selector_by_value(filter, value)
-	selector._op == op
-	selector._selector == name
+	get_operator(selector) == op
+	get_selector(selector) == name
 } else = false
 
 find_selector_by_value(filter, str) = rtn {
@@ -743,5 +743,9 @@ valid_non_empty_key(field, key) = output {
 get_operator(filter) := op {
 	some x
 	filter[x]
-	op := filter[x]._op
+	op := object.get(filter[x], "_op", "")
+}
+
+get_selector_name(selector) := name {
+    name := object.get(selector, "_selector", "")
 }
