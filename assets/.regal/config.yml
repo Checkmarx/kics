@@ -20,7 +20,8 @@ rules:
       level: ignore
     leaked-internal-reference:
       # https://docs.styra.com/regal/rules/bugs/leaked-internal-reference
-      level: ignore
+      level: warning
+      include-test-files: false
     sprintf-arguments-mismatch:
       # https://docs.styra.com/regal/rules/bugs/sprintf-arguments-mismatch
       level: warning
