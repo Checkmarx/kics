@@ -16,8 +16,8 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_lambda_permission[%s].action", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_lambda_permission", name, "action"], []),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_lambda_permission[name].action should be 'lambda:InvokeFunction'", [name]),
-		"keyActualValue": sprintf("aws_lambda_permission[name].action is %s", [name, resource.action]),
+		"keyExpectedValue": sprintf("aws_lambda_permission[%s].action should be 'lambda:InvokeFunction'", [name]),
+		"keyActualValue": sprintf("aws_lambda_permission[%s].action is %s", [name, resource.action]),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [resource.action]),
 			"after": "lambda:InvokeFunction",
