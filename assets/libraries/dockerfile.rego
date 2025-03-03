@@ -72,5 +72,5 @@ check_multi_stage(imageName, images) {
 }
 
 get_line_number(inst) := line {
-	line := inst._kics_line
+	line := object.get(inst, "_kics_line", 0)
 }
