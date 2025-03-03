@@ -87,8 +87,8 @@ expressionArr := [
 
 check_selector(filter, value, op, name) {
 	selector := common_lib.find_selector_by_value(filter, value)
-    commonLib.get_operator(selector) == op
-    commonLib.get_selector(selector) == name
+	commonLib.get_operator(selector) == op
+	commonLib.get_selector(selector) == name
 }
 
 # {($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}

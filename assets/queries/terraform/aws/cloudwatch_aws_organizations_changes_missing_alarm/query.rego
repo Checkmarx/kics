@@ -107,8 +107,8 @@ expressionArr := [
 
 check_selector(filter, value, op, name) {
 	selector := common_lib.find_selector_by_value(filter, value)
-	selector._op == op
-	selector._selector == name
+	commonLib.get_operator(selector) == op
+    commonLib.get_selector_name(selector) == name
 }
 
 # { ($.eventSource = \"organizations.amazonaws.com\") && (($.eventName = AcceptHandshake) || ($.eventName = AttachPolicy) || ($.eventName = CreateAccount) || ($.eventName = PutBucketLifecycle) || ($.eventName = CreateOrganizationalUnit) || ($.eventName = CreatePolicy) || ($.eventName = DeclineHandshake) || ($.eventName = DeleteOrganization) || ($.eventName = DeleteOrganizationalUnit) || ($.eventName = DeletePolicy) || ($.eventName = DetachPolicy) || ($.eventName = DisablePolicyType) || ($.eventName = EnablePolicyType) || ($.eventName = InviteAccountToOrganization) || ($.eventName = LeaveOrganization) || ($.eventName = MoveAccount) || ($.eventName = RemoveAccountFromOrganization) || ($.eventName = UpdatePolicy) || ($.eventName = UpdateOrganizationalUni)) }

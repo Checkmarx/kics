@@ -319,11 +319,11 @@ check_selector(filter, value, op, name) {
 
 find_selector_by_value(filter, str) = rtn {
 	[_, fvalue] := walk(filter)
-	trim(fvalue._value, "\"") == str
+	trim(get_value(fvalue), "\"") == str
 	rtn := fvalue
 } else {
 	[_, fvalue] := walk(filter)
-	trim(fvalue._value, "'") == str
+	trim(get_value(fvalue), "'") == str
 	rtn = fvalue
 }
 
@@ -747,5 +747,11 @@ get_operator(filter) := op {
 }
 
 get_selector_name(selector) := name {
-    name := object.get(selector, "_selector", "")
+	name := object.get(selector, "_selector", "")
+}
+
+get_value(filter) := value {
+	some x
+	filter[x]
+	value := object.get(filter, "_value", "")
 }

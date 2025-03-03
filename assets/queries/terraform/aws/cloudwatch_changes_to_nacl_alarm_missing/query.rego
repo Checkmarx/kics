@@ -37,8 +37,8 @@ expressionArr := [
 
 check_selector(filter, value, op, name) {
 	selector := common_lib.find_selector_by_value(filter, value)
-	selector._op == op
-	selector._selector == name
+	commonLib.get_operator(selector) == op
+	commonLib.get_selector_name(selector) == name
 }
 
 # { ($.eventName = CreateNetworkAcl) || ($.eventName = CreateNetworkAclEntry) || ($.eventName = DeleteNetworkAcl) || ($.eventName = DeleteNetworkAclEntry) || ($.eventName = ReplaceNetworkAclEntry) || ($.eventName = ReplaceNetworkAclAssociation) }

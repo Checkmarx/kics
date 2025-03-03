@@ -22,8 +22,8 @@ expressionArr := [
 
 check_selector(filter, value, op, name) {
 	selector := common_lib.find_selector_by_value(filter, value)
-	selector._op == op
-	selector._selector == name
+	commonLib.get_operator(selector) == op
+	commonLib.get_selector_name(selector) == name
 }
 
 # { ($.eventSource = kms.amazonaws.com) && (($.eventName = DisableKey) || ($.eventName = ScheduleKeyDeletion)) }
