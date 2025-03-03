@@ -14,7 +14,7 @@ CxPolicy[result] {
 
 	some n, m
 	lineCounter := [x |
-		newCmdInst[n]._kics_line - newCmdInst[m]._kics_line == -1
+		dockerLib.get_line_number(newCmdInst[n]) - dockerLib.get_line_number(newCmdInst[m]) == -1
 		x := newCmdInst[n]
 	]
 

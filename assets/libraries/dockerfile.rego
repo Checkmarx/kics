@@ -70,3 +70,8 @@ check_multi_stage(imageName, images) {
 	sortedIndex := sort(unsortedIndex)
 	imageName == sortedIndex[count(sortedIndex) - 1].Name
 }
+
+get_line_number(inst) := line {
+    inst._kics_line
+    line := inst._kics_line
+}

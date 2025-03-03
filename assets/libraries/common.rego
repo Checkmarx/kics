@@ -741,7 +741,7 @@ valid_non_empty_key(field, key) = output {
 }
 
 get_operator(filter) := op {
-    some x
-    filter[x]
-    op := filter[x]._op
+	some x
+	filter[x]
+	op := filter[x]._op
 }
