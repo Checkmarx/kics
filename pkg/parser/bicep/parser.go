@@ -208,7 +208,7 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 	IgnoreMaps := comment.ProcessLines(linesInfo)
 
 	// Get the lines to ignore from the kics scans based on the ignoreMap
-	linesToIgnore := bicepComment.GetIgnoreLines(IgnoreMaps)
+	linesToIgnore := comment.GetIgnoreLines(IgnoreMaps)
 
 	tokenStream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	bicepParser := parser.NewbicepParser(tokenStream)
