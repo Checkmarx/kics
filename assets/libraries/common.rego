@@ -739,3 +739,9 @@ valid_non_empty_key(field, key) = output {
 	keyObj == ""
 	output := concat(".", ["", key])
 }
+
+get_operator(filter) := op {
+    some x
+    filter[x]
+    op := filter[x]._op
+}

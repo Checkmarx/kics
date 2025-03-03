@@ -75,7 +75,7 @@ CxPolicy[result] {
 }
 
 check_expression_missing(filter) {
-	filter._kics_filter_expr._op == "&&"
+	commonLib.get_operator(filter) == "&&"
 
 	count({x |
 		exp := expressionArr[n]
