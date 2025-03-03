@@ -35,8 +35,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'BlockPublicPolicy' should be defined and set to true in the 'PublicAccessBlockConfiguration'", [name]),
-		"keyActualValue": sprintf("'BlockPublicPolicy' is not defined in the 'PublicAccessBlockConfiguration'", [name]),
+		"keyExpectedValue": "'BlockPublicPolicy' should be defined and set to true in the 'PublicAccessBlockConfiguration'",
+		"keyActualValue": "'BlockPublicPolicy' is not defined in the 'PublicAccessBlockConfiguration'",
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "PublicAccessBlockConfiguration"], []),
 	}
 }
@@ -54,8 +54,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PublicAccessBlockConfiguration.BlockPublicPolicy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'BlockPublicPolicy' should be set to true", [name]),
-		"keyActualValue": sprintf("'BlockPublicPolicy' is set to false", [name]),
+		"keyExpectedValue": sprintf("'BlockPublicPolicy' should be set to true"),
+		"keyActualValue": sprintf("'BlockPublicPolicy' is set to false"),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "PublicAccessBlockConfiguration", "BlockPublicPolicy"], []),
 	}
 }
