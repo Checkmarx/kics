@@ -15,8 +15,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_oss_bucket", name),
 		"searchKey": sprintf("alicloud_oss_bucket[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].policy should not accept HTTP Requests", [name]),
-		"keyActualValue": sprintf("%s[%s].policy accepts HTTP Requests", [name]),
+		"keyExpectedValue": sprintf("[%s].policy should not accept HTTP Requests", [name]),
+		"keyActualValue": sprintf("[%s].policy accepts HTTP Requests", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "policy"], []),
 	}
 }
