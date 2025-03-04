@@ -315,7 +315,7 @@ check_selector(filter, value, op, name) {
 	selector := find_selector_by_value(filter, value)
 	get_operator(selector) == op
 	get_selector_name(selector) == name
-} else = false
+} else = true
 
 find_selector_by_value(filter, str) = rtn {
 	[_, fvalue] := walk(filter)
