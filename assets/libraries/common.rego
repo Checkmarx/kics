@@ -315,7 +315,7 @@ check_selector(filter, value, op, name) {
 	selector := find_selector_by_value(filter, value)
 	get_operator(selector) == op
 	get_selector_name(selector) == name
-} else = true
+} else = false
 
 find_selector_by_value(filter, str) = rtn {
 	[_, fvalue] := walk(filter)
@@ -740,14 +740,12 @@ valid_non_empty_key(field, key) = output {
 	output := concat(".", ["", key])
 }
 
-get_operator(filter) := op {
-	some x
-	filter[x]
-	op := object.get(filter[x], "_op", "")
+get_operator(obj) := op {
+	op := object.get(obj, "_op", "")
 }
 
-get_selector_name(selector) := name {
-	name := object.get(selector, "_selector", "")
+get_selector_name(obj) := name {
+	name := object.get(obj, "_selector", "")
 }
 
 get_value(filter) := value {
