@@ -6,7 +6,7 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	defaultsGroup := input.document[i].groups.defaults
 
-    not common_lib.valid_key(defaultsGroup, "become")
+	not common_lib.valid_key(defaultsGroup, "become")
 	common_lib.valid_key(defaultsGroup, "become_user")
 
 	result := {
@@ -23,7 +23,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	defaultsGroup := input.document[i].groups.defaults
 
-    defaultsGroup.become == false
+	defaultsGroup.become == false
 	common_lib.valid_key(defaultsGroup, "become_user")
 
 	result := {

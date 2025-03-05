@@ -5,7 +5,7 @@ CxPolicy[result] {
 	resource.Cmd == "run"
 	commands := resource.Value[0]
 
-	aptGet := regex.find_n("apt-get (-(-)?[a-zA-Z]+ *)*install", commands, -1)
+	aptGet := regex.find_n(`apt-get (-(-)?[a-zA-Z]+ *)*install`, commands, -1)
 	aptGet != null
 
 	not hasClean(resource.Value[0], aptGet[0])
@@ -25,12 +25,12 @@ hasClean(resourceValue, aptGet) {
 	res := replace(resourceValue, "\t", "")
 	listCommands := split(res, options[_])
 	startswith(trim_space(listCommands[install]), aptGet)
-	startswith(trim_space(listCommands[clean]),  "apt-get clean")
+	startswith(trim_space(listCommands[clean]), "apt-get clean")
 	install < clean
 } else {
 	res := replace(resourceValue, "\t", "")
 	listCommands := split(res, options[_])
 	startswith(trim_space(listCommands[install]), aptGet)
-	startswith(trim_space(listCommands[remove]),  "rm -rf")
+	startswith(trim_space(listCommands[remove]), "rm -rf")
 	install < remove
 }

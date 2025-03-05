@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_kms_key[name]
@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_kms_key[%s].is_enabled is set to false", [name]),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

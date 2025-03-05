@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'versioning' should be defined and not null",
-		"keyActualValue": "'versioning' is undefined or null", 
+		"keyActualValue": "'versioning' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
 }
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties.versioning", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'versioning.enabled' should be defined and not null",
-		"keyActualValue": "'versioning.enabled' is undefined or null", 
+		"keyActualValue": "'versioning.enabled' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "versioning"], []),
 	}
 }
@@ -51,7 +51,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties.versioning.enabled", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'versioning.enabled' should be true",
-		"keyActualValue": "'versioning.enabled' is false", 
+		"keyActualValue": "'versioning.enabled' is false",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "versioning", "enabled"], []),
 	}
 }

@@ -66,6 +66,6 @@ CxPolicy[result] {
 	}
 }
 
-inArray(array, elem) {
-	startswith(array[_], elem)
+inArray(array_obj, elem) {
+	startswith(array_obj[_], elem)
 }

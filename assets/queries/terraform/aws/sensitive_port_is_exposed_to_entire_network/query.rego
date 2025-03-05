@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as commonLib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
@@ -33,7 +33,7 @@ CxPolicy[result] {
 	portContent := commonLib.tcpPortsMap[port]
 	portNumber = port
 	portName = portContent
-    ingress := resource.ingress[j]
+	ingress := resource.ingress[j]
 	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
 
 	endswith(ingress.cidr_blocks[_], "/0")

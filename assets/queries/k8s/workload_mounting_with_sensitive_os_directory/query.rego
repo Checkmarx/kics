@@ -26,7 +26,7 @@ CxPolicy[result] {
 			resource.kind,
 			volumes[j].hostPath.path,
 		]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j ,"hostPath", "path"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j, "hostPath", "path"]),
 	}
 }
 
@@ -53,7 +53,7 @@ CxPolicy[result] {
 			resource.kind,
 			volumes[j].hostPath.path,
 		]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j ,"hostPath", "path"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j, "hostPath", "path"]),
 	}
 }
 
@@ -79,6 +79,6 @@ CxPolicy[result] {
 			resource.kind,
 			hostPath.path,
 		]),
-		"searchLine": common_lib.build_search_line(["spec"], ["hostPath", "path"])
+		"searchLine": common_lib.build_search_line(["spec"], ["hostPath", "path"]),
 	}
 }
