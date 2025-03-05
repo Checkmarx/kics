@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	elasticache := input.document[i].resource.aws_elasticache_cluster[name]
@@ -36,9 +37,9 @@ get_engine_type(aws_elasticache_cluster) = engine_type {
 }
 
 unrestricted_cidr(ingress) {
-	ingress.cidr_blocks[_] == "0.0.0.0/0"
+	"0.0.0.0/0" in ingress.cidr_blocks
 } else {
-	ingress.ipv6_cidr_blocks[_] == "::/0"
+	"::/0" in ingress.ipv6_cidr_blocks
 }
 
 unrestricted(sg) {
@@ -69,14 +70,16 @@ options := {"security_group_names", "security_group_ids"}
 
 get_accessibility(elasticache) = accessibility {
 	count({
-		x | securityGroupInfo := elasticache[options[_]][x];
+	x |
+		securityGroupInfo := elasticache[options[_]][x]
 		is_unrestricted(securityGroupInfo)
 	}) > 0
 
 	accessibility := "at least one security group associated with the elasticache is unrestricted"
 } else = accessibility {
 	count({
-		x | securityGroupInfo := elasticache[options[_]][x];
+	x |
+		securityGroupInfo := elasticache[options[_]][x]
 		not is_unrestricted(securityGroupInfo)
 	}) == count(elasticache[options[_]])
 

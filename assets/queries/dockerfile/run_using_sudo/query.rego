@@ -39,5 +39,5 @@ hasSudo(commands) {
 
 	some i
 	instruction := commandsList[i]
-	regex.match("^( )*sudo", instruction) == true
+	regex.match(`^( )*sudo`, instruction) == true
 }

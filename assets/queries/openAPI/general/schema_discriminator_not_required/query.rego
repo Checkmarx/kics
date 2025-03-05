@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -44,5 +45,5 @@ CxPolicy[result] {
 }
 
 required(schema, discriminator) {
-	schema.required[_] == discriminator
+	discriminator in schema.required
 }

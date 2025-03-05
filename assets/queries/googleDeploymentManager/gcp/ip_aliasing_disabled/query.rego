@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ipAllocationPolicy' should be defined and not null",
-		"keyActualValue": "'ipAllocationPolicy' is undefined or null", 
+		"keyActualValue": "'ipAllocationPolicy' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
 }
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties.ipAllocationPolicy", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'ipAllocationPolicy.useIpAliases' should be defined and not null",
-		"keyActualValue": "'ipAllocationPolicy.useIpAliases' is undefined or null", 
+		"keyActualValue": "'ipAllocationPolicy.useIpAliases' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "ipAllocationPolicy"], []),
 	}
 }
@@ -51,7 +51,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties.ipAllocationPolicy.useIpAliases", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'ipAllocationPolicy.useIpAliases' should be true",
-		"keyActualValue": "'ipAllocationPolicy.useIpAliases' is false", 
+		"keyActualValue": "'ipAllocationPolicy.useIpAliases' is false",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "ipAllocationPolicy", "useIpAliases"], []),
 	}
 }
