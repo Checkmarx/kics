@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-# line 8, defines API of HTTP protocol and there's no AccessLogSettings in Stage (line 11)
+# line 8, defines API of WEBSOCKET protocol but there's DefaultRouteSettings in Stage (line 11) already defined
 Resources:
   ApiGatewayRestApi:
     Type: AWS::ApiGatewayV2::Api
@@ -12,9 +12,10 @@ Resources:
       DeploymentId: !Ref ApiGatewayDeployment
       Description: Lambda API Stage v0
       ApiId: !Ref ApiGatewayRestApi
-      StageName: "v0"
+      StageName: "v0" 
       DefaultRouteSettings:
         DetailedMetricsEnabled: true
+        LoggingLevel: INFO
         DataTraceEnabled: false
         ThrottlingBurstLimit: 10
         ThrottlingRateLimit: 10
