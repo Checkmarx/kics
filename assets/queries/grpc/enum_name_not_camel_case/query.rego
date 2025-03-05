@@ -6,7 +6,7 @@ CxPolicy[result] {
 
 	value.enum[name]
 
-	regex.match("(^[A-Z][a-z0-9]+)+", name) == false
+	regex.match(`(^[A-Z][a-z0-9]+)+`, name) == false
 
 	result := {
 		"documentId": doc.id,

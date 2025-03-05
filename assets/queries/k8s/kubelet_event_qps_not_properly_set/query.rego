@@ -9,9 +9,9 @@ CxPolicy[result] {
 	specInfo := k8sLib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}
 	container := specInfo.spec[types[x]][j]
-	
+
 	common_lib.inArray(container.command, "kubelet")
-	k8sLib.startWithFlag(container,"--event-qps")
+	k8sLib.startWithFlag(container, "--event-qps")
 	not k8sLib.hasFlag(container, "--event-qps=0")
 
 	result := {
@@ -22,14 +22,14 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--event-qps flag should be set to 0",
 		"keyActualValue": "--event-qps flag is not set to 0",
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}
 }
 
 CxPolicy[result] {
-	doc :=input.document[i]
-    doc.kind == "KubeletConfiguration"
-    not common_lib.valid_key(doc, "eventRecordQPS")
+	doc := input.document[i]
+	doc.kind == "KubeletConfiguration"
+	not common_lib.valid_key(doc, "eventRecordQPS")
 
 	result := {
 		"documentId": doc.id,
@@ -43,9 +43,9 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	doc :=input.document[i]
-    doc.kind == "KubeletConfiguration"
-    doc.eventRecordQPS != 0
+	doc := input.document[i]
+	doc.kind == "KubeletConfiguration"
+	doc.eventRecordQPS != 0
 
 	result := {
 		"documentId": doc.id,
@@ -57,4 +57,3 @@ CxPolicy[result] {
 		"keyActualValue": "eventRecordQPS flag is not set to 0",
 	}
 }
-

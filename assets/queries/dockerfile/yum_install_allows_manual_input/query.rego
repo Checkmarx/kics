@@ -26,7 +26,7 @@ CxPolicy[result] {
 	resource.Cmd == "run"
 	count(resource.Value) > 1
 
-    dockerLib.arrayContains(resource.Value, {"yum", "install"})
+	dockerLib.arrayContains(resource.Value, {"yum", "install"})
 
 	not avoidManualInputInList(resource.Value)
 
@@ -40,19 +40,19 @@ CxPolicy[result] {
 }
 
 isYumInstall(command) {
-	regex.match("yum (-(-)?[a-zA-Z]+ *)*(group|local)?install", command)
+	regex.match(`yum (-(-)?[a-zA-Z]+ *)*(group|local)?install`, command)
 }
 
 avoidManualInput(command) {
-	regex.match("yum (-(-)?[a-zA-Z]+ *)*(-y|-yes|--assumeyes) (-(-)?[a-zA-Z]+ *)*(group|local)?install", command)
+	regex.match(`yum (-(-)?[a-zA-Z]+ *)*(-y|-yes|--assumeyes) (-(-)?[a-zA-Z]+ *)*(group|local)?install`, command)
 }
 
 avoidManualInput(command) {
-	regex.match("yum (-(-)?[a-zA-Z]+ *)*(group|local)?install (-(-)?[a-zA-Z]+ *)*(-y|-yes|--assumeyes)", command)
+	regex.match(`yum (-(-)?[a-zA-Z]+ *)*(group|local)?install (-(-)?[a-zA-Z]+ *)*(-y|-yes|--assumeyes)`, command)
 }
 
 avoidManualInput(command) {
-	regex.match("yum (-(-)?[a-zA-Z]+ *)*(group|local)?install ([A-Za-z0-9-:=.$_]+ *)*(-y|-yes|--assumeyes)", command)
+	regex.match(`yum (-(-)?[a-zA-Z]+ *)*(group|local)?install ([A-Za-z0-9-:=.$_]+ *)*(-y|-yes|--assumeyes)`, command)
 }
 
 avoidManualInputInList(command) {

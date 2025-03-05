@@ -24,9 +24,7 @@ CxPolicy[result] {
 
 issueType(str) = "MissingAttribute" {
 	str == ""
-} else = "IncorrectValue" {
-	true
-}
+} else = "IncorrectValue"
 
 checkPwReusePrevent(pwPolicy) = ".password_reuse_prevent" {
 	pwPolicy.password_reuse_prevent == 0
@@ -38,6 +36,4 @@ checkPwReusePrevent(pwPolicy) = ".password_reuse_prevent" {
 	not pwPolicy.password_reuse_prevent
 	not pwPolicy.pw_reuse_prevent
 	not pwPolicy.prevent_reuse
-} else = "none" {
-	true
-}
+} else = "none"
