@@ -4,7 +4,7 @@
   "severity": "MEDIUM",
   "category": "Secret Management",
   "descriptionText": "ConfigRule should enforce access keys to be rotated within 90 days.",
-  "descriptionUrl": "https://docs.amazonaws.cn/en_us/config/latest/developerguide/access-keys-rotated.html",
+  "descriptionUrl": "https://docs.aws.amazon.com/en_us/config/latest/developerguide/access-keys-rotated.html",
   "platform": "CloudFormation",
   "descriptionID": "148d40cb",
   "cloudProvider": "aws",
