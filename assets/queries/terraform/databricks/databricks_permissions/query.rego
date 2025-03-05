@@ -25,7 +25,6 @@ is_associated_to_job(databricks_job_name, doc) {
 	not contains(databricks_permissions_used.job_id, sprintf("databricks_job.%s", [databricks_job_name]))
 }
 
-
 CxPolicy[result] {
 	databricks_cluster := input.document[i].resource.databricks_cluster[name]
 
@@ -51,7 +50,8 @@ is_associated_to_cluster(databricks_cluster_name, doc) {
 CxPolicy[result] {
 	databricks_permissions := input.document[i].resource.databricks_permissions[name]
 
-	databricks_permissions.access_control.permission_level == "IS_OWNER"; not databricks_permissions.access_control.service_principal_name
+	databricks_permissions.access_control.permission_level == "IS_OWNER"
+	not databricks_permissions.access_control.service_principal_name
 
 	result := {
 		"documentId": input.document[i].id,
@@ -68,7 +68,8 @@ CxPolicy[result] {
 	databricks_permissions := input.document[i].resource.databricks_permissions[name]
 
 	some j
-	databricks_permissions.access_control[j].permission_level == "IS_OWNER"; not databricks_permissions.access_control[j].service_principal_name
+	databricks_permissions.access_control[j].permission_level == "IS_OWNER"
+	not databricks_permissions.access_control[j].service_principal_name
 
 	result := {
 		"documentId": input.document[i].id,

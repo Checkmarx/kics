@@ -5,7 +5,7 @@ import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_container_cluster[name]
-	
+
 	not common_lib.valid_key(resource.node_config, "service_account")
 
 	result := {
@@ -22,7 +22,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_container_cluster[name]
-	
+
 	contains(resource.node_config.service_account, "default")
 
 	result := {

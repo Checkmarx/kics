@@ -35,9 +35,7 @@ resolve_path(pathItem) = resolved {
 } else = resolved {
 	is_number(pathItem)
 	resolved := ""
-} else = pathItem {
-	true
-}
+} else = pathItem
 
 json_unmarshal(s) = result {
 	s == null
@@ -52,16 +50,16 @@ json_unmarshal(s) = result {
 calc_IP_value(ip) = result {
 	ips := split(ip, ".")
 
-	#calculate the value of an ip
-	#a.b.c.d
-	#a*16777216 + b*65536 + c*256 + d
+	# calculate the value of an ip
+	# a.b.c.d
+	# a*16777216 + b*65536 + c*256 + d
 	result = (((to_number(ips[0]) * 16777216) + (to_number(ips[1]) * 65536)) + (to_number(ips[2]) * 256)) + to_number(ips[3])
 }
 
 # Checks if a value is within a range
-between(value, min, max) {
-	value >= min
-	value <= max
+between(value, lowerBound, upperBound) {
+	value >= lowerBound
+	value <= upperBound
 }
 
 # Checks if a list contains an item
@@ -263,16 +261,12 @@ allowsAllPrincipalsToAssume(resource, statement) {
 
 compareArrays(arrayOne, arrayTwo) {
 	upper(arrayOne[_]) == upper(arrayTwo[_])
-} else = false {
-	true
-}
+} else = false
 
 valid_key(obj, key) {
 	_ = obj[key]
 	not is_null(obj[key])
-} else = false {
-	true
-}
+} else = false
 
 getDays(date, daysInMonth) = days {
 	index := date[1] - 2
@@ -311,8 +305,8 @@ unsecured_cors_rule(methods, headers, origins) {
 }
 
 get_module_equivalent_key(provider, moduleName, resource, key) = keyInResource {
-	providers := data.common_lib.modules[provider]
-	module := providers[moduleName]
+	provider_modules := data.common_lib.modules[provider]
+	module := provider_modules[moduleName]
 	inArray(module.resources, resource)
 	keyInResource := module.inputs[key]
 }
@@ -321,9 +315,7 @@ check_selector(filter, value, op, name) {
 	selector := find_selector_by_value(filter, value)
 	selector._op == op
 	selector._selector == name
-} else = false {
-	true
-}
+} else = false
 
 find_selector_by_value(filter, str) = rtn {
 	[_, fvalue] := walk(filter)
@@ -358,7 +350,6 @@ get_tag_name_if_exists(resource) = name {
 	key == "Name"
 	name := tag
 }
-
 
 get_encryption_if_exists(resource) = encryption {
 	resource.encrypted == true
@@ -412,7 +403,7 @@ is_allow_effect(statement) {
 } else {
 	statement.Effect == "Allow"
 } else {
-    statement.effect == "Allow"
+	statement.effect == "Allow"
 }
 
 get_policy(p) = policy {
@@ -423,10 +414,10 @@ get_policy(p) = policy {
 
 is_cross_account(statement) {
 	is_string(statement.Principal.AWS)
-	regex.match("(^[0-9]{12}$)|(^arn:aws:(iam|sts)::[0-9]{12})", statement.Principal.AWS)
+	regex.match(`(^[0-9]{12}$)|(^arn:aws:(iam|sts)::[0-9]{12})`, statement.Principal.AWS)
 } else {
 	is_array(statement.Principal.AWS)
-	regex.match("(^[0-9]{12}$)|(^arn:aws:(iam|sts)::[0-9]{12})", statement.Principal.AWS[_])
+	regex.match(`(^[0-9]{12}$)|(^arn:aws:(iam|sts)::[0-9]{12})`, statement.Principal.AWS[_])
 }
 
 is_assume_role(statement) {
@@ -502,11 +493,11 @@ has_wildcard(statement, typeAction) {
 # array_vals := ["elem1", "elem2", "elem4"]
 #
 # return_value := {"valid": false, "searchKey": "elem1.elem2"}
-get_nested_values_info(object, array_vals) = return_value {
+get_nested_values_info(obj, array_vals) = return_value {
 	arr := [x |
 		some i, _ in array_vals
 		path := array.slice(array_vals, 0, i + 1)
-		walk(object, [path, _]) # evaluates to false if path is not in object
+		walk(obj, [path, _]) # evaluates to false if path is not in object
 		x := path[i]
 	]
 
@@ -575,9 +566,8 @@ weakCipher(aux) {
 	weak_ciphers_GnuTLS_Format[_] == aux
 }
 
-
-#aurora is equivelent to mysql 5.6 https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.Availability
-#all aurora-postgresql versions that do not support IAM auth are deprecated Source:console.aws (launch rds instance)
+# aurora is equivelent to mysql 5.6 https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.Availability
+# all aurora-postgresql versions that do not support IAM auth are deprecated Source:console.aws (launch rds instance)
 valid_for_iam_engine_and_version_check(resource, engineVar, engineVersionVar, instanceClassVar) {
 	key_list := [engineVar, engineVersionVar]
 	contains(lower(resource[engineVar]), "mariadb")
@@ -723,16 +713,16 @@ get_latest_software_version(name) = version {
 get_version(name) = version {
 	val := get_latest_software_version(name)
 	splited := split(val, ".")
-	version := concat(".", [splited[0],splited[1]])
+	version := concat(".", [splited[0], splited[1]])
 }
 
 contains_element(arr, element) {
-    element == arr[_]
+	element == arr[_]
 }
 
-contains_with_size(arr, element){
-	count(arr)>0
-    test := arr[j]
+contains_with_size(arr, element) {
+	count(arr) > 0
+	test := arr[j]
 	contains(test, element)
 }
 
