@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s%s.Properties.DomainEndpointOptions.EnforceHTTPS should be defined and set to 'true'", [cf_lib.getPath(path), name]),
 		"keyActualValue": sprintf("%s%s.Properties.DomainEndpointOptions.EnforceHTTPS is not set", [cf_lib.getPath(path), name]),
-		"searchLine": common_lib.build_search_line([path, Resources, name, field, "Properties"],[]),
+		"searchLine": common_lib.build_search_line([path, Resources, name, field, "Properties"], []),
 	}
 }
 
@@ -43,7 +43,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s%s.Properties.DomainEndpointOptions.EnforceHTTPS should be defined and set to 'true'", [cf_lib.getPath(path), name]),
 		"keyActualValue": sprintf("%s%s.Properties.DomainEndpointOptions.EnforceHTTPS is not set", [cf_lib.getPath(path), name]),
-		"searchLine": common_lib.build_search_line([path, Resources, name, field, "Properties", "DomainEndpointOptions"],[]),
+		"searchLine": common_lib.build_search_line([path, Resources, name, field, "Properties", "DomainEndpointOptions"], []),
 	}
 }
 
@@ -64,6 +64,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s%s.Properties.DomainEndpointOptions.EnforceHTTPS should be set to 'true'", [cf_lib.getPath(path), name]),
 		"keyActualValue": sprintf("%s%s.Properties.DomainEndpointOptions.EnforceHTTPS is set to 'false'", [cf_lib.getPath(path), name]),
-		"searchLine": common_lib.build_search_line([path, Resources, name, field, "Properties", "DomainEndpointOptions","EnforceHTTPS"],[]),
+		"searchLine": common_lib.build_search_line([path, Resources, name, field, "Properties", "DomainEndpointOptions", "EnforceHTTPS"], []),
 	}
 }

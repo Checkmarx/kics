@@ -32,4 +32,3 @@ check_encrytion(properties) = enc_status {
 } else = enc_status {
 	enc_status := "unencrypted"
 }
-

@@ -33,8 +33,7 @@ CxPolicy[result] {
 	common_lib.inArray(container.command, "kube-apiserver")
 	k8sLib.startWithFlag(container, "--audit-policy-file")
 	file := getFlagFile(container, "--audit-policy-file")
-    not hasPolicyFile(input, file)
-
+	not hasPolicyFile(input, file)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -48,21 +47,21 @@ CxPolicy[result] {
 	}
 }
 
-getFlagFile(container, flag) = file{
-	file:= startsWithGetPath(container.command, flag)
-} else = file{
-	file:= startsWithGetPath(container.args, flag)
+getFlagFile(container, flag) = file {
+	file := startsWithGetPath(container.command, flag)
+} else = file {
+	file := startsWithGetPath(container.args, flag)
 }
 
 startsWithGetPath(arr, item) = file {
-    startswith(arr[i], item)
+	startswith(arr[i], item)
 	path := split(arr[i], "=")[1]
-	filePath:= split(path, "/")
+	filePath := split(path, "/")
 	endswith(filePath[j], ".yaml")
-	file:= filePath[j]
+	file := filePath[j]
 }
 
-hasPolicyFile(inputData, file){
+hasPolicyFile(inputData, file) {
 	inputData.document[i].kind == "Policy"
-    contains(inputData.document[i].file, file)
+	contains(inputData.document[i].file, file)
 }

@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as commonLib
+import future.keywords.in
 
 isAccessibleFromEntireNetwork(ingress) {
 	endswith(ingress.CidrIp, "/0")
@@ -47,7 +48,7 @@ CxPolicy[result] {
 
 	secGroup := securityGroupList[k]
 
-	ec2Instance.properties.Properties.SecurityGroups[_] == secGroup.name
+	secGroup.name in ec2Instance.properties.Properties.SecurityGroups
 
 	ingress := secGroup.properties.Properties.SecurityGroupIngress[l]
 

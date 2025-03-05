@@ -6,8 +6,8 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_oss_bucket[name]
-    
-    common_lib.valid_key(resource, "website")
+
+	common_lib.valid_key(resource, "website")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,6 +17,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'website' to not be used.",
 		"keyActualValue": "'website' is being used.",
-        "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "website"], []),
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "website"], []),
 	}
 }

@@ -2,7 +2,6 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 
-
 CxPolicy[result] {
 	document := input.document
 	resource = document[i].Resources[name]

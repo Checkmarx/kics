@@ -8,7 +8,7 @@ CxPolicy[result] {
 	prop := resource.Properties
 	userData := prop.UserData
 
-    contains(userData,"LS0tLS1CR")
+	contains(userData, "LS0tLS1CR")
 
 	result := {
 		"documentId": input.document[i].id,

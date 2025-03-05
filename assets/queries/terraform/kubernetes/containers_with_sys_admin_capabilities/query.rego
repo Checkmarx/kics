@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 types := {"init_container", "container"}
 
@@ -11,7 +12,7 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_array(containers) == true
-	containers[y].security_context.capabilities.add[_] = "SYS_ADMIN"
+	"SYS_ADMIN" in containers[y].security_context.capabilities.add
 
 	result := {
 		"documentId": input.document[i].id,
@@ -31,7 +32,7 @@ CxPolicy[result] {
 	containers := specInfo.spec[types[x]]
 
 	is_object(containers) == true
-	containers.security_context.capabilities.add[_] = "SYS_ADMIN"
+	"SYS_ADMIN" in containers.security_context.capabilities.add
 
 	result := {
 		"documentId": input.document[i].id,
