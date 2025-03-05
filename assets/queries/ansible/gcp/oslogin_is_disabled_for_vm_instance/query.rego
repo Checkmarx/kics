@@ -6,10 +6,11 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	modules := {"google.cloud.gcp_compute_instance", "gcp_compute_instance"}
+
 	instance := task[modules[m]]
-	metadata := instance.metadata
 	ansLib.checkState(instance)
 
+	metadata := instance.metadata
 	common_lib.valid_key(metadata, "enable-oslogin")
 
 	not ansLib.isAnsibleTrue(metadata["enable-oslogin"])

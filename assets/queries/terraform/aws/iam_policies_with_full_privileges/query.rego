@@ -31,7 +31,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].data.aws_iam_policy_document[name]
 
-    policy := {"Statement": resource.statement}
+	policy := {"Statement": resource.statement}
 
 	st := common_lib.get_statement(policy)
 	statement := st[_]

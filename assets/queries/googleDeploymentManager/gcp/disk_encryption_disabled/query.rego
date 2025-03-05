@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i].resources[idx]
@@ -62,11 +63,11 @@ CxPolicy[result] {
 	}
 }
 
-valid_disk_resources := ["compute.beta.disk","compute.v1.disk"]
+valid_disk_resources := ["compute.beta.disk", "compute.v1.disk"]
 
 CxPolicy[result] {
 	resource := input.document[i].resources[idx]
-	resource.type == valid_disk_resources[_]
+	resource.type in valid_disk_resources
 
 	disk := resource.properties
 	not common_lib.valid_key(disk, "diskEncryptionKey")
@@ -85,7 +86,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resources[idx]
-	resource.type == valid_disk_resources[_]
+	resource.type in valid_disk_resources
 
 	disk := resource.properties
 	not common_lib.valid_key(disk.diskEncryptionKey, "rawKey")
@@ -99,13 +100,13 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'disk_encryption_key.rawKey' or 'disk_encryption_key.kmsKeyName' should be defined and not null",
 		"keyActualValue": "'disk_encryption_key.rawKey' and 'disk_encryption_key.kmsKeyName' are undefined or null",
-		"searchLine": common_lib.build_search_line(["resources", idx, "properties","diskEncryptionKey"], []),
+		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "diskEncryptionKey"], []),
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i].resources[idx]
-	resource.type == valid_disk_resources[_]
+	resource.type in valid_disk_resources
 
 	disk := resource.properties
 	disk.diskEncryptionKey[fields[f]] == ""
@@ -118,8 +119,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'diskEncryptionKey.%s' should not be empty", [fields[f]]),
 		"keyActualValue": sprintf("'diskEncryptionKey.%s' is empty", [fields[f]]),
-		"searchLine": common_lib.build_search_line(["resources", idx, "properties","diskEncryptionKey", fields[f]], []),
+		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "diskEncryptionKey", fields[f]], []),
 	}
 }
-
-

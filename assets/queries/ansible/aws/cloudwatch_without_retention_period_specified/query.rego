@@ -27,10 +27,9 @@ CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	cloudwatchlogs_log_group := task[modules[m]]
 	ansLib.checkState(cloudwatchlogs_log_group)
-	value := cloudwatchlogs_log_group.retention
 
 	validValues = [1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653]
-
+	value := cloudwatchlogs_log_group.retention
 	not commonLib.inArray(validValues, value)
 
 	result := {
