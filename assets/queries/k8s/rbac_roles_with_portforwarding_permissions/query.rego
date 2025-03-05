@@ -21,6 +21,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.rules[%d].resources should not include the 'pods/portforward' resource", [metadata.name, j]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.rules[%d].resources includes the 'pods/portforward' resource", [metadata.name, j]),
-		"searchLine": common_lib.build_search_line(["rules", j], ["resources"])
+		"searchLine": common_lib.build_search_line(["rules", j], ["resources"]),
 	}
 }

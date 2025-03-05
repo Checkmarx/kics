@@ -43,10 +43,10 @@ versionNotExplicit(cmd) {
 	count(cmd) > 1
 
 	not contains(cmd[0], ":")
-    count([x | x := input.document[i].command[name][_]; build_name_exists(x, cmd[0])]) == 0
+	count([x | x := input.document[i].command[name][_]; build_name_exists(x, cmd[0])]) == 0
 }
 
-build_name_exists(resource, build_name){
+build_name_exists(resource, build_name) {
 	not resource.Value[0] == "scratch"
 	resource.Cmd == "from"
 

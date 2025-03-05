@@ -5,7 +5,7 @@ import data.generic.dockerfile as dockerLib
 CxPolicy[result] {
 	document := input.document[i]
 	commands = document.command
-	
+
 	commands[img][c].Cmd == "run"
 	dockerLib.check_multi_stage(img, commands)
 
@@ -45,20 +45,20 @@ hasCleanAfterInstall(commands, installCommandIndex, valueIndex) {
 }
 
 commandHasZypperUsage(command) {
-    list := ["zypper in", "zypper remove", "zypper rm", "zypper source-install", "zypper si", "zypper patch"][_]
-    index := indexof(command, list)
-    index != -1
+	list := ["zypper in", "zypper remove", "zypper rm", "zypper source-install", "zypper si", "zypper patch"][_]
+	index := indexof(command, list)
+	index != -1
 }
 
 commandHasZypperUsage(command) {
-    output := regex.find_n("zypper (-(-)?[a-zA-Z]+ *)*install", command, -1)
-    output != null
-    index := indexof(command, output[0])
-    index != -1
+	output := regex.find_n("zypper (-(-)?[a-zA-Z]+ *)*install", command, -1)
+	output != null
+	index := indexof(command, output[0])
+	index != -1
 }
 
 commandHasZypperClean(command) {
-    list := ["zypper clean", "zypper cc"][_]
+	list := ["zypper clean", "zypper cc"][_]
 	index := indexof(command, list)
 	index != -1
 }

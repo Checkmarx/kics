@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"keyActualValue": "'sql_collector_status' is not defined",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name], []),
 		"remediation": "sql_collector_status = \"Enabled\"",
-        "remediationType": "addition",	
+		"remediationType": "addition",
 	}
 }
 
@@ -33,19 +33,18 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
 		"keyActualValue": "'sql_collector_status' is set to 'Disabled'",
-		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name,"sql_collector_status" ], []),
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "sql_collector_status"], []),
 		"remediation": json.marshal({
-            "before": "Disabled",
-            "after": "Enabled"
-        }),
-        "remediationType": "replacement",	
+			"before": "Disabled",
+			"after": "Enabled",
+		}),
+		"remediationType": "replacement",
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_db_instance[name]
 	not common_lib.valid_key(resource, "sql_collector_config_value")
-
 
 	result := {
 		"documentId": input.document[i].id,
@@ -57,7 +56,7 @@ CxPolicy[result] {
 		"keyActualValue": "'sql_collector_config_value' is not defined",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name], []),
 		"remediation": "sql_collector_config_value = 180",
-        "remediationType": "addition",	
+		"remediationType": "addition",
 	}
 }
 
@@ -73,11 +72,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
 		"keyActualValue": "'sql_collector_config_value' is set to 30",
-		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name,"sql_collector_config_value" ], []),
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "sql_collector_config_value"], []),
 		"remediation": json.marshal({
-            "before": "30",
-            "after": "180"
-        }),
-        "remediationType": "replacement",	
+			"before": "30",
+			"after": "180",
+		}),
+		"remediationType": "replacement",
 	}
 }

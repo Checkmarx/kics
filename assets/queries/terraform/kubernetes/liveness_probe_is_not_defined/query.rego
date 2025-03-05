@@ -4,12 +4,11 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
-    types := {"kubernetes_pod": "spec.container", "kubernetes_deployment": "spec.template.spec.container"}
-	resource_prefix  := types[x]
+	types := {"kubernetes_pod": "spec.container", "kubernetes_deployment": "spec.template.spec.container"}
+	resource_prefix := types[x]
 	resource := input.document[i].resource[x][name]
 
-    path := checkPath(resource)
+	path := checkPath(resource)
 
 	not common_lib.valid_key(path, "liveness_probe")
 
@@ -24,8 +23,8 @@ CxPolicy[result] {
 	}
 }
 
-checkPath(resource) = path{
+checkPath(resource) = path {
 	path := resource.spec.template.spec.container
-}else = path{
+} else = path {
 	path := resource.spec.container
 }

@@ -5,8 +5,8 @@ import data.generic.k8s as k8s
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
-    kind := document.kind
-    listKinds := ["Service"]
+	kind := document.kind
+	listKinds := ["Service"]
 	k8s.checkKind(kind, listKinds)
 	spec := document.spec
 	lower(spec.type) == "nodeport"

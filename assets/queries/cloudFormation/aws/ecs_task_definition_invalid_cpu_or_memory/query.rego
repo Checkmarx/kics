@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as commonLib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as commonLib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -20,8 +20,8 @@ CxPolicy[result] {
 
 	checkMemory(taskDef, memory) == true
 
-    getkey := cf_lib.createSearchKey(taskDef.Properties.ContainerDefinitions[_])
-    searchkey = sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey])
+	getkey := cf_lib.createSearchKey(taskDef.Properties.ContainerDefinitions[_])
+	searchkey = sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -44,7 +44,7 @@ CxPolicy[result] {
 	cpu := taskDef.Properties.ContainerDefinitions[_].Cpu
 	not commonLib.inArray(cpuMem, cpu)
 	getkey := cf_lib.createSearchKey(taskDef.Properties.ContainerDefinitions[_])
-    searchkey := sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey])
+	searchkey := sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -77,5 +77,3 @@ checkRemainder(mem, cpu) {
 	not cpu == 256
 	not mem % 1024 == 0
 }
-
-
