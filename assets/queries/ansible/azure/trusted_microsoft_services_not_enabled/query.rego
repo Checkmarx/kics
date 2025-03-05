@@ -22,9 +22,7 @@ CxPolicy[result] {
 	}
 }
 
-containsAzureService(bypass) {
-	bypass == "\"\""
-}
+containsAzureService("\"\"") = true
 
 containsAzureService(bypass) {
 	values := split(bypass, ",")

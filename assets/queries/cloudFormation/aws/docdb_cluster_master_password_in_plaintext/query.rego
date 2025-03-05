@@ -31,13 +31,13 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::DocDB::DBCluster"
 
+	common_lib.valid_key(document, "Parameters")
+
 	properties := resource.Properties
 	paramName := properties.MasterUserPassword
-	common_lib.valid_key(document, "Parameters")
 	not common_lib.valid_key(document.Parameters, paramName)
 
 	defaultToken := paramName
-
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
 	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
@@ -57,14 +57,12 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::DocDB::DBCluster"
 
-	properties := resource.Properties
-	paramName := properties.MasterUserPassword
 	not common_lib.valid_key(document, "Parameters")
 
-	defaultToken := paramName
-
-	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
-	not cf_lib.hasSecretManager(defaultToken, document.Resources)
+	properties := resource.Properties
+	password := properties.MasterUserPassword
+	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, password)
+	not cf_lib.hasSecretManager(password, document.Resources)
 
 	result := {
 		"documentId": input.document[i].id,
