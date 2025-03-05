@@ -22,15 +22,15 @@ expressionArr := [
 
 check_selector(filter, value, op, name) {
 	selector := common_lib.find_selector_by_value(filter, value)
-	selector._op == op
-	selector._selector == name
+	commonLib.get_operator(selector) == op
+	commonLib.get_selector_name(selector) == name
 }
 
 # { ($.eventSource = kms.amazonaws.com) && (($.eventName = DisableKey) || ($.eventName = ScheduleKeyDeletion)) }
 check_expression_missing(resName, filter, doc) {
 	alarm := doc.resource.aws_cloudwatch_metric_alarm[name]
 	contains(alarm.metric_name, resName)
-	filter._kics_filter_expr._op == "&&"
+	commonLib.get_operator(filter) == "&&"
 
 	count({x | exp := expressionArr[n]; common_lib.check_selector(filter, exp.value, exp.op, exp.name) == false; x := exp}) == 0
 }
@@ -38,7 +38,7 @@ check_expression_missing(resName, filter, doc) {
 CxPolicy[result] {
 	doc := input.document[i]
 	resources := doc.resource.aws_cloudwatch_log_metric_filter
-	
+
 	allPatternsCount := count([x | [path, value] := walk(resources); filter := common_lib.json_unmarshal(value.pattern); x = filter])
 	count([x | [path, value] := walk(resources); filter := common_lib.json_unmarshal(value.pattern); not check_expression_missing(path[0], filter, doc); x = filter]) == allPatternsCount
 

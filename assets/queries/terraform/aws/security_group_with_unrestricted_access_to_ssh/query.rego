@@ -22,8 +22,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_cidr_blocks")
 	tf_lib.portOpenToInternet(module.ingress, 22)
+
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_cidr_blocks")
 
 	result := {
 		"documentId": input.document[i].id,

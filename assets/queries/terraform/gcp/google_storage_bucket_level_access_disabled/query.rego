@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "google_storage_bucket", name, "uniform_bucket_level_access"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

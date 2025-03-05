@@ -1,12 +1,13 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_eks_cluster[name]
 
 	resource.vpc_config.endpoint_public_access == true
-	resource.vpc_config.public_access_cidrs[_] == "0.0.0.0/0"
+	"0.0.0.0/0" in resource.vpc_config.public_access_cidrs
 
 	result := {
 		"documentId": input.document[i].id,
@@ -19,7 +20,7 @@ CxPolicy[result] {
 	}
 }
 
-#default vaule of cidrs is "0.0.0.0/0"
+# default value of cidrs is "0.0.0.0/0"
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_eks_cluster[name]
 
