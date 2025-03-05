@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties.config.imageType", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'config.imageType' should start with 'cos'",
-		"keyActualValue": sprintf("'config.imageType' is %s", [resource.properties.config.imageType]), 
+		"keyActualValue": sprintf("'config.imageType' is %s", [resource.properties.config.imageType]),
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "config", "imageType"], []),
 	}
 }

@@ -6,7 +6,7 @@ CxPolicy[result] {
 	resource := input.document[i].command[name]
 	dockerLib.check_multi_stage(name, input.document[i].command)
 
-	not contains(resource, "healthcheck")
+	not cmd_contains(resource, "healthcheck")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,6 +17,6 @@ CxPolicy[result] {
 	}
 }
 
-contains(cmd, elem) {
+cmd_contains(cmd, elem) {
 	cmd[_].Cmd = elem
 }

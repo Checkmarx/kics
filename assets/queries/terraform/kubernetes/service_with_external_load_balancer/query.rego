@@ -30,8 +30,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("kubernetes_service[%s].metadata.name.annotations", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("metadata.annotations using an external Load Balancer provider by cloud provider", [name]),
-		"keyActualValue": sprintf("metadata.annotations is exposing a workload, not using an external Load Balancer provider by cloud provider", [name]),
+		"keyExpectedValue": "metadata.annotations using an external Load Balancer provider by cloud provider",
+		"keyActualValue": "metadata.annotations is exposing a workload, not using an external Load Balancer provider by cloud provider",
 	}
 }
 

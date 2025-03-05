@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties.SecurityGroupIngress", [cf_lib.getPath(path),name]),
+		"searchKey": sprintf("%s%s.Properties.SecurityGroupIngress", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("None of the Resources.%s.Properties.SecurityGroupIngress should have port %d", [name, port]),
 		"keyActualValue": sprintf("One of the Resources.%s.Properties.SecurityGroupIngress has port %d", [name, port]),

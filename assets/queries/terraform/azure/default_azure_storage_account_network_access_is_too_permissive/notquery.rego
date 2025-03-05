@@ -1,18 +1,18 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 import future.keywords.every
 import future.keywords.in
 
 CxPolicy[result] {
-    resource := input.document[i].resource.azurerm_storage_account[var0]
-	resource_name := tf_lib.get_resource_name(resource, var0)
+	resource := input.document[i].resource.azurerm_storage_account[var0]
 	networkRules := input.document[i].resource.azurerm_storage_account_network_rules[var1]
-    networkRules.storage_account_id == sprintf("${azurerm_storage_account.%s.id}", [var0])
-    lower(networkRules.default_action) == "allow"
+	networkRules.storage_account_id == sprintf("${azurerm_storage_account.%s.id}", [var0])
+	lower(networkRules.default_action) == "allow"
+	resource_name := tf_lib.get_resource_name(resource, var0)
 
-    result := {
+	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account",
 		"resourceName": resource_name,
@@ -30,13 +30,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-    resource := input.document[i].resource.azurerm_storage_account[var0]
+	resource := input.document[i].resource.azurerm_storage_account[var0]
 	resource_name := tf_lib.get_resource_name(resource, var0)
-    not has_net_rules_obj(resource_name, input.document[i])
-    net_rules := object.get(resource, "network_rules", {})
-    lower(net_rules.default_action) == "allow"
+	not has_net_rules_obj(resource_name, input.document[i])
+	net_rules := object.get(resource, "network_rules", {})
+	lower(net_rules.default_action) == "allow"
 
-    result := {
+	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account",
 		"resourceName": resource_name,
@@ -54,12 +54,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-    resource := input.document[i].resource.azurerm_storage_account[var0]
-    resource_name := tf_lib.get_resource_name(resource, var0)
-    has_key(resource, "public_network_access_enabled")
-    resource.public_network_access_enabled
+	resource := input.document[i].resource.azurerm_storage_account[var0]
+	"public_network_access_enabled" in object.keys(resource)
+	resource.public_network_access_enabled
 
-    result := {
+	resource_name := tf_lib.get_resource_name(resource, var0)
+
+	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account",
 		"resourceName": resource_name,
@@ -77,11 +78,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-    resource := input.document[i].resource.azurerm_storage_account[var0]
-    resource_name := tf_lib.get_resource_name(resource, var0)
-    not has_key(resource, "public_network_access_enabled")
+	resource := input.document[i].resource.azurerm_storage_account[var0]
+	not "public_network_access_enabled" in object.keys(resource)
 
-    result := {
+	resource_name := tf_lib.get_resource_name(resource, var0)
+
+	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account",
 		"resourceName": resource_name,
@@ -95,13 +97,9 @@ CxPolicy[result] {
 	}
 }
 
-has_key(x, k) {
-	_ = x[k]
-}
-
-has_net_rules_obj(res_name, all_resources) = true {
-	has_key(all_resources, "azurerm_storage_account_network_rules")
+has_net_rules_obj(res_name, all_resources) {
+	"azurerm_storage_account_network_rules" in object.keys(all_resources)
 	every rule in all_resources.resource.azurerm_storage_account_network_rules {
-        rule.storage_account_id != sprintf("${azurerm_storage_account.%s.id}", [res_name])
-    }
+		rule.storage_account_id != sprintf("${azurerm_storage_account.%s.id}", [res_name])
+	}
 } else = false

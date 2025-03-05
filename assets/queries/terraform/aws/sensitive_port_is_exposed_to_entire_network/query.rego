@@ -1,19 +1,23 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as commonLib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
 
-	portContent := commonLib.tcpPortsMap[port]
 	portNumber = port
+	portContent := commonLib.tcpPortsMap[port]
 	portName = portContent
-	protocol := tf_lib.getProtocolList(resource.ingress.protocol)[_]
 
-	endswith(resource.ingress.cidr_blocks[_], "/0")
-	tf_lib.containsPort(resource.ingress, portNumber)
+	protocol := tf_lib.getProtocolList(resource.ingress.protocol)[_]
 	isTCPorUDP(protocol)
+
+	cidr_blocks := endswith(resource.ingress.cidr_blocks[_], "/0")
+	cidr_blocks
+
+	port_number := tf_lib.containsPort(resource.ingress, portNumber)
+	port_number
 
 	result := {
 		"documentId": input.document[i].id,
@@ -33,12 +37,16 @@ CxPolicy[result] {
 	portContent := commonLib.tcpPortsMap[port]
 	portNumber = port
 	portName = portContent
-    ingress := resource.ingress[j]
-	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
+	ingress := resource.ingress[j]
 
-	endswith(ingress.cidr_blocks[_], "/0")
-	tf_lib.containsPort(ingress, portNumber)
+	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
 	isTCPorUDP(protocol)
+
+	ends_with := endswith(ingress.cidr_blocks[_], "/0")
+	ends_with
+
+	port_contains := tf_lib.containsPort(ingress, portNumber)
+	port_contains
 
 	result := {
 		"documentId": input.document[i].id,

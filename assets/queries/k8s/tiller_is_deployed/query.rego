@@ -51,8 +51,8 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.template.metadata", [metadata.name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'spec.template.metadata' should not refer to any Tiller resource", [document.kind]),
-		"keyActualValue": sprintf("'spec.template.metadata' refers to a Tiller resource", [document.kind]),
+		"keyExpectedValue": "'spec.template.metadata' should not refer to any Tiller resource",
+		"keyActualValue": "'spec.template.metadata' refers to a Tiller resource",
 	}
 }
 
