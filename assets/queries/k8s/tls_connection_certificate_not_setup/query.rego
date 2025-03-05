@@ -1,7 +1,8 @@
 package Cx
 
-import data.generic.k8s as k8s_lib
 import data.generic.common as common_lib
+import data.generic.k8s as k8s_lib
+import future.keywords.in
 
 tlsFlagList := {"--tls-cert-file", "--tls-private-key-file"}
 
@@ -11,9 +12,12 @@ CxPolicy[result] {
 	specInfo := k8s_lib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}
 	container := specInfo.spec[types[x]][j]
-	tls :=  tlsFlagList[_]
-	common_lib.inArray(container.command, "kube-apiserver")
-	not k8s_lib.startWithFlag(container,tls)
+	tls := tlsFlagList[_]
+	in_array := common_lib.inArray(container.command, "kube-apiserver")
+	flagged_containers := {c | c := specInfo.spec[types[x]][_]; k8s_lib.startWithFlag(c, tls)}
+
+	in_array
+	not container in flagged_containers
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,19 +25,19 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf( "TLS %s connection setting should be set", [tls]),
+		"keyExpectedValue": sprintf("TLS %s connection setting should be set", [tls]),
 		"keyActualValue": sprintf("TLS %s connection not set", [tls]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}
 }
 
 tlsList := {"tlsCertFile", "tlsPrivateKeyFile"}
 
 CxPolicy[result] {
-	doc :=input.document[i]
-    doc.kind == "KubeletConfiguration"
-    tls :=  tlsList[_]
-    not common_lib.valid_key(doc, tls)
+	doc := input.document[i]
+	doc.kind == "KubeletConfiguration"
+	tls := tlsList[_]
+	not common_lib.valid_key(doc, tls)
 
 	result := {
 		"documentId": doc.id,
@@ -41,7 +45,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("kind={{%s}}", ["KubeletConfiguration"]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf( "TLS %s connection setting should be set", [tls]),
+		"keyExpectedValue": sprintf("TLS %s connection setting should be set", [tls]),
 		"keyActualValue": sprintf("TLS %s connection not set", [tls]),
 	}
 }

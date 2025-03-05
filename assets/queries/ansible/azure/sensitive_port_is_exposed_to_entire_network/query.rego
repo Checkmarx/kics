@@ -4,7 +4,7 @@ import data.generic.ansible as ansLib
 import data.generic.common as commonLib
 
 CxPolicy[result] {
-	#############	inputs
+	# inputs
 	tcpPortsMap := commonLib.tcpPortsMap
 
 	task := ansLib.tasks[id][t]
@@ -18,10 +18,15 @@ CxPolicy[result] {
 	portName = portContent
 	protocol := getProtocolList(resource.protocol)[_]
 
-	upper(resource.access) == "ALLOW"
-	inbound_direction(resource)
-	endswith(resource.source_address_prefix, "/0")
-	containsDestinationPort(portNumber, resource)
+	access_upper := upper(resource.access)
+	is_inbound := inbound_direction(resource)
+	is_wildcard_prefix := endswith(resource.source_address_prefix, "/0")
+	port_matches := containsDestinationPort(portNumber, resource)
+
+	access_upper == "ALLOW"
+	is_inbound
+	is_wildcard_prefix
+	port_matches
 	isTCPorUDP(protocol)
 
 	result := {
@@ -83,8 +88,8 @@ isTCPorUDP(protocol) = is {
 	is := upper(protocol) != "ICMP"
 }
 
-inbound_direction(resource){
+inbound_direction(resource) {
 	upper(resource.direction) == "INBOUND"
-}else{
-	not commonLib.valid_key(resource,"direction")
+} else {
+	not commonLib.valid_key(resource, "direction")
 }

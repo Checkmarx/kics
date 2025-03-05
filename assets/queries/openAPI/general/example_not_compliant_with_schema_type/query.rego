@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
 
 # policy for examples
 CxPolicy[result] {
@@ -133,11 +133,11 @@ get_ref(obj, docs, type, version) = example {
 } else = example {
 	version == "3.0"
 	path := split(substring(obj["$ref"], 2, -1), "/")
-	example := docs.components[type][path[minus(count(path), 1)]]
+	example := docs.components[type][path[count(path) - 1]]
 } else = example {
 	version == "2.0"
 	path := split(substring(obj["$ref"], 2, -1), "/")
-	example := docs[type][path[minus(count(path), 1)]]
+	example := docs[type][path[count(path) - 1]]
 }
 
 # get_properties() - returns properties, type, and fields to compare

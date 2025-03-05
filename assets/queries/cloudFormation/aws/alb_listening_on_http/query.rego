@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Listeners.Protocol' should not equal to 'HTTP'", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Listeners.Protocol' equals to 'HTTP'", [name]),
-		"searchLine": common_lib.build_search_line(["Resources", name, "Properties","Listeners",l,"Protocol"], []),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "Listeners", l, "Protocol"], []),
 	}
 }
 
@@ -36,6 +36,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Protocol' should not equal to 'HTTP'", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Protocol' equals to 'HTTP'", [name]),
-		"searchLine": common_lib.build_search_line(["Resources", name, "Properties","Protocol"], []),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "Protocol"], []),
 	}
 }

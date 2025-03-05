@@ -1,13 +1,14 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
 
 	kinds := {"Role", "ClusterRole"}
-	document.kind == kinds[_]
+	document.kind in kinds
 
 	resources := {"pods/exec", "pods/*"}
 	verbs := {"create", "*"}
@@ -22,6 +23,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.rules[%d].resources should not include the 'pods/exec' resource", [metadata.name, j]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.rules[%d].resources includes the 'pods/exec' resource", [metadata.name, j]),
-		"searchLine": common_lib.build_search_line(["rules", j], ["resources"])
+		"searchLine": common_lib.build_search_line(["rules", j], ["resources"]),
 	}
 }

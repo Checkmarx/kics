@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as commonLib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
@@ -11,8 +11,11 @@ CxPolicy[result] {
 	portName = portContent
 	protocol := tf_lib.getProtocolList(resource.ingress.protocol)[_]
 
-	endswith(resource.ingress.cidr_blocks[_], "/0")
-	tf_lib.containsPort(resource.ingress, portNumber)
+	cidr_blocks := endswith(resource.ingress.cidr_blocks[_], "/0")
+	port_number := tf_lib.containsPort(resource.ingress, portNumber)
+
+	cidr_blocks
+	port_number
 	isTCPorUDP(protocol)
 
 	result := {
@@ -33,11 +36,14 @@ CxPolicy[result] {
 	portContent := commonLib.tcpPortsMap[port]
 	portNumber = port
 	portName = portContent
-    ingress := resource.ingress[j]
+	ingress := resource.ingress[j]
 	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
 
-	endswith(ingress.cidr_blocks[_], "/0")
-	tf_lib.containsPort(ingress, portNumber)
+	ends_with := endswith(ingress.cidr_blocks[_], "/0")
+	port_contains := tf_lib.containsPort(ingress, portNumber)
+
+	ends_with
+	port_contains
 	isTCPorUDP(protocol)
 
 	result := {

@@ -11,8 +11,11 @@ CxPolicy[result] {
 	portName = portContent
 	protocol := tf_lib.getProtocolList(resource.ingress.protocol)[_]
 
-	isPrivateNetwork(resource)
-	tf_lib.containsPort(resource.ingress, portNumber)
+	is_private := isPrivateNetwork(resource)
+	port_contains := tf_lib.containsPort(resource.ingress, portNumber)
+
+	is_private
+	port_contains
 	isTCPorUDP(protocol)
 
 	result := {
@@ -39,8 +42,11 @@ CxPolicy[result] {
 	ingress := module[ingressKey][idx]
 	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
 
-	common_lib.isPrivateIP(ingress.cidr_blocks[_])
-	tf_lib.containsPort(ingress, portNumber)
+	is_private_ip := common_lib.isPrivateIP(ingress.cidr_blocks[_])
+	port_contains := tf_lib.containsPort(ingress, portNumber)
+
+	is_private_ip
+	port_contains
 	isTCPorUDP(protocol)
 
 	result := {
