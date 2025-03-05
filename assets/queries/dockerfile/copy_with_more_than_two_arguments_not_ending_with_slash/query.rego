@@ -10,7 +10,7 @@ CxPolicy[result] {
 	numElems := count(command)
 	numElems > 2
 
-	not endswith(command[minus(numElems, 1)], "/")
+	not endswith(command[numElems - 1], "/")
 
 	result := {
 		"documentId": input.document[i].id,

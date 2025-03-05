@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document
@@ -42,7 +42,6 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties"], []),
 	}
 }
-
 
 unrecommended_minimum_compression_size(value) {
 	value < 0

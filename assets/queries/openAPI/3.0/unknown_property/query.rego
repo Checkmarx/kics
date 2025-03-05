@@ -31,7 +31,7 @@ CxPolicy[result] {
 	objValues := objectValues[objType][object]
 
 	index := {"array": 1, "simple": 1, "map": 2}
-	path[minus(count(path), index[objType])] == object
+	path[count(path) - index[objType]] == object
 
 	objType == "array"
 	is_array(value)
@@ -57,7 +57,7 @@ CxPolicy[result] {
 	objValues := objectValues[objType][object]
 
 	index := {"array": 1, "simple": 1, "map": 2}
-	path[minus(count(path), index[objType])] == object
+	path[count(path) - index[objType]] == object
 
 	any([objType == "simple", objType == "map"])
 	value[field]
@@ -78,7 +78,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 
-	path[minus(count(path), 3)] == "callbacks"
+	path[count(path) - 3] == "callbacks"
 
 	value[x]
 	not known_field(map_objects.paths, x)
