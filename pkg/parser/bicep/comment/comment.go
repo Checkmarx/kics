@@ -17,6 +17,7 @@ type Pos struct {
 	BlockEnd   int
 }
 
+// comments Test
 // linePosition returns the position of the comment in the file
 func (c *comment) linePosition() Pos {
 	return Pos{
