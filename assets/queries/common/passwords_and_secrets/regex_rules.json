@@ -27,7 +27,7 @@
         },
         {
           "description": "Allow type objects to have fields containing password as a name, without default values set",
-          "regex": "type\\s*=\\s*object\\s*\\(\\s*\\{[\\n]?(?:\\s*\\t*\\w*password\\w*\\s*=\\s*(?:optional\\s*\\(\\s*(?:string|integer|float|any|list|map|object)\\s*\\)|(?:string|integer|float|any|list|map|object))\\s*[,\\n]?\\s*)+\\}"
+          "regex": "type\\s*=\\s*object\\s*\\(\\s*\\{[\\n]?(?:.*?\\b\\w*password\\w*\\s*=\\s*(?:optional\\s*\\(\\s*(?:string|integer|float|any|list|map|object)\\s*\\)|(?:string|integer|float|any|list|map|object))\\s*(?:[,\\n]|\\}\\)).*?)+"
         }
       ],
       "specialMask": "(?i)['\"]?password['\"]?\\s*[:=]\\s*"
