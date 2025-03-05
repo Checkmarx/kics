@@ -46,6 +46,4 @@ getName(policyBody) = "min_pw_length" {
 	common_lib.valid_key(policyBody, "min_pw_length")
 } else = "minimum_password_length" {
 	common_lib.valid_key(policyBody, "minimum_password_length")
-} else = false {
-	true
-}
+} else = false

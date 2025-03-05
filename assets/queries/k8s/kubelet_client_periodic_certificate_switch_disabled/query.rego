@@ -22,14 +22,14 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--rotate-certificates flag should be true",
 		"keyActualValue": "--rotate-certificates flag is false",
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i]
-    resource.kind == "KubeletConfiguration"
-    resource.rotateCertificates == false
+	resource.kind == "KubeletConfiguration"
+	resource.rotateCertificates == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -44,8 +44,8 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
-    resource.kind == "KubeletConfiguration"
-    not common_lib.valid_key(resource, "rotateCertificates")
+	resource.kind == "KubeletConfiguration"
+	not common_lib.valid_key(resource, "rotateCertificates")
 
 	result := {
 		"documentId": input.document[i].id,

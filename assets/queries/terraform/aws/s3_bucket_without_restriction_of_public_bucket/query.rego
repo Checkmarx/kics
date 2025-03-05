@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_public_access_block", name, "restrict_public_buckets"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -57,9 +57,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "'restrict_public_buckets' should equal 'true'",
 		"keyActualValue": "'restrict_public_buckets' is missing",
 		"searchLine": common_lib.build_search_line(["module", name], []),
-		"remediation": sprintf("%s = true",[keyToCheck]),
+		"remediation": sprintf("%s = true", [keyToCheck]),
 		"remediationType": "addition",
-
 	}
 }
 
@@ -79,7 +78,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

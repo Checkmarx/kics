@@ -10,7 +10,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_neptune_cluster[name]
 	not exist(resource, "enable_cloudwatch_logs_exports")
 
-
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_neptune_cluster",

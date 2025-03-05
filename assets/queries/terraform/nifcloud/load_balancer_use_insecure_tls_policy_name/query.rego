@@ -1,18 +1,17 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 outdatedSSLPolicies := {
 	"Standard Ciphers A ver1",
 	"Standard Ciphers B ver1",
 	"Standard Ciphers C ver1",
 	"Ats Ciphers A ver1",
-	"Ats Ciphers D ver1"
+	"Ats Ciphers D ver1",
 }
 
 CxPolicy[result] {
-
 	lb := input.document[i].resource.nifcloud_load_balancer[name]
 	not common_lib.valid_key(lb, "ssl_policy_name")
 
@@ -28,7 +27,6 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-
 	lb := input.document[i].resource.nifcloud_load_balancer[name]
 	lb.ssl_policy_name == outdatedSSLPolicies[_]
 

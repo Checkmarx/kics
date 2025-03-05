@@ -3,7 +3,6 @@ package Cx
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
-
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
@@ -79,4 +78,3 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("Resources.%s.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced", [key]),
 	}
 }
-
