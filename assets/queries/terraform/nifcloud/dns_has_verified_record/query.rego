@@ -1,10 +1,9 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
 	dnsRecord := input.document[i].resource.nifcloud_dns_record[name]
 	contains(dnsRecord.record, "nifty-dns-verify=")
 

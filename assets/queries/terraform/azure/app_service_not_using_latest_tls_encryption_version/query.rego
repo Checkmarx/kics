@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_app_service", name, "site_config", "min_tls_version"], []),
 		"remediation": json.marshal({
 			"before": sprintf("%.1f", [app.site_config.min_tls_version]),
-			"after": "1.3"
+			"after": "1.3",
 		}),
 		"remediationType": "replacement",
 	}
@@ -43,7 +43,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_app_service", name, "site_config", "min_tls_version"], []),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [app.site_config.min_tls_version]),
-			"after": "1.3"
+			"after": "1.3",
 		}),
 		"remediationType": "replacement",
 	}

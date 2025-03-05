@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'spec.allowedHostPaths' should be defined and not null",
 		"keyActualValue": "'spec.allowedHostPaths' is undefined or null",
-		"searchLine": common_lib.build_search_line(["spec"], [])
+		"searchLine": common_lib.build_search_line(["spec"], []),
 	}
 }
 
@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'spec.allowedHostPaths[%d].readOnly' should be set to true", [idx]),
 		"keyActualValue": sprintf("'spec.allowedHostPaths[%d].readOnly' is undefined or null", [idx]),
-		"searchLine": common_lib.build_search_line(["spec", "allowedHostPaths"], [idx])
+		"searchLine": common_lib.build_search_line(["spec", "allowedHostPaths"], [idx]),
 	}
 }
 
@@ -57,7 +57,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'spec.allowedHostPaths[%d].readOnly' should be set to true", [idx]),
 		"keyActualValue": sprintf("'spec.allowedHostPaths[%d].readOnly' is set to false", [idx]),
-		"searchLine": common_lib.build_search_line(["spec", "allowedHostPaths", idx], ["readOnly"])
+		"searchLine": common_lib.build_search_line(["spec", "allowedHostPaths", idx], ["readOnly"]),
 	}
 }
-

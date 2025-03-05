@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"keyActualValue": "aws_ecs_task_definition.volume.efs_volume_configuration.transit_encryption value is 'DISABLED'",
 		"remediation": json.marshal({
 			"before": "DISABLED",
-			"after": "ENABLED"
+			"after": "ENABLED",
 		}),
 		"remediationType": "replacement",
 	}

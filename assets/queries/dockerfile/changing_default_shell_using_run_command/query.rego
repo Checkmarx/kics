@@ -20,7 +20,7 @@ shell_possibilities := {
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
-    value := resource.Value
+	value := resource.Value
 
 	contains(value[v], shell_possibilities[p])
 	run_values := split(value[v], " ")
@@ -29,7 +29,7 @@ CxPolicy[result] {
 	command == command_possibilities[cp]
 
 	result := {
-    	"debug": sprintf("%s", [value[v]]),
+		"debug": sprintf("%s", [value[v]]),
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, resource.Original]),
 		"issueType": "IncorrectValue",
@@ -41,7 +41,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
-    value := resource.Value
+	value := resource.Value
 	run_values := split(value[v], " ")
 	command := run_values[0]
 	contains(command, "powershell")
