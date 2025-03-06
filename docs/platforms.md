@@ -40,6 +40,10 @@ Currently, KICS offers one query for this platform, but the goal is to expand it
 
 KICS supports scanning GitHub Workflows CICD files with `.yaml` or `.yml` extension.
 
+## CloudFormation
+
+KICS supports scanning CloudFormation templates with `.json` or `.yaml` extension.
+
 ## CDK
 
 [AWS Cloud Development Kit](https://docs.aws.amazon.com/cdk/latest/guide/home.html) is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation.
