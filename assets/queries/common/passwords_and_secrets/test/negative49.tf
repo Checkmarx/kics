@@ -1,6 +1,6 @@
 variable "config_acr" {
 	type = object({
-    admin_password_key = string
+    admin_password = string
   })
 	description = "ACR where the APM Server configuration container is located"
 }
