@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
     
     
       
@@ -666,9 +666,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cdk" class="md-nav__link">
+  <a href="#buildah" class="md-nav__link">
     <span class="md-ellipsis">
-      CDK
+      Buildah
     </span>
   </a>
   
@@ -687,6 +687,15 @@
   <a href="#cloudformation" class="md-nav__link">
     <span class="md-ellipsis">
       CloudFormation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      CDK
     </span>
   </a>
   
@@ -1205,28 +1214,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../queries/common-queries/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Common
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../queries/ansible-queries/" class="md-nav__link">
         
   
@@ -1271,11 +1258,121 @@
   
   
     <li class="md-nav__item">
+      <a href="../queries/buildah-queries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Buildah
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queries/cicd-queries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CICD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../queries/cloudformation-queries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     CloudFormation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queries/common-queries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Common
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queries/crossplane-queries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Crossplane
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queries/dockercompose-queries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Compose
     
   </span>
   
@@ -1315,11 +1412,55 @@
   
   
     <li class="md-nav__item">
-      <a href="../queries/dockercompose-queries/" class="md-nav__link">
+      <a href="../queries/googledeploymentmanager-queries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Docker Compose
+    Google Deployment Manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queries/grpc-queries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gRPC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../queries/knative-queries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Knative
     
   </span>
   
@@ -1381,11 +1522,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../queries/googledeploymentmanager-queries/" class="md-nav__link">
+      <a href="../queries/pulumi-queries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Google Deployment Manager
+    Pulumi
     
   </span>
   
@@ -1403,11 +1544,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../queries/grpc-queries/" class="md-nav__link">
+      <a href="../queries/serverlessfw-queries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    gRPC
+    ServerlessFW
     
   </span>
   
@@ -2173,6 +2314,13 @@
 <p>For instructions on converting between ARM JSON templates and Bicep code, refer to the <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build">official ARM documentation</a>. To understand the distinctions between the two, explore the <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax">official syntax comparison</a>.</p>
 <p>Note that KICS recognizes this technology as Azure Resource Manager (for queries purpose).</p>
 <p>Explore our ongoing enhancements and planned features on our <a href="../future_improvements/">Future Improvements</a> page.</p>
+<h2 id="buildah">Buildah<a class="headerlink" href="#buildah" title="Permanent link">&para;</a></h2>
+<p>KICS supports scanning Buildah container build scripts with a .sh extension. </p>
+<p>Currently, KICS offers one query for this platform, but the goal is to expand its capabilities to scan for potential misconfigurations, security vulnerabilities and best practice violations in Buildah scripts.</p>
+<h2 id="cicd">CICD<a class="headerlink" href="#cicd" title="Permanent link">&para;</a></h2>
+<p>KICS supports scanning GitHub Workflows CICD files with <code>.yaml</code> or <code>.yml</code> extension.</p>
+<h2 id="cloudformation">CloudFormation<a class="headerlink" href="#cloudformation" title="Permanent link">&para;</a></h2>
+<p>KICS supports scanning CloudFormation templates with <code>.json</code> or <code>.yaml</code> extension.</p>
 <h2 id="cdk">CDK<a class="headerlink" href="#cdk" title="Permanent link">&para;</a></h2>
 <p><a href="https://docs.aws.amazon.com/cdk/latest/guide/home.html">AWS Cloud Development Kit</a> is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation.</p>
 <p>It has all the advantages of using <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html">AWS CloudFormation</a>.</p>
@@ -2201,10 +2349,6 @@
 </ol>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-t<span class="w"> </span>-v<span class="w"> </span><span class="nv">$PWD</span>/cfn-stack.yaml:/path/cfn-stack.yaml<span class="w"> </span>-it<span class="w"> </span>checkmarx/kics:latest<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span>/path/cfn-stack.yaml
 </code></pre></div>
-<h2 id="cicd">CICD<a class="headerlink" href="#cicd" title="Permanent link">&para;</a></h2>
-<p>KICS supports scanning Github Workflows CICD files with <code>.yaml</code> or <code>.yml</code> extension.</p>
-<h2 id="cloudformation">CloudFormation<a class="headerlink" href="#cloudformation" title="Permanent link">&para;</a></h2>
-<p>KICS supports scanning CloudFormation templates with <code>.json</code> or <code>.yaml</code> extension.</p>
 <h2 id="crossplane">Crossplane<a class="headerlink" href="#crossplane" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Crossplane manifests with <code>.yaml</code> extension.</p>
 <h2 id="azure_blueprints">Azure Blueprints<a class="headerlink" href="#azure_blueprints" title="Permanent link">&para;</a></h2>
@@ -2231,8 +2375,8 @@
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>                021: spec:
 </code></pre></div>
 <h2 id="knative">Knative<a class="headerlink" href="#knative" title="Permanent link">&para;</a></h2>
-<p>KICS supports scanning Knative manifests with <code>.yaml</code> extension.
-Due to the possibility of the definition of the <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#podspec-v1-core">PodSpec and PodTemplate</a> in Knative files, Kubernetes Security Queries are also loaded once the presence of the Knative files is detected.</p>
+<p>KICS supports scanning Knative manifests with <code>.yaml</code> extension.</p>
+<p>Due to the possibility of the definition of the <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#podspec-v1-core">PodSpec and PodTemplate</a> in Knative files, Kubernetes Security Queries are also loaded once the presence of the Knative files is detected.</p>
 <h2 id="kubernetes">Kubernetes<a class="headerlink" href="#kubernetes" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Kubernetes manifests with <code>.yaml</code> extension.</p>
 <h2 id="openapi">OpenAPI<a class="headerlink" href="#openapi" title="Permanent link">&para;</a></h2>
@@ -2240,8 +2384,8 @@ Due to the possibility of the definition of the <a href="https://kubernetes.io/d
 <h2 id="pulumi">Pulumi<a class="headerlink" href="#pulumi" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Pulumi manifests with <code>.yaml</code> extension.</p>
 <h2 id="serverlessfw">ServerlessFW<a class="headerlink" href="#serverlessfw" title="Permanent link">&para;</a></h2>
-<p>KICS supports scanning Serverless manifests with <code>.yml</code> extension.
-Due to the possibility of the definition of the CloudFormation template,  inside <code>Serverless.yml</code>, CloudFormation Security Queries are also loaded once the presence of the ServerlessFW files is detected.</p>
+<p>KICS supports scanning Serverless manifests with <code>.yml</code> extension.</p>
+<p>Due to the possibility of the definition of the CloudFormation template,  inside <code>Serverless.yml</code>, CloudFormation Security Queries are also loaded once the presence of the ServerlessFW files is detected.</p>
 <h2 id="google_deployment_manager">Google Deployment Manager<a class="headerlink" href="#google_deployment_manager" title="Permanent link">&para;</a></h2>
 <p>KICS supports scanning Google Deployment Manager files with <code>.yaml</code> extension.</p>
 <h2 id="sam">SAM<a class="headerlink" href="#sam" title="Permanent link">&para;</a></h2>
@@ -2350,7 +2494,7 @@ This line is a comment that Kics will look for when trying to decypher the varia
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "toc.integrate"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
