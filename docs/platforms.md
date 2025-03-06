@@ -30,6 +30,16 @@ Note that KICS recognizes this technology as Azure Resource Manager (for queries
 
 Explore our ongoing enhancements and planned features on our [Future Improvements](future_improvements.md) page.
 
+## Buildah
+
+KICS supports scanning Buildah container build scripts with a .sh extension. 
+
+Currently, KICS offers one query for this platform, but the goal is to expand its capabilities to scan for potential misconfigurations, security vulnerabilities and best practice violations in Buildah scripts.
+
+## CICD
+
+KICS supports scanning GitHub Workflows CICD files with `.yaml` or `.yml` extension.
+
 ## CDK
 
 [AWS Cloud Development Kit](https://docs.aws.amazon.com/cdk/latest/guide/home.html) is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation.
