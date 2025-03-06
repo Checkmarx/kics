@@ -68,14 +68,6 @@ cdk synth > cfn-stack.yaml
 docker run -t -v $PWD/cfn-stack.yaml:/path/cfn-stack.yaml -it checkmarx/kics:latest scan -p /path/cfn-stack.yaml
 ```
 
-## CICD
-
-KICS supports scanning Github Workflows CICD files with `.yaml` or `.yml` extension.
-
-## CloudFormation
-
-KICS supports scanning CloudFormation templates with `.json` or `.yaml` extension.
-
 ## Crossplane
 
 KICS supports scanning Crossplane manifests with `.yaml` extension.
@@ -122,6 +114,7 @@ Platform: Kubernetes
 ## Knative
 
 KICS supports scanning Knative manifests with `.yaml` extension.
+
 Due to the possibility of the definition of the [PodSpec and PodTemplate](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#podspec-v1-core) in Knative files, Kubernetes Security Queries are also loaded once the presence of the Knative files is detected.
 
 ## Kubernetes
@@ -139,8 +132,8 @@ KICS supports scanning Pulumi manifests with `.yaml` extension.
 ## ServerlessFW
 
 KICS supports scanning Serverless manifests with `.yml` extension.
-Due to the possibility of the definition of the CloudFormation template,  inside `Serverless.yml`, CloudFormation Security Queries are also loaded once the presence of the ServerlessFW files is detected.
 
+Due to the possibility of the definition of the CloudFormation template,  inside `Serverless.yml`, CloudFormation Security Queries are also loaded once the presence of the ServerlessFW files is detected.
 
 ## Google Deployment Manager
 
