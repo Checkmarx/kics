@@ -30,7 +30,7 @@ rules:
       level: ignore
     redundant-existence-check:
       # https://docs.styra.com/regal/rules/bugs/redundant-existence-check
-      level: ignore
+      level: warning
   idiomatic:
     no-defined-entrypoint:
       # https://docs.styra.com/regal/rules/idiomatic/no-defined-entrypoint
