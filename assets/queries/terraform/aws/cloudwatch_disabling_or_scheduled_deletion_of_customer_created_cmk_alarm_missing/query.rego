@@ -24,7 +24,7 @@ expressionArr := [
 check_expression_missing(resName, filter, doc) {
 	alarm := doc.resource.aws_cloudwatch_metric_alarm[name]
 	contains(alarm.metric_name, resName)
-    expr := commonLib.get_kics_filter_expr(filter)
+	expr := commonLib.get_kics_filter_expr(filter)
 	commonLib.get_operator(expr) == "&&"
 
 	count({x | exp := expressionArr[n]; commonLib.check_selector(filter, exp.value, exp.op, exp.name) == false; x := exp}) == 0
