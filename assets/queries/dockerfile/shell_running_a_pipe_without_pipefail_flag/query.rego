@@ -76,7 +76,7 @@ getShellIdx(value) = idx {
 	shells := ["zsh", "bash", "ash", "/bin/zsh", "/bin/bash", "/bin/ash"]
 	some i
 	value[i] == shells[_]
-	idx := i
+	idx = i
 } else = -1
 
 hasPipeInArray(arr, initCmdIdx) {

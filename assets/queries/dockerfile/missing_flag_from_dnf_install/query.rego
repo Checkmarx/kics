@@ -33,7 +33,7 @@ hasInstallCommandWithoutFlag(command) = c {
 	]
 
 	contains(command, commandList[_])
-	c := command
+	c = command
 }
 
 hasYesFlag(command) {

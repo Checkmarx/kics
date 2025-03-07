@@ -25,7 +25,7 @@ CxPolicy[result] {
 
 getIngressList(ingress) = list {
 	is_array(ingress)
-	list := ingress
+	list = ingress
 } else = list {
 	is_object(ingress)
 	list := [ingress]

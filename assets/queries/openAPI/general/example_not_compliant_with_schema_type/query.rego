@@ -129,7 +129,7 @@ check_number_type(type) {
 # get_ref() - returns the object based on the type (schema, examples). If the object is a ref gets the object from the ref
 get_ref(obj, docs, type, version) = example {
 	not common_lib.valid_key(obj, "$ref")
-	example := obj
+	example = obj
 } else = example {
 	version == "3.0"
 	path := split(substring(obj["$ref"], 2, -1), "/")

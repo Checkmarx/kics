@@ -32,7 +32,7 @@ is_unsafe_statement(stmt) = result {
 	not common_lib.valid_key(stmt, "Condition")
 	has_wildcard_principal(stmt.Principal)
 	action := has_dangerous_action(stmt.Action)
-	result := action
+	result = action
 }
 
 has_wildcard_principal(p) {
@@ -55,7 +55,7 @@ has_star_or_star_after_colon(str) {
 has_dangerous_action(action) = result {
 	is_string(action)
 	isDangerousAction(action)
-	result := action
+	result = action
 } else = result {
 	is_array(action)
 	isDangerousAction(action[a])

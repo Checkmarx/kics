@@ -54,7 +54,7 @@ CxPolicy[result] {
 matchResource(resource, serviceSelector) = result {
 	labels := getLabelsToMatch(resource)
 	count([x | x := serviceSelector[k]; x == labels[k]]) == count(serviceSelector)
-	result := resource
+	result = resource
 } else = false
 
 getLabelsToMatch(document) = labels {

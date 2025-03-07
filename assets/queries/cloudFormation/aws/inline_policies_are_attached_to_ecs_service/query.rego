@@ -24,9 +24,9 @@ CxPolicy[result] {
 getInlinePolicy(role) = policy {
 	is_string(role)
 	input.document[_].Resources[role].Type == "AWS::IAM::Policy"
-	policy := role
+	policy = role
 } else = policy {
 	is_object(role)
 	input.document[_].Resources[role.Ref].Type == "AWS::IAM::Policy"
-	policy := role.Ref
+	policy = role.Ref
 } else = "undefined"
