@@ -1,6 +1,6 @@
 package Cx
 
-import data.generic.common as common_lib
+import data.generic.common as commonLib
 
 expressionArr := [
 	{
@@ -70,7 +70,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should be associated an aws_cloudwatch_metric_alarm",
 		"keyActualValue": "aws_cloudwatch_log_metric_filter not associated with any aws_cloudwatch_metric_alarm",
-		"searchLine": common_lib.build_search_line(["resource", "aws_cloudwatch_log_metric_filter", name], []),
+		"searchLine": commonLib.build_search_line(["resource", "aws_cloudwatch_log_metric_filter", name], []),
 	}
 }
 
@@ -79,7 +79,7 @@ check_expression_missing(filter) {
 
 	count({x |
 		exp := expressionArr[n]
-		common_lib.check_selector(filter, exp.value, exp.op, exp.name) == false
+		commonLib.check_selector(filter, exp.value, exp.op, exp.name) == false
 		x := exp
 	}) == 0
 }
@@ -90,7 +90,7 @@ CxPolicy[result] {
 
 	resourceNames := [resourceName |
 		[path, value] := walk(resources)
-		filter := common_lib.json_unmarshal(value.pattern)
+		filter := commonLib.json_unmarshal(value.pattern)
 		not check_expression_missing(filter)
 		resourceName := path[count(path) - 1]
 	]
@@ -105,6 +105,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "aws_cloudwatch_log_metric_filter should have pattern $.eventSource equal to `s3.amazonaws.com` and $.eventName equal to `PutBucketAcl`, `PutBucketPolicy`, `PutBucketCors`, `PutBucketLifecycle`, `PutBucketReplication`, `DeleteBucketPolicy`, `DeleteBucketCors`, `DeleteBucketLifecycle` and `DeleteBucketReplication`",
 		"keyActualValue": "aws_cloudwatch_log_metric_filter with wrong pattern",
-		"searchLine": common_lib.build_search_line(["resource", "aws_cloudwatch_log_metric_filter", resourceName, "pattern"], []),
+		"searchLine": commonLib.build_search_line(["resource", "aws_cloudwatch_log_metric_filter", resourceName, "pattern"], []),
 	}
 }
