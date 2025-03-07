@@ -38,9 +38,8 @@ CxPolicy[result] {
 	common_lib.valid_key(document, "Parameters")
 	not common_lib.valid_key(document.Parameters, paramName)
 
-	defaultToken := paramName
-	regex.match(`[A-Za-z0-9\-\._~\+\/]+=*`, defaultToken)
-	not cf_lib.hasSecretManager(defaultToken, document.Resources)
+	regex.match(`[A-Za-z0-9\-\._~\+\/]+=*`, paramName)
+	not cf_lib.hasSecretManager(paramName, document.Resources)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -64,9 +63,8 @@ CxPolicy[result] {
 	paramName := properties.OauthToken
 	count(paramName) >= 50
 
-	defaultToken := paramName
-	regex.match(`[A-Za-z0-9\-\._~\+\/]+=*`, defaultToken)
-	not cf_lib.hasSecretManager(defaultToken, document.Resources)
+	regex.match(`[A-Za-z0-9\-\._~\+\/]+=*`, paramName)
+	not cf_lib.hasSecretManager(paramName, document.Resources)
 
 	result := {
 		"documentId": input.document[i].id,

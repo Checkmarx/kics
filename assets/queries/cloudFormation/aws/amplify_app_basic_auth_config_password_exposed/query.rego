@@ -39,10 +39,8 @@ CxPolicy[result] {
 	paramName := properties.BasicAuthConfig.Password
 	not common_lib.valid_key(document.Parameters, paramName)
 
-	defaultToken := paramName
-
-	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
-	not cf_lib.hasSecretManager(defaultToken, document.Resources)
+	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, paramName)
+	not cf_lib.hasSecretManager(paramName, document.Resources)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -65,10 +63,8 @@ CxPolicy[result] {
 	not common_lib.valid_key(document, "Parameters")
 
 	paramName := properties.BasicAuthConfig.Password
-	defaultToken := paramName
-
-	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
-	not cf_lib.hasSecretManager(defaultToken, document.Resources)
+	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, paramName)
+	not cf_lib.hasSecretManager(paramName, document.Resources)
 
 	result := {
 		"documentId": input.document[i].id,
