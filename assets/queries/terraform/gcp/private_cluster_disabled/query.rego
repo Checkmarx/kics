@@ -21,7 +21,6 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.google_container_cluster[primary]
 
-	resource.private_cluster_config
 	not bothDefined(resource.private_cluster_config)
 
 	result := {

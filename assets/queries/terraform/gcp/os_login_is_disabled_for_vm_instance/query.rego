@@ -33,5 +33,5 @@ isFalse(value) {
 
 isFalse(value) {
 	is_boolean(value)
-	not value
+	value == false
 }

@@ -21,7 +21,6 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
-	resource.Properties.LoadBalancers
 	check_array_size(resource.Properties.LoadBalancers)
 
 	result := {

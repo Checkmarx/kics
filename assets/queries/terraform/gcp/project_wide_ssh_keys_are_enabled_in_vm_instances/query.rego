@@ -57,5 +57,5 @@ isTrue(ssh_keys_enabled) {
 
 isTrue(ssh_keys_enabled) {
 	is_boolean(ssh_keys_enabled)
-	ssh_keys_enabled
+	ssh_keys_enabled == true
 }
