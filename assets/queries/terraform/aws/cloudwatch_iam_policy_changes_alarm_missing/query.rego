@@ -85,12 +85,6 @@ expressionArr := [
 	},
 ]
 
-check_selector(filter, value, op, name) {
-	selector := commonLib.find_selector_by_value(filter, value)
-	commonLib.get_operator(selector) == op
-	commonLib.get_selector(selector) == name
-}
-
 # {($.eventName=DeleteGroupPolicy)||($.eventName=DeleteRolePolicy)||($.eventName=DeleteUserPolicy)||($.eventName=PutGroupPolicy)||($.eventName=PutRolePolicy)||($.eventName=PutUserPolicy)||($.eventName=CreatePolicy)||($.eventName=DeletePolicy)||($.eventName=CreatePolicyVersion)||($.eventName=DeletePolicyVersion)||($.eventName=AttachRolePolicy)||($.eventName=DetachRolePolicy)||($.eventName=AttachUserPolicy)||($.eventName=DetachUserPolicy)||($.eventName=AttachGroupPolicy)||($.eventName=DetachGroupPolicy)}
 check_expression_missing(resName, filter, doc) {
 	alarm := doc.resource.aws_cloudwatch_metric_alarm[name]

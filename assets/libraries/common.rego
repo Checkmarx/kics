@@ -740,6 +740,10 @@ valid_non_empty_key(field, key) = output {
 	output := concat(".", ["", key])
 }
 
+get_kics_filter_expr(obj) := expr {
+    expr := object.get(obj, "_kics_filter_expr", {})
+}
+
 get_operator(obj) := op {
 	op := object.get(obj, "_op", "")
 }
