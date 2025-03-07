@@ -82,8 +82,8 @@ CxPolicy[result] {
 
 getAuthorizedNetworks(networks) = list {
 	is_array(networks)
-	list := networks
+	list = networks
 } else = list {
 	is_object(networks)
-	list := [networks]
+	list = [networks]
 } else = null
