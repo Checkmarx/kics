@@ -112,7 +112,7 @@ rules:
       level: ignore
     pointless-reassignment:
       # https://docs.styra.com/regal/rules/style/pointless-reassignment
-      level: ignore
+      level: warning
     unconditional-assignment:
       # https://docs.styra.com/regal/rules/style/unconditional-assignment
       level: ignore
