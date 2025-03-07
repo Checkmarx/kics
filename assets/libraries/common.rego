@@ -320,7 +320,7 @@ check_selector(filter, value, op, name) {
 find_selector_by_value(filter, str) = rtn {
 	[_, fvalue] := walk(filter)
 	trim(get_value(fvalue), "\"") == str
-	rtn := fvalue
+	rtn = fvalue
 } else {
 	[_, fvalue] := walk(filter)
 	trim(get_value(fvalue), "'") == str

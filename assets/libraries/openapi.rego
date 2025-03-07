@@ -264,14 +264,14 @@ check_scheme(doc, schemeKey, scope, version) {
 # It verifies if the path is empty. If so, it refers to a global object. If not, joins it with the defaultValue.
 concat_default_value(path, defaultValue) = searchKey {
 	count(path) == 0
-	searchKey := defaultValue
+	searchKey = defaultValue
 } else = searchKey {
 	searchKey := concat(".", [path, defaultValue])
 }
 
 get_name(p, name) = sk {
 	p[count(p) - 1] == "components"
-	sk := name
+	sk = name
 } else = sk {
 	sk := concat("", ["name=", name])
 }

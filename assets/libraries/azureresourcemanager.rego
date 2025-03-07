@@ -70,7 +70,7 @@ get_outer_children(doc, nameParent) = outerArr {
 getDefaultValueFromParametersIfPresent(doc, valueToCheck) = [value, propertyType] {
 	parameterName := isParameterReference(valueToCheck)
 	parameter := doc.parameters[parameterName].defaultValue
-	value := parameter
+	value = parameter
 	propertyType := "parameter default value"
 } else = [value, propertyType] {
 	not isParameterReference(valueToCheck)
