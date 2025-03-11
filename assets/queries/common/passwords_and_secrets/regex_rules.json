@@ -24,14 +24,6 @@
         {
           "description": "Allow passwords retrieved from AWS KMS Secrets",
           "regex": "(?i)['\"]?password['\"]?\\s*=\\s*data\\.aws_kms_secrets\\.[A-Za-z0-9_]+\\.plaintext\\[\"[A-Za-z0-9_]+\"\\]"
-        },
-        {
-          "description": "Allow terraform type objects with password fields with only type definitions",
-          "regex": "(\\s*\\t*type\\s*=\\s*object\\s*[\\(\\{]*)?(?:\\w+_)*password(?:_\\w+)*\\s*=\\s*(?:string|integer|float|any|list|map|object)\\s*[},\\n]?"
-        },
-        {
-          "description": "Allow terraform type objects with password fields with optional type without default values",
-          "regex": "(\\s*\\t*type\\s*=\\s*object\\s*[\\(\\{]*)?(?:\\w+_)*password(?:_\\w+)*\\s*=\\s*optional\\s*\\(\\s*(?:string|integer|float|any|list|map|object)\\s*(?:\\s*)?\\s*\\)(?:\\s*[}\\n]|$)"
         }
       ],
       "specialMask": "(?i)['\"]?password['\"]?\\s*[:=]\\s*"
