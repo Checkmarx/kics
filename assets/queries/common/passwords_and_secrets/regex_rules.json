@@ -16,6 +16,14 @@
         {
           "description": "Avoiding Ansible playbook update_password",
           "regex": "['\"]?update_password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?"
+        },
+        {
+          "description": "Allow passwords retrieved from Terraform data sources",
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*data\\.azurerm_key_vault_secret\\.[A-Za-z0-9_]+\\.value"
+        },
+        {
+          "description": "Allow passwords retrieved from AWS KMS Secrets",
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*data\\.aws_kms_secrets\\.[A-Za-z0-9_]+\\.plaintext\\[\"[A-Za-z0-9_]+\"\\]"
         }
       ],
       "specialMask": "(?i)['\"]?password['\"]?\\s*[:=]\\s*"
