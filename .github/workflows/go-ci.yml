@@ -16,7 +16,7 @@ jobs:
           go-version-file: go.mod
           cache: false
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@aaa42aa0628b4ae2578232a66b541047968fac86 # v6.1.0
+        uses: golangci/golangci-lint-action@4696ba8babb6127d732c3c6dde519db15edab9ea # v6.5.1
         with:
           version: v1.61.0
           args: -c .golangci.yml --timeout 20m
@@ -106,6 +106,6 @@ jobs:
         run: |
           cat results.sarif
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@608ccd6cd915d2c43d3059c3da518f36f07a56b0
+        uses: github/codeql-action/upload-sarif@f338ec87a39f9c5e2ec91decb5d7718c92875790
         with:
           sarif_file: results.sarif
