@@ -384,6 +384,12 @@
     "fileName": "positive46.yaml"
   },
   {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 21,
+    "fileName": "positive46.yaml"
+  },
+  {
     "queryName": "Passwords And Secrets - Google OAuth",
     "severity": "HIGH",
     "line": 5,
