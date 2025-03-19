@@ -8,10 +8,12 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 	count(path) > 0
+
 	param := value.parameters
 	body := [x | p := param[_]; p.in == "body"; x := p.in]
-	formatData := [x | p := param[_]; p.in == "formatData"; x := p.in]
 	count(body) > 0
+
+	formatData := [x | p := param[_]; p.in == "formatData"; x := p.in]
 	count(formatData) > 0
 
 	result := {

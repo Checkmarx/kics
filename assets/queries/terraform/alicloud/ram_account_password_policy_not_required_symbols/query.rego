@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.resource.alicloud_ram_account_password_policy[name]
-    resource["require_symbols"] == false
+	resource.require_symbols == false
 
 	remediation := {"before": "false", "after": "true"}
 

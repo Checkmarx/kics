@@ -23,6 +23,4 @@ findAnotherAccessKey(firstKey, userName) {
 	key := input.document[_].Resources[secondKey]
 	firstKey != secondKey
 	key.Properties.UserName == userName
-} else = false {
-	true
-}
+} else = false

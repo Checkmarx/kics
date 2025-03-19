@@ -3,7 +3,6 @@ package Cx
 import data.generic.ansible as ansLib
 import data.generic.common as common_lib
 
-
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	modules := {"ansible.builtin.uri"}

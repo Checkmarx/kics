@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name, "site_config", "ftps_state"], []),
 		"remediation": json.marshal({
 			"before": "AllAllowed",
-			"after": "FtpsOnly"
+			"after": "FtpsOnly",
 		}),
 		"remediationType": "replacement",
 	}

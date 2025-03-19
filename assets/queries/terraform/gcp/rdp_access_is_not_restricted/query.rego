@@ -45,8 +45,8 @@ isRDPport(allow) {
 	contains(allow.ports[j], "-") == false
 	to_number(allow.ports[j]) == 3389
 } else {
-    not allow.ports
-    isTCPorUDP(allow.protocol)
+	not allow.ports
+	isTCPorUDP(allow.protocol)
 }
 
 isInBounds(low, high) {

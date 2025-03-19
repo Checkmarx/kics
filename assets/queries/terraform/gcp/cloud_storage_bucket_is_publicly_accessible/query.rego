@@ -4,10 +4,10 @@ import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	iam_member := input.document[i].resource.google_storage_bucket_iam_member[name]
-	public_access_users := ["allUsers", "allAuthenticatedUsers"]
-
 	not iam_member.members
+
 	some j
+	public_access_users := ["allUsers", "allAuthenticatedUsers"]
 	public_access_users[j] == iam_member.member
 
 	result := {

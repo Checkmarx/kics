@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.dockerfile as dockerLib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
@@ -12,7 +13,7 @@ CxPolicy[result] {
 	commandsSplit = dockerLib.getCommands(commands)
 
 	some j
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install", commandsSplit[j]) == true
+	regex.match(`apt-get (-(-)?[a-zA-Z]+ *)*install`, commandsSplit[j]) == true
 	not avoidAdditionalPackages(commandsSplit[j])
 
 	result := {
@@ -32,8 +33,8 @@ CxPolicy[result] {
 
 	commands := resource.Value
 
-	commands[_] == "apt-get"
-	commands[_] == "install"
+	"apt-get" in commands
+	"install" in commands
 
 	not avoidAdditionalPackages(commands)
 
@@ -54,5 +55,5 @@ avoidAdditionalPackages(cmd) {
 
 avoidAdditionalPackages(cmd) {
 	is_array(cmd) == true
-    dockerLib.arrayContains(cmd, {"--no-install-recommends", "apt::install-recommends=false"})
+	dockerLib.arrayContains(cmd, {"--no-install-recommends", "apt::install-recommends=false"})
 }

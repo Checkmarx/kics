@@ -6,9 +6,9 @@ CxPolicy[result] {
 	docs := input.document[i]
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
-	ports := [20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389]
-
 	check_cidrip(resource.Properties)
+
+	ports := [20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389]
 	check_security_groups_ingress(resource.Properties, ports)
 
 	result := {
