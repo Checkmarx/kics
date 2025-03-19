@@ -8,7 +8,6 @@ CxPolicy[result] {
 
 	bom_output = {
 		"resource_type": "aws_msk_cluster",
-		"resource_name": tf_lib.get_specific_resource_name(aws_msk_cluster_resource, "aws_msk_cluster", name),
 		"resource_name": aws_msk_cluster_resource.cluster_name,
 		"resource_accessibility": get_accessibility(aws_msk_cluster_resource),
 		"resource_encryption": common_lib.get_encryption_if_exists(aws_msk_cluster_resource),

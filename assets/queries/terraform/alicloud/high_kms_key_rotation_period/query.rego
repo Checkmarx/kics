@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_kms_key", name, "rotation_interval"], []),
 		"remediation": json.marshal({
 			"before": resource.rotation_interval,
-			"after": "365d"
+			"after": "365d",
 		}),
 		"remediationType": "replacement",
 	}
@@ -29,7 +29,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_kms_key[name]
-	not common_lib.valid_key(resource, "automatic_rotation") 
+	not common_lib.valid_key(resource, "automatic_rotation")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -48,7 +48,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_kms_key[name]
-	resource.automatic_rotation == "Disabled" 
+	resource.automatic_rotation == "Disabled"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -61,22 +61,22 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_kms_key", name, "automatic_rotation"], []),
 		"remediation": json.marshal({
 			"before": "Disabled",
-			"after": "Enabled"
+			"after": "Enabled",
 		}),
 		"remediationType": "replacement",
 	}
 }
 
-getSeconds(resource) = value{
+getSeconds(resource) = value {
 	contains(resource.rotation_interval, "s")
-	value := to_number(trim_suffix(resource.rotation_interval, "s"))   
-}else = value {
+	value := to_number(trim_suffix(resource.rotation_interval, "s"))
+} else = value {
 	contains(resource.rotation_interval, "m")
-	value := to_number(trim_suffix(resource.rotation_interval, "m"))*60   
-}else = value {
+	value := to_number(trim_suffix(resource.rotation_interval, "m")) * 60
+} else = value {
 	contains(resource.rotation_interval, "h")
-	value := to_number(trim_suffix(resource.rotation_interval, "h"))*3600  
-}else = value {
+	value := to_number(trim_suffix(resource.rotation_interval, "h")) * 3600
+} else = value {
 	contains(resource.rotation_interval, "d")
-	value := to_number(trim_suffix(resource.rotation_interval, "d"))*86400  
+	value := to_number(trim_suffix(resource.rotation_interval, "d")) * 86400
 }

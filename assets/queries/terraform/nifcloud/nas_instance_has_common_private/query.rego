@@ -1,10 +1,9 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
 	nasInstance := input.document[i].resource.nifcloud_nas_instance[name]
 	nasInstance.network_id == "net-COMMON_PRIVATE"
 

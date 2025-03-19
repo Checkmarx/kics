@@ -1,10 +1,9 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
 	elb := input.document[i].resource.nifcloud_elb[name]
 
 	elbNetworkInterface := elb.network_interface[_]
@@ -25,7 +24,6 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-
 	elb := input.document[i].resource.nifcloud_elb[name]
 
 	elbNetworkInterface := elb.network_interface

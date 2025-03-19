@@ -6,8 +6,8 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_db_instance[name].parameters
-    resource[parameter].name == "log_disconnections"
-    resource[parameter].value == "OFF"
+	resource[parameter].name == "log_disconnections"
+	resource[parameter].value == "OFF"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "parameters", parameter, "value"], []),
 		"remediation": json.marshal({
 			"before": "OFF",
-			"after": "ON"
+			"after": "ON",
 		}),
 		"remediationType": "replacement",
 	}
@@ -44,7 +44,7 @@ CxPolicy[result] {
 	}
 }
 
-has_log_disconn(resource){
+has_log_disconn(resource) {
 	parameter := resource.parameters[j]
 	parameter.name == "log_disconnections"
 }

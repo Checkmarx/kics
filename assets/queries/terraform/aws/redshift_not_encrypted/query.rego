@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"keyActualValue": "aws_redshift_cluster.encrypted is true",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
