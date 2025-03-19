@@ -10,10 +10,9 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	properties.BasicAuthConfig.EnableBasicAuth == true
+
 	paramName := properties.BasicAuthConfig.Password
-
 	defaultToken := document.Parameters[paramName].Default
-
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
 	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
@@ -35,14 +34,13 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	properties.BasicAuthConfig.EnableBasicAuth == true
-	paramName := properties.BasicAuthConfig.Password
 	common_lib.valid_key(document, "Parameters")
+
+	paramName := properties.BasicAuthConfig.Password
 	not common_lib.valid_key(document.Parameters, paramName)
 
-	defaultToken := paramName
-
-	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
-	not cf_lib.hasSecretManager(defaultToken, document.Resources)
+	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, paramName)
+	not cf_lib.hasSecretManager(paramName, document.Resources)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -62,13 +60,11 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	properties.BasicAuthConfig.EnableBasicAuth == true
-	paramName := properties.BasicAuthConfig.Password
 	not common_lib.valid_key(document, "Parameters")
 
-	defaultToken := paramName
-
-	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
-	not cf_lib.hasSecretManager(defaultToken, document.Resources)
+	paramName := properties.BasicAuthConfig.Password
+	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, paramName)
+	not cf_lib.hasSecretManager(paramName, document.Resources)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -80,4 +76,3 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("Resources.%s.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced", [key]),
 	}
 }
-

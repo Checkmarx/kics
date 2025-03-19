@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_dns_managed_zone[name]
@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'dnssec_config.state' should equal to 'on'",
 		"keyActualValue": "'dnssec_config.state' is not equal to 'on'",
-		"searchLine": common_lib.build_search_line(["resource","google_dns_managed_zone", name, "dnssec_config", "state"],[])
+		"searchLine": common_lib.build_search_line(["resource", "google_dns_managed_zone", name, "dnssec_config", "state"], []),
 	}
 }
 

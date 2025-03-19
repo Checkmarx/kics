@@ -3,7 +3,6 @@ package Cx
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
-
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
@@ -36,14 +35,14 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	properties.BasicAuthConfig.EnableBasicAuth == true
-	paramName := properties.BasicAuthConfig.Password
+
 	common_lib.valid_key(document, "Parameters")
+	paramName := properties.BasicAuthConfig.Password
 	not common_lib.valid_key(document.Parameters, paramName)
 
-	defaultToken := paramName
+	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, paramName)
+	not cf_lib.hasSecretManager(paramName, document.Resources)
 
-	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
-	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
@@ -62,13 +61,13 @@ CxPolicy[result] {
 
 	properties := resource.Properties
 	properties.BasicAuthConfig.EnableBasicAuth == true
-	paramName := properties.BasicAuthConfig.Password
+
 	not common_lib.valid_key(document, "Parameters")
+	paramName := properties.BasicAuthConfig.Password
 
-	defaultToken := paramName
+	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, paramName)
+	not cf_lib.hasSecretManager(paramName, document.Resources)
 
-	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
-	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
@@ -79,4 +78,3 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("Resources.%s.Properties.BasicAuthConfig.Password must be defined as a parameter or have a secret manager referenced", [key]),
 	}
 }
-

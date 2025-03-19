@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'enabled' should be defined and set to 'true'",
 		"keyActualValue": "Attribute 'enabled' is not defined",
-		"searchLine": common_lib.build_search_line(["resources", name, "properties","logPublishingOptions", index, "logType"], []),
+		"searchLine": common_lib.build_search_line(["resources", name, "properties", "logPublishingOptions", index, "logType"], []),
 	}
 }
 

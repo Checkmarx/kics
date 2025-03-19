@@ -28,7 +28,7 @@ hasInstall(cmd) {
 containsCommand(cmds) {
 	count(cmds.Value) > 1
 	not hasInstall(cmds.Value)
-	regex.match("\\b(ps|shutdown|service|free|top|kill|mount|ifconfig|nano|vim)\\b", cmds.Value[_])
+	regex.match(`\b(ps|shutdown|service|free|top|kill|mount|ifconfig|nano|vim)\b`, cmds.Value[_])
 }
 
 containsCommand(cmds) {
@@ -38,7 +38,7 @@ containsCommand(cmds) {
 
 	some i
 	not hasInstall(commandsList[i])
-	regex.match("\\b(ps|shutdown|service|free|top|kill|mount|ifconfig|nano|vim)\\b ", commandsList[i])
+	regex.match(`\b(ps|shutdown|service|free|top|kill|mount|ifconfig|nano|vim)\b `, commandsList[i])
 }
 
 containsCommand(cmds) {
@@ -48,5 +48,5 @@ containsCommand(cmds) {
 
 	some i
 	not hasInstall(commandsList[i])
-	regex.match("^\\b(ps|shutdown|service|free|top|kill|mount|ifconfig|nano|vim)\\b$", commandsList[i])
+	regex.match(`^\b(ps|shutdown|service|free|top|kill|mount|ifconfig|nano|vim)\b$`, commandsList[i])
 }

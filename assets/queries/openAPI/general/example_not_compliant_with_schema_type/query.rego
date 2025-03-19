@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
 
 # policy for examples
 CxPolicy[result] {
@@ -22,8 +22,8 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s.examples.%s", [openapi_lib.concat_path(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.examples.%s' should not be compliant with the schema type", [concat(".", path)]),
-		"keyActualValue": sprintf("%s.examples.%s is not compliant with the schema type", [concat(".", path)]),
+		"keyExpectedValue": sprintf("%s.examples should be compliant with the schema type", [concat(".", path)]),
+		"keyActualValue": sprintf("%s.examples is not compliant with the schema type", [concat(".", path)]),
 		"overrideKey": version,
 	}
 }
@@ -46,7 +46,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s.example", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.example should not be compliant with the schema type", [concat(".", path)]),
+		"keyExpectedValue": sprintf("%s.example should be compliant with the schema type", [concat(".", path)]),
 		"keyActualValue": sprintf("%s.example is not compliant with the schema type", [concat(".", path)]),
 		"overrideKey": version,
 	}
@@ -70,7 +70,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("%s.example", [openapi_lib.concat_path(path)]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.example should not be compliant with the schema type", [openapi_lib.concat_path(path)]),
+		"keyExpectedValue": sprintf("%s.example should be compliant with the schema type", [openapi_lib.concat_path(path)]),
 		"keyActualValue": sprintf("%s.example is not compliant with the schema type", [openapi_lib.concat_path(path)]),
 		"overrideKey": version,
 	}
@@ -90,7 +90,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("definitions.%s.example", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("definitions.%s.example should not be compliant with the schema type", [name]),
+		"keyExpectedValue": sprintf("definitions.%s.example should be compliant with the schema type", [name]),
 		"keyActualValue": sprintf("definitions.%s.example is not compliant with the schema type", [name]),
 		"overrideKey": version,
 	}
@@ -129,15 +129,15 @@ check_number_type(type) {
 # get_ref() - returns the object based on the type (schema, examples). If the object is a ref gets the object from the ref
 get_ref(obj, docs, type, version) = example {
 	not common_lib.valid_key(obj, "$ref")
-	example := obj
+	example = obj
 } else = example {
 	version == "3.0"
 	path := split(substring(obj["$ref"], 2, -1), "/")
-	example := docs.components[type][path[minus(count(path), 1)]]
+	example := docs.components[type][path[count(path) - 1]]
 } else = example {
 	version == "2.0"
 	path := split(substring(obj["$ref"], 2, -1), "/")
-	example := docs[type][path[minus(count(path), 1)]]
+	example := docs[type][path[count(path) - 1]]
 }
 
 # get_properties() - returns properties, type, and fields to compare

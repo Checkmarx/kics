@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resource.document_type == "Session"
 
 	content := common_lib.json_unmarshal(resource.content)
-    not common_lib.valid_key(content, "inputs")
+	not common_lib.valid_key(content, "inputs")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -29,7 +29,7 @@ CxPolicy[result] {
 	resource.document_type == "Session"
 
 	content := common_lib.json_unmarshal(resource.content)
-    not common_lib.valid_key(content.inputs, "kmsKeyId")
+	not common_lib.valid_key(content.inputs, "kmsKeyId")
 
 	result := {
 		"documentId": input.document[i].id,

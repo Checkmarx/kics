@@ -65,5 +65,5 @@ isTrue(value) {
 
 isTrue(value) {
 	is_boolean(value)
-	value
+	value == true
 }

@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	cluster := input.document[i].resource.aws_elasticache_cluster[name]
@@ -42,7 +42,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'az_mode' is '%s'", [cluster.az_mode]),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [cluster.az_mode]),
-			"after": "cross-az"
+			"after": "cross-az",
 		}),
 		"remediationType": "replacement",
 	}
