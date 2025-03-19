@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-#pod
+# pod
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
@@ -126,7 +126,7 @@ CxPolicy[result] {
 	}
 }
 
-#general
+# general
 resources := {"kubernetes_cron_job", "kubernetes_pod"}
 
 CxPolicy[result] {

@@ -3,10 +3,10 @@ package Cx
 import data.generic.ansible as ansLib
 
 module_to_folder = {
-    "copy": "files",
-    "win_copy": "files",
-    "template": "templates",
-    "win_template": "win_templates",
+	"copy": "files",
+	"win_copy": "files",
+	"template": "templates",
+	"win_template": "win_templates",
 	"ansible.builtin.template": "templates",
 	"ansible.builtin.copy": "files",
 }
@@ -30,4 +30,3 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("%s.src is a relative path", [m]),
 	}
 }
-

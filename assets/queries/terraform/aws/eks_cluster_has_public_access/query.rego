@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_eks_cluster[name]
@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"keyActualValue": "'vpc_config.endpoint_public_access' is equal 'true'",
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}

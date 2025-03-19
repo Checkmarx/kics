@@ -1,17 +1,18 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
 	doc := input.document[i]
 
 	[path, value] := walk(doc)
-	value.type == types[_]
+	value.type in types
 
 	properties := value.properties
-	
+
 	[state_value, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.state)
 	[emailAccountAdmins_value, emailAccountAdmins_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.emailAccountAdmins)
 
@@ -35,12 +36,12 @@ CxPolicy[result] {
 	doc := input.document[i]
 
 	[path, value] := walk(doc)
-	value.type == types[_]
+	value.type in types
 
 	properties := value.properties
 
 	[state_value, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.state)
-	
+
 	lower(state_value) == "enabled"
 	not common_lib.valid_key(properties, "emailAccountAdmins")
 

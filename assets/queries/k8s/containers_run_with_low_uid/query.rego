@@ -23,7 +23,6 @@ checkUser(specInfo, container, containerType, document, metadata) = result {
 
 # pod defines runAsUser and container inherits this setting
 checkUser(specInfo, container, containerType, document, metadata) = result {
-
 	nested_info := common_lib.get_nested_values_info(container, ["securityContext", "runAsUser"])
 	nested_info.valid == false
 

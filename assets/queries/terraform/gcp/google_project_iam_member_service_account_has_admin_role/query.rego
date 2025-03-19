@@ -20,7 +20,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	projectIam := input.document[i].resource.google_project_iam_member[name]
-	inArray(projectIam.members, "serviceAccount:")
+	arrayContains(projectIam.members, "serviceAccount:")
 	contains(projectIam.role, "roles/iam.serviceAccountAdmin")
 
 	result := {
@@ -34,6 +34,6 @@ CxPolicy[result] {
 	}
 }
 
-inArray(array, elem) {
-	startswith(array[_], elem)
+arrayContains(array_obj, elem) {
+	startswith(array_obj[_], elem)
 }

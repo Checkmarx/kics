@@ -39,19 +39,19 @@ isSSHport(allow) = ports {
 	low_bound := to_number(port_bounds[0])
 	high_bound := to_number(port_bounds[1])
 	isInBounds(low_bound, high_bound)
-    ports := allow.ports[j]
+	ports := allow.ports[j]
 }
 
 isSSHport(allow) = ports {
 	contains(allow.ports[j], "-") == false
 	to_number(allow.ports[j]) == 22
-    ports := allow.ports[j]
+	ports := allow.ports[j]
 }
 
 isSSHport(allow) = ports {
 	not allow.ports
-    isTCPorAll(allow.protocol)
-    ports := "0-65535"
+	isTCPorAll(allow.protocol)
+	ports := "0-65535"
 }
 
 isTCPorAll(protocol) {

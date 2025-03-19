@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.azureresourcemanager as arm_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	types := ["configurations", "Microsoft.DBforPostgreSQL/servers/configurations"]
@@ -13,10 +14,10 @@ CxPolicy[result] {
 	childrenArr := arm_lib.get_children(doc, value, path)
 
 	children := childrenArr[c].value
-	children.type == types[_]
+	children.type in types
 	endswith(children.name, "connection_throttling")
 
-	[c_value, c_type]:= arm_lib.getDefaultValueFromParametersIfPresent(doc, children.properties.value)
+	[c_value, c_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, children.properties.value)
 
 	lower(c_value) != "on"
 
