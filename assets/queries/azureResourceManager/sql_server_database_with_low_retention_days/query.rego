@@ -1,7 +1,8 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 types := ["Microsoft.Sql/servers/databases/auditingSettings", "auditingSettings"]
 
@@ -10,7 +11,7 @@ CxPolicy[result] {
 
 	[path, value] = walk(doc)
 
-	value.type == types[_]
+	value.type in types
 	properties := value.properties
 	[val, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.state)
 	lower(val) == "enabled"
@@ -33,7 +34,7 @@ CxPolicy[result] {
 
 	[path, value] = walk(doc)
 
-	value.type == types[_]
+	value.type in types
 	properties := value.properties
 	[val, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, properties.state)
 	lower(val) == "enabled"

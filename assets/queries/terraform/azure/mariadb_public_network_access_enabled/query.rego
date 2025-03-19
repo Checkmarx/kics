@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_mariadb_server[%s].public_network_access_enabled' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'azurerm_mariadb_server[%s].public_network_access_enabled' is undefined or null", [name]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_mariadb_server" ,name], []),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_mariadb_server", name], []),
 		"remediation": "public_network_access_enabled = true",
 		"remediationType": "addition",
 	}
@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_mariadb_server", name, "public_network_access_enabled"], []),
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}

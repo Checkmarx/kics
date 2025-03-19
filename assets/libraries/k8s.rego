@@ -1,6 +1,7 @@
 package generic.k8s
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 getSpecInfo(document) = specInfo { # this one can be also used for the result
 	templates := {"job_template", "jobTemplate"}
@@ -24,7 +25,6 @@ checkKindWithKnative(doc, listKinds, knativeKinds) {
 	contains(doc.apiVersion, "knative")
 	doc.kind == knativeKinds[i]
 }
-
 
 hasFlag(container, flag) {
 	common_lib.inArray(container.command, flag)
@@ -56,7 +56,7 @@ hasFlagWithValue(container, flag, value) {
 
 hasValue(values, value) {
 	splittedValues := split(values, ",")
-	splittedValues[_] == value
+	value in splittedValues
 }
 
 startAndEndWithFlag(container, flag, ext) {
@@ -82,21 +82,21 @@ hasFlagEqualOrGreaterThanValue(container, flag, value) {
 	to_number(flag_value) >= value
 }
 
-hasFlagBetweenValues(container, flag, higher, lower) {
+hasFlagBetweenValues(container, flag, upperBound, lowerBound) {
 	command := container.command
 	startswith(command[a], flag)
 	value := split(command[a], "=")[1]
-	betweenValues(value, higher, lower)
+	betweenValues(value, upperBound, lowerBound)
 } else {
 	args := container.args
 	startswith(args[a], flag)
 	value := split(args[a], "=")[1]
-	betweenValues(value, higher, lower)
+	betweenValues(value, upperBound, lowerBound)
 }
 
-betweenValues(value, higher, lower) {
-	to_number(value) > higher
-	to_number(value) < lower
+betweenValues(value, upperBound, lowerBound) {
+	to_number(value) > upperBound
+	to_number(value) < lowerBound
 }
 
 # Valid K8s/Knative Kinds that support podSpec or PodSpecTemplate

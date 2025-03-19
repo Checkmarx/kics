@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties.metadata.items[%d]", [resource.name, j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'metadata.items[%d]'.value should be true", [j]),
-		"keyActualValue": sprintf("'metadata.items[%d]'.value is false", [j]), 
+		"keyActualValue": sprintf("'metadata.items[%d]'.value is false", [j]),
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "metadata", "items", j, "value"], []),
 	}
 }

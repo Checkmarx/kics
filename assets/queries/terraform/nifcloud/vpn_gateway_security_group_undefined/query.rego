@@ -1,10 +1,9 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
 	vpnGateway := input.document[i].resource.nifcloud_vpn_gateway[name]
 	not common_lib.valid_key(vpnGateway, "security_group")
 

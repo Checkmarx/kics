@@ -8,9 +8,8 @@ CxPolicy[result] {
 	resource.type == "aws:elasticache:Cluster"
 
 	resource.properties.engine == "memcached"
-	resource.properties.numCacheNodes >1
+	resource.properties.numCacheNodes > 1
 	not common_lib.valid_key(resource.properties, "azMode")
-
 
 	result := {
 		"documentId": input.document[i].id,
@@ -29,7 +28,7 @@ CxPolicy[result] {
 	resource.type == "aws:elasticache:Cluster"
 
 	resource.properties.engine == "memcached"
-	resource.properties.numCacheNodes >1
+	resource.properties.numCacheNodes > 1
 	resource.properties.azMode != "cross-az"
 
 	result := {

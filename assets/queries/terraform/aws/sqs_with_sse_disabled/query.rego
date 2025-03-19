@@ -6,12 +6,10 @@ import data.generic.terraform as tf_lib
 ## two ways to activated SSE : kms_master_key_id OR sqs_managed_sse_enabled
 ## https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue#server-side-encryption-sse
 sse_activated(obj) {
-    common_lib.valid_key(obj, "kms_master_key_id")
+	common_lib.valid_key(obj, "kms_master_key_id")
 } else {
-    common_lib.valid_key(obj, "sqs_managed_sse_enabled")
-} else = false {
-	true
-}
+	common_lib.valid_key(obj, "sqs_managed_sse_enabled")
+} else = false
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_sqs_queue[name]

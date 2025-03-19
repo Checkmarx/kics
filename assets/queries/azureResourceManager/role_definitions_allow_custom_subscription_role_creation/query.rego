@@ -8,7 +8,7 @@ CxPolicy[result] {
 
 	value.type == "Microsoft.Authorization/roleDefinitions"
 
-	regex.match("/$|/subscriptions/[\\w\\d-]+$|\\[subscription\\(\\)\\.id\\]", value.properties.assignableScopes[a]) == true
+	regex.match(`/$|/subscriptions/[\w\d-]+$|\[subscription\(\)\.id\]`, value.properties.assignableScopes[a]) == true
 
 	allows_custom_roles_creation(value.properties.permissions[x].actions)
 

@@ -1,14 +1,14 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::S3::Bucket"
 
 	Properties := resource.Properties
-	not common_lib.valid_key(Properties, "PublicAccessBlockConfiguration") 
+	not common_lib.valid_key(Properties, "PublicAccessBlockConfiguration")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -27,7 +27,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::S3::Bucket"
 
 	PublicAccessBlockConfiguration := resource.Properties.PublicAccessBlockConfiguration
-	not common_lib.valid_key(PublicAccessBlockConfiguration, "BlockPublicPolicy") 
+	not common_lib.valid_key(PublicAccessBlockConfiguration, "BlockPublicPolicy")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -46,7 +46,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::S3::Bucket"
 
 	PublicAccessBlockConfiguration := resource.Properties.PublicAccessBlockConfiguration
-	PublicAccessBlockConfiguration.BlockPublicPolicy == false 
+	PublicAccessBlockConfiguration.BlockPublicPolicy == false
 
 	result := {
 		"documentId": input.document[i].id,

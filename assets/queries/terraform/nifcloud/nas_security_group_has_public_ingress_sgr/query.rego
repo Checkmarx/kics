@@ -1,10 +1,9 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
 	nasSecurityGroupRule := input.document[i].resource.nifcloud_nas_security_group[name]
 	cidr := split(getRules(nasSecurityGroupRule.rule)[_].cidr_ip, "/")
 	to_number(cidr[1]) < 1
@@ -20,8 +19,8 @@ CxPolicy[result] {
 	}
 }
 
-getRules (rule) = output {
-	not is_array(rule) 
+getRules(rule) = output {
+	not is_array(rule)
 	output := [rule]
 } else = output {
 	output := rule

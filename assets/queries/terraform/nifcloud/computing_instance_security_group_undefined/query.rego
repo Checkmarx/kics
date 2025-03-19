@@ -1,12 +1,11 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
 	instance := input.document[i].resource.nifcloud_instance[name]
-    not common_lib.valid_key(instance, "security_group")
+	not common_lib.valid_key(instance, "security_group")
 
 	result := {
 		"documentId": input.document[i].id,
