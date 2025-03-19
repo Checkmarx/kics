@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"keyActualValue": "One of 'aws_ebs_volume.encrypted' is 'false'",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as commonLib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as commonLib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]

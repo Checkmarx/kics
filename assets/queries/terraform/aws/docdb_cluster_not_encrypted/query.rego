@@ -30,13 +30,13 @@ CxPolicy[result] {
 		"resourceType": "aws_docdb_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_docdb_cluster[{{%s}}].storage_encrypted", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_docdb_cluster", name,"storage_encrypted"], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_docdb_cluster", name, "storage_encrypted"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_docdb_cluster.storage_encrypted should be set to true",
 		"keyActualValue": "aws_docdb_cluster.storage_encrypted is set to false",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

@@ -22,7 +22,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
 	resource.Properties.LoadBalancers
-	check_size(resource.Properties.LoadBalancers)
+	check_array_size(resource.Properties.LoadBalancers)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -35,7 +35,7 @@ CxPolicy[result] {
 	}
 }
 
-check_size(array) {
-	is_array(array)
-	count(array) == 0
+check_array_size(array_obj) {
+	is_array(array_obj)
+	count(array_obj) == 0
 }
