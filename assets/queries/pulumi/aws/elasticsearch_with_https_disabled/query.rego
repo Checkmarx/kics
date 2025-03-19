@@ -17,6 +17,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resources[%s].properties.domainEndpointOptions.enforceHTTPS should be set to 'true'", [name]),
 		"keyActualValue": sprintf("resources[%s].properties.domainEndpointOptions.enforceHTTPS is set to 'false'", [name]),
-		"searchLine": common_lib.build_search_line(["resources", name, "properties","domainEndpointOptions","enforceHTTPS"], []),
+		"searchLine": common_lib.build_search_line(["resources", name, "properties", "domainEndpointOptions", "enforceHTTPS"], []),
 	}
 }

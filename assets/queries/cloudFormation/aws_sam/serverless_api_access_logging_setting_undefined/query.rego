@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 info := {"AWS::Serverless::HttpApi": "AccessLogSettings", "AWS::Serverless::Api": "AccessLogSetting"}
 

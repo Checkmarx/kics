@@ -6,8 +6,8 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_ros_stack[name]
 
-    not common_lib.valid_key(resource, "template_body")
-    not common_lib.valid_key(resource, "template_url")
+	not common_lib.valid_key(resource, "template_body")
+	not common_lib.valid_key(resource, "template_url")
 
 	result := {
 		"documentId": input.document[i].id,
