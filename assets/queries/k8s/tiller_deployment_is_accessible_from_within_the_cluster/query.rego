@@ -52,7 +52,7 @@ CxPolicy[result] {
 	}
 }
 
-#template container
+# template container
 CxPolicy[result] {
 	document := input.document[i]
 

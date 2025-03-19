@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_organizations_organization", name, "feature_set"], []),
 		"remediation": json.marshal({
 			"before": "CONSOLIDATED_BILLING",
-			"after": "ALL"
+			"after": "ALL",
 		}),
 		"remediationType": "replacement",
 	}

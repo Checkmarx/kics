@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	searchKey := getCidrBlock(group)
 
-	splitted := regex.split("{{|}}", searchKey)
+	splitted := regex.split(`{{|}}`, searchKey)
 	errorPath := substring(splitted[0], 0, count(splitted[0]) - 1)
 	errorValue := splitted[1]
 

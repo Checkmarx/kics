@@ -40,6 +40,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.IamAuthEnabled should be set to true", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.IamAuthEnabled is undefined", [name]),
-		"searchLine": common_lib.build_search_line(path, [name,"Properties"]),
+		"searchLine": common_lib.build_search_line(path, [name, "Properties"]),
 	}
 }

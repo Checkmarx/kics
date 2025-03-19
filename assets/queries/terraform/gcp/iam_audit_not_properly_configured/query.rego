@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_project_iam_audit_config[name]
@@ -41,7 +42,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_project_iam_audit_config[name]
-	audit_log_config = resource.audit_log_config[_]
+	some audit_log_config in resource.audit_log_config
 
 	exempted_members = audit_log_config.exempted_members
 	count(exempted_members) != 0

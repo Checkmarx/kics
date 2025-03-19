@@ -3,8 +3,8 @@ package Cx
 import data.generic.terraform as tf_lib
 
 waf_resources := [
-    "aws_wafv2_web_acl_association",
-    "aws_wafregional_web_acl_association",
+	"aws_wafv2_web_acl_association",
+	"aws_wafregional_web_acl_association",
 ]
 
 CxPolicy[result] {

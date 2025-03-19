@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -25,7 +25,7 @@ has_waf_associated(stage) {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::WAFv2::WebACLAssociation"
 
-    contains(resource.Properties.ResourceArn, "arn:aws:apigateway:")
-    associatedStage := split(resource.Properties.ResourceArn, "/")
-    associatedStage[4] == stage
+	contains(resource.Properties.ResourceArn, "arn:aws:apigateway:")
+	associatedStage := split(resource.Properties.ResourceArn, "/")
+	associatedStage[4] == stage
 }

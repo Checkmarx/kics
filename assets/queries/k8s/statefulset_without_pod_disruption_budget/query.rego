@@ -23,10 +23,8 @@ hasPodDisruptionBudget(statefulset) = result {
 	pdb := input.document[j]
 	pdb.kind == "PodDisruptionBudget"
 	result := containsLabel(pdb, statefulset.spec.selector.matchLabels)
-} else = false {
-	true
-}
+} else = false
 
-containsLabel(array, label) {
-	array.spec.selector.matchLabels[_] == label[_]
+containsLabel(array_obj, targetLabel) {
+	array_obj.spec.selector.matchLabels[_] == targetLabel[_]
 }

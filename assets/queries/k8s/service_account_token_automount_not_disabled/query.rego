@@ -4,7 +4,8 @@ import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
 
 knativeKinds := ["Configuration", "Service", "Revision", "ContainerSource"]
-listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob" ]
+
+listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob"]
 
 CxPolicy[result] {
 	document := input.document[i]

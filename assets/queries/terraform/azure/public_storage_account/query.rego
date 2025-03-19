@@ -84,7 +84,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_storage_account", name, "allow_blob_public_access"], []),
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}

@@ -83,8 +83,8 @@ isTCPorUDP(protocol) = is {
 	is := upper(protocol) != "ICMP"
 }
 
-inbound_direction(resource){
+inbound_direction(resource) {
 	upper(resource.direction) == "INBOUND"
-}else{
-	not commonLib.valid_key(resource,"direction")
+} else {
+	not commonLib.valid_key(resource, "direction")
 }

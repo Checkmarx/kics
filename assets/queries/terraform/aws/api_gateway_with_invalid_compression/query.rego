@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("Attribute 'minimum_compression_size' is %d", [resource.minimum_compression_size]),
 		"remediation": json.marshal({
 			"before": sprintf("%d", [resource.minimum_compression_size]),
-			"after": "0"
+			"after": "0",
 		}),
 		"remediationType": "replacement",
 	}

@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
-	modules := {"community.aws.cloudformation_stack_set",}
+	modules := {"community.aws.cloudformation_stack_set"}
 	cloudformation_stack_set := task[modules[m]]
 	ansLib.checkState(cloudformation_stack_set)
 
@@ -30,7 +30,7 @@ CxPolicy[result] {
 
 	common_lib.valid_key(cloudformation_stack_set, "purge_stacks")
 
-    cloudformation_stack_set.purge_stacks
+	cloudformation_stack_set.purge_stacks
 
 	result := {
 		"documentId": id,

@@ -1,10 +1,9 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
 	elb_listener := input.document[i].resource.nifcloud_elb_listener[name]
 
 	elbRef := getElbNetworkInterface(input.document[i].resource, elb_listener.elb_id)
@@ -25,13 +24,13 @@ CxPolicy[result] {
 	}
 }
 
-getElbNetworkInterface (resource, interfaceRef) = output {
+getElbNetworkInterface(resource, interfaceRef) = output {
 	interfaceName := split(interfaceRef, ".")[1]
 	output := resource.nifcloud_elb[interfaceName]
 }
 
-getNetworkInterfaces (networkInterface) = output {
-	not is_array(networkInterface) 
+getNetworkInterfaces(networkInterface) = output {
+	not is_array(networkInterface)
 	output := [networkInterface]
 } else = output {
 	output := networkInterface

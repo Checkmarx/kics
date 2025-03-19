@@ -5,7 +5,7 @@ import data.generic.terraform as tf_lib
 
 checkedFields = {
 	"enabled",
-	"mfa_delete"
+	"mfa_delete",
 }
 
 # version before TF AWS 4.0
@@ -49,7 +49,7 @@ CxPolicy[result] {
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
 
 	not common_lib.valid_key(module, "lifecycle_rule")
-	not common_lib.valid_key(module[keyToCheck],  checkedFields[c])
+	not common_lib.valid_key(module[keyToCheck], checkedFields[c])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -128,7 +128,6 @@ CxPolicy[result] {
 
 # version after TF AWS 4.0
 CxPolicy[result] {
-	
 	input.document[_].resource.aws_s3_bucket[bucketName]
 
 	not tf_lib.has_target_resource(bucketName, "aws_s3_bucket_lifecycle_configuration")
