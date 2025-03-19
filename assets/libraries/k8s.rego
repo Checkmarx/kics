@@ -25,7 +25,6 @@ checkKindWithKnative(doc, listKinds, knativeKinds) {
 	doc.kind == knativeKinds[i]
 }
 
-
 hasFlag(container, flag) {
 	common_lib.inArray(container.command, flag)
 } else {

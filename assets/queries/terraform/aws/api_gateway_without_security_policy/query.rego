@@ -37,8 +37,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("aws_api_gateway_domain_name[%s].security_policy should be set to TLS_1_2", [name]),
 		"keyActualValue": sprintf("aws_api_gateway_domain_name[%s].security_policy is set to %s", [name, resource.security_policy]),
 		"remediation": json.marshal({
-			"before": sprintf("%s",[resource.security_policy]),
-			"after": "TLS_1_2"
+			"before": sprintf("%s", [resource.security_policy]),
+			"after": "TLS_1_2",
 		}),
 		"remediationType": "replacement",
 	}

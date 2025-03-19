@@ -42,7 +42,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", loadBalancer, name, "enable_deletion_protection"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -85,7 +85,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["module", name, "enable_deletion_protection"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

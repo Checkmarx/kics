@@ -37,4 +37,3 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "versioning", "enabled"], []),
 	}
 }
-
