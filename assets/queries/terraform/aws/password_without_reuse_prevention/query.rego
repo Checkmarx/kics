@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"keyActualValue": "'password_reuse_prevention' is lower than 24",
 		"remediation": json.marshal({
 			"before": sprintf("%d", [rp]),
-			"after": "24"
+			"after": "24",
 		}),
 		"remediationType": "replacement",
 	}

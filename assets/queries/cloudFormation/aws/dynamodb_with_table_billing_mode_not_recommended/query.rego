@@ -20,6 +20,6 @@ CxPolicy[result] {
 	}
 }
 
-containsBilling(array, elem) {
-	lower(array[_]) == lower(elem)
+containsBilling(array_obj, elem) {
+	lower(array_obj[_]) == lower(elem)
 }

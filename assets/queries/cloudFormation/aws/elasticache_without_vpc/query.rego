@@ -1,14 +1,14 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
-	properties := resource.Properties
 	resource.Type = "AWS::ElastiCache::CacheCluster"
 
+	properties := resource.Properties
 	not common_lib.valid_key(properties, "CacheSubnetGroupName")
 
 	result := {

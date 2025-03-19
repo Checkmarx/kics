@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId should be defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId is undefined", [name]),
 	}
-} 
+}
 
 CxPolicy[result] {
 	docs := input.document[i]
@@ -43,4 +43,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId should be properly defined", [distributionConfig.WebACLId]),
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.WebACLId contains invalid value", [distributionConfig.WebACLId]),
 	}
-} 
+}

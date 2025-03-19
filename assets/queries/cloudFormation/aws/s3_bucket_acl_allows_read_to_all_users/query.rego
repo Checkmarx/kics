@@ -4,10 +4,12 @@ import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	docs := input.document[i]
+
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
-	properties := resource.Properties
 	resource.Type == "AWS::S3::Bucket"
+
+	properties := resource.Properties
 	properties.AccessControl == "PublicRead"
 
 	result := {

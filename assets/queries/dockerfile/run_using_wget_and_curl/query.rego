@@ -26,7 +26,7 @@ getWget(cmd) = wget {
 
 	commandsList = dockerLib.getCommands(cmd.Value[0])
 
-	wget := [x | instruction := commandsList[i]; not contains(instruction, "install "); regex.match("^( )*wget", instruction) == true; x := cmd.Original]
+	wget := [x | instruction := commandsList[i]; not contains(instruction, "install "); regex.match(`^( )*wget`, instruction) == true; x := cmd.Original]
 }
 
 getWget(cmd) = wget {
@@ -44,7 +44,7 @@ getCurl(cmd) = curl {
 
 	commandsList = dockerLib.getCommands(cmd.Value[0])
 
-	curl := [x | instruction := commandsList[i]; not contains(instruction, "install "); regex.match("^( )*curl", instruction) == true; x := cmd.Original]
+	curl := [x | instruction := commandsList[i]; not contains(instruction, "install "); regex.match(`^( )*curl`, instruction) == true; x := cmd.Original]
 }
 
 getCurl(cmd) = curl {

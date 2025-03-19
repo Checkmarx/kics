@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
 	types := {"ingress", "egress"}
 	resourceType := resource[types[y]]
-    not is_array(resourceType)
+	not is_array(resourceType)
 	not common_lib.valid_key(resourceType, "description")
 
 	result := {
@@ -26,8 +26,8 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
 	types := {"ingress", "egress"}
 	resourceType := resource[types[y]]
-    is_array(resourceType)
-    currentResource := resourceType[resourceIndex]
+	is_array(resourceType)
+	currentResource := resourceType[resourceIndex]
 	not common_lib.valid_key(currentResource, "description")
 
 	result := {

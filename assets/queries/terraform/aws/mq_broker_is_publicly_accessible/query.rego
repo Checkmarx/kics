@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	broker := input.document[i].resource.aws_mq_broker[name]
@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"keyActualValue": "'publicly_accessible' is set to true",
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}

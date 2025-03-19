@@ -18,12 +18,11 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name, "publicly_accessibled"], []),
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}
 }
-
 
 CxPolicy[result] {
 	module := input.document[i].module[name]
@@ -41,7 +40,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["module", name, "publicly_accessible"], []),
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}

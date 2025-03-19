@@ -35,10 +35,10 @@ CxPolicy[result] {
 	properties := resource.Properties
 	paramName := properties.OauthToken
 	count(paramName) >= 50
-	defaultToken := paramName
 	common_lib.valid_key(document, "Parameters")
 	not common_lib.valid_key(document.Parameters, paramName)
 
+	defaultToken := paramName
 	regex.match(`[A-Za-z0-9\-\._~\+\/]+=*`, defaultToken)
 	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
@@ -58,12 +58,13 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::Amplify::App"
 
+	not common_lib.valid_key(document, "Parameters")
+
 	properties := resource.Properties
 	paramName := properties.OauthToken
-	not common_lib.valid_key(document, "Parameters")
 	count(paramName) >= 50
-	defaultToken := paramName
 
+	defaultToken := paramName
 	regex.match(`[A-Za-z0-9\-\._~\+\/]+=*`, defaultToken)
 	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 

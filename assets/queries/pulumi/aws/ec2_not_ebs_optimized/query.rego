@@ -1,4 +1,4 @@
-	package Cx
+package Cx
 
 import data.generic.common as common_lib
 import data.generic.pulumi as plm_lib
@@ -7,10 +7,8 @@ CxPolicy[result] {
 	resource := input.document[i].resources[name]
 	resource.type == "aws:ec2:Instance"
 
-
 	not common_lib.is_aws_ebs_optimized_by_default(resource.properties.instanceType)
 	not common_lib.valid_key(resource.properties, "ebsOptimized")
-
 
 	result := {
 		"documentId": input.document[i].id,

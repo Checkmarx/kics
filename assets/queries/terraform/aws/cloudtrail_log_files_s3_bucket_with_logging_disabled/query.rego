@@ -4,7 +4,6 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
 	cloudtrail := input.document[_].resource.aws_cloudtrail[name]
 	s3BucketName := split(cloudtrail.s3_bucket_name, ".")[1]
 	bucket := input.document[i].resource.aws_s3_bucket[s3BucketName]
@@ -24,12 +23,12 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-
 	logs := input.document[_].resource.aws_cloudtrail[name]
 	s3BucketName := split(logs.s3_bucket_name, ".")[1]
 	doc := input.document[i].module[moduleName]
-	keyToCheck := common_lib.get_module_equivalent_key("aws", doc.source, "aws_s3_bucket", "logging")
 	doc.bucket == s3BucketName
+
+	keyToCheck := common_lib.get_module_equivalent_key("aws", doc.source, "aws_s3_bucket", "logging")
 	not common_lib.valid_key(doc, keyToCheck)
 
 	result := {

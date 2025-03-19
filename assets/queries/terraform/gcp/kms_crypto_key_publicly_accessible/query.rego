@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	kmsPolicy := input.document[i].resource.google_kms_crypto_key_iam_policy[name]
@@ -29,9 +30,8 @@ publicly_accessible(policyName) {
 	check_member(policy.binding, options[_])
 }
 
-
 check_member(attribute, search) {
-	attribute.members[_] == search
+	search in attribute.members
 } else {
 	attribute.member == search
 }

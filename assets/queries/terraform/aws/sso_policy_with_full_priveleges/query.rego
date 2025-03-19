@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_ssoadmin_permission_set_inline_policy[name]
 
 	policy := common_lib.json_unmarshal(resource.inline_policy)
-		st := common_lib.get_statement(policy)
+	st := common_lib.get_statement(policy)
 	statement := st[_]
 
 	common_lib.is_allow_effect(statement)

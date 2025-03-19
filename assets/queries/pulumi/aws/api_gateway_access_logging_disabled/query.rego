@@ -2,12 +2,13 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.pulumi as plm_lib
+import future.keywords.in
 
-valid_types := ["aws:apigateway:Stage","aws:apigatewayv2:Stage"]
+valid_types := ["aws:apigateway:Stage", "aws:apigatewayv2:Stage"]
 
 CxPolicy[result] {
 	resource := input.document[i].resources[name]
-	resource.type == valid_types[_]
+	resource.type in valid_types
 
 	not common_lib.valid_key(resource.properties, "accessLogSettings")
 

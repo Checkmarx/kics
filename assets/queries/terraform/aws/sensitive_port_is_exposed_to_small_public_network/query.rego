@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as commonLib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
@@ -10,10 +10,13 @@ CxPolicy[result] {
 	portNumber = port
 	portName = portContent
 	protocol := tf_lib.getProtocolList(resource.ingress.protocol)[_]
-
-	isSmallPublicNetwork(resource)
-	tf_lib.containsPort(resource.ingress, portNumber)
 	isTCPorUDP(protocol)
+
+	is_small_net := isSmallPublicNetwork(resource)
+	is_small_net
+
+	port_contains := tf_lib.containsPort(resource.ingress, portNumber)
+	port_contains
 
 	result := {
 		"documentId": input.document[i].id,
