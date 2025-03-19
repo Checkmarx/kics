@@ -6,10 +6,10 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.google_project_iam_policy[name]
 
-	policyName := split(resource.policy_data,".")[2]
+	policyName := split(resource.policy_data, ".")[2]
 	policy := input.document[_].data.google_iam_policy[policyName]
 
-    count({x | binding = policy.binding[x]; binding.role == "roles/cloudkms.admin"; has_cryptokey_roles_in_use(policy, binding.members)}) != 0
+	count({x | binding = policy.binding[x]; binding.role == "roles/cloudkms.admin"; has_cryptokey_roles_in_use(policy, binding.members)}) != 0
 
 	result := {
 		"documentId": input.document[i].id,
@@ -23,10 +23,9 @@ CxPolicy[result] {
 	}
 }
 
-
 has_cryptokey_roles_in_use(policy, targetMembers) {
 	roles := {"roles/cloudkms.cryptoKeyDecrypter", "roles/cloudkms.cryptoKeyEncrypter", "roles/cloudkms.cryptoKeyEncrypterDecrypter"}
 	binding := policy.binding[_]
-    binding.role == roles[_]
-    binding.members[_] == targetMembers[_]
+	binding.role == roles[_]
+	binding.members[_] == targetMembers[_]
 }

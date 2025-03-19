@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_storage_account", name, "min_tls_version"], []),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [storage.min_tls_version]),
-			"after": "TLS1_2"
+			"after": "TLS1_2",
 		}),
 		"remediationType": "replacement",
 	}

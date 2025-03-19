@@ -42,7 +42,6 @@ CxPolicy[result] {
 	}
 }
 
-
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
 
@@ -60,7 +59,6 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_db_instance", name], []),
 	}
 }
-
 
 CxPolicy[result] {
 	module := input.document[i].module[name]

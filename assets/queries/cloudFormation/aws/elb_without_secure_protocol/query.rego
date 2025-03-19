@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -24,7 +24,6 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "Listeners", idx], [protocol]),
 	}
 }
-
 
 is_secure(listener, protocol) {
 	secureProtocols := {"SSL", "HTTPS"}
