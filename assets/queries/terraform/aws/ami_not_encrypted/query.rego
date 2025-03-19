@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	ami := input.document[i].resource.aws_ami[name]
@@ -12,13 +12,13 @@ CxPolicy[result] {
 		"resourceType": "aws_ami",
 		"resourceName": tf_lib.get_resource_name(ami, name),
 		"searchKey": sprintf("aws_ami[%s].ebs_block_device.encrypted", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_ami", name,"ebs_block_device","encrypted"], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_ami", name, "ebs_block_device", "encrypted"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "One of 'rule.ebs_block_device.encrypted' should be 'true'",
 		"keyActualValue": "One of 'rule.ebs_block_device.encrypted' is not 'true'",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"resourceType": "aws_ami",
 		"resourceName": tf_lib.get_resource_name(ami, name),
 		"searchKey": sprintf("aws_ami[%s].ebs_block_device", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_ami", name,"ebs_block_device"], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_ami", name, "ebs_block_device"], []),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "One of 'rule.ebs_block_device.encrypted' should be 'true'",
 		"keyActualValue": "'rule.ebs_block_device' is undefined",

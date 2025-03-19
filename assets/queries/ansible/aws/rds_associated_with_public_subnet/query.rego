@@ -49,7 +49,6 @@ unrestricted_cidr(sb) {
 	sb.ipv6_cidr == "::/0"
 }
 
-
 is_public(subnets) {
 	subnet := subnets[_]
 	subnetNameUnclean := split(subnet, ".")[0]

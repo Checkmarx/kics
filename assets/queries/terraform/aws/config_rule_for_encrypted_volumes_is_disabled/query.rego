@@ -20,6 +20,4 @@ CxPolicy[result] {
 checkSource(config_rules, expected_source) {
 	source := config_rules[_].source
 	source.source_identifier == expected_source
-} else = false {
-	true
-}
+} else = false

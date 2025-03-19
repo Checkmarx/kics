@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
 
 types := ["Microsoft.Sql/servers/databases/auditingSettings", "auditingSettings"]
 

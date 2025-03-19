@@ -33,25 +33,25 @@ check_encrytion(resource) = enc_status {
 	enc_status := "unencrypted"
 }
 
-get_accessibility(topic_name) = accessibility_status{
- 	iam_binding :=	input.document[i].resource.google_pubsub_topic_iam_binding[_]
-	topicRefArray := split(iam_binding.topic, ".")
-	topicRefArray[1] == topic_name
-	iam_binding.role == "roles/pubsub.publisher"
-	checkMembers(iam_binding)
-	accessibility_status :="public"
-} else = accessibility_status {
-	iam_binding :=	input.document[i].resource.google_pubsub_topic_iam_member[_]
+get_accessibility(topic_name) = accessibility_status {
+	iam_binding := input.document[i].resource.google_pubsub_topic_iam_binding[_]
 	topicRefArray := split(iam_binding.topic, ".")
 	topicRefArray[1] == topic_name
 	iam_binding.role == "roles/pubsub.publisher"
 	checkMembers(iam_binding)
 	accessibility_status := "public"
-} else = accessibility_status{
+} else = accessibility_status {
+	iam_binding := input.document[i].resource.google_pubsub_topic_iam_member[_]
+	topicRefArray := split(iam_binding.topic, ".")
+	topicRefArray[1] == topic_name
+	iam_binding.role == "roles/pubsub.publisher"
+	checkMembers(iam_binding)
+	accessibility_status := "public"
+} else = accessibility_status {
 	accessibility_status := "unknown"
-}	
+}
 
-consideredPublicPolicyMembers := {"allUsers","allAuthenticatedUsers"}
+consideredPublicPolicyMembers := {"allUsers", "allAuthenticatedUsers"}
 
 checkMembers(resource) {
 	common_lib.valid_key(resource, "members")

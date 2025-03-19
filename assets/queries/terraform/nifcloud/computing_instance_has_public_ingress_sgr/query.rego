@@ -1,10 +1,9 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
 	securityGroupRule := input.document[i].resource.nifcloud_security_group_rule[name]
 	cidr := split(securityGroupRule.cidr_ip, "/")
 	to_number(cidr[1]) < 1
