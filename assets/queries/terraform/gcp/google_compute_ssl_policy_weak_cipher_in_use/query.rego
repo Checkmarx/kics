@@ -15,10 +15,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_compute_ssl_policy[%s].min_tls_version should be TLS_1_2", [name]),
 		"keyActualValue": sprintf("google_compute_ssl_policy[%s].min_tls_version is not TLS_1_2", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "google_compute_ssl_policy", name],["min_tls_version"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_compute_ssl_policy", name], ["min_tls_version"]),
 		"remediation": json.marshal({
-			"before": sprintf("%s",[sslPolicy.min_tls_version]),
-			"after": "TLS_1_2"
+			"before": sprintf("%s", [sslPolicy.min_tls_version]),
+			"after": "TLS_1_2",
 		}),
 		"remediationType": "replacement",
 	}
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("google_compute_ssl_policy[%s].min_tls_version should be TLS_1_2", [name]),
 		"keyActualValue": sprintf("google_compute_ssl_policy[%s].min_tls_version is undefined", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "google_compute_ssl_policy", name],[]),
+		"searchLine": common_lib.build_search_line(["resource", "google_compute_ssl_policy", name], []),
 		"remediation": "min_tls_version = \"TLS_1_2\"",
 		"remediationType": "addition",
 	}

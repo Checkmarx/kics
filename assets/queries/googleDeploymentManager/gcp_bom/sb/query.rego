@@ -33,24 +33,24 @@ check_encrytion(properties) = enc_status {
 	enc_status := "unencrypted"
 }
 
-consideredPublicPolicyMembers := {"allUsers","allAuthenticatedUsers"}
+consideredPublicPolicyMembers := {"allUsers", "allAuthenticatedUsers"}
 
-get_accessibility(bucket_res) = accessibility_status{
+get_accessibility(bucket_res) = accessibility_status {
 	access_control := input.document[_].resources[_]
-    type := lower(access_control.type) 
+	type := lower(access_control.type)
 	type == "storage.v1.bucketaccesscontrol"
- 	ac_properties := access_control.properties
-	ac_properties.bucket == bucket_res.name	
-	ac_properties.entity == consideredPublicPolicyMembers[_]	
+	ac_properties := access_control.properties
+	ac_properties.bucket == bucket_res.name
+	ac_properties.entity == consideredPublicPolicyMembers[_]
 	accessibility_status := "public"
-} else = accessibility_status{
+} else = accessibility_status {
 	acl_list := bucket_res.properties.acl
-	acl_list[_].entity == consideredPublicPolicyMembers[_]	
+	acl_list[_].entity == consideredPublicPolicyMembers[_]
 	accessibility_status := "public"
-} else = accessibility_status{
+} else = accessibility_status {
 	def_acl_list := bucket_res.properties.defaultObjectAcl
-	def_acl_list[_].entity == consideredPublicPolicyMembers[_]	
+	def_acl_list[_].entity == consideredPublicPolicyMembers[_]
 	accessibility_status := "public"
-} else = accessibility_status{
+} else = accessibility_status {
 	accessibility_status := "unknown"
 }

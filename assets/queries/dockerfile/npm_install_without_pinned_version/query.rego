@@ -13,7 +13,7 @@ CxPolicy[result] {
 	indexof(currentCmd, installCmd) > -1
 
 	tokens := split(currentCmd, " ")
-    refactor_tokens := [x | x := tokens[_]; x != ""]
+	refactor_tokens := [x | x := tokens[_]; x != ""]
 
 	token := refactor_tokens[_]
 

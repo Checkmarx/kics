@@ -33,27 +33,27 @@ check_encrytion(resource) = enc_status {
 	enc_status := "unencrypted"
 }
 
-consideredPublicPolicyMembers := {"allUsers","allAuthenticatedUsers"}
+consideredPublicPolicyMembers := {"allUsers", "allAuthenticatedUsers"}
 
-get_accessibility(bucket_name) = accessibility_status{
- 	access_control :=	input.document[i].resource.google_storage_bucket_access_control[_]
+get_accessibility(bucket_name) = accessibility_status {
+	access_control := input.document[i].resource.google_storage_bucket_access_control[_]
 	bucketRefArray := split(access_control.bucket, ".")
 	bucketRefArray[1] == bucket_name
-	access_control.entity == consideredPublicPolicyMembers[_]	
-	accessibility_status :="public"
-} else = accessibility_status{
- 	iam_binding :=	input.document[i].resource.google_storage_bucket_iam_binding[_]
+	access_control.entity == consideredPublicPolicyMembers[_]
+	accessibility_status := "public"
+} else = accessibility_status {
+	iam_binding := input.document[i].resource.google_storage_bucket_iam_binding[_]
 	bucketRefArray := split(iam_binding.bucket, ".")
 	bucketRefArray[1] == bucket_name
-	checkMembers(iam_binding)	
-	accessibility_status :="public"
+	checkMembers(iam_binding)
+	accessibility_status := "public"
 } else = accessibility_status {
-	iam_member :=	input.document[i].resource.google_storage_bucket_iam_member[_]
+	iam_member := input.document[i].resource.google_storage_bucket_iam_member[_]
 	bucketRefArray := split(iam_member.bucket, ".")
 	bucketRefArray[1] == bucket_name
 	checkMembers(iam_member)
 	accessibility_status := "public"
-} else = accessibility_status{
+} else = accessibility_status {
 	accessibility_status := "unknown"
 }
 

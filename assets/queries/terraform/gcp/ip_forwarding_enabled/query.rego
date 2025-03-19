@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	dt := input.document[i].resource.google_compute_instance[appserver]
@@ -15,10 +15,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'can_ip_forward' should be set to false or Attribute 'can_ip_forward' should be undefined",
 		"keyActualValue": "Attribute 'can_ip_forward' is true",
-		"searchLine": common_lib.build_search_line(["resource", "google_compute_instance", appserver],["can_ip_forward"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_compute_instance", appserver], ["can_ip_forward"]),
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}

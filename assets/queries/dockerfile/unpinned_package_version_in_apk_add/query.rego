@@ -10,7 +10,7 @@ CxPolicy[result] {
 	commands := resource.Value[0]
 
 	virtual := regex.find_n("\\-\\-virtual\\s.?[a-zA-Z\\-]+\\s", commands, -1)
-	commands_trim = replace(commands, virtual[0],"")
+	commands_trim = replace(commands, virtual[0], "")
 	apk := regex.find_n("apk (-(-)?[a-zA-Z]+ *)*add", commands_trim, -1)
 	apk != null
 
@@ -38,7 +38,7 @@ CxPolicy[result] {
 	commands := resource.Value[0]
 
 	virtual := regex.find_n("\\-t\\s.?[a-zA-Z\\-]+\\s", commands, -1)
-	commands_trim = replace(commands, virtual[0],"")
+	commands_trim = replace(commands, virtual[0], "")
 	apk := regex.find_n("apk (-(-)?[a-zA-Z]+ *)*add", commands_trim, -1)
 	apk != null
 
@@ -89,9 +89,9 @@ CxPolicy[result] {
 	resource := input.document[i].command[name][_]
 	resource.Cmd == "run"
 
-	count(resource.Value) > 1 
+	count(resource.Value) > 1
 
-    dockerLib.arrayContains(resource.Value, {"apk", "add"})
+	dockerLib.arrayContains(resource.Value, {"apk", "add"})
 
 	resource.Value[j] != "apk"
 	resource.Value[j] != "add"
@@ -117,6 +117,6 @@ analyzePackages(j, currentPackage, packages, length) {
 analyzePackages(j, currentPackage, packages, length) {
 	j != length - 1
 	regex.match("^[a-zA-Z]", currentPackage) == true
-	packages[plus(j, 1)] != "-v"
+	packages[j + 1] != "-v"
 	not dockerLib.withVersion(currentPackage)
 }

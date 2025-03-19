@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"keyActualValue": "Attribute 'password_reset_required' is false",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"keyActualValue": "Attribute 'password_length' is smaller than 14",
 		"remediation": json.marshal({
 			"before": sprintf("%d", [resource.password_length]),
-			"after": "15"
+			"after": "15",
 		}),
 		"remediationType": "replacement",
 	}
