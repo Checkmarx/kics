@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_elb", name, "access_logs", "enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -79,7 +79,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheck, "enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

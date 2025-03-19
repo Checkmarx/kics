@@ -40,7 +40,7 @@ CxPolicy[result] {
 		"keyActualValue": "'snapshot_retention_limit' is 0",
 		"remediation": json.marshal({
 			"before": "0",
-			"after": "5"
+			"after": "5",
 		}),
 		"remediationType": "replacement",
 	}

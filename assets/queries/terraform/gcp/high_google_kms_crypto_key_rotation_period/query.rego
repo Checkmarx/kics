@@ -18,8 +18,8 @@ CxPolicy[result] {
 		"keyActualValue": "'google_kms_crypto_key.rotation_period' exceeds 7776000",
 		"searchLine": common_lib.build_search_line(["resource", "google_kms_crypto_key", name, "rotation_period"], []),
 		"remediation": json.marshal({
-			"before": sprintf("%s", [rotationPeriod]) ,
-			"after": "100000"
+			"before": sprintf("%s", [rotationPeriod]),
+			"after": "100000",
 		}),
 		"remediationType": "replacement",
 	}
@@ -28,7 +28,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	cryptoKey := input.document[i].resource.google_kms_crypto_key[name]
 
-	not common_lib.valid_key(cryptoKey,"rotation_period")
+	not common_lib.valid_key(cryptoKey, "rotation_period")
 
 	result := {
 		"documentId": input.document[i].id,

@@ -23,7 +23,7 @@ CxPolicy[result] {
 	}
 }
 
-hasNoStackTags(document){
+hasNoStackTags(document) {
 	provider := document.provider
 	not common_lib.valid_key(provider, "stackTags")
 }

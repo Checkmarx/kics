@@ -3,7 +3,6 @@ package Cx
 import data.generic.ansible as ansLib
 import data.generic.common as common_lib
 
-
 modules := {"azure.azcollection.azure_rm_aks", "azure_rm_aks"}
 
 CxPolicy[result] {
@@ -64,6 +63,4 @@ isValidNetworkPolicy(policy) {
 	policy = "calico"
 } else {
 	policy = "azure"
-} else = false {
-	true
-}
+} else = false

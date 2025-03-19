@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -26,7 +26,7 @@ CxPolicy[result] {
 }
 
 is_last_tls(doc, resource) {
-	[val, _] :=  arm_lib.getDefaultValueFromParametersIfPresent(doc, resource.properties.siteConfig.minTlsVersion)
+	[val, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, resource.properties.siteConfig.minTlsVersion)
 	val == "1.2"
 }
 

@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "3.0"
 	paths := doc.paths[path][oper].servers[n]
 
-	regex.match("^(http:)", paths.url)
+	regex.match(`^(http:)`, paths.url)
 
 	result := {
 		"documentId": doc.id,
