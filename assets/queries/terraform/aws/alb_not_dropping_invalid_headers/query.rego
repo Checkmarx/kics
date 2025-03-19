@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", types[x], m, "drop_invalid_header_fields"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -70,7 +70,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["module", name, keyToCheckDihf], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -103,6 +103,4 @@ check_load_balancer_type(res, lbt) {
 	res[lbt] == "application"
 } else {
 	not common_lib.valid_key(res, lbt)
-} else = false {
-	true
-}
+} else = false

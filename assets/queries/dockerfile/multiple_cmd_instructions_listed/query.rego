@@ -12,7 +12,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, cmdInst[0].Original]),
-		"issueType": "RedundantAttribute", #"MissingAttribute" / "RedundantAttribute"
+		"issueType": "RedundantAttribute", # "MissingAttribute" / "RedundantAttribute"
 		"keyExpectedValue": "There should be only one CMD instruction",
 		"keyActualValue": sprintf("There are %d CMD instructions", [count(cmdInst)]),
 	}

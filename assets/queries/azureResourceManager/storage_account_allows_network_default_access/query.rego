@@ -1,16 +1,16 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts"
-	resourceName := value.name
-
 	to_number(split(value.apiVersion, "-")[0]) < 2017
+
+	resourceName := value.name
 
 	result := {
 		"documentId": input.document[i].id,

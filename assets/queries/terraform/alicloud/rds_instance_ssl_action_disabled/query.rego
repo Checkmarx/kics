@@ -8,7 +8,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_db_instance[name]
 	resource.ssl_action == "Close"
 
-
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_db_instance",
@@ -19,10 +18,10 @@ CxPolicy[result] {
 		"keyActualValue": "'ssl_action' value is 'Close'",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name, "ssl_action"], []),
 		"remediation": json.marshal({
-            "before": "Close",
-            "after": "Open"
-        }),
-        "remediationType": "replacement",	
+			"before": "Close",
+			"after": "Open",
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -41,6 +40,6 @@ CxPolicy[result] {
 		"keyActualValue": "'ssl_action' is not defined",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name], []),
 		"remediation": "ssl_action = \"Open\"",
-        "remediationType": "addition",	
+		"remediationType": "addition",
 	}
 }

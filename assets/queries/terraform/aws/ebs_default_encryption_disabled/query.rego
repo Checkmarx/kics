@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ebs_encryption_by_default[name]
@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"keyActualValue": "'aws_ebs_encryption_by_default.encrypted' is false",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

@@ -7,7 +7,7 @@ CxPolicy [ result ] {
 	result := {
                 "documentId": 		input.document[i].id,
                 "searchKey": 	    sprintf("%s", [resource]),
-                "issueType":		"IncorrectValue",  #"MissingAttribute" / "RedundantAttribute"
+                "issueType":		"IncorrectValue",  # "MissingAttribute" / "RedundantAttribute"
                 "keyExpectedValue": "<RESOURCE>",
                 "keyActualValue": 	resource
               }

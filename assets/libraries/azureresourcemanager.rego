@@ -2,20 +2,20 @@ package generic.azureresourcemanager
 
 # gets the network security group properties for two types of resource ('Microsoft.Network/networkSecurityGroups' and 'Microsoft.Network/networkSecurityGroups/securityRules')
 get_sg_info(value) = typeInfo {
-    value.type == "Microsoft.Network/networkSecurityGroups/securityRules"
+	value.type == "Microsoft.Network/networkSecurityGroups/securityRules"
 	typeInfo := {
-		"type": value.type, 
-		"properties": value.properties, 
+		"type": value.type,
+		"properties": value.properties,
 		"path": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
-		"sl": ["properties"]
-   }   
+		"sl": ["properties"],
+	}
 } else = typeInfo {
 	value.type == "securityRules"
 	typeInfo := {
-		"type": value.type, 
-		"properties": value.properties, 
+		"type": value.type,
+		"properties": value.properties,
 		"path": "resources.type={{securityRules}}.properties",
-		"sl": ["properties"]
+		"sl": ["properties"],
 	}
 }
 
@@ -84,11 +84,10 @@ isParameterReference(valueToCheck) = parameterName {
 	parameterName := trim_right(trim_left(trim_left(valueToCheck, "[parameters"), "('"), "')]")
 }
 
-
-isDisabledOrUndefined(doc, resource, parametersPath){
+isDisabledOrUndefined(doc, resource, parametersPath) {
 	object.get(resource, split(parametersPath, "."), "not defined") == "not defined"
 } else {
-	value := object.get(resource, split(parametersPath, "."),"")
+	value := object.get(resource, split(parametersPath, "."), "")
 	[check, _] := getDefaultValueFromParametersIfPresent(doc, value)
 	check == false
 }

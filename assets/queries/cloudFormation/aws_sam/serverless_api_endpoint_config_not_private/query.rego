@@ -1,7 +1,8 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -60,5 +61,5 @@ CxPolicy[result] {
 }
 
 contains_private(types) {
-	types[_] == "PRIVATE"
+	"PRIVATE" in types
 }

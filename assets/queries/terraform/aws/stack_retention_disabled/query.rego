@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_cloudformation_stack_set_instance[%s].retain_stack is false", [name]),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

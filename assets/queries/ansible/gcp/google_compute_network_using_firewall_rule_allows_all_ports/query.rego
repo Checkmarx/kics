@@ -18,7 +18,6 @@ CxPolicy[result] {
 	ans_lib.checkState(computeNetwork)
 	firewall.network == sprintf("{{ %s }}", [tk.register])
 
-
 	result := {
 		"documentId": id,
 		"resourceType": modulesCompute[m],

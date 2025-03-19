@@ -58,6 +58,4 @@ CxPolicy[result] {
 
 hasAttributeList(resource, attribute) {
 	count(resource[attribute]) > 0
-} else = false {
-	true
-}
+} else = false
