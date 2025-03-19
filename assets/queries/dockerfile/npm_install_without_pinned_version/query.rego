@@ -13,7 +13,7 @@ CxPolicy[result] {
 	indexof(currentCmd, installCmd) > -1
 
 	tokens := split(currentCmd, " ")
-    refactor_tokens := [x | x := tokens[_]; x != ""]
+	refactor_tokens := [x | x := tokens[_]; x != ""]
 
 	token := refactor_tokens[_]
 
@@ -45,10 +45,10 @@ valid_match(token) {
 	scopeEnd := indexof(token, "/")
 	packageID := substring(token, scopeEnd + 1, count(token) - scopeEnd)
 	atIndex := indexof(packageID, "@")
-	atIndex != -1 #package must refer the version or tag
+	atIndex != -1 # package must refer the version or tag
 } else {
 	hasScope := re_match("@.+/.*", token)
 	not hasScope
 	atIndex := indexof(token, "@")
-	atIndex != -1 #package must refer the version or tag
+	atIndex != -1 # package must refer the version or tag
 }

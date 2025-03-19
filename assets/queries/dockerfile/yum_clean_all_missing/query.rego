@@ -4,13 +4,14 @@ import data.generic.dockerfile as dockerLib
 
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
-	dockerLib.check_multi_stage(name, input.document[i].command)
+	is_multi_stage := dockerLib.check_multi_stage(name, input.document[i].command)
+	is_multi_stage
 
 	resource.Cmd == "run"
 
 	command := resource.Value[0]
 
-	output := regex.match("yum (-[a-zA-Z]+ *)*install", command)
+	output := regex.match(`yum (-[a-zA-Z]+ *)*install`, command)
 	output == true
 
 	not containsCleanAfterYum(command)
@@ -25,7 +26,7 @@ CxPolicy[result] {
 }
 
 containsCleanAfterYum(command) {
-	yumInstallCommand := regex.find_n("yum (-[a-zA-Z]+ *)*install", command, -1)
+	yumInstallCommand := regex.find_n(`yum (-[a-zA-Z]+ *)*install`, command, -1)
 
 	install := indexof(command, yumInstallCommand[0])
 	install != -1

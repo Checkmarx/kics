@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' should have '%s' property defined", [fields[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' doesn't have '%s' property defined", [fields[x]]),
 		"searchLine": common_lib.build_search_line(path, ["properties"]),
-		"searchValue": sprintf("%s",[fields[x]]),
+		"searchValue": sprintf("%s", [fields[x]]),
 	}
 }
 
@@ -45,6 +45,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' %s should have '%s' property set to true", [type, fields[x]]),
 		"keyActualValue": sprintf("resource with type 'Microsoft.KeyVault/vaults' doesn't have '%s' property set to true", [fields[x]]),
 		"searchLine": common_lib.build_search_line(path, ["properties", fields[x]]),
-		"searchValue": sprintf("%s",[fields[x]]),
+		"searchValue": sprintf("%s", [fields[x]]),
 	}
 }

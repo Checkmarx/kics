@@ -6,7 +6,7 @@ CxPolicy[result] {
 	document := input.document[i]
 	object.get(document, "kind", "undefined") == "Service"
 
-    metadata = document.metadata
+	metadata = document.metadata
 	document.spec.type == "LoadBalancer"
 
 	not common_lib.valid_key(metadata, "annotations")
@@ -26,13 +26,13 @@ CxPolicy[result] {
 	document := input.document[i]
 	object.get(document, "kind", "undefined") == "Service"
 
-    metadata = document.metadata
+	metadata = document.metadata
 	document.spec.type == "LoadBalancer"
 
 	common_lib.valid_key(metadata, "annotations")
 
-    annotations = metadata.annotations
-    not checkLoadBalancer(annotations)
+	annotations = metadata.annotations
+	not checkLoadBalancer(annotations)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -46,11 +46,11 @@ CxPolicy[result] {
 }
 
 checkLoadBalancer(annotation) {
-    annotation["networking.gke.io/load-balancer-type"] == "Internal"
+	annotation["networking.gke.io/load-balancer-type"] == "Internal"
 }
 
 checkLoadBalancer(annotation) {
-    annotation["cloud.google.com/load-balancer-type"] == "Internal"
+	annotation["cloud.google.com/load-balancer-type"] == "Internal"
 }
 
 checkLoadBalancer(annotation) {

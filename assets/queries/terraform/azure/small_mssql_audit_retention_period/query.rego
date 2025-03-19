@@ -1,13 +1,13 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource_type := ["azurerm_mssql_database", "azurerm_mssql_server"]
 	resource := input.document[i].resource[resource_type[t]][name]
 
-	not common_lib.valid_key(resource.extended_auditing_policy,"retention_in_days")
+	not common_lib.valid_key(resource.extended_auditing_policy, "retention_in_days")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s.extended_auditing_policy.retention_in_days' should be bigger than 90", [name]),
 		"keyActualValue": "'extended_auditing_policy.retention_in_days' is not defined",
-		"searchLine": common_lib.build_search_line(["resource",resource_type[t] ,name, "extended_auditing_policy"], []),
+		"searchLine": common_lib.build_search_line(["resource", resource_type[t], name, "extended_auditing_policy"], []),
 		"remediation": "retention_in_days = 200",
 		"remediationType": "addition",
 	}
@@ -38,10 +38,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.extended_auditing_policy.retention_in_days' should be bigger than 90", [name]),
 		"keyActualValue": sprintf("'extended_auditing_policy.retention_in_days' is %d", [var]),
-		"searchLine": common_lib.build_search_line(["resource",resource_type[t] ,name, "extended_auditing_policy", "retention_in_days"], []),
+		"searchLine": common_lib.build_search_line(["resource", resource_type[t], name, "extended_auditing_policy", "retention_in_days"], []),
 		"remediation": json.marshal({
 			"before": sprintf("%d", [var]),
-			"after": "200"
+			"after": "200",
 		}),
 		"remediationType": "replacement",
 	}

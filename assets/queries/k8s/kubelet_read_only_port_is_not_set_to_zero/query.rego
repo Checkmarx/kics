@@ -11,7 +11,7 @@ CxPolicy[result] {
 	container := specInfo.spec[types[x]][j]
 
 	common_lib.inArray(container.command, "kubelet")
- 	k8sLib.startWithFlag(container, "--read-only-port")
+	k8sLib.startWithFlag(container, "--read-only-port")
 	not k8sLib.hasFlag(container, "--read-only-port=0")
 
 	result := {
