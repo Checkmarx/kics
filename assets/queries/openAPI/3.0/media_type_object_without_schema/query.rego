@@ -12,6 +12,8 @@ CxPolicy[result] {
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
 	contentElement := content[x]
+	common_lib.valid_key(contentElement, "type")
+	contentElement.type == "object"
 	not common_lib.valid_key(contentElement, "schema")
 
 	result := {
@@ -31,6 +33,8 @@ CxPolicy[result] {
 	content = value.content
 	openapi_lib.is_operation(path) == {}
 	contentElement := content[x]
+	common_lib.valid_key(contentElement, "type")
+	contentElement.type == "object"
 	not common_lib.valid_key(contentElement, "schema")
 
 	result := {
