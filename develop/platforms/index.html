@@ -2421,9 +2421,6 @@ This line is a comment that Kics will look for when trying to decypher the varia
 <p>By adding the flag <code>--terraform-vars-path</code> to the scan command it is possible to input the path of the variables fiel that will be used for all the files in the project.</p>
 <p><strong><em>NOTE:</em></strong> when using both options the flag option will take precedence and therefore define the variables.</p>
 <h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
-<h4 id="ansible_1">Ansible<a class="headerlink" href="#ansible_1" title="Permanent link">&para;</a></h4>
-<p>At the moment, KICS does not support a robust approach to identifying Ansible samples. The identification of these samples is done through exclusion. When a YAML sample is not a CloudFormation, Google Deployment Manager, Helm, Kubernetes or OpenAPI sample, KICS recognize it as Ansible.</p>
-<p>Thus, KICS recognize other YAML samples (that are not Ansible) as Ansible, e.g. GitHub Actions samples. However, you can ignore these samples by writing <code>#kics-scan ignore</code> on the top of the file. For more details, please read this <a href="https://github.com/Checkmarx/kics/blob/25b6b703e924ed42067d9ab7772536864aee900b/docs/running-kics.md#using-commands-on-scanned-files-as-comments">documentation</a>.</p>
 <h4 id="terraform_1">Terraform<a class="headerlink" href="#terraform_1" title="Permanent link">&para;</a></h4>
 <p>Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_launch_configuration&quot;</span><span class="w"> </span><span class="nv">&quot;example&quot;</span><span class="w"> </span><span class="p">{</span>
@@ -2470,7 +2467,7 @@ This line is a comment that Kics will look for when trying to decypher the varia
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      &copy; 2024 Checkmarx Ltd. All Rights Reserved.
+      &copy; 2025 Checkmarx Ltd. All Rights Reserved.
     </div>
   
   
