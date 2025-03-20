@@ -215,12 +215,6 @@ By adding the flag `--terraform-vars-path` to the scan command it is possible to
 
 ### Limitations
 
-#### Ansible
-
-At the moment, KICS does not support a robust approach to identifying Ansible samples. The identification of these samples is done through exclusion. When a YAML sample is not a CloudFormation, Google Deployment Manager, Helm, Kubernetes or OpenAPI sample, KICS recognize it as Ansible.
-
-Thus, KICS recognize other YAML samples (that are not Ansible) as Ansible, e.g. GitHub Actions samples. However, you can ignore these samples by writing `#kics-scan ignore` on the top of the file. For more details, please read this [documentation](https://github.com/Checkmarx/kics/blob/25b6b703e924ed42067d9ab7772536864aee900b/docs/running-kics.md#using-commands-on-scanned-files-as-comments).
-
 #### Terraform
 
 Although KICS support variables and interpolations, KICS does not support functions and enviroment variables. In case of variables used as function parameters, it will parse as wrapped expression, so the following function call:
