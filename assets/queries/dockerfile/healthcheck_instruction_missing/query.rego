@@ -1,12 +1,14 @@
 package Cx
 
+import future.keywords.in
+
 import data.generic.dockerfile as dockerLib
 
 CxPolicy[result] {
 	resource := input.document[i].command[name]
 	dockerLib.check_multi_stage(name, input.document[i].command)
 
-	not contains(resource, "healthcheck")
+    not "healthcheck" in [cmd | cmd := resource[_].Cmd]
 
 	result := {
 		"documentId": input.document[i].id,
@@ -15,8 +17,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "Dockerfile should contain instruction 'HEALTHCHECK'",
 		"keyActualValue": "Dockerfile doesn't contain instruction 'HEALTHCHECK'",
 	}
-}
-
-contains(cmd, elem) {
-	cmd[_].Cmd = elem
 }

@@ -1,5 +1,7 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
 	document := input.document[i]
 
@@ -7,7 +9,7 @@ CxPolicy[result] {
 
 	volumeClaims := document.spec.volumeClaimTemplates
 
-	vClaimsWitReadWriteOnce := [vClaims | contains(volumeClaims[v].spec.accessModes, "ReadWriteOnce") == true; vClaims := volumeClaims[v].metadata.name]
+	vClaimsWitReadWriteOnce := [vClaims | "ReadWriteOnce" in volumeClaims[v].spec.accessModes; vClaims := volumeClaims[v].metadata.name]
 	count(vClaimsWitReadWriteOnce) == 0
 
 	metadata := document.metadata
@@ -30,7 +32,7 @@ CxPolicy[result] {
 
 	volumeClaims := document.spec.volumeClaimTemplates
 
-	vClaimsWitReadWriteOnce := [vClaims | contains(volumeClaims[v].spec.accessModes, "ReadWriteOnce") == true; vClaims := volumeClaims[v].metadata.name]
+	vClaimsWitReadWriteOnce := [vClaims | "ReadWriteOnce" in volumeClaims[v].spec.accessModes; vClaims := volumeClaims[v].metadata.name]
 	count(vClaimsWitReadWriteOnce) > 1
 
 	metadata := document.metadata
@@ -44,8 +46,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("metadata.name=%s.spec.volumeClaimTemplates has only one template with a 'ReadWriteOnce'", [metadata.name]),
 		"keyActualValue": sprintf("metadata.name=%s.spec.volumeClaimTemplates has multiple templates with 'ReadWriteOnce'", [metadata.name]),
 	}
-}
-
-contains(array, string) {
-	array[_] == string
 }
