@@ -1149,7 +1149,7 @@ resource "google_container_cluster" "primary1" {
 </details>
 <details><summary>Positive test num. 41 - yaml file</summary>
 
-```yaml hl_lines="20"
+```yaml hl_lines="20 21"
 version: '3.9'
 services:
   vulnerable_node:
@@ -1170,6 +1170,8 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD=string
+
 ```
 </details>
 <details><summary>Positive test num. 42 - tf file</summary>
@@ -2714,7 +2716,80 @@ jobs:
           echo "RESTAPI_MGT_APPSEC=${restapi_mgt_appsec}" >> $GITHUB_ENV
 ```
 </details>
-<details><summary>Negative test num. 42 - dockerfile file</summary>
+<details><summary>Negative test num. 42 - tf file</summary>
+
+```tf
+provider "azurerm" {
+  features {}
+}
+
+# Example of using an existing Key Vault and secret
+data "azurerm_key_vault" "example" {
+  name                = "your-key-vault-name"
+  resource_group_name = "your-resource-group"
+}
+
+data "azurerm_key_vault_secret" "LinuxVmPassword" {
+  name          = "your-secret-name"
+  key_vault_id  = data.azurerm_key_vault.example.id
+}
+
+resource "azurerm_linux_virtual_machine" "example_vm" {
+  name                = "example-vm"
+  resource_group_name = "your-resource-group"
+  location            = "your-location"
+  size                = "Standard_DS1_v2"
+  admin_username      = "adminuser"
+  admin_password      = data.azurerm_key_vault_secret.LinuxVmPassword.value
+
+  network_interface_ids = [
+    # Your network interface ID
+  ]
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "18.04-LTS"
+    version   = "latest"
+  }
+}
+
+output "vm_password" {
+  value     = data.azurerm_key_vault_secret.LinuxVmPassword.value
+  sensitive = true
+}
+
+```
+</details>
+<details><summary>Negative test num. 43 - tf file</summary>
+
+```tf
+data "template_file" "sci_integration_app_properties_secret_template" {
+  template = file(join("", ["/secrets/sci-integration-app", var.resource_identifier_shorthand], ".json"))
+
+  vars = {
+    ayreshirerarran_password   = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["ayreshirerarran_password"]
+    lanark_password            = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["lanark_password"]
+    tayside_password           = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["tayside_password"]
+    glasgow_password           = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["glasgow_password"]
+    grampian_password          = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["grampian_password"]
+    highland_password          = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["highland_password"]
+    westernisles_password      = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["westernisles_password"]
+    dumfriesandgalloway_password = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["dumfriesandgalloway_password"]
+    forthvalley_password       = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["forthvalley_password"]
+    borders_password           = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["borders_password"]
+    lothian_password           = data.aws_kms_secrets.sci_app_kms_secrets.plaintext["lothian_password"]
+  }
+}
+
+```
+</details>
+<details><summary>Negative test num. 44 - dockerfile file</summary>
 
 ```dockerfile
 FROM baseImage
@@ -2723,7 +2798,7 @@ RUN command
 
 ```
 </details>
-<details><summary>Negative test num. 43 - json file</summary>
+<details><summary>Negative test num. 45 - json file</summary>
 
 ```json
 {
@@ -2743,7 +2818,7 @@ RUN command
 
 ```
 </details>
-<details><summary>Negative test num. 44 - tf file</summary>
+<details><summary>Negative test num. 46 - tf file</summary>
 
 ```tf
 resource "google_container_cluster" "primary3" {
@@ -2768,7 +2843,7 @@ resource "google_container_cluster" "primary3" {
 
 ```
 </details>
-<details><summary>Negative test num. 45 - tf file</summary>
+<details><summary>Negative test num. 47 - tf file</summary>
 
 ```tf
 resource "google_container_cluster" "primary5" {
@@ -2793,7 +2868,7 @@ resource "google_container_cluster" "primary5" {
 
 ```
 </details>
-<details><summary>Negative test num. 46 - tf file</summary>
+<details><summary>Negative test num. 48 - tf file</summary>
 
 ```tf
 resource "google_secret_manager_secret" "secret-basic" {
