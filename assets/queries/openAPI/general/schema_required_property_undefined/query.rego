@@ -1,6 +1,8 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.every
+import future.keywords.in
 
 CxPolicy[result] {
 	docs := input.document[i]
@@ -33,7 +35,10 @@ CxPolicy[result] {
 
 	requiredProperty := schema.required[_]
 
-	all([property | property != requiredProperty; _ := schema.properties[property]])
+	every p in ([property | property != requiredProperty; _ := schema.properties[property]]) {
+	    p
+	}
+
 	newPath := [path[_], schemaName]
 	result := {
 		"documentId": docs.id,

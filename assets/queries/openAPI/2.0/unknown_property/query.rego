@@ -11,10 +11,10 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 
 	field := path[0]
+	not known_swagger_object_field(field)
 	every condition in [field != "id", field != "file"] {
 		condition
 	}
-	not known_swagger_object_field(field)
 
 	result := {
 		"documentId": doc.id,

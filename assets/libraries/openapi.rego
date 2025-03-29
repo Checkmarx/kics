@@ -1,7 +1,7 @@
 package generic.openapi
 
-import future.keywords.in
 import future.keywords.every
+import future.keywords.in
 
 check_openapi(doc) = version {
 	object.get(doc, "openapi", "undefined") != "undefined"
@@ -50,8 +50,8 @@ incorrect_ref_swagger(reference, obj_type) {
 
 content_allowed(operation, code) {
 	operation != "head"
-	every condition in ([code != "204", code != "304"]) {
-	    condition
+	every condition in [code != "204", code != "304"] {
+		condition
 	}
 }
 

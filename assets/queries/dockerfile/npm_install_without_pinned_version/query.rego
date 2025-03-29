@@ -50,5 +50,5 @@ valid_match(token) {
 	hasScope := regex.match(`@.+/.*`, token)
 	not hasScope
 	atIndex := indexof(token, "@")
-	atIndex != -1 #package must refer the version or tag
+	atIndex != -1 # package must refer the version or tag
 }

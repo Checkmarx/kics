@@ -11,8 +11,8 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 
 	field := path[0]
-	every condition in ([field != "id", field != "file"]) {
-	    condition
+	every condition in [field != "id", field != "file"] {
+		condition
 	}
 	not known_openapi_object_field(field)
 
