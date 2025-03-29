@@ -30,9 +30,14 @@ concat_path(path) = concatenated {
 }
 
 resolve_path(pathItem) = resolved {
-	some char in [".", "=", "/"]
-	contains(pathItem, char)
+	contains(pathItem, ".")
 	resolved := sprintf("{{%s}}", [pathItem])
+}else {
+    contains(pathItem, "=")
+    resolved := sprintf("{{%s}}", [pathItem])
+} else {
+    contains(pathItem, "/")
+    resolved := sprintf("{{%s}}", [pathItem])
 } else = resolved {
 	is_number(pathItem)
 	resolved := ""
