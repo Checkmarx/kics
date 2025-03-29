@@ -29,6 +29,4 @@ getInlinePolicy(role) = policy {
 	is_object(role)
 	input.document[_].Resources[role.Ref].Type == "AWS::IAM::Policy"
 	policy := role.Ref
-} else = "undefined" {
-	true
-}
+} else = "undefined"

@@ -7,13 +7,13 @@ types := {"initContainers", "containers"}
 
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
-
 	specInfo = k8sLib.getSpecInfo(document)
 	container := specInfo.spec[types[x]][_]
 
 	capabilities := container.securityContext.capabilities
 	not common_lib.compareArrays(capabilities.drop, ["ALL", "NET_RAW"])
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": document.id,
@@ -28,7 +28,6 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
 
 	specInfo = k8sLib.getSpecInfo(document)
 	container := specInfo.spec[types[x]][c]
@@ -36,6 +35,8 @@ CxPolicy[result] {
 	containerCtx := object.get(container, "securityContext", {})
 	containerCapabilitiesCtx := object.get(containerCtx, "capabilities", {})
 	not common_lib.valid_key(containerCapabilitiesCtx, "drop")
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": document.id,
@@ -45,6 +46,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.capabilities.drop should be defined", [metadata.name, specInfo.path, types[x], container.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.capabilities.drop is undefined", [metadata.name, specInfo.path, types[x], container.name]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], c, "securityContext", "capabilities"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], c, "securityContext", "capabilities"]),
 	}
 }

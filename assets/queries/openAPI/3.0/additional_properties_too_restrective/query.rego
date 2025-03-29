@@ -1,9 +1,9 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
 
-#This rules verifies anyOf and oneOf
+# This rules verifies anyOf and oneOf
 CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
@@ -22,7 +22,7 @@ CxPolicy[result] {
 	}
 }
 
-#This rules verifies allOf
+# This rules verifies allOf
 CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"

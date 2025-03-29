@@ -30,8 +30,9 @@ CxPolicy[result] {
 	resource := Resources[name]
 	resource.Type == "AWS::CloudFront::Distribution"
 	properties := resource.Properties
-	protocolVer := properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion
 	not cf_lib.isCloudFormationFalse(properties.DistributionConfig.Enabled)
+
+	protocolVer := properties.DistributionConfig.ViewerCertificate.MinimumProtocolVersion
 	not common_lib.is_recommended_tls(protocolVer)
 
 	result := {

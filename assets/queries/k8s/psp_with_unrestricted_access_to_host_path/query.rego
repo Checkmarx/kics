@@ -4,10 +4,10 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
 	document.kind == "PodSecurityPolicy"
-
 	not common_lib.valid_key(document.spec, "allowedHostPaths")
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,17 +17,18 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'spec.allowedHostPaths' should be defined and not null",
 		"keyActualValue": "'spec.allowedHostPaths' is undefined or null",
-		"searchLine": common_lib.build_search_line(["spec"], [])
+		"searchLine": common_lib.build_search_line(["spec"], []),
 	}
 }
 
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
 	document.kind == "PodSecurityPolicy"
 
 	hostPath := document.spec.allowedHostPaths[idx]
 	not common_lib.valid_key(hostPath, "readOnly")
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
@@ -37,17 +38,18 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'spec.allowedHostPaths[%d].readOnly' should be set to true", [idx]),
 		"keyActualValue": sprintf("'spec.allowedHostPaths[%d].readOnly' is undefined or null", [idx]),
-		"searchLine": common_lib.build_search_line(["spec", "allowedHostPaths"], [idx])
+		"searchLine": common_lib.build_search_line(["spec", "allowedHostPaths"], [idx]),
 	}
 }
 
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
 	document.kind == "PodSecurityPolicy"
 
 	hostPath := document.spec.allowedHostPaths[idx]
 	hostPath.readOnly != true
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
@@ -57,7 +59,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'spec.allowedHostPaths[%d].readOnly' should be set to true", [idx]),
 		"keyActualValue": sprintf("'spec.allowedHostPaths[%d].readOnly' is set to false", [idx]),
-		"searchLine": common_lib.build_search_line(["spec", "allowedHostPaths", idx], ["readOnly"])
+		"searchLine": common_lib.build_search_line(["spec", "allowedHostPaths", idx], ["readOnly"]),
 	}
 }
-

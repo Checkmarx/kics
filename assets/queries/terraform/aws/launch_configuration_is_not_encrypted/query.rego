@@ -44,7 +44,7 @@ CxPolicy[result] {
 	module := input.document[i].module[name]
 
 	[path, value] := walk(module)
-    value[block][idx].encrypted == false
+	value[block][idx].encrypted == false
 
 	common_lib.get_module_equivalent_key("aws", module.source, "aws_launch_configuration", block)
 
@@ -85,7 +85,6 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["module", name, block], [idx]),
 	}
 }
-
 
 valid_block(block) {
 	not contains(block, "ephemeral")

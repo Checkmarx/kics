@@ -6,7 +6,7 @@ CxPolicy[result] {
 	doc := input.document[id].all
 	doc.children.tower.hosts[ip]
 
-    not common_lib.isPrivateIP(ip)
+	not common_lib.isPrivateIP(ip)
 
 	result := {
 		"documentId": input.document[id].id,

@@ -82,9 +82,9 @@ CxPolicy[result] {
 # seccomp annotations until Kubernetes v1.19, deprecated and removed with v1.25
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
-
 	[path, value] = walk(document)
+
+	metadata := document.metadata
 	annotations := value.metadata.annotations
 
 	seccompAnnotation := "seccomp.security.alpha.kubernetes.io/defaultProfileName"
