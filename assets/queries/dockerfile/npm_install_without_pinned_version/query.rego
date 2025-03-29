@@ -39,7 +39,7 @@ valid_match(token) {
 } else {
 	startswith(token, "-")
 } else {
-	hasScope := re_match("@.+/.*", token)
+	hasScope := regex.match(`@.+/.*`, token)
 	hasScope
 
 	scopeEnd := indexof(token, "/")
@@ -47,7 +47,8 @@ valid_match(token) {
 	atIndex := indexof(packageID, "@")
 	atIndex != -1 # package must refer the version or tag
 } else {
-	hasScope := re_match("@.+/.*", token)
+	hasScope := re_
+	regex.match(`@.+/.*`, token)
 	not hasScope
 	atIndex := indexof(token, "@")
 	atIndex != -1 # package must refer the version or tag

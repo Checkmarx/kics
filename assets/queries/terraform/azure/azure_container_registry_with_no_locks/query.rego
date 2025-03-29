@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resourceLock := input.document[i].resource.azurerm_management_lock[k]
 
 	scopeSplitted := split(resourceLock.scope, ".")
-	not re_match(scopeSplitted[1], name)
+	not regex.match(scopeSplitted[1], name)
 
 	result := {
 		"documentId": input.document[i].id,
