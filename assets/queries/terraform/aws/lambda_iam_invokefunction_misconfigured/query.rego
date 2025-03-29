@@ -42,8 +42,8 @@ check_iam_resource(statement) {
 
 check_iam_action(statement) {
 	some action in statement.actions
-    action == "*"
-    regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, action)
+	action == "*"
+	regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, action)
 } else {
 	any([regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, statement.Actions[_]), statement.Actions[_] == "*"])
 } else {
@@ -55,7 +55,7 @@ check_iam_action(statement) {
 }
 
 check_actions(statement) {
-    some actions in statement.actions
-    actions == "*"
-    regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, actions)
+	some actions in statement.actions
+	actions == "*"
+	regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, actions)
 }
