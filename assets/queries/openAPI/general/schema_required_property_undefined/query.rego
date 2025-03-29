@@ -35,8 +35,8 @@ CxPolicy[result] {
 
 	requiredProperty := schema.required[_]
 
-	every p in ([property | property != requiredProperty; _ := schema.properties[property]]) {
-	    p
+	every p in [property | property != requiredProperty; _ := schema.properties[property]] {
+		p
 	}
 
 	newPath := [path[_], schemaName]

@@ -11,10 +11,10 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 
 	field := path[0]
-	every condition in [field != "id", field != "file"] {
+	not known_openapi_object_field(field)
+    every condition in [field != "id", field != "file"] {
 		condition
 	}
-	not known_openapi_object_field(field)
 
 	result := {
 		"documentId": doc.id,
@@ -63,7 +63,9 @@ CxPolicy[result] {
 	index := {"array": 1, "simple": 1, "map": 2}
 	path[count(path) - index[objType]] == obj
 
-	any([objType == "simple", objType == "map"])
+	objType_allowed(objType) {
+        objType in ["simple", "map"]
+    }
 	value[field]
 	not known_field(objValues, field)
 
