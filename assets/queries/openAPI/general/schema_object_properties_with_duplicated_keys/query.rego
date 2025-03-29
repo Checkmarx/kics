@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 # components schemas map
 CxPolicy[result] {
@@ -86,5 +87,9 @@ get_properties(schema) = properties {
 filter_paths(path) {
 	count(path) == 0
 } else {
-	any([contains(path[_], "allOf"), contains(path[_], "additionalProperties")])
+	some segment in path
+	contains(segment, "allOf")
+} else {
+	some segment in path
+	contains(segment, "additionalProperties")
 }

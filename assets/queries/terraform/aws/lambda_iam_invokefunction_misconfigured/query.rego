@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 # CxPolicy for resource iam policy
 CxPolicy[result] {
@@ -40,7 +41,7 @@ check_iam_resource(statement) {
 }
 
 check_iam_action(statement) {
-	any([regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, statement.actions[_]), statement.actions[_] == "*"])
+	iam_action_allowed(statement)
 } else {
 	any([regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, statement.Actions[_]), statement.Actions[_] == "*"])
 } else {
@@ -49,4 +50,11 @@ check_iam_action(statement) {
 } else {
 	is_string(statement.Action)
 	any([regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, statement.Action), statement.Action == "*"])
+}
+
+# any([regex.match((^lambda:InvokeFunction$|^lambda:[*]$), statement.actions[_]), statement.actions[_] == "*"])
+iam_action_allowed(statement) {
+	some action in statement.actions
+	action == "*"
+	regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, action)
 }
