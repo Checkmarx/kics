@@ -17,7 +17,7 @@ rules:
       level: ignore
     deprecated-builtin:
       # https://docs.styra.com/regal/rules/bugs/deprecated-builtin
-      level: ignore
+      level: warning
     leaked-internal-reference:
       # https://docs.styra.com/regal/rules/bugs/leaked-internal-reference
       level: warning
