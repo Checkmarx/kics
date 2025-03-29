@@ -199,6 +199,4 @@ CxPolicy[result] {
 matchLabels(templateLabels, selectorLabels) {
 	some Key
 	templateLabels[Key] == selectorLabels[Key]
-} else = false {
-	true
-}
+} else = false

@@ -29,7 +29,7 @@ CxPolicy[result] {
 			"default",
 			volumes[j].hostPath.path,
 		]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j ,"hostPath", "path"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j, "hostPath", "path"]),
 	}
 }
 
@@ -46,7 +46,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path", [metadata.name,specInfo.path, volumes[j].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path", [metadata.name, specInfo.path, volumes[j].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resource name '%s' of kind '%s' in non kube-system namespace '%s' should not have hostPath '%s' mounted", [
 			metadata.name,
@@ -60,7 +60,7 @@ CxPolicy[result] {
 			metadata.namespace,
 			volumes[j].hostPath.path,
 		]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j ,"hostPath", "path"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j, "hostPath", "path"]),
 	}
 }
 

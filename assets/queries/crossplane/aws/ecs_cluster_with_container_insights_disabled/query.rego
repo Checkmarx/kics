@@ -45,7 +45,7 @@ CxPolicy[result] {
 	}
 }
 
-container_insights(settings){
+container_insights(settings) {
 	settings[0].name == "containerInsights"
 	settings[0].value == "enabled"
 }

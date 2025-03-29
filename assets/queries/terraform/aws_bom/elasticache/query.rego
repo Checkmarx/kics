@@ -69,14 +69,16 @@ options := {"security_group_names", "security_group_ids"}
 
 get_accessibility(elasticache) = accessibility {
 	count({
-		x | securityGroupInfo := elasticache[options[_]][x];
+	x |
+		securityGroupInfo := elasticache[options[_]][x]
 		is_unrestricted(securityGroupInfo)
 	}) > 0
 
 	accessibility := "at least one security group associated with the elasticache is unrestricted"
 } else = accessibility {
 	count({
-		x | securityGroupInfo := elasticache[options[_]][x];
+	x |
+		securityGroupInfo := elasticache[options[_]][x]
 		not is_unrestricted(securityGroupInfo)
 	}) == count(elasticache[options[_]])
 

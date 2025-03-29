@@ -1,12 +1,11 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
 	dbInstance := input.document[i].resource.nifcloud_db_instance[name]
-    not common_lib.valid_key(dbInstance, "backup_retention_period")
+	not common_lib.valid_key(dbInstance, "backup_retention_period")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -20,7 +19,6 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-
 	dbInstance := input.document[i].resource.nifcloud_db_instance[name]
 	dbInstance.backup_retention_period < 7
 

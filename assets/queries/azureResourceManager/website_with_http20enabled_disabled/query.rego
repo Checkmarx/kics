@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -53,7 +53,6 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": value.type,
 		"resourceName": value.name,
-		"searchKey": sprintf("%s.name={{%s}}.properties.siteConfig.http20Enabled", [common_lib.concat_path(path), value.name]),
 		"searchKey": "resources.type={{Microsoft.Web/sites}}.properties.siteConfig.http20Enabled",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' %s set to true in siteConfig", [val_type]),

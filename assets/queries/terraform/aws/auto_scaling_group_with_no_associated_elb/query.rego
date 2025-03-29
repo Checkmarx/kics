@@ -81,10 +81,10 @@ CxPolicy[result] {
 	}
 }
 
-has_target_group_arns(resource, key){
+has_target_group_arns(resource, key) {
 	not is_array(resource[key])
 	resource[key] != ""
-} else{
+} else {
 	is_array(resource[key])
 	count(resource[key]) > 0
 }

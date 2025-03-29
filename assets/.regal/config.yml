@@ -1,0 +1,138 @@
+# Since the linting rules will be tackled in separate PRs, we are temporarily ignoring all rules.
+# We will update rule severities as each PR is merged.
+
+rules:
+  bugs:
+    not-equals-in-loop:
+      # https://docs.styra.com/regal/rules/bugs/not-equals-in-loop
+      level: ignore
+    rule-shadows-builtin:
+      # https://docs.styra.com/regal/rules/bugs/rule-shadows-builtin
+      level: ignore #warn
+    var-shadows-builtin:
+      # https://docs.styra.com/regal/rules/bugs/var-shadows-builtin
+      level: ignore
+    unused-output-variable:
+      # https://docs.styra.com/regal/rules/bugs/unused-output-variable
+      level: ignore
+    deprecated-builtin:
+      # https://docs.styra.com/regal/rules/bugs/deprecated-builtin
+      level: ignore
+    leaked-internal-reference:
+      # https://docs.styra.com/regal/rules/bugs/leaked-internal-reference
+      level: ignore
+    sprintf-arguments-mismatch:
+      # https://docs.styra.com/regal/rules/bugs/sprintf-arguments-mismatch
+      level: ignore
+    inconsistent-args:
+      # https://docs.styra.com/regal/rules/bugs/inconsistent-args
+      level: ignore
+    redundant-existence-check:
+      # https://docs.styra.com/regal/rules/bugs/redundant-existence-check
+      level: ignore
+  idiomatic:
+    no-defined-entrypoint:
+      # https://docs.styra.com/regal/rules/idiomatic/no-defined-entrypoint
+      # No single entrypoint for this project
+      level: ignore
+    # temporary
+    non-raw-regex-pattern:
+      # https://docs.styra.com/regal/rules/idiomatic/non-raw-regex-pattern
+      level: ignore #warn
+    use-in-operator:
+      # https://docs.styra.com/regal/rules/idiomatic/use-in-operator
+      level: ignore #warn
+    use-some-for-output-vars:
+      # https://docs.styra.com/regal/rules/idiomatic/use-some-for-output-vars
+      # These would be good to address, but would require a concentrated effort
+      level: ignore
+    custom-has-key-construct:
+      # https://docs.styra.com/regal/rules/idiomatic/custom-has-key-construct
+      level: ignore #warn
+    equals-pattern-matching:
+      # https://docs.styra.com/regal/rules/idiomatic/equals-pattern-matching
+      level: ignore #warn
+    use-contains:
+      # https://docs.styra.com/regal/rules/idiomatic/use-contains
+      level: ignore
+    use-if:
+      # https://docs.styra.com/regal/rules/idiomatic/use-if
+      level: ignore
+    directory-package-mismatch:
+      # https://docs.styra.com/regal/rules/idiomatic/directory-package-mismatch
+      level: ignore
+    custom-in-construct:
+      # https://docs.styra.com/regal/rules/idiomatic/custom-in-construct
+      level: ignore
+  style:
+    avoid-get-and-list-prefix:
+      # https://docs.styra.com/regal/rules/style/avoid-get-and-list-prefix
+      level: ignore
+    external-reference:
+      # https://docs.styra.com/regal/rules/style/external-reference
+      level: ignore
+    file-length:
+      # https://docs.styra.com/regal/rules/style/file-length
+      level: ignore
+    line-length:
+      # https://docs.styra.com/regal/rules/style/line-length
+      level: ignore
+    no-whitespace-comment:
+      # https://docs.styra.com/regal/rules/style/no-whitespace-comment
+      level: ignore #warn
+    opa-fmt:
+      # https://docs.styra.com/regal/rules/style/opa-fmt
+      level: warn
+    prefer-some-in-iteration:
+      # https://docs.styra.com/regal/rules/style/prefer-some-in-iteration
+      # 10000+ violations fixed but way more to go
+      level: ignore
+    prefer-snake-case:
+      # https://docs.styra.com/regal/rules/style/prefer-snake-case
+      level: ignore
+    rule-length:
+      # https://docs.styra.com/regal/rules/style/rule-length
+      level: ignore
+    todo-comment:
+      # https://docs.styra.com/regal/rules/style/todo-comment
+      # only one TODO comment in the codebase to fix this issue
+      level: ignore
+    use-assignment-operator:
+      # https://docs.styra.com/regal/rules/style/use-assignment-operator
+      level: ignore
+    rule-name-repeats-package:
+      # https://docs.styra.com/regal/rules/style/rule-name-repeats-package
+      level: ignore
+    messy-rule:
+      # https://docs.styra.com/regal/rules/style/messy-rule
+      level: ignore
+    comprehension-term-assignment:
+      # https://docs.styra.com/regal/rules/style/comprehension-term-assignment
+      level: ignore
+    pointless-reassignment:
+      # https://docs.styra.com/regal/rules/style/pointless-reassignment
+      level: ignore
+    unconditional-assignment:
+      # https://docs.styra.com/regal/rules/style/unconditional-assignment
+      level: ignore
+    default-over-else:
+      # https://docs.styra.com/regal/rules/style/default-over-else
+      level: ignore
+  imports:
+    use-rego-v1:
+      # https://docs.styra.com/regal/rules/imports/use-rego-v1
+      level: ignore
+    redundant-alias:
+      # https://docs.styra.com/regal/rules/performance/non-loop-expression
+      level: ignore
+    import-after-rule:
+      # https://docs.styra.com/regal/rules/imports/import-after-rule
+      level: ignore
+  performance:
+    non-loop-expression:
+      # https://docs.styra.com/regal/rules/performance/non-loop-expression
+      level: ignore
+    defer-assignment:
+      # https://docs.styra.com/regal/rules/performance/defer-assignment
+      level: ignore
+

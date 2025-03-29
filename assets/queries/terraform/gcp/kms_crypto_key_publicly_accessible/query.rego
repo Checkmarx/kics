@@ -29,7 +29,6 @@ publicly_accessible(policyName) {
 	check_member(policy.binding, options[_])
 }
 
-
 check_member(attribute, search) {
 	attribute.members[_] == search
 } else {

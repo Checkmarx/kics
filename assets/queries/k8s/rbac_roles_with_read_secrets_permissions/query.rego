@@ -21,6 +21,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.rules[%d] should not be granted read access to Secrets objects", [metadata.name, j]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.rules[%d] is granted read access (verbs: %v) to Secrets objects", [metadata.name, j, concat(", ", document.rules[j].verbs)]),
-		"searchLine": common_lib.build_search_line(["rules", j], ["verbs"])
+		"searchLine": common_lib.build_search_line(["rules", j], ["verbs"]),
 	}
 }

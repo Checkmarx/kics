@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::AmazonMQ::Broker"
 	properties := resource.Properties
 
-    properties.PubliclyAccessible
+	properties.PubliclyAccessible
 
 	result := {
 		"documentId": input.document[i].id,

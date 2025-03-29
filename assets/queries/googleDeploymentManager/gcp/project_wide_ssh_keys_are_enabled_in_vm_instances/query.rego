@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'metadata' should be defined and not null",
-		"keyActualValue": "'metadata' is undefined or null", 
+		"keyActualValue": "'metadata' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
 }
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties.metadata.items", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'metadata.items' should have 'block-project-ssh-keys'",
-		"keyActualValue": "'metadata.items' does not have 'block-project-ssh-keys'", 
+		"keyActualValue": "'metadata.items' does not have 'block-project-ssh-keys'",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "metadata", "items"], []),
 	}
 }
@@ -52,7 +52,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties.metadata.items[%d].key", [resource.name, j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'metadata.items[%d].value' should be true", [j]),
-		"keyActualValue": sprintf("'metadata.items[%d].value' is false", [j]), 
+		"keyActualValue": sprintf("'metadata.items[%d].value' is false", [j]),
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "metadata", "items", j, "value"], []),
 	}
 }

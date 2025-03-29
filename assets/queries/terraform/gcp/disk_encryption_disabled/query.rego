@@ -49,5 +49,3 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'google_compute_disk[%s].disk_encryption_key.%s' is not empty or null", [name, key]),
 	}
 }
-
-

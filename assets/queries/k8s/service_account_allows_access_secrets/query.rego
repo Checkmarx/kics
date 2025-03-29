@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.k8s as k8sLib
 import data.generic.common as commonLib
+import data.generic.k8s as k8sLib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -31,7 +31,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("The metadata.name={{%s}}.rules.verbs should not contain the following verbs: [%s]", [metadata.name, rules]),
 		"keyActualValue": sprintf("The metadata.name={{%s}}.rules.verbs contain the following verbs: [%s]", [metadata.name, rules]),
-		"searchLine": commonLib.build_search_line(["rules", resource, "verbs"],[]),
+		"searchLine": commonLib.build_search_line(["rules", resource, "verbs"], []),
 	}
 }
 
