@@ -327,3 +327,7 @@ is_missing_attribute_and_ref(obj, attr) {
 	not valid_key(obj, attr)
 	not valid_key(obj, "$ref")
 }
+
+objType_allowed(objType) {
+    objType in ["simple", "map"]
+}
