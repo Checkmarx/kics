@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"keyActualValue": "The attribute 'node_to_node_encryption' is not set to true",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

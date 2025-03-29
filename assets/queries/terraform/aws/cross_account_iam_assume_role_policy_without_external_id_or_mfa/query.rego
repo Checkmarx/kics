@@ -30,4 +30,3 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_iam_role", name, "assume_role_policy"], []),
 	}
 }
-

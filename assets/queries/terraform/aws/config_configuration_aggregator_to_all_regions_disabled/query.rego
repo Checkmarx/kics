@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_config_configuration_aggregator", name, type, "all_regions"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -27,7 +27,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_config_configuration_aggregator[name]
 	options := {"account_aggregation_source", "organization_aggregation_source"}
-    type := options[o]
+	type := options[o]
 	resourceElement := resource[type]
 
 	not common_lib.valid_key(resourceElement, "all_regions")

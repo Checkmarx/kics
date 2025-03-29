@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	host := doc.host
-	not regex.match("^[^{}/ :\\\\]+(?::\\d+)?$", host)
+	not regex.match(`^[^{}/ :\\]+(?::\d+)?$`, host)
 
 	result := {
 		"documentId": doc.id,

@@ -59,16 +59,16 @@ CxPolicy[result] {
 	]
 
 	elb := loadBalancerList[j]
-	elbType := getELBType(elb.properties)
-	elbSecGroupList := getLinkedSecGroupList(elb.properties, resources)
 
 	securityGroupList = [{"name": key, "properties": secGroup} |
 		secGroup := resources[key]
 		contains(secGroup.Type, "SecurityGroup")
 	]
 
+	elbSecGroupList := getLinkedSecGroupList(elb.properties, resources)
 	secGroup := securityGroupList[k]
 	secGroup.name == elbSecGroupList[l]
+
 	ingress := secGroup.properties.Properties.SecurityGroupIngress[m]
 
 	protocols := getProtocolList(ingress.IpProtocol)
@@ -83,6 +83,8 @@ CxPolicy[result] {
 	portsMap[portRange[idx]]
 	portNumber = portRange[idx]
 	portName := portsMap[portNumber]
+
+	elbType := getELBType(elb.properties)
 
 	##############	Result
 	result := {

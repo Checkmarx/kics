@@ -38,7 +38,7 @@ CxPolicy[result] {
 
 get_name(subnetGroupName) = name {
 	not common_lib.valid_key(subnetGroupName, "Ref")
-	name := subnetGroupName
+	name = subnetGroupName
 } else = name {
 	name := subnetGroupName.Ref
 }

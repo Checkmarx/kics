@@ -35,11 +35,11 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'settings' should have a ClusterSetting named 'containerInsights' which value is 'enabled'",
 		"keyActualValue": "Attribute 'settings' doesn't have a ClusterSetting named 'containerInsights' which value is 'enabled'",
-		"searchLine": common_lib.build_search_line(["resources", name, "properties","settings"], []),
+		"searchLine": common_lib.build_search_line(["resources", name, "properties", "settings"], []),
 	}
 }
 
-containerInsights(settings){
+containerInsights(settings) {
 	settings[0].name == "containerInsights"
 	settings[0].value == "enabled"
 }

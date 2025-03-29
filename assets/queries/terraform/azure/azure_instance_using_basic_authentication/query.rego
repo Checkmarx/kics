@@ -1,13 +1,13 @@
 package Cx
 
-import future.keywords.if
 import data.generic.terraform as tf_lib
+import future.keywords.if
 
 CxPolicy[result] {
 	vm := input.document[i].resource.azurerm_virtual_machine[name]
-    object.get(vm, "os_profile_linux_config", false)
+	object.get(vm, "os_profile_linux_config", false)
 	vm.os_profile_linux_config.disable_password_authentication == false
-    resource_type := "azurerm_virtual_machine"
+	resource_type := "azurerm_virtual_machine"
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource_type,
@@ -22,7 +22,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	vm := input.document[i].resource.azurerm_linux_virtual_machine[name]
 	vm.disable_password_authentication == false
-    resource_type := "azurerm_linux_virtual_machine"
+	resource_type := "azurerm_linux_virtual_machine"
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource_type,

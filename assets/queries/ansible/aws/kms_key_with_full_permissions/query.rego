@@ -3,7 +3,6 @@ package Cx
 import data.generic.ansible as ans_lib
 import data.generic.common as common_lib
 
-
 CxPolicy[result] {
 	task := ans_lib.tasks[id][t]
 	modules := {"community.aws.aws_kms", "aws_kms"}

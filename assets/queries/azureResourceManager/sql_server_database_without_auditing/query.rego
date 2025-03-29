@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.azureresourcemanager as arm_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	types := ["auditingSettings", "Microsoft.Sql/servers/databases/auditingSettings"]
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	[path, value] = walk(doc)
 
-	value.type == dbTypes[_]
+	value.type in dbTypes
 	childrenArr := arm_lib.get_children(doc, value, path)
 
 	count([x |

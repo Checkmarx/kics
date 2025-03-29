@@ -11,7 +11,6 @@ CxPolicy[result] {
 	common_lib.valid_key(function, "environment")
 	not common_lib.valid_key(function, "kmsKeyArn")
 
-
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": sfw_lib.resourceTypeMapping("function", document.provider.name),
@@ -29,7 +28,6 @@ CxPolicy[result] {
 
 	common_lib.valid_key(document.provider, "environment")
 	not hasKMSarnAtProvider(document)
-	
 
 	result := {
 		"documentId": input.document[i].id,
@@ -41,6 +39,6 @@ CxPolicy[result] {
 	}
 }
 
-hasKMSarnAtProvider(doc){
+hasKMSarnAtProvider(doc) {
 	common_lib.valid_key(doc.provider, "kmsKeyArn")
 }

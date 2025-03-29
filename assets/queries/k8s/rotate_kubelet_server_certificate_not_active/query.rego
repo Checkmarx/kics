@@ -7,15 +7,19 @@ commandList = {"kubelet", "kube-controller-manager"}
 
 CxPolicy[result] {
 	resource := input.document[i]
-	metadata := resource.metadata
 	specInfo := k8sLib.getSpecInfo(resource)
 	types := {"initContainers", "containers"}
 	container := specInfo.spec[types[x]][j]
 	command := commandList[_]
 
 	common_lib.inArray(container.command, command)
-	k8sLib.startWithFlag(container,"--feature-gates=")
-	contains_feature(container, "RotateKubeletServerCertificate=false")
+	starts_with_flag := k8sLib.startWithFlag(container, "--feature-gates=")
+	starts_with_flag
+
+	has_feature := contains_feature(container, "RotateKubeletServerCertificate=false")
+	has_feature
+
+	metadata := resource.metadata
 
 	result := {
 		"documentId": input.document[i].id,
@@ -25,15 +29,15 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--feature-gates=RotateKubeletServerCertificate flag should be true",
 		"keyActualValue": "--feature-gates=RotateKubeletServerCertificate flag is false",
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i]
-    resource.kind == "KubeletConfiguration"
-    featureGates := resource.featureGates
-    featureGates.RotateKubeletServerCertificate == false
+	resource.kind == "KubeletConfiguration"
+	featureGates := resource.featureGates
+	featureGates.RotateKubeletServerCertificate == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -46,13 +50,12 @@ CxPolicy[result] {
 	}
 }
 
-
-contains_feature(container, feature){
+contains_feature(container, feature) {
 	contains_in_array(container.command, feature)
 } else {
 	contains_in_array(container.args, feature)
 }
 
 contains_in_array(arr, item) {
-    contains(arr[_], item)
+	contains(arr[_], item)
 }

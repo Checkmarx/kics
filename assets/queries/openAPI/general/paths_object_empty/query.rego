@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -27,6 +27,4 @@ check_paths_object(paths) {
 }
 
 # In yaml an empty object is parsed into null
-check_paths_object(paths) {
-	paths == null
-}
+check_paths_object(null) = true
