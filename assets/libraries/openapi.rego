@@ -329,5 +329,5 @@ is_missing_attribute_and_ref(obj, attr) {
 }
 
 objType_allowed(objType) {
-    objType in ["simple", "map"]
+	objType in ["simple", "map"]
 }

@@ -34,7 +34,7 @@ CxPolicy[result] {
 	schema = value.schemas[schemaName]
 
 	requiredProperty := schema.required[_]
-    all([property | property != requiredProperty; _ := schema.properties[property]])
+	all([property | property != requiredProperty; _ := schema.properties[property]])
 	newPath := [path[_], schemaName]
 	result := {
 		"documentId": docs.id,
