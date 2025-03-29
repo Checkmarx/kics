@@ -1,5 +1,7 @@
 package generic.ansible
 
+import future.keywords.in
+
 # Global variable with all tasks in input
 tasks := TasksPerDocument
 
@@ -33,14 +35,12 @@ getTasksFromBlocks(playbook) = result {
 		not task.block
 		validPath(path)
 	]
-} else = [playbook] {
-	true
-}
+} else = [playbook]
 
 # Validates the path of a nested element inside a block task to assure it's a task
 validPath(path) {
 	count(path) > 1
-	validGroup(path[minus(count(path), 2)])
+	validGroup(path[count(path) - 2])
 }
 
 # Identifies a block task
@@ -89,16 +89,15 @@ allowsPort(allowed, port) {
 	some i
 	contains(allowed.ports[i], "-")
 	port_bounds := split(allowed.ports[i], "-")
-	low := to_number(port_bounds[0])
-	high := to_number(port_bounds[1])
 
+	low := to_number(port_bounds[0])
 	low <= portNumber
+
+	high := to_number(port_bounds[1])
 	high >= portNumber
 } else {
-	allowed.ports[_] == port
-} else = false {
-	true
-}
+	port in allowed.ports
+} else = false
 
 # Checks if a given port is included in a network rule
 isPortInRule(rule, portNumber) {
@@ -112,7 +111,7 @@ isPortInRule(rule, portNumber) {
 }
 
 isPortInRule(rule, portNumber) {
-	rule.ports[_] == portNumber
+	portNumber in rule.ports
 }
 
 isPortInRule(rule, portNumber) {
@@ -149,11 +148,11 @@ isEntireNetwork(cidr) {
 }
 
 installer_modules := [
-	"community.general.apk", "ansible.builtin.apt", "ansible.builtin.apt", "community.general.bundler", "ansible.builtin.dnf", "community.general.easy_install", 
-	"community.general.gem", "community.general.homebrew", "community.general.jenkins_plugin", "community.general.npm", "community.general.openbsd_pkg", 
-	"ansible.builtin.package", "ansible.builtin.package", "community.general.pear", "community.general.pacman", "ansible.builtin.pip", "community.general.pkg5", 
-	"community.general.pkgutil", "community.general.pkgutil", "community.general.portage", "community.general.slackpkg", "community.general.sorcery", 
-	"community.general.swdepot", "win_chocolatey", "community.general.yarn", "ansible.builtin.yum", "community.general.zypper", "apk", "apt", "bower", "bundler", 
-	"dnf", "easy_install", "gem", "homebrew", "jenkins_plugin", "npm", "openbsd_package", "openbsd_pkg", "package", "pacman", "pear", "pip", "pkg5", "pkgutil", 
+	"community.general.apk", "ansible.builtin.apt", "ansible.builtin.apt", "community.general.bundler", "ansible.builtin.dnf", "community.general.easy_install",
+	"community.general.gem", "community.general.homebrew", "community.general.jenkins_plugin", "community.general.npm", "community.general.openbsd_pkg",
+	"ansible.builtin.package", "ansible.builtin.package", "community.general.pear", "community.general.pacman", "ansible.builtin.pip", "community.general.pkg5",
+	"community.general.pkgutil", "community.general.pkgutil", "community.general.portage", "community.general.slackpkg", "community.general.sorcery",
+	"community.general.swdepot", "win_chocolatey", "community.general.yarn", "ansible.builtin.yum", "community.general.zypper", "apk", "apt", "bower", "bundler",
+	"dnf", "easy_install", "gem", "homebrew", "jenkins_plugin", "npm", "openbsd_package", "openbsd_pkg", "package", "pacman", "pear", "pip", "pkg5", "pkgutil",
 	"portage", "slackpkg", "sorcery", "swdepot", "win_chocolatey", "yarn", "yum", "zypper",
 ]

@@ -7,9 +7,10 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "3.0"
 
 	[path, value] := walk(doc)
-	ref := value["RefMetadata"]["$ref"]
 	contains(path[j], "examples")
-	not contains(path[minus(j, 1)], "components")
+	not contains(path[j - 1], "components")
+
+	ref := value.RefMetadata["$ref"]
 	openapi_lib.incorrect_ref(ref, "examples")
 
 	result := {

@@ -23,6 +23,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.resources.requests.memory should be defined", [metadata.name, specInfo.path, types[t], container.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.resources.requests.memory is undefined", [metadata.name, specInfo.path, types[t], container.name]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[t], c, "resources", "requests"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[t], c, "resources", "requests"]),
 	}
 }

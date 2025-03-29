@@ -6,7 +6,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_network_security_rule[var0]
 	upper(resource.access) == "ALLOW"
 	upper(resource.direction) == "INBOUND"
-	
+
 	isRelevantProtocol(resource.protocol)
 	isRelevantPort(resource.destination_port_range)
 	isRelevantAddressPrefix(resource.source_address_prefix)
@@ -29,7 +29,7 @@ isRelevantProtocol(protocol) = allow {
 }
 
 isRelevantPort(port) = allow {
-	regex.match("(^|\\s|,)3389(-|,|$|\\s)", port)
+	regex.match(`(^|\s|,)3389(-|,|$|\s)`, port)
 	allow = true
 }
 

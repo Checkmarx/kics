@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_cloudtrail[name]
@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_cloudtrail.%s.enable_logging is false", [name]),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

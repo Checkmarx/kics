@@ -31,12 +31,10 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::DMS::Endpoint"
 
-	properties := resource.Properties
-	paramName := properties.MongoDbSettings.Password
 	not common_lib.valid_key(document, "Parameters")
 
-	defaultToken := paramName
-
+	properties := resource.Properties
+	defaultToken := properties.MongoDbSettings.Password
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
 	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 
@@ -53,16 +51,16 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
+	common_lib.valid_key(document, "Parameters")
+
 	resource := document.Resources[key]
 	resource.Type == "AWS::DMS::Endpoint"
-
 	properties := resource.Properties
+
 	paramName := properties.MongoDbSettings.Password
-	common_lib.valid_key(document, "Parameters")
 	not common_lib.valid_key(document.Parameters, paramName)
 
 	defaultToken := paramName
-
 	regex.match(`[A-Za-z\d@$!%*"#"?&]{8,}`, defaultToken)
 	not cf_lib.hasSecretManager(defaultToken, document.Resources)
 

@@ -1,14 +1,14 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
 	prop := resource.Properties
 
-    not common_lib.valid_key(prop, "LoadBalancerAttributes")
+	not common_lib.valid_key(prop, "LoadBalancerAttributes")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -26,7 +26,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
 	prop := resource.Properties
 
-	contains(prop.LoadBalancerAttributes, "access_logs.s3.enabled")
+	array_contains(prop.LoadBalancerAttributes, "access_logs.s3.enabled")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -39,7 +39,7 @@ CxPolicy[result] {
 	}
 }
 
-contains(arr, elem) {
+array_contains(arr, elem) {
 	arr[i].Key == elem
 	arr[i].Value == false
 }

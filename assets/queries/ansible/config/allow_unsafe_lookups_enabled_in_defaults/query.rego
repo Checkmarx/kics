@@ -5,7 +5,7 @@ import data.generic.ansible as ansLib
 CxPolicy[result] {
 	defaultsGroup := input.document[i].groups.defaults
 
-    defaultsGroup.allow_unsafe_lookups == true
+	defaultsGroup.allow_unsafe_lookups == true
 
 	result := {
 		"documentId": input.document[i].id,

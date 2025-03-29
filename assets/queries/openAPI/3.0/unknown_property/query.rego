@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -28,10 +29,10 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 
 	objectValues := {"array": array_objects, "simple": simple_objects, "map": map_objects}
-	objValues := objectValues[objType][object]
+	objValues := objectValues[objType][obj]
 
 	index := {"array": 1, "simple": 1, "map": 2}
-	path[minus(count(path), index[objType])] == object
+	path[count(path) - index[objType]] == obj
 
 	objType == "array"
 	is_array(value)
@@ -42,8 +43,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), field]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [field, object]),
-		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [field, object]),
+		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [field, obj]),
+		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [field, obj]),
 	}
 }
 
@@ -54,10 +55,10 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 
 	objectValues := {"array": array_objects, "simple": simple_objects, "map": map_objects}
-	objValues := objectValues[objType][object]
+	objValues := objectValues[objType][obj]
 
 	index := {"array": 1, "simple": 1, "map": 2}
-	path[minus(count(path), index[objType])] == object
+	path[count(path) - index[objType]] == obj
 
 	any([objType == "simple", objType == "map"])
 	value[field]
@@ -67,8 +68,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), field]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [field, object]),
-		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [field, object]),
+		"keyExpectedValue": sprintf("The field '%s' is known in the %s object", [field, obj]),
+		"keyActualValue": sprintf("The field '%s' is unknown in the %s object", [field, obj]),
 	}
 }
 
@@ -78,7 +79,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 
-	path[minus(count(path), 3)] == "callbacks"
+	path[count(path) - 3] == "callbacks"
 
 	value[x]
 	not known_field(map_objects.paths, x)
@@ -104,11 +105,11 @@ openapi := {
 }
 
 known_openapi_object_field(field) {
-	field == openapi[_]
+	field in openapi
 }
 
-known_field(object, value) {
-	object[_] == value
+known_field(obj, value) {
+	value in obj
 }
 
 flow := {

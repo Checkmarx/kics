@@ -22,6 +22,4 @@ adAdminExists(server_name, resource_group, n) {
 } else {
 	ad_admin := input.document[i].resource.azurerm_sql_active_directory_administrator[name]
 	ad_admin.server_name == sprintf("${azurerm_sql_server.%s.name}", [n])
-} else = false {
-	true
-}
+} else = false

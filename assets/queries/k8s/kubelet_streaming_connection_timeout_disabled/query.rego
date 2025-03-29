@@ -22,14 +22,14 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--streaming-connection-idle-timeout flag not should be 0",
 		"keyActualValue": "--streaming-connection-idle-timeout flag is 0",
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i]
-    resource.kind == "KubeletConfiguration"
-    resource.streamingConnectionIdleTimeout == "0s"
+	resource.kind == "KubeletConfiguration"
+	resource.streamingConnectionIdleTimeout == "0s"
 
 	result := {
 		"documentId": input.document[i].id,

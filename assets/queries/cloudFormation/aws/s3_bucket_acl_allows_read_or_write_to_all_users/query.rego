@@ -6,8 +6,9 @@ CxPolicy[result] {
 	docs := input.document[i]
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
-	properties := resource.Properties
 	resource.Type == "AWS::S3::Bucket"
+
+	properties := resource.Properties
 	properties.AccessControl == "PublicReadWrite"
 
 	result := {
@@ -16,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.AccessControl", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "S3 bucket should not have a public readable and writeble ACL",
+		"keyExpectedValue": "S3 bucket should not have a public readable and writable ACL",
 		"keyActualValue": sprintf("S3 bucket named '%s' has ACL set to '%s'", [object.get(resource.Properties, "BucketName", "undefined"), properties.AccessControl]),
 	}
 }

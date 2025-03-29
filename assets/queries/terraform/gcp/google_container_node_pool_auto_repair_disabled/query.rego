@@ -15,10 +15,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_container_node_pool[%s].management.auto_repair should be true", [name]),
 		"keyActualValue": sprintf("google_container_node_pool[%s].management.auto_repair is false", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "google_container_node_pool", name],["management", "auto_repair"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_container_node_pool", name], ["management", "auto_repair"]),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

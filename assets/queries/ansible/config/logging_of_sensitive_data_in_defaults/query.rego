@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 CxPolicy[result] {
 	defaultsGroup := input.document[i].groups.defaults
 
-    not common_lib.valid_key(defaultsGroup, "no_log")
+	not common_lib.valid_key(defaultsGroup, "no_log")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,7 +21,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	defaultsGroup := input.document[i].groups.defaults
 
-    defaultsGroup.no_log == false
+	defaultsGroup.no_log == false
 
 	result := {
 		"documentId": input.document[i].id,

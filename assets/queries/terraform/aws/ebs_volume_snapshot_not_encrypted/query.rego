@@ -15,7 +15,6 @@ CxPolicy[result] {
 	result := {
 		"documentId": doc.id,
 		"resourceType": "aws_ebs_volume",
-		"resourceName": tf_lib.get_resource_name(bucket, s3BucketName),
 		"resourceName": snapName,
 		"searchKey": sprintf("aws_ebs_volume[%s].encrypted", [snapName]),
 		"issueType": "IncorrectValue",
