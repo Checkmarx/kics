@@ -30,7 +30,8 @@ concat_path(path) = concatenated {
 }
 
 resolve_path(pathItem) = resolved {
-	any([contains(pathItem, "."), contains(pathItem, "="), contains(pathItem, "/")])
+	some char in [".", "=", "/"]
+	contains(pathItem, ".")
 	resolved := sprintf("{{%s}}", [pathItem])
 } else = resolved {
 	is_number(pathItem)
@@ -469,20 +470,21 @@ check_principals(statement) {
 }
 
 check_actions(statement, typeAction) {
-	check_type_actions(statement, typeAction)
+	some action in statement.action
+    [typeAction, "*"] in action
 } else {
-	any([statement.Actions[_] == typeAction, statement.Actions[_] == "*"])
+    check_statement_action(statement, typeAction)
 } else {
 	is_array(statement.Action) == true
-	any([statement.Action[_] == typeAction, statement.Action[_] == "*"])
+	check_statement_action(statement, typeAction)
 } else {
 	is_string(statement.Action) == true
-	any([statement.Action == typeAction, statement.Action == "*"])
+	check_statement_action(statement, typeAction)
 }
 
-check_type_actions(statement, typeAction) {
-	some actions in statement.actions
-	[typeAction, "*"] in actions
+check_statement_action(statement, typeAction) {
+    some action in statement.Action
+	[typeAction, "*"] in action
 }
 
 has_wildcard(statement, typeAction) {
