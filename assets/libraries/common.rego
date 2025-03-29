@@ -469,7 +469,7 @@ check_principals(statement) {
 }
 
 check_actions(statement, typeAction) {
-	any([statement.actions[_] == typeAction, statement.actions[_] == "*"])
+	check_type_actions(statement, typeAction)
 } else {
 	any([statement.Actions[_] == typeAction, statement.Actions[_] == "*"])
 } else {
@@ -478,6 +478,11 @@ check_actions(statement, typeAction) {
 } else {
 	is_string(statement.Action) == true
 	any([statement.Action == typeAction, statement.Action == "*"])
+}
+
+check_type_actions(statement, typeAction) {
+	some actions in statement.actions
+	[typeAction, "*"] in actions
 }
 
 has_wildcard(statement, typeAction) {

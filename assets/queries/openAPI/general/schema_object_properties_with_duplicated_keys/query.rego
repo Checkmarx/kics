@@ -88,8 +88,6 @@ filter_paths(path) {
 	count(path) == 0
 } else {
 	some segment in path
-	contains(segment, "allOf")
-} else {
-	some segment in path
-	contains(segment, "additionalProperties")
+	some object in ["allOf", "additionalProperties"]
+	contains(segment, object)
 }
