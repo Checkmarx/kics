@@ -55,7 +55,7 @@ is_used(securityGroupName, doc, resource) {
 
 is_used(securityGroupName, doc, resource) {
 	sec_group_used := resource.name
-    [path, value] := walk(doc)
+	[path, value] := walk(doc)
 	securityGroupUsed := value.security_groups[_]
 	sec_group_used == securityGroupUsed
 }

@@ -26,9 +26,9 @@ CxPolicy[result] {
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	container_task := task[modules[m]]
-	management := container_task.management
-
 	ansLib.checkState(container_task)
+
+	management := container_task.management
 	not common_lib.valid_key(management, "auto_upgrade")
 
 	result := {
@@ -45,9 +45,9 @@ CxPolicy[result] {
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	container_task := task[modules[m]]
-	auto_upgrade := container_task.management.auto_upgrade
-
 	ansLib.checkState(container_task)
+
+	auto_upgrade := container_task.management.auto_upgrade
 	not ansLib.isAnsibleTrue(auto_upgrade)
 
 	result := {

@@ -9,8 +9,8 @@ CxPolicy[result] {
 	properties := resource.Properties
 
 	fromPort := to_number(properties.EC2InboundPermissions[index].FromPort)
-    toPort := to_number(properties.EC2InboundPermissions[index].ToPort)
-    fromPort != toPort
+	toPort := to_number(properties.EC2InboundPermissions[index].ToPort)
+	fromPort != toPort
 
 	result := {
 		"documentId": input.document[i].id,

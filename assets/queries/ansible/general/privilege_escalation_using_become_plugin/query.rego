@@ -40,7 +40,7 @@ CxPolicy[result] {
 	task.become == false
 	commonLib.valid_key(task, "become_user")
 
-    result := {
+	result := {
 		"documentId": id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
@@ -56,7 +56,7 @@ CxPolicy[result] {
 	not commonLib.valid_key(task, "become")
 	commonLib.valid_key(task, "become_user")
 
-    result := {
+	result := {
 		"documentId": id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",

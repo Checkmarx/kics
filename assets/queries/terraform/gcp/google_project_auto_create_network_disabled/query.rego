@@ -15,10 +15,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_project[%s].auto_create_network should be set to false", [name]),
 		"keyActualValue": sprintf("google_project[%s].auto_create_network is true", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "google_project", name],["auto_create_network"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_project", name], ["auto_create_network"]),
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("google_project[%s].auto_create_network should be set to false", [name]),
 		"keyActualValue": sprintf("google_project[%s].auto_create_network is undefined", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "google_project", name],[]),
+		"searchLine": common_lib.build_search_line(["resource", "google_project", name], []),
 		"remediation": "auto_create_network = false",
 		"remediationType": "addition",
 	}

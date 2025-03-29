@@ -2,10 +2,10 @@ package Cx
 
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
 	document.kind == "PodSecurityPolicy"
-
 	document.spec.hostIPC == true
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,

@@ -7,7 +7,7 @@ CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_oss_bucket[name]
 
-    resource.versioning.status == "Suspended"
+	resource.versioning.status == "Suspended"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -19,10 +19,10 @@ CxPolicy[result] {
 		"keyActualValue": "'versioning.status' is suspended",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "versioning", "status"], []),
 		"remediation": json.marshal({
-            "before": "Suspended",
-            "after": "Enabled"
-        }),
-        "remediationType": "replacement",
+			"before": "Suspended",
+			"after": "Enabled",
+		}),
+		"remediationType": "replacement",
 	}
 }
 
@@ -30,7 +30,7 @@ CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_oss_bucket[name]
 
-    not common_lib.valid_key(resource, "versioning")
+	not common_lib.valid_key(resource, "versioning")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -42,6 +42,6 @@ CxPolicy[result] {
 		"keyActualValue": "'versioning' is missing",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
 		"remediation": "versioning {\n\t\tstatus = \"Enabled\"\n\t}",
-        "remediationType": "addition",
+		"remediationType": "addition",
 	}
 }

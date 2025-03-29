@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties.StreamEncryption", [cf_lib.getPath(path), name]),
+		"searchKey": sprintf("%s%s.Properties.StreamEncryption", [cf_lib.getPath(path), name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.StreamEncryption.EncryptionType should be set", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.StreamEncryption.EncryptionType is undefined", [name]),

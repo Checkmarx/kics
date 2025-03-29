@@ -11,8 +11,8 @@ CxPolicy[result] {
 	ans_lib.checkState(ec2_instance)
 
 	rule := ec2_instance.rules[idx]
-	
-	cidrs := {"cidr_ip": "0.0.0.0/0", "cidr_ipv6" : "::/0"}
+
+	cidrs := {"cidr_ip": "0.0.0.0/0", "cidr_ipv6": "::/0"}
 
 	cidrValue := cidrs[cidr]
 

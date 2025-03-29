@@ -21,9 +21,8 @@ CxPolicy[result] {
 	}
 }
 
-
-is_not_ephemeral(cluster){
-	not common_lib.valid_key(cluster.default_node_pool, "os_disk_type") 
+is_not_ephemeral(cluster) {
+	not common_lib.valid_key(cluster.default_node_pool, "os_disk_type")
 } else {
 	disk_type := cluster.default_node_pool.os_disk_type
 	disk_type != "Ephemeral"

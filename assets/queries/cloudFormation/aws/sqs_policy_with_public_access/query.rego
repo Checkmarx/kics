@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
@@ -29,10 +29,10 @@ CxPolicy[result] {
 }
 
 is_unsafe_statement(stmt) = result {
-	action := has_dangerous_action(stmt.Action)
 	not common_lib.valid_key(stmt, "Condition")
 	has_wildcard_principal(stmt.Principal)
-	result := action
+	action := has_dangerous_action(stmt.Action)
+	result = action
 }
 
 has_wildcard_principal(p) {
@@ -49,13 +49,13 @@ has_wildcard_principal(p) {
 }
 
 has_star_or_star_after_colon(str) {
-	regex.match("^(\\w*:)*\\*$", str)
+	regex.match(`(\w*:)*\*$`, str)
 }
 
 has_dangerous_action(action) = result {
 	is_string(action)
 	isDangerousAction(action)
-	result := action
+	result = action
 } else = result {
 	is_array(action)
 	isDangerousAction(action[a])

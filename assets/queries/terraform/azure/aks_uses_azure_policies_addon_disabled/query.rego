@@ -22,7 +22,6 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-
 	# before azurerm 3.0
 	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name].addon_profile.azure_policy
 
@@ -39,14 +38,13 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name, "addon_profile", "azure_policy", "enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
 }
 
 CxPolicy[result] {
-
 	# after azurerm 3.0
 
 	cluster := input.document[i].resource.azurerm_kubernetes_cluster[name]
@@ -63,7 +61,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_kubernetes_cluster", name, "azure_policy_enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

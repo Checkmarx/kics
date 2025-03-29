@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name, "client_cert_mode"], []),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [function.client_cert_mode]),
-			"after": "Required"
+			"after": "Required",
 		}),
 		"remediationType": "replacement",
 	}

@@ -4,13 +4,14 @@ import data.generic.dockerfile as dockerLib
 
 CxPolicy[result] {
 	resource := input.document[i].command[name][_]
-	dockerLib.check_multi_stage(name, input.document[i].command)
+	is_multi_stage := dockerLib.check_multi_stage(name, input.document[i].command)
+	is_multi_stage
 
 	resource.Cmd == "run"
 	command := resource.Value[0]
 
 	containsInstallCommand(command)
-	not containsDnfClean(input.document[i].command[name], resource._kics_line)
+	not containsDnfClean(input.document[i].command[name], dockerLib.get_line_number(resource))
 	not containsCleanAfterInstall(command)
 
 	result := {
@@ -26,7 +27,7 @@ containsDnfClean(inputs, startLine) {
 	commands := inputs[_]
 	commands.Cmd == "run"
 	contains(commands.Value[_], "dnf clean")
-	commands._kics_line > startLine
+	dockerLib.get_line_number(commands) > startLine
 }
 
 containsInstallCommand(command) {

@@ -25,6 +25,6 @@ CxPolicy[result] {
 }
 
 clean_name(name) = result {
-	templates := regex.find_n("\\{.*\\}", name, -1)
+	templates := regex.find_n(`\{.*\}`, name, -1)
 	result := replace(name, templates[_], "")
 }

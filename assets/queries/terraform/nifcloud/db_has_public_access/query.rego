@@ -1,11 +1,11 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	dbInstance := input.document[i].resource.nifcloud_db_instance[name]
-    dbInstance.publicly_accessible == true
+	dbInstance.publicly_accessible == true
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "nifcloud_db_instance",
@@ -18,9 +18,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-
 	dbInstance := input.document[i].resource.nifcloud_db_instance[name]
-    not common_lib.valid_key(dbInstance, "publicly_accessible")
+	not common_lib.valid_key(dbInstance, "publicly_accessible")
 
 	result := {
 		"documentId": input.document[i].id,

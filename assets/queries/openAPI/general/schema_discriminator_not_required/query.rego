@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -16,8 +17,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.%s", [openapi_lib.concat_path(path), discriminator.path]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s.{{%s}}.%s is a required property", [openapi_lib.concat_path(path), discriminator.path]),
-		"keyActualValue": sprintf("%s.{{%s}}.%s is not a required property", [openapi_lib.concat_path(path), discriminator.path]),
+		"keyExpectedValue": sprintf("%s.{{%s}} is a required property", [openapi_lib.concat_path(path), discriminator.path]),
+		"keyActualValue": sprintf("%s.{{%s}} is not a required property", [openapi_lib.concat_path(path), discriminator.path]),
 		"overrideKey": version,
 	}
 }
@@ -44,5 +45,5 @@ CxPolicy[result] {
 }
 
 required(schema, discriminator) {
-	schema.required[_] == discriminator
+	discriminator in schema.required
 }

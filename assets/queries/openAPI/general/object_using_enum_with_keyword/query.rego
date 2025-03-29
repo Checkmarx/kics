@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	keywords := ["multipleOf", "maximum", "minimum", "exclusiveMaximum", "exclusiveMinimum", "pattern", "minLength", "maxLength", "maxItems", "minItems", "uniqueItems", "required", "maxProperties", "minProperties"]

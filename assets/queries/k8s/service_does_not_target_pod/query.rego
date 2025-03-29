@@ -2,11 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
 	service := input.document[i]
 	service.kind == "Service"
-	metadata := service.metadata
 
 	common_lib.valid_key(service.spec, "selector")
 
@@ -15,6 +15,8 @@ CxPolicy[result] {
 
 	servicePorts := service.spec.ports[_]
 	not confirmPorts(resources, servicePorts)
+
+	metadata := service.metadata
 
 	result := {
 		"documentId": service.id,
@@ -30,12 +32,13 @@ CxPolicy[result] {
 CxPolicy[result] {
 	service := input.document[i]
 	service.kind == "Service"
-	metadata := service.metadata
 
 	common_lib.valid_key(service.spec, "selector")
 
 	resources := [x | x := input.document[_]; matchResource(x, service.spec.selector)]
 	count(resources) == 0
+
+	metadata := service.metadata
 
 	result := {
 		"documentId": service.id,
@@ -50,15 +53,13 @@ CxPolicy[result] {
 
 matchResource(resource, serviceSelector) = result {
 	labels := getLabelsToMatch(resource)
-	count([ x | x := serviceSelector[k]; x == labels[k]]) == count(serviceSelector)
-	result := resource
-} else = false {
-	true
-}
+	count([x | x := serviceSelector[k]; x == labels[k]]) == count(serviceSelector)
+	result = resource
+} else = false
 
 getLabelsToMatch(document) = labels {
 	matchLabelsKinds := {"Deployment", "DaemonSet", "ReplicaSet", "StatefulSet", "Job"}
-	document.kind == matchLabelsKinds[_]
+	document.kind in matchLabelsKinds
 	labels := document.spec.selector.matchLabels
 } else = labels {
 	document.kind == "CronJob"
@@ -66,7 +67,7 @@ getLabelsToMatch(document) = labels {
 	labels := document.spec[jobTemplates[t]].spec.selector.matchLabels
 } else = labels {
 	podTemplateKinds := {"Pod", "ReplicationController"}
-	document.kind == podTemplateKinds[_]
+	document.kind in podTemplateKinds
 	labels := document.metadata.labels
 }
 
@@ -85,6 +86,4 @@ matchPort(port, servicePort) {
 } else {
 	not servicePort.targetPort
 	port.containerPort == servicePort.port
-} else = false {
-	true
-}
+} else = false

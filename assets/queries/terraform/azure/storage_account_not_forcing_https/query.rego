@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_storage_account.%s.enable_https_traffic_only' equals 'true'", [var0]),
 		"keyActualValue": sprintf("'azurerm_storage_account.%s.enable_https_traffic_only' does not exist", [var0]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_storage_account" ,var0, "enable_https_traffic_only" ], []),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_storage_account", var0, "enable_https_traffic_only"], []),
 		"remediation": "enable_https_traffic_only = true",
 		"remediationType": "addition",
 	}
@@ -33,10 +33,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_storage_account.%s.enable_https_traffic_only' equals 'true'", [var0]),
 		"keyActualValue": sprintf("'azurerm_storage_account.%s.enable_https_traffic_only' equals 'false'", [var0]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_storage_account" ,var0, "enable_https_traffic_only" ], []),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_storage_account", var0, "enable_https_traffic_only"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

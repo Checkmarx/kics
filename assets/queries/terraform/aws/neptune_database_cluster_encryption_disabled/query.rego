@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"keyActualValue": "'storage_encrypted' is false",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

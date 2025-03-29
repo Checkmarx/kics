@@ -22,7 +22,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_ros_stack[name]
-	count(resource.notification_urls)==0
+	count(resource.notification_urls) == 0
 
 	result := {
 		"documentId": input.document[i].id,

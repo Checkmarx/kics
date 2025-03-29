@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"keyActualValue": "'aws_redshift_cluster.logging' is false",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

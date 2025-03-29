@@ -8,9 +8,9 @@ modules := {"google.cloud.gcp_compute_instance", "gcp_compute_instance"}
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	instance := task[modules[m]]
-	metadata := instance.metadata
 	ansLib.checkState(instance)
 
+	metadata := instance.metadata
 	common_lib.valid_key(metadata, "block-project-ssh-keys")
 	not ansLib.isAnsibleTrue(metadata["block-project-ssh-keys"])
 

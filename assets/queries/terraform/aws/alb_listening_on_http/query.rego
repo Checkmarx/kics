@@ -66,7 +66,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'default_action.redirect.protocol' is equal '%s'", [resource.default_action.redirect.protocol]),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [resource.default_action.redirect.protocol]),
-			"after": "HTTPS"
+			"after": "HTTPS",
 		}),
 		"remediationType": "replacement",
 	}

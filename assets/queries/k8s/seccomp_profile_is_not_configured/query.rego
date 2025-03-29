@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 types := {"initContainers", "containers"}
 
@@ -16,7 +17,7 @@ hasSeccompAnnotation(document) {
 # container defines seccompProfile.type
 checkSeccompProfile(specInfo, container, containerType, document, metadata) = result {
 	profile := container.securityContext.seccompProfile.type
-	not any([profile == "RuntimeDefault", profile == "Localhost"])
+	not profile_type(profile)
 
 	result := {
 		"documentId": document.id,
@@ -35,7 +36,7 @@ checkSeccompProfile(specInfo, container, containerType, document, metadata) = re
 	containerSeccompType.valid == false
 
 	profile := specInfo.spec.securityContext.seccompProfile.type
-	not any([profile == "RuntimeDefault", profile == "Localhost"])
+	not profile_type(profile)
 
 	result := {
 		"documentId": document.id,
@@ -82,9 +83,9 @@ CxPolicy[result] {
 # seccomp annotations until Kubernetes v1.19, deprecated and removed with v1.25
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
-
 	[path, value] = walk(document)
+
+	metadata := document.metadata
 	annotations := value.metadata.annotations
 
 	seccompAnnotation := "seccomp.security.alpha.kubernetes.io/defaultProfileName"
@@ -104,4 +105,8 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s is 'runtime/default'", [metadata.name, seccompAnnotationPath]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s is '%s'", [metadata.name, seccompAnnotationPath, seccomp]),
 	}
+}
+
+profile_type(profile) {
+	profile in ["RuntimeDefault", "Localhost"]
 }

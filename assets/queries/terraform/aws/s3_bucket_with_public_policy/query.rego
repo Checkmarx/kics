@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-#default of block_public_policy is false
+# default of block_public_policy is false
 CxPolicy[result] {
 	pubACL := input.document[i].resource.aws_s3_bucket_public_access_block[name]
 	not common_lib.valid_key(pubACL, "block_public_policy")
