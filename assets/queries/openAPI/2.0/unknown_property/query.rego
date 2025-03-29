@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.every
 import future.keywords.in
 
 CxPolicy[result] {
@@ -10,7 +11,9 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 
 	field := path[0]
-	all([field != "id", field != "file"])
+	every condition in [field != "id", field != "file"] {
+		condition
+	}
 	not known_swagger_object_field(field)
 
 	result := {

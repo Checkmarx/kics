@@ -1,6 +1,7 @@
 package generic.openapi
 
 import future.keywords.in
+import future.keywords.every
 
 check_openapi(doc) = version {
 	object.get(doc, "openapi", "undefined") != "undefined"
@@ -49,7 +50,9 @@ incorrect_ref_swagger(reference, obj_type) {
 
 content_allowed(operation, code) {
 	operation != "head"
-	all([code != "204", code != "304"])
+	every condition in ([code != "204", code != "304"]) {
+	    condition
+	}
 }
 
 # It verifies if there is some schema in 'key' equal to the input with the 'field' undefined

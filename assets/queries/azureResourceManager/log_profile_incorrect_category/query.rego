@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.azureresourcemanager as arm_lib
 import data.generic.common as common_lib
+import future.keywords.every
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -10,7 +11,9 @@ CxPolicy[result] {
 	value.type == "microsoft.insights/logprofiles"
 
 	[category, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.categories[x])
-	all([category != "Write", category != "Delete", category != "Action"])
+	every condition in [category != "Write", category != "Delete", category != "Action"] {
+		condition
+	}
 
 	result := {
 		"documentId": input.document[i].id,
