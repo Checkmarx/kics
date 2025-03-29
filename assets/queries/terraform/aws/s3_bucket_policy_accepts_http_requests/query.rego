@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 resources := {"aws_s3_bucket_policy", "aws_s3_bucket"}
 

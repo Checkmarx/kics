@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	field := path[0]
 	not known_openapi_object_field(field)
-    every condition in [field != "id", field != "file"] {
+	every condition in [field != "id", field != "file"] {
 		condition
 	}
 
@@ -63,9 +63,7 @@ CxPolicy[result] {
 	index := {"array": 1, "simple": 1, "map": 2}
 	path[count(path) - index[objType]] == obj
 
-	objType_allowed(objType) {
-        objType in ["simple", "map"]
-    }
+	objType_allowed(objType)
 	value[field]
 	not known_field(objValues, field)
 
@@ -107,6 +105,10 @@ openapi := {
 	"security",
 	"tags",
 	"externalDocs",
+}
+
+objType_allowed(objType) {
+	objType in ["simple", "map"]
 }
 
 known_openapi_object_field(field) {
