@@ -41,7 +41,9 @@ check_iam_resource(statement) {
 }
 
 check_iam_action(statement) {
-	iam_action_allowed(statement)
+	some action in statement.actions
+    action == "*"
+    regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, action)
 } else {
 	any([regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, statement.Actions[_]), statement.Actions[_] == "*"])
 } else {
@@ -52,9 +54,8 @@ check_iam_action(statement) {
 	any([regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, statement.Action), statement.Action == "*"])
 }
 
-# any([regex.match((^lambda:InvokeFunction$|^lambda:[*]$), statement.actions[_]), statement.actions[_] == "*"])
-iam_action_allowed(statement) {
-	some action in statement.actions
-	action == "*"
-	regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, action)
+check_actions(statement) {
+    some actions in statement.actions
+    actions == "*"
+    regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, actions)
 }

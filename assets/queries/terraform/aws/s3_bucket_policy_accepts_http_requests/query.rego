@@ -48,7 +48,9 @@ CxPolicy[result] {
 }
 
 any_s3_action(action) {
-	any([action == "*", startswith(action, "s3:")])
+	action == "*"
+} else {
+	startswith(action, "s3:")
 }
 
 check_action(st) {

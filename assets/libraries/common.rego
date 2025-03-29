@@ -31,7 +31,7 @@ concat_path(path) = concatenated {
 
 resolve_path(pathItem) = resolved {
 	some char in [".", "=", "/"]
-	contains(pathItem, ".")
+	contains(pathItem, char)
 	resolved := sprintf("{{%s}}", [pathItem])
 } else = resolved {
 	is_number(pathItem)
@@ -471,9 +471,9 @@ check_principals(statement) {
 
 check_actions(statement, typeAction) {
 	some action in statement.action
-    [typeAction, "*"] in action
+	[typeAction, "*"] in action
 } else {
-    check_statement_action(statement, typeAction)
+	check_statement_action(statement, typeAction)
 } else {
 	is_array(statement.Action) == true
 	check_statement_action(statement, typeAction)
@@ -483,7 +483,7 @@ check_actions(statement, typeAction) {
 }
 
 check_statement_action(statement, typeAction) {
-    some action in statement.Action
+	some action in statement.Action
 	[typeAction, "*"] in action
 }
 
