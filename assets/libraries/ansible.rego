@@ -2,11 +2,8 @@ package generic.ansible
 
 import future.keywords.in
 
-# Global variable with all tasks in input
-tasks := TasksPerDocument
-
 # Builds an object that stores all tasks for each document id
-TasksPerDocument[id] = result {
+tasks[id] = result {
 	document := input.document[i]
 	id := document.id
 	result := getTasks(document)
