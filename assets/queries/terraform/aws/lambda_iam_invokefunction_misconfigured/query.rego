@@ -45,17 +45,17 @@ check_iam_action(statement) {
 	action == "*"
 	regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, action)
 } else {
-    statement.Actions[_] == "*"
+	statement.Actions[_] == "*"
 } else {
-    regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, statement.Actions[_])
+	regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, statement.Actions[_])
 } else {
 	is_array(statement.Action)
 	statement.Action[_] == "*"
 } else {
-    is_array(statement.Action)
+	is_array(statement.Action)
 	regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, statement.Action[_])
 } else {
-    some Action in statement.Action
+	some Action in statement.Action
 	is_string(Action)
 	Action == "*"
 	regex.match(`(^lambda:InvokeFunction$|^lambda:[*]$)`, Action)
