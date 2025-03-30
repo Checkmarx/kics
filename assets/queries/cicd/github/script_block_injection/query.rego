@@ -203,7 +203,6 @@ CxPolicy[result] {
 	}
 }
 
-containsPatterns(str, patterns) {
-	pattern | pattern := patterns[_]
+containsPatterns(str, patterns) = [pattern | pattern := patterns[_]
 	regex.match(pattern, str)
-}
+]
