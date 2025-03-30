@@ -33,7 +33,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::DocDB::DBCluster"
 	properties := resource.Properties
 	logs := properties.EnableCloudwatchLogsExports
-	
+
 	logsSet := {log | log := logs[_]}
 	missingTypes := validTypes - logsSet
 

@@ -32,4 +32,3 @@ CxPolicy[result] {
 		"keyActualValue": "aws_rds_cluster.storage_encrypted is undefined",
 	}
 }
-

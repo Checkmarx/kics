@@ -22,14 +22,14 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "--make-iptables-util-chains flag should be true",
 		"keyActualValue": "--make-iptables-util-chains= flag is false",
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}
 }
 
 CxPolicy[result] {
 	resource := input.document[i]
-    resource.kind == "KubeletConfiguration"
-    resource.makeIPTablesUtilChains == false
+	resource.kind == "KubeletConfiguration"
+	resource.makeIPTablesUtilChains == false
 
 	result := {
 		"documentId": input.document[i].id,

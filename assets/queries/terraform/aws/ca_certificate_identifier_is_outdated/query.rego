@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_instance[name]
 	allowed := ["rds-ca-2019", "rds-ca-rsa2048-g1", "rds-ca-rsa4096-g1", "rds-ca-ecc384-g1"]
-    not common_lib.inArray(allowed, resource.ca_cert_identifier)
+	not common_lib.inArray(allowed, resource.ca_cert_identifier)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -24,7 +24,7 @@ CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_db_instance", "ca_cert_identifier")
 	allowed := ["rds-ca-2019", "rds-ca-rsa2048-g1", "rds-ca-rsa4096-g1", "rds-ca-ecc384-g1"]
-    not common_lib.inArray(allowed, module[keyToCheck])
+	not common_lib.inArray(allowed, module[keyToCheck])
 
 	result := {
 		"documentId": input.document[i].id,

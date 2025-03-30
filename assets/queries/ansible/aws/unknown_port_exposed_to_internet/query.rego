@@ -11,7 +11,7 @@ CxPolicy[result] {
 	ansLib.checkState(ec2_group)
 	rule := ec2_group.rules[index]
 
-	unknownPort(rule.from_port,rule.to_port)
+	unknownPort(rule.from_port, rule.to_port)
 	isEntireNetwork(rule)
 
 	result := {
@@ -26,8 +26,7 @@ CxPolicy[result] {
 	}
 }
 
-
-unknownPort(from_port,to_port) {
+unknownPort(from_port, to_port) {
 	port := numbers.range(from_port, to_port)[i]
 	not commonLib.valid_key(commonLib.tcpPortsMap, port)
 }

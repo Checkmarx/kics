@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource.type == "kubernetes:core/v1:Pod"
 
 	metadata := resource.properties.metadata
-	annotations := metadata.annotations	
+	annotations := metadata.annotations
 	annotations != null
 	not hasExpectedKey(annotations)
 
@@ -24,7 +24,7 @@ CxPolicy[result] {
 	}
 }
 
-hasExpectedKey(annotations){
+hasExpectedKey(annotations) {
 	annotations[key]
 	expectedKey := "container.apparmor.security.beta.kubernetes.io"
 	startswith(key, expectedKey)
@@ -35,7 +35,7 @@ CxPolicy[result] {
 	resource.type == "kubernetes:core/v1:Pod"
 
 	metadata := resource.properties.metadata
-	not common_lib.valid_key(metadata , "annotations")
+	not common_lib.valid_key(metadata, "annotations")
 
 	result := {
 		"documentId": input.document[i].id,

@@ -41,4 +41,3 @@ CxPolicy[result] {
 		"keyActualValue": "authorization.mode attribute is equal to 'AlwaysAllow'",
 	}
 }
-

@@ -5,7 +5,7 @@ import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_ros_stack[name]
-	
+
 	not hasPolicy(resource)
 
 	result := {
@@ -22,7 +22,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_ros_stack[name]
-	
+
 	not hasPolicyDuringUpdate(resource)
 
 	result := {
@@ -37,14 +37,14 @@ CxPolicy[result] {
 	}
 }
 
-hasPolicy(resource){
+hasPolicy(resource) {
 	common_lib.valid_key(resource, "stack_policy_body")
-}else{
+} else {
 	common_lib.valid_key(resource, "stack_policy_url")
 }
 
-hasPolicyDuringUpdate(resource){
+hasPolicyDuringUpdate(resource) {
 	common_lib.valid_key(resource, "stack_policy_during_update_body")
-}else{
+} else {
 	common_lib.valid_key(resource, "stack_policy_during_update_url")
 }

@@ -30,14 +30,15 @@ CxPolicy[result] {
 	}
 }
 
-get_accessibility(resource, name) = info{
-	values := [x | 
-    vpc_endpoint_policy := input.document[_].resource.aws_vpc_endpoint_policy[_]
-    policy := common_lib.json_unmarshal(vpc_endpoint_policy.policy)
-    x := policy_accessibility(policy, resource.name)]
-    info := get_info(values)
+get_accessibility(resource, name) = info {
+	values := [x |
+		vpc_endpoint_policy := input.document[_].resource.aws_vpc_endpoint_policy[_]
+		policy := common_lib.json_unmarshal(vpc_endpoint_policy.policy)
+		x := policy_accessibility(policy, resource.name)
+	]
+	info := get_info(values)
 } else = info {
-	info := {"accessibility":"private", "policy": ""}
+	info := {"accessibility": "private", "policy": ""}
 }
 
 policy_accessibility(policy, table_name) = info {
@@ -49,21 +50,21 @@ policy_accessibility(policy, table_name) = info {
 	check_actions(statement.Action)
 
 	resources_arn := get_resource_arn(statement.Resource)
-	has_all_or_dynamob_arn(resources_arn, table_name)	
+	has_all_or_dynamob_arn(resources_arn, table_name)
 
-	info := {"accessibility":"public", "policy": policy}
-} else  = info {
-	common_lib.get_statement(policy)
-	info := {"accessibility":"private", "policy": policy}
+	info := {"accessibility": "public", "policy": policy}
 } else = info {
-	info := {"accessibility":"hasPolicy", "policy": policy}
+	common_lib.get_statement(policy)
+	info := {"accessibility": "private", "policy": policy}
+} else = info {
+	info := {"accessibility": "hasPolicy", "policy": policy}
 }
 
-has_all_or_dynamob_arn(arn, table_name){
+has_all_or_dynamob_arn(arn, table_name) {
 	arn == "*"
 } else {
 	startswith(arn, "arn:aws:dynamodb:")
-	suffix := concat( "", [":table/", table_name])
+	suffix := concat("", [":table/", table_name])
 	endswith(arn, suffix)
 }
 
@@ -74,11 +75,11 @@ get_resource_arn(resources) = val {
 	val := resources
 }
 
-get_encryption(resource) = encryption{
+get_encryption(resource) = encryption {
 	sse := resource.server_side_encryption
 	sse.enabled == true
 	encryption := "encrypted"
-} else = encryption{
+} else = encryption {
 	encryption := "unencrypted"
 }
 
@@ -146,7 +147,7 @@ dynamo_actions := {
 	"dynamodb:RestoreTableFromBackup",
 	"dynamodb:DeleteBackup",
 	"dynamodb:PartiQLDelete",
-	"dynamodb:*"
+	"dynamodb:*",
 }
 
 check_actions(actions) {
@@ -155,12 +156,9 @@ check_actions(actions) {
 	common_lib.equalsOrInArray(actions, "*")
 }
 
-get_info(info_arr)= info{
-	val := [ x | info_arr[x].accessibility == "public" ]
+get_info(info_arr) = info {
+	val := [x | info_arr[x].accessibility == "public"]
 	info := info_arr[val[0]]
-} else = info{
+} else = info {
 	info := info_arr[0]
 }
-
-
-

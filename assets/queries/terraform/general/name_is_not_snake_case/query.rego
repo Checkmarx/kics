@@ -39,5 +39,5 @@ CxPolicy[result] {
 }
 
 is_snake_case(path) {
-	re_match(`^([a-z][a-z0-9]*)(_[a-z0-9]+)*$`, path)
+	regex.match(`^([a-z][a-z0-9]*)(_[a-z0-9]+)*$`, path)
 }

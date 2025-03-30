@@ -60,9 +60,9 @@ CxPolicy[result] {
 }
 
 # version after TF AWS 4.0
-CxPolicy[result] {	
+CxPolicy[result] {
 	input.document[_].resource.aws_s3_bucket[bucketName]
-	
+
 	cors_configuration := input.document[i].resource.aws_s3_bucket_cors_configuration[name]
 	split(cors_configuration.bucket, ".")[1] == bucketName
 	rule := cors_configuration.cors_rule
@@ -83,7 +83,7 @@ CxPolicy[result] {
 # version after TF AWS 4.0
 CxPolicy[result] {
 	input.document[_].resource.aws_s3_bucket[bucketName]
-	
+
 	cors_configuration := input.document[i].resource.aws_s3_bucket_cors_configuration[name]
 	split(cors_configuration.bucket, ".")[1] == bucketName
 	rule := cors_configuration.cors_rule[idx]

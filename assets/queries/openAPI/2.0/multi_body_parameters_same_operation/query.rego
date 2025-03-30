@@ -7,7 +7,7 @@ CxPolicy[result] {
 	openapi_lib.check_openapi(doc) == "2.0"
 
 	op := doc.paths[path][operation]
-	bodyParameters := [x | p := op.parameters[_]; p.in == "body"; x := p]
+	bodyParameters := [p | p := op.parameters[_]; p.in == "body"]
 	count(bodyParameters) > 1
 
 	result := {

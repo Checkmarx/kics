@@ -6,15 +6,13 @@ types := {"initContainers", "containers"}
 
 CxPolicy[result] {
 	document := input.document[i]
-
 	isTiller(document)
 
 	container := document.spec[types[x]][j]
-	metadata := document.metadata
-
 	contains(container.image, "tiller")
-
 	not common_lib.valid_key(container, "args")
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
@@ -29,17 +27,15 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-
 	isTiller(document)
 
 	container := document.spec[types[x]][j]
-	metadata := document.metadata
-
 	contains(container.image, "tiller")
 
 	not common_lib.valid_key(container, "args")
-
 	not listenLocal(container.args)
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
@@ -52,16 +48,15 @@ CxPolicy[result] {
 	}
 }
 
-#template container
+# template container
 CxPolicy[result] {
 	document := input.document[i]
-
 	isTillerTemplate(document)
 
 	container := document.spec.template.spec[types[x]][j]
-	metadata := document.metadata
-
 	not common_lib.valid_key(container, "args")
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
@@ -76,14 +71,13 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-
 	isTillerTemplate(document)
 
 	container := document.spec.template.spec[types[x]][j]
-	metadata := document.metadata
-
 	common_lib.valid_key(container, "args")
 	not listenLocal(container.args)
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,

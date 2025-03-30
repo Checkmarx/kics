@@ -1,7 +1,8 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
+import future.keywords.every
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -30,7 +31,9 @@ CxPolicy[result] {
 	value.type == "microsoft.insights/logprofiles"
 
 	[days, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.retentionPolicy.days)
-	all([days <= 365, days != 0])
+	every condition in [days <= 365, days != 0] {
+		condition
+	}
 
 	result := {
 		"documentId": input.document[i].id,

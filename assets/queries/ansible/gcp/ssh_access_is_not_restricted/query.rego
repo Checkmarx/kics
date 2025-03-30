@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.ansible as ansLib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	task := ansLib.tasks[id][t]
@@ -10,7 +10,7 @@ CxPolicy[result] {
 	ansLib.checkState(instance)
 
 	common_lib.is_ingress(instance)
-	common_lib.is_unrestricted(instance.source_ranges[_]) #Allow traffic ingressing from anywhere
+	common_lib.is_unrestricted(instance.source_ranges[_]) # Allow traffic ingressing from anywhere
 	allowed := instance.allowed
 	ansLib.allowsPort(allowed[k], "22")
 

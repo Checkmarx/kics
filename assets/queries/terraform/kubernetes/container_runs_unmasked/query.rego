@@ -1,12 +1,13 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod_security_policy[name]
 
 	allowed_proc_mount_types := resource.spec.allowed_proc_mount_types
-	allowed_proc_mount_types[_] == "Unmasked"
+	"Unmasked" in allowed_proc_mount_types
 
 	result := {
 		"documentId": input.document[i].id,

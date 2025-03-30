@@ -39,7 +39,7 @@ CxPolicy[result] {
 		"keyActualValue": "aws_rds_cluster.storage_encrypted is set to false",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

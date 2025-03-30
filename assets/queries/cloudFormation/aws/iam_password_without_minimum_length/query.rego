@@ -6,7 +6,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	password := resource.Properties.LoginProfile.Password
 	is_string(password)
-    not contains(lower(password), "secretsmanager")
+	not contains(lower(password), "secretsmanager")
 	count(password) < 14
 
 	result := {

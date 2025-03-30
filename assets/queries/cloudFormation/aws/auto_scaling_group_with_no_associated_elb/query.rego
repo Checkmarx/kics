@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -23,7 +23,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::AutoScaling::AutoScalingGroup"
 	elbs := resource.Properties.LoadBalancerNames
-	check_size(elbs)
+	check_array_size(elbs)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -36,7 +36,7 @@ CxPolicy[result] {
 	}
 }
 
-check_size(array) {
-	is_array(array)
-	count(array) == 0
+check_array_size(array_obj) {
+	is_array(array_obj)
+	count(array_obj) == 0
 }

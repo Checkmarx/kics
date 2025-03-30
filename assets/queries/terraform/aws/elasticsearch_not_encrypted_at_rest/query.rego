@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	domain := input.document[i].resource.aws_elasticsearch_domain[name]
@@ -39,7 +39,7 @@ CxPolicy[result] {
 		"keyActualValue": "'encrypt_at_rest.enabled' is false",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

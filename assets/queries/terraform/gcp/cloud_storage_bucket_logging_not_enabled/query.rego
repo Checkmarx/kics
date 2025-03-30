@@ -5,7 +5,7 @@ import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_storage_bucket[name]
-	not common_lib.valid_key(resource,"logging")
+	not common_lib.valid_key(resource, "logging")
 
 	result := {
 		"documentId": input.document[i].id,

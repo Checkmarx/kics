@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.ip_configuration' should be defined and not null",
 		"keyActualValue": "'settings.ip_configuration' is undefined or null",
-		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name],["settings"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name], ["settings"]),
 		"remediation": "ip_configuration {\n\t\trequire_ssl = true\n\t}\n",
 		"remediationType": "addition",
 	}
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'settings.ip_configuration.require_ssl' should be defined and not null",
 		"keyActualValue": "'settings.ip_configuration.require_ssl' is undefined or null",
-		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name],["settings", "ip_configuration"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name], ["settings", "ip_configuration"]),
 		"remediation": "require_ssl = true",
 		"remediationType": "addition",
 	}
@@ -55,10 +55,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'settings.ip_configuration.require_ssl' should be true",
 		"keyActualValue": "'settings.ip_configuration.require_ssl' is false",
-		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name],["settings", "ip_configuration", "require_ssl"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name], ["settings", "ip_configuration", "require_ssl"]),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

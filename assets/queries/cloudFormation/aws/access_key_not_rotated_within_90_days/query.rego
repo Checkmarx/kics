@@ -1,11 +1,11 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
-    resource.Type == "AWS::Config::ConfigRule"
+	resource.Type == "AWS::Config::ConfigRule"
 	not hasAccessKeyRotationRule(resource)
 
 	result := {
@@ -61,6 +61,4 @@ CxPolicy[result] {
 
 hasAccessKeyRotationRule(configRule) {
 	configRule.Properties.Source.SourceIdentifier == "ACCESS_KEYS_ROTATED"
-} else = false {
-	true
-}
+} else = false

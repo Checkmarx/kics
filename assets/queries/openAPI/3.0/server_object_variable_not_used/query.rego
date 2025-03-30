@@ -118,12 +118,12 @@ exists(var, vars) {
 }
 
 variables_not_used(var, url) {
-	url_variables := regex.find_n("{[a-zA-Z]+}", url, -1)
+	url_variables := regex.find_n(`{[a-zA-Z]+}`, url, -1)
 	url_variables != []
 	not exists(var, url_variables)
 }
 
 variables_not_used(var, url) {
-	url_variables := regex.find_n("{[a-zA-Z]+}", url, -1)
+	url_variables := regex.find_n(`{[a-zA-Z]+}`, url, -1)
 	url_variables == []
 }

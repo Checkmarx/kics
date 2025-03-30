@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("azurerm_managed_disk[%s].encryption_settings should be defined and not null", [name]),
 		"keyActualValue": sprintf("azurerm_managed_disk[%s].encryption_settings is undefined or null", [name]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_managed_disk" ,name], []),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_managed_disk", name], []),
 		"remediation": "encryption_settings = {\n\t\t enabled= true\n\t}\n",
 		"remediationType": "addition",
 	}
@@ -35,10 +35,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("azurerm_managed_disk[%s].encryption_settings.enabled should be true ", [name]),
 		"keyActualValue": sprintf("azurerm_managed_disk[%s].encryption_settings.enabled is false", [name]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_managed_disk" ,name ,"encryption_settings", "enabled"], []),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_managed_disk", name, "encryption_settings", "enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
