@@ -109,7 +109,7 @@ rules:
       level: ignore
     comprehension-term-assignment:
       # https://docs.styra.com/regal/rules/style/comprehension-term-assignment
-      level: ignore
+      level: warning
     pointless-reassignment:
       # https://docs.styra.com/regal/rules/style/pointless-reassignment
       level: warning
