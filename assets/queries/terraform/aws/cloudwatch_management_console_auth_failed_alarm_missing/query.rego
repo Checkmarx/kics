@@ -21,7 +21,7 @@ check_expression_missing(resName, filter, doc) {
 	contains(alarm.metric_name, resName)
 	expr := commonLib.get_kics_filter_expr(filter)
 	commonLib.get_operator(expr) == "&&"
-	count({x | exp := expressionArr[n]; commonLib.check_selector(filter, exp.value, exp.op, exp.name) == false; x := exp}) == 0
+	count({exp | exp := expressionArr[n]; commonLib.check_selector(filter, exp.value, exp.op, exp.name) == false}) == 0
 }
 
 CxPolicy[result] {
