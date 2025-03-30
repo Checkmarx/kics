@@ -10,10 +10,10 @@ CxPolicy[result] {
 	count(path) > 0
 
 	param := value.parameters
-	body := [x | p := param[_]; p.in == "body"; x := p.in]
+	body := [p.in | p := param[_]; p.in == "body"]
 	count(body) > 0
 
-	formatData := [x | p := param[_]; p.in == "formatData"; x := p.in]
+	formatData := [p.in | p := param[_]; p.in == "formatData"]
 	count(formatData) > 0
 
 	result := {

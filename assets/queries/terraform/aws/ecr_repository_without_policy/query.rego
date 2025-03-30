@@ -22,6 +22,6 @@ CxPolicy[result] {
 check_policy(resource, name) {
 	not common_lib.valid_key(resource, "aws_ecr_repository_policy")
 } else {
-	res_pol := {x | resource.aws_ecr_repository_policy[name_poly].repository == sprintf("${aws_ecr_repository.%s.name}", [name]); x := name_poly}
+	res_pol := {name_poly | resource.aws_ecr_repository_policy[name_poly].repository == sprintf("${aws_ecr_repository.%s.name}", [name])}
 	count(res_pol) == 0
 }

@@ -53,7 +53,7 @@ avoidManualInputInList(command) {
 	flagfound
 } else {
 	flagsquiet := ["-q", "--quiet"]
-	quietflag := {z | command[y] == flagsquiet[_]; z := y}
+	quietflag := {y | command[y] == flagsquiet[_]}
 	count(quietflag) == 2
 }
 

@@ -26,12 +26,11 @@ CxPolicy[result] {
 	not common_lib.valid_key(specInfo.spec, "automountServiceAccountToken")
 
 	serviceAccountName := object.get(specInfo.spec, "serviceAccountName", "default")
-	SAWithAutoMount := [x |
+	SAWithAutoMount := [res |
 		res := input.document[_]
 		res.kind == "ServiceAccount"
 		res.metadata.name == serviceAccountName
 		common_lib.valid_key(res, "automountServiceAccountToken")
-		x := res
 	]
 
 	count(SAWithAutoMount) == 0
@@ -66,12 +65,11 @@ checkAutomount(specInfo, document, metadata) = result {
 	not common_lib.valid_key(specInfo.spec, "automountServiceAccountToken")
 	serviceAccountName := object.get(specInfo.spec, "serviceAccountName", "default")
 
-	SAWithAutoMount := [x |
+	SAWithAutoMount := [res |
 		res := input.document[_]
 		res.kind == "ServiceAccount"
 		res.metadata.name == serviceAccountName
 		res.automountServiceAccountToken == true
-		x := res
 	]
 
 	count(SAWithAutoMount) > 0
