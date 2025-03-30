@@ -28,9 +28,7 @@ CxPolicy[result] {
 	}
 }
 
-getTrustedPath(container) = path {
-	path := split(flagValue(container, "--trusted-ca-file"), "=")[1]
-}
+getTrustedPath(container) = split(flagValue(container, "--trusted-ca-file"), "=")[1]
 
 flagValue(container, flag) = val {
 	val := getFlag(container.command, flag)

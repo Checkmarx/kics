@@ -106,9 +106,7 @@ getRunCommand(resource) = commandRefactor {
 	commandRefactor := [x | x := commandList[_]; x != ""]
 }
 
-getDetail(commandRefactor, value) = list {
-	list := [u | commandRefactor[u] == value]
-}
+getDetail(commandRefactor, value) = [u | commandRefactor[u] == value]
 
 checkFollowedBy(first, after) {
 	first[_] < after[_]

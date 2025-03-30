@@ -25,9 +25,7 @@ convert_path_item(pathItem) = convertedPath {
 	convertedPath := sprintf("%s", [pathItem])
 }
 
-concat_path(path) = concatenated {
-	concatenated := concat(".", [x | x := resolve_path(path[_]); x != ""])
-}
+concat_path(path) = concat(".", [x | x := resolve_path(path[_]); x != ""])
 
 resolve_path(pathItem) = resolved {
 	contains(pathItem, ".")
@@ -529,9 +527,7 @@ get_nested_values_info(obj, array_vals) = return_value {
 	}
 }
 
-remove_last_point(searchKey) = sk {
-	sk := trim_right(searchKey, ".")
-}
+remove_last_point(searchKey) = trim_right(searchKey, ".")
 
 isOSDir(mountPath) = result {
 	hostSensitiveDir = {
@@ -762,17 +758,11 @@ valid_non_empty_key(field, key) = output {
 	output := concat(".", ["", key])
 }
 
-get_kics_filter_expr(obj) := expr {
-	expr := object.get(obj, "_kics_filter_expr", {})
-}
+get_kics_filter_expr(obj) := object.get(obj, "_kics_filter_expr", {})
 
-get_operator(obj) := op {
-	op := object.get(obj, "_op", "")
-}
+get_operator(obj) := object.get(obj, "_op", "")
 
-get_selector_name(obj) := name {
-	name := object.get(obj, "_selector", "")
-}
+get_selector_name(obj) := object.get(obj, "_selector", "")
 
 get_value(filter) := value {
 	some x

@@ -45,13 +45,9 @@ containsPort(rule, port) {
 }
 
 # Gets the list of protocols
-getProtocolList("-1") = protocols {
-	protocols := ["TCP", "UDP", "ICMP"]
-}
+getProtocolList("-1") = ["TCP", "UDP", "ICMP"]
 
-getProtocolList("*") = protocols {
-	protocols := ["TCP", "UDP", "ICMP"]
-}
+getProtocolList("*") = ["TCP", "UDP", "ICMP"]
 
 getProtocolList(protocol) = protocols {
 	upper(protocol) == "TCP"

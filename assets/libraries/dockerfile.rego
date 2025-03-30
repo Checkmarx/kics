@@ -71,6 +71,4 @@ check_multi_stage(imageName, images) {
 	imageName == sortedIndex[count(sortedIndex) - 1].Name
 }
 
-get_line_number(inst) := line {
-	line := object.get(inst, "_kics_line", 0)
-}
+get_line_number(inst) := object.get(inst, "_kics_line", 0)
