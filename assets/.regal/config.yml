@@ -103,7 +103,7 @@ rules:
       level: ignore
     rule-name-repeats-package:
       # https://docs.styra.com/regal/rules/style/rule-name-repeats-package
-      level: warning
+      level: ignore
     messy-rule:
       # https://docs.styra.com/regal/rules/style/messy-rule
       level: ignore
@@ -141,4 +141,4 @@ rules:
       level: warning
     with-outside-test-context:
       # https://docs.styra.com/regal/rules/performance/with-outside-test-context
-      level: ignore
+      level: warning
