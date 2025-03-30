@@ -55,7 +55,7 @@ rules:
       level: warning
     use-contains:
       # https://docs.styra.com/regal/rules/idiomatic/use-contains
-      level: ignore
+      level: warning
     use-if:
       # https://docs.styra.com/regal/rules/idiomatic/use-if
       level: ignore
