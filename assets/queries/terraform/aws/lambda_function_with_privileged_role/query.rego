@@ -114,7 +114,7 @@ is_attachment(attachment, role_id) {
 
 hasPrivilegedPermissions(statement) = matching_actions {
 	statement.Effect == "Allow"
-	matching_actions := [matching_actions | action := privilegeEscalationActions[x]; common_lib.check_actions(statement, action); matching_actions := action]
+	matching_actions := [action | action := privilegeEscalationActions[x]; common_lib.check_actions(statement, action)]
 } else = matching_actions {
 	matching_actions := []
 }

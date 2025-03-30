@@ -8,17 +8,11 @@ CxPolicy[result] {
 	resource := doc.Resources[name]
 	resource.Type == "AWS::ECS::Service"
 
-	clusterList := [cluster |
-		doc.Resources[j].Type == "AWS::ECS::Cluster"
-		cluster := j
-	]
+	clusterList := [j | doc.Resources[j].Type == "AWS::ECS::Cluster"]
 
 	count(clusterList) > 0
 
-	securityGroupList := [secGroup |
-		doc.Resources[j].Type == "AWS::EC2::SecurityGroup"
-		secGroup := j
-	]
+	securityGroupList := [j | doc.Resources[j].Type == "AWS::EC2::SecurityGroup"]
 
 	count(securityGroupList) > 0
 

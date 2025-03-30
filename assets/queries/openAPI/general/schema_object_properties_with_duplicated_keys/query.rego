@@ -64,11 +64,10 @@ create_searchkey(name, path, val) = search_key {
 }
 
 check_properties(value, properties, m) {
-	set := {x |
+	set := {value |
 		tt := properties[z].value
 		z != m
 		tt == value
-		x := value
 	}
 
 	count(set) > 0

@@ -27,15 +27,15 @@ check_expression_missing(resName, filter, doc) {
 	expr := commonLib.get_kics_filter_expr(filter)
 	commonLib.get_operator(expr) == "&&"
 
-	count({x | exp := expressionArr[n]; commonLib.check_selector(filter, exp.value, exp.op, exp.name) == false; x := exp}) == 0
+	count({exp | exp := expressionArr[n]; commonLib.check_selector(filter, exp.value, exp.op, exp.name) == false}) == 0
 }
 
 CxPolicy[result] {
 	doc := input.document[i]
 	resources := doc.resource.aws_cloudwatch_log_metric_filter
 
-	allPatternsCount := count([x | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern); x = filter])
-	count([x | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern); not check_expression_missing(path[0], filter, doc); x = filter]) == allPatternsCount
+	allPatternsCount := count([filter | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern)])
+	count([filter | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern); not check_expression_missing(path[0], filter, doc)]) == allPatternsCount
 
 	result := {
 		"documentId": input.document[i].id,

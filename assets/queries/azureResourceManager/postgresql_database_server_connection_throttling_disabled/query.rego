@@ -39,11 +39,10 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 	value.type == "Microsoft.DBforPostgreSQL/servers"
 	childrenArr := arm_lib.get_children(doc, value, path)
-	count([x |
+	count([children |
 		children := childrenArr[c].value
 		children.type == types[_]
 		endswith(children.name, "connection_throttling")
-		x := children
 	]) == 0
 
 	result := {

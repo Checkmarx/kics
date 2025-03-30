@@ -28,13 +28,12 @@ CxPolicy[result] {
 	}
 }
 
-check_keywords(value) = {invalidKeyword |
+check_keywords(value) = {key |
 	keywords := specificKeywords[type]
 	typeName := get_value_type(value.type)
 	type != typeName
 	value[key]
 	common_lib.inArray(keywords, key)
-	invalidKeyword := key
 }
 
 get_value_type(type) = typeName {

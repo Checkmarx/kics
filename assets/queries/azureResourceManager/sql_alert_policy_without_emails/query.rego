@@ -54,9 +54,8 @@ CxPolicy[result] {
 check_emails(emailAddresses) {
 	count(emailAddresses) == 0
 } else {
-	count([x |
+	count([email |
 		email := emailAddresses[_]
 		email == ""
-		x := email
 	]) > 0
 }

@@ -10,7 +10,7 @@ CxPolicy[result] {
 	some j
 	cmdInst := [x | resource[j].Cmd == instructions[y]; x := resource[j]]
 	typeCMD := [x | cmd := cmdInst[_]; x := {"cmd": cmd.Cmd, "dest": cmd.Value[count(cmd.Value) - 1]}]
-	newCmdInst := [x | cmd := cmdInst[_]; check_dest(typeCMD, cmd); x := cmd]
+	newCmdInst := [cmd | cmd := cmdInst[_]; check_dest(typeCMD, cmd)]
 
 	some n, m
 	lineCounter := [x |

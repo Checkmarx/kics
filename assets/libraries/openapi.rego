@@ -248,7 +248,7 @@ check_scheme(doc, schemeKey, scope, version) {
 	secScheme := doc.components.securitySchemes[schemeKey]
 	secScheme.type == "oauth2"
 
-	arr := [x | _ := secScheme.flows[flowKey].scopes[scopeName]; scopeName == scope; x := scope]
+	arr := [scope | _ := secScheme.flows[flowKey].scopes[scopeName]; scopeName == scope]
 
 	count(arr) == 0
 } else {
@@ -256,7 +256,7 @@ check_scheme(doc, schemeKey, scope, version) {
 	secScheme := doc.securityDefinitions[schemeKey]
 	secScheme.type == "oauth2"
 
-	arr := [x | _ := secScheme.scopes[scopeName]; scopeName == scope; x := scope]
+	arr := [scope | _ := secScheme.scopes[scopeName]; scopeName == scope]
 
 	count(arr) == 0
 }
@@ -299,7 +299,7 @@ get_discriminator(schema, version) = discriminator {
 check_definitions(doc, obj_type, name) {
 	[path, value] := walk(doc)
 	reference := value["$ref"]
-	count({x | reference == sprintf("#/%s/%s", [obj_type, name]); x := reference}) == 0
+	count({reference | reference == sprintf("#/%s/%s", [obj_type, name])}) == 0
 }
 
 is_valid_mime(mime) {

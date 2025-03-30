@@ -14,12 +14,11 @@ CxPolicy[result] {
 	value.type in dbTypes
 	childrenArr := arm_lib.get_children(doc, value, path)
 
-	count([x |
+	count([child |
 		child := childrenArr[_].value
 		child.type == types[_]
 		[val, _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, child.properties.state)
 		lower(val) == "enabled"
-		x := child
 	]) == 0
 
 	result := {
