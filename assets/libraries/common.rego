@@ -475,21 +475,31 @@ check_principals(statement) {
 }
 
 check_actions(statement, typeAction) {
-	some action in statement.action
-	[typeAction, "*"] in action
+	some action in statement.actions
+	action == typeAction
 } else {
-	check_statement_action(statement, typeAction)
+	some action in statement.actions
+	action == "*"
+} else {
+	some action in statement.Actions
+	action == typeAction
+} else {
+	some action in statement.Actions
+	action == "*"
 } else {
 	is_array(statement.Action) == true
-	check_statement_action(statement, typeAction)
+	some action in statement.Action
+	action == typeAction
+} else {
+	is_array(statement.Action) == true
+	some action in statement.Action
+	action == "*"
 } else {
 	is_string(statement.Action) == true
-	check_statement_action(statement, typeAction)
-}
-
-check_statement_action(statement, typeAction) {
-	some action in statement.Action
-	[typeAction, "*"] in action
+	statement.Action == typeAction
+} else {
+	is_string(statement.Action) == true
+	statement.Action == "*"
 }
 
 has_wildcard(statement, typeAction) {
