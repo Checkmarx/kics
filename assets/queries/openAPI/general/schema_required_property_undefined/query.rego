@@ -13,8 +13,9 @@ CxPolicy[result] {
 	schema = value.schema
 
 	requiredProperty := schema.required[_]
-	all([property | property != requiredProperty; _ := schema.properties[property]])
-
+	every p in [property | property != requiredProperty; _ := schema.properties[property]] {
+		not p
+	}
 	result := {
 		"documentId": docs.id,
 		"searchKey": sprintf("%s.schema", [openapi_lib.concat_path(path)]),
@@ -34,8 +35,9 @@ CxPolicy[result] {
 	schema = value.schemas[schemaName]
 
 	requiredProperty := schema.required[_]
-	all([property | property != requiredProperty; _ := schema.properties[property]])
-
+	every p in [property | property != requiredProperty; _ := schema.properties[property]] {
+		not p
+	}
 	newPath := [path[_], schemaName]
 
 	result := {
