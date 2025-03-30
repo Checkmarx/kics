@@ -115,7 +115,7 @@ rules:
       level: warning
     unconditional-assignment:
       # https://docs.styra.com/regal/rules/style/unconditional-assignment
-      level: ignore
+      level: warning
     default-over-else:
       # https://docs.styra.com/regal/rules/style/default-over-else
       level: ignore
