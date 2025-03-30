@@ -21,9 +21,9 @@ CxPolicy[result] {
 	}
 }
 
-containsProvider(resource){
+containsProvider(resource) {
 	providerToCheck := providerList[_]
 	innerResources := resource.resources[_]
-	providers_det := innerResources["providers"]
+	providers_det := innerResources.providers
 	common_lib.valid_key(providers_det[_], providerToCheck)
 }

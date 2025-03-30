@@ -21,7 +21,6 @@ CxPolicy[result] {
 	}
 }
 
-
 CxPolicy[result] {
 	resource := input.document[i].resources[name]
 	resource.type == "aws:dms:ReplicationInstance"

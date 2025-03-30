@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_nas_file_system[name]
 	not common_lib.valid_key(resource, "encrypt_type")
-	
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_nas_file_system",
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_nas_file_system", name, "encrypt_type"], []),
 		"remediation": json.marshal({
 			"before": resource.encrypt_type,
-			"after": "2"
+			"after": "2",
 		}),
 		"remediationType": "replacement",
 	}

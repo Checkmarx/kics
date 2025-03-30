@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_instance", name, "ebs_optimized"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -47,7 +47,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["module", name, "ebs_optimized"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"keyActualValue": "'log_publishing_options.enabled' is false",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

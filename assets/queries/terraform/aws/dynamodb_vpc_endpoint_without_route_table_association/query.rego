@@ -6,7 +6,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_vpc_endpoint[name]
 
 	serviceNameSplit := split(resource.service_name, ".")
-	serviceNameSplit[minus(count(serviceNameSplit), 1)] == "dynamodb"
+	serviceNameSplit[count(serviceNameSplit) - 1] == "dynamodb"
 	vpcNameRef := split(resource.vpc_id, ".")[1]
 
 	not has_route_association(vpcNameRef)

@@ -42,7 +42,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "autoRepair should be defined and set to true",
 		"keyActualValue": "autoRepair is not defined",
-		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider","management"]),
+		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider", "management"]),
 	}
 }
 
@@ -64,6 +64,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "autoRepair should be set to true",
 		"keyActualValue": "autoRepair is set to false",
-		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider","management", "autoRepair"]),
+		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider", "management", "autoRepair"]),
 	}
 }

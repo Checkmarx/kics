@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'aws_cloudtrail[%s].enable_log_file_validation' is false", [name]),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

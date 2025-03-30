@@ -12,6 +12,6 @@ getResourceName(resource, logicName) = name {
 }
 
 pulumiResourcesWithName = {
-	"gcp:storage:Bucket"    : "name",
-	"gcp:compute:SSLPolicy" : "name",
+	"gcp:storage:Bucket": "name",
+	"gcp:compute:SSLPolicy": "name",
 }

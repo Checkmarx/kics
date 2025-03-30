@@ -7,8 +7,8 @@ insecure_protocols := {"TCP", "UDP", "HTTP"}
 
 CxPolicy[result] {
 	resource := input.document[i].resource.tencentcloud_clb_listener[name]
-    protocolCheck := resource.protocol
-    insecure_protocols[protocolCheck]
+	protocolCheck := resource.protocol
+	insecure_protocols[protocolCheck]
 
 	result := {
 		"documentId": input.document[i].id,
@@ -18,6 +18,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("tencentcloud_clb_listener[%s].protocol[%s] should not be an insecure protocol", [name, protocolCheck]),
 		"keyActualValue": sprintf("tencentcloud_clb_listener[%s].protocol[%s] is an insecure protocol", [name, protocolCheck]),
-        "searchLine":common_lib.build_search_line(["resource", "tencentcloud_clb_listener", name, "protocol"], []),
+		"searchLine": common_lib.build_search_line(["resource", "tencentcloud_clb_listener", name, "protocol"], []),
 	}
 }

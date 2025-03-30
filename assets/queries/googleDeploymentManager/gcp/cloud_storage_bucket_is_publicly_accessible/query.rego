@@ -4,9 +4,9 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resources[idx]
-	public_access_users := ["allUsers", "allAuthenticatedUsers"]
 	resource.type == "storage.v1.bucketAccessControl"
 
+	public_access_users := ["allUsers", "allAuthenticatedUsers"]
 	public_access_users[j] == resource.properties.entity
 
 	result := {

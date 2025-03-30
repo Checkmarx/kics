@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -30,10 +30,9 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	param := value.parameters[n]
 	param.in != "body"
+	not common_lib.valid_key(param, "type")
 
 	partialSk := openapi_lib.concat_default_value(openapi_lib.concat_path(path), "parameters")
-
-	not common_lib.valid_key(param, "type")
 
 	result := {
 		"documentId": doc.id,

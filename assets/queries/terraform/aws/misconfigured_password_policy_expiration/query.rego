@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	expr := input.document[i].resource.aws_iam_account_password_policy[name]
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"keyActualValue": "'max_password_age' is higher than 90",
 		"remediation": json.marshal({
 			"before": sprintf("%d", [expr.max_password_age]),
-			"after": "90"
+			"after": "90",
 		}),
 		"remediationType": "replacement",
 	}

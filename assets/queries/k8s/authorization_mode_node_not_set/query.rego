@@ -23,4 +23,3 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),
 	}
 }
-

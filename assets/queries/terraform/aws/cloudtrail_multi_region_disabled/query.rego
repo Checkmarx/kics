@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_cloudtrail[%s].is_multi_region_trail is set to false", [name]),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -60,7 +60,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_cloudtrail[%s].include_global_service_events is set to false", [name]),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

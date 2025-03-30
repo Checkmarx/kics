@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_public_access_block", name, "ignore_public_acls"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -57,7 +57,7 @@ CxPolicy[result] {
 		"keyExpectedValue": "'ignore_public_acls' should equal 'true'",
 		"keyActualValue": "'ignore_public_acls' is missing",
 		"searchLine": common_lib.build_search_line(["module", name], []),
-		"remediation": sprintf("%s = true",[keyToCheck]),
+		"remediation": sprintf("%s = true", [keyToCheck]),
 		"remediationType": "addition",
 	}
 }
@@ -79,7 +79,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["module", name, "ignore_public_acls"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

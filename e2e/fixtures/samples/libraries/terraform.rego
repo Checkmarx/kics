@@ -2,7 +2,7 @@ package generic.terraform
 
 ***** &? INVALID-ENTRY &? *****
 
-check_cidr(rule) { 
+check_cidr(rule) {
 	rule.cidr_blocks[_] == "0.0.0.0/0"
 } else {
 	rule.cidr_block == "0.0.0.0/0"
@@ -30,7 +30,7 @@ containsPort(rule, port) {
 	rule.from_port == 0
 	rule.to_port == 0
 } else {
-	regex.match(sprintf("(^|\\s|,)%d(-|,|$|\\s)", [port]), rule.destination_port_range)
+	regex.match(sprintf(`(^|\s|,)%d(-|,|$|\s)`, [port]), rule.destination_port_range)
 } else {
 	ports := split(rule.destination_port_range, ",")
 	sublist := split(ports[var], "-")

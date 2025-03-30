@@ -1,14 +1,14 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	document := input.document[i]
 	resource := document.Resources[key]
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties
-	
+
 	properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled == false
 
 	result := {

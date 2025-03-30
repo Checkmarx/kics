@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"keyActualValue": "The attribute 'at_rest_encryption_enabled' is not set to true",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

@@ -41,6 +41,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "encrypted should be set to true",
 		"keyActualValue": "encrypted is set to false",
-		"searchLine": common_lib.build_search_line(path ,["spec", "forProvider","encrypted"]),
+		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider", "encrypted"]),
 	}
 }

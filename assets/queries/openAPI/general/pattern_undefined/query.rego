@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -47,13 +47,13 @@ CxPolicy[result] {
 }
 
 checkForSecureStringFormats(value) {
-	openapi_lib.undefined_field_in_string_type(value, "enum")   # enums have an implicit pattern
+	openapi_lib.undefined_field_in_string_type(value, "enum") # enums have an implicit pattern
 	checkStringFormat(value)
 }
 
 checkStringFormat(value) {
-    openapi_lib.undefined_field_in_string_type(value, "format")
+	openapi_lib.undefined_field_in_string_type(value, "format")
 } else {
-    value["format"] != "date"       # date and date-time formats
-    value["format"] != "date-time"  # have an implicit pattern
+	value.format != "date" # date and date-time formats
+	value.format != "date-time" # have an implicit pattern
 }

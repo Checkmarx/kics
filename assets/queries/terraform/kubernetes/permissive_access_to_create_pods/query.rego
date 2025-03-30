@@ -137,5 +137,5 @@ CxPolicy[result] {
 }
 
 isWildCardValue(val) {
-	regex.match(".*\\*.*", val)
+	regex.match(`.*\*.*`, val)
 }

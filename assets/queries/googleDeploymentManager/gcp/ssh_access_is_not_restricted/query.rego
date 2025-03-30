@@ -15,10 +15,10 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,
 		"resourceName": resource.name,
-		"searchKey": sprintf("resources.name={{%s}}.properties.allowed[%d].ports=%s", [resource.name, ports]),
+		"searchKey": sprintf("resources.name={{%s}}.properties.allowed[%d].ports=%s", [resource.name, a, ports]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'allowed[%d].ports' to not include SSH port 22", [a]),
-		"keyActualValue": sprintf("'allowed[%d].ports' includes SSH port 22", [a]), 
+		"keyActualValue": sprintf("'allowed[%d].ports' includes SSH port 22", [a]),
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "allowed", a, "ports"], []),
 	}
 }
@@ -29,19 +29,19 @@ isSSHport(allow) = ports {
 	low_bound := to_number(port_bounds[0])
 	high_bound := to_number(port_bounds[1])
 	isInBounds(low_bound, high_bound)
-  	ports := allow.ports[j]
+	ports := allow.ports[j]
 }
 
 isSSHport(allow) = ports {
 	contains(allow.ports[j], "-") == false
 	to_number(allow.ports[j]) == 22
-  	ports := allow.ports[j]
+	ports := allow.ports[j]
 }
 
 isSSHport(allow) = ports {
 	not allow.ports
-    isTCPorAll(allow.IPProtocol)
-    ports := "0-65535"
+	isTCPorAll(allow.IPProtocol)
+	ports := "0-65535"
 }
 
 isTCPorAll(protocol) {

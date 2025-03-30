@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -25,7 +25,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::ECS::TaskDefinition"
 	properties := resource.Properties
 
-    properties.NetworkMode != "awsvpc"
+	properties.NetworkMode != "awsvpc"
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
@@ -33,6 +33,6 @@ CxPolicy[result] {
 		"searchKey": sprintf("Resources.%s.Properties.NetworkMode", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.NetworkMode' should be 'awsvpc'", [name]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.NetworkMode' is '%s'", [name,properties.NetworkMode]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.NetworkMode' is '%s'", [name, properties.NetworkMode]),
 	}
 }

@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"keyActualValue": "'minimum_password_length' is less than 14",
 		"remediation": json.marshal({
 			"before": sprintf("%d", [min_length]),
-			"after": "14"
+			"after": "14",
 		}),
 		"remediationType": "replacement",
 	}

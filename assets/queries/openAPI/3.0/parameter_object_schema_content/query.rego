@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -55,9 +55,9 @@ CxPolicy[result] {
 }
 
 check_params(params) {
-    not common_lib.valid_key(params, "schema")
+	not common_lib.valid_key(params, "schema")
 }
 
 check_params(params) {
-    not common_lib.valid_key(params, "content")
+	not common_lib.valid_key(params, "content")
 }

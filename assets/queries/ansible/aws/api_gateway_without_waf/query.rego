@@ -27,10 +27,10 @@ CxPolicy[result] {
 has_waf_associated(stage) {
 	waf := {"community.aws.wafv2_resources", "wafv2_resources"}
 
-    task2 := ans_lib.tasks[_][_]
+	task2 := ans_lib.tasks[_][_]
 	wafResource := task2[waf[_]]
-    ans_lib.checkState(wafResource)
-    contains(wafResource.arn, "arn:aws:apigateway:")
-    associatedStage := split(wafResource.arn, "/")
-    associatedStage[4] == stage
+	ans_lib.checkState(wafResource)
+	contains(wafResource.arn, "arn:aws:apigateway:")
+	associatedStage := split(wafResource.arn, "/")
+	associatedStage[4] == stage
 }

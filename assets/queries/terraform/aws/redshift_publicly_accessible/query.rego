@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"keyActualValue": "aws_redshift_cluster.publicly_accessible is true",
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}

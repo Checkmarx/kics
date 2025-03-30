@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -20,10 +20,9 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s response should be set", [wantedResponses]),
 		"keyActualValue": sprintf("%s response is undefined", [wantedResponses]),
-		"searchValue": sprintf("%s", [wantedResponses]),
-		"overrideKey": version,
 		"searchValue": sprintf("%s response", [wantedResponses]),
-		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"],[]),
+		"overrideKey": version,
+		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"], []),
 	}
 }
 
@@ -45,7 +44,7 @@ CxPolicy[result] {
 		"keyActualValue": "415 response is undefined",
 		"overrideKey": version,
 		"searchValue": "415 response",
-		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"],[]),
+		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"], []),
 	}
 }
 
@@ -67,7 +66,7 @@ CxPolicy[result] {
 		"keyActualValue": "404 response is undefined",
 		"overrideKey": version,
 		"searchValue": "404 response",
-		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"],[]),
+		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"], []),
 	}
 }
 
@@ -88,7 +87,7 @@ CxPolicy[result] {
 		"keyActualValue": "200 response is undefined",
 		"overrideKey": version,
 		"searchValue": "200 response",
-		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"],[]),
+		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"], []),
 	}
 }
 
@@ -109,9 +108,8 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s response should be set when security field is defined", [wantedResponses]),
 		"keyActualValue": sprintf("%s response is undefined when security field is defined", [wantedResponses]),
-		"searchValue": sprintf("%s", [wantedResponses]),
-		"overrideKey": version,
 		"searchValue": sprintf("%s response", [wantedResponses]),
-		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"],[]),
+		"overrideKey": version,
+		"searchLine": common_lib.build_search_line(["paths", n, oper, "responses"], []),
 	}
 }

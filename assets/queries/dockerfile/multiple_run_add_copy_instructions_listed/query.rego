@@ -5,16 +5,16 @@ import data.generic.dockerfile as dockerLib
 CxPolicy[result] {
 	resource := input.document[i].command[name]
 	dockerLib.check_multi_stage(name, input.document[i].command)
-	
+
 	instructions := {"copy", "add", "run"}
 	some j
 	cmdInst := [x | resource[j].Cmd == instructions[y]; x := resource[j]]
-	typeCMD := [x | cmd := cmdInst[_]; x := {"cmd": cmd.Cmd, "dest": cmd.Value[minus(count(cmd.Value), 1)]}]
+	typeCMD := [x | cmd := cmdInst[_]; x := {"cmd": cmd.Cmd, "dest": cmd.Value[count(cmd.Value) - 1]}]
 	newCmdInst := [x | cmd := cmdInst[_]; check_dest(typeCMD, cmd); x := cmd]
 
 	some n, m
 	lineCounter := [x |
-		newCmdInst[n]._kics_line - newCmdInst[m]._kics_line == -1
+		dockerLib.get_line_number(newCmdInst[n]) - dockerLib.get_line_number(newCmdInst[m]) == -1
 		x := newCmdInst[n]
 	]
 
@@ -34,10 +34,8 @@ CxPolicy[result] {
 check_dest(typeCMD, cmd) {
 	types := {"copy", "add"}
 	cmd.Cmd == types[y]
-	cmdCheck = [x | cmd.Value[minus(count(cmd.Value), 1)] == typeCMD[z].dest; x := typeCMD[z]]
+	cmdCheck = [x | cmd.Value[count(cmd.Value) - 1] == typeCMD[z].dest; x := typeCMD[z]]
 	count(cmdCheck) > 1
 } else {
 	cmd.Cmd == "run"
-} else = false {
-	true
-}
+} else = false

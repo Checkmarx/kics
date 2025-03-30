@@ -9,7 +9,7 @@ CxPolicy[result] {
 	contains(permissionResource.function_name, concat(".", ["aws_lambda_function", name]))
 	permissionResource.action == "lambda:InvokeFunction"
 	principalAllowAPIGateway(permissionResource.principal)
-	re_match("/\\*/\\*$", permissionResource.source_arn)
+	regex.match(`/\*/\*$`, permissionResource.source_arn)
 
 	result := {
 		"documentId": input.document[i].id,

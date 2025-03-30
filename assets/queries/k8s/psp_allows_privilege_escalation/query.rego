@@ -1,16 +1,16 @@
 package Cx
 
-import data.generic.k8s as k8sLib
 import data.generic.common as common_lib
+import data.generic.k8s as k8sLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	specInfo := k8sLib.getSpecInfo(document)
-	metadata := document.metadata
-
 	document.kind == "PodSecurityPolicy"
 
+	specInfo := k8sLib.getSpecInfo(document)
 	not common_lib.valid_key(specInfo.spec, "allowPrivilegeEscalation")
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
@@ -25,12 +25,12 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	document := input.document[i]
-	specInfo := k8sLib.getSpecInfo(document)
-	metadata := document.metadata
-
 	document.kind == "PodSecurityPolicy"
 
+	specInfo := k8sLib.getSpecInfo(document)
 	specInfo.spec.allowPrivilegeEscalation == true
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": input.document[i].id,
