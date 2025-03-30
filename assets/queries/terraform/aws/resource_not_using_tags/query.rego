@@ -45,9 +45,7 @@ check_different_tag(tags) {
 }
 
 check_default_tags {
-	common_lib.valid_key(input.document[_].provider["aws"].default_tags, "tags")
+	common_lib.valid_key(input.document[_].provider.aws.default_tags, "tags")
 } else {
-	common_lib.valid_key(input.document[_].provider["aws"][_].default_tags, "tags")
-} else = false {
-	true
-}
+	common_lib.valid_key(input.document[_].provider.aws[_].default_tags, "tags")
+} else = false

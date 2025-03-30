@@ -11,7 +11,7 @@ CxPolicy[result] {
 
 	not common_lib.valid_key(resource.Properties, "KmsMasterKeyId")
 	SqsManagedSseNotEnabled(resource.Properties)
-	
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,

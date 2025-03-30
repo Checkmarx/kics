@@ -6,9 +6,8 @@ CxPolicy[result] {
 	run_command := resource.Value[_]
 	values := split(run_command, " ")
 	trim_space(values[index]) == "cd"
-    path := trim_space(values[index+1])
-    not is_full_path(path)
-    
+	path := trim_space(values[index + 1])
+	not is_full_path(path)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -19,9 +18,9 @@ CxPolicy[result] {
 	}
 }
 
-is_full_path(path){
-	regex.match("^[a-zA-Z]:[\\\/]", path)	
-}else {
-	startswith( path,"/")
-    not contains(path, "/.")
+is_full_path(path) {
+	regex.match(`^[a-zA-Z]:[\/]`, path)
+} else {
+	startswith(path, "/")
+	not contains(path, "/.")
 }

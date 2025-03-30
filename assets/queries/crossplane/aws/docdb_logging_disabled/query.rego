@@ -27,12 +27,11 @@ CxPolicy[result] {
 	}
 }
 
-
 CxPolicy[result] {
 	docs := input.document[i]
 	[path, resource] := walk(docs)
 	resource.kind == "DBCluster"
-	
+
 	spec := resource.spec
 	provider := spec.forProvider
 	logs := provider.enableCloudwatchLogsExports
@@ -47,7 +46,7 @@ CxPolicy[result] {
 		"resourceType": "DBCluster",
 		"resourceName": resource.metadata.name,
 		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.enableCloudwatchLogsExports", [cp_lib.getPath(path), resource.metadata.name]),
-		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider","enableCloudwatchLogsExports"]),
+		"searchLine": common_lib.build_search_line(path, ["spec", "forProvider", "enableCloudwatchLogsExports"]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("DBCluster.enableCloudwatchLogsExports should have all following values: %s", [validTypeConcat]),
 		"keyActualValue": sprintf("DBCluster.enableCloudwatchLogsExports has the following missing values: %s", [concat(", ", missingTypes)]),

@@ -40,7 +40,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("resource.aws_cloudfront_distribution[%s].enabled is configured as 'false'", [name]),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

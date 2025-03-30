@@ -1,17 +1,16 @@
 package Cx
 
-import data.generic.k8s as k8sLib
 import data.generic.common as common_lib
+import data.generic.k8s as k8sLib
 
 CxPolicy[result] {
 	document := input.document[i]
-	specInfo := k8sLib.getSpecInfo(document)
+	document.kind == "Pod"
 
 	metadata := document.metadata
 
+	specInfo := k8sLib.getSpecInfo(document)
 	spec := specInfo.spec
-
-	document.kind == "Pod"
 
 	not common_lib.valid_key(spec, "securityContext")
 
@@ -32,7 +31,7 @@ CxPolicy[result] {
 
 	metadata := document.metadata
 
-    types := {"initContainers", "containers"}
+	types := {"initContainers", "containers"}
 	containers := specInfo.spec[types[x]]
 
 	not common_lib.valid_key(containers[index], "securityContext")

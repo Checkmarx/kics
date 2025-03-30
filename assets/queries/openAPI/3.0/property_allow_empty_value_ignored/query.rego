@@ -1,7 +1,8 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -25,7 +26,7 @@ check_simple(value) {
 	value.style == "simple"
 } else {
 	ins := {"path", "header"}
-	value.in == ins[_]
+	value["in"] in ins
 	not common_lib.valid_key(value, "style")
 }
 
@@ -37,7 +38,7 @@ set_to_false(value) {
 
 check_delimited(value) {
 	styles := {"spaceDelimited", "pipeDelimited"}
-	value.style == styles[_]
+	value.style in styles
 	set_to_false(value)
 }
 

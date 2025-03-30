@@ -7,11 +7,13 @@ CxPolicy[result] {
 	docs := input.document[i]
 	[path, resource] := walk(docs)
 	resource.kind == "SecurityGroup"
-	ingressRules := resource.spec.forProvider.ingress
 
 	startswith(resource.apiVersion, "ec2.aws.crossplane.io")
+
+	ingressRules := resource.spec.forProvider.ingress
 	ingressRule := ingressRules[j]
 	ipRange := ingressRule.ipRanges[z]
+
 	ipRange.cidrIp == "0.0.0.0/0"
 
 	result := {

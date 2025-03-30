@@ -11,7 +11,7 @@ CxPolicy[result] {
 	envVars := properties.Environment.Variables
 	regexAccessKey := ["[A-Za-z0-9/+=]{40}", "[A-Z0-9]{20}"]
 	some var
-	re_match(regexAccessKey[_], envVars[var])
+	regex.match(regexAccessKey[_], envVars[var])
 
 	result := {
 		"documentId": input.document[i].id,

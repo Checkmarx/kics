@@ -10,7 +10,7 @@ CxPolicy[result] {
 	storageAccount := task[modules[index]]
 	ansLib.checkState(storageAccount)
 
-	not  common_lib.valid_key(storageAccount, "https_only")
+	not common_lib.valid_key(storageAccount, "https_only")
 
 	result := {
 		"documentId": id,

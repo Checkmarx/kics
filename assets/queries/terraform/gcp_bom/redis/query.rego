@@ -34,7 +34,7 @@ check_accessability(redis_instance) = acc_status {
 	acc_status := "unknown"
 }
 
-has_public_firewall(authorized_network){
+has_public_firewall(authorized_network) {
 	firewall := input.document[_].resource.google_compute_firewall[_]
 
 	common_lib.is_ingress(firewall)

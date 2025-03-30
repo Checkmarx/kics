@@ -15,10 +15,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("google_compute_project_metadata[%s].metadata['enable-oslogin'] should be true", [name]),
 		"keyActualValue": sprintf("google_compute_project_metadata[%s].metadata['enable-oslogin'] is false", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "google_compute_project_metadata", name],["metadata", "enable-oslogin"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_compute_project_metadata", name], ["metadata", "enable-oslogin"]),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("google_compute_project_metadata[%s].metadata['enable-oslogin'] should be true", [name]),
 		"keyActualValue": sprintf("google_compute_project_metadata[%s].metadata['enable-oslogin'] is undefined", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "google_compute_project_metadata", name],["metadata"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_compute_project_metadata", name], ["metadata"]),
 		"remediation": "enable-oslogin = true",
 		"remediationType": "addition",
 	}

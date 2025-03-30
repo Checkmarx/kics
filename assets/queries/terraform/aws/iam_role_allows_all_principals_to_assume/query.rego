@@ -11,9 +11,9 @@ CxPolicy[result] {
 
 	st := common_lib.get_statement(policy)
 	statement := st[_]
-	aws := statement.Principal.AWS
-
 	common_lib.is_allow_effect(statement)
+
+	aws := statement.Principal.AWS
 	common_lib.allowsAllPrincipalsToAssume(aws, statement)
 
 	result := {

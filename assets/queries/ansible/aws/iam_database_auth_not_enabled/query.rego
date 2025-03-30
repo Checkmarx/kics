@@ -10,9 +10,8 @@ CxPolicy[result] {
 	rds_instance := task[modules[m]]
 	ansLib.checkState(rds_instance)
 
-	common_lib.valid_for_iam_engine_and_version_check(rds_instance,"engine", "engine_version", "instance_type")
+	common_lib.valid_for_iam_engine_and_version_check(rds_instance, "engine", "engine_version", "instance_type")
 	ansLib.isAnsibleFalse(rds_instance.enable_iam_database_authentication)
-
 
 	result := {
 		"documentId": id,
@@ -30,7 +29,7 @@ CxPolicy[result] {
 	rds_instance := task[modules[m]]
 	ansLib.checkState(rds_instance)
 
-	common_lib.valid_for_iam_engine_and_version_check(rds_instance,"engine", "engine_version", "instance_type")
+	common_lib.valid_for_iam_engine_and_version_check(rds_instance, "engine", "engine_version", "instance_type")
 	not common_lib.valid_key(rds_instance, "enable_iam_database_authentication")
 
 	result := {

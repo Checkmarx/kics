@@ -6,9 +6,9 @@ CxPolicy[result] {
 	task := ansLib.tasks[id][t]
 	modules := {"google.cloud.gcp_sql_instance", "gcp_sql_instance"}
 	instance := task[modules[m]]
-	database_flags := instance.settings.database_flags
 	ansLib.checkState(instance)
 
+	database_flags := instance.settings.database_flags
 	database_flags[x].name == "log_min_messages"
 	not check_database_flags_content(database_flags[x])
 

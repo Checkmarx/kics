@@ -11,7 +11,7 @@ CxPolicy[result] {
 	bom_output = {
 		"resource_type": "aws_efs_file_system",
 		"resource_name": tf_lib.get_resource_name(efs_file_system, name),
-		"resource_accessibility": info.accessibility, 
+		"resource_accessibility": info.accessibility,
 		"resource_encryption": common_lib.get_encryption_if_exists(efs_file_system),
 		"resource_vendor": "AWS",
 		"resource_category": "Storage",

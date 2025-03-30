@@ -6,11 +6,11 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_ram_account_password_policy[name]
-    resource.minimum_password_length < 14
+	resource.minimum_password_length < 14
 
 	remediation := {"before": format_int(resource.minimum_password_length, 10), "after": "14"}
 
-    result := {
+	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_ram_account_password_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
@@ -24,13 +24,12 @@ CxPolicy[result] {
 	}
 }
 
-
 CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_ram_account_password_policy[name]
-    not common_lib.valid_key(resource, "minimum_password_length")
+	not common_lib.valid_key(resource, "minimum_password_length")
 
-    result := {
+	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_ram_account_password_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),

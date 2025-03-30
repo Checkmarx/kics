@@ -28,8 +28,6 @@ CxPolicy[result] {
 	}
 }
 
-
-
 get_encryption(resource) = encryption {
 	common_lib.valid_key(resource, "kms_key_id")
 	encryption := "encrypted"
