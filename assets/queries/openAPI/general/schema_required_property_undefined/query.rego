@@ -13,8 +13,8 @@ CxPolicy[result] {
 	schema = value.schema
 
 	requiredProperty := schema.required[_]
-	every p in [property | property != requiredProperty; _ := schema.properties[property]] {
-		not p
+	every present in [property | property != requiredProperty; _ := schema.properties[property]] {
+		not present
 	}
 	result := {
 		"documentId": docs.id,
@@ -35,8 +35,8 @@ CxPolicy[result] {
 	schema = value.schemas[schemaName]
 
 	requiredProperty := schema.required[_]
-	every p in [property | property != requiredProperty; _ := schema.properties[property]] {
-		not p
+	every present in [property | property != requiredProperty; _ := schema.properties[property]] {
+		not present
 	}
 	newPath := [path[_], schemaName]
 
