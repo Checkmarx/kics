@@ -81,7 +81,7 @@ As a first step, it is important to be familiar with the libraries available (ch
 
 For example, if we want to verify if the AWS CloudTrail has MultiRegion disabled in a Terraform sample, we need to focus on the attribute `is_multi_region_trail` of the resource `aws_cloudtrail`. Since this attribute is optional and false by default, we have two cases: (1) `is_multi_region_trail` is undefined and (2) `is_multi_region_trail` is set to false. Observe the following implementation as an example and check the Guidelines below.
 
-:rotating_light: **Make sure you use ```package Cx```. If you give another name, the query will not load.** :rotating_light:
+🚨 **Make sure you use ```package Cx```. If you give another name, the query will not load.** 🚨
 
 ```
 package Cx
@@ -121,8 +121,7 @@ To test the query in the [Rego playground](https://play.openpolicyagent.org/), p
 5. In the output, check if the results are as expected.
 
 
-<img alt="RegoPlayground" src="img/rego_playground_example_tf.PNG">
-
+![rego_playground_example_tf.PNG](img/rego_playground_example_tf.PNG)
 
 👨‍💻 **Metadata File**
 
