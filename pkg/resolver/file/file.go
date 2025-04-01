@@ -203,10 +203,8 @@ func (r *Resolver) yamlWalk(
 	// go over the value and replace paths with the real content
 	switch value.Kind {
 	case yaml.ScalarNode:
-		if value.Value == "./catalog-info.yaml" {
-			_ = value.Encode("catalog-info.yaml")
-		}
-		if filepath.Base(path) != value.Value { // resolve the path if it is not the same as the file name
+		// check if the value is not the same as the path - avoid direct cycle
+		if filepath.Base(path) != filepath.Clean(value.Value) { // TODO: add test to cover this
 			return r.resolveYamlPath(originalFileContent, fullObject,
 				value, path, resolvingStatus,
 				refBool, ansibleVars)
