@@ -11,11 +11,12 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/rs/zerolog/log"
+	"gopkg.in/yaml.v3"
+
 	"github.com/Checkmarx/kics/v2/pkg/analyzer"
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/utils"
-	"github.com/rs/zerolog/log"
-	"gopkg.in/yaml.v3"
 )
 
 // ResolvedFile - used for caching the already resolved files
@@ -105,7 +106,8 @@ func (r *Resolver) walk(
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
-		if filepath.Base(path) != typedValue {
+		// check if the value is not the same as the path - avoid direct cycle
+		if filepath.Base(path) != filepath.Clean(typedValue) {
 			return r.resolvePath(
 				originalFileContent, fullObject, typedValue, path, resolveCount,
 				maxResolverDepth, resolvedFilesCache, refBool, resolveReferences)
@@ -197,7 +199,8 @@ func (r *Resolver) yamlWalk(
 	// go over the value and replace paths with the real content
 	switch value.Kind {
 	case yaml.ScalarNode:
-		if filepath.Base(path) != value.Value {
+		// check if the value is not the same as the path - avoid direct cycle
+		if filepath.Base(path) != filepath.Clean(value.Value) {
 			return r.resolveYamlPath(originalFileContent, fullObject,
 				value, path,
 				resolveCount, maxResolverDepth, resolvedFilesCache,
