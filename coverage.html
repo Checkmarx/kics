@@ -303,7 +303,7 @@
 				
 				<option value="file123">github.com/Checkmarx/kics/v2/pkg/report/sonarqube.go (90.9%)</option>
 				
-				<option value="file124">github.com/Checkmarx/kics/v2/pkg/resolver/file/file.go (70.5%)</option>
+				<option value="file124">github.com/Checkmarx/kics/v2/pkg/resolver/file/file.go (71.3%)</option>
 				
 				<option value="file125">github.com/Checkmarx/kics/v2/pkg/resolver/helm/helm.go (88.5%)</option>
 				
@@ -2583,13 +2583,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="49">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="47">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="49">total += v
+                <span class="cov9" title="47">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2614,7 +2614,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -5693,7 +5693,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -20298,12 +20298,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="221">{
+        for variable := range s.varList </span><span class="cov7" title="212">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="581">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="621">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -31178,11 +31178,12 @@ import (
         "strconv"
         "strings"
 
+        "github.com/rs/zerolog/log"
+        "gopkg.in/yaml.v3"
+
         "github.com/Checkmarx/kics/v2/pkg/analyzer"
         "github.com/Checkmarx/kics/v2/pkg/model"
         "github.com/Checkmarx/kics/v2/pkg/utils"
-        "github.com/rs/zerolog/log"
-        "gopkg.in/yaml.v3"
 )
 
 // ResolvedFile - used for caching the already resolved files
@@ -31203,7 +31204,7 @@ type Resolver struct {
 func NewResolver(
         unmarshler func(fileContent []byte, v any) error,
         marshler func(v any) ([]byte, error),
-        ext []string) *Resolver <span class="cov4" title="7">{
+        ext []string) *Resolver <span class="cov4" title="11">{
         return &amp;Resolver{
                 unmarshler:    unmarshler,
                 marshler:      marshler,
@@ -31217,8 +31218,8 @@ func isOpenAPI(fileContent []byte) bool <span class="cov5" title="15">{
                 []*regexp.Regexp{analyzer.OpenAPIRegexInfo,
                         analyzer.OpenAPIRegexPath,
                         analyzer.OpenAPIRegex}
-        for _, regex := range regexToRun </span><span class="cov6" title="22">{
-                if !regex.Match(fileContent) </span><span class="cov5" title="12">{
+        for _, regex := range regexToRun </span><span class="cov5" title="22">{
+                if !regex.Match(fileContent) </span><span class="cov4" title="12">{
                         return false
                 }</span>
         }
@@ -31228,33 +31229,33 @@ func isOpenAPI(fileContent []byte) bool <span class="cov5" title="15">{
 // Resolve - replace or modifies in-memory content before parsing
 func (r *Resolver) Resolve(fileContent []byte, path string,
         resolveCount, maxResolverDepth int, resolvedFilesCache map[string]ResolvedFile,
-        resolveReferences bool) []byte <span class="cov6" title="21">{
+        resolveReferences bool) []byte <span class="cov6" title="25">{
         // handle panic during resolve process
-        defer func() </span><span class="cov6" title="21">{
+        defer func() </span><span class="cov6" title="25">{
                 if r := recover(); r != nil </span><span class="cov0" title="0">{
                         err := fmt.Errorf("panic: %v", r)
                         log.Err(err).Msg("Recovered from panic during resolve of file " + path)
                 }</span>
         }()
 
-        <span class="cov6" title="21">if !resolveReferences &amp;&amp; isOpenAPI(fileContent) </span><span class="cov1" title="1">{
+        <span class="cov6" title="25">if !resolveReferences &amp;&amp; isOpenAPI(fileContent) </span><span class="cov1" title="1">{
                 return fileContent
         }</span>
 
-        <span class="cov6" title="20">if utils.Contains(filepath.Ext(path), []string{".yml", ".yaml"}) </span><span class="cov5" title="16">{
+        <span class="cov6" title="24">if utils.Contains(filepath.Ext(path), []string{".yml", ".yaml"}) </span><span class="cov5" title="18">{
                 return r.yamlResolve(fileContent, path, resolveCount, maxResolverDepth, resolvedFilesCache, resolveReferences)
         }</span>
-        <span class="cov3" title="4">var obj any
+        <span class="cov3" title="6">var obj any
         err := r.unmarshler(fileContent, &amp;obj)
         if err != nil </span><span class="cov0" title="0">{
                 return fileContent
         }</span>
 
         // resolve the paths
-        <span class="cov3" title="4">obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, maxResolverDepth, resolvedFilesCache, false, resolveReferences)
+        <span class="cov3" title="6">obj, _ = r.walk(fileContent, obj, obj, path, resolveCount, maxResolverDepth, resolvedFilesCache, false, resolveReferences)
 
         b, err := json.MarshalIndent(obj, "", "")
-        if err == nil </span><span class="cov3" title="4">{
+        if err == nil </span><span class="cov3" title="6">{
                 return b
         }</span>
 
@@ -31268,24 +31269,25 @@ func (r *Resolver) walk(
         path string,
         resolveCount, maxResolverDepth int,
         resolvedFilesCache map[string]ResolvedFile,
-        refBool, resolveReferences bool) (any, bool) <span class="cov7" title="37">{
+        refBool, resolveReferences bool) (any, bool) <span class="cov7" title="77">{
         // go over the value and replace paths with the real content
         switch typedValue := value.(type) </span>{
-        case string:<span class="cov5" title="13">
-                if filepath.Base(path) != typedValue </span><span class="cov5" title="13">{
+        case string:<span class="cov6" title="33">
+                // check if the value is not the same as the path - avoid direct cycle
+                if filepath.Base(path) != filepath.Clean(typedValue) </span><span class="cov6" title="32">{
                         return r.resolvePath(
                                 originalFileContent, fullObject, typedValue, path, resolveCount,
                                 maxResolverDepth, resolvedFilesCache, refBool, resolveReferences)
                 }</span>
-                <span class="cov0" title="0">return value, false</span>
-        case []any:<span class="cov1" title="1">
-                for i, v := range typedValue </span><span class="cov1" title="1">{
+                <span class="cov1" title="1">return value, false</span>
+        case []any:<span class="cov2" title="3">
+                for i, v := range typedValue </span><span class="cov2" title="3">{
                         typedValue[i], _ = r.walk(
                                 originalFileContent, fullObject, v, path, resolveCount,
                                 maxResolverDepth, resolvedFilesCache, refBool, resolveReferences)
                 }</span>
-                <span class="cov1" title="1">return typedValue, false</span>
-        case map[string]any:<span class="cov6" title="23">
+                <span class="cov2" title="3">return typedValue, false</span>
+        case map[string]any:<span class="cov6" title="41">
                 return r.handleMap(
                         originalFileContent, fullObject, typedValue, path, resolveCount,
                         maxResolverDepth, resolvedFilesCache, resolveReferences)</span>
@@ -31302,8 +31304,8 @@ func (r *Resolver) handleMap(
         resolveCount, maxResolverDepth int,
         resolvedFilesCache map[string]ResolvedFile,
         resolveReferences bool,
-) (any, bool) <span class="cov6" title="23">{
-        for k, v := range value </span><span class="cov6" title="32">{
+) (any, bool) <span class="cov6" title="41">{
+        for k, v := range value </span><span class="cov7" title="68">{
                 isRef := strings.Contains(strings.ToLower(k), "$ref")
                 val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, maxResolverDepth, resolvedFilesCache, isRef, resolveReferences)
                 // check if it is a ref then add new details
@@ -31317,40 +31319,40 @@ func (r *Resolver) handleMap(
                         valMap["RefMetadata"].(map[string]interface{})["alone"] = len(value) == 1
                         return valMap, false</span>
                 }
-                <span class="cov6" title="29">if isRef &amp;&amp; res </span><span class="cov0" title="0">{
+                <span class="cov7" title="65">if isRef &amp;&amp; res </span><span class="cov0" title="0">{
                         return val, false
                 }</span>
-                <span class="cov6" title="29">value[k] = val</span>
+                <span class="cov7" title="65">value[k] = val</span>
         }
-        <span class="cov6" title="20">return value, false</span>
+        <span class="cov6" title="38">return value, false</span>
 }
 
 func (r *Resolver) yamlResolve(fileContent []byte, path string,
         resolveCount, maxResolverDepth int, resolvedFilesCache map[string]ResolvedFile,
-        resolveReferences bool) []byte <span class="cov5" title="16">{
+        resolveReferences bool) []byte <span class="cov5" title="18">{
         var obj yaml.Node
         err := r.unmarshler(fileContent, &amp;obj)
         if err != nil </span><span class="cov0" title="0">{
                 return fileContent
         }</span>
 
-        <span class="cov5" title="16">fullObjectCopy := obj
+        <span class="cov5" title="18">fullObjectCopy := obj
 
         // resolve the paths
         obj, _ = r.yamlWalk(
                 fileContent, &amp;fullObjectCopy, &amp;obj, path, resolveCount,
                 maxResolverDepth, resolvedFilesCache, false, resolveReferences, false)
 
-        if obj.Kind == 1 &amp;&amp; len(obj.Content) == 1 </span><span class="cov5" title="16">{
+        if obj.Kind == 1 &amp;&amp; len(obj.Content) == 1 </span><span class="cov5" title="18">{
                 obj = *obj.Content[0]
         }</span>
 
-        <span class="cov5" title="16">b, err := r.marshler(obj)
+        <span class="cov5" title="18">b, err := r.marshler(obj)
         if err != nil </span><span class="cov0" title="0">{
                 return fileContent
         }</span>
 
-        <span class="cov5" title="16">return b</span>
+        <span class="cov5" title="18">return b</span>
 }
 
 func (r *Resolver) yamlWalk(
@@ -31360,38 +31362,39 @@ func (r *Resolver) yamlWalk(
         path string,
         resolveCount, maxResolverDepth int,
         resolvedFilesCache map[string]ResolvedFile,
-        refBool, resolveReferences, ansibleVars bool) (yaml.Node, bool) <span class="cov10" title="186">{
+        refBool, resolveReferences, ansibleVars bool) (yaml.Node, bool) <span class="cov10" title="280">{
         // go over the value and replace paths with the real content
         switch value.Kind </span>{
-        case yaml.ScalarNode:<span class="cov9" title="120">
-                if filepath.Base(path) != value.Value </span><span class="cov9" title="120">{
+        case yaml.ScalarNode:<span class="cov9" title="188">
+                // check if the value is not the same as the path - avoid direct cycle
+                if filepath.Base(path) != filepath.Clean(value.Value) </span><span class="cov9" title="187">{
                         return r.resolveYamlPath(originalFileContent, fullObject,
                                 value, path,
                                 resolveCount, maxResolverDepth, resolvedFilesCache,
                                 refBool, resolveReferences, ansibleVars)
                 }</span>
-                <span class="cov0" title="0">return *value, false</span>
-        default:<span class="cov8" title="66">
+                <span class="cov1" title="1">return *value, false</span>
+        default:<span class="cov8" title="92">
                 refBool := false
                 ansibleVars := false
-                for i := range value.Content </span><span class="cov9" title="170">{
-                        if i &gt;= 1 </span><span class="cov8" title="104">{
+                for i := range value.Content </span><span class="cov9" title="262">{
+                        if i &gt;= 1 </span><span class="cov9" title="170">{
                                 refBool = strings.Contains(value.Content[i-1].Value, "$ref")
                                 ansibleVars = strings.Contains(value.Content[i-1].Value, "include_vars")
                         }</span>
-                        <span class="cov9" title="170">resolved, ok := r.yamlWalk(originalFileContent, fullObject,
+                        <span class="cov9" title="262">resolved, ok := r.yamlWalk(originalFileContent, fullObject,
                                 value.Content[i], path,
                                 resolveCount, maxResolverDepth, resolvedFilesCache,
                                 refBool, resolveReferences, ansibleVars)
 
-                        if i &gt;= 1 &amp;&amp; refBool &amp;&amp; (resolved.Kind == yaml.MappingNode || !ok) </span><span class="cov4" title="6">{
+                        if i &gt;= 1 &amp;&amp; refBool &amp;&amp; (resolved.Kind == yaml.MappingNode || !ok) </span><span class="cov3" title="6">{
                                 // Create RefMetadata and add it to yaml Node
                                 if !ok </span><span class="cov0" title="0">{
                                         resolved = yaml.Node{
                                                 Kind: yaml.MappingNode,
                                         }
                                 }</span>
-                                <span class="cov4" title="6">originalValueNode := &amp;yaml.Node{
+                                <span class="cov3" title="6">originalValueNode := &amp;yaml.Node{
                                         Kind:  yaml.ScalarNode,
                                         Value: "$ref",
                                 }
@@ -31416,9 +31419,9 @@ func (r *Resolver) yamlWalk(
 
                                 return resolved, false</span>
                         }
-                        <span class="cov9" title="164">value.Content[i] = &amp;resolved</span>
+                        <span class="cov9" title="256">value.Content[i] = &amp;resolved</span>
                 }
-                <span class="cov8" title="60">return *value, false</span>
+                <span class="cov8" title="86">return *value, false</span>
         }
 }
 
@@ -31430,12 +31433,12 @@ func (r *Resolver) resolveYamlPath(
         filePath string,
         resolveCount, maxResolverDepth int,
         resolvedFilesCache map[string]ResolvedFile,
-        refBool, resolveReferences, ansibleVars bool) (yaml.Node, bool) <span class="cov9" title="120">{
+        refBool, resolveReferences, ansibleVars bool) (yaml.Node, bool) <span class="cov9" title="187">{
         value := v.Value
         if resolveCount &gt;= maxResolverDepth || (strings.HasPrefix(value, "#") &amp;&amp; !refBool) || (value == "#" &amp;&amp; refBool) </span><span class="cov0" title="0">{
                 return *v, false
         }</span>
-        <span class="cov9" title="120">var splitPath []string
+        <span class="cov9" title="187">var splitPath []string
         var obj *yaml.Node
         sameFileResolve := false
         if strings.HasPrefix(value, "#") </span><span class="cov0" title="0">{ // same file resolve
@@ -31443,16 +31446,16 @@ func (r *Resolver) resolveYamlPath(
                 path := filePath + value
                 splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
                 obj = fullObject
-        }</span> else<span class="cov9" title="120"> { // external file resolve
+        }</span> else<span class="cov9" title="187"> { // external file resolve
                 value = checkServerlessFileReference(value)
 
                 exists, path, onlyFilePath, filename := findFilePath(filepath.Dir(filePath), value, ansibleVars, r.Extension)
-                if !exists </span><span class="cov9" title="107">{
+                if !exists </span><span class="cov9" title="174">{
                         return *v, false
                 }</span>
 
                 // Check if file has already been resolved, if not resolve it and save it for future references
-                <span class="cov5" title="13">if _, ok := resolvedFilesCache[filename]; !ok </span><span class="cov5" title="11">{
+                <span class="cov5" title="13">if _, ok := resolvedFilesCache[filename]; !ok </span><span class="cov4" title="11">{
                         if ret, isError := r.resolveFile(
                                 value, onlyFilePath, resolveCount, maxResolverDepth,
                                 resolvedFilesCache, true, resolveReferences); isError </span><span class="cov0" title="0">{
@@ -31530,7 +31533,7 @@ func (r *Resolver) resolveFile(
 
         resolvedFile := r.Resolve(fileContent, filePath, resolveCount+1, maxResolverDepth, resolvedFilesCache, resolveReferences)
 
-        if yamlResolve </span><span class="cov5" title="11">{
+        if yamlResolve </span><span class="cov4" title="11">{
                 var obj yaml.Node
 
                 err = r.unmarshler(resolvedFile, &amp;obj) // parse the content
@@ -31538,11 +31541,11 @@ func (r *Resolver) resolveFile(
                         return value, true
                 }</span>
 
-                <span class="cov5" title="11">if obj.Kind == 1 &amp;&amp; len(obj.Content) == 1 </span><span class="cov5" title="11">{
+                <span class="cov4" title="11">if obj.Kind == 1 &amp;&amp; len(obj.Content) == 1 </span><span class="cov4" title="11">{
                         obj = *obj.Content[0]
                 }</span>
 
-                <span class="cov5" title="11">resolvedFilesCache[filePath] = ResolvedFile{fileContent, obj}</span>
+                <span class="cov4" title="11">resolvedFilesCache[filePath] = ResolvedFile{fileContent, obj}</span>
         } else<span class="cov2" title="3"> {
                 var obj any
                 err = r.unmarshler(resolvedFile, &amp;obj) // parse the content
@@ -31571,11 +31574,11 @@ func (r *Resolver) resolvePath(
         value, filePath string,
         resolveCount, maxResolverDepth int,
         resolvedFilesCache map[string]ResolvedFile,
-        refBool bool, resolveReferences bool) (any, bool) <span class="cov5" title="13">{
+        refBool bool, resolveReferences bool) (any, bool) <span class="cov6" title="32">{
         if resolveCount &gt;= maxResolverDepth || (strings.HasPrefix(value, "#") &amp;&amp; !refBool) || (value == "#" &amp;&amp; refBool) </span><span class="cov0" title="0">{
                 return value, false
         }</span>
-        <span class="cov5" title="13">var splitPath []string
+        <span class="cov6" title="32">var splitPath []string
         var obj any
         sameFileResolve := false
         if strings.HasPrefix(value, "#") </span><span class="cov0" title="0">{ // same file resolve
@@ -31583,7 +31586,7 @@ func (r *Resolver) resolvePath(
                 path := filePath + value
                 splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
                 obj = fullObject
-        }</span> else<span class="cov5" title="13"> { // external file resolve
+        }</span> else<span class="cov6" title="32"> { // external file resolve
                 path := filepath.Join(filepath.Dir(filePath), value)
                 splitPath = strings.Split(path, "#") // splitting by removing the section to look for in the file
 
@@ -31591,7 +31594,7 @@ func (r *Resolver) resolvePath(
                 onlyFilePath := splitPath[0]
                 _, err := os.Stat(onlyFilePath)
 
-                if err != nil || !contains(filepath.Ext(onlyFilePath), r.Extension) </span><span class="cov4" title="10">{
+                if err != nil || !contains(filepath.Ext(onlyFilePath), r.Extension) </span><span class="cov6" title="29">{
                         return value, false
                 }</span>
 
@@ -31733,7 +31736,7 @@ func checkIfCircular(circularValue string, section interface{}, maxResolverDepth
 }
 
 func contains(elem string, list []string) bool <span class="cov5" title="16">{
-        for _, e := range list </span><span class="cov6" title="22">{
+        for _, e := range list </span><span class="cov5" title="22">{
                 if elem == e </span><span class="cov5" title="16">{
                         return true
                 }</span>
@@ -31741,19 +31744,19 @@ func contains(elem string, list []string) bool <span class="cov5" title="16">{
         <span class="cov0" title="0">return false</span>
 }
 
-func checkServerlessFileReference(value string) string <span class="cov9" title="120">{
+func checkServerlessFileReference(value string) string <span class="cov9" title="187">{
         re := regexp.MustCompile(`^\${file\((.*\.(yaml|yml))\)}$`)
         matches := re.FindStringSubmatch(value)
         if len(matches) &gt; 1 </span><span class="cov1" title="1">{
                 return matches[1]
         }</span>
-        <span class="cov9" title="119">return value</span>
+        <span class="cov9" title="186">return value</span>
 }
 
 func findFilePath(
         folderPath, filename string,
         ansibleVars bool,
-        extensions []string) (exists bool, path, onlyFilePath, cleanFilePath string) <span class="cov9" title="120">{
+        extensions []string) (exists bool, path, onlyFilePath, cleanFilePath string) <span class="cov9" title="187">{
         path = filepath.Join(folderPath, filename)
         if ansibleVars </span><span class="cov2" title="2">{
                 if exists, ansibleVarsPath := findAnsibleVarsPath(folderPath, filename); !exists </span><span class="cov0" title="0">{
@@ -31761,7 +31764,7 @@ func findFilePath(
                 }</span> else<span class="cov2" title="2"> {
                         path = ansibleVarsPath
                 }</span>
-        } else<span class="cov9" title="118"> if _, err := os.Stat(path); err != nil </span><span class="cov9" title="107">{
+        } else<span class="cov9" title="185"> if _, err := os.Stat(path); err != nil </span><span class="cov9" title="174">{
                 return false, "", "", ""
         }</span>
 
