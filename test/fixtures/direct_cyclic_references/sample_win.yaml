@@ -12,7 +12,7 @@ spec:
         path:
           title: Path
           type: string
-          default: .\sample.yaml
+          default: .\sample_win.yaml
   steps:
     - id: step1
       name: step1

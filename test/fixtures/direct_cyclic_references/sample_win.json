@@ -14,7 +14,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "default": ".\\sample.json"
+              "default": ".\\sample_win.json"
             },
             "description": "Path to the sample JSON file"
           }
