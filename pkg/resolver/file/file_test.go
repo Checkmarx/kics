@@ -3,8 +3,6 @@ package file
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -12,8 +10,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Checkmarx/kics/v2/test"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+
 	"gopkg.in/yaml.v3"
+
+	"github.com/Checkmarx/kics/v2/test"
 )
 
 func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
@@ -28,10 +30,11 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 		path string
 	}
 	tests := []struct {
-		name   string
-		fields fields
-		args   args
-		want   []byte
+		name    string
+		fields  fields
+		args    args
+		want    []byte
+		wantWin []byte
 	}{
 		{
 			name: "test",
@@ -66,6 +69,54 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 			},
 			want: []byte(
 				"service: aws-node-project\nframeworkVersion: '3'\nprovider:\n    name: aws\n    runtime: nodejs14.x\nfunctions:\n    eventRouterHandler:\n        handler: handler.hello\n        role: eventRouterHandlerRole\n        timeout: 30\n"),
+		},
+		{
+			name: "test_direct_cyclic_reference_with_./_yaml",
+			fields: fields{
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
+			},
+			args: args{
+				path: filepath.ToSlash("test/fixtures/direct_cyclic_references/sample.yaml"),
+			},
+			want: []byte(
+				"apiVersion: scaffolder.backstage.io/v1beta3\nkind: Template\nmetadata:\n    name: template\nspec:\n    parameters:\n        - title: sample\n          required:\n            - path\n          properties:\n            path:\n                title: Path\n                type: string\n                default: ./sample.yaml\n    steps:\n        - id: step1\n          name: step1\n        - id: step2\n          name: step2\n        - id: step3\n          name: step3\n",
+			),
+		},
+		{
+			name: "test_direct_cyclic_reference_with_.\\_yaml",
+			fields: fields{
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".yml", ".yaml"}),
+			},
+			args: args{
+				path: filepath.ToSlash("test/fixtures/direct_cyclic_references/sample_win.yaml"),
+			},
+			want: []byte(
+				"apiVersion: scaffolder.backstage.io/v1beta3\nkind: Template\nmetadata:\n    name: template\nspec:\n    parameters:\n        - title: sample\n          required:\n            - path\n          properties:\n            path:\n                title: Path\n                type: string\n                default: .\\sample_win.yaml\n    steps:\n        - id: step1\n          name: step1\n        - id: step2\n          name: step2\n        - id: step3\n          name: step3",
+			),
+		},
+		{
+			name: "test_direct_cyclic_reference_with_./_json",
+			fields: fields{
+				Resolver: NewResolver(yaml.Unmarshal, yaml.Marshal, []string{".json"}),
+			},
+			args: args{
+				path: filepath.ToSlash("test/fixtures/direct_cyclic_references/sample.json"),
+			},
+			want: []byte(
+				"{\n\"info\": {\n\"title\": \"Sample API\",\n\"version\": \"1.0.0\"\n},\n\"openapi\": \"3.0.0\",\n\"paths\": {\n\"/example\": {\n\"get\": {\n\"parameters\": [\n{\n\"description\": \"Path to the sample JSON file\",\n\"in\": \"query\",\n\"name\": \"filePath\",\n\"schema\": {\n\"default\": \"./sample.json\",\n\"type\": \"string\"\n}\n}\n],\n\"responses\": {\n\"200\": {\n\"description\": \"Successful response\"\n}\n},\n\"summary\": \"Example endpoint\"\n}\n}\n}\n}",
+			),
+		},
+		{
+			name: "test_direct_cyclic_reference_with_.\\_json",
+			fields: fields{
+				Resolver: NewResolver(json.Unmarshal, json.Marshal, []string{".json"}),
+			},
+			args: args{
+				path: filepath.ToSlash("test/fixtures/direct_cyclic_references/sample_win.json"),
+			},
+			want: []byte(
+				"{\n\"info\": {\n\"title\": \"Sample API\",\n\"version\": \"1.0.0\"\n},\n\"openapi\": \"3.0.0\",\n\"paths\": {\n\"/example\": {\n\"get\": {\n\"parameters\": [\n{\n\"description\": \"Path to the sample JSON file\",\n\"in\": \"query\",\n\"name\": \"filePath\",\n\"schema\": {\n\"default\": \".\\\\sample_win.json\",\n\"type\": \"string\"\n}\n}\n],\n\"responses\": {\n\"200\": {\n\"description\": \"Successful response\"\n}\n},\n\"summary\": \"Example endpoint\"\n}\n}\n}\n}",
+			),
 		},
 	}
 	for _, tt := range tests {
