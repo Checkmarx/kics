@@ -22,6 +22,8 @@ updates:
       all:
         patterns:
           - "*"
+    ignore:
+      - dependency-name: github.com/open-policy-agent/opa
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
