@@ -1,6 +1,6 @@
 module github.com/Checkmarx/e2e-report
 
-go 1.23.6
+go 1.23.8
 
 require (
 	github.com/rs/zerolog v1.31.0
