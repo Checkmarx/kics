@@ -11,6 +11,8 @@ updates:
       all:
         patterns:
           - "*"
+    ignore:
+      - dependency-name: golangci/golangci-lint-action
   - package-ecosystem: "gomod"
     directory: "/"
     schedule:
