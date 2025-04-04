@@ -379,39 +379,7 @@ func extractVariablePathsFromBody(body *hclsyntax.Body) [][]string {
 
 	var walkExpr func(expr hclsyntax.Expression)
 	walkExpr = func(expr hclsyntax.Expression) {
-		switch e := expr.(type) {
-		case *hclsyntax.ScopeTraversalExpr:
-			var path []string
-			for _, part := range e.Traversal {
-				switch p := part.(type) {
-				case hcl.TraverseRoot:
-					path = append(path, p.Name)
-				case hcl.TraverseAttr:
-					path = append(path, p.Name)
-				}
-			}
-			if len(path) > 0 {
-				paths = append(paths, path)
-			}
-		case *hclsyntax.TemplateExpr:
-			for _, p := range e.Parts {
-				walkExpr(p)
-			}
-		case *hclsyntax.TupleConsExpr:
-			for _, p := range e.Exprs {
-				walkExpr(p)
-			}
-		case *hclsyntax.ObjectConsExpr:
-			for _, item := range e.Items {
-				walkExpr(item.KeyExpr)
-				walkExpr(item.ValueExpr)
-			}
-		case *hclsyntax.BinaryOpExpr:
-			walkExpr(e.LHS)
-			walkExpr(e.RHS)
-		case *hclsyntax.UnaryOpExpr:
-			walkExpr(e.Val)
-		}
+		paths = append(paths, extractPathsFromExpr(expr)...)
 	}
 
 	for _, attr := range body.Attributes {
@@ -419,6 +387,47 @@ func extractVariablePathsFromBody(body *hclsyntax.Body) [][]string {
 	}
 	for _, block := range body.Blocks {
 		paths = append(paths, extractVariablePathsFromBody(block.Body)...)
+	}
+
+	return paths
+}
+
+// extractPathsFromExpr handles the expression traversal and path extraction.
+func extractPathsFromExpr(expr hclsyntax.Expression) [][]string {
+	var paths [][]string
+
+	switch e := expr.(type) {
+	case *hclsyntax.ScopeTraversalExpr:
+		var path []string
+		for _, part := range e.Traversal {
+			switch p := part.(type) {
+			case hcl.TraverseRoot:
+				path = append(path, p.Name)
+			case hcl.TraverseAttr:
+				path = append(path, p.Name)
+			}
+		}
+		if len(path) > 0 {
+			paths = append(paths, path)
+		}
+	case *hclsyntax.TemplateExpr:
+		for _, p := range e.Parts {
+			paths = append(paths, extractPathsFromExpr(p)...)
+		}
+	case *hclsyntax.TupleConsExpr:
+		for _, p := range e.Exprs {
+			paths = append(paths, extractPathsFromExpr(p)...)
+		}
+	case *hclsyntax.ObjectConsExpr:
+		for _, item := range e.Items {
+			paths = append(paths, extractPathsFromExpr(item.KeyExpr)...)
+			paths = append(paths, extractPathsFromExpr(item.ValueExpr)...)
+		}
+	case *hclsyntax.BinaryOpExpr:
+		paths = append(paths, extractPathsFromExpr(e.LHS)...)
+		paths = append(paths, extractPathsFromExpr(e.RHS)...)
+	case *hclsyntax.UnaryOpExpr:
+		paths = append(paths, extractPathsFromExpr(e.Val)...)
 	}
 
 	return paths
