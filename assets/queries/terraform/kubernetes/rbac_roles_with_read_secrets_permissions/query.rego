@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 readVerbs := ["get", "watch", "list"]
 
@@ -23,12 +24,12 @@ CxPolicy[result] {
 allowsSecrets(rules) {
 	is_array(rules)
 	some r
-	rules[r].resources[_] == "secrets"
+	"secrets" in rules[r].resources
 	rules[r].verbs[_] == readVerbs[_]
 }
 
 allowsSecrets(rule) {
 	is_object(rule)
-	rule.resources[_] == "secrets"
+	"secrets" in rule.resources
 	rule.verbs[_] == readVerbs[_]
 }

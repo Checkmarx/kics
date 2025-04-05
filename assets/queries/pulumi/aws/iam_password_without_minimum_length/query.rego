@@ -9,7 +9,6 @@ CxPolicy[result] {
 
 	not common_lib.valid_key(resource.properties, "minimumPasswordLength")
 
-
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.type,

@@ -30,7 +30,7 @@ CxPolicy[result] {
 	}
 }
 
-options := { "${aws_db_subnet_group", "${aws_subnet" }
+options := {"${aws_db_subnet_group", "${aws_subnet"}
 
 get_name(nameValue) = name {
 	contains(nameValue, options[_])

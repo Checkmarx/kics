@@ -14,10 +14,10 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path),name]),
+		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.WebsiteConfiguration' should not be defined", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.WebsiteConfiguration' is defined", [name]),
-		"searchLine": common_lib.build_search_line(path,[name, "Properties", "WebsiteConfiguration"]),
+		"searchLine": common_lib.build_search_line(path, [name, "Properties", "WebsiteConfiguration"]),
 	}
 }

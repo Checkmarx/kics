@@ -2,9 +2,10 @@ package Cx
 
 CxPolicy[result] {
 	resource := input.document[i]
-	metadata := resource.metadata
 	resource.kind == "ClusterRoleBinding"
 	resource.roleRef.name == "cluster-admin"
+
+	metadata := resource.metadata
 
 	result := {
 		"documentId": input.document[i].id,

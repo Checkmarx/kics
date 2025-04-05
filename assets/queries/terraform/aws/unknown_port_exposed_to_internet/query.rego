@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as commonLib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_security_group[name]
@@ -25,15 +25,13 @@ CxPolicy[result] {
 
 getIngressList(ingress) = list {
 	is_array(ingress)
-	list := ingress
+	list = ingress
 } else = list {
 	is_object(ingress)
 	list := [ingress]
-} else = null {
-	true
-}
+} else = null
 
-unknownPort(from_port,to_port) {
+unknownPort(from_port, to_port) {
 	port := numbers.range(from_port, to_port)[i]
 	not commonLib.valid_key(commonLib.tcpPortsMap, port)
 }

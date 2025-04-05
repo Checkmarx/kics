@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_lambda_function[name]
 	vars := resource.environment.variables
 
-	re_match("(A3T[A-Z0-9]|AKIA|ASIA)[A-Z0-9]{16}", vars[idx])
+	regex.match(`(A3T[A-Z0-9]|AKIA|ASIA)[A-Z0-9]{16}`, vars[idx])
 
 	result := {
 		"documentId": input.document[i].id,

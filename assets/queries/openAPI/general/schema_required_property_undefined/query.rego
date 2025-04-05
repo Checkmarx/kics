@@ -1,6 +1,8 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.every
+import future.keywords.in
 
 CxPolicy[result] {
 	docs := input.document[i]
@@ -11,8 +13,9 @@ CxPolicy[result] {
 	schema = value.schema
 
 	requiredProperty := schema.required[_]
-
-	all([property | property != requiredProperty; _ := schema.properties[property]])
+	every present in [property | property != requiredProperty; _ := schema.properties[property]] {
+		not present
+	}
 	result := {
 		"documentId": docs.id,
 		"searchKey": sprintf("%s.schema", [openapi_lib.concat_path(path)]),
@@ -32,9 +35,11 @@ CxPolicy[result] {
 	schema = value.schemas[schemaName]
 
 	requiredProperty := schema.required[_]
-
-	all([property | property != requiredProperty; _ := schema.properties[property]])
+	every present in [property | property != requiredProperty; _ := schema.properties[property]] {
+		not present
+	}
 	newPath := [path[_], schemaName]
+
 	result := {
 		"documentId": docs.id,
 		"searchKey": sprintf("%s.schema", [openapi_lib.concat_path(newPath)]),

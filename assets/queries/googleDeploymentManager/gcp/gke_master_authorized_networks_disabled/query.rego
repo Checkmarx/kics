@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'masterAuthorizedNetworksConfig' should be defined and not null",
-		"keyActualValue": "'masterAuthorizedNetworksConfig' is undefined or null", 
+		"keyActualValue": "'masterAuthorizedNetworksConfig' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
 }
@@ -33,7 +33,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties.masterAuthorizedNetworksConfig", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'masterAuthorizedNetworksConfig.enabled' should be defined and not null",
-		"keyActualValue": "'masterAuthorizedNetworksConfig.enabled' is undefined or null", 
+		"keyActualValue": "'masterAuthorizedNetworksConfig.enabled' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "masterAuthorizedNetworksConfig"], []),
 	}
 }
@@ -51,7 +51,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties.masterAuthorizedNetworksConfig.enabled", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'masterAuthorizedNetworksConfig.enabled' should be true",
-		"keyActualValue": "'masterAuthorizedNetworksConfig.enabled' is false", 
+		"keyActualValue": "'masterAuthorizedNetworksConfig.enabled' is false",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "masterAuthorizedNetworksConfig", "enabled"], []),
 	}
 }

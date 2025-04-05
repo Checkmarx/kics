@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "google_compute_subnetwork", name, "private_ip_google_access"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

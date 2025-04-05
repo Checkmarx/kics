@@ -15,5 +15,5 @@ CxPolicy[result] {
 }
 
 httpRequestChecker(cmdValue) {
-	regex.match("https?://", cmdValue[_])
+	regex.match(`https?:/`, cmdValue[_])
 }

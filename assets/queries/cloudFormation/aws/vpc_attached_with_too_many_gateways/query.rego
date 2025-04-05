@@ -8,12 +8,11 @@ CxPolicy[result] {
 	resource := Resources[name]
 	resource.Type == "AWS::EC2::VPC"
 
-	gatewayAttachments := {gatewayAttachment |
+	gatewayAttachments := {resource |
 		[_, ResourcesAux] := walk(input.document[_])
 		resource := ResourcesAux[_]
 		resource.Type == "AWS::EC2::VPCGatewayAttachment"
 		refers(resource.Properties.VpcId, name)
-		gatewayAttachment := resource
 	}
 
 	count(gatewayAttachments) > 3

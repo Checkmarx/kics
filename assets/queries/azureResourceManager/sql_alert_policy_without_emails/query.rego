@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
@@ -8,7 +9,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	[path, value] := walk(doc)
 
-	value.type == types[_]
+	value.type in types
 	properties := value.properties
 	lower(properties.state) == "enabled"
 
@@ -32,7 +33,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	[path, value] := walk(doc)
 
-	value.type == types[_]
+	value.type in types
 	properties := value.properties
 	lower(properties.state) == "enabled"
 
@@ -53,9 +54,8 @@ CxPolicy[result] {
 check_emails(emailAddresses) {
 	count(emailAddresses) == 0
 } else {
-	count([x |
+	count([email |
 		email := emailAddresses[_]
 		email == ""
-		x := email
 	]) > 0
 }

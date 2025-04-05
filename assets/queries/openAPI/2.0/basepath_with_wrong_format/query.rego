@@ -6,7 +6,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "2.0"
 
-	not regex.match("^/", doc.basePath)
+	not regex.match(`^/`, doc.basePath)
 
 	result := {
 		"documentId": doc.id,

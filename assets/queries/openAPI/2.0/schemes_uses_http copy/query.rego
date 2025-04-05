@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -9,7 +10,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	count(path) > 0
 
-	value.schemes[_] == "http"
+	"http" in value.schemes
 
 	result := {
 		"documentId": doc.id,

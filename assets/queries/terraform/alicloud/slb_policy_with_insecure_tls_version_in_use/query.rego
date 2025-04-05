@@ -2,13 +2,14 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 insecureVersions := {"TLSv1.0", "TLSv1.1"}
 
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_slb_tls_cipher_policy[name]
 	tls_version := insecureVersions[_]
-	resource.tls_versions[_] == tls_version
+	tls_version in resource.tls_versions
 
 	result := {
 		"documentId": input.document[i].id,

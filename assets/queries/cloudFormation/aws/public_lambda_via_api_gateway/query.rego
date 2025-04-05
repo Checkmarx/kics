@@ -11,7 +11,7 @@ CxPolicy[result] {
 
 	lambdaAction(properties.Action)
 	principalAllowAPIGateway(properties.Principal)
-	re_match("/\\*/\\*$", properties.SourceArn)
+	regex.match(`/\*/\*$`, properties.SourceArn)
 
 	result := {
 		"documentId": input.document[i].id,

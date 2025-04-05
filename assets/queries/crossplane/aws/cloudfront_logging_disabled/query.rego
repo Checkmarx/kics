@@ -61,7 +61,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": cp_lib.getResourceName(resource),
-		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig", [cp_lib.getPath(path),resource.metadata.name]),
+		"searchKey": sprintf("%smetadata.name={{%s}}.spec.forProvider.distributionConfig", [cp_lib.getPath(path), resource.metadata.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "CloudFront logging enabled attribute should be defined and set to true",
 		"keyActualValue": "CloudFront logging is not defined",

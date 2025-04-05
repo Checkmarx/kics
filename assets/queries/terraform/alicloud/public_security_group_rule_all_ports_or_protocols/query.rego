@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resource.type == "ingress"
 	resource.cidr_ip == "0.0.0.0/0"
 	isTCPorUDP(resource.ip_protocol)
-	resource.port_range == "1/65535" 
+	resource.port_range == "1/65535"
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_security_group_rule",
@@ -32,7 +32,7 @@ CxPolicy[result] {
 	resource.type == "ingress"
 	resource.cidr_ip == "0.0.0.0/0"
 	isGREorICMP(resource.ip_protocol)
-	resource.port_range == "-1/-1" 
+	resource.port_range == "-1/-1"
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_security_group_rule",
@@ -48,7 +48,6 @@ CxPolicy[result] {
 isGREorICMP("icmp") = true
 
 isGREorICMP("gre") = true
-
 
 CxPolicy[result] {
 	some i
