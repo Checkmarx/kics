@@ -409,24 +409,10 @@ func extractPathsFromExpr(expr hclsyntax.Expression) [][]string {
 		if len(path) > 0 {
 			paths = append(paths, path)
 		}
-	case *hclsyntax.TemplateExpr:
-		for _, p := range e.Parts {
-			paths = append(paths, extractPathsFromExpr(p)...)
-		}
 	case *hclsyntax.TupleConsExpr:
 		for _, p := range e.Exprs {
 			paths = append(paths, extractPathsFromExpr(p)...)
 		}
-	case *hclsyntax.ObjectConsExpr:
-		for _, item := range e.Items {
-			paths = append(paths, extractPathsFromExpr(item.KeyExpr)...)
-			paths = append(paths, extractPathsFromExpr(item.ValueExpr)...)
-		}
-	case *hclsyntax.BinaryOpExpr:
-		paths = append(paths, extractPathsFromExpr(e.LHS)...)
-		paths = append(paths, extractPathsFromExpr(e.RHS)...)
-	case *hclsyntax.UnaryOpExpr:
-		paths = append(paths, extractPathsFromExpr(e.Val)...)
 	}
 
 	return paths
