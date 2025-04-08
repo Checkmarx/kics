@@ -3,7 +3,7 @@ module github.com/Checkmarx/kics/v2
 go 1.23.8
 
 require (
-	code.cloudfoundry.org/bytefmt v0.35.0
+	code.cloudfoundry.org/bytefmt v0.36.0
 	github.com/BurntSushi/toml v1.5.0
 	github.com/agnivade/levenshtein v1.2.1
 	github.com/alexmullins/zip v0.0.0-20180717182244-4affb64b04d0
@@ -15,7 +15,7 @@ require (
 	github.com/getsentry/sentry-go v0.31.2-0.20250102155933-f2d4348b0508
 	github.com/gocarina/gocsv v0.0.0-20240520201108-78e41c74b4b1
 	github.com/golang/mock v1.6.0
-	github.com/google/pprof v0.0.0-20250317173921-a4b03ec1a45e
+	github.com/google/pprof v0.0.0-20250403155104-27863c87afa6
 	github.com/google/uuid v1.6.0
 	github.com/gookit/color v1.5.4
 	github.com/hashicorp/go-getter v1.7.8
@@ -41,7 +41,7 @@ require (
 	github.com/zclconf/go-cty v1.16.2
 	golang.org/x/net v0.39.0
 	golang.org/x/text v0.24.0
-	golang.org/x/tools v0.31.0
+	golang.org/x/tools v0.32.0
 	gopkg.in/yaml.v3 v3.0.1
 	helm.sh/helm/v3 v3.17.2
 	mvdan.cc/sh/v3 v3.11.0
