@@ -1,10 +1,9 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
 	nasSecurityGroup := input.document[i].resource.nifcloud_nas_security_group[name]
 	not common_lib.valid_key(nasSecurityGroup, "description")
 

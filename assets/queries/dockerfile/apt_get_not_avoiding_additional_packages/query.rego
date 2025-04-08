@@ -54,5 +54,5 @@ avoidAdditionalPackages(cmd) {
 
 avoidAdditionalPackages(cmd) {
 	is_array(cmd) == true
-    dockerLib.arrayContains(cmd, {"--no-install-recommends", "apt::install-recommends=false"})
+	dockerLib.arrayContains(cmd, {"--no-install-recommends", "apt::install-recommends=false"})
 }

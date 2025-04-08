@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("aws_ecr_repository.%s.image_tag_mutability is 'MUTABLE'", [name]),
 		"remediation": json.marshal({
 			"before": "MUTABLE",
-			"after": "IMMUTABLE"
+			"after": "IMMUTABLE",
 		}),
 		"remediationType": "replacement",
 	}

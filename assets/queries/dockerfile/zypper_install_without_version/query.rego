@@ -33,7 +33,7 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-    dockerLib.arrayContains(resource.Value, {"zypper", "install"})
+	dockerLib.arrayContains(resource.Value, {"zypper", "install"})
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "zypper"
@@ -58,6 +58,6 @@ analyzePackages(j, currentPackage, packages, length) {
 analyzePackages(j, currentPackage, packages, length) {
 	j != length - 1
 	regex.match("^[a-zA-Z]", currentPackage) == true
-	packages[plus(j, 1)] != "-v"
+	packages[j + 1] != "-v"
 	not dockerLib.withVersion(currentPackage)
 }

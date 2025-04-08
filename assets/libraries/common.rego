@@ -35,9 +35,7 @@ resolve_path(pathItem) = resolved {
 } else = resolved {
 	is_number(pathItem)
 	resolved := ""
-} else = pathItem {
-	true
-}
+} else = pathItem
 
 json_unmarshal(s) = result {
 	s == null
@@ -59,9 +57,9 @@ calc_IP_value(ip) = result {
 }
 
 # Checks if a value is within a range
-between(value, min, max) {
-	value >= min
-	value <= max
+between(value, lowerBound, upperBound) {
+	value >= lowerBound
+	value <= upperBound
 }
 
 # Checks if a list contains an item
@@ -263,16 +261,12 @@ allowsAllPrincipalsToAssume(resource, statement) {
 
 compareArrays(arrayOne, arrayTwo) {
 	upper(arrayOne[_]) == upper(arrayTwo[_])
-} else = false {
-	true
-}
+} else = false
 
 valid_key(obj, key) {
 	_ = obj[key]
 	not is_null(obj[key])
-} else = false {
-	true
-}
+} else = false
 
 getDays(date, daysInMonth) = days {
 	index := date[1] - 2
@@ -311,8 +305,8 @@ unsecured_cors_rule(methods, headers, origins) {
 }
 
 get_module_equivalent_key(provider, moduleName, resource, key) = keyInResource {
-	providers := data.common_lib.modules[provider]
-	module := providers[moduleName]
+	provider_modules := data.common_lib.modules[provider]
+	module := provider_modules[moduleName]
 	inArray(module.resources, resource)
 	keyInResource := module.inputs[key]
 }
@@ -321,9 +315,7 @@ check_selector(filter, value, op, name) {
 	selector := find_selector_by_value(filter, value)
 	selector._op == op
 	selector._selector == name
-} else = false {
-	true
-}
+} else = false
 
 find_selector_by_value(filter, str) = rtn {
 	[_, fvalue] := walk(filter)
@@ -358,7 +350,6 @@ get_tag_name_if_exists(resource) = name {
 	key == "Name"
 	name := tag
 }
-
 
 get_encryption_if_exists(resource) = encryption {
 	resource.encrypted == true
@@ -412,7 +403,7 @@ is_allow_effect(statement) {
 } else {
 	statement.Effect == "Allow"
 } else {
-    statement.effect == "Allow"
+	statement.effect == "Allow"
 }
 
 get_policy(p) = policy {
@@ -502,11 +493,11 @@ has_wildcard(statement, typeAction) {
 # array_vals := ["elem1", "elem2", "elem4"]
 #
 # return_value := {"valid": false, "searchKey": "elem1.elem2"}
-get_nested_values_info(object, array_vals) = return_value {
+get_nested_values_info(obj, array_vals) = return_value {
 	arr := [x |
 		some i, _ in array_vals
 		path := array.slice(array_vals, 0, i + 1)
-		walk(object, [path, _]) # evaluates to false if path is not in object
+		walk(obj, [path, _]) # evaluates to false if path is not in object
 		x := path[i]
 	]
 
@@ -574,7 +565,6 @@ weakCipher(aux) {
 	weak_ciphers_GnuTLS_Format = {"TLS_RSA_NULL_MD5", "TLS_RSA_NULL_SHA1", "TLS_RSA_ARCFOUR_128_MD5", "TLS_RSA_ARCFOUR_128_SHA1", "TLS_RSA_3DES_EDE_CBC_SHA1", "TLS_DHE_DSS_3DES_EDE_CBC_SHA1", "TLS_DHE_RSA_3DES_EDE_CBC_SHA1", "TLS_DH_ANON_ARCFOUR_128_MD5", "TLS_DH_ANON_3DES_EDE_CBC_SHA1", "TLS_PSK_NULL_SHA1", "TLS_DHE_PSK_NULL_SHA1", "TLS_RSA_PSK_NULL_SHA1", "TLS_RSA_AES_128_CBC_SHA1", "TLS_DHE_DSS_AES_128_CBC_SHA1", "TLS_DHE_RSA_AES_128_CBC_SHA1", "TLS_DH_ANON_AES_128_CBC_SHA1", "TLS_RSA_AES_256_CBC_SHA1", "TLS_DHE_DSS_AES_256_CBC_SHA1", "TLS_DHE_RSA_AES_256_CBC_SHA1", "TLS_DH_ANON_AES_256_CBC_SHA1", "TLS_RSA_NULL_SHA256", "TLS_RSA_AES_128_CBC_SHA256", "TLS_RSA_AES_256_CBC_SHA256", "TLS_DHE_DSS_AES_128_CBC_SHA256", "TLS_RSA_CAMELLIA_128_CBC_SHA1", "TLS_DHE_DSS_CAMELLIA_128_CBC_SHA1", "TLS_DHE_RSA_CAMELLIA_128_CBC_SHA1", "TLS_DH_ANON_CAMELLIA_128_CBC_SHA1", "TLS_DHE_RSA_AES_128_CBC_SHA256", "TLS_DHE_DSS_AES_256_CBC_SHA256", "TLS_DHE_RSA_AES_256_CBC_SHA256", "TLS_DH_ANON_AES_128_CBC_SHA256", "TLS_DH_ANON_AES_256_CBC_SHA256", "TLS_RSA_CAMELLIA_256_CBC_SHA1", "TLS_DHE_DSS_CAMELLIA_256_CBC_SHA1", "TLS_DHE_RSA_CAMELLIA_256_CBC_SHA1", "TLS_DH_ANON_CAMELLIA_256_CBC_SHA1", "TLS_PSK_ARCFOUR_128_SHA1", "TLS_PSK_3DES_EDE_CBC_SHA1", "TLS_PSK_AES_128_CBC_SHA1", "TLS_PSK_AES_256_CBC_SHA1", "TLS_DHE_PSK_ARCFOUR_128_SHA1", "TLS_DHE_PSK_3DES_EDE_CBC_SHA1", "TLS_DHE_PSK_AES_128_CBC_SHA1", "TLS_DHE_PSK_AES_256_CBC_SHA1", "TLS_RSA_PSK_ARCFOUR_128_SHA1", "TLS_RSA_PSK_3DES_EDE_CBC_SHA1", "TLS_RSA_PSK_AES_128_CBC_SHA1", "TLS_RSA_PSK_AES_256_CBC_SHA1", "TLS_RSA_AES_128_GCM_SHA256", "TLS_RSA_AES_256_GCM_SHA384", "TLS_DHE_DSS_AES_128_GCM_SHA256", "TLS_DHE_DSS_AES_256_GCM_SHA384", "TLS_DH_ANON_AES_128_GCM_SHA256", "TLS_DH_ANON_AES_256_GCM_SHA384", "TLS_PSK_AES_128_GCM_SHA256", "TLS_PSK_AES_256_GCM_SHA384", "TLS_RSA_PSK_AES_128_GCM_SHA256", "TLS_RSA_PSK_AES_256_GCM_SHA384", "TLS_PSK_AES_128_CBC_SHA256", "TLS_PSK_AES_256_CBC_SHA384", "TLS_PSK_NULL_SHA256", "TLS_PSK_NULL_SHA384", "TLS_DHE_PSK_AES_128_CBC_SHA256", "TLS_DHE_PSK_AES_256_CBC_SHA384", "TLS_DHE_PSK_NULL_SHA256", "TLS_DHE_PSK_NULL_SHA384", "TLS_RSA_PSK_AES_128_CBC_SHA256", "TLS_RSA_PSK_AES_256_CBC_SHA384", "TLS_RSA_PSK_NULL_SHA256", "TLS_RSA_PSK_NULL_SHA384", "TLS_RSA_CAMELLIA_128_CBC_SHA256", "TLS_DHE_DSS_CAMELLIA_128_CBC_SHA256", "TLS_DHE_RSA_CAMELLIA_128_CBC_SHA256", "TLS_DH_ANON_CAMELLIA_128_CBC_SHA256", "TLS_RSA_CAMELLIA_256_CBC_SHA256", "TLS_DHE_DSS_CAMELLIA_256_CBC_SHA256", "TLS_DHE_RSA_CAMELLIA_256_CBC_SHA256", "TLS_DH_ANON_CAMELLIA_256_CBC_SHA256", "TLS_ECDHE_ECDSA_NULL_SHA1", "TLS_ECDHE_ECDSA_ARCFOUR_128_SHA1", "TLS_ECDHE_ECDSA_3DES_EDE_CBC_SHA1", "TLS_ECDHE_ECDSA_AES_128_CBC_SHA1", "TLS_ECDHE_ECDSA_AES_256_CBC_SHA1", "TLS_ECDHE_RSA_NULL_SHA1", "TLS_ECDHE_RSA_ARCFOUR_128_SHA1", "TLS_ECDHE_RSA_3DES_EDE_CBC_SHA1", "TLS_ECDHE_RSA_AES_128_CBC_SHA1", "TLS_ECDHE_RSA_AES_256_CBC_SHA1", "TLS_ECDH_ANON_NULL_SHA1", "TLS_ECDH_ANON_ARCFOUR_128_SHA1", "TLS_ECDH_ANON_3DES_EDE_CBC_SHA1", "TLS_ECDH_ANON_AES_128_CBC_SHA1", "TLS_ECDH_ANON_AES_256_CBC_SHA1", "TLS_SRP_SHA_3DES_EDE_CBC_SHA1", "TLS_SRP_SHA_RSA_3DES_EDE_CBC_SHA1", "TLS_SRP_SHA_DSS_3DES_EDE_CBC_SHA1", "TLS_SRP_SHA_AES_128_CBC_SHA1", "TLS_SRP_SHA_RSA_AES_128_CBC_SHA1", "TLS_SRP_SHA_DSS_AES_128_CBC_SHA1", "TLS_SRP_SHA_AES_256_CBC_SHA1", "TLS_SRP_SHA_RSA_AES_256_CBC_SHA1", "TLS_SRP_SHA_DSS_AES_256_CBC_SHA1", "TLS_ECDHE_ECDSA_AES_128_CBC_SHA256", "TLS_ECDHE_ECDSA_AES_256_CBC_SHA384", "TLS_ECDHE_RSA_AES_128_CBC_SHA256", "TLS_ECDHE_RSA_AES_256_CBC_SHA384", "TLS_ECDHE_PSK_ARCFOUR_128_SHA1", "TLS_ECDHE_PSK_3DES_EDE_CBC_SHA1", "TLS_ECDHE_PSK_AES_128_CBC_SHA1", "TLS_ECDHE_PSK_AES_256_CBC_SHA1", "TLS_ECDHE_PSK_AES_128_CBC_SHA256", "TLS_ECDHE_PSK_AES_256_CBC_SHA384", "TLS_ECDHE_PSK_NULL_SHA1", "TLS_ECDHE_PSK_NULL_SHA256", "TLS_ECDHE_PSK_NULL_SHA384", "TLS_ECDHE_ECDSA_CAMELLIA_128_CBC_SHA256", "TLS_ECDHE_ECDSA_CAMELLIA_256_CBC_SHA384", "TLS_ECDHE_RSA_CAMELLIA_128_CBC_SHA256", "TLS_ECDHE_RSA_CAMELLIA_256_CBC_SHA384", "TLS_RSA_CAMELLIA_128_GCM_SHA256", "TLS_RSA_CAMELLIA_256_GCM_SHA384", "TLS_DHE_RSA_CAMELLIA_128_GCM_SHA256", "TLS_DHE_RSA_CAMELLIA_256_GCM_SHA384", "TLS_DHE_DSS_CAMELLIA_128_GCM_SHA256", "TLS_DHE_DSS_CAMELLIA_256_GCM_SHA384", "TLS_DH_ANON_CAMELLIA_128_GCM_SHA256", "TLS_DH_ANON_CAMELLIA_256_GCM_SHA384", "TLS_ECDHE_ECDSA_CAMELLIA_128_GCM_SHA256", "TLS_ECDHE_ECDSA_CAMELLIA_256_GCM_SHA384", "TLS_ECDHE_RSA_CAMELLIA_128_GCM_SHA256", "TLS_ECDHE_RSA_CAMELLIA_256_GCM_SHA384", "TLS_PSK_CAMELLIA_128_GCM_SHA256", "TLS_PSK_CAMELLIA_256_GCM_SHA384", "TLS_DHE_PSK_CAMELLIA_128_GCM_SHA256", "TLS_DHE_PSK_CAMELLIA_256_GCM_SHA384", "TLS_RSA_PSK_CAMELLIA_128_GCM_SHA256", "TLS_RSA_PSK_CAMELLIA_256_GCM_SHA384", "TLS_PSK_CAMELLIA_128_CBC_SHA256", "TLS_PSK_CAMELLIA_256_CBC_SHA384", "TLS_DHE_PSK_CAMELLIA_128_CBC_SHA256", "TLS_DHE_PSK_CAMELLIA_256_CBC_SHA384", "TLS_RSA_PSK_CAMELLIA_128_CBC_SHA256", "TLS_RSA_PSK_CAMELLIA_256_CBC_SHA384", "TLS_ECDHE_PSK_CAMELLIA_128_CBC_SHA256", "TLS_ECDHE_PSK_CAMELLIA_256_CBC_SHA384", "TLS_RSA_AES_128_CCM", "TLS_RSA_AES_256_CCM", "TLS_RSA_AES_128_CCM_8", "TLS_RSA_AES_256_CCM_8", "TLS_DHE_RSA_AES_128_CCM_8", "TLS_DHE_RSA_AES_256_CCM_8", "TLS_PSK_AES_128_CCM", "TLS_PSK_AES_256_CCM", "TLS_PSK_AES_128_CCM_8", "TLS_PSK_AES_256_CCM_8", "TLS_DHE_PSK_AES_128_CCM_8", "TLS_DHE_PSK_AES_256_CCM_8", "TLS_ECDHE_ECDSA_AES_128_CCM", "TLS_ECDHE_ECDSA_AES_256_CCM", "TLS_ECDHE_ECDSA_AES_128_CCM_8", "TLS_ECDHE_ECDSA_AES_256_CCM_8", "TLS_PSK_CHACHA20_POLY1305", "TLS_RSA_PSK_CHACHA20_POLY1305"}
 	weak_ciphers_GnuTLS_Format[_] == aux
 }
-
 
 #aurora is equivelent to mysql 5.6 https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html#UsingWithRDS.IAMDBAuth.Availability
 #all aurora-postgresql versions that do not support IAM auth are deprecated Source:console.aws (launch rds instance)
@@ -723,16 +713,16 @@ get_latest_software_version(name) = version {
 get_version(name) = version {
 	val := get_latest_software_version(name)
 	splited := split(val, ".")
-	version := concat(".", [splited[0],splited[1]])
+	version := concat(".", [splited[0], splited[1]])
 }
 
 contains_element(arr, element) {
-    element == arr[_]
+	element == arr[_]
 }
 
-contains_with_size(arr, element){
-	count(arr)>0
-    test := arr[j]
+contains_with_size(arr, element) {
+	count(arr) > 0
+	test := arr[j]
 	contains(test, element)
 }
 

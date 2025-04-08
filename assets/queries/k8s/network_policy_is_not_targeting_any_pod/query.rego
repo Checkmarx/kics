@@ -29,6 +29,4 @@ findTargettedPod(lValue, lKey) {
 	some key
 	key == lKey
 	labels[key] == lValue
-} else = false {
-	true
-}
+} else = false

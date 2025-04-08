@@ -12,13 +12,13 @@ CxPolicy[result] {
 		"resourceType": "aws_dax_cluster",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_dax_cluster[{{%s}}].server_side_encryption.enabled", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_dax_cluster", name,"server_side_encryption","enabled"], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_dax_cluster", name, "server_side_encryption", "enabled"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_dax_cluster.server_side_encryption.enabled should be set to true",
 		"keyActualValue": "aws_dax_cluster.server_side_encryption.enabled is set to false",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

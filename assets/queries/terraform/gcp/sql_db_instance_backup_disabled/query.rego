@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "settings.backup_configuration should be defined and not null",
 		"keyActualValue": "settings.backup_configuration is undefined or null",
-		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name],["settings"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name], ["settings"]),
 	}
 }
 
@@ -29,7 +29,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "settings.backup_configuration.enabled should be defined and not null",
 		"keyActualValue": "settings.backup_configuration.enabled is undefined or null",
-		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name],["settings", "backup_configuration"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name], ["settings", "backup_configuration"]),
 		"remediation": "enabled = true",
 		"remediationType": "addition",
 	}
@@ -46,10 +46,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "settings.backup_configuration.enabled should be true",
 		"keyActualValue": "settings.backup_configuration.enabled is false",
-		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name],["settings", "backup_configuration", "enabled"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name], ["settings", "backup_configuration", "enabled"]),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

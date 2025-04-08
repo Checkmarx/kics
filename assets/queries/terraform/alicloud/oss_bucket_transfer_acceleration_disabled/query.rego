@@ -7,7 +7,7 @@ CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_oss_bucket[name]
 
-    resource.transfer_acceleration.enabled == false
+	resource.transfer_acceleration.enabled == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "transfer_acceleration", "enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -30,7 +30,7 @@ CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_oss_bucket[name]
 
-    not common_lib.valid_key(resource, "transfer_acceleration")
+	not common_lib.valid_key(resource, "transfer_acceleration")
 
 	result := {
 		"documentId": input.document[i].id,

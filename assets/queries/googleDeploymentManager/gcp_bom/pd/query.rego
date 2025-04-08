@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-valid_disk_resources := {"compute.beta.disk","compute.v1.disk"}
+valid_disk_resources := {"compute.beta.disk", "compute.v1.disk"}
 
 CxPolicy[result] {
 	gc_disk := input.document[i].resources[idx]
@@ -42,7 +42,7 @@ check_encrytion(properties) = enc_status {
 	enc_status := "encrypted"
 }
 
-check_key_empty(diskEncryptionKey){
+check_key_empty(diskEncryptionKey) {
 	common_lib.valid_key(diskEncryptionKey, "rawKey")
 	common_lib.emptyOrNull(diskEncryptionKey.rawKey)
 } else {

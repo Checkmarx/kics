@@ -37,9 +37,7 @@ hasPodDisruptionBudget(lValue, lKey) {
 	some key
 	key == lKey
 	labels[key] == lValue
-} else = false {
-	true
-}
+} else = false
 
 hasReference(label) {
 	regex.match("kubernetes_pod_disruption_budget.[a-zA-Z-_0-9]+", label)

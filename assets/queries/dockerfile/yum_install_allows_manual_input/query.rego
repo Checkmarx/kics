@@ -26,7 +26,7 @@ CxPolicy[result] {
 	resource.Cmd == "run"
 	count(resource.Value) > 1
 
-    dockerLib.arrayContains(resource.Value, {"yum", "install"})
+	dockerLib.arrayContains(resource.Value, {"yum", "install"})
 
 	not avoidManualInputInList(resource.Value)
 
