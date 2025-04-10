@@ -377,12 +377,8 @@ func mergeObjects(a, b cty.Value) cty.Value {
 func extractVariablePathsFromBody(body *hclsyntax.Body) [][]string {
 	var paths [][]string
 
-	walkExpr := func(expr hclsyntax.Expression) {
-		paths = append(paths, extractPathsFromExpr(expr)...)
-	}
-
 	for _, attr := range body.Attributes {
-		walkExpr(attr.Expr)
+		paths = append(paths, extractPathsFromExpr(attr.Expr)...)
 	}
 	for _, block := range body.Blocks {
 		paths = append(paths, extractVariablePathsFromBody(block.Body)...)
