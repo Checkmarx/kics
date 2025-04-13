@@ -43,7 +43,7 @@ require (
 	golang.org/x/text v0.24.0
 	golang.org/x/tools v0.31.0
 	gopkg.in/yaml.v3 v3.0.1
-	helm.sh/helm/v3 v3.17.2
+	helm.sh/helm/v3 v3.17.3
 	mvdan.cc/sh/v3 v3.11.0
 	sigs.k8s.io/controller-runtime v0.14.6
 )
