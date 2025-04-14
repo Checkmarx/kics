@@ -56,7 +56,7 @@ jobs:
         shell: bash
         run: echo "GO_BUILD=$(go env GOCACHE)" >>$GITHUB_OUTPUT
       - name: Cache dependencies
-        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
         with:
           path: ${{ steps.go-cache-paths.outputs.GO_BUILD }}
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
@@ -86,7 +86,7 @@ jobs:
           go test -mod=vendor -tags dev -v -timeout 2100s $(go list -tags dev ./... | grep -v e2e) -count=1 -coverprofile=cover.out | tee unit-test.log
       - name: Archive test logs
         if: always()
-        uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4.6.1
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: unit-test-${{ runner.os }}-${{ github.event.pull_request.head.sha }}.log
           path: unit-test.log
@@ -99,13 +99,13 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Run Gosec Security Scanner
-        uses: securego/gosec@136f6c00402b11775d4f4a45d5a21e2f6dd99db2 # v2.22.2
+        uses: securego/gosec@955a68d0d19f4afb7503068f95059f7d0c529017 # v2.22.3
         with:
           args: "-no-fail -fmt sarif -out results.sarif ./..."
       - name: Show results
         run: |
           cat results.sarif
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@608ccd6cd915d2c43d3059c3da518f36f07a56b0
+        uses: github/codeql-action/upload-sarif@d26c46acea4065b13fc57703621e0a7c8b9e836b
         with:
           sarif_file: results.sarif

@@ -123,7 +123,8 @@ func (r *Resolver) walk(
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
-		if filepath.Base(path) != typedValue {
+		// check if the value is not the same as the path - avoid direct cycle
+		if filepath.Base(path) != filepath.Clean(typedValue) {
 			return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolvingStatus, refBool)
 		}
 		return value, false

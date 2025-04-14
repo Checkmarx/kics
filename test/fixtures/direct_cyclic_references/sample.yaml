@@ -1,0 +1,22 @@
+---
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: template
+spec:
+  parameters:
+    - title: sample
+      required:
+        - path
+      properties:
+        path:
+          title: Path
+          type: string
+          default: ./sample.yaml
+  steps:
+    - id: step1
+      name: step1
+    - id: step2
+      name: step2
+    - id: step3
+      name: step3

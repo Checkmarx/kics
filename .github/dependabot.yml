@@ -11,6 +11,8 @@ updates:
       all:
         patterns:
           - "*"
+    ignore:
+      - dependency-name: golangci/golangci-lint-action
   - package-ecosystem: "gomod"
     directory: "/"
     schedule:
@@ -22,6 +24,9 @@ updates:
       all:
         patterns:
           - "*"
+    ignore:
+      - dependency-name: github.com/open-policy-agent/opa
+      - dependency-name: sigs.k8s.io/controller-runtime
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
