@@ -200,12 +200,12 @@ func (r *Resolver) yamlWalk(
 	value *yaml.Node,
 	path string,
 	resolvingStatus ResolvingStatus,
-	refBool, ansibleVars bool) (_ yaml.Node, validOpenApiSectionRef, canBeCached bool) {
+	refBool, ansibleVars bool) (_ yaml.Node, validOpenAPISectionRef, canBeCached bool) {
 	// go over the value and replace paths with the real content
 	switch value.Kind {
 	case yaml.ScalarNode:
 		// check if the value is not the same as the path - avoid direct cycle
-		if filepath.Base(path) != filepath.Clean(value.Value) { // TODO: add test to cover this
+		if filepath.Base(path) != filepath.Clean(value.Value) {
 			return r.resolveYamlPath(originalFileContent, fullObject,
 				value, path, resolvingStatus,
 				refBool, ansibleVars)
@@ -266,7 +266,7 @@ func (r *Resolver) resolveYamlPath(
 	v *yaml.Node, filePath string,
 	resolvingStatus ResolvingStatus,
 	refBool, ansibleVars bool,
-) (_ yaml.Node, validOpenApiSectionRef, canBeCached bool) {
+) (_ yaml.Node, validOpenAPISectionRef, canBeCached bool) {
 	var splitPath []string
 	var obj *yaml.Node
 	var sameFileResolve bool
@@ -356,7 +356,7 @@ func (r *Resolver) returnResolveYamlPathValue(
 	sameFileResolve bool,
 	filePath string,
 	originalFileContent []byte,
-	obj, v *yaml.Node) (_ yaml.Node, validOpenApiSectionRef, canBeCached bool) {
+	obj, v *yaml.Node) (_ yaml.Node, validOpenAPISectionRef, canBeCached bool) {
 	if len(splitPath) > 1 {
 		if sameFileResolve {
 			r.ResolvedFiles[filePath] = model.ResolvedFile{
@@ -379,7 +379,6 @@ func (r *Resolver) resolveFile(
 	filePath string,
 	resolvingStatus ResolvingStatus,
 	yamlResolve bool) (_ any, isError, canBeCached bool) {
-
 	// open the file with the content to replace
 	file, err := os.Open(filepath.Clean(filePath))
 	if err != nil {
