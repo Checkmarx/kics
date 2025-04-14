@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"path/filepath"
+	"strings"
 	"sync"
 
 	"github.com/Checkmarx/kics/v2/pkg/builder/engine"
@@ -117,13 +118,13 @@ func getDataSourcePolicy(currentPath string) {
 }
 
 func decodeDataSourcePolicy(value cty.Value) dataSourcePolicy {
-	jsonified, err := ctyjson.Marshal(value, cty.DynamicPseudoType)
+	jsonUnified, err := ctyjson.Marshal(value, cty.DynamicPseudoType)
 	if err != nil {
 		log.Error().Msgf("Error trying to decode data source block: %s", err)
 		return dataSourcePolicy{}
 	}
 	var data dataSource
-	err = json.Unmarshal(jsonified, &data)
+	err = json.Unmarshal(jsonUnified, &data)
 	if err != nil {
 		log.Error().Msgf("Error trying to encode data source json: %s", err)
 		return dataSourcePolicy{}
@@ -232,6 +233,12 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 	}
 
 	resolveDataResources(body)
+	paths := extractVariablePathsFromBody(body)
+	grouped := groupPathsByRoot(paths)
+
+	for rootVar, subPaths := range grouped {
+		inputVariableMap[rootVar] = buildNestedPathMapWithIdentifier(subPaths)
+	}
 
 	target, decodeErrs := hcldec.Decode(body, dataSourceSpec, &hcl.EvalContext{
 		Variables: inputVariableMap,
@@ -298,6 +305,113 @@ func parseDataSourceBody(body *hclsyntax.Body) string {
 		return ""
 	}
 	return buffer.String()
+}
+
+// groupsPathsByRoot groups paths by their root variable (first element of the path)
+// allowing us to group paths that share the same root for further processing.
+func groupPathsByRoot(paths [][]string) map[string][][]string {
+	grouped := make(map[string][][]string)
+	for _, path := range paths {
+		if len(path) == 0 {
+			continue
+		}
+		root := path[0]
+		grouped[root] = append(grouped[root], path[1:])
+	}
+	return grouped
+}
+
+// buildNestedPathMapWithIdentifier constructs a nested map from the variables paths,
+// where the key is the first part of the path and the values is the remaining paths.
+func buildNestedPathMapWithIdentifier(paths [][]string) cty.Value {
+	root := map[string]cty.Value{}
+
+	for _, path := range paths {
+		if len(path) == 0 {
+			continue
+		}
+
+		value := cty.StringVal(strings.Join(path, "."))
+		for i := len(path) - 1; i >= 0; i-- {
+			value = cty.ObjectVal(map[string]cty.Value{
+				path[i]: value,
+			})
+		}
+
+		for k, v := range value.AsValueMap() {
+			if existing, exists := root[k]; exists {
+				merged := mergeObjects(existing, v)
+				root[k] = merged
+			} else {
+				root[k] = v
+			}
+		}
+	}
+
+	return cty.ObjectVal(root)
+}
+
+// mergeObjects merges two cty objects. If the objects have shared keys,
+// their nested fields are recursively merged.
+func mergeObjects(a, b cty.Value) cty.Value {
+	if !a.Type().IsObjectType() || !b.Type().IsObjectType() {
+		return b
+	}
+
+	merged := map[string]cty.Value{}
+	for k, v := range a.AsValueMap() {
+		merged[k] = v
+	}
+	for k, v := range b.AsValueMap() {
+		if existing, ok := merged[k]; ok {
+			merged[k] = mergeObjects(existing, v)
+		} else {
+			merged[k] = v
+		}
+	}
+	return cty.ObjectVal(merged)
+}
+
+// extractVariablePathsFromBody parses the HCL body and extracts variable paths.
+// It walks through the body, extracting paths and returning them as an array of string slices.
+func extractVariablePathsFromBody(body *hclsyntax.Body) [][]string {
+	var paths [][]string
+
+	for _, attr := range body.Attributes {
+		paths = append(paths, extractPathsFromExpr(attr.Expr)...)
+	}
+	for _, block := range body.Blocks {
+		paths = append(paths, extractVariablePathsFromBody(block.Body)...)
+	}
+
+	return paths
+}
+
+// extractPathsFromExpr handles the expression traversal and path extraction.
+func extractPathsFromExpr(expr hclsyntax.Expression) [][]string {
+	var paths [][]string
+
+	switch e := expr.(type) {
+	case *hclsyntax.ScopeTraversalExpr:
+		var path []string
+		for _, part := range e.Traversal {
+			switch p := part.(type) {
+			case hcl.TraverseRoot:
+				path = append(path, p.Name)
+			case hcl.TraverseAttr:
+				path = append(path, p.Name)
+			}
+		}
+		if len(path) > 0 {
+			paths = append(paths, path)
+		}
+	case *hclsyntax.TupleConsExpr:
+		for _, p := range e.Exprs {
+			paths = append(paths, extractPathsFromExpr(p)...)
+		}
+	}
+
+	return paths
 }
 
 // resolveDataResources resolves the data resources expressions into LiteralValueExpr
