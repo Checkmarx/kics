@@ -231,7 +231,7 @@
 				
 				<option value="file87">github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter/default.go (78.2%)</option>
 				
-				<option value="file88">github.com/Checkmarx/kics/v2/pkg/parser/terraform/data_source.go (76.8%)</option>
+				<option value="file88">github.com/Checkmarx/kics/v2/pkg/parser/terraform/data_source.go (75.4%)</option>
 				
 				<option value="file89">github.com/Checkmarx/kics/v2/pkg/parser/terraform/functions/default.go (71.4%)</option>
 				
@@ -2583,13 +2583,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="49">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="51">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="49">total += v
+                <span class="cov9" title="51">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2614,7 +2614,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -6998,12 +6998,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="31943">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="31945">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="31943">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="31602">{
+                <span class="cov9" title="31945">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="31604">{
                         return skipFolder
                 }</span>
 
@@ -7075,7 +7075,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov6" title="340">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="31962">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="31964">{
         s.mu.RLock()
         defer s.mu.RUnlock()
 
@@ -7101,12 +7101,12 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="3">return false, nil</span>
         }
 
-        <span class="cov9" title="25022">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="25024">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="25022">ext, _ := utils.GetExtension(path)
-        if !extensions.Include(ext) </span><span class="cov9" title="24682">{
+        <span class="cov9" title="25024">ext, _ := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="24684">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
@@ -20298,12 +20298,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="220">{
+        for variable := range s.varList </span><span class="cov7" title="219">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="639">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="576">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -25895,6 +25895,7 @@ import (
         "bytes"
         "encoding/json"
         "path/filepath"
+        "strings"
         "sync"
 
         "github.com/Checkmarx/kics/v2/pkg/builder/engine"
@@ -25964,28 +25965,28 @@ type convertedPolicy struct {
 
 var mutexData = &amp;sync.Mutex{}
 
-func getDataSourcePolicy(currentPath string) <span class="cov5" title="3">{
+func getDataSourcePolicy(currentPath string) <span class="cov3" title="4">{
         tfFiles, err := filepath.Glob(filepath.Join(currentPath, "*.tf"))
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msg("Error getting .tf files to parse data source")
                 return
         }</span>
-        <span class="cov5" title="3">if len(tfFiles) == 0 </span><span class="cov1" title="1">{
+        <span class="cov3" title="4">if len(tfFiles) == 0 </span><span class="cov1" title="1">{
                 return
         }</span>
-        <span class="cov4" title="2">jsonMap := make(map[string]map[string]string)
-        for _, tfFile := range tfFiles </span><span class="cov7" title="4">{
+        <span class="cov3" title="3">jsonMap := make(map[string]map[string]string)
+        for _, tfFile := range tfFiles </span><span class="cov5" title="9">{
                 parsedFile, parseErr := parseFile(tfFile, true)
                 if parseErr != nil </span><span class="cov0" title="0">{
                         log.Debug().Msgf("Error trying to parse file %s for data source.", tfFile)
                         continue</span>
                 }
-                <span class="cov7" title="4">body, ok := parsedFile.Body.(*hclsyntax.Body)
+                <span class="cov5" title="9">body, ok := parsedFile.Body.(*hclsyntax.Body)
                 if !ok </span><span class="cov0" title="0">{
                         continue</span>
                 }
-                <span class="cov7" title="4">for _, block := range body.Blocks </span><span class="cov10" title="8">{
-                        if block.Type == "data" &amp;&amp; block.Labels[0] == "aws_iam_policy_document" &amp;&amp; len(block.Labels) &gt; 1 </span><span class="cov7" title="4">{
+                <span class="cov5" title="9">for _, block := range body.Blocks </span><span class="cov6" title="18">{
+                        if block.Type == "data" &amp;&amp; block.Labels[0] == "aws_iam_policy_document" &amp;&amp; len(block.Labels) &gt; 1 </span><span class="cov5" title="9">{
                                 policyJSON := parseDataSourceBody(block.Body)
                                 jsonMap[block.Labels[1]] = map[string]string{
                                         "json": policyJSON,
@@ -25993,7 +25994,7 @@ func getDataSourcePolicy(currentPath string) <span class="cov5" title="3">{
                         }</span>
                 }
         }
-        <span class="cov4" title="2">policyResource := map[string]map[string]map[string]string{
+        <span class="cov3" title="3">policyResource := map[string]map[string]map[string]string{
                 "aws_iam_policy_document": jsonMap,
         }
         data, err := gocty.ToCtyValue(policyResource, cty.Map(cty.Map(cty.Map(cty.String))))
@@ -26002,27 +26003,27 @@ func getDataSourcePolicy(currentPath string) <span class="cov5" title="3">{
                 return
         }</span>
 
-        <span class="cov4" title="2">mutexData.Lock()
+        <span class="cov3" title="3">mutexData.Lock()
         inputVariableMap["data"] = data
         mutexData.Unlock()</span>
 }
 
-func decodeDataSourcePolicy(value cty.Value) dataSourcePolicy <span class="cov7" title="4">{
-        jsonified, err := ctyjson.Marshal(value, cty.DynamicPseudoType)
+func decodeDataSourcePolicy(value cty.Value) dataSourcePolicy <span class="cov5" title="9">{
+        jsonUnified, err := ctyjson.Marshal(value, cty.DynamicPseudoType)
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("Error trying to decode data source block: %s", err)
                 return dataSourcePolicy{}
         }</span>
-        <span class="cov7" title="4">var data dataSource
-        err = json.Unmarshal(jsonified, &amp;data)
+        <span class="cov5" title="9">var data dataSource
+        err = json.Unmarshal(jsonUnified, &amp;data)
         if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("Error trying to encode data source json: %s", err)
                 return dataSourcePolicy{}
         }</span>
-        <span class="cov7" title="4">return data.Value</span>
+        <span class="cov5" title="9">return data.Value</span>
 }
 
-func getPrincipalSpec() *hcldec.ObjectSpec <span class="cov10" title="8">{
+func getPrincipalSpec() *hcldec.ObjectSpec <span class="cov6" title="18">{
         return &amp;hcldec.ObjectSpec{
                 "type": &amp;hcldec.AttrSpec{
                         Name:     "type",
@@ -26037,7 +26038,7 @@ func getPrincipalSpec() *hcldec.ObjectSpec <span class="cov10" title="8">{
         }
 }</span>
 
-func getConditionalSpec() *hcldec.ObjectSpec <span class="cov7" title="4">{
+func getConditionalSpec() *hcldec.ObjectSpec <span class="cov5" title="9">{
         return &amp;hcldec.ObjectSpec{
                 "test": &amp;hcldec.AttrSpec{
                         Name:     "test",
@@ -26057,7 +26058,7 @@ func getConditionalSpec() *hcldec.ObjectSpec <span class="cov7" title="4">{
         }
 }</span>
 
-func getStatementSpec() *hcldec.BlockListSpec <span class="cov7" title="4">{
+func getStatementSpec() *hcldec.BlockListSpec <span class="cov5" title="9">{
         return &amp;hcldec.BlockListSpec{
                 TypeName: "statement",
                 Nested: &amp;hcldec.ObjectSpec{
@@ -26107,7 +26108,7 @@ func getStatementSpec() *hcldec.BlockListSpec <span class="cov7" title="4">{
         }
 }</span>
 
-func parseDataSourceBody(body *hclsyntax.Body) string <span class="cov7" title="4">{
+func parseDataSourceBody(body *hclsyntax.Body) string <span class="cov5" title="9">{
         dataSourceSpec := &amp;hcldec.ObjectSpec{
                 "id": &amp;hcldec.AttrSpec{
                         Name:     "id",
@@ -26123,8 +26124,14 @@ func parseDataSourceBody(body *hclsyntax.Body) string <span class="cov7" title="
         }
 
         resolveDataResources(body)
+        paths := extractVariablePathsFromBody(body)
+        grouped := groupPathsByRoot(paths)
 
-        target, decodeErrs := hcldec.Decode(body, dataSourceSpec, &amp;hcl.EvalContext{
+        for rootVar, subPaths := range grouped </span><span class="cov3" title="3">{
+                inputVariableMap[rootVar] = buildNestedPathMapWithIdentifier(subPaths)
+        }</span>
+
+        <span class="cov5" title="9">target, decodeErrs := hcldec.Decode(body, dataSourceSpec, &amp;hcl.EvalContext{
                 Variables: inputVariableMap,
                 Functions: functions.TerraformFuncs,
         })
@@ -26138,35 +26145,35 @@ func parseDataSourceBody(body *hclsyntax.Body) string <span class="cov7" title="
                 <span class="cov0" title="0">log.Debug().Msg("Dismissed Error when decoding policy: Found unknown variable")</span>
         }
 
-        <span class="cov7" title="4">dataSourceJSON := decodeDataSourcePolicy(target)
+        <span class="cov5" title="9">dataSourceJSON := decodeDataSourcePolicy(target)
         convertedDataSource := convertedPolicy{
                 ID:      dataSourceJSON.ID,
                 Version: dataSourceJSON.Version,
         }
         statements := make([]convertedPolicyStatement, len(dataSourceJSON.Statement))
-        for idx := range dataSourceJSON.Statement </span><span class="cov10" title="8">{
+        for idx := range dataSourceJSON.Statement </span><span class="cov6" title="15">{
                 var convertedCondition convertedPolicyCondition
-                if dataSourceJSON.Statement[idx].Condition.Variable != "" </span><span class="cov4" title="2">{
+                if dataSourceJSON.Statement[idx].Condition.Variable != "" </span><span class="cov4" title="6">{
                         convertedCondition = convertedPolicyCondition{
                                 dataSourceJSON.Statement[idx].Condition.Test: map[string][]string{
                                         dataSourceJSON.Statement[idx].Condition.Variable: dataSourceJSON.Statement[idx].Condition.Values,
                                 },
                         }
                 }</span>
-                <span class="cov10" title="8">var convertedPrincipal convertedPolicyPrincipal
-                if dataSourceJSON.Statement[idx].Principals.Type != "" </span><span class="cov4" title="2">{
+                <span class="cov6" title="15">var convertedPrincipal convertedPolicyPrincipal
+                if dataSourceJSON.Statement[idx].Principals.Type != "" </span><span class="cov4" title="6">{
                         convertedPrincipal = convertedPolicyPrincipal{
                                 dataSourceJSON.Statement[idx].Principals.Type: dataSourceJSON.Statement[idx].Principals.Identifiers,
                         }
                 }</span>
-                <span class="cov10" title="8">var convertedNotPrincipal convertedPolicyPrincipal
+                <span class="cov6" title="15">var convertedNotPrincipal convertedPolicyPrincipal
                 if dataSourceJSON.Statement[idx].NotPrincipals.Type != "" </span><span class="cov0" title="0">{
                         convertedNotPrincipal = convertedPolicyPrincipal{
                                 dataSourceJSON.Statement[idx].NotPrincipals.Type: dataSourceJSON.Statement[idx].NotPrincipals.Identifiers,
                         }
                 }</span>
 
-                <span class="cov10" title="8">convertedStatement := convertedPolicyStatement{
+                <span class="cov6" title="15">convertedStatement := convertedPolicyStatement{
                         Actions:       dataSourceJSON.Statement[idx].Actions,
                         Effect:        dataSourceJSON.Statement[idx].Effect,
                         NotActions:    dataSourceJSON.Statement[idx].NotActions,
@@ -26179,7 +26186,7 @@ func parseDataSourceBody(body *hclsyntax.Body) string <span class="cov7" title="
                 }
                 statements[idx] = convertedStatement</span>
         }
-        <span class="cov7" title="4">convertedDataSource.Statement = statements
+        <span class="cov5" title="9">convertedDataSource.Statement = statements
         buffer := &amp;bytes.Buffer{}
         encoder := json.NewEncoder(buffer)
         encoder.SetEscapeHTML(false)
@@ -26188,30 +26195,137 @@ func parseDataSourceBody(body *hclsyntax.Body) string <span class="cov7" title="
                 log.Error().Msgf("Error trying to encoding data source json: %s", err)
                 return ""
         }</span>
-        <span class="cov7" title="4">return buffer.String()</span>
+        <span class="cov5" title="9">return buffer.String()</span>
+}
+
+// groupsPathsByRoot groups paths by their root variable (first element of the path)
+// allowing us to group paths that share the same root for further processing.
+func groupPathsByRoot(paths [][]string) map[string][][]string <span class="cov5" title="9">{
+        grouped := make(map[string][][]string)
+        for _, path := range paths </span><span class="cov3" title="3">{
+                if len(path) == 0 </span><span class="cov0" title="0">{
+                        continue</span>
+                }
+                <span class="cov3" title="3">root := path[0]
+                grouped[root] = append(grouped[root], path[1:])</span>
+        }
+        <span class="cov5" title="9">return grouped</span>
+}
+
+// buildNestedPathMapWithIdentifier constructs a nested map from the variables paths,
+// where the key is the first part of the path and the values is the remaining paths.
+func buildNestedPathMapWithIdentifier(paths [][]string) cty.Value <span class="cov3" title="3">{
+        root := map[string]cty.Value{}
+
+        for _, path := range paths </span><span class="cov3" title="3">{
+                if len(path) == 0 </span><span class="cov0" title="0">{
+                        continue</span>
+                }
+
+                <span class="cov3" title="3">value := cty.StringVal(strings.Join(path, "."))
+                for i := len(path) - 1; i &gt;= 0; i-- </span><span class="cov4" title="6">{
+                        value = cty.ObjectVal(map[string]cty.Value{
+                                path[i]: value,
+                        })
+                }</span>
+
+                <span class="cov3" title="3">for k, v := range value.AsValueMap() </span><span class="cov3" title="3">{
+                        if existing, exists := root[k]; exists </span><span class="cov0" title="0">{
+                                merged := mergeObjects(existing, v)
+                                root[k] = merged
+                        }</span> else<span class="cov3" title="3"> {
+                                root[k] = v
+                        }</span>
+                }
+        }
+
+        <span class="cov3" title="3">return cty.ObjectVal(root)</span>
+}
+
+// mergeObjects merges two cty objects. If the objects have shared keys,
+// their nested fields are recursively merged.
+func mergeObjects(a, b cty.Value) cty.Value <span class="cov0" title="0">{
+        if !a.Type().IsObjectType() || !b.Type().IsObjectType() </span><span class="cov0" title="0">{
+                return b
+        }</span>
+
+        <span class="cov0" title="0">merged := map[string]cty.Value{}
+        for k, v := range a.AsValueMap() </span><span class="cov0" title="0">{
+                merged[k] = v
+        }</span>
+        <span class="cov0" title="0">for k, v := range b.AsValueMap() </span><span class="cov0" title="0">{
+                if existing, ok := merged[k]; ok </span><span class="cov0" title="0">{
+                        merged[k] = mergeObjects(existing, v)
+                }</span> else<span class="cov0" title="0"> {
+                        merged[k] = v
+                }</span>
+        }
+        <span class="cov0" title="0">return cty.ObjectVal(merged)</span>
+}
+
+// extractVariablePathsFromBody parses the HCL body and extracts variable paths.
+// It walks through the body, extracting paths and returning them as an array of string slices.
+func extractVariablePathsFromBody(body *hclsyntax.Body) [][]string <span class="cov7" title="36">{
+        var paths [][]string
+
+        for _, attr := range body.Attributes </span><span class="cov9" title="75">{
+                paths = append(paths, extractPathsFromExpr(attr.Expr)...)
+        }</span>
+        <span class="cov7" title="36">for _, block := range body.Blocks </span><span class="cov7" title="27">{
+                paths = append(paths, extractVariablePathsFromBody(block.Body)...)
+        }</span>
+
+        <span class="cov7" title="36">return paths</span>
+}
+
+// extractPathsFromExpr handles the expression traversal and path extraction.
+func extractPathsFromExpr(expr hclsyntax.Expression) [][]string <span class="cov10" title="126">{
+        var paths [][]string
+
+        switch e := expr.(type) </span>{
+        case *hclsyntax.ScopeTraversalExpr:<span class="cov3" title="3">
+                var path []string
+                for _, part := range e.Traversal </span><span class="cov5" title="9">{
+                        switch p := part.(type) </span>{
+                        case hcl.TraverseRoot:<span class="cov3" title="3">
+                                path = append(path, p.Name)</span>
+                        case hcl.TraverseAttr:<span class="cov4" title="6">
+                                path = append(path, p.Name)</span>
+                        }
+                }
+                <span class="cov3" title="3">if len(path) &gt; 0 </span><span class="cov3" title="3">{
+                        paths = append(paths, path)
+                }</span>
+        case *hclsyntax.TupleConsExpr:<span class="cov7" title="39">
+                for _, p := range e.Exprs </span><span class="cov8" title="51">{
+                        paths = append(paths, extractPathsFromExpr(p)...)
+                }</span>
+        }
+
+        <span class="cov10" title="126">return paths</span>
 }
 
 // resolveDataResources resolves the data resources expressions into LiteralValueExpr
-func resolveDataResources(body *hclsyntax.Body) <span class="cov7" title="4">{
-        for _, block := range body.Blocks </span><span class="cov10" title="8">{
+func resolveDataResources(body *hclsyntax.Body) <span class="cov5" title="9">{
+        for _, block := range body.Blocks </span><span class="cov6" title="15">{
                 if resources, ok := block.Body.Attributes["resources"]; ok &amp;&amp;
-                        block.Type == "statement" </span><span class="cov8" title="6">{
+                        block.Type == "statement" </span><span class="cov5" title="12">{
                         resolveTuple(resources.Expr)
                 }</span>
         }
 }
 
-func resolveTuple(expr hclsyntax.Expression) <span class="cov8" title="6">{
+func resolveTuple(expr hclsyntax.Expression) <span class="cov5" title="12">{
         e := engine.Engine{}
-        if v, ok := expr.(*hclsyntax.TupleConsExpr); ok </span><span class="cov8" title="6">{
-                for i, ex := range v.Exprs </span><span class="cov10" title="8">{
+        if v, ok := expr.(*hclsyntax.TupleConsExpr); ok </span><span class="cov5" title="12">{
+                for i, ex := range v.Exprs </span><span class="cov6" title="15">{
                         striExpr, err := e.ExpToString(ex)
 
                         if err != nil </span><span class="cov0" title="0">{
                                 log.Error().Msgf("Error trying to ExpToString: %s", err)
                         }</span>
 
-                        <span class="cov10" title="8">v.Exprs[i] = &amp;hclsyntax.LiteralValueExpr{
+                        <span class="cov6" title="15">v.Exprs[i] = &amp;hclsyntax.LiteralValueExpr{
                                 Val:      cty.StringVal(striExpr),
                                 SrcRange: v.Exprs[i].Range(),
                         }</span>
@@ -26390,8 +26504,8 @@ func processContent(elements model.Document, content, path string) <span class="
 }
 
 func processElements(elements model.Document, path string) <span class="cov2" title="2">{
-        for k, v3 := range elements </span><span class="cov7" title="9">{ // resource elements
-                if k != "certificate_body" </span><span class="cov7" title="9">{
+        for k, v3 := range elements </span><span class="cov6" title="9">{ // resource elements
+                if k != "certificate_body" </span><span class="cov6" title="9">{
                         continue</span>
                 }
                 <span class="cov0" title="0">switch value := v3.(type) </span>{
@@ -26406,11 +26520,11 @@ func processElements(elements model.Document, path string) <span class="cov2" ti
 }
 
 func processResourcesElements(resourcesElements model.Document, path string) error <span class="cov4" title="4">{
-        for _, v2 := range resourcesElements </span><span class="cov8" title="14">{
+        for _, v2 := range resourcesElements </span><span class="cov7" title="14">{
                 switch t := v2.(type) </span>{
                 case []interface{}:<span class="cov0" title="0">
                         return errors.New("failed to process resources")</span>
-                case interface{}:<span class="cov8" title="14">
+                case interface{}:<span class="cov7" title="14">
                         if elements, ok := t.(model.Document); ok </span><span class="cov2" title="2">{
                                 processElements(elements, path)
                         }</span>
@@ -26419,17 +26533,17 @@ func processResourcesElements(resourcesElements model.Document, path string) err
         <span class="cov4" title="4">return nil</span>
 }
 
-func processResources(doc model.Document, path string) error <span class="cov4" title="3">{
+func processResources(doc model.Document, path string) error <span class="cov3" title="3">{
         var resourcesElements model.Document
 
-        defer func() </span><span class="cov4" title="3">{
+        defer func() </span><span class="cov3" title="3">{
                 if r := recover(); r != nil </span><span class="cov0" title="0">{
                         errMessage := "Recovered from panic during process of resources in file " + path
                         masterUtils.HandlePanic(r, errMessage)
                 }</span>
         }()
 
-        <span class="cov4" title="3">for _, resources := range doc </span><span class="cov4" title="3">{
+        <span class="cov3" title="3">for _, resources := range doc </span><span class="cov3" title="3">{
                 switch t := resources.(type) </span>{
                 case []interface{}:<span class="cov1" title="1"> // support the case of nameless resources - where we get a list of resources
                         for _, value := range t </span><span class="cov2" title="2">{
@@ -26448,7 +26562,7 @@ func processResources(doc model.Document, path string) error <span class="cov4" 
                         }</span>
                 }
         }
-        <span class="cov4" title="3">return nil</span>
+        <span class="cov3" title="3">return nil</span>
 }
 
 func addExtraInfo(json []model.Document, path string) ([]model.Document, error) <span class="cov4" title="4">{
@@ -26460,7 +26574,7 @@ func addExtraInfo(json []model.Document, path string) ([]model.Document, error) 
                 }</span>
         }()
         <span class="cov4" title="4">for _, documents := range json </span><span class="cov4" title="4">{ // iterate over documents
-                if resources, ok := documents["resource"].(model.Document); ok </span><span class="cov4" title="3">{
+                if resources, ok := documents["resource"].(model.Document); ok </span><span class="cov3" title="3">{
                         err := processResources(resources, path)
                         if err != nil </span><span class="cov0" title="0">{
                                 return []model.Document{}, err
@@ -26471,16 +26585,16 @@ func addExtraInfo(json []model.Document, path string) ([]model.Document, error) 
         <span class="cov4" title="4">return json, nil</span>
 }
 
-func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error) <span class="cov10" title="26">{
+func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error) <span class="cov10" title="31">{
         file, err := os.ReadFile(filename)
-        if err != nil </span><span class="cov4" title="3">{
+        if err != nil </span><span class="cov3" title="3">{
                 return nil, err
         }</span>
-        <span class="cov9" title="23">if shouldReplaceDataSource </span><span class="cov5" title="5">{
+        <span class="cov9" title="28">if shouldReplaceDataSource </span><span class="cov7" title="10">{
                 replaceDataIdentifiers := regexp.MustCompile(`(data\.[A-Za-z0-9._-]+)`)
                 file = []byte(replaceDataIdentifiers.ReplaceAllString(string(file), "\"$1\""))
         }</span>
-        <span class="cov9" title="23">parsedFile, _ := hclsyntax.ParseConfig(file, filename, hcl.Pos{Line: 1, Column: 1})
+        <span class="cov9" title="28">parsedFile, _ := hclsyntax.ParseConfig(file, filename, hcl.Pos{Line: 1, Column: 1})
 
         return parsedFile, nil</span>
 }
