@@ -57,7 +57,7 @@ jobs:
       if: env.TITLE_CHECK_FAILED == 'true'
       uses: thollander/actions-comment-pull-request@e4a76dd2b0a3c2027c3fd84147a67c22ee4c90fa
       with:
-        filePath: .github/scripts/pr-issue-info/title-fail.md
+        file_path: .github/scripts/pr-issue-info/title-fail.md
         comment_tag: title_check
         mode: recreate
         create_if_not_exists: true

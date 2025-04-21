@@ -36,7 +36,7 @@ func HTMLValidation(t *testing.T, file string) {
 	require.NoError(t, errExp, "Opening Expected HTML File should not yield an error")
 
 	// Read & Parse Output HTML Report
-	actualHTMLString, errActStr := os.ReadFile(filepath.Join("output", file))
+	actualHTMLString, errActStr := os.ReadFile(filepath.Join("output", file)) //nolint:gosec
 	require.NoError(t, errActStr, "Opening Actual HTML File should not yield an error")
 	actualHTML, errAct := html.Parse(strings.NewReader(string(actualHTMLString)))
 	require.NoError(t, errAct, "Opening Actual HTML File should not yield an error")

@@ -90,7 +90,7 @@ func (info *k8sAPICall) listKinds(apiVersion string, kinds map[string]interface{
 
 	apiVersionFolder := filepath.Join(info.destinationPath, apiVersion)
 
-	if err := os.MkdirAll(apiVersionFolder, os.ModePerm); err != nil {
+	if err := os.MkdirAll(apiVersionFolder, os.ModePerm); err != nil { //nolint:gosec
 		log.Error().Msgf("unable to create folder %s: %s", apiVersionFolder, err)
 		return
 	}

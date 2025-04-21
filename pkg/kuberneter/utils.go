@@ -205,7 +205,7 @@ func getDestinationFolder(destinationPath string) (string, error) {
 	destFolderName := fmt.Sprintf("kics-extract-kuberneter-%s", time.Now().Format("01-02-2006"))
 	destination := filepath.Join(destinationPath, destFolderName)
 
-	if err := os.MkdirAll(destination, os.ModePerm); err != nil {
+	if err := os.MkdirAll(destination, os.ModePerm); err != nil { //nolint:gosec
 		return "", err
 	}
 

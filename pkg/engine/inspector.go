@@ -452,7 +452,6 @@ func (c *Inspector) DecodeQueryResults(
 		select {
 		case <-ctxTimeout.Done():
 			timeOut = true
-			break
 		default:
 			vulnerability, aux := getVulnerabilitiesFromQuery(ctx, c, queryResultItem)
 			if aux {
