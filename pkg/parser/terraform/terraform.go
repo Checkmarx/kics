@@ -152,7 +152,7 @@ func addExtraInfo(json []model.Document, path string) ([]model.Document, error) 
 }
 
 func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error) {
-	file, err := os.ReadFile(filename)
+	file, err := os.ReadFile(filename) //nolint:gosec
 	if err != nil {
 		return nil, err
 	}

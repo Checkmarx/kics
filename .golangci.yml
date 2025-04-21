@@ -99,6 +99,9 @@ issues:
       linters:
         - mnd
         - scopelint
+    - path: ^e2e/testcases/.*\.go
+      linters:
+        - goconst
   exclude-dirs:
     - assets
     - docs

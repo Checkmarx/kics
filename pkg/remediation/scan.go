@@ -28,6 +28,8 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+const terraformExtension = ".tf"
+
 type runQueryInfo struct {
 	payload   model.Documents
 	query     *engine.PreparedQuery
@@ -95,7 +97,7 @@ func getPayload(filePath string, content []byte, openAPIResolveReferences bool, 
 	case ".dockerfile", "Dockerfile", "possibleDockerfile", ".ubi8", ".debian":
 		p, err = parser.NewBuilder().Add(&dockerParser.Parser{}).Build([]string{""}, []string{""})
 
-	case ".tf":
+	case terraformExtension:
 		p, err = parser.NewBuilder().Add(terraformParser.NewDefault()).Build([]string{""}, []string{""})
 
 	case ".proto":

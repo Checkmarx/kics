@@ -202,7 +202,7 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 
 func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err error) {
 	if regexRulesPath != "" {
-		b, err := os.ReadFile(regexRulesPath)
+		b, err := os.ReadFile(regexRulesPath) //nolint:gosec
 		if err != nil {
 			return regexRulesContent, err
 		}
