@@ -99,17 +99,12 @@ issues:
       linters:
         - mnd
         - scopelint
-    - path: ^e2e/testcases/.*\.go
-      linters:
-        - goconst
-        - all
   exclude-dirs:
     - assets
     - docs
     - vendor
     - pkg/parser/jsonfilter/parser
     - pkg/parser/bicep/antlr
-    - e2e/testcases
 run:
   timeout: 5m
   tests: false

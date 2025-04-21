@@ -3,7 +3,7 @@ package testcases
 // E2E-CLI-069 - KICS  scan and ignore experimental queries
 // should perform the scan successfully and return exit code 40
 
-func init() { //nolint
+func init() { //nolint:goconst
 	samplePath := "/path/test/fixtures/experimental_test/sample"
 	queriesPath := "/path/test/fixtures/experimental_test/queries"
 
