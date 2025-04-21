@@ -92,7 +92,7 @@ func isTextFile(path string) (bool, error) {
 		return false, err
 	}
 
-	content = bytes.Replace(content, []byte("\r"), []byte(""), -1)
+	content = bytes.ReplaceAll(content, []byte("\r"), []byte(""))
 
 	isText := util.IsText(content)
 

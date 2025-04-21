@@ -21,7 +21,7 @@ func PrintGitlabSASTReport(path, filename string, body interface{}) error {
 			return err
 		}
 
-		gitlabSASTReport := reportModel.NewGitlabSASTReport(summary.Times.Start, summary.Times.End)
+		gitlabSASTReport := reportModel.NewGitlabSASTReport(summary.Start, summary.End)
 
 		for idxQuery := range summary.Queries {
 			for idxFile := range summary.Queries[idxQuery].Files {

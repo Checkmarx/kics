@@ -79,7 +79,7 @@ func processElements(elements model.Document, path string) {
 			content := utils.CheckCertificate(value)
 			processContent(elements, content, path)
 		case ctyjson.SimpleJSONValue:
-			content := utils.CheckCertificate(value.Value.AsString())
+			content := utils.CheckCertificate(value.AsString())
 			processContent(elements, content, path)
 		}
 	}

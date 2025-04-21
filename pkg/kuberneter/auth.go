@@ -68,7 +68,7 @@ func getK8sClient() (client.Client, error) {
 
 func (c *K8sConfig) hasCertificateAuthority() bool {
 	if os.Getenv("K8S_CA_FILE") != "" {
-		c.Config.TLSClientConfig.CAFile = os.Getenv("K8S_CA_FILE")
+		c.Config.CAFile = os.Getenv("K8S_CA_FILE")
 		return true
 	}
 
@@ -78,7 +78,7 @@ func (c *K8sConfig) hasCertificateAuthority() bool {
 			log.Error().Msgf("failed to decode K8S_CA_DATA: %s", err)
 			return false
 		}
-		c.Config.TLSClientConfig.CAData = caDataDecoded
+		c.Config.CAData = caDataDecoded
 		return true
 	}
 

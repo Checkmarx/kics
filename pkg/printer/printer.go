@@ -156,12 +156,12 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 		printFiles(&summary.Queries[idx], printer)
 	}
 	fmt.Printf("\nResults Summary:\n")
-	printSeverityCounter(model.SeverityCritical, summary.SeveritySummary.SeverityCounters[model.SeverityCritical], printer.Critical)
-	printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
-	printSeverityCounter(model.SeverityMedium, summary.SeveritySummary.SeverityCounters[model.SeverityMedium], printer.Medium)
-	printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
-	printSeverityCounter(model.SeverityInfo, summary.SeveritySummary.SeverityCounters[model.SeverityInfo], printer.Info)
-	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
+	printSeverityCounter(model.SeverityCritical, summary.SeverityCounters[model.SeverityCritical], printer.Critical)
+	printSeverityCounter(model.SeverityHigh, summary.SeverityCounters[model.SeverityHigh], printer.High)
+	printSeverityCounter(model.SeverityMedium, summary.SeverityCounters[model.SeverityMedium], printer.Medium)
+	printSeverityCounter(model.SeverityLow, summary.SeverityCounters[model.SeverityLow], printer.Low)
+	printSeverityCounter(model.SeverityInfo, summary.SeverityCounters[model.SeverityInfo], printer.Info)
+	fmt.Printf("TOTAL: %d\n\n", summary.TotalCounter)
 
 	log.Info().Msgf("Scanned Files: %d", summary.ScannedFiles)
 	log.Info().Msgf("Parsed Files: %d", summary.ParsedFiles)

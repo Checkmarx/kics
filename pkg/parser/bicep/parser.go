@@ -312,18 +312,20 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 
 	decoratorsMap := parseDecorators(ctx.AllDecorator(), s)
 	for name, values := range decoratorsMap {
-		if name == "secure" {
-			if param["type"] == "string" {
+		switch name {
+		case "secure":
+			switch param["type"] {
+			case "string":
 				param["type"] = "secureString"
-			} else if param["type"] == "object" {
+			case "object":
 				param["type"] = "secureObject"
 			}
-		} else {
-			if name == "allowed" {
-				param["allowedValues"] = values
-			} else {
-				param[name] = values
-			}
+
+		case "allowed":
+			param["allowedValues"] = values
+
+		default:
+			param[name] = values
 		}
 	}
 
