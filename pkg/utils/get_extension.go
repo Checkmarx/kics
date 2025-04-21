@@ -59,7 +59,11 @@ func readPossibleDockerFile(path string) bool {
 	if err != nil {
 		return false
 	}
-	defer file.Close()
+	defer func() {
+		if errClose := file.Close(); errClose != nil {
+			log.Error().Err(errClose).Msg("Error closing file")
+		}
+	}()
 	// Create a scanner to read the file line by line
 	scanner := bufio.NewScanner(file)
 	// Read lines from the file

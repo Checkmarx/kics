@@ -19,6 +19,7 @@ import (
 
 const (
 	charsLimitPerLine = 255
+	common            = "common"
 )
 
 var (
@@ -141,7 +142,7 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 				queryURLId := summary.Queries[idx].QueryID
 				queryURLPlatform := strings.ToLower(summary.Queries[idx].Platform)
 
-				if queryURLPlatform == "common" && strings.Contains(strings.ToLower(summary.Queries[idx].QueryName), "passwords and secrets") {
+				if queryURLPlatform == common && strings.Contains(strings.ToLower(summary.Queries[idx].QueryName), "passwords and secrets") {
 					queryURLId = "a88baa34-e2ad-44ea-ad6f-8cac87bc7c71"
 				}
 
@@ -301,15 +302,14 @@ func (p *Printer) Bold(content string) string {
 func validQueryID(queryID string) bool {
 	if queryID == "" {
 		return false
-	} else if queryID != "" {
+	} else {
 		return utils.ValidateUUID(queryID)
 	}
-	return true
 }
 
 func normalizeURLCloudProvider(cloudProvider string) string {
 	cloudProvider = strings.ToLower(cloudProvider)
-	if cloudProvider == "common" {
+	if cloudProvider == common {
 		cloudProvider = ""
 	} else if cloudProvider != "" {
 		cloudProvider += "/"

@@ -105,6 +105,7 @@ issues:
     - vendor
     - pkg/parser/jsonfilter/parser
     - pkg/parser/bicep/antlr
+    - e2e/testcases
 run:
   timeout: 5m
   tests: false

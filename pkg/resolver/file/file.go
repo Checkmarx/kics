@@ -19,6 +19,8 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
+const reference = "$ref"
+
 // ResolvedFile - used for caching the already resolved files
 type ResolvedFile struct {
 	fileContent        []byte
@@ -139,7 +141,7 @@ func (r *Resolver) handleMap(
 	resolveReferences bool,
 ) (any, bool) {
 	for k, v := range value {
-		isRef := strings.Contains(strings.ToLower(k), "$ref")
+		isRef := strings.Contains(strings.ToLower(k), reference)
 		val, res := r.walk(originalFileContent, fullObject, v, path, resolveCount, maxResolverDepth, resolvedFilesCache, isRef, resolveReferences)
 		// check if it is a ref then add new details
 		if valMap, ok := val.(map[string]interface{}); (ok || !res) && isRef {
@@ -148,11 +150,11 @@ func (r *Resolver) handleMap(
 				valMap = make(map[string]interface{})
 			}
 			valMap["RefMetadata"] = make(map[string]interface{})
-			valMap["RefMetadata"].(map[string]interface{})["$ref"] = v
+			valMap["RefMetadata"].(map[string]interface{})[reference] = v
 			valMap["RefMetadata"].(map[string]interface{})["alone"] = len(value) == 1
 			return valMap, false
 		}
-		if isRef && res {
+		if isRef {
 			return val, false
 		}
 		value[k] = val
@@ -212,7 +214,7 @@ func (r *Resolver) yamlWalk(
 		ansibleVars := false
 		for i := range value.Content {
 			if i >= 1 {
-				refBool = strings.Contains(value.Content[i-1].Value, "$ref")
+				refBool = strings.Contains(value.Content[i-1].Value, reference)
 				ansibleVars = strings.Contains(value.Content[i-1].Value, "include_vars")
 			}
 			resolved, ok := r.yamlWalk(originalFileContent, fullObject,
@@ -229,7 +231,7 @@ func (r *Resolver) yamlWalk(
 				}
 				originalValueNode := &yaml.Node{
 					Kind:  yaml.ScalarNode,
-					Value: "$ref",
+					Value: reference,
 				}
 				refAloneKeyNode := &yaml.Node{
 					Kind:  yaml.ScalarNode,
@@ -515,7 +517,7 @@ func checkIfCircularYaml(circularValue string, yamlSection *yaml.Node) bool {
 	}
 	for index := 0; index < len(yamlSection.Content)-1; index += 1 {
 		// if there is a reference to the same value that was resolved it is a circular definition
-		if yamlSection.Content[index].Value == "$ref" && yamlSection.Content[index+1].Value == circularValue {
+		if yamlSection.Content[index].Value == reference && yamlSection.Content[index+1].Value == circularValue {
 			return true
 		} else if checkIfCircularYaml(circularValue, yamlSection.Content[index]) {
 			return true
@@ -551,7 +553,7 @@ func checkIfCircular(circularValue string, section interface{}, maxResolverDepth
 		if okMap {
 			for key, val := range sectionAsMap {
 				// if there is a reference to the same value that was resolved it is a circular definition
-				if key == "$ref" && val == circularValue {
+				if key == reference && val == circularValue {
 					return true
 				} else if checkIfCircular(circularValue, val, maxResolverDepth-1) {
 					return true
