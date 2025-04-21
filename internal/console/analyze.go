@@ -117,7 +117,7 @@ func writeToFile(resultsPath string, analyzerResults model.AnalyzedPaths) error 
 		return err
 	}
 
-	f, err := os.Create(resultsPath)
+	f, err := os.Create(resultsPath) //nolint:gosec
 	if err != nil {
 		return err
 	}

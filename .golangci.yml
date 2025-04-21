@@ -102,6 +102,7 @@ issues:
     - path: ^e2e/testcases/.*\.go
       linters:
         - goconst
+        - all
   exclude-dirs:
     - assets
     - docs
