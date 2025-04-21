@@ -30,7 +30,7 @@ func initPlatforms() map[string]string {
 // HTMLValidation executes many asserts to validate the HTML Report
 func HTMLValidation(t *testing.T, file string) {
 	// Read & Parse Expected HTML Report
-	expectHTMLString, errExpStr := os.ReadFile(filepath.Join("fixtures", file))
+	expectHTMLString, errExpStr := os.ReadFile(filepath.Join("fixtures", file)) //nolint:gosec
 	require.NoError(t, errExpStr, "Opening Expected HTML File should not yield an error")
 	expectedHTML, errExp := html.Parse(strings.NewReader(string(expectHTMLString)))
 	require.NoError(t, errExp, "Opening Expected HTML File should not yield an error")

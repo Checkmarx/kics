@@ -253,8 +253,8 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			expectToCompare, actualToCompare)
 
 		// compare severity counters
-		compare := reflect.DeepEqual(expectI.SeveritySummary.SeverityCounters, actualI.SeveritySummary.SeverityCounters)
+		compare := reflect.DeepEqual(expectI.SeverityCounters, actualI.SeverityCounters)
 		require.True(t, compare, "Expected Severity Counters content: 'fixtures/%s' doesn't match the Actual Severity Counters content: 'output/%s'.", //nolint:lll
-			expectI.SeveritySummary.SeverityCounters, actualI.SeveritySummary.SeverityCounters)
+			expectI.SeverityCounters, actualI.SeveritySummary.SeverityCounters)
 	}
 }
