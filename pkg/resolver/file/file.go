@@ -163,7 +163,7 @@ func (r *Resolver) handleMap(
 			valMap["RefMetadata"].(map[string]interface{})["alone"] = len(value) == 1
 			return valMap, false
 		}
-		if isRef && res {
+		if isRef {
 			return val, false
 		}
 		value[k] = val
@@ -181,6 +181,11 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolvingStatus 
 	fullObjectCopy := obj
 
 	// resolve the paths
+	if len(resolvingStatus.CurrentResolutionPath) > 1 {
+		// removes any stashed CurrentResolutionPath from previous files
+		// allowing circular references to be resolved at least one time
+		resolvingStatus.CurrentResolutionPath = resolvingStatus.CurrentResolutionPath[:resolvingStatus.CurrentDepth-1]
+	}
 	obj, _, canBeCached := r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolvingStatus, false, false)
 	if obj.Kind == 1 && len(obj.Content) == 1 {
 		obj = *obj.Content[0]
