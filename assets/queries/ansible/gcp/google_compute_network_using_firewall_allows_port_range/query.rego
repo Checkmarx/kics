@@ -10,7 +10,7 @@ CxPolicy[result] {
 	ans_lib.checkState(firewall)
 
 	common_lib.is_ingress(firewall)
-	regex.match("[0-9]+-[0-9]+", firewall.allowed[_].ports[_])
+	regex.match(`[0-9]+-[0-9]+`, firewall.allowed[_].ports[_])
 	firewall.allowed[_].ports[_] != "0-65535"
 
 	tk := ans_lib.tasks[id][_]
@@ -18,7 +18,6 @@ CxPolicy[result] {
 	computeNetwork := tk[modulesCompute[m]]
 	ans_lib.checkState(computeNetwork)
 	firewall.network == sprintf("{{ %s }}", [tk.register])
-
 
 	result := {
 		"documentId": id,

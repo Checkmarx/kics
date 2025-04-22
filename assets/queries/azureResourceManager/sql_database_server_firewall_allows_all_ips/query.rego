@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	types := ["Microsoft.Sql/servers/firewallRules", "firewallRules", "firewallrules"]
@@ -26,6 +27,6 @@ CxPolicy[result] {
 
 check_all_ips(start, end) {
 	ipsOpts := ["0.0.0.0", "0.0.0.0/0"]
-	start == ipsOpts[_]
+	start in ipsOpts
 	end == "255.255.255.255"
 }

@@ -1,7 +1,9 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
+import future.keywords.every
+import future.keywords.in
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -11,7 +13,9 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	params := value.parameters[n]
 	common_lib.valid_key(params, "allowEmptyValue")
-	all([params.in != "query", params.in != "formData"])
+	every condition in [params["in"] != "query", params["in"] != "formData"] {
+		condition
+	}
 
 	result := {
 		"documentId": doc.id,

@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	broker := input.document[i].resource.aws_mq_broker[name]
@@ -31,7 +32,7 @@ CxPolicy[result] {
 
 	some j
 	type := categories[j]
-	not has_key(logs, type)
+	not type in object.keys(logs)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -58,8 +59,4 @@ CxPolicy[result] {
 		"keyExpectedValue": "'logs' should be set and enabling general AND audit logging",
 		"keyActualValue": "'logs' is undefined",
 	}
-}
-
-has_key(obj, key) {
-	_ = obj[key]
 }

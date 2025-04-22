@@ -9,7 +9,7 @@ CxPolicy[result] {
 	ec2_instance := task[modules[m]]
 	checkState(ec2_instance)
 
-	re_match("([^A-Z0-9])[A-Z0-9]{20}([^A-Z0-9])", ec2_instance.user_data)
+	regex.match(`([^A-Z0-9])[A-Z0-9]{20}([^A-Z0-9])`, ec2_instance.user_data)
 
 	result := {
 		"documentId": id,
@@ -27,7 +27,7 @@ CxPolicy[result] {
 	ec2_instance := task[modules[m]]
 	checkState(ec2_instance)
 
-	re_match("[A-Za-z0-9/+=]{40}([^A-Za-z0-9/+=])", ec2_instance.user_data)
+	regex.match(`[A-Za-z0-9/+=]{40}([^A-Za-z0-9/+=])`, ec2_instance.user_data)
 
 	result := {
 		"documentId": id,

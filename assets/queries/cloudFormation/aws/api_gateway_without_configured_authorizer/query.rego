@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 types := {"AWS::ApiGateway::RestApi": "AWS::ApiGateway::Authorizer", "AWS::ApiGatewayV2::Api": "AWS::ApiGatewayV2::Authorizer"}
 
@@ -27,10 +27,10 @@ CxPolicy[result] {
 
 has_authorizer_associated(apiName, type) {
 	type == "AWS::ApiGatewayV2::Authorizer"
-	count({x | resource := input.document[_].Resources[x]; resource.Type == "AWS::ApiGatewayV2::Authorizer"; get_value(resource.Properties,"ApiId") == apiName}) != 0
+	count({x | resource := input.document[_].Resources[x]; resource.Type == "AWS::ApiGatewayV2::Authorizer"; get_value(resource.Properties, "ApiId") == apiName}) != 0
 } else {
 	type == "AWS::ApiGateway::Authorizer"
-	count({x | resource := input.document[_].Resources[x]; resource.Type == "AWS::ApiGateway::Authorizer"; get_value(resource.Properties,"RestApiId") == apiName}) != 0
+	count({x | resource := input.document[_].Resources[x]; resource.Type == "AWS::ApiGateway::Authorizer"; get_value(resource.Properties, "RestApiId") == apiName}) != 0
 }
 
 get_value(properties, field) = value {

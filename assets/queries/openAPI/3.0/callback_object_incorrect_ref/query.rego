@@ -8,8 +8,8 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 
-	ref := value.callbacks[c]["RefMetadata"]["$ref"]
-	path[minus(count(path), 1)] != "components"
+	ref := value.callbacks[c].RefMetadata["$ref"]
+	path[count(path) - 1] != "components"
 	openapi_lib.incorrect_ref(ref, "callbacks")
 
 	result := {

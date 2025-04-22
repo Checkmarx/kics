@@ -1,7 +1,8 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
+import future.keywords.in
 
 types := {"init_container", "container"}
 
@@ -54,6 +55,5 @@ CxPolicy[result] {
 
 resource_equal(type) {
 	resources := {"kubernetes_cron_job", "kubernetes_job"}
-
-	type == resources[_]
+	type in resources
 }

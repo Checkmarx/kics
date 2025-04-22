@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 types := {"init_container", "container"}
 
@@ -22,8 +22,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].env.value_from.secret_key_ref should be undefined", [resourceType, name, specInfo.path, types[x]]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].env.value_from.secret_key_ref is set", [resourceType, name, specInfo.path, types[x]]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].env.value_from.secret_key_ref should be undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].env.value_from.secret_key_ref is set", [resourceType, name, specInfo.path, types[x], y]),
 	}
 }
 

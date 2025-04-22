@@ -6,11 +6,11 @@ CxPolicy[result] {
 	statefulset := input.document[i]
 	object.get(statefulset, "kind", "undefined") == "StatefulSet"
 
-	metadata := statefulset.metadata
-
 	to_number(statefulset.spec.replicas) > 2
 
 	not common_lib.valid_key(statefulset.spec.template.spec, "affinity")
+
+	metadata := statefulset.metadata
 
 	result := {
 		"documentId": input.document[i].id,
@@ -33,6 +33,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(affinity, "podAntiAffinity")
 
 	metadata := statefulset.metadata
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": statefulset.kind,
@@ -59,6 +60,7 @@ CxPolicy[result] {
 	not common_lib.valid_key(podAntiAffinity, "requiredDuringSchedulingIgnoredDuringExecution")
 
 	metadata := statefulset.metadata
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": statefulset.kind,
@@ -88,6 +90,7 @@ CxPolicy[result] {
 	object.get(pref.podAffinityTerm, "topologyKey", "undefined") != "kubernetes.io/hostname"
 
 	metadata := statefulset.metadata
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": statefulset.kind,
@@ -122,6 +125,7 @@ CxPolicy[result] {
 	matchLabels(templateLabels, selectorLabels) == false
 
 	metadata := statefulset.metadata
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": statefulset.kind,
@@ -151,6 +155,7 @@ CxPolicy[result] {
 	object.get(pref, "topologyKey", "undefined") != "kubernetes.io/hostname"
 
 	metadata := statefulset.metadata
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": statefulset.kind,
@@ -185,6 +190,7 @@ CxPolicy[result] {
 	matchLabels(templateLabels, selectorLabels) == false
 
 	metadata := statefulset.metadata
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": statefulset.kind,
@@ -199,6 +205,4 @@ CxPolicy[result] {
 matchLabels(templateLabels, selectorLabels) {
 	some Key
 	templateLabels[Key] == selectorLabels[Key]
-} else = false {
-	true
-}
+} else = false

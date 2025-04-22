@@ -1,11 +1,11 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
-    resource.Type == "AWS::ECR::Repository"
+	resource.Type == "AWS::ECR::Repository"
 	policy := resource.Properties.RepositoryPolicyText
 	st := common_lib.get_statement(common_lib.get_policy(policy))
 	statement := st[_]

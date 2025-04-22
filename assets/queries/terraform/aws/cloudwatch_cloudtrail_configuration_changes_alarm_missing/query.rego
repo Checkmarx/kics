@@ -34,7 +34,7 @@ expressionArr := [
 CxPolicy[result] {
 	doc := input.document[i]
 	resources := doc.resource.aws_cloudwatch_log_metric_filter
-	
+
 	allPatternsCount := count([x | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern); x = filter])
 	count([x | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern); not check_expression_missing(path[0], filter, doc); x = filter]) == allPatternsCount
 
