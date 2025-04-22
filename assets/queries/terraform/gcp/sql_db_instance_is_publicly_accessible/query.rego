@@ -28,7 +28,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
 	ip_configuration := resource.settings.ip_configuration
 
-	not common_lib.valid_key(ip_configuration,"authorized_networks")
+	not common_lib.valid_key(ip_configuration, "authorized_networks")
 
 	ip_configuration.ipv4_enabled
 
@@ -47,10 +47,10 @@ CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
 	ip_configuration := resource.settings.ip_configuration
 
-    not common_lib.valid_key(ip_configuration,"authorized_networks")
+	not common_lib.valid_key(ip_configuration, "authorized_networks")
 
 	not ip_configuration.ipv4_enabled
-	not common_lib.valid_key(ip_configuration,"private_network")
+	not common_lib.valid_key(ip_configuration, "private_network")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -67,7 +67,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
 	settings := resource.settings
 
-	not common_lib.valid_key(settings,"ip_configuration")
+	not common_lib.valid_key(settings, "ip_configuration")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -81,10 +81,9 @@ CxPolicy[result] {
 }
 
 getAuthorizedNetworks(networks) = list {
-    is_array(networks)
-    list := networks
+	is_array(networks)
+	list := networks
 } else = list {
-    is_object(networks)
-    list := [networks]
+	is_object(networks)
+	list := [networks]
 } else = null
-

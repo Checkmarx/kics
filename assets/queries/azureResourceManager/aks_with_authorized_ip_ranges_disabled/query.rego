@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 # IP Ranges are not implemented (apiVersion < 2019-02-01)
 CxPolicy[result] {
@@ -75,12 +76,12 @@ CxPolicy[result] {
 
 is_invalid_api_version(value) {
 	invalidAPIs := ["2017-08-31", "2018-03-31"]
-	value.apiVersion == invalidAPIs[_]
+	value.apiVersion in invalidAPIs
 }
 
 is_old_valid_api_version(value) {
 	oldAPIs := ["2019-02-01", "2019-04-01", "2019-06-01"]
-	value.apiVersion == oldAPIs[_]
+	value.apiVersion in oldAPIs
 }
 
 array_is_filled(arr) {

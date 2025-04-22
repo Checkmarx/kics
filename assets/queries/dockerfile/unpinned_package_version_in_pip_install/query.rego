@@ -11,12 +11,12 @@ CxPolicy[result] {
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
-	yum := regex.find_n("pip(3)? (-(-)?[a-zA-Z]+ *)*install", commands, -1)
+	yum := regex.find_n(`pip(3)? (-(-)?[a-zA-Z]+ *)*install`, commands, -1)
 	yum != null
 
 	packages = dockerLib.getPackages(commands, yum)
-    refactorPackages = [ x | x := packages[_]; x != ""]
-    length := count(refactorPackages)
+	refactorPackages = [x | x := packages[_]; x != ""]
+	length := count(refactorPackages)
 
 	count({x | x := refactorPackages[_]; x == flags[_]}) == 0
 
@@ -44,7 +44,7 @@ CxPolicy[result] {
 	resource.Value[j] != "pip"
 	resource.Value[j] != "pip3"
 
-	regex.match("^[a-zA-Z]", resource.Value[j]) == true
+	regex.match(`^[a-zA-Z]`, resource.Value[j]) == true
 	not dockerLib.withVersion(resource.Value[j])
 
 	result := {
@@ -64,13 +64,13 @@ isPip(command) {
 
 analyzePackages(j, currentPackage, _, length) {
 	j == length - 1
-	regex.match("^[a-zA-Z]", currentPackage) == true
+	regex.match(`^[a-zA-Z]`, currentPackage) == true
 	not dockerLib.withVersion(currentPackage)
 }
 
 analyzePackages(j, currentPackage, packages, length) {
 	j != length - 1
-	regex.match("^[a-zA-Z]", currentPackage) == true
-	packages[plus(j, 1)] != "-v"
+	regex.match(`^[a-zA-Z]`, currentPackage) == true
+	packages[j + 1] != "-v"
 	not dockerLib.withVersion(currentPackage)
 }

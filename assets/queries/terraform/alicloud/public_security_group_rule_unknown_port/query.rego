@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource.type == "ingress"
 	resource.cidr_ip == "0.0.0.0/0"
 	isTCPorUDP(resource.ip_protocol)
-    containsUnknownPort(resource)
+	containsUnknownPort(resource)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -26,14 +26,13 @@ isTCPorUDP("tcp") = true
 
 isTCPorUDP("udp") = true
 
-
 CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_security_group_rule[name]
 	resource.type == "ingress"
 	resource.cidr_ip == "0.0.0.0/0"
 	resource.ip_protocol == "all"
 	resource.port_range == "-1/-1"
-    containsUnknownPortForAll(resource)
+	containsUnknownPortForAll(resource)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -47,19 +46,18 @@ CxPolicy[result] {
 	}
 }
 
-
-containsUnknownPort(rule){
-    sublist := split(rule.port_range, "/")
-    from_port :=  to_number(sublist[0])
-    to_port := to_number(sublist[1])
-    port := numbers.range(from_port, to_port)[i]
-    not common_lib.valid_key(common_lib.tcpPortsMap,port)
+containsUnknownPort(rule) {
+	sublist := split(rule.port_range, "/")
+	from_port := to_number(sublist[0])
+	to_port := to_number(sublist[1])
+	port := numbers.range(from_port, to_port)[i]
+	not common_lib.valid_key(common_lib.tcpPortsMap, port)
 }
 
-containsUnknownPortForAll(rule){
-    rule.port_range == "-1/-1"
-    from_port :=  1
-    to_port := 65535
-    port := numbers.range(from_port, to_port)[i]
-    not common_lib.valid_key(common_lib.tcpPortsMap,port)
+containsUnknownPortForAll(rule) {
+	rule.port_range == "-1/-1"
+	from_port := 1
+	to_port := 65535
+	port := numbers.range(from_port, to_port)[i]
+	not common_lib.valid_key(common_lib.tcpPortsMap, port)
 }

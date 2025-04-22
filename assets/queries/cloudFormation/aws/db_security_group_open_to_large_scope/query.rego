@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	docs := input.document[i]
@@ -65,11 +66,11 @@ CxPolicy[result] {
 check_mask_ipv4(ipv4) {
 	masks := {"25", "26", "27", "28", "29", "30", "31", "32"}
 	output := split(ipv4, "/")
-	masks[_] == output[1]
+	output[1] in masks
 }
 
 check_ipv6(ipv6) {
 	prefixes := {"120", "121", "122", "123", "124", "125", "126", "127", "128"}
 	output := split(ipv6, "/")
-	prefixes[_] == output[1]
+	output[1] in prefixes
 }

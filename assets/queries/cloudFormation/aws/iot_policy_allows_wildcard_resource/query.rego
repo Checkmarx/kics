@@ -1,12 +1,12 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resources := input.document[i].Resources[name]
 	resources.Type == "AWS::IoT::Policy"
-	
+
 	policy := resources.Properties.PolicyDocument
 	st := common_lib.get_statement(common_lib.get_policy(policy))
 	statement := st[_]

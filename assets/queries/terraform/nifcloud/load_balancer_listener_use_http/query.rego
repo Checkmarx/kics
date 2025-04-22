@@ -1,10 +1,9 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-
 	lb_listener := input.document[i].resource.nifcloud_load_balancer_listener[name]
 	lb_listener.load_balancer_port == 80
 

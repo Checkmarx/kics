@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
+import data.generic.common as common_lib
 
 # addonProfiles not implemented (apiVersion < 2017-08-03)
 CxPolicy[result] {
@@ -47,12 +47,12 @@ CxPolicy[result] {
 }
 
 prepare_issue(doc, resource) = issue {
-	[ _ ,type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, resource.properties.addonProfiles.omsagent.enabled)
+	[_, type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, resource.properties.addonProfiles.omsagent.enabled)
 	issue := {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"issueType": "IncorrectValue",
-		"keyActualValue":sprintf("'addonProfiles.omsagent.enabled' %s is set to false", [type]),
+		"keyActualValue": sprintf("'addonProfiles.omsagent.enabled' %s is set to false", [type]),
 		"sk": ".properties.addonProfiles.omsagent.enabled",
 		"sl": ["properties", "addonProfiles", "omsagent", "enabled"],
 	}

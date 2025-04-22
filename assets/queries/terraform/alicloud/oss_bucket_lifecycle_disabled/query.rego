@@ -7,7 +7,7 @@ CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_oss_bucket[name].lifecycle_rule[_]
 
-    resource["enabled"] == false 
+	resource.enabled == false
 
 	result := {
 		"documentId": input.document[i].id,
@@ -17,10 +17,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'lifecycle_rule' should be set and enabled",
 		"keyActualValue": "'lifecycle_rule' is set but disabled",
-        "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "lifecycle_rule", "enabled"], []),
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name, "lifecycle_rule", "enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -30,7 +30,7 @@ CxPolicy[result] {
 	some i
 	resource := input.document[i].resource.alicloud_oss_bucket[name]
 
-    not common_lib.valid_key(resource, "lifecycle_rule")
+	not common_lib.valid_key(resource, "lifecycle_rule")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -40,6 +40,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'lifecycle_rule' should be set and enabled",
 		"keyActualValue": "'lifecycle_rule' is not set",
-        "searchLine":common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
+		"searchLine": common_lib.build_search_line(["resource", "alicloud_oss_bucket", name], []),
 	}
 }

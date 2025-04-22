@@ -54,18 +54,12 @@ CxPolicy[result] {
 
 getSearchKey(msk_cluster, instanceType) = "aws_msk_cluster[%s].logging_info.broker_logs.%s.enabled" {
 	_ = msk_cluster.logging_info.broker_logs[instanceType].enabled
-} else = "aws_msk_cluster[%s].logging_info.broker_logs.%s" {
-	true
-}
+} else = "aws_msk_cluster[%s].logging_info.broker_logs.%s"
 
 getIssueType(msk_cluster, instanceType) = "IncorrectValue" {
 	_ = msk_cluster.logging_info.broker_logs[instanceType].enabled
-} else = "MissingAttribute" {
-	true
-}
+} else = "MissingAttribute"
 
 getActualValue(msk_cluster, instanceType) = "false" {
 	_ = msk_cluster.logging_info.broker_logs[instanceType].enabled
-} else = "missing" {
-	true
-}
+} else = "missing"

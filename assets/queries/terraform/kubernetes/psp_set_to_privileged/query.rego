@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod_security_policy[name]
@@ -16,10 +16,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_pod_security_policy[%s].spec.privileged should be set to false", [name]),
 		"keyActualValue": sprintf("kubernetes_pod_security_policy[%s].spec.privileged is not set to false", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "kubernetes_pod_security_policy",name, "spec"],["privileged"]),
+		"searchLine": common_lib.build_search_line(["resource", "kubernetes_pod_security_policy", name, "spec"], ["privileged"]),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [resource.spec.privileged]),
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}

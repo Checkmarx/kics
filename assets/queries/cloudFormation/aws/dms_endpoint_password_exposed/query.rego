@@ -76,4 +76,3 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("Resources.%s.Properties.Password must be defined as a parameter or have a secret manager referenced", [key]),
 	}
 }
-

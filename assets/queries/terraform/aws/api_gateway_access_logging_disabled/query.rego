@@ -57,14 +57,16 @@ CxPolicy[result] {
 CxPolicy[result] {
 	api := input.document[i].resource.aws_api_gateway_stage[name]
 
-	x := [methodSettings | methodSettings := input.document[i].resource.aws_api_gateway_method_settings[_];
-    		split(methodSettings.stage_name,".")[1]==name]
+	x := [methodSettings |
+		methodSettings := input.document[i].resource.aws_api_gateway_method_settings[_]
+		split(methodSettings.stage_name, ".")[1] == name
+	]
 
 	count(x) == 0
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_api_gateway_stage",
-        "resourceName": tf_lib.get_resource_name(api, name),
+		"resourceName": tf_lib.get_resource_name(api, name),
 		"searchKey": sprintf("aws_api_gateway_stage[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_api_gateway_stage[%s]'s corresponding aws_api_gateway_method_settings should be defined and not null", [name]),
@@ -72,15 +74,14 @@ CxPolicy[result] {
 	}
 }
 
-
 CxPolicy[result] {
-    resource := input.document[i].resource
+	resource := input.document[i].resource
 	api := resource.aws_api_gateway_stage[name]
 
 	methodSettings := resource.aws_api_gateway_method_settings[settingsId]
 
-    settingName := split(methodSettings.stage_name,".")[1]
-    settingName == name
+	settingName := split(methodSettings.stage_name, ".")[1]
+	settingName == name
 	searchKeyValid := common_lib.valid_non_empty_key(methodSettings, "settings")
 
 	result := {
@@ -95,13 +96,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-    resource := input.document[i].resource
+	resource := input.document[i].resource
 	api := resource.aws_api_gateway_stage[name]
 
 	methodSettings := resource.aws_api_gateway_method_settings[settingsId]
 
-    settingName := split(methodSettings.stage_name,".")[1]
-    settingName == name
+	settingName := split(methodSettings.stage_name, ".")[1]
+	settingName == name
 	settings := methodSettings.settings
 	searchKeyValid := common_lib.valid_non_empty_key(settings, "logging_level")
 
@@ -117,13 +118,13 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-    resource := input.document[i].resource
+	resource := input.document[i].resource
 	api := resource.aws_api_gateway_stage[name]
 
 	methodSettings := resource.aws_api_gateway_method_settings[settingsId]
 
-    settingName := split(methodSettings.stage_name,".")[1]
-    settingName == name
+	settingName := split(methodSettings.stage_name, ".")[1]
+	settingName == name
 	settings := methodSettings.settings
 
 	loggingLevel := settings.logging_level

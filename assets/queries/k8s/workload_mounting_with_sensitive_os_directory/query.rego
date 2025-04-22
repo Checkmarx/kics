@@ -2,11 +2,12 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i]
 	metadata := resource.metadata
-	resource.kind == k8sLib.valid_pod_spec_kind_list[_]
+	resource.kind in k8sLib.valid_pod_spec_kind_list
 	specInfo := k8sLib.getSpecInfo(resource)
 	volumes := specInfo.spec.volumes
 	common_lib.isOSDir(volumes[j].hostPath.path)
@@ -26,7 +27,7 @@ CxPolicy[result] {
 			resource.kind,
 			volumes[j].hostPath.path,
 		]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j ,"hostPath", "path"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j, "hostPath", "path"]),
 	}
 }
 
@@ -53,7 +54,7 @@ CxPolicy[result] {
 			resource.kind,
 			volumes[j].hostPath.path,
 		]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j ,"hostPath", "path"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j, "hostPath", "path"]),
 	}
 }
 
@@ -79,6 +80,6 @@ CxPolicy[result] {
 			resource.kind,
 			hostPath.path,
 		]),
-		"searchLine": common_lib.build_search_line(["spec"], ["hostPath", "path"])
+		"searchLine": common_lib.build_search_line(["spec"], ["hostPath", "path"]),
 	}
 }

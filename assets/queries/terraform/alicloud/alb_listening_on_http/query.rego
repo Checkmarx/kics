@@ -18,8 +18,8 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_alb_listener", name, "listener_protocol"], []),
 		"remediation": json.marshal({
 			"before": "HTTP",
-			"after": "HTTPS"
+			"after": "HTTPS",
 		}),
-		"remediationType": "replacement"
+		"remediationType": "replacement",
 	}
 }
