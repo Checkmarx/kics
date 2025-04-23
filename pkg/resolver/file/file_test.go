@@ -3,7 +3,6 @@ package file
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -401,7 +400,7 @@ func getFileContent(path string) ([]byte, error) {
 		return nil, err
 	}
 
-	return ioutil.ReadFile(path)
+	return os.ReadFile(path)
 }
 
 func prepareString(content string) string {
