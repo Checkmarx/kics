@@ -45,7 +45,13 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 			args: args{
 				path: filepath.ToSlash("test/fixtures/unresolved_openapi/responses/_index.yaml"),
 			},
-			resolvingStatus: ResolvingStatus{},
+			resolvingStatus: ResolvingStatus{
+				CurrentDepth:          0,
+				MaxDepth:              15,
+				ResolvedFilesCache:    make(map[string]ResolvedFile),
+				CurrentResolutionPath: []string{},
+				ResolveReferences:     true,
+			},
 			want: []byte(
 				`UnexpectedError:description:unexpectederrorcontent:application/json:schema:type:objectrequired:-code-messageproperties:code:type:integerformat:int32message:type:stringRefMetadata:$ref:"../schemas/Error.yaml"alone:trueRefMetadata:$ref:"./UnexpectedError.yaml"alone:trueNullResponse:description:NullresponseRefMetadata:$ref:"./NullResponse.yaml"alone:true`),
 		},
@@ -57,7 +63,13 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 			args: args{
 				path: filepath.ToSlash("test/fixtures/unresolved_openapi_json/openapi.json"),
 			},
-			resolvingStatus: ResolvingStatus{},
+			resolvingStatus: ResolvingStatus{
+				CurrentDepth:          0,
+				MaxDepth:              15,
+				ResolvedFilesCache:    make(map[string]ResolvedFile),
+				CurrentResolutionPath: []string{},
+				ResolveReferences:     true,
+			},
 			want: []byte(
 				"{\"info\":{\"title\":\"Reference in reference example\",\"version\":\"1.0.0\"},\"openapi\":\"3.0.3\",\"paths\":{\"/api/test/ref/in/ref\":{\"post\":{\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"RefMetadata\":{\"$ref\":\"messages/request.json\",\"alone\":true},\"properties\":{\"definition_reference\":{\"RefMetadata\":{\"$ref\":\"definitions.json#/definitions/External\",\"alone\":true},\"type\":\"string\"}},\"required\":[\"definition_reference\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"RefMetadata\":{\"$ref\":\"messages/response.json\",\"alone\":true},\"properties\":{\"id\":{\"format\":\"int32\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}}}}}}",
 			),
@@ -70,7 +82,13 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 			args: args{
 				path: filepath.ToSlash("test/fixtures/unresolved_serverless/serverless.yml"),
 			},
-			resolvingStatus: ResolvingStatus{},
+			resolvingStatus: ResolvingStatus{
+				CurrentDepth:          0,
+				MaxDepth:              15,
+				ResolvedFilesCache:    make(map[string]ResolvedFile),
+				CurrentResolutionPath: []string{},
+				ResolveReferences:     true,
+			},
 			want: []byte(
 				"service: aws-node-project\nframeworkVersion: '3'\nprovider:\n    name: aws\n    runtime: nodejs14.x\nfunctions:\n    eventRouterHandler:\n        handler: handler.hello\n        role: eventRouterHandlerRole\n        timeout: 30\n"),
 		},
@@ -82,7 +100,13 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 			args: args{
 				path: filepath.ToSlash("test/fixtures/direct_cyclic_references/sample.yaml"),
 			},
-			resolvingStatus: ResolvingStatus{},
+			resolvingStatus: ResolvingStatus{
+				CurrentDepth:          0,
+				MaxDepth:              15,
+				ResolvedFilesCache:    make(map[string]ResolvedFile),
+				CurrentResolutionPath: []string{},
+				ResolveReferences:     true,
+			},
 			want: []byte(
 				"apiVersion: scaffolder.backstage.io/v1beta3\nkind: Template\nmetadata:\n    name: template\nspec:\n    parameters:\n        - title: sample\n          required:\n            - path\n          properties:\n            path:\n                title: Path\n                type: string\n                default: ./sample.yaml\n    steps:\n        - id: step1\n          name: step1\n        - id: step2\n          name: step2\n        - id: step3\n          name: step3\n",
 			),
@@ -95,7 +119,13 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 			args: args{
 				path: filepath.ToSlash("test/fixtures/direct_cyclic_references/sample_win.yaml"),
 			},
-			resolvingStatus: ResolvingStatus{},
+			resolvingStatus: ResolvingStatus{
+				CurrentDepth:          0,
+				MaxDepth:              15,
+				ResolvedFilesCache:    make(map[string]ResolvedFile),
+				CurrentResolutionPath: []string{},
+				ResolveReferences:     true,
+			},
 			want: []byte(
 				"apiVersion: scaffolder.backstage.io/v1beta3\nkind: Template\nmetadata:\n    name: template\nspec:\n    parameters:\n        - title: sample\n          required:\n            - path\n          properties:\n            path:\n                title: Path\n                type: string\n                default: .\\sample_win.yaml\n    steps:\n        - id: step1\n          name: step1\n        - id: step2\n          name: step2\n        - id: step3\n          name: step3",
 			),
@@ -108,7 +138,13 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 			args: args{
 				path: filepath.ToSlash("test/fixtures/direct_cyclic_references/sample.json"),
 			},
-			resolvingStatus: ResolvingStatus{},
+			resolvingStatus: ResolvingStatus{
+				CurrentDepth:          0,
+				MaxDepth:              15,
+				ResolvedFilesCache:    make(map[string]ResolvedFile),
+				CurrentResolutionPath: []string{},
+				ResolveReferences:     true,
+			},
 			want: []byte(
 				"{\n\"info\": {\n\"title\": \"Sample API\",\n\"version\": \"1.0.0\"\n},\n\"openapi\": \"3.0.0\",\n\"paths\": {\n\"/example\": {\n\"get\": {\n\"parameters\": [\n{\n\"description\": \"Path to the sample JSON file\",\n\"in\": \"query\",\n\"name\": \"filePath\",\n\"schema\": {\n\"default\": \"./sample.json\",\n\"type\": \"string\"\n}\n}\n],\n\"responses\": {\n\"200\": {\n\"description\": \"Successful response\"\n}\n},\n\"summary\": \"Example endpoint\"\n}\n}\n}\n}",
 			),
@@ -121,7 +157,13 @@ func TestResolver_Resolve_With_ResolveReferences(t *testing.T) {
 			args: args{
 				path: filepath.ToSlash("test/fixtures/direct_cyclic_references/sample_win.json"),
 			},
-			resolvingStatus: ResolvingStatus{},
+			resolvingStatus: ResolvingStatus{
+				CurrentDepth:          0,
+				MaxDepth:              15,
+				ResolvedFilesCache:    make(map[string]ResolvedFile),
+				CurrentResolutionPath: []string{},
+				ResolveReferences:     true,
+			},
 			want: []byte(
 				"{\n\"info\": {\n\"title\": \"Sample API\",\n\"version\": \"1.0.0\"\n},\n\"openapi\": \"3.0.0\",\n\"paths\": {\n\"/example\": {\n\"get\": {\n\"parameters\": [\n{\n\"description\": \"Path to the sample JSON file\",\n\"in\": \"query\",\n\"name\": \"filePath\",\n\"schema\": {\n\"default\": \".\\\\sample_win.json\",\n\"type\": \"string\"\n}\n}\n],\n\"responses\": {\n\"200\": {\n\"description\": \"Successful response\"\n}\n},\n\"summary\": \"Example endpoint\"\n}\n}\n}\n}",
 			),
@@ -184,30 +226,25 @@ func TestResolver_Resolve_Without_ResolveReferences(t *testing.T) {
 			want: []byte(
 				`UnexpectedError:description:unexpectederrorcontent:application/json:schema:type:objectrequired:-code-messageproperties:code:type:integerformat:int32message:type:stringRefMetadata:$ref:"../schemas/Error.yaml"alone:trueRefMetadata:$ref:"./UnexpectedError.yaml"alone:trueNullResponse:description:NullresponseRefMetadata:$ref:"./NullResponse.yaml"alone:true`),
 		},
-		//{
-		//	name: "json should not resolve because is a openapi file",
-		//	fields: fields{
-		//		Resolver: NewResolver(json.Unmarshal, json.Marshal, []string{".json"}),
-		//	},
-		//	args: args{
-		//		path: filepath.ToSlash("test/fixtures/unresolved_openapi_json/openapi.json"),
-		//	},
-		//	resolvingStatus: ResolvingStatus{
-		//		CurrentDepth: 0,
-		//		MaxDepth:     15,
-		//		ResolvedFilesCache: map[string]ResolvedFile{
-		//			"test\\fixtures\\unresolved_openapi_json\\messages\\definitions.json": {
-		//				fileContent:        make([]byte, 0),
-		//				resolvedFileObject: map[definitions:map[External:map[type:string]]],
-		//			},
-		//		},
-		//		CurrentResolutionPath: []string{},
-		//		ResolveReferences:     true,
-		//	},
-		//	want: []byte(
-		//		"{\"openapi\":\"3.0.3\",\"info\":{\"title\":\"Reference in reference example\",\"version\":\"1.0.0\"},\"paths\":{\"/api/test/ref/in/ref\":{\"post\":{\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"messages/request.json\"}}}},\"responses\":{\"200\":{\"description\":\"Successful response\",\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"messages/response.json\"}}}}}}}}}",
-		//	),
-		//},
+		{
+			name: "json should not resolve because is a openapi file",
+			fields: fields{
+				Resolver: NewResolver(json.Unmarshal, json.Marshal, []string{".json"}),
+			},
+			args: args{
+				path: filepath.ToSlash("test/fixtures/unresolved_openapi_json/openapi.json"),
+			},
+			resolvingStatus: ResolvingStatus{
+				CurrentDepth:          0,
+				MaxDepth:              15,
+				ResolvedFilesCache:    make(map[string]ResolvedFile),
+				CurrentResolutionPath: []string{},
+				ResolveReferences:     true,
+			},
+			want: []byte(
+				"{\"info\":{\"title\":\"Reference in reference example\",\"version\":\"1.0.0\"},\"openapi\":\"3.0.3\",\"paths\":{\"/api/test/ref/in/ref\":{\"post\":{\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"RefMetadata\":{\"$ref\":\"messages/request.json\",\"alone\":true},\"properties\":{\"definition_reference\":{\"RefMetadata\":{\"$ref\":\"definitions.json#/definitions/External\",\"alone\":true},\"type\":\"string\"}},\"required\":[\"definition_reference\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"RefMetadata\":{\"$ref\":\"messages/response.json\",\"alone\":true},\"properties\":{\"id\":{\"format\":\"int32\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}}}}}}",
+			),
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
