@@ -412,160 +412,102 @@ func prepareString(content string) string {
 	return content
 }
 
-//func Test_checkCircularReference(t *testing.T) {
-//	tests := []struct {
-//		name               string
-//		currentFile        string
-//		reference          string
-//		mapperInitialValue map[string][]string
-//		expectedFinalValue map[string][]string
-//		expectedCyclic     bool
-//	}{
-//		{
-//			name:               "direct circular reference 1 -> 1",
-//			currentFile:        "file1",
-//			reference:          "file1",
-//			mapperInitialValue: map[string][]string{},
-//			expectedFinalValue: map[string][]string{
-//				"file1": {"file1"},
-//			},
-//			expectedCyclic: true,
-//		},
-//		{
-//			name:        "indirect circular reference 1 -> 2 -> 1",
-//			currentFile: "file2",
-//			reference:   "file1",
-//			mapperInitialValue: map[string][]string{
-//				"file1": {"file2"},
-//			},
-//			expectedFinalValue: map[string][]string{
-//				"file1": {"file2"},
-//				"file2": {"file1"},
-//			},
-//			expectedCyclic: true,
-//		},
-//		{
-//			name:        "longer indirect circular reference 1 -> 2 -> 3 -> 1",
-//			currentFile: "file3",
-//			reference:   "file1",
-//			mapperInitialValue: map[string][]string{
-//				"file1": {"file2"},
-//				"file2": {"file3"},
-//			},
-//			expectedFinalValue: map[string][]string{
-//				"file1": {"file2"},
-//				"file2": {"file3"},
-//				"file3": {"file1"},
-//			},
-//			expectedCyclic: true,
-//		},
-//		{
-//			name:        "complex circular reference 1 -> 2 -> 3 -> 4 -> 5 -> 2",
-//			currentFile: "file5",
-//			reference:   "file2",
-//			mapperInitialValue: map[string][]string{
-//				"file1": {"file2"},
-//				"file2": {"file3"},
-//				"file3": {"file4"},
-//				"file4": {"file5"},
-//			},
-//			expectedFinalValue: map[string][]string{
-//				"file1": {"file2"},
-//				"file2": {"file3"},
-//				"file3": {"file4"},
-//				"file4": {"file5"},
-//				"file5": {"file2"},
-//			},
-//			expectedCyclic: true,
-//		},
-//		{
-//			name:        "self-reference in a chain  1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 6",
-//			currentFile: "file6",
-//			reference:   "file6",
-//			mapperInitialValue: map[string][]string{
-//				"file1": {"file2"},
-//				"file2": {"file3"},
-//				"file3": {"file4"},
-//				"file4": {"file5"},
-//				"file5": {"file6"},
-//			},
-//			expectedFinalValue: map[string][]string{
-//				"file1": {"file2"},
-//				"file2": {"file3"},
-//				"file3": {"file4"},
-//				"file4": {"file5"},
-//				"file5": {"file6"},
-//				"file6": {"file6"},
-//			},
-//			expectedCyclic: true,
-//		},
-//		{
-//			name:        "multiple circular paths 1 -> 2 -> 4 -> 6 | 1 -> 3 -> 5 -> 7",
-//			currentFile: "file7",
-//			reference:   "file2",
-//			mapperInitialValue: map[string][]string{
-//				"file1": {"file2", "file3"},
-//				"file2": {"file4"},
-//				"file3": {"file5"},
-//				"file4": {"file6"},
-//				"file5": {"file7"},
-//			},
-//			expectedFinalValue: map[string][]string{
-//				"file1": {"file2", "file3"},
-//				"file2": {"file4"},
-//				"file3": {"file5"},
-//				"file4": {"file6"},
-//				"file5": {"file7"},
-//				"file7": {"file2"},
-//			},
-//			expectedCyclic: false,
-//		},
-//		{
-//			name: "multiple circular paths " +
-//				"1 -> 2 -> 4 -> 6 -> 3 -> 5 -> 7 -> 2  |" +
-//				"1 -> 3 -> 5 -> 7 -> 2 -> 4 -> 6 ->  ",
-//			currentFile: "file7",
-//			reference:   "file6",
-//			mapperInitialValue: map[string][]string{
-//				"file1": {"file2", "file3"},
-//				"file2": {"file4"},
-//				"file3": {"file5"},
-//				"file4": {"file6"},
-//				"file5": {"file7"},
-//			},
-//			expectedFinalValue: map[string][]string{
-//				"file1": {"file2", "file3"},
-//				"file2": {"file4"},
-//				"file3": {"file5"},
-//				"file4": {"file6"},
-//				"file5": {"file7"},
-//				"file7": {"file2"},
-//			},
-//			expectedCyclic: false,
-//		},
-//		{
-//			name:        "no circular reference 1 -> 2 -> 3, 4 -> 3",
-//			currentFile: "file4",
-//			reference:   "file3",
-//			mapperInitialValue: map[string][]string{
-//				"file1": {"file2"},
-//				"file2": {"file3"},
-//			},
-//			expectedFinalValue: map[string][]string{
-//				"file1": {"file2"},
-//				"file2": {"file3"},
-//				"file4": {"file3"},
-//			},
-//			expectedCyclic: false,
-//		},
-//	}
-//
-//	for _, tt := range tests {
-//		t.Run(tt.name, func(t *testing.T) {
-//			res := Resolver{ResolveMapper: tt.mapperInitialValue}
-//			cyclic := res.checkCircularReference(tt.currentFile, tt.reference, true)
-//			assert.Equal(t, tt.expectedFinalValue, res.ResolveMapper)
-//			assert.Equal(t, tt.expectedCyclic, cyclic)
-//		})
-//	}
-//}
+func Test_checkCircularReference(t *testing.T) {
+	tests := []struct {
+		name                   string
+		currentFile            string
+		reference              string
+		initialResolutionPath  []string
+		expectedResolutionPath []string
+		expectedCyclic         bool
+	}{
+		{
+			name:                   "direct circular reference 1 -> 1",
+			currentFile:            "file1",
+			reference:              "file1",
+			initialResolutionPath:  []string{},
+			expectedResolutionPath: []string{},
+			expectedCyclic:         false,
+		},
+		{
+			name:        "indirect circular reference 1 -> 2 -> 1",
+			currentFile: "file2",
+			reference:   "file1",
+			initialResolutionPath: []string{
+				"file1",
+			},
+			expectedResolutionPath: []string{
+				"file1",
+			},
+			expectedCyclic: true,
+		},
+		{
+			name:                   "longer indirect circular reference 1 -> 2 -> 3 -> 1",
+			currentFile:            "file3",
+			reference:              "file1",
+			initialResolutionPath:  []string{"file1", "file2"},
+			expectedResolutionPath: []string{"file1", "file2"},
+			expectedCyclic:         true,
+		},
+		{
+			name:                   "complex circular reference 1 -> 2 -> 3 -> 4 -> 5 -> 2",
+			currentFile:            "file5",
+			reference:              "file2",
+			initialResolutionPath:  []string{"file1", "file2", "file3", "file4"},
+			expectedResolutionPath: []string{"file1", "file2", "file3", "file4"},
+			expectedCyclic:         true,
+		},
+		{
+			name:                   "self-reference in a chain 1 -> 2 -> ... -> 6 -> 6",
+			currentFile:            "file6",
+			reference:              "file6",
+			initialResolutionPath:  []string{"file1", "file2", "file3", "file4", "file5"},
+			expectedResolutionPath: []string{"file1", "file2", "file3", "file4", "file5"},
+			expectedCyclic:         false,
+		},
+		{
+			name:                   "multiple circular paths (no actual cycle here)",
+			currentFile:            "file7",
+			reference:              "file2",
+			initialResolutionPath:  []string{"file1", "file3", "file5"},
+			expectedResolutionPath: []string{"file1", "file3", "file5", "file7"},
+			expectedCyclic:         false,
+		},
+		{
+			name:                   "multiple circular paths, still no cycle",
+			currentFile:            "file7",
+			reference:              "file6",
+			initialResolutionPath:  []string{"file1", "file3", "file5"},
+			expectedResolutionPath: []string{"file1", "file3", "file5", "file7"},
+			expectedCyclic:         false,
+		},
+		{
+			name:                   "no circular reference 1 -> 2 -> 3, 4 -> 3",
+			currentFile:            "file4",
+			reference:              "file3",
+			initialResolutionPath:  []string{"file1", "file2"},
+			expectedResolutionPath: []string{"file1", "file2", "file4"},
+			expectedCyclic:         false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			status := &ResolvingStatus{
+				CurrentResolutionPath: append([]string{}, tt.initialResolutionPath...),
+			}
+
+			cyclic := checkCircularReference(tt.currentFile, tt.reference, status)
+
+			assert.Equal(t, tt.expectedCyclic, cyclic)
+			if !cyclic {
+				// If not cyclic, the current file should be appended
+				expectedPath := append([]string{}, tt.expectedResolutionPath...)
+				assert.Equal(t, expectedPath, status.CurrentResolutionPath)
+			} else {
+				// If cyclic, resolution path shouldn't change
+				assert.Equal(t, tt.initialResolutionPath, status.CurrentResolutionPath)
+			}
+		})
+	}
+}
