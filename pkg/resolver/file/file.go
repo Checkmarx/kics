@@ -265,6 +265,7 @@ func (r *Resolver) yamlWalk(
 	}
 }
 
+//nolint:gocyclo
 func (r *Resolver) resolveYamlPath(
 	originalFileContent []byte, fullObject *yaml.Node,
 	v *yaml.Node, filePath string,
@@ -437,7 +438,7 @@ func getPathFromString(path string) string {
 	return path[:lastIndex]
 }
 
-// nolint:gocyclo
+//nolint:gocyclo
 func (r *Resolver) resolvePath(
 	originalFileContent []byte,
 	fullObject interface{},
