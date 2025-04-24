@@ -158,9 +158,10 @@ func (r *Resolver) handleMap(
 			if valMap == nil {
 				valMap = make(map[string]interface{})
 			}
-			valMap["RefMetadata"] = make(map[string]interface{})
-			valMap["RefMetadata"].(map[string]interface{})["$ref"] = v
-			valMap["RefMetadata"].(map[string]interface{})["alone"] = len(value) == 1
+			valMap["RefMetadata"] = map[string]interface{}{
+				"$ref":  v,
+				"alone": len(value) == 1,
+			}
 			return valMap, false
 		}
 		if isRef {
@@ -465,10 +466,20 @@ func (r *Resolver) resolvePath(
 		if err != nil || !contains(filepath.Ext(onlyFilePath), r.Extension) {
 			return value, false
 		}
+		// temporary solution
+		exists, path, onlyFilePath, filename := findFilePath(filepath.Dir(filePath), value, false, r.Extension)
+		if !exists {
+			return value, false
+		}
 
 		canBeCached := true // track if the file can be cached - resolution broken by circular reference won't be cached
 		// Check if file has already been resolved, if not resolve it and save it for future references
-		if _, ok := resolvingStatus.ResolvedFilesCache[onlyFilePath]; !ok {
+		if _, ok := resolvingStatus.ResolvedFilesCache[filename]; !ok {
+			// temporary solution
+			if checkCircularReference(filepath.Clean(filePath), value, &resolvingStatus) {
+				return value, false
+			}
+
 			ret, isError, canBeCachedFromResolve := r.resolveFile(value, onlyFilePath, resolvingStatus, false)
 			if isError {
 				return ret, false
