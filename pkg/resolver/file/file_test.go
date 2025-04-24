@@ -500,11 +500,9 @@ func Test_checkCircularReference(t *testing.T) {
 
 			assert.Equal(t, tt.expectedCyclic, cyclic)
 			if !cyclic {
-				// If not cyclic, the current file should be appended
 				expectedPath := append([]string{}, tt.expectedResolutionPath...)
 				assert.Equal(t, expectedPath, status.CurrentResolutionPath)
 			} else {
-				// If cyclic, resolution path shouldn't change
 				assert.Equal(t, tt.initialResolutionPath, status.CurrentResolutionPath)
 			}
 		})
