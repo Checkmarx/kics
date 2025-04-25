@@ -16,7 +16,7 @@ CxPolicy[result] {
 	children.type == types[_]
 	endswith(children.name, "connection_throttling")
 
-	[c_value, c_type]:= arm_lib.getDefaultValueFromParametersIfPresent(doc, children.properties.value)
+	[c_value, c_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, children.properties.value)
 
 	lower(c_value) != "on"
 

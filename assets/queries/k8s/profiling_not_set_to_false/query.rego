@@ -4,6 +4,7 @@ import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
 
 kubernetesCommand := {"kube-apiserver", "kube-controller-manager", "kube-scheduler"}
+
 kubernetesCommandWithoutDeprecation := {"kube-apiserver", "kube-controller-manager"}
 
 CxPolicy[result] {

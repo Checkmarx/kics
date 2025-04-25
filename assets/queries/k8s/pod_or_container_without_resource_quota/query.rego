@@ -23,7 +23,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
 		"keyExpectedValue": sprintf("metadata.name={{%s}} has a 'ResourceQuota' policy associated", [metadata.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}} does not have a 'ResourceQuota' policy associated", [metadata.name]),
-		"searchLine": common_lib.build_search_line(["metadata", "namespace"], [])
+		"searchLine": common_lib.build_search_line(["metadata", "namespace"], []),
 	}
 }
 

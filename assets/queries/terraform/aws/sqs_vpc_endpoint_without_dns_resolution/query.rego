@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_vpc_endpoint[name]
 
 	serviceNameSplit := split(resource.service_name, ".")
-	serviceNameSplit[minus(count(serviceNameSplit), 1)] == "sqs"
+	serviceNameSplit[count(serviceNameSplit) - 1] == "sqs"
 	vpcNameRef := split(resource.vpc_id, ".")[1]
 
 	vpc := input.document[j].resource.aws_vpc[vpcNameRef]
@@ -25,13 +25,12 @@ CxPolicy[result] {
 	}
 }
 
-
 CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_vpc", "enable_dns_support")
 
 	module[keyToCheck] == false
-	
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "n/a",

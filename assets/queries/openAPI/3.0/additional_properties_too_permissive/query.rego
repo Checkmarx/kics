@@ -38,7 +38,7 @@ CxPolicy[result] {
 	}
 }
 
-#This rules verifies anyOf and oneOf
+# This rules verifies anyOf and oneOf
 CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"

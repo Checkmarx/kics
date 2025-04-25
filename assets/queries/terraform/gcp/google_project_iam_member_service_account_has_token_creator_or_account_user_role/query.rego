@@ -66,8 +66,6 @@ CxPolicy[result] {
 	}
 }
 
-containsArray(array, elem) {
-	startswith(array[_], elem)
-} else = false {
-	true
-}
+containsArray(array_obj, elem) {
+	startswith(array_obj[_], elem)
+} else = false

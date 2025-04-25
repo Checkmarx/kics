@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resourceBucket := input.document[indexBucket].Resources[nameBucket]
@@ -31,7 +31,7 @@ CxPolicy[result] {
 	}
 }
 
-check_ref(obj, bucketResource , logicName) {
+check_ref(obj, bucketResource, logicName) {
 	obj.Ref == logicName
 } else {
 	obj == logicName

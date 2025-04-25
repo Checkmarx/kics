@@ -9,7 +9,7 @@ CxPolicy[result] {
 	count(resource.Value) == 1
 	commands := resource.Value[0]
 
-	yum := regex.find_n("yum (-(-)?[a-zA-Z]+ *)*(group|local)?install", commands, -1)
+	yum := regex.find_n(`yum (-(-)?[a-zA-Z]+ *)*(group|local)?install`, commands, -1)
 	yum != null
 
 	packages = dockerLib.getPackages(commands, yum)
@@ -33,11 +33,11 @@ CxPolicy[result] {
 
 	count(resource.Value) > 1
 
-    dockerLib.arrayContains(resource.Value, {"yum", "install"})
+	dockerLib.arrayContains(resource.Value, {"yum", "install"})
 
 	resource.Value[j] != "install"
 	resource.Value[j] != "yum"
-	regex.match("^[a-zA-Z]", resource.Value[j]) == true
+	regex.match(`^[a-zA-Z]`, resource.Value[j]) == true
 	not dockerLib.withVersion(resource.Value[j])
 
 	result := {
@@ -51,13 +51,13 @@ CxPolicy[result] {
 
 analyzePackages(j, currentPackage, packages, length) {
 	j == length - 1
-	regex.match("^[a-zA-Z]", currentPackage) == true
+	regex.match(`^[a-zA-Z]`, currentPackage) == true
 	not dockerLib.withVersion(currentPackage)
 }
 
 analyzePackages(j, currentPackage, packages, length) {
 	j != length - 1
-	regex.match("^[a-zA-Z]", currentPackage) == true
-	packages[plus(j, 1)] != "-v"
+	regex.match(`^[a-zA-Z]`, currentPackage) == true
+	packages[j + 1] != "-v"
 	not dockerLib.withVersion(currentPackage)
 }

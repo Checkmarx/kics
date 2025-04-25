@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_postgresql_configuration[var0]
@@ -23,10 +23,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_postgresql_configuration.%s.value' should be 'ON'", [var0]),
 		"keyActualValue": sprintf("'azurerm_postgresql_configuration.%s.value' is 'OFF'", [var0]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_postgresql_configuration",var0, "extended_auditing_policy"], []),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_postgresql_configuration", var0, "extended_auditing_policy"], []),
 		"remediation": json.marshal({
 			"before": sprintf("%s", [resource.value]),
-			"after": "ON"
+			"after": "ON",
 		}),
 		"remediationType": "replacement",
 	}

@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties", [resource.name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'monitoringService' should be defined and not null",
-		"keyActualValue": "'monitoringService' is undefined or null", 
+		"keyActualValue": "'monitoringService' is undefined or null",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties"], []),
 	}
 }
@@ -33,8 +33,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("resources.name={{%s}}.properties.monitoringService", [resource.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'monitoringService' to not be 'none'",
-		"keyActualValue": "'monitoringService' is 'none'", 
+		"keyActualValue": "'monitoringService' is 'none'",
 		"searchLine": common_lib.build_search_line(["resources", idx, "properties", "monitoringService"], []),
 	}
 }
-

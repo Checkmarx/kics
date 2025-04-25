@@ -12,7 +12,7 @@ CxPolicy[result] {
 	commandsSplit = dockerLib.getCommands(commands)
 
 	some j
-	regex.match("apt-get (-(-)?[a-zA-Z]+ *)*install", commandsSplit[j]) == true
+	regex.match(`apt-get (-(-)?[a-zA-Z]+ *)*install`, commandsSplit[j]) == true
 	not avoidAdditionalPackages(commandsSplit[j])
 
 	result := {
@@ -54,5 +54,5 @@ avoidAdditionalPackages(cmd) {
 
 avoidAdditionalPackages(cmd) {
 	is_array(cmd) == true
-    dockerLib.arrayContains(cmd, {"--no-install-recommends", "apt::install-recommends=false"})
+	dockerLib.arrayContains(cmd, {"--no-install-recommends", "apt::install-recommends=false"})
 }

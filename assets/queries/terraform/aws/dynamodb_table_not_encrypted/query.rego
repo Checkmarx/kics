@@ -12,13 +12,13 @@ CxPolicy[result] {
 		"resourceType": "aws_dynamodb_table",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_dynamodb_table[{{%s}}].server_side_encryption.enabled", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_dynamodb_table", name,"server_side_encryption","enabled"], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_dynamodb_table", name, "server_side_encryption", "enabled"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_dynamodb_table.server_side_encryption.enabled should be set to true",
 		"keyActualValue": "aws_dynamodb_table.server_side_encryption.enabled is set to false",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

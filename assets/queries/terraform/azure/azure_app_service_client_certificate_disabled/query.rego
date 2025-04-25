@@ -5,9 +5,9 @@ import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-    resource := doc.resource.azurerm_app_service[name]
+	resource := doc.resource.azurerm_app_service[name]
 
-    not common_lib.valid_key(resource, "client_cert_enabled")
+	not common_lib.valid_key(resource, "client_cert_enabled")
 
 	result := {
 		"documentId": doc.id,
@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' should be defined", [name]),
 		"keyActualValue": sprintf("'azurerm_app_service[%s].client_cert_enabeld' is undefined", [name]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service" ,name], []),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_app_service", name], []),
 		"remediation": "client_cert_enabled = true",
 		"remediationType": "addition",
 	}
@@ -25,7 +25,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	doc := input.document[i]
-    resource := doc.resource.azurerm_app_service[name]
+	resource := doc.resource.azurerm_app_service[name]
 
 	resource.client_cert_enabled == false
 
@@ -37,10 +37,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' is true", [name]),
 		"keyActualValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' is false", [name]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service" ,name, "client_cert_enabeld"], []),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_app_service", name, "client_cert_enabeld"], []),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

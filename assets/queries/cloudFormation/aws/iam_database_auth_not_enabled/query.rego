@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	docs := input.document[i]
@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties.EnableIAMDatabaseAuthentication", [cf_lib.getPath(path),name]),
+		"searchKey": sprintf("%s%s.Properties.EnableIAMDatabaseAuthentication", [cf_lib.getPath(path), name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.EnableIAMDatabaseAuthentication should be true", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.EnableIAMDatabaseAuthentication is false", [name]),
@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path),name]),
+		"searchKey": sprintf("%s%s.Properties", [cf_lib.getPath(path), name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.EnableIAMDatabaseAuthentication should be defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.EnableIAMDatabaseAuthentication is not defined", [name]),
