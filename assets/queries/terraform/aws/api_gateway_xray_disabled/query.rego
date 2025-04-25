@@ -12,13 +12,13 @@ CxPolicy[result] {
 		"resourceType": "aws_api_gateway_stage",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_api_gateway_stage[%s].xray_tracing_enabled", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_api_gateway_stage", name,"xray_tracing_enabled"], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_api_gateway_stage", name, "xray_tracing_enabled"], []),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'aws_api_gateway_stage[%s].xray_tracing_enabled' should be true", [name]),
 		"keyActualValue": sprintf("'aws_api_gateway_stage[%s].xray_tracing_enabled' is false", [name]),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

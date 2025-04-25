@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": id,
-        "resourceType": "community.aws.aws_acm",
+		"resourceType": "community.aws.aws_acm",
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.community.aws.aws_acm.certificate", [task.name]),
 		"issueType": "IncorrectValue",

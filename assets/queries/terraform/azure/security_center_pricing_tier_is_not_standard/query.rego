@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_security_center_subscription_pricing[name]
@@ -17,10 +17,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_security_center_subscription_pricing.%s.tier' is 'Standard'", [name]),
 		"keyActualValue": sprintf("'azurerm_security_center_subscription_pricing.%s.tier' is 'Free'", [name]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_security_center_subscription_pricing",name, "tier"], []),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_security_center_subscription_pricing", name, "tier"], []),
 		"remediation": json.marshal({
-			"before": sprintf("%s",[resource.tier]),
-			"after": "Standard"
+			"before": sprintf("%s", [resource.tier]),
+			"after": "Standard",
 		}),
 		"remediationType": "replacement",
 	}

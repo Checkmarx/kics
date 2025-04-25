@@ -64,8 +64,9 @@ expressionArr := [
 check_expression_missing(resName, filter, doc) {
 	alarm := doc.resource.aws_cloudwatch_metric_alarm[name]
 	contains(alarm.metric_name, resName)
-	filter._kics_filter_expr._op == "||"
-	count({x | exp := expressionArr[n]; commonLib.check_selector(filter, exp.value, exp.op, exp.name) == false; x := exp}) == 0
+	expr := commonLib.get_kics_filter_expr(filter)
+	commonLib.get_operator(expr) == "||"
+	count({exp | exp := expressionArr[n]; commonLib.check_selector(filter, exp.value, exp.op, exp.name) == false}) == 0
 }
 
 CxPolicy[result] {
@@ -73,7 +74,7 @@ CxPolicy[result] {
 	resources := doc.resource.aws_cloudwatch_log_metric_filter
 
 	allPatternsCount := count([x | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern); x = filter])
-	count([x | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern); not check_expression_missing(path[0], filter, doc); x = filter]) == allPatternsCount
+	count([filter | [path, value] := walk(resources); filter := commonLib.json_unmarshal(value.pattern); not check_expression_missing(path[0], filter, doc)]) == allPatternsCount
 
 	result := {
 		"documentId": input.document[i].id,

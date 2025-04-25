@@ -5,7 +5,6 @@ import data.generic.terraform as tf_lib
 
 # version before TF AWS 4.0
 CxPolicy[result] {
-
 	resource := input.document[i].resource.aws_s3_bucket[name]
 	publicAccessACL(resource.acl)
 
@@ -41,7 +40,6 @@ CxPolicy[result] {
 
 # version after TF AWS 4.0
 CxPolicy[result] {
-
 	input.document[_].resource.aws_s3_bucket[bucketName]
 	acl := input.document[i].resource.aws_s3_bucket_acl[name]
 	split(acl.bucket, ".")[1] == bucketName
@@ -54,11 +52,10 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_s3_bucket_acl[%s].acl", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_s3_bucket_acl[%s].acl should be private", [name]),
-		"keyActualValue": sprintf("aws_s3_bucket_acl[%s].acl is %s", [acl.acl]),
+		"keyActualValue": sprintf("aws_s3_bucket_acl[%s].acl is %s", [name, acl.acl]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_s3_bucket_acl", name, "acl"], []),
 	}
 }
-
 
 publicAccessACL("public-read") = true
 

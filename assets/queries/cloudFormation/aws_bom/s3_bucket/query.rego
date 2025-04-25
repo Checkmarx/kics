@@ -45,8 +45,8 @@ is_public_access_blocked(properties) {
 }
 
 get_resource_accessibility(resource, name) = info {
-	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
 	is_public_access_blocked(resource.Properties.PublicAccessBlockConfiguration)
+	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")
 	info := {"accessibility": "private", "policy": acc.policy}
 } else = info {
 	acc := cf_lib.get_resource_accessibility(name, "AWS::S3::BucketPolicy", "Bucket")

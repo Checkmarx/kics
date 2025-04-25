@@ -38,6 +38,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].role should not be set", [resources[idx], name]),
 		"keyActualValue": sprintf("%s[%s].role is set", [resources[idx], name]),
-		"searchLine": common_lib.build_search_line(["resource", resources[idx], name, "role"], [])
+		"searchLine": common_lib.build_search_line(["resource", resources[idx], name, "role"], []),
 	}
 }

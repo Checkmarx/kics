@@ -1,9 +1,10 @@
 package generic.terraform
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 check_cidr(rule) {
-	rule.cidr_blocks[_] == "0.0.0.0/0"
+	"0.0.0.0/0" in rule.cidr_blocks
 } else {
 	rule.cidr_block == "0.0.0.0/0"
 }
@@ -44,13 +45,9 @@ containsPort(rule, port) {
 }
 
 # Gets the list of protocols
-getProtocolList("-1") = protocols {
-	protocols := ["TCP", "UDP", "ICMP"]
-}
+getProtocolList("-1") = ["TCP", "UDP", "ICMP"]
 
-getProtocolList("*") = protocols {
-	protocols := ["TCP", "UDP", "ICMP"]
-}
+getProtocolList("*") = ["TCP", "UDP", "ICMP"]
 
 getProtocolList(protocol) = protocols {
 	upper(protocol) == "TCP"
@@ -448,7 +445,7 @@ getStatement(policy) = st {
 
 is_publicly_accessible(policy) {
 	statements := getStatement(policy)
-	statement:= statements[_]
+	statement := statements[_]
 	statement.Effect == "Allow"
 	anyPrincipal(statement)
 }
@@ -484,8 +481,8 @@ get_accessibility(resource, name, resourcePolicyName, resourceTarget) = info {
 }
 
 is_default_password(password) = output {
-   contains(password, data.common_lib.default_passwords[_])
-   output = true
+	contains(password, data.common_lib.default_passwords[_])
+	output = true
 } else = output {
 	# repetition of the same number more than three times
 	regex.match(`(0{3,}|1{3,}|2{3,}|3{3,}|4{3,}|5{3,}|6{3,}|7{3,}|8{3,}|9{3,})`, password) == true
@@ -524,21 +521,20 @@ matches(target, name) {
 	target == name
 }
 
-
 has_target_resource(bucketName, resourceName) {
 	resource := input.document[i].resource[resourceName][_]
 
 	split(resource.bucket, ".")[1] == bucketName
 }
 
-#Checks if an action is allowed for all principals
+# Checks if an action is allowed for all principals
 allows_action_from_all_principals(json_policy, action) {
- 	policy := common_lib.json_unmarshal(json_policy)
+	policy := common_lib.json_unmarshal(json_policy)
 	st := common_lib.get_statement(policy)
 	statement := st[_]
 	statement.Effect == "Allow"
-    anyPrincipal(statement)
-    common_lib.containsOrInArrayContains(statement.Action, action)
+	anyPrincipal(statement)
+	common_lib.containsOrInArrayContains(statement.Action, action)
 }
 
 resourceFieldName = {
@@ -553,10 +549,10 @@ resourceFieldName = {
 }
 
 get_resource_name(resource, resourceDefinitionName) = name {
-	name := resource["name"]
+	name := resource.name
 } else = name {
-	name := resource["display_name"]
-}  else = name {
+	name := resource.display_name
+} else = name {
 	name := resource.metadata.name
 } else = name {
 	prefix := resource.name_prefix

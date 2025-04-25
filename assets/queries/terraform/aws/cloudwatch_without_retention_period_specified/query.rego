@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_cloudwatch_log_group[name]
@@ -37,8 +37,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "Attribute 'retention_in_days' should be set and valid",
 		"keyActualValue": "Attribute 'retention_in_days' is set but invalid",
 		"remediation": json.marshal({
-			"before": sprintf("%d",[value]),
-			"after": "7"
+			"before": sprintf("%d", [value]),
+			"after": "7",
 		}),
 		"remediationType": "replacement",
 	}

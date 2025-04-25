@@ -17,7 +17,6 @@ CxPolicy[result] {
 	ans_lib.checkState(computeNetwork)
 	firewall.network == sprintf("{{ %s }}", [tk.register])
 
-
 	result := {
 		"documentId": id,
 		"resourceType": modulesCompute[m],
@@ -29,4 +28,3 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["playbooks", t, modulesCompute[m]], []),
 	}
 }
-

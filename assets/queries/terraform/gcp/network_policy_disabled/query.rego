@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_container_cluster[primary]
@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'network_policy' should be defined and Attribute 'addons_config' should be defined",
 		"keyActualValue": "Attribute 'network_policy' is undefined or Attribute 'addons_config' is undefined",
-		"searchLine": common_lib.build_search_line(["resource", "google_container_cluster", primary],[]),
+		"searchLine": common_lib.build_search_line(["resource", "google_container_cluster", primary], []),
 	}
 }
 
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attribute 'addons_config.network_policy_config' should be defined",
 		"keyActualValue": "Attribute 'addons_config.network_policy_config' is undefined",
-		"searchLine": common_lib.build_search_line(["resource", "google_container_cluster", primary],["addons_config"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_container_cluster", primary], ["addons_config"]),
 	}
 }
 
@@ -50,10 +50,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'network_policy.enabled' should be true",
 		"keyActualValue": "Attribute 'network_policy.enabled' is false",
-		"searchLine": common_lib.build_search_line(["resource", "google_container_cluster", primary],["network_policy", "enabled"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_container_cluster", primary], ["network_policy", "enabled"]),
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}
@@ -72,10 +72,10 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'addons_config.network_policy_config.disabled' should be set to false",
 		"keyActualValue": "Attribute 'addons_config.network_policy_config.disabled' is true",
-		"searchLine": common_lib.build_search_line(["resource", "google_container_cluster", primary],["addons_config", "network_policy_config","disabled"]),
+		"searchLine": common_lib.build_search_line(["resource", "google_container_cluster", primary], ["addons_config", "network_policy_config", "disabled"]),
 		"remediation": json.marshal({
 			"before": "true",
-			"after": "false"
+			"after": "false",
 		}),
 		"remediationType": "replacement",
 	}

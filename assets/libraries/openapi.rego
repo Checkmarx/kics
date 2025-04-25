@@ -1,8 +1,11 @@
 package generic.openapi
 
+import future.keywords.every
+import future.keywords.in
+
 check_openapi(doc) = version {
 	object.get(doc, "openapi", "undefined") != "undefined"
-	regex.match("^3\\.0\\.\\d+$", doc.openapi)
+	regex.match(`^3\.0\.\d+$`, doc.openapi)
 	version = "3.0"
 } else = version {
 	object.get(doc, "swagger", "undefined") != "undefined"
@@ -16,11 +19,11 @@ is_valid_url(url) {
 }
 
 improperly_defined(params, value) {
-	params.in == "header"
+	params["in"] == "header"
 	params.name == value
 }
 
-incorrect_ref(ref, object) {
+incorrect_ref(reference, obj_type) {
 	references := {
 		"schemas": "#/components/schemas/",
 		"responses": "#/components/responses/",
@@ -32,22 +35,24 @@ incorrect_ref(ref, object) {
 		"parameters": "#/components/parameters/",
 	}
 
-	not startswith(ref, references[object])
+	not startswith(reference, references[obj_type])
 }
 
-incorrect_ref_swagger(ref, object) {
+incorrect_ref_swagger(reference, obj_type) {
 	references := {
 		"parameters": "#/parameters/",
 		"responses": "#/responses/",
 		"schemas": "#/definitions/",
 	}
 
-	not startswith(ref, references[object])
+	not startswith(reference, references[obj_type])
 }
 
 content_allowed(operation, code) {
 	operation != "head"
-	all([code != "204", code != "304"])
+	every condition in [code != "204", code != "304"] {
+		condition
+	}
 }
 
 # It verifies if there is some schema in 'key' equal to the input with the 'field' undefined
@@ -69,9 +74,9 @@ undefined_field_in_json_object(doc, schema_ref, field, version) {
 }
 
 check_unused_reference(doc, referenceName, type) {
-	ref := sprintf("#/components/%s/%s", [type, referenceName])
+	reference := sprintf("#/components/%s/%s", [type, referenceName])
 
-	count({ref | [_, value] := walk(doc); ref == value["$ref"]}) == 0
+	count({reference | [_, value] := walk(doc); reference == value["$ref"]}) == 0
 }
 
 check_reference_unexisting(doc, reference, type) = checkComponents {
@@ -88,19 +93,16 @@ check_reference_unexisting_swagger(doc, reference, type) = checkRef {
 	object.get(doc[type], checkRef, "undefined") == "undefined"
 }
 
-concat_path(path) = concatenated {
-	concatenated := concat(".", [x | x := resolve_path(path[_]); x != ""])
-}
+concat_path(path) = concat(".", [x | x := resolve_path(path[_]); x != ""])
 
 resolve_path(pathItem) = resolved {
-	any([contains(pathItem, "."), contains(pathItem, "="), contains(pathItem, "/")])
+	some char in [".", "=", "/"]
+	contains(pathItem, char)
 	resolved := sprintf("{{%s}}", [pathItem])
 } else = resolved {
 	is_number(pathItem)
 	resolved := ""
-} else = pathItem {
-	true
-}
+} else = pathItem
 
 # It verifies if the path contains an operation. If true, keeps the operation type and the response code related to it
 is_operation(path) = info {
@@ -118,7 +120,7 @@ is_operation(path) = info {
 
 is_numeric_type(type) {
 	numeric := {"integer", "number"}
-	type == numeric[_]
+	type in numeric
 }
 
 # It verifies if the string schema does not have the 'field' defined
@@ -133,9 +135,7 @@ undefined_field_in_numeric_schema(value, field) {
 	object.get(value, field, "undefined") == "undefined"
 }
 
-is_path_template(path) = matches {
-	matches := regex.find_n(`\{([A-Za-z]+[A-Za-z-_]*[A-Za-z]+)\}`, path, -1)
-}
+is_path_template(path) = regex.find_n(`\{([A-Za-z]+[A-Za-z-_]*[A-Za-z]+)\}`, path, -1)
 
 # It verifies if the 'field' is consistent with the 'type'
 invalid_field(field, type) {
@@ -236,7 +236,7 @@ api_key_exposed(doc, version, s) {
 	version == "2.0"
 	doc.securityDefinitions[s].type == "apiKey"
 	scheme := doc.schemes[_]
-    scheme == "http"
+	scheme == "http"
 } else {
 	version == "2.0"
 	doc.securityDefinitions[s].type == "apiKey"
@@ -248,7 +248,7 @@ check_scheme(doc, schemeKey, scope, version) {
 	secScheme := doc.components.securitySchemes[schemeKey]
 	secScheme.type == "oauth2"
 
-	arr := [x | _ := secScheme.flows[flowKey].scopes[scopeName]; scopeName == scope; x := scope]
+	arr := [scope | _ := secScheme.flows[flowKey].scopes[scopeName]; scopeName == scope]
 
 	count(arr) == 0
 } else {
@@ -256,7 +256,7 @@ check_scheme(doc, schemeKey, scope, version) {
 	secScheme := doc.securityDefinitions[schemeKey]
 	secScheme.type == "oauth2"
 
-	arr := [x | _ := secScheme.scopes[scopeName]; scopeName == scope; x := scope]
+	arr := [scope | _ := secScheme.scopes[scopeName]; scopeName == scope]
 
 	count(arr) == 0
 }
@@ -264,14 +264,14 @@ check_scheme(doc, schemeKey, scope, version) {
 # It verifies if the path is empty. If so, it refers to a global object. If not, joins it with the defaultValue.
 concat_default_value(path, defaultValue) = searchKey {
 	count(path) == 0
-	searchKey := defaultValue
+	searchKey = defaultValue
 } else = searchKey {
 	searchKey := concat(".", [path, defaultValue])
 }
 
 get_name(p, name) = sk {
-	p[minus(count(p), 1)] == "components"
-	sk := name
+	p[count(p) - 1] == "components"
+	sk = name
 } else = sk {
 	sk := concat("", ["name=", name])
 }
@@ -296,10 +296,10 @@ get_discriminator(schema, version) = discriminator {
 	discriminator := {"obj": schema.discriminator, "path": "discriminator"}
 }
 
-check_definitions(doc, object, name) {
+check_definitions(doc, obj_type, name) {
 	[path, value] := walk(doc)
-	ref := value["$ref"]
-	count({x | ref == sprintf("#/%s/%s", [object, name]); x := ref}) == 0
+	reference := value["$ref"]
+	count({reference | reference == sprintf("#/%s/%s", [obj_type, name])}) == 0
 }
 
 is_valid_mime(mime) {
@@ -323,4 +323,8 @@ valid_key(obj, key) {
 is_missing_attribute_and_ref(obj, attr) {
 	not valid_key(obj, attr)
 	not valid_key(obj, "$ref")
+}
+
+objType_allowed(objType) {
+	objType in ["simple", "map"]
 }

@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"keyActualValue": "'iam_database_authentication_enabled' is set to false",
 		"remediation": json.marshal({
 			"before": "false",
-			"after": "true"
+			"after": "true",
 		}),
 		"remediationType": "replacement",
 	}

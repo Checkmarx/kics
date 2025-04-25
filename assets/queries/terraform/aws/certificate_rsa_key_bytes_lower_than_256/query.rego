@@ -1,13 +1,14 @@
 package Cx
 
 import data.generic.terraform as tf_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i].resource[resourceType]
 
 	services := {"aws_api_gateway_domain_name", "aws_iam_server_certificate", "aws_acm_certificate"}
 
-	resourceType == services[_]
+	resourceType in services
 
 	resource[name].certificate_body.rsa_key_bytes < 256
 

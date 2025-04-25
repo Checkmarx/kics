@@ -1,5 +1,7 @@
 package Cx
 
+import future.keywords.in
+
 CxPolicy[result] {
 	document := input.document[i]
 
@@ -7,7 +9,7 @@ CxPolicy[result] {
 
 	volumeClaims := document.spec.volumeClaimTemplates
 
-	vClaimsWitReadWriteOnce := [vClaims | contains(volumeClaims[v].spec.accessModes, "ReadWriteOnce") == true; vClaims := volumeClaims[v].metadata.name]
+	vClaimsWitReadWriteOnce := [vClaims | array_contains(volumeClaims[v].spec.accessModes, "ReadWriteOnce") == true; vClaims := volumeClaims[v].metadata.name]
 	count(vClaimsWitReadWriteOnce) == 0
 
 	metadata := document.metadata
@@ -30,7 +32,7 @@ CxPolicy[result] {
 
 	volumeClaims := document.spec.volumeClaimTemplates
 
-	vClaimsWitReadWriteOnce := [vClaims | contains(volumeClaims[v].spec.accessModes, "ReadWriteOnce") == true; vClaims := volumeClaims[v].metadata.name]
+	vClaimsWitReadWriteOnce := [vClaims | array_contains(volumeClaims[v].spec.accessModes, "ReadWriteOnce") == true; vClaims := volumeClaims[v].metadata.name]
 	count(vClaimsWitReadWriteOnce) > 1
 
 	metadata := document.metadata
@@ -46,6 +48,6 @@ CxPolicy[result] {
 	}
 }
 
-contains(array, string) {
-	array[_] == string
+array_contains(array_obj, string) {
+	string in array_obj
 }

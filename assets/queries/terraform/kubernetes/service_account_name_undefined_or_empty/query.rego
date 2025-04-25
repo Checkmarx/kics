@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
 	spec := resource.spec
-    not common_lib.valid_key(spec, "service_account_name")
+	not common_lib.valid_key(spec, "service_account_name")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -24,7 +24,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.kubernetes_pod[name]
 
 	service_account_name := resource.spec.service_account_name
-    service_account_name == ""
+	service_account_name == ""
 
 	result := {
 		"documentId": input.document[i].id,

@@ -2,6 +2,7 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	docs := input.document[i]
@@ -63,5 +64,5 @@ CxPolicy[result] {
 }
 
 containsPrivate(types) {
-	types[_] == "PRIVATE"
+	"PRIVATE" in types
 }
