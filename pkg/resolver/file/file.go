@@ -102,15 +102,21 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolvingStatus Reso
 		return fileContent, true
 	}
 
+	if len(resolvingStatus.CurrentResolutionPath) > 1 {
+		// removes any stashed CurrentResolutionPath from previous files
+		// allowing circular references to be resolved at least one time
+		resolvingStatus.CurrentResolutionPath = resolvingStatus.CurrentResolutionPath[:resolvingStatus.CurrentDepth-1]
+	}
+
 	// resolve the paths
-	obj, _ = r.walk(fileContent, obj, obj, path, resolvingStatus, false)
+	obj, _, canBeCached := r.walk(fileContent, obj, obj, path, resolvingStatus, false)
 
 	b, err := json.MarshalIndent(obj, "", "")
 	if err == nil {
-		return b, true // TODO: check if the file can be cached
+		return b, true
 	}
 
-	return fileContent, true // TODO: check if the file can be cached
+	return fileContent, canBeCached
 }
 
 func (r *Resolver) walk(
@@ -119,7 +125,7 @@ func (r *Resolver) walk(
 	value any,
 	path string,
 	resolvingStatus ResolvingStatus,
-	refBool bool) (any, bool) {
+	refBool bool) (_ any, validOpenAPISectionRef, canBeCached bool) {
 	// go over the value and replace paths with the real content
 	switch typedValue := value.(type) {
 	case string:
@@ -127,18 +133,18 @@ func (r *Resolver) walk(
 		if filepath.Base(path) != filepath.Clean(typedValue) {
 			return r.resolvePath(originalFileContent, fullObject, typedValue, path, resolvingStatus, refBool)
 		}
-		return value, false
+		return value, false, true
 	case []any:
 		for i, v := range typedValue {
-			typedValue[i], _ = r.walk(
+			typedValue[i], _, canBeCached = r.walk(
 				originalFileContent, fullObject, v, path, resolvingStatus, refBool)
 		}
-		return typedValue, false
+		return typedValue, false, canBeCached
 	case map[string]any:
 		return r.handleMap(
 			originalFileContent, fullObject, typedValue, path, resolvingStatus)
 	default:
-		return value, false
+		return value, false, true
 	}
 }
 
@@ -148,10 +154,10 @@ func (r *Resolver) handleMap(
 	value map[string]interface{},
 	path string,
 	resolvingStatus ResolvingStatus,
-) (any, bool) {
+) (_ any, validOpenAPISectionRef, canBeCached bool) {
 	for k, v := range value {
 		isRef := strings.Contains(strings.ToLower(k), "$ref")
-		val, res := r.walk(originalFileContent, fullObject, v, path, resolvingStatus, isRef)
+		val, res, canBeCached := r.walk(originalFileContent, fullObject, v, path, resolvingStatus, isRef)
 		// check if it is a ref then add new details
 		if valMap, ok := val.(map[string]interface{}); (ok || !res) && isRef {
 			// Create RefMetadata and add it to the resolved value map
@@ -162,14 +168,14 @@ func (r *Resolver) handleMap(
 				"$ref":  v,
 				"alone": len(value) == 1,
 			}
-			return valMap, false
+			return valMap, false, canBeCached
 		}
 		if isRef {
-			return val, false
+			return val, false, true
 		}
 		value[k] = val
 	}
-	return value, false
+	return value, false, true
 }
 
 func (r *Resolver) yamlResolve(fileContent []byte, path string, resolvingStatus ResolvingStatus) ([]byte, bool) {
@@ -439,17 +445,23 @@ func getPathFromString(path string) string {
 	return path[:lastIndex]
 }
 
+//nolint:gocyclo
 func (r *Resolver) resolvePath(
 	originalFileContent []byte,
 	fullObject interface{},
 	value, filePath string,
-	resolvingStatus ResolvingStatus, refBool bool) (any, bool) {
-	if resolvingStatus.CurrentDepth >= resolvingStatus.MaxDepth || (strings.HasPrefix(value, "#") && !refBool) || (value == "#" && refBool) {
-		return value, false
-	}
+	resolvingStatus ResolvingStatus, refBool bool,
+) (_ any, validOpenAPISectionRef, canBeCached bool) {
 	var splitPath []string
 	var obj any
 	sameFileResolve := false
+
+	if resolvingStatus.CurrentDepth >= resolvingStatus.MaxDepth ||
+		(strings.HasPrefix(value, "#") && !refBool) ||
+		(value == "#" && refBool) {
+		return value, false, true
+	}
+
 	if strings.HasPrefix(value, "#") { // same file resolve
 		sameFileResolve = true
 		path := filePath + value
@@ -464,34 +476,34 @@ func (r *Resolver) resolvePath(
 		_, err := os.Stat(onlyFilePath)
 
 		if err != nil || !contains(filepath.Ext(onlyFilePath), r.Extension) {
-			return value, false
+			return value, false, true
 		}
 		// temporary solution
 		exists, path, onlyFilePath, filename := findFilePath(filepath.Dir(filePath), value, false, r.Extension)
 		if !exists {
-			return value, false
+			return value, false, true
 		}
 
 		canBeCached := true // track if the file can be cached - resolution broken by circular reference won't be cached
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvingStatus.ResolvedFilesCache[filename]; !ok {
 			// temporary solution
-			if checkCircularReference(filepath.Clean(filePath), value, &resolvingStatus) {
-				return value, false
+			if checkCircularReference(filepath.Clean(filePath), filename, &resolvingStatus) {
+				return value, false, false
 			}
 
 			ret, isError, canBeCachedFromResolve := r.resolveFile(value, onlyFilePath, resolvingStatus, false)
 			if isError {
-				return ret, false
+				return ret, false, canBeCachedFromResolve
 			}
 			canBeCached = canBeCachedFromResolve
 		}
 
 		if canBeCached {
 			r.ResolvedFiles[getPathFromString(value)] = model.ResolvedFile{
-				Content:      resolvingStatus.ResolvedFilesCache[onlyFilePath].fileContent,
+				Content:      resolvingStatus.ResolvedFilesCache[filename].fileContent,
 				Path:         path,
-				LinesContent: utils.SplitLines(string(resolvingStatus.ResolvedFilesCache[onlyFilePath].fileContent)),
+				LinesContent: utils.SplitLines(string(resolvingStatus.ResolvedFilesCache[filename].fileContent)),
 			}
 		}
 
@@ -499,7 +511,7 @@ func (r *Resolver) resolvePath(
 
 		// Cloudformation !Ref check
 		if strings.Contains(strings.ToLower(value), "!ref") || len(splitPath) == 1 {
-			return obj, false
+			return obj, false, canBeCached
 		}
 	}
 	return r.resolvePathReturnValue(value, filePath, splitPath, sameFileResolve, originalFileContent, obj, resolvingStatus.MaxDepth)
@@ -511,7 +523,7 @@ func (r *Resolver) resolvePathReturnValue(
 	sameFileResolve bool,
 	originalFileContent []byte,
 	obj any,
-	maxResolverDepth int) (any, bool) {
+	maxResolverDepth int) (_ any, validOpenAPISectionRef, canBeCached bool) {
 	if len(splitPath) > 1 {
 		if sameFileResolve {
 			r.ResolvedFiles[filePath] = model.ResolvedFile{
@@ -523,7 +535,7 @@ func (r *Resolver) resolvePathReturnValue(
 		section, err := findSection(obj, splitPath[1])
 		// Check if there was an error finding the section or if the reference is circular
 		if err != nil || checkIfCircular(value, section, maxResolverDepth) {
-			return value, false
+			return value, false, true
 		}
 		if sectionMap, ok := section.(map[string]interface{}); ok {
 			newSectionMap := make(map[string]interface{})
@@ -533,9 +545,9 @@ func (r *Resolver) resolvePathReturnValue(
 			section = newSectionMap
 		}
 
-		return section, true
+		return section, true, true
 	}
-	return value, false
+	return value, false, true
 }
 
 func findSectionYaml(object *yaml.Node, sectionsString string) (yaml.Node, error) {
