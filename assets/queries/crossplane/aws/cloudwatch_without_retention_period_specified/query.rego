@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.crossplane as cp_lib
 
-validValues = [1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653]
+validValues = [1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192, 2557, 2922, 3288, 3653]
 
 CxPolicy[result] {
 	docs := input.document[i]

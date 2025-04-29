@@ -24,7 +24,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_cloudwatch_log_group[name]
 	value := resource.retention_in_days
-	validValues := [1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653]
+	validValues := [1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192, 2557, 2922, 3288, 3653]
 	count({x | validValues[x]; validValues[x] == value}) == 0
 
 	result := {
