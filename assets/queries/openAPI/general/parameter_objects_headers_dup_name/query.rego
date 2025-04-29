@@ -30,8 +30,7 @@ CxPolicy[result] {
 	}
 }
 
-check_dup(params) = dup {
+check_dup(params) = arr {
 	nameArr := [x | p := params[n]; p.in == "header"; x := lower(p.name)]
-	arr := {x | idx := nameArr[s]; idx == nameArr[d]; s != d; x := idx}
-	dup := arr
+	arr := {idx | idx := nameArr[s]; idx == nameArr[d]; s != d}
 }

@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_ecs_task_definition[name]
@@ -17,8 +17,8 @@ CxPolicy[result] {
 		"keyExpectedValue": "'network_mode' should equal to 'awsvpc'",
 		"keyActualValue": sprintf("'network_mode' is equal to '%s'", [resource.network_mode]),
 		"remediation": json.marshal({
-			"before": sprintf("%s",[resource.network_mode]),
-			"after": "awsvpc"
+			"before": sprintf("%s", [resource.network_mode]),
+			"after": "awsvpc",
 		}),
 		"remediationType": "replacement",
 	}

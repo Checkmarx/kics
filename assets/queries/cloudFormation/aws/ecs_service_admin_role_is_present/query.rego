@@ -6,8 +6,9 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
 	resource.Properties.Role
-	role := resource.Properties.Role
 	resource.Properties.LoadBalancers
+
+	role := resource.Properties.Role
 	not role.Ref
 
 	check_role(role)

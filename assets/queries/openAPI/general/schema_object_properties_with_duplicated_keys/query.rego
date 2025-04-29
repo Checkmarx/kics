@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.openapi as openapi_lib
+import future.keywords.in
 
 # components schemas map
 CxPolicy[result] {
@@ -63,28 +64,29 @@ create_searchkey(name, path, val) = search_key {
 }
 
 check_properties(value, properties, m) {
-	set := {x |
+	set := {value |
 		tt := properties[z].value
 		z != m
 		tt == value
-		x := value
 	}
 
 	count(set) > 0
 }
 
-get_properties(schema) = properties {
-	properties := {x |
-		[path, value] := walk(schema)
-		prop := value.properties
-		filter_paths(path)
-		prop[name]
-		x := {"path": path, "value": name}
-	}
+get_properties(schema) = {x |
+	[path, value] := walk(schema)
+	prop := value.properties
+	filter_paths(path)
+	prop[name]
+	x := {"path": path, "value": name}
 }
 
 filter_paths(path) {
 	count(path) == 0
 } else {
-	any([contains(path[_], "allOf"), contains(path[_], "additionalProperties")])
+	some segment in path
+	contains(segment, "allOf")
+} else {
+	some segment in path
+	contains(segment, "additionalProperties")
 }

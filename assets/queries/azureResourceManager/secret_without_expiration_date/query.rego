@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 resourceTypes := ["Microsoft.KeyVault/vaults/secrets", "secrets"]
 
@@ -9,7 +10,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 
-	value.type == resourceTypes[_]
+	value.type in resourceTypes
 	not common_lib.valid_key(value.properties, "attributes")
 
 	result := {
@@ -29,7 +30,7 @@ CxPolicy[result] {
 
 	[path, value] := walk(doc)
 
-	value.type == resourceTypes[_]
+	value.type in resourceTypes
 	not common_lib.valid_key(value.properties.attributes, "exp")
 
 	result := {

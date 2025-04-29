@@ -9,9 +9,9 @@ CxPolicy[result] {
 	ansLib.checkState(pgConfig)
 
 	is_string(pgConfig.name)
-	is_string(pgConfig.value)
-
 	lower(pgConfig.name) == "log_disconnections"
+
+	is_string(pgConfig.value)
 	upper(pgConfig.value) != "ON"
 
 	result := {

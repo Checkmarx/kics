@@ -32,20 +32,21 @@ CxPolicy[result] {
 	}
 }
 
-get_accessibility(resource) = info{
-	info:= check_vpc_endpoint(resource)
+get_accessibility(resource) = info {
+	info := check_vpc_endpoint(resource)
 } else = info {
-	info := {"accessibility":"private", "policy": ""}
+	info := {"accessibility": "private", "policy": ""}
 }
 
-check_vpc_endpoint(resource) = info{
-	values := [x | 
+check_vpc_endpoint(resource) = info {
+	values := [x |
 		vpc_endpoint := input.document[_].Resources[_]
 		vpc_endpoint.Type == "AWS::EC2::VPCEndpoint"
 		policy_doc := vpc_endpoint.Properties.PolicyDocument
-		x := policy_accessibility(policy_doc, resource.Properties.TableName)]
+		x := policy_accessibility(policy_doc, resource.Properties.TableName)
+	]
 
-    info := get_info(values)
+	info := get_info(values)
 }
 
 policy_accessibility(policy, table_name) = info {
@@ -59,12 +60,12 @@ policy_accessibility(policy, table_name) = info {
 	resources_arn := get_resource_arn(statement.Resource)
 	has_all_or_dynamob_arn(resources_arn, table_name)
 
-	info := {"accessibility":"public", "policy": policy}
-} else  = info {
-	common_lib.get_statement(policy)
-	info := {"accessibility":"private", "policy": policy}
+	info := {"accessibility": "public", "policy": policy}
 } else = info {
-	info := {"accessibility":"hasPolicy", "policy": policy}
+	common_lib.get_statement(policy)
+	info := {"accessibility": "private", "policy": policy}
+} else = info {
+	info := {"accessibility": "hasPolicy", "policy": policy}
 }
 
 get_resource_arn(resources) = val {
@@ -74,20 +75,20 @@ get_resource_arn(resources) = val {
 	val := resources
 }
 
-has_all_or_dynamob_arn(arn, table_name){
+has_all_or_dynamob_arn(arn, table_name) {
 	arn == "*"
 } else {
 	startswith(arn, "arn:aws:dynamodb:")
-	suffix := concat( "", [":table/", table_name])
+	suffix := concat("", [":table/", table_name])
 	endswith(arn, suffix)
 }
 
-get_encryption(resource) = encryption{
-    sse := resource.Properties.SSESpecification
-    sse.SSEEnabled == true
-    encryption := "encrypted"
-} else = encryption{
-    encryption := "unencrypted"
+get_encryption(resource) = encryption {
+	sse := resource.Properties.SSESpecification
+	sse.SSEEnabled == true
+	encryption := "encrypted"
+} else = encryption {
+	encryption := "unencrypted"
 }
 
 dynamo_actions := {
@@ -154,7 +155,7 @@ dynamo_actions := {
 	"dynamodb:RestoreTableFromBackup",
 	"dynamodb:DeleteBackup",
 	"dynamodb:PartiQLDelete",
-	"dynamodb:*"
+	"dynamodb:*",
 }
 
 check_actions(actions) {
@@ -163,9 +164,9 @@ check_actions(actions) {
 	common_lib.equalsOrInArray(actions, "*")
 }
 
-get_info(info_arr)= info{
-	val := [ x | info_arr[x].accessibility == "public" ]
+get_info(info_arr) = info {
+	val := [x | info_arr[x].accessibility == "public"]
 	info := info_arr[val[0]]
-} else = info{
+} else = info {
 	info := info_arr[0]
 }

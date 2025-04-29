@@ -9,8 +9,8 @@ CxPolicy[result] {
 	ansLib.checkState(package_installer)
 
 	not common_lib.valid_key(package_installer, "version")
-    not common_lib.valid_key(package_installer, "update_only")
-    package_installer.state == "latest"
+	not common_lib.valid_key(package_installer, "update_only")
+	package_installer.state == "latest"
 
 	result := {
 		"documentId": id,
@@ -29,8 +29,8 @@ CxPolicy[result] {
 	ansLib.checkState(package_installer)
 
 	not common_lib.valid_key(package_installer, "version")
-    package_installer.update_only == false
-    package_installer.state == "latest"
+	package_installer.update_only == false
+	package_installer.state == "latest"
 
 	result := {
 		"documentId": id,

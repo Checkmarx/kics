@@ -38,9 +38,9 @@ CxPolicy[result] {
 }
 
 containsAccessKey(user_data) {
-	re_match("([^A-Z0-9])[A-Z0-9]{20}([^A-Z0-9])", user_data)
+	regex.match(`([^A-Z0-9])[A-Z0-9]{20}([^A-Z0-9])`, user_data)
 }
 
 containsAccessKey(user_data) {
-	re_match("[A-Za-z0-9/+=]{40}([^A-Za-z0-9/+=])", user_data)
+	regex.match(`[A-Za-z0-9/+=]{40}([^A-Za-z0-9/+=])`, user_data)
 }

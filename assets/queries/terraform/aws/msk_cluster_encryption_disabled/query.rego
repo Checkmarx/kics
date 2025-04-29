@@ -30,9 +30,7 @@ checkEncryption(msk_cluster) = ".encryption_in_transit.in_cluster,encryption_in_
 	encryptionInTransit.in_cluster == false
 } else = "" {
 	not msk_cluster.encryption_info
-} else = "none" {
-	true
-}
+} else = "none"
 
 getSearchKey(problems, name) = str {
 	problemsSplited := split(problems, ",")
@@ -46,6 +44,4 @@ getSearchKey(problems, name) = str {
 
 getIssueType(problems) = "MissingAttribute" {
 	problems == ""
-} else = "IncorrectValue" {
-	true
-}
+} else = "IncorrectValue"

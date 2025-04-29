@@ -2,15 +2,17 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
+import future.keywords.in
 
 CxPolicy[result] {
 	resource := input.document[i]
 	metadata := resource.metadata
 	not metadata.namespace
-	resource.kind == k8sLib.valid_pod_spec_kind_list[_]
+	resource.kind in k8sLib.valid_pod_spec_kind_list
 	specInfo := k8sLib.getSpecInfo(resource)
 	volumes := specInfo.spec.volumes
 	volumes[j].hostPath.path
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
@@ -29,7 +31,7 @@ CxPolicy[result] {
 			"default",
 			volumes[j].hostPath.path,
 		]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j ,"hostPath", "path"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j, "hostPath", "path"]),
 	}
 }
 
@@ -38,7 +40,7 @@ CxPolicy[result] {
 	metadata := resource.metadata
 	namespace := metadata.namespace
 	namespace != "kube-system"
-	resource.kind == k8sLib.valid_pod_spec_kind_list[_]
+	resource.kind in k8sLib.valid_pod_spec_kind_list
 	specInfo := k8sLib.getSpecInfo(resource)
 	volumes := specInfo.spec.volumes
 	volumes[j].hostPath.path
@@ -46,7 +48,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
 		"resourceName": metadata.name,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path", [metadata.name,specInfo.path, volumes[j].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.volumes.name={{%s}}.hostPath.path", [metadata.name, specInfo.path, volumes[j].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resource name '%s' of kind '%s' in non kube-system namespace '%s' should not have hostPath '%s' mounted", [
 			metadata.name,
@@ -60,7 +62,7 @@ CxPolicy[result] {
 			metadata.namespace,
 			volumes[j].hostPath.path,
 		]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j ,"hostPath", "path"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["volumes", j, "hostPath", "path"]),
 	}
 }
 
@@ -123,10 +125,13 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
-	metadata := resource.metadata
 	resource.kind == "PersistentVolume"
+
+	metadata := resource.metadata
 	metadata.namespace != "kube-system"
+
 	path := resource.spec.hostPath.path
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,
@@ -150,10 +155,13 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i]
-	metadata := resource.metadata
 	resource.kind == "PersistentVolume"
+
+	metadata := resource.metadata
 	not metadata.namespace
+
 	path := resource.spec.hostPath.path
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.kind,

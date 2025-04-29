@@ -42,8 +42,9 @@ CxPolicy[result] {
 }
 
 checkContent(deploymentConfiguration) {
-    common_lib.valid_key(deploymentConfiguration, "maximum_percent")
+	common_lib.valid_key(deploymentConfiguration, "maximum_percent")
 }
+
 checkContent(deploymentConfiguration) {
-    common_lib.valid_key(deploymentConfiguration, "minimum_healthy_percent")
+	common_lib.valid_key(deploymentConfiguration, "minimum_healthy_percent")
 }

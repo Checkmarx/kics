@@ -1,17 +1,19 @@
 package Cx
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 CxPolicy[result] {
 	document := input.document[i]
-	metadata := document.metadata
 
 	kinds := {"Role", "ClusterRole"}
-	document.kind == kinds[_]
+	document.kind in kinds
 
+	"secrets" in document.rules[j].resources
 	readVerbs := {"get", "watch", "list"}
-	document.rules[j].resources[_] == "secrets"
 	document.rules[j].verbs[_] == readVerbs[_]
+
+	metadata := document.metadata
 
 	result := {
 		"documentId": document.id,
@@ -21,6 +23,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.rules[%d] should not be granted read access to Secrets objects", [metadata.name, j]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.rules[%d] is granted read access (verbs: %v) to Secrets objects", [metadata.name, j, concat(", ", document.rules[j].verbs)]),
-		"searchLine": common_lib.build_search_line(["rules", j], ["verbs"])
+		"searchLine": common_lib.build_search_line(["rules", j], ["verbs"]),
 	}
 }

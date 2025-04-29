@@ -1,7 +1,7 @@
 package Cx
 
-import data.generic.openapi as openapi_lib
 import data.generic.common as common_lib
+import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
 	keywords := ["multipleOf", "maximum", "minimum", "exclusiveMaximum", "exclusiveMinimum", "pattern", "minLength", "maxLength", "maxItems", "minItems", "uniqueItems", "required", "maxProperties", "minProperties"]
@@ -15,7 +15,7 @@ CxPolicy[result] {
 	common_lib.valid_key(properties, "enum")
 	common_lib.valid_key(properties, keywords[x])
 
-	path_c := {x | obj := clean_path(path[n]); obj != ""; x := obj}
+	path_c := {obj | obj := clean_path(path[n]); obj != ""}
 
 	result := {
 		"documentId": doc.id,

@@ -4,9 +4,9 @@ import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource
-	
-	server:= resource.azurerm_mssql_server[name]
-	
+
+	server := resource.azurerm_mssql_server[name]
+
 	not resource.azurerm_mssql_server_extended_auditing_policy[name]
 
 	result := {

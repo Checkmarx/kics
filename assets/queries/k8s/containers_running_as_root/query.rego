@@ -1,16 +1,17 @@
 package Cx
 
-import data.generic.k8s as k8sLib
 import data.generic.common as common_lib
+import data.generic.k8s as k8sLib
 
 types := {"initContainers", "containers"}
+
 options := {"runAsUser", "runAsNonRoot"}
 
 runsAsRoot(ctx) {
 	runAsNonRoot := object.get(ctx, "runAsNonRoot", false)
-	runAsUser := object.get(ctx, "runAsUser", 0)
-
 	runAsNonRoot == false
+
+	runAsUser := object.get(ctx, "runAsUser", 0)
 	to_number(runAsUser) == 0
 }
 
@@ -68,7 +69,7 @@ checkRoot(specInfo, container, containerType, containerId, document, metadata) =
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true", [metadata.name, specInfo.path, containerType, container.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser is 0 and 'runAsNonRoot' is false", [metadata.name, specInfo.path, containerType, container.name]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [containerType, containerId, "securityContext"])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [containerType, containerId, "securityContext"]),
 	}
 }
 

@@ -29,7 +29,7 @@ isRelevantProtocol(protocol) = allow {
 }
 
 isRelevantPort(port) = allow {
-	regex.match("(^|\\s|,)22(-|,|$|\\s)", port)
+	regex.match(`(^|\s|,)22(-|,|$|\s)`, port)
 	allow = true
 }
 

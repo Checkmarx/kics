@@ -33,9 +33,9 @@ hasInstallCommandWithoutFlag(command) = c {
 	]
 
 	contains(command, commandList[_])
-	c := command
+	c = command
 }
 
 hasYesFlag(command) {
-	regex.match("\\b(microdnf|dnf *install (-y|-[\\D]{1}y|-y[\\D]{1}|-yes|--assumeyes))\\b [\\w\\W]*", command)
+	regex.match(`\b(microdnf|dnf *install (-y|-[\D]{1}y|-y[\D]{1}|-yes|--assumeyes))\b [\w\W]*`, command)
 }

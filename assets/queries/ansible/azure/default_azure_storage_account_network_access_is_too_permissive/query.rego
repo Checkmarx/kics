@@ -9,12 +9,12 @@ CxPolicy[result] {
 	storageAccount := task[modules[index]]
 	ansLib.checkState(storageAccount)
 
-    res1 := publicNetworkAccessEnabled(storageAccount)
-    res2 := aclsDefaultActionAllow(storageAccount)
+	res1 := publicNetworkAccessEnabled(storageAccount)
+	res2 := aclsDefaultActionAllow(storageAccount)
 
-    issue := prepare_issue(res1, res2)
+	issue := prepare_issue(res1, res2)
 
-    result := {
+	result := {
 		"documentId": id,
 		"resourceType": modules[index],
 		"resourceName": task.name,
@@ -36,34 +36,34 @@ publicNetworkAccessEnabled(sa) = reason {
 
 aclsDefaultActionAllow(sa) = reason {
 	not sa.network_acls.default_action
-    reason := "not defined"
+	reason := "not defined"
 } else = reason {
 	sa.network_acls.default_action
-    lower(sa.network_acls.default_action) == "allow"
-    reason := "allow"
+	lower(sa.network_acls.default_action) == "allow"
+	reason := "allow"
 }
 
 prepare_issue(val1, val2) = issue {
 	val1 == "not defined"
-    val2 == "not defined"
+	val2 == "not defined"
 
-    issue := {
-    	"kav": "azure_rm_storageaccount.public_network_access is not set (default is 'Enabled')",
-        "kev": "azure_rm_storageaccount.public_network_access should be set to 'Disabled'",
-        "issueType": "MissingAttribute"
-    }
+	issue := {
+		"kav": "azure_rm_storageaccount.public_network_access is not set (default is 'Enabled')",
+		"kev": "azure_rm_storageaccount.public_network_access should be set to 'Disabled'",
+		"issueType": "MissingAttribute",
+	}
 } else = issue {
 	val1 == "enabled"
-    issue := {
-    	"kav": "azure_rm_storageaccount.public_network_access is set to 'Enabled'",
-        "kev": "azure_rm_storageaccount.public_network_access should be set to 'Disabled'",
-        "issueType": "IncorrectValue"
-    }
+	issue := {
+		"kav": "azure_rm_storageaccount.public_network_access is set to 'Enabled'",
+		"kev": "azure_rm_storageaccount.public_network_access should be set to 'Disabled'",
+		"issueType": "IncorrectValue",
+	}
 } else = issue {
-    val2 == "allow"
-    issue := {
-    	"kav": "azure_rm_storageaccountnetworkAcls.network_acls.default_action is set to 'Allow'",
-    	"kev": "azure_rm_storageaccountnetworkAcls.network_acls.default_action should be set to 'Deny'",
-        "issueType": "IncorrectValue"
-    }
+	val2 == "allow"
+	issue := {
+		"kav": "azure_rm_storageaccountnetworkAcls.network_acls.default_action is set to 'Allow'",
+		"kev": "azure_rm_storageaccountnetworkAcls.network_acls.default_action should be set to 'Deny'",
+		"issueType": "IncorrectValue",
+	}
 }
