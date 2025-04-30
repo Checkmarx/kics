@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "books": {
+      "type": "array",
+      "items": {
+        "$ref": "Book.json"
+      }
+    }
+  }
+}
