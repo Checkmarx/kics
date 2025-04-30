@@ -445,7 +445,6 @@ func getPathFromString(path string) string {
 	return path[:lastIndex]
 }
 
-//nolint:gocyclo
 func (r *Resolver) resolvePath(
 	originalFileContent []byte,
 	fullObject interface{},
@@ -482,7 +481,6 @@ func (r *Resolver) resolvePath(
 		canBeCached := true // track if the file can be cached - resolution broken by circular reference won't be cached
 		// Check if file has already been resolved, if not resolve it and save it for future references
 		if _, ok := resolvingStatus.ResolvedFilesCache[onlyFilePath]; !ok {
-
 			if checkCircularReference(filepath.Clean(filePath), onlyFilePath, &resolvingStatus) {
 				return value, false, false
 			}
