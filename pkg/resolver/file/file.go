@@ -454,7 +454,7 @@ func (r *Resolver) resolvePath(
 ) (_ any, validOpenAPISectionRef, canBeCached bool) {
 	var splitPath []string
 	var obj any
-	sameFileResolve := false
+	var sameFileResolve bool
 
 	if resolvingStatus.CurrentDepth >= resolvingStatus.MaxDepth ||
 		(strings.HasPrefix(value, "#") && !refBool) ||
@@ -478,17 +478,12 @@ func (r *Resolver) resolvePath(
 		if err != nil || !contains(filepath.Ext(onlyFilePath), r.Extension) {
 			return value, false, true
 		}
-		// temporary solution
-		exists, path, onlyFilePath, filename := findFilePath(filepath.Dir(filePath), value, false, r.Extension)
-		if !exists {
-			return value, false, true
-		}
 
 		canBeCached := true // track if the file can be cached - resolution broken by circular reference won't be cached
 		// Check if file has already been resolved, if not resolve it and save it for future references
-		if _, ok := resolvingStatus.ResolvedFilesCache[filename]; !ok {
-			// temporary solution
-			if checkCircularReference(filepath.Clean(filePath), filename, &resolvingStatus) {
+		if _, ok := resolvingStatus.ResolvedFilesCache[onlyFilePath]; !ok {
+
+			if checkCircularReference(filepath.Clean(filePath), onlyFilePath, &resolvingStatus) {
 				return value, false, false
 			}
 
@@ -501,9 +496,9 @@ func (r *Resolver) resolvePath(
 
 		if canBeCached {
 			r.ResolvedFiles[getPathFromString(value)] = model.ResolvedFile{
-				Content:      resolvingStatus.ResolvedFilesCache[filename].fileContent,
+				Content:      resolvingStatus.ResolvedFilesCache[onlyFilePath].fileContent,
 				Path:         path,
-				LinesContent: utils.SplitLines(string(resolvingStatus.ResolvedFilesCache[filename].fileContent)),
+				LinesContent: utils.SplitLines(string(resolvingStatus.ResolvedFilesCache[onlyFilePath].fileContent)),
 			}
 		}
 
