@@ -6,7 +6,7 @@ package testcases
 // The only changes should be the file extensions, file id and file path.
 func init() { //nolint
 	testSample := TestCase{
-		Name: "should perform a valid scan while evaluating if the payload generated is the same for both yaml and json files scanned [E2E-CLI-099]",
+		Name: "should perform a valid scan while evaluating if the payload generated is the same for both yaml and json files [E2E-CLI-099]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-p", "\"/path/e2e/fixtures/samples/openAPIJsonYamlPayloadCompare/openAPIJson/openAPI.json\"",
@@ -21,7 +21,7 @@ func init() { //nolint
 				"E2E_CLI_099_YAML_PAYLOAD.json",
 			},
 		},
-		WantStatus: []int{50},
+		WantStatus: []int{50, 50},
 	}
 
 	Tests = append(Tests, testSample)
