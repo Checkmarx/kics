@@ -1,9 +1,9 @@
 // Package testcases provides end-to-end (E2E) testing functionality for the application.
 package testcases
 
-// E2E-CLI-099 - KICS scan with OpenAPI reference resolution enabled on JSON and YAML files containing circular references
+// E2E-CLI-099 - KICS scan with OpenAPI reference resolution enabled on JSON and YAML files containing circular references.
 // The scan should complete successfully, returning exit code 50, producing equivalent payloads for both formats.
-// The only changes should be the file extensions, file id and file path.
+// The only changes should be the file extensions between payloads.
 func init() { //nolint
 	testSample := TestCase{
 		Name: "should perform a valid scan while evaluating if the payload generated is the same for both yaml and json files [E2E-CLI-099]",
