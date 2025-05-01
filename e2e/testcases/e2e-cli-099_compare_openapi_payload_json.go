@@ -9,10 +9,10 @@ func init() { //nolint
 		Name: "should perform a valid scan while evaluating if the payload generated is the same for both yaml and json files [E2E-CLI-099]",
 		Args: args{
 			Args: []cmdArgs{
-				[]string{"scan", "-p", "\"/path/e2e/fixtures/samples/openAPIJsonYamlPayloadCompare/openAPIJson/openAPI.json\"",
+				[]string{"scan", "-p", "\"/path/e2e/fixtures/samples/openAPI-json-yaml-payload-compare/openAPIJson/openAPI.json\"",
 					"-v", "-d", "/path/e2e/output/E2E_CLI_099_JSON_PAYLOAD.json", "--enable-openapi-refs"},
 				[]string{
-					"scan", "-p", "\"/path/e2e/fixtures/samples/openAPIJsonYamlPayloadCompare/openAPIYaml/openAPI.yaml\"",
+					"scan", "-p", "\"/path/e2e/fixtures/samples/openAPI-json-yaml-payload-compare/openAPIYaml/openAPI.yaml\"",
 					"-v", "-d", "/path/e2e/output/E2E_CLI_099_YAML_PAYLOAD.json", "--enable-openapi-refs",
 				},
 			},
