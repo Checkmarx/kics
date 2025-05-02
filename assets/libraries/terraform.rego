@@ -64,22 +64,45 @@ getProtocolList(protocol) = protocols {
 
 # Checks if any principal are allowed in a policy
 anyPrincipal(statement) {
-	contains(statement.Principal, "*")
+    some p
+    p = get_principal(statement)
+	contains(p, "*")
 }
 
 anyPrincipal(statement) {
-	contains(statement.Principal[_], "*")
+    some p
+    p = get_principal(statement)
+	contains(p[_], "*")
 }
 
 anyPrincipal(statement) {
-	is_string(statement.Principal.AWS)
-	contains(statement.Principal.AWS, "*")
+	some p
+	p = get_principal_aws(statement)
+	is_string(p)
+	contains(p, "*")
 }
 
 anyPrincipal(statement) {
-	is_array(statement.Principal.AWS)
-	some i
-	contains(statement.Principal.AWS[i], "*")
+    some arr
+    arr = get_principal_aws(statement)
+    is_array(arr)
+    some i
+    contains(arr[i], "*")
+}
+
+get_principal(statement) = p {
+	statement.Principal != null
+	p = statement.Principal
+} else = p {
+	statement.Principals != null
+	p = statement.Principals
+}
+
+get_principal_aws(statement) = p {
+	some principal
+	principal = get_principal(statement)
+	principal.AWS != null
+	p := principal.AWS
 }
 
 getSpecInfo(resource) = specInfo { # this one can be also used for the result
@@ -538,7 +561,41 @@ allows_action_from_all_principals(json_policy, action) {
 	statement := st[_]
 	statement.Effect == "Allow"
     anyPrincipal(statement)
-    common_lib.containsOrInArrayContains(statement.Action, action)
+    common_lib.containsOrInArrayContains(get_action(statement), action)
+}
+
+allows_action_from_all_principals_match(json_policy) {
+    policy := common_lib.json_unmarshal(json_policy)
+	st := common_lib.get_statement(policy)
+	statement := st[_]
+	statement.Effect == "Allow"
+	anyPrincipal(statement)
+	action_matches_s3_star(get_action(statement))
+}
+
+get_action(statement) = a {
+  statement.Action != null
+  a := statement.Action
+} else = a {
+  statement.Actions != null
+  a := statement.Actions
+}
+
+action_matches_s3_star(action_value) {
+	is_string(action_value)
+	action_is_s3_star_or_star(action_value)
+}
+
+action_matches_s3_star(action_value) {
+	is_array(action_value)
+	some i
+	action_is_s3_star_or_star(action_value[i])
+}
+
+action_is_s3_star_or_star(action) {
+	action == "*"
+} else {
+	action == "s3:*"
 }
 
 resourceFieldName = {
