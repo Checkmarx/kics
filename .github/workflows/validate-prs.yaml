@@ -50,18 +50,18 @@ jobs:
       with:
         message: |
           Deleting comment, please refresh the page...
-        comment_tag: title_check
+        comment-tag: title_check
         mode: delete
-        GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+        github-token: ${{ secrets.KICS_BOT_PAT }}
     - name: Add comment if title fails
       if: env.TITLE_CHECK_FAILED == 'true'
       uses: thollander/actions-comment-pull-request@e4a76dd2b0a3c2027c3fd84147a67c22ee4c90fa
       with:
-        file_path: .github/scripts/pr-issue-info/title-fail.md
-        comment_tag: title_check
+        file-path: .github/scripts/pr-issue-info/title-fail.md
+        comment-tag: title_check
         mode: recreate
-        create_if_not_exists: true
-        GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+        create-if-not-exists: true
+        github-token: ${{ secrets.KICS_BOT_PAT }}
     - name: Workflow failed
       if: env.TITLE_CHECK_FAILED == 'true'
       run: exit 1
