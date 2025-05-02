@@ -1,3 +1,4 @@
+# test principal type not AWS
 resource "aws_s3_bucket_public_access_block" "negative3" {
   count = length(var.negative3)
 

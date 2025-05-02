@@ -1,3 +1,4 @@
+# test action "s3:Delete*"
 resource "aws_s3_bucket_public_access_block" "positive4" {
   count = length(var.positive4)
 
