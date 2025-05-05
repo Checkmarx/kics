@@ -10,11 +10,6 @@ resource "aws_s3_bucket_public_access_block" "positive2" {
   ignore_public_acls  = false
 }
 
-// comment
-// comment
-// comment
-// comment
-// comment
 resource "aws_s3_bucket_public_access_block" "positive3" {
   bucket = aws_s3_bucket.example.id
 
