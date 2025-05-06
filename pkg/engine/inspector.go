@@ -405,7 +405,7 @@ func (c *Inspector) doRun(ctx *QueryContext) (vulns []model.Vulnerability, err e
 		return nil, errors.Wrap(err, "failed to evaluate query")
 	}
 	if c.enableCoverageReport && cov != nil {
-		module, parseErr := ast.ParseModule(ctx.Query.Metadata.Query, ctx.Query.Metadata.Content)
+		module, parseErr := ast.ParseModuleWithOpts(ctx.Query.Metadata.Query, ctx.Query.Metadata.Content, ast.ParserOptions{RegoVersion: ast.RegoV0})
 		if parseErr != nil {
 			return nil, errors.Wrap(parseErr, "failed to parse coverage module")
 		}
