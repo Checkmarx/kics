@@ -9,5 +9,3 @@ ignore {
     packageValue := packageUse[input.PkgName]
 	input.VulnerabilityID == packageValue[_]
 }
-
-

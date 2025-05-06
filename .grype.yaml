@@ -7,5 +7,6 @@ ignore:
       location: "/usr/bin/terraform"
   - package:
       location: "/usr/local/bin/terraform"
+  - vulnerability: GHSA-6m8w-jc87-6cr7 # Not Exploitable -> we don't run OPA as a server on KICS (opa run --server)
 exclude:
   - './.github/scripts/**' # test files
