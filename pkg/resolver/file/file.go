@@ -102,12 +102,6 @@ func (r *Resolver) Resolve(fileContent []byte, path string, resolvingStatus Reso
 		return fileContent, true
 	}
 
-	if len(resolvingStatus.CurrentResolutionPath) > 1 {
-		// removes any stashed CurrentResolutionPath from previous files
-		// allowing circular references to be resolved at least one time
-		resolvingStatus.CurrentResolutionPath = resolvingStatus.CurrentResolutionPath[:resolvingStatus.CurrentDepth-1]
-	}
-
 	// resolve the paths
 	obj, _, canBeCached := r.walk(fileContent, obj, obj, path, resolvingStatus, false)
 
@@ -188,11 +182,6 @@ func (r *Resolver) yamlResolve(fileContent []byte, path string, resolvingStatus 
 	fullObjectCopy := obj
 
 	// resolve the paths
-	if len(resolvingStatus.CurrentResolutionPath) > 1 {
-		// removes any stashed CurrentResolutionPath from previous files
-		// allowing circular references to be resolved at least one time
-		resolvingStatus.CurrentResolutionPath = resolvingStatus.CurrentResolutionPath[:resolvingStatus.CurrentDepth-1]
-	}
 	obj, _, canBeCached := r.yamlWalk(fileContent, &fullObjectCopy, &obj, path, resolvingStatus, false, false)
 	if obj.Kind == 1 && len(obj.Content) == 1 {
 		obj = *obj.Content[0]
