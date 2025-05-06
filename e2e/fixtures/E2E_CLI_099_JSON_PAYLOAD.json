@@ -83,8 +83,8 @@
 					}
 				}
 			},
-			"file": ".\\e2e\\fixtures\\samples\\compare-openapi-payload-json-yaml\\openAPIJson\\openAPI.json",
-			"id": "1a0ca64e-dc71-41bb-8a0d-c4d4e7056081",
+			"file": "file",
+			"id": "0",
 			"info": {
 				"title": "Complex Cyclic References API",
 				"version": "1.0.0"
