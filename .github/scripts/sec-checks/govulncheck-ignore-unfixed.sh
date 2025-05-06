@@ -18,13 +18,14 @@ IGNORED_IDS=("GO-2025-3660")
 # Convert ignore list to grep pattern (e.g., "GO-2025-3660|GO-2024-1234")
 IGNORE_PATTERN=$(IFS="|"; echo "${IGNORED_IDS[*]}")
 
-# Filter the results: remove blocks starting with an ignored ID
-filtered_output=$(awk -v pattern="$IGNORE_PATTERN" '
+awk -v pattern="$IGNORE_PATTERN" '
   /^Vulnerability #[0-9]+: (GO-[0-9]{4}-[0-9]+)/ {
+    if (block && !skip) print block
     block = $0 "\n"
     match($0, /(GO-[0-9]{4}-[0-9]+)/, m)
     if (m[1] ~ pattern) {
       skip = 1
+      ignored++
     } else {
       skip = 0
     }
@@ -33,16 +34,20 @@ filtered_output=$(awk -v pattern="$IGNORE_PATTERN" '
   {
     if (skip) next
     if (/^$/) {
-      if (!skip && block != "") print block
+      if (block && !skip) print block
       block = ""
     } else {
       block = block $0 "\n"
     }
   }
   END {
-    if (!skip && block != "") print block
+    if (block && !skip) print block
+    print "===IGNORED_COUNT===" ignored > "/tmp/ignored_count.txt"
   }
-' ./results.txt)
+' ./results.txt > /tmp/filtered_output.txt
+
+filtered_output=$(< /tmp/filtered_output.txt)
+ignored_count=$(grep "===IGNORED_COUNT===" /tmp/ignored_count.txt | awk '{print $2}')
 
 # Initialize counters with zero vulnerabilities
 vuln_count=0
@@ -72,8 +77,10 @@ if [[ $vuln_count -eq 0 ]]; then
   fi
 elif [[ $vuln_count -eq $unfixed_count ]]; then
   echo -e "${YELLOW}All found vulnerabilities ($vuln_count) have no fix available."
+  echo -e "${YELLOW}$ignored_count vulnerabilities were ignored."
   exit 0
 else
   echo -e "${RED}Found $vuln_count vulnerabilities, $unfixed_count without available fixes."
+  echo -e "${YELLOW}$ignored_count vulnerabilities were ignored."
   exit 1
 fi
