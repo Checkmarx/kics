@@ -20,9 +20,10 @@ IGNORE_PATTERN=$(IFS="|"; echo "${IGNORED_IDS[*]}")
 
 # Filter the results: remove blocks starting with an ignored ID
 filtered_output=$(awk -v pattern="$IGNORE_PATTERN" '
-  /^Vulnerability ID:/ {
+  /^Vulnerability #[0-9]+: (GO-[0-9]{4}-[0-9]+)/ {
     block = $0 "\n"
-    if ($3 ~ pattern) {
+    match($0, /(GO-[0-9]{4}-[0-9]+)/, m)
+    if (m[1] ~ pattern) {
       skip = 1
     } else {
       skip = 0
