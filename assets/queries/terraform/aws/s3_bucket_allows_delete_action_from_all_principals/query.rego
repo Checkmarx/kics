@@ -46,7 +46,7 @@ CxPolicy[result] {
 	resourceType := pl[r]
 	resource := input.document[i].resource[resourceType][name]
 
-	tf_lib.allows_action_from_all_principals_match(resource.policy)
+	tf_lib.allows_all_s3_actions_from_all_principals_match(resource.policy)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -65,7 +65,7 @@ CxPolicy[result] {
 	resourceType := pl[r]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, resourceType, "policy")
 
-	tf_lib.allows_action_from_all_principals_match(module[keyToCheck])
+	tf_lib.allows_all_s3_actions_from_all_principals_match(module[keyToCheck])
 
 	result := {
 		"documentId": input.document[i].id,

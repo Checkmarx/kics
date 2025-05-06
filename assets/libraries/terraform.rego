@@ -564,7 +564,7 @@ allows_action_from_all_principals(json_policy, action) {
     common_lib.containsOrInArrayContains(get_action(statement), action)
 }
 
-allows_action_from_all_principals_match(json_policy) {
+allows_all_s3_actions_from_all_principals_match(json_policy) {
     policy := common_lib.json_unmarshal(json_policy)
 	st := common_lib.get_statement(policy)
 	statement := st[_]
