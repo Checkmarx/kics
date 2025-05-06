@@ -13,8 +13,7 @@ if [[ ! -f "./results.txt" || -z "$(cat ./results.txt)" ]]; then
 fi
 
 # Define ignored vulnerability IDs
-#IGNORED_IDS=("GO-2025-3660")
-IGNORED_IDS=("GO-9999-9999")
+IGNORED_IDS=("GO-2025-3660")
 
 # Convert ignore list to grep pattern (e.g., "GO-2025-3660|GO-2024-1234")
 IGNORE_PATTERN=$(IFS="|"; echo "${IGNORED_IDS[*]}")
