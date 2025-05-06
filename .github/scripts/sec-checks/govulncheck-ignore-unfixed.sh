@@ -82,7 +82,6 @@ if [[ $vuln_count -eq 0 ]]; then
     echo -e "${YELLOW}All vulnerabilities were ignored (ignored: $IGNORE_PATTERN)."
     exit 1
   fi
-  exit 0
 elif [[ $vuln_count -eq $unfixed_count ]]; then
   echo -e "${YELLOW}All found vulnerabilities ($vuln_count) have no fix available."
   ((ignored_count > 0)) && echo -e "${YELLOW}$ignored_count vulnerabilities were ignored."
