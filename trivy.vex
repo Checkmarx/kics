@@ -12,7 +12,7 @@
       "timestamp": "2025-05-06T11:40:15.050414+01:00",
       "products": [
         {
-          "@id": "pkg:golang/github.com/open-policy-agent/opa@v0.68.0"
+          "@id": "pkg:github.com/open-policy-agent/opa@v0.68.0"
         }
       ],
       "status": "not_affected",

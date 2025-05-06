@@ -1,0 +1,2 @@
+# Ignore misconfigurations
+CVE-2025-46569 exp:2025-07-01 # github.com/open-policy-agent/opa v0.68.0 -> Not Exploitable, we don't run OPA as a server on KICS (opa run --server)
