@@ -77,8 +77,10 @@ done <<< "$filtered_output"
 if [[ $vuln_count -eq 0 ]]; then
   if grep -q "No vulnerabilities found." <<< "$filtered_output"; then
     echo -e "${GREEN}No vulnerabilities found."
+    exit 0
   else
     echo -e "${YELLOW}All vulnerabilities were ignored (ignored: $IGNORE_PATTERN)."
+    exit 1
   fi
   exit 0
 elif [[ $vuln_count -eq $unfixed_count ]]; then
