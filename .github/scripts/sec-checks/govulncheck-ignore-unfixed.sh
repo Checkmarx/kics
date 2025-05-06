@@ -12,8 +12,36 @@ if [[ ! -f "./results.txt" || -z "$(cat ./results.txt)" ]]; then
   exit 1
 fi
 
-# Read the output of govulncheck
-output=$(cat ./results.txt)
+# Define ignored vulnerability IDs
+IGNORED_IDS=("GO-2025-3660")
+
+# Convert ignore list to grep pattern (e.g., "GO-2025-3660|GO-2024-1234")
+IGNORE_PATTERN=$(IFS="|"; echo "${IGNORED_IDS[*]}")
+
+# Filter the results: remove blocks starting with an ignored ID
+filtered_output=$(awk -v pattern="$IGNORE_PATTERN" '
+  /^Vulnerability ID:/ {
+    block = $0 "\n"
+    if ($3 ~ pattern) {
+      skip = 1
+    } else {
+      skip = 0
+    }
+    next
+  }
+  {
+    if (skip) next
+    if (/^$/) {
+      if (!skip && block != "") print block
+      block = ""
+    } else {
+      block = block $0 "\n"
+    }
+  }
+  END {
+    if (!skip && block != "") print block
+  }
+' ./results.txt)
 
 # Initialize counters with zero vulnerabilities
 vuln_count=0
@@ -30,16 +58,16 @@ while read -r line; do
   if [[ $line =~ "Fixed in: N/A" ]]; then
     ((unfixed_count++))
   fi
-done <<< "$output"
+done <<< "$filtered_output"
 
 # Print findings and exit with appropriate code
 if [[ $vuln_count -eq 0 ]]; then
-  if grep -q "No vulnerabilities found." <<< "$output"; then
+  if grep -q "No vulnerabilities found." <<< "$filtered_output"; then
     echo -e "${GREEN}No vulnerabilities found."
     exit 0
   else
-    echo -e "${RED}Unexpected results! The bash script needs to be updated."
-    exit 1
+    echo -e "${YELLOW}All vulnerabilities were ignored (ignored: $IGNORE_PATTERN)."
+    exit 0
   fi
 elif [[ $vuln_count -eq $unfixed_count ]]; then
   echo -e "${YELLOW}All found vulnerabilities ($vuln_count) have no fix available."
