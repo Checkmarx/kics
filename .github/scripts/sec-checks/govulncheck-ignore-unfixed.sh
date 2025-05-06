@@ -18,43 +18,50 @@ IGNORED_IDS=("GO-2025-3660")
 # Convert ignore list to grep pattern (e.g., "GO-2025-3660|GO-2024-1234")
 IGNORE_PATTERN=$(IFS="|"; echo "${IGNORED_IDS[*]}")
 
-awk -v pattern="$IGNORE_PATTERN" '
-  /^Vulnerability #[0-9]+: (GO-[0-9]{4}-[0-9]+)/ {
-    if (block && !skip) print block
-    block = $0 "\n"
-    match($0, /(GO-[0-9]{4}-[0-9]+)/, m)
-    if (m[1] ~ pattern) {
-      skip = 1
-      ignored++
-    } else {
-      skip = 0
-    }
-    next
-  }
-  {
-    if (skip) next
-    if (/^$/) {
-      if (block && !skip) print block
-      block = ""
-    } else {
-      block = block $0 "\n"
-    }
-  }
-  END {
-    if (block && !skip) print block
-    print "===IGNORED_COUNT===" ignored > "/tmp/ignored_count.txt"
-  }
-' ./results.txt > /tmp/filtered_output.txt
+# Initialize variables
+filtered_output=""
+block=""
+skip=0
+ignored_count=0
 
-filtered_output=$(< /tmp/filtered_output.txt)
-ignored_count=$(grep "===IGNORED_COUNT===" /tmp/ignored_count.txt | awk '{print $2}')
+# Process results.txt line by line
+while IFS= read -r line || [[ -n $line ]]; do
+  if [[ $line =~ ^Vulnerability\ #[0-9]+:\ (GO-[0-9]{4}-[0-9]+) ]]; then
+    # If we already have a block and it wasn’t skipped, keep it
+    if [[ -n $block && $skip -eq 0 ]]; then
+      filtered_output+="$block"$'\n'
+    fi
+
+    block="$line"$'\n'
+    vuln_id="${BASH_REMATCH[1]}"
+
+    if [[ $vuln_id =~ $IGNORE_PATTERN ]]; then
+      skip=1
+      ((ignored_count++))
+    else
+      skip=0
+    fi
+  elif [[ -z $line ]]; then
+    if [[ -n $block && $skip -eq 0 ]]; then
+      filtered_output+="$block"$'\n'
+    fi
+    block=""
+  else
+    block+="$line"$'\n'
+  fi
+done < ./results.txt
+
+# Add the last block if not skipped
+if [[ -n $block && $skip -eq 0 ]]; then
+  filtered_output+="$block"$'\n'
+fi
 
 # Initialize counters with zero vulnerabilities
 vuln_count=0
 unfixed_count=0
 
 # Loop through each line in the output
-while read -r line; do
+while IFS= read -r line; do
   # Check for "Found in:" and increment vulnerability count
   if [[ $line =~ "Found in:" ]]; then
     ((vuln_count++))
@@ -70,17 +77,16 @@ done <<< "$filtered_output"
 if [[ $vuln_count -eq 0 ]]; then
   if grep -q "No vulnerabilities found." <<< "$filtered_output"; then
     echo -e "${GREEN}No vulnerabilities found."
-    exit 0
   else
     echo -e "${YELLOW}All vulnerabilities were ignored (ignored: $IGNORE_PATTERN)."
-    exit 0
   fi
+  exit 0
 elif [[ $vuln_count -eq $unfixed_count ]]; then
   echo -e "${YELLOW}All found vulnerabilities ($vuln_count) have no fix available."
-  echo -e "${YELLOW}$ignored_count vulnerabilities were ignored."
+  ((ignored_count > 0)) && echo -e "${YELLOW}$ignored_count vulnerabilities were ignored."
   exit 0
 else
   echo -e "${RED}Found $vuln_count vulnerabilities, $unfixed_count without available fixes."
-  echo -e "${YELLOW}$ignored_count vulnerabilities were ignored."
+  ((ignored_count > 0)) && echo -e "${YELLOW}$ignored_count vulnerabilities were ignored."
   exit 1
 fi
