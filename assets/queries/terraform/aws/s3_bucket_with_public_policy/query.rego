@@ -56,40 +56,40 @@ CxPolicy[result] {
 
 # aws_s3_account_public_access_block with block_public_policy set to false and aws_s3_bucket_public_access_block doesn't exist
 CxPolicy[result] {
-    pubACL := input.document[i].resource.aws_s3_account_public_access_block[name]
+    pubACL := input.document[i].resource.aws_s3_account_public_access_block[account_name]
     pubACL.block_public_policy == false
 
-    not input.document[i].resource.aws_s3_bucket_public_access_block[name]
+    not input.document[i].resource.aws_s3_bucket_public_access_block[bucket_name]
 
     result := {
         "documentId": input.document[i].id,
         "resourceType": "aws_s3_account_public_access_block",
-        "resourceName": tf_lib.get_resource_name(pubACL, name),
-        "searchKey": sprintf("aws_s3_account_public_access_block[%s].block_public_policy", [name]),
+        "resourceName": tf_lib.get_resource_name(pubACL, account_name),
+        "searchKey": sprintf("aws_s3_account_public_access_block[%s].block_public_policy", [account_name]),
         "issueType": "IncorrectValue",
         "keyExpectedValue": "'block_public_policy' should equal 'true'",
         "keyActualValue": "'block_public_policy' is equal 'false'",
-        "searchLine": common_lib.build_search_line(["resource", "aws_s3_account_public_access_block", name, "block_public_policy"], []),
+        "searchLine": common_lib.build_search_line(["resource", "aws_s3_account_public_access_block", account_name, "block_public_policy"], []),
     }
 }
 
 # aws_s3_account_public_access_block with block_public_policy set to false and aws_s3_bucket_public_access_block is false
 CxPolicy[result] {
-	pubACL := input.document[i].resource.aws_s3_account_public_access_block[name]
+	pubACL := input.document[i].resource.aws_s3_account_public_access_block[account_name]
 	pubACL.block_public_policy == false
 
-    pubBucket := input.document[i].resource.aws_s3_bucket_public_access_block[name]
+    pubBucket := input.document[i].resource.aws_s3_bucket_public_access_block[bucket_name]
     pubBucket.block_public_policy == false
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_s3_account_public_access_block",
-		"resourceName": tf_lib.get_resource_name(pubACL, name),
-		"searchKey": sprintf("aws_s3_account_public_access_block[%s].block_public_policy", [name]),
+		"resourceName": tf_lib.get_resource_name(pubACL, account_name),
+		"searchKey": sprintf("aws_s3_account_public_access_block[%s].block_public_policy", [account_name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'block_public_policy' should equal 'true'",
 		"keyActualValue": "'block_public_policy' is equal 'false'",
-		"searchLine": common_lib.build_search_line(["resource", "aws_s3_account_public_access_block", name, "block_public_policy"], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_s3_account_public_access_block", account_name, "block_public_policy"], []),
 	}
 }
 
