@@ -2583,13 +2583,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="50">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="49">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="50">total += v
+                <span class="cov9" title="49">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2614,14 +2614,14 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
         }
 
         <span class="cov6" title="10">metric := value / formatter
-        if math.IsNaN(metric) </span><span class="cov3" title="3">{
+        if math.IsNaN(metric) </span><span class="cov2" title="2">{
                 metric = 0
         }</span>
 
@@ -5693,7 +5693,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -5920,12 +5920,12 @@ import (
         "github.com/Checkmarx/kics/v2/pkg/detector/helm"
         "github.com/Checkmarx/kics/v2/pkg/engine/source"
         "github.com/Checkmarx/kics/v2/pkg/model"
-        "github.com/open-policy-agent/opa/ast"
-        "github.com/open-policy-agent/opa/cover"
-        "github.com/open-policy-agent/opa/rego"
-        "github.com/open-policy-agent/opa/storage/inmem"
-        "github.com/open-policy-agent/opa/topdown"
-        "github.com/open-policy-agent/opa/util"
+        "github.com/open-policy-agent/opa/v1/ast"
+        "github.com/open-policy-agent/opa/v1/cover"
+        "github.com/open-policy-agent/opa/v1/rego"
+        "github.com/open-policy-agent/opa/v1/storage/inmem"
+        "github.com/open-policy-agent/opa/v1/topdown"
+        "github.com/open-policy-agent/opa/v1/util"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
 )
@@ -6307,7 +6307,11 @@ func (c *Inspector) doRun(ctx *QueryContext) (vulns []model.Vulnerability, err e
                 <span class="cov0" title="0">return nil, errors.Wrap(err, "failed to evaluate query")</span>
         }
         <span class="cov2" title="2">if c.enableCoverageReport &amp;&amp; cov != nil </span><span class="cov2" title="2">{
-                module, parseErr := ast.ParseModule(ctx.Query.Metadata.Query, ctx.Query.Metadata.Content)
+                module, parseErr := ast.ParseModuleWithOpts(
+                        ctx.Query.Metadata.Query,
+                        ctx.Query.Metadata.Content,
+                        ast.ParserOptions{RegoVersion: ast.RegoV0},
+                )
                 if parseErr != nil </span><span class="cov0" title="0">{
                         return nil, errors.Wrap(parseErr, "failed to parse coverage module")
                 }</span>
@@ -6517,6 +6521,7 @@ func (q QueryLoader) LoadQuery(ctx context.Context, query *model.QueryMetadata) 
                         rego.Module("Common", q.commonLibrary.LibraryCode),
                         rego.Module("Generic", platformGeneralQuery.LibraryCode),
                         rego.Module(query.Query, query.Content),
+                        rego.SetRegoVersion(ast.RegoV0),
                         rego.Store(store),
                         rego.UnsafeBuiltins(unsafeRegoFunctions),
                 ).PrepareForEval(ctx)
@@ -8381,7 +8386,7 @@ import (
         "strings"
 
         "github.com/Checkmarx/kics/v2/pkg/model"
-        "github.com/open-policy-agent/opa/ast"
+        "github.com/open-policy-agent/opa/v1/ast"
         "github.com/pkg/errors"
         "github.com/rs/zerolog/log"
 )
@@ -8426,7 +8431,7 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) <span class="
         if customLib == "" </span><span class="cov6" title="8">{
                 return embeddedLib, nil
         }</span>
-        <span class="cov4" title="5">statements, _, err := ast.NewParser().WithReader(strings.NewReader(customLib)).Parse()
+        <span class="cov4" title="5">statements, _, err := ast.NewParser().WithRegoVersion(ast.RegoV0).WithReader(strings.NewReader(customLib)).Parse()
         if err != nil </span><span class="cov1" title="1">{
                 log.Err(err).Msg("Could not parse custom library")
                 return "", err
@@ -8444,7 +8449,7 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) <span class="
                         }</span>
                 }
         }
-        <span class="cov4" title="4">statements, _, err = ast.NewParser().WithReader(strings.NewReader(embeddedLib)).Parse()
+        <span class="cov4" title="4">statements, _, err = ast.NewParser().WithRegoVersion(ast.RegoV0).WithReader(strings.NewReader(embeddedLib)).Parse()
         if err != nil </span><span class="cov1" title="1">{
                 log.Err(err).Msg("Could not parse default library")
                 return "", err
@@ -20298,12 +20303,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="212">{
+        for variable := range s.varList </span><span class="cov7" title="219">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="615">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="606">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -28004,7 +28009,7 @@ import (
         "github.com/Checkmarx/kics/v2/pkg/minified"
         "github.com/Checkmarx/kics/v2/pkg/model"
         "github.com/Checkmarx/kics/v2/pkg/scan"
-        "github.com/open-policy-agent/opa/topdown"
+        "github.com/open-policy-agent/opa/v1/topdown"
 
         "github.com/Checkmarx/kics/v2/internal/console/flags"
         "github.com/Checkmarx/kics/v2/internal/tracker"
@@ -28017,7 +28022,7 @@ import (
         terraformParser "github.com/Checkmarx/kics/v2/pkg/parser/terraform"
         yamlParser "github.com/Checkmarx/kics/v2/pkg/parser/yaml"
         "github.com/Checkmarx/kics/v2/pkg/utils"
-        "github.com/open-policy-agent/opa/rego"
+        "github.com/open-policy-agent/opa/v1/rego"
         "github.com/rs/zerolog/log"
 )
 
