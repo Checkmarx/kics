@@ -59,7 +59,7 @@ CxPolicy[result] {
     pubACL := input.document[i].resource.aws_s3_account_public_access_block[account_name]
     pubACL.block_public_policy == false
 
-    not input.document[i].resource.aws_s3_bucket_public_access_block[bucket_name]
+    not input.document[i].resource.aws_s3_bucket_public_access_block
 
     result := {
         "documentId": input.document[i].id,
