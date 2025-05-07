@@ -217,14 +217,11 @@ func TestResolver_Resolve_Ansible_Vars(t *testing.T) {
 				path: filepath.ToSlash("test/fixtures/resolve_ansible_vars_with_vars_folder/main.yml"),
 			},
 			resolvingStatus: ResolvingStatus{
-				CurrentDepth:       2,
-				MaxDepth:           15,
-				ResolvedFilesCache: make(map[string]ResolvedFile),
-				CurrentResolutionPath: []string{
-					"test\\fixtures\\resolve_ansible_vars_with_vars_folder\\main.yml",
-					"test\\fixtures\\resolve_ansible_vars_with_vars_folder\\task.yml",
-				},
-				ResolveReferences: true,
+				CurrentDepth:          2,
+				MaxDepth:              15,
+				ResolvedFilesCache:    make(map[string]ResolvedFile),
+				CurrentResolutionPath: []string{},
+				ResolveReferences:     true,
 			},
 			want: []byte(
 				`-hosts:localhosttasks:-name:Includetask.ymlansible.builtin.include_tasks:-name:Addvariablesansible.builtin.include_vars:world:"World"-name:Printvariablefrommain.ymldebug:msg:"Hello{{world}}"-name:Includetask.ymlagainansible.builtin.include_tasks:-name:Addvariablesansible.builtin.include_vars:world:"World"-name:Printvariablefrommain.ymldebug:msg:"Hello{{world}}"`,
@@ -239,14 +236,11 @@ func TestResolver_Resolve_Ansible_Vars(t *testing.T) {
 				path: filepath.ToSlash("test/fixtures/resolve_ansible_vars_without_vars_folder/main.yml"),
 			},
 			resolvingStatus: ResolvingStatus{
-				CurrentDepth:       2,
-				MaxDepth:           15,
-				ResolvedFilesCache: make(map[string]ResolvedFile),
-				CurrentResolutionPath: []string{
-					"test\\fixtures\\resolve_ansible_vars_without_vars_folder\\main.yml",
-					"test\\fixtures\\resolve_ansible_vars_without_vars_folder\\task.yml",
-				},
-				ResolveReferences: true,
+				CurrentDepth:          2,
+				MaxDepth:              15,
+				ResolvedFilesCache:    make(map[string]ResolvedFile),
+				CurrentResolutionPath: []string{},
+				ResolveReferences:     true,
 			},
 			want: []byte(
 				`-hosts:localhosttasks:-name:Includetask.ymlansible.builtin.include_tasks:-name:Addvariablesinclude_vars:world:"World"-name:Printvariablefrommain.ymldebug:msg:"Hello{{world}}"-name:Includetask.ymlagainansible.builtin.include_tasks:-name:Addvariablesinclude_vars:world:"World"-name:Printvariablefrommain.ymldebug:msg:"Hello{{world}}"`,
@@ -268,7 +262,7 @@ func TestResolver_Resolve_Ansible_Vars(t *testing.T) {
 			}
 
 			if got, _ := r.Resolve(cont, tt.args.path, tt.resolvingStatus); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
-				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
+				t.Errorf("Resolve() = %v\nwant = %v", prepareString(string(got)), prepareString(string(tt.want)))
 			}
 		})
 	}
