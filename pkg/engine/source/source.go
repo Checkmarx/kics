@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/open-policy-agent/opa/ast"
+	"github.com/open-policy-agent/opa/v1/ast"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -51,7 +51,7 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) {
 	if customLib == "" {
 		return embeddedLib, nil
 	}
-	statements, _, err := ast.NewParser().WithReader(strings.NewReader(customLib)).Parse()
+	statements, _, err := ast.NewParser().WithRegoVersion(ast.RegoV0).WithReader(strings.NewReader(customLib)).Parse()
 	if err != nil {
 		log.Err(err).Msg("Could not parse custom library")
 		return "", err
@@ -69,7 +69,7 @@ func mergeLibraries(customLib, embeddedLib string) (string, error) {
 			}
 		}
 	}
-	statements, _, err = ast.NewParser().WithReader(strings.NewReader(embeddedLib)).Parse()
+	statements, _, err = ast.NewParser().WithRegoVersion(ast.RegoV0).WithReader(strings.NewReader(embeddedLib)).Parse()
 	if err != nil {
 		log.Err(err).Msg("Could not parse default library")
 		return "", err
