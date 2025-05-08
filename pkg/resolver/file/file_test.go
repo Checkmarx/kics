@@ -262,7 +262,7 @@ func TestResolver_Resolve_Ansible_Vars(t *testing.T) {
 			}
 
 			if got, _ := r.Resolve(cont, tt.args.path, tt.resolvingStatus); !reflect.DeepEqual(prepareString(string(got)), prepareString(string(tt.want))) {
-				t.Errorf("Resolve() = %v\nwant = %v", prepareString(string(got)), prepareString(string(tt.want)))
+				t.Errorf("Resolve() = %v, want = %v", prepareString(string(got)), prepareString(string(tt.want)))
 			}
 		})
 	}
