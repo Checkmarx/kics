@@ -438,6 +438,7 @@ func getPathFromString(path string) string {
 	return path[:lastIndex]
 }
 
+//nolint:gocyclo
 func (r *Resolver) resolvePath(
 	originalFileContent []byte,
 	fullObject interface{},
