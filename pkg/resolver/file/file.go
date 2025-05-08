@@ -334,6 +334,10 @@ func (r *Resolver) resolveYamlPath(
 			return *obj, false, canBeCached
 		}
 		if !strings.Contains(path, "#") { // is not OpenAPI section
+			// Clear ResolvedFilesCache to force re-resolution of all files
+			for key := range resolvingStatus.ResolvedFilesCache {
+				delete(resolvingStatus.ResolvedFilesCache, key)
+			}
 			return *obj, true, canBeCached
 		}
 	}
@@ -493,6 +497,10 @@ func (r *Resolver) resolvePath(
 
 		// Cloudformation !Ref check
 		if strings.Contains(strings.ToLower(value), "!ref") || len(splitPath) == 1 {
+			// Clear ResolvedFilesCache to force re-resolution of all files
+			for key := range resolvingStatus.ResolvedFilesCache {
+				delete(resolvingStatus.ResolvedFilesCache, key)
+			}
 			return obj, false, canBeCached
 		}
 	}

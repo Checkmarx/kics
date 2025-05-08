@@ -61,7 +61,25 @@
 								"RefMetadata": {
 									"$ref": "Author.yaml",
 									"alone": true
-								}
+								},
+								"properties": {
+									"books": {
+										"items": {
+											"RefMetadata": {
+												"$ref": "Book.yaml",
+												"alone": true
+											}
+										},
+										"type": "array"
+									},
+									"id": {
+										"type": "integer"
+									},
+									"name": {
+										"type": "string"
+									}
+								},
+								"type": "object"
 							},
 							"books": {
 								"items": {
