@@ -1,0 +1,11 @@
+{
+  "id": "c9df4f2a-f7c1-40d3-8386-d451b80abe36",
+  "queryName": "Backup Vault Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Amazon Backup Vault does not have encryption enabled. It shall be provided a key to encrypt the backups, preventing access from unauthorized users.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/backup_vault#kms_key_arn",
+  "platform": "Terraform",
+  "descriptionID": "abbee957",
+  "cloudProvider": "aws"
+}
