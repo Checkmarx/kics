@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-# line 8, defines API of HTTP protocol and there's no AccessLogSettings in Stage (line 11)
+# line 8, defines API of WEBSOCKET protocol but there's AccessLogSettings in Stage (line 11) already defined
 Resources:
   ApiGatewayRestApi:
     Type: AWS::ApiGatewayV2::Api
@@ -13,3 +13,6 @@ Resources:
       Description: Lambda API Stage v0
       ApiId: !Ref ApiGatewayRestApi
       StageName: "v0"
+      AccessLogSettings: 
+        DestinationArn: "dest"
+        Format: "format"
