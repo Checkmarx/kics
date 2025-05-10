@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "SSM Parameter Encrypted With Default Key",
+    "severity": "INFO",
+    "line": 12,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "SSM Parameter Encrypted With Default Key",
+    "severity": "INFO",
+    "line": 8,
+    "fileName": "positive2.yaml"
+  }
+]
