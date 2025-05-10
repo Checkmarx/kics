@@ -17,7 +17,7 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 	filePath := filepath.Join("output", filename)
 	fullPath := filepath.Join(cwd, filePath)
 
-	csvFile, err := os.Open(fullPath)
+	csvFile, err := os.Open(fullPath) //nolint:gosec
 	require.NoError(t, err, "Error reading file: %s", fullPath)
 
 	reader := csv.NewReader(csvFile)

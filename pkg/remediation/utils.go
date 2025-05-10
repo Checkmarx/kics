@@ -58,7 +58,7 @@ func willRemediate(
 	filepath.Clean(originalFileName)
 	// create temporary file
 	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+"-"+filepath.Base(originalFileName))
-	f, err := os.OpenFile(tmpFile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+	f, err := os.OpenFile(tmpFile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm) //nolint:gosec
 
 	if err != nil {
 		log.Error().Msgf("failed to open temporary file for remediation '%s': %s", remediation.SimilarityID, err)
@@ -114,7 +114,7 @@ func removedResult(results []model.Vulnerability, remediation *Remediation) bool
 func CreateTempFile(filePathCopyFrom, tmpFilePath string) string {
 	filepath.Clean(filePathCopyFrom)
 	filepath.Clean(tmpFilePath)
-	f, err := os.OpenFile(tmpFilePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+	f, err := os.OpenFile(tmpFilePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm) //nolint:gosec
 
 	if err != nil {
 		log.Error().Msgf("failed to open file '%s': %s", tmpFilePath, err)

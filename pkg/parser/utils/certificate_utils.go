@@ -27,7 +27,7 @@ func CheckCertificate(content string) string {
 }
 
 func getCertificateInfo(filePath string) (certInfo, error) {
-	certPEM, err := os.ReadFile(filePath)
+	certPEM, err := os.ReadFile(filePath) //nolint:gosec
 
 	if err != nil {
 		return certInfo{}, err

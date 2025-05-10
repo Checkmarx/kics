@@ -13,12 +13,14 @@ import (
 type Parser struct {
 }
 
-const kicsPrefix = "_kics_"
-const kicsLine = kicsPrefix + "line"
-const kicsLines = kicsPrefix + "lines"
-const kicsArray = kicsPrefix + "arr"
-
-const CloseParenthesis = "')"
+const (
+	kicsPrefix       = "_kics_"
+	kicsLine         = kicsPrefix + "line"
+	kicsLines        = kicsPrefix + "lines"
+	kicsArray        = kicsPrefix + "arr"
+	CloseParenthesis = "')"
+	CommaWithSpace   = ", "
+)
 
 type BicepVisitor struct {
 	parser.BasebicepVisitor
@@ -265,17 +267,16 @@ func parseDecorators(decorators []parser.IDecoratorContext, s *BicepVisitor) map
 			return map[string]interface{}{}
 		}
 		for name, values := range decorator {
-			if name == "description" {
-				if len(values) > 0 {
-					metadata := map[string]interface{}{}
-					metadata["description"] = values[0]
-					decoratorsMap["metadata"] = metadata
+			switch name {
+			case "description":
+				decoratorsMap["metadata"] = map[string]interface{}{
+					"description": values[0],
 				}
-			} else if name == "maxLength" || name == "minLength" || name == "minValue" || name == "maxValue" {
-				if len(values) > 0 {
-					decoratorsMap[name] = values[0]
-				}
-			} else {
+
+			case "maxLength", "minLength", "minValue", "maxValue":
+				decoratorsMap[name] = values[0]
+
+			default:
 				decoratorsMap[name] = values
 			}
 		}
@@ -312,18 +313,20 @@ func (s *BicepVisitor) VisitParameterDecl(ctx *parser.ParameterDeclContext) inte
 
 	decoratorsMap := parseDecorators(ctx.AllDecorator(), s)
 	for name, values := range decoratorsMap {
-		if name == "secure" {
-			if param["type"] == "string" {
+		switch name {
+		case "secure":
+			switch param["type"] {
+			case "string":
 				param["type"] = "secureString"
-			} else if param["type"] == "object" {
+			case "object":
 				param["type"] = "secureObject"
 			}
-		} else {
-			if name == "allowed" {
-				param["allowedValues"] = values
-			} else {
-				param[name] = values
-			}
+
+		case "allowed":
+			param["allowedValues"] = values
+
+		default:
+			param[name] = values
 		}
 	}
 
@@ -455,7 +458,7 @@ func parseFunctionCall(functionData map[string][]interface{}) string {
 			}
 
 			if index < len(argumentList)-1 {
-				stringifiedFunctionCall += ", "
+				stringifiedFunctionCall += CommaWithSpace
 			}
 		}
 		stringifiedFunctionCall += ")"
@@ -600,7 +603,7 @@ func buildComplexInterp(interpStringValues []interface{}) string {
 					}
 					resStr += stringArg
 					if idx < len(argumentList)-1 {
-						resStr += ", "
+						resStr += CommaWithSpace
 					}
 				}
 

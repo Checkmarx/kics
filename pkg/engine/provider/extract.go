@@ -222,7 +222,11 @@ func isEncrypted(sourceFile string) bool {
 		log.Error().Msgf("failed to open %s: %v", sourceFile, err)
 		return false
 	}
-	defer zipFile.Close()
+	defer func() {
+		if errClose := zipFile.Close(); errClose != nil {
+			log.Error().Err(errClose).Msg("Error closing zip file")
+		}
+	}()
 	for _, file := range zipFile.File {
 		if file.IsEncrypted() {
 			log.Error().Msgf("file %s is encrypted", sourceFile)

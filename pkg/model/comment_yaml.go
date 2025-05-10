@@ -44,7 +44,7 @@ func (i *Ignore) Reset() {
 func ignoreCommentsYAML(node *yaml.Node) {
 	linesIgnore := make([]int, 0)
 	if node.HeadComment != "" {
-		// Squence Node - Head Comment comes in root node
+		// Sequence Node - Head Comment comes in root node
 		linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&node.HeadComment), 0, node, node.Kind, false)...)
 		NewIgnore.build(linesIgnore)
 		return
@@ -87,10 +87,8 @@ func getSeqLastLine(content *yaml.Node) int {
 }
 
 func getFootComments(comment string, content *yaml.Node, position, commentsNumber int) (linesIgnore []int) {
-	for { // get the right position where the comment is a foot comment
-		if content.Content[position].FootComment == comment {
-			break
-		}
+	// get the right position where the comment is a foot comment
+	for content.Content[position].FootComment == comment {
 		position--
 	}
 

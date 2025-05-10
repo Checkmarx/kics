@@ -37,18 +37,18 @@ jobs:
       with:
         message: |
           Deleting comment...
-        comment_tag: apache_license
+        comment-tag: apache_license
         mode: delete
-        GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+        github-token: ${{ secrets.KICS_BOT_PAT }}
     - name: Add comment if no license
       if: env.CHECK_FAILED == 'true'
       uses: thollander/actions-comment-pull-request@e4a76dd2b0a3c2027c3fd84147a67c22ee4c90fa
       with:
-        filePath: .github/scripts/pr-issue-info/apache-check.md
-        comment_tag: apache_license
+        file-path: .github/scripts/pr-issue-info/apache-check.md
+        comment-tag: apache_license
         mode: recreate
-        create_if_not_exists: true
-        GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+        create-if-not-exists: true
+        github-token: ${{ secrets.KICS_BOT_PAT }}
     - name: Workflow failed
       if: env.CHECK_FAILED == 'true'
       run: exit 1

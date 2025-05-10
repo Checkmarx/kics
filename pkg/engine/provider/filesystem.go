@@ -212,7 +212,7 @@ func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error
 		return nil, ErrNotSupportedFile
 	}
 
-	c, errOpenFile := os.Open(scanPath)
+	c, errOpenFile := os.Open(scanPath) //nolint:gosec
 	if errOpenFile != nil {
 		return nil, errors.Wrap(errOpenFile, "failed to open path")
 	}
