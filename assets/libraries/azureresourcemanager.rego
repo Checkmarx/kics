@@ -4,16 +4,16 @@ package generic.azureresourcemanager
 get_sg_info(value) = typeInfo {
     value.type == "Microsoft.Network/networkSecurityGroups/securityRules"
 	typeInfo := {
-		"type": value.type, 
-		"properties": value.properties, 
+		"type": value.type,
+		"properties": value.properties,
 		"path": "resources.type={{Microsoft.Network/networkSecurityGroups/securityRules}}.properties",
 		"sl": ["properties"]
-   }   
+   }
 } else = typeInfo {
 	value.type == "securityRules"
 	typeInfo := {
-		"type": value.type, 
-		"properties": value.properties, 
+		"type": value.type,
+		"properties": value.properties,
 		"path": "resources.type={{securityRules}}.properties",
 		"sl": ["properties"]
 	}
@@ -58,14 +58,12 @@ get_children(doc, parent, path) = childArr {
 	childArr := array.concat(resourceArr, outerArr)
 }
 
-get_outer_children(doc, nameParent) = outerArr {
-	outerArr := [x |
-		[path, value] := walk(doc)
-		startswith(value.name, nameParent)
-		value.name != nameParent
-		x := {"value": value, "path": path}
-	]
-}
+get_outer_children(doc, nameParent) := [x |
+    [path, value] := walk(doc)
+    startswith(value.name, nameParent)
+    value.name != nameParent
+    x := {"value": value, "path": path}
+]
 
 getDefaultValueFromParametersIfPresent(doc, valueToCheck) = [value, propertyType] {
 	parameterName := isParameterReference(valueToCheck)

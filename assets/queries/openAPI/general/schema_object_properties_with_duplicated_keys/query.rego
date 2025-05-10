@@ -73,15 +73,14 @@ check_properties(value, properties, m) {
 	count(set) > 0
 }
 
-get_properties(schema) = properties {
-	properties := {x |
-		[path, value] := walk(schema)
-		prop := value.properties
-		filter_paths(path)
-		prop[name]
-		x := {"path": path, "value": name}
-	}
+get_properties(schema) := {x |
+    [path, value] := walk(schema)
+    prop := value.properties
+    filter_paths(path)
+    prop[name]
+    x := {"path": path, "value": name}
 }
+
 
 filter_paths(path) {
 	count(path) == 0

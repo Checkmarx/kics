@@ -1,9 +1,13 @@
 package Cx
 
-listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress", "Configuration", "Service", "Revision", "ContainerSource"]
-
 import data.generic.common as common_lib
 import data.generic.k8s as k8s_lib
+
+listKinds := [
+    "Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob",
+    "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress", "Configuration",
+    "Service", "Revision", "ContainerSource"
+]
 
 CxPolicy[result] {
 	document := input.document[i]
