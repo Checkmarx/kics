@@ -1,0 +1,3 @@
+paths:
+  exclude:
+    - "assets/queries/common/passwords_and_secrets/test/**"
