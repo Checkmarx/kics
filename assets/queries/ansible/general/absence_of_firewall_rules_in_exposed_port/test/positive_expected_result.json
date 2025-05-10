@@ -1,0 +1,8 @@
+[
+	{
+		"queryName": "Absence of Firewall Rules in Exposed Port",
+		"severity": "MEDIUM",
+		"line": 6,
+		"fileName": "positive1.yaml"
+	}
+]
