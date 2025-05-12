@@ -129,11 +129,16 @@ func (r *Resolver) walk(
 		}
 		return value, false, true
 	case []any:
+		canBeCachedAll := true
 		for i, v := range typedValue {
-			typedValue[i], _, canBeCached = r.walk(
+			var itemCacheable bool
+			typedValue[i], _, itemCacheable = r.walk(
 				originalFileContent, fullObject, v, path, resolvingStatus, refBool)
+			if !itemCacheable {
+				canBeCachedAll = false
+			}
 		}
-		return typedValue, false, canBeCached
+		return typedValue, false, canBeCachedAll
 	case map[string]any:
 		return r.handleMap(
 			originalFileContent, fullObject, typedValue, path, resolvingStatus)
@@ -149,9 +154,15 @@ func (r *Resolver) handleMap(
 	path string,
 	resolvingStatus ResolvingStatus,
 ) (_ any, validOpenAPISectionRef, canBeCached bool) {
+	canBeCachedAll := true
 	for k, v := range value {
 		isRef := strings.Contains(strings.ToLower(k), "$ref")
-		val, res, canBeCached := r.walk(originalFileContent, fullObject, v, path, resolvingStatus, isRef)
+		val, res, itemCanBeCached := r.walk(originalFileContent, fullObject, v, path, resolvingStatus, isRef)
+
+		if !itemCanBeCached {
+			canBeCachedAll = false
+		}
+
 		// check if it is a ref then add new details
 		if valMap, ok := val.(map[string]interface{}); (ok || !res) && isRef {
 			// Create RefMetadata and add it to the resolved value map
@@ -162,14 +173,16 @@ func (r *Resolver) handleMap(
 				"$ref":  v,
 				"alone": len(value) == 1,
 			}
-			return valMap, false, canBeCached
+			return valMap, false, canBeCachedAll
 		}
+
 		if isRef {
 			return val, false, true
 		}
 		value[k] = val
 	}
-	return value, false, true
+
+	return value, false, canBeCachedAll
 }
 
 func (r *Resolver) yamlResolve(fileContent []byte, path string, resolvingStatus ResolvingStatus) ([]byte, bool) {
