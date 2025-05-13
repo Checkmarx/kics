@@ -58,7 +58,7 @@ func willRemediate(
 	filepath.Clean(originalFileName)
 	// create temporary file
 	tmpFile := filepath.Join(os.TempDir(), "temporary-remediation-"+utils.NextRandom()+"-"+filepath.Base(originalFileName))
-	f, err := os.OpenFile(tmpFile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
+	f, err := os.OpenFile(filepath.Clean(tmpFile), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
 
 	if err != nil {
 		log.Error().Msgf("failed to open temporary file for remediation '%s': %s", remediation.SimilarityID, err)

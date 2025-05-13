@@ -15,7 +15,7 @@ import (
 )
 
 // NoColor - disables ASCII color codes
-func NoColor(opt interface{}, changed bool) error {
+func NoColor(opt interface{}, _ bool) error {
 	noColor := opt.(bool)
 	if noColor {
 		color.Disable()
@@ -25,7 +25,7 @@ func NoColor(opt interface{}, changed bool) error {
 }
 
 // Verbose - redirects log entries to stdout
-func Verbose(opt interface{}, changed bool) error {
+func Verbose(opt interface{}, _ bool) error {
 	verbose := opt.(bool)
 	if verbose {
 		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
@@ -110,7 +110,7 @@ func LogPath(opt interface{}, changed bool) error {
 }
 
 // LogFile - enables write to log file
-func LogFile(opt interface{}, changed bool) error {
+func LogFile(opt interface{}, _ bool) error {
 	logFile := opt.(bool)
 	if logFile {
 		logPath, err := constants.GetDefaultLogPath()
@@ -127,7 +127,7 @@ func LogFile(opt interface{}, changed bool) error {
 }
 
 // LogLevel - sets log level
-func LogLevel(opt interface{}, changed bool) error {
+func LogLevel(opt interface{}, _ bool) error {
 	logLevel := opt.(string)
 	switch strings.ToUpper(logLevel) {
 	case "TRACE":

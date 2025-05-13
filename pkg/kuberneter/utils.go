@@ -57,7 +57,7 @@ func (info *k8sAPICall) saveK8sResources(kind, k8sResourcesContent, apiVersionFo
 }
 
 func (info *k8sAPICall) getResource(o runtime.Object, apiVersion, kind string, sb *strings.Builder) *strings.Builder {
-	e := json.NewYAMLSerializer(json.DefaultMetaFactory, scheme.Scheme, scheme.Scheme)
+	e := json.NewSerializerWithOptions(json.DefaultMetaFactory, scheme.Scheme, scheme.Scheme, json.SerializerOptions{})
 
 	begin := fmt.Sprintf("\n---\napiVersion: %s\nkind: %s\n", getAPIVersion(apiVersion), kind)
 
