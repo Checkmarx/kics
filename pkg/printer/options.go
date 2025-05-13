@@ -14,7 +14,10 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-const filePerms = 0600
+const (
+	dirPerm   = 0750
+	filePerms = 0600
+)
 
 // NoColor - disables ASCII color codes
 func NoColor(opt interface{}, _ bool) error {
@@ -99,7 +102,7 @@ func LogPath(opt interface{}, changed bool) error {
 			return err
 		}
 	} else if filepath.Dir(logPath) != "." {
-		if createErr := os.MkdirAll(filepath.Dir(logPath), 0750); createErr != nil {
+		if createErr := os.MkdirAll(filepath.Dir(logPath), dirPerm); createErr != nil {
 			return createErr
 		}
 	}

@@ -82,7 +82,7 @@ func run(cmd *cobra.Command) error {
 		if filepath.Ext(flags.GetStrFlag(flags.OutputPathFlag)) != "" {
 			flags.SetStrFlag(flags.OutputPathFlag, filepath.Join(flags.GetStrFlag(flags.OutputPathFlag), string(os.PathSeparator)))
 		}
-		if err := os.MkdirAll(flags.GetStrFlag(flags.OutputPathFlag), os.ModePerm); err != nil { //nolint:gosec
+		if err := os.MkdirAll(flags.GetStrFlag(flags.OutputPathFlag), dirPerms); err != nil { //nolint:gosec
 			return err
 		}
 	}
