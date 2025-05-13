@@ -35,7 +35,11 @@ type K8sAPIOptions struct {
 	Kinds       []string
 }
 
-const kuberneterPathLength = 3
+const (
+	kuberneterPathLength = 3
+	dirPerms             = 0750
+	filePerms            = 0600
+)
 
 func (info *k8sAPICall) saveK8sResources(kind, k8sResourcesContent, apiVersionFolder string) {
 	file := filepath.Join(apiVersionFolder, kind+"s"+".yaml")
@@ -205,7 +209,7 @@ func getDestinationFolder(destinationPath string) (string, error) {
 	destFolderName := fmt.Sprintf("kics-extract-kuberneter-%s", time.Now().Format("01-02-2006"))
 	destination := filepath.Join(destinationPath, destFolderName)
 
-	if err := os.MkdirAll(destination, 0750); err != nil { //nolint:gosec
+	if err := os.MkdirAll(destination, dirPerms); err != nil {
 		return "", err
 	}
 

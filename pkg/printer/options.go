@@ -14,6 +14,8 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+const filePerms = 0600
+
 // NoColor - disables ASCII color codes
 func NoColor(opt interface{}, _ bool) error {
 	noColor := opt.(bool)
@@ -102,7 +104,7 @@ func LogPath(opt interface{}, changed bool) error {
 		}
 	}
 
-	loggerFile, err = os.OpenFile(logPath, os.O_CREATE|os.O_WRONLY, 0600)
+	loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_CREATE|os.O_WRONLY, filePerms)
 	if err != nil {
 		return err
 	}
@@ -117,7 +119,7 @@ func LogFile(opt interface{}, _ bool) error {
 		if err != nil {
 			return err
 		}
-		loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_CREATE|os.O_WRONLY, 0600)
+		loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_CREATE|os.O_WRONLY, filePerms)
 		if err != nil {
 			return err
 		}

@@ -134,7 +134,7 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (RegoLibraries, erro
 	}
 
 	if library != kicsDefault {
-		byteContent, err := os.ReadFile(library) //nolint:gosec
+		byteContent, err := os.ReadFile(filepath.Clean(library))
 		if err != nil {
 			return RegoLibraries{}, err
 		}

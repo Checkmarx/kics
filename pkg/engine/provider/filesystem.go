@@ -123,7 +123,6 @@ func ignoreDamagedFiles(path string) bool {
 func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 	extensions model.Extensions, sink Sink, resolverSink ResolverSink) error {
 	for _, scanPath := range s.paths {
-		resolved := false
 		fileInfo, err := os.Stat(scanPath)
 		if err != nil {
 			return errors.Wrap(err, "failed to open path")
@@ -132,7 +131,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 		if !fileInfo.IsDir() {
 			c, openFileErr := openScanFile(scanPath, extensions)
 			if openFileErr != nil {
-				if openFileErr == ErrNotSupportedFile || ignoreDamagedFiles(scanPath) {
+				if errors.Is(openFileErr, ErrNotSupportedFile) || ignoreDamagedFiles(scanPath) {
 					continue
 				}
 				return openFileErr
@@ -143,7 +142,7 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 			continue
 		}
 
-		err = s.walkDir(ctx, scanPath, resolved, sink, resolverSink, extensions)
+		err = s.walkDir(ctx, scanPath, false, sink, resolverSink, extensions)
 		if err != nil {
 			return errors.Wrap(err, "failed to walk directory")
 		}
@@ -212,7 +211,7 @@ func openScanFile(scanPath string, extensions model.Extensions) (*os.File, error
 		return nil, ErrNotSupportedFile
 	}
 
-	c, errOpenFile := os.Open(scanPath) //nolint:gosec
+	c, errOpenFile := os.Open(filepath.Clean(scanPath))
 	if errOpenFile != nil {
 		return nil, errors.Wrap(errOpenFile, "failed to open path")
 	}

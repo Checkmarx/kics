@@ -17,6 +17,8 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+const filePerms = 0600
+
 var (
 	stringsSeverity = map[string]model.Severity{
 		"critical": model.AllSeverities[0],
@@ -124,7 +126,7 @@ func exportXMLReport(path, filename string, body interface{}) error {
 	}
 
 	fullPath := filepath.Join(path, filename)
-	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
+	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, filePerms)
 	if err != nil {
 		return err
 	}
@@ -140,7 +142,7 @@ func exportXMLReport(path, filename string, body interface{}) error {
 
 func exportCSVReport(path, filename string, body []reportModel.CSVReport) error {
 	fullPath := filepath.Join(path, filename)
-	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
+	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, filePerms)
 	if err != nil {
 		return err
 	}
