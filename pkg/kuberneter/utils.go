@@ -44,7 +44,7 @@ const (
 func (info *k8sAPICall) saveK8sResources(kind, k8sResourcesContent, apiVersionFolder string) {
 	file := filepath.Join(apiVersionFolder, kind+"s"+".yaml")
 
-	f, err := os.OpenFile(filepath.Clean(file), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
+	f, err := os.OpenFile(filepath.Clean(file), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, filePerms)
 
 	if err != nil {
 		log.Error().Msgf("failed to open file '%s': %s", file, err)

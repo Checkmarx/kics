@@ -48,7 +48,7 @@ func includeSVG(name string) template.HTML {
 	return template.HTML(svgMap[name]) //nolint
 }
 
-func includeCSS(name string) template.HTML {
+func includeCSS(_ string) template.HTML {
 	minifier := minify.New()
 	minifier.AddFunc("text/css", minifyCSS.Minify)
 	cssMinified, err := minifier.String("text/css", cssTemplate)
@@ -58,7 +58,7 @@ func includeCSS(name string) template.HTML {
 	return template.HTML("<style>" + cssMinified + "</style>") //nolint
 }
 
-func includeJS(name string) template.HTML {
+func includeJS(_ string) template.HTML {
 	minifier := minify.New()
 	minifier.AddFunc("text/javascript", minifyJS.Minify)
 	jsMinified, err := minifier.String("text/javascript", jsTemplate)

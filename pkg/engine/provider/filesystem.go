@@ -107,7 +107,7 @@ func ignoreDamagedFiles(path string) bool {
 	fileInfo, err := os.Lstat(path)
 	if err != nil {
 		log.Warn().Msgf("Failed getting the file info for file '%s'", path)
-		return shouldIgnoreFile
+		return false
 	}
 	log.Info().Msgf("No mode type bits are set( is a regular file ) for file '%s' : %t ", path, fileInfo.Mode().IsRegular())
 
