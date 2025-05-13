@@ -40,7 +40,7 @@ const kuberneterPathLength = 3
 func (info *k8sAPICall) saveK8sResources(kind, k8sResourcesContent, apiVersionFolder string) {
 	file := filepath.Join(apiVersionFolder, kind+"s"+".yaml")
 
-	f, err := os.OpenFile(filepath.Clean(file), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm) //nolint:gosec
+	f, err := os.OpenFile(filepath.Clean(file), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
 
 	if err != nil {
 		log.Error().Msgf("failed to open file '%s': %s", file, err)
@@ -205,7 +205,7 @@ func getDestinationFolder(destinationPath string) (string, error) {
 	destFolderName := fmt.Sprintf("kics-extract-kuberneter-%s", time.Now().Format("01-02-2006"))
 	destination := filepath.Join(destinationPath, destFolderName)
 
-	if err := os.MkdirAll(destination, os.ModePerm); err != nil { //nolint:gosec
+	if err := os.MkdirAll(destination, 0750); err != nil { //nolint:gosec
 		return "", err
 	}
 

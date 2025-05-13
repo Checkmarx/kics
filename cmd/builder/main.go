@@ -67,7 +67,7 @@ func main() {
 }
 
 func saveFile(filePath string, content []byte) error {
-	f, err := os.OpenFile(filepath.Clean(filePath), os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm) //nolint:gosec
+	f, err := os.OpenFile(filepath.Clean(filePath), os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0600)
 	if err != nil {
 		return err
 	}

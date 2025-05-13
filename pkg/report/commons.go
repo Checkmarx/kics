@@ -92,7 +92,7 @@ func ExportJSONReport(path, filename string, body interface{}) error {
 	}
 	fullPath := filepath.Join(path, filename)
 
-	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm) //nolint:gosec
+	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
 	if err != nil {
 		return err
 	}
@@ -124,7 +124,7 @@ func exportXMLReport(path, filename string, body interface{}) error {
 	}
 
 	fullPath := filepath.Join(path, filename)
-	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm) //nolint:gosec
+	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
 	if err != nil {
 		return err
 	}
@@ -140,7 +140,7 @@ func exportXMLReport(path, filename string, body interface{}) error {
 
 func exportCSVReport(path, filename string, body []reportModel.CSVReport) error {
 	fullPath := filepath.Join(path, filename)
-	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm) //nolint:gosec
+	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
 	if err != nil {
 		return err
 	}

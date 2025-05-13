@@ -97,12 +97,12 @@ func LogPath(opt interface{}, changed bool) error {
 			return err
 		}
 	} else if filepath.Dir(logPath) != "." {
-		if createErr := os.MkdirAll(filepath.Dir(logPath), os.ModePerm); createErr != nil { //nolint:gosec
+		if createErr := os.MkdirAll(filepath.Dir(logPath), 0750); createErr != nil {
 			return createErr
 		}
 	}
 
-	loggerFile, err = os.OpenFile(logPath, os.O_CREATE|os.O_WRONLY, os.ModePerm) //nolint:gosec
+	loggerFile, err = os.OpenFile(logPath, os.O_CREATE|os.O_WRONLY, 0600)
 	if err != nil {
 		return err
 	}
@@ -117,7 +117,7 @@ func LogFile(opt interface{}, changed bool) error {
 		if err != nil {
 			return err
 		}
-		loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_CREATE|os.O_WRONLY, os.ModePerm) //nolint:gosec
+		loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_CREATE|os.O_WRONLY, 0600)
 		if err != nil {
 			return err
 		}
