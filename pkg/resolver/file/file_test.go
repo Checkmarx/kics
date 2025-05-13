@@ -321,10 +321,10 @@ func getFileContent(path string) ([]byte, error) {
 }
 
 func prepareString(content string) string {
-	content = strings.Replace(content, "\n", "", -1)
-	content = strings.Replace(content, "\t", "", -1)
-	content = strings.Replace(content, "\r", "", -1)
-	content = strings.Replace(content, " ", "", -1)
+	content = strings.ReplaceAll(content, "\n", "")
+	content = strings.ReplaceAll(content, "\t", "")
+	content = strings.ReplaceAll(content, "\r", "")
+	content = strings.ReplaceAll(content, " ", "")
 	return content
 }
 

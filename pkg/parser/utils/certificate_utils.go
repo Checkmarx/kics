@@ -27,7 +27,7 @@ func CheckCertificate(content string) string {
 }
 
 func getCertificateInfo(filePath string) (certInfo, error) {
-	certPEM, err := os.ReadFile(filePath)
+	certPEM, err := os.ReadFile(filepath.Clean(filePath))
 
 	if err != nil {
 		return certInfo{}, err

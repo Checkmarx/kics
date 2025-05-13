@@ -91,7 +91,7 @@ func hideSecret(lines *[]model.CodeLine, allowRules *[]secrets.AllowRule, rules 
 
 func maskSecret(rule *secrets.RegexQuery, lines *[]model.CodeLine, idx int) {
 	if rule.SpecialMask == "all" {
-		(*lines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
+		(*lines)[idx].Line = secrets.SecretMask
 		return
 	}
 
@@ -110,9 +110,9 @@ func maskSecret(rule *secrets.RegexQuery, lines *[]model.CodeLine, idx int) {
 	}
 
 	if match != "" {
-		(*lines)[idx].Line = strings.Replace(line.Line, match, "<SECRET-MASKED-ON-PURPOSE>", 1)
+		(*lines)[idx].Line = strings.Replace(line.Line, match, secrets.SecretMask, 1)
 	} else {
-		(*lines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
+		(*lines)[idx].Line = secrets.SecretMask
 	}
 }
 

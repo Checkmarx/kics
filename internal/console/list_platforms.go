@@ -14,7 +14,10 @@ func NewListPlatformsCmd() *cobra.Command {
 		Short: "List supported platforms",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			for _, v := range source.ListSupportedPlatforms() {
-				fmt.Fprintf(cmd.OutOrStdout(), "%s\n", v)
+				_, err := fmt.Fprintf(cmd.OutOrStdout(), "%s\n", v)
+				if err != nil {
+					return err
+				}
 			}
 			return nil
 		},

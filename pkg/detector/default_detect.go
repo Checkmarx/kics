@@ -30,7 +30,7 @@ func (d defaultDetectLine) DetectLine(file *model.FileMetadata, searchKey string
 	extractedString = GetBracketValues(searchKey, extractedString, "")
 	sanitizedSubstring := searchKey
 	for idx, str := range extractedString {
-		sanitizedSubstring = strings.Replace(sanitizedSubstring, str[0], `{{`+strconv.Itoa(idx)+`}}`, -1)
+		sanitizedSubstring = strings.ReplaceAll(sanitizedSubstring, str[0], `{{`+strconv.Itoa(idx)+`}}`)
 	}
 
 	lines := *file.LinesOriginalData

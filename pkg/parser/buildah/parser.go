@@ -185,10 +185,10 @@ func getFullCommand(args []*syntax.Word) string {
 	command := buf.String()
 	buf.Reset()
 
-	command = strings.Replace(command, "\n", "", -1)
-	command = strings.Replace(command, "\r", "", -1)
-	command = strings.Replace(command, "\t", "", -1)
-	command = strings.Replace(command, "\\", "", -1)
+	command = strings.ReplaceAll(command, "\n", "")
+	command = strings.ReplaceAll(command, "\r", "")
+	command = strings.ReplaceAll(command, "\t", "")
+	command = strings.ReplaceAll(command, "\\", "")
 
 	return command
 }

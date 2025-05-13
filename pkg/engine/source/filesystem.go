@@ -134,7 +134,7 @@ func (s *FilesystemSource) GetQueryLibrary(platform string) (RegoLibraries, erro
 	}
 
 	if library != kicsDefault {
-		byteContent, err := os.ReadFile(library)
+		byteContent, err := os.ReadFile(filepath.Clean(library))
 		if err != nil {
 			return RegoLibraries{}, err
 		}
@@ -364,10 +364,9 @@ func validateMetadata(metadata map[string]interface{}) (exist bool, field string
 	return
 }
 
-// ReadQuery reads query's files for a given path and returns a QueryMetadata struct with it's
-// content
+// ReadQuery reads query's files for a given path and returns a QueryMetadata struct with its content
 func ReadQuery(queryDir string) (model.QueryMetadata, error) {
-	queryContent, err := os.ReadFile(filepath.Clean(path.Join(queryDir, QueryFileName)))
+	queryContent, err := os.ReadFile(filepath.Clean(path.Join(queryDir, QueryFileName))) //nolint:gosec
 	if err != nil {
 		return model.QueryMetadata{}, errors.Wrapf(err, "failed to read query %s", path.Base(queryDir))
 	}
