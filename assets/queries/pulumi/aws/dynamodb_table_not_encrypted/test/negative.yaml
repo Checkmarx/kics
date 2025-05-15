@@ -1,9 +1,0 @@
-name: aws-eks
-runtime: yaml
-description: An EKS cluster
-resources:
-  example:
-    type: aws:dynamodb:Table
-    properties:
-      serverSideEncryption:
-        enabled: true
