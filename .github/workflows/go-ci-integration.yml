@@ -95,7 +95,3 @@ jobs:
           COUNT=$(jq '.files_failed_to_scan' ${PWD}/assets/queries/results.json)
           echo "Assert files_failed_to_scan == 0 in results.json :: ${COUNT}"
           echo $COUNT | xargs -i{} test {} -eq 0
-
-          COUNT=$(jq '.ignored_files' ${PWD}/assets/queries/results.json)
-          echo "Assert ignored_files > 0 in results.json :: ${COUNT}"
-          echo $COUNT | xargs -i{} test {} -gt 0

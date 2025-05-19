@@ -57,10 +57,6 @@ func (c *Client) resolveOutputs(
 ) error {
 	log.Debug().Msg("console.resolveOutputs()")
 
-	// Files that pass the detector but do not belong to any supported platform
-	if c.ScanParams.Path != nil {
-		summary.IgnoredFiles = GetTotalFiles(c.ScanParams.Path) - summary.ParsedFiles
-	}
 	usingCustomQueries := usingCustomQueries(c.ScanParams.QueriesPath)
 	if err := consolePrinter.PrintResult(summary, printer, usingCustomQueries); err != nil {
 		return err

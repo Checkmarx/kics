@@ -73,7 +73,6 @@ type Counters struct {
 	ScannedFilesLines      int `json:"lines_scanned"`
 	ParsedFiles            int `json:"files_parsed"`
 	ParsedFilesLines       int `json:"lines_parsed"`
-	IgnoredFiles           int `json:"files_ignored"`
 	IgnoredFilesLines      int `json:"lines_ignored"`
 	FailedToScanFiles      int `json:"files_failed_to_scan"`
 	TotalQueries           int `json:"queries_total"`
