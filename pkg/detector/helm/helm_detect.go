@@ -52,7 +52,7 @@ func (d DetectKindLine) DetectLine(file *model.FileMetadata, searchKey string,
 	extractedString = detector.GetBracketValues(searchKey, extractedString, "")
 	sanitizedSubstring := searchKey
 	for idx, str := range extractedString {
-		sanitizedSubstring = strings.Replace(sanitizedSubstring, str[0], `{{`+strconv.Itoa(idx)+`}}`, -1)
+		sanitizedSubstring = strings.ReplaceAll(sanitizedSubstring, str[0], `{{`+strconv.Itoa(idx)+`}}`)
 	}
 
 	helmID, err := strconv.Atoi(strings.TrimSuffix(strings.TrimPrefix(file.HelmID, "# KICS_HELM_ID_"), ":"))
