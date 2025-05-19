@@ -19,6 +19,7 @@ import (
 
 const (
 	charsLimitPerLine = 255
+	common            = "common"
 )
 
 var (
@@ -141,7 +142,7 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 				queryURLId := summary.Queries[idx].QueryID
 				queryURLPlatform := strings.ToLower(summary.Queries[idx].Platform)
 
-				if queryURLPlatform == "common" && strings.Contains(strings.ToLower(summary.Queries[idx].QueryName), "passwords and secrets") {
+				if queryURLPlatform == common && strings.Contains(strings.ToLower(summary.Queries[idx].QueryName), "passwords and secrets") {
 					queryURLId = "a88baa34-e2ad-44ea-ad6f-8cac87bc7c71"
 				}
 
@@ -156,12 +157,12 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 		printFiles(&summary.Queries[idx], printer)
 	}
 	fmt.Printf("\nResults Summary:\n")
-	printSeverityCounter(model.SeverityCritical, summary.SeveritySummary.SeverityCounters[model.SeverityCritical], printer.Critical)
-	printSeverityCounter(model.SeverityHigh, summary.SeveritySummary.SeverityCounters[model.SeverityHigh], printer.High)
-	printSeverityCounter(model.SeverityMedium, summary.SeveritySummary.SeverityCounters[model.SeverityMedium], printer.Medium)
-	printSeverityCounter(model.SeverityLow, summary.SeveritySummary.SeverityCounters[model.SeverityLow], printer.Low)
-	printSeverityCounter(model.SeverityInfo, summary.SeveritySummary.SeverityCounters[model.SeverityInfo], printer.Info)
-	fmt.Printf("TOTAL: %d\n\n", summary.SeveritySummary.TotalCounter)
+	printSeverityCounter(model.SeverityCritical, summary.SeverityCounters[model.SeverityCritical], printer.Critical)
+	printSeverityCounter(model.SeverityHigh, summary.SeverityCounters[model.SeverityHigh], printer.High)
+	printSeverityCounter(model.SeverityMedium, summary.SeverityCounters[model.SeverityMedium], printer.Medium)
+	printSeverityCounter(model.SeverityLow, summary.SeverityCounters[model.SeverityLow], printer.Low)
+	printSeverityCounter(model.SeverityInfo, summary.SeverityCounters[model.SeverityInfo], printer.Info)
+	fmt.Printf("TOTAL: %d\n\n", summary.TotalCounter)
 
 	log.Info().Msgf("Scanned Files: %d", summary.ScannedFiles)
 	log.Info().Msgf("Parsed Files: %d", summary.ParsedFiles)
@@ -301,15 +302,14 @@ func (p *Printer) Bold(content string) string {
 func validQueryID(queryID string) bool {
 	if queryID == "" {
 		return false
-	} else if queryID != "" {
+	} else {
 		return utils.ValidateUUID(queryID)
 	}
-	return true
 }
 
 func normalizeURLCloudProvider(cloudProvider string) string {
 	cloudProvider = strings.ToLower(cloudProvider)
-	if cloudProvider == "common" {
+	if cloudProvider == common {
 		cloudProvider = ""
 	} else if cloudProvider != "" {
 		cloudProvider += "/"
