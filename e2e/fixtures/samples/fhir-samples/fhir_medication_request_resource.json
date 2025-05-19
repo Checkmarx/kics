@@ -1,0 +1,27 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "subject": {
+          "reference": "Patient/example"
+        },
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "582620",
+              "display": "Amoxicillin 250mg/5ml"
+            }
+          ]
+        },
+        "code": {
+          "text": "Amoxicillin 250mg"
+        }
+      }
+    }
+  ]
+}

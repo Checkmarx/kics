@@ -1,0 +1,17 @@
+{
+  "resourceType": "Observation",
+  "id": "example",
+  "status": "final",
+  "subject": {
+    "reference": "Patient/example"
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "3141-9",
+        "display": "Weight Measured"
+      }
+    ]
+  }
+}
