@@ -117,12 +117,16 @@ func writeToFile(resultsPath string, analyzerResults model.AnalyzedPaths) error 
 		return err
 	}
 
-	f, err := os.Create(resultsPath)
+	f, err := os.Create(filepath.Clean(resultsPath))
 	if err != nil {
 		return err
 	}
 
-	defer f.Close()
+	defer func() {
+		if errClose := f.Close(); errClose != nil {
+			log.Error().Err(errClose).Msg("Error closing results file")
+		}
+	}()
 
 	content, err := json.Marshal(analyzerResults)
 	if err != nil {

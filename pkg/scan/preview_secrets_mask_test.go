@@ -1,6 +1,7 @@
 package scan
 
 import (
+	"github.com/Checkmarx/kics/v2/pkg/engine/secrets"
 	"strings"
 	"testing"
 
@@ -76,7 +77,7 @@ func Test_maskSecrets(t *testing.T) {
 			for _, line := range (*tt.scanResults).Results {
 				for _, vulnLine := range *line.VulnLines {
 					if strings.Contains(vulnLine.Line, "password") {
-						require.Contains(t, vulnLine.Line, "<SECRET-MASKED-ON-PURPOSE>")
+						require.Contains(t, vulnLine.Line, secrets.SecretMask)
 					}
 				}
 			}
@@ -143,7 +144,7 @@ func Test_maskSecretsEntropies(t *testing.T) {
 
 			for _, line := range (*tt.scanResults).Results {
 				for _, vulnLine := range *line.VulnLines {
-					require.NotContains(t, vulnLine.Line, "<SECRET-MASKED-ON-PURPOSE>")
+					require.NotContains(t, vulnLine.Line, secrets.SecretMask)
 
 				}
 			}

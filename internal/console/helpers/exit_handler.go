@@ -15,7 +15,7 @@ func ResultsExitCode(summary *model.Summary) int {
 	// severityArr is needed to make sure 'for' cycle is made in an ordered fashion
 	severityArr := []model.Severity{"CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO", "TRACE"}
 	codeMap := map[model.Severity]int{"CRITICAL": 60, "HIGH": 50, "MEDIUM": 40, "LOW": 30, "INFO": 20, "TRACE": 0}
-	exitMap := summary.SeveritySummary.SeverityCounters
+	exitMap := summary.SeverityCounters
 	for _, severity := range severityArr {
 		if _, reportSeverity := shouldFail[strings.ToLower(string(severity))]; !reportSeverity {
 			continue

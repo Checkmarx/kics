@@ -126,6 +126,8 @@ const (
 
 	// LogFormatPretty - print log more readable
 	LogFormatPretty = "pretty"
+
+	Reference = "$ref"
 )
 
 // GetRelease - returns the current release in the format 'kics@version' to be used by sentry

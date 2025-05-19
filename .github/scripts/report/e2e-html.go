@@ -45,7 +45,7 @@ var (
 	}
 )
 
-func includeCSS(name string) template.HTML {
+func includeCSS(_ string) template.HTML {
 	minifier := minify.New()
 	minifier.AddFunc("text/css", minifyCSS.Minify)
 	cssMinified, err := minifier.String("text/css", cssTemplate)
@@ -56,7 +56,7 @@ func includeCSS(name string) template.HTML {
 	return template.HTML("<style>" + cssMinified + "</style>") //nolint
 }
 
-func includeJS(name string) template.HTML {
+func includeJS(_ string) template.HTML {
 	minifier := minify.New()
 	minifier.AddFunc("text/javascript", minifyJS.Minify)
 	jsMinified, err := minifier.String("text/javascript", jsTemplate)
@@ -78,7 +78,7 @@ func generateE2EReport(path, filename string, body interface{}) error {
 	fullPath := filepath.Join(path, filename)
 	t := template.Must(template.New("report.tmpl").Funcs(templateFuncs).Parse(htmlTemplate))
 
-	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0600)
 	if err != nil {
 		return err
 	}
