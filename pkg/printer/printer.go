@@ -166,7 +166,7 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 
 	log.Info().Msgf("Scanned Files: %d", summary.ScannedFiles)
 	log.Info().Msgf("Parsed Files: %d", summary.ParsedFiles)
-	log.Info().Msgf("Ignored Files: %d", summary.FailedToScanFiles)
+	log.Info().Msgf("Ignored Files: %d", summary.IgnoredFiles)
 	log.Info().Msgf("Scanned Lines: %d", summary.ScannedFilesLines)
 	log.Info().Msgf("Parsed Lines: %d", summary.ParsedFilesLines)
 	log.Info().Msgf("Ignored Lines: %d", summary.IgnoredFilesLines)
