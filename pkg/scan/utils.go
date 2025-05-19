@@ -44,7 +44,7 @@ func (c *Client) prepareAndAnalyzePaths(ctx context.Context) (provider.Extracted
 	if len(allPaths.Path) == 0 {
 		return provider.ExtractedPath{}, nil
 	}
-	log.Info().Msgf("Total files in the project: %d", getTotalFiles(allPaths.Path))
+	log.Info().Msgf("Total files in the project: %d", GetTotalFiles(allPaths.Path))
 
 	a := &analyzer.Analyzer{
 		Paths:             allPaths.Path,
@@ -245,7 +245,7 @@ func printVersionCheck(customPrint *consolePrinter.Printer, s *model.Summary) {
 	}
 }
 
-func getTotalFiles(paths []string) int {
+func GetTotalFiles(paths []string) int {
 	files := 0
 	for _, path := range paths {
 		if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {

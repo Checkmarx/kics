@@ -57,6 +57,9 @@ func (c *Client) resolveOutputs(
 ) error {
 	log.Debug().Msg("console.resolveOutputs()")
 
+	if c.ScanParams.Path != nil {
+		summary.FailedToScanFiles = GetTotalFiles(c.ScanParams.Path) - summary.ParsedFiles
+	}
 	usingCustomQueries := usingCustomQueries(c.ScanParams.QueriesPath)
 	if err := consolePrinter.PrintResult(summary, printer, usingCustomQueries); err != nil {
 		return err
