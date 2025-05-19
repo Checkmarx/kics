@@ -73,12 +73,12 @@ type Counters struct {
 	ScannedFilesLines      int `json:"lines_scanned"`
 	ParsedFiles            int `json:"files_parsed"`
 	ParsedFilesLines       int `json:"lines_parsed"`
+	IgnoredFiles           int `json:"files_ignored"`
 	IgnoredFilesLines      int `json:"lines_ignored"`
 	FailedToScanFiles      int `json:"files_failed_to_scan"`
 	TotalQueries           int `json:"queries_total"`
 	FailedToExecuteQueries int `json:"queries_failed_to_execute"`
 	FailedSimilarityID     int `json:"queries_failed_to_compute_similarity_id"`
-	IgnoredFiles           int `json:"ignored_files"`
 }
 
 // Times represents an object that contains the start and end time of the scan

@@ -4,6 +4,7 @@
   "lines_scanned": 5,
   "files_parsed": 1,
   "lines_parsed": 5,
+  "ignored_files": 0,
   "lines_ignored": 0,
   "files_failed_to_scan": 0,
   "queries_total": 1073,
