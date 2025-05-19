@@ -190,7 +190,7 @@ func Test_GetTotalFiles(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 
-			v := getTotalFiles(tt.paths)
+			v := GetTotalFiles(tt.paths)
 			require.Equal(t, tt.expectedOutput, v)
 
 		})
