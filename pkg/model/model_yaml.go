@@ -66,17 +66,16 @@ func unmarshal(val *yaml.Node) interface{} {
 
 	// if Yaml Node is an Array than we are working with ansible
 	// which need to be placed inside "playbooks"
-	if val.Kind == yaml.SequenceNode {
+	switch val.Kind {
+	case yaml.SequenceNode:
 		contentArray := make([]interface{}, 0)
 		for _, contentEntry := range val.Content {
 			contentArray = append(contentArray, unmarshal(contentEntry))
 		}
 		tmp["playbooks"] = contentArray
-	} else if val.Kind == yaml.ScalarNode {
-		// resolve Scalar Node
+	case yaml.ScalarNode:
 		return scalarNodeResolver(val)
-	} else {
-		// iterate two by two, since first iteration is the key and the second is the value
+	default:
 		for i := 0; i < len(val.Content); i += 2 {
 			if val.Content[i].Kind == yaml.ScalarNode {
 				switch val.Content[i+1].Kind {
