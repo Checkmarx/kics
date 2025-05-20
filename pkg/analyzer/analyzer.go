@@ -373,7 +373,7 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 
 	ext, errExt := utils.GetExtension(a.filePath)
 	if errExt == nil {
-		linesCount, _ := utils.LineCounter(a.filePath)
+		linesCount, _ := utils.LineCounter(a.filePath, ext)
 
 		switch ext {
 		// Dockerfile (direct identification)

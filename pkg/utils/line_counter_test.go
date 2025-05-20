@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"path/filepath"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -35,7 +36,7 @@ func TestLineCounter(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			got, err := LineCounter(test.filePath)
+			got, err := LineCounter(test.filePath, filepath.Ext(test.filePath))
 			if test.wantError {
 				require.NotEqual(t, err, nil)
 				require.Equal(t, test.want, got)
