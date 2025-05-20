@@ -518,9 +518,7 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 		}
 	}
 	returnType = checkReturnType(a.filePath, returnType, ext, content)
-	if returnType == fhir {
-		unwanted <- a.filePath
-	} else if returnType != "" {
+	if returnType != "" {
 		if a.isAvailableType(returnType) {
 			results <- returnType
 			locCount <- linesCount
