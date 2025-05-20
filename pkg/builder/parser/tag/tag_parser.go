@@ -149,23 +149,25 @@ func parseValue(sc *scanner.Scanner) (interface{}, error) {
 		return parseArray(sc)
 	default:
 		tok := sc.Scan()
+		text := sc.TokenText()
+
 		switch tok {
 		case scanner.Ident:
-			return checkType(sc.TokenText()), nil
-		case scanner.String, scanner.Int, scanner.Float:
-			if tok == scanner.String {
-				str := sc.TokenText()
-				return str[1 : len(str)-1], nil
-			} else if tok == scanner.Int {
-				return strconv.ParseInt(sc.TokenText(), base, bitSize64)
-			} else if tok == scanner.Float {
-				return strconv.ParseFloat(sc.TokenText(), bitSize64)
-			}
+			return checkType(text), nil
+
+		case scanner.String:
+			return text[1 : len(text)-1], nil
+
+		case scanner.Int:
+			return strconv.ParseInt(text, base, bitSize64)
+
+		case scanner.Float:
+			return strconv.ParseFloat(text, bitSize64)
+
 		default:
-			return nil, fmt.Errorf("invalid value: %s", sc.TokenText())
+			return nil, fmt.Errorf("invalid value: %s", text)
 		}
 	}
-	return nil, errors.New("invalid value")
 }
 
 func parseArgs(sc *scanner.Scanner) (map[string]interface{}, error) {

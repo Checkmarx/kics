@@ -241,7 +241,7 @@ func BuildCycloneDxReport(summary *model.Summary, filePaths map[string]string) *
 	files := getAllFiles(summary)
 
 	for i := range files {
-		filePath = strings.Replace(files[i].FileName, "\\", "/", -1)
+		filePath = strings.ReplaceAll(files[i].FileName, "\\", "/")
 		sha = generateSha256(files[i].FileName, filePaths)
 
 		index := 12

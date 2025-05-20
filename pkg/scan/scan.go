@@ -4,6 +4,7 @@ package scan
 import (
 	"context"
 	"os"
+	"path/filepath"
 
 	"github.com/Checkmarx/kics/v2/assets"
 	"github.com/Checkmarx/kics/v2/pkg/engine"
@@ -202,7 +203,7 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 
 func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err error) {
 	if regexRulesPath != "" {
-		b, err := os.ReadFile(regexRulesPath)
+		b, err := os.ReadFile(filepath.Clean(regexRulesPath))
 		if err != nil {
 			return regexRulesContent, err
 		}

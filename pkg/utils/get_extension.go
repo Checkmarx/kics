@@ -59,7 +59,11 @@ func readPossibleDockerFile(path string) bool {
 	if err != nil {
 		return false
 	}
-	defer file.Close()
+	defer func() {
+		if errClose := file.Close(); errClose != nil {
+			log.Error().Err(errClose).Msg("Error closing file")
+		}
+	}()
 	// Create a scanner to read the file line by line
 	scanner := bufio.NewScanner(file)
 	// Read lines from the file
@@ -92,7 +96,7 @@ func isTextFile(path string) (bool, error) {
 		return false, err
 	}
 
-	content = bytes.Replace(content, []byte("\r"), []byte(""), -1)
+	content = bytes.ReplaceAll(content, []byte("\r"), []byte(""))
 
 	isText := util.IsText(content)
 
