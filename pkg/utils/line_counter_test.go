@@ -35,7 +35,7 @@ func TestLineCounter(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			got, err := LineCounter(test.filePath)
+			got, err := LineCounter(test.filePath, 0, 100)
 			if test.wantError {
 				require.NotEqual(t, err, nil)
 				require.Equal(t, test.want, got)
