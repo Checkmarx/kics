@@ -3,17 +3,39 @@ package utils
 
 import (
 	"bufio"
-	"encoding/json"
 	"os"
 	"path/filepath"
 	"strings"
 
+	"github.com/Checkmarx/kics/v2/pkg/minified"
 	"github.com/rs/zerolog/log"
 )
 
-// LineCounter returns the number of lines in a file.
-// If the file is a minified JSON (single line), it returns the number of lines in its pretty-printed form.
-func LineCounter(path, ext string) (int, error) {
+// LineCounter returns the number of lines in a file
+// For files with a .json extension, if the file is detected as minified JSON,
+// it will prettifying the JSON and return the number of lines in the formatted output
+// For all other files, or non-minified JSON, it returns the actual number of lines in the file
+// If an error occurs reading the file, fallbackMinifiedFileLOC is returned for minified JSON files
+func LineCounter(path string, maxFileSize, fallbackMinifiedFileLOC int) (int, error) {
+	if strings.HasSuffix(path, ".json") {
+		content, err := os.ReadFile(filepath.Clean(path))
+		if err != nil {
+			return fallbackMinifiedFileLOC, err
+		}
+		isMinified := minified.IsMinified(path, content)
+		if isMinified {
+			pretty, err := minified.PrettifyJSON(content)
+			if err != nil {
+				return fallbackMinifiedFileLOC, err
+			}
+			prettyStr := string(pretty)
+			prettyStr = strings.ReplaceAll(prettyStr, "\r\n", "\n")
+			prettyStr = strings.ReplaceAll(prettyStr, "\r", "\n")
+			prettyLineCount := strings.Count(prettyStr, "\n") + 1
+			return prettyLineCount, nil
+		}
+	}
+
 	file, err := os.Open(filepath.Clean(path))
 	if err != nil {
 		return 0, err
@@ -25,33 +47,15 @@ func LineCounter(path, ext string) (int, error) {
 	}()
 
 	scanner := bufio.NewScanner(file)
-	scanner.Buffer(make([]byte, 1024*1024), 10*1024*1024) // 10MB max line size
+	if maxFileSize > 0 {
+		scanner.Buffer(make([]byte, 1024*1024), maxFileSize*1024*1024) // maxFileSize for max line size
+	}
 	lineCount := 0
 	for scanner.Scan() {
 		lineCount++
 	}
-	scanErr := scanner.Err()
-
-	// Check for minified JSON: extension is .json and only one line or scan error
-	if strings.EqualFold(ext, ".json") && (lineCount == 1 || scanErr != nil) {
-		content, err := os.ReadFile(filepath.Clean(path))
-		if err != nil {
-			return 0, err
-		}
-		var data interface{}
-		if err := json.Unmarshal(content, &data); err != nil {
-			return 0, err // Not valid JSON
-		}
-		pretty, err := json.MarshalIndent(data, "", "    ")
-		if err != nil {
-			return 0, err
-		}
-		prettyLineCount := strings.Count(string(pretty), "\n") + 1
-		return prettyLineCount, nil
-	}
-
-	if scanErr != nil {
-		return 0, scanErr
+	if err := scanner.Err(); err != nil {
+		return 0, err
 	}
 
 	return lineCount, nil
