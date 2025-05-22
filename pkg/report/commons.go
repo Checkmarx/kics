@@ -17,7 +17,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-const filePerms = 0600
+const filePerms = 0777
 
 var (
 	stringsSeverity = map[string]model.Severity{
@@ -94,7 +94,7 @@ func ExportJSONReport(path, filename string, body interface{}) error {
 	}
 	fullPath := filepath.Join(path, filename)
 
-	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, filePerms)
+	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
 	if err != nil {
 		return err
 	}
