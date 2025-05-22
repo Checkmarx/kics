@@ -1,7 +1,6 @@
 package tracker
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
 
@@ -75,66 +74,66 @@ func TestCITracker(t *testing.T) {
 			BagOfFilesParse:    make(map[string]int),
 			BagOfFilesFound:    make(map[string]int),
 		}
-		t.Run(fmt.Sprintf(tt.name+"_LoadedQueries"), func(t *testing.T) {
+		t.Run(tt.name+"_LoadedQueries", func(t *testing.T) {
 			c.TrackQueryLoad(1)
 			require.Equal(t, 1, c.LoadedQueries)
 		})
 
-		t.Run(fmt.Sprintf(tt.name+"_TrackQueryExecution"), func(t *testing.T) {
+		t.Run(tt.name+"_TrackQueryExecution", func(t *testing.T) {
 			c.TrackQueryExecution(1)
 			require.Equal(t, 1, c.ExecutedQueries)
 		})
 
-		t.Run(fmt.Sprintf(tt.name+"_TrackFileFound"), func(t *testing.T) {
+		t.Run(tt.name+"_TrackFileFound", func(t *testing.T) {
 			c.TrackFileFound(tt.name)
 			require.Equal(t, 1, c.FoundFiles)
 		})
 
-		t.Run(fmt.Sprintf(tt.name+"_TrackFileParse"), func(t *testing.T) {
+		t.Run(tt.name+"_TrackFileParse", func(t *testing.T) {
 			c.TrackFileParse(tt.name)
 			require.Equal(t, 1, c.ParsedFiles)
 		})
-		t.Run(fmt.Sprintf(tt.name+"_TrackQueryExecuting"), func(t *testing.T) {
+		t.Run(tt.name+"_TrackQueryExecuting", func(t *testing.T) {
 			c.TrackQueryExecuting(1)
 			require.Equal(t, 1, c.ExecutingQueries)
 		})
-		t.Run(fmt.Sprintf(tt.name+"_FailedComputeSimilarityID"), func(t *testing.T) {
+		t.Run(tt.name+"_FailedComputeSimilarityID", func(t *testing.T) {
 			c.FailedComputeSimilarityID()
 			require.Equal(t, 1, c.FailedSimilarityID)
 		})
-		t.Run(fmt.Sprintf(tt.name+"_FailedComputeOldSimilarityID"), func(t *testing.T) {
+		t.Run(tt.name+"_FailedComputeOldSimilarityID", func(t *testing.T) {
 			c.FailedComputeOldSimilarityID()
 			require.Equal(t, 1, c.FailedOldSimilarityID)
 		})
-		t.Run(fmt.Sprintf(tt.name+"_FailedDetectLine"), func(t *testing.T) {
+		t.Run(tt.name+"_FailedDetectLine", func(t *testing.T) {
 			c.FailedDetectLine()
 			require.Equal(t, 0, c.ExecutedQueries)
 		})
-		t.Run(fmt.Sprintf(tt.name+"_ScanSecrets"), func(t *testing.T) {
+		t.Run(tt.name+"_ScanSecrets", func(t *testing.T) {
 			c.TrackScanSecret()
 			require.Equal(t, 1, c.ScanSecrets)
 		})
-		t.Run(fmt.Sprintf(tt.name+"_ScanPaths"), func(t *testing.T) {
+		t.Run(tt.name+"_ScanPaths", func(t *testing.T) {
 			c.TrackScanPath()
 			require.Equal(t, 1, c.ScanPaths)
 		})
-		t.Run(fmt.Sprintf(tt.name+"_TrackVersion"), func(t *testing.T) {
+		t.Run(tt.name+"_TrackVersion", func(t *testing.T) {
 			c.TrackVersion(model.Version{Latest: true, LatestVersionTag: "python:3.10"})
 			require.Equal(t, model.Version{Latest: true, LatestVersionTag: "python:3.10"}, c.Version)
 		})
-		t.Run(fmt.Sprintf(tt.name+"_TrackFileFoundCountLines"), func(t *testing.T) {
+		t.Run(tt.name+"_TrackFileFoundCountLines", func(t *testing.T) {
 			c.TrackFileFoundCountLines(3)
 			require.Equal(t, 5, c.FoundCountLines)
 		})
-		t.Run(fmt.Sprintf(tt.name+"_TrackFileParseCountLines"), func(t *testing.T) {
+		t.Run(tt.name+"_TrackFileParseCountLines", func(t *testing.T) {
 			c.TrackFileParseCountLines(2)
 			require.Equal(t, 3, c.ParsedCountLines)
 		})
-		t.Run(fmt.Sprintf(tt.name+"TrackFileIgnoreCountLines"), func(t *testing.T) {
+		t.Run(tt.name+"TrackFileIgnoreCountLines", func(t *testing.T) {
 			c.TrackFileIgnoreCountLines(2)
 			require.Equal(t, 6, c.IgnoreCountLines)
 		})
-		t.Run(fmt.Sprintf(tt.name+"_GetOutputLines"), func(t *testing.T) {
+		t.Run(tt.name+"_GetOutputLines", func(t *testing.T) {
 			got := c.GetOutputLines()
 			if !reflect.DeepEqual(got, 3) {
 				t.Errorf("GetOutputLines() = %v, want = %v", got, 3)
