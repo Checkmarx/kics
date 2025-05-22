@@ -1,5 +1,5 @@
 #Block Public Access setting at account level
-resource "aws_s3_account_public_access_block" "positive4" {
+resource "aws_s3_account_public_access_block" "positive1" {
 
   block_public_acls       = true
   block_public_policy     = false
@@ -8,9 +8,9 @@ resource "aws_s3_account_public_access_block" "positive4" {
 }
 
 #Block Public Access setting at bucket level
-resource "aws_s3_bucket_public_access_block" "positive4" {
+resource "aws_s3_bucket_public_access_block" "positive1" {
 
-  bucket = var.positive4-id
+  bucket = var.positive1-id
 
   block_public_acls       = true
   block_public_policy     = false
@@ -18,7 +18,7 @@ resource "aws_s3_bucket_public_access_block" "positive4" {
   restrict_public_buckets = true
 }
 
-data "aws_iam_policy_document" "positive4-0" {
+data "aws_iam_policy_document" "positive1-0" {
   statement {
     principals {
       type        = "Service"
@@ -32,17 +32,14 @@ data "aws_iam_policy_document" "positive4-0" {
     ]
 
     resources = [
-      var.positive4-arn,
-      "${var.positive4-arn}/*",
+      var.positive1-arn,
+      "${var.positive1-arn}/*",
     ]
   }
 }
 
-# Associate S3 policy document for test # 2:
-#   "Action": "s3:Delete" and "Principal":"*"
-
-resource "aws_s3_bucket_policy" "positive4-0" {
-  depends_on = [aws_s3_bucket_public_access_block.positive4]
-  bucket     = var.positive4-id
-  policy     = data.aws_iam_policy_document.positive4-0.json
+resource "aws_s3_bucket_policy" "positive1-0" {
+  depends_on = [aws_s3_bucket_public_access_block.positive1]
+  bucket     = var.positive1-id
+  policy     = data.aws_iam_policy_document.positive1-0.json
 }
