@@ -7,7 +7,7 @@ GOLINT := golangci-lint
 COMMIT := $(shell git rev-parse HEAD)
 VERSION := snapshot-$(shell echo ${COMMIT} | cut -c1-8)
 LIB = $(shell pwd)/lib
-IMAGE_TAG := dev
+IMAGE_TAG := 2.1.9_hotfix
 TARGET_BIN ?= bin/kics
 CONSTANTS_PATH = github.com/Checkmarx/kics/internal/constants
 
