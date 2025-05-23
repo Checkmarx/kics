@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        go-version: [1.23.x]
+        go-version: [1.24.x]
         os: [ubuntu-latest]
         kics-docker: ["Dockerfile", "docker/Dockerfile.ubi8"]
     runs-on: ${{ matrix.os }}

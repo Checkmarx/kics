@@ -13,7 +13,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const filePerms = 0600
+const filePerms = 0777
 
 func main() {
 	var (
