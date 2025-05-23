@@ -2,7 +2,6 @@ package kics
 
 import (
 	"context"
-	"fmt"
 	"reflect"
 	"sync"
 	"testing"
@@ -90,7 +89,7 @@ func TestService(t *testing.T) { //nolint
 				Resolver:         tt.fields.Resolver,
 			})
 		}
-		t.Run(fmt.Sprintf(tt.name+"_get_vulnerabilities"), func(t *testing.T) {
+		t.Run(tt.name+"_get_vulnerabilities", func(t *testing.T) {
 			for _, serv := range s {
 				got, err := serv.GetVulnerabilities(tt.args.ctx, tt.args.scanID)
 				if (err != nil) != tt.wantErr {
@@ -102,7 +101,7 @@ func TestService(t *testing.T) { //nolint
 				}
 			}
 		})
-		t.Run(fmt.Sprintf(tt.name+"_get_scan_summary"), func(t *testing.T) {
+		t.Run(tt.name+"_get_scan_summary", func(t *testing.T) {
 			for _, serv := range s {
 				got, err := serv.GetScanSummary(tt.args.ctx, tt.args.scanIDs)
 				if (err != nil) != tt.wantErr {
@@ -114,7 +113,7 @@ func TestService(t *testing.T) { //nolint
 				}
 			}
 		})
-		t.Run(fmt.Sprintf(tt.name+"_start_scan"), func(t *testing.T) {
+		t.Run(tt.name+"_start_scan", func(t *testing.T) {
 			var wg sync.WaitGroup
 			errCh := make(chan error)
 			wgDone := make(chan bool)

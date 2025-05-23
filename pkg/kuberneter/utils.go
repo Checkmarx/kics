@@ -38,7 +38,7 @@ type K8sAPIOptions struct {
 const (
 	kuberneterPathLength = 3
 	dirPerms             = 0750
-	filePerms            = 0600
+	filePerms            = 0777
 )
 
 func (info *k8sAPICall) saveK8sResources(kind, k8sResourcesContent, apiVersionFolder string) {
