@@ -16,7 +16,7 @@ import (
 	minifyJS "github.com/tdewolff/minify/v2/js"
 )
 
-const filePerms = 0777
+const filePerms = 0600
 
 var (
 	//go:embed template/html/e2e-report.tmpl
