@@ -16,6 +16,8 @@ import (
 	minifyJS "github.com/tdewolff/minify/v2/js"
 )
 
+const filePerms = 0777
+
 var (
 	//go:embed template/html/e2e-report.tmpl
 	htmlTemplate string
@@ -78,7 +80,7 @@ func generateE2EReport(path, filename string, body interface{}) error {
 	fullPath := filepath.Join(path, filename)
 	t := template.Must(template.New("report.tmpl").Funcs(templateFuncs).Parse(htmlTemplate))
 
-	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0777)
+	f, err := os.OpenFile(filepath.Clean(fullPath), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, filePerms)
 	if err != nil {
 		return err
 	}
