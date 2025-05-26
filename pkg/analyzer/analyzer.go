@@ -47,13 +47,13 @@ var (
 	cdkTfRegexTerraform                             = regexp.MustCompile(`"terraform"\s*:`)
 	artifactsRegexKind                              = regexp.MustCompile(`("kind"|kind)\s*:`)
 	artifactsRegexProperties                        = regexp.MustCompile(`("properties"|properties)\s*:`)
-	artifactsRegexParametes                         = regexp.MustCompile(`("parameters"|parameters)\s*:`)
+	artifactsRegexParameters                        = regexp.MustCompile(`("parameters"|parameters)\s*:`)
 	policyAssignmentArtifactRegexPolicyDefinitionID = regexp.MustCompile(`("policyDefinitionId"|policyDefinitionId)\s*:`)
 	roleAssignmentArtifactRegexPrincipalIds         = regexp.MustCompile(`("principalIds"|principalIds)\s*:`)
 	roleAssignmentArtifactRegexRoleDefinitionID     = regexp.MustCompile(`("roleDefinitionId"|roleDefinitionId)\s*:`)
-	templateArtifactRegexParametes                  = regexp.MustCompile(`("template"|template)\s*:`)
-	blueprintpRegexTargetScope                      = regexp.MustCompile(`("targetScope"|targetScope)\s*:`)
-	blueprintpRegexProperties                       = regexp.MustCompile(`("properties"|properties)\s*:`)
+	templateArtifactRegexParameters                 = regexp.MustCompile(`("template"|template)\s*:`)
+	blueprintRegexTargetScope                       = regexp.MustCompile(`("targetScope"|targetScope)\s*:`)
+	blueprintRegexProperties                        = regexp.MustCompile(`("properties"|properties)\s*:`)
 	buildahRegex                                    = regexp.MustCompile(`buildah\s*from\s*\w+`)
 	dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:[\w\W]+(image|build)\s*:`)
 	crossPlaneRegex                                 = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
@@ -67,6 +67,11 @@ var (
 	cicdJobsRegex                                   = regexp.MustCompile(`\s*jobs:\s*`)
 	cicdStepsRegex                                  = regexp.MustCompile(`\s*steps:\s*`)
 	queryRegexPathsAnsible                          = regexp.MustCompile(fmt.Sprintf(`^.*?%s(?:group|host)_vars%s.*$`, regexp.QuoteMeta(string(os.PathSeparator)), regexp.QuoteMeta(string(os.PathSeparator)))) //nolint:lll
+	fhirResourceTypeRegex                           = regexp.MustCompile(`"resourceType"\s*:`)
+	fhirEntryRegex                                  = regexp.MustCompile(`"entry"\s*:`)
+	fhirSubjectRegex                                = regexp.MustCompile(`"subject"\s*:`)
+	fhirCodeRegex                                   = regexp.MustCompile(`"code"\s*:`)
+	fhirStatusRegex                                 = regexp.MustCompile(`"status"\s*:`)
 )
 
 var (
@@ -127,6 +132,7 @@ const (
 	dockerfile = "dockerfile"
 	crossplane = "crossplane"
 	knative    = "knative"
+	fhir       = "fhir"
 	sizeMb     = 1048576
 )
 
@@ -215,7 +221,7 @@ var types = map[string]regexSlice{
 		[]*regexp.Regexp{
 			artifactsRegexKind,
 			artifactsRegexProperties,
-			artifactsRegexParametes,
+			artifactsRegexParameters,
 			policyAssignmentArtifactRegexPolicyDefinitionID,
 		},
 	},
@@ -231,14 +237,14 @@ var types = map[string]regexSlice{
 		[]*regexp.Regexp{
 			artifactsRegexKind,
 			artifactsRegexProperties,
-			artifactsRegexParametes,
-			templateArtifactRegexParametes,
+			artifactsRegexParameters,
+			templateArtifactRegexParameters,
 		},
 	},
 	"blueprint": {
 		[]*regexp.Regexp{
-			blueprintpRegexTargetScope,
-			blueprintpRegexProperties,
+			blueprintRegexTargetScope,
+			blueprintRegexProperties,
 		},
 	},
 	"buildah": {
@@ -269,6 +275,15 @@ var types = map[string]regexSlice{
 			cicdOnRegex,
 			cicdJobsRegex,
 			cicdStepsRegex,
+		},
+	},
+	"fhir": {
+		[]*regexp.Regexp{
+			fhirResourceTypeRegex,
+			fhirStatusRegex,
+			fhirCodeRegex,
+			fhirEntryRegex,
+			fhirSubjectRegex,
 		},
 	},
 }
@@ -415,7 +430,8 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 				locCount <- linesCount
 			}
 		/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
-		Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager*/
+		Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager.
+		We also have FHIR's case which will be ignored since it's not a platform file.*/
 		case yaml, yml, json, sh:
 			a.checkContent(results, unwanted, locCount, linesCount, ext)
 		}
@@ -446,11 +462,13 @@ func isDockerfile(path string) bool {
 	return check
 }
 
-// overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
+// overrides k8s match when all regexes pass for azureresourcemanager key and extension is set to json
 func needsOverride(check bool, returnType, key, ext string) bool {
 	if check && returnType == kubernetes && key == arm && ext == json {
 		return true
 	} else if check && returnType == kubernetes && (key == knative || key == crossplane) && (ext == yaml || ext == yml) {
+		return true
+	} else if check && key == fhir {
 		return true
 	}
 	return false
@@ -470,7 +488,7 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 
 	returnType := ""
 
-	// Sort map so that CloudFormation (type that as less requireds) goes last
+	// Sort map so that CloudFormation (type that as less required) goes last
 	keys := make([]string, 0, len(types))
 	for k := range types {
 		keys = append(keys, k)
@@ -492,7 +510,7 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 				break
 			}
 		}
-		// If all regexs passed and there wasn't a type already assigned
+		// If all regexes passed and there wasn't a type already assigned
 		if check && returnType == "" {
 			returnType = key
 		} else if needsOverride(check, returnType, key, ext) {
@@ -725,6 +743,10 @@ func multiPlatformTypeCheck(typesSelected *[]string) {
 	}
 	if utils.Contains("knative", *typesSelected) && !utils.Contains("kubernetes", *typesSelected) {
 		*typesSelected = append(*typesSelected, "kubernetes")
+	}
+	// remove fhir from supported platforms since it's not a platform file
+	if len(*typesSelected) > 0 && (*typesSelected)[len(*typesSelected)-1] == "fhir" {
+		*typesSelected = (*typesSelected)[:len(*typesSelected)-1]
 	}
 }
 

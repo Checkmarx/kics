@@ -184,7 +184,7 @@ func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObje
 }
 
 // CreateSummary creates a report for a single scan, based on its scanID
-func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
+func CreateSummary(counters *Counters, vulnerabilities []Vulnerability,
 	scanID string, pathExtractionMap map[string]ExtractedPathObject, version Version) Summary {
 	log.Debug().Msg("model.CreateSummary()")
 	q := make(map[string]QueryResult, len(vulnerabilities))
@@ -278,7 +278,7 @@ func CreateSummary(counters Counters, vulnerabilities []Vulnerability,
 
 	return Summary{
 		Bom:             materials,
-		Counters:        counters,
+		Counters:        *counters,
 		Queries:         queries,
 		SeveritySummary: severitySummary,
 		ScannedPaths:    removeAllURLCredentials(pathExtractionMap),
