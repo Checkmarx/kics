@@ -436,6 +436,19 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			excludeGitIgnore:     false,
 			MaxFileSize:          -1,
 		},
+		{
+			name:                 "analyze_test_fhir",
+			paths:                []string{filepath.FromSlash("../../test/fixtures/analyzer_test/fhir.json")},
+			wantTypes:            []string{},
+			wantExclude:          []string{filepath.FromSlash("../../test/fixtures/analyzer_test/fhir.json")},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantLOC:              0,
+			wantErr:              false,
+			gitIgnoreFileName:    "fhir.json",
+			excludeGitIgnore:     false,
+			MaxFileSize:          -1,
+		},
 	}
 
 	for _, tt := range tests {
