@@ -16,7 +16,7 @@ import (
 
 const (
 	dirPerm   = 0750
-	filePerms = 0600
+	filePerms = 0777
 )
 
 // NoColor - disables ASCII color codes
