@@ -154,7 +154,7 @@ func addition(r *Remediation, lines *[]string) []string {
 }
 
 const (
-	FilePermMode = 0600 // File permissions mode with read and write only
+	FilePermMode = 0777
 )
 
 func (s *Summary) writeRemediation(remediatedLines, lines []string, filePath, similarityID string) []string {

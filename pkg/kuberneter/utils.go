@@ -37,7 +37,7 @@ type K8sAPIOptions struct {
 
 const (
 	kuberneterPathLength = 3
-	dirPerms             = 0750
+	dirPerms             = 0777
 	filePerms            = 0777
 )
 

@@ -29,7 +29,7 @@ var (
 const (
 	scanCommandStr = "scan"
 	initError      = "initialization error - "
-	dirPerms       = 0750
+	dirPerms       = 0777
 )
 
 // NewScanCmd creates a new instance of the scan Command
