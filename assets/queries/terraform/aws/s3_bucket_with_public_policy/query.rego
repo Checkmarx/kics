@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 # checks if aws_s3_account_public_access_block and aws_s3_bucket_public_access_block resources exist
-# checks if block_public_policy is set to false on bucket-level and account-level is set to fals or missing
+# checks if block_public_policy is set to false on bucket-level and account-level is set to false or missing
 CxPolicy[result] {
 	pubACL := input.document[i].resource.aws_s3_account_public_access_block[account_name]
     pubBucket := input.document[i].resource.aws_s3_bucket_public_access_block[bucket_name]
