@@ -7,7 +7,7 @@ import data.generic.terraform as tf_lib
 # checks if block_public_policy is set to false on bucket-level and account-level is set to false or missing
 CxPolicy[result] {
 	pubACL := input.document[i].resource.aws_s3_account_public_access_block[account_name]
-    pubBucket := input.document[i].resource.aws_s3_bucket_public_access_block[bucket_name]
+    pubBucket := input.document[_].resource.aws_s3_bucket_public_access_block[bucket_name]
 
     is_false_or_missing(pubACL,pubBucket)
 
