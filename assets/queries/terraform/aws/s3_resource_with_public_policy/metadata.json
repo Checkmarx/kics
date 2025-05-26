@@ -1,0 +1,12 @@
+{
+  "id": "10ec7c6c-f682-4def-8742-f4c5ed76f915",
+  "queryName": "S3 Resource Allows Public Policy",
+  "severity": "Low",
+  "category": "Insecure Configurations",
+  "descriptionText": "S3 resource allows public policy",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
+  "platform": "Terraform",
+  "descriptionID": "10ec7c6c",
+  "cloudProvider": "aws",
+  "cwe": "665"
+}
