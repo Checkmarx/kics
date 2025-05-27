@@ -61,5 +61,7 @@ func countLines(s string) int {
 	if s == "" {
 		return 0
 	}
+	// Remove trailing newline to avoid counting an extra line
+	s = strings.TrimSuffix(s, "\n")
 	return strings.Count(s, "\n") + 1
 }
