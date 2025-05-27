@@ -171,7 +171,7 @@
 				
 				<option value="file57">github.com/Checkmarx/kics/v2/pkg/kuberneter/utils.go (70.0%)</option>
 				
-				<option value="file58">github.com/Checkmarx/kics/v2/pkg/minified/minified.go (100.0%)</option>
+				<option value="file58">github.com/Checkmarx/kics/v2/pkg/minified/minified.go (91.7%)</option>
 				
 				<option value="file59">github.com/Checkmarx/kics/v2/pkg/model/comment_yaml.go (80.2%)</option>
 				
@@ -251,7 +251,7 @@
 				
 				<option value="file97">github.com/Checkmarx/kics/v2/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file98">github.com/Checkmarx/kics/v2/pkg/progress/counter/counter_progress.go (63.6%)</option>
+				<option value="file98">github.com/Checkmarx/kics/v2/pkg/progress/counter/counter_progress.go (95.5%)</option>
 				
 				<option value="file99">github.com/Checkmarx/kics/v2/pkg/progress/progress.go (100.0%)</option>
 				
@@ -329,7 +329,7 @@
 				
 				<option value="file136">github.com/Checkmarx/kics/v2/pkg/utils/get_extension.go (77.1%)</option>
 				
-				<option value="file137">github.com/Checkmarx/kics/v2/pkg/utils/line_counter.go (84.6%)</option>
+				<option value="file137">github.com/Checkmarx/kics/v2/pkg/utils/line_counter.go (89.7%)</option>
 				
 				<option value="file138">github.com/Checkmarx/kics/v2/pkg/utils/map.go (100.0%)</option>
 				
@@ -2602,13 +2602,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov10" title="55">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="50">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov10" title="55">total += v
+                <span class="cov9" title="50">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -3078,20 +3078,22 @@ type regexSlice struct {
 }
 
 type analyzerInfo struct {
-        typesFlag        []string
-        excludeTypesFlag []string
-        filePath         string
+        typesFlag               []string
+        excludeTypesFlag        []string
+        filePath                string
+        fallbackMinifiedFileLOC int
 }
 
 // Analyzer keeps all the relevant info for the function Analyze
 type Analyzer struct {
-        Paths             []string
-        Types             []string
-        ExcludeTypes      []string
-        Exc               []string
-        GitIgnoreFileName string
-        ExcludeGitIgnore  bool
-        MaxFileSize       int
+        Paths                   []string
+        Types                   []string
+        ExcludeTypes            []string
+        Exc                     []string
+        GitIgnoreFileName       string
+        ExcludeGitIgnore        bool
+        MaxFileSize             int
+        FallbackMinifiedFileLOC int
 }
 
 // types is a map that contains the regex by type
@@ -3280,16 +3282,17 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
                 wg.Add(1)
                 // analyze the files concurrently
                 a := &amp;analyzerInfo{
-                        typesFlag:        a.Types,
-                        excludeTypesFlag: a.ExcludeTypes,
-                        filePath:         file,
+                        typesFlag:               a.Types,
+                        excludeTypesFlag:        a.ExcludeTypes,
+                        filePath:                file,
+                        fallbackMinifiedFileLOC: a.FallbackMinifiedFileLOC,
                 }
                 go a.worker(results, unwanted, locCount, &amp;wg)
         }</span>
 
         <span class="cov4" title="27">go func() </span><span class="cov4" title="27">{
                 // close channel results when the worker has finished writing into it
-                defer func() </span><span class="cov4" title="26">{
+                defer func() </span><span class="cov4" title="27">{
                         close(unwanted)
                         close(results)
                         close(locCount)
@@ -3318,7 +3321,7 @@ func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, locCount chan&
 
         ext, errExt := utils.GetExtension(a.filePath)
         if errExt == nil </span><span class="cov7" title="176">{
-                linesCount, _ := utils.LineCounter(a.filePath)
+                linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
 
                 switch ext </span>{
                 // Dockerfile (direct identification)
@@ -10101,6 +10104,8 @@ func getSupportedOptions(supportedKinds *supportedKinds) (v, k *[]string) <span 
 		<pre class="file" id="file58" style="display: none">package minified
 
 import (
+        "bytes"
+        "encoding/json"
         "regexp"
         "strings"
 )
@@ -10124,6 +10129,15 @@ func isMinifiedJSON(content string) bool <span class="cov8" title="3">{
 
         return float64(nonWhitespaceCount)/float64(len(content)) &gt; minifiedThreshold
 }</span>
+
+func BeautifyJSON(content []byte) ([]byte, error) <span class="cov5" title="2">{
+        var pretty bytes.Buffer
+        err := json.Indent(&amp;pretty, content, "", "    ")
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov5" title="2">return pretty.Bytes(), nil</span>
+}
 </pre>
 		
 		<pre class="file" id="file59" style="display: none">package model
@@ -20352,12 +20366,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="216">{
+        for variable := range s.varList </span><span class="cov7" title="202">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="605">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="689">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -27815,7 +27829,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov0" title="0">{
+                close: func() error </span><span class="cov3" title="2">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -27824,26 +27838,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov0" title="0">{
+        defer func() </span><span class="cov3" title="2">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov0" title="0">p.wg.Done()</span>
+                <span class="cov3" title="2">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov3" title="2">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov3" title="2">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file99" style="display: none">package progress
@@ -33749,13 +33763,34 @@ import (
         "bufio"
         "os"
         "path/filepath"
+        "strings"
 
+        "github.com/Checkmarx/kics/v2/pkg/minified"
         "github.com/rs/zerolog/log"
 )
 
-// LineCounter get the number of lines of a given file
-func LineCounter(path string) (int, error) <span class="cov3" title="3">{
-        file, err := os.Open(filepath.Clean(path))
+// LineCounter returns the number of lines in a file
+// For files with a .json extension, if the file is detected as minified JSON,
+// it will Beautifying the JSON and return the number of lines in the formatted output
+// For all other files, or non-minified JSON, it returns the actual number of lines in the file
+// If an error occurs reading the file, fallbackMinifiedFileLOC is returned for minified JSON files
+func LineCounter(path string, fallbackMinifiedFileLOC int) (int, error) <span class="cov5" title="5">{
+        if strings.HasSuffix(path, ".json") </span><span class="cov2" title="2">{
+                content, err := os.ReadFile(filepath.Clean(path))
+                if err != nil </span><span class="cov0" title="0">{
+                        return fallbackMinifiedFileLOC, err
+                }</span>
+                <span class="cov2" title="2">isMinified := minified.IsMinified(path, content)
+                if isMinified </span><span class="cov2" title="2">{
+                        pretty, err := minified.BeautifyJSON(content)
+                        if err != nil </span><span class="cov1" title="1">{
+                                return fallbackMinifiedFileLOC, err
+                        }</span>
+                        <span class="cov1" title="1">return countLines(string(pretty)), nil</span>
+                }
+        }
+
+        <span class="cov3" title="3">file, err := os.Open(filepath.Clean(path))
         if err != nil </span><span class="cov1" title="1">{
                 return 0, err
         }</span>
@@ -33770,12 +33805,23 @@ func LineCounter(path string) (int, error) <span class="cov3" title="3">{
         for scanner.Scan() </span><span class="cov10" title="32">{
                 lineCount++
         }</span>
-
         <span class="cov2" title="2">if err := scanner.Err(); err != nil </span><span class="cov0" title="0">{
                 return 0, err
         }</span>
 
         <span class="cov2" title="2">return lineCount, nil</span>
+}
+
+// countLines normalizes line endings and returns the number of lines in the input string
+func countLines(s string) int <span class="cov6" title="8">{
+        s = strings.ReplaceAll(s, "\r\n", "\n")
+        s = strings.ReplaceAll(s, "\r", "\n")
+        if s == "" </span><span class="cov1" title="1">{
+                return 0
+        }</span>
+        // Remove trailing newline to avoid counting an extra line
+        <span class="cov6" title="7">s = strings.TrimSuffix(s, "\n")
+        return strings.Count(s, "\n") + 1</span>
 }
 </pre>
 		
