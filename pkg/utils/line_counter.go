@@ -58,7 +58,7 @@ func LineCounter(path string, fallbackMinifiedFileLOC int) (int, error) {
 func countLines(s string) int {
 	s = strings.ReplaceAll(s, "\r\n", "\n")
 	s = strings.ReplaceAll(s, "\r", "\n")
-	if len(s) == 0 {
+	if s == "" {
 		return 0
 	}
 	return strings.Count(s, "\n") + 1
