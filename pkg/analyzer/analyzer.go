@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"sort"
 	"strings"
 	"sync"
@@ -18,6 +19,26 @@ import (
 	ignore "github.com/sabhiram/go-gitignore"
 
 	yamlParser "gopkg.in/yaml.v3"
+)
+
+const (
+	yml                  = ".yml"
+	yaml                 = ".yaml"
+	json                 = ".json"
+	sh                   = ".sh"
+	arm                  = "azureresourcemanager"
+	bicep                = "bicep"
+	kubernetes           = "kubernetes"
+	terraform            = "terraform"
+	gdm                  = "googledeploymentmanager"
+	ansible              = "ansible"
+	grpc                 = "grpc"
+	dockerfile           = "dockerfile"
+	crossplane           = "crossplane"
+	knative              = "knative"
+	fhir                 = "fhir"
+	azurePipelinesVscode = "azurepipelinesvscode"
+	sizeMb               = 1048576
 )
 
 // move the openApi regex to public to be used on file.go
@@ -72,6 +93,7 @@ var (
 	fhirSubjectRegex                                = regexp.MustCompile(`"subject"\s*:`)
 	fhirCodeRegex                                   = regexp.MustCompile(`"code"\s*:`)
 	fhirStatusRegex                                 = regexp.MustCompile(`"status"\s*:`)
+	azurePipelinesVscodeRegex                       = regexp.MustCompile(`\$id"?\s*:\s*"[^"]*azure-pipelines-vscode[^"]*"`)
 )
 
 var (
@@ -115,25 +137,7 @@ var (
 	playBooks               = "playbooks"
 	ansibleHost             = []string{"all", "ungrouped"}
 	listKeywordsAnsibleHots = []string{"hosts", "children"}
-)
-
-const (
-	yml        = ".yml"
-	yaml       = ".yaml"
-	json       = ".json"
-	sh         = ".sh"
-	arm        = "azureresourcemanager"
-	bicep      = "bicep"
-	kubernetes = "kubernetes"
-	terraform  = "terraform"
-	gdm        = "googledeploymentmanager"
-	ansible    = "ansible"
-	grpc       = "grpc"
-	dockerfile = "dockerfile"
-	crossplane = "crossplane"
-	knative    = "knative"
-	fhir       = "fhir"
-	sizeMb     = 1048576
+	blacklistedFiles        = []string{fhir, azurePipelinesVscode}
 )
 
 type Parameters struct {
@@ -279,7 +283,8 @@ var types = map[string]regexSlice{
 			cicdStepsRegex,
 		},
 	},
-	"fhir": {
+	//region blacklisted platforms
+	fhir: {
 		[]*regexp.Regexp{
 			fhirResourceTypeRegex,
 			fhirStatusRegex,
@@ -288,6 +293,12 @@ var types = map[string]regexSlice{
 			fhirSubjectRegex,
 		},
 	},
+	azurePipelinesVscode: {
+		[]*regexp.Regexp{
+			azurePipelinesVscodeRegex,
+		},
+	},
+	//endregion
 }
 
 var defaultConfigFiles = []string{"pnpm-lock.yaml"}
@@ -471,7 +482,7 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 		return true
 	} else if check && returnType == kubernetes && (key == knative || key == crossplane) && (ext == yaml || ext == yml) {
 		return true
-	} else if check && key == fhir {
+	} else if check && slices.Contains(blacklistedFiles, key) {
 		return true
 	}
 	return false
@@ -747,8 +758,8 @@ func multiPlatformTypeCheck(typesSelected *[]string) {
 	if utils.Contains("knative", *typesSelected) && !utils.Contains("kubernetes", *typesSelected) {
 		*typesSelected = append(*typesSelected, "kubernetes")
 	}
-	// remove fhir from supported platforms since it's not a platform file
-	if len(*typesSelected) > 0 && (*typesSelected)[len(*typesSelected)-1] == "fhir" {
+	// remove blacklistedFiles from supported platforms since they are not supported
+	if len(*typesSelected) > 0 && slices.Contains(blacklistedFiles, (*typesSelected)[len(*typesSelected)-1]) {
 		*typesSelected = (*typesSelected)[:len(*typesSelected)-1]
 	}
 }
