@@ -1,23 +1,14 @@
-resource "aws_s3_bucket" "positive1" {
-  bucket = "example"
+// account is defined, and does NOT explicit
+// set `block_public_policy` to `true`
+resource "aws_s3_account_public_access_block" "allow_public" {
+  account_id      = 250924516109
 }
 
-resource "aws_s3_bucket_public_access_block" "positive2" {
-  bucket = aws_s3_bucket.example.id
-
-  block_public_acls   = true
+// bucket resource is defined and sets `block_public_policy` to `false`
+resource "aws_s3_bucket_public_access_block" "allow_public" {
+  bucket = aws_s3_bucket.public_bucket.id
+  block_public_acls   = false
   block_public_policy = false
   ignore_public_acls  = false
-}
-
-// comment
-// comment
-// comment
-// comment
-// comment
-resource "aws_s3_bucket_public_access_block" "positive3" {
-  bucket = aws_s3_bucket.example.id
-
-  block_public_acls   = true
-  ignore_public_acls  = false
+  restrict_public_buckets = false
 }

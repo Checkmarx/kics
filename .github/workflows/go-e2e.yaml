@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        go-version: [1.23.x]
+        go-version: [1.24.x]
         os: [ubuntu-latest]
         kics-docker: ["Dockerfile", "docker/Dockerfile.ubi8"]
     runs-on: ${{ matrix.os }}
@@ -94,6 +94,7 @@ jobs:
           go build
           ./e2e-report -test-path ${CWD} -test-name results.json -report-path ${CWD} -report-name e2e-report.html
       - name: Get docker name
+        if: always()
         run: |
           DOCKER_NAME=$(echo ${{ matrix.kics-docker }} | sed 's/\//-/')
           echo "DOCKER_NAME=$DOCKER_NAME" >> $GITHUB_ENV

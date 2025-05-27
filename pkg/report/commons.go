@@ -17,7 +17,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-const filePerms = 0600
+const filePerms = 0777
 
 var (
 	stringsSeverity = map[string]model.Severity{
