@@ -16,7 +16,7 @@ import (
 // it will prettifying the JSON and return the number of lines in the formatted output
 // For all other files, or non-minified JSON, it returns the actual number of lines in the file
 // If an error occurs reading the file, fallbackMinifiedFileLOC is returned for minified JSON files
-func LineCounter(path string, maxFileSize, fallbackMinifiedFileLOC int) (int, error) {
+func LineCounter(path string, fallbackMinifiedFileLOC int) (int, error) {
 	if strings.HasSuffix(path, ".json") {
 		content, err := os.ReadFile(filepath.Clean(path))
 		if err != nil {
@@ -47,9 +47,6 @@ func LineCounter(path string, maxFileSize, fallbackMinifiedFileLOC int) (int, er
 	}()
 
 	scanner := bufio.NewScanner(file)
-	if maxFileSize > 0 {
-		scanner.Buffer(make([]byte, 1024*1024), maxFileSize*1024*1024) // maxFileSize for max line size
-	}
 	lineCount := 0
 	for scanner.Scan() {
 		lineCount++

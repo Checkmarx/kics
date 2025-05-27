@@ -145,7 +145,6 @@ type analyzerInfo struct {
 	typesFlag               []string
 	excludeTypesFlag        []string
 	filePath                string
-	maxFileSize             int
 	fallbackMinifiedFileLOC int
 }
 
@@ -341,7 +340,6 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 			typesFlag:               a.Types,
 			excludeTypesFlag:        a.ExcludeTypes,
 			filePath:                file,
-			maxFileSize:             a.MaxFileSize,
 			fallbackMinifiedFileLOC: a.FallbackMinifiedFileLOC,
 		}
 		go a.worker(results, unwanted, locCount, &wg)
@@ -378,7 +376,7 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 
 	ext, errExt := utils.GetExtension(a.filePath)
 	if errExt == nil {
-		linesCount, _ := utils.LineCounter(a.filePath, a.maxFileSize, a.fallbackMinifiedFileLOC)
+		linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
 
 		switch ext {
 		// Dockerfile (direct identification)

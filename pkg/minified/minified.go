@@ -1,6 +1,7 @@
 package minified
 
 import (
+	"bytes"
 	"encoding/json"
 	"regexp"
 	"strings"
@@ -27,13 +28,10 @@ func isMinifiedJSON(content string) bool {
 }
 
 func PrettifyJSON(content []byte) ([]byte, error) {
-	var data interface{}
-	if err := json.Unmarshal(content, &data); err != nil {
-		return nil, err
-	}
-	pretty, err := json.MarshalIndent(data, "", "    ")
+	var pretty bytes.Buffer
+	err := json.Indent(&pretty, content, "", "    ")
 	if err != nil {
 		return nil, err
 	}
-	return pretty, nil
+	return pretty.Bytes(), nil
 }

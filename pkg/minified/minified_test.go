@@ -1,9 +1,10 @@
 package minified
 
 import (
-	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func Test_IsMinified(t *testing.T) {
@@ -48,6 +49,33 @@ func Test_IsMinified(t *testing.T) {
 			} else {
 				assert.False(t, result, tt.name)
 			}
+		})
+	}
+}
+
+func Test_PrettifyJSON(t *testing.T) {
+	tests := []struct {
+		name     string
+		input    []byte
+		expected string
+	}{
+		{
+			name:     "Simple minified JSON",
+			input:    []byte(`{"foo":1,"bar":{"baz":2}}`),
+			expected: "{\n    \"foo\": 1,\n    \"bar\": {\n        \"baz\": 2\n    }\n}",
+		},
+		{
+			name:     "Simple minified JSON (inverted)",
+			input:    []byte(`{"bar":{"baz":2},"foo":1}`),
+			expected: "{\n    \"bar\": {\n        \"baz\": 2\n    },\n    \"foo\": 1\n}",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			pretty, err := PrettifyJSON(tt.input)
+			assert.NoError(t, err, "PrettifyJSON should not return error")
+			assert.Equal(t, tt.expected, string(pretty), "PrettifyJSON output mismatch")
 		})
 	}
 }

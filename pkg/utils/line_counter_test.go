@@ -31,11 +31,23 @@ func TestLineCounter(t *testing.T) {
 			filePath:  "../../test/assets/sample_K8S_CONFIG_FILE.yaml",
 			wantError: false,
 		},
+		{
+			name:      "Get lines from a minified json file",
+			want:      31973,
+			filePath:  "../../test/fixtures/minified_jsons/service-schema.json",
+			wantError: false,
+		},
+		{
+			name:      "Get lines from a invalid minified json file",
+			want:      100,
+			filePath:  "../../test/fixtures/minified_jsons/invalid.json",
+			wantError: true,
+		},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			got, err := LineCounter(test.filePath, 0, 100)
+			got, err := LineCounter(test.filePath, 100)
 			if test.wantError {
 				require.NotEqual(t, err, nil)
 				require.Equal(t, test.want, got)
