@@ -27,7 +27,7 @@ func isMinifiedJSON(content string) bool {
 	return float64(nonWhitespaceCount)/float64(len(content)) > minifiedThreshold
 }
 
-func PrettifyJSON(content []byte) ([]byte, error) {
+func BeautifyJSON(content []byte) ([]byte, error) {
 	var pretty bytes.Buffer
 	err := json.Indent(&pretty, content, "", "    ")
 	if err != nil {

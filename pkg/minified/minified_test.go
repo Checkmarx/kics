@@ -53,7 +53,7 @@ func Test_IsMinified(t *testing.T) {
 	}
 }
 
-func Test_PrettifyJSON(t *testing.T) {
+func Test_BeautifyJSON(t *testing.T) {
 	tests := []struct {
 		name     string
 		input    []byte
@@ -73,9 +73,9 @@ func Test_PrettifyJSON(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			pretty, err := PrettifyJSON(tt.input)
-			assert.NoError(t, err, "PrettifyJSON should not return error")
-			assert.Equal(t, tt.expected, string(pretty), "PrettifyJSON output mismatch")
+			pretty, err := BeautifyJSON(tt.input)
+			assert.NoError(t, err, "BeautifyJSON should not return error")
+			assert.Equal(t, tt.expected, string(pretty), "BeautifyJSON output mismatch")
 		})
 	}
 }

@@ -13,7 +13,7 @@ import (
 
 // LineCounter returns the number of lines in a file
 // For files with a .json extension, if the file is detected as minified JSON,
-// it will prettifying the JSON and return the number of lines in the formatted output
+// it will Beautifying the JSON and return the number of lines in the formatted output
 // For all other files, or non-minified JSON, it returns the actual number of lines in the file
 // If an error occurs reading the file, fallbackMinifiedFileLOC is returned for minified JSON files
 func LineCounter(path string, fallbackMinifiedFileLOC int) (int, error) {
@@ -24,7 +24,7 @@ func LineCounter(path string, fallbackMinifiedFileLOC int) (int, error) {
 		}
 		isMinified := minified.IsMinified(path, content)
 		if isMinified {
-			pretty, err := minified.PrettifyJSON(content)
+			pretty, err := minified.BeautifyJSON(content)
 			if err != nil {
 				return fallbackMinifiedFileLOC, err
 			}
