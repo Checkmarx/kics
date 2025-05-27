@@ -59,3 +59,25 @@ func TestLineCounter(t *testing.T) {
 		})
 	}
 }
+
+func TestCountLines(t *testing.T) {
+	tests := []struct {
+		name  string
+		input string
+		want  int
+	}{
+		{"empty", "", 0},
+		{"one line", "abc", 1},
+		{"two lines LF", "abc\ndef", 2},
+		{"two lines CF", "abc\rdef", 2},
+		{"three lines CRLF", "a\r\nb\r\nc", 3},
+		{"four lines mixed", "a\nb\rc\r\n", 4},
+		{"ends with newline", "a\nb\n", 3},
+		{"only newlines", "\n\n\n", 4},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			require.Equal(t, tt.want, countLines(tt.input))
+		})
+	}
+}

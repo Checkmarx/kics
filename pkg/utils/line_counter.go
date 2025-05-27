@@ -28,11 +28,7 @@ func LineCounter(path string, fallbackMinifiedFileLOC int) (int, error) {
 			if err != nil {
 				return fallbackMinifiedFileLOC, err
 			}
-			prettyStr := string(pretty)
-			prettyStr = strings.ReplaceAll(prettyStr, "\r\n", "\n")
-			prettyStr = strings.ReplaceAll(prettyStr, "\r", "\n")
-			prettyLineCount := strings.Count(prettyStr, "\n") + 1
-			return prettyLineCount, nil
+			return countLines(string(pretty)), nil
 		}
 	}
 
@@ -56,4 +52,14 @@ func LineCounter(path string, fallbackMinifiedFileLOC int) (int, error) {
 	}
 
 	return lineCount, nil
+}
+
+// countLines normalizes line endings and returns the number of lines in the input string
+func countLines(s string) int {
+	s = strings.ReplaceAll(s, "\r\n", "\n")
+	s = strings.ReplaceAll(s, "\r", "\n")
+	if len(s) == 0 {
+		return 0
+	}
+	return strings.Count(s, "\n") + 1
 }
