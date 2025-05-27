@@ -148,20 +148,22 @@ type regexSlice struct {
 }
 
 type analyzerInfo struct {
-	typesFlag        []string
-	excludeTypesFlag []string
-	filePath         string
+	typesFlag               []string
+	excludeTypesFlag        []string
+	filePath                string
+	fallbackMinifiedFileLOC int
 }
 
 // Analyzer keeps all the relevant info for the function Analyze
 type Analyzer struct {
-	Paths             []string
-	Types             []string
-	ExcludeTypes      []string
-	Exc               []string
-	GitIgnoreFileName string
-	ExcludeGitIgnore  bool
-	MaxFileSize       int
+	Paths                   []string
+	Types                   []string
+	ExcludeTypes            []string
+	Exc                     []string
+	GitIgnoreFileName       string
+	ExcludeGitIgnore        bool
+	MaxFileSize             int
+	FallbackMinifiedFileLOC int
 }
 
 // types is a map that contains the regex by type
@@ -350,9 +352,10 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 		wg.Add(1)
 		// analyze the files concurrently
 		a := &analyzerInfo{
-			typesFlag:        a.Types,
-			excludeTypesFlag: a.ExcludeTypes,
-			filePath:         file,
+			typesFlag:               a.Types,
+			excludeTypesFlag:        a.ExcludeTypes,
+			filePath:                file,
+			fallbackMinifiedFileLOC: a.FallbackMinifiedFileLOC,
 		}
 		go a.worker(results, unwanted, locCount, &wg)
 	}
@@ -388,7 +391,7 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 
 	ext, errExt := utils.GetExtension(a.filePath)
 	if errExt == nil {
-		linesCount, _ := utils.LineCounter(a.filePath)
+		linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
 
 		switch ext {
 		// Dockerfile (direct identification)
