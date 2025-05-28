@@ -93,7 +93,7 @@ var (
 	fhirSubjectRegex                                = regexp.MustCompile(`"subject"\s*:`)
 	fhirCodeRegex                                   = regexp.MustCompile(`"code"\s*:`)
 	fhirStatusRegex                                 = regexp.MustCompile(`"status"\s*:`)
-	azurePipelinesVscodeRegex                       = regexp.MustCompile(`\$id"?\s*:\s*"[^"]*azure-pipelines-vscode[^"]*"`)
+	azurePipelinesVscodeRegex                       = regexp.MustCompile(`\$id"\s*:\s*"[^"]*azure-pipelines-vscode[^"]*"`)
 )
 
 var (
@@ -550,6 +550,9 @@ func checkReturnType(path, returnType, ext string, content []byte) string {
 		}
 		if utils.Contains(returnType, armRegexTypes) {
 			return arm
+		}
+		if slices.Contains(blacklistedFiles, returnType) {
+			return ""
 		}
 	} else if ext == yaml || ext == yml {
 		if checkHelm(path) {
