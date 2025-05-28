@@ -28,7 +28,7 @@ func init() { //nolint
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
 					"--output-name", "E2E_CLI_100_RESULT", "-v",
-					"-p", "\"/path/e2e/fixtures/samples/blacklisted-files/azurepipelinesvscode",
+					"-p", "\"/path/e2e/fixtures/samples/blacklisted-files/azurepipelinesvscode\"",
 				},
 			},
 			ExpectedResult: []ResultsValidation{
