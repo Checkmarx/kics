@@ -5,7 +5,6 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-	"slices"
 	"sort"
 	"strings"
 	"sync"
@@ -93,7 +92,7 @@ var (
 	fhirSubjectRegex                                = regexp.MustCompile(`"subject"\s*:`)
 	fhirCodeRegex                                   = regexp.MustCompile(`"code"\s*:`)
 	fhirStatusRegex                                 = regexp.MustCompile(`"status"\s*:`)
-	azurePipelinesVscodeRegex                       = regexp.MustCompile(`\$id"\s*:\s*"[^"]*azure-pipelines-vscode[^"]*"`)
+	azurePipelinesVscodeRegex                       = regexp.MustCompile(`\$id"\s*:\s*"[^"]*azure-pipelines-vscode[^"]*`)
 )
 
 var (
@@ -482,7 +481,7 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 		return true
 	} else if check && returnType == kubernetes && (key == knative || key == crossplane) && (ext == yaml || ext == yml) {
 		return true
-	} else if check && slices.Contains(blacklistedFiles, key) {
+	} else if check && utils.Contains(key, blacklistedFiles) {
 		return true
 	}
 	return false
@@ -551,7 +550,7 @@ func checkReturnType(path, returnType, ext string, content []byte) string {
 		if utils.Contains(returnType, armRegexTypes) {
 			return arm
 		}
-		if slices.Contains(blacklistedFiles, returnType) {
+		if utils.Contains(returnType, blacklistedFiles) {
 			return ""
 		}
 	} else if ext == yaml || ext == yml {
@@ -762,7 +761,8 @@ func multiPlatformTypeCheck(typesSelected *[]string) {
 		*typesSelected = append(*typesSelected, "kubernetes")
 	}
 	// remove blacklistedFiles from supported platforms since they are not supported
-	if len(*typesSelected) > 0 && slices.Contains(blacklistedFiles, (*typesSelected)[len(*typesSelected)-1]) {
+	// otherwise, they will appear when using the -v flag
+	if len(*typesSelected) > 0 && utils.Contains((*typesSelected)[len(*typesSelected)-1], blacklistedFiles) {
 		*typesSelected = (*typesSelected)[:len(*typesSelected)-1]
 	}
 }

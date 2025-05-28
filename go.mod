@@ -2,8 +2,6 @@ module github.com/Checkmarx/kics/v2
 
 go 1.24.0
 
-toolchain go1.24.3
-
 require (
 	code.cloudfoundry.org/bytefmt v0.35.0
 	github.com/BurntSushi/toml v1.5.0
