@@ -21,23 +21,21 @@ import (
 )
 
 const (
-	yml                  = ".yml"
-	yaml                 = ".yaml"
-	json                 = ".json"
-	sh                   = ".sh"
-	arm                  = "azureresourcemanager"
-	bicep                = "bicep"
-	kubernetes           = "kubernetes"
-	terraform            = "terraform"
-	gdm                  = "googledeploymentmanager"
-	ansible              = "ansible"
-	grpc                 = "grpc"
-	dockerfile           = "dockerfile"
-	crossplane           = "crossplane"
-	knative              = "knative"
-	fhir                 = "fhir"
-	azurePipelinesVscode = "azurepipelinesvscode"
-	sizeMb               = 1048576
+	yml        = ".yml"
+	yaml       = ".yaml"
+	json       = ".json"
+	sh         = ".sh"
+	arm        = "azureresourcemanager"
+	bicep      = "bicep"
+	kubernetes = "kubernetes"
+	terraform  = "terraform"
+	gdm        = "googledeploymentmanager"
+	ansible    = "ansible"
+	grpc       = "grpc"
+	dockerfile = "dockerfile"
+	crossplane = "crossplane"
+	knative    = "knative"
+	sizeMb     = 1048576
 )
 
 // move the openApi regex to public to be used on file.go
@@ -136,7 +134,6 @@ var (
 	playBooks               = "playbooks"
 	ansibleHost             = []string{"all", "ungrouped"}
 	listKeywordsAnsibleHots = []string{"hosts", "children"}
-	blacklistedFiles        = []string{fhir, azurePipelinesVscode}
 )
 
 type Parameters struct {
@@ -282,23 +279,32 @@ var types = map[string]regexSlice{
 			cicdStepsRegex,
 		},
 	},
-	//region blacklisted platforms
-	fhir: {
-		[]*regexp.Regexp{
-			fhirResourceTypeRegex,
-			fhirStatusRegex,
-			fhirCodeRegex,
-			fhirEntryRegex,
-			fhirSubjectRegex,
-		},
-	},
-	azurePipelinesVscode: {
-		[]*regexp.Regexp{
-			azurePipelinesVscodeRegex,
-		},
-	},
-	//endregion
 }
+
+// region blacklisted platforms
+
+var blacklistedTypesRegexes = map[string]map[string]regexSlice{
+	"templateArtifact": {
+		"fhir": {
+			regex: []*regexp.Regexp{
+				fhirResourceTypeRegex,
+				fhirStatusRegex,
+				fhirCodeRegex,
+				fhirEntryRegex,
+				fhirSubjectRegex,
+			},
+		},
+	},
+	"blueprint": {
+		"azurepipelinesvscode": {
+			regex: []*regexp.Regexp{
+				azurePipelinesVscodeRegex,
+			},
+		},
+	},
+}
+
+//endregion
 
 var defaultConfigFiles = []string{"pnpm-lock.yaml"}
 
@@ -481,8 +487,6 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 		return true
 	} else if check && returnType == kubernetes && (key == knative || key == crossplane) && (ext == yaml || ext == yml) {
 		return true
-	} else if check && utils.Contains(key, blacklistedFiles) {
-		return true
 	}
 	return false
 }
@@ -530,16 +534,23 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 			returnType = key
 		}
 	}
-	returnType = checkReturnType(a.filePath, returnType, ext, content)
-	if returnType != "" {
-		if a.isAvailableType(returnType) {
-			results <- returnType
-			locCount <- linesCount
-			return
-		}
+
+	// Check for blacklisted types for the detected returnType
+	if isBlacklistedTypeMatch(returnType, content) {
+		// File type is blacklisted, so we ignore it
+		unwanted <- a.filePath
+		return
 	}
-	// No type was determined (ignore on parser)
-	unwanted <- a.filePath
+
+	returnType = checkReturnType(a.filePath, returnType, ext, content)
+	if returnType == "" || !a.isAvailableType(returnType) {
+		// No type was determined (ignore on parser)
+		unwanted <- a.filePath
+		return
+	}
+
+	results <- returnType
+	locCount <- linesCount
 }
 
 func checkReturnType(path, returnType, ext string, content []byte) string {
@@ -549,9 +560,6 @@ func checkReturnType(path, returnType, ext string, content []byte) string {
 		}
 		if utils.Contains(returnType, armRegexTypes) {
 			return arm
-		}
-		if utils.Contains(returnType, blacklistedFiles) {
-			return ""
 		}
 	} else if ext == yaml || ext == yml {
 		if checkHelm(path) {
@@ -760,11 +768,6 @@ func multiPlatformTypeCheck(typesSelected *[]string) {
 	if utils.Contains("knative", *typesSelected) && !utils.Contains("kubernetes", *typesSelected) {
 		*typesSelected = append(*typesSelected, "kubernetes")
 	}
-	// remove blacklistedFiles from supported platforms since they are not supported
-	// otherwise, they will appear when using the -v flag
-	if len(*typesSelected) > 0 && utils.Contains((*typesSelected)[len(*typesSelected)-1], blacklistedFiles) {
-		*typesSelected = (*typesSelected)[:len(*typesSelected)-1]
-	}
 }
 
 func (a *analyzerInfo) isAvailableType(typeName string) bool {
@@ -808,4 +811,18 @@ func typeLower(types, exclTypes []string) (typesRes, exclTypesRes []string) {
 	}
 
 	return types, exclTypes
+}
+
+// isBlacklistedTypeMatch checks if any blacklisted regex for the given returnType matches the content.
+func isBlacklistedTypeMatch(returnType string, content []byte) bool {
+	if blMap, ok := blacklistedTypesRegexes[returnType]; ok {
+		for _, bl := range blMap {
+			for _, re := range bl.regex {
+				if re.Match(content) {
+					return true
+				}
+			}
+		}
+	}
+	return false
 }
