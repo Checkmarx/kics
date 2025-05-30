@@ -42,7 +42,7 @@ func init() { //nolint
 	}
 
 	testBlacklistedFilesWithExcludeTypesFlag := TestCase{
-		Name: "should scan a folder with blacklisted files, with flag --exclude-types, and skip them successfully [E2E-CLI-100]",
+		Name: "should scan a folder with blacklisted files, with flag --exclude-type, and skip them successfully [E2E-CLI-100]",
 		Args: args{
 			Args: []cmdArgs{
 				[]string{"scan", "-o", "/path/e2e/output",
