@@ -1,0 +1,1 @@
+{"kics_version":"development","files_scanned":1,"lines_scanned":21,"files_parsed":1,"lines_parsed":21,"files_failed_to_scan":0,"queries_total":1040,"queries_failed_to_execute":0,"queries_failed_to_compute_similarity_id":0,"scan_id":"console","severity_counters":{"CRITICAL":0,"HIGH":1,"INFO":0,"LOW":0,"MEDIUM":10"TRACE":0},"total_counter":11}
