@@ -41,7 +41,7 @@ func init() { //nolint
 		WantStatus: []int{0},
 	}
 
-	testBlacklistedFilesWithExcludeTypesFlag := TestCase{
+	testBlacklistedFilesWithExcludeTypeFlag := TestCase{
 		Name: "should scan a folder with blacklisted files, with flag --exclude-type, and skip them successfully [E2E-CLI-100]",
 		Args: args{
 			Args: []cmdArgs{
@@ -61,5 +61,25 @@ func init() { //nolint
 		WantStatus: []int{0},
 	}
 
-	Tests = append(Tests, testSampleFHIR, testSampleAzurePipelines, testBlacklistedFilesWithExcludeTypesFlag)
+	testBlacklistedFilesWithTypeFlag := TestCase{
+		Name: "should scan a folder with blacklisted files, with flag --type, and skip them successfully [E2E-CLI-100]",
+		Args: args{
+			Args: []cmdArgs{
+				[]string{"scan", "-o", "/path/e2e/output",
+					"--output-name", "E2E_CLI_100_RESULT", "-v",
+					"-p", "\"/path/e2e/fixtures/samples/blacklisted-files\"",
+					"--type", "azureresourcemanager",
+				},
+			},
+			ExpectedResult: []ResultsValidation{
+				{
+					ResultsFile:    "E2E_CLI_100_RESULT",
+					ResultsFormats: []string{"json"},
+				},
+			},
+		},
+		WantStatus: []int{0},
+	}
+
+	Tests = append(Tests, testSampleFHIR, testSampleAzurePipelines, testBlacklistedFilesWithExcludeTypeFlag, testBlacklistedFilesWithTypeFlag)
 }
