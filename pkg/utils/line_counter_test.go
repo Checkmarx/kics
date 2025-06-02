@@ -34,13 +34,13 @@ func TestLineCounter(t *testing.T) {
 		{
 			name:      "Get lines from a minified json file",
 			want:      31973,
-			filePath:  "../../test/fixtures/minified_jsons/service-schema.json",
+			filePath:  "../../e2e/fixtures/samples/blacklisted-files/azurepipelinesvscode/service-schema.min.json",
 			wantError: false,
 		},
 		{
 			name:      "Get lines from a invalid minified json file",
 			want:      100,
-			filePath:  "../../test/fixtures/minified_jsons/invalid.json",
+			filePath:  "../../test/assets/invalid.min.json",
 			wantError: true,
 		},
 	}
