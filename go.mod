@@ -24,7 +24,7 @@ require (
 	github.com/hashicorp/terraform-json v0.24.0
 	github.com/johnfercher/maroto v1.0.0
 	github.com/mackerelio/go-osstat v0.2.5
-	github.com/moby/buildkit v0.20.2
+	github.com/moby/buildkit v0.22.0
 	github.com/open-policy-agent/opa v1.4.2
 	github.com/pkg/errors v0.9.1
 	github.com/relex/aini v1.6.0
@@ -41,9 +41,9 @@ require (
 	github.com/zclconf/go-cty v1.16.2
 	golang.org/x/net v0.39.0
 	golang.org/x/text v0.24.0
-	golang.org/x/tools v0.31.0
+	golang.org/x/tools v0.32.0
 	gopkg.in/yaml.v3 v3.0.1
-	helm.sh/helm/v3 v3.18.0
+	helm.sh/helm/v3 v3.18.1
 	mvdan.cc/sh/v3 v3.11.0
 	sigs.k8s.io/controller-runtime v0.14.6
 )
@@ -107,7 +107,7 @@ require (
 	go.opentelemetry.io/otel/sdk/metric v1.35.0 // indirect
 	go.opentelemetry.io/otel/trace v1.35.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/exp v0.0.0-20241108190413-2d47ceb2692f // indirect
+	golang.org/x/exp v0.0.0-20250408133849-7e4ce0ab07d0 // indirect
 	golang.org/x/mod v0.24.0 // indirect
 	google.golang.org/api v0.215.0 // indirect
 	google.golang.org/genproto v0.0.0-20241118233622-e639e219e697 // indirect
