@@ -1,0 +1,12 @@
+type: object
+properties:
+  id:
+    type: integer
+  title:
+    type: string
+  author:
+    $ref: "Author.yaml"
+  books:
+    type: array
+    items:
+      $ref: "Book.yaml"

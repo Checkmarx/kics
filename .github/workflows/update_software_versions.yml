@@ -18,7 +18,7 @@ jobs:
           pip3 install -r .github/scripts/update_versions/requirements.txt
           python3 .github/scripts/update_versions/update.py
       - name: Verify Changed files
-        uses: tj-actions/verify-changed-files@6ed7632824d235029086612d4330d659005af687 # v20.0.1
+        uses: tj-actions/verify-changed-files@a1c6acee9df209257a246f2cc6ae8cb6581c1edf # v20.0.4
         id: verify-changed-files
         with:
           files: |

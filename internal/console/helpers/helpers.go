@@ -106,7 +106,11 @@ func GenerateReport(path, filename string, body interface{}, formats []string, p
 
 	var err error = nil
 	go progressBar.Start()
-	defer progressBar.Close()
+	defer func() {
+		if errClose := progressBar.Close(); errClose != nil {
+			log.Error().Err(errClose).Msg("Error closing Circle Progress Bar")
+		}
+	}()
 
 	for _, format := range formats {
 		format = strings.ToLower(format)

@@ -29,6 +29,7 @@ var (
 const (
 	scanCommandStr = "scan"
 	initError      = "initialization error - "
+	dirPerms       = 0777
 )
 
 // NewScanCmd creates a new instance of the scan Command
@@ -81,12 +82,12 @@ func run(cmd *cobra.Command) error {
 		if filepath.Ext(flags.GetStrFlag(flags.OutputPathFlag)) != "" {
 			flags.SetStrFlag(flags.OutputPathFlag, filepath.Join(flags.GetStrFlag(flags.OutputPathFlag), string(os.PathSeparator)))
 		}
-		if err := os.MkdirAll(flags.GetStrFlag(flags.OutputPathFlag), os.ModePerm); err != nil {
+		if err := os.MkdirAll(flags.GetStrFlag(flags.OutputPathFlag), dirPerms); err != nil { //nolint:gosec
 			return err
 		}
 	}
 	if flags.GetStrFlag(flags.PayloadPathFlag) != "" && filepath.Dir(flags.GetStrFlag(flags.PayloadPathFlag)) != "." {
-		if err := os.MkdirAll(filepath.Dir(flags.GetStrFlag(flags.PayloadPathFlag)), os.ModePerm); err != nil {
+		if err := os.MkdirAll(filepath.Dir(flags.GetStrFlag(flags.PayloadPathFlag)), dirPerms); err != nil {
 			return err
 		}
 	}

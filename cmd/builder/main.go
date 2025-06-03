@@ -13,6 +13,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const filePerms = 0777
+
 func main() {
 	var (
 		inPath  string
@@ -67,7 +69,7 @@ func main() {
 }
 
 func saveFile(filePath string, content []byte) error {
-	f, err := os.OpenFile(filepath.Clean(filePath), os.O_CREATE|os.O_WRONLY|os.O_TRUNC, os.ModePerm)
+	f, err := os.OpenFile(filepath.Clean(filePath), os.O_CREATE|os.O_WRONLY|os.O_TRUNC, filePerms)
 	if err != nil {
 		return err
 	}

@@ -33,7 +33,7 @@ func prepareJSONPath(path string) string {
 
 	jsonPath := "file://" + filepath.Join(cwd, path)
 	if runtime.GOOS == windowsOs {
-		jsonPath = strings.Replace(jsonPath, `\`, "/", -1)
+		jsonPath = strings.ReplaceAll(jsonPath, `\`, "/")
 	}
 	return jsonPath
 }
@@ -101,10 +101,16 @@ func readFile(path string) (string, error) {
 	}
 	bytes, err := io.ReadAll(ostat)
 	if err != nil {
-		ostat.Close()
+		errClose := ostat.Close()
+		if errClose != nil {
+			return "", errClose
+		}
 		return "", err
 	}
-	ostat.Close()
+	errClosed := ostat.Close()
+	if errClosed != nil {
+		return "", errClosed
+	}
 	return string(bytes), nil
 }
 
@@ -247,8 +253,8 @@ func setFields(t *testing.T, expect, actual []string, expectFileName, actualFile
 			expectToCompare, actualToCompare)
 
 		// compare severity counters
-		compare := reflect.DeepEqual(expectI.SeveritySummary.SeverityCounters, actualI.SeveritySummary.SeverityCounters)
+		compare := reflect.DeepEqual(expectI.SeverityCounters, actualI.SeverityCounters)
 		require.True(t, compare, "Expected Severity Counters content: 'fixtures/%s' doesn't match the Actual Severity Counters content: 'output/%s'.", //nolint:lll
-			expectI.SeveritySummary.SeverityCounters, actualI.SeveritySummary.SeverityCounters)
+			expectI.SeverityCounters, actualI.SeverityCounters)
 	}
 }

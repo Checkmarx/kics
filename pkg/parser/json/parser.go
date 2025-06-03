@@ -18,8 +18,14 @@ type Parser struct {
 func (p *Parser) Resolve(fileContent []byte, filename string, resolveReferences bool, maxResolverDepth int) ([]byte, error) {
 	// Resolve files passed as arguments with file resolver (e.g. file://)
 	res := file.NewResolver(json.Unmarshal, json.Marshal, p.SupportedExtensions())
-	resolvedFilesCache := make(map[string]file.ResolvedFile)
-	resolved := res.Resolve(fileContent, filename, 0, maxResolverDepth, resolvedFilesCache, resolveReferences)
+	initialResolvingStatus := file.ResolvingStatus{
+		CurrentDepth:          0,
+		MaxDepth:              maxResolverDepth,
+		ResolvedFilesCache:    make(map[string]file.ResolvedFile),
+		ResolveReferences:     resolveReferences,
+		CurrentResolutionPath: []string{},
+	}
+	resolved, _ := res.Resolve(fileContent, filename, initialResolvingStatus)
 	p.resolvedFiles = res.ResolvedFiles
 	if len(res.ResolvedFiles) == 0 {
 		return fileContent, nil

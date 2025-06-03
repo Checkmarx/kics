@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Run KICS Scan
-        uses: checkmarx/kics-github-action@3246fb456a46d1ea8848ae18793c036718b19fe0 # v2.1.5
+        uses: checkmarx/kics-github-action@5373b38b35d09a400790b9e560189064d185391f # v2.1.7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: "./Dockerfile"
@@ -21,7 +21,7 @@ jobs:
           output_formats: json,html
           type: dockerfile
           exclude_queries: 67fd0c4a-68cf-46d7-8c41-bc9fba7e40ae # Ignore Last User Is 'root'
-      - uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4.6.1
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: results
           path: ./results

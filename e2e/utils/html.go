@@ -30,13 +30,13 @@ func initPlatforms() map[string]string {
 // HTMLValidation executes many asserts to validate the HTML Report
 func HTMLValidation(t *testing.T, file string) {
 	// Read & Parse Expected HTML Report
-	expectHTMLString, errExpStr := os.ReadFile(filepath.Join("fixtures", file))
+	expectHTMLString, errExpStr := os.ReadFile(filepath.Clean(filepath.Join("fixtures", file)))
 	require.NoError(t, errExpStr, "Opening Expected HTML File should not yield an error")
 	expectedHTML, errExp := html.Parse(strings.NewReader(string(expectHTMLString)))
 	require.NoError(t, errExp, "Opening Expected HTML File should not yield an error")
 
 	// Read & Parse Output HTML Report
-	actualHTMLString, errActStr := os.ReadFile(filepath.Join("output", file))
+	actualHTMLString, errActStr := os.ReadFile(filepath.Clean(filepath.Join("output", file)))
 	require.NoError(t, errActStr, "Opening Actual HTML File should not yield an error")
 	actualHTML, errAct := html.Parse(strings.NewReader(string(actualHTMLString)))
 	require.NoError(t, errAct, "Opening Actual HTML File should not yield an error")
@@ -61,24 +61,24 @@ func HTMLValidation(t *testing.T, file string) {
 		file, sliceOfExpected, sliceOfActual)
 
 	for arg := range severityIds {
-		nodeIdentificator := "severity-count-" + severityIds[arg]
-		expectedSeverityValue := getElementByID(expectedHTML, nodeIdentificator)
-		actualSeverityValue := getElementByID(actualHTML, nodeIdentificator)
+		nodeIdentifier := "severity-count-" + severityIds[arg]
+		expectedSeverityValue := getElementByID(expectedHTML, nodeIdentifier)
+		actualSeverityValue := getElementByID(actualHTML, nodeIdentifier)
 
 		require.NotNil(t, actualSeverityValue.FirstChild,
-			"[%s] Invalid value in Element ID <%s>", file, nodeIdentificator)
+			"[%s] Invalid value in Element ID <%s>", file, nodeIdentifier)
 
 		require.Equal(t, expectedSeverityValue.FirstChild.Data, actualSeverityValue.FirstChild.Data,
 			"[%s] HTML Element <%s>:\n- Expected value: %s\n- Actual value: %s\n",
-			file, nodeIdentificator, expectedSeverityValue.FirstChild.Data, actualSeverityValue.FirstChild.Data)
+			file, nodeIdentifier, expectedSeverityValue.FirstChild.Data, actualSeverityValue.FirstChild.Data)
 
-		classIdentificator := "severity-partial-count-" + severityIds[arg]
-		expectedSeverityClassValues := getAndSumElementsByClass(expectedHTML, classIdentificator)
-		actualSeverityClassValues := getAndSumElementsByClass(actualHTML, classIdentificator)
+		classIdentifier := "severity-partial-count-" + severityIds[arg]
+		expectedSeverityClassValues := getAndSumElementsByClass(expectedHTML, classIdentifier)
+		actualSeverityClassValues := getAndSumElementsByClass(actualHTML, classIdentifier)
 
 		require.Equal(t, expectedSeverityClassValues, actualSeverityClassValues,
 			"[%s] Expected Sum of HTML classes <%s>:\n- Expected Value: %d\n- Actual value: %d\n",
-			file, classIdentificator, expectedSeverityClassValues, actualSeverityClassValues)
+			file, classIdentifier, expectedSeverityClassValues, actualSeverityClassValues)
 	}
 
 	// Validate Query Names
@@ -163,7 +163,7 @@ func getElementByID(n *html.Node, name string) *html.Node {
 }
 
 func getElementsByClass(n *html.Node, name string) []*html.Node {
-	classNodes := []*html.Node{}
+	var classNodes []*html.Node
 
 	var f func(node *html.Node, name string)
 	f = func(node *html.Node, name string) {

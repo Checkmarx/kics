@@ -3,13 +3,13 @@
 The queries are written in Rego and our internal parser transforms every IaC file that supports into a universal JSON format. This way anyone can start working on a query by picking up a small sample of the vulnerability that the query should target, and convert this sample, which can be a .tf or .yaml file, to our JSON structure JSON. To convert the sample you can run the following command:
 
 ```bash
-go run ./cmd/console/main.go scan -p "pathToTestData" -d "pathToGenerateJson"
+docker run -t -v ./:/path checkmarx/kics scan -p "pathToTestData" -d "pathToGenerateJson"
 ```
 
-So for example, if we wanted to transform a .tf file in ./code/test we could type:
+So for example, if we wanted to transform a .tf file in ./src/test we could type:
 
 ```bash
-go run ./cmd/console/main.go scan -p  "./src/test" -d "src/test/input.json"
+docker run -t -v ./:/path checkmarx/kics scan -p  "/path/src/test" -d "/path/src/test/input.json"
 ```
 
 Example of input.json
@@ -81,7 +81,7 @@ As a first step, it is important to be familiar with the libraries available (ch
 
 For example, if we want to verify if the AWS CloudTrail has MultiRegion disabled in a Terraform sample, we need to focus on the attribute `is_multi_region_trail` of the resource `aws_cloudtrail`. Since this attribute is optional and false by default, we have two cases: (1) `is_multi_region_trail` is undefined and (2) `is_multi_region_trail` is set to false. Observe the following implementation as an example and check the Guidelines below.
 
-:rotating_light: **Make sure you use ```package Cx```. If you give another name, the query will not load.** :rotating_light:
+🚨 **Make sure you use ```package Cx```. If you give another name, the query will not load.** 🚨
 
 ```
 package Cx
@@ -121,8 +121,7 @@ To test the query in the [Rego playground](https://play.openpolicyagent.org/), p
 5. In the output, check if the results are as expected.
 
 
-<img alt="RegoPlayground" src="img/rego_playground_example_tf.PNG">
-
+![rego_playground_example_tf.PNG](img/rego_playground_example_tf.PNG)
 
 👨‍💻 **Metadata File**
 

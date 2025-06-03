@@ -18,12 +18,12 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
 	"github.com/Checkmarx/kics/v2/pkg/engine/source"
 	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/open-policy-agent/opa/ast"
-	"github.com/open-policy-agent/opa/cover"
-	"github.com/open-policy-agent/opa/rego"
-	"github.com/open-policy-agent/opa/storage/inmem"
-	"github.com/open-policy-agent/opa/topdown"
-	"github.com/open-policy-agent/opa/util"
+	"github.com/open-policy-agent/opa/v1/ast"
+	"github.com/open-policy-agent/opa/v1/cover"
+	"github.com/open-policy-agent/opa/v1/rego"
+	"github.com/open-policy-agent/opa/v1/storage/inmem"
+	"github.com/open-policy-agent/opa/v1/topdown"
+	"github.com/open-policy-agent/opa/v1/util"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 )
@@ -405,7 +405,11 @@ func (c *Inspector) doRun(ctx *QueryContext) (vulns []model.Vulnerability, err e
 		return nil, errors.Wrap(err, "failed to evaluate query")
 	}
 	if c.enableCoverageReport && cov != nil {
-		module, parseErr := ast.ParseModule(ctx.Query.Metadata.Query, ctx.Query.Metadata.Content)
+		module, parseErr := ast.ParseModuleWithOpts(
+			ctx.Query.Metadata.Query,
+			ctx.Query.Metadata.Content,
+			ast.ParserOptions{RegoVersion: ast.RegoV0},
+		)
 		if parseErr != nil {
 			return nil, errors.Wrap(parseErr, "failed to parse coverage module")
 		}
@@ -452,7 +456,6 @@ func (c *Inspector) DecodeQueryResults(
 		select {
 		case <-ctxTimeout.Done():
 			timeOut = true
-			break
 		default:
 			vulnerability, aux := getVulnerabilitiesFromQuery(ctx, c, queryResultItem)
 			if aux {
@@ -615,6 +618,7 @@ func (q QueryLoader) LoadQuery(ctx context.Context, query *model.QueryMetadata) 
 			rego.Module("Common", q.commonLibrary.LibraryCode),
 			rego.Module("Generic", platformGeneralQuery.LibraryCode),
 			rego.Module(query.Query, query.Content),
+			rego.SetRegoVersion(ast.RegoV0),
 			rego.Store(store),
 			rego.UnsafeBuiltins(unsafeRegoFunctions),
 		).PrepareForEval(ctx)

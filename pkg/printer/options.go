@@ -14,8 +14,13 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+const (
+	dirPerm   = 0777
+	filePerms = 0777
+)
+
 // NoColor - disables ASCII color codes
-func NoColor(opt interface{}, changed bool) error {
+func NoColor(opt interface{}, _ bool) error {
 	noColor := opt.(bool)
 	if noColor {
 		color.Disable()
@@ -25,7 +30,7 @@ func NoColor(opt interface{}, changed bool) error {
 }
 
 // Verbose - redirects log entries to stdout
-func Verbose(opt interface{}, changed bool) error {
+func Verbose(opt interface{}, _ bool) error {
 	verbose := opt.(bool)
 	if verbose {
 		consoleLogger = zerolog.ConsoleWriter{Out: os.Stdout}
@@ -58,18 +63,25 @@ func CI(opt interface{}) error {
 
 // LogFormat - configures the logs format (JSON,pretty).
 func LogFormat(logFormat string) error {
-	if logFormat == constants.LogFormatJSON {
+	switch logFormat {
+	case constants.LogFormatJSON:
 		log.Logger = log.Output(zerolog.MultiLevelWriter(outConsoleLogger, loggerFile.(io.Writer)))
 		outFileLogger = loggerFile
 		outConsoleLogger = os.Stdout
-	} else if logFormat == constants.LogFormatPretty {
+
+	case constants.LogFormatPretty:
 		fileLogger = consoleHelpers.CustomConsoleWriter(&zerolog.ConsoleWriter{Out: loggerFile.(io.Writer), NoColor: true})
 		log.Logger = log.Output(zerolog.MultiLevelWriter(consoleLogger, fileLogger))
 		outFileLogger = fileLogger
-		outConsoleLogger = zerolog.ConsoleWriter{Out: os.Stdout, NoColor: true}
-	} else {
+		outConsoleLogger = zerolog.ConsoleWriter{
+			Out:     os.Stdout,
+			NoColor: true,
+		}
+
+	default:
 		return errors.New("invalid log format")
 	}
+
 	return nil
 }
 
@@ -90,12 +102,12 @@ func LogPath(opt interface{}, changed bool) error {
 			return err
 		}
 	} else if filepath.Dir(logPath) != "." {
-		if createErr := os.MkdirAll(filepath.Dir(logPath), os.ModePerm); createErr != nil {
+		if createErr := os.MkdirAll(filepath.Dir(logPath), dirPerm); createErr != nil {
 			return createErr
 		}
 	}
 
-	loggerFile, err = os.OpenFile(logPath, os.O_CREATE|os.O_WRONLY, os.ModePerm)
+	loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_CREATE|os.O_WRONLY, filePerms)
 	if err != nil {
 		return err
 	}
@@ -103,14 +115,14 @@ func LogPath(opt interface{}, changed bool) error {
 }
 
 // LogFile - enables write to log file
-func LogFile(opt interface{}, changed bool) error {
+func LogFile(opt interface{}, _ bool) error {
 	logFile := opt.(bool)
 	if logFile {
 		logPath, err := constants.GetDefaultLogPath()
 		if err != nil {
 			return err
 		}
-		loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_CREATE|os.O_WRONLY, os.ModePerm)
+		loggerFile, err = os.OpenFile(filepath.Clean(logPath), os.O_CREATE|os.O_WRONLY, filePerms)
 		if err != nil {
 			return err
 		}
@@ -120,7 +132,7 @@ func LogFile(opt interface{}, changed bool) error {
 }
 
 // LogLevel - sets log level
-func LogLevel(opt interface{}, changed bool) error {
+func LogLevel(opt interface{}, _ bool) error {
 	logLevel := opt.(string)
 	switch strings.ToUpper(logLevel) {
 	case "TRACE":

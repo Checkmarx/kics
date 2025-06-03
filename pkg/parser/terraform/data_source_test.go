@@ -37,6 +37,15 @@ func Test_getDataSourcePolicy(t *testing.T) {
 			want: `{"Id":"lala","Statement":[{"Actions":["s3:ListAllMyBuckets","s3:GetBucketLocation"],"Resources":["arn:aws:s3:::*"],"Sid":"1"},{"Actions":["s3:ListBucket"],"Condition":{"StringLike":{"s3:prefix":["","home/","home/&{aws:username}/"]}},"Resources":["arn:aws:s3:::test"]},{"Actions":["s3:*"],"Resources":["arn:aws:s3:::test/home/&{aws:username}","arn:aws:s3:::test/home/&{aws:username}/*"]}]}
 `,
 		},
+		{
+			name: "should load data source as json without errors 3",
+			args: args{
+				currentPath:  filepath.Join("..", "..", "..", "test", "fixtures", "test_terraform_data_source"),
+				resourceName: "support_site_bucket_policy_document",
+			},
+			want: `{"Statement":[{"Actions":["s3:GetObject"],"Condition":{"Bool":{"aws:SecureTransport":["true"]}},"Effect":"Allow","Principals":{"AWS":["support_site_origin_access_identity.iam_arn"]},"Resources":["arn:aws:s3:::local.support_site_bucket_name/*"],"Sid":"AllowCloudFrontAccess"}],"Version":"2012-10-17"}
+`,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

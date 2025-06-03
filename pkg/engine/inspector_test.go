@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/open-policy-agent/opa/rego"
+	"github.com/open-policy-agent/opa/v1/rego"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/Checkmarx/kics/v2/assets"
@@ -29,7 +29,7 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/require"
 
-	"github.com/open-policy-agent/opa/cover"
+	"github.com/open-policy-agent/opa/v1/cover"
 )
 
 // TestInspector_EnableCoverageReport tests the functions [EnableCoverageReport()] and all the methods called by them

@@ -2,7 +2,6 @@ package storage
 
 import (
 	"context"
-	"fmt"
 	"reflect"
 	"testing"
 
@@ -148,7 +147,7 @@ func TestMemoryStorage(t *testing.T) { //nolint
 			vulnerabilities: tt.fields.vulnerabilities,
 			allFiles:        tt.fields.allFiles,
 		}
-		t.Run(fmt.Sprintf(tt.name+"_GetFiles"), func(t *testing.T) {
+		t.Run(tt.name+"_GetFiles", func(t *testing.T) {
 			got, err := m.GetFiles(tt.args.in0, tt.args.in1)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("MemoryStorage.GetFiles() error = %v, wantErr %v", err, tt.wantErr)
@@ -158,7 +157,7 @@ func TestMemoryStorage(t *testing.T) { //nolint
 				t.Errorf("MemoryStorage.GetFiles() = %v, want %v", got, tt.want)
 			}
 		})
-		t.Run(fmt.Sprintf(tt.name+"_GetVulnerabilities"), func(t *testing.T) {
+		t.Run(tt.name+"_GetVulnerabilities", func(t *testing.T) {
 			got, err := m.GetVulnerabilities(tt.args.in0, tt.args.in1)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("MemoryStorage.GetVulnerabilities() error = %v, wantErr %v", err, tt.wantErr)
@@ -168,7 +167,7 @@ func TestMemoryStorage(t *testing.T) { //nolint
 				t.Errorf("MemoryStorage.GetVulnerabilities() = %v, want %v", got, tt.want)
 			}
 		})
-		t.Run(fmt.Sprintf(tt.name+"_GetScanSummary"), func(t *testing.T) {
+		t.Run(tt.name+"_GetScanSummary", func(t *testing.T) {
 			got, err := m.GetScanSummary(tt.args.in0, tt.args.in2)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("MemoryStorage.GetScanSummary() error = %v, wantErr %v", err, tt.wantErr)

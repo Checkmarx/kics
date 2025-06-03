@@ -169,7 +169,7 @@ docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN ch
 docker run -e AWS_SECRET_ACCESS_KEY -e AWS_ACCESS_KEY_ID -e AWS_SESSION_TOKEN -v ${PWD}:/path/ checkmarx/kics:latest scan -p "terraformer::aws:vpc:eu-west-2" -v --no-progress -o /path/results
 ```
 
-<img src="./img/docker_terraformer.gif" />
+![docker_terraformer.gif](img/docker_terraformer.gif)
 
 ### [AZURE] Run KICS Terraformer integration with Docker
 To run KICS Terraformer integration with Docker simply pass the AZURE Credentials that were set as environment variables to the docker run command and use the terraformer path syntax. Choose one of the following options:

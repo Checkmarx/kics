@@ -79,7 +79,7 @@ func processElements(elements model.Document, path string) {
 			content := utils.CheckCertificate(value)
 			processContent(elements, content, path)
 		case ctyjson.SimpleJSONValue:
-			content := utils.CheckCertificate(value.Value.AsString())
+			content := utils.CheckCertificate(value.AsString())
 			processContent(elements, content, path)
 		}
 	}
@@ -152,7 +152,7 @@ func addExtraInfo(json []model.Document, path string) ([]model.Document, error) 
 }
 
 func parseFile(filename string, shouldReplaceDataSource bool) (*hcl.File, error) {
-	file, err := os.ReadFile(filename)
+	file, err := os.ReadFile(filepath.Clean(filename))
 	if err != nil {
 		return nil, err
 	}

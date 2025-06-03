@@ -384,7 +384,11 @@ func readCWECsvInfo(filePath string) ([]cweCsv, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer file.Close()
+	defer func() {
+		if errClose := file.Close(); errClose != nil {
+			log.Error().Err(errClose).Msg("Error closing file")
+		}
+	}()
 
 	reader := csv.NewReader(file)
 	reader.FieldsPerRecord = -1 // Note: -1 means records may have a variable number of fields in the csv file

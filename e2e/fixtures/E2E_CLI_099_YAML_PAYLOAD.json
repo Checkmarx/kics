@@ -1,0 +1,114 @@
+{
+	"document": [
+		{
+			"components": {
+				"schemas": {
+					"Author": {
+						"RefMetadata": {
+							"$ref": "./components/schemas/Author.yaml",
+							"alone": true
+						},
+						"properties": {
+							"books": {
+								"items": {
+									"RefMetadata": {
+										"$ref": "Book.yaml",
+										"alone": true
+									},
+									"properties": {
+										"author": {
+											"RefMetadata": {
+												"$ref": "Author.yaml",
+												"alone": true
+											}
+										},
+										"books": {
+											"items": {
+												"RefMetadata": {
+													"$ref": "Book.yaml",
+													"alone": true
+												}
+											},
+											"type": "array"
+										},
+										"id": {
+											"type": "integer"
+										},
+										"title": {
+											"type": "string"
+										}
+									},
+									"type": "object"
+								},
+								"type": "array"
+							},
+							"id": {
+								"type": "integer"
+							},
+							"name": {
+								"type": "string"
+							}
+						},
+						"type": "object"
+					},
+					"Book": {
+						"RefMetadata": {
+							"$ref": "./components/schemas/Book.yaml",
+							"alone": true
+						},
+						"properties": {
+							"author": {
+								"RefMetadata": {
+									"$ref": "Author.yaml",
+									"alone": true
+								},
+								"properties": {
+									"books": {
+										"items": {
+											"RefMetadata": {
+												"$ref": "Book.yaml",
+												"alone": true
+											}
+										},
+										"type": "array"
+									},
+									"id": {
+										"type": "integer"
+									},
+									"name": {
+										"type": "string"
+									}
+								},
+								"type": "object"
+							},
+							"books": {
+								"items": {
+									"RefMetadata": {
+										"$ref": "Book.yaml",
+										"alone": true
+									}
+								},
+								"type": "array"
+							},
+							"id": {
+								"type": "integer"
+							},
+							"title": {
+								"type": "string"
+							}
+						},
+						"type": "object"
+					}
+				}
+			},
+			"file": "file",
+			"id": "0",
+			"info": {
+				"title": "Complex Cyclic References API",
+				"version": "1.0.0"
+			},
+			"openapi": "3.0.0",
+			"paths": {}
+		}
+	]
+}
