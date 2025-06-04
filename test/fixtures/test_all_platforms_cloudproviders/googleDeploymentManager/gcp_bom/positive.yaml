@@ -1,0 +1,10 @@
+resources:
+- type: pubsub.v1.topic
+  name: topic-1
+  properties:
+    kmsKeyName: some key
+    topic: classified-topic
+- type: pubsub.v1.topic
+  name: topic-2
+  properties:
+    topic: classified-topic
