@@ -1,0 +1,219 @@
+:root {
+  --md-primary-fg-color: #1B2C7F;
+  --md-primary-fg-color--light: #1B2C7F;
+  --md-primary-fg-color--dark: #1B2C7F;
+  --md-accent-fg-color: #1B2C7F;
+}
+
+/* [data-md-color-scheme="default"] {
+  --md-primary-fg-color: #1B2C7F;
+  --md-primary-fg-color--light: #1B2C7F;
+  --md-primary-fg-color--dark: #1B2C7F;
+  --md-accent-fg-color: #1B2C7F;
+} */
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #fff;
+  --md-primary-fg-color--light: #1B2C7F;
+  --md-primary-fg-color--dark: #1B2C7F;
+  --md-accent-fg-color: #1B2C7F;
+}
+
+.md-header {
+  /* color: white; */
+  color: black;
+}
+
+.md-tabs {
+  /* color: white; */
+  color: black;
+}
+
+
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #1B2C7F;
+  --md-primary-fg-color--light: #1B2C7F;
+  --md-primary-fg-color--dark: #1B2C7F;
+  --md-accent-fg-color: #1B2C7F;
+  --md-hue: 210;
+  /* [0, 360] */
+}
+
+tr:nth-child(even) {
+  background-color: #f0eeee;
+}
+
+p a {
+  color: #1B2C7F !important;
+}
+
+p a:hover {
+  color: #180C7d !important;
+}
+
+td a {
+  color: #1B2C7F !important;
+}
+
+td a:hover {
+  color: #180C7d !important;
+}
+
+.md-nav__link--active {
+  color: #1B2C7F !important;
+
+}
+
+.md-nav__link--active:hover {
+  color: #180C7d !important;
+
+}
+
+.md-main {
+  background-color: rgb(248 246 246);
+}
+
+.md-main__inner {
+  margin-top: 25px;
+}
+
+.md-content__inner {
+  background-color: white;
+  filter: drop-shadow(0px 12px 18px #ddd);
+  margin-left: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  min-height: calc(100% - 50px);
+}
+
+.md-content__inner ul li a{
+  color: #1B2C7F;
+}
+
+.md-content__inner ul li a:hover{
+  color: #180C7d;
+}
+
+.md-sidebar {
+  height: 100%;
+  margin-bottom: 25px;
+  background-color: white;
+  filter: drop-shadow(0px 12px 18px #ddd);
+  border-radius: 10px;
+}
+
+.md-search__form:hover {
+  background-color: #bdbdbd;
+}
+
+.card {
+  border-radius: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  height: 85px;
+  background-color: white;
+}
+
+
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.card-interactable:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+thead {
+  background-color: #f0eeee;
+}
+
+.md-tabs {
+  box-shadow: 0 0 0.2rem #0000001a, 0 0.2rem 0.4rem #0003;
+}
+
+.hide-column-query-table {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  #navbar-collapse {
+    overflow-y: hidden;
+  }
+}
+
+#version-selector {
+  width: 200px;
+}
+
+.queries-th {
+  max-width: 5rem;
+  background-color: #1B2C7F !important;
+  color: white !important;
+}
+
+.border-input-queries{
+  border-radius: 4px;
+  background-color: #f8f6f6;
+}
+
+.border-input-queries {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.md-header__button.md-logo :-webkit-any(img, svg) {
+  display: block;
+  height: 2rem;
+  fill: currentColor;
+}
+
+/* ########## Bootstrap Button CSS ########## */
+
+/* ########## Bootstrap Button CSS ########## */
+.btn-success {
+  color: white !important;
+  background-color: #1B2C7F !important;
+  border-color: #1B2C7F !important;
+}
+
+.btn-success:hover,
+.btn-outline-success:hover {
+  color: white !important;
+  background-color: #1B2C7F !important;
+  border-color: #1B2C7F !important;
+}
+
+.btn-outline-success {
+  color: #1B2C7F !important;
+  border-color: #1B2C7F !important;
+}
+
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+/* ########## End Bootstrap Button CSS ########## */
