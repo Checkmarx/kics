@@ -7,6 +7,8 @@ import (
 	"github.com/antlr4-go/antlr/v4"
 	"sync"
 	"unicode"
+	"bufio"
+	"strings"
 )
 
 // Suppress unused import error
@@ -19,6 +21,132 @@ type bicepLexer struct {
 	channelNames []string
 	modeNames    []string
 	// TODO: EOF string
+}
+
+type BlockInfo struct {
+    BlockType string
+    StartLine int
+    EndLine   int
+}
+
+type LineInfo struct {
+    Type   string
+    Bytes  struct {
+        Bytes  []byte
+        String string
+    }
+    Range struct {
+        Start struct {
+            Line   int
+            Column int
+            Byte   int
+        }
+        End struct {
+            Line   int
+            Column int
+            Byte   int
+        }
+    }
+	Block BlockInfo
+}
+
+func (l *bicepLexer) GetLinesInfo() []LineInfo {
+    var linesInfo []LineInfo
+    input := l.GetInputStream().GetText(0, l.GetInputStream().Size()-1)
+    scanner := bufio.NewScanner(strings.NewReader(input))
+    lineNumber := 0
+    byteOffset := 0
+
+    var currentBlock BlockInfo
+    blockStack := []BlockInfo{}
+
+    for scanner.Scan() {
+        line := scanner.Text()
+        trimmedLine := strings.TrimSpace(line) // Trim leading and trailing whitespace
+        lineBytes := []byte(line)
+        lineLength := len(lineBytes)
+
+        // Create a new lexer instance for the current line
+        lineLexer := NewbicepLexer(antlr.NewInputStream(line))
+        tokens := lineLexer.GetAllTokens()
+
+		if len(blockStack) > 0 {
+            currentBlock = blockStack[len(blockStack)-1]
+        }
+
+		if strings.HasSuffix(trimmedLine, "{") {
+			currentBlock = BlockInfo{
+                BlockType: trimmedLine,
+                StartLine: lineNumber,
+            }
+            blockStack = append(blockStack, currentBlock)
+		} else if strings.Contains(trimmedLine, "}") {
+			if len(blockStack) > 0 {
+				currentBlock.EndLine = lineNumber
+				for i := range linesInfo {
+					if linesInfo[i].Block.StartLine == currentBlock.StartLine {
+						linesInfo[i].Block.EndLine = lineNumber
+					}
+				}
+				blockStack = blockStack[:len(blockStack)-1]
+			}
+		}
+
+        // Determine the type of the line based on the tokens
+        lineType := "other"
+        if len(tokens) > 0 {
+            lineType = l.SymbolicNames[tokens[0].GetTokenType()]
+        }
+
+        lineInfo := LineInfo{
+            Type: lineType,
+            Bytes: struct {
+                Bytes  []byte
+                String string
+            }{
+                Bytes:  lineBytes,
+                String: line,
+            },
+            Range: struct {
+                Start struct {
+                    Line   int
+                    Column int
+                    Byte   int
+                }
+                End struct {
+                    Line   int
+                    Column int
+                    Byte   int
+                }
+            }{
+                Start: struct {
+                    Line   int
+                    Column int
+                    Byte   int
+                }{
+                    Line:   lineNumber,
+                    Column: 0,
+                    Byte:   byteOffset,
+                },
+                End: struct {
+                    Line   int
+                    Column int
+                    Byte   int
+                }{
+                    Line:   lineNumber,
+                    Column: lineLength,
+                    Byte:   byteOffset + lineLength,
+                },
+            },
+            Block: currentBlock,
+        }
+
+        linesInfo = append(linesInfo, lineInfo)
+        lineNumber++
+        byteOffset += lineLength + 1 // +1 for the newline character
+    }
+
+    return linesInfo
 }
 
 var BicepLexerLexerStaticData struct {
@@ -251,9 +379,9 @@ func biceplexerLexerInit() {
 		0, 0, 0, 394, 396, 9, 0, 0, 0, 395, 394, 1, 0, 0, 0, 396, 399, 1, 0, 0,
 		0, 397, 398, 1, 0, 0, 0, 397, 395, 1, 0, 0, 0, 398, 400, 1, 0, 0, 0, 399,
 		397, 1, 0, 0, 0, 400, 401, 5, 42, 0, 0, 401, 402, 5, 47, 0, 0, 402, 403,
-		1, 0, 0, 0, 403, 404, 6, 52, 0, 0, 404, 106, 1, 0, 0, 0, 405, 407, 7, 4,
+		1, 0, 0, 0, 403, 404, 6, 52, 1, 0, 404, 106, 1, 0, 0, 0, 405, 407, 7, 4,
 		0, 0, 406, 405, 1, 0, 0, 0, 407, 408, 1, 0, 0, 0, 408, 406, 1, 0, 0, 0,
-		408, 409, 1, 0, 0, 0, 409, 410, 1, 0, 0, 0, 410, 411, 6, 53, 0, 0, 411,
+		408, 409, 1, 0, 0, 0, 409, 410, 1, 0, 0, 0, 410, 411, 6, 53, 1, 0, 411,
 		108, 1, 0, 0, 0, 412, 413, 9, 0, 0, 0, 413, 110, 1, 0, 0, 0, 414, 417,
 		8, 5, 0, 0, 415, 417, 3, 113, 56, 0, 416, 414, 1, 0, 0, 0, 416, 415, 1,
 		0, 0, 0, 417, 112, 1, 0, 0, 0, 418, 430, 5, 92, 0, 0, 419, 431, 7, 6, 0,
@@ -263,7 +391,7 @@ func biceplexerLexerInit() {
 		5, 125, 0, 0, 429, 431, 1, 0, 0, 0, 430, 419, 1, 0, 0, 0, 430, 420, 1,
 		0, 0, 0, 431, 114, 1, 0, 0, 0, 432, 433, 7, 7, 0, 0, 433, 116, 1, 0, 0,
 		0, 18, 0, 124, 150, 274, 284, 294, 303, 359, 365, 371, 373, 378, 386, 397,
-		408, 416, 426, 430, 1, 6, 0, 0,
+		408, 416, 426, 430, 2, 0, 1, 0, 6, 0, 0,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
