@@ -13,14 +13,6 @@ Here, you'll find information on upcoming enhancements, planned features, and ar
 Currently, KICS doesn't perform validation checks on Bicep files before scanning them.
 This means that even if a file isn't syntactically or structurally correct, it will still be scanned, potentially leading to inaccurate results without any error notifications. We're actively prioritizing this fix and anticipate implementing it in the forthcoming weeks.
 
-### Commands on Bicep Files as Comments
-
-The current version does not support **ignoring sections using special commands in comments** when scanning Bicep files. Unlike other file types, where comments starting with `kics-scan` can control the scan behavior, this feature is not yet available for Bicep.
-
-We are working on adding this capability in future updates. Until then, please note that Bicep files will be scanned in their entirety, and commands in comments will be ignored.
-
-More information about commands on comments in files is available on [Running KICS documentation page](https://docs.kics.io/latest/running-kics/#using_commands_on_scanned_files_as_comments)
-
 ### Logic and Cycle Operators
 
 Currently, KICS does not analyze logic and cycle operators. This means that expressions within constructs such as for and if statements are ignored during the scanning process. As a result, any security issues or vulnerabilities present within these constructs will not be detected by KICS.
@@ -37,7 +29,7 @@ To avoid potential false positives and improve the accuracy of scans when workin
 
 **Note**: When using the "--disable-secrets" flag, be aware that this will disable the passwords and secrets query for all languages, not just Bicep files. As a result, you may miss some security checks in other files. Before using this flag, carefully consider the impact on your overall security coverage, especially if your project includes multiple languages or file types.
 
-We advise reviewing your project's specific security needs to determine if this flag is appropriate. More information about the passwords and secrets query is available in our [Password and Secrets documentation](https://github.com/Checkmarx/kics/blob/master/docs/secrets.md). 
+We advise reviewing your project's specific security needs to determine if this flag is appropriate. More information about the passwords and secrets query is available in our [Password and Secrets documentation](https://github.com/Checkmarx/kics/blob/master/docs/secrets.md).
 
 
 ---
