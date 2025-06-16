@@ -16,12 +16,6 @@ import (
 type Parser struct {
 }
 
-type BicepLexer struct {
-	*antlr.BaseLexer
-	channelNames []string
-	modeNames    []string
-}
-
 type BlockInfo struct {
 	BlockType string
 	StartLine int
@@ -154,7 +148,7 @@ func GetLinesInfo(input string) []LineInfo {
 
 // convertToCommentLineInfo converts our LineInfo to comment.LineInfo
 func convertToCommentLineInfo(lines []LineInfo) []comment.LineInfo {
-	result := make([]comment.LineInfo, len(lines))
+	result := make([]comment.LineInfo, len(lines)) //nolint:gocritic
 	for i, line := range lines {
 		result[i] = comment.LineInfo{
 			Type: line.Type,
