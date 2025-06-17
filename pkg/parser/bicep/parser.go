@@ -156,7 +156,7 @@ type KicsObjectProperty struct {
 func NewBicepVisitor() *BicepVisitor {
 	paramList := map[string]interface{}{}
 	varList := map[string]interface{}{}
-	resourceList := []interface{}{}
+	var resourceList []interface{}
 	return &BicepVisitor{paramList: paramList, varList: varList, resourceList: resourceList}
 }
 
@@ -178,7 +178,7 @@ type Resource struct {
 
 // Filters the Resource array in order to keep only the top-level resources while reformatting them
 func filterParentStructs(resources []*Resource) []interface{} {
-	filteredResources := []interface{}{}
+	var filteredResources []interface{}
 
 	for _, resource := range resources {
 		if resource.Parent == "" {
@@ -209,7 +209,7 @@ func setChildType(child map[string]interface{}, parentType string) {
 func reformatTestTree(resource *Resource) map[string]interface{} {
 	reformattedResource := map[string]interface{}{}
 
-	children := []interface{}{}
+	var children []interface{}
 	for _, child := range resource.Children {
 		formattedChild := reformatTestTree(child)
 		setChildType(formattedChild, resource.FullType)
@@ -252,7 +252,7 @@ func addChildrenToParents(resources []*Resource) {
 
 // Converts JBicep structure to a Resource struct array
 func convertOriginalResourcesToStruct(resources []interface{}) []*Resource {
-	newResources := []*Resource{}
+	var newResources []*Resource
 
 	for _, res := range resources {
 		actualRes, ok := res.(map[string]interface{})
