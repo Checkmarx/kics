@@ -26,9 +26,7 @@ type BlockInfo struct {
 func GetLinesInfo(input string) []comment.LineInfo {
 	var linesInfo []comment.LineInfo
 	scanner := bufio.NewScanner(strings.NewReader(input))
-	lineNumber := 0
-	byteOffset := 0
-
+	lineNumber, byteOffset := 0, 0
 	var currentBlock BlockInfo
 	var blockStack []BlockInfo
 
@@ -37,10 +35,6 @@ func GetLinesInfo(input string) []comment.LineInfo {
 		trimmedLine := strings.TrimSpace(line) // Trim leading and trailing whitespace
 		lineBytes := []byte(line)
 		lineLength := len(lineBytes)
-
-		// Create a new lexer instance for the current line
-		lineLexer := parser.NewbicepLexer(antlr.NewInputStream(line))
-		tokens := lineLexer.GetAllTokens()
 
 		if len(blockStack) > 0 {
 			currentBlock = blockStack[len(blockStack)-1]
@@ -52,29 +46,30 @@ func GetLinesInfo(input string) []comment.LineInfo {
 				StartLine: lineNumber,
 			}
 			blockStack = append(blockStack, currentBlock)
-		} else if strings.Contains(trimmedLine, "}") {
-			if len(blockStack) > 0 {
-				currentBlock.EndLine = lineNumber
-				for i := range linesInfo {
-					if linesInfo[i].Block.StartLine == currentBlock.StartLine {
-						linesInfo[i].Block.EndLine = lineNumber
-					}
+		} else if strings.Contains(trimmedLine, "}") && len(blockStack) > 0 {
+			currentBlock = blockStack[len(blockStack)-1]
+			blockStack = blockStack[:len(blockStack)-1]
+			// Optional: Track line index to avoid scan
+			for i := range linesInfo {
+				if linesInfo[i].Block.StartLine == currentBlock.StartLine {
+					linesInfo[i].Block.EndLine = lineNumber
 				}
-				blockStack = blockStack[:len(blockStack)-1]
 			}
 		}
 
+		// Create a new lexer instance for the current line
+		lineLexer := parser.NewbicepLexer(antlr.NewInputStream(line))
+		tokens := lineLexer.GetAllTokens()
 		// Determine the type of the line based on the tokens
 		lineType := "other"
+		// Access the symbolic names from the lexer's static data
 		if len(tokens) > 0 {
-			// Access the symbolic names from the lexer's static data
-			symbolicNames := lineLexer.GetSymbolicNames()
-			if tokens[0].GetTokenType() < len(symbolicNames) {
-				lineType = symbolicNames[tokens[0].GetTokenType()]
+			if tok := tokens[0].GetTokenType(); tok < len(lineLexer.GetSymbolicNames()) {
+				lineType = lineLexer.GetSymbolicNames()[tok]
 			}
 		}
 
-		lineInfo := comment.LineInfo{
+		linesInfo = append(linesInfo, comment.LineInfo{
 			Type: lineType,
 			Bytes: struct {
 				Bytes  []byte
@@ -115,9 +110,8 @@ func GetLinesInfo(input string) []comment.LineInfo {
 				},
 			},
 			Block: currentBlock,
-		}
+		})
 
-		linesInfo = append(linesInfo, lineInfo)
 		lineNumber++
 		byteOffset += lineLength + 1 // +1 for the newline character
 	}
@@ -127,59 +121,8 @@ func GetLinesInfo(input string) []comment.LineInfo {
 
 // convertToCommentLineInfo converts our LineInfo to comment.LineInfo
 func convertToCommentLineInfo(lines []comment.LineInfo) []comment.LineInfo {
-	result := make([]comment.LineInfo, len(lines)) //nolint:gocritic
-	for i, line := range lines {
-		result[i] = comment.LineInfo{
-			Type: line.Type,
-			Bytes: struct {
-				Bytes  []byte
-				String string
-			}{
-				Bytes:  line.Bytes.Bytes,
-				String: line.Bytes.String,
-			},
-			Range: struct {
-				Start struct {
-					Line   int
-					Column int
-					Byte   int
-				}
-				End struct {
-					Line   int
-					Column int
-					Byte   int
-				}
-			}{
-				Start: struct {
-					Line   int
-					Column int
-					Byte   int
-				}{
-					Line:   line.Range.Start.Line,
-					Column: line.Range.Start.Column,
-					Byte:   line.Range.Start.Byte,
-				},
-				End: struct {
-					Line   int
-					Column int
-					Byte   int
-				}{
-					Line:   line.Range.End.Line,
-					Column: line.Range.End.Column,
-					Byte:   line.Range.End.Byte,
-				},
-			},
-			Block: struct {
-				BlockType string
-				StartLine int
-				EndLine   int
-			}{
-				BlockType: line.Block.BlockType,
-				StartLine: line.Block.StartLine,
-				EndLine:   line.Block.EndLine,
-			},
-		}
-	}
+	result := make([]comment.LineInfo, len(lines))
+	copy(result, lines)
 	return result
 }
 
