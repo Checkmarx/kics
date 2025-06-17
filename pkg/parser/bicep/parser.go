@@ -22,30 +22,9 @@ type BlockInfo struct {
 	EndLine   int
 }
 
-type LineInfo struct {
-	Type  string
-	Bytes struct {
-		Bytes  []byte
-		String string
-	}
-	Range struct {
-		Start struct {
-			Line   int
-			Column int
-			Byte   int
-		}
-		End struct {
-			Line   int
-			Column int
-			Byte   int
-		}
-	}
-	Block BlockInfo
-}
-
 // GetLinesInfo analyzes the input text and returns line information including blocks and tokens
-func GetLinesInfo(input string) []LineInfo {
-	var linesInfo []LineInfo
+func GetLinesInfo(input string) []comment.LineInfo {
+	var linesInfo []comment.LineInfo
 	scanner := bufio.NewScanner(strings.NewReader(input))
 	lineNumber := 0
 	byteOffset := 0
@@ -95,7 +74,7 @@ func GetLinesInfo(input string) []LineInfo {
 			}
 		}
 
-		lineInfo := LineInfo{
+		lineInfo := comment.LineInfo{
 			Type: lineType,
 			Bytes: struct {
 				Bytes  []byte
@@ -147,7 +126,7 @@ func GetLinesInfo(input string) []LineInfo {
 }
 
 // convertToCommentLineInfo converts our LineInfo to comment.LineInfo
-func convertToCommentLineInfo(lines []LineInfo) []comment.LineInfo {
+func convertToCommentLineInfo(lines []comment.LineInfo) []comment.LineInfo {
 	result := make([]comment.LineInfo, len(lines)) //nolint:gocritic
 	for i, line := range lines {
 		result[i] = comment.LineInfo{
