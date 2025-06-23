@@ -429,12 +429,12 @@
     "queryName": "Passwords And Secrets - Dockerfile ENV hardcoded password with omitted equals",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive51.yaml"
+    "fileName": "positive51.dockerfile"
   },
   {
     "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
     "line": 4,
-    "fileName": "positive52.yaml"
+    "fileName": "positive52.dockerfile"
   }
 ]
