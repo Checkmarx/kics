@@ -35,12 +35,16 @@ type K8sAPIOptions struct {
 	Kinds       []string
 }
 
-const kuberneterPathLength = 3
+const (
+	kuberneterPathLength = 3
+	dirPerms             = 0777
+	filePerms            = 0777
+)
 
 func (info *k8sAPICall) saveK8sResources(kind, k8sResourcesContent, apiVersionFolder string) {
 	file := filepath.Join(apiVersionFolder, kind+"s"+".yaml")
 
-	f, err := os.OpenFile(filepath.Clean(file), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+	f, err := os.OpenFile(filepath.Clean(file), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, filePerms)
 
 	if err != nil {
 		log.Error().Msgf("failed to open file '%s': %s", file, err)
@@ -57,7 +61,7 @@ func (info *k8sAPICall) saveK8sResources(kind, k8sResourcesContent, apiVersionFo
 }
 
 func (info *k8sAPICall) getResource(o runtime.Object, apiVersion, kind string, sb *strings.Builder) *strings.Builder {
-	e := json.NewYAMLSerializer(json.DefaultMetaFactory, scheme.Scheme, scheme.Scheme)
+	e := json.NewSerializerWithOptions(json.DefaultMetaFactory, scheme.Scheme, scheme.Scheme, json.SerializerOptions{})
 
 	begin := fmt.Sprintf("\n---\napiVersion: %s\nkind: %s\n", getAPIVersion(apiVersion), kind)
 
@@ -205,7 +209,7 @@ func getDestinationFolder(destinationPath string) (string, error) {
 	destFolderName := fmt.Sprintf("kics-extract-kuberneter-%s", time.Now().Format("01-02-2006"))
 	destination := filepath.Join(destinationPath, destFolderName)
 
-	if err := os.MkdirAll(destination, os.ModePerm); err != nil {
+	if err := os.MkdirAll(destination, dirPerms); err != nil {
 		return "", err
 	}
 

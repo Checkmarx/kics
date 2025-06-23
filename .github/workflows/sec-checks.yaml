@@ -140,7 +140,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - uses: actions/setup-go@v5
         with:
-          go-version-file: go.mod
+          go-version: 'stable'
       - name: Install govulncheck
         run: go install golang.org/x/vuln/cmd/govulncheck@latest
       - name: Run govulncheck scanner in fs mode
@@ -164,7 +164,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - uses: actions/setup-go@v5
         with:
-          go-version-file: go.mod
+          go-version: 'stable'
       - name: Build kics
         run: go build -ldflags "-s -w" -a -installsuffix cgo -o ./bin/kics ./cmd/console/main.go
       - name: Install govulncheck

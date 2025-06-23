@@ -25,6 +25,7 @@ import (
 const (
 	Base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
 	HexChars    = "1234567890abcdefABCDEF"
+	SecretMask  = "<SECRET-MASKED-ON-PURPOSE>"
 )
 
 var (
@@ -663,8 +664,8 @@ func hideSecret(linesVuln *model.VulnerabilityLines,
 	secretTracker *[]SecretTracker) *[]model.CodeLine {
 	for idx := range *linesVuln.VulnLines {
 		if query.SpecialMask == "all" && idx != 0 {
-			addToSecretTracker(secretTracker, linesVuln.ResolvedFile, linesVuln.Line, (*linesVuln.VulnLines)[idx].Line, "<SECRET-MASKED-ON-PURPOSE>")
-			(*linesVuln.VulnLines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
+			addToSecretTracker(secretTracker, linesVuln.ResolvedFile, linesVuln.Line, (*linesVuln.VulnLines)[idx].Line, SecretMask)
+			(*linesVuln.VulnLines)[idx].Line = SecretMask
 			continue
 		}
 
@@ -684,15 +685,15 @@ func hideSecret(linesVuln *model.VulnerabilityLines,
 
 			if match != "" {
 				originalCntAux := (*linesVuln.VulnLines)[idx].Line
-				(*linesVuln.VulnLines)[idx].Line = strings.Replace(issueLine, match, "<SECRET-MASKED-ON-PURPOSE>", 1)
+				(*linesVuln.VulnLines)[idx].Line = strings.Replace(issueLine, match, SecretMask, 1)
 				addToSecretTracker(secretTracker, linesVuln.ResolvedFile, linesVuln.Line, originalCntAux, (*linesVuln.VulnLines)[idx].Line)
 			} else {
 				addToSecretTracker(secretTracker,
 					linesVuln.ResolvedFile,
 					linesVuln.Line,
 					(*linesVuln.VulnLines)[idx].Line,
-					"<SECRET-MASKED-ON-PURPOSE>")
-				(*linesVuln.VulnLines)[idx].Line = "<SECRET-MASKED-ON-PURPOSE>"
+					SecretMask)
+				(*linesVuln.VulnLines)[idx].Line = SecretMask
 			}
 		}
 	}
