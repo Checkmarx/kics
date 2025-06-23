@@ -25,8 +25,8 @@ without_users(name) {
         has_group_membership_associated(resource, name);
         not empty(resource)
     }) == 0
-	count({x |
-        resource := input.document[x].resource.aws_iam_user_group_membership;
+	count({y |
+        resource := input.document[y].resource.aws_iam_user_group_membership;
         has_user_group_membership_associated(resource, name)
     }) == 0
 }
