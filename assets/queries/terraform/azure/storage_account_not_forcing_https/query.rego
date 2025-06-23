@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'azurerm_storage_account.%s.enable_https_traffic_only' equals 'true', or (since Terraform v4.0) 'azurerm_storage_account.%s.https_traffic_only_enabled' equals 'true'", [name, name]),
 		"keyActualValue": sprintf("Neither 'azurerm_storage_account.%s.enable_https_traffic_only' nor 'azurerm_storage_account.%s.https_traffic_only_enabled' exists", [name, name]),
 		"searchLine": common_lib.build_search_line(["resource","azurerm_storage_account", name], []),
-		"remediation": "https_traffic_only_enabled = true",
+		"remediation": "enable_https_traffic_only = true",
 		"remediationType": "addition",
 	}
 }
