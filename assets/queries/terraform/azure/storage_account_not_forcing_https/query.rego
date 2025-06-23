@@ -4,40 +4,50 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_storage_account[var0]
+	resource := input.document[i].resource.azurerm_storage_account[name]
+	not common_lib.valid_key(resource, "enable_https_traffic_only")
 	not common_lib.valid_key(resource, "https_traffic_only_enabled")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account",
-		"resourceName": tf_lib.get_resource_name(resource, var0),
-		"searchKey": sprintf("azurerm_storage_account[%s]", [var0]),
+		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("azurerm_storage_account[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_storage_account.%s.https_traffic_only_enabled ' equals 'true'", [var0]),
-		"keyActualValue": sprintf("'azurerm_storage_account.%s.https_traffic_only_enabled ' does not exist", [var0]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_storage_account" ,var0, "https_traffic_only_enabled"], []),
+		"keyExpectedValue": sprintf("'azurerm_storage_account.%s.https_traffic_only_enabled' equals 'true'", [name]),
+		"keyActualValue": sprintf("'azurerm_storage_account.%s.https_traffic_only_enabled' does not exist", [name]),
+		"searchLine": common_lib.build_search_line(["resource","azurerm_storage_account", name, "https_traffic_only_enabled"], []),
 		"remediation": "https_traffic_only_enabled = true",
 		"remediationType": "addition",
 	}
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_storage_account[var0]
-	resource.https_traffic_only_enabled == false
+	resource := input.document[i].resource.azurerm_storage_account[name]
+    field := get_https_property_to_check(resource)
+    resource[field] == false
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account",
-		"resourceName": tf_lib.get_resource_name(resource, var0),
-		"searchKey": sprintf("azurerm_storage_account[%s].https_traffic_only_enabled", [var0]),
+		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("azurerm_storage_account[%s].%s", [name,field]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_storage_account.%s.https_traffic_only_enabled' equals 'true'", [var0]),
-		"keyActualValue": sprintf("'azurerm_storage_account.%s.https_traffic_only_enabled' equals 'false'", [var0]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_storage_account" ,var0, "https_traffic_only_enabled"], []),
+		"keyExpectedValue": sprintf("'azurerm_storage_account.%s.%s' equals 'true'", [name,field]),
+		"keyActualValue": sprintf("'azurerm_storage_account.%s.%s' equals 'false'", [name,field]),
+		"searchLine": common_lib.build_search_line(["resource","azurerm_storage_account" ,name], [field]),
 		"remediation": json.marshal({
 			"before": "false",
 			"after": "true"
 		}),
 		"remediationType": "replacement",
 	}
+}
+
+get_https_field_to_check(resource) = field {
+	common_lib.valid_key(resource, "enable_https_traffic_only")
+    field = "enable_https_traffic_only"
+} else = "https_traffic_only_enabled" {
+    common_lib.valid_key(resource, "https_traffic_only_enabled")
+    field = "https_traffic_only_enabled"
 }

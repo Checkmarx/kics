@@ -2,11 +2,25 @@
   {
     "queryName": "Storage Account Not Forcing HTTPS",
     "severity": "MEDIUM",
-    "line": 7
+    "line": 7,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "Storage Account Not Forcing HTTPS",
     "severity": "MEDIUM",
-    "line": 10
+    "line": 10,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Storage Account Not Forcing HTTPS",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Storage Account Not Forcing HTTPS",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive2.tf"
   }
 ]
