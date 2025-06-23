@@ -24,7 +24,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_account[name]
-    field := get_https_property_to_check(resource)
+    field := get_https_field_to_check(resource)
     resource[field] == false
 
 	result := {
