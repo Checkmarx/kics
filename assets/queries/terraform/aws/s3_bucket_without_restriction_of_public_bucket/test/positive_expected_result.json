@@ -1,13 +1,13 @@
 [
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 13,
     "filename": "positive1.tf"
   },
   {
     "queryName": "S3 Bucket Without Restriction Of Public Bucket",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 14,
     "filename": "positive2.tf"
   }
