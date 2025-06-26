@@ -1,7 +1,7 @@
 # KICS Auto Remediation
 
 With this new feature, KICS provides auto remediation for simple replacements and simple additions in a single line.
-
+By default, when multiple versions are supported, KICS will generate remediation based on the latest supported version of the tool (e.g., Terraform).
 Note that this feature will be only available for Terraform, for now.
 
 <p align="center">
