@@ -7,5 +7,6 @@
   "descriptionUrl": "https://sysdig.com/blog/dockerfile-best-practices/",
   "platform": "Dockerfile",
   "descriptionID": "79731185",
-  "cwe": "710"
+  "cwe": "710",
+  "cloudProvider": "common"
 }

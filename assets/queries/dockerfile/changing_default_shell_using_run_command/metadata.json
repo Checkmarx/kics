@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#shell",
   "platform": "Dockerfile",
   "descriptionID": "d859b2eb",
-  "cwe": "710"
+  "cwe": "710",
+  "cloudProvider": "common"
 }
