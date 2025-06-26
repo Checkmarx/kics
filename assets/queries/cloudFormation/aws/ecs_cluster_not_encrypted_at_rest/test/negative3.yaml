@@ -1,0 +1,231 @@
+Resources:
+  EcsTaskRole8DFA0181:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+      Description: Role for ECS task
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+      PermissionsBoundary: arn:aws:iam::123456789012:policy/CloudServices-Boundary
+      Tags:
+        - Key: classification
+          Value: internal
+        - Key: component
+          Value: example-nms
+        - Key: env
+          Value: development
+        - Key: owner
+          Value: example@owner.com
+        - Key: product
+          Value: internal_tools
+    Metadata:
+      aws:cdk:path: ExampleNmsInfrastructureStack/EcsTaskRole/Resource
+  EcsTaskRoleDefaultPolicy50882C77:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - ecr:BatchCheckLayerAvailability
+              - ecr:BatchGetImage
+              - ecr:GetDownloadUrlForLayer
+            Effect: Allow
+            Resource: arn:aws:ecr:us-west-2:123456789012:repository/example-nms
+          - Action: ecr:GetAuthorizationToken
+            Effect: Allow
+            Resource: "*"
+        Version: "2012-10-17"
+      PolicyName: EcsTaskRoleDefaultPolicy50882C77
+      Roles:
+        - Ref: EcsTaskRole8DFA0181
+    Metadata:
+      aws:cdk:path: ExampleNmsInfrastructureStack/EcsTaskRole/DefaultPolicy/Resource
+  TaskDef54694570:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Environment:
+            - Name: DEPLOYMENT_TIMESTAMP
+              Value: "2024-08-20T00:41:57.620Z"
+          Essential: true
+          HealthCheck:
+            Command:
+              - CMD-SHELL
+              - curl -f http://localhost:3000/health || exit
+            Interval: 30
+            Retries: 3
+            StartPeriod: 30
+            Timeout: 5
+          Image:
+            Fn::Join:
+              - ""
+              - - 123456789012.dkr.ecr.us-west-2.
+                - Ref: AWS::URLSuffix
+                - /example-nms:latest
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group:
+                Ref: LogGroupF5B46931
+              awslogs-stream-prefix: example-nms
+              awslogs-region: us-west-2
+          MemoryReservation: 128
+          Name: ExampleNameMatchLatest
+          PortMappings:
+            - ContainerPort: 3000
+              Protocol: tcp
+      ExecutionRoleArn:
+        Fn::GetAtt:
+          - TaskDefExecutionRoleB4775C97
+          - Arn
+      Family: ExampleNmsInfrastructureStackTaskDefAF41E55F
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - EC2
+      Tags:
+        - Key: classification
+          Value: internal
+        - Key: component
+          Value: example-nms
+        - Key: env
+          Value: development
+        - Key: owner
+          Value: example@owner.com
+        - Key: product
+          Value: internal_tools
+      TaskRoleArn:
+        Fn::GetAtt:
+          - EcsTaskRole8DFA0181
+          - Arn
+    Metadata:
+      aws:cdk:path: ExampleNmsInfrastructureStack/TaskDef/Resource
+  TaskDefExecutionRoleB4775C97:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+      PermissionsBoundary: arn:aws:iam::123456789012:policy/CloudServices-Boundary
+      Tags:
+        - Key: classification
+          Value: internal
+        - Key: component
+          Value: example-nms
+        - Key: env
+          Value: development
+        - Key: owner
+          Value: example@owner.com
+        - Key: product
+          Value: internal_tools
+    Metadata:
+      aws:cdk:path: ExampleNmsInfrastructureStack/TaskDef/ExecutionRole/Resource
+  TaskDefExecutionRoleDefaultPolicy0DBB737A:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - ecr:BatchCheckLayerAvailability
+              - ecr:BatchGetImage
+              - ecr:GetDownloadUrlForLayer
+            Effect: Allow
+            Resource: arn:aws:ecr:us-west-2:123456789012:repository/example-nms
+          - Action: ecr:GetAuthorizationToken
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - LogGroupF5B46931
+                - Arn
+        Version: "2012-10-17"
+      PolicyName: TaskDefExecutionRoleDefaultPolicy0DBB737A
+      Roles:
+        - Ref: TaskDefExecutionRoleB4775C97
+    Metadata:
+      aws:cdk:path: ExampleNmsInfrastructureStack/TaskDef/ExecutionRole/DefaultPolicy/Resource
+  LogGroupF5B46931:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /ecs/example-nms
+      RetentionInDays: 1
+      Tags:
+        - Key: classification
+          Value: internal
+        - Key: component
+          Value: example-nms
+        - Key: env
+          Value: development
+        - Key: owner
+          Value: example@owner.com
+        - Key: product
+          Value: internal_tools
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
+    Metadata:
+      aws:cdk:path: ExampleNmsInfrastructureStack/LogGroup/Resource
+  ExampleNameMatchService0992A2E7:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster: example-ecs
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 50
+      DesiredCount: 1
+      EnableECSManagedTags: false
+      HealthCheckGracePeriodSeconds: 60
+      LaunchType: EC2
+      LoadBalancers:
+        - ContainerName: ExampleNameMatchLatest
+          ContainerPort: 3000
+          TargetGroupArn:
+            Ref: ALBExampleNameMatchListenerExampleNameMatchTargetGroupE2F0920B
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: DISABLED
+          SecurityGroups:
+            - Fn::GetAtt:
+                - ExampleNameMatchServiceSecurityGroup423FDD45
+                - GroupId
+          Subnets:
+            - subnet-830424f5
+            - subnet-b0c1cfd4
+            - subnet-3ff16967
+      SchedulingStrategy: REPLICA
+      Tags:
+        - Key: classification
+          Value: internal
+        - Key: component
+          Value: example-nms
+        - Key: env
+          Value: development
+        - Key: owner
+          Value: example@owner.com
+        - Key: product
+          Value: internal_tools
+      TaskDefinition:
+        Ref: TaskDef54694570
+    DependsOn:
+      - ALBExampleNameMatchListenerExampleNameMatchTargetGroupE2F0920B
+      - ALBExampleNameMatchListener59259997
+      - EcsTaskRoleDefaultPolicy50882C77
+      - EcsTaskRole8DFA0181
+    Metadata:
+      aws:cdk:path: ExampleNmsInfrastructureStack/ExampleNameMatchService/Service
