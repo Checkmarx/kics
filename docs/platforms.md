@@ -246,7 +246,7 @@ KICS uses regular expressions to detect the platform or type of each file during
 However, in practice, the **whitelist** has limitations:
 
 - Some valid files may only match **one regex**, while others require multiple matches to be confidently classified, even though they’re all valid.
-- This creates inconsistency since there's no clear threshold for "enough" matching and tightening the rules risks missing valid files.
+- This creates inconsistency since there's no clear threshold for "enough" matching, and tightening the rules risks missing valid files.
 - Refactoring the analyzer to support a precise, rule-based whitelist would require significant design and effort.
 
 Because of this, a **blacklist** was introduced as a practical and efficient complement to the existing whitelist. It allows KICS to explicitly **exclude known unsupported file types** early in the scanning process without triggering false positives or loading unnecessary queries.
@@ -260,7 +260,7 @@ KICS now short-circuits analysis for the following types:
     - These typically contain fields like `"resourceType"`, `"entry"`, `"subject"`, `"code"`, and `"status"`.
     - They are often misclassified as ARM templates due to partial regex overlap.
 2. **Azure Pipelines VSCode** files:
-    - Also recognized as a ARM template, these type of files are auto-generated VSCode pipeline extension files.
+    - Also recognized as an ARM template, these type of files are auto-generated VSCode pipeline extension files.
 
 ##### Summary
 
