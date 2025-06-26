@@ -260,7 +260,7 @@ KICS now short-circuits analysis for the following types:
     - These typically contain fields like `"resourceType"`, `"entry"`, `"subject"`, `"code"`, and `"status"`.
     - They are often misclassified as ARM templates due to partial regex overlap.
 2. **Azure Pipelines VSCode** files:
-    - Also recognized as an ARM template, these type of files are auto-generated VSCode pipeline extension files.
+    - Also recognized as an ARM template, this type of files are auto-generated VSCode pipeline extension files.
 
 ##### Summary
 
