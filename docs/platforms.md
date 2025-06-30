@@ -238,7 +238,7 @@ resource "aws_launch_configuration" "example" {
   user_data_base64 = "a123B=="
 }
 ```
-#### Analyzer Blacklist Unsupported File Types
+#### Analyzer Blacklist for Unsupported File Types
 
 ##### Why We Introduced a Blacklist
 
