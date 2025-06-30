@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-secret
+type: Opaque
+data:
+  password: cGFzc3dvcmQxMjM=  # base64 for "password123"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secret-pod
+spec:
+  containers:
+    - name: test
+      image: busybox:1.28
+      command: ['sh', '-c', 'echo "Secret volume mounted" && tail -f /dev/null']
+      volumeMounts:
+        - name: secret-vol
+          mountPath: /etc/secret
+  volumes:
+    - name: secret-vol
+      secret:
+        secretName: my-secret
