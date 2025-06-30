@@ -29,9 +29,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	dataType := { "aws_iam_policy_document" }
-	data_res := input.document[i].data[dataType[idx]][name]
-	resource := input.document[_].resource[resourceType][name]
+	data_res := input.document[i].data.aws_iam_policy_document[name]
 
 	statement := data_res.statement
 
@@ -41,7 +39,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"resourceType": resourceType,
+		"resourceType": "aws_iam_policy_document",
 		"resourceName": name,
 		"searchKey": sprintf("%s[%s]", [dataType[idx], name]),
 		"issueType": "IncorrectValue",
