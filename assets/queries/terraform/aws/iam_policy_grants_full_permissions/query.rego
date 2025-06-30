@@ -41,11 +41,11 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_iam_policy_document",
 		"resourceName": name,
-		"searchKey": sprintf("%s[%s]", [dataType[idx], name]),
+		"searchKey": sprintf("aws_iam_policy_document[%s]", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'statement.resources' and 'statement.actions' should not contain '*'",
 		"keyActualValue": "'statement.resources' and 'statement.actions' contain '*'",
-		"searchLine": common_lib.build_search_line(["data", dataType[idx], name], []),
+		"searchLine": common_lib.build_search_line(["data", "aws_iam_policy_document", name], []),
 	}
 }
 
