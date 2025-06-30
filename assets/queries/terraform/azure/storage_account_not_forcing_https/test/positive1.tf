@@ -1,4 +1,5 @@
-resource "azurerm_storage_account" "positive1" {
+# IncorrectValue for enable_https_traffic_only
+resource "azurerm_storage_account" "example1" {
   name                      = "example1"
   resource_group_name       = data.azurerm_resource_group.example.name
   location                  = data.azurerm_resource_group.example.location
@@ -7,7 +8,8 @@ resource "azurerm_storage_account" "positive1" {
   enable_https_traffic_only = false
 }
 
-resource "azurerm_storage_account" "positive2" {
+# MissingAttribute for enable_https_traffic_only
+resource "azurerm_storage_account" "example2" {
   name                      = "example2"
   resource_group_name       = data.azurerm_resource_group.example.name
   location                  = data.azurerm_resource_group.example.location
