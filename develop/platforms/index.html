@@ -2532,6 +2532,36 @@ This line is a comment that Kics will look for when trying to decypher the varia
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="na">user_data_base64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;a123B==&quot;</span>
 <a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">}</span>
 </code></pre></div>
+<h4 id="analyzer_blacklist_for_unsupported_file_types">Analyzer Blacklist for Unsupported File Types<a class="headerlink" href="#analyzer_blacklist_for_unsupported_file_types" title="Permanent link">&para;</a></h4>
+<h5 id="why_we_introduced_a_blacklist">Why We Introduced a Blacklist<a class="headerlink" href="#why_we_introduced_a_blacklist" title="Permanent link">&para;</a></h5>
+<p>KICS uses regular expressions to detect the platform or type of each file during analysis. Internally, it maintains a whitelist of regex patterns that, when matched, classify a file under a supported Infrastructure-as-Code platform (e.g., Terraform, CloudFormation, ARM).
+However, in practice, the <strong>whitelist</strong> has limitations:</p>
+<ul>
+<li>Some valid files may only match <strong>one regex</strong>, while others require multiple matches to be confidently classified, even though they’re all valid.</li>
+<li>This creates inconsistency since there's no clear threshold for "enough" matching, and tightening the rules risks missing valid files.</li>
+<li>Refactoring the analyzer to support a precise, rule-based whitelist would require significant design and effort.</li>
+</ul>
+<p>Because of this, a <strong>blacklist</strong> was introduced as a practical and efficient complement to the existing whitelist. It allows KICS to explicitly <strong>exclude known unsupported file types</strong> early in the scanning process without triggering false positives or loading unnecessary queries.
+This blacklist acts as a <em>short-circuit mechanism</em>, immediately stopping the analysis of files that match certain patterns unique to unsupported formats. This avoids wasting resources on parsing irrelevant content and improves the reliability of platform detection overall.</p>
+<h5 id="current_blacklisted_file_types">Current Blacklisted File Types<a class="headerlink" href="#current_blacklisted_file_types" title="Permanent link">&para;</a></h5>
+<p>KICS now short-circuits analysis for the following types:</p>
+<ol>
+<li><strong>FHIR (Fast Healthcare Interoperability Resources)</strong> JSON files:<ul>
+<li>These typically contain fields like <code>"resourceType"</code>, <code>"entry"</code>, <code>"subject"</code>, <code>"code"</code>, and <code>"status"</code>.</li>
+<li>They are often misclassified as ARM templates due to partial regex overlap.</li>
+</ul>
+</li>
+<li><strong>Azure Pipelines VSCode</strong> files:<ul>
+<li>Also recognized as an ARM template, this type of files are auto-generated VSCode pipeline extension files.</li>
+</ul>
+</li>
+</ol>
+<h5 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h5>
+<p>While KICS has a whitelist-based platform detection system, its current design doesn't always allow for reliable filtering of edge cases or unsupported formats. Implementing a proper scoring or confidence-based whitelist would involve substantial complexity.</p>
+<p>For now, the blacklist approach provides a lightweight, low-maintenance solution that:
+- Improves classification accuracy by explicitly excluding irrelevant file types.
+- Avoids unnecessary resource use by skipping analysis early.
+- Keeps the analyzer simple and efficient, without a major overhaul.</p>
 
 
 
