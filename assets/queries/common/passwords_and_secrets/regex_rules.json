@@ -24,6 +24,14 @@
         {
           "description": "Allow passwords retrieved from AWS KMS Secrets",
           "regex": "(?i)['\"]?password['\"]?\\s*=\\s*data\\.aws_kms_secrets\\.[A-Za-z0-9_]+\\.plaintext\\[\"[A-Za-z0-9_]+\"\\]"
+        },
+        {
+          "description": "Allow placeholders",
+          "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"](\\$\\(|\\$?\\{\\{)\\s*\\w+\\s*(\\)|\\}\\})['\"]"
+        },
+        {
+          "description": "Allow empty values",
+          "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*(''|\"\")"
         }
       ],
       "specialMask": "(?i)['\"]?password['\"]?\\s*[:=]\\s*"
