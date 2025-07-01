@@ -10,6 +10,7 @@ spec:
     - mountPath: /bin
       name: vol-0
       readOnly: true
+      recursiveReadOnly: Enabled
   volumes:
   - name: vol-0
     scaleIO:
@@ -59,6 +60,7 @@ spec:
     - mountPath: /var/run
       name: vol-0
       readOnly: true
+      recursiveReadOnly: Enabled
   volumes:
   - name: vol-0
     scaleIO:

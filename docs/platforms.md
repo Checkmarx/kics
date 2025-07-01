@@ -238,3 +238,35 @@ resource "aws_launch_configuration" "example" {
   user_data_base64 = "a123B=="
 }
 ```
+#### Analyzer Blacklist for Unsupported File Types
+
+##### Why We Introduced a Blacklist
+
+KICS uses regular expressions to detect the platform or type of each file during analysis. Internally, it maintains a whitelist of regex patterns that, when matched, classify a file under a supported Infrastructure-as-Code platform (e.g., Terraform, CloudFormation, ARM).
+However, in practice, the **whitelist** has limitations:
+
+- Some valid files may only match **one regex**, while others require multiple matches to be confidently classified, even though they’re all valid.
+- This creates inconsistency since there's no clear threshold for "enough" matching, and tightening the rules risks missing valid files.
+- Refactoring the analyzer to support a precise, rule-based whitelist would require significant design and effort.
+
+Because of this, a **blacklist** was introduced as a practical and efficient complement to the existing whitelist. It allows KICS to explicitly **exclude known unsupported file types** early in the scanning process without triggering false positives or loading unnecessary queries.
+This blacklist acts as a _short-circuit mechanism_, immediately stopping the analysis of files that match certain patterns unique to unsupported formats. This avoids wasting resources on parsing irrelevant content and improves the reliability of platform detection overall.
+
+##### Current Blacklisted File Types
+
+KICS now short-circuits analysis for the following types:
+
+1. **FHIR (Fast Healthcare Interoperability Resources)** JSON files:
+    - These typically contain fields like `"resourceType"`, `"entry"`, `"subject"`, `"code"`, and `"status"`.
+    - They are often misclassified as ARM templates due to partial regex overlap.
+2. **Azure Pipelines VSCode** files:
+    - Also recognized as an ARM template, this type of files are auto-generated VSCode pipeline extension files.
+
+##### Summary
+
+While KICS has a whitelist-based platform detection system, its current design doesn't always allow for reliable filtering of edge cases or unsupported formats. Implementing a proper scoring or confidence-based whitelist would involve substantial complexity.
+
+For now, the blacklist approach provides a lightweight, low-maintenance solution that:
+- Improves classification accuracy by explicitly excluding irrelevant file types.
+- Avoids unnecessary resource use by skipping analysis early.
+- Keeps the analyzer simple and efficient, without a major overhaul.
