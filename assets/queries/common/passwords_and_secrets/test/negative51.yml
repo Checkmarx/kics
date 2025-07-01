@@ -1,0 +1,43 @@
+stages:
+- template: templates/main-stage.yml
+  parameters:
+    environment:                      'foo'
+    isSm9ChangeRequired:              true
+  
+    isDedicatedSubscription:          'true'
+    setResourceLock:                  'true'
+    nameResourceLock:                 'PrdPreventAccidentalDeletion'
+    isDevelopment:                    'false'
+    # example 1 (placeholders)
+    vmAdminPassword:                  '$(VM_ADMIN_PASSWORD)'                 # SET IN PIPELINE
+    sqlAdminPassword:                 '$(SQL_ADMIN_PASSWORD)'                # SET IN PIPELINE
+    yetanotherAdminPassword:          '${{SQL_ADMIN_PASSWORD}}'                # SET IN PIPELINE
+    andyetanotherAdminPassword:       '${{ SQL_ADMIN_PASSWORD }}'                # SET IN PIPELINE
+
+    # example 2 (empty string value)
+    anotherAdminPassword:             ''                 # SET IN PIPELINE
+
+    serviceConnectionName:            'foo' 
+    subscriptionId:                   'foo'
+    organisationalGroup:              'foo'        # Replace this with your own Organisational Group name.
+    devOrganisationalGroup:           'foo'                                     # should be empty for none DEV env
+    sm9ApplicationCi:                 'foo'                                  # Replace this with your own SM9 Application CI name.
+    resourceGroupBaseName:            'foo'                 # This is used to construct a Resource Group name. Replace this with your desired resource group name.
+    resourceGroupNameSuffix:          'foo'                                    # This is suffixed to the Resource Group name in a Shared subscription (must be an integer). Can be left as-is.
+    location:                         'foo'                           # Replace this with your desired Azure region.
+    linuxAgentPoolName:               'foo'                # Agent pool name of Linux agents. Can be left as-is.
+    windowsAgentPoolName:             'foo'              # Agent pool name of Windows agents. Can be left as-is.
+    System.Debug:                     'foo'                                 # Set to 'foo' to enable debug logging. Can be left as-is.
+
+    skipAdditionalResources:          'foo'                                # if true skip creating additional resources
+    skipSQL:                          'foo'
+
+    #####################################################################################
+    # ADF                                                                               #
+    #####################################################################################
+    adfName:                          'foo'
+    adfDeveloperGroup:                'foo'        # Group has access to ADF
+    irName:                           'foo'
+    irDescription:                    'foo'
+
+
