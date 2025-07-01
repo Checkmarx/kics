@@ -251,6 +251,10 @@
         {
           "description": "Avoiding bash variables",
           "regex": "(?i)['\"]?\\$\\s*\\{[^\\s\\}]+\\}['\"]?"
+        },
+        {
+          "description": "Avoid Docker Compose secrets paths",
+          "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?/run/secrets/\\w+['\"]?"
         }
       ]
     },
@@ -396,10 +400,6 @@
     {
       "description": "Avoiding sha-hashed mysql native passwords",
       "regex": "(?i)['\"]?[a-zA-Z_]+['\"]?\\s*[=:]\\s*['\"]?(\\*[0-9A-F]{40})['\"]?"
-    },
-    {
-      "description": "Avoiding secrets path",
-      "regex": "(['\"]?\\w+['\"]?)\\s*[:=]\\s*(['\"]?/(\\w+/)+secrets(/\\w+)+['\"]?)"
     }
   ]
 }

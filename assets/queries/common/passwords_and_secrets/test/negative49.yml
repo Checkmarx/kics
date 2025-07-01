@@ -8,9 +8,10 @@ services:
     environment:
       env: "dev"
 
+      # this value is a Docker Compose secrets path, its contents are not exposed
       PrivateKey: /run/secrets/SOME_AUTHORIZATION_PRIVATE_KEY
 
 secrets:
   SOME_AUTHORIZATION_PRIVATE_KEY:
     external: true
-  
+
