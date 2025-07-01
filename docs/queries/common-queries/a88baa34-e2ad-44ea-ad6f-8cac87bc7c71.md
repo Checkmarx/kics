@@ -1526,6 +1526,38 @@ tags: []
 </details>
 <details><summary>Positive test num. 47 - dockerfile file</summary>
 
+```dockerfile hl_lines="4"
+FROM baseImage
+
+ENV ARTEMIS_USER artemis
+ENV ARTEMIS_PASSWORD artemis
+
+RUN apk add --no-cache git \
+    && git config \
+    --global \
+    url."https://${GIT_USER}:${GIT_TOKEN}@github.com".insteadOf \
+    "https://github.com"
+
+```
+</details>
+<details><summary>Positive test num. 48 - dockerfile file</summary>
+
+```dockerfile hl_lines="4"
+FROM baseImage
+
+ENV ARTEMIS_USER=artemis
+ENV ARTEMIS_PASSWORD=artemis
+
+RUN apk add --no-cache git \
+    && git config \
+    --global \
+    url."https://${GIT_USER}:${GIT_TOKEN}@github.com".insteadOf \
+    "https://github.com"
+
+```
+</details>
+<details><summary>Positive test num. 49 - dockerfile file</summary>
+
 ```dockerfile hl_lines="3 7"
 FROM baseImage
 
@@ -1537,7 +1569,7 @@ ARG password=pass!1213Fs
 
 ```
 </details>
-<details><summary>Positive test num. 48 - tf file</summary>
+<details><summary>Positive test num. 50 - tf file</summary>
 
 ```tf hl_lines="8"
 resource "google_container_cluster" "primary2" {
@@ -1562,7 +1594,7 @@ resource "google_container_cluster" "primary2" {
 
 ```
 </details>
-<details><summary>Positive test num. 49 - json file</summary>
+<details><summary>Positive test num. 51 - json file</summary>
 
 ```json hl_lines="4 7"
 {
@@ -1578,7 +1610,7 @@ resource "google_container_cluster" "primary2" {
 
 ```
 </details>
-<details><summary>Positive test num. 50 - tf file</summary>
+<details><summary>Positive test num. 52 - tf file</summary>
 
 ```tf hl_lines="8"
 resource "google_container_cluster" "primary4" {
@@ -2794,11 +2826,115 @@ data "template_file" "sci_integration_app_properties_secret_template" {
 ```dockerfile
 FROM baseImage
 
+ENV ARTEMIS_USER artemis
+
+RUN apk add --no-cache git \
+    && git config \
+    --global \
+    url."https://${GIT_USER}:${GIT_TOKEN}@github.com".insteadOf \
+    "https://github.com"
+
+
+```
+</details>
+<details><summary>Negative test num. 45 - dockerfile file</summary>
+
+```dockerfile
+FROM baseImage
+
 RUN command
 
 ```
 </details>
-<details><summary>Negative test num. 45 - json file</summary>
+<details><summary>Negative test num. 46 - dockerfile file</summary>
+
+```dockerfile
+FROM baseImage
+
+ENV ARTEMIS_USER=artemis
+
+RUN apk add --no-cache git \
+    && git config \
+    --global \
+    url."https://${GIT_USER}:${GIT_TOKEN}@github.com".insteadOf \
+    "https://github.com"
+
+
+```
+</details>
+<details><summary>Negative test num. 47 - yml file</summary>
+
+```yml
+stages:
+- template: templates/main-stage.yml
+  parameters:
+    environment:                      'foo'
+    isSm9ChangeRequired:              true
+  
+    isDedicatedSubscription:          'true'
+    setResourceLock:                  'true'
+    nameResourceLock:                 'PrdPreventAccidentalDeletion'
+    isDevelopment:                    'false'
+    # example 1 (placeholders)
+    vmAdminPassword:                  '$(VM_ADMIN_PASSWORD)'                 # SET IN PIPELINE
+    sqlAdminPassword:                 '$(SQL_ADMIN_PASSWORD)'                # SET IN PIPELINE
+    yetanotherAdminPassword:          '${{SQL_ADMIN_PASSWORD}}'                # SET IN PIPELINE
+    andyetanotherAdminPassword:       '${{ SQL_ADMIN_PASSWORD }}'                # SET IN PIPELINE
+
+    # example 2 (empty string value)
+    anotherAdminPassword:             ''                 # SET IN PIPELINE
+
+    serviceConnectionName:            'foo' 
+    subscriptionId:                   'foo'
+    organisationalGroup:              'foo'        # Replace this with your own Organisational Group name.
+    devOrganisationalGroup:           'foo'                                     # should be empty for none DEV env
+    sm9ApplicationCi:                 'foo'                                  # Replace this with your own SM9 Application CI name.
+    resourceGroupBaseName:            'foo'                 # This is used to construct a Resource Group name. Replace this with your desired resource group name.
+    resourceGroupNameSuffix:          'foo'                                    # This is suffixed to the Resource Group name in a Shared subscription (must be an integer). Can be left as-is.
+    location:                         'foo'                           # Replace this with your desired Azure region.
+    linuxAgentPoolName:               'foo'                # Agent pool name of Linux agents. Can be left as-is.
+    windowsAgentPoolName:             'foo'              # Agent pool name of Windows agents. Can be left as-is.
+    System.Debug:                     'foo'                                 # Set to 'foo' to enable debug logging. Can be left as-is.
+
+    skipAdditionalResources:          'foo'                                # if true skip creating additional resources
+    skipSQL:                          'foo'
+
+    #####################################################################################
+    # ADF                                                                               #
+    #####################################################################################
+    adfName:                          'foo'
+    adfDeveloperGroup:                'foo'        # Group has access to ADF
+    irName:                           'foo'
+    irDescription:                    'foo'
+
+
+
+```
+</details>
+<details><summary>Negative test num. 48 - yml file</summary>
+
+```yml
+version: '3.7'
+
+services:
+  apis:
+    image: ""
+    env_file:
+      - .env
+    environment:
+      env: "dev"
+
+      # this value is a Docker Compose secrets path, its contents are not exposed
+      PrivateKey: /run/secrets/SOME_AUTHORIZATION_PRIVATE_KEY
+
+secrets:
+  SOME_AUTHORIZATION_PRIVATE_KEY:
+    external: true
+
+
+```
+</details>
+<details><summary>Negative test num. 49 - json file</summary>
 
 ```json
 {
@@ -2818,7 +2954,7 @@ RUN command
 
 ```
 </details>
-<details><summary>Negative test num. 46 - tf file</summary>
+<details><summary>Negative test num. 50 - tf file</summary>
 
 ```tf
 resource "google_container_cluster" "primary3" {
@@ -2843,7 +2979,7 @@ resource "google_container_cluster" "primary3" {
 
 ```
 </details>
-<details><summary>Negative test num. 47 - tf file</summary>
+<details><summary>Negative test num. 51 - tf file</summary>
 
 ```tf
 resource "google_container_cluster" "primary5" {
@@ -2868,7 +3004,7 @@ resource "google_container_cluster" "primary5" {
 
 ```
 </details>
-<details><summary>Negative test num. 48 - tf file</summary>
+<details><summary>Negative test num. 52 - tf file</summary>
 
 ```tf
 resource "google_secret_manager_secret" "secret-basic" {
