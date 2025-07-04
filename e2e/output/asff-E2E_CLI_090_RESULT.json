@@ -1,0 +1,35 @@
+[
+	{
+		"AwsAccountId": "AWS_ACCOUNT_ID",
+		"Compliance": {
+			"Status": "FAILED"
+		},
+		"CreatedAt": "2025-07-04T14:05:54+01:00",
+		"Description": "AmazonMQ Broker should have Encryption Options defined",
+		"GeneratorId": "316278b3-87ac-444c-8f8f-a733a28da609",
+		"Id": "AWS_REGION/AWS_ACCOUNT_ID/e5b6a100ab6a12e2a71d68827e664068ab29ef06f4b4e48d80019ef68e945e38",
+		"ProductArn": "arn:aws:securityhub:AWS_REGION:AWS_ACCOUNT_ID:product/AWS_ACCOUNT_ID/default",
+		"Remediation": {
+			"Recommendation": {
+				"Text": "Problem found on '..\\test\\fixtures\\test_critical_custom_queries\\amazon_mq_broker_encryption_disabled\\test\\positive1.yaml' file in line 6. Expected value: Resources.BasicBroker.Properties.EncryptionOptions should be defined. Actual value: Resources.BasicBroker.Properties.EncryptionOptions is not defined."
+			}
+		},
+		"Resources": [
+			{
+				"Id": "316278b3-87ac-444c-8f8f-a733a28da609",
+				"Type": "Other"
+			}
+		],
+		"SchemaVersion": "2018-10-08",
+		"Severity": {
+			"Original": "CRITICAL",
+			"Label": "CRITICAL"
+		},
+		"Title": "AmazonMQ Broker Encryption Disabled",
+		"Types": [
+			"Software and Configuration Checks/Vulnerabilities/KICS"
+		],
+		"UpdatedAt": "2025-07-04T14:05:54+01:00",
+		"CWE": ""
+	}
+]

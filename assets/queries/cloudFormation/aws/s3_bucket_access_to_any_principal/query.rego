@@ -1,3 +1,4 @@
+
 package Cx
 
 import data.generic.common as common_lib
@@ -11,8 +12,9 @@ CxPolicy[result] {
 		resourcePolicy := input.document[indexBucket].Resources[_]
 		resourcePolicy.Type == "AWS::S3::BucketPolicy"
 		check_ref(resourcePolicy.Properties.Bucket, resourceBucket, nameBucket)
-		policy := resourcePolicy.Properties.PolicyDocument
-		st := common_lib.get_statement(common_lib.get_policy(policy))
+		raw_policy := resourcePolicy.Properties.PolicyDocument
+		policy := common_lib.get_statement(common_lib.get_policy(raw_policy))
+        st := ignore_if_statements(policy)
 		policyStatement := st[_]
 		common_lib.is_allow_effect(policyStatement)
 	]
@@ -29,6 +31,22 @@ CxPolicy[result] {
 		"keyActualValue": "associated Bucket Policy allows access to any principal",
 		"searchLine": common_lib.build_search_line(["Resource", nameBucket], []),
 	}
+}
+
+ignore_if_statements(raw_statements) = cleaned_statements{
+	cleaned_statements := [ignore_if_statement(s) | s := raw_statements[_]]
+}
+
+ignore_if_statement(raw_policy) = policy {
+    raw_policy.playbooks  
+	
+    some i
+    item := raw_policy.playbooks[i]
+    is_object(item)
+    policy := item
+    
+} else = policy {
+    policy := raw_policy
 }
 
 check_ref(obj, bucketResource , logicName) {

@@ -1,0 +1,17 @@
+{
+	"document": [
+		{
+			"file": "fixtures/samples/terraform-vars-path/tfFiles/terraform-vars-path.tf",
+			"id": "e9de73d1-c9a8-482d-a9b2-98ef7191c4ff",
+			"resource": {
+				"test": {
+					"test1": {
+						"test_map": {
+							"map3Key1": "givenByVar"
+						}
+					}
+				}
+			}
+		}
+	]
+}

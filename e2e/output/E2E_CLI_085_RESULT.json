@@ -1,0 +1,29 @@
+{
+	"kics_version": "development",
+	"files_scanned": 3,
+	"lines_scanned": 89,
+	"files_parsed": 3,
+	"lines_parsed": 86,
+	"lines_ignored": 3,
+	"files_failed_to_scan": 0,
+	"queries_total": 1,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 0,
+		"INFO": 0,
+		"LOW": 0,
+		"MEDIUM": 0,
+		"TRACE": 0
+	},
+	"total_counter": 0,
+	"total_bom_resources": 0,
+	"start": "2025-07-04T14:05:54.1648752+01:00",
+	"end": "2025-07-04T14:06:10.4753208+01:00",
+	"paths": [
+		"../test/fixtures/helm_disable_query"
+	],
+	"queries": []
+}
