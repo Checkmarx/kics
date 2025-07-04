@@ -1,6 +1,7 @@
 
 package Cx
 
+import future.keywords.in
 import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
@@ -14,7 +15,7 @@ CxPolicy[result] {
 		check_ref(resourcePolicy.Properties.Bucket, resourceBucket, nameBucket)
 		raw_policy := resourcePolicy.Properties.PolicyDocument
 		policy := common_lib.get_statement(common_lib.get_policy(raw_policy))
-        st := ignore_if_statements(policy)
+        st := handle_if_statements(policy)
 		policyStatement := st[_]
 		common_lib.is_allow_effect(policyStatement)
 	]
@@ -33,20 +34,22 @@ CxPolicy[result] {
 	}
 }
 
-ignore_if_statements(raw_statements) = cleaned_statements{
-	cleaned_statements := [ignore_if_statement(s) | s := raw_statements[_]]
+handle_if_statements(raw_statements) = cleaned_statements {
+    nested := [handle_if_statement(s) | s := raw_statements[_]]
+    flattened := [x | some sublist in nested; x := sublist[_]]
+    cleaned_statements := flattened
 }
 
-ignore_if_statement(raw_policy) = policy {
-    raw_policy.playbooks  
-	
-    some i
-    item := raw_policy.playbooks[i]
-    is_object(item)
-    policy := item
-    
-} else = policy {
-    policy := raw_policy
+handle_if_statement(raw_policy) = policies {
+    raw_policy.playbooks
+
+    policies := [item |
+        item := raw_policy.playbooks[_]
+        is_object(item)
+    ]
+
+} else = policies {
+    policies := [raw_policy]  
 }
 
 check_ref(obj, bucketResource , logicName) {
