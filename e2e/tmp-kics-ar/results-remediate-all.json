@@ -1,0 +1,155 @@
+{
+	"kics_version": "development",
+	"files_scanned": 1,
+	"lines_scanned": 0,
+	"files_parsed": 1,
+	"lines_parsed": 0,
+	"lines_ignored": 0,
+	"files_failed_to_scan": 0,
+	"queries_total": 3,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 1,
+		"INFO": 0,
+		"LOW": 0,
+		"MEDIUM": 4
+	},
+	"total_counter": 5,
+	"total_bom_resources": 0,
+	"start": "0001-01-01T00:00:00Z",
+	"end": "0001-01-01T00:00:00Z",
+	"paths": [
+		"C:\\Users\\andreper\\OneDrive - Checkmarx\\Documents\\kics\\e2e\\tmp-kics-ar\\011063811.tf"
+	],
+	"queries": [
+		{
+			"query_name": "Ram Account Password Policy Not Required Minimum Length",
+			"query_id": "a9dfec39-a740-4105-bbd6-721ba163c053",
+			"query_url": "",
+			"severity": "HIGH",
+			"platform": "Terraform",
+			"cloud_provider": "ALICLOUD",
+			"category": "Secret Management",
+			"experimental": false,
+			"description": "Ram Account Password Policy should have 'minimum_password_length' defined and set to 14 or above",
+			"description_id": "a8b47743",
+			"cis_description_id": "testCISID",
+			"cis_description_title": "testCISTitle",
+			"cis_description_text": "testCISDescription",
+			"files": [
+				{
+					"file_name": "C:\\Users\\andreper\\OneDrive - Checkmarx\\Documents\\kics\\e2e\\tmp-kics-ar\\011063811.tf",
+					"similarity_id": "f282fa13cf5e4ffd4bbb0ee2059f8d0240edcd2ca54b3bb71633145d961de5ce",
+					"line": 1,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate1",
+					"issue_type": "MissingAttribute",
+					"search_key": "alicloud_ram_account_password_policy[corporate1]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'minimum_password_length' is defined and set to 14 or above ",
+					"actual_value": "'minimum_password_length' is not defined",
+					"remediation": "minimum_password_length = 14",
+					"remediation_type": "addition"
+				}
+			]
+		},
+		{
+			"query_name": "RAM Account Password Policy Not Required Symbols",
+			"query_id": "41a38329-d81b-4be4-aef4-55b2615d3282",
+			"query_url": "",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cloud_provider": "ALICLOUD",
+			"category": "Secret Management",
+			"experimental": false,
+			"description": "RAM account password security should require at least one symbol",
+			"description_id": "f3616c34",
+			"cis_description_id": "testCISID",
+			"cis_description_title": "testCISTitle",
+			"cis_description_text": "testCISDescription",
+			"files": [
+				{
+					"file_name": "C:\\Users\\andreper\\OneDrive - Checkmarx\\Documents\\kics\\e2e\\tmp-kics-ar\\011063811.tf",
+					"similarity_id": "87abbee5d0ec977ba193371c702dca2c040ea902d2e606806a63b66119ff89bc",
+					"line": 5,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate1",
+					"issue_type": "IncorrectValue",
+					"search_key": "resource.alicloud_ram_account_password_policy[corporate1].require_symbols",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "resource.alicloud_ram_account_password_policy[corporate1].require_symbols is set to 'true'",
+					"actual_value": "resource.alicloud_ram_account_password_policy[corporate1].require_symbols is configured as 'false'",
+					"remediation": "{\"after\":\"true\",\"before\":\"false\"}",
+					"remediation_type": "replacement"
+				},
+				{
+					"file_name": "C:\\Users\\andreper\\OneDrive - Checkmarx\\Documents\\kics\\e2e\\tmp-kics-ar\\011063811.tf",
+					"similarity_id": "2628457bdb548986936dbd7d8479524f2079f26d36b9faa9f34423e796fe62c8",
+					"line": 16,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate2",
+					"issue_type": "IncorrectValue",
+					"search_key": "resource.alicloud_ram_account_password_policy[corporate2].require_symbols",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "resource.alicloud_ram_account_password_policy[corporate2].require_symbols is set to 'true'",
+					"actual_value": "resource.alicloud_ram_account_password_policy[corporate2].require_symbols is configured as 'false'",
+					"remediation": "{\"after\":\"true\",\"before\":\"false\"}",
+					"remediation_type": "replacement"
+				}
+			]
+		},
+		{
+			"query_name": "Ram Account Password Policy Max Password Age Unrecommended",
+			"query_id": "2bb13841-7575-439e-8e0a-cccd9ede2fa8",
+			"query_url": "",
+			"severity": "MEDIUM",
+			"platform": "Terraform",
+			"cloud_provider": "ALICLOUD",
+			"category": "Secret Management",
+			"experimental": false,
+			"description": "Ram Account Password Policy Password 'max_password_age' should be higher than 0 and lower than 91",
+			"description_id": "6056f5ca",
+			"cis_description_id": "testCISID",
+			"cis_description_title": "testCISTitle",
+			"cis_description_text": "testCISDescription",
+			"files": [
+				{
+					"file_name": "C:\\Users\\andreper\\OneDrive - Checkmarx\\Documents\\kics\\e2e\\tmp-kics-ar\\011063811.tf",
+					"similarity_id": "f1d17b3513439e03cd0a25690acc44755d4e68decfaa6c03522b20a65b26b617",
+					"line": 5,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate1",
+					"issue_type": "MissingAttribute",
+					"search_key": "alicloud_ram_account_password_policy[corporate1]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'max_password_age' should be higher than 0 and lower than 91",
+					"actual_value": "'max_password_age' is not defined",
+					"remediation": "max_password_age = 12",
+					"remediation_type": "addition"
+				},
+				{
+					"file_name": "C:\\Users\\andreper\\OneDrive - Checkmarx\\Documents\\kics\\e2e\\tmp-kics-ar\\011063811.tf",
+					"similarity_id": "404ad93f4a485d0dd1b1621489c38be9c98dcc0b94396701ecad162e28db97fd",
+					"line": 11,
+					"resource_type": "alicloud_ram_account_password_policy",
+					"resource_name": "corporate2",
+					"issue_type": "MissingAttribute",
+					"search_key": "alicloud_ram_account_password_policy[corporate2]",
+					"search_line": 0,
+					"search_value": "",
+					"expected_value": "'max_password_age' should be higher than 0 and lower than 91",
+					"actual_value": "'max_password_age' is not defined",
+					"remediation": "max_password_age = 12",
+					"remediation_type": "addition"
+				}
+			]
+		}
+	]
+}

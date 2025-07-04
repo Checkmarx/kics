@@ -1,0 +1,17 @@
+{
+	"issues": [
+		{
+			"engineId": "KICS development",
+			"ruleId": "316278b3-87ac-444c-8f8f-a733a28da609",
+			"severity": "BLOCKER",
+			"type": "VULNERABILITY",
+			"primaryLocation": {
+				"message": "AmazonMQ Broker should have Encryption Options defined",
+				"filePath": "..\\test\\fixtures\\test_critical_custom_queries\\amazon_mq_broker_encryption_disabled\\test\\positive1.yaml",
+				"textRange": {
+					"startLine": 6
+				}
+			}
+		}
+	]
+}

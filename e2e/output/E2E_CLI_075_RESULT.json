@@ -1,0 +1,71 @@
+{
+	"kics_version": "development",
+	"files_scanned": 2,
+	"lines_scanned": 48,
+	"files_parsed": 2,
+	"lines_parsed": 48,
+	"lines_ignored": 0,
+	"files_failed_to_scan": 0,
+	"queries_total": 1,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 0,
+		"HIGH": 0,
+		"INFO": 0,
+		"LOW": 0,
+		"MEDIUM": 2,
+		"TRACE": 0
+	},
+	"total_counter": 2,
+	"total_bom_resources": 0,
+	"start": "2025-07-04T14:07:36.2101296+01:00",
+	"end": "2025-07-04T14:07:51.4436902+01:00",
+	"paths": [
+		"../test/fixtures/analyzer_test_ansible_host/e2e"
+	],
+	"queries": [
+		{
+			"query_name": "Ansible Tower Exposed To Internet",
+			"query_id": "1b2bf3ff-31e9-460e-bbfb-45e48f4f20cc",
+			"query_url": "https://docs.ansible.com/ansible-tower/latest/html/administration/security_best_practices.html#understand-the-architecture-of-ansible-and-tower",
+			"severity": "MEDIUM",
+			"platform": "Ansible",
+			"cwe": "668",
+			"cloud_provider": "COMMON",
+			"category": "Best Practices",
+			"experimental": false,
+			"description": "Avoid exposing Ansible Tower to the public internet, effectively reducing the potential attack surface of your deployment",
+			"description_id": "657a8b1d",
+			"files": [
+				{
+					"file_name": "..\\test\\fixtures\\analyzer_test_ansible_host\\e2e\\positive2.yaml",
+					"similarity_id": "7b9574422b2f0a1a2eb467c930f7d52fb727d0b8839703d668531c1362d09c4b",
+					"line": 24,
+					"resource_type": "n/a",
+					"resource_name": "children",
+					"issue_type": "IncorrectValue",
+					"search_key": "all.children.tower.hosts",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Ansible Tower IP should be private",
+					"actual_value": "Ansible Tower IP is public"
+				},
+				{
+					"file_name": "..\\test\\fixtures\\analyzer_test_ansible_host\\e2e\\positive1.ini",
+					"similarity_id": "9cb04742c227f8da30d5e3f0ed823fd05334179f79dbe2435ba146af79317c45",
+					"line": 1,
+					"resource_type": "n/a",
+					"resource_name": "children",
+					"issue_type": "IncorrectValue",
+					"search_key": "[tower]",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Ansible Tower IP should be private",
+					"actual_value": "Ansible Tower IP is public"
+				}
+			]
+		}
+	]
+}

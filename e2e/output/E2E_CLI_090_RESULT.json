@@ -1,0 +1,58 @@
+{
+	"kics_version": "development",
+	"files_scanned": 2,
+	"lines_scanned": 48,
+	"files_parsed": 2,
+	"lines_parsed": 48,
+	"lines_ignored": 0,
+	"files_failed_to_scan": 0,
+	"queries_total": 1,
+	"queries_failed_to_execute": 0,
+	"queries_failed_to_compute_similarity_id": 0,
+	"scan_id": "console",
+	"severity_counters": {
+		"CRITICAL": 1,
+		"HIGH": 0,
+		"INFO": 0,
+		"LOW": 0,
+		"MEDIUM": 0,
+		"TRACE": 0
+	},
+	"total_counter": 1,
+	"total_bom_resources": 0,
+	"start": "2025-07-04T14:05:45.818559+01:00",
+	"end": "2025-07-04T14:05:54.4285787+01:00",
+	"paths": [
+		"../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test",
+		"../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/query"
+	],
+	"queries": [
+		{
+			"query_name": "AmazonMQ Broker Encryption Disabled",
+			"query_id": "316278b3-87ac-444c-8f8f-a733a28da609",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-amazonmq-broker.html#cfn-amazonmq-broker-encryptionoptions",
+			"severity": "CRITICAL",
+			"platform": "CloudFormation",
+			"cloud_provider": "AWS",
+			"category": "Encryption",
+			"experimental": false,
+			"description": "AmazonMQ Broker should have Encryption Options defined",
+			"description_id": "c5d562d9",
+			"files": [
+				{
+					"file_name": "..\\test\\fixtures\\test_critical_custom_queries\\amazon_mq_broker_encryption_disabled\\test\\positive1.yaml",
+					"similarity_id": "e5b6a100ab6a12e2a71d68827e664068ab29ef06f4b4e48d80019ef68e945e38",
+					"line": 6,
+					"resource_type": "AWS::AmazonMQ::Broker",
+					"resource_name": "MyBasicBroker",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.BasicBroker.Properties.EncryptionOptions",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Resources.BasicBroker.Properties.EncryptionOptions should be defined",
+					"actual_value": "Resources.BasicBroker.Properties.EncryptionOptions is not defined"
+				}
+			]
+		}
+	]
+}

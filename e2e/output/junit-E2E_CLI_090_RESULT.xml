@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="KICS development" time="8.6100197s" failures="1">
+	<testsuite name="CloudFormation" failures="1" tests="1">
+		<testcase name="AmazonMQ Broker Encryption Disabled: ..\test\fixtures\test_critical_custom_queries\amazon_mq_broker_encryption_disabled\test\positive1.yaml file in line 6" classname="CloudFormation">
+			<failure type="AmazonMQ Broker should have Encryption Options defined" message="[Severity: CRITICAL, Query description: AmazonMQ Broker should have Encryption Options defined] Problem found on &#39;..\test\fixtures\test_critical_custom_queries\amazon_mq_broker_encryption_disabled\test\positive1.yaml&#39; file in line 6. Expected value: Resources.BasicBroker.Properties.EncryptionOptions should be defined. Actual value: Resources.BasicBroker.Properties.EncryptionOptions is not defined."></failure>
+		</testcase>
+	</testsuite>
+</testsuites>

@@ -1,0 +1,372 @@
+{
+	"document": [
+		{
+			"file": "../test/fixtures/bicep_test/test/negative1.bicep",
+			"id": "00b6b7db-9368-486b-88c1-04924a4aa138",
+			"parameters": {},
+			"resources": [
+				{
+					"apiVersion": "2020-01-01-preview",
+					"identifier": "security_contact",
+					"name": "security contact",
+					"properties": {
+						"alertNotifications": {
+							"minimalSeverity": "High",
+							"state": "On"
+						},
+						"emails": "sample@email.com",
+						"notificationsByRole": {
+							"roles": [
+								"Owner"
+							],
+							"state": "On"
+						},
+						"phone": "9999999"
+					},
+					"type": "Microsoft.Security/securityContacts"
+				}
+			],
+			"variables": {}
+		},
+		{
+			"file": "../test/fixtures/bicep_test/test/negative2.bicep",
+			"id": "7b9c447e-7cf5-4ac4-9fb2-c9a653d09c8d",
+			"parameters": {},
+			"resources": [
+				{
+					"apiVersion": "2020-01-01-preview",
+					"identifier": "security_contact",
+					"name": "security contact",
+					"properties": {
+						"alertNotifications": {
+							"minimalSeverity": "High",
+							"state": "On"
+						},
+						"emails": "sample@email.com",
+						"notificationsByRole": {
+							"roles": [
+								"Owner"
+							],
+							"state": "On"
+						},
+						"phone": "9999999"
+					},
+					"type": "Microsoft.Security/securityContacts"
+				}
+			],
+			"variables": {}
+		},
+		{
+			"file": "../test/fixtures/bicep_test/test/positive1.bicep",
+			"id": "bfc79252-df7d-479e-983e-72f33ecd0a7a",
+			"parameters": {},
+			"resources": [
+				{
+					"apiVersion": "2020-01-01-preview",
+					"identifier": "security_contact",
+					"name": "security contact",
+					"properties": {
+						"alertNotifications": {
+							"minimalSeverity": "High",
+							"state": "Off"
+						},
+						"emails": "sample@email.com",
+						"notificationsByRole": {
+							"roles": [
+								"Owner"
+							],
+							"state": "On"
+						},
+						"phone": "9999999"
+					},
+					"type": "Microsoft.Security/securityContacts"
+				}
+			],
+			"variables": {}
+		},
+		{
+			"file": "../test/fixtures/bicep_test/test/positive10.bicep",
+			"id": "f387c91a-203a-4e95-ac36-b9f13cc6553e",
+			"parameters": {},
+			"resources": [
+				{
+					"apiVersion": "2020-01-01-preview",
+					"identifier": "security_contact",
+					"name": "security contact",
+					"properties": {
+						"alertNotifications": {
+							"minimalSeverity": "High",
+							"state": "On"
+						},
+						"emails": "sample@email.com",
+						"phone": "9999999"
+					},
+					"type": "Microsoft.Security/securityContacts"
+				}
+			],
+			"variables": {}
+		},
+		{
+			"file": "../test/fixtures/bicep_test/test/positive11.bicep",
+			"id": "27c6d284-c2f5-46fb-93dd-7a677cd6aa28",
+			"parameters": {},
+			"resources": [
+				{
+					"apiVersion": "2020-01-01-preview",
+					"identifier": "security_contact",
+					"name": "security contact",
+					"properties": {
+						"alertNotifications": {
+							"minimalSeverity": "High",
+							"state": "On"
+						},
+						"emails": "sample@email.com",
+						"notificationsByRole": {
+							"roles": [
+								"Owner"
+							],
+							"state": "Off"
+						},
+						"phone": "9999999"
+					},
+					"type": "Microsoft.Security/securityContacts"
+				}
+			],
+			"variables": {}
+		},
+		{
+			"file": "../test/fixtures/bicep_test/test/positive12.bicep",
+			"id": "91173d61-bcb4-47df-94f5-9eeb636ee4f4",
+			"parameters": {},
+			"resources": [
+				{
+					"apiVersion": "2020-01-01-preview",
+					"identifier": "security_contact",
+					"name": "security contact",
+					"properties": {
+						"alertNotifications": {
+							"minimalSeverity": "High",
+							"state": "On"
+						},
+						"emails": "sample@email.com",
+						"notificationsByRole": {
+							"roles": [
+								"Owner"
+							]
+						},
+						"phone": "9999999"
+					},
+					"type": "Microsoft.Security/securityContacts"
+				}
+			],
+			"variables": {}
+		},
+		{
+			"file": "../test/fixtures/bicep_test/test/positive2.bicep",
+			"id": "f481cd45-6388-465a-976e-61efefa9397d",
+			"parameters": {},
+			"resources": [
+				{
+					"apiVersion": "2020-01-01-preview",
+					"identifier": "security_contact",
+					"name": "security contact",
+					"properties": {
+						"emails": "sample@email.com",
+						"notificationsByRole": {
+							"roles": [
+								"Owner"
+							],
+							"state": "On"
+						},
+						"phone": "9999999"
+					},
+					"type": "Microsoft.Security/securityContacts"
+				}
+			],
+			"variables": {}
+		},
+		{
+			"file": "../test/fixtures/bicep_test/test/positive3.bicep",
+			"id": "2397717e-3e16-4ba2-bbc7-4f031847bc27",
+			"parameters": {},
+			"resources": [
+				{
+					"apiVersion": "2020-01-01-preview",
+					"identifier": "security_contact",
+					"name": "security contact",
+					"properties": {
+						"alertNotifications": {
+							"minimalSeverity": "High"
+						},
+						"emails": "sample@email.com",
+						"notificationsByRole": {
+							"roles": [
+								"Owner"
+							],
+							"state": "On"
+						},
+						"phone": "9999999"
+					},
+					"type": "Microsoft.Security/securityContacts"
+				}
+			],
+			"variables": {}
+		},
+		{
+			"file": "../test/fixtures/bicep_test/test/positive4.bicep",
+			"id": "0679c500-03ce-435c-83c6-d4fa96324c79",
+			"parameters": {},
+			"resources": [
+				{
+					"apiVersion": "2020-01-01-preview",
+					"identifier": "security_contact",
+					"name": "security contact",
+					"properties": {
+						"alertNotifications": {
+							"minimalSeverity": "High",
+							"state": "On"
+						},
+						"emails": "sample@email.com",
+						"phone": "9999999"
+					},
+					"type": "Microsoft.Security/securityContacts"
+				}
+			],
+			"variables": {}
+		},
+		{
+			"file": "../test/fixtures/bicep_test/test/positive5.bicep",
+			"id": "ba2166d5-9da0-4592-b8f0-80a8fa0da138",
+			"parameters": {},
+			"resources": [
+				{
+					"apiVersion": "2020-01-01-preview",
+					"identifier": "security_contact",
+					"name": "security contact",
+					"properties": {
+						"alertNotifications": {
+							"minimalSeverity": "High",
+							"state": "On"
+						},
+						"emails": "sample@email.com",
+						"notificationsByRole": {
+							"roles": [
+								"Owner"
+							],
+							"state": "Off"
+						},
+						"phone": "9999999"
+					},
+					"type": "Microsoft.Security/securityContacts"
+				}
+			],
+			"variables": {}
+		},
+		{
+			"file": "../test/fixtures/bicep_test/test/positive6.bicep",
+			"id": "cdb0477f-dd4b-4e10-b1c8-ba5cff16a2fd",
+			"parameters": {},
+			"resources": [
+				{
+					"apiVersion": "2020-01-01-preview",
+					"identifier": "security_contact",
+					"name": "security contact",
+					"properties": {
+						"alertNotifications": {
+							"minimalSeverity": "High",
+							"state": "On"
+						},
+						"emails": "sample@email.com",
+						"notificationsByRole": {
+							"roles": [
+								"Owner"
+							]
+						},
+						"phone": "9999999"
+					},
+					"type": "Microsoft.Security/securityContacts"
+				}
+			],
+			"variables": {}
+		},
+		{
+			"file": "../test/fixtures/bicep_test/test/positive7.bicep",
+			"id": "b47db8b7-a67d-4946-8c69-80ea686ec852",
+			"parameters": {},
+			"resources": [
+				{
+					"apiVersion": "2020-01-01-preview",
+					"identifier": "security_contact",
+					"name": "security contact",
+					"properties": {
+						"alertNotifications": {
+							"minimalSeverity": "High",
+							"state": "Off"
+						},
+						"emails": "sample@email.com",
+						"notificationsByRole": {
+							"roles": [
+								"Owner"
+							],
+							"state": "On"
+						},
+						"phone": "9999999"
+					},
+					"type": "Microsoft.Security/securityContacts"
+				}
+			],
+			"variables": {}
+		},
+		{
+			"file": "../test/fixtures/bicep_test/test/positive8.bicep",
+			"id": "32fdbc9a-4c92-47a6-93e2-8bb2a263a57e",
+			"parameters": {},
+			"resources": [
+				{
+					"apiVersion": "2020-01-01-preview",
+					"identifier": "security_contact",
+					"name": "security contact",
+					"properties": {
+						"emails": "sample@email.com",
+						"notificationsByRole": {
+							"roles": [
+								"Owner"
+							],
+							"state": "On"
+						},
+						"phone": "9999999"
+					},
+					"type": "Microsoft.Security/securityContacts"
+				}
+			],
+			"variables": {}
+		},
+		{
+			"file": "../test/fixtures/bicep_test/test/positive9.bicep",
+			"id": "d0eee187-f8bc-4ece-b953-8c5abd263eab",
+			"parameters": {},
+			"resources": [
+				{
+					"apiVersion": "2020-01-01-preview",
+					"identifier": "security_contact",
+					"name": "security contact",
+					"properties": {
+						"alertNotifications": {
+							"minimalSeverity": "High"
+						},
+						"emails": "sample@email.com",
+						"notificationsByRole": {
+							"roles": [
+								"Owner"
+							],
+							"state": "On"
+						},
+						"phone": "9999999"
+					},
+					"type": "Microsoft.Security/securityContacts"
+				}
+			],
+			"variables": {}
+		}
+	]
+}
