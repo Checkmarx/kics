@@ -9,9 +9,9 @@ spec:
     volumeMounts:
     - mountPath: /bin
       name: vol-0
-    - mountPath: /var/run
+    - mountPath: /var
       name: vol-1
-      readOnly: false
+      recursiveReadOnly: Disabled
   volumes:
   - name: vol-0
     scaleIO:
@@ -33,8 +33,9 @@ spec:
   - image: k8s.gcr.io/test-webserver
     name: pod-1
     volumeMounts:
-    - mountPath: /var/run
+    - mountPath: /var
       name: vol-0
+      recursiveReadOnly: Enabled
     - mountPath: /bin
       name: vol-1
       readOnly: false
