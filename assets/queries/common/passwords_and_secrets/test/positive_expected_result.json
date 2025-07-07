@@ -437,4 +437,11 @@
     "line": 4,
     "fileName": "positive52.dockerfile"
   }
+  ,
+  {
+    "queryName": "Passwords And Secrets - Generic Token",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive53.yml"
+  }
 ]

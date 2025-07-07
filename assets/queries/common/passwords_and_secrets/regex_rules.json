@@ -259,10 +259,6 @@
         {
           "description": "Avoiding bash variables",
           "regex": "(?i)['\"]?\\$\\s*\\{[^\\s\\}]+\\}['\"]?"
-        },
-        {
-          "description": "Avoid Docker Compose secrets paths",
-          "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?/run/secrets/\\w+['\"]?"
         }
       ]
     },
@@ -313,7 +309,7 @@
         },
         {
           "description": "Avoiding Github id-token Default Values",
-          "regex": "(?i)['\"]?id-token\\s*[:=]\\s*(write|read|none)\\s*$"
+          "regex": "(?i)['\"]?id-token['\"]?\\s*[:=]\\s*(write|read|none)"
         },
         {
           "description": "Avoiding result_token Var",
