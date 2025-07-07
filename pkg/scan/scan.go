@@ -131,7 +131,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 	}, nil
 }
 
-func (c *Client) executeScan(ctx context.Context) (*Results, error) {
+func (c *Client) ExecuteScan(ctx context.Context) (*Results, error) {
 	executeScanParameters, err := c.initScan(ctx)
 
 	if err != nil {

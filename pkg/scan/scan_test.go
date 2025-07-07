@@ -52,7 +52,7 @@ func Test_ExecuteScan(t *testing.T) {
 				t.Fatalf(`NewClient failed for path %s with error: %v`, tt.scanParams.Path[0], err)
 			}
 
-			r, err := c.executeScan(tt.ctx)
+			r, err := c.ExecuteScan(tt.ctx)
 
 			if err != nil {
 				t.Fatalf(`ExecuteScan failed for path %s with error: %v`, tt.scanParams.Path[0], err)
