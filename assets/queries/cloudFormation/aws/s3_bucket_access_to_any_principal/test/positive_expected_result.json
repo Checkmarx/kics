@@ -27,6 +27,6 @@
     "queryName": "S3 Bucket Access to Any Principal",
     "severity": "CRITICAL",
     "line": 4,
-    "fileName": "positive3.json"
+    "fileName": "positive3.yaml"
   }
 ]
