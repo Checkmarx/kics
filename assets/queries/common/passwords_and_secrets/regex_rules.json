@@ -259,6 +259,10 @@
         {
           "description": "Avoiding bash variables",
           "regex": "(?i)['\"]?\\$\\s*\\{[^\\s\\}]+\\}['\"]?"
+        },
+        {
+          "description": "Avoid Docker Compose secrets paths",
+          "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?/run/secrets/\\w+['\"]?"
         }
       ]
     },
