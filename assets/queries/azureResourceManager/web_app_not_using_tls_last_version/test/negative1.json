@@ -9,7 +9,7 @@
       "location": "[resourceGroup().location]",
       "properties": {
         "siteConfig": {
-          "minTlsVersion": "1.2"
+          "minTlsVersion": "1.3"
         }
       }
     }
