@@ -1,7 +1,0 @@
-[
-    {
-        "queryName": "Trusted Microsoft Services Not Enabled",
-        "severity": "MEDIUM",
-        "line": 24
-    }
-]
