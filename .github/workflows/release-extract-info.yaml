@@ -19,7 +19,7 @@ jobs:
           pip3 install -r .github/scripts/extract-kics-info/requirements.txt
           python3 .github/scripts/extract-kics-info/extract-info.py
       - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@04733e069f2d7f7f0b4aebc4fbdbce8613b03ccd # v2.9.0
+        uses: svenstaro/upload-release-action@81c65b7cd4de9b2570615ce3aad67a41de5b1a13 # v2.11.2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: .github/scripts/extract-kics-info/extracted-info.zip
