@@ -171,7 +171,7 @@ func getPaths(g *getterStruct) (string, error) {
 
 // check if the dst is a symbolic link
 func checkSymLink(getterDst, pathFile string) (string, bool) {
-	var local bool
+	local := false
 	_, err := os.Stat(pathFile)
 	if err == nil { // check if file exist locally
 		local = true
@@ -180,6 +180,7 @@ func checkSymLink(getterDst, pathFile string) (string, bool) {
 	info, err := os.Lstat(getterDst)
 	if err != nil {
 		log.Error().Msgf("failed lstat for %s: %v", getterDst, err)
+		return getterDst, local
 	}
 
 	fileInfo := getFileInfo(info, getterDst, pathFile)
@@ -188,6 +189,7 @@ func checkSymLink(getterDst, pathFile string) (string, bool) {
 		path, err := os.Readlink(getterDst) // get location of symbolic Link
 		if err != nil {
 			log.Error().Msgf("failed Readlink for %s: %v", getterDst, err)
+			return getterDst, local
 		}
 		getterDst = path // change path to local path
 	} else if !fileInfo.IsDir() { // symbolic links are not created for single files
