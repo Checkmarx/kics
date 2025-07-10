@@ -4,19 +4,19 @@ locals {
   }
 }
 
-resource "azurerm_resource_group" "example" {
+resource "azurerm_resource_group" "negative3" {
   name     = "positive-merge-resources"
   location = "West Europe"
 }
 
-resource "azurerm_virtual_network" "positive_merge" {
+resource "azurerm_virtual_network" "negative3" {
   name                = "virtnetname"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
 }
 
-resource "azurerm_subnet" "positive_merge" {
+resource "azurerm_subnet" "negative3" {
   name                 = "subnetname"
   resource_group_name  = azurerm_resource_group.example.name
   virtual_network_name = azurerm_virtual_network.positive_merge.name
@@ -24,7 +24,7 @@ resource "azurerm_subnet" "positive_merge" {
   service_endpoints    = ["Microsoft.Sql", "Microsoft.Storage"]
 }
 
-resource "azurerm_storage_account" "positive_merge" {
+resource "azurerm_storage_account" "negative3" {
   name                     = "positivemergestorage"
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location

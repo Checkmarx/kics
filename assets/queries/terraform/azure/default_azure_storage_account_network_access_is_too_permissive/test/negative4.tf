@@ -3,14 +3,14 @@ resource "azurerm_resource_group" "example" {
   location = "West Europe"
 }
 
-resource "azurerm_virtual_network" "positive_object" {
+resource "azurerm_virtual_network" "negative4" {
   name                = "virtnetname"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
 }
 
-resource "azurerm_subnet" "positive_object" {
+resource "azurerm_subnet" "negative4" {
   name                 = "subnetname"
   resource_group_name  = azurerm_resource_group.example.name
   virtual_network_name = azurerm_virtual_network.positive_object.name
@@ -18,7 +18,7 @@ resource "azurerm_subnet" "positive_object" {
   service_endpoints    = ["Microsoft.Sql", "Microsoft.Storage"]
 }
 
-resource "azurerm_storage_account" "positive_object" {
+resource "azurerm_storage_account" "negative4" {
   name                     = "positiveobjectstorage"
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location
