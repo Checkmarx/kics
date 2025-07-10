@@ -10,7 +10,7 @@ variable "tags_list" {
   }]
 }
 
-resource "azurerm_storage_account" "test_case_without_network_rules" {
+resource "azurerm_storage_account" "positive6" {
   name                     = "storageaccountname"
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location
