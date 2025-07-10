@@ -9,10 +9,25 @@ CxPolicy[result] {
     not common_lib.valid_key(resource, "network_rules") 
 
 	result := {
-
         "documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account",
 		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("azurerm_storage_account[%s]", [name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "'network_rules' should be defined and not null",
+		"keyActualValue": "'network_rules' is undefined or null",
+	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i].resource.azurerm_storage_account[name]
+    not common_lib.valid_key(resource, "network_rules")
+    not common_lib.valid_key(resource.dynamic, "network_rules") # common_lib
+    
+	result := {
+        "documentId": input.document[i].id,
+		"resourceType": "azurerm_storage_account",
+		"resourceName": tf_lib.get_resource_name(resource, name), #tf_lib
 		"searchKey": sprintf("azurerm_storage_account[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'network_rules' should be defined and not null",
@@ -69,16 +84,16 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_storage_account[name]
-	bypass := input.document[i].variable.network_rules_list["default"][j].bypass
+	resource := input.document[_].resource.azurerm_storage_account[name]
+	bypass := input.document[j].variable.network_rules_list["default"][_].bypass
 
     not common_lib.inArray(bypass, "AzureServices")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": input.document[j].id,
 		"resourceType": "azurerm_storage_account",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("azurerm_storage_account[%s].dynamic.network_rules.content.bypass", [name]),
+		"searchKey": "variable.network_rules_list['default'].bypass",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'network_rules.bypass' should contain 'AzureServices'",
 		"keyActualValue": "'network_rules.bypass' does not contain 'AzureServices'",
