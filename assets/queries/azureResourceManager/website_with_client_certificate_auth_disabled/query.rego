@@ -10,6 +10,8 @@ CxPolicy[result] {
 	value.type == "Microsoft.Web/sites"
 	not common_lib.valid_key(value.properties, "clientCertEnabled")
 
+	not is_using_http2_protocol(value)
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": value.type,
@@ -31,6 +33,8 @@ CxPolicy[result] {
 	[val, val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.clientCertEnabled)
 	val == false
 
+	not is_using_http2_protocol(value)
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": value.type,
@@ -42,3 +46,10 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(path, ["properties", "clientCertEnabled"]),
 	}
 }
+
+is_using_http2_protocol(resource) {
+	common_lib.valid_key(resource, "properties")
+    common_lib.valid_key(resource.properties, "siteConfig")
+    common_lib.valid_key(resource.properties.siteConfig, "http20Enabled")
+    resource.properties.siteConfig.http20Enabled  
+} 
