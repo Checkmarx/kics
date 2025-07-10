@@ -1,16 +1,129 @@
 package bicep
 
 import (
+	"bufio"
 	"encoding/json"
 	"strconv"
 	"strings"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/antlr/parser"
+	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/comment"
+
 	"github.com/antlr4-go/antlr/v4"
 )
 
 type Parser struct {
+}
+
+type BlockInfo struct {
+	BlockType string
+	StartLine int
+	EndLine   int
+}
+
+// GetLinesInfo analyzes the input text and returns line information including blocks and tokens
+func GetLinesInfo(input string) []comment.LineInfo {
+	var linesInfo []comment.LineInfo
+	scanner := bufio.NewScanner(strings.NewReader(input))
+	lineNumber, byteOffset := 0, 0
+	var currentBlock BlockInfo
+	var blockStack []BlockInfo
+
+	for scanner.Scan() {
+		line := scanner.Text()
+		trimmedLine := strings.TrimSpace(line) // Trim leading and trailing whitespace
+		lineBytes := []byte(line)
+		lineLength := len(lineBytes)
+
+		if len(blockStack) > 0 {
+			currentBlock = blockStack[len(blockStack)-1]
+		}
+
+		if strings.HasSuffix(trimmedLine, "{") {
+			currentBlock = BlockInfo{
+				BlockType: trimmedLine,
+				StartLine: lineNumber,
+			}
+			blockStack = append(blockStack, currentBlock)
+		} else if strings.Contains(trimmedLine, "}") && len(blockStack) > 0 {
+			currentBlock = blockStack[len(blockStack)-1]
+			blockStack = blockStack[:len(blockStack)-1]
+			// Optional: Track line index to avoid scan
+			for i := range linesInfo {
+				if linesInfo[i].Block.StartLine == currentBlock.StartLine {
+					linesInfo[i].Block.EndLine = lineNumber
+				}
+			}
+		}
+
+		// Create a new lexer instance for the current line
+		lineLexer := parser.NewbicepLexer(antlr.NewInputStream(line))
+		tokens := lineLexer.GetAllTokens()
+		// Determine the type of the line based on the tokens
+		lineType := "other"
+		// Access the symbolic names from the lexer's static data
+		if len(tokens) > 0 {
+			if tok := tokens[0].GetTokenType(); tok < len(lineLexer.GetSymbolicNames()) {
+				lineType = lineLexer.GetSymbolicNames()[tok]
+			}
+		}
+
+		linesInfo = append(linesInfo, comment.LineInfo{
+			Type: lineType,
+			Bytes: struct {
+				Bytes  []byte
+				String string
+			}{
+				Bytes:  lineBytes,
+				String: line,
+			},
+			Range: struct {
+				Start struct {
+					Line   int
+					Column int
+					Byte   int
+				}
+				End struct {
+					Line   int
+					Column int
+					Byte   int
+				}
+			}{
+				Start: struct {
+					Line   int
+					Column int
+					Byte   int
+				}{
+					Line:   lineNumber,
+					Column: 0,
+					Byte:   byteOffset,
+				},
+				End: struct {
+					Line   int
+					Column int
+					Byte   int
+				}{
+					Line:   lineNumber,
+					Column: lineLength,
+					Byte:   byteOffset + lineLength,
+				},
+			},
+			Block: currentBlock,
+		})
+
+		lineNumber++
+		byteOffset += lineLength + 1 // +1 for the newline character
+	}
+
+	return linesInfo
+}
+
+// convertToCommentLineInfo converts our LineInfo to comment.LineInfo
+func convertToCommentLineInfo(lines []comment.LineInfo) []comment.LineInfo {
+	result := make([]comment.LineInfo, len(lines))
+	copy(result, lines)
+	return result
 }
 
 const (
@@ -201,6 +314,18 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 	}
 	lexer := parser.NewbicepLexer(stream)
 
+	// Call the GetLinesInfo method to get the line information
+	linesInfo := GetLinesInfo(file)
+
+	// Convert to comment.LineInfo format
+	commentLinesInfo := convertToCommentLineInfo(linesInfo)
+
+	// Build the ignoreMap from the linesInfo, which is a map of commands to ignore
+	IgnoreMaps := comment.ProcessLines(commentLinesInfo)
+
+	// Get the lines to ignore from the kics scans based on the ignoreMap
+	linesToIgnore := comment.GetIgnoreLines(IgnoreMaps)
+
 	tokenStream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	bicepParser := parser.NewbicepParser(tokenStream)
 
@@ -229,7 +354,7 @@ func (p *Parser) Parse(file string, _ []byte) ([]model.Document, []int, error) {
 		return nil, nil, err
 	}
 
-	return []model.Document{doc}, nil, nil
+	return []model.Document{doc}, linesToIgnore, nil
 }
 
 func (s *BicepVisitor) VisitProgram(ctx *parser.ProgramContext) interface{} {
