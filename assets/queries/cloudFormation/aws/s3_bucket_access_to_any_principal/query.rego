@@ -1,4 +1,3 @@
-
 package Cx
 
 import future.keywords.in
@@ -14,9 +13,9 @@ CxPolicy[result] {
 		resourcePolicy.Type == "AWS::S3::BucketPolicy"
 		check_ref(resourcePolicy.Properties.Bucket, resourceBucket, nameBucket)
 		raw_policy := resourcePolicy.Properties.PolicyDocument
-		policy := common_lib.get_statement(common_lib.get_policy(raw_policy))
-        st := handle_if_statements(policy)
-		policyStatement := st[_]
+		statements := common_lib.get_statement(common_lib.get_policy(raw_policy))
+        clean_statements := handle_if_statements(statements)
+		policyStatement := clean_statements[_]
 		common_lib.is_allow_effect(policyStatement)
 	]
 
