@@ -7,8 +7,8 @@ resource "aws_api_gateway_method" "negative1" {
 }
 
 resource "aws_api_gateway_method" "negative2" {
-  rest_api_id   = module.api-gateway.api_id
-  resource_id   = aws_api_gateway_resource.keyaccount_searchkey_searchkey_resource.id
+  rest_api_id       = aws_api_gateway_rest_api.MyDemoAPI.id
+  resource_id       = aws_api_gateway_resource.MyDemoResource.id
   http_method   = "OPTIONS"
   authorization = "NONE"
   api_key_required = false
