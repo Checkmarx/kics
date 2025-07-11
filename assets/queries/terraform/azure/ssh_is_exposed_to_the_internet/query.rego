@@ -22,6 +22,28 @@ CxPolicy[result] {
 	}
 }
 
+CxPolicy[result] {
+  group := input.document[i].resource.azurerm_network_security_group[groupName]
+  rule := group.security_rule[idx]
+
+  upper(rule.access) == "ALLOW"
+  upper(rule.direction) == "INBOUND"
+
+  isRelevantProtocol(rule.protocol)
+  isRelevantPort(rule.destination_port_range)
+  isRelevantAddressPrefix(rule.source_address_prefix)
+
+  result := {
+    "documentId": input.document[i].id,
+    "resourceType": "azurerm_network_security_group",
+    "resourceName": tf_lib.get_resource_name(rule, [groupName, "security_rule", idx]),
+    "searchKey": sprintf("azurerm_network_security_group[%s].security_rule.name={{%s}}.destination_port_range", [groupName, rule.name]),
+    "issueType": "IncorrectValue",
+    "keyExpectedValue": "'destination_port_range' cannot be 22",
+    "keyActualValue": "'destination_port_range' might be 22",
+  }
+}
+
 isRelevantProtocol(protocol) = allow {
 	upper(protocol) != "UDP"
 	upper(protocol) != "ICMP"
