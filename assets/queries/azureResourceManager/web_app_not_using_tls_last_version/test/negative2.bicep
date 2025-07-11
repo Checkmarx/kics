@@ -3,7 +3,7 @@ resource App 'Microsoft.Web/sites@2020-12-01' = {
   location: resourceGroup().location
   properties: {
     siteConfig: {
-      minTlsVersion: '1.2'
+      minTlsVersion: '1.3'
     }
   }
 }
