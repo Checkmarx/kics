@@ -8,6 +8,7 @@ CxPolicy[result] {
 	api = document.resource.aws_api_gateway_method[name]
 
 	not common_lib.valid_key(api, "api_key_required")
+	api.http_method != "OPTIONS"
 
 	result := {
 		"documentId": document.id,
@@ -28,6 +29,7 @@ CxPolicy[result] {
 	api = document.resource.aws_api_gateway_method[name]
 
 	api.api_key_required != true
+	api.http_method != "OPTIONS"
 
 	result := {
 		"documentId": document.id,
