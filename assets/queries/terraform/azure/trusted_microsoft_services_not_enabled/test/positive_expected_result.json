@@ -20,13 +20,13 @@
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
-    "line": 28,
+    "line": 1,
     "fileName": "positive3.tf"
   },
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
-    "line": 28,
+    "line": 1,
     "fileName": "positive4.tf"
   },
   {
