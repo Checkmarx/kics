@@ -58,6 +58,7 @@ prepare_issue(res1, res2, resource_id, rules_type, rules_key, resource) = issue 
 } else = issue {
     res2 == "allow" 
     rules_type == "inline" 
+	not is_function_app(resource)
     issue := {
 		"kav": "azurerm_storage_account.network_rules.default_action is set to 'Allow'",
 		"kev": "azurerm_storage_account.network_rules.default_action should be set to 'Deny'",
