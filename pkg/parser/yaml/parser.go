@@ -137,7 +137,12 @@ func processCertContent(elements map[string]interface{}, content, filePath strin
 
 func processElements(elements map[string]interface{}, filePath string) {
 	if elements["certificate"] != nil {
-		processCertContent(elements, utils.CheckCertificate(elements["certificate"].(string)), filePath)
+		certificate, ok := elements["certificate"].(string)
+		if !ok {
+			log.Warn().Msgf("Failed to parse certificate: %s", filePath)
+			return
+		}
+		processCertContent(elements, utils.CheckCertificate(certificate), filePath)
 	}
 }
 
