@@ -241,7 +241,7 @@
 				
 				<option value="file92">github.com/Checkmarx/kics/v2/pkg/parser/utils/certificate_utils.go (81.6%)</option>
 				
-				<option value="file93">github.com/Checkmarx/kics/v2/pkg/parser/yaml/parser.go (82.6%)</option>
+				<option value="file93">github.com/Checkmarx/kics/v2/pkg/parser/yaml/parser.go (83.6%)</option>
 				
 				<option value="file94">github.com/Checkmarx/kics/v2/pkg/printer/options.go (85.3%)</option>
 				
@@ -251,7 +251,7 @@
 				
 				<option value="file97">github.com/Checkmarx/kics/v2/pkg/progress/circle/circle_progress.go (100.0%)</option>
 				
-				<option value="file98">github.com/Checkmarx/kics/v2/pkg/progress/counter/counter_progress.go (95.5%)</option>
+				<option value="file98">github.com/Checkmarx/kics/v2/pkg/progress/counter/counter_progress.go (63.6%)</option>
 				
 				<option value="file99">github.com/Checkmarx/kics/v2/pkg/progress/progress.go (100.0%)</option>
 				
@@ -2602,13 +2602,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov10" title="59">{
+        for _, sample := range prof.Sample </span><span class="cov10" title="57">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov10" title="59">total += v
+                <span class="cov10" title="57">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2633,7 +2633,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov9" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="18">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="24">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -20397,12 +20397,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="209">{
+        for variable := range s.varList </span><span class="cov7" title="220">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="635">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="628">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -27159,10 +27159,15 @@ func processCertContent(elements map[string]interface{}, content, filePath strin
         }
 }
 
-func processElements(elements map[string]interface{}, filePath string) <span class="cov3" title="2">{
-        if elements["certificate"] != nil </span><span class="cov1" title="1">{
-                processCertContent(elements, utils.CheckCertificate(elements["certificate"].(string)), filePath)
-        }</span>
+func processElements(elements map[string]interface{}, filePath string) <span class="cov4" title="3">{
+        if elements["certificate"] != nil </span><span class="cov3" title="2">{
+                certificate, ok := elements["certificate"].(string)
+                if !ok </span><span class="cov1" title="1">{
+                        log.Warn().Msgf("Failed to parse certificate: %s", filePath)
+                        return
+                }</span>
+                <span class="cov1" title="1">processCertContent(elements, utils.CheckCertificate(certificate), filePath)</span>
+        }
 }
 
 func addExtraInfo(documents []model.Document, filePath string) []model.Document <span class="cov5" title="4">{
@@ -27860,7 +27865,7 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
                 progress: progress,
                 pBar:     newPb,
                 wg:       wg,
-                close: func() error </span><span class="cov1" title="1">{
+                close: func() error </span><span class="cov0" title="0">{
                         newPb.Finish()
                         return nil
                 }</span>,
@@ -27869,26 +27874,26 @@ func NewProgressBar(label string, total int64, progress chan int64, wg *sync.Wai
 
 // Start initializes the Counter Progress Bar
 func (p ProgressBar) Start() <span class="cov3" title="2">{
-        defer func() </span><span class="cov1" title="1">{
+        defer func() </span><span class="cov0" title="0">{
                 err := p.Close()
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("failed to stop progress bar %v", err)
                 }</span>
-                <span class="cov1" title="1">p.wg.Done()</span>
+                <span class="cov0" title="0">p.wg.Done()</span>
         }()
 
         <span class="cov3" title="2">for </span><span class="cov10" title="20">{
                 newProgress, ok := &lt;-p.progress
                 p.currentProgress += newProgress
                 p.pBar.Increment()
-                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov1" title="1">{
+                if !ok || p.currentProgress &gt;= p.pBar.Total() </span><span class="cov0" title="0">{
                         break</span>
                 }
         }
 }
 
 // Close stops the Counter Progress Bar
-func (p ProgressBar) Close() error <span class="cov1" title="1">{ return p.close() }</span>
+func (p ProgressBar) Close() error <span class="cov0" title="0">{ return p.close() }</span>
 </pre>
 		
 		<pre class="file" id="file99" style="display: none">package progress
