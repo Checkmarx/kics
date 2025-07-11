@@ -13,7 +13,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].metadata.labels", [resourceType, name]),
+		"searchKey": sprintf("%s[%s].metadata.labels.%s", [resourceType, name, key]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].metada.labels[%s] has valid label", [resourceType, name, key]),
 		"keyActualValue": sprintf("%s[%s].metada.labels[%s] has invalid label", [resourceType, name, key]),
