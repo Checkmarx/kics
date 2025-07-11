@@ -8,5 +8,6 @@
   "platform": "Dockerfile",
   "descriptionID": "22261deb",
   "cwe": "1041",
-  "oldSeverity": "MEDIUM"
+  "oldSeverity": "MEDIUM",
+  "cloudProvider": "common"
 }
