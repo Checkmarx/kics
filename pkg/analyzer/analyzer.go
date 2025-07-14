@@ -295,13 +295,6 @@ var blacklistedTypesRegexes = map[string]map[string]regexSlice{
 			},
 		},
 	},
-	"blueprint": {
-		"azurepipelinesvscode": {
-			regex: []*regexp.Regexp{
-				azurePipelinesVscodeRegex,
-			},
-		},
-	},
 }
 
 //endregion
