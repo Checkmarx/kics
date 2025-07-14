@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
 )
 
@@ -404,6 +405,7 @@ func TestYaml_processElements(t *testing.T) {
 		args     args
 		wantCert map[string]interface{}
 		wantSwag string
+		wantErr  bool
 	}{
 		{
 			name: "test_process_elements",
@@ -420,14 +422,32 @@ func TestYaml_processElements(t *testing.T) {
 				"rsa_key_bytes":   512,
 			},
 			wantSwag: "test",
+			wantErr:  false,
+		},
+		{
+			name: "test_process_elements not string",
+			args: args{
+				elements: map[string]interface{}{
+					"certificate": map[string]interface{}{
+						"swagger_file": "test",
+						"certificate":  filepath.Join("..", "..", "..", "test", "fixtures", "test_certificate", "certificate.pem"),
+					},
+				},
+				filePath: filepath.Join("..", "..", "..", "test", "fixtures", "test_certificate", "certificate.pem"),
+			},
+			wantErr: true,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			processElements(tt.args.elements, tt.args.filePath)
-			require.Equal(t, tt.wantCert, tt.args.elements["certificate"])
-			require.Equal(t, tt.wantSwag, tt.args.elements["swagger_file"])
+			if tt.wantErr {
+				require.Error(t, errors.New("Failed to parse certificate: ..\\..\\..\\test\\fixtures\\test_certificate\\certificate.pem"))
+			} else {
+				require.Equal(t, tt.wantCert, tt.args.elements["certificate"])
+				require.Equal(t, tt.wantSwag, tt.args.elements["swagger_file"])
+			}
 		})
 	}
 }
