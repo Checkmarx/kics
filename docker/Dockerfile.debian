@@ -41,7 +41,7 @@ HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 # be sure to use /app/bin/kics as a path to the binary
 #
 # runtime image
-FROM debian:buster-slim
+FROM debian:stable-slim
 
 RUN groupadd checkmarx && useradd -g checkmarx -M -s /bin/bash checkmarx
 
