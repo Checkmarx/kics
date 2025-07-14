@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
@@ -13,9 +14,11 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].metadata.labels.%s", [resourceType, name, key]),
+		"searchKey": sprintf("%s[%s].metadata.labels", [resourceType, name]),
+        "searchValue": key,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].metada.labels[%s] has valid label", [resourceType, name, key]),
 		"keyActualValue": sprintf("%s[%s].metada.labels[%s] has invalid label", [resourceType, name, key]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, "metadata"], ["labels"]),
 	}
 }
