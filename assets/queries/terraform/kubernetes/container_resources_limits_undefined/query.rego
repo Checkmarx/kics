@@ -11,7 +11,7 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_array(containers) == true
+	is_array(containers)
 	containerTypes := containers[y]
 	not common_lib.valid_key(containerTypes, "resources")
 
@@ -21,8 +21,9 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources should be set", [resourceType, name, specInfo.path, types[x], containerTypes]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources is undefined", [resourceType, name, specInfo.path, types[x], containerTypes]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources should be set", [resourceType, name, specInfo.path, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x]], []),
 	}
 }
 
@@ -32,7 +33,7 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_object(containers) == true
+	is_object(containers)
 	not common_lib.valid_key(containers, "resources")
 
 	result := {
@@ -43,6 +44,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.resources should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.resources is undefined", [resourceType, name, specInfo.path, types[x]]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x]], []),
 	}
 }
 
@@ -52,7 +54,7 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_array(containers) == true
+	is_array(containers)
 
 	resources := {"limits", "requests"}
 	containerResources := containers[y].resources
@@ -64,10 +66,12 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
+		"searchKey": sprintf("%s[%s].%s.%s[%d].resources", [resourceType, name, specInfo.path, types[x], y]),
+		"searchValue": resourceTypes,
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources.%s should be set", [resourceType, name, specInfo.path, types[x], containerResources, resourceTypes]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources.%s is undefined", [resourceType, name, specInfo.path, types[x], containerResources, resourceTypes]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources.%s should be set", [resourceType, name, specInfo.path, types[x], y, resourceTypes]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources.%s is undefined", [resourceType, name, specInfo.path, types[x], y, resourceTypes]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], y], ["resources"]),
 	}
 }
 
@@ -89,8 +93,10 @@ CxPolicy[result] {
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s.resources", [resourceType, name, specInfo.path, types[x]]),
+		"searchValue": resourceTypes,
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.resources.%s should be set", [resourceType, name, specInfo.path, types[x], resourceTypes]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.resources.%s is undefined", [resourceType, name, specInfo.path, types[x], resourceTypes]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], "resources"], []),
 	}
 }
