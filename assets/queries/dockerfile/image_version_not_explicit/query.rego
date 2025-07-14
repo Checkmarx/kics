@@ -20,7 +20,7 @@ versionNotExplicit(cmd,line) {
 	count(cmd) == 1
 	regex.match("^\\$[{}A-z0-9-_+].*", cmd[0]) == false
 	not contains(cmd[0], ":")
-    count([x | x := input.document[i].command[name][_]; input.document[i].command[name][_].EndLine < line; build_name_exists(x, cmd[0])]) == 0
+    count([x | x := input.document[i].command[name][_]; x.EndLine < line; build_name_exists(x, cmd[0])]) == 0
 }
 
 versionNotExplicit(cmd,_) {
