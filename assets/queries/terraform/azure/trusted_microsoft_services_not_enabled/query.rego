@@ -24,7 +24,6 @@ CxPolicy[result] {
     
     res := has_bypass_field(resource, name)
     
-    searchKey_val := res["search_key_value"]
     bypass_field_exists := res["has_bypass_field"]
     
     not bypass_field_exists
@@ -33,7 +32,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account",
 		"resourceName": tf_lib.get_resource_name(input.document[i].resource.azurerm_storage_account[name], name), 
-		"searchKey": searchKey_val, 
+		"searchKey": res["search_key_value"], 
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'network_rules.bypass' should be defined and not null",
 		"keyActualValue": "'network_rules.bypass' is undefined or null",
