@@ -50,52 +50,52 @@
 		"line": 134
 	},
 	{
-		"queryName": "SSH Is Exposed To The Internet",
+		"queryName": "RDP Is Exposed To The Internet",
 		"severity": "MEDIUM",
 		"line": 153
 	},
 	{
-		"queryName": "SSH Is Exposed To The Internet",
+		"queryName": "RDP Is Exposed To The Internet",
 		"severity": "MEDIUM",
 		"line": 165
 	},
 	{
-		"queryName": "SSH Is Exposed To The Internet",
+		"queryName": "RDP Is Exposed To The Internet",
 		"severity": "MEDIUM",
 		"line": 177
 	},
 	{
-		"queryName": "SSH Is Exposed To The Internet",
+		"queryName": "RDP Is Exposed To The Internet",
 		"severity": "MEDIUM",
 		"line": 189
 	},
 	{
-		"queryName": "SSH Is Exposed To The Internet",
+		"queryName": "RDP Is Exposed To The Internet",
 		"severity": "MEDIUM",
 		"line": 201
 	},
 	{
-		"queryName": "SSH Is Exposed To The Internet",
+		"queryName": "RDP Is Exposed To The Internet",
 		"severity": "MEDIUM",
 		"line": 213
 	},
 	{
-		"queryName": "SSH Is Exposed To The Internet",
+		"queryName": "RDP Is Exposed To The Internet",
 		"severity": "MEDIUM",
 		"line": 225
 	},
 	{
-		"queryName": "SSH Is Exposed To The Internet",
+		"queryName": "RDP Is Exposed To The Internet",
 		"severity": "MEDIUM",
 		"line": 237
 	},
 	{
-		"queryName": "SSH Is Exposed To The Internet",
+		"queryName": "RDP Is Exposed To The Internet",
 		"severity": "MEDIUM",
 		"line": 249
 	},
 	{
-		"queryName": "SSH Is Exposed To The Internet",
+		"queryName": "RDP Is Exposed To The Internet",
 		"severity": "MEDIUM",
 		"line": 261
 	}
