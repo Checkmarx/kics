@@ -1,37 +1,35 @@
-variable "network_rules_list" {
-  type = list(object({
-    default_action             = string
-    bypass                     = list(string)
-    ip_rules                   = list(string)
-    virtual_network_subnet_ids = list(string)
-  }))
-
-  default = [{
-    default_action             = "Deny"
-    bypass                     = ["AzureServices"]
-    ip_rules                   = ["100.0.0.1"]
-    virtual_network_subnet_ids = ["subnet-id-123"]
-  }]
+locals {
+  tags_resources = {
+    environment = "staging"
+  }
 }
 
 resource "azurerm_storage_account" "negative3" {
-  name                     = "storageaccountname"
-  resource_group_name      = azurerm_resource_group.example.name
+  name                = "storageaccountname"
+  resource_group_name = azurerm_resource_group.example.name
+
   location                 = azurerm_resource_group.example.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
 
-  dynamic "network_rules" {
-    for_each = var.network_rules_list
-    content {
-      default_action             = network_rules.value.default_action
-      bypass                     = network_rules.value.bypass
-      ip_rules                   = network_rules.value.ip_rules
-      virtual_network_subnet_ids = network_rules.value.virtual_network_subnet_ids
-    }
+  network_rules {
+    default_action             = "Deny"
+    bypass                    = ["AzureServices"]
+    ip_rules                   = ["100.0.0.1"]
+    virtual_network_subnet_ids = [azurerm_subnet.example.id]
   }
 
-  tags = {
-    environment = "staging"
-  }
+  tags = merge(local.tags_resources, { "bdo-attached-service" = "function", bdo_name_service = "storage_account" })
+}
+
+resource "azurerm_storage_account_network_rules" "negative4" {
+  resource_group_name  = azurerm_resource_group.test.name
+  storage_account_name = azurerm_storage_account.test.name
+
+  default_action             = "Allow"
+  ip_rules                   = ["127.0.0.1"]
+  virtual_network_subnet_ids = [azurerm_subnet.test.id]
+  bypass                     = ["Metrics", "AzureServices"]
+
+  tags = merge(local.tags_resources, { "bdo-attached-service" = "function", bdo_name_service = "storage_account" })
 }
