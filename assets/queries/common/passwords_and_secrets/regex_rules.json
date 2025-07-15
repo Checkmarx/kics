@@ -9,6 +9,24 @@
           "description": "Avoiding TF resource access",
           "regex": "(?i)['\"]?password['\"]?\\s*=\\s*(([a-zA-z_]+(.))?[a-zA-z_]+\\s*(.)\\s*[a-zA-z_]+(.)[a-zA-z_]+)?(\\s*:\\s*null|null)$"
         },
+
+
+
+        {
+          "description": "Allow TF optional statement",
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*optional\\(.{3,}\\)"
+        },
+        {
+          "description": "Allow TF try statement",
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*try\\(.*,.*\\)"
+        },
+        {
+          "description": "Ignore description field",
+          "regex": "(?i)description\\s*[:=]\\s*['\"].*['\"]"
+        },
+
+
+        
         {
           "description": "Avoiding CF AllowUsersToChangePassword",
           "regex": "['\"]?AllowUsersToChangePassword['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?"
