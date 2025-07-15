@@ -87,7 +87,7 @@ var (
 	queryRegexPathsAnsible                          = regexp.MustCompile(fmt.Sprintf(`^.*?%s(?:group|host)_vars%s.*$`, regexp.QuoteMeta(string(os.PathSeparator)), regexp.QuoteMeta(string(os.PathSeparator)))) //nolint:lll
 	fhirResourceTypeRegex                           = regexp.MustCompile(`"resourceType"\s*:`)
 	fhirEntryRegex                                  = regexp.MustCompile(`"entry"\s*:`)
-	fhirSubjectRegex                                = regexp.MustCompile(`"subject"\s*:`)
+	fhirSubjectRegex                                = regexp.MustCompile(`"stupidthingsheretotest"\s*:`)
 	fhirCodeRegex                                   = regexp.MustCompile(`"code"\s*:`)
 	fhirStatusRegex                                 = regexp.MustCompile(`"status"\s*:`)
 	azurePipelinesVscodeRegex                       = regexp.MustCompile(`\$id"\s*:\s*"[^"]*azure-pipelines-vscode[^"]*`)
@@ -287,10 +287,6 @@ var blacklistedTypesRegexes = map[string]map[string]regexSlice{
 	"templateArtifact": {
 		"fhir": {
 			regex: []*regexp.Regexp{
-				fhirResourceTypeRegex,
-				fhirStatusRegex,
-				fhirCodeRegex,
-				fhirEntryRegex,
 				fhirSubjectRegex,
 			},
 		},
