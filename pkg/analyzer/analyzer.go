@@ -314,9 +314,10 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	// start metrics for file analyzer
 	metrics.Metric.Start("file_type_analyzer")
 	returnAnalyzedPaths := model.AnalyzedPaths{
-		Types:       make([]string, 0),
-		Exc:         make([]string, 0),
-		ExpectedLOC: 0,
+		Types:          make([]string, 0),
+		Exc:            make([]string, 0),
+		ExpectedLOC:    0,
+		JSONFilesCount: 0,
 	}
 
 	var files []string
@@ -324,6 +325,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	// results is the channel shared by the workers that contains the types found
 	results := make(chan string)
 	locCount := make(chan int)
+	jsonFileCount := make(chan int)
 	ignoreFiles := make([]string, 0)
 	projectConfigFiles := make([]string, 0)
 	done := make(chan bool)
@@ -373,7 +375,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 			filePath:                file,
 			fallbackMinifiedFileLOC: a.FallbackMinifiedFileLOC,
 		}
-		go a.worker(results, unwanted, locCount, &wg)
+		go a.worker(results, unwanted, locCount, jsonFileCount, &wg)
 	}
 
 	go func() {
@@ -382,18 +384,21 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 			close(unwanted)
 			close(results)
 			close(locCount)
+			close(jsonFileCount)
 		}()
 		wg.Wait()
 		done <- true
 	}()
 
-	availableTypes, unwantedPaths, loc := computeValues(results, unwanted, locCount, done)
+	availableTypes, unwantedPaths, loc, jsonCount := computeValues(results, unwanted, locCount, jsonFileCount, done)
 	multiPlatformTypeCheck(&availableTypes)
 	unwantedPaths = append(unwantedPaths, ignoreFiles...)
 	unwantedPaths = append(unwantedPaths, projectConfigFiles...)
 	returnAnalyzedPaths.Types = availableTypes
 	returnAnalyzedPaths.Exc = unwantedPaths
 	returnAnalyzedPaths.ExpectedLOC = loc
+	returnAnalyzedPaths.JSONFilesCount = jsonCount
+	log.Info().Msgf("number of json files is: %d\n", jsonCount)
 	// stop metrics for file analyzer
 	metrics.Metric.Stop()
 	return returnAnalyzedPaths, nil
@@ -402,7 +407,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, wg *sync.WaitGroup) { //nolint: gocyclo
+func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, jsonFileCount chan<- int, wg *sync.WaitGroup) { //nolint: gocyclo
 	defer wg.Done()
 
 	ext, errExt := utils.GetExtension(a.filePath)
@@ -452,7 +457,7 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 		Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager.
 		We also have FHIR's case which will be ignored since it's not a platform file.*/
 		case yaml, yml, json, sh:
-			a.checkContent(results, unwanted, locCount, linesCount, ext)
+			a.checkContent(results, unwanted, locCount, jsonFileCount, linesCount, ext)
 		}
 	}
 }
@@ -493,7 +498,7 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
-func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount chan<- int, linesCount int, ext string) {
+func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount chan<- int, jsonFileCount chan<- int, linesCount int, ext string) {
 	typesFlag := a.typesFlag
 	excludeTypesFlag := a.excludeTypesFlag
 	// get file content
@@ -551,6 +556,9 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 
 	results <- returnType
 	locCount <- linesCount
+	if ext == json {
+		jsonFileCount <- 1
+	}
 }
 
 func checkReturnType(path, returnType, ext string, content []byte) string {
@@ -654,14 +662,17 @@ func checkForAnsibleHost(yamlContent model.Document) bool {
 
 // computeValues computes expected Lines of Code to be scanned from locCount channel
 // and creates the types and unwanted slices from the channels removing any duplicates
-func computeValues(types, unwanted chan string, locCount chan int, done chan bool) (typesS, unwantedS []string, locTotal int) {
+func computeValues(types, unwanted chan string, locCount chan int, jsonFileCount chan int, done chan bool) (typesS, unwantedS []string, locTotal int, jsonTotal int) {
 	var val int
+	var jsonVal int
 	unwantedSlice := make([]string, 0)
 	typeSlice := make([]string, 0)
 	for {
 		select {
 		case i := <-locCount:
 			val += i
+		case i := <-jsonFileCount:
+			jsonVal += i
 		case i := <-unwanted:
 			if !utils.Contains(i, unwantedSlice) {
 				unwantedSlice = append(unwantedSlice, i)
@@ -671,7 +682,7 @@ func computeValues(types, unwanted chan string, locCount chan int, done chan boo
 				typeSlice = append(typeSlice, i)
 			}
 		case <-done:
-			return typeSlice, unwantedSlice, val
+			return typeSlice, unwantedSlice, val, jsonVal
 		}
 	}
 }

@@ -17,6 +17,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		wantTypes            []string
 		wantExclude          []string
 		wantLOC              int
+		wantJSONCount        int
 		wantErr              bool
 		gitIgnoreFileName    string
 		excludeGitIgnore     bool
@@ -33,6 +34,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              834,
+			wantJSONCount:        3, // openAPI.json, azureResourceManager.json, openAPI_test/openAPI.json (not_openapi.json excluded)
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -46,6 +48,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              118,
+			wantJSONCount:        0, // helm directory has no JSON files
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -62,6 +65,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              13,
+			wantJSONCount:        0, // Dockerfile and terraform.tf are not JSON files
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -77,6 +81,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              107,
+			wantJSONCount:        1, // openAPI_test/openAPI.json
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -92,6 +97,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              0,
+			wantJSONCount:        0, // not_openapi.json excluded, so not counted
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -122,6 +128,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              0,
+			wantJSONCount:        0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -137,6 +144,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              26,
+			wantJSONCount:        1,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -247,6 +255,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{"ansible", "pulumi"},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              374,
+			wantJSONCount:        0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -265,6 +274,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{"ansible", "pulumi"},
 			wantLOC:              576,
+			wantJSONCount:        3,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -282,6 +292,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              834,
+			wantJSONCount:        3,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -299,6 +310,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              834,
+			wantJSONCount:        3, // same as analyze_test_dir_single_path: only processed JSON files
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -312,6 +324,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              39,
+			wantJSONCount:        0, // .ini files are not JSON
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -325,6 +338,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              173,
+			wantJSONCount:        0, // .cfg files are not JSON
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -338,6 +352,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              18,
+			wantJSONCount:        0, // .conf files are not JSON
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -351,6 +366,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              42,
+			wantJSONCount:        0, // .yaml files are not JSON
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -364,6 +380,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              33,
+			wantJSONCount:        0, // .yaml files are not JSON
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -377,6 +394,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              22,
+			wantJSONCount:        0, // .yaml files are not JSON
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -390,6 +408,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              9,
+			wantJSONCount:        0, // .yaml files are not JSON
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -431,6 +450,24 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              697,
+			wantJSONCount:        0, // bicep files are not JSON
+			wantErr:              false,
+			gitIgnoreFileName:    "",
+			excludeGitIgnore:     false,
+			MaxFileSize:          -1,
+		},
+		{
+			name: "analyze_test_json_files_only",
+			paths: []string{
+				filepath.FromSlash("../../test/fixtures/analyzer_test/openAPI.json"),
+				filepath.FromSlash("../../test/fixtures/analyzer_test/azureResourceManager.json"),
+			},
+			wantTypes:            []string{"openapi", "azureresourcemanager"},
+			wantExclude:          []string{},
+			typesFromFlag:        []string{""},
+			excludeTypesFromFlag: []string{""},
+			wantLOC:              71,
+			wantJSONCount:        2,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -454,6 +491,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              0,
+			wantJSONCount:        0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -477,6 +515,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{"openapi"},
 			wantLOC:              0,
+			wantJSONCount:        0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -500,6 +539,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{"azureresourcemanager"},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              0,
+			wantJSONCount:        0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -533,6 +573,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			require.Equal(t, tt.wantTypes, got.Types, "wrong types from analyzer")
 			require.Equal(t, tt.wantExclude, got.Exc, "wrong excludes from analyzer")
 			require.Equal(t, tt.wantLOC, got.ExpectedLOC, "wrong loc from analyzer")
+			require.Equal(t, tt.wantJSONCount, got.JSONFilesCount, "wrong json files count from analyzer")
 		})
 	}
 }
