@@ -33,10 +33,9 @@ CxPolicy[result] {
 		"documentId": id,
 		"resourceType": modules[m],
 		"resourceName": task.name,
-		"keyExpectedValue": "cloudtrail.is_multi_region_trail should be defined and set to true",
+		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": "cloudtrail.is_multi_region_trail should be defined and set to true",,
 		"keyActualValue": "cloudtrail.is_multi_region_trail is undefined",
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "cloudtrail.is_multi_region_trail should be true",
-		"keyActualValue": "cloudtrail.is_multi_region_trail is false",
 	}
 }
