@@ -2,21 +2,61 @@
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 13
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 46
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 8
+    "line": 79
   },
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 140
+    "line": 113
+  },
+  {
+    "queryName": "NET_RAW Capabilities Not Being Dropped",
+    "severity": "MEDIUM",
+    "line": 147
+  },
+  {
+    "queryName": "NET_RAW Capabilities Not Being Dropped",
+    "severity": "MEDIUM",
+    "line": 179
+  },
+  {
+    "queryName": "NET_RAW Capabilities Not Being Dropped",
+    "severity": "MEDIUM",
+    "line": 208
+  },
+  {
+    "queryName": "NET_RAW Capabilities Not Being Dropped",
+    "severity": "MEDIUM",
+    "line": 236
+  },
+  {
+    "queryName": "NET_RAW Capabilities Not Being Dropped",
+    "severity": "MEDIUM",
+    "line": 295
+  },
+  {
+    "queryName": "NET_RAW Capabilities Not Being Dropped",
+    "severity": "MEDIUM",
+    "line": 355
+  },
+  {
+    "queryName": "NET_RAW Capabilities Not Being Dropped",
+    "severity": "MEDIUM",
+    "line": 413
+  },
+  {
+    "queryName": "NET_RAW Capabilities Not Being Dropped",
+    "severity": "MEDIUM",
+    "line": 466
   }
 ]
