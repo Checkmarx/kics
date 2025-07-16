@@ -5,14 +5,15 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_storage_account[var0]
-	resource_name := tf_lib.get_resource_name(resource, var0)
-	networkRules := get_network_rules(resource, var0)
+	resource_name := tf_lib.get_resource_name(resource, var0) 
+	
+    networkRules := get_network_rules(resource, var0) 
 
-	res1 := publicNetworkAccessEnabled(resource)
-	res2 := aclsDefaultActionAllow(networkRules.rules)
+	res1 := publicNetworkAccessEnabled(resource) 
+	res2 := aclsDefaultActionAllow(networkRules.rules) 
 
-	issue := prepare_issue(res1, res2, var0, networkRules.type, networkRules.key)
-
+	issue := prepare_issue(res1, res2, var0, networkRules.type, networkRules.key, resource)
+    
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "azurerm_storage_account",
@@ -27,7 +28,7 @@ CxPolicy[result] {
 	}
 }
 
-prepare_issue(res1, res2, resource_id, rules_type, rules_key) = issue {
+prepare_issue(res1, res2, resource_id, rules_type, rules_key, resource) = issue {
     res1 == "not defined"
 	res2 == "not defined"
 	issue := {
@@ -40,7 +41,8 @@ prepare_issue(res1, res2, resource_id, rules_type, rules_key) = issue {
 		"remediationType": "addition",
 	}
 } else = issue {
-    res1 == "enabled"
+    res1 == "enabled"  
+    not is_function_app(resource)
     issue := {
 		"kav": "azurerm_storage_account.public_network_access_enabled set to 'true'",
 		"kev": "azurerm_storage_account.public_network_access_enabled should be set to 'false'",
@@ -54,8 +56,9 @@ prepare_issue(res1, res2, resource_id, rules_type, rules_key) = issue {
 		"remediationType": "replacement",
 	}
 } else = issue {
-    res2 == "allow"
-    rules_type == "inline"
+    res2 == "allow" 
+    rules_type == "inline" 
+	not is_function_app(resource)
     issue := {
 		"kav": "azurerm_storage_account.network_rules.default_action is set to 'Allow'",
 		"kev": "azurerm_storage_account.network_rules.default_action should be set to 'Deny'",
@@ -69,8 +72,8 @@ prepare_issue(res1, res2, resource_id, rules_type, rules_key) = issue {
         "remediationType": "replacement",
 	}
 } else = issue {
-    res2 == "allow"
-    rules_type == "object"
+    res2 == "allow" 
+    rules_type == "object" 
     issue := {
 		"kav": "azurerm_storage_account_network_rules.default_action is set to 'Allow'",
 		"kev": "azurerm_storage_account_network_rules.default_action should be set to 'Deny'",
@@ -83,6 +86,21 @@ prepare_issue(res1, res2, resource_id, rules_type, rules_key) = issue {
         "searchKey": sprintf("azurerm_storage_account_network_rules[%s].default_action", [rules_key]),
         "remediationType": "replacement",
 	}
+} 
+
+is_function_app(resource) {
+	common_lib.valid_key(resource, "tags")
+    tags := resource.tags
+    is_object(tags)
+    common_lib.valid_key(tags, "bdo-attached-service")
+    tags["bdo-attached-service"] == "function"
+}
+
+is_function_app(resource) {
+	common_lib.valid_key(resource, "tags")
+    tags := resource.tags
+    is_string(tags)
+    regex.match(".*bdo-attached-service.*=.*function.*", tags)
 }
 
 get_network_rules(storage_account, storage_account_name) = rules {
@@ -90,13 +108,13 @@ get_network_rules(storage_account, storage_account_name) = rules {
     networkRules.storage_account_id == sprintf("${azurerm_storage_account.%s.id}", [storage_account_name])
     rules := {
         "rules": object.union(networkRules, {"name": var1}),
-        "type": "object",
+        "type": "object", 
         "key": var1
     }
 } else = rules {
 	rules := {
 	    "rules": storage_account.network_rules,
-	    "type": "inline",
+	    "type": "inline", 
 	    "key": null
     }
 } else = rules {
