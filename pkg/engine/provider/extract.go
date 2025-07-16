@@ -174,9 +174,9 @@ func getPaths(g *getterStruct) (string, error) {
 }
 
 // check if the dst is a symbolic link
-func checkSymLink(getterDst, pathFile string) (string, bool, error) {
+func checkSymLink(getterDst, pathFile string) (getDest string, isLocal bool, err error) {
 	var local bool
-	_, err := os.Stat(pathFile)
+	_, err = os.Stat(pathFile)
 	if err == nil { // check if file exist locally
 		local = true
 	}
