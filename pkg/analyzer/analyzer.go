@@ -662,7 +662,7 @@ func checkForAnsibleHost(yamlContent model.Document) bool {
 
 // computeValues computes expected Lines of Code to be scanned from locCount channel
 // and creates the types and unwanted slices from the channels removing any duplicates
-func computeValues(types, unwanted chan string, locCount, jsonFileCount chan int, done chan bool) (typesS, unwantedS []string, locTotal int, jsonTotal int) {
+func computeValues(types, unwanted chan string, locCount, jsonFileCount chan int, done chan bool) (typesS, unwantedS []string, locTotal, jsonTotal int) {
 	var val int
 	var jsonVal int
 	unwantedSlice := make([]string, 0)
