@@ -11,9 +11,9 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_array(containers) == true
+	is_array(containers)
 
-	is_object(containers[y].volume_mount) == true
+	is_object(containers[y].volume_mount)
 	is_os_dir(containers[y].volume_mount)
 
 	containers[y].volume_mount.read_only == false
@@ -22,11 +22,11 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].%s.%s.volume_mount.read_only", [resourceType, name, specInfo.path, types[x]]),
+		"searchKey": sprintf("%s[%s].%s.%s[%d].volume_mount.read_only", [resourceType, name, specInfo.path, types[x], y]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount.read_only should be set to true", [resourceType, name, specInfo.path, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].volume_mount.read_only is set to false", [resourceType, name, specInfo.path, types[x], y]),
-		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "volume_mount", "read_only"]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], y], ["volume_mount", "read_only"]),
 	}
 }
 
@@ -36,10 +36,10 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_array(containers) == true
+	is_array(containers)
 
 	volumeMounts := containers[y].volume_mount
-	is_array(volumeMounts) == true
+	is_array(volumeMounts)
 	is_os_dir(volumeMounts[j])
 	volumeMounts[j].read_only == false
 
@@ -47,11 +47,11 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].%s.%s.volume_mount.read_only", [resourceType, name, specInfo.path, types[x]]),
+		"searchKey": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only", [resourceType, name, specInfo.path, types[x], y, j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only should be set to true", [resourceType, name, specInfo.path, types[x], y, j]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only is set to false", [resourceType, name, specInfo.path, types[x], y, j]),
-		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "volume_mount", j, "read_only"]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], y], ["volume_mount", j, "read_only"]),
 	}
 }
 
@@ -61,10 +61,10 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_object(containers) == true
+	is_object(containers)
 
 	volumeMounts := containers.volume_mount
-	is_object(volumeMounts) == true
+	is_object(volumeMounts)
 	is_os_dir(volumeMounts)
 	volumeMounts.read_only == false
 
@@ -76,7 +76,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount.read_only should be set to true", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.volume_mount.read_only is set to false", [resourceType, name, specInfo.path, types[x]]),
-		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "volume_mount", "read_only"]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x]], ["volume_mount", "read_only"]),
 		"remediation": json.marshal({
 			"before": "false",
 			"after": "true",
@@ -91,10 +91,10 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_object(containers) == true
+	is_object(containers)
 
 	volumeMounts := containers.volume_mount
-	is_array(volumeMounts) == true
+	is_array(volumeMounts)
 	is_os_dir(volumeMounts[j])
 	volumeMounts[j].read_only == false
 
@@ -102,11 +102,11 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].%s.%s.volume_mount.read_only", [resourceType, name, specInfo.path, types[x]]),
+		"searchKey": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only", [resourceType, name, specInfo.path, types[x], j]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only should be set to true", [resourceType, name, specInfo.path, types[x], j]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only is set to false", [resourceType, name, specInfo.path, types[x], j]),
-		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "volume_mount", j, "read_only"]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x]], ["volume_mount", j, "read_only"]),
 		"remediation": json.marshal({
 			"before": "false",
 			"after": "true",
@@ -121,10 +121,10 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_array(containers) == true
+	is_array(containers)
 
 	volumeMounts := containers[y].volume_mount
-	is_object(volumeMounts) == true
+	is_object(volumeMounts)
 	is_os_dir(volumeMounts)
 
 	not common_lib.valid_key(volumeMounts, "read_only")
@@ -133,11 +133,11 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].%s.%s.volume_mount", [resourceType, name, specInfo.path, types[x]]),
+		"searchKey": sprintf("%s[%s].%s.%s[%d].volume_mount", [resourceType, name, specInfo.path, types[x], y]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount.read_only should be set", [resourceType, name, specInfo.path, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].volume_mount.read_only is undefined", [resourceType, name, specInfo.path, types[x], y]),
-		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "volume_mount"]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], y], ["volume_mount"]),
 		"remediation": "read_only = true",
 		"remediationType": "addition",
 	}
@@ -149,24 +149,23 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_array(containers) == true
+	is_array(containers)
 
 	volumeMounts := containers[y].volume_mount
-	is_array(volumeMounts) == true
+	is_array(volumeMounts)
 	is_os_dir(volumeMounts[j])
-	volumeMountTypes := volumeMounts[_]
 
-	not common_lib.valid_key(volumeMountTypes, "read_only")
+	not common_lib.valid_key(volumeMounts[j], "read_only")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].%s.%s.volume_mount", [resourceType, name, specInfo.path, types[x]]),
+		"searchKey": sprintf("%s[%s].%s.%s[%d].volume_mount[%d]", [resourceType, name, specInfo.path, types[x], y, j]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only should be set", [resourceType, name, specInfo.path, types[x], y, volumeMountTypes]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only is undefined", [resourceType, name, specInfo.path, types[x], y, volumeMountTypes]),
-		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "volume_mount", j]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only should be set", [resourceType, name, specInfo.path, types[x], y, j]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only is undefined", [resourceType, name, specInfo.path, types[x], y, j]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], y], ["volume_mount", j]),
 	}
 }
 
@@ -176,10 +175,10 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_object(containers) == true
+	is_object(containers)
 
 	volumeMounts := containers.volume_mount
-	is_object(volumeMounts) == true
+	is_object(volumeMounts)
 	is_os_dir(volumeMounts)
 
 	not common_lib.valid_key(volumeMounts, "read_only")
@@ -192,7 +191,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount.read_only should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.volume_mount.read_only is undefined", [resourceType, name, specInfo.path, types[x]]),
-		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "volume_mount"]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x]], ["volume_mount"]),
 		"remediation": "read_only = true",
 		"remediationType": "addition",
 	}
@@ -204,24 +203,23 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_object(containers) == true
+	is_object(containers)
 
 	volumeMounts := containers.volume_mount
-	is_array(volumeMounts) == true
+	is_array(volumeMounts)
 	is_os_dir(volumeMounts[j])
-	volumeMountTypes := volumeMounts[j]
 
-	not common_lib.valid_key(volumeMountTypes, "read_only")
+	not common_lib.valid_key(volumeMounts[j], "read_only")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].%s.%s.volume_mount", [resourceType, name, specInfo.path, types[x]]),
+		"searchKey": sprintf("%s[%s].%s.%s.volume_mount[%d]", [resourceType, name, specInfo.path, types[x], j]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only should be set", [resourceType, name, specInfo.path, types[x], j]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only is undefined", [resourceType, name, specInfo.path, types[x], j]),
-		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "volume_mount", j]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x]], ["volume_mount", j]),
 		"remediation": "read_only = true",
 		"remediationType": "addition",
 	}
