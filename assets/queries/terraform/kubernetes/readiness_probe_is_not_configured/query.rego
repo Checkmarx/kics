@@ -13,7 +13,7 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	container := specInfo.spec[types[x]]
 
-	is_object(container) == true
+	is_object(container)
 
 	not common_lib.valid_key(container, "readiness_probe")
 
@@ -25,6 +25,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.readiness_probe should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.readiness_probe is undefined", [resourceType, name, specInfo.path, types[x]]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x]], []),
 	}
 }
 
@@ -36,8 +37,8 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	container := specInfo.spec[types[x]]
 
-	is_array(container) == true
-	containersType := container[_]
+	is_array(container)
+	containersType := container[y]
 
 	not common_lib.valid_key(containersType, "readiness_probe")
 
@@ -45,10 +46,11 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
+		"searchKey": sprintf("%s[%s].%s.%s[%d]", [resourceType, name, specInfo.path, types[x], y]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].readiness_probe should be set", [resourceType, name, specInfo.path, types[x], containersType]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].readiness_probe is undefined", [resourceType, name, specInfo.path, types[x], containersType]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].readiness_probe should be set", [resourceType, name, specInfo.path, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].readiness_probe is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], y], []),
 	}
 }
 
