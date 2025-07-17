@@ -314,10 +314,10 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	// start metrics for file analyzer
 	metrics.Metric.Start("file_type_analyzer")
 	returnAnalyzedPaths := model.AnalyzedPaths{
-		Types:          make([]string, 0),
-		Exc:            make([]string, 0),
-		ExpectedLOC:    0,
-		JSONFilesCount: 0,
+		Types:        make([]string, 0),
+		Exc:          make([]string, 0),
+		ExpectedLOC:  0,
+		JSONLOCCount: 0,
 	}
 
 	var files []string
@@ -325,7 +325,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	// results is the channel shared by the workers that contains the types found
 	results := make(chan string)
 	locCount := make(chan int)
-	jsonFileCount := make(chan int)
+	jsonFilesLOCCount := make(chan int)
 	ignoreFiles := make([]string, 0)
 	projectConfigFiles := make([]string, 0)
 	done := make(chan bool)
@@ -375,7 +375,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 			filePath:                file,
 			fallbackMinifiedFileLOC: a.FallbackMinifiedFileLOC,
 		}
-		go a.worker(results, unwanted, locCount, jsonFileCount, &wg)
+		go a.worker(results, unwanted, locCount, jsonFilesLOCCount, &wg)
 	}
 
 	go func() {
@@ -384,20 +384,20 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 			close(unwanted)
 			close(results)
 			close(locCount)
-			close(jsonFileCount)
+			close(jsonFilesLOCCount)
 		}()
 		wg.Wait()
 		done <- true
 	}()
 
-	availableTypes, unwantedPaths, loc, jsonLOCCount := computeValues(results, unwanted, locCount, jsonFileCount, done)
+	availableTypes, unwantedPaths, loc, jsonLOCCount := computeValues(results, unwanted, locCount, jsonFilesLOCCount, done)
 	multiPlatformTypeCheck(&availableTypes)
 	unwantedPaths = append(unwantedPaths, ignoreFiles...)
 	unwantedPaths = append(unwantedPaths, projectConfigFiles...)
 	returnAnalyzedPaths.Types = availableTypes
 	returnAnalyzedPaths.Exc = unwantedPaths
 	returnAnalyzedPaths.ExpectedLOC = loc
-	returnAnalyzedPaths.JSONFilesCount = jsonLOCCount
+	returnAnalyzedPaths.JSONLOCCount = jsonLOCCount
 	// stop metrics for file analyzer
 	metrics.Metric.Stop()
 	return returnAnalyzedPaths, nil
@@ -406,7 +406,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount, jsonFileCount chan<- int, wg *sync.WaitGroup) { //nolint: gocyclo
+func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount, jsonFilesLOCCount chan<- int, wg *sync.WaitGroup) { //nolint: gocyclo
 	defer wg.Done()
 
 	ext, errExt := utils.GetExtension(a.filePath)
@@ -456,7 +456,7 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount, jsonFil
 		Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager.
 		We also have FHIR's case which will be ignored since it's not a platform file.*/
 		case yaml, yml, json, sh:
-			a.checkContent(results, unwanted, locCount, jsonFileCount, linesCount, ext)
+			a.checkContent(results, unwanted, locCount, jsonFilesLOCCount, linesCount, ext)
 		}
 	}
 }
@@ -497,7 +497,7 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
-func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount, jsonLOCCount chan<- int, linesCount int, ext string) {
+func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount, jsonFilesLOCCount chan<- int, linesCount int, ext string) {
 	typesFlag := a.typesFlag
 	excludeTypesFlag := a.excludeTypesFlag
 	// get file content
@@ -556,7 +556,7 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount, j
 	results <- returnType
 	locCount <- linesCount
 	if ext == json {
-		jsonLOCCount <- linesCount
+		jsonFilesLOCCount <- linesCount
 	}
 }
 

@@ -287,10 +287,10 @@ func (m FileMetadatas) Combine(lineInfo bool) Documents {
 
 // AnalyzedPaths is a slice of types and excluded files obtained from the Analyzer
 type AnalyzedPaths struct {
-	Types          []string
-	Exc            []string
-	ExpectedLOC    int
-	JSONFilesCount int
+	Types        []string
+	Exc          []string
+	ExpectedLOC  int
+	JSONLOCCount int
 }
 
 // ResolvedFileSplit is a struct that contains the information of a resolved file, the path and the lines of the file
