@@ -398,7 +398,6 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 	returnAnalyzedPaths.Exc = unwantedPaths
 	returnAnalyzedPaths.ExpectedLOC = loc
 	returnAnalyzedPaths.JSONFilesCount = jsonCount
-	log.Info().Msgf("number of json files is: %d\n", jsonCount)
 	// stop metrics for file analyzer
 	metrics.Metric.Stop()
 	return returnAnalyzedPaths, nil
