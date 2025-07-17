@@ -573,7 +573,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			require.Equal(t, tt.wantTypes, got.Types, "wrong types from analyzer")
 			require.Equal(t, tt.wantExclude, got.Exc, "wrong excludes from analyzer")
 			require.Equal(t, tt.wantLOC, got.ExpectedLOC, "wrong loc from analyzer")
-			require.Equal(t, tt.wantJSONLOCCount, got.JSONFilesCount, "wrong json files count from analyzer")
+			require.Equal(t, tt.wantJSONLOCCount, got.JSONLOCCount, "wrong json files count from analyzer")
 		})
 	}
 }
