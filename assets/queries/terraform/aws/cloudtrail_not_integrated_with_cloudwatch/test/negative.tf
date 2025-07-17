@@ -55,7 +55,7 @@ EOF
 }
 
 
-data "aws_caller_identity" "current" {}
+data "aws_caller_identity" "currentnegative" {}
 
 resource "aws_cloudtrail" "negative1" {
   name                          = "tf-trail-foobar"
@@ -90,7 +90,7 @@ resource "aws_s3_bucket" "negative2" {
               "Service": "cloudtrail.amazonaws.com"
             },
             "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::tf-test-trail/prefix/AWSLogs/${data.aws_caller_identity.current.account_id}/*",
+            "Resource": "arn:aws:s3:::tf-test-trail/prefix/AWSLogs/${data.aws_caller_identity.currentnegative.account_id}/*",
             "Condition": {
                 "StringEquals": {
                     "s3:x-amz-acl": "bucket-owner-full-control"
