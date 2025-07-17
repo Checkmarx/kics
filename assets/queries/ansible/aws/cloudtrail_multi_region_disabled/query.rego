@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceType": modules[m],
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": "cloudtrail.is_multi_region_trail should be defined and set to true",
 		"keyActualValue": "cloudtrail.is_multi_region_trail is undefined",
 	}
