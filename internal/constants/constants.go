@@ -166,7 +166,7 @@ func GetRelease() string {
 	return fmt.Sprintf("kics@%s", version)
 }
 
-// GetVersion - returns the current version in the format 'Keeping Infrastructure as Code Secure <version>'
+// GetVersion - returns the current version in the format 'Keeping Infrastructure as Code Secure, version: <version>'
 func GetVersion() string {
 	version := Version
 
