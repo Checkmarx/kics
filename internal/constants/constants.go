@@ -130,6 +130,8 @@ const (
 	LogFormatPretty = "pretty"
 
 	Reference = "$ref"
+
+	Development = "development"
 )
 
 // getVersionFromGit attempts to get version from git describe
@@ -158,7 +160,7 @@ func getVersionFromGit() string {
 func GetRelease() string {
 	version := Version
 
-	if version == "development" {
+	if version == Development {
 		if gitVersion := getVersionFromGit(); gitVersion != "" {
 			version = gitVersion
 		}
@@ -170,7 +172,7 @@ func GetRelease() string {
 func GetVersion() string {
 	version := Version
 
-	if version == "development" {
+	if version == Development {
 		if gitVersion := getVersionFromGit(); gitVersion != "" {
 			version = gitVersion
 		}

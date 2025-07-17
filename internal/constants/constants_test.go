@@ -13,7 +13,7 @@ import (
 func TestConstants_GetRelease(t *testing.T) {
 	got := GetRelease()
 
-	if Version == "development" {
+	if Version == Development {
 		require.True(t,
 			got == "kics@development" || strings.HasPrefix(got, "kics@"),
 			"Expected release to be kics@development or kics@<version>, got: %s", got)
@@ -26,7 +26,7 @@ func TestConstants_GetRelease(t *testing.T) {
 func TestConstants_GetVersion(t *testing.T) {
 	got := GetVersion()
 
-	if Version == "development" {
+	if Version == Development {
 		require.True(t,
 			got == "Keeping Infrastructure as Code Secure, version: development" ||
 				strings.HasPrefix(got, "Keeping Infrastructure as Code Secure, version: "),
