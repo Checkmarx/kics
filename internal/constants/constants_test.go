@@ -1,8 +1,10 @@
 package constants
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -10,12 +12,29 @@ import (
 
 func TestConstants_GetRelease(t *testing.T) {
 	got := GetRelease()
-	require.Equal(t, "kics@development", got)
+
+	if Version == "development" {
+		require.True(t,
+			got == "kics@development" || strings.HasPrefix(got, "kics@"),
+			"Expected release to be kics@development or kics@<version>, got: %s", got)
+	} else {
+		expected := fmt.Sprintf("kics@%s", Version)
+		require.Equal(t, expected, got)
+	}
 }
 
 func TestConstants_GetVersion(t *testing.T) {
 	got := GetVersion()
-	require.Equal(t, "Keeping Infrastructure as Code Secure development", got)
+
+	if Version == "development" {
+		require.True(t,
+			got == "Keeping Infrastructure as Code Secure, version: development" ||
+				strings.HasPrefix(got, "Keeping Infrastructure as Code Secure, version: "),
+			"Expected version to be development or a valid version string, got: %s", got)
+	} else {
+		expected := fmt.Sprintf("Keeping Infrastructure as Code Secure, version: %s", Version)
+		require.Equal(t, expected, got)
+	}
 }
 
 func TestConstants_GetDefaultLogPath(t *testing.T) {

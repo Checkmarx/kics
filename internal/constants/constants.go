@@ -4,11 +4,13 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"os/exec"
 	"path/filepath"
+	"strings"
 )
 
 var (
-	// Version - current KICS version
+	// Version - current KICS version (can be overridden by ldflags during build)
 	Version = "development"
 	// SCMCommit - Source control management commit identifier
 	SCMCommit = "NOCOMMIT"
@@ -130,14 +132,50 @@ const (
 	Reference = "$ref"
 )
 
+// getVersionFromGit attempts to get version from git describe
+func getVersionFromGit() string {
+	// First try to get exact tag if we're exactly on a tagged commit
+	cmd := exec.Command("git", "describe", "--tags", "--exact-match")
+	if output, err := cmd.Output(); err == nil {
+		version := strings.TrimSpace(string(output))
+		return strings.TrimPrefix(version, "v")
+	}
+
+	// If not on exact tag, get the latest tag (base version)
+	cmd = exec.Command("git", "describe", "--tags", "--abbrev=0")
+	output, err := cmd.Output()
+	if err != nil {
+		return ""
+	}
+
+	version := strings.TrimSpace(string(output))
+	version = strings.TrimPrefix(version, "v")
+
+	return version
+}
+
 // GetRelease - returns the current release in the format 'kics@version' to be used by sentry
 func GetRelease() string {
-	return fmt.Sprintf("kics@%s", Version)
+	version := Version
+
+	if version == "development" {
+		if gitVersion := getVersionFromGit(); gitVersion != "" {
+			version = gitVersion
+		}
+	}
+	return fmt.Sprintf("kics@%s", version)
 }
 
 // GetVersion - returns the current version in the format 'Keeping Infrastructure as Code Secure <version>'
 func GetVersion() string {
-	return fmt.Sprintf("%s %s", Fullname, Version)
+	version := Version
+
+	if version == "development" {
+		if gitVersion := getVersionFromGit(); gitVersion != "" {
+			version = gitVersion
+		}
+	}
+	return fmt.Sprintf("%s, version: %s", Fullname, version)
 }
 
 // GetDefaultLogPath - returns the path where the default log file is located

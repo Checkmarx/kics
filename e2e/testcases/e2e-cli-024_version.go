@@ -13,7 +13,7 @@ func init() { //nolint
 			},
 		},
 		Validation: func(outputText string) bool {
-			match, _ := regexp.MatchString(`Keeping Infrastructure as Code Secure [0-9a-zA-Z]+`, outputText)
+			match, _ := regexp.MatchString(`Keeping Infrastructure as Code Secure, version: [0-9a-zA-Z.-]+`, outputText)
 			return match
 		},
 		WantStatus: []int{0},
