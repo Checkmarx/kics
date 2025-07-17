@@ -390,14 +390,14 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 		done <- true
 	}()
 
-	availableTypes, unwantedPaths, loc, jsonCount := computeValues(results, unwanted, locCount, jsonFileCount, done)
+	availableTypes, unwantedPaths, loc, jsonLOCCount := computeValues(results, unwanted, locCount, jsonFileCount, done)
 	multiPlatformTypeCheck(&availableTypes)
 	unwantedPaths = append(unwantedPaths, ignoreFiles...)
 	unwantedPaths = append(unwantedPaths, projectConfigFiles...)
 	returnAnalyzedPaths.Types = availableTypes
 	returnAnalyzedPaths.Exc = unwantedPaths
 	returnAnalyzedPaths.ExpectedLOC = loc
-	returnAnalyzedPaths.JSONFilesCount = jsonCount
+	returnAnalyzedPaths.JSONFilesCount = jsonLOCCount
 	// stop metrics for file analyzer
 	metrics.Metric.Stop()
 	return returnAnalyzedPaths, nil
@@ -497,7 +497,7 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
-func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount, jsonFileCount chan<- int, linesCount int, ext string) {
+func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount, jsonLOCCount chan<- int, linesCount int, ext string) {
 	typesFlag := a.typesFlag
 	excludeTypesFlag := a.excludeTypesFlag
 	// get file content
@@ -556,7 +556,7 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount, j
 	results <- returnType
 	locCount <- linesCount
 	if ext == json {
-		jsonFileCount <- 1
+		jsonLOCCount <- linesCount
 	}
 }
 
@@ -661,7 +661,7 @@ func checkForAnsibleHost(yamlContent model.Document) bool {
 
 // computeValues computes expected Lines of Code to be scanned from locCount channel
 // and creates the types and unwanted slices from the channels removing any duplicates
-func computeValues(types, unwanted chan string, locCount, jsonFileCount chan int, done chan bool) (typesS, unwantedS []string, locTotal, jsonTotal int) { //nolint:lll
+func computeValues(types, unwanted chan string, locCount, jsonLOCCount chan int, done chan bool) (typesS, unwantedS []string, locTotal, jsonTotal int) { //nolint:lll
 	var val int
 	var jsonVal int
 	unwantedSlice := make([]string, 0)
@@ -670,7 +670,7 @@ func computeValues(types, unwanted chan string, locCount, jsonFileCount chan int
 		select {
 		case i := <-locCount:
 			val += i
-		case i := <-jsonFileCount:
+		case i := <-jsonLOCCount:
 			jsonVal += i
 		case i := <-unwanted:
 			if !utils.Contains(i, unwantedSlice) {
