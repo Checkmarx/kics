@@ -42,9 +42,11 @@ CxPolicy[result] {
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, annotationsPath]),
-		"issueType": "IncorrectValue",
+        "issueType": "IncorrectValue",
+        "searchValue": sprintf("%s%s", [document.kind, expectedKey]), # handle multiple kinds and key combinations
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s[%s] should be set to 'runtime/default' or 'localhost'", [metadata.name, annotationsPath, expectedKey]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s[%s] does not specify a valid AppArmor profile", [metadata.name, annotationsPath, expectedKey]),
+		"searchLine": search_line_metadata(annotationsPath),
 	}
 }
 
@@ -53,7 +55,7 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	specInfo := k8sLib.getSpecInfo(document)
-	container := specInfo.spec[types[x]][_].name
+	container := specInfo.spec[types[x]][c].name
 
 	metadataInfo := getMetadataInfo(document)
 	annotations := object.get(metadataInfo.metadata, "annotations", {})
@@ -66,10 +68,18 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
-		"searchKey": trim_right(sprintf("metadata.name={{%s}}.%s", [metadata.name, metadataInfo.path]), "."),
+		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, annotationsPath]),
 		"issueType": "MissingAttribute",
+		"searchValue": sprintf("%s%s%d", [document.kind, types[x], c]), # handle multiple kinds and container combination
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s should specify an AppArmor profile for container {{%s}}", [metadata.name, annotationsPath, container]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s does not specify an AppArmor profile for container {{%s}}", [metadata.name, annotationsPath, container]),
-		"searchLine": common_lib.build_search_line(split(annotationsPath, "."), [])
+		"searchLine": search_line_metadata(annotationsPath),
 	}
+}
+
+search_line_metadata(annotationsPath) = searchLine {
+    annotationsPath == "annotations"
+    searchLine := common_lib.build_search_line(["metadata", "annotations"], [])
+} else = searchLine {
+    searchLine := common_lib.build_search_line(split(annotationsPath, "."), [])
 }
