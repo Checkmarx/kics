@@ -60,9 +60,12 @@ func (p ProgressBar) Start() {
 
 	for {
 		newProgress, ok := <-p.progress
+		if !ok {
+			break
+		}
 		p.currentProgress += newProgress
 		p.pBar.Increment()
-		if !ok || p.currentProgress >= p.pBar.Total() {
+		if p.currentProgress >= p.pBar.Total() {
 			break
 		}
 	}
