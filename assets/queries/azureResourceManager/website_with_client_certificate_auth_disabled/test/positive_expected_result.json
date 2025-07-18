@@ -26,6 +26,12 @@
   {
     "queryName": "Website with Client Certificate Auth Disabled",
     "severity": "MEDIUM",
+    "line": 46,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "Website with Client Certificate Auth Disabled",
+    "severity": "MEDIUM",
     "line": 5,
     "fileName": "positive1.bicep"
   },
