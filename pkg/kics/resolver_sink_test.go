@@ -143,7 +143,7 @@ func MockService(paths []string,
 		mockTracker,
 		&queryFilter,
 		map[string]bool{},
-		map[string]bool{}, // excludeQueryIDs
+		map[string]bool{},
 		queryExecTimeout,
 		false,
 		true,
