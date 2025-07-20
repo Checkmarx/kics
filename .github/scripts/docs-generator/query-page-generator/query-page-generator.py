@@ -4,6 +4,7 @@ import os
 import json
 import shutil
 import time
+import copy
 from pathlib import Path
 
 # Searches for "metadata.json" files within the inputed directory
@@ -17,6 +18,15 @@ def get_meta_data_and_tests(input_path : str, metadata_file = 'metadata.json'):
         query_id = query_info.get('id')
         if not query_id: continue
         queries_data[query_id] = query_info
+        
+        # Process override queries (e.g., OpenAPI v2.0 vs v3.0)
+        overrides = query_info.get('override', {})
+        for override_key, override_data in overrides.items():
+            override_id = override_data.get('id')
+            if override_id:
+                override_query_info = copy.deepcopy(query_info)
+                override_query_info.update(override_data)
+                queries_data[override_id] = override_query_info
 
     return queries_data
 
