@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceType": "alicloud_security_group_rule",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_security_group_rule[%s].port_range", [name]),
-        "searchValue": sprintf("%d", [port]),
+		"searchValue": sprintf("%d", [port]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s:%d port should not be allowed", [resource.ip_protocol, portNumber]),
 		"keyActualValue": sprintf("%s:%d port is allowed", [resource.ip_protocol, portNumber]),

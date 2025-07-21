@@ -2,16 +2,16 @@
   {
     "queryName": "Containers With Sys Admin Capabilities",
     "severity": "HIGH",
-    "line": 13
+    "line": 14
   },
   {
     "queryName": "Containers With Sys Admin Capabilities",
     "severity": "HIGH",
-    "line": 48
+    "line": 49
   },
   {
     "queryName": "Containers With Sys Admin Capabilities",
     "severity": "HIGH",
-    "line": 113
+    "line": 110
   }
 ]

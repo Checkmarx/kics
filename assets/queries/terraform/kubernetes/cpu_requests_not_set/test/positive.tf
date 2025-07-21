@@ -5,110 +5,107 @@ resource "kubernetes_pod" "positive1" {
   }
 
   spec {
-    container = [
-     {
-      image = "nginx:1.7.9"
-      name  = "example22"
+   container {
+    image = "nginx:1.7.9"
+    name  = "example22"
 
-      env = {
-        name  = "environment"
-        value = "test"
-      }
+    env {
+      name  = "environment"
+      value = "test"
+    }
 
-      port = {
-        container_port = 8080
-      }
+    port {
+      container_port = 8080
+    }
 
-      liveness_probe = {
-        http_get = {
-          path = "/nginx_status"
-          port = 80
+    liveness_probe {
+      http_get {
+        path = "/nginx_status"
+        port = 80
 
-          http_header = {
-            name  = "X-Custom-Header"
-            value = "Awesome"
-          }
+        http_header {
+          name  = "X-Custom-Header"
+          value = "Awesome"
         }
-
-        initial_delay_seconds = 3
-        period_seconds        = 3
-      }
-     }
-     ,
-     {
-      image = "nginx:1.7.9"
-      name  = "example22222"
-
-      resources = {
-            requests = {
-              memory = "50Mi"
-            }
       }
 
-      env = {
-        name  = "environment"
-        value = "test"
-      }
+      initial_delay_seconds = 3
+      period_seconds        = 3
+    }
+   }
 
-      port = {
-        container_port = 8080
-      }
+   container {
+    image = "nginx:1.7.9"
+    name  = "example22222"
 
-      liveness_probe = {
-        http_get = {
-          path = "/nginx_status"
-          port = 80
-
-          http_header = {
-            name  = "X-Custom-Header"
-            value = "Awesome"
+    resources {
+          requests = {
+            memory = "50Mi"
           }
+    }
+
+    env {
+      name  = "environment"
+      value = "test"
+    }
+
+    port {
+      container_port = 8080
+    }
+
+    liveness_probe {
+      http_get {
+        path = "/nginx_status"
+        port = 80
+
+        http_header {
+          name  = "X-Custom-Header"
+          value = "Awesome"
         }
-
-        initial_delay_seconds = 3
-        period_seconds        = 3
-      }
-     }
-     ,
-     {
-      image = "nginx:1.7.9"
-      name  = "example22222"
-
-      resources = {
-            requests = {
-              memory = "50Mi"
-            }
-            limits = {
-              memory = "50Mi"
-            }
       }
 
-      env = {
-        name  = "environment"
-        value = "test"
-      }
+      initial_delay_seconds = 3
+      period_seconds        = 3
+    }
+   }
 
-      port = {
-        container_port = 8080
-      }
+   container {
+    image = "nginx:1.7.9"
+    name  = "example22222"
 
-      liveness_probe = {
-        http_get = {
-          path = "/nginx_status"
-          port = 80
-
-          http_header = {
-            name  = "X-Custom-Header"
-            value = "Awesome"
+    resources {
+          requests = {
+            memory = "50Mi"
           }
+          limits = {
+            memory = "50Mi"
+          }
+    }
+
+    env {
+      name  = "environment"
+      value = "test"
+    }
+
+    port {
+      container_port = 8080
+    }
+
+    liveness_probe {
+      http_get {
+        path = "/nginx_status"
+        port = 80
+
+        http_header {
+          name  = "X-Custom-Header"
+          value = "Awesome"
         }
-
-        initial_delay_seconds = 3
-        period_seconds        = 3
       }
-     }
-   ]
 
+      initial_delay_seconds = 3
+      period_seconds        = 3
+    }
+   }
 
     dns_config {
       nameservers = ["1.1.1.1", "8.8.8.8", "9.9.9.9"]
@@ -193,7 +190,7 @@ resource "kubernetes_pod" "positive3" {
       name  = "example"
 
       resources {
-            limits {
+            limits = {
               cpu    = "0.5"
               memory = "512Mi"
             }
@@ -254,11 +251,11 @@ resource "kubernetes_pod" "positive4" {
       name  = "example"
 
       resources {
-            limits {
+            limits = {
               cpu    = "0.5"
               memory = "512Mi"
             }
-            requests {
+            requests = {
               memory = "512Mi"
             }
       }

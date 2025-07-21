@@ -11,18 +11,18 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_array(containers) == true
+	is_array(containers)
 	common_lib.valid_key(containers[y].security_context.capabilities, "add")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resourceType,
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s[%s].%s.%s[%d].security_context", [resourceType, name, specInfo.path, types[x], y]),
+		"searchKey": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.add", [resourceType, name, specInfo.path, types[x], y]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.add should be undefined", [resourceType, name, specInfo.path, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.add is set", [resourceType, name, specInfo.path, types[x], y]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], y], ["security_context"]),
+		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], y], ["security_context", "capabilities", "add"]),
 	}
 }
 
@@ -32,7 +32,7 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_object(containers) == true
+	is_object(containers)
 	common_lib.valid_key(containers.security_context.capabilities, "add")
 
 	result := {

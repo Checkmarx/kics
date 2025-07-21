@@ -12,36 +12,36 @@
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 114
+    "line": 109
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 143
+    "line": 138
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 202
+    "line": 195
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 238
+    "line": 231
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 305
+    "line": 296
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 360
+    "line": 350
   },
   {
     "queryName": "Memory Requests Not Defined",
     "severity": "MEDIUM",
-    "line": 418
+    "line": 408
   }
 ]
