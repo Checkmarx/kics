@@ -11,12 +11,12 @@ CxPolicy[result] {
 
   result := {
     "documentId": doc.id,
-    "resourceType": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+    "resourceType": types[x],
     "resourceName": "n/a",
     "searchKey": "securityAlertPolicies",
     "issueType": "MissingAttribute",
     "keyExpectedValue": "Security alert policy should be defined and enabled",
-    "keyActualValue": "No security alert policy found",
+    "keyActualValue": "Security alert policy in undefined",
     "searchLine": [],
   }
 }
