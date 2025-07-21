@@ -56,7 +56,7 @@
           "name": "connectionstrings",
           "properties": {
             "defaultConnection": {
-              "value": "[concat('Database=', variables('databaseName'), ';Data Source=', reference(resourceId('Microsoft.DBforMySQL/servers', variables('serverName'))).fullyQualifiedDomainName, ';User Id=', parameters('administratorLogin'), '@', variables('serverName'), ';', variables('passKey'), '=', parameters('administratorLoginPassword'))]",
+              "value": "[concat('Database=', variables('databaseName'), ';Data Source=', reference(resourceId('Microsoft.DBforMySQL/servers',variables('serverName'))).fullyQualifiedDomainName, ';User Id=', parameters('administratorLogin'),'@', variables('serverName'),';Password=', parameters('administratorLoginPassword'))]",
               "type": "MySql"
             }
           }
