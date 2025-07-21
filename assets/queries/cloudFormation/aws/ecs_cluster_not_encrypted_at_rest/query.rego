@@ -59,7 +59,7 @@ is_transit_encryption_disabled(taskDefinition, taskdefinitionkey) = res {
     not common_lib.valid_key(efsVolumeConfiguration, "TransitEncryption")
     res := {
     	"issueT": "MissingAttribute",
-    	"kev": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption should be defined (set to DISABLED by default)", [taskdefinitionkey, j]),
+    	"kev": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption should be defined", [taskdefinitionkey, j]),
         "kav": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption is not defined (set to DISABLED by default)", [taskdefinitionkey, j]),
     }
 }
