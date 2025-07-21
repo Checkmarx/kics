@@ -14,25 +14,13 @@
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
-    "line": 24,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "API Gateway Access Logging Disabled",
-    "severity": "MEDIUM",
-    "line": 24,
-    "filename": "positive1.tf"
-  },
-  {
-    "queryName": "API Gateway Access Logging Disabled",
-    "severity": "MEDIUM",
     "line": 15,
     "filename": "positive2.tf"
   },
   {
     "queryName": "API Gateway Access Logging Disabled",
     "severity": "MEDIUM",
-    "line": 20,
+    "line": 28,
     "filename": "positive2.tf"
   },
   {
