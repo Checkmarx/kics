@@ -34,7 +34,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              834,
-			wantJSONLOCCount:     139, // openAPI.json, azureResourceManager.json, openAPI_test/openAPI.json (not_openapi.json excluded)
+			wantJSONLOCCount:     139,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -48,7 +48,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              118,
-			wantJSONLOCCount:     0, // helm directory has no JSON files
+			wantJSONLOCCount:     0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -65,7 +65,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              13,
-			wantJSONLOCCount:     0, // Dockerfile and terraform.tf are not JSON files
+			wantJSONLOCCount:     0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -81,7 +81,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              107,
-			wantJSONLOCCount:     68, // openAPI_test/openAPI.json
+			wantJSONLOCCount:     68,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -97,7 +97,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              0,
-			wantJSONLOCCount:     0, // not_openapi.json excluded, so not counted
+			wantJSONLOCCount:     0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -324,7 +324,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              39,
-			wantJSONLOCCount:     0, // .ini files are not JSON
+			wantJSONLOCCount:     0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -338,7 +338,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              173,
-			wantJSONLOCCount:     0, // .cfg files are not JSON
+			wantJSONLOCCount:     0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -352,7 +352,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              18,
-			wantJSONLOCCount:     0, // .conf files are not JSON
+			wantJSONLOCCount:     0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -366,7 +366,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              42,
-			wantJSONLOCCount:     0, // .yaml files are not JSON
+			wantJSONLOCCount:     0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -380,7 +380,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              33,
-			wantJSONLOCCount:     0, // .yaml files are not JSON
+			wantJSONLOCCount:     0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -394,7 +394,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              22,
-			wantJSONLOCCount:     0, // .yaml files are not JSON
+			wantJSONLOCCount:     0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -408,7 +408,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              9,
-			wantJSONLOCCount:     0, // .yaml files are not JSON
+			wantJSONLOCCount:     0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
@@ -450,7 +450,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
 			wantLOC:              697,
-			wantJSONLOCCount:     0, // bicep files are not JSON
+			wantJSONLOCCount:     0,
 			wantErr:              false,
 			gitIgnoreFileName:    "",
 			excludeGitIgnore:     false,
