@@ -96,7 +96,7 @@ func run(cmd *cobra.Command) error {
 	// save the scan parameters into the ScanParameters struct
 	scanParams := getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath)
 
-	return ExecuteScan(scanParams)
+	return executeScan(scanParams)
 }
 
 func updateReportFormats() {
@@ -151,7 +151,7 @@ func getScanParameters(changedDefaultQueryPath, changedDefaultLibrariesPath bool
 	return &scanParams
 }
 
-func ExecuteScan(scanParams *scan.Parameters) error {
+func executeScan(scanParams *scan.Parameters) error {
 	log.Debug().Msg("console.scan()")
 
 	console := newConsole()
