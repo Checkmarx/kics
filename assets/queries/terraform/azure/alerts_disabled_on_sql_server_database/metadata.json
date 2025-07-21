@@ -1,10 +1,10 @@
 {
   "id": "25cd1853-7e80-4106-9ac3-03f8636c25be",
-  "queryName": "SQL Server Database With Alerts Disabled",
+  "queryName": "Alerts Disabled On SQL Server Database",
   "severity": "MEDIUM",
   "category": "Best Practices",
   "descriptionText": "All Alerts should be enabled in SQL Database Server SecurityAlerts Policy Properties",
-  "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases/securityalertpolicies?tabs=json",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/4.36.0/docs/resources/mssql_server_security_alert_policy",
   "platform": "Terraform",
   "descriptionID": "1aa331e6",
   "cloudProvider": "azure",
