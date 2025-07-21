@@ -21,11 +21,6 @@ CxPolicy[result] {
   }
 }
 
-any_security_alert_policy(doc, types) {
-  [path, value] := walk(doc)
-  value.type == types[_]
-}
-
 CxPolicy[result] {
 	# case of security alert policy defined but state is undefined
 	types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
@@ -94,4 +89,10 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'%s.name=%s.disabledAlerts' has values defined", [common_lib.concat_path(path), value.name]),
 		"searchLine": common_lib.build_search_line(path, ["properties", "disabledAlerts", idx]),
 	}
+}
+
+
+any_security_alert_policy(doc, types) {
+  [path, value] := walk(doc)
+  value.type == types[_]
 }

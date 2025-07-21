@@ -21,11 +21,6 @@ CxPolicy[result] {
   }
 }
 
-any_security_alert_policy(doc, types) {
-  [_, value] := walk(doc)
-  value.type == types[_]
-}
-
 CxPolicy[result] {
 	# case of security alert policy defined but not enabled
 	resources := input.document[i].resource
@@ -86,4 +81,9 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("'azurerm_mssql_server_security_alert_policy.%s.disabled_alerts' has values defined", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_mssql_server_security_alert_policy", name, "disabled_alerts"], []),
 	}
+}
+
+any_security_alert_policy(doc, types) {
+  [_, value] := walk(doc)
+  value.type == types[_]
 }
