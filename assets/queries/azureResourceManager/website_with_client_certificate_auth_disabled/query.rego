@@ -58,15 +58,6 @@ is_using_http2_protocol(resource, val_type) = res { # clientCertEnabled and http
         "kev": sprintf("resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' %s or 'http20Enabled' field set to true", [val_type]),
         "kav": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' or 'http20Enabled' set to true",
     }
-} else = res { # clientCertEnabled field set to false and http20Enabled field set to true
-	not val_type == "null"
-    http20Enabled_field_value := extract_http20Enabled_field_value(resource)
-    http20Enabled_field_value
-    res := {
-    	"ret_val": true,
-        "kev": sprintf("resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' %s set to true", [val_type]),
-        "kav": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' set to true",
-    }
 } else = res { # clientCertEnabled field set to false and non defined http20Enabled field
     not val_type == "null"
     not http20Enabled_field_is_defined(resource)
@@ -91,7 +82,7 @@ is_using_http2_protocol(resource, val_type) = res { # clientCertEnabled and http
         "kev": "resource with type 'Microsoft.Web/sites' should have the 'clientCertEnabled' property defined",
         "kav": "resource with type 'Microsoft.Web/sites' doesn't have 'clientCertEnabled' property defined",
     }
-}
+} 
 
 extract_http20Enabled_field_value(resource) = val {
 	http20Enabled_field_is_defined(resource)
@@ -99,7 +90,7 @@ extract_http20Enabled_field_value(resource) = val {
 } 
 
 http20Enabled_field_is_defined(resource) {
-	common_lib.valid_key(resource, "properties")
-    common_lib.valid_key(resource.properties, "siteConfig")
-    common_lib.valid_key(resource.properties.siteConfig, "http20Enabled")
+	common_lib.valid_key(resource, "properties") 
+    common_lib.valid_key(resource.properties, "siteConfig") 
+    common_lib.valid_key(resource.properties.siteConfig, "http20Enabled") 
 }
