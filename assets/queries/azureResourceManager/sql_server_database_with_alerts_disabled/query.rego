@@ -68,7 +68,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s.name=%s' should be enabled", [common_lib.concat_path(path), value.name]),
 		"keyActualValue": sprintf("'%s.name=%s' is not enabled", [common_lib.concat_path(path), value.name]),
-		"searchLine": common_lib.build_search_line(path, ["properties"]),
+		"searchLine": common_lib.build_search_line(path, ["properties", "state"]),
 	}
 }
 
