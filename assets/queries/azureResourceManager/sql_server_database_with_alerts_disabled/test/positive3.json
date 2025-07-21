@@ -14,7 +14,7 @@
         "emailAccountAdmins": true,
         "emailAddresses": [ "sample@email.com" ],
         "retentionDays": 4,
-        "state": "Enabled"
+        "state": "Disabled"
       }
     }
   ],
