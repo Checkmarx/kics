@@ -31,7 +31,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::Elasticsearch::Domain"
 	logs := resource.Properties.LogPublishingOptions[logName]
 	logName == "AUDIT_LOGS"
-	logs.Enabled == "false"
+	cf_lib.isCloudFormationFalse(logs.Enabled)
 
 	result := {
 		"documentId": input.document[i].id,
