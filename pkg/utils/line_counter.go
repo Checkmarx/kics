@@ -46,7 +46,9 @@ func LineCounter(path string, fallbackMinifiedFileLOC, maxCapacity int) (int, er
 
 	scanner := bufio.NewScanner(file)
 	buffer := make([]byte, bufio.MaxScanTokenSize)
-	scanner.Buffer(buffer, maxCapacity*bytesPerKiB*bytesPerKiB) // 5MB
+	if maxCapacity > 0 {
+		scanner.Buffer(buffer, maxCapacity*bytesPerKiB*bytesPerKiB) // 5MB
+	}
 	lineCount := 0
 	for scanner.Scan() {
 		lineCount++
