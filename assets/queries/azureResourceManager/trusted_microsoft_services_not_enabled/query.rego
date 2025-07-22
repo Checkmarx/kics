@@ -55,11 +55,11 @@ contains_azure_service(bypass) {
 }
 
 path_check(resource) = "" {
-  not common_lib.valid_key(resource,"properties")
- } else = ".properties" {
-  resource.properties == {} 
-} else = ".properties" {
-  not common_lib.valid_key(resource.properties,"networkAcls")
-} else = ".properties.networkAcls" {
-  resource.properties.networkAcls == {} 
-} else = "there_is_complete_path"
+  	not common_lib.valid_key(resource,"properties")
+  } else = ".properties" {
+  	resource.properties == {} 
+  } else = ".properties" {
+  	not common_lib.valid_key(resource.properties,"networkAcls")
+  } else = ".properties.networkAcls" {
+  	resource.properties.networkAcls == {} 
+  } else = "there_is_complete_path"
