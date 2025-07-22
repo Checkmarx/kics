@@ -47,3 +47,8 @@ container_insights(settings){
 	settings[0].Name == "containerInsights"
 	settings[0].Value == "enabled"
 }
+
+container_insights(settings){
+	settings[0].Name == "containerInsights"
+	settings[0].Value == "enchanced"
+}
