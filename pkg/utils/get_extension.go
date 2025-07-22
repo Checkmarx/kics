@@ -66,9 +66,6 @@ func readPossibleDockerFile(path string) bool {
 	}()
 	// Create a scanner to read the file line by line
 	scanner := bufio.NewScanner(file)
-	const maxCapacity = 5 * 1024 * 1024 // max capacity of 5 MB
-	buffer := make([]byte, bufio.MaxScanTokenSize)
-	scanner.Buffer(buffer, maxCapacity)
 	// Read lines from the file
 	for scanner.Scan() {
 		if strings.HasPrefix(scanner.Text(), "FROM") {

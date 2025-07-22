@@ -152,6 +152,7 @@ type analyzerInfo struct {
 	excludeTypesFlag        []string
 	filePath                string
 	fallbackMinifiedFileLOC int
+	maxFileSize             int
 }
 
 // Analyzer keeps all the relevant info for the function Analyze
@@ -374,6 +375,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 			excludeTypesFlag:        a.ExcludeTypes,
 			filePath:                file,
 			fallbackMinifiedFileLOC: a.FallbackMinifiedFileLOC,
+			maxFileSize:             a.MaxFileSize,
 		}
 		go a.worker(results, unwanted, locCount, jsonFilesLOCCount, &wg)
 	}
@@ -411,8 +413,7 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount, jsonFil
 
 	ext, errExt := utils.GetExtension(a.filePath)
 	if errExt == nil {
-		linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
-
+		linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC, a.maxFileSize)
 		switch ext {
 		// Dockerfile (direct identification)
 		case ".dockerfile", "Dockerfile":
