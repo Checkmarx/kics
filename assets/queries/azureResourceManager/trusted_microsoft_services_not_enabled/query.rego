@@ -4,6 +4,28 @@ import data.generic.common as common_lib
 import data.generic.azureresourcemanager as arm_lib
 
 CxPolicy[result] {
+	#case of the path /properties/networkAcls/defaultAction_or_bypass not existing
+	doc := input.document[i]
+	[path, value] = walk(doc)
+
+	value.type == "Microsoft.Storage/storageAccounts"
+
+    variable_path := path_check(value)
+	variable_path != "there_is_complete_path"
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": value.type,
+		"resourceName": "value.name",
+		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, variable_path]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",[]),
+		"keyActualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
+		"searchLine": common_lib.build_search_line(path, ["properties", "networkAcls"]),
+	}
+}
+
+CxPolicy[result] {
 	doc := input.document[i]
 	[path, value] = walk(doc)
 
@@ -31,3 +53,13 @@ contains_azure_service(bypass) {
 	values := split(bypass, ",")
 	common_lib.inArray(values, "AzureServices")
 }
+
+path_check(resource) = "" {
+  not common_lib.valid_key(resource,"properties")
+ } else = ".properties" {
+  resource.properties == {} 
+} else = ".properties" {
+  not common_lib.valid_key(resource.properties,"networkAcls")
+} else = ".properties.networkAcls" {
+  resource.properties.networkAcls == {} 
+} else = "there_is_complete_path"
