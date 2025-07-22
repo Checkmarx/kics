@@ -5,7 +5,7 @@ Resources:
       ClusterName: MyCluster
       ClusterSettings:
         - Name: containerInsights
-          Value: enchanced
+          Value: enhanced
       Tags:
         - Key: environment
           Value: production
