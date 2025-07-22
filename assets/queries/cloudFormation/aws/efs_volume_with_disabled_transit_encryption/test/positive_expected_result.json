@@ -10,5 +10,17 @@
     "severity": "MEDIUM",
     "line": 59,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 50,
+    "fileName": "positive3.yml"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 49,
+    "fileName": "positive4.yml"
   }
 ]

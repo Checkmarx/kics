@@ -54,10 +54,10 @@
                     ]
                 }
             ],
-            "volumes": [
+            "Volumes": [
                 {
                     "name": "myEfsVolume",
-                    "efsVolumeConfiguration": {
+                    "EFSVolumeConfiguration": {
                         "fileSystemId": "fs-1234",
                         "rootDirectory": "/path/to/my/data",
                         "TransitEncryptionPort": 10,
