@@ -11,6 +11,8 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+const bytesPerKiB = 1024
+
 // LineCounter returns the number of lines in a file
 // For files with a .json extension, if the file is detected as minified JSON,
 // it will beautify the JSON and return the number of lines in the formatted output
@@ -44,7 +46,7 @@ func LineCounter(path string, fallbackMinifiedFileLOC, maxCapacity int) (int, er
 
 	scanner := bufio.NewScanner(file)
 	buffer := make([]byte, bufio.MaxScanTokenSize)
-	scanner.Buffer(buffer, maxCapacity*1024*1024) // 5MB
+	scanner.Buffer(buffer, maxCapacity*bytesPerKiB*bytesPerKiB) // 5MB
 	lineCount := 0
 	for scanner.Scan() {
 		lineCount++
