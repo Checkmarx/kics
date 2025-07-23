@@ -21,6 +21,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
 		"searchKey": sprintf("kind={{%s}}.metadata.name={{%s}}", [kind, metadata.name]),
+		"searchValue": document.kind, # multiple kinds can match
 		"keyExpectedValue": "metadata.namespace should be defined and not null",
 		"keyActualValue": "metadata.namespace is undefined or null",
 		"searchLine": common_lib.build_search_line(["metadata", "name"], []),
@@ -43,6 +44,7 @@ CxPolicy[result] {
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"issueType": "IncorrectValue",
+		"searchValue": document.kind    , # multiple kinds can match
 		"searchKey": sprintf("metadata.name={{%s}}.namespace", [metadata.name]),
 		"keyExpectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
 		"keyActualValue": sprintf("'metadata.namespace' is set to %s", [options[x]]),
