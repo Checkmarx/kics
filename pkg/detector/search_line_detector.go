@@ -42,11 +42,12 @@ func (d *searchLineDetector) preparePath(pathItems []string) int {
 	if len(pathItems) == 0 {
 		return 1
 	}
-	// Escaping '.' in path components so it doesn't conflict with gjson pkg
-	objPath := strings.ReplaceAll(pathItems[0], ".", "\\.")
-	ArrPath := strings.ReplaceAll(pathItems[0], ".", "\\.")
 
-	obj := pathItems[len(pathItems)-1]
+	// Escaping '.' in path components so it doesn't conflict with gjson pkg
+	objPath := strings.ReplaceAll(pathItems[0], ".", `\.`)
+	ArrPath := strings.ReplaceAll(pathItems[0], ".", `\.`)
+
+	obj := strings.ReplaceAll(pathItems[len(pathItems)-1], ".", `\.`)
 
 	arrayObject := ""
 
@@ -77,11 +78,11 @@ func (d *searchLineDetector) preparePath(pathItems []string) int {
 	for _, pathItem := range treatedPathItems {
 		// In case of an array present
 		if pathItem == arrayObject {
-			ArrPath += "._kics_lines._kics_" + strings.ReplaceAll(pathItem, ".", "\\.") + "._kics_arr"
+			ArrPath += "._kics_lines._kics_" + strings.ReplaceAll(pathItem, ".", `\.`) + "._kics_arr"
 		} else {
-			ArrPath += "." + strings.ReplaceAll(pathItem, ".", "\\.")
+			ArrPath += "." + strings.ReplaceAll(pathItem, ".", `\.`)
 		}
-		objPath += "." + strings.ReplaceAll(pathItem, ".", "\\.")
+		objPath += "." + strings.ReplaceAll(pathItem, ".", `\.`)
 	}
 
 	d.resolvedPath = objPath
