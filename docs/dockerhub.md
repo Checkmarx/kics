@@ -8,15 +8,40 @@ Visit us
 
 https://github.com/Checkmarx/kics
 
+## Docker Image Variants
+
+KICS provides several Docker image variants to fit different use cases:
+
+### Available Tags
+
+| Tag | Base OS | Package Manager | Use Case |
+|-----|---------|----------------|----------|
+| `latest`, `v{VERSION}` | Wolfi Linux | None | Default, lightweight image |
+| `alpine`, `v{VERSION}-alpine` | Alpine Linux | `apk` | When you need `apk` package manager |
+| `debian`, `v{VERSION}-debian` | Debian | `apt-get` | When you need `apt-get` package manager |
+| `ubi8`, `v{VERSION}-ubi8` | Red Hat UBI8 | `yum` | Enterprise environments, Red Hat compatible |
+
+### Quick Start
+
+```sh
+# Default image (recommended for most users)
+docker pull checkmarx/kics:latest
+
+# Alpine image (with apk support)
+docker pull checkmarx/kics:alpine
+
+# Debian image (with apt-get support)  
+docker pull checkmarx/kics:debian
+
+# UBI8 image (enterprise/Red Hat environments)
+docker pull checkmarx/kics:ubi8
+```
+
 ## Command
 
 To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the `-p` KICS parameter (see the full list of CLI options below)
 
 NOTE: from v1.3.0 KICS does not execute `scan` command by default anymore.
-
-```sh
-docker pull checkmarx/kics:latest
-```
 
 Scan a directory
 

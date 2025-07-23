@@ -66,14 +66,29 @@ jobs:
             org.opencontainers.image.licenses=Apache-2.0
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.created=${{ env.CREATED_AT }}
-      - name: Push alpine to Docker Hub
+      - name: Push main to Docker Hub
         uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
-        id: build_alpine
+        id: build_main
         with:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }},checkmarx/kics:alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
+          tags: checkmarx/kics:latest,checkmarx/kics:${{ steps.get-version.outputs.version }}
+          build-args: |
+            VERSION=${{ steps.get-version.outputs.version }}
+            COMMIT=${{ github.sha }}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            DESCRIPTIONS_URL=${{ secrets.DESCRIPTIONS_URL }}
+          labels: ${{ steps.meta.outputs.labels }}
+      - name: Build and push alpine to Docker Hub
+        id: build_alpine
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
+        with:
+          context: .
+          file: ./docker/Dockerfile.alpine
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: checkmarx/kics:alpine,checkmarx/kics:${{ steps.get-version.outputs.version }}-alpine
           build-args: |
             VERSION=${{ steps.get-version.outputs.version }}
             COMMIT=${{ github.sha }}
