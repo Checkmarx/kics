@@ -22,7 +22,8 @@ convert_path_item(pathItem) = convertedPath {
 	is_number(pathItem)
 	convertedPath := sprintf("%d", [pathItem])
 } else = convertedPath {
-	convertedPath := sprintf("%s", [pathItem])
+	escapedPathItem := replace(pathItem, ".", "\\.") # convert . into \. for gjson query
+	convertedPath := sprintf("%s", [escapedPathItem])
 }
 
 concat_path(path) = concatenated {
