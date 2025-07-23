@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "ELBv2 LB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 13,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "ELBv2 LB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "ELBv2 LB Access Log Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  }
+]
