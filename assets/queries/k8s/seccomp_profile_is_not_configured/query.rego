@@ -109,7 +109,7 @@ CxPolicy[result] {
 		"searchValue": document.kind,
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s is 'runtime/default'", [metadata.name, seccompAnnotationPath]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s is '%s'", [metadata.name, seccompAnnotationPath, seccomp]),
-		"searchLine": common_lib.build_search_line(path, ["metadata","annotations",replace(seccompAnnotation, ".", "\\.")]),
+		"searchLine": common_lib.build_search_line(path, ["metadata","annotations",seccompAnnotation]),
 	}
 }
 
