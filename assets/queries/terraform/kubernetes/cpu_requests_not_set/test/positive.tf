@@ -71,7 +71,7 @@ resource "kubernetes_pod" "positive1" {
 
    container {
     image = "nginx:1.7.9"
-    name  = "example22222"
+    name  = "example222222"
 
     resources {
           requests = {
