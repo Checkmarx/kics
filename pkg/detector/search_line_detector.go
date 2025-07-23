@@ -5,8 +5,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/tidwall/gjson"
+
+	"github.com/Checkmarx/kics/v2/pkg/model"
 )
 
 // searchLineDetector is the struct used to get the line from the payload with lines information
@@ -98,6 +99,8 @@ func (d *searchLineDetector) getResult() int {
 		d.resolvedPath + "." + d.targetObj + "._kics_lines._kics__default._kics_line",
 		d.resolvedArrayPath + "." + d.targetObj + "._kics__default._kics_line",
 		d.resolvedArrayPath + "._kics_" + d.targetObj + "._kics_line",
+		d.resolvedPath + "._kics_lines._kics__default._kics_line", // for cases where the object is in the root
+		"_kics_lines._kics_" + d.targetObj + "._kics_line",        // for cases where key is in the root
 	}
 
 	result := -1
