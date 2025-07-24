@@ -5,21 +5,22 @@ import data.generic.common as common_lib
 
 
 CxPolicy[result] {
-	EIP := input.document[i].resource.aws_eip[name]
+  # to be unattatched 
+	EIP := input.document[i].resource.aws_eip[eip_name]
     
     bool_has_valid_vpc(EIP) 
     not has_valid_instance(EIP,input.document[i])
     not has_valid_network_interface(EIP, input.document[i])
-    not has_eip_associated(name, input.document[i])
-    not has_nat_gateway(name, input.document[i])
-    not has_transfer_server(name, input.document[i])
+    not has_eip_associated(eip_name, input.document[i])
+    not has_nat_gateway(eip_name, input.document[i])
+    not has_transfer_server(eip_name, input.document[i])
     
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_eip",
-		"resourceName": tf_lib.get_resource_name(EIP, name),
-		"searchKey": sprintf("aws_eip[%s]", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_eip", name], []),
+		"resourceName": tf_lib.get_resource_name(EIP, eip_name),
+		"searchKey": sprintf("aws_eip[%s]", [eip_name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_eip", eip_name], []),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "All EIPs should be attached",
 		"keyActualValue": "EIP is not attached"
@@ -27,6 +28,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
+  # Dynamic "ActualValue" for invalid vpc
 	EIP := input.document[i].resource.aws_eip[name]
 
     actualValue := has_valid_vpc(EIP)
@@ -42,6 +44,48 @@ CxPolicy[result] {
 		"keyExpectedValue": "All EIPs should be attached",
 		"keyActualValue": actualValue
 	}
+}
+
+has_valid_instance(resource,doc) {
+    # instance must exist in the file
+    common_lib.valid_key(resource,"instance")
+    instance_name = split(resource.instance,".")[1]
+    instance_type = get_allowed_types(split(resource.instance,".")[0])
+
+    resource_exists(instance_name,instance_type,doc)
+}
+
+has_eip_associated(eip_name, doc) {
+  # "allocate" field should be defined as the eip and "instance" associated must exist in the document
+  association := doc.resource.aws_eip_association[_]
+  allocated_eip = split(association.allocation_id,".")[1]
+  eip_name == allocated_eip
+
+  instance_id := association.instance_id
+  instance_type = get_allowed_types(split(instance_id,".")[0])
+  instance_type != "none"
+  instance_name = split(instance_id,".")[1]
+
+  resource_exists(instance_name,instance_type,doc)
+}
+
+has_valid_network_interface(resource, doc) {
+  # resource´s network interface must exist in the document
+  resource_interface := split(resource.network_interface,".")[1]
+  doc.resource.aws_network_interface[valid_interface]
+  resource_interface == valid_interface
+}
+
+has_nat_gateway(eip_name, doc) {
+  # nat_gateway must include eip
+  eips_in_nat_gateway := split(doc.resource.aws_nat_gateway[_].allocation_id,".")[1]
+  eip_name == eips_in_nat_gateway
+}
+
+has_transfer_server(eip_name,doc) {
+  # transfer_server must include eip
+  eip_in_transfer_server := split(doc.resource.aws_transfer_server[_].endpoint_details.address_allocation_ids[_],".")[1]
+  eip_name == eip_in_transfer_server
 }
 
 has_valid_vpc(resource) = actualValue{
@@ -72,45 +116,6 @@ bool_has_valid_vpc(resource) = true {
     common_lib.valid_key(resource,"domain")
     resource.domain == "vpc"
 } else = false
-
-has_valid_instance(resource,doc) {
-    common_lib.valid_key(resource,"instance")
-    instance_name = split(resource.instance,".")[1]
-    instance_type = get_allowed_types(split(resource.instance,".")[0])
-
-    resource_exists(instance_name,instance_type,doc)
-}
-
-has_eip_associated(eip_name, doc) {
-  association := doc.resource.aws_eip_association[_]
-  allocation_target_name = split(association.allocation_id,".")[1]
-  allocation_target_name == eip_name
-
-  instance_id := association.instance_id
-  instance_type = get_allowed_types(split(instance_id,".")[0])
-  instance_type != "none"
-  instance_name = split(instance_id,".")[1]
-
-  resource_exists(instance_name,instance_type,doc)
-}
-
-has_valid_network_interface(resource, doc) {
-  doc.resource.aws_network_interface[name]
-  resource_network = split(resource.network_interface,".")[1]
-  name == resource_network
-}
-
-has_nat_gateway(name, doc) {
-  resource = doc.resource
-  gateway_name = split(resource.aws_nat_gateway[_].allocation_id,".")[1]
-  gateway_name == name
-}
-
-has_transfer_server(name,doc) {
-  resource = doc.resource
-  server_name = split(resource.aws_transfer_server[_].endpoint_details.address_allocation_ids[_],".")[1]
-  server_name == name
-}
 
 get_allowed_types(instance) = result {
   contains(instance, "aws_instance")
