@@ -4,65 +4,44 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-  # case of no security alert policy 
-  resources := input.document[i].resource
-	
-  not common_lib.valid_key(resources,"azurerm_mssql_server_security_alert_policy")
-    
-  result := {
-    "documentId": input.document[i].id,
-    "resourceType": "azurerm_mssql_server_security_alert_policy",
-    "resourceName": "n/a",
-    "searchKey": "securityAlertPolicies",
-    "issueType": "MissingAttribute",
-    "keyExpectedValue": "Security alert policy should be defined and enabled",
-    "keyActualValue": "Security alert policy in undefined",
-    "searchLine": [],
-  }
-}
+	doc := input.document[i]
+	resource := doc.resource.azurerm_mssql_server_security_alert_policy[name]
 
-any_security_alert_policy(doc, types) {
-  [_, value] := walk(doc)
-  value.type == types[_]
-}
-
-CxPolicy[result] {
-	# case of security alert policy defined but not enabled
-	resources := input.document[i].resource
-	common_lib.valid_key(resources,"azurerm_mssql_server_security_alert_policy")
-	resource := resources.azurerm_mssql_server_security_alert_policy[name]
-
-	not lower(resource.state) == "enabled"
+	not common_lib.valid_key(resource, "email_account_admins")
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_mssql_server_security_alert_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_mssql_server_security_alert_policy[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_mssql_server_security_alert_policy.%s.state' should be enabled", [name]),
-		"keyActualValue": sprintf("'azurerm_mssql_server_security_alert_policy.%s.state' is not enabled", [name]),
+		"keyExpectedValue": sprintf("'azurerm_mssql_server_security_alert_policy[%s].email_account_admins' should be defined", [name]),
+		"keyActualValue": sprintf("'azurerm_mssql_server_security_alert_policy[%s].email_account_admins' is undefined", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_mssql_server_security_alert_policy", name], []),
+		"remediation": "email_account_admins = true",
+		"remediationType": "addition",
 	}
 }
 
 CxPolicy[result] {
-	# case of security alert policy defined and enabled but with disabled alerts
-    resources := input.document[i].resource
-	common_lib.valid_key(resources,"azurerm_mssql_server_security_alert_policy")
-	resource := resources.azurerm_mssql_server_security_alert_policy[name]
+	doc := input.document[i]
+	resource := doc.resource.azurerm_mssql_server_security_alert_policy[name]
 
-	lower(resource.state) == "enabled"
-    resource.disabled_alerts[idx] != ""
+	resource.email_account_admins == false
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": "azurerm_mssql_server_security_alert_policy",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("azurerm_mssql_server_security_alert_policy[%s]", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_mssql_server_security_alert_policy.%s.state' should be enabled", [name]),
-		"keyActualValue": sprintf("'azurerm_mssql_server_security_alert_policy.%s.state' is not enabled", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "azurerm_mssql_server_security_alert_policy", name], []),
+		"searchKey": sprintf("azurerm_mssql_server_security_alert_policy[%s].email_account_admins", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'azurerm_mssql_server_security_alert_policy[%s].email_account_admins' should be true", [name]),
+		"keyActualValue": sprintf("'azurerm_mssql_server_security_alert_policy[%s].email_account_admins' is false", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "azurerm_mssql_server_security_alert_policy", name, "email_account_admins"], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
 	}
 }
