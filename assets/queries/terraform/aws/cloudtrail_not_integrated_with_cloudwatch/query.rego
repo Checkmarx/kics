@@ -15,7 +15,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"resourceType": "aws_cloudtrail",
 		"resourceName": tf_lib.get_resource_name(cloudtrail, name),
-        "searchValue": attribute,
+		"searchValue": attribute,
 		"searchKey": sprintf("aws_cloudtrail[%s]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_cloudtrail[%s].%s should be defined and not null", [name, attribute]),
