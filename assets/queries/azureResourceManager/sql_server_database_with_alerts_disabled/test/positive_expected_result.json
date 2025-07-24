@@ -68,7 +68,7 @@
   {
     "queryName": "SQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
-    "line": 13,
+    "line": 3,
     "filename": "positive6.bicep"
   }
 ]
