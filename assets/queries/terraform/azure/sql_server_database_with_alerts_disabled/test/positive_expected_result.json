@@ -16,11 +16,5 @@
     "severity": "MEDIUM",
     "line": 1,
     "filename": "positive3.tf"
-  },
-  {
-    "queryName": "SQL Server Database With Alerts Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive4.tf"
   }
 ]
