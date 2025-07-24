@@ -124,7 +124,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_labels match any label on template metadata", [name]),
 		"keyActualValue": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_labels don't match any label on template metadata", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "kubernetes_deployment", name, "spec"], ["template", "spec", "affinity", "pod_anti_affinity", "preferred_during_scheduling_ignored_during_execution", "match_labels"]),
+		"searchLine": common_lib.build_search_line(["resource", "kubernetes_deployment", name, "spec"], ["template", "spec", "affinity", "pod_anti_affinity", "preferred_during_scheduling_ignored_during_execution", "pod_affinity_term", "label_selector", "match_labels"]),
 	}
 }
 
@@ -185,7 +185,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels match any label on template metadata", [name]),
 		"keyActualValue": sprintf("kubernetes_deployment[%s].spec.template.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_labels don't match any label on template metadata", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "kubernetes_deployment", name, "spec"], ["template", "spec", "affinity", "pod_anti_affinity", "required_during_scheduling_ignored_during_execution", "match_labels"]),
+		"searchLine": common_lib.build_search_line(["resource", "kubernetes_deployment", name, "spec"], ["template", "spec", "affinity", "pod_anti_affinity", "required_during_scheduling_ignored_during_execution", "label_selector", "match_labels", "match_labels"]),
 	}
 }
 
