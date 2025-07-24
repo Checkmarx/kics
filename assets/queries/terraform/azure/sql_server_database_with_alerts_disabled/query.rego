@@ -22,7 +22,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	# case of security alert policy defined but not enabled
+	# case of security alert policy defined but state is undefined
 	resources := input.document[i].resource
 	common_lib.valid_key(resources,"azurerm_mssql_server_security_alert_policy")
 	resource := resources.azurerm_mssql_server_security_alert_policy[name]
@@ -42,7 +42,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	# case of security alert policy defined but not enabled
+	# case of security alert policy defined but state is not "Enabled"
 	resources := input.document[i].resource
 	common_lib.valid_key(resources,"azurerm_mssql_server_security_alert_policy")
 	resource := resources.azurerm_mssql_server_security_alert_policy[name]
