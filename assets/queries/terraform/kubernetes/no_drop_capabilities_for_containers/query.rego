@@ -11,8 +11,8 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_array(containers) == true
-	containersType := containers[_]
+	is_array(containers)
+	containersType := containers[y]
 
 	not common_lib.valid_key(containersType, "security_context")
 
@@ -22,8 +22,9 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context should be set", [resourceType, name, specInfo.path, types[x], containersType]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context is undefined", [resourceType, name, specInfo.path, types[x], containersType]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context should be set", [resourceType, name, specInfo.path, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y]),
 	}
 }
 
@@ -33,8 +34,8 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_array(containers) == true
-	containerSecurity := containers[_].security_context
+	is_array(containers)
+	containerSecurity := containers[y].security_context
 
 	not common_lib.valid_key(containerSecurity, "capabilities")
 
@@ -44,8 +45,9 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities should be set", [resourceType, name, specInfo.path, types[x], containerSecurity]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities is undefined", [resourceType, name, specInfo.path, types[x], containerSecurity]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities should be set", [resourceType, name, specInfo.path, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "security_context"]),
 	}
 }
 
@@ -55,8 +57,8 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_array(containers) == true
-	containerCapabilities := containers[_].security_context.capabilities
+	is_array(containers)
+	containerCapabilities := containers[y].security_context.capabilities
 
 	not common_lib.valid_key(containerCapabilities, "drop")
 
@@ -66,8 +68,9 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].%s.%s", [resourceType, name, specInfo.path, types[x]]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.drop should be set", [resourceType, name, specInfo.path, types[x], containerCapabilities]),
-		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.drop is undefined", [resourceType, name, specInfo.path, types[x], containerCapabilities]),
+		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.drop should be set", [resourceType, name, specInfo.path, types[x], y]),
+		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.drop is undefined", [resourceType, name, specInfo.path, types[x], y]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "security_context", "capabilities"]),
 	}
 }
 
@@ -77,7 +80,7 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_object(containers) == true
+	is_object(containers)
 	not common_lib.valid_key(containers, "security_context")
 
 	result := {
@@ -88,6 +91,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.security_context is undefined", [resourceType, name, specInfo.path, types[x]]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x]]),
 	}
 }
 
@@ -97,7 +101,7 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_object(containers) == true
+	is_object(containers)
 	not common_lib.valid_key(containers.security_context, "capabilities")
 
 	result := {
@@ -108,6 +112,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.capabilities should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.security_context.capabilities is undefined", [resourceType, name, specInfo.path, types[x]]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "security_context"]),
 	}
 }
 
@@ -117,7 +122,7 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_object(containers) == true
+	is_object(containers)
 	not common_lib.valid_key(containers.security_context.capabilities, "drop")
 
 	result := {
@@ -128,5 +133,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.capabilities.drop should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.security_context.capabilities.drop is undefined", [resourceType, name, specInfo.path, types[x]]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "security_context", "capabilities"]),
 	}
 }
