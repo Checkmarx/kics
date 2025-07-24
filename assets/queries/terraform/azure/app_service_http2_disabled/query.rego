@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 resources := {"azurerm_app_service", "azurerm_linux_web_app", "azurerm_windows_web_app"}
 
 CxPolicy[result] {
-	app := input.document[i].resource.azurerm_app_service[name]
+	app := input.document[i].resource[resources[m]][name]
 
 	not common_lib.valid_key(app, "site_config")
 
