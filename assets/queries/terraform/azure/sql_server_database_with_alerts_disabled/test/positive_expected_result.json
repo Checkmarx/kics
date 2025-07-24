@@ -1,24 +1,24 @@
 [
   {
-    "queryName": "Alerts Disabled On SQL Server Database",
+    "queryName": "SQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
     "line": 7,
     "filename": "positive1.tf"
   },
   {
-    "queryName": "Alerts Disabled On SQL Server Database",
+    "queryName": "SQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
     "line": 4,
     "filename": "positive2.tf"
   },
   {
-    "queryName": "Alerts Disabled On SQL Server Database",
+    "queryName": "SQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
     "line": 1,
     "filename": "positive3.tf"
   },
   {
-    "queryName": "Alerts Disabled On SQL Server Database",
+    "queryName": "SQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
     "line": 1,
     "filename": "positive4.tf"
