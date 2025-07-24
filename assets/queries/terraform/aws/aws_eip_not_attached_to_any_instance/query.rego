@@ -5,13 +5,13 @@ import data.generic.common as common_lib
 
 
 CxPolicy[result] {
-  # to be unattatched 
+  # Unattatched - valid vpc but no association of any kind
 	EIP := input.document[i].resource.aws_eip[eip_name]
     
     bool_has_valid_vpc(EIP) 
     not has_valid_instance(EIP,input.document[i])
-    not has_valid_network_interface(EIP, input.document[i])
     not has_eip_associated(eip_name, input.document[i])
+    not has_valid_network_interface(EIP, input.document[i])
     not has_nat_gateway(eip_name, input.document[i])
     not has_transfer_server(eip_name, input.document[i])
     
@@ -28,7 +28,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-  # Dynamic "ActualValue" for invalid vpc
+  # Unattatched - invalid vpc with dynamic "ActualValue"
 	EIP := input.document[i].resource.aws_eip[name]
 
     actualValue := has_valid_vpc(EIP)
@@ -47,7 +47,7 @@ CxPolicy[result] {
 }
 
 has_valid_instance(resource,doc) {
-    # instance must exist in the file
+    # Instance must exist in the file
     common_lib.valid_key(resource,"instance")
     instance_name = split(resource.instance,".")[1]
     instance_type = get_allowed_types(split(resource.instance,".")[0])
@@ -70,7 +70,7 @@ has_eip_associated(eip_name, doc) {
 }
 
 has_valid_network_interface(resource, doc) {
-  # resource´s network interface must exist in the document
+  # Resource´s network interface must exist in the document
   resource_interface := split(resource.network_interface,".")[1]
   doc.resource.aws_network_interface[valid_interface]
   resource_interface == valid_interface

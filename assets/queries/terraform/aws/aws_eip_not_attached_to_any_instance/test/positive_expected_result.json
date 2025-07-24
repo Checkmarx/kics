@@ -28,5 +28,17 @@
     "severity": "LOW",
     "line": 5,
     "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "AWS EIP not attached to any instance",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "AWS EIP not attached to any instance",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive7.tf"
   }
 ]
