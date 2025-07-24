@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}%s", [metadata.name, specInfo.path, types[t], container.name, dynamic_path.searchKey]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}", [metadata.name, specInfo.path, types[t], container.name]),
 		"issueType": "MissingAttribute",
 		"searchValue": document.kind, # multiple kind can match the same spec structure
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.resources.requests.memory should be defined", [metadata.name, specInfo.path, types[t], container.name]),

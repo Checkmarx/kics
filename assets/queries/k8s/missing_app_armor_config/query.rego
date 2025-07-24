@@ -41,7 +41,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
-		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, annotationsPath]),
+		"searchKey": trim_right(sprintf("metadata.name={{%s}}.%s", [metadata.name, metadataInfo.path]), "."),
         "issueType": "IncorrectValue",
         "searchValue": sprintf("%s%s", [document.kind, expectedKey]), # handle multiple kinds and key combinations
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s[%s] should be set to 'runtime/default' or 'localhost'", [metadata.name, annotationsPath, expectedKey]),

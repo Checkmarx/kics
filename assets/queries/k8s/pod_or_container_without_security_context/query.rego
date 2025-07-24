@@ -23,6 +23,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, specInfo.path]),
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s has a security context", [metadata.name, specInfo.path]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s does not have a security context", [metadata.name, specInfo.path]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), []),
 	}
 }
 

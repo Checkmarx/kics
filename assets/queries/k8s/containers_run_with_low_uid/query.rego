@@ -72,7 +72,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
-		"searchKey": common_lib.remove_last_point(sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}", [metadata.name, specInfo.path, types[x], specInfo.spec[types[x]][c].name])),
+		"searchKey": common_lib.remove_last_point(sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.%s", [metadata.name, specInfo.path, types[x], specInfo.spec[types[x]][c].name, nested_info2.searchKey])),
 		"issueType": "MissingAttribute",
 		"searchValue": document.kind, # multiple kind can match the same spec structure
 		"keyExpectedValue": sprintf("3 metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser should be defined", [metadata.name, specInfo.path, types[x], specInfo.spec[types[x]][c].name]),

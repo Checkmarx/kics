@@ -20,7 +20,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext", [metadata.name, specInfo.path, types[x], specInfo.spec[types[x]][c].name]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser", [metadata.name, specInfo.path, types[x], specInfo.spec[types[x]][c].name]),
 		"issueType": "IncorrectValue",
 		"searchValue": document.kind, # multiple kind can match the same spec structure
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true", [metadata.name, specInfo.path, types[x], specInfo.spec[types[x]][c].name]),
@@ -47,7 +47,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.securityContext", [metadata.name, specInfo.path]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.securityContext.runAsUser", [metadata.name, specInfo.path]),
 		"issueType": "IncorrectValue",
 		"searchValue": document.kind, # multiple kind can match the same spec structure
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.securityContext.runAsUser is higher than 0 and/or 'runAsNonRoot' is true", [metadata.name, specInfo.path]),

@@ -43,7 +43,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
-		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}%s", [metadata.name, specInfo.path, types[x], container.name, dynamic_path.searchKey]),
+		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
 		"searchValue": document.kind, # multiple kind can match the same spec structure
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.readOnlyRootFilesystem should be set to true", [metadata.name, specInfo.path, types[x], container.name]),
