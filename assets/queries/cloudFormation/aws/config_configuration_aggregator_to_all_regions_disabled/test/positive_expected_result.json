@@ -46,5 +46,11 @@
     "severity": "LOW",
     "line": 62,
     "fileName": "positive2.json"
-  }
+  },
+  {
+    "queryName": "Configuration Aggregator to All Regions Disabled",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive3.yaml"
+  },
 ]

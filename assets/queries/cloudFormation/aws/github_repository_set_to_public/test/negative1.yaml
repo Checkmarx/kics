@@ -8,8 +8,8 @@ Resources:
           Bucket: "my-bucket"
           Key: "sourcecode.zip"
           ObjectVersion: "1"
-      EnableIssues: true
-      IsPrivate: true
+      EnableIssues: "true"
+      IsPrivate: "true"
       RepositoryAccessToken: '{{resolve:secretsmanager:your-secret-manager-name:SecretString:your-secret-manager-key}}'
       RepositoryDescription: a description
       RepositoryName: my-github-repo
