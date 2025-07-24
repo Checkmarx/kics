@@ -13,5 +13,5 @@ Resources:
       Repository: String
       BasicAuthConfig:
         EnableBasicAuth: "true"
-        Password: "@skdsjdk0234!AB"
+        Password: ""
         Username: admin
