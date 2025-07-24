@@ -23,7 +23,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources should be set", [resourceType, name, specInfo.path, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources is undefined", [resourceType, name, specInfo.path, types[x], y]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x]], []),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x]]),
 	}
 }
 
@@ -44,7 +44,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.resources should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.resources is undefined", [resourceType, name, specInfo.path, types[x]]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x]], []),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x]]),
 	}
 }
 
@@ -71,7 +71,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].resources.%s should be set", [resourceType, name, specInfo.path, types[x], y, resourceTypes]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].resources.%s is undefined", [resourceType, name, specInfo.path, types[x], y, resourceTypes]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], y], ["resources"]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "resources"]),
 	}
 }
 
@@ -97,6 +97,6 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.resources.%s should be set", [resourceType, name, specInfo.path, types[x], resourceTypes]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.resources.%s is undefined", [resourceType, name, specInfo.path, types[x], resourceTypes]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], "resources"], []),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "resources"]),
 	}
 }

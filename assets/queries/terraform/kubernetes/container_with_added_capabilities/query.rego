@@ -22,7 +22,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.add should be undefined", [resourceType, name, specInfo.path, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.add is set", [resourceType, name, specInfo.path, types[x], y]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], y], ["security_context", "capabilities", "add"]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "security_context", "capabilities", "add"]),
 	}
 }
 
@@ -43,6 +43,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.capabilities.add should be undefined", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("k%s[%s].%s.%s.security_context.capabilities.add is set", [resourceType, name, specInfo.path, types[x]]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x]], ["security_context", "capabilities", "add"]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "security_context", "capabilities", "add"]),
 	}
 }

@@ -26,7 +26,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount.read_only should be set to true", [resourceType, name, specInfo.path, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].volume_mount.read_only is set to false", [resourceType, name, specInfo.path, types[x], y]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], y], ["volume_mount", "read_only"]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "volume_mount", "read_only"]),
 	}
 }
 
@@ -51,7 +51,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only should be set to true", [resourceType, name, specInfo.path, types[x], y, j]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only is set to false", [resourceType, name, specInfo.path, types[x], y, j]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], y], ["volume_mount", j, "read_only"]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "volume_mount", j, "read_only"]),
 	}
 }
 
@@ -76,7 +76,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount.read_only should be set to true", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.volume_mount.read_only is set to false", [resourceType, name, specInfo.path, types[x]]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x]], ["volume_mount", "read_only"]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "volume_mount", "read_only"]),
 		"remediation": json.marshal({
 			"before": "false",
 			"after": "true",
@@ -106,7 +106,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only should be set to true", [resourceType, name, specInfo.path, types[x], j]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only is set to false", [resourceType, name, specInfo.path, types[x], j]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x]], ["volume_mount", j, "read_only"]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "volume_mount", j, "read_only"]),
 		"remediation": json.marshal({
 			"before": "false",
 			"after": "true",
@@ -137,7 +137,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount.read_only should be set", [resourceType, name, specInfo.path, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].volume_mount.read_only is undefined", [resourceType, name, specInfo.path, types[x], y]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], y], ["volume_mount"]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "volume_mount"]),
 		"remediation": "read_only = true",
 		"remediationType": "addition",
 	}
@@ -165,7 +165,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only should be set", [resourceType, name, specInfo.path, types[x], y, j]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].volume_mount[%d].read_only is undefined", [resourceType, name, specInfo.path, types[x], y, j]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x], y], ["volume_mount", j]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "volume_mount", j]),
 	}
 }
 
@@ -191,7 +191,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount.read_only should be set", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.volume_mount.read_only is undefined", [resourceType, name, specInfo.path, types[x]]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x]], ["volume_mount"]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "volume_mount"]),
 		"remediation": "read_only = true",
 		"remediationType": "addition",
 	}
@@ -219,7 +219,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only should be set", [resourceType, name, specInfo.path, types[x], j]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.volume_mount[%d].read_only is undefined", [resourceType, name, specInfo.path, types[x], j]),
-		"searchLine": common_lib.build_search_line(["resource", resourceType, name, specInfo.path, types[x]], ["volume_mount", j]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "volume_mount", j]),
 		"remediation": "read_only = true",
 		"remediationType": "addition",
 	}
