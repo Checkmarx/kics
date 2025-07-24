@@ -60,6 +60,8 @@ path_check(resource) = "" {
   	resource.properties == {} 
   } else = ".properties" {
   	not common_lib.valid_key(resource.properties,"networkAcls")
-  } else = ".properties.networkAcls" {
-  	resource.properties.networkAcls == {} 
-  } else = "there_is_complete_path"
+  } else = "there_is_complete_path" {
+	common_lib.valid_key(resource.properties.networkAcls,"defaultAction")
+  } else = "there_is_complete_path" {
+	common_lib.valid_key(resource.properties.networkAcls,"bypass")
+  } else = ".properties.networkAcls"
