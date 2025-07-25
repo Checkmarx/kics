@@ -16,8 +16,7 @@ CxPolicy[result] {
     "searchKey": "azurerm_mssql_server_security_alert_policy",
     "issueType": "MissingAttribute",
     "keyExpectedValue": "Security alert policy should be defined and enabled",
-    "keyActualValue": "Security alert policy in undefined",
-    "searchLine": [],
+    "keyActualValue": "Security alert policy in undefined"
   }
 }
 
