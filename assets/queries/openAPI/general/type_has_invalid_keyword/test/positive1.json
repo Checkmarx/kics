@@ -52,6 +52,14 @@
               "pattern": "\\(\\d{3}\\) ?\\d{3}-\\d{4}"
             },
             "minItems": 1
+          },
+          "batatas": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "pattern": "\\(\\d{3}\\) ?\\d{3}-\\d{4}"
+            },
+            "minItems": 1
           }
         }
       }
