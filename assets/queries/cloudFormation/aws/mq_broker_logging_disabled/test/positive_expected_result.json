@@ -63,30 +63,30 @@
     "queryName": "MQ Broker Logging Disabled",
     "severity": "MEDIUM",
     "line": 22,
-    "fileName": "positive5.yaml"
+    "fileName": "positive3.yaml"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
     "severity": "MEDIUM",
     "line": 42,
-    "fileName": "positive5.yaml"
+    "fileName": "positive3.yaml"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
     "severity": "MEDIUM",
     "line": 63,
-    "fileName": "positive5.yaml"
+    "fileName": "positive3.yaml"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
     "severity": "MEDIUM",
     "line": 84,
-    "fileName": "positive5.yaml"
+    "fileName": "positive3.yaml"
   },
   {
     "queryName": "MQ Broker Logging Disabled",
     "severity": "MEDIUM",
     "line": 88,
-    "fileName": "positive5.yaml"
+    "fileName": "positive3.yaml"
   }
 ]

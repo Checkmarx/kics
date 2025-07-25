@@ -1,6 +1,15 @@
 AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  ParentPassword:
+    Description: 'Password'
+    Type: String
+    Default: "@skdsjdk0234!AB"
+  ParentUsername:
+    Description: 'Username'
+    Type: String
+    Default: ""
 Resources:
-  NewAmpApp-1:
+  NewAmpApp-4:
     Type: AWS::Amplify::App
     Properties:
       BuildSpec: String
@@ -13,5 +22,5 @@ Resources:
       Repository: String
       BasicAuthConfig:
         EnableBasicAuth: "true"
-        Password: ""
-        Username: admin
+        Password: !Ref ParentPassword
+        Username: !Ref ParentUsername

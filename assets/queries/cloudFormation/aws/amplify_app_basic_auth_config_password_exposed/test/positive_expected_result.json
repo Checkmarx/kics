@@ -26,7 +26,7 @@
   {
     "queryName": "Amplify App Basic Auth Config Password Exposed",
     "severity": "HIGH",
-    "line": 16,
+    "line": 6,
     "fileName": "positive5.yaml"
   },
   {

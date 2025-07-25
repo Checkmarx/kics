@@ -27,6 +27,6 @@
     "queryName": "RDS Storage Not Encrypted",
     "severity": "HIGH",
     "line": 35,
-    "fileName": "positive5.json"
+    "fileName": "positive5.yaml"
   }
 ]
