@@ -3,7 +3,7 @@
 # it does not define an ENTRYPOINT as this is a requirement described here:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops#linux-based-containers
 #
-FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.24.4-bookworm as build_env
+FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.24.5-bookworm as build_env
 # Create a group and user
 RUN groupadd checkmarx && useradd -g checkmarx -M -s /bin/bash checkmarx
 USER checkmarx
@@ -41,7 +41,7 @@ HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 # be sure to use /app/bin/kics as a path to the binary
 #
 # runtime image
-FROM debian:buster-slim
+FROM debian:stable-slim
 
 RUN groupadd checkmarx && useradd -g checkmarx -M -s /bin/bash checkmarx
 
