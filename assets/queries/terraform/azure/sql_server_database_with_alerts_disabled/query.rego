@@ -22,26 +22,6 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	# case of security alert policy defined but state is undefined
-	resources := input.document[i].resource
-	common_lib.valid_key(resources,"azurerm_mssql_server_security_alert_policy")
-	resource := resources.azurerm_mssql_server_security_alert_policy[name]
-
-	not common_lib.valid_key(resource, "state")
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "azurerm_mssql_server_security_alert_policy",
-		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("azurerm_mssql_server_security_alert_policy[%s]", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_mssql_server_security_alert_policy.%s.state' should be defined and enabled", [name]),
-		"keyActualValue": sprintf("'azurerm_mssql_server_security_alert_policy.%s.state' is not defined and enabled", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "azurerm_mssql_server_security_alert_policy", name], []),
-	}
-}
-
-CxPolicy[result] {
 	# case of security alert policy defined but state is not "Enabled"
 	resources := input.document[i].resource
 	common_lib.valid_key(resources,"azurerm_mssql_server_security_alert_policy")
@@ -77,8 +57,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_mssql_server_security_alert_policy[%s].disabled_alerts", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_mssql_server_security_alert_policy.%s.disabled_alerts' should not have values defined ", [name]),
-		"keyActualValue": sprintf("'azurerm_mssql_server_security_alert_policy.%s.disabled_alerts' has values defined", [name]),
+		"keyExpectedValue": sprintf("'azurerm_mssql_server_security_alert_policy.%s.disabled_alerts' should be empty", [name]),
+		"keyActualValue": sprintf("'azurerm_mssql_server_security_alert_policy.%s.disabled_alerts' is not empty", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_mssql_server_security_alert_policy", name, "disabled_alerts"], []),
 	}
 }

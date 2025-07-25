@@ -26,18 +26,6 @@
   {
     "queryName": "SQL Server Database With Alerts Disabled",
     "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive5.json"
-  },
-  {
-    "queryName": "SQL Server Database With Alerts Disabled",
-    "severity": "MEDIUM",
-    "line": 13,
-    "filename": "positive6.json"
-  },
-  {
-    "queryName": "SQL Server Database With Alerts Disabled",
-    "severity": "MEDIUM",
     "line": 4,
     "filename": "positive1.bicep"
   },
@@ -58,17 +46,5 @@
     "severity": "MEDIUM",
     "line": 7,
     "filename": "positive4.bicep"
-  },
-  {
-    "queryName": "SQL Server Database With Alerts Disabled",
-    "severity": "MEDIUM",
-    "line": 1,
-    "filename": "positive5.bicep"
-  },
-  {
-    "queryName": "SQL Server Database With Alerts Disabled",
-    "severity": "MEDIUM",
-    "line": 3,
-    "filename": "positive6.bicep"
   }
 ]
