@@ -11,7 +11,7 @@ func init() { //nolint
 					"-p", "/path/e2e/fixtures/samples/terraform-single.tf"},
 			},
 		},
-		WantStatus: []int{30},
+		WantStatus: []int{40},
 	}
 
 	Tests = append(Tests, testSample)
