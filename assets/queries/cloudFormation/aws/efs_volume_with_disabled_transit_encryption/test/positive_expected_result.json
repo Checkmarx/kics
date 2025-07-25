@@ -15,12 +15,12 @@
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 50,
-    "fileName": "positive3.yml"
+    "fileName": "positive3.yaml"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
     "line": 49,
-    "fileName": "positive4.yml"
+    "fileName": "positive4.yaml"
   }
 ]
