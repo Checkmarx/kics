@@ -1,4 +1,4 @@
-resource "azurerm_windows_web_app" "pass2" {
+resource "azurerm_windows_web_app" "positive10" {
   name                = "example"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_service_plan.example.location
