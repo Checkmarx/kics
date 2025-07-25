@@ -26,6 +26,18 @@
   {
     "queryName": "Website with Client Certificate Auth Disabled",
     "severity": "MEDIUM",
+    "line": 46,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "Website with Client Certificate Auth Disabled",
+    "severity": "MEDIUM",
+    "line": 44,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "Website with Client Certificate Auth Disabled",
+    "severity": "MEDIUM",
     "line": 5,
     "fileName": "positive1.bicep"
   },
@@ -46,5 +58,17 @@
     "severity": "MEDIUM",
     "line": 7,
     "fileName": "positive4.bicep"
+  },
+  {
+    "queryName": "Website with Client Certificate Auth Disabled",
+    "severity": "MEDIUM",
+    "line": 25,
+    "fileName": "positive5.bicep"
+  },
+  {
+    "queryName": "Website with Client Certificate Auth Disabled",
+    "severity": "MEDIUM",
+    "line": 23,
+    "fileName": "positive6.bicep"
   }
 ]
