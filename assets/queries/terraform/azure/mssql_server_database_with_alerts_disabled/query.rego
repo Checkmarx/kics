@@ -6,7 +6,8 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
   # case of no security alert policy 
   resources := input.document[i].resource
-	
+
+  common_lib.valid_key(resources,"azurerm_mssql_server")
   not common_lib.valid_key(resources,"azurerm_mssql_server_security_alert_policy")
     
   result := {
@@ -16,7 +17,8 @@ CxPolicy[result] {
     "searchKey": "azurerm_mssql_server_security_alert_policy",
     "issueType": "MissingAttribute",
     "keyExpectedValue": "Security alert policy should be defined and enabled",
-    "keyActualValue": "Security alert policy in undefined"
+    "keyActualValue": "Security alert policy in undefined",
+	"searchLine": common_lib.build_search_line(["resource", "azurerm_mssql_server"], []),
   }
 }
 
