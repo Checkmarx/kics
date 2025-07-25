@@ -244,6 +244,7 @@ func initScan(queryID string) (*engine.Inspector, error) {
 		t,
 		&queryFilter,
 		make(map[string]bool),
+		make(map[string]bool),
 		c.ScanParams.QueryExecTimeout,
 		c.ScanParams.UseOldSeverities,
 		false,
