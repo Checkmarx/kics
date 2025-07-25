@@ -1,0 +1,30 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Description": "Description\": \"AWS CloudFormation Sample Template for creating an Amazon RDS DB instance: Sample template showing how to create a DB instance with Enhanced Monitoring enabled. **WARNING** This template creates an RDS DB instance. You will be billed for the AWS resources used if you create a stack from this template.",
+  "Parameters": {
+    "DBInstanceClass": {
+      "Type": "String",
+      "ConstraintDescription": "Must select a valid DB instance type.",
+      "Default": "db.m5.large",
+      "Description": "DB instance class"
+    }
+  },
+  "Resources": {
+    "MyDB": {
+      "Properties": {
+        "EngineVersion": "8.0.16",
+        "MasterUsername": "DBUsername",
+        "MonitoringInterval": "60",
+        "MonitoringRoleArn": "arn:aws:iam::123456789012:role/rds-monitoring-role",
+        "AutoMinorVersionUpgrade": "true",
+        "DBInstanceIdentifier": "DBInstanceID",
+        "DBInstanceClass": "DBInstanceClass",
+        "Engine": "MySQL",
+        "MasterUserPassword": "DBPassword",
+        "DBName": "DBName",
+        "AllocatedStorage": "DBAllocatedStorage"
+      },
+      "Type": "AWS::RDS::DBInstance"
+    }
+  }
+}

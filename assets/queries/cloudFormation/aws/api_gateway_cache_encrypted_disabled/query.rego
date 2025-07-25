@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	not common_lib.valid_key(stageDescription, "CacheDataEncrypted")
 
-	stageDescription.CachingEnabled == true
+	cf_lib.isCloudFormationTrue(stageDescription.CachingEnabled)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -28,9 +28,9 @@ CxPolicy[result] {
 	deployment.Type == "AWS::ApiGateway::Deployment"
 	stageDescription := deployment.Properties.StageDescription
 
-	stageDescription.CacheDataEncrypted == false
+	cf_lib.isCloudFormationFalse(stageDescription.CacheDataEncrypted)
 
-	stageDescription.CachingEnabled == true
+	cf_lib.isCloudFormationTrue(stageDescription.CachingEnabled)
 
 	result := {
 		"documentId": input.document[i].id,

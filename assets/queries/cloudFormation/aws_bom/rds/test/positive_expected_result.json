@@ -46,5 +46,11 @@
     "severity": "TRACE",
     "line": 3,
     "fileName": "positive6.yaml"
+  },
+  {
+    "queryName": "BOM - AWS RDS",
+    "severity": "TRACE",
+    "line": 3,
+    "fileName": "positive7.yaml"
   }
 ]

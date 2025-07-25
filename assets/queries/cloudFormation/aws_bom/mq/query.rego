@@ -31,7 +31,7 @@ CxPolicy[result] {
 }
 
 check_publicly_accessible(resource) = accessibility {
-	resource.Properties.PubliclyAccessible == true
+	cf_lib.isCloudFormationTrue(resource.Properties.PubliclyAccessible)
 	accessibility := "public"
 } else = accessibility {
 	accessibility := "private"

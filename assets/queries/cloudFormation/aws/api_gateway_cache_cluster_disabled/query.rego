@@ -28,7 +28,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::ApiGateway::Stage"
 	properties := resource.Properties
 
-	properties.CacheClusterEnabled == false
+	cf_lib.isCloudFormationFalse(properties.CacheClusterEnabled)
 
 	result := {
 		"documentId": input.document[i].id,

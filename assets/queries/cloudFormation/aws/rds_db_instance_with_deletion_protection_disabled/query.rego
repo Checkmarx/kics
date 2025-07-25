@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resource := Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
 	properties := resource.Properties
-	properties.DeletionProtection == false
+	cf_lib.isCloudFormationFalse(properties.DeletionProtection)
 
 	result := {
 		"documentId": input.document[i].id,

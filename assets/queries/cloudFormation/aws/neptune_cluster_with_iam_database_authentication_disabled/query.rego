@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resource := Resources[name]
 	resource.Type == "AWS::Neptune::DBCluster"
 	properties := resource.Properties
-	properties.IamAuthEnabled == false
+	cf_lib.isCloudFormationFalse(properties.IamAuthEnabled)
 
 	result := {
 		"documentId": input.document[i].id,

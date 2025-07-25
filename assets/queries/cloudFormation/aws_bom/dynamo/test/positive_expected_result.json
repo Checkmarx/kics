@@ -22,5 +22,11 @@
     "severity": "TRACE",
     "line": 3,
     "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "BOM - AWS DynamoDB",
+    "severity": "TRACE",
+    "line": 27,
+    "fileName": "positive5.yaml"
   }
 ]

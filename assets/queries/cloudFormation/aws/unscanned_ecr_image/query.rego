@@ -26,7 +26,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::ECR::Repository"
 	properties := resource.Properties
 
-	isResFalse(properties.ImageScanningConfiguration.ScanOnPush)
+	cf_lib.isCloudFormationFalse(properties.ImageScanningConfiguration.ScanOnPush)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -39,8 +39,3 @@ CxPolicy[result] {
 	}
 }
 
-isResFalse(answer) {
-	answer == "false"
-} else {
-	answer == false
-}

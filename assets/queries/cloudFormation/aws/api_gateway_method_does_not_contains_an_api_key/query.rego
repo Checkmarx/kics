@@ -26,7 +26,7 @@ CxPolicy[result] {
 	resource = document.Resources[name]
 	resource.Type == "AWS::ApiGateway::Method"
 
-	resource.Properties.ApiKeyRequired == false
+	cf_lib.isCloudFormationFalse(resource.Properties.ApiKeyRequired)
 
 	result := {
 		"documentId": document.id,

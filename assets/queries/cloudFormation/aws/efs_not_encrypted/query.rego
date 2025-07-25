@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resource = document.Resources[key]
 	resource.Type == "AWS::EFS::FileSystem"
 	properties := resource.Properties
-	properties.Encrypted == false
+	cf_lib.isCloudFormationFalse(properties.Encrypted)
 
 	result := {
 		"documentId": input.document[i].id,

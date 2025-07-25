@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource := doc[name]
 	resource.Type == "AWS::EC2::Instance"
 
-	resource.Properties.Monitoring == false
+	cf_lib.isCloudFormationFalse(resource.Properties.Monitoring)
 
 	result := {
 		"documentId": input.document[i].id,

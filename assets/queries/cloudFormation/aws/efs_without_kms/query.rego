@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource = document.Resources[name]
 	resource.Type == "AWS::EFS::FileSystem"
 	properties := resource.Properties
-	properties.Encrypted == false
+	cf_lib.isCloudFormationFalse(properties.Encrypted)
 	not common_lib.valid_key(properties, "KmsKeyId")
 
 	result := {

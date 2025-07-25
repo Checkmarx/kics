@@ -34,5 +34,11 @@
     "severity": "LOW",
     "line": 7,
     "fileName": "positive6.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "LOW",
+    "line": 34,
+    "fileName": "positive7.yaml"
   }
 ]

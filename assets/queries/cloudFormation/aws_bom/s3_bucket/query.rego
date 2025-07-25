@@ -40,8 +40,8 @@ get_bucket_acl(bucket_resource) = acl {
 }
 
 is_public_access_blocked(properties) {
-	properties.BlockPublicAcls == true
-	properties.BlockPublicPolicy == true
+	cf_lib.isCloudFormationTrue(properties.BlockPublicAcls)
+	cf_lib.isCloudFormationTrue(properties.BlockPublicPolicy)
 }
 
 get_resource_accessibility(resource, name) = info {

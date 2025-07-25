@@ -6,7 +6,7 @@ import data.generic.cloudformation as cf_lib
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::KMS::Key"
-	resource.Properties.Enabled == true
+	cf_lib.isCloudFormationTrue(resource.Properties.Enabled) 
 	not common_lib.valid_key(resource.Properties, "PendingWindowInDays")
 	not common_lib.valid_key(resource.Properties, "EnableKeyRotation")
 
@@ -24,9 +24,9 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::KMS::Key"
-	resource.Properties.Enabled == true
+	cf_lib.isCloudFormationTrue(resource.Properties.Enabled)
 	not common_lib.valid_key(resource.Properties, "PendingWindowInDays")
-	resource.Properties.EnableKeyRotation == false
+	cf_lib.isCloudFormationFalse(resource.Properties.EnableKeyRotation)
 
 	result := {
 		"documentId": input.document[i].id,

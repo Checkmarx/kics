@@ -10,7 +10,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFront::Distribution"
 	distributionConfig := resource.Properties.DistributionConfig
 
-	isFalse(distributionConfig.Enabled)
+	cf_lib.isCloudFormationFalse(distributionConfig.Enabled)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -43,8 +43,3 @@ CxPolicy[result] {
 	}
 }
 
-isFalse(value) {
-	value == false
-} else {
-	value == "false"
-}

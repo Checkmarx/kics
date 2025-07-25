@@ -28,5 +28,11 @@
     "severity": "MEDIUM",
     "line": 43,
     "fileName": "positive5.json"
+  },
+  {
+    "queryName": "Elasticsearch Logs Disabled",
+    "severity": "MEDIUM",
+    "line": 34,
+    "fileName": "positive6.yaml"
   }
 ]

@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resource := Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
 	properties := resource.Properties
-	properties.EnableIAMDatabaseAuthentication == false
+	cf_lib.isCloudFormationFalse(properties.EnableIAMDatabaseAuthentication)
 	common_lib.valid_for_iam_engine_and_version_check(properties, "Engine", "EngineVersion", "DBInstanceClass")
 
 	result := {

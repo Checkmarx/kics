@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  ParentPassword:
+    Description: 'Password'
+    Type: String
+    Default: "@skdsjdk0234!AB"
+  ParentUsername:
+    Description: 'Username'
+    Type: String
+    Default: ""
+Resources:
+  NewAmpApp-4:
+    Type: AWS::Amplify::App
+    Properties:
+      BuildSpec: String
+      CustomHeaders: String
+      Description: String
+      EnableBranchAutoDeletion: true
+      IAMServiceRole: String
+      Name: NewAmpApp
+      OauthToken: String
+      Repository: String
+      BasicAuthConfig:
+        EnableBasicAuth: "true"
+        Password: !Ref ParentPassword
+        Username: !Ref ParentUsername

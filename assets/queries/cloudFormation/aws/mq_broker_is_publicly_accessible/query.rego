@@ -7,8 +7,8 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::AmazonMQ::Broker"
 	properties := resource.Properties
-
-    properties.PubliclyAccessible
+	
+	cf_lib.isCloudFormationTrue(properties.PubliclyAccessible)
 
 	result := {
 		"documentId": input.document[i].id,

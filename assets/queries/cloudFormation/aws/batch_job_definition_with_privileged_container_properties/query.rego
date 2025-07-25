@@ -7,7 +7,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::Batch::JobDefinition"
 	properties := resource.Properties
-	properties.ContainerProperties.Privileged == true
+	cf_lib.isCloudFormationTrue(properties.ContainerProperties.Privileged)
 
 	result := {
 		"documentId": input.document[i].id,

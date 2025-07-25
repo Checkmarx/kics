@@ -6,8 +6,7 @@ import data.generic.cloudformation as cf_lib
 CxPolicy[result] {
 	resources := input.document[i].Resources[name]
 	resources.Type == "AWS::KMS::Key"
-	keyRotation := resources.Properties.EnableKeyRotation
-	keyRotation == false
+	cf_lib.isCloudFormationFalse(resources.Properties.EnableKeyRotation)
 
 	result := {
 		"documentId": input.document[i].id,
