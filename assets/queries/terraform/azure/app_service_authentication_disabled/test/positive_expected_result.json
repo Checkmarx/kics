@@ -57,6 +57,6 @@
     "queryName": "App Service Authentication Disabled",
     "severity": "MEDIUM",
     "line": 8,
-    "fileName": "positive2.tf"
+    "fileName": "positive10.tf"
   }
 ]
