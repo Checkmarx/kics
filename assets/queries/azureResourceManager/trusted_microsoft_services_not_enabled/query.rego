@@ -12,16 +12,17 @@ CxPolicy[result] {
 
     variable_path := path_check(value)
 	variable_path != "there_is_complete_path"
+	searchLine_vars = split(variable_path,".")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": value.type,
 		"resourceName": "value.name",
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, variable_path]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAtribute",
 		"keyExpectedValue": sprintf("resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",[]),
 		"keyActualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
-		"searchLine": common_lib.build_search_line(path, ["properties", "networkAcls"]),
+		"searchLine": common_lib.build_search_line(path, searchLine_vars),
 	}
 }
 
@@ -30,7 +31,7 @@ CxPolicy[result] {
 	[path, value] = walk(doc)
 
 	value.type == "Microsoft.Storage/storageAccounts"
-
+	
 	[da_val , _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.networkAcls.defaultAction)
 	da_val != "Allow"
 
