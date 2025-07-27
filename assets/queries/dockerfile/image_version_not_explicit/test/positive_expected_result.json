@@ -10,5 +10,29 @@
 		"severity": "MEDIUM",
 		"fileName": "positive2.dockerfile",
 		"line": 7
+	},
+	{
+		"queryName": "Image Version Not Explicit",
+		"severity": "MEDIUM",
+		"fileName": "positive3.dockerfile",
+		"line": 4
+	},
+	{
+		"queryName": "Image Version Not Explicit",
+		"severity": "MEDIUM",
+		"fileName": "positive3.dockerfile",
+		"line": 7
+	},
+	{
+		"queryName": "Image Version Not Explicit",
+		"severity": "MEDIUM",
+		"fileName": "positive4.dockerfile",
+		"line": 7
+	},
+	{
+		"queryName": "Image Version Not Explicit",
+		"severity": "MEDIUM",
+		"fileName": "positive4.dockerfile",
+		"line": 10
 	}
 ]
