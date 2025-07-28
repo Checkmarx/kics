@@ -14,7 +14,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_lb", name),
         "searchKey": sprintf("aws_lb[%s]", [name]),
         "issueType": "MissingAttribute",
-        "keyExpectedValue": "'access_logs' should be defined and enabled",
+        "keyExpectedValue": "'access_logs.enabled' should be defined and enabled",
         "keyActualValue": "'access_logs' is undefined",
         "searchLine": common_lib.build_search_line(["resource", "aws_lb", name], []),
     }
@@ -31,8 +31,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_lb", name),
         "searchKey": sprintf("aws_lb[%s].access_logs", [name]),
         "issueType": "MissingAttribute",
-        "keyExpectedValue": "'access_logs' should be defined and enabled",
-        "keyActualValue": "'access_logs' is not enabled",
+        "keyExpectedValue": "'access_logs.enable' should be defined and enabled",
+        "keyActualValue": "'access_logs.enabled' is undefined",
         "searchLine": common_lib.build_search_line(["resource", "aws_lb", name, "access_logs"], []),
     }
 }
@@ -48,8 +48,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, "aws_lb", name),
         "searchKey": sprintf("aws_lb[%s].access_logs.enabled", [name]),
         "issueType": "IncorrectValue",
-        "keyExpectedValue": "'access_logs' should be defined and enabled",
-        "keyActualValue": "'access_logs' is not enabled",
+        "keyExpectedValue": "'access_logs.enable' should be defined and enabled",
+        "keyActualValue": "'access_logs.enable' is not enabled",
         "searchLine": common_lib.build_search_line(["resource", "aws_lb", name, "access_logs", "enabled"], []),
     }
 }
