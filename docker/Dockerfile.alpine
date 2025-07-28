@@ -1,4 +1,4 @@
-FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.24.4-alpine AS build_env
+FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.24.5-alpine AS build_env
 
 # Install build dependencies
 RUN apk add --no-cache git
@@ -56,4 +56,4 @@ ENV PATH $PATH:/app/bin
 HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
 
 # Command to run the executable
-ENTRYPOINT ["/app/bin/kics"] 
+ENTRYPOINT ["/app/bin/kics"]
