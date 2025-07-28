@@ -8,46 +8,59 @@ import (
 
 func TestLineCounter(t *testing.T) {
 	tests := []struct {
-		name      string
-		want      int
-		filePath  string
-		wantError bool
+		name        string
+		want        int
+		filePath    string
+		wantError   bool
+		maxCapacity int
 	}{
 		{
-			name:      "Get lines from non existent file",
-			want:      0,
-			filePath:  "../../Dockerfile2",
-			wantError: true,
+			name:        "Get lines from non existent file",
+			want:        0,
+			filePath:    "../../Dockerfile2",
+			wantError:   true,
+			maxCapacity: 5,
 		},
 		{
-			name:      "Get lines from a dockerfile file",
-			want:      7,
-			filePath:  "../../test/fixtures/dockerfile/Dockerfile-example",
-			wantError: false,
+			name:        "Get lines from a dockerfile file",
+			want:        7,
+			filePath:    "../../test/fixtures/dockerfile/Dockerfile-example",
+			wantError:   false,
+			maxCapacity: 5,
 		},
 		{
-			name:      "Get lines from a yaml file",
-			want:      25,
-			filePath:  "../../test/assets/sample_K8S_CONFIG_FILE.yaml",
-			wantError: false,
+			name:        "Get lines from a yaml file",
+			want:        25,
+			filePath:    "../../test/assets/sample_K8S_CONFIG_FILE.yaml",
+			wantError:   false,
+			maxCapacity: 5,
 		},
 		{
-			name:      "Get lines from a minified json file",
-			want:      31973,
-			filePath:  "../../e2e/fixtures/samples/blacklisted-files/azurepipelinesvscode/service-schema.min.json",
-			wantError: false,
+			name:        "Get lines from a minified json file",
+			want:        31973,
+			filePath:    "../../e2e/fixtures/samples/blacklisted-files/azurepipelinesvscode/service-schema.min.json",
+			wantError:   false,
+			maxCapacity: 5,
 		},
 		{
-			name:      "Get lines from a invalid minified json file",
-			want:      100,
-			filePath:  "../../test/assets/invalid.min.json",
-			wantError: true,
+			name:        "Get lines from a invalid minified json file",
+			want:        100,
+			filePath:    "../../test/assets/invalid.min.json",
+			wantError:   true,
+			maxCapacity: 5,
+		},
+		{
+			name:        "Get lines from a valid json file with 0 maxCapacity",
+			want:        31973,
+			filePath:    "../../e2e/fixtures/samples/blacklisted-files/azurepipelinesvscode/service-schema.min.json",
+			wantError:   false,
+			maxCapacity: 0,
 		},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			got, err := LineCounter(test.filePath, 100)
+			got, err := LineCounter(test.filePath, 100, test.maxCapacity*bytesPerKiB*bytesPerKiB)
 			if test.wantError {
 				require.NotEqual(t, err, nil)
 				require.Equal(t, test.want, got)
