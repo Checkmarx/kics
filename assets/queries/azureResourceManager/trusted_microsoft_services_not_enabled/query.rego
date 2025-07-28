@@ -12,13 +12,15 @@ CxPolicy[result] {
 
     variable_path := path_check(value)
 	variable_path != "there_is_complete_path"
-	searchLine_vars = split(variable_path,".")
+	raw_split = split(variable_path,".")
+	searchLine_vars := [split | split := raw_split[_]; split != ""]
+
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": value.type,
 		"resourceName": "value.name",
-		"searchKey": sprintf("%s.name=%s.%s", [common_lib.concat_path(path), value.name, variable_path]),
+		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, variable_path]),
 		"issueType": "MissingAtribute",
 		"keyExpectedValue": sprintf("resource with type 'Microsoft.Storage/storageAccounts' should have 'Trusted Microsoft Services' enabled",[]),
 		"keyActualValue": "resource with type 'Microsoft.Storage/storageAccounts' doesn't have 'Trusted Microsoft Services' enabled",
@@ -57,12 +59,12 @@ contains_azure_service(bypass) {
 
 path_check(resource) = "" {
   	not common_lib.valid_key(resource,"properties")
-  } else = "properties" {
+  } else = ".properties" {
   	resource.properties == {} 
-  } else = "properties" {
+  } else = ".properties" {
   	not common_lib.valid_key(resource.properties,"networkAcls")
   } else = "there_is_complete_path" {
 	common_lib.valid_key(resource.properties.networkAcls,"defaultAction")
   } else = "there_is_complete_path" {
 	common_lib.valid_key(resource.properties.networkAcls,"bypass")
-  } else = "properties.networkAcls"
+  } else = ".properties.networkAcls"
