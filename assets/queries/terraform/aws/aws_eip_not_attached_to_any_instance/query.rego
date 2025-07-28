@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 
 
 CxPolicy[result] {
-  # Unattatched - valid vpc but no association of any kind
+  # Unattached - valid vpc but no association of any kind
 	EIP := input.document[i].resource.aws_eip[eip_name]
     
   bool_has_valid_vpc(EIP) 
@@ -28,7 +28,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-  # Unattatched - invalid vpc with dynamic "ActualValue"
+  # Unattached - invalid vpc with dynamic "ActualValue"
 	EIP := input.document[i].resource.aws_eip[name]
 
   actualValue := has_valid_vpc(EIP)
