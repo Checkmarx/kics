@@ -8,12 +8,12 @@ CxPolicy[result] {
   # Unattatched - valid vpc but no association of any kind
 	EIP := input.document[i].resource.aws_eip[eip_name]
     
-    bool_has_valid_vpc(EIP) 
-    not has_valid_instance(EIP,input.document[i])
-    not has_eip_associated(eip_name, input.document[i])
-    not has_valid_network_interface(EIP, input.document[i])
-    not has_nat_gateway(eip_name, input.document[i])
-    not has_transfer_server(eip_name, input.document[i])
+  bool_has_valid_vpc(EIP) 
+  not has_valid_instance(EIP,input.document[i])
+  not has_eip_associated(eip_name, input.document[i])
+  not has_valid_network_interface(EIP, input.document[i])
+  not has_nat_gateway(eip_name, input.document[i])
+  not has_transfer_server(eip_name, input.document[i])
     
 	result := {
 		"documentId": input.document[i].id,
@@ -31,8 +31,8 @@ CxPolicy[result] {
   # Unattatched - invalid vpc with dynamic "ActualValue"
 	EIP := input.document[i].resource.aws_eip[name]
 
-    actualValue := has_valid_vpc(EIP)
-    actualValue != "yes"
+  actualValue := has_valid_vpc(EIP)
+  actualValue != "yes"
 
 	result := {
 		"documentId": input.document[i].id,

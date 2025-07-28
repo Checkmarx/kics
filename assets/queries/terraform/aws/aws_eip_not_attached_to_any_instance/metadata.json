@@ -6,7 +6,7 @@
   "descriptionText": "Unattached EIPs from EC2 instances should be disabled to allow us to maintain better control, efficiency, and visibility over the network traffic and implement security measures more effectively",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip",
   "platform": "Terraform",
-  "descriptionID": "6f34a910",
+  "descriptionID": "cd1d93f2",
   "cloudProvider": "aws",
   "cwe": "668"
 }
