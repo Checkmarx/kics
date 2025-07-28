@@ -7,3 +7,4 @@ resource "azurerm_mssql_server" "example" {
   administrator_login_password = "SuperSecurePassword123!"
 }
 
+

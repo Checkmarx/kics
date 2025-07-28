@@ -5,19 +5,23 @@ import data.generic.common as common_lib
 CxPolicy[result] {
   # case of no security alert policy 
   types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
+  dbTypes := {"Microsoft.Sql/servers/databases", "databases", "Microsoft.Sql/servers"}
   doc := input.document[i]
 
   not any_security_alert_policy(doc, types)
 
+  [path, value] := walk(doc)
+  value.type == dbTypes[x]
+
   result := {
     "documentId": doc.id,
-    "resourceType": types[x],
-    "resourceName": "n/a",
-    "searchKey": "securityAlertPolicies",
+    "resourceType": value.type,
+    "resourceName": value.name,
+	"searchKey": sprintf("%s.name={{%s}}", [common_lib.concat_path(path), value.name]),
     "issueType": "MissingAttribute",
     "keyExpectedValue": "Security alert policy should be defined and enabled",
     "keyActualValue": "Security alert policy in undefined",
-    "searchLine": [],
+	"searchLine": common_lib.build_search_line(path, []),
   }
 }
 
@@ -36,7 +40,7 @@ CxPolicy[result] {
 		"resourceType": value.type,
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name={{%s}}.properties", [common_lib.concat_path(path), value.name]),
-		"issueType": "MissingAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.name=%s.state' should be enabled", [common_lib.concat_path(path), value.name]),
 		"keyActualValue": sprintf("'%s.name=%s.state' is not enabled", [common_lib.concat_path(path), value.name]),
 		"searchLine": common_lib.build_search_line(path, ["properties", "state"]),
@@ -51,7 +55,6 @@ CxPolicy[result] {
 	value.type == types[x]
 
 	properties := value.properties
-	properties != {}
 	lower(properties.state) == "enabled"
 	properties.disabledAlerts[idx] != ""
 
@@ -68,7 +71,7 @@ CxPolicy[result] {
 }
 
 
-any_security_alert_policy(doc, types) {
+any_security_alert_policy(doc, types)  {
   [path, value] := walk(doc)
   value.type == types[_]
-}
+} 
