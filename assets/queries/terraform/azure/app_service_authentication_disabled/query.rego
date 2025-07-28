@@ -121,7 +121,7 @@ prepare_issues(resource, type, name) = res { # auth_settings and auth_settings_v
 		"it": "MissingAttribute",
 		"kev": sprintf("'%s[%s].auth_settings_v2.auth_enabled' should be defined (default value is 'false')", [type, name]),
 		"kav": sprintf("'%s[%s].auth_settings_v2.auth_enabled' is not defined", [type, name]),
-		"rem": "auth_settings_v2 {\n\t\tauth_enabled = true\n\t}",
+		"rem": "auth_enabled = true",
 		"rt": "addition",
 	}
 } 
