@@ -8,7 +8,7 @@
   {
     "queryName": "S3 Bucket With Unsecured CORS Rule",
     "severity": "MEDIUM",
-    "line": 9,
+    "line": 14,
     "fileName": "positive2.json"
   }
 ]
