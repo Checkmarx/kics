@@ -38,7 +38,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("'%s[%s].site_config.http2_enabled' should be defined and not null", [resources[m], name]),
 		"keyActualValue": sprintf("'%s[%s].site_config.http2_enabled' is undefined or null", [resources[m], name]),
 		"searchLine": common_lib.build_search_line(["resource", resources[m], name, "site_config"], []),
-		"remediation": "http2_enabled = true",
+		"remediation": "\nhttp2_enabled = true\n",
 		"remediationType": "addition",
 	}
 }
