@@ -19,17 +19,16 @@ CxPolicy[result] {
 	}
 }
 
-is_used(securityGroupName, doc, resource) {
-	[path, value] := walk(doc)
+is_used(securityGroupName, doc, _) {
+	[_, value] := walk(doc)
 	securityGroupUsed := get_security_groups_if_exists(value)[_]
 	contains(securityGroupUsed, sprintf("aws_security_group.%s.", [securityGroupName]))
 }
 
-is_used(securityGroupName, doc, resource) {
-	sec_group_used := resource.name
-    [path, value] := walk(doc)
+is_used(securityGroupName, doc, _) {
+    [_, value] := walk(doc)
 	securityGroupUsed := value.security_groups[_]
-	sec_group_used == securityGroupUsed
+	securityGroupName == securityGroupUsed
 }
 
 
@@ -53,12 +52,3 @@ get_security_groups_if_exists(resource) = security_group {
 	# check security groups assigned to aws_eks_cluster resources
 	security_group := resource.vpc_config.security_group_ids
 }
-
-
-
-
-
-
-
-	
-	
