@@ -21,6 +21,6 @@
     "fileName": "positive2.json",
     "queryName": "Security Group Ingress With Port Range",
     "severity": "MEDIUM",
-    "line": 9
+    "line": 11
   }
 ]
