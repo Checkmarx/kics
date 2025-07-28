@@ -25,10 +25,11 @@ is_used(securityGroupName, doc, _) {
 	contains(securityGroupUsed, sprintf("aws_security_group.%s.", [securityGroupName]))
 }
 
-is_used(securityGroupName, doc, _) {
+is_used(securityGroupName, doc, resource) {
+	sec_group_used := resource.name
     [_, value] := walk(doc)
 	securityGroupUsed := value.security_groups[_]
-	securityGroupName == securityGroupUsed
+	sec_group_used == securityGroupUsed
 }
 
 
