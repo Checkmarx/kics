@@ -6,7 +6,7 @@
   "descriptionText": "Ensure that AWS Elasticsearch enables support for audit logs",
   "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-logpublishingoptions",
   "platform": "CloudFormation",
-  "descriptionID": "e74a04b5",
+  "descriptionID": "c420748a",
   "cloudProvider": "aws",
   "cwe": "778"
 }
