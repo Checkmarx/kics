@@ -1,11 +1,13 @@
 package printer
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"sort"
 	"strconv"
 	"strings"
+	"text/tabwriter"
 
 	"github.com/Checkmarx/kics/v2/pkg/utils"
 
@@ -156,28 +158,57 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 		}
 		printFiles(&summary.Queries[idx], printer)
 	}
-	fmt.Printf("\nResults Summary:\n")
-	printSeverityCounter(model.SeverityCritical, summary.SeverityCounters[model.SeverityCritical], printer.Critical)
-	printSeverityCounter(model.SeverityHigh, summary.SeverityCounters[model.SeverityHigh], printer.High)
-	printSeverityCounter(model.SeverityMedium, summary.SeverityCounters[model.SeverityMedium], printer.Medium)
-	printSeverityCounter(model.SeverityLow, summary.SeverityCounters[model.SeverityLow], printer.Low)
-	printSeverityCounter(model.SeverityInfo, summary.SeverityCounters[model.SeverityInfo], printer.Info)
-	fmt.Printf("TOTAL: %d\n\n", summary.TotalCounter)
-
+	log.Info().Msgf("--- Parsing Summary ---")
 	log.Info().Msgf("Scanned Files: %d", summary.ScannedFiles)
 	log.Info().Msgf("Parsed Files: %d", summary.ParsedFiles)
 	log.Info().Msgf("Scanned Lines: %d", summary.ScannedFilesLines)
 	log.Info().Msgf("Parsed Lines: %d", summary.ParsedFilesLines)
 	log.Info().Msgf("Ignored Lines: %d", summary.IgnoredFilesLines)
 	log.Info().Msgf("Queries loaded: %d", summary.TotalQueries)
-	log.Info().Msgf("Queries failed to execute: %d", summary.FailedToExecuteQueries)
+	log.Info().Msgf("Queries failed to execute: %d\n", summary.FailedToExecuteQueries)
+
+	printSeverityCounter(summary)
+
+	prettyPrintResultsTable(summary)
+
 	log.Info().Msg("Inspector stopped")
 
 	return nil
 }
 
-func printSeverityCounter(severity string, counter int, printColor color.RGBColor) {
-	fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
+func printSeverityCounter(summary *model.Summary) {
+	log.Info().Msgf("--- Results Summary ---")
+	severities := []model.Severity{
+		model.SeverityCritical,
+		model.SeverityHigh,
+		model.SeverityMedium,
+		model.SeverityLow,
+		model.SeverityInfo,
+	}
+	for idx := range severities {
+		log.Info().Msgf("%s: %d", severities[idx], summary.SeverityCounters[severities[idx]])
+	}
+	log.Info().Msgf("TOTAL: %d\n", summary.TotalCounter)
+}
+
+// Prints the formated Queries summary table
+func prettyPrintResultsTable(summary *model.Summary) {
+	var buf bytes.Buffer
+	writer := tabwriter.NewWriter(&buf, 0, 0, 4, ' ', tabwriter.TabIndent)
+
+	fmt.Fprintln(writer, "--- Queries Summary ---")
+	fmt.Fprintln(writer, "Platform\tQuery Name\tSeverity\tCWE\tResults")
+	fmt.Fprintln(writer, " \t \t \t \t ")
+	for idx := range summary.Queries {
+		fmt.Fprintf(writer, "%s\t%s\t%s\t%s\t%d\n",
+			summary.Queries[idx].Platform,
+			summary.Queries[idx].QueryName,
+			string(summary.Queries[idx].Severity),
+			summary.Queries[idx].CWE,
+			len(summary.Queries[idx].Files))
+	}
+	writer.Flush()
+	log.Info().Msg(buf.String())
 }
 
 func printFiles(query *model.QueryResult, printer *Printer) {
