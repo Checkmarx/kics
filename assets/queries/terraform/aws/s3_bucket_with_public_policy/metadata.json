@@ -3,7 +3,7 @@
   "queryName": "S3 Bucket Allows Public Policy",
   "severity": "MEDIUM",
   "category": "Access Control",
-  "descriptionText": "Checks whether the block_public_policy configuration is set - wether explicitly or implicitly - to a unsafe value at the account level('aws_s3_account_public_access_block') o bucket level ('aws_s3_bucket_public_access_block'). The 'block_public_policy' acts as a defense-in-depth mechanism to prevent the application of S3 bucket policies that allow public access. If disabled, even unintentionally, it opens the possibility for buckets to become publicly accessible through policy misconfiguration. This increases the risk of accidental data exposure and weakens the organization’s cloud security posture.",
+  "descriptionText": "S3 bucket allows public policy",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block",
   "platform": "Terraform",
   "descriptionID": "a8924b3b",
