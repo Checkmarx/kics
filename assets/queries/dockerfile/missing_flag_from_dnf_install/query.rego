@@ -1,9 +1,10 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.dockerfile as dockerLib
 
 CxPolicy[result] {
-	resource := input.document[i].command[name][_]
+	resource := input.document[i].command[name][cmd]
 	resource.Cmd == "run"
 	values := resource.Value[0]
 	commands = dockerLib.getCommands(values)
@@ -16,9 +17,11 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.RUN={{%s}}", [name, resource.Value[0]]),
+		"searchValue": trim_space(c),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "When running `dnf install`, `-y` or `--assumeyes` switch should be set to avoid build failure ",
 		"keyActualValue": sprintf("Command `RUN={{%s}}` doesn't have the `-y` or `--assumeyes` switch set", [trim_space(commands[k])]),
+		"searchLine": common_lib.build_search_line(["command", name, cmd], []),
 	}
 }
 
