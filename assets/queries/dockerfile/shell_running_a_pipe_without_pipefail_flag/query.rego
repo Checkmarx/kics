@@ -1,63 +1,85 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	commands := input.document[i].command[name]
 	runCmd := commands[j]
-	isRunCmd(runCmd)
+	runCmd.Cmd == "run"
 
 	value := runCmd.Value
 	count(value) == 1 #command is in a single string
 
 	cmd := value[0]
 
-	shells := ["zsh", "bash", "ash", "/bin/zsh", "/bin/bash", "/bin/ash"]
+	matches := shell_matches(cmd)
+	match := matches[_]
 
-	searchIndex := indexof(cmd, shells[shell])
+	hasPipe(substring(cmd, match.index, count(cmd) - match.index))
 
-	searchIndex != -1
-
-	hasPipe(substring(cmd, searchIndex, count(cmd) - searchIndex))
-
-	not hasPipefail(commands, shells[shell], j)
+	not hasPipefail(commands, match.shell, j)
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, runCmd.Original]),
+		"searchValue": match.shell,
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'%s' has pipefail option set for pipe command with shell %s.", [runCmd.Original, shells[shell]]),
-		"keyActualValue": sprintf("'%s' does not have pipefail option set for pipe command with shell %s.", [runCmd.Original, shells[shell]]),
+		"keyExpectedValue": sprintf("'%s' has pipefail option set for pipe command with shell %s.", [runCmd.Original, match.shell]),
+		"keyActualValue": sprintf("'%s' does not have pipefail option set for pipe command with shell %s.", [runCmd.Original, match.shell]),
+		"searchLine": common_lib.build_search_line(["command", name, j], []),
 	}
 }
 
 CxPolicy[result] {
 	commands := input.document[i].command[name]
 	runCmd := commands[j]
-	isRunCmd(runCmd)
+	runCmd.Cmd == "run"
 
 	value := runCmd.Value
 	count(value) > 1 #command is in several tokens
 
-	shellIdx := getShellIdx(value)
-	shellIdx != -1
-	hasPipeInArray(value, shellIdx)
+	matches := shell_matches(value)
+	match := matches[_]
 
-	not hasPipefail(commands, value[shellIdx], j)
+	hasPipeInArray(value, match.index)
+
+	not hasPipefail(commands, match.shell, j)
 
 	cmdFormatted := replace(runCmd.Original, "\"", "'")
 
 	result := {
 		"documentId": input.document[i].id,
 		"searchKey": sprintf("FROM={{%s}}.{{%s}}", [name, runCmd.Original]),
+		"searchValue": match.shell,
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'%s' has pipefail option set for pipe command with shell %s.", [cmdFormatted, value[shellIdx]]),
-		"keyActualValue": sprintf("'%s' does not have pipefail option set for pipe command with shell %s.", [cmdFormatted, value[shellIdx]]),
+		"keyExpectedValue": sprintf("'%s' has pipefail option set for pipe command with shell %s.", [cmdFormatted, match.shell]),
+		"keyActualValue": sprintf("'%s' does not have pipefail option set for pipe command with shell %s.", [cmdFormatted, match.shell]),
+		"searchLine": common_lib.build_search_line(["command", name, j], []),
 	}
 }
 
-isRunCmd(com) {
-	com.Cmd == "run"
-} else = false {
-	true
+shell_matches(cmd) := matches {
+	is_string(cmd)
+	shells := ["zsh", "bash", "ash", "/bin/zsh", "/bin/bash", "/bin/ash"]
+	all_matches := {{"index": index, "shell": shell} |
+		shell := shells[_]
+		index := indexof(cmd, shell)
+		index != -1
+	}
+	matches := {match | match := all_matches[_]; not is_submatch(match, all_matches)}
+} else := matches {
+	is_array(cmd)
+	shells := ["zsh", "bash", "ash", "/bin/zsh", "/bin/bash", "/bin/ash"]
+	matches := {{"index": index, "shell": shell} |
+		shell := shells[_]
+		cmd[index] == shell
+	}
+}
+
+is_submatch(match, matches) {
+	other := matches[_]
+	other != match
+	contains(other.shell, match.shell)
 }
 
 hasPipe(cmd) {
@@ -65,8 +87,6 @@ hasPipe(cmd) {
 	some i
 	splitStr[i] == "|"
 	not findTermOpBeforeIdx(splitStr, i)
-} else = false {
-	true
 }
 
 findTermOpBeforeIdx(tokens, maxIdx) {
@@ -74,17 +94,6 @@ findTermOpBeforeIdx(tokens, maxIdx) {
 	some i
 	tokens[i] == termOps[_]
 	i < maxIdx
-} else = false {
-	true
-}
-
-getShellIdx(value) = idx {
-	shells := ["zsh", "bash", "ash", "/bin/zsh", "/bin/bash", "/bin/ash"]
-	some i
-	value[i] == shells[_]
-	idx := i
-} else = -1 {
-	true
 }
 
 hasPipeInArray(arr, initCmdIdx) {
@@ -92,8 +101,6 @@ hasPipeInArray(arr, initCmdIdx) {
 	i > initCmdIdx
 	arr[i] == "|"
 	not findTermOpBetweenIdxs(arr, initCmdIdx, i)
-} else = false {
-	true
 }
 
 findTermOpBetweenIdxs(arr, startIdx, endIdx) {
@@ -102,8 +109,6 @@ findTermOpBetweenIdxs(arr, startIdx, endIdx) {
 	arr[i] == termOps[_]
 	i > startIdx
 	i < endIdx
-} else = false {
-	true
 }
 
 hasPipefail(commands, shellName, idx) {
@@ -116,8 +121,6 @@ hasPipefail(commands, shellName, idx) {
 	tokens[plus(shellIdx, 1)] == "-o"
 	tokens[plus(shellIdx, 2)] == "pipefail"
 	i < idx
-} else = false {
-	true
 }
 
 shellMatch(tokens, shellName) = shellIdx {
