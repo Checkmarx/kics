@@ -2934,7 +2934,32 @@ secrets:
 
 ```
 </details>
-<details><summary>Negative test num. 49 - json file</summary>
+<details><summary>Negative test num. 49 - yml file</summary>
+
+```yml
+jobs:
+  release:
+    if: github.event.pull_request.merged == true || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on:
+      group: Prod
+      labels: helm
+    permissions:
+       contents: write # for publishing release
+       actions: write # for createWorkflowDispatch
+       issues: write # for comments on issues
+       pull-requests: write # for comments on pull requests
+       #id-token: write # for oidc npm provenance
+       #"id-token": read 
+       #'id-token': none
+       #permissions: {id-token: write, contents: read, pull-requests: write} 
+    steps:
+      - name: debug
+        shell: bash
+        run: |
+          echo 'github.event_actor=${{ github.event_actor }}'
+```
+</details>
+<details><summary>Negative test num. 50 - json file</summary>
 
 ```json
 {
@@ -2954,7 +2979,7 @@ secrets:
 
 ```
 </details>
-<details><summary>Negative test num. 50 - tf file</summary>
+<details><summary>Negative test num. 51 - tf file</summary>
 
 ```tf
 resource "google_container_cluster" "primary3" {
@@ -2979,7 +3004,7 @@ resource "google_container_cluster" "primary3" {
 
 ```
 </details>
-<details><summary>Negative test num. 51 - tf file</summary>
+<details><summary>Negative test num. 52 - tf file</summary>
 
 ```tf
 resource "google_container_cluster" "primary5" {
@@ -3004,7 +3029,7 @@ resource "google_container_cluster" "primary5" {
 
 ```
 </details>
-<details><summary>Negative test num. 52 - tf file</summary>
+<details><summary>Negative test num. 53 - tf file</summary>
 
 ```tf
 resource "google_secret_manager_secret" "secret-basic" {
