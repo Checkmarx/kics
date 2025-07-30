@@ -313,7 +313,7 @@
         },
         {
           "description": "Avoiding Github id-token Default Values",
-          "regex": "(?i)['\"]?id-token\\s*[:=]\\s*(write|read|none)\\s*$"
+          "regex": "(?i)['\"]?id-token['\"]?\\s*[:=]\\s*(write|read|none)"
         },
         {
           "description": "Avoiding result_token Var",
