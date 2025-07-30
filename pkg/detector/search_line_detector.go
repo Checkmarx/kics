@@ -2,6 +2,7 @@ package detector
 
 import (
 	"encoding/json"
+	"slices"
 	"strconv"
 	"strings"
 
@@ -43,12 +44,12 @@ func (d *searchLineDetector) preparePath(pathItems []string) int {
 		return 1
 	}
 	// Escaping '.' in path components so it doesn't conflict with gjson pkg
-	objPath := strings.ReplaceAll(pathItems[0], ".", "\\.")
-	ArrPath := strings.ReplaceAll(pathItems[0], ".", "\\.")
+	var objPath, ArrPath strings.Builder
+	objPath.WriteString(strings.ReplaceAll(pathItems[0], ".", `\.`))
 
-	obj := pathItems[len(pathItems)-1]
+	obj := strings.ReplaceAll(pathItems[len(pathItems)-1], ".", `\.`)
 
-	arrayObject := ""
+	var arrayObjects []string
 
 	// Iterate reversely through the path components and get the key of the last array in the path
 	// needed for cases where the fields in the array are <"key": "value"> type and not <object>
@@ -59,13 +60,17 @@ func (d *searchLineDetector) preparePath(pathItems []string) int {
 			continue
 		}
 		if foundArrayIdx {
-			arrayObject = pathItems[i]
-			break
+			arrayObjects = append(arrayObjects, pathItems[i])
+			foundArrayIdx = false
 		}
 	}
 
-	if arrayObject == objPath {
-		ArrPath = "_kics_lines._kics_" + arrayObject + "._kics_arr"
+	numArrays := len(arrayObjects)
+	hasKicsLines := numArrays > 0 && arrayObjects[0] == objPath.String()
+	if hasKicsLines {
+		ArrPath.WriteString("_kics_lines._kics_" + objPath.String() + "._kics_arr")
+	} else {
+		ArrPath.WriteString(strings.ReplaceAll(pathItems[0], ".", `\.`))
 	}
 
 	var treatedPathItems []string
@@ -76,16 +81,20 @@ func (d *searchLineDetector) preparePath(pathItems []string) int {
 	// Create a string based on the path components so it can be later transformed in a gjson path
 	for _, pathItem := range treatedPathItems {
 		// In case of an array present
-		if pathItem == arrayObject {
-			ArrPath += "._kics_lines._kics_" + strings.ReplaceAll(pathItem, ".", "\\.") + "._kics_arr"
+		if slices.Contains(arrayObjects, pathItem) {
+			if !hasKicsLines {
+				ArrPath.WriteString("._kics_lines")
+				hasKicsLines = true
+			}
+			ArrPath.WriteString("._kics_" + strings.ReplaceAll(pathItem, ".", `\.`) + "._kics_arr")
 		} else {
-			ArrPath += "." + strings.ReplaceAll(pathItem, ".", "\\.")
+			ArrPath.WriteString("." + strings.ReplaceAll(pathItem, ".", `\.`))
 		}
-		objPath += "." + strings.ReplaceAll(pathItem, ".", "\\.")
+		objPath.WriteString("." + strings.ReplaceAll(pathItem, ".", `\.`))
 	}
 
-	d.resolvedPath = objPath
-	d.resolvedArrayPath = ArrPath
+	d.resolvedPath = objPath.String()
+	d.resolvedArrayPath = ArrPath.String()
 	d.targetObj = obj
 
 	return d.getResult()
