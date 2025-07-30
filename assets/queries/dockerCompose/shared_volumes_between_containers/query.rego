@@ -10,7 +10,6 @@ CxPolicy[result] {
 	volumes := service_parameters.volumes
 	volume2 := volumes[v2]
 	startswith(volume2, sprintf("%s:", [v1]))
-	#startswith(volume2, v1)
 
 	result := {
 		"documentId": sprintf("%s", [resource.id]),
