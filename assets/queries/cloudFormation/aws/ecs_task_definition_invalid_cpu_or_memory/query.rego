@@ -1,12 +1,13 @@
 package Cx
 
-import data.generic.common as commonLib
+import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
 	resource.Properties.LaunchType == "FARGATE"
+
 	taskDef := input.document[i].Resources[name2]
 	taskDef.Type == "AWS::ECS::TaskDefinition"
 
@@ -18,19 +19,20 @@ CxPolicy[result] {
 		4096: numbers.range(8192, 30720),
 	}
 
-	checkMemory(taskDef, memory) == true
+	containerDefinition := taskDef.Properties.ContainerDefinitions[cd]
+	checkMemory(containerDefinition, memory)
 
-    getkey := cf_lib.createSearchKey(taskDef.Properties.ContainerDefinitions[_])
-    searchkey = sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey])
+	getkey := cf_lib.createSearchKey(containerDefinition)
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": searchkey,
+		"searchKey": sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.ContainerDefinitions.Memory' shouldn't have incorrect values", [name2]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.ContainerDefinitions.Memory' has incorrect value", [name2]),
+		"searchLine": common_lib.build_search_line(["Resources", name2, "Properties", "ContainerDefinitions", cd], ["Memory"]),
 	}
 }
 
@@ -38,35 +40,39 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::ECS::Service"
 	resource.Properties.LaunchType == "FARGATE"
+
 	taskDef := input.document[i].Resources[name2]
 	taskDef.Type == "AWS::ECS::TaskDefinition"
+
 	cpuMem := {256, 512, 1024, 2048, 4096}
-	cpu := taskDef.Properties.ContainerDefinitions[_].Cpu
-	not commonLib.inArray(cpuMem, cpu)
-	getkey := cf_lib.createSearchKey(taskDef.Properties.ContainerDefinitions[_])
-    searchkey := sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey])
+	containerDefinition := taskDef.Properties.ContainerDefinitions[cd]
+	cpu := containerDefinition.Cpu
+	not common_lib.inArray(cpuMem, cpu)
+
+	getkey := cf_lib.createSearchKey(containerDefinition)
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": searchkey,
+		"searchKey": sprintf("Resources.%s.Properties.ContainerDefinitions.Name%s", [name2, getkey]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.ContainerDefinitions.Cpu' shouldn't have incorrect values", [name2]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.ContainerDefinitions.Cpu' has incorrect value", [name2]),
+		"searchLine": common_lib.build_search_line(["Resources", name2, "Properties", "ContainerDefinitions", cd], ["Cpu"]),
 	}
 }
 
-checkMemory(res, memory) {
-	cpuMem := memory[res.Properties.ContainerDefinitions[_].Cpu]
-	mem := res.Properties.ContainerDefinitions[_].Memory
-	not commonLib.inArray(cpuMem, mem)
+checkMemory(containerDefinition, memory) {
+	cpuMem := memory[containerDefinition.Cpu]
+	mem := containerDefinition.Memory
+	not common_lib.inArray(cpuMem, mem)
 }
 
-checkMemory(res, memory) {
-	cpuMem := memory[res.Properties.ContainerDefinitions[_].Cpu]
-	mem := res.Properties.ContainerDefinitions[_].Memory
-	checkRemainder(mem, res.Properties.ContainerDefinitions[_].Cpu)
+checkMemory(containerDefinition, memory) {
+	cpuMem := memory[containerDefinition.Cpu]
+	mem := containerDefinition.Memory
+	checkRemainder(mem, containerDefinition.Cpu)
 }
 
 contains(arr, elem) {
@@ -77,5 +83,3 @@ checkRemainder(mem, cpu) {
 	not cpu == 256
 	not mem % 1024 == 0
 }
-
-

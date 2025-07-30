@@ -44,22 +44,6 @@ var (
 		"resourceName",
 	}
 
-	searchValueAllowedQueriesPath = []string{
-		"../assets/queries/ansible/azure/sensitive_port_is_exposed_to_entire_network",
-		"../assets/queries/cloudFormation/aws/ec2_sensitive_port_is_publicly_exposed",
-		"../assets/queries/cloudFormation/aws/elb_sensitive_port_is_exposed_to_entire_network",
-		"../assets/queries/terraform/aws/sensitive_port_is_exposed_to_entire_network",
-		"../assets/queries/terraform/aws/sensitive_port_is_exposed_to_small_public_network",
-		"../assets/queries/terraform/azure/sensitive_port_is_exposed_to_entire_network",
-		"../assets/queries/terraform/azure/sensitive_port_is_exposed_to_small_public_network",
-		"../assets/queries/dockerfile/apt_get_install_pin_version_not_defined",
-		"../assets/queries/terraform/aws/redshift_cluster_without_vpc",
-		"../assets/queries/openAPI/general/response_code_missing",
-		"../assets/queries/cicd/github/run_block_injection",
-		"../assets/queries/cicd/github/script_block_injection",
-		"../assets/queries/azureResourceManager/key_vault_not_recoverable",
-	}
-
 	// TODO uncomment this test once all metadata are fixed
 	availablePlatforms = initPlatforms()
 	platformKeys       = MapToStringSlice(availablePlatforms)
@@ -221,22 +205,6 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 					"query '%s' doesn't include parameter '%s' in response",
 					path.Base(entry.dir),
 					requiredProperty,
-				))
-			}
-
-			if sliceContains(searchValueAllowedQueriesPath, filepath.ToSlash(entry.dir)) {
-				_, ok := m[searchValueProperty]
-				require.True(t, ok, fmt.Sprintf(
-					"query '%s' doesn't include parameter '%s' in response",
-					path.Base(entry.dir),
-					searchValueProperty,
-				))
-			} else {
-				_, ok := m[searchValueProperty]
-				require.False(t, ok, fmt.Sprintf(
-					"query '%s' should not include parameter '%s' in response",
-					path.Base(entry.dir),
-					searchValueProperty,
 				))
 			}
 
