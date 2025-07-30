@@ -1,13 +1,13 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.dockerfile as dockerLib
+import data.generic.dockerfile as docker_lib
 
 CxPolicy[result] {
 	resource := input.document[i].command[name][cmd]
 	resource.Cmd == "run"
 	values := resource.Value[0]
-	commands = dockerLib.getCommands(values)
+	commands = docker_lib.getCommands(values)
 
 	some k
 	c := hasInstallCommandWithoutFlag(commands[k])
