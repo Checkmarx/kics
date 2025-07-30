@@ -9,18 +9,18 @@
     "severity": "MEDIUM",
     "line": 4,
     "queryName": "Secretsmanager Secret Without KMS",
-    "fileName": "positive1.yaml"
+    "fileName": "positive2.yaml"
   },
   {
     "severity": "MEDIUM",
     "line": 8,
     "queryName": "Secretsmanager Secret Without KMS",
-    "fileName": "positive2.json"
+    "fileName": "positive3.json"
   },
   {
     "severity": "MEDIUM",
     "line": 7,
     "queryName": "Secretsmanager Secret Without KMS",
-    "fileName": "positive2.yaml"
+    "fileName": "positive4.yaml"
   }
 ]
