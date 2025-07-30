@@ -11,7 +11,7 @@
         "summary": "List API versions",
         "responses": {
           "201": {
-            "description": "200 response",
+            "description": "201 response",
             "content": {
               "application/json": {
                 "examples": {

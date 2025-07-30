@@ -9,7 +9,7 @@ paths:
       summary: List API versions
       responses:
         "204":
-          description: 200 response
+          description: 204 response
           content:
             application/json:
               examples:
