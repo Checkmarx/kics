@@ -3,7 +3,7 @@ package Cx
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_storage_share[name]
+	resource := input.document[i].resource.azurerm_storage_share_file[name]
 
 	storageShareName := split(resource.storage_share_id, ".")[1]
 
