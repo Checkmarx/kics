@@ -18,7 +18,7 @@ func init() { //nolint
 				[]string{"scan", "--exclude-results", "-p", "/path/e2e/fixtures/samples/single.dockerfile"},
 			},
 		},
-		WantStatus: []int{20, 126},
+		WantStatus: []int{40, 126},
 	}
 
 	Tests = append(Tests, testSample)
