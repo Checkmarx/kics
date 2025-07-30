@@ -23,7 +23,7 @@
 	"start": "2025-07-30T17:01:55.6937805+01:00",
 	"end": "2025-07-30T17:02:07.5728679+01:00",
 	"paths": [
-		"C:\\Users\\ricardoj\\OneDrive - Checkmarx\\Desktop\\kics_repo\\kics\\assets\\queries\\cloudFormation\\aws\\secretsmanager_secret_without_kms\\test\\positive.yaml"
+		"/path/e2e/fixtures/samples/positive.yaml"
 	],
 	"queries": [
 		{
