@@ -2204,12 +2204,58 @@
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <p>There are multiple ways to get KICS up and running:</p>
 <h4 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h4>
-<p>KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> and can be used as follows:</p>
+<p>KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> with multiple variants to fit different use cases:</p>
 <p>To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the <code>-p</code> KICS parameter (see Scan Command Options section below)</p>
+<p><strong>Quick Start:</strong>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>checkmarx/kics:latest
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-t<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;{path_to_host_folder_to_scan}&quot;</span>:/path<span class="w"> </span>checkmarx/kics<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span>/path<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;/path/&quot;</span>
-</code></pre></div>
+</code></pre></div></p>
+<p><strong>Available Image Variants:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Base OS</th>
+<th>Package Manager</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>latest</code>, <code>v{VERSION}</code></td>
+<td>Wolfi Linux</td>
+<td>None</td>
+<td>Default, lightweight image</td>
+</tr>
+<tr>
+<td><code>alpine</code>, <code>v{VERSION}-alpine</code></td>
+<td>Alpine Linux</td>
+<td><code>apk</code></td>
+<td>When you need <code>apk</code> package manager</td>
+</tr>
+<tr>
+<td><code>debian</code>, <code>v{VERSION}-debian</code></td>
+<td>Debian</td>
+<td><code>apt-get</code></td>
+<td>When you need <code>apt-get</code> package manager</td>
+</tr>
+<tr>
+<td><code>ubi8</code>, <code>v{VERSION}-ubi8</code></td>
+<td>Red Hat UBI8</td>
+<td><code>yum</code></td>
+<td>Enterprise environments, Red Hat compatible</td>
+</tr>
+</tbody>
+</table>
 <p>You can see the list of available tags in <a href="https://hub.docker.com/r/checkmarx/kics/tags?page=1&amp;ordering=-name">dockerhub</a></p>
+<p><strong>Choosing the Right Image:</strong></p>
+<ul>
+<li><strong>For most users</strong>: Use <code>latest</code> (default, smallest size)</li>
+<li><strong>If you need to install additional packages</strong>: Choose based on your preferred package manager:</li>
+<li><code>alpine</code> for <code>apk add</code> commands</li>
+<li><code>debian</code> for <code>apt-get install</code> commands  </li>
+<li><code>ubi8</code> for <code>yum install</code> commands in enterprise environments</li>
+</ul>
 <p>ℹ️ <strong>UBI Based Images</strong></p>
 <p>When using <a href="https://catalog.redhat.com">UBI8</a> based image, the KICS process will run under the <code>kics</code> user and <code>kics</code> group with default UID=1000 and GID=1000. When using bind mount to share host files with the container, the UID and GID can be overriden to match current user with the <code>-u</code> flag that overrides the username:group or UID:GID. e.g:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-u<span class="w"> </span><span class="nv">$UID</span>:<span class="nv">$GID</span><span class="w"> </span>-v<span class="w"> </span><span class="nv">$PWD</span>:/path<span class="w"> </span>checkmarx/kics:ubi8<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span>/path/assets/queries/dockerfile<span class="w"> </span>-o<span class="w"> </span>/path<span class="w"> </span>-v

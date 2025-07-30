@@ -2139,11 +2139,61 @@
 <p><a href="https://docs.kics.io">https://docs.kics.io</a></p>
 <h2 id="git_repo">Git Repo<a class="headerlink" href="#git_repo" title="Permanent link">&para;</a></h2>
 <p>https://github.com/Checkmarx/kics</p>
+<h2 id="docker_image_variants">Docker Image Variants<a class="headerlink" href="#docker_image_variants" title="Permanent link">&para;</a></h2>
+<p>KICS provides several Docker image variants to fit different use cases:</p>
+<h3 id="available_tags">Available Tags<a class="headerlink" href="#available_tags" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Base OS</th>
+<th>Package Manager</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>latest</code>, <code>v{VERSION}</code></td>
+<td>Wolfi Linux</td>
+<td>None</td>
+<td>Default, lightweight image</td>
+</tr>
+<tr>
+<td><code>alpine</code>, <code>v{VERSION}-alpine</code></td>
+<td>Alpine Linux</td>
+<td><code>apk</code></td>
+<td>When you need <code>apk</code> package manager</td>
+</tr>
+<tr>
+<td><code>debian</code>, <code>v{VERSION}-debian</code></td>
+<td>Debian</td>
+<td><code>apt-get</code></td>
+<td>When you need <code>apt-get</code> package manager</td>
+</tr>
+<tr>
+<td><code>ubi8</code>, <code>v{VERSION}-ubi8</code></td>
+<td>Red Hat UBI8</td>
+<td><code>yum</code></td>
+<td>Enterprise environments, Red Hat compatible</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quick_start">Quick Start<a class="headerlink" href="#quick_start" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Default image (recommended for most users)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>pull<span class="w"> </span>checkmarx/kics:latest
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Alpine image (with apk support)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>docker<span class="w"> </span>pull<span class="w"> </span>checkmarx/kics:alpine
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Debian image (with apt-get support)  </span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>docker<span class="w"> </span>pull<span class="w"> </span>checkmarx/kics:debian
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># UBI8 image (enterprise/Red Hat environments)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>docker<span class="w"> </span>pull<span class="w"> </span>checkmarx/kics:ubi8
+</code></pre></div>
 <h2 id="command">Command<a class="headerlink" href="#command" title="Permanent link">&para;</a></h2>
 <p>To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the <code>-p</code> KICS parameter (see the full list of CLI options below)</p>
 <p>NOTE: from v1.3.0 KICS does not execute <code>scan</code> command by default anymore.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>checkmarx/kics:latest
-</code></pre></div>
 <p>Scan a directory</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-t<span class="w"> </span>-v<span class="w"> </span><span class="o">{</span>path_to_host_folder_to_scan<span class="o">}</span>:/path<span class="w"> </span>checkmarx/kics:latest<span class="w"> </span>scan<span class="w"> </span>-p<span class="w"> </span>/path<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;/path/&quot;</span>
 </code></pre></div>
