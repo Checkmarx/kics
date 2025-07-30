@@ -30,11 +30,10 @@ func (s *Service) sink(ctx context.Context, filename, scanID string,
 	rc io.Reader, data []byte,
 	openAPIResolveReferences bool,
 	maxResolverDepth int) error {
-	defer func() error {
+	defer func() {
 		if err := recover(); err != nil {
 			log.Warn().Msgf("Recovered from parsing panic for file %s with error: %#v", filename, err.(error).Error())
 		}
-		return nil
 	}()
 	s.Tracker.TrackFileFound(filename)
 	log.Debug().Msgf("Starting to process file %s", filename)
