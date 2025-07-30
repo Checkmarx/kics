@@ -20,8 +20,8 @@
 	},
 	"total_counter": 25,
 	"total_bom_resources": 0,
-	"start": "2025-07-30T17:01:55.6937805+01:00",
-	"end": "2025-07-30T17:02:07.5728679+01:00",
+	"start": "2025-07-30T19:57:28.6395962+01:00",
+	"end": "2025-07-30T19:57:42.5256118+01:00",
 	"paths": [
 		"/path/e2e/fixtures/samples/positive.yaml"
 	],
@@ -41,19 +41,6 @@
 			"files": [
 				{
 					"file_name": "assets\\queries\\cloudFormation\\aws\\secretsmanager_secret_without_kms\\test\\positive.yaml",
-					"similarity_id": "5f39aa8e63613a7e8bfd7641ccfb931fa0225e95b3449bc1210b50329d65d713",
-					"line": 32,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupSSHinbound",
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from all IPv4 adresses and to all available ports",
-					"actual_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
-				},
-				{
-					"file_name": "assets\\queries\\cloudFormation\\aws\\secretsmanager_secret_without_kms\\test\\positive.yaml",
 					"similarity_id": "88653ab159ca0a15095afc685f98da24685fa547bb5f1ca7c95ef468f209387c",
 					"line": 24,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -64,6 +51,19 @@
 					"search_value": "",
 					"expected_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from all IPv4 adresses and to all available ports",
 					"actual_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
+				},
+				{
+					"file_name": "assets\\queries\\cloudFormation\\aws\\secretsmanager_secret_without_kms\\test\\positive.yaml",
+					"similarity_id": "5f39aa8e63613a7e8bfd7641ccfb931fa0225e95b3449bc1210b50329d65d713",
+					"line": 32,
+					"resource_type": "AWS::EC2::SecurityGroupIngress",
+					"resource_name": "EcsSecurityGroupSSHinbound",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from all IPv4 adresses and to all available ports",
+					"actual_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
 				}
 			]
 		},
@@ -134,19 +134,6 @@
 			"files": [
 				{
 					"file_name": "assets\\queries\\cloudFormation\\aws\\secretsmanager_secret_without_kms\\test\\positive.yaml",
-					"similarity_id": "3c4976bcd6061315525a23a644cb6ed3bc4888794f21e8161a1cd38ea0495f30",
-					"line": 24,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupHTTPinbound02",
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
-					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
-				},
-				{
-					"file_name": "assets\\queries\\cloudFormation\\aws\\secretsmanager_secret_without_kms\\test\\positive.yaml",
 					"similarity_id": "f1f15967fd4bd2b39610dcbe3c2d641068dc1b409821142f41d179dbc360b3aa",
 					"line": 32,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -157,6 +144,19 @@
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)"
+				},
+				{
+					"file_name": "assets\\queries\\cloudFormation\\aws\\secretsmanager_secret_without_kms\\test\\positive.yaml",
+					"similarity_id": "3c4976bcd6061315525a23a644cb6ed3bc4888794f21e8161a1cd38ea0495f30",
+					"line": 24,
+					"resource_type": "AWS::EC2::SecurityGroupIngress",
+					"resource_name": "EcsSecurityGroupHTTPinbound02",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
+					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
 				}
 			]
 		},
@@ -412,19 +412,6 @@
 				},
 				{
 					"file_name": "assets\\queries\\cloudFormation\\aws\\secretsmanager_secret_without_kms\\test\\positive.yaml",
-					"similarity_id": "d60022e14f1b45c574f71c0f48b3fee882b471819597b770e3545988a8f5295a",
-					"line": 19,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupHTTPinbound02",
-					"issue_type": "IncorrectValue",
-					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort should equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
-					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
-				},
-				{
-					"file_name": "assets\\queries\\cloudFormation\\aws\\secretsmanager_secret_without_kms\\test\\positive.yaml",
 					"similarity_id": "810487007189ac4de717dffc3204a05756e80e910b34f89ee08fd14f612328aa",
 					"line": 27,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -435,6 +422,19 @@
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
 					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
+				},
+				{
+					"file_name": "assets\\queries\\cloudFormation\\aws\\secretsmanager_secret_without_kms\\test\\positive.yaml",
+					"similarity_id": "d60022e14f1b45c574f71c0f48b3fee882b471819597b770e3545988a8f5295a",
+					"line": 19,
+					"resource_type": "AWS::EC2::SecurityGroupIngress",
+					"resource_name": "EcsSecurityGroupHTTPinbound02",
+					"issue_type": "IncorrectValue",
+					"search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort should equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
+					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
 				}
 			]
 		},
@@ -591,19 +591,6 @@
 				},
 				{
 					"file_name": "assets\\queries\\cloudFormation\\aws\\secretsmanager_secret_without_kms\\test\\positive.yaml",
-					"similarity_id": "95883c9f983adb8f547c54e24837b6aa402978a00417be98441514959d4171d4",
-					"line": 27,
-					"resource_type": "AWS::EC2::SecurityGroupIngress",
-					"resource_name": "EcsSecurityGroupSSHinbound",
-					"issue_type": "MissingAttribute",
-					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
-					"search_line": -1,
-					"search_value": "",
-					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description should be set",
-					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
-				},
-				{
-					"file_name": "assets\\queries\\cloudFormation\\aws\\secretsmanager_secret_without_kms\\test\\positive.yaml",
 					"similarity_id": "e96cf20cc6e1e11dce2d40d9e2b37446a00f00c3f541aa7dd13861059f6fcce8",
 					"line": 19,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -614,6 +601,19 @@
 					"search_value": "",
 					"expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description should be set",
 					"actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is undefined"
+				},
+				{
+					"file_name": "assets\\queries\\cloudFormation\\aws\\secretsmanager_secret_without_kms\\test\\positive.yaml",
+					"similarity_id": "95883c9f983adb8f547c54e24837b6aa402978a00417be98441514959d4171d4",
+					"line": 27,
+					"resource_type": "AWS::EC2::SecurityGroupIngress",
+					"resource_name": "EcsSecurityGroupSSHinbound",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description should be set",
+					"actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
 				}
 			]
 		}
