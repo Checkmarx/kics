@@ -62,7 +62,7 @@ CxPolicy[result] {
 		"documentId": document.id,
 		"resourceType": "AWS::Redshift::Cluster",
 		"resourceName": cf_lib.get_resource_name(document.Resources[name], name),
-		"searchKey": sprintf("Resources.%s.Properties", [name]),
+		"searchKey": sprintf("Resources.%s.Properties.%s", [name,invalid_field]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties VpcSecurityGroupIds and ClusterSubnetGroupName fields should have valid references", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties %s field has an invalid reference", [name,invalid_field]),
