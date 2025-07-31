@@ -2,7 +2,7 @@
   "id": "820882c4-0c07-4686-b1ca-c69241c57470",
   "queryName": "Postgres RDS logging disabled",
   "severity": "LOW",
-  "category": "Logging",
+  "category": "Observability",
   "descriptionText": "It should be performed the logging of the queries executed in the database in order to understand its performance impact and the detection of possible malicious activity.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_parameter_group?q=log_statement#argument-reference",
   "platform": "Terraform",
