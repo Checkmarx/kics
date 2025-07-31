@@ -34,6 +34,7 @@ CxPolicy[result] {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"searchKey": sprintf("resources.name={{%s}}.properties.shieldedInstanceConfig", [resource.name]),
+		"searchValue": field,
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' should be defined and not null", [field]),
 		"keyActualValue": sprintf("'%s' is undefined or null", [field]),
