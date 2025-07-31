@@ -34,6 +34,12 @@ resource "kubernetes_role" "example2" {
     resource_names = ["foo"]
     verbs          = ["create", "list", "watch"]
   }
+
+  rule {
+    api_groups = ["apps"]
+    resources  = ["deployments"]
+    verbs      = ["get", "list"]
+  }
 }
 
 resource "kubernetes_role" "example3" {
@@ -50,6 +56,12 @@ resource "kubernetes_role" "example3" {
     resource_names = ["foo"]
     verbs          = ["*", "list", "watch"]
   }
+
+  rule {
+    api_groups = ["apps"]
+    resources  = ["deployments"]
+    verbs      = ["get", "list"]
+  }
 }
 
 resource "kubernetes_role" "example4" {
@@ -65,5 +77,11 @@ resource "kubernetes_role" "example4" {
     resources      = ["*"]
     resource_names = ["foo"]
     verbs          = ["*", "list", "watch"]
+  }
+
+  rule {
+    api_groups = ["apps"]
+    resources  = ["deployments"]
+    verbs      = ["get", "list"]
   }
 }

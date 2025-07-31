@@ -2,16 +2,31 @@
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 8
+    "line": 9
   },
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 60
+    "line": 36
   },
   {
     "queryName": "Image Without Digest",
     "severity": "LOW",
-    "line": 113
+    "line": 88
+  },
+  {
+    "queryName": "Image Without Digest",
+    "severity": "LOW",
+    "line": 142
+  },
+  {
+    "queryName": "Image Without Digest",
+    "severity": "LOW",
+    "line": 170
+  },
+  {
+    "queryName": "Image Without Digest",
+    "severity": "LOW",
+    "line": 224
   }
 ]
