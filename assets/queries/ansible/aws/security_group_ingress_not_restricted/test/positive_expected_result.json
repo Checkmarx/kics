@@ -2,31 +2,31 @@
   {
     "queryName": "Security Group Ingress Not Restricted",
     "severity": "HIGH",
-    "line": 7
+    "line": 8
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
     "severity": "HIGH",
-    "line": 7
+    "line": 12
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
     "severity": "HIGH",
-    "line": 7
+    "line": 16
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
     "severity": "HIGH",
-    "line": 26
+    "line": 27
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
     "severity": "HIGH",
-    "line": 26
+    "line": 31
   },
   {
     "queryName": "Security Group Ingress Not Restricted",
     "severity": "HIGH",
-    "line": 26
+    "line": 35
   }
 ]
