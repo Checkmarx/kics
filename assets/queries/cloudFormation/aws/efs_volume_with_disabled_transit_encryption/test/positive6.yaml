@@ -46,6 +46,4 @@ Resources:
         -
           Host:
             SourcePath: "/var/lib/docker/vfs/dir/"
-          EFSVolumeConfiguration:
-            TransitEncryption: DISABLED
           Name: "my-vol"
