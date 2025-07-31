@@ -66,7 +66,7 @@ func (d *searchLineDetector) preparePath(pathItems []string) int {
 	}
 
 	numArrays := len(arrayObjects)
-	hasKicsLines := numArrays > 0 && arrayObjects[0] == objPath.String()
+	hasKicsLines := numArrays > 0 && arrayObjects[numArrays-1] == objPath.String()
 	if hasKicsLines {
 		ArrPath.WriteString("_kics_lines._kics_" + objPath.String() + "._kics_arr")
 	} else {
