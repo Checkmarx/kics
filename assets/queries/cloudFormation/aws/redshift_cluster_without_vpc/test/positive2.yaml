@@ -1,0 +1,9 @@
+Resources:
+  RedshiftCluster:
+    Type: AWS::Redshift::Cluster
+    Properties:
+      ClusterIdentifier: tf-redshift-cluster
+      DBName: mydb
+      ClusterSubnetGroupName: !Ref RedshiftSubnetGroup
+
+  

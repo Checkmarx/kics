@@ -1,0 +1,12 @@
+{
+  "id": "40d5e9cd-5cfd-41f9-be60-b6cf4e907917",
+  "queryName": "Redshift Cluster Without VPC",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "Redshift Cluster should be configured in VPC (Virtual Private Cloud)",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-redshift-cluster.html#cfn-redshift-cluster-clustersubnetgroupname",
+  "platform": "CloudFormation",
+  "descriptionID": "40d5e9cd",
+  "cloudProvider": "aws",
+  "cwe": "284"
+}
