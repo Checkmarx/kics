@@ -20,7 +20,7 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("paths.%s", [name]),
+		"searchKey": sprintf("paths.%s.%s.parameters.name={{%s}}", [name, verb, param.name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Path parameter '%s' should have an template path parameter with the same name and 'in' set to 'path'", [param.name]),
 		"keyActualValue": sprintf("Path parameter '%s' does not have an template path parameter with the same name and 'in' set to 'path'", [param.name]),
