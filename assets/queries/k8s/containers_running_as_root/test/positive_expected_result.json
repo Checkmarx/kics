@@ -2,37 +2,37 @@
 	{
 		"queryName": "Container Running As Root",
 		"severity": "MEDIUM",
-		"line": 13,
+		"line": 10,
 		"fileName": "positive1.yaml"
 	},
 	{
 		"queryName": "Container Running As Root",
 		"severity": "MEDIUM",
-		"line": 38,
+		"line": 26,
 		"fileName": "positive1.yaml"
 	},
 	{
 		"queryName": "Container Running As Root",
 		"severity": "MEDIUM",
-		"line": 44,
+		"line": 41,
 		"fileName": "positive1.yaml"
 	},
 	{
 		"queryName": "Container Running As Root",
 		"severity": "MEDIUM",
-		"line": 13,
+		"line": 15,
 		"fileName": "positive2.yaml"
 	},
 	{
 		"queryName": "Container Running As Root",
 		"severity": "MEDIUM",
-		"line": 18,
+		"line": 10,
 		"fileName": "positive2.yaml"
 	},
 	{
 		"queryName": "Container Running As Root",
 		"severity": "MEDIUM",
-		"line": 13,
+		"line": 10,
 		"fileName": "positive3.yaml"
 	},
 	{
@@ -44,7 +44,43 @@
 	{
 		"queryName": "Container Running As Root",
 		"severity": "MEDIUM",
-		"line": 12,
+		"line": 9,
 		"fileName": "positive4.yaml"
-	}
+	},
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive5.yaml"
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 40,
+    "fileName": "positive5.yaml"
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive6.yaml"
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 37,
+    "fileName": "positive6.yaml"
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive7.yaml"
+  },
+  {
+    "queryName": "Container Running As Root",
+    "severity": "MEDIUM",
+    "line": 36,
+    "fileName": "positive7.yaml"
+  }
 ]

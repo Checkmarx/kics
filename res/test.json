@@ -1,0 +1,68 @@
+{
+  "playbooks": [
+    {
+      "google.cloud.gcp_container_cluster": {
+        "_kics_lines": {
+          "_kics__default": {
+            "_kics_line": 78
+          },
+          "_kics_addons_config": {
+            "_kics_line": 94
+          },
+          "_kics_auth_kind": {
+            "_kics_line": 89
+          },
+          "_kics_initial_node_count": {
+            "_kics_line": 80
+          },
+          "_kics_location": {
+            "_kics_line": 87
+          },
+          "_kics_master_auth": {
+            "_kics_line": 81
+          },
+          "_kics_name": {
+            "_kics_line": 79
+          },
+          "_kics_network_policy": {
+            "_kics_line": 92
+          },
+          "_kics_node_config": {
+            "_kics_line": 84
+          },
+          "_kics_project": {
+            "_kics_line": 88
+          },
+          "_kics_service_account_file": {
+            "_kics_line": 90
+          },
+          "_kics_state": {
+            "_kics_line": 91
+          }
+        },
+        "addons_config": {
+          "_kics_lines": {
+            "_kics__default": {
+              "_kics_line": 94
+            },
+            "_kics_network_policy_config": {
+              "_kics_line": 95
+            }
+          },
+          "network_policy_config": {
+            "_kics_lines": {
+              "_kics_disabled": {
+                "_kics_line": 96
+              }
+            },
+            "disabled": "yes"
+          }
+        },
+        "project": "test_project",
+        "service_account_file": "/tmp/auth.pem",
+        "state": "present"
+      },
+      "name": "create a cluster5"
+    }
+  ]
+}

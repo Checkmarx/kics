@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 import data.generic.k8s as k8sLib
 import future.keywords.in
 
-resources := {
+needed_level_per_resource := {
 	{"resource": "secrets","levels": ["Metadata"]},
     {"resource": "tokenreviews","levels": ["Metadata"]},
     {"resource": "configmaps","levels": ["Metadata"]},
@@ -20,21 +20,36 @@ CxPolicy[result] {
     resource := input.document[i]
     resource.kind == "Policy"
     startswith(resource.apiVersion, "audit")
-	res_rules := {res_rule | rule := resource.rules[_]; rule.resources[_].resources[_] == resources[x].resource; res_rule:= {"resource": resources[x].resource , "level": rule.level}}
-	resource_cont := resources[_]
-    resource_rule := resource_cont.resource
-    levels := resource_cont.levels
-    not hasResourceLevel(resource_rule, levels, res_rules)
 
-	result := {
-		"documentId": input.document[i].id,
+    # map the current resources and what levels they are defined in
+    resouce_rule_map := { resouce_rule_map |
+    	rule := resource.rules[_]
+        # get resource that is defined in the rule and match the ones in needed_level_per_resource
+        rule.resources[_].resources[_] == needed_level_per_resource[x].resource;
+        # build retuned map with resource and level
+        resouce_rule_map:= {"resource":needed_level_per_resource[x].resource,"level": rule.level} #
+    }
+
+    # get the resources that are not defined in the needed levels
+    not hasResourceLevel(needed_level_per_resource[y].resource, needed_level_per_resource[y].levels, resouce_rule_map)
+
+    current_levels := [ current_levels |
+        resouce_rule_map[k].resource == needed_level_per_resource[y].resource;
+        resouce_rule_map[k].level == needed_level_per_resource[y].levels[_];
+        current_levels := resouce_rule_map[k].level
+    ]
+
+    result := {
+        "documentId": input.document[i].id,
         "resourceType": resource.kind,
-		"resourceName": "n/a",
-		"searchKey": "kind={{Policy}}.rules",
-		"issueType": "MissingAttribute",
-		"keyExpectedValue":sprintf("Resource '%s' should be defined in the following levels '%s'",[resource_rule, levels]),
-		"keyActualValue": sprintf("Resource '%s' is not defined in the following levels '%s'",[resource_rule, levels]),
-	}
+        "resourceName": "n/a",
+        "searchKey": "kind={{Policy}}.rules",
+        "searchValue": needed_level_per_resource[y].resource,
+        "issueType": "MissingAttribute",
+        "keyExpectedValue":sprintf("Resource '%s' should be defined in one of following levels '%s'",[needed_level_per_resource[y].resource, needed_level_per_resource[y].levels]),
+        "keyActualValue": sprintf("Resource '%s' is currently defined with the following levels '%s'",[needed_level_per_resource[y].resource, current_levels]),
+        "searchLine": common_lib.build_search_line(["rules"], []),
+    }
 }
 
 hasResourceLevel(resource, levels, res_rules){

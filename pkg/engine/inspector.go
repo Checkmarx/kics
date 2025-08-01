@@ -11,13 +11,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Checkmarx/kics/v2/internal/metrics"
-	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
-	"github.com/Checkmarx/kics/v2/pkg/detector"
-	"github.com/Checkmarx/kics/v2/pkg/detector/docker"
-	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
-	"github.com/Checkmarx/kics/v2/pkg/engine/source"
-	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/open-policy-agent/opa/v1/ast"
 	"github.com/open-policy-agent/opa/v1/cover"
 	"github.com/open-policy-agent/opa/v1/rego"
@@ -26,6 +19,14 @@ import (
 	"github.com/open-policy-agent/opa/v1/util"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
+
+	"github.com/Checkmarx/kics/v2/internal/metrics"
+	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+	"github.com/Checkmarx/kics/v2/pkg/detector"
+	"github.com/Checkmarx/kics/v2/pkg/detector/docker"
+	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 )
 
 // Default values for inspector
@@ -58,7 +59,8 @@ type QueryLoader struct {
 
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
-	detector *detector.DetectLine, useOldSeverities bool, kicsComputeNewSimID bool) (*model.Vulnerability, error)
+	detector *detector.DetectLine, useOldSeverities bool, kicsComputeNewSimID bool,
+	similarityIDTransitionQueryMap map[string]VulnerabilityBuilderTransitionQueryInfo) (*model.Vulnerability, error)
 
 // PreparedQuery includes the opaQuery and its metadata
 type PreparedQuery struct {
@@ -148,6 +150,8 @@ func NewInspector(
 
 	failedQueries := make(map[string]error)
 
+
+
 	metrics.Metric.Stop()
 
 	if needsLog {
@@ -201,6 +205,28 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
 	}
 	return platformLibraries
 }
+
+func getSimilarityIDTransitionQueryMap(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries {
+	supportedPlatforms := make(map[string]string)
+	for _, query := range queries {
+		supportedPlatforms[query.Platform] = ""
+	}
+	platformLibraries := make(map[string]source.RegoLibraries)
+	for platform := range supportedPlatforms {
+		platformLibrary, errLoadingPlatformLib := queriesSource.GetQueryLibrary(platform)
+		if errLoadingPlatformLib != nil {
+			sentryReport.ReportSentry(&sentryReport.Report{
+				Message:  fmt.Sprintf("Inspector failed to get library for %s platform", platform),
+				Err:      errLoadingPlatformLib,
+				Location: "func getPlatformLibraries()",
+				Platform: platform,
+			}, true)
+			continue
+		}
+		platformLibraries[platform] = platformLibrary
+	}
+	return platformLibraries
+}func get
 
 type InspectionJob struct {
 	queryID int
