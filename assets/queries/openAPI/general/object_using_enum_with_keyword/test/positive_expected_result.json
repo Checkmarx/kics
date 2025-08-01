@@ -2,37 +2,37 @@
   {
     "queryName": "Object Using Enum With Keyword (v3)",
     "severity": "INFO",
-    "line": 42,
+    "line": 52,
     "filename": "positive1.json"
   },
   {
     "queryName": "Object Using Enum With Keyword (v3)",
     "severity": "INFO",
-    "line": 32,
+    "line": 41,
     "filename": "positive2.yaml"
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
     "severity": "INFO",
-    "line": 39,
+    "line": 49,
     "filename": "positive3.json"
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
     "severity": "INFO",
-    "line": 29,
+    "line": 38,
     "filename": "positive4.yaml"
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
     "severity": "INFO",
-    "line": 21,
+    "line": 29,
     "filename": "positive5.json"
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
     "severity": "INFO",
-    "line": 22,
+    "line": 31,
     "filename": "positive6.yaml"
   }
 ]
