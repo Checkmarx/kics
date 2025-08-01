@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+    {
+      "name": "[variables('sqlServerName')]",
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2019-06-01-preview",
+      "location": "[parameters('location')]",
+      "tags": {
+        "displayName": "SqlServer"
+      },
+      "properties": {
+        "administratorLogin": "[parameters('sqlAdministratorLogin')]",
+        "administratorLoginPassword": "[parameters('sqlAdministratorLoginPassword')]",
+        "version": "12.0"
+      }
+    },
+    {
+      "name": "[concat(variables('sqlServerName'),'/ActiveDirectory')]",
+      "type": "Microsoft.Sql/servers/administrators",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
+      ],
+      "apiVersion": "2019-06-01-preview",
+      "properties": {
+        "administratorType": "ActiveDirectory",
+        "login": "[variables('ADLogin')]",
+        "sid": "[variables('ADobjectID')]",
+        "tenantId": "[variables('ADtenantID')]"
+      }
+    }
+  ]
+}

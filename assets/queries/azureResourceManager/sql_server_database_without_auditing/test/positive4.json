@@ -50,6 +50,18 @@
             "retentionDays": 100,
             "state": "Disabled"
           }
+        },
+        {
+        "type": "Microsoft.Sql/servers/auditingSettings",
+        "apiVersion": "2021-02-01-preview",
+        "name": "sqlServer1/default",
+        "dependsOn": [
+          "[resourceId('Microsoft.Sql/servers', 'sqlServer1')]"
+        ],
+        "properties": {
+          "state": "Enabled",
+          "isAzureMonitorTargetEnabled": true
+        }
         }
       ],
       "outputs": {}
