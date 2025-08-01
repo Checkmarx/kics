@@ -1,0 +1,22 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "MyEKSClusterA": {
+            "Type": "AWS::EKS::Cluster",
+            "Properties": {
+                "Name": "dev",
+                "Version": "1.14",
+                "RoleArn": "arn:aws:iam::123456789012:role/eks-service-role-AWSServiceRoleForAmazonEKS-NEWROLE1234",
+                "ResourcesVpcConfig": {
+                    "SecurityGroupIds": [
+                        "sg-123abc45"
+                    ],
+                    "SubnetIds": [
+                        "subnet-1111aaaa",
+                        "subnet-2222bbbb"
+                    ]
+                }
+            }
+        }
+    }
+}
