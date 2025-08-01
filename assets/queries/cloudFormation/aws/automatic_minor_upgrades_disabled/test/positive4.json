@@ -1,0 +1,48 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
+  "Description": "Description\": \"AWS CloudFormation Sample Template for creating an Amazon RDS DB instance: Sample template showing how to create a DB instance with Enhanced Monitoring enabled. **WARNING** This template creates an RDS DB instance. You will be billed for the AWS resources used if you create a stack from this template.",
+  "Parameters": {
+    "DBUsername": {
+      "NoEcho": "true",
+      "Description": "Username for MySQL database access",
+      "Type": "String",
+      "MinLength": "1",
+      "MaxLength": "16",
+      "AllowedPattern": "[a-zA-Z][a-zA-Z0-9]*",
+      "ConstraintDescription": "must begin with a letter and contain only alphanumeric characters."
+    }
+  },
+  "Resources": {
+    "MyDB": {
+      "Properties": {
+        "DBInstanceIdentifier": "DBInstanceID",
+        "DBInstanceClass": "DBInstanceClass",
+        "Engine": "MySQL",
+        "MasterUserPassword": "DBPassword",
+        "MonitoringInterval": "60",
+        "MonitoringRoleArn": "arn:aws:iam::123456789012:role/rds-monitoring-role",
+        "DBName": "DBName",
+        "AllocatedStorage": "DBAllocatedStorage",
+        "EngineVersion": "8.0.16",
+        "MasterUsername": "DBUsername"
+      },
+      "Type": "AWS::RDS::DBInstance"
+    },
+    "MyDB2": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "DBInstanceIdentifier": "DBInstanceID",
+        "DBInstanceClass": "DBInstanceClass",
+        "EngineVersion": "8.0.16",
+        "MasterUserPassword": "DBPassword",
+        "MonitoringRoleArn": "arn:aws:iam::123456789012:role/rds-monitoring-role",
+        "DBName": "DBName",
+        "AllocatedStorage": "DBAllocatedStorage",
+        "Engine": "MySQL",
+        "MasterUsername": "DBUsername",
+        "MonitoringInterval": "60",
+        "AutoMinorVersionUpgrade": "false"
+      }
+    }
+  }
+}

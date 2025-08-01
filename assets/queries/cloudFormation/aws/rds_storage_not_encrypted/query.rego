@@ -29,8 +29,8 @@ CxPolicy[result] {
 	resource.Type == "AWS::RDS::DBInstance"
 
 	properties := resource.Properties
-
-	properties.StorageEncrypted == false
+	
+	cf_lib.isCloudFormationFalse(properties.StorageEncrypted)
 
 	result := {
 		"documentId": input.document[i].id,

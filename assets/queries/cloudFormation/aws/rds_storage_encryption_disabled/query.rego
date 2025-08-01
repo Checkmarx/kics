@@ -8,7 +8,7 @@ CxPolicy[result] {
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::RDS::DBCluster"
-	resource.Properties.StorageEncrypted == false
+	cf_lib.isCloudFormationFalse(resource.Properties.StorageEncrypted)
 
 	result := {
 		"documentId": input.document[i].id,

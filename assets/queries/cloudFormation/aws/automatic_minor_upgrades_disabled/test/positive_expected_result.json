@@ -2,25 +2,49 @@
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
-    "line": 58,
+    "line": 18,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
-    "line": 82,
+    "line": 42,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "Automatic Minor Upgrades Disabled",
     "severity": "LOW",
-    "line": 58,
+    "line": 17,
     "fileName": "positive2.json"
   },
   {
-    "line": 85,
-    "fileName": "positive2.json",
     "queryName": "Automatic Minor Upgrades Disabled",
-    "severity": "LOW"
+    "severity": "LOW",
+    "line": 44,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Automatic Minor Upgrades Disabled",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Automatic Minor Upgrades Disabled",
+    "severity": "LOW",
+    "line": 42,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Automatic Minor Upgrades Disabled",
+    "severity": "LOW",
+    "line": 17,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Automatic Minor Upgrades Disabled",
+    "severity": "LOW",
+    "line": 44,
+    "fileName": "positive4.json"
   }
 ]

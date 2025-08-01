@@ -2,25 +2,38 @@
   {
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Amplify Branch Basic Auth Config Password Exposed",
+    "severity": "HIGH",
     "line": 5,
     "fileName": "positive2.yaml"
   },
   {
-    "severity": "HIGH",
-    "line": 18,
-    "fileName": "positive1.yaml",
-    "queryName": "Amplify Branch Basic Auth Config Password Exposed"
-  },
-  {
-    "fileName": "positive3.json",
+    
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
-    "line": 19
+    "line": 19,
+    "fileName": "positive3.json"
   },
   {
     "queryName": "Amplify Branch Basic Auth Config Password Exposed",
     "severity": "HIGH",
     "line": 35,
     "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Amplify Branch Basic Auth Config Password Exposed",
+    "severity": "HIGH",
+    "line": 18,
+    "fileName": "positive5.yaml"
+  },
+  {
+    "queryName": "Amplify Branch Basic Auth Config Password Exposed",
+    "severity": "HIGH",
+    "line": 19,
+    "fileName": "positive6.json"
   }
 ]

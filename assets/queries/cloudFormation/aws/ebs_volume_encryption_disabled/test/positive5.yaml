@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Volume"
+Resources:
+  NewVolume:
+    Type: AWS::EC2::Volume
+    Properties:
+      Size: 100
+      Encrypted: "false"
+      AvailabilityZone: !GetAtt Ec2Instance.AvailabilityZone
+      Tags:
+        - Key: MyTag
+          Value: TagValue
+    DeletionPolicy: Snapshot
+

@@ -10,5 +10,11 @@
     "severity": "LOW",
     "line": 10,
     "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Serverless API Cache Cluster Disabled",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive3.yaml"
   }
 ]

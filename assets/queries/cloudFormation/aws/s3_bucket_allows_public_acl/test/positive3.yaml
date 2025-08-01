@@ -1,0 +1,23 @@
+Resources:
+  Bucket11:
+    Type: AWS::S3::Bucket
+    Properties:
+---
+Resources:
+  Bucket12:
+    Type: AWS::S3::Bucket
+    Properties:
+      PublicAccessBlockConfiguration:
+        BlockPublicPolicy     : "true"
+        IgnorePublicAcls      : "true"
+        RestrictPublicBuckets : "true"
+---
+Resources:
+  Bucket13:
+    Type: AWS::S3::Bucket
+    Properties:
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: "false"
+        BlockPublicPolicy     : "true"
+        IgnorePublicAcls      : "true"
+        RestrictPublicBuckets : "true"                

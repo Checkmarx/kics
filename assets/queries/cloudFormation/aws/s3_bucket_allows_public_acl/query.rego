@@ -46,7 +46,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::S3::Bucket"
 
 	PublicAccessBlockConfiguration := resource.Properties.PublicAccessBlockConfiguration
-	PublicAccessBlockConfiguration.BlockPublicAcls == false 
+	cf_lib.isCloudFormationFalse(PublicAccessBlockConfiguration.BlockPublicAcls)
 
 	result := {
 		"documentId": input.document[i].id,

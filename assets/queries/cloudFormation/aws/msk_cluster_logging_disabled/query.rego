@@ -64,5 +64,5 @@ CxPolicy[result] {
 }
 
 func(logs) {
-	logs[_].Enabled == true
+	cf_lib.isCloudFormationTrue(logs[_].Enabled)
 }

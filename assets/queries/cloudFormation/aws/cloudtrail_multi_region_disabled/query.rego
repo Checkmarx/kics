@@ -7,7 +7,8 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudTrail::Trail"
 	common_lib.valid_key(resource.Properties, "IsMultiRegionTrail")
-	not checkRegion(resource)
+
+	not cf_lib.isCloudFormationTrue(resource.Properties.IsMultiRegionTrail)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -16,7 +17,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("Resources.%s.Properties.IsMultiRegionTrail", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.IsMultiRegionTrail' should be true", [name]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.IsMultiRegionTrail' is false", [name]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.IsMultiRegionTrail' is not true", [name]),
 	}
 }
 
@@ -36,6 +37,3 @@ CxPolicy[result] {
 	}
 }
 
-checkRegion(cltr) {
-	cltr.Properties.IsMultiRegionTrail == true
-}

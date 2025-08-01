@@ -13,9 +13,9 @@ Resources:
         DedicatedMasterType: "m3.medium.elasticsearch"
         DedicatedMasterCount: "3"
       EncryptionAtRestOptions:
-        Enabled: true
+        Enabled: "true"
       EBSOptions:
-        EBSEnabled: true
+        EBSEnabled: "true"
         Iops: 0
         VolumeSize: 20
         VolumeType: "gp2"

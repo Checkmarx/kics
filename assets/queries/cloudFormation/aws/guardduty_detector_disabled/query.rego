@@ -6,7 +6,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::GuardDuty::Detector"
 	properties := resource.Properties
-	properties.Enable == false
+	cf_lib.isCloudFormationFalse(properties.Enable)
 
 	result := {
 		"documentId": input.document[i].id,

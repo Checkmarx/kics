@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: description
+Resources:
+  OpenSearchDomain:
+    Type: AWS::OpenSearchService::Domain
+    Properties:
+      DomainName: my-opensearch-domain
+      ElasticsearchVersion: "7.9"
+      ElasticsearchClusterConfig:
+        InstanceType: m5.large.search
+        InstanceCount: 1
+      AdvancedOptions:
+        rest.action.multi.allow_explicit_index: "true"
+      DomainEndpointOptions:
+        EnforceHTTPS: "true"
+        TLSSecurityPolicy: "Policy-Min-TLS-1-2-2019-07"

@@ -1,0 +1,18 @@
+{
+  "Resources": {
+    "Deployment": {
+      "Type": "AWS::ApiGateway::Deployment",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "MyApi"
+        },
+        "Description": "My deployment",
+        "StageName": "DummyStage",
+        "StageDescription": {
+          "CacheDataEncrypted": "true",
+          "CachingEnabled": "true"
+        }
+      }
+    }
+  }
+}

@@ -22,7 +22,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::Redshift::Cluster"
-	resource.Properties.PubliclyAccessible == true
+	cf_lib.isCloudFormationTrue(resource.Properties.PubliclyAccessible)
 
 	result := {
 		"documentId": input.document[i].id,

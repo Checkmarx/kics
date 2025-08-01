@@ -26,7 +26,7 @@ CxPolicy[result] {
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
-	resource.Properties.AutoMinorVersionUpgrade == false
+	cf_lib.isCloudFormationFalse(resource.Properties.AutoMinorVersionUpgrade)
 
 	result := {
 		"documentId": input.document[i].id,

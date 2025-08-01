@@ -1,21 +1,21 @@
 [
   {
-    "severity": "CRITICAL",
-    "line": 6,
-    "fileName": "positive1.yaml",
-    "queryName": "DB Security Group With Public Scope"
-  },
-  {
     "queryName": "DB Security Group With Public Scope",
     "severity": "CRITICAL",
     "line": 6,
-    "fileName": "positive3.yaml"
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "DB Security Group With Public Scope",
     "severity": "CRITICAL",
     "line": 19,
     "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "DB Security Group With Public Scope",
+    "severity": "CRITICAL",
+    "line": 6,
+    "fileName": "positive3.yaml"
   },
   {
     "queryName": "DB Security Group With Public Scope",
@@ -30,9 +30,15 @@
     "fileName": "positive5.json"
   },
   {
-    "line": 15,
-    "fileName": "positive6.json",
     "queryName": "DB Security Group With Public Scope",
-    "severity": "CRITICAL"
+    "severity": "CRITICAL",
+    "line": 15,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "DB Security Group With Public Scope",
+    "severity": "CRITICAL",
+    "line": 6,
+    "fileName": "positive7.yaml"
   }
 ]

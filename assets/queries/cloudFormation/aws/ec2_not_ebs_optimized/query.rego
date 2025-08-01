@@ -26,7 +26,7 @@ CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::EC2::Instance"
 
-	resource.Properties.EbsOptimized == false
+	cf_lib.isCloudFormationFalse(resource.Properties.EbsOptimized)
 	instanceType := get_instance_type(resource.Properties)
 	not common_lib.is_aws_ebs_optimized_by_default(instanceType)
 

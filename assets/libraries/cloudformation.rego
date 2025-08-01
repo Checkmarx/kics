@@ -10,6 +10,12 @@ isCloudFormationFalse(answer) {
 	answer == false
 }
 
+isCloudFormationTrue(answer) {
+	lower(answer) == "true"
+} else {
+	answer == true
+}
+
 # Find out if the document has a resource type equals to 'AWS::SecretsManager::Secret'
 hasSecretManager(str, document) {
 	selectedSecret := strings.replace_n({"${": "", "}": ""}, regex.find_n(`\${\w+}`, str, 1)[0])

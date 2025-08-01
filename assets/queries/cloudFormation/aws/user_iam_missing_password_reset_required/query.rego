@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::IAM::User"
 	loginProfile := resource.Properties.LoginProfile
 	loginProfile.Password
-	loginProfile.PasswordResetRequired == false
+	cf_lib.isCloudFormationFalse(loginProfile.PasswordResetRequired)
 
 	result := {
 		"documentId": input.document[i].id,
