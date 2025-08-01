@@ -436,5 +436,11 @@
     "severity": "HIGH",
     "line": 4,
     "fileName": "positive52.dockerfile"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 54,
+    "fileName": "positive53.json"
   }
 ]
