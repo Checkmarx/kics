@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
 
 CxPolicy[result] {
@@ -24,5 +25,6 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("Path parameter '%s' should have an template path parameter with the same name and 'in' set to 'path'", [param.name]),
 		"keyActualValue": sprintf("Path parameter '%s' does not have an template path parameter with the same name and 'in' set to 'path'", [param.name]),
 		"overrideKey": version,
+		"searchLine": common_lib.build_search_line(["paths", name, verb, "parameters", p, "name"], []),
 	}
 }
