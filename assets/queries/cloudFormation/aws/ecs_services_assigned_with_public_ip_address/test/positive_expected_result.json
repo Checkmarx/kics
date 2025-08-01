@@ -1,0 +1,14 @@
+[
+  {
+    "severity": "MEDIUM",
+    "line": 54,
+    "queryName": "ECS Services assigned with public IP address",
+    "fileName": "positive1.yaml"
+  },
+  {
+    "severity": "MEDIUM",
+    "line": 66,
+    "queryName": "ECS Services assigned with public IP address",
+    "fileName": "positive2.json"
+  }
+]

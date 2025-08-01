@@ -1,0 +1,12 @@
+{
+  "id": "560f256b-0b45-4496-bcb5-733681e7d38d",
+  "queryName": "ECS Services assigned with public IP address",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Amazon ECS Services should not be assigned public IP addresses. Public IP assignment exposes services directly to the internet, increasing the attack surface and potential unauthorized access.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/community/aws/ecs_service_module.html",
+  "platform": "Ansible",
+  "descriptionID": "560f256b",
+  "cloudProvider": "aws",
+  "cwe": "201"
+}
