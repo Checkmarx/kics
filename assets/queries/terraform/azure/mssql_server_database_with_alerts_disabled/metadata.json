@@ -1,0 +1,12 @@
+{
+  "id": "25cd1853-7e80-4106-9ac3-03f8636c25be",
+  "queryName": "MSSQL Server Database With Alerts Disabled",
+  "severity": "MEDIUM",
+  "category": "Best Practices",
+  "descriptionText": "All Alerts should be enabled in MSSQL Database Server SecurityAlerts Policy Properties",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/4.36.0/docs/resources/mssql_server_security_alert_policy",
+  "platform": "Terraform",
+  "descriptionID": "25cd1853",
+  "cloudProvider": "azure",
+  "cwe": "778"
+}
