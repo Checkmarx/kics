@@ -5,7 +5,8 @@ import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
-	ip_configuration := resource.settings.ip_configuration
+	ip_configuration := get_ip_configuration(resource)   
+	ip_configuration != ""
 
 	count(ip_configuration.authorized_networks) > 0
 
@@ -26,7 +27,8 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
-	ip_configuration := resource.settings.ip_configuration
+	ip_configuration := get_ip_configuration(resource)   
+	ip_configuration != ""
 
 	not common_lib.valid_key(ip_configuration,"authorized_networks")
 
@@ -45,7 +47,8 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
-	ip_configuration := resource.settings.ip_configuration
+	ip_configuration := get_ip_configuration(resource)   
+	ip_configuration != ""
 
     not common_lib.valid_key(ip_configuration,"authorized_networks")
 
@@ -65,9 +68,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
-	settings := resource.settings
 
-	not common_lib.valid_key(settings,"ip_configuration")
+	ip_configuration := get_ip_configuration(resource)   
+	ip_configuration == ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -79,6 +82,13 @@ CxPolicy[result] {
 		"keyActualValue": "'ip_configuration' is not defined",
 	}
 }
+
+get_ip_configuration(resource) = ip_configuration {
+	ip_configuration := resource.settings.ip_configuration
+} else = ip_configuration {
+	ip_configuration := resource.settings.dynamic.ip_configuration.content
+} else = ""
+
 
 getAuthorizedNetworks(networks) = list {
     is_array(networks)
