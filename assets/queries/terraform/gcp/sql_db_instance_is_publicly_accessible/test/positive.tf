@@ -65,6 +65,14 @@ resource "google_sql_database_instance" "positive2-dynamic" {
     dynamic "ip_configuration" {
       for_each = var.ip_configuration == null ? [] : [true]
       content {
+
+        dynamic "authorized_networks" {
+          for_each = var.ip_configuration.authorized_networks != null ? var.ip_configuration.authorized_networks : []
+          content {
+            name  = "pub-network"
+            value = "0.02.0.0/0"
+          }
+        }
         
         dynamic "authorized_networks" {
           for_each = var.ip_configuration.authorized_networks != null ? var.ip_configuration.authorized_networks : []
@@ -100,4 +108,3 @@ resource "google_sql_database_instance" "positive4-dynamic" {
     dynamic "ip_configuration" {}
   }
 }
-
