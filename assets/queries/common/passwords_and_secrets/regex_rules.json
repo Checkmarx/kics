@@ -11,7 +11,7 @@
         },
         {
           "description": "Avoiding description field",
-          "regex": "(?i)description\\s*=\\s*['\"].*['\"]"
+          "regex": "(?i)['\"]?description['\"]?\\s*=\\s*['\"].*['\"]"
         },
         {
           "description": "Avoiding Terraform 'optional' statement",
