@@ -5,43 +5,21 @@ import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
-	ip_configuration := get_ip_configuration(resource)   
-	ip_configuration != ""
-
-	count(ip_configuration.authorized_networks) > 0
+	ip_configuration_raw := get_ip_configuration(resource)   
+	ip_configuration_raw != ""
+	
+	ip_configuration := account_for_dynamic(ip_configuration_raw)
 
 	authorized_network = getAuthorizedNetworks_list(ip_configuration.authorized_networks)
 
-	contains(authorized_network[j].value, "0.0.0.0")
+	address := dynamic_contains(authorized_network[j], "0.0.0.0") 
+	address != ""
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_sql_database_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.authorized_networks.value=%s", [name, authorized_network[j].value]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'authorized_network' address should be trusted",
-		"keyActualValue": "'authorized_network' address is not restricted: '0.0.0.0/0'",
-	}
-}
-
-CxPolicy[result] {
-	## Case of dynamic ip config + dynamic authorized_networks (.dynamic is automatically implied in searchKey)
-	resource := input.document[i].resource.google_sql_database_instance[name]
-	ip_configuration := get_ip_configuration(resource)   
-	ip_configuration != ""
-
-	common_lib.valid_key(ip_configuration.dynamic,"authorized_networks")
-
-	authorized_network = getAuthorizedNetworks_list(ip_configuration.dynamic.authorized_networks)
-
-	contains(authorized_network[j].content.value, "0.0.0.0")
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "google_sql_database_instance",
-		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.content.authorized_networks.content.value=%s", [name, authorized_network[j].content.value]),
+		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.authorized_networks.value=%s", [name ,address]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'authorized_network' address should be trusted",
 		"keyActualValue": "'authorized_network' address is not restricted: '0.0.0.0/0'",
@@ -130,3 +108,16 @@ getAuthorizedNetworks_list(networks) = list {
     list := [networks]
 } else = null
 
+
+account_for_dynamic(ip_configuration) = adjusted_ip_config{
+	common_lib.valid_key(ip_configuration,"dynamic")
+	adjusted_ip_config := ip_configuration.dynamic
+} else = adjusted_ip_config {
+    adjusted_ip_config := ip_configuration
+}
+
+dynamic_contains(authorized_network,address) = authorized_network.value {
+	contains(authorized_network.value,address)
+} else = authorized_network.content.value {
+	contains(authorized_network.content.value,address)
+} else = ""
