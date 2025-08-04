@@ -2,33 +2,14 @@ package Cx
 
 import data.generic.common as common_lib
 import data.generic.ansible as ansLib
-
+	
 modules := {"amazon.aws.ec2_instance"}
 
 CxPolicy[result] {
     task := ansLib.tasks[id][t]
 	ec2 := task[modules[m]]
 
-    common_lib.valid_key(ec2, "metadata_options")
-    common_lib.valid_key(ec2.metadata_options, "http_endpoint")
-    not ec2.metadata_options.http_endpoint == "enabled"
-
-    result := {
-        "documentId": input.document[i].id,
-        "resourceType": modules[m],
-        "resourceName": task.name,
-        "searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
-        "searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "metadata_options", "http_endpoint"], []),
-        "issueType": "IncorrectValue",
-        "keyExpectedValue": sprintf("'%s.metadata_options.http_endpoint' should be defined to 'enabled'", [modules[m]]),
-        "keyActualValue": sprintf("'%s.metadata_options.http_endpoint' is not defined defined to 'enabled'", [modules[m]]),
-    }
-}
-
-CxPolicy[result] {
-    task := ansLib.tasks[id][t]
-	modules := {"amazon.aws.ec2_instance"}
-	ec2 := task[modules[m]]
+    is_metadata_service_enabled(ec2)
 
     res := http_tokens_undefined_or_not_required(ec2, m, t, task)
 
@@ -42,6 +23,14 @@ CxPolicy[result] {
         "keyExpectedValue": res["kev"],
         "keyActualValue": res["kav"],
     }
+}
+
+is_metadata_service_enabled (resource) {
+    resource.metadata_options.http_endpoint == "enabled"
+} else {
+    not common_lib.valid_key(resource, "metadata_options")
+} else {
+    not common_lib.valid_key(resource.metadata_options, "http_endpoint")
 }
 
 http_tokens_undefined_or_not_required(ec2, name, t, task) = res {

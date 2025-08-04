@@ -7,5 +7,4 @@
     tags:
       Environment: Testing
     metadata_options:
-      http_endpoint: disabled
-      http_tokens: optional
+      http_endpoint: enabled
