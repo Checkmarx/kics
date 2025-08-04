@@ -1,6 +1,6 @@
 
 variable "linux_vms" {
-  description = "positive53.tf"
+  description = "positive54.tf"
   type = map(object({
     region                           = string
     size                             = optional(string)
