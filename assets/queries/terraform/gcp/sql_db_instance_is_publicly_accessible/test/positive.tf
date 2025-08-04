@@ -56,3 +56,19 @@ resource "google_sql_database_instance" "positive4" {
     ip_configuration {}
   }
 }
+
+
+resource "google_sql_database_instance" "database_instance" {
+  provider             = google-beta
+
+  settings {
+
+    dynamic "ip_configuration" {
+      for_each = var.ip_configuration == null ? [] : [true]
+      content {
+        ipv4_enabled                                  = true
+        private_network                               = var.ip_configuration.private_network
+      }
+    }
+  }
+}

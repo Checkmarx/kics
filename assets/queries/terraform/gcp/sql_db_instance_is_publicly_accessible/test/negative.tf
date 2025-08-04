@@ -37,3 +37,18 @@ resource "google_sql_database_instance" "negative2" {
     }
   }
 }
+
+resource "google_sql_database_instance" "database_instance" {
+  provider             = google-beta
+
+  settings {
+
+    dynamic "ip_configuration" {
+      for_each = var.ip_configuration == null ? [] : [true]
+      content {
+        ipv4_enabled                                  = false
+        private_network                               = var.ip_configuration.private_network
+      }
+    }
+  }
+}
