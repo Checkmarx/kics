@@ -4,69 +4,76 @@ import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {  
+	# Case of field not being defined
 	resource := input.document[i].Resources
 	elem := resource[key]
-	elem.Type == "AWS::ECS::Service"
-	elem.Properties.Cluster
-	taskdefinitionkey := getTaskDefinitionName(elem)
-	taskDefinition := resource[taskdefinitionkey]
+	elem.Type == "AWS::EC2::LaunchTemplate"
+	template_data := elem.Properties.LaunchTemplateData
+	path := check_valid_path(template_data,key)
+	not path.value
 
-	count(taskDefinition.Properties.ContainerDefinitions) > 0
-	res := is_transit_encryption_disabled(taskDefinition, taskdefinitionkey)
     
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": elem.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key), 
-		"searchKey": sprintf("Resources.%s.Properties.Volumes", [taskdefinitionkey]),
-		"issueType": res["issueT"],
-		"keyExpectedValue": res["kev"],
-        "keyActualValue": res["kav"],
+		"searchKey": sprintf("Resources.%s.Properties.LaunchTemplateData%s", [key,path.path_tail]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.LaunchTemplateData.BlockDeviceMappings.Ebs.Encrypted should be defined", [key]),
+		"keyActualValue": sprintf("Resources.%s.Properties.LaunchTemplateData%s is not defined.", [key,path.path_tail]),
+		"searchLine": common_lib.build_search_line(path.searchLine,[]),
 	}
 }
 
-CxPolicy[result] {
+CxPolicy[result] {  
 	resource := input.document[i].Resources
 	elem := resource[key]
-	elem.Type == "AWS::ECS::Service"
-	elem.Properties.Cluster
-	taskdefinitionkey := getTaskDefinitionName(elem)
-	not common_lib.valid_key(resource, taskdefinitionkey)
+	elem.Type == "AWS::EC2::LaunchTemplate"
+	template_data := elem.Properties.LaunchTemplateData
+	path := check_valid_path(template_data,key)
+	path.value
 
+	cf_lib.isCloudFormationFalse(template_data.BlockDeviceMappings.Ebs.Encrypted)
+    
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": elem.Type,
-		"resourceName": cf_lib.get_resource_name(resource, key),
-		"searchKey": sprintf("Resources.%s", [taskdefinitionkey]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s should be defined", [taskdefinitionkey]),
-		"keyActualValue": sprintf("Resources.%s is not defined.", [taskdefinitionkey]),
+		"resourceName": cf_lib.get_resource_name(resource, key), 
+		"searchKey": sprintf("Resources.%s.Properties.LaunchTemplateData.BlockDeviceMappings.Ebs.Encrypted", [key]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.LaunchTemplateData.BlockDeviceMappings.Ebs.Encrypted should be set to true", [key]),
+		"keyActualValue": sprintf("Resources.%s.Properties.LaunchTemplateData.BlockDeviceMappings.Ebs.Encrypted is set to false.", [key]),
+		"searchLine": common_lib.build_search_line(path.searchLine,[]),
 	}
 }
 
-is_transit_encryption_disabled(taskDefinition, taskdefinitionkey) = res {
-	volume := taskDefinition.Properties.Volumes[j]
-    common_lib.valid_key(volume.EFSVolumeConfiguration, "TransitEncryption") 
-    volume.EFSVolumeConfiguration.TransitEncryption == "DISABLED"
-    res := {
-    	"issueT": "IncorrectValue",
-    	"kev": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption should be enabled", [taskdefinitionkey, j]),
-		"kav": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption is disabled", [taskdefinitionkey, j]),
-    }
-} else = res { 
-	volume := taskDefinition.Properties.Volumes[j]
-    efsVolumeConfiguration := volume.EFSVolumeConfiguration
-    not common_lib.valid_key(efsVolumeConfiguration, "TransitEncryption")
-    res := {
-    	"issueT": "MissingAttribute",
-    	"kev": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption should be defined", [taskdefinitionkey, j]),
-        "kav": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption is not defined (set to DISABLED by default)", [taskdefinitionkey, j]),
-    }
-}
+check_valid_path(template_data,key) = path {
+	common_lib.valid_key(template_data.BlockDeviceMappings[i].Ebs,"Encrypted")
+	path := {
+		"value": true,
+		"searchLine": ["Resources",key,"Properties","LaunchTemplateData","BlockDeviceMappings",i,"Ebs","Encrypted"],
+		"path_tail": ".BlockDeviceMappings[%s].Ebs.Encrypted"
+	}
+} else = path {
+	common_lib.valid_key(template_data.BlockDeviceMappings[i],"Ebs")
+	path := {
+		"value": false,
+		"searchLine": ["Resources",key,"Properties","LaunchTemplateData","BlockDeviceMappings",i,"Ebs"],
+		"path_tail": ".BlockDeviceMappings.Ebs"
+	}
+} else = path {
+	common_lib.valid_key(template_data,"BlockDeviceMappings")
+	path := {
+		"value": false,
+		"searchLine": ["Resources",key,"Properties","LaunchTemplateData","BlockDeviceMappings"],
+		"path_tail": ".BlockDeviceMappings"
+	}
+} else = path {
+	path := {
+		"value": false,
+		"searchLine": ["Resources",key,"Properties","LaunchTemplateData"],
+		"path_tail": ""
+	}
+} 
 
-getTaskDefinitionName(resource) := name {
-	name := resource.Properties.TaskDefinition
-	not common_lib.valid_key(name, "Ref")
-} else := name {
-	name := resource.Properties.TaskDefinition.Ref
-}
+
