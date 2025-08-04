@@ -3,120 +3,120 @@
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "7",
-        "filename": "positive1.yaml"
+        "fileName": "positive1.yaml"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "15",
-        "filename": "positive1.yaml"
+        "fileName": "positive1.yaml"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "7",
-        "filename": "positive2.json"
+        "fileName": "positive2.json"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "16",
-        "filename": "positive2.json"
+        "fileName": "positive2.json"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "11",
-        "filename": "positive3.yaml"
+        "fileName": "positive3.yaml"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "23",
-        "filename": "positive3.yaml"
+        "fileName": "positive3.yaml"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "11",
-        "filename": "positive4.json"
+        "fileName": "positive4.json"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "25",
-        "filename": "positive4.json"
+        "fileName": "positive4.json"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "12",
-        "filename": "positive5.yaml"
+        "fileName": "positive5.yaml"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "25",
-        "filename": "positive5.yaml"
+        "fileName": "positive5.yaml"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "12",
-        "filename": "positive6.json"
+        "fileName": "positive6.json"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "27",
-        "filename": "positive6.json"
+        "fileName": "positive6.json"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "10",
-        "filename": "positive7.yaml"
+        "fileName": "positive7.yaml"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "21",
-        "filename": "positive7.yaml"
+        "fileName": "positive7.yaml"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "10",
-        "filename": "positive8.json"
+        "fileName": "positive8.json"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "23",
-        "filename": "positive8.json"
+        "fileName": "positive8.json"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "10",
-        "filename": "positive9.yaml"
+        "fileName": "positive9.yaml"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "22",
-        "filename": "positive9.yaml"
+        "fileName": "positive9.yaml"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "10",
-        "filename": "positive10.json"
+        "fileName": "positive10.json"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": "24",
-        "filename": "positive10.json"
+        "fileName": "positive10.json"
     }
 ]
