@@ -32,6 +32,10 @@
         {
           "description": "Allow empty values",
           "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*(''|\"\")"
+        },
+        {
+          "description": "Allow password retrieved from ARM parameters",
+          "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"]?\\s*,\\s*parameters\\(['\"]([a-zA-Z][a-zA-Z0-9_-]*)['\"]['\"]?\\)"
         }
       ],
       "specialMask": "(?i)['\"]?password['\"]?\\s*[:=]\\s*"
@@ -259,6 +263,10 @@
         {
           "description": "Avoiding bash variables",
           "regex": "(?i)['\"]?\\$\\s*\\{[^\\s\\}]+\\}['\"]?"
+        },
+        {
+          "description": "Avoid Docker Compose secrets paths",
+          "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?/run/secrets/\\w+['\"]?"
         }
       ]
     },
@@ -309,7 +317,7 @@
         },
         {
           "description": "Avoiding Github id-token Default Values",
-          "regex": "(?i)['\"]?id-token\\s*[:=]\\s*(write|read|none)\\s*$"
+          "regex": "(?i)['\"]?id-token['\"]?\\s*[:=]\\s*(write|read|none)"
         },
         {
           "description": "Avoiding result_token Var",
