@@ -22,6 +22,15 @@
   {
     "queryName": "SQL DB Instance Publicly Accessible",
     "severity": "CRITICAL",
-    "line": 69
+    "line": 73
+  },
+  {
+    "queryName": "SQL DB Instance Publicly Accessible",
+    "severity": "CRITICAL",
+    "line": 90
+  },{
+    "queryName": "SQL DB Instance Publicly Accessible",
+    "severity": "CRITICAL",
+    "line": 99
   }
 ]

@@ -38,7 +38,7 @@ resource "google_sql_database_instance" "negative2" {
   }
 }
 
-resource "google_sql_database_instance" "negative3" {
+resource "google_sql_database_instance" "negative1-dynamic" {
   provider             = google-beta
 
   settings {
@@ -53,7 +53,7 @@ resource "google_sql_database_instance" "negative3" {
   }
 }
 
-resource "google_sql_database_instance" "negative4" {
+resource "google_sql_database_instance" "negative2-dynamic" {
   provider             = google-beta
 
   settings {
