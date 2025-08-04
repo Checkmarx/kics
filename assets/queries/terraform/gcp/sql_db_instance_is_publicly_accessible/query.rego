@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	count(ip_configuration.authorized_networks) > 0
 
-	authorized_network = getAuthorizedNetworks(ip_configuration.authorized_networks)
+	authorized_network = getAuthorizedNetworks_list(ip_configuration.authorized_networks)
 
 	contains(authorized_network[j].value, "0.0.0.0")
 
@@ -26,11 +26,34 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
+	## Case of dynamic ip config + dynamic authorized_networks (.dynamic is automatically implied in searchKey)
 	resource := input.document[i].resource.google_sql_database_instance[name]
 	ip_configuration := get_ip_configuration(resource)   
 	ip_configuration != ""
 
-	not common_lib.valid_key(ip_configuration,"authorized_networks")
+	common_lib.valid_key(ip_configuration.dynamic,"authorized_networks")
+
+	authorized_network = getAuthorizedNetworks_list(ip_configuration.dynamic.authorized_networks)
+
+	contains(authorized_network[j].content.value, "0.0.0.0")
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "google_sql_database_instance",
+		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.content.authorized_networks.content.value=%s", [name, authorized_network[j].content.value]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'authorized_network' address should be trusted",
+		"keyActualValue": "'authorized_network' address is not restricted: '0.0.0.0/0'",
+	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i].resource.google_sql_database_instance[name]
+	ip_configuration := get_ip_configuration(resource)   
+	ip_configuration != ""
+
+	no_authorized_networks(ip_configuration)
 
 	ip_configuration.ipv4_enabled
 
@@ -50,7 +73,7 @@ CxPolicy[result] {
 	ip_configuration := get_ip_configuration(resource)   
 	ip_configuration != ""
 
-    not common_lib.valid_key(ip_configuration,"authorized_networks")
+	no_authorized_networks(ip_configuration)
 
 	not ip_configuration.ipv4_enabled
 	not common_lib.valid_key(ip_configuration,"private_network")
@@ -89,8 +112,17 @@ get_ip_configuration(resource) = ip_configuration {
 	ip_configuration := resource.settings.dynamic.ip_configuration.content
 } else = ""
 
+no_authorized_networks(ip_configuration) = true {
+    not common_lib.valid_key(ip_configuration,"authorized_networks")
+	not common_lib.valid_key(ip_configuration,"dynamic")
+} else = true {
+	not common_lib.valid_key(ip_configuration,"authorized_networks")
+	common_lib.valid_key(ip_configuration,"dynamic")
+	not common_lib.valid_key(ip_configuration.dynamic,"authorized_networks")
+} else = false
 
-getAuthorizedNetworks(networks) = list {
+
+getAuthorizedNetworks_list(networks) = list {
     is_array(networks)
     list := networks
 } else = list {

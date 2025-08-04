@@ -38,7 +38,7 @@ resource "google_sql_database_instance" "negative2" {
   }
 }
 
-resource "google_sql_database_instance" "database_instance" {
+resource "google_sql_database_instance" "negative3" {
   provider             = google-beta
 
   settings {
@@ -47,8 +47,37 @@ resource "google_sql_database_instance" "database_instance" {
       for_each = var.ip_configuration == null ? [] : [true]
       content {
         ipv4_enabled                                  = false
-        private_network                               = var.ip_configuration.private_network
+        private_network                               = "some_private_network"
       }
     }
+  }
+}
+
+resource "google_sql_database_instance" "negative4" {
+  provider             = google-beta
+
+  settings {
+
+    dynamic "ip_configuration" {
+      for_each = var.ip_configuration == null ? [] : [true]
+      content {
+        
+        dynamic "authorized_networks" {
+          for_each = var.ip_configuration.authorized_networks != null ? var.ip_configuration.authorized_networks : []
+          content {
+            name  = "some_trusted_network"
+            value = "some_trusted_network_address"
+          }
+        }
+
+        dynamic "authorized_networks" {
+          for_each = var.ip_configuration.authorized_networks != null ? var.ip_configuration.authorized_networks : []
+          content {
+            name  = "another_trusted_network"
+            value = "another_trusted_network_address"
+             }
+          }
+       }
+     }
   }
 }
