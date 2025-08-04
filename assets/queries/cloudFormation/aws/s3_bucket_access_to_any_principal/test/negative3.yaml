@@ -1,0 +1,74 @@
+Resources:
+
+  SWBS3Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      AccessControl: Private
+      BucketName: !Ref S3BucketName
+      LifecycleConfiguration:
+        Rules:
+          - Id: Rule to delete object versions in S3 bucket after 1 day
+            Status: Enabled
+            NoncurrentVersionExpirationInDays: 1
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              KMSMasterKeyID:
+                Fn::ImportValue: !Sub "${CoreSWBStackName}-kms-key-arn"
+              SSEAlgorithm: 'aws:kms'
+
+  S3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref SWBS3Bucket
+      PolicyDocument:
+        Statement:
+        - !If
+          - IsGLZReplicationEnabled
+          - Effect: Allow
+            Principal:
+              AWS: !Sub "arn:aws:iam::${DestinationS3BucketAccountId}:root"
+            Action:
+              - 's3:ReplicateDelete'
+              - 's3:ReplicateObject'
+              - 's3:ObjectOwnerOverrideToBucketOwner'
+            Resource:
+              - !Join [ '',[ 'arn:aws:s3:::', !Ref S3BucketName, '/*' ] ]
+          - !Ref 'AWS::NoValue'
+        - !If
+          - IsGLZReplicationEnabled
+          - Effect: Allow
+            Principal:
+              AWS: !Sub "arn:aws:iam::${DestinationS3BucketAccountId}:root"
+            Action:
+              - 's3:List*'
+              - 's3:GetBucketVersioning'
+              - 's3:PutBucketVersioning'
+            Resource:
+              - !Join [ '',[ 'arn:aws:s3:::', !Ref S3BucketName ] ]
+          - !Ref 'AWS::NoValue'
+        - Effect: Deny
+          Principal: '*'
+          Action: 's3:*'
+          Resource:
+            - !GetAtt 'SWBS3Bucket.Arn'
+            - !Sub '${SWBS3Bucket.Arn}/*'
+          Condition:
+            Bool:
+              'aws:SecureTransport': false
+        - Effect: Deny
+          Principal: '*'
+          Action: 's3:*'
+          Resource:
+            - !GetAtt 'SWBS3Bucket.Arn'
+            - !Sub '${SWBS3Bucket.Arn}/*'
+          Condition:
+            NumericLessThan:
+              's3:TlsVersion': '1.2'
