@@ -2,19 +2,19 @@
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
-        "line": "11",
+        "line": "10",
         "filename": "positive1.tf"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
-        "line": "9",
+        "line": "11",
         "filename": "positive2.tf"
     },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
-        "line": "10",
+        "line": "9",
         "filename": "positive3.tf"
     },
     {
@@ -26,13 +26,7 @@
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
-        "line": "10",
-        "filename": "positive5.tf"
-    },
-    {
-        "queryName": "Instance Uses Metadata Service IMDSv1",
-        "severity": "LOW",
-        "line": "11",
+        "line": "9",
         "filename": "positive5.tf"
     }
 ]

@@ -8,6 +8,7 @@ resource "aws_instance" "positive2" {
 
   metadata_options {
     http_endpoint = "enabled"
+    http_tokens   = "optional"
   }
 
   tags = {

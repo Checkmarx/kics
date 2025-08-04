@@ -7,8 +7,7 @@ resource "aws_instance" "positive3" {
   instance_type = "t2.micro"
 
   metadata_options {
-    http_endpoint = "disabled"
-    http_tokens = "required"
+    instance_metadata_tags = "enabled"
   }
 
   tags = {

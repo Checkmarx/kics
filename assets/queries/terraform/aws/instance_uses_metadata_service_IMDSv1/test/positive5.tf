@@ -2,16 +2,15 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_instance" "negative1" {
+resource "aws_instance" "positive5" {
   ami           = "ami-12345678"
   instance_type = "t2.micro"
 
   metadata_options {
-    http_endpoint = "disabled"
-    http_tokens   = "optional"
+    http_endpoint = "enabled"
   }
 
   tags = {
-    Name = "negative1"
+    Name = "positive5"
   }
 }
