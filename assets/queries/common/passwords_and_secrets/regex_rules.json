@@ -9,59 +9,18 @@
           "description": "Avoiding TF resource access",
           "regex": "(?i)['\"]?password['\"]?\\s*=\\s*(([a-zA-z_]+(.))?[a-zA-z_]+\\s*(.)\\s*[a-zA-z_]+(.)[a-zA-z_]+)?(\\s*:\\s*null|null)$"
         },
-
-
         {
           "description": "Avoiding description field",
           "regex": "(?i)description\\s*=\\s*['\"].*['\"]"
         },
         {
-          "description": "Avoiding description field",
-          "regex": "(?i)['\"]?description['\"]?\\s*=\\s*['\"].*['\"]"
-        },
-        //parentises ou nao 
-
-
-        {
-          "description": "Avoiding optional statement",
-          "regex": "(?i)admin_password\\s*=\\s*optional\\(string\\)$"
+          "description": "Avoiding Terraform 'optional' statement",
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*optional\\((string|number|sensitive\\(string\\)|map\\(string\\)|set\\(string\\)|any)\\)$"   
         },
         {
-          "description": "Avoiding optional statement",
-          "regex": "(?i)['\"]?admin_password['\"]?\\s*=\\s*optional\\(string\\)$"
+          "description": "Avoiding Terraform 'try' statement",
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*try\\([^\"']+,[^\"']+\\)$"
         },
-        {
-          "description": "Avoiding optional statement",
-          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*optional\\(string\\)$"
-        },
-        {
-          "description": "Avoiding optional statement",
-          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*optional\\(.*\\)$"   
-        },
-        {
-          "description": "Avoiding optional statement",
-          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*optional\\((string | number | integer)\\)$"   
-        },
-        // parentises ou nao
-        // admin_password ou password 
-        // string ou (string | number | ...) ou .*
-
-
-        {
-          "description": "Avoiding try statement",
-          "regex": "(?i)admin_password\\s*=\\s*try\\([^\"]+,[^\"]+\\)$"
-        },
-        {
-          "description": "Avoiding try statement",
-          "regex": "(?i)['\"]?admin_password['\"]?\\s*=\\s*try\\([^\"]+,[^\"]+\\)$"
-        },
-        {
-          "description": "Avoiding try statement",
-          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*try\\([^\"]+,[^\"]+\\)$"
-        },
-        // parentises ou nao
-        // admin_password ou password 
-
         {
           "description": "Avoiding CF AllowUsersToChangePassword",
           "regex": "['\"]?AllowUsersToChangePassword['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?"
