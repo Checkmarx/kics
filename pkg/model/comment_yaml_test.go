@@ -1,9 +1,10 @@
 package model
 
 import (
-	"github.com/stretchr/testify/assert"
 	"sort"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 
 	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v3"
@@ -654,6 +655,60 @@ func Test_ignoreCommentsYAML(t *testing.T) {
 							Value:  "---\nfoo\n  bar: abc\nuploader-token: my-awesome-token\n",
 							Line:   5,
 							Column: 15,
+						},
+					},
+				},
+			},
+		},
+		{
+			name: "test_8: ignore_doublefootcomment_string",
+			want: []int{1, 5},
+			args: args{
+				&yaml.Node{
+					Kind: yaml.MappingNode,
+					Content: []*yaml.Node{
+						{
+							Kind:        yaml.ScalarNode,
+							Value:       "stage",
+							FootComment: "################# This is a Foot Comment ###########################",
+							Line:        2,
+							Column:      3,
+						},
+						{
+							Kind:        yaml.ScalarNode,
+							Value:       "Build",
+							FootComment: "#this is another foot comment for the same line",
+							Line:        2,
+							Column:      10,
+						},
+						{
+							Kind:  yaml.ScalarNode,
+							Value: "jobs",
+							Line:  3,
+						},
+						{
+							Kind:  yaml.SequenceNode,
+							Value: "",
+							Line:  4,
+							Tag:   "!!seq",
+							Content: []*yaml.Node{
+								{
+									Kind: yaml.MappingNode,
+									Tag:  "!!map",
+									Content: []*yaml.Node{
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "template",
+											Line:  5,
+										},
+										{
+											Kind:  yaml.ScalarNode,
+											Value: "/Pipeline/Build.yml",
+											Line:  5,
+										},
+									},
+								},
+							},
 						},
 					},
 				},
