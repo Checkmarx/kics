@@ -3,11 +3,13 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
+types := ["AWS::Elasticsearch::Domain","AWS::OpenSearchService::Domain"]
+
 CxPolicy[result] {
 	docs := input.document[i]
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
-	resource.Type == "AWS::Elasticsearch::Domain"
+	resource.Type == types[_]
 	common_lib.valid_key(resource.Properties, "LogPublishingOptions")
 	logs := [logName | "AUDIT_LOGS" == logName; log := resource.Properties.LogPublishingOptions[logName]]
 	count(logs) == 0
@@ -28,7 +30,7 @@ CxPolicy[result] {
 	docs := input.document[i]
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
-	resource.Type == "AWS::Elasticsearch::Domain"
+	resource.Type == types[_]
 	logs := resource.Properties.LogPublishingOptions[logName]
 	logName == "AUDIT_LOGS"
 	cf_lib.isCloudFormationFalse(logs.Enabled)
@@ -49,7 +51,7 @@ CxPolicy[result] {
 	docs := input.document[i]
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
-	resource.Type == "AWS::Elasticsearch::Domain"
+	resource.Type == types[_]
 	properties := resource.Properties
 	not common_lib.valid_key(properties, "LogPublishingOptions")
 

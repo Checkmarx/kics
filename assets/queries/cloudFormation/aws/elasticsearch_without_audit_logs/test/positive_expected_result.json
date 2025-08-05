@@ -38,7 +38,13 @@
   {
     "queryName": "ElasticSearch Without Audit Logs",
     "severity": "MEDIUM",
-    "line": 34,
+    "line": 31,
     "fileName": "positive7.yaml"
+  },
+  {
+    "queryName": "ElasticSearch Without Audit Logs",
+    "severity": "MEDIUM",
+    "line": 36,
+    "fileName": "positive8.json"
   }
 ]

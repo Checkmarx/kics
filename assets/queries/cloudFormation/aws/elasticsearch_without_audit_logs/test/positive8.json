@@ -1,0 +1,60 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "OpenSearchDomain": {
+      "Type": "AWS::OpenSearchService::Domain",
+      "Properties": {
+        "DomainName": "my-opensearch-domain",
+        "EngineVersion": "OpenSearch_2.3",
+        "ClusterConfig": {
+          "InstanceType": "r6g.large.search",
+          "InstanceCount": 2,
+          "ZoneAwarenessEnabled": true
+        },
+        "EBSOptions": {
+          "EBSEnabled": true,
+          "VolumeSize": 20,
+          "VolumeType": "gp2"
+        },
+        "AccessPolicies": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "*"
+              },
+              "Action": "es:*",
+              "Resource": {
+                "Fn::Sub": "arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/${OpenSearchDomain}/*"
+              }
+            }
+          ]
+        },
+        "LogPublishingOptions": {
+          "AUDIT_LOGS": {
+            "Enabled": "false",
+            "CloudWatchLogsLogGroupArn": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-slow-logs"
+          }
+        },
+        "EncryptionAtRestOptions": {
+          "Enabled": true
+        },
+        "NodeToNodeEncryptionOptions": {
+          "Enabled": true
+        },
+        "DomainEndpointOptions": {
+          "EnforceHTTPS": true
+        },
+        "AdvancedSecurityOptions": {
+          "Enabled": true,
+          "InternalUserDatabaseEnabled": true,
+          "MasterUserOptions": {
+            "MasterUserName": "admin",
+            "MasterUserPassword": "SecurePass123!"
+          }
+        }
+      }
+    }
+  }
+}

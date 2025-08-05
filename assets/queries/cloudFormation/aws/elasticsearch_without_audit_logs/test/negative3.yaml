@@ -1,28 +1,31 @@
 Resources:
-  ProductionElasticsearch:
-    Type: AWS::Elasticsearch::Domain
+  MyOpenSearchDomain:
+    Type: AWS::OpenSearchService::Domain
     Properties:
+      DomainName: my-domain
+      EngineVersion: "OpenSearch_1.0"
+      ClusterConfig:
+        InstanceType: "r6g.large.search"
+        InstanceCount: 2
+        ZoneAwarenessEnabled: true
       EBSOptions:
         EBSEnabled: true
-        VolumeSize: 70
+        VolumeSize: 10
         VolumeType: gp2
-      ElasticsearchClusterConfig:
-        DedicatedMasterCount: 3
-        DedicatedMasterEnabled: true
-        DedicatedMasterType: omitted
-        InstanceCount: 3
-        InstanceType: omitted
-        ZoneAwarenessConfig:
-          AvailabilityZoneCount: 3
-        ZoneAwarenessEnabled: true
-      ElasticsearchVersion: omitted
+      AccessPolicies:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: "*"
+            Action: "es:*"
+            Resource: "*"
+      VPCOptions:
+        SubnetIds:
+          - subnet-abc123
+        SecurityGroupIds:
+          - sg-abc123
       LogPublishingOptions:
-        "AUDIT_LOGS":
-          CloudWatchLogsLogGroupArn: !GetAtt ProductionElasticsearchIndexSlowLogs.Arn
-          Enabled: true
-        "SEARCH_SLOW_LOGS":
-          CloudWatchLogsLogGroupArn: !GetAtt ProductionElasticsearchSearchSlowLogs.Arn
-          Enabled: true
-        "ES_APPLICATION_LOGS":
-          CloudWatchLogsLogGroupArn: !GetAtt ProductionElasticsearchApplicationLogs.Arn
-          Enabled: true
+        AUDIT_LOGS:
+          CloudWatchLogsLogGroupArn: >-
+            arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-slow-logs
+          Enabled: "true"
