@@ -14,31 +14,6 @@
           }
         }
       }
-    },
-    "ECSAutoScalingGroup": {
-      "Type": "AWS::AutoScaling::AutoScalingGroup",
-      "Properties": {
-        "LaunchTemplate": {
-          "LaunchTemplateId": {
-            "Ref": "ECSLaunchTemplate"
-          },
-          "Version": {
-            "Fn::GetAtt": ["ECSLaunchTemplate", "LatestVersionNumber"]
-          }
-        },
-        "MinSize": "1",
-        "MaxSize": "3",
-        "DesiredCapacity": "2",
-        "VPCZoneIdentifier": [
-          "subnet-xxxxxxxxxxxxxx"
-        ]
-      }
-    },
-    "ECSCluster": {
-      "Type": "AWS::ECS::Cluster",
-      "Properties": {
-        "ClusterName": "MyEncryptedCluster"
-      }
     }
   }
 }

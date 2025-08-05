@@ -46,5 +46,17 @@
     "severity": "HIGH",
     "line": 7,
     "fileName": "positive8.json"
+  },
+  {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive9.yaml"
+  },
+  {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive10.json"
   }
 ]

@@ -3,8 +3,9 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
+
 CxPolicy[result] {  
-	# Case of undefined field(s) during path checking 
+	# Case of undefined field(s) during path checking - EC2::LaunchTemplate
 	resource := input.document[i].Resources
 	elem := resource[key]
 	elem.Type == "AWS::EC2::LaunchTemplate"
@@ -25,7 +26,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {  
-	# Case of "encrypted" defined but set to false
+	# Case of "encrypted" defined but set to false - EC2::LaunchTemplate
 	resource := input.document[i].Resources
 	elem := resource[key]
 	elem.Type == "AWS::EC2::LaunchTemplate"
@@ -44,6 +45,54 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("Resources.%s.Properties.LaunchTemplateData.BlockDeviceMappings.Ebs.Encrypted should be defined and true", [key]),
 		"keyActualValue": "Encrypted is set to false.",
 		"searchLine": common_lib.build_search_line(path.searchLine,[]),
+	}
+}
+
+CxPolicy[result] {  
+	# Case of undefined field(s) during path checking - EC2::Instance
+	resource := input.document[i].Resources
+	elem := resource[key]
+	elem.Type == "AWS::EC2::Instance"
+	template_data := elem.Properties
+	path := check_valid_path(template_data,key)
+	not path.value
+    
+	searchLine := [x | x := path.searchLine[_]; x != "LaunchTemplateData"]
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": elem.Type,
+		"resourceName": cf_lib.get_resource_name(resource, key), 
+		"searchKey": sprintf("Resources.%s.Properties%s", [key,path.path_tail]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.BlockDeviceMappings.Ebs.Encrypted should be defined and true", [key]),
+		"keyActualValue": sprintf("%s is not defined.", [path.missing_resource]),
+		"searchLine": common_lib.build_search_line(searchLine,[]),
+	}
+}
+
+CxPolicy[result] {  
+	# Case of "encrypted" defined but set to false - EC2::Instance
+	resource := input.document[i].Resources
+	elem := resource[key]
+	elem.Type == "AWS::EC2::Instance"
+	template_data := elem.Properties
+	path := check_valid_path(template_data,key)
+	path.value
+
+	cf_lib.isCloudFormationFalse(template_data.BlockDeviceMappings[path.index].Ebs.Encrypted)
+
+	searchLine := [x | x := path.searchLine[_]; x != "LaunchTemplateData"]
+    
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": elem.Type,
+		"resourceName": cf_lib.get_resource_name(resource, key), 
+		"searchKey": sprintf("Resources.%s.Properties.BlockDeviceMappings.Ebs.Encrypted", [key]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.BlockDeviceMappings.Ebs.Encrypted should be defined and true", [key]),
+		"keyActualValue": "Encrypted is set to false.",
+		"searchLine": common_lib.build_search_line(searchLine,[]),
 	}
 }
 
