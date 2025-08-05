@@ -2,9 +2,11 @@ package Cx
 
 import data.generic.common as common_lib
 
+
+types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
+
 CxPolicy[result] {
-  # case of no security alert policy 
-  types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
+  # case of no security alert policy
   dbTypes := {"Microsoft.Sql/servers/databases", "databases", "Microsoft.Sql/servers"}
   doc := input.document[i]
 
@@ -20,14 +22,13 @@ CxPolicy[result] {
 	"searchKey": sprintf("%s.name={{%s}}", [common_lib.concat_path(path), value.name]),
     "issueType": "MissingAttribute",
     "keyExpectedValue": "Security alert policy should be defined and enabled",
-    "keyActualValue": "Security alert policy in undefined",
+    "keyActualValue": "Security alert policy is undefined",
 	"searchLine": common_lib.build_search_line(path, []),
   }
 }
 
 CxPolicy[result] {
 	# case of security alert policy defined but state is not "Enabled"
-	types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
 	doc := input.document[i]
 	[path, value] := walk(doc)
 	value.type == types[x]
@@ -49,7 +50,6 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	# case of security alert policy defined and enabled but with disabled alerts
-	types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
 	doc := input.document[i]
 	[path, value] := walk(doc)
 	value.type == types[x]
@@ -72,6 +72,6 @@ CxPolicy[result] {
 
 
 any_security_alert_policy(doc, types)  {
-  [path, value] := walk(doc)
+  [_, value] := walk(doc)
   value.type == types[_]
 } 

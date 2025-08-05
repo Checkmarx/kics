@@ -20,7 +20,7 @@ CxPolicy[result] {
 	"searchKey": sprintf("azurerm_mssql_server[%s]", [name]),
     "issueType": "MissingAttribute",
     "keyExpectedValue": "Security alert policy should be defined and enabled",
-    "keyActualValue": "Security alert policy in undefined",
+    "keyActualValue": "Security alert policy is undefined",
 	"searchLine": common_lib.build_search_line(["resource", "azurerm_mssql_server", name], []),
   }
 }
