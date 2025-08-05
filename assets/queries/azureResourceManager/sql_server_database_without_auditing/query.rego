@@ -4,8 +4,8 @@ import data.generic.azureresourcemanager as arm_lib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	types := ["auditingSettings", "Microsoft.Sql/servers/databases/auditingSettings"]
-	dbTypes := ["Microsoft.Sql/servers/databases", "databases"]
+	types := ["auditingSettings", "Microsoft.Sql/servers/databases/auditingSettings", "Microsoft.Sql/servers/auditingSettings"]
+	dbTypes := ["Microsoft.Sql/servers/databases", "databases", "Microsoft.Sql/servers"]
 
 	doc := input.document[i]
 	[path, value] = walk(doc)
