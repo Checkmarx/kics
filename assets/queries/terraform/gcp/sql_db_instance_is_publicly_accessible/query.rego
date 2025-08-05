@@ -4,31 +4,35 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
+	# Case of ip_configuration with authorized_networks field containing "0.0.0.0"
 	resource := input.document[i].resource.google_sql_database_instance[name]
 	results_0 := get_ip_configuration(resource,name)
 	results_0 != ""
+
 	ip_configuration_raw := results_0.ip_configuration
-	
 	ip_configuration := account_for_dynamic(ip_configuration_raw)
 
 	authorized_networks = ip_configuration.authorized_networks
 
-	results := dynamic_contains(authorized_networks, "0.0.0.0",name) 
-	results != ""
+	results_1 := dynamic_contains(authorized_networks, "0.0.0.0",name) 
+	results_1 != ""
+
+	searchLine := array.concat(results_0.searchLine,results_1.searchLine_tail)
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_sql_database_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.authorized_networks.value=%s", [name ,results.value]),
+		"searchKey": sprintf("google_sql_database_instance[%s].settings.ip_configuration.authorized_networks.value=%s", [name ,results_1.value]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'authorized_network' address should be trusted",
 		"keyActualValue": "'authorized_network' address is not restricted: '0.0.0.0/0'",
-		"searchLine": results.searchLine
+		"searchLine": common_lib.build_search_line(searchLine ,[])
 	}
 }
 
 CxPolicy[result] {
+	# Case of ip_configuration without "authorized_networks" field and with "ipv4_enabled" set to true
 	resource := input.document[i].resource.google_sql_database_instance[name]
 	results := get_ip_configuration(resource,name) 
 	results != ""
@@ -53,6 +57,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
+	# Case of ip_configuration without "authorized_networks" field and with "ipv4_enabled" set to false and undefined "private_network"
 	resource := input.document[i].resource.google_sql_database_instance[name]
 	results := get_ip_configuration(resource,name) 
 	results != ""
@@ -78,10 +83,10 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
+	# Case of no ip_configuration
 	resource := input.document[i].resource.google_sql_database_instance[name]
 
-	ip_configuration := get_ip_configuration(resource,name)   
-	ip_configuration == ""
+	get_ip_configuration(resource,name) == ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -113,10 +118,9 @@ get_ip_configuration(resource,name) = results {
 
 
 no_authorized_networks(ip_configuration,name) = true {
-    not common_lib.valid_key(ip_configuration,"authorized_networks")
 	not common_lib.valid_key(ip_configuration,"dynamic")
+    not common_lib.valid_key(ip_configuration,"authorized_networks")
 } else = true {
-	not common_lib.valid_key(ip_configuration,"authorized_networks")
 	common_lib.valid_key(ip_configuration,"dynamic")
 	not common_lib.valid_key(ip_configuration.dynamic,"authorized_networks")
 } else = false
@@ -135,27 +139,27 @@ dynamic_contains(authorized_network,address,name) = response  {
 	contains(authorized_network[index].value,address)
 	response := {
 		"value" : authorized_network[index].value,
-		"searchLine": common_lib.build_search_line(["resource","google_sql_database_instance",name,"settings","ip_configuration","authorized_networks",index,"value"],[])
+		"searchLine_tail": ["authorized_networks",index,"value"]
 	}
 } else = response {
 	is_array(authorized_network)
 	contains(authorized_network[index].content.value,address)
 	response := {
 		"value" : authorized_network[index].content.value,
-		"searchLine": common_lib.build_search_line(["resource","google_sql_database_instance",name,"settings","dynamic","ip_configuration","content","dynamic","authorized_networks",index,"content","value"],[])
+		"searchLine_tail": ["dynamic","authorized_networks",index,"content","value"]
 	}
 } else = response {
 	is_object(authorized_network)
 	contains(authorized_network.value,address)
 	response := {
 		"value" : authorized_network.value,
-		"searchLine": common_lib.build_search_line(["resource","google_sql_database_instance",name,"settings","ip_configuration","authorized_networks","value"],[])
+		"searchLine_tail": ["authorized_networks","value"]
 	}
 } else = response {
 	is_object(authorized_network)
 	contains(authorized_network.content.value,address)
 	response := {
 		"value" : authorized_network.content.value,
-		"searchLine": common_lib.build_search_line(["resource","google_sql_database_instance",name,"settings","dynamic","ip_configuration","content","dynamic","authorized_networks","content","value"],[])
+		"searchLine_tail": ["dynamic","authorized_networks","content","value"]
 	}
 } else = ""
