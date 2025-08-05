@@ -1,0 +1,20 @@
+jobs:
+  release:
+    if: github.event.pull_request.merged == true || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on:
+      group: Prod
+      labels: helm
+    permissions:
+       contents: write # for publishing release
+       actions: write # for createWorkflowDispatch
+       issues: write # for comments on issues
+       pull-requests: write # for comments on pull requests
+       #id-token: write # for oidc npm provenance
+       #"id-token": read 
+       #'id-token': none
+       #permissions: {id-token: write, contents: read, pull-requests: write} 
+    steps:
+      - name: debug
+        shell: bash
+        run: |
+          echo 'github.event_actor=${{ github.event_actor }}'
