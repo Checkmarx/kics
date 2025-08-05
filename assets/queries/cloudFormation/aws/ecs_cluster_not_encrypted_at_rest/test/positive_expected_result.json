@@ -2,7 +2,49 @@
   {
     "queryName": "ECS Cluster Not Encrypted At Rest",
     "severity": "HIGH",
-    "line": 37,
+    "line": 14,
     "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
+    "severity": "HIGH",
+    "line": 6,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
+    "severity": "HIGH",
+    "line": 13,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "ECS Cluster Not Encrypted At Rest",
+    "severity": "HIGH",
+    "line": 7,
+    "fileName": "positive8.json"
   }
 ]
