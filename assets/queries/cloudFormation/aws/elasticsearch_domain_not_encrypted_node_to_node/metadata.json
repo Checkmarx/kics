@@ -1,0 +1,12 @@
+{
+  "id": "43ed6fe0-edb6-43c2-97be-6501cf563d53",
+  "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Elasticsearch Domain encryption should be enabled node to node",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-properties-elasticsearch-domain-nodetonodeencryptionoptions.html",
+  "platform": "CloudFormation",
+  "descriptionID": "43ed6fe0",
+  "cloudProvider": "aws",
+  "cwe": "311"
+}
