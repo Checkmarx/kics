@@ -58,5 +58,35 @@
     "severity": "MEDIUM",
     "line": 52,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Stack Retention Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Stack Retention Disabled",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Stack Retention Disabled",
+    "severity": "MEDIUM",
+    "line": 27,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Stack Retention Disabled",
+    "severity": "MEDIUM",
+    "line": 35,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Stack Retention Disabled",
+    "severity": "MEDIUM",
+    "line": 39,
+    "fileName": "positive3.yaml"
   }
 ]
