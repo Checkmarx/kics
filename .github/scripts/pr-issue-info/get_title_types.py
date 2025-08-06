@@ -7,7 +7,7 @@ def yaml_to_regex(yaml_file):
     with open(yaml_file, 'r') as f:
         data = yaml.safe_load(f)
     regex = '|'.join(data)
-    print(f"^({regex})\([a-z]+\): [a-z]")
+    print(f"^({regex})\(\\w+\): \\w")
 
 
 if __name__ == "__main__":
