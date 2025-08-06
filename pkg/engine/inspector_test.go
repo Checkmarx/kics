@@ -240,7 +240,6 @@ func TestInspect(t *testing.T) { //nolint
 				{
 					ID:               0,
 					SimilarityID:     "fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe",
-					OldSimilarityID:  "fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe",
 					ScanID:           "scanID",
 					FileID:           "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
 					FileName:         "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
