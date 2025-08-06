@@ -1,13 +1,14 @@
 package Cx
 
-import data.generic.ansible as ansLib
+import data.generic.common as common_lib
+import data.generic.ansible as ans_lib
 
 modules := {"amazon.aws.ec2_group", "ec2_group"}
 
 CxPolicy[result] {
-	task := ansLib.tasks[id][t]
+	task := ans_lib.tasks[id][t]
 	ec2_group := task[modules[m]]
-	ansLib.checkState(ec2_group)
+	ans_lib.checkState(ec2_group)
 	rule := ec2_group.rules[index]
 
 	isSSH(rule.from_port, rule.to_port)
@@ -18,9 +19,11 @@ CxPolicy[result] {
 		"resourceType": modules[m],
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.rules", [task.name, modules[m]]),
+		"searchValue": sprintf("%d", [index]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("ec2_group.rules[%d] SSH' (Port:22) should not be public", [index]),
 		"keyActualValue": sprintf("ec2_group.rules[%d] SSH' (Port:22) is public", [index]),
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "rules", index], []),
 	}
 }
 
