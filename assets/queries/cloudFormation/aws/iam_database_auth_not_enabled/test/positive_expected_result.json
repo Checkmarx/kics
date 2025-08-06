@@ -18,9 +18,15 @@
     "fileName": "positive3.yaml"
   },
   {
-    "fileName": "positive4.json",
     "queryName": "IAM Database Auth Not Enabled",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 18,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "IAM Database Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 19,
+    "fileName": "positive5.yaml"
   }
 ]
