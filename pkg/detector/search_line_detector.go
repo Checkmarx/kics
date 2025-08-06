@@ -104,9 +104,9 @@ func (d *searchLineDetector) getResult() int {
 	// for cases where key/object is in the root
 	if d.resolvedPath == d.targetObj {
 		pathObjects = append(pathObjects,
-			d.resolvedPath+"._kics_lines._kics__default._kics_line") // for cases where the object is in the root
-		pathObjects = append(pathObjects,
-			"_kics_lines._kics_"+d.targetObj+"._kics_line") // for cases where key is in the root
+			d.resolvedPath+"._kics_lines._kics__default._kics_line", // for cases where the object is in the root
+			"_kics_lines._kics_"+d.targetObj+"._kics_line",          // for cases where key is in the root
+		)
 	}
 
 	result := -1

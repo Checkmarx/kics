@@ -5,14 +5,20 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"gopkg.in/yaml.v3"
 	"os"
 	"path/filepath"
-
 	"runtime"
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/Checkmarx/kics/v2/internal/metrics"
+	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+	"github.com/Checkmarx/kics/v2/pkg/detector"
+	"github.com/Checkmarx/kics/v2/pkg/detector/docker"
+	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
+	"github.com/Checkmarx/kics/v2/pkg/engine/source"
+	"github.com/Checkmarx/kics/v2/pkg/model"
 
 	"github.com/open-policy-agent/opa/v1/ast"
 	"github.com/open-policy-agent/opa/v1/cover"
@@ -22,14 +28,7 @@ import (
 	"github.com/open-policy-agent/opa/v1/util"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
-
-	"github.com/Checkmarx/kics/v2/internal/metrics"
-	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
-	"github.com/Checkmarx/kics/v2/pkg/detector"
-	"github.com/Checkmarx/kics/v2/pkg/detector/docker"
-	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
-	"github.com/Checkmarx/kics/v2/pkg/engine/source"
-	"github.com/Checkmarx/kics/v2/pkg/model"
+	"gopkg.in/yaml.v3"
 )
 
 // Default values for inspector
@@ -227,7 +226,7 @@ func getSimilarityIDTransitionQueryMap(informationPath string) map[string]Transi
 		}
 
 		if filepath.Ext(d.Name()) == ".yaml" || filepath.Ext(d.Name()) == ".yml" {
-			content, err := os.ReadFile(path)
+			content, err := os.ReadFile(filepath.Clean(path))
 			if err != nil {
 				log.Error().Msgf("Error reading transition information file %s", d.Name())
 				return err
