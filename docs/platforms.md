@@ -30,6 +30,20 @@ Note that KICS recognizes this technology as Azure Resource Manager (for queries
 
 Explore our ongoing enhancements and planned features on our [Future Improvements](future_improvements.md) page.
 
+## Buildah
+
+KICS supports scanning Buildah container build scripts with a .sh extension. 
+
+Currently, KICS offers one query for this platform, but the goal is to expand its capabilities to scan for potential misconfigurations, security vulnerabilities and best practice violations in Buildah scripts.
+
+## CICD
+
+KICS supports scanning GitHub Workflows CICD files with `.yaml` or `.yml` extension.
+
+## CloudFormation
+
+KICS supports scanning CloudFormation templates with `.json` or `.yaml` extension.
+
 ## CDK
 
 [AWS Cloud Development Kit](https://docs.aws.amazon.com/cdk/latest/guide/home.html) is a software development framework for defining cloud infrastructure in code and provisioning it through AWS CloudFormation.
@@ -67,14 +81,6 @@ cdk synth > cfn-stack.yaml
 ```bash
 docker run -t -v $PWD/cfn-stack.yaml:/path/cfn-stack.yaml -it checkmarx/kics:latest scan -p /path/cfn-stack.yaml
 ```
-
-## CICD
-
-KICS supports scanning Github Workflows CICD files with `.yaml` or `.yml` extension.
-
-## CloudFormation
-
-KICS supports scanning CloudFormation templates with `.json` or `.yaml` extension.
 
 ## Crossplane
 
@@ -122,6 +128,7 @@ Platform: Kubernetes
 ## Knative
 
 KICS supports scanning Knative manifests with `.yaml` extension.
+
 Due to the possibility of the definition of the [PodSpec and PodTemplate](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#podspec-v1-core) in Knative files, Kubernetes Security Queries are also loaded once the presence of the Knative files is detected.
 
 ## Kubernetes
@@ -139,8 +146,8 @@ KICS supports scanning Pulumi manifests with `.yaml` extension.
 ## ServerlessFW
 
 KICS supports scanning Serverless manifests with `.yml` extension.
-Due to the possibility of the definition of the CloudFormation template,  inside `Serverless.yml`, CloudFormation Security Queries are also loaded once the presence of the ServerlessFW files is detected.
 
+Due to the possibility of the definition of the CloudFormation template,  inside `Serverless.yml`, CloudFormation Security Queries are also loaded once the presence of the ServerlessFW files is detected.
 
 ## Google Deployment Manager
 
@@ -184,6 +191,10 @@ cdktf synth
 
 You can also run the command `cdktf synth --json` to display it in the terminal.
 
+### NIFCloud for Terraform
+
+KICS supports scanning NIFCloud under Terraform file extension (`.tf`).
+
 ### Terraform variables path
 
 When using vars in a terraform file there are 2 ways of passing the file in which a variable's value is present.
@@ -203,12 +214,6 @@ By adding the flag `--terraform-vars-path` to the scan command it is possible to
 **_NOTE:_** when using both options the flag option will take precedence and therefore define the variables.
 
 ### Limitations
-
-#### Ansible
-
-At the moment, KICS does not support a robust approach to identifying Ansible samples. The identification of these samples is done through exclusion. When a YAML sample is not a CloudFormation, Google Deployment Manager, Helm, Kubernetes or OpenAPI sample, KICS recognize it as Ansible.
-
-Thus, KICS recognize other YAML samples (that are not Ansible) as Ansible, e.g. GitHub Actions samples. However, you can ignore these samples by writing `#kics-scan ignore` on the top of the file. For more details, please read this [documentation](https://github.com/Checkmarx/kics/blob/25b6b703e924ed42067d9ab7772536864aee900b/docs/running-kics.md#using-commands-on-scanned-files-as-comments).
 
 #### Terraform
 
@@ -233,3 +238,35 @@ resource "aws_launch_configuration" "example" {
   user_data_base64 = "a123B=="
 }
 ```
+#### Analyzer Blacklist for Unsupported File Types
+
+##### Why We Introduced a Blacklist
+
+KICS uses regular expressions to detect the platform or type of each file during analysis. Internally, it maintains a whitelist of regex patterns that, when matched, classify a file under a supported Infrastructure-as-Code platform (e.g., Terraform, CloudFormation, ARM).
+However, in practice, the **whitelist** has limitations:
+
+- Some valid files may only match **one regex**, while others require multiple matches to be confidently classified, even though they’re all valid.
+- This creates inconsistency since there's no clear threshold for "enough" matching, and tightening the rules risks missing valid files.
+- Refactoring the analyzer to support a precise, rule-based whitelist would require significant design and effort.
+
+Because of this, a **blacklist** was introduced as a practical and efficient complement to the existing whitelist. It allows KICS to explicitly **exclude known unsupported file types** early in the scanning process without triggering false positives or loading unnecessary queries.
+This blacklist acts as a _short-circuit mechanism_, immediately stopping the analysis of files that match certain patterns unique to unsupported formats. This avoids wasting resources on parsing irrelevant content and improves the reliability of platform detection overall.
+
+##### Current Blacklisted File Types
+
+KICS now short-circuits analysis for the following types:
+
+1. **FHIR (Fast Healthcare Interoperability Resources)** JSON files:
+    - These typically contain fields like `"resourceType"`, `"entry"`, `"subject"`, `"code"`, and `"status"`.
+    - They are often misclassified as ARM templates due to partial regex overlap.
+2. **Azure Pipelines VSCode** files:
+    - Also recognized as an ARM template, this type of files are auto-generated VSCode pipeline extension files.
+
+##### Summary
+
+While KICS has a whitelist-based platform detection system, its current design doesn't always allow for reliable filtering of edge cases or unsupported formats. Implementing a proper scoring or confidence-based whitelist would involve substantial complexity.
+
+For now, the blacklist approach provides a lightweight, low-maintenance solution that:
+- Improves classification accuracy by explicitly excluding irrelevant file types.
+- Avoids unnecessary resource use by skipping analysis early.
+- Keeps the analyzer simple and efficient, without a major overhaul.

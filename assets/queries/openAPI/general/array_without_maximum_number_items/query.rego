@@ -17,8 +17,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyActualValue": "Array schema has 'maxItems' set",
-		"keyExpectedValue": "Array schema has 'maxItems' undefined",
+		"keyExpectedValue": "Array schema has 'maxItems' set",
+		"keyActualValue": "Array schema has 'maxItems' undefined",
 		"searchLine": common_lib.build_search_line(path, []) ,
 		"overrideKey": version,
 	}
@@ -37,8 +37,8 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"searchKey": sprintf("%s.type", [openapi_lib.concat_path(path)]),
 		"issueType": "MissingAttribute",
-		"keyActualValue": "Array schema has 'maxItems' set",
-		"keyExpectedValue": "Array schema has 'maxItems' undefined",
+		"keyExpectedValue": "Array schema has 'maxItems' set",
+		"keyActualValue": "Array schema has 'maxItems' undefined",
 		"searchLine": common_lib.build_search_line(path, []) ,
 		"overrideKey": version,
 	}

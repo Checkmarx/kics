@@ -12,7 +12,7 @@ jobs:
       USERNAME: ${{ github.event.pull_request.user.login }}
     steps:
     - name: Checkout code
-      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       with:
         persist-credentials: false
         sparse-checkout: |
@@ -33,22 +33,22 @@ jobs:
         fi
     - name: Delete comment if license is fixed
       if: env.TAG_EXISTS == 'true'
-      uses: thollander/actions-comment-pull-request@b07c7f86be67002023e6cb13f57df3f21cdd3411
+      uses: thollander/actions-comment-pull-request@e4a76dd2b0a3c2027c3fd84147a67c22ee4c90fa
       with:
         message: |
           Deleting comment...
-        comment_tag: apache_license
+        comment-tag: apache_license
         mode: delete
-        GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+        github-token: ${{ secrets.KICS_BOT_PAT }}
     - name: Add comment if no license
       if: env.CHECK_FAILED == 'true'
-      uses: thollander/actions-comment-pull-request@b07c7f86be67002023e6cb13f57df3f21cdd3411
+      uses: thollander/actions-comment-pull-request@e4a76dd2b0a3c2027c3fd84147a67c22ee4c90fa
       with:
-        filePath: .github/scripts/pr-issue-info/apache-check.md
-        comment_tag: apache_license
+        file-path: .github/scripts/pr-issue-info/apache-check.md
+        comment-tag: apache_license
         mode: recreate
-        create_if_not_exists: true
-        GITHUB_TOKEN: ${{ secrets.KICS_BOT_PAT }}
+        create-if-not-exists: true
+        github-token: ${{ secrets.KICS_BOT_PAT }}
     - name: Workflow failed
       if: env.CHECK_FAILED == 'true'
       run: exit 1

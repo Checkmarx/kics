@@ -1,0 +1,11 @@
+openapi: 3.0.0
+info:
+  title: Complex Cyclic References API
+  version: 1.0.0
+paths: {}
+components:
+  schemas:
+    Author:
+      $ref: "./components/schemas/Author.yaml"
+    Book:
+      $ref: "./components/schemas/Book.yaml"

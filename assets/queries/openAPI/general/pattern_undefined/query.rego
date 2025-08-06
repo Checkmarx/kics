@@ -12,6 +12,7 @@ CxPolicy[result] {
 	info := openapi_lib.is_operation(path)
 	openapi_lib.content_allowed(info.operation, info.code)
 	openapi_lib.undefined_field_in_string_type(value, "pattern")
+	checkForSecureStringFormats(value)
 
 	result := {
 		"documentId": doc.id,
@@ -32,6 +33,7 @@ CxPolicy[result] {
 	[path, value] := walk(doc)
 	openapi_lib.is_operation(path) == {}
 	openapi_lib.undefined_field_in_string_type(value, "pattern")
+	checkForSecureStringFormats(value)
 
 	result := {
 		"documentId": doc.id,
@@ -42,4 +44,16 @@ CxPolicy[result] {
 		"keyActualValue": "'pattern' is undefined",
 		"overrideKey": version,
 	}
+}
+
+checkForSecureStringFormats(value) {
+	openapi_lib.undefined_field_in_string_type(value, "enum")   # enums have an implicit pattern
+	checkStringFormat(value)
+}
+
+checkStringFormat(value) {
+    openapi_lib.undefined_field_in_string_type(value, "format")
+} else {
+    value["format"] != "date"       # date and date-time formats
+    value["format"] != "date-time"  # have an implicit pattern
 }

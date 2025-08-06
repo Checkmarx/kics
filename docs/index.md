@@ -11,8 +11,8 @@
     </div>
     <div class="col-6 text-center">
         <br/><br/>
-        <h4>Version 2.1.3</h4>
-        <p style="font-size:8pt">2024.09.30<p>
+        <h4>Version 2.1.12</h4>
+        <p style="font-size:8pt">2025.07.28<p>
         <a class="btn btn-outline-success"  href="https://docs.kics.io/latest/CONTRIBUTING">Contribute!</a>
     </div>
 </div>
@@ -142,15 +142,17 @@ KICS scans and detects issues in following Infrastructure as Code solutions:
                 <img alt="Bicep" src="img/logo-bicep.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
         </a>
 </div>
+<div class="card card-interactable"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
+        <a href="platforms/#nifcloud_for_terraform">
+                <img alt="NIFCloud" src="img/logo-nifcloud.png"  width="80" style="min-width:80px">&nbsp;&nbsp;&nbsp;
+        </a>
+</div>
 </div>
 
 #### Beta Features
 <div style="display:flex;flex:1;flex-wrap:wrap;align-items:center;justify-content:center">
 <div class="card" style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="Databricks" src="img/logo-databricks.png" width="200">&nbsp;&nbsp;&nbsp;
-</div>
-<div class="card"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
-        <img alt="NIFCloud" src="img/logo-nifcloud.png" width="70">&nbsp;&nbsp;&nbsp;
 </div>
 <div class="card"  style="min-width:80;flex:0 0 25%;display:flex;align-items:center;justify-content:center;margin:8px">
         <img alt="TencentCloud" src="img/logo-tencentcloud.png" width="120">&nbsp;&nbsp;&nbsp;

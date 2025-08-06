@@ -44,7 +44,7 @@ func (i *Ignore) Reset() {
 func ignoreCommentsYAML(node *yaml.Node) {
 	linesIgnore := make([]int, 0)
 	if node.HeadComment != "" {
-		// Squence Node - Head Comment comes in root node
+		// Sequence Node - Head Comment comes in root node
 		linesIgnore = append(linesIgnore, processCommentYAML((*comment)(&node.HeadComment), 0, node, node.Kind, false)...)
 		NewIgnore.build(linesIgnore)
 		return
@@ -87,24 +87,24 @@ func getSeqLastLine(content *yaml.Node) int {
 }
 
 func getFootComments(comment string, content *yaml.Node, position, commentsNumber int) (linesIgnore []int) {
-	for { // get the right position where the comment is a foot comment
-		if content.Content[position].FootComment == comment {
-			break
-		}
+	// get the right position where the comment is a foot comment
+	for content.Content[position].FootComment == comment {
 		position--
 	}
 
 	line := content.Content[position].Line
+	nextSequencePosition := position + 1
 
-	if content.Content[position+1].Kind == yaml.SequenceNode {
+	if nextSequencePosition < len(content.Content) &&
+		content.Content[nextSequencePosition].Kind == yaml.SequenceNode {
 		// get the last line of the sequence through the sequence after the content that has the comment as a foot comment
 		// example:
 		// - proto: tcp  // content.Content[position]
-		//   ports:      // content.Content[position+1]
+		//   ports:      // content.Content[nextSequencePosition]
 		//     - 80
 		//     - 443    //  last line of the sequence
 		//   # public ALB 80 + 443 must be access able from everywhere
-		line = getSeqLastLine(content.Content[position+1])
+		line = getSeqLastLine(content.Content[nextSequencePosition])
 	}
 
 	for i := 1; i <= commentsNumber; i++ {

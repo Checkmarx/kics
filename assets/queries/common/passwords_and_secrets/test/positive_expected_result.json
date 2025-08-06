@@ -384,6 +384,12 @@
     "fileName": "positive46.yaml"
   },
   {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 21,
+    "fileName": "positive46.yaml"
+  },
+  {
     "queryName": "Passwords And Secrets - Google OAuth",
     "severity": "HIGH",
     "line": 5,
@@ -418,5 +424,23 @@
     "severity": "HIGH",
     "line": 68,
     "fileName": "positive50.yaml"
+  },
+  {
+    "queryName": "Passwords And Secrets - Dockerfile ENV hardcoded password with omitted equals",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive51.dockerfile"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 4,
+    "fileName": "positive52.dockerfile"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 54,
+    "fileName": "positive53.json"
   }
 ]

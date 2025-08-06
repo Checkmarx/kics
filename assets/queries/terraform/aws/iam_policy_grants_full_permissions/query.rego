@@ -24,6 +24,28 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "'policy.Statement.Resource' and 'policy.Statement.Action' should not equal '*'",
 		"keyActualValue": "'policy.Statement.Resource' and 'policy.Statement.Action' are equal to '*'",
-		"searchLine": common_lib.build_search_line(["resource", resourceType[idx], name, "access_policy"], []),
+		"searchLine": common_lib.build_search_line(["resource", resourceType[idx], name, "policy"], []),
 	}
 }
+
+CxPolicy[result] {
+	data_res := input.document[i].data.aws_iam_policy_document[name]
+
+	statement := data_res.statement
+
+	common_lib.is_allow_effect(statement)
+	common_lib.containsOrInArrayContains(statement.resources, "*")
+	common_lib.containsOrInArrayContains(statement.actions, "*")
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "aws_iam_policy_document",
+		"resourceName": name,
+		"searchKey": sprintf("aws_iam_policy_document[%s]", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": "'statement.resources' and 'statement.actions' should not contain '*'",
+		"keyActualValue": "'statement.resources' and 'statement.actions' contain '*'",
+		"searchLine": common_lib.build_search_line(["data", "aws_iam_policy_document", name], []),
+	}
+}
+

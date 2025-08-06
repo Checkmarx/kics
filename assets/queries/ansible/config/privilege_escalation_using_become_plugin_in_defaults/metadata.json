@@ -1,0 +1,12 @@
+{
+  "id": "404908b6-4954-4611-98f0-e8ceacdabcb1",
+  "queryName": "Privilege Escalation Using Become Plugin In Defaults",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "In order to perform an action as a different user with the become_user, 'become' must be defined and set to 'true'",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/plugins/become.html",
+  "platform": "Ansible",
+  "descriptionID": "00396668",
+  "cloudProvider": "common",
+  "cwe": "286"
+}

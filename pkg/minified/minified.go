@@ -1,6 +1,8 @@
 package minified
 
 import (
+	"bytes"
+	"encoding/json"
 	"regexp"
 	"strings"
 )
@@ -23,4 +25,13 @@ func isMinifiedJSON(content string) bool {
 	minifiedThreshold := 0.8
 
 	return float64(nonWhitespaceCount)/float64(len(content)) > minifiedThreshold
+}
+
+func BeautifyJSON(content []byte) ([]byte, error) {
+	var pretty bytes.Buffer
+	err := json.Indent(&pretty, content, "", "    ")
+	if err != nil {
+		return nil, err
+	}
+	return pretty.Bytes(), nil
 }

@@ -1,0 +1,12 @@
+{
+  "id": "86b97bb4-85c9-462d-8635-cbc057c5c8c5",
+  "queryName": "Allow Unsafe Lookups Enabled In Defaults",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "When enabled, this option allows lookup plugins to return data that is not marked 'unsafe'.",
+  "descriptionUrl": "https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-allow-unsafe-lookups",
+  "platform": "Ansible",
+  "descriptionID": "0d491461",
+  "cloudProvider": "common",
+  "cwe": "200"
+}

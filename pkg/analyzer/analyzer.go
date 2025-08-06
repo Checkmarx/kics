@@ -20,6 +20,24 @@ import (
 	yamlParser "gopkg.in/yaml.v3"
 )
 
+const (
+	yml        = ".yml"
+	yaml       = ".yaml"
+	json       = ".json"
+	sh         = ".sh"
+	arm        = "azureresourcemanager"
+	bicep      = "bicep"
+	kubernetes = "kubernetes"
+	terraform  = "terraform"
+	gdm        = "googledeploymentmanager"
+	ansible    = "ansible"
+	grpc       = "grpc"
+	dockerfile = "dockerfile"
+	crossplane = "crossplane"
+	knative    = "knative"
+	sizeMb     = 1048576
+)
+
 // move the openApi regex to public to be used on file.go
 // openAPIRegex - Regex that finds OpenAPI defining property "openapi" or "swagger"
 // openAPIRegexInfo - Regex that finds OpenAPI defining property "info"
@@ -47,13 +65,13 @@ var (
 	cdkTfRegexTerraform                             = regexp.MustCompile(`"terraform"\s*:`)
 	artifactsRegexKind                              = regexp.MustCompile(`("kind"|kind)\s*:`)
 	artifactsRegexProperties                        = regexp.MustCompile(`("properties"|properties)\s*:`)
-	artifactsRegexParametes                         = regexp.MustCompile(`("parameters"|parameters)\s*:`)
+	artifactsRegexParameters                        = regexp.MustCompile(`("parameters"|parameters)\s*:`)
 	policyAssignmentArtifactRegexPolicyDefinitionID = regexp.MustCompile(`("policyDefinitionId"|policyDefinitionId)\s*:`)
 	roleAssignmentArtifactRegexPrincipalIds         = regexp.MustCompile(`("principalIds"|principalIds)\s*:`)
 	roleAssignmentArtifactRegexRoleDefinitionID     = regexp.MustCompile(`("roleDefinitionId"|roleDefinitionId)\s*:`)
-	templateArtifactRegexParametes                  = regexp.MustCompile(`("template"|template)\s*:`)
-	blueprintpRegexTargetScope                      = regexp.MustCompile(`("targetScope"|targetScope)\s*:`)
-	blueprintpRegexProperties                       = regexp.MustCompile(`("properties"|properties)\s*:`)
+	templateArtifactRegexParameters                 = regexp.MustCompile(`("template"|template)\s*:`)
+	blueprintRegexTargetScope                       = regexp.MustCompile(`("targetScope"|targetScope)\s*:`)
+	blueprintRegexProperties                        = regexp.MustCompile(`("properties"|properties)\s*:`)
 	buildahRegex                                    = regexp.MustCompile(`buildah\s*from\s*\w+`)
 	dockerComposeServicesRegex                      = regexp.MustCompile(`services\s*:[\w\W]+(image|build)\s*:`)
 	crossPlaneRegex                                 = regexp.MustCompile(`"?apiVersion"?\s*:\s*(\w+\.)+crossplane\.io/v\w+\s*`)
@@ -67,6 +85,12 @@ var (
 	cicdJobsRegex                                   = regexp.MustCompile(`\s*jobs:\s*`)
 	cicdStepsRegex                                  = regexp.MustCompile(`\s*steps:\s*`)
 	queryRegexPathsAnsible                          = regexp.MustCompile(fmt.Sprintf(`^.*?%s(?:group|host)_vars%s.*$`, regexp.QuoteMeta(string(os.PathSeparator)), regexp.QuoteMeta(string(os.PathSeparator)))) //nolint:lll
+	fhirResourceTypeRegex                           = regexp.MustCompile(`"resourceType"\s*:`)
+	fhirEntryRegex                                  = regexp.MustCompile(`"entry"\s*:`)
+	fhirSubjectRegex                                = regexp.MustCompile(`"subject"\s*:`)
+	fhirCodeRegex                                   = regexp.MustCompile(`"code"\s*:`)
+	fhirStatusRegex                                 = regexp.MustCompile(`"status"\s*:`)
+	azurePipelinesVscodeRegex                       = regexp.MustCompile(`\$id"\s*:\s*"[^"]*azure-pipelines-vscode[^"]*`)
 )
 
 var (
@@ -112,24 +136,6 @@ var (
 	listKeywordsAnsibleHots = []string{"hosts", "children"}
 )
 
-const (
-	yml        = ".yml"
-	yaml       = ".yaml"
-	json       = ".json"
-	sh         = ".sh"
-	arm        = "azureresourcemanager"
-	bicep      = "bicep"
-	kubernetes = "kubernetes"
-	terraform  = "terraform"
-	gdm        = "googledeploymentmanager"
-	ansible    = "ansible"
-	grpc       = "grpc"
-	dockerfile = "dockerfile"
-	crossplane = "crossplane"
-	knative    = "knative"
-	sizeMb     = 1048576
-)
-
 type Parameters struct {
 	Results     string
 	Path        []string
@@ -142,20 +148,22 @@ type regexSlice struct {
 }
 
 type analyzerInfo struct {
-	typesFlag        []string
-	excludeTypesFlag []string
-	filePath         string
+	typesFlag               []string
+	excludeTypesFlag        []string
+	filePath                string
+	fallbackMinifiedFileLOC int
 }
 
 // Analyzer keeps all the relevant info for the function Analyze
 type Analyzer struct {
-	Paths             []string
-	Types             []string
-	ExcludeTypes      []string
-	Exc               []string
-	GitIgnoreFileName string
-	ExcludeGitIgnore  bool
-	MaxFileSize       int
+	Paths                   []string
+	Types                   []string
+	ExcludeTypes            []string
+	Exc                     []string
+	GitIgnoreFileName       string
+	ExcludeGitIgnore        bool
+	MaxFileSize             int
+	FallbackMinifiedFileLOC int
 }
 
 // types is a map that contains the regex by type
@@ -215,7 +223,7 @@ var types = map[string]regexSlice{
 		[]*regexp.Regexp{
 			artifactsRegexKind,
 			artifactsRegexProperties,
-			artifactsRegexParametes,
+			artifactsRegexParameters,
 			policyAssignmentArtifactRegexPolicyDefinitionID,
 		},
 	},
@@ -231,14 +239,14 @@ var types = map[string]regexSlice{
 		[]*regexp.Regexp{
 			artifactsRegexKind,
 			artifactsRegexProperties,
-			artifactsRegexParametes,
-			templateArtifactRegexParametes,
+			artifactsRegexParameters,
+			templateArtifactRegexParameters,
 		},
 	},
 	"blueprint": {
 		[]*regexp.Regexp{
-			blueprintpRegexTargetScope,
-			blueprintpRegexProperties,
+			blueprintRegexTargetScope,
+			blueprintRegexProperties,
 		},
 	},
 	"buildah": {
@@ -272,6 +280,31 @@ var types = map[string]regexSlice{
 		},
 	},
 }
+
+// region blacklisted platforms
+
+var blacklistedTypesRegexes = map[string]map[string]regexSlice{
+	"templateArtifact": {
+		"fhir": {
+			regex: []*regexp.Regexp{
+				fhirResourceTypeRegex,
+				fhirStatusRegex,
+				fhirCodeRegex,
+				fhirEntryRegex,
+				fhirSubjectRegex,
+			},
+		},
+	},
+	"blueprint": {
+		"azurepipelinesvscode": {
+			regex: []*regexp.Regexp{
+				azurePipelinesVscodeRegex,
+			},
+		},
+	},
+}
+
+//endregion
 
 var defaultConfigFiles = []string{"pnpm-lock.yaml"}
 
@@ -335,9 +368,10 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 		wg.Add(1)
 		// analyze the files concurrently
 		a := &analyzerInfo{
-			typesFlag:        a.Types,
-			excludeTypesFlag: a.ExcludeTypes,
-			filePath:         file,
+			typesFlag:               a.Types,
+			excludeTypesFlag:        a.ExcludeTypes,
+			filePath:                file,
+			fallbackMinifiedFileLOC: a.FallbackMinifiedFileLOC,
 		}
 		go a.worker(results, unwanted, locCount, &wg)
 	}
@@ -369,11 +403,17 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
 func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, wg *sync.WaitGroup) { //nolint: gocyclo
-	defer wg.Done()
+	defer func() {
+		if err := recover(); err != nil {
+			log.Warn().Msgf("Recovered from analyzing panic for file %s with error: %#v", a.filePath, err.(error).Error())
+			unwanted <- a.filePath
+		}
+		wg.Done()
+	}()
 
 	ext, errExt := utils.GetExtension(a.filePath)
 	if errExt == nil {
-		linesCount, _ := utils.LineCounter(a.filePath)
+		linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
 
 		switch ext {
 		// Dockerfile (direct identification)
@@ -415,7 +455,8 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 				locCount <- linesCount
 			}
 		/* It could be Ansible, Buildah, CICD, CloudFormation, Crossplane, OpenAPI, Azure Resource Manager
-		Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager*/
+		Docker Compose, Knative, Kubernetes, Pulumi, ServerlessFW or Google Deployment Manager.
+		We also have FHIR's case which will be ignored since it's not a platform file.*/
 		case yaml, yml, json, sh:
 			a.checkContent(results, unwanted, locCount, linesCount, ext)
 		}
@@ -446,7 +487,7 @@ func isDockerfile(path string) bool {
 	return check
 }
 
-// overrides k8s match when all regexs passes for azureresourcemanager key and extension is set to json
+// overrides k8s match when all regexes pass for azureresourcemanager key and extension is set to json
 func needsOverride(check bool, returnType, key, ext string) bool {
 	if check && returnType == kubernetes && key == arm && ext == json {
 		return true
@@ -470,7 +511,7 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 
 	returnType := ""
 
-	// Sort map so that CloudFormation (type that as less requireds) goes last
+	// Sort map so that CloudFormation (type that as less required) goes last
 	keys := make([]string, 0, len(types))
 	for k := range types {
 		keys = append(keys, k)
@@ -492,23 +533,30 @@ func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount ch
 				break
 			}
 		}
-		// If all regexs passed and there wasn't a type already assigned
+		// If all regexes passed and there wasn't a type already assigned
 		if check && returnType == "" {
 			returnType = key
 		} else if needsOverride(check, returnType, key, ext) {
 			returnType = key
 		}
 	}
-	returnType = checkReturnType(a.filePath, returnType, ext, content)
-	if returnType != "" {
-		if a.isAvailableType(returnType) {
-			results <- returnType
-			locCount <- linesCount
-			return
-		}
+
+	// Check for blacklisted types for the detected returnType
+	if isBlacklistedTypeMatch(returnType, content) {
+		// File type is blacklisted, so we ignore it
+		unwanted <- a.filePath
+		return
 	}
-	// No type was determined (ignore on parser)
-	unwanted <- a.filePath
+
+	returnType = checkReturnType(a.filePath, returnType, ext, content)
+	if returnType == "" || !a.isAvailableType(returnType) {
+		// No type was determined (ignore on parser)
+		unwanted <- a.filePath
+		return
+	}
+
+	results <- returnType
+	locCount <- linesCount
 }
 
 func checkReturnType(path, returnType, ext string, content []byte) string {
@@ -769,4 +817,18 @@ func typeLower(types, exclTypes []string) (typesRes, exclTypesRes []string) {
 	}
 
 	return types, exclTypes
+}
+
+// isBlacklistedTypeMatch checks if any blacklisted regex for the given returnType matches the content.
+func isBlacklistedTypeMatch(returnType string, content []byte) bool {
+	if blMap, ok := blacklistedTypesRegexes[returnType]; ok {
+		for _, bl := range blMap {
+			for _, re := range bl.regex {
+				if re.Match(content) {
+					return true
+				}
+			}
+		}
+	}
+	return false
 }

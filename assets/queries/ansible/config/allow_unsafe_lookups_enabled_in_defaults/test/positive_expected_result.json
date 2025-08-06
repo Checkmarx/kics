@@ -1,0 +1,7 @@
+[
+	{
+		"queryName": "Allow Unsafe Lookups Enabled In Defaults",
+		"severity": "HIGH",
+		"line": 19
+	}
+]

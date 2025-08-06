@@ -1,0 +1,14 @@
+[
+	{
+		"queryName": "Privilege Escalation Using Become Plugin In Defaults",
+		"severity": "MEDIUM",
+		"filename": "positive1.cfg",
+		"line": 10
+	},
+	{
+		"queryName": "Privilege Escalation Using Become Plugin In Defaults",
+		"severity": "MEDIUM",
+		"filename": "positive2.cfg",
+		"line": 12
+	}
+]

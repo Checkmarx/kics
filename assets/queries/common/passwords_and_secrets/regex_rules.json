@@ -16,6 +16,26 @@
         {
           "description": "Avoiding Ansible playbook update_password",
           "regex": "['\"]?update_password['\"]?\\s*[:=]\\s*['\"]?([A-Za-z0-9/~^_!@&%()=?*+-.]{4,})['\"]?"
+        },
+        {
+          "description": "Allow passwords retrieved from Terraform data sources",
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*data\\.azurerm_key_vault_secret\\.[A-Za-z0-9_]+\\.value"
+        },
+        {
+          "description": "Allow passwords retrieved from AWS KMS Secrets",
+          "regex": "(?i)['\"]?password['\"]?\\s*=\\s*data\\.aws_kms_secrets\\.[A-Za-z0-9_]+\\.plaintext\\[\"[A-Za-z0-9_]+\"\\]"
+        },
+        {
+          "description": "Allow placeholders",
+          "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"](\\$\\(|\\$?\\{\\{)\\s*\\w+\\s*(\\)|\\}\\})['\"]"
+        },
+        {
+          "description": "Allow empty values",
+          "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*(''|\"\")"
+        },
+        {
+          "description": "Allow password retrieved from ARM parameters",
+          "regex": "(?i)['\"]?password['\"]?\\s*[:=]\\s*['\"]?\\s*,\\s*parameters\\(['\"]([a-zA-Z][a-zA-Z0-9_-]*)['\"]['\"]?\\)"
         }
       ],
       "specialMask": "(?i)['\"]?password['\"]?\\s*[:=]\\s*"
@@ -243,6 +263,10 @@
         {
           "description": "Avoiding bash variables",
           "regex": "(?i)['\"]?\\$\\s*\\{[^\\s\\}]+\\}['\"]?"
+        },
+        {
+          "description": "Avoid Docker Compose secrets paths",
+          "regex": "(?i)['\"]?private[_]?key['\"]?\\s*[:=]\\s*['\"]?/run/secrets/\\w+['\"]?"
         }
       ]
     },
@@ -293,7 +317,7 @@
         },
         {
           "description": "Avoiding Github id-token Default Values",
-          "regex": "(?i)['\"]?id-token\\s*[:=]\\s*(write|read|none)\\s*$"
+          "regex": "(?i)['\"]?id-token['\"]?\\s*[:=]\\s*(write|read|none)"
         },
         {
           "description": "Avoiding result_token Var",
@@ -346,6 +370,11 @@
         "detectLineGroup": 1
       },
       "specialMask": ".*password\\s*:[\\n|\\r]\\s*value:"
+    },
+    {
+      "id": "f05f238a-2ef0-4c39-9a36-951de1ba6dc9",
+      "name": "Dockerfile ENV hardcoded password with omitted equals",
+      "regex": "(?i)ENV\\s+[A-Za-z0-9/~^_!@&%()=?*+-.]*password[A-Za-z0-9/~^_!@&%()=?*+-.]*\\s+['\"]?([A-Za-z0-9/~^_!@&%()=?*+-. ]{4,})['\"]?"
     }
   ],
   "allowRules": [

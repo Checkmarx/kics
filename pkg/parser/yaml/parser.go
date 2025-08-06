@@ -5,11 +5,12 @@ import (
 
 	"github.com/Checkmarx/kics/v2/pkg/parser/utils"
 
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/resolver/file"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
+
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/resolver/file"
 )
 
 // Parser defines a parser type
@@ -21,8 +22,13 @@ type Parser struct {
 func (p *Parser) Resolve(fileContent []byte, filename string, resolveReferences bool, maxResolverDepth int) ([]byte, error) {
 	// Resolve files passed as arguments with file resolver (e.g. file://)
 	res := file.NewResolver(yaml.Unmarshal, yaml.Marshal, p.SupportedExtensions())
-	resolvedFilesCache := make(map[string]file.ResolvedFile)
-	resolved := res.Resolve(fileContent, filename, 0, maxResolverDepth, resolvedFilesCache, resolveReferences)
+	initialResolvingStatus := file.ResolvingStatus{
+		CurrentDepth:       0,
+		MaxDepth:           maxResolverDepth,
+		ResolvedFilesCache: make(map[string]file.ResolvedFile),
+		ResolveReferences:  resolveReferences,
+	}
+	resolved, _ := res.Resolve(fileContent, filename, initialResolvingStatus)
 	p.resolvedFiles = res.ResolvedFiles
 	if len(res.ResolvedFiles) == 0 {
 		return fileContent, nil
@@ -131,7 +137,12 @@ func processCertContent(elements map[string]interface{}, content, filePath strin
 
 func processElements(elements map[string]interface{}, filePath string) {
 	if elements["certificate"] != nil {
-		processCertContent(elements, utils.CheckCertificate(elements["certificate"].(string)), filePath)
+		certificate, ok := elements["certificate"].(string)
+		if !ok {
+			log.Warn().Msgf("Failed to parse certificate: %s", filePath)
+			return
+		}
+		processCertContent(elements, utils.CheckCertificate(certificate), filePath)
 	}
 }
 

@@ -110,7 +110,11 @@ func GetSources(source []string) (ExtractedPath, error) {
 			log.Error().Msgf("%s", err)
 			return ExtractedPath{}, err
 		}
-		tempDst, local := checkSymLink(getterDst, path)
+		tempDst, local, err := checkSymLink(getterDst, path)
+		if err != nil {
+			log.Warn().Msgf("%s", err)
+			continue
+		}
 
 		extrStruct.ExtractionMap[getterDst] = model.ExtractedPathObject{
 			Path:      path,
@@ -170,9 +174,9 @@ func getPaths(g *getterStruct) (string, error) {
 }
 
 // check if the dst is a symbolic link
-func checkSymLink(getterDst, pathFile string) (string, bool) {
+func checkSymLink(getterDst, pathFile string) (getDest string, isLocal bool, err error) {
 	var local bool
-	_, err := os.Stat(pathFile)
+	_, err = os.Stat(pathFile)
 	if err == nil { // check if file exist locally
 		local = true
 	}
@@ -180,6 +184,7 @@ func checkSymLink(getterDst, pathFile string) (string, bool) {
 	info, err := os.Lstat(getterDst)
 	if err != nil {
 		log.Error().Msgf("failed lstat for %s: %v", getterDst, err)
+		return "", false, err
 	}
 
 	fileInfo := getFileInfo(info, getterDst, pathFile)
@@ -188,6 +193,7 @@ func checkSymLink(getterDst, pathFile string) (string, bool) {
 		path, err := os.Readlink(getterDst) // get location of symbolic Link
 		if err != nil {
 			log.Error().Msgf("failed Readlink for %s: %v", getterDst, err)
+			return "", false, err
 		}
 		getterDst = path // change path to local path
 	} else if !fileInfo.IsDir() { // symbolic links are not created for single files
@@ -195,7 +201,7 @@ func checkSymLink(getterDst, pathFile string) (string, bool) {
 			getterDst = pathFile
 		}
 	}
-	return getterDst, local
+	return getterDst, local, nil
 }
 
 func getFileInfo(info fs.FileInfo, dst, pathFile string) fs.FileInfo {
@@ -222,7 +228,11 @@ func isEncrypted(sourceFile string) bool {
 		log.Error().Msgf("failed to open %s: %v", sourceFile, err)
 		return false
 	}
-	defer zipFile.Close()
+	defer func() {
+		if errClose := zipFile.Close(); errClose != nil {
+			log.Error().Err(errClose).Msg("Error closing zip file")
+		}
+	}()
 	for _, file := range zipFile.File {
 		if file.IsEncrypted() {
 			log.Error().Msgf("file %s is encrypted", sourceFile)

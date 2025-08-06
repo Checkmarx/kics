@@ -14,8 +14,15 @@ var flagValidationFuncs = flagValidationFuncsMap{
 }
 
 func isQueryID(id string) bool {
-	re := regexp.MustCompile(`^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$`)
-	return re.MatchString(id)
+	uuidRegex := regexp.MustCompile(`^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$`)
+	isQueryID := uuidRegex.MatchString(id)
+	if !isQueryID {
+		// (t:|p:|a:) matches strings starting with 't:', 'p:', or 'a:'
+		// (\d{1,20}) ensures the numeric part has 1 to 20 digits (uint64 validation)
+		cxoneRegex := regexp.MustCompile(`^(t:|p:|a:)(\d{1,20})$`)
+		isQueryID = cxoneRegex.MatchString(id)
+	}
+	return isQueryID
 }
 
 func convertSliceToDummyMap(slice []string) map[string]string {

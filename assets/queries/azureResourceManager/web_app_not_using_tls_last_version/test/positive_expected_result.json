@@ -26,6 +26,12 @@
   {
     "queryName": "Web App Not Using TLS Last Version",
     "severity": "MEDIUM",
+    "line": 14,
+    "filename": "positive5.json"
+  },
+  {
+    "queryName": "Web App Not Using TLS Last Version",
+    "severity": "MEDIUM",
     "line": 6,
     "filename": "positive1.bicep"
   },
@@ -46,5 +52,11 @@
     "severity": "MEDIUM",
     "line": 2,
     "filename": "positive4.bicep"
+  },
+  {
+    "queryName": "Web App Not Using TLS Last Version",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive5.bicep"
   }
 ]
