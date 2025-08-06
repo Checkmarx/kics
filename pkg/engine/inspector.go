@@ -5,6 +5,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"gopkg.in/yaml.v3"
+	"os"
+	"path/filepath"
 
 	"runtime"
 	"strings"
@@ -41,6 +44,8 @@ const (
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 
 	regoQuery = `result = data.Cx.CxPolicy`
+	// TransitionInformationBasePath the path to yaml files that contains the transition information
+	TransitionInformationBasePath = "./assets/similarityID_transition"
 )
 
 // ErrNoResult - error representing when a query didn't return a result
@@ -60,7 +65,7 @@ type QueryLoader struct {
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
 	detector *detector.DetectLine, useOldSeverities bool, kicsComputeNewSimID bool,
-	similarityIDTransitionQueryMap map[string]VulnerabilityBuilderTransitionQueryInfo) (*model.Vulnerability, error)
+	similarityIDTransitionQueryMap map[string]TransitionQueryInfo) (*model.Vulnerability, error)
 
 // PreparedQuery includes the opaQuery and its metadata
 type PreparedQuery struct {
@@ -78,12 +83,13 @@ type Inspector struct {
 	excludeResults map[string]bool
 	detector       *detector.DetectLine
 
-	enableCoverageReport bool
-	coverageReport       cover.Report
-	queryExecTimeout     time.Duration
-	useOldSeverities     bool
-	numWorkers           int
-	kicsComputeNewSimID  bool
+	enableCoverageReport      bool
+	coverageReport            cover.Report
+	queryExecTimeout          time.Duration
+	useOldSeverities          bool
+	numWorkers                int
+	kicsComputeNewSimID       bool
+	similarityIDTransitionMap map[string]TransitionQueryInfo
 }
 
 // QueryContext contains the context where the query is executed, which scan it belongs, basic information of query,
@@ -150,7 +156,10 @@ func NewInspector(
 
 	failedQueries := make(map[string]error)
 
-
+	similarityIDTransitionQueryMap := make(map[string]TransitionQueryInfo)
+	if kicsComputeNewSimID {
+		similarityIDTransitionQueryMap = getSimilarityIDTransitionQueryMap(TransitionInformationBasePath)
+	}
 
 	metrics.Metric.Stop()
 
@@ -171,16 +180,17 @@ func NewInspector(
 	}
 
 	return &Inspector{
-		QueryLoader:         &queryLoader,
-		vb:                  vb,
-		tracker:             tracker,
-		failedQueries:       failedQueries,
-		excludeResults:      excludeResults,
-		detector:            lineDetector,
-		queryExecTimeout:    queryExecTimeout,
-		useOldSeverities:    useOldSeverities,
-		numWorkers:          adjustNumWorkers(numWorkers),
-		kicsComputeNewSimID: kicsComputeNewSimID,
+		QueryLoader:               &queryLoader,
+		vb:                        vb,
+		tracker:                   tracker,
+		failedQueries:             failedQueries,
+		excludeResults:            excludeResults,
+		detector:                  lineDetector,
+		queryExecTimeout:          queryExecTimeout,
+		useOldSeverities:          useOldSeverities,
+		numWorkers:                adjustNumWorkers(numWorkers),
+		kicsComputeNewSimID:       kicsComputeNewSimID,
+		similarityIDTransitionMap: similarityIDTransitionQueryMap,
 	}, nil
 }
 
@@ -206,27 +216,46 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
 	return platformLibraries
 }
 
-func getSimilarityIDTransitionQueryMap(queriesSource source.QueriesSource, queries []model.QueryMetadata) map[string]source.RegoLibraries {
-	supportedPlatforms := make(map[string]string)
-	for _, query := range queries {
-		supportedPlatforms[query.Platform] = ""
-	}
-	platformLibraries := make(map[string]source.RegoLibraries)
-	for platform := range supportedPlatforms {
-		platformLibrary, errLoadingPlatformLib := queriesSource.GetQueryLibrary(platform)
-		if errLoadingPlatformLib != nil {
-			sentryReport.ReportSentry(&sentryReport.Report{
-				Message:  fmt.Sprintf("Inspector failed to get library for %s platform", platform),
-				Err:      errLoadingPlatformLib,
-				Location: "func getPlatformLibraries()",
-				Platform: platform,
-			}, true)
-			continue
+// getSimilarityIDTransitionQueryMap gets the map of similarity ID transition queries from the assets
+func getSimilarityIDTransitionQueryMap(informationPath string) map[string]TransitionQueryInfo {
+	var transitionQueryMap = make(map[string]TransitionQueryInfo)
+	err := filepath.WalkDir(informationPath, func(path string, d os.DirEntry, err error) error {
+		var changeList = TransitionQueryInfoChangeList{}
+		if err != nil {
+			log.Error().Msgf("Error walking through transition information files: %v", err)
+			return err
 		}
-		platformLibraries[platform] = platformLibrary
+
+		if filepath.Ext(d.Name()) == ".yaml" || filepath.Ext(d.Name()) == ".yml" {
+			content, err := os.ReadFile(path)
+			if err != nil {
+				log.Error().Msgf("Error reading transition information file %s", d.Name())
+				return err
+			}
+
+			err = yaml.Unmarshal(content, &changeList)
+			if err != nil {
+				log.Error().Msgf("Error unmarshalling transition information file %s: %v", d.Name(), err)
+				return err
+			}
+
+			for _, change := range changeList.SimilarityIDChangeList {
+				if _, ok := transitionQueryMap[change.QueryID]; ok {
+					log.Warn().Msgf(
+						"Duplicate query ID found in transition information file %s: %s", d.Name(), change.QueryID)
+				} else {
+					transitionQueryMap[change.QueryID] = change
+				}
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		log.Error().Msgf("Error getting similarity ID transition query map: %v", err)
+		return nil
 	}
-	return platformLibraries
-}func get
+	return transitionQueryMap
+}
 
 type InspectionJob struct {
 	queryID int
@@ -509,7 +538,8 @@ func (c *Inspector) DecodeQueryResults(
 }
 
 func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultItem interface{}) (*model.Vulnerability, bool) {
-	vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector, c.useOldSeverities, c.kicsComputeNewSimID)
+	vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector,
+		c.useOldSeverities, c.kicsComputeNewSimID, c.similarityIDTransitionMap)
 	if err != nil && err.Error() == ErrNoResult.Error() {
 		// Ignoring bad results
 		return nil, false

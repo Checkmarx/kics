@@ -53,6 +53,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.apiVersion of %s should be {{%s}}", [metadata.name,  document.kind, recommendedVersions[document.apiVersion][document.kind]]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.apiVersion of %s  is deprecated and is {{%s}}", [metadata.name, document.kind, document.apiVersion]),
-		"searchLine": common_lib.build_search_line("apiVersion", []),
+		"searchLine": common_lib.build_search_line(["apiVersion"], []),
 	}
 }

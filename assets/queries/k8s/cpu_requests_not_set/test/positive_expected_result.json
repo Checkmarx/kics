@@ -17,6 +17,6 @@
   {
     "queryName": "CPU Requests Not Set",
     "severity": "LOW",
-    "line": 47
+    "line": 37
   }
 ]

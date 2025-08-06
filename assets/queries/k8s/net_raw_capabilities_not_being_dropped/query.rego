@@ -12,8 +12,8 @@ CxPolicy[result] {
 	specInfo = k8sLib.getSpecInfo(document)
 	container := specInfo.spec[types[x]][c]
 
-	capabilities := container.securityContext.capabilities.drop
-	not common_lib.compareArrays(capabilities.drop, ["ALL", "NET_RAW"])
+	drop := container.securityContext.capabilities.drop
+	not common_lib.compareArrays(drop, ["ALL", "NET_RAW"])
 
 	result := {
 		"documentId": document.id,
