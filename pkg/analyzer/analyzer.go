@@ -403,7 +403,13 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
 func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, wg *sync.WaitGroup) { //nolint: gocyclo
-	defer wg.Done()
+	defer func() {
+		if err := recover(); err != nil {
+			log.Warn().Msgf("Recovered from analyzing panic for file %s with error: %#v", a.filePath, err.(error).Error())
+			unwanted <- a.filePath
+		}
+		wg.Done()
+	}()
 
 	ext, errExt := utils.GetExtension(a.filePath)
 	if errExt == nil {
