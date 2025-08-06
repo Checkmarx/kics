@@ -15,7 +15,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: command-demo
+  name: command-demo2
   labels:
     purpose: demonstrate-command
 spec:

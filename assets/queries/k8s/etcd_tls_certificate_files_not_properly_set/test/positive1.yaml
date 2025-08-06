@@ -26,7 +26,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-etcd-deployment
+  name: app-etcd-deployment2
 spec:
   selector:
     matchLabels:
