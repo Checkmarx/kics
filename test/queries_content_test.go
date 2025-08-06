@@ -58,6 +58,7 @@ var (
 		"../assets/queries/cicd/github/run_block_injection",
 		"../assets/queries/cicd/github/script_block_injection",
 		"../assets/queries/azureResourceManager/key_vault_not_recoverable",
+		"../assets/queries/terraform/aws/iam_policy_allows_for_data_exfiltration",
 	}
 
 	// TODO uncomment this test once all metadata are fixed

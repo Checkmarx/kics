@@ -1,0 +1,62 @@
+[
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 13,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive5.json"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive8.json"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive8.json"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive8.json"
+  }
+]
