@@ -1,15 +1,15 @@
 [
-  {
-    "line": 70,
-    "fileName": "positive1.yaml",
+  { 
     "queryName": "CloudTrail Multi Region Disabled",
-    "severity": "LOW"
+    "severity": "LOW",
+    "line": 70,
+    "fileName": "positive1.yaml"
   },
   {
+    "queryName": "CloudTrail Multi Region Disabled",
     "severity": "LOW",
     "line": 76,
-    "fileName": "positive1.yaml",
-    "queryName": "CloudTrail Multi Region Disabled"
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "CloudTrail Multi Region Disabled",
@@ -18,9 +18,15 @@
     "fileName": "positive2.json"
   },
   {
+    "queryName": "CloudTrail Multi Region Disabled",
     "severity": "LOW",
     "line": 32,
-    "fileName": "positive2.json",
-    "queryName": "CloudTrail Multi Region Disabled"
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "CloudTrail Multi Region Disabled",
+    "severity": "LOW",
+    "line": 70,
+    "fileName": "positive3.yaml"
   }
 ]

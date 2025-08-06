@@ -30,7 +30,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::Elasticsearch::Domain"
 	properties := resource.Properties
 
-	properties.EncryptionAtRestOptions.Enabled != true
+	not cf_lib.isCloudFormationTrue(properties.EncryptionAtRestOptions.Enabled)
 
 	result := {
 		"documentId": input.document[i].id,
