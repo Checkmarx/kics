@@ -1,15 +1,15 @@
 [
   {
-    "line": 10,
-    "fileName": "positive1.yaml",
     "queryName": "ElastiCache With Disabled at Rest Encryption",
-    "severity": "HIGH"
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive1.yaml"
   },
   {
+    "queryName": "ElastiCache With Disabled at Rest Encryption",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive2.yaml",
-    "queryName": "ElastiCache With Disabled at Rest Encryption"
+    "fileName": "positive2.yaml"
   },
   {
     "queryName": "ElastiCache With Disabled at Rest Encryption",
@@ -22,5 +22,11 @@
     "severity": "HIGH",
     "line": 7,
     "fileName": "positive4.json"
+  },
+  {
+    "queryName": "ElastiCache With Disabled at Rest Encryption",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive5.yaml"
   }
 ]

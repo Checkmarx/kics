@@ -10,5 +10,11 @@
     "severity": "MEDIUM",
     "line": 25,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Default KMS Key Usage",
+    "severity": "MEDIUM",
+    "line": 24,
+    "fileName": "positive3.yaml"
   }
 ]

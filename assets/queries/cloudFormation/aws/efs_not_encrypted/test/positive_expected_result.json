@@ -10,5 +10,11 @@
     "severity": "HIGH",
     "line": 90,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "EFS Not Encrypted",
+    "severity": "HIGH",
+    "line": 49,
+    "fileName": "positive3.yaml"
   }
 ]
