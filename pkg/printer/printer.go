@@ -107,7 +107,7 @@ func WordWrap(s, indentation string, limit int) string {
 // PrintResult prints on output the summary results
 func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bool) error {
 	log.Debug().Msg("helpers.PrintResult()")
-	fmt.Printf("\n\n")
+	fmt.Print("\n\n")
 	for index := range summary.Queries {
 		idx := len(summary.Queries) - index - 1
 		if summary.Queries[idx].Severity == model.SeverityTrace {
@@ -158,7 +158,7 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 		}
 		printFiles(&summary.Queries[idx], printer)
 	}
-	log.Info().Msgf("--- Parsing Summary ---")
+	log.Info().Msg("--- Parsing Summary ---")
 	log.Info().Msgf("Scanned Files: %d", summary.ScannedFiles)
 	log.Info().Msgf("Parsed Files: %d", summary.ParsedFiles)
 	log.Info().Msgf("Scanned Lines: %d", summary.ScannedFilesLines)
@@ -169,7 +169,9 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 
 	printSeverityCounter(summary)
 
-	prettyPrintResultsTable(summary)
+	if err := prettyPrintResultsTable(summary); err != nil {
+		return err
+	}
 
 	log.Info().Msg("Inspector stopped")
 
@@ -177,7 +179,7 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 }
 
 func printSeverityCounter(summary *model.Summary) {
-	log.Info().Msgf("--- Results Summary ---")
+	log.Info().Msg("--- Results Summary ---")
 	severities := []model.Severity{
 		model.SeverityCritical,
 		model.SeverityHigh,
@@ -192,23 +194,29 @@ func printSeverityCounter(summary *model.Summary) {
 }
 
 // Prints the formated Queries summary table
-func prettyPrintResultsTable(summary *model.Summary) {
+func prettyPrintResultsTable(summary *model.Summary) error {
 	var buf bytes.Buffer
-	writer := tabwriter.NewWriter(&buf, 0, 0, 4, ' ', tabwriter.TabIndent)
+	const SpacesInTab = 4
+	writer := tabwriter.NewWriter(&buf, 0, 0, SpacesInTab, ' ', tabwriter.TabIndent)
 
-	fmt.Fprintln(writer, "--- Queries Summary ---")
-	fmt.Fprintln(writer, "Platform\tQuery Name\tSeverity\tCWE\tResults")
-	fmt.Fprintln(writer, " \t \t \t \t ")
+	if _, err := writer.Write([]byte("--- Queries Summary ---\nPlatform\tQuery Name\tSeverity\tCWE\tResults\n \t \t \t \t \n")); err != nil {
+		return err
+	}
 	for idx := range summary.Queries {
-		fmt.Fprintf(writer, "%s\t%s\t%s\t%s\t%d\n",
+		if _, err := fmt.Fprintf(writer, "%s\t%s\t%s\t%s\t%d\n",
 			summary.Queries[idx].Platform,
 			summary.Queries[idx].QueryName,
 			string(summary.Queries[idx].Severity),
 			summary.Queries[idx].CWE,
-			len(summary.Queries[idx].Files))
+			len(summary.Queries[idx].Files)); err != nil {
+			return err
+		}
 	}
-	writer.Flush()
+	if err := writer.Flush(); err != nil {
+		return err
+	}
 	log.Info().Msg(buf.String())
+	return nil
 }
 
 func printFiles(query *model.QueryResult, printer *Printer) {
