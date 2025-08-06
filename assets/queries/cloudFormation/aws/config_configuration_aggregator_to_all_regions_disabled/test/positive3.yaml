@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  OperatorEmail:
+    Description: "Email address to notify when new logs are published."
+    Type: String
+Resources:
+  ConfigurationAggregator2:
+    Type: 'AWS::Config::ConfigurationAggregator'
+    Properties:
+      AccountAggregationSources:
+        - AccountIds:
+            - '123456789012'
+            - '987654321012'
+          AwsRegions:
+            - us-west-2
+            - us-east-1
+          AllAwsRegions: "false"
+    ConfigurationAggregatorName: MyConfigurationAggregator

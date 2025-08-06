@@ -52,7 +52,7 @@ CxPolicy[result] {
 
 	methods := resource.Properties.MethodSettings
 	method := methods[idx]
-	method.MetricsEnabled == "false"
+	cf_lib.isCloudFormationFalse(method.MetricsEnabled)
 
 	result := {
 		"documentId": input.document[i].id,

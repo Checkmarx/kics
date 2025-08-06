@@ -89,7 +89,7 @@
       "Properties": {
         "IsLogging": true,
         "IsMultiRegionTrail": true,
-        "EnableLogFileValidation": true,
+        "EnableLogFileValidation": "true",
         "S3BucketName": {
           "Ref": "S3Bucket"
         },
