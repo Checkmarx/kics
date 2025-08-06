@@ -426,7 +426,7 @@ func TestAnalyzer_Analyze(t *testing.T) {
 		{
 			name:                 "analyze_test_bicep",
 			paths:                []string{filepath.FromSlash("../../test/fixtures/bicep_test")},
-			wantTypes:            []string{"arm"},
+			wantTypes:            []string{"azureresourcemanager"},
 			wantExclude:          []string{},
 			typesFromFlag:        []string{""},
 			excludeTypesFromFlag: []string{""},
