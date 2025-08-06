@@ -10,5 +10,11 @@
     "severity": "HIGH",
     "line": 31,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "MQ Broker Is Publicly Accessible",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive3.yaml"
   }
 ]
