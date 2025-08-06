@@ -18,6 +18,18 @@
         "administratorLoginPassword": "adminPassword"
       }
     },
+        {
+        "type": "Microsoft.Sql/servers/auditingSettings",
+        "apiVersion": "2021-02-01-preview",
+        "name": "sqlServer1/default",
+        "dependsOn": [
+          "[resourceId('Microsoft.Sql/servers', 'sqlServer1')]"
+        ],
+        "properties": {
+          "state": "Enabled",
+          "isAzureMonitorTargetEnabled": true
+        }
+        },
     {
       "name": "sqlServer1/sqlDatabase1",
       "type": "Microsoft.Sql/servers/databases",
