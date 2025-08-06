@@ -7094,12 +7094,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="32047">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="32317">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="32047">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="31684">{
+                <span class="cov9" title="32317">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="31954">{
                         return skipFolder
                 }</span>
 
@@ -7171,7 +7171,7 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov6" title="362">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="32066">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="32336">{
         s.mu.RLock()
         defer s.mu.RUnlock()
 
@@ -7197,12 +7197,12 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                 <span class="cov1" title="3">return false, nil</span>
         }
 
-        <span class="cov9" title="25126">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="25396">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="25126">ext, _ := utils.GetExtension(path)
-        if !extensions.Include(ext) </span><span class="cov9" title="24764">{
+        <span class="cov9" title="25396">ext, _ := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="25034">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
@@ -20416,12 +20416,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="219">{
+        for variable := range s.varList </span><span class="cov7" title="227">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="613">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="588">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
