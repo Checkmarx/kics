@@ -1,0 +1,13 @@
+{
+  "Resources": {
+    "azuredeploy": {
+      "secretValue": "secretVaule1"
+    },
+    "output": {
+      "administrator_login_password": "GEN-PASSWORD"
+    },
+    "output2": {
+      "kdc_admin_password": "somepassword"
+    }
+  }
+}

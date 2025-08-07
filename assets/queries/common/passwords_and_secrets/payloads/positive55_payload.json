@@ -1,0 +1,19 @@
+{
+	"document": [
+		{
+			"Resources": {
+				"azuredeploy": {
+					"secretValue": "secretVaule1"
+				},
+				"output": {
+					"administrator_login_password": "GEN-PASSWORD"
+				},
+				"output2": {
+					"kdc_admin_password": "somepassword"
+				}
+			},
+			"file": "C:\\Users\\andreper\\OneDrive - Checkmarx\\Documents\\kics\\assets\\queries\\common\\passwords_and_secrets\\temp_tests\\positive55.json",
+			"id": "45875283-09c8-4271-ad63-74032339b06d"
+		}
+	]
+}

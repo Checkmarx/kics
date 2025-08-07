@@ -1,0 +1,1106 @@
+{
+	"document": [
+		{
+			"Resources": {
+				"azurerm_application_gateway": [
+					{
+						"config": {
+							"location": "location",
+							"name": "GEN-UNIQUE",
+							"tags": null,
+							"waf_configuration": {
+								"enabled": true
+							}
+						},
+						"id": "azurerm_application_gateway.GEN-UNIQUE",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "GEN-UNIQUE",
+						"skip_rules": [],
+						"source": "application-gateway/azuredeploy.json",
+						"type": "azurerm_application_gateway"
+					}
+				],
+				"azurerm_container_registry": [
+					{
+						"config": {
+							"admin_enabled": false,
+							"location": "location",
+							"name": "GEN-UNIQUE",
+							"sku": "Basic",
+							"tags": {
+								"container.registry": "[parameters('acrName')]",
+								"displayName": "Container Registry"
+							}
+						},
+						"id": "azurerm_container_registry.GEN-UNIQUE",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "GEN-UNIQUE",
+						"skip_rules": [],
+						"source": "container-registry/azuredeploy.json",
+						"type": "azurerm_container_registry"
+					}
+				],
+				"azurerm_cosmosdb_account": [
+					{
+						"config": {
+							"ip_range_filter": "10.0.10.3",
+							"location": "location",
+							"name": "GEN-UNIQUE",
+							"tags": {
+								"locationName": "[parameters('location')]"
+							}
+						},
+						"id": "azurerm_cosmosdb_account.GEN-UNIQUE",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "GEN-UNIQUE",
+						"skip_rules": [],
+						"source": "cosmosdb-account/azuredeploy.json",
+						"type": "azurerm_cosmosdb_account"
+					}
+				],
+				"azurerm_key_vault": [
+					{
+						"config": {
+							"location": "location",
+							"name": "kv-7b344713-9e92-4500-833d-5f8528e6bae0",
+							"soft_delete_enabled": true,
+							"tags": {
+								"displayName": "Key Vault with logging"
+							},
+							"tenant_id": ""
+						},
+						"id": "azurerm_key_vault.kv-4ae126ee-3131-4231-ac4b-e8ba28082d82",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "kv-4ae126ee-3131-4231-ac4b-e8ba28082d82",
+						"skip_rules": [],
+						"source": "key-vault-with-logging/azuredeploy.json",
+						"type": "azurerm_key_vault"
+					},
+					{
+						"config": {
+							"location": "location",
+							"name": "kv-60b8baea-3d3f-4a89-9db5-950cff254a7e",
+							"soft_delete_enabled": true,
+							"tags": null,
+							"tenant_id": ""
+						},
+						"id": "azurerm_key_vault.kv-5a6f58ba-75a5-4013-81f8-c6a3df383dbe",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "kv-5a6f58ba-75a5-4013-81f8-c6a3df383dbe",
+						"skip_rules": [],
+						"source": "key-vault/azuredeploy.json",
+						"type": "azurerm_key_vault"
+					}
+				],
+				"azurerm_key_vault_key": [
+					{
+						"config": {
+							"expiration_date": "2025-04-21T00:00:00+05:30",
+							"location": "",
+							"name": "vaultName/GEN-UNIQUE",
+							"tags": null
+						},
+						"id": "azurerm_key_vault_key.vaultName/GEN-UNIQUE",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "vaultName/GEN-UNIQUE",
+						"skip_rules": [],
+						"source": "key-vault-key/azuredeploy.json",
+						"type": "azurerm_key_vault_key"
+					}
+				],
+				"azurerm_key_vault_secret": [
+					{
+						"config": {
+							"expiration_date": "2025-04-21T00:00:00+05:30",
+							"location": "",
+							"name": "GEN-UNIQUE/",
+							"tags": null
+						},
+						"id": "azurerm_key_vault_secret.GEN-UNIQUE/",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "GEN-UNIQUE/",
+						"skip_rules": [],
+						"source": "key-vault-secret/azuredeploy.json",
+						"type": "azurerm_key_vault_secret"
+					},
+					{
+						"config": {
+							"expiration_date": "2023-03-26T12:30:00+05:30",
+							"location": "",
+							"name": "kv-2676afa1-aca9-45ca-af21-17fa9d5ccb1d/",
+							"tags": null
+						},
+						"id": "azurerm_key_vault_secret.kv-30054738-0ab4-4ae8-9131-ba08194675c8/",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "kv-30054738-0ab4-4ae8-9131-ba08194675c8/",
+						"skip_rules": [],
+						"source": "key-vault/azuredeploy.json",
+						"type": "azurerm_key_vault_secret"
+					}
+				],
+				"azurerm_kubernetes_cluster": [
+					{
+						"config": {
+							"addon_profile": {
+								"omsagent": {
+									"config": {
+										"logAnalyticsWorkspaceResourceID": "[variables('workspaceId')]"
+									},
+									"enabled": true
+								}
+							},
+							"default_node_pool": [
+								{
+									"name": "",
+									"node_count": 5,
+									"vm_size": "Standard_DS3_v2"
+								}
+							],
+							"dns_prefix": "aks-4a44802d-587d-4f6f-ba80-1d5a9ccd417e",
+							"location": "location",
+							"name": "aks-b930ef5c-9ca7-4f1e-a5fb-8167101c1031",
+							"network_profile": {
+								"network_plugin": "azure",
+								"network_policy": "azure"
+							},
+							"tags": null
+						},
+						"id": "azurerm_kubernetes_cluster.aks-3e1df979-bd6f-4568-a3de-45d7b6b28624",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "aks-3e1df979-bd6f-4568-a3de-45d7b6b28624",
+						"skip_rules": [],
+						"source": "kubernetes-cluster/azuredeploy.json",
+						"type": "azurerm_kubernetes_cluster"
+					}
+				],
+				"azurerm_managed_disk": [
+					{
+						"config": {
+							"create_option": "Empty",
+							"disk_size_gb": 512,
+							"encryption_settings": {
+								"enabled": false,
+								"encryptionSettings": [
+									{
+										"diskEncryptionKey": {
+											"secretUrl": "https://myvmvault.vault-int.azure-int.net/secrets/{secret}",
+											"sourceVault": {
+												"id": "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/vaults/myVMVault"
+											}
+										},
+										"keyEncryptionKey": {
+											"keyUrl": "https://myvmvault.vault-int.azure-int.net/keys/{key}",
+											"sourceVault": {
+												"id": "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/vaults/myVMVault"
+											}
+										}
+									}
+								]
+							},
+							"location": "East US 2",
+							"name": "GEN-UNIQUE-10-dataDisk-UltraSSD-copyIndex()",
+							"source_resource_id": "",
+							"storage_account_type": "UltraSSD_LRS",
+							"tags": null
+						},
+						"id": "azurerm_managed_disk.GEN-UNIQUE-10-dataDisk-UltraSSD-copyIndex()",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "GEN-UNIQUE-10-dataDisk-UltraSSD-copyIndex()",
+						"skip_rules": [],
+						"source": "managed-disk/azuredeploy.json",
+						"type": "azurerm_managed_disk"
+					}
+				],
+				"azurerm_management_lock": [
+					{
+						"config": {
+							"location": "",
+							"lock_level": "CannotDelete",
+							"name": "keyVaultDoNotDelete",
+							"notes": "",
+							"scope": "Microsoft.KeyVault/vaults/kv-cccc94d4-89a8-4b92-849d-fa3560db79af",
+							"tags": null
+						},
+						"id": "azurerm_management_lock.keyVaultDoNotDelete",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "keyVaultDoNotDelete",
+						"skip_rules": [],
+						"source": "key-vault-with-logging/azuredeploy.json",
+						"type": "azurerm_management_lock"
+					},
+					{
+						"config": {
+							"location": "",
+							"lock_level": "CannotDelete",
+							"name": "storageDoNotDelete",
+							"notes": "",
+							"scope": "Microsoft.Storage/storageAccounts/",
+							"tags": null
+						},
+						"id": "azurerm_management_lock.storageDoNotDelete",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "storageDoNotDelete",
+						"skip_rules": [],
+						"source": "key-vault-with-logging/azuredeploy.json",
+						"type": "azurerm_management_lock"
+					}
+				],
+				"azurerm_monitor_diagnostic_setting": [
+					{
+						"config": {
+							"location": "location",
+							"log": [],
+							"name": "service",
+							"storage_account_id": "azurerm_storage_account.",
+							"tags": null,
+							"target_resource_id": "azurerm_key_vault.kv-4ae126ee-3131-4231-ac4b-e8ba28082d82"
+						},
+						"id": "azurerm_monitor_diagnostic_setting.service",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "service",
+						"skip_rules": [],
+						"source": "key-vault-with-logging/azuredeploy.json",
+						"type": "azurerm_monitor_diagnostic_setting"
+					},
+					{
+						"config": {
+							"location": "location",
+							"name": "GEN-UNIQUE",
+							"storage_account_id": "GET-PREREQ-diagnosticsStorageAccountId",
+							"tags": null,
+							"target_resource_id": ""
+						},
+						"id": "azurerm_monitor_diagnostic_setting.GEN-UNIQUE",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "GEN-UNIQUE",
+						"skip_rules": [],
+						"source": "redis-cache/azuredeploy.json",
+						"type": "azurerm_monitor_diagnostic_setting"
+					}
+				],
+				"azurerm_mssql_server": [
+					{
+						"config": {
+							"administrator_login": "GEN-UNIQUE",
+							"administrator_login_password": "GEN-PASSWORD",
+							"location": "location",
+							"minimum_tls_version": "",
+							"name": "sql-2d87e480-752b-403a-afe0-fd8be4b6ff43",
+							"tags": {
+								"displayName": "[parameters('sqlServerName')]"
+							}
+						},
+						"id": "azurerm_mssql_server.sql-2adcfd55-e5bc-47eb-a9a6-c3dc0da653c0",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "sql-2adcfd55-e5bc-47eb-a9a6-c3dc0da653c0",
+						"skip_rules": [],
+						"source": "mssql-server/azuredeploy.json",
+						"type": "azurerm_mssql_server"
+					},
+					{
+						"config": {
+							"administrator_login": "GEN-UNIQUE",
+							"administrator_login_password": "GEN-PASSWORD",
+							"location": "location",
+							"minimum_tls_version": "",
+							"name": "GEN-UNIQUE",
+							"tags": null
+						},
+						"id": "azurerm_mssql_server.GEN-UNIQUE",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "GEN-UNIQUE",
+						"skip_rules": [],
+						"source": "sql-firewall-rule/azuredeploy.json",
+						"type": "azurerm_mssql_server"
+					},
+					{
+						"config": {
+							"administrator_login": "SQLAdmin",
+							"administrator_login_password": "GEN-PASSWORD",
+							"location": "location",
+							"minimum_tls_version": "",
+							"name": "sqlServerName",
+							"tags": {
+								"displayName": "SqlServer"
+							}
+						},
+						"id": "azurerm_mssql_server.",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "",
+						"skip_rules": [],
+						"source": "active-directory-administrator/azuredeploy.json",
+						"type": "azurerm_mssql_server"
+					}
+				],
+				"azurerm_mysql_server": [
+					{
+						"config": {
+							"administrator_login": "GEN-UNIQUE-12",
+							"administrator_login_password": "GEN-PASSWORD",
+							"backup_retention_days": 7,
+							"geo_redundant_backup_enabled": false,
+							"location": "location",
+							"name": "serverName",
+							"sku_name": "GP_Gen5_2",
+							"ssl_enforcement_enabled": false,
+							"storage_mb": 51200,
+							"tags": null,
+							"version": "5.6"
+						},
+						"id": "azurerm_mysql_server.GEN-UNIQUEmyserver",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "GEN-UNIQUEmyserver",
+						"skip_rules": [],
+						"source": "mysql-server/azuredeploy.json",
+						"type": "azurerm_mysql_server"
+					}
+				],
+				"azurerm_network_security_rule": [
+					{
+						"config": {
+							"access": "Allow",
+							"destination_port_range": "80",
+							"direction": false,
+							"location": "",
+							"name": "networkSecurityGroupName/Port_80",
+							"protocol": "*",
+							"source_address_prefix": "*",
+							"source_port_range": "*",
+							"tags": null
+						},
+						"id": "azurerm_network_security_rule.MyNSG/Port_80",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "MyNSG/Port_80",
+						"skip_rules": [],
+						"source": "network-security-group/azuredeploy.json",
+						"type": "azurerm_network_security_rule"
+					}
+				],
+				"azurerm_network_watcher_flow_log": [
+					{
+						"config": {
+							"enabled": false,
+							"location": "location",
+							"name": "NetworkWatcher_location/FlowLog1",
+							"network_security_group_id": "existingNSG",
+							"retention_policy": {
+								"days": 10,
+								"enabled": true
+							},
+							"storage_account_id": "azurerm_storage_account.",
+							"tags": null
+						},
+						"id": "azurerm_network_watcher_flow_log.NetworkWatcher_location/FlowLog1",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "NetworkWatcher_location/FlowLog1",
+						"skip_rules": [],
+						"source": "flow-logs/azuredeploy.json",
+						"type": "azurerm_network_watcher_flow_log"
+					}
+				],
+				"azurerm_postgresql_server": [
+					{
+						"config": {
+							"backup_retention_days": 7,
+							"geo_redundant_backup_enabled": true,
+							"location": "location",
+							"name": "GEN-UNIQUE",
+							"sku_name": "GP_Gen5_2",
+							"ssl_enforcement_enabled": false,
+							"storage_mb": 51200,
+							"tags": null,
+							"version": "11"
+						},
+						"id": "azurerm_postgresql_server.GEN-UNIQUE",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "GEN-UNIQUE",
+						"skip_rules": [],
+						"source": "postgresql-servers/azuredeploy.json",
+						"type": "azurerm_postgresql_server"
+					}
+				],
+				"azurerm_redis_cache": [
+					{
+						"config": {
+							"capacity": 1,
+							"enable_non_ssl_port": true,
+							"family": "P",
+							"location": "location",
+							"name": "GEN-UNIQUE",
+							"sku_name": "Premium",
+							"tags": null
+						},
+						"id": "azurerm_redis_cache.GEN-UNIQUE",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "GEN-UNIQUE",
+						"skip_rules": [],
+						"source": "redis-cache/azuredeploy.json",
+						"type": "azurerm_redis_cache"
+					}
+				],
+				"azurerm_resource_group": [
+					{
+						"config": {
+							"location": "[deployment().location]",
+							"name": "GEN-UNIQUE",
+							"tags": {
+								"Note": "subscription level deployment"
+							}
+						},
+						"id": "azurerm_resource_group.GEN-UNIQUE",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "GEN-UNIQUE",
+						"skip_rules": [],
+						"source": "resource-group/azuredeploy.json",
+						"type": "azurerm_resource_group"
+					}
+				],
+				"azurerm_resource_group_template_deployment": [
+					{
+						"config": {
+							"location": "",
+							"name": "updateIp",
+							"parameters_content": "eyJTdWJuZXRSZWYiOnsidmFsdWUiOiJbdmFyaWFibGVzKCdTdWJuZXRSZWYnKV0ifSwibG9jYXRpb24iOnsidmFsdWUiOiJbcGFyYW1ldGVycygnbG9jYXRpb24nKV0ifSwibmljTmFtZSI6eyJ2YWx1ZSI6Ilt2YXJpYWJsZXMoJ25pY05hbWUnKV0ifSwicHJpdmF0ZUlwIjp7InZhbHVlIjoiW3JlZmVyZW5jZSh2YXJpYWJsZXMoJ25pY05hbWUnKSkuaXBDb25maWd1cmF0aW9uc1swXS5wcm9wZXJ0aWVzLnByaXZhdGVJUEFkZHJlc3NdIn19",
+							"tags": null,
+							"template_content": null
+						},
+						"id": "azurerm_resource_group_template_deployment.updateIp",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "updateIp",
+						"skip_rules": [],
+						"source": "virtual-machine/azuredeploy.json",
+						"type": "azurerm_resource_group_template_deployment"
+					}
+				],
+				"azurerm_role_assignment": [
+					{
+						"config": {
+							"location": "",
+							"lock_level": "",
+							"name": "",
+							"principal_id": "[reference(variables('vmName'), '2019-12-01', 'Full').identity.principalId]",
+							"role_definition_id": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '8e3af657-a8ff-443c-a75c-2fe8c4bcb635')]",
+							"scope": "",
+							"tags": null
+						},
+						"id": "azurerm_role_assignment.",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "",
+						"skip_rules": [],
+						"source": "role-assignment/azuredeploy.json",
+						"type": "azurerm_role_assignment"
+					}
+				],
+				"azurerm_security_center_contact": [
+					{
+						"config": {
+							"alert_notifications": true,
+							"alerts_to_admins": false,
+							"email": "YOUR_EMAIL_CONTACT",
+							"location": "",
+							"name": "default1",
+							"phone": "YOUR_PHONE_NUMBER",
+							"tags": null
+						},
+						"id": "azurerm_security_center_contact.default1",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "default1",
+						"skip_rules": [],
+						"source": "security-center/azuredeploy.json",
+						"type": "azurerm_security_center_contact"
+					}
+				],
+				"azurerm_security_center_subscription_pricing": [
+					{
+						"config": {
+							"location": "",
+							"name": "VirtualMachines",
+							"tags": null,
+							"tier": "Standard"
+						},
+						"id": "azurerm_security_center_subscription_pricing.VirtualMachines",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "VirtualMachines",
+						"skip_rules": [],
+						"source": "security-center/azuredeploy.json",
+						"type": "azurerm_security_center_subscription_pricing"
+					},
+					{
+						"config": {
+							"location": "",
+							"name": "AppServices",
+							"tags": null,
+							"tier": "Standard"
+						},
+						"id": "azurerm_security_center_subscription_pricing.AppServices",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "AppServices",
+						"skip_rules": [],
+						"source": "security-center/azuredeploy.json",
+						"type": "azurerm_security_center_subscription_pricing"
+					},
+					{
+						"config": {
+							"location": "",
+							"name": "SqlServers",
+							"tags": null,
+							"tier": "Standard"
+						},
+						"id": "azurerm_security_center_subscription_pricing.SqlServers",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "SqlServers",
+						"skip_rules": [],
+						"source": "security-center/azuredeploy.json",
+						"type": "azurerm_security_center_subscription_pricing"
+					},
+					{
+						"config": {
+							"location": "",
+							"name": "SqlServerVirtualMachines",
+							"tags": null,
+							"tier": "Standard"
+						},
+						"id": "azurerm_security_center_subscription_pricing.SqlServerVirtualMachines",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "SqlServerVirtualMachines",
+						"skip_rules": [],
+						"source": "security-center/azuredeploy.json",
+						"type": "azurerm_security_center_subscription_pricing"
+					},
+					{
+						"config": {
+							"location": "",
+							"name": "StorageAccounts",
+							"tags": null,
+							"tier": "Standard"
+						},
+						"id": "azurerm_security_center_subscription_pricing.StorageAccounts",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "StorageAccounts",
+						"skip_rules": [],
+						"source": "security-center/azuredeploy.json",
+						"type": "azurerm_security_center_subscription_pricing"
+					},
+					{
+						"config": {
+							"location": "",
+							"name": "KubernetesService",
+							"tags": null,
+							"tier": "Standard"
+						},
+						"id": "azurerm_security_center_subscription_pricing.KubernetesService",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "KubernetesService",
+						"skip_rules": [],
+						"source": "security-center/azuredeploy.json",
+						"type": "azurerm_security_center_subscription_pricing"
+					},
+					{
+						"config": {
+							"location": "",
+							"name": "ContainerRegistry",
+							"tags": null,
+							"tier": "Standard"
+						},
+						"id": "azurerm_security_center_subscription_pricing.ContainerRegistry",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "ContainerRegistry",
+						"skip_rules": [],
+						"source": "security-center/azuredeploy.json",
+						"type": "azurerm_security_center_subscription_pricing"
+					},
+					{
+						"config": {
+							"location": "",
+							"name": "KeyVaults",
+							"tags": null,
+							"tier": "Free"
+						},
+						"id": "azurerm_security_center_subscription_pricing.KeyVaults",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "KeyVaults",
+						"skip_rules": [],
+						"source": "security-center/azuredeploy.json",
+						"type": "azurerm_security_center_subscription_pricing"
+					}
+				],
+				"azurerm_sql_active_directory_administrator": [
+					{
+						"config": {
+							"location": "",
+							"login": "Applications Team - Database Administrator",
+							"name": "sqlServerName/ActiveDirectory",
+							"object_id": "3exxc5-17xx3-xxb-9axxb2-e1xxx74b76",
+							"tags": null,
+							"tenant_id": "91xxxbe-xxx-43bf-axxx0-c2fxxx47349"
+						},
+						"id": "azurerm_sql_active_directory_administrator./ActiveDirectory",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "/ActiveDirectory",
+						"skip_rules": [],
+						"source": "active-directory-administrator/azuredeploy.json",
+						"type": "azurerm_sql_active_directory_administrator"
+					}
+				],
+				"azurerm_sql_firewall_rule": [
+					{
+						"config": {
+							"end_ip_address": "0.0.0.0",
+							"location": "location",
+							"name": "GEN-UNIQUE/AllowAllWindowsAzureIps",
+							"start_ip_address": "0.0.0.0",
+							"tags": null
+						},
+						"id": "azurerm_sql_firewall_rule.GEN-UNIQUE/AllowAllWindowsAzureIps",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "GEN-UNIQUE/AllowAllWindowsAzureIps",
+						"skip_rules": [],
+						"source": "sql-firewall-rule/azuredeploy.json",
+						"type": "azurerm_sql_firewall_rule"
+					}
+				],
+				"azurerm_storage_account": [
+					{
+						"config": {
+							"account_replication_type": "Standard_LRS",
+							"account_tier": "",
+							"enable_https_traffic_only": false,
+							"location": "location",
+							"name": "diagnosticStorageAccountName",
+							"tags": {
+								"displayName": "concat('Key Vault ', parameters('keyVaultName'), ' diagnostics storage account')"
+							}
+						},
+						"id": "azurerm_storage_account.",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "",
+						"skip_rules": [],
+						"source": "key-vault-with-logging/azuredeploy.json",
+						"type": "azurerm_storage_account"
+					},
+					{
+						"config": {
+							"account_replication_type": "Standard_LRS",
+							"account_tier": "",
+							"enable_https_traffic_only": false,
+							"location": "location",
+							"name": "infraStorageAccountName",
+							"tags": null
+						},
+						"id": "azurerm_storage_account.",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "",
+						"skip_rules": [],
+						"source": "role-assignment/azuredeploy.json",
+						"type": "azurerm_storage_account"
+					},
+					{
+						"config": {
+							"account_replication_type": "Standard_LRS",
+							"account_tier": "",
+							"enable_https_traffic_only": false,
+							"location": "location",
+							"name": "stateStorageAccountName",
+							"tags": null
+						},
+						"id": "azurerm_storage_account.",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "",
+						"skip_rules": [],
+						"source": "role-assignment/azuredeploy.json",
+						"type": "azurerm_storage_account"
+					},
+					{
+						"config": {
+							"account_replication_type": "Standard_LRS",
+							"account_tier": "Standard",
+							"enable_https_traffic_only": true,
+							"location": "location",
+							"name": "GEN-UNIQUE-8",
+							"network_rules": {
+								"bypass": "None",
+								"default_action": "Deny",
+								"ip_rules,omitempty": []
+							},
+							"tags": null
+						},
+						"id": "azurerm_storage_account.GEN-UNIQUE-8",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "GEN-UNIQUE-8",
+						"skip_rules": [],
+						"source": "storage-account/azuredeploy.json",
+						"type": "azurerm_storage_account"
+					},
+					{
+						"config": {
+							"account_replication_type": "Standard_LRS",
+							"account_tier": "",
+							"enable_https_traffic_only": false,
+							"location": "location",
+							"name": "blobuniquestring(resourceGroup().id)",
+							"tags": null
+						},
+						"id": "azurerm_storage_account.blobuniquestring(resourceGroup().id)",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "blobuniquestring(resourceGroup().id)",
+						"skip_rules": [],
+						"source": "kubernetes-cluster/azuredeploy.json",
+						"type": "azurerm_storage_account"
+					},
+					{
+						"config": {
+							"account_replication_type": "Standard_LRS",
+							"account_tier": "",
+							"enable_https_traffic_only": false,
+							"location": "location",
+							"name": "sqlauditd7300882-e87e-42cc-99c4-b47b47882afe",
+							"network_rules": {
+								"bypass": "AzureServices",
+								"default_action": "",
+								"ip_rules,omitempty": []
+							},
+							"tags": null
+						},
+						"id": "azurerm_storage_account.sqlaudit58c83e1a-914b-4b83-a3f6-ea013f592fe1",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "sqlaudit58c83e1a-914b-4b83-a3f6-ea013f592fe1",
+						"skip_rules": [],
+						"source": "mssql-server/azuredeploy.json",
+						"type": "azurerm_storage_account"
+					}
+				],
+				"azurerm_virtual_machine": [
+					{
+						"config": {
+							"location": "West US 2",
+							"name": "vmNamecopyIndex()",
+							"network_interface_ids": [
+								"[resourceId('Microsoft.Network/networkInterfaces',concat(variables('nicName'), copyIndex()))]"
+							],
+							"tags": null
+						},
+						"id": "azurerm_virtual_machine.MyUbuntuVMcopyIndex()",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "MyUbuntuVMcopyIndex()",
+						"skip_rules": [],
+						"source": "network-security-group/azuredeploy.json",
+						"type": "azurerm_virtual_machine"
+					},
+					{
+						"config": {
+							"location": "East US 2",
+							"name": "GEN-UNIQUE-10",
+							"network_interface_ids": [
+								"[resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaceName'))]"
+							],
+							"tags": null
+						},
+						"id": "azurerm_virtual_machine.GEN-UNIQUE-10",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "GEN-UNIQUE-10",
+						"skip_rules": [],
+						"source": "managed-disk/azuredeploy.json",
+						"type": "azurerm_virtual_machine"
+					},
+					{
+						"config": {
+							"location": "location",
+							"name": "vmName",
+							"network_interface_ids": [
+								"[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]"
+							],
+							"tags": null
+						},
+						"id": "azurerm_virtual_machine.vmuniquestring(resourceGroup().id)",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "vmuniquestring(resourceGroup().id)",
+						"skip_rules": [],
+						"source": "role-assignment/azuredeploy.json",
+						"type": "azurerm_virtual_machine"
+					},
+					{
+						"config": {
+							"location": "location",
+							"name": "vmName",
+							"network_interface_ids": [
+								"[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+							],
+							"tags": null
+						},
+						"id": "azurerm_virtual_machine.myVM",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "myVM",
+						"skip_rules": [],
+						"source": "virtual-machine/azuredeploy.json",
+						"type": "azurerm_virtual_machine"
+					},
+					{
+						"config": {
+							"location": "location",
+							"name": "TestVm",
+							"network_interface_ids": [
+								"[resourceId('Microsoft.Network/networkInterfaces',variables('vmNicName'))]"
+							],
+							"tags": null
+						},
+						"id": "azurerm_virtual_machine.TestVm",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "TestVm",
+						"skip_rules": [],
+						"source": "kubernetes-cluster/azuredeploy.json",
+						"type": "azurerm_virtual_machine"
+					}
+				],
+				"azurerm_virtual_network": [
+					{
+						"config": {
+							"location": "West US 2",
+							"name": "virtualNetworkName",
+							"subnet": [
+								{
+									"address_prefix": "10.0.0.0/24",
+									"name": "Subnet"
+								}
+							],
+							"tags": null
+						},
+						"id": "azurerm_virtual_network.MyVNET",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "MyVNET",
+						"skip_rules": [],
+						"source": "network-security-group/azuredeploy.json",
+						"type": "azurerm_virtual_network"
+					},
+					{
+						"config": {
+							"location": "location",
+							"name": "databricks-vnet",
+							"subnet": [
+								{
+									"address_prefix": "10.179.64.0/18",
+									"name": "public-subnet",
+									"security_group,omitempty": ""
+								},
+								{
+									"address_prefix": "10.179.0.0/18",
+									"name": "private-subnet",
+									"security_group,omitempty": ""
+								}
+							],
+							"tags": null
+						},
+						"id": "azurerm_virtual_network.databricks-vnet",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "databricks-vnet",
+						"skip_rules": [],
+						"source": "virtual-network/azuredeploy.json",
+						"type": "azurerm_virtual_network"
+					},
+					{
+						"config": {
+							"location": "location",
+							"name": "azure_postgresql_vnet",
+							"subnet": [],
+							"tags": null
+						},
+						"id": "azurerm_virtual_network.azure_postgresql_vnet",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "azure_postgresql_vnet",
+						"skip_rules": [],
+						"source": "postgresql-servers/azuredeploy.json",
+						"type": "azurerm_virtual_network"
+					},
+					{
+						"config": {
+							"location": "location",
+							"name": "virtualNetworkName",
+							"subnet": [
+								{
+									"address_prefix": "10.0.0.0/24",
+									"name": "Subnet"
+								}
+							],
+							"tags": null
+						},
+						"id": "azurerm_virtual_network.vnet",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "vnet",
+						"skip_rules": [],
+						"source": "role-assignment/azuredeploy.json",
+						"type": "azurerm_virtual_network"
+					},
+					{
+						"config": {
+							"location": "location",
+							"name": "virtualNetworkName",
+							"subnet": [
+								{
+									"address_prefix": "10.0.0.0/24",
+									"name": "default",
+									"security_group,omitempty": ""
+								}
+							],
+							"tags": null
+						},
+						"id": "azurerm_virtual_network.vnet-myVnet",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "vnet-myVnet",
+						"skip_rules": [],
+						"source": "virtual-machine/azuredeploy.json",
+						"type": "azurerm_virtual_network"
+					},
+					{
+						"config": {
+							"location": "location",
+							"name": "aks-d2e3e193-1204-420b-8c1e-42f7bff75573Vnet",
+							"subnet": [
+								{
+									"address_prefix": "10.0.0.0/16",
+									"name": "AksSubnet"
+								},
+								{
+									"address_prefix": "10.1.0.0/24",
+									"name": "VmSubnet",
+									"security_group,omitempty": ""
+								},
+								{
+									"address_prefix": "10.1.1.0/26",
+									"name": "AzureBastionSubnet",
+									"security_group,omitempty": ""
+								}
+							],
+							"tags": null
+						},
+						"id": "azurerm_virtual_network.aks-e96831f1-8d45-422d-9219-be670ca032acVnet",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "aks-e96831f1-8d45-422d-9219-be670ca032acVnet",
+						"skip_rules": [],
+						"source": "kubernetes-cluster/azuredeploy.json",
+						"type": "azurerm_virtual_network"
+					}
+				],
+				"extended_auditing_policy": [
+					{
+						"config": null,
+						"id": "extended_auditing_policy.DefaultAuditingSettings",
+						"line": 1,
+						"max_severity": "",
+						"min_severity": "",
+						"name": "DefaultAuditingSettings",
+						"skip_rules": [],
+						"source": "mssql-server/azuredeploy.json",
+						"type": "extended_auditing_policy"
+					}
+				]
+			},
+			"file": "C:\\Users\\andreper\\OneDrive - Checkmarx\\Documents\\kics\\assets\\queries\\common\\passwords_and_secrets\\temp_tests\\output_fixed.json",
+			"id": "9bc08c7f-8f68-4472-aeae-fb5b8b05f4b4"
+		}
+	]
+}

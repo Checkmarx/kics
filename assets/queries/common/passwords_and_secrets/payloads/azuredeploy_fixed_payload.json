@@ -1,0 +1,36 @@
+{
+	"document": [
+		{
+			"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+			"contentVersion": "1.0.0.0",
+			"file": "C:\\Users\\andreper\\OneDrive - Checkmarx\\Documents\\kics\\assets\\queries\\common\\passwords_and_secrets\\temp_tests\\azuredeploy.parameters_fixed.json",
+			"id": "4851f958-6297-4ac7-8193-2a62f559ab86",
+			"parameters": {
+				"keyVaultName": {
+					"value": "GEN-UNIQUE"
+				},
+				"location": {
+					"value": "location"
+				},
+				"objectId": {
+					"value": "GEN-AZUREAD-OBJECTID"
+				},
+				"secretsObject": {
+					"value": {
+						"secrets": [
+							{
+								"secretName": "exampleSecret1",
+								"secretValue": "secretVaule1"
+							},
+							{
+								"secretName": "exampleSecret2",
+								"secretValue": "secretValue2"
+							}
+						]
+					}
+				}
+			},
+			"resources": []
+		}
+	]
+}
