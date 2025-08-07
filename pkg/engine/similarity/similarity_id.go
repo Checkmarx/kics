@@ -29,8 +29,7 @@ func ComputeSimilarityID(basePaths []string, filePath, subDocumentIdx, queryID,
 		standardizedPath += subDocumentIdx
 	}
 
-	var stringNode = standardizedPath + queryID + searchKeyOrSearchLine +
-		searchValue
+	var stringNode = standardizedPath + queryID + searchKeyOrSearchLine + searchValue
 
 	hashSum := sha256.Sum256([]byte(stringNode))
 

@@ -155,10 +155,7 @@ func NewInspector(
 
 	failedQueries := make(map[string]error)
 
-	similarityIDTransitionQueryMap := make(map[string]TransitionQueryInfo)
-	if kicsComputeNewSimID {
-		similarityIDTransitionQueryMap = getSimilarityIDTransitionQueryMap(TransitionInformationBasePath)
-	}
+	similarityIDTransitionQueryMap := getSimilarityIDTransitionQueryMap(TransitionInformationBasePath)
 
 	metrics.Metric.Stop()
 
