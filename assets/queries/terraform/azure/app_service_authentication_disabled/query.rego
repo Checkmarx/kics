@@ -112,7 +112,7 @@ prepare_issues(resource, type, name) = res { # auth_settings and auth_settings_v
 		}),
 		"rt": "replacement",
 	}
-} else = res { # auth_settings_v2 field defined but without the field auth_field defined
+} else = res { # auth_settings_v2 field defined but without the field auth_enabled defined
 	common_lib.valid_key(resource, "auth_settings_v2")
 	not common_lib.valid_key(resource.auth_settings_v2, "auth_enabled")
 	res := {
