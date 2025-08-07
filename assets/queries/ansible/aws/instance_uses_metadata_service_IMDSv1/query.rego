@@ -15,8 +15,6 @@ CxPolicy[result] {
     res := http_tokens_undefined(resource, type, j, name)
 	
     result := {
-		"[DEBUG] resource value": resource,
-		"[DEBUG] name value": name,
         "documentId": input.document[i].id,
         "resourceType": modules[type],
         "resourceName": name,
@@ -44,7 +42,7 @@ CxPolicy[result] {
         "resourceType": modules[type],
         "resourceName": name,
         "searchKey": sprintf("name={{%s}}.{{%s}}.metadata_options.http_tokens", [name, modules[type]]),
-        "searchLine": common_lib.build_search_line(["playbooks", j, modules[type], "matadata_options", "http_tokens"], []),
+        "searchLine": common_lib.build_search_line(["playbooks", j, modules[type], "metadata_options", "http_tokens"], []),
         "issueType": "IncorrectValue",
         "keyExpectedValue": sprintf("'%s.metadata_options.http_tokens' should be defined to 'required'", [modules[type]]),
         "keyActualValue": sprintf("'%s.metadata_options.http_tokens' is not defined to 'required'", [modules[type]]),
