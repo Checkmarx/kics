@@ -5,7 +5,7 @@ import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
-	resource.Properties.ViewerCertificate.CloudFrontDefaultCertificate == false
+	cf_lib.isCloudFormationFalse(resource.Properties.ViewerCertificate.CloudFrontDefaultCertificate)
 	not commonLib.inArray({"TLSv1.1", "TLSv1.2"}, resource.Properties.ViewerCertificate.MinimumProtocolVersion)
 
 	result := {

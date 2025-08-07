@@ -28,7 +28,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::Serverless::Api"
 	properties := resource.Properties
 
-	properties.TracingEnabled == false
+	cf_lib.isCloudFormationFalse(properties.TracingEnabled)
 
 	result := {
 		"documentId": input.document[i].id,
