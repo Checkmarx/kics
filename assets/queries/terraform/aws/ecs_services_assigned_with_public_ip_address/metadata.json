@@ -1,0 +1,12 @@
+{
+  "id": "bafe7989-3c4b-47f0-910b-e6e1cba7f146",
+  "queryName": "ECS Services assigned with public IP address",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Amazon ECS Services should not be assigned public IP addresses. Public IP assignment exposes services directly to the internet, increasing the attack surface and potential unauthorized access.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service#assign_public_ip",
+  "platform": "Terraform",
+  "descriptionID": "bafe7989",
+  "cloudProvider": "aws",
+  "cwe": "201"
+}
