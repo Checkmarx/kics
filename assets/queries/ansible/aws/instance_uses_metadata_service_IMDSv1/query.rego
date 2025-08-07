@@ -1,7 +1,6 @@
 package Cx
 
 import data.generic.common as common_lib
-import data.generic.ansible as ansLib
 	
 modules := {"amazon.aws.ec2_instance"}
 
