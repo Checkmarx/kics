@@ -937,7 +937,7 @@ func TestGetSimilarityIDTransitionQueryMap(t *testing.T) {
 	}()
 
 	yamlContent := `
-SimilarityIDChangeList:
+similarityIDChangeList:
   - queryId: 1828a670-5957-4bc5-9974-47da228f75e2
     queryName: Audit Policy Not Cover Key Security Concerns
     observations: ""
