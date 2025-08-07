@@ -10,5 +10,11 @@
     "severity": "MEDIUM",
     "line": 6,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "GuardDuty Detector Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive3.yaml"
   }
 ]
