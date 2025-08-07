@@ -22,5 +22,23 @@
     "severity": "MEDIUM",
     "line": 7,
     "filename": "positive2.json"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public ACL",
+    "severity": "MEDIUM",
+    "line": 4,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public ACL",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive3.yaml"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public ACL",
+    "severity": "MEDIUM",
+    "line": 20,
+    "filename": "positive3.yaml"
   }
 ]

@@ -1,15 +1,15 @@
 [
   {
-    "line": 13,
-    "fileName": "positive1.yaml",
     "queryName": "API Gateway X-Ray Disabled",
-    "severity": "LOW"
+    "severity": "LOW",
+    "line": 13,
+    "fileName": "positive1.yaml"
   },
   {
-    "line": 6,
-    "fileName": "positive2.yaml",
     "queryName": "API Gateway X-Ray Disabled",
-    "severity": "LOW"
+    "severity": "LOW",
+    "line": 6,
+    "fileName": "positive2.yaml"
   },
   {
     "queryName": "API Gateway X-Ray Disabled",

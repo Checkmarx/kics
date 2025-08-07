@@ -26,7 +26,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::EC2::Volume"
 	properties := resource.Properties
-	properties.Encrypted == false
+	cf_lib.isCloudFormationFalse(properties.Encrypted)
 
 	result := {
 		"documentId": input.document[i].id,
