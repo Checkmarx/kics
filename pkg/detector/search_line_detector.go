@@ -26,7 +26,7 @@ type searchLineDetector struct {
 
 // GetLineBySearchLine makes use of the gjson pkg to find the line of a key in the original file
 // with it's path given by a slice of strings
-func GetLineBySearchLine(pathComponents []string, file *model.FileMetadata, usingNewComputeSimilarityID bool) (old, new int, err error) {
+func GetLineBySearchLine(pathComponents []string, file *model.FileMetadata, usingNewComputeSimilarityID bool) (int, int, error) {
 	content, err := json.Marshal(file.LineInfoDocument)
 	if err != nil {
 		return -1, -1, err
@@ -36,13 +36,13 @@ func GetLineBySearchLine(pathComponents []string, file *model.FileMetadata, usin
 		content:                     content,
 		usingNewComputeSimilarityID: usingNewComputeSimilarityID,
 	}
-	old, new = detector.preparePath(pathComponents)
-	return old, new, nil
+	oldResult, newResult := detector.preparePath(pathComponents)
+	return oldResult, newResult, nil
 }
 
 // preparePath resolves the path components and retrives important information
 // for the creation of the paths to search
-func (d *searchLineDetector) preparePath(pathItems []string) (old, new int) {
+func (d *searchLineDetector) preparePath(pathItems []string) (int, int) { // returns the old and new searchLine numbers
 	if len(pathItems) == 0 {
 		return -1, 1
 	}
@@ -96,7 +96,7 @@ func (d *searchLineDetector) preparePath(pathItems []string) (old, new int) {
 }
 
 // getResult creates the paths to be used by gjson pkg to find the line in the content
-func (d *searchLineDetector) getResult() (old int, new int) {
+func (d *searchLineDetector) getResult() (oldResult int, newResult int) {
 	pathObjects := []string{
 		d.resolvedPath + "._kics_lines._kics_" + d.targetObj + "._kics_line",
 		d.resolvedPath + "." + d.targetObj + "._kics_lines._kics__default._kics_line",
@@ -104,16 +104,16 @@ func (d *searchLineDetector) getResult() (old int, new int) {
 		d.resolvedArrayPath + "._kics_" + d.targetObj + "._kics_line",
 	}
 
-	normalResult := -1
+	oldResult = -1
 	// run gjson pkg
 	for _, pathItem := range pathObjects {
 		if tmpResult := gjson.GetBytes(d.content, pathItem); int(tmpResult.Int()) > 0 {
-			normalResult = int(tmpResult.Int())
-			return normalResult, normalResult // return the normal result if found giving precedence to the old methods
+			oldResult = int(tmpResult.Int())
+			return oldResult, oldResult // return the normal result if found giving precedence to the old methods
 		}
 	}
 
-	newResult := -1
+	newResult = -1
 	if d.usingNewComputeSimilarityID {
 		// new abilities to use searchLine
 		pathObjectsNew := []string{}
@@ -134,5 +134,5 @@ func (d *searchLineDetector) getResult() (old int, new int) {
 			}
 		}
 	}
-	return normalResult, newResult // only return the new result if found with old methods
+	return oldResult, newResult // only return the new result if found with old methods
 }
