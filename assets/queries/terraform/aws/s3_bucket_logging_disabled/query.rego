@@ -8,6 +8,7 @@ CxPolicy[result] {
 
     not common_lib.valid_key(s3, "logging")  # version before TF AWS 4.0
     not tf_lib.has_target_resource(bucketName, "aws_s3_bucket_logging") # version after TF AWS 4.0
+    not is_logging_target(bucketName) 
 
     result := {
         "documentId": input.document[i].id,
@@ -37,4 +38,10 @@ CxPolicy[result] {
         "keyActualValue": "'logging' is undefined or null",
         "searchLine": common_lib.build_search_line(["module", name], []),
     }
+}
+
+is_logging_target(bucketName) {
+  some name
+  logging := input.document[i].resource.aws_s3_bucket_logging[name]
+  logging.target_bucket == sprintf("${aws_s3_bucket.%s.id}", [bucketName])
 }

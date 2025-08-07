@@ -30,9 +30,15 @@
     "fileName": "positive5.json"
   },
   {
-    "line": 7,
-    "fileName": "positive6.json",
     "queryName": "IAM User Without Password Reset",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive6.json"
+  },
+  {
+    "queryName": "IAM User Without Password Reset",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive7.yaml"
   }
 ]
