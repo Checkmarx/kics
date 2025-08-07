@@ -1,0 +1,12 @@
+{
+  "id": "cd1d93f2-8ed2-4eb5-b536-776619f1869b",
+  "queryName": "AWS EIP not attached to any instance",
+  "severity": "LOW",
+  "category": "Resource Management",
+  "descriptionText": "Unattached EIPs from EC2 instances should be disabled to allow us to maintain better control, efficiency, and visibility over the network traffic and implement security measures more effectively",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip",
+  "platform": "Terraform",
+  "descriptionID": "cd1d93f2",
+  "cloudProvider": "aws",
+  "cwe": "653"
+}
