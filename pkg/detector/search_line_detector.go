@@ -26,7 +26,7 @@ type searchLineDetector struct {
 
 // GetLineBySearchLine makes use of the gjson pkg to find the line of a key in the original file
 // with it's path given by a slice of strings
-func GetLineBySearchLine(pathComponents []string, file *model.FileMetadata, usingNewComputeSimilarityID bool) (int, int, error) {
+func GetLineBySearchLine(pathComponents []string, file *model.FileMetadata, usingNewComputeSimilarityID bool) (oldResult int, newResult int, err error) {
 	content, err := json.Marshal(file.LineInfoDocument)
 	if err != nil {
 		return -1, -1, err
@@ -36,13 +36,13 @@ func GetLineBySearchLine(pathComponents []string, file *model.FileMetadata, usin
 		content:                     content,
 		usingNewComputeSimilarityID: usingNewComputeSimilarityID,
 	}
-	oldResult, newResult := detector.preparePath(pathComponents)
+	oldResult, newResult = detector.preparePath(pathComponents)
 	return oldResult, newResult, nil
 }
 
 // preparePath resolves the path components and retrives important information
 // for the creation of the paths to search
-func (d *searchLineDetector) preparePath(pathItems []string) (int, int) { // returns the old and new searchLine numbers
+func (d *searchLineDetector) preparePath(pathItems []string) (oldResult int, newResult int) { // returns the old and new searchLine numbers
 	if len(pathItems) == 0 {
 		return -1, 1
 	}
@@ -96,7 +96,7 @@ func (d *searchLineDetector) preparePath(pathItems []string) (int, int) { // ret
 }
 
 // getResult creates the paths to be used by gjson pkg to find the line in the content
-func (d *searchLineDetector) getResult() (oldResult int, newResult int) {
+func (d *searchLineDetector) getResult() (oldResult, newResult int) {
 	pathObjects := []string{
 		d.resolvedPath + "._kics_lines._kics_" + d.targetObj + "._kics_line",
 		d.resolvedPath + "." + d.targetObj + "._kics_lines._kics__default._kics_line",
