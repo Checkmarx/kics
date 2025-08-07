@@ -11,6 +11,14 @@ resource "aws_security_group" "negative1" {
     cidr_blocks = ["192.120.0.0/16", "75.132.0.0/16"]
   }
 
+  ingress {
+    description = "TLS from VPC"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["192.121.0.0/16", "75.132.0.0/16"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
