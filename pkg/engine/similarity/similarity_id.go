@@ -11,7 +11,7 @@ import (
 
 // ComputeSimilarityID This function receives four string parameters and computes
 // a sha256 hash
-func ComputeSimilarityID(basePaths []string, filePath, queryID,
+func ComputeSimilarityID(basePaths []string, filePath, subDocumentIdx, queryID,
 	searchKeyOrSearchLine, searchValue string) (*string, error) {
 	basePath := ""
 	for _, path := range basePaths {
@@ -23,6 +23,10 @@ func ComputeSimilarityID(basePaths []string, filePath, queryID,
 	standardizedPath, err := standardizeToRelativePath(basePath, filePath)
 	if err != nil {
 		log.Debug().Msgf("Error while standardizing path: %s", err)
+	}
+
+	if subDocumentIdx != "0" && subDocumentIdx != "" { // subDocumentIdx is used to uniquely identify sub-documents in YAML
+		standardizedPath += subDocumentIdx
 	}
 
 	var stringNode = standardizedPath + queryID + searchKeyOrSearchLine +
