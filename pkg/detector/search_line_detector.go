@@ -15,33 +15,36 @@ import (
 // resolvedPath - string created from pathComponents, used to create gjson paths
 // resolvedArrayPath - string created from pathComponents containing an array used to create gjson paths
 // targetObj - key of the interface{}, we want the line from
+// usingNewComputeSimilarityID - boolean stating if the new ComputeSimilarityID is being used
 type searchLineDetector struct {
-	content           []byte
-	resolvedPath      string
-	resolvedArrayPath string
-	targetObj         string
+	content                     []byte
+	resolvedPath                string
+	resolvedArrayPath           string
+	targetObj                   string
+	usingNewComputeSimilarityID bool
 }
 
 // GetLineBySearchLine makes use of the gjson pkg to find the line of a key in the original file
 // with it's path given by a slice of strings
-func GetLineBySearchLine(pathComponents []string, file *model.FileMetadata) (int, error) {
+func GetLineBySearchLine(pathComponents []string, file *model.FileMetadata, usingNewComputeSimilarityID bool) (old int, new int, err error) {
 	content, err := json.Marshal(file.LineInfoDocument)
 	if err != nil {
-		return -1, err
+		return -1, -1, err
 	}
 
 	detector := &searchLineDetector{
-		content: content,
+		content:                     content,
+		usingNewComputeSimilarityID: usingNewComputeSimilarityID,
 	}
-
-	return detector.preparePath(pathComponents), nil
+	old, new = detector.preparePath(pathComponents)
+	return old, new, nil
 }
 
 // preparePath resolves the path components and retrives important information
 // for the creation of the paths to search
-func (d *searchLineDetector) preparePath(pathItems []string) int {
+func (d *searchLineDetector) preparePath(pathItems []string) (old int, new int) {
 	if len(pathItems) == 0 {
-		return 1
+		return -1, 1
 	}
 	// Escaping '.' in path components so it doesn't conflict with gjson pkg
 	objPath := strings.ReplaceAll(pathItems[0], ".", "\\.")
@@ -93,7 +96,7 @@ func (d *searchLineDetector) preparePath(pathItems []string) int {
 }
 
 // getResult creates the paths to be used by gjson pkg to find the line in the content
-func (d *searchLineDetector) getResult() int {
+func (d *searchLineDetector) getResult() (old int, new int) {
 	pathObjects := []string{
 		d.resolvedPath + "._kics_lines._kics_" + d.targetObj + "._kics_line",
 		d.resolvedPath + "." + d.targetObj + "._kics_lines._kics__default._kics_line",
@@ -101,21 +104,35 @@ func (d *searchLineDetector) getResult() int {
 		d.resolvedArrayPath + "._kics_" + d.targetObj + "._kics_line",
 	}
 
-	// for cases where key/object is in the root
-	if d.resolvedPath == d.targetObj {
-		pathObjects = append(pathObjects,
-			d.resolvedPath+"._kics_lines._kics__default._kics_line", // for cases where the object is in the root
-			"_kics_lines._kics_"+d.targetObj+"._kics_line",          // for cases where key is in the root
-		)
-	}
-
-	result := -1
+	normalResult := -1
 	// run gjson pkg
 	for _, pathItem := range pathObjects {
 		if tmpResult := gjson.GetBytes(d.content, pathItem); int(tmpResult.Int()) > 0 {
-			result = int(tmpResult.Int())
-			break
+			normalResult = int(tmpResult.Int())
+			return normalResult, normalResult // return the normal result if found giving precedence to the old methods
 		}
 	}
-	return result
+
+	newResult := -1
+	if d.usingNewComputeSimilarityID {
+		// new abilities to use searchLine
+		pathObjectsNew := []string{}
+		// for cases where key/object is in the root && usingNewComputeSimilarityID is true
+		if d.resolvedPath == d.targetObj {
+			pathObjectsNew = append(pathObjectsNew,
+				d.resolvedPath+"._kics_lines._kics__default._kics_line", // for cases where the object is in the root
+				"_kics_lines._kics_"+d.targetObj+"._kics_line",          // for cases where key is in the root
+			)
+		}
+
+		if len(pathObjectsNew) > 0 {
+			for _, pathItem := range pathObjectsNew {
+				if tmpResult := gjson.GetBytes(d.content, pathItem); int(tmpResult.Int()) > 0 {
+					newResult = int(tmpResult.Int())
+					break // found using the new methods, break the loop
+				}
+			}
+		}
+	}
+	return normalResult, newResult // only return the new result if found with old methods
 }
