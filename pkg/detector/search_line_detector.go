@@ -126,14 +126,19 @@ func (d *searchLineDetector) preparePath(pathItems []string) int {
 
 // getResult creates the paths to be used by gjson pkg to find the line in the content
 func (d *searchLineDetector) getResult() int {
-	pathObjects := make([]string, 2, 2+2*len(d.resolvedArrayPaths))
-	pathObjects[0] = d.resolvedPath + "._kics_lines._kics_" + d.targetObj + "._kics_line"
-	pathObjects[1] = d.resolvedPath + "." + d.targetObj + "._kics_lines._kics__default._kics_line"
-	for _, resolvedArrayPath := range d.resolvedArrayPaths {
-		pathObjects = append(pathObjects,
-			resolvedArrayPath+"."+d.targetObj+"._kics__default._kics_line",
-			resolvedArrayPath+"._kics_"+d.targetObj+"._kics_line",
-		)
+	var pathObjects []string
+	if d.resolvedPath == d.targetObj {
+		pathObjects = []string{"_kics_lines._kics_" + d.targetObj + "._kics_line"}
+	} else {
+		pathObjects = make([]string, 2, 2+2*len(d.resolvedArrayPaths))
+		pathObjects[0] = d.resolvedPath + "._kics_lines._kics_" + d.targetObj + "._kics_line"
+		pathObjects[1] = d.resolvedPath + "." + d.targetObj + "._kics_lines._kics__default._kics_line"
+		for _, resolvedArrayPath := range d.resolvedArrayPaths {
+			pathObjects = append(pathObjects,
+				resolvedArrayPath+"."+d.targetObj+"._kics__default._kics_line",
+				resolvedArrayPath+"._kics_"+d.targetObj+"._kics_line",
+			)
+		}
 	}
 
 	result := -1

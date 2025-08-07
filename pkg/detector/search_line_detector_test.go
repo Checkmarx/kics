@@ -61,7 +61,7 @@ func TestGetLineBySearchLine(t *testing.T) { //nolint
 		{
 			name: "test with similar array elements",
 			args: args{
-				pathComponents: []string{"father", "1", "son"},
+				pathComponents: []string{"father", "_kics_number_1", "son"},
 				file: &model.FileMetadata{
 					LineInfoDocument: map[string]interface{}{
 						"_kics_lines": map[string]interface{}{
@@ -199,7 +199,7 @@ func TestGetLineBySearchLine(t *testing.T) { //nolint
 		{
 			name: "test number issue with array",
 			args: args{
-				pathComponents: []string{"father", "son", "3"},
+				pathComponents: []string{"father", "son", "_kics_number_3"},
 				file: &model.FileMetadata{
 					LineInfoDocument: map[string]interface{}{
 						"_kics_lines": map[string]interface{}{
