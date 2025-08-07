@@ -1,0 +1,122 @@
+[
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 7,
+        "fileName": "positive1.yaml"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 15,
+        "fileName": "positive1.yaml"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 7,
+        "fileName": "positive2.json"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 16,
+        "fileName": "positive2.json"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 11,
+        "fileName": "positive3.yaml"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 23,
+        "fileName": "positive3.yaml"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 11,
+        "fileName": "positive4.json"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 25,
+        "fileName": "positive4.json"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 12,
+        "fileName": "positive5.yaml"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 25,
+        "fileName": "positive5.yaml"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 12,
+        "fileName": "positive6.json"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 27,
+        "fileName": "positive6.json"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 10,
+        "fileName": "positive7.yaml"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 21,
+        "fileName": "positive7.yaml"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 10,
+        "fileName": "positive8.json"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 23,
+        "fileName": "positive8.json"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 10,
+        "fileName": "positive9.yaml"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 22,
+        "fileName": "positive9.yaml"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 10,
+        "fileName": "positive10.json"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 24,
+        "fileName": "positive10.json"
+    }
+]

@@ -1,0 +1,12 @@
+{
+    "id": "c306ac53-ee5b-41d3-86a9-0fd2722b4e67",
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "category": "Insecure Configurations",
+    "descriptionText": "Instance metadata can be accessed with both IMDSv1 or IMDSv2. Although, IMDSv2 service is a session-oriented service, granting additional protection against exposure of metadata information. That version should be used instead of IMDSv1 in order to mitigate those situations.",
+    "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance.html?lang=typescript#metadata-options",
+    "platform": "Terraform",
+    "descriptionID": "c306ac53",
+    "cloudProvider": "aws",
+    "cwe": "200" 
+}

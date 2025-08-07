@@ -1,0 +1,11 @@
+- name: start an instance with metadata options
+  amazon.aws.ec2_instance:
+    name: "public-metadataoptions-instance"
+    vpc_subnet_id: subnet-5calable
+    instance_type: t3.small
+    image_id: ami-123456
+    tags:
+      Environment: Testing
+    metadata_options:
+      http_endpoint: enabled
+      http_tokens: optional

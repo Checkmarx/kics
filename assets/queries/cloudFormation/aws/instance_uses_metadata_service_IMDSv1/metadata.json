@@ -1,0 +1,12 @@
+{
+    "id": "a4f5f706-80fd-4c96-9a24-6ab317d33d24",
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "category": "Insecure Configurations",
+    "descriptionText": "Instance metadata can be accessed with both IMDSv1 or IMDSv2. Although, IMDSv2 service is a session-oriented service, granting additional protection against exposure of metadata information. That version should be used instead of IMDSv1 in order to mitigate those situations.",
+    "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-properties-ec2-instance-metadataoptions.html",
+    "platform": "CloudFormation",
+    "descriptionID": "a4f5f706",
+    "cloudProvider": "aws",
+    "cwe": "200" 
+}
