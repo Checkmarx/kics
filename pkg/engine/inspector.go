@@ -12,6 +12,7 @@ import (
 	"sync"
 	"time"
 
+	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
 	"github.com/Checkmarx/kics/v2/internal/metrics"
 	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
 	"github.com/Checkmarx/kics/v2/pkg/detector"
@@ -155,7 +156,11 @@ func NewInspector(
 
 	failedQueries := make(map[string]error)
 
-	similarityIDTransitionQueryMap := getSimilarityIDTransitionQueryMap(TransitionInformationBasePath)
+	similarityIDTransitionPath, errSimilarityIDTransitionPath := consoleHelpers.GetDefaultQueryPath(TransitionInformationBasePath)
+	if errSimilarityIDTransitionPath != nil {
+		log.Warn().Msg("Unable to find transition information files, similarity ID transitions will not be available")
+	}
+	similarityIDTransitionQueryMap := getSimilarityIDTransitionQueryMap(similarityIDTransitionPath)
 
 	metrics.Metric.Stop()
 
