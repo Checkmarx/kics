@@ -21,7 +21,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser=%d", [metadata.name, specInfo.path, types[x], specInfo.spec[types[x]][c].name, uid]),
 		"issueType": "IncorrectValue",
-		"sameValue": document.kind, # multiple kind can match the same spec structure
+		"searchValue": document.kind, # multiple kind can match the same spec structure
 		"keyExpectedValue": sprintf("1 metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser should be set to a UID >= 10000", [metadata.name, specInfo.path, types[x], specInfo.spec[types[x]][c].name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext.runAsUser is set to a low UID", [metadata.name, specInfo.path, types[x], specInfo.spec[types[x]][c].name]),
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], c, "securityContext", "runAsUser"]),

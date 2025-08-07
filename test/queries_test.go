@@ -357,7 +357,7 @@ func requireEqualVulnerabilities(tb testing.TB, expected, actual []model.Vulnera
 			require.Equal(tb, expectedItem.FileName, filepath.Base(actualItem.FileName), "Incorrect file name for query %s", dir)
 		}
 		require.Equal(tb, expectedItem.Line, actualItem.Line, "Incorrect detected line for query %s \n%v\n---\n%v",
-			dir, expectedItem.FileName, actualItem.FileName)
+			dir, filterFileNameAndLine(expected), filterFileNameAndLine(actual))
 		require.Equal(tb, expectedItem.Severity, actualItem.Severity, "Invalid severity for query %s", dir)
 		require.Equal(tb, expectedItem.QueryName, actualItem.QueryName, "Invalid query name for query %s :: %s", dir, actualItem.FileName)
 		if expectedItem.Value != nil {

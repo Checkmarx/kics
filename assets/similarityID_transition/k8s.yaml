@@ -2,7 +2,7 @@ similarityIDChangeList:
   - queryId: 1828a670-5957-4bc5-9974-47da228f75e2
     queryName: Audit Policy Not Cover Key Security Concerns
     observations: ""
-    change: 3
+    change: 5
   - queryId: cf34805e-3872-4c08-bf92-6ff7bb0cfadb
     queryName: Container Running As Root
     observations: ""
@@ -46,7 +46,7 @@ similarityIDChangeList:
   - queryId: 229588ef-8fde-40c8-8756-f4f2b5825ded
     queryName: Memory Requests Not Defined
     observations: ""
-    change: 5
+    change: 3
   - queryId: 1123031a-f921-4c5b-bd86-ef354ecfd37a
     queryName: Metadata Label Is Invalid
     observations: ""
@@ -82,7 +82,7 @@ similarityIDChangeList:
   - queryId: a97a340a-0063-418e-b3a1-3028941d0995
     queryName: Pod or Container Without Security Context
     observations: ""
-    change: 5
+    change: 4
   - queryId: 5572cc5e-1e4c-4113-92a6-7a8a3bd25e6d
     queryName: Privilege Escalation Allowed
     observations: ""
@@ -138,4 +138,4 @@ similarityIDChangeList:
   - queryId: b7652612-de4e-4466-a0bf-1cd81f0c6063
     queryName: Volume Mount With OS Directory Write Permissions
     observations: Nested Array makes it impossible to add searchLine
-    change: 3
+    change: 5
