@@ -52,8 +52,8 @@ prepare_issue_account(pubACL, name) = res {
 	res := {
 		"sk": sprintf("aws_s3_account_public_access_block[%s].block_public_policy", [name]),
 		"it": "IncorrectValue",
-		"kev": sprintf("'aws_s3_account_public_access_block[%s].block_public_policy' should be defined to 'true'", [name]),
-		"kav": sprintf("'aws_s3_account_public_access_block[%s].block_public_policy' is not defined to 'true'", [name]),
+		"kev": sprintf("'aws_s3_account_public_access_block[%s].block_public_policy' should be set to 'true'", [name]),
+		"kav": sprintf("'aws_s3_account_public_access_block[%s].block_public_policy' is not set to 'true'", [name]),
 		"sl": common_lib.build_search_line(["resource", "aws_s3_account_public_access_block", name, "block_public_policy"], []),
 	}
 } else = res {
@@ -75,8 +75,8 @@ prepare_issue_bucket(pubBucket, name) = res {
 	res := {
 		"sk": sprintf("aws_s3_bucket_public_access_block[%s].block_public_policy", [name]),
 		"it": "IncorrectValue",
-		"kev": sprintf("'aws_s3_bucket_public_access_block[%s].block_public_policy' should be defined to 'true'", [name]),
-		"kav": sprintf("'aws_s3_bucket_public_access_block[%s].block_public_policy' is not defined to 'true'", [name]),
+		"kev": sprintf("'aws_s3_bucket_public_access_block[%s].block_public_policy' should be set to 'true'", [name]),
+		"kav": sprintf("'aws_s3_bucket_public_access_block[%s].block_public_policy' is not set to 'true'", [name]),
 		"sl": common_lib.build_search_line(["resource", "aws_s3_bucket_public_access_block", name, "block_public_policy"], []),
 	}
 } else = res {
