@@ -5,7 +5,7 @@ Resources:
     Type: AWS::KMS::Key
     Properties:
       Description: An example symmetric CMK
-      EnableKeyRotation: True
+      EnableKeyRotation: "True"
       KeyPolicy:
         Version: '2012-10-17'
         Id: key-default-1
