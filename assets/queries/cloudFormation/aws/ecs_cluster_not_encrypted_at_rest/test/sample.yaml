@@ -1,0 +1,10 @@
+Resources: 
+  service:
+    Type: AWS::ECS::Service
+    Properties:
+      TaskDefinition: !Ref taskdefinition_name
+      
+  taskdefinition_name: 
+    Type: AWS::ECS::TaskDefinition
+
+

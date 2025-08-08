@@ -59,7 +59,6 @@ Resources:
         - Host:
             SourcePath: /var/lib/docker/vfs/dir/
           Name: my-vol
-          EFSVolumeConfiguration:
 
   service:
     Type: AWS::ECS::Service

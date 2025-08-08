@@ -1,66 +1,6 @@
-AWSTemplateFormatVersion: 2010-09-09
-Description: Creating ECS service
-Parameters:
-  AppName:
-    Type: String
-    Description: Name of app requiring ELB exposure
-    Default: simple-app
-  AppContainerPort:
-    Type: Number
-    Description: Container port of app requiring ELB exposure
-    Default: '80'
-  AppHostPort:
-    Type: Number
-    Description: Host port of app requiring ELB exposure
-    Default: '80'
-  ServiceName:
-    Type: String
-  LoadBalancerName:
-    Type: String
-  HealthCheckGracePeriodSeconds:
-    Type: String
 Resources:
   cluster:
     Type: AWS::ECS::Cluster
-  taskdefinition:
-    Type: AWS::ECS::TaskDefinition
-    Properties:
-      ContainerDefinitions:
-        - Name: !Ref AppName
-          MountPoints:
-            - SourceVolume: my-vol
-              ContainerPath: /var/www/my-vol
-          Image: amazon/amazon-ecs-sample
-          Cpu: '10'
-          PortMappings:
-            - ContainerPort: !Ref AppContainerPort
-              HostPort: !Ref AppHostPort
-          EntryPoint:
-            - /usr/sbin/apache2
-            - '-D'
-            - FOREGROUND
-          Memory: '500'
-          Essential: true
-        - Name: busybox
-          Image: busybox
-          Cpu: '10'
-          EntryPoint:
-            - sh
-            - '-c'
-          Memory: '500'
-          Command:
-            - >-
-              /bin/sh -c "while true; do /bin/date > /var/www/my-vol/date; sleep
-              1; done"
-          Essential: false
-          VolumesFrom:
-            - SourceContainer: !Ref AppName
-      Volumes:
-        - Host:
-            SourcePath: /var/lib/docker/vfs/dir/
-          Name: my-vol
-          EFSVolumeConfiguration:
-
   service:
     Type: AWS::ECS::Service
     Properties:
@@ -83,7 +23,7 @@ Resources:
         - Type: memberOf
           Expression: 'attribute:ecs.availability-zone != us-east-1d'
         - Type: distinctInstance
-      TaskDefinition: !Ref taskdefinition
+      TaskDefinition: !Ref taskdefinition1
       ServiceName: !Ref ServiceName
       Role: !Ref Role
   elb:
@@ -97,7 +37,7 @@ Resources:
       Subnets:
         - !Ref Subnet1
     DependsOn: GatewayAttachment
-  VPC:
+  VPC2:
     Type: AWS::EC2::VPC
     Properties:
       CidrBlock: 10.0.0.0/24
@@ -126,6 +66,3 @@ Resources:
             Action: 'sts:AssumeRole'
       ManagedPolicyArns:
         - 'arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole'
-Outputs:
-  Cluster:
-    Value: !Ref cluster
