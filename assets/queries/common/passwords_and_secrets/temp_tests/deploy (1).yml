@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  somer:
+    Type: AWS::EMR::Cluster
+    Properties:
+      Name: somer-cluster
+      ReleaseLabel: emr-4.6.0
+      ServiceRole: sample-arn
+      Instances:
+        TerminationProtected: false
+      KerberosAttributes:
+        KdcAdminPassword: somepassword
+        Realm: aws_emr_cluster

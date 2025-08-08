@@ -1,0 +1,13 @@
+{
+  "Resources": {
+    "service-1": {
+      "kdc_admin_password": "somepassword"
+    },
+    "service-2": {
+      "administrator_login_password": "GEN-PASSWORD"
+    },
+    "service-3": {
+      "secretValue": "secretVaule1"
+    }
+  }
+}
