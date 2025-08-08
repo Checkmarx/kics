@@ -37,3 +37,47 @@ resource "google_sql_database_instance" "negative2" {
     }
   }
 }
+
+resource "google_sql_database_instance" "negative1-dynamic" {
+  provider             = google-beta
+
+  settings {
+
+    dynamic "ip_configuration" {
+      for_each = var.ip_configuration == null ? [] : [true]
+      content {
+        ipv4_enabled                                  = false
+        private_network                               = "some_private_network"
+      }
+    }
+  }
+}
+
+resource "google_sql_database_instance" "negative2-dynamic" {
+  provider             = google-beta
+
+  settings {
+
+    dynamic "ip_configuration" {
+      for_each = var.ip_configuration == null ? [] : [true]
+      content {
+        
+        dynamic "authorized_networks" {
+          for_each = var.ip_configuration.authorized_networks != null ? var.ip_configuration.authorized_networks : []
+          content {
+            name  = "some_trusted_network"
+            value = "some_trusted_network_address"
+          }
+        }
+
+        dynamic "authorized_networks" {
+          for_each = var.ip_configuration.authorized_networks != null ? var.ip_configuration.authorized_networks : []
+          content {
+            name  = "another_trusted_network"
+            value = "another_trusted_network_address"
+             }
+          }
+       }
+     }
+  }
+}
