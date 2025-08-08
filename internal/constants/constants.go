@@ -51,7 +51,6 @@ var (
 		"OpenAPI":                 "openAPI",
 		"Terraform":               "terraform",
 		"AzureResourceManager":    "azureResourceManager",
-		"Bicep":                   "bicep",
 		"GoogleDeploymentManager": "googleDeploymentManager",
 		"GRPC":                    "grpc",
 		"Buildah":                 "buildah",

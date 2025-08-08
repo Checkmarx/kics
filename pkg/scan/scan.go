@@ -57,12 +57,9 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		return nil, nil
 	}
 
-	paramsPlatforms := c.ScanParams.Platform
-	useDifferentPlatformQueries(&paramsPlatforms)
-
 	querySource := source.NewFilesystemSource(
 		c.ScanParams.QueriesPath,
-		paramsPlatforms,
+		c.ScanParams.Platform,
 		c.ScanParams.CloudProvider,
 		c.ScanParams.LibrariesPath,
 		c.ScanParams.ExperimentalQueries)
@@ -171,26 +168,6 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) {
 		Files:          files,
 		FailedQueries:  failedQueries,
 	}, nil
-}
-
-func useDifferentPlatformQueries(platforms *[]string) {
-	hasBicep := false
-	hasARM := false
-	for _, platform := range *platforms {
-		if platform == "bicep" {
-			hasBicep = true
-		}
-		if platform == "azureresourcemanager" {
-			hasARM = true
-		}
-		if hasARM && hasBicep {
-			break
-		}
-	}
-
-	if hasBicep && !hasARM {
-		*platforms = append(*platforms, "azureresourcemanager")
-	}
 }
 
 func getExcludeResultsMap(excludeResults []string) map[string]bool {

@@ -18,15 +18,7 @@ KICS supports scanning Ansible Inventory files with `.ini`, `.json` or `.yaml` e
 
 ## Azure Resource Manager
 
-KICS supports scanning Azure Resource Manager (ARM) templates with `.json` extension. 
-
-## Bicep 
-
-KICS supports scanning Bicep files with `.bicep` extension.
-
-For instructions on converting between ARM JSON templates and Bicep code, refer to the [official ARM documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli#build). To understand the distinctions between the two, explore the [official syntax comparison](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/compare-template-syntax).
-
-Note that KICS recognizes this technology as Azure Resource Manager (for queries purpose).
+KICS supports scanning Azure Resource Manager (ARM) templates with `.json` extension or Bicep files with `.bicep` extension.
 
 Explore our ongoing enhancements and planned features on our [Future Improvements](future_improvements.md) page.
 
