@@ -26,7 +26,8 @@ type searchLineDetector struct {
 
 // GetLineBySearchLine makes use of the gjson pkg to find the line of a key in the original file
 // with it's path given by a slice of strings
-func GetLineBySearchLine(pathComponents []string, file *model.FileMetadata, usingNewComputeSimilarityID bool) (oldResult, newResult int, err error) {
+func GetLineBySearchLine(pathComponents []string, file *model.FileMetadata, usingNewComputeSimilarityID bool,
+) (oldResult, newResult int, err error) {
 	content, err := json.Marshal(file.LineInfoDocument)
 	if err != nil {
 		return -1, -1, err
