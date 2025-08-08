@@ -57,6 +57,7 @@ var (
 		"Buildah":                 "buildah",
 		"Pulumi":                  "pulumi",
 		"ServerlessFW":            "serverlessFW",
+		"Common":                  "common",
 	}
 
 	// AvailableSeverities - All severities available
@@ -87,6 +88,7 @@ var (
 		"gcp":          "",
 		"nifcloud":     "",
 		"tencentcloud": "",
+		"common":       "",
 	}
 )
 

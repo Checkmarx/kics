@@ -35,10 +35,10 @@ Use "kics [command] --help" for more information about a command.
 
 ## Scan Command Options
 
-| Flags                       | Description                                                                         |
-|-----------------------------|-------------------------------------------------------------------------------------|
+| Flags                       | Description                                                                    |
+|-----------------------------|--------------------------------------------------------------------------------|
 |-m, --bom                           |include bill of materials (BoM) in results output|
-|      --cloud-provider strings      |  list of cloud providers to scan (alicloud, aws, azure, gcp, nifcloud, tencentcloud)|
+|      --cloud-provider strings      |  list of cloud providers to scan (alicloud,aws,azure,gcp,nifcloud,tencentcloud)|
 |      --config string               |  path to configuration file|
 |      --old-severities              |  uses old severities in query results|
 |      --disable-full-descriptions   |  disable request for full descriptions and use default vulnerability descriptions|
@@ -69,12 +69,12 @@ Use "kics [command] --help" for more information about a command.
 |  -d, --payload-path string         |  path to store internal representation JSON file|
 |      --preview-lines int           |  number of lines to be display in CLI results (min: 1, max: 30) (default 3)|
 |  -q, --queries-path strings        |  paths to directory with queries (default [./assets/queries])|
-|      --report-formats strings      |  formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])|
+|      --report-formats strings      |  formats in which the results will be exported (all,asff,codeclimate,csv,cyclonedx,glsast,html,json,junit,pdf,sarif,sonarqube) (default [json])|
 |  -r, --secrets-regexes-path string |  path to secrets regex rules configuration file|
 |      --terraform-vars-path         |  string path where terraform variables are present|
 |      --timeout int                 |  number of seconds the query has to execute before being canceled (default 60)|
-|  -t, --type strings                |  case insensitive list of platform types to scan<br>(Ansible, AzureResourceManager, Bicep, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC,GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)<br>cannot be provided with type exclusion flags|
-|      --exclude-type strings        |  case insensitive list of platform types not to scan<br>(Ansible, AzureResourceManager, Bicep, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)<br>cannot be provided with type inclusion flags|
+|  -t, --type strings                |  case insensitive list of platform types to scan<br>(Ansible,AzureResourceManager,Bicep,Buildah,CICD,CloudFormation,Crossplane,DockerCompose,Dockerfile,GRPC,GoogleDeploymentManager,Knative,Kubernetes,OpenAPI,Pulumi,ServerLessFW,Terraform)<br>cannot be provided with type exclusion flags|
+|      --exclude-type strings        |  case insensitive list of platform types not to scan<br>(Ansible,AzureResourceManager,Bicep,Buildah,CICD,CloudFormation,Crossplane,DockerCompose,Dockerfile,GRPC,GoogleDeploymentManager,Knative,Kubernetes,OpenAPI,Pulumi,ServerLessFW,Terraform)<br>cannot be provided with type inclusion flags|
 
 
 Usage:

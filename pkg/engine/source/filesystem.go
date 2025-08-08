@@ -82,7 +82,7 @@ func ListSupportedPlatforms() []string {
 
 // ListSupportedCloudProviders returns a list of supported cloud providers
 func ListSupportedCloudProviders() []string {
-	return []string{"alicloud", "aws", "azure", "gcp", "nifcloud", "tencentcloud"}
+	return []string{"alicloud", "aws", "azure", "gcp", "nifcloud", "tencentcloud", "common"}
 }
 
 func getLibraryInDir(platform, libraryDirPath string) string {
@@ -455,6 +455,7 @@ var supPlatforms = &supportedPlatforms{
 	"OpenAPI":                 "openAPI",
 	"Terraform":               "terraform",
 	"AzureResourceManager":    "azureResourceManager",
+	"Bicep":                   "bicep",
 	"GRPC":                    "grpc",
 	"GoogleDeploymentManager": "googleDeploymentManager",
 	"Buildah":                 "buildah",
