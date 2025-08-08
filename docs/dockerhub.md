@@ -107,7 +107,7 @@ Usage:
 
 Flags:
   -m, --bom                           include bill of materials (BoM) in results output
-      --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp, nifcloud, tencentcloud,common)
+      --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp, nifcloud, tencentcloud, common)
       --config string                 path to configuration file
       --old-severities                use old severities in query results (excludes critical severity)
       --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
