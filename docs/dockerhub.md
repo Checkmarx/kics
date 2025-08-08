@@ -107,7 +107,7 @@ Usage:
 
 Flags:
   -m, --bom                           include bill of materials (BoM) in results output
-      --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp, nifcloud, tencentcloud, common)
+      --cloud-provider strings        list of cloud providers to scan (alicloud,aws,azure,gcp,nifcloud,tencentcloud,common)
       --config string                 path to configuration file
       --old-severities                use old severities in query results (excludes critical severity)
       --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
@@ -157,14 +157,14 @@ Flags:
   -d, --payload-path string           path to store internal representation JSON file
       --preview-lines int             number of lines to be display in CLI results (min: 1, max: 30) (default 3)
   -q, --queries-path strings          paths to directory with queries (default [./assets/queries])
-      --report-formats strings        formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])
+      --report-formats strings        formats in which the results will be exported (all,asff,codeclimate,csv,cyclonedx,glsast,html,json,junit,pdf,sarif,sonarqube) (default [json])
   -r, --secrets-regexes-path string   path to secrets regex rules configuration file
       --timeout int                   number of seconds the query has to execute before being canceled (default 60)
   -t, --type strings                  case insensitive list of platform types to scan
-                                      (Ansible, AzureResourceManager, Bicep, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+                                      (Ansible,AzureResourceManager,Bicep,Buildah,CICD,CloudFormation,Crossplane,DockerCompose,Dockerfile,GRPC,GoogleDeploymentManager,Knative,Kubernetes,OpenAPI,Pulumi,ServerLessFW,Terraform)
                                       cannot be provided with type exclusion flags
       --exclude-type strings          case insensitive list of platform types not to scan
-                                      (Ansible, AzureResourceManager, Bicep, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+                                      (Ansible,AzureResourceManager,Bicep,Buildah,CICD,CloudFormation,Crossplane,DockerCompose,Dockerfile,GRPC,GoogleDeploymentManager,Knative,Kubernetes,OpenAPI,Pulumi,ServerLessFW,Terraform)
                                       cannot be provided with type inclusion flags                                         
       
 ```
