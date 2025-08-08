@@ -1,0 +1,199 @@
+{
+  "ID": "3f8f6358-90f6-41a9-9b37-70c3a2523028",
+  "ScanID": "console",
+  "Document": {
+    "apiVersion": "v1",
+    "file": "assets/queries/k8s/containers_running_as_root/test/positive2.yaml",
+    "id": "3f8f6358-90f6-41a9-9b37-70c3a2523028[",
+    "kind": "Pod",
+    "metadata": {
+      "name": "security-context-demo-2"
+    },
+    "spec": {
+      "containers": [
+        {
+          "image": "gcr.io/google-samples/node-hello:1.0",
+          "name": "sec-ctx-demo-100",
+          "securityContext": {
+            "runAsNonRoot": false,
+            "runAsUser": 0
+          }
+        },
+        {
+          "image": "gcr.io/google-samples/node-hedwfwllo:1.0",
+          "name": "sec-ctx-demo-200",
+          "securityContext": {
+            "runAsNonRoot": false,
+            "runAsUser": 0
+          }
+        }
+      ],
+      "securityContext": {
+        "runAsNonRoot": false,
+        "runAsUser": 10
+      }
+    }
+  },
+  "LineInfoDocument": {
+    "_kics_lines": {
+      "_kics__default": {
+        "_kics_line": 0
+      },
+      "_kics_apiVersion": {
+        "_kics_line": 1
+      },
+      "_kics_kind": {
+        "_kics_line": 2
+      },
+      "_kics_metadata": {
+        "_kics_line": 3
+      },
+      "_kics_spec": {
+        "_kics_line": 5
+      }
+    },
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "_kics_lines": {
+        "_kics__default": {
+          "_kics_line": 3
+        },
+        "_kics_name": {
+          "_kics_line": 4
+        }
+      },
+      "name": "security-context-demo-2"
+    },
+    "spec": {
+      "_kics_lines": {
+        "_kics__default": {
+          "_kics_line": 5
+        },
+        "_kics_containers": {
+          "_kics_arr": [
+            {
+              "_kics__default": {
+                "_kics_line": 10
+              },
+              "_kics_image": {
+                "_kics_line": 11
+              },
+              "_kics_name": {
+                "_kics_line": 10
+              },
+              "_kics_securityContext": {
+                "_kics_line": 12
+              }
+            },
+            {
+              "_kics__default": {
+                "_kics_line": 15
+              },
+              "_kics_image": {
+                "_kics_line": 16
+              },
+              "_kics_name": {
+                "_kics_line": 15
+              },
+              "_kics_securityContext": {
+                "_kics_line": 17
+              }
+            }
+          ],
+          "_kics_line": 9
+        },
+        "_kics_securityContext": {
+          "_kics_line": 6
+        }
+      },
+      "containers": [
+        {
+          "image": "gcr.io/google-samples/node-hello:1.0",
+          "name": "sec-ctx-demo-100",
+          "securityContext": {
+            "_kics_lines": {
+              "_kics__default": {
+                "_kics_line": 12
+              },
+              "_kics_runAsNonRoot": {
+                "_kics_line": 14
+              },
+              "_kics_runAsUser": {
+                "_kics_line": 13
+              }
+            },
+            "runAsNonRoot": false,
+            "runAsUser": 0
+          }
+        },
+        {
+          "image": "gcr.io/google-samples/node-hedwfwllo:1.0",
+          "name": "sec-ctx-demo-200",
+          "securityContext": {
+            "_kics_lines": {
+              "_kics__default": {
+                "_kics_line": 17
+              },
+              "_kics_runAsNonRoot": {
+                "_kics_line": 19
+              },
+              "_kics_runAsUser": {
+                "_kics_line": 18
+              }
+            },
+            "runAsNonRoot": false,
+            "runAsUser": 0
+          }
+        }
+      ],
+      "securityContext": {
+        "_kics_lines": {
+          "_kics__default": {
+            "_kics_line": 6
+          },
+          "_kics_runAsNonRoot": {
+            "_kics_line": 8
+          },
+          "_kics_runAsUser": {
+            "_kics_line": 7
+          }
+        },
+        "runAsNonRoot": false,
+        "runAsUser": 10
+      }
+    }
+  },
+  "OriginalData": "apiVersion: v1\nkind: Pod\nmetadata:\n  name: security-context-demo-2\nspec:\n  securityContext:\n    runAsUser: 10\n    runAsNonRoot: false\n  containers:\n  - name: sec-ctx-demo-100\n    image: gcr.io/google-samples/node-hello:1.0\n    securityContext:\n      runAsUser: 0\n      runAsNonRoot: false\n  - name: sec-ctx-demo-200\n    image: gcr.io/google-samples/node-hedwfwllo:1.0\n    securityContext:\n      runAsUser: 0\n      runAsNonRoot: false\n      ",
+  "Kind": "YAML",
+  "FilePath": "assets/queries/k8s/containers_running_as_root/test/positive2.yaml",
+  "Content": "",
+  "HelmID": "",
+  "IDInfo": null,
+  "Commands": {},
+  "LinesIgnore": null,
+  "ResolvedFiles": {},
+  "LinesOriginalData": [
+    "apiVersion: v1",
+    "kind: Pod",
+    "metadata:",
+    "  name: security-context-demo-2",
+    "spec:",
+    "  securityContext:",
+    "    runAsUser: 10",
+    "    runAsNonRoot: false",
+    "  containers:",
+    "  - name: sec-ctx-demo-100",
+    "    image: gcr.io/google-samples/node-hello:1.0",
+    "    securityContext:",
+    "      runAsUser: 0",
+    "      runAsNonRoot: false",
+    "  - name: sec-ctx-demo-200",
+    "    image: gcr.io/google-samples/node-hedwfwllo:1.0",
+    "    securityContext:",
+    "      runAsUser: 0",
+    "      runAsNonRoot: false",
+    "      "
+  ],
+  "IsMinified": false
+}

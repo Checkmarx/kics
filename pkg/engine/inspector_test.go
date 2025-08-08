@@ -240,7 +240,6 @@ func TestInspect(t *testing.T) { //nolint
 				{
 					ID:               0,
 					SimilarityID:     "fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe",
-					OldSimilarityID:  "fec62a97d569662093dbb9739360942fc2a0c47bedec0bfcae05dc9d899d3ebe",
 					ScanID:           "scanID",
 					FileID:           "3a3be8f7-896e-4ef8-9db3-d6c19e60510b",
 					FileName:         "assets/queries/dockerfile/add_instead_of_copy/test/positive.dockerfile",
@@ -776,7 +775,8 @@ func newQueryContext(ctx context.Context) QueryContext {
 func newInspectorInstance(t *testing.T, queryPath []string, kicsComputeNewSimID bool) *Inspector {
 	querySource := source.NewFilesystemSource(queryPath, []string{""}, []string{""}, filepath.FromSlash("./assets/libraries"), true)
 	var vb = func(ctx *QueryContext, tracker Tracker, v interface{},
-		detector *detector.DetectLine, useOldSeverity bool, kicsComputeNewSimID bool) (*model.Vulnerability, error) {
+		detector *detector.DetectLine, useOldSeverity bool, kicsComputeNewSimID bool,
+		similarityIDTransition map[string]TransitionQueryInfo) (*model.Vulnerability, error) {
 		return &model.Vulnerability{}, nil
 	}
 	ins, err := NewInspector(
@@ -927,4 +927,46 @@ func TestInspector_prepareQueries(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestGetSimilarityIDTransitionQueryMap(t *testing.T) {
+	dir := t.TempDir()
+	defer func() {
+		err := os.RemoveAll(dir)
+		require.NoError(t, err, "Failed to remove temporary directory")
+	}()
+
+	yamlContent := `
+similarityIDChangeList:
+  - queryId: 1828a670-5957-4bc5-9974-47da228f75e2
+    queryName: Audit Policy Not Cover Key Security Concerns
+    observations: ""
+    change: 3
+  - queryId: cf34805e-3872-4c08-bf92-6ff7bb0cfadb
+    queryName: Container Running As Root
+    observations: ""
+    change: 5
+`
+
+	filePath := filepath.Join(dir, "transition.yaml")
+	err := os.WriteFile(filePath, []byte(yamlContent), 0644)
+	require.NoError(t, err)
+
+	result := getSimilarityIDTransitionQueryMap(dir)
+
+	require.NotNil(t, result)
+
+	require.Len(t, result, 2)
+	require.Contains(t, result, "1828a670-5957-4bc5-9974-47da228f75e2")
+	require.Contains(t, result, "cf34805e-3872-4c08-bf92-6ff7bb0cfadb")
+	require.Equal(t, TransitionQueryInfo{
+		QueryID:    "1828a670-5957-4bc5-9974-47da228f75e2",
+		QueryName:  "Audit Policy Not Cover Key Security Concerns",
+		Transition: 3,
+	}, result["1828a670-5957-4bc5-9974-47da228f75e2"])
+	require.Equal(t, TransitionQueryInfo{
+		QueryID:    "cf34805e-3872-4c08-bf92-6ff7bb0cfadb",
+		QueryName:  "Container Running As Root",
+		Transition: 5,
+	}, result["cf34805e-3872-4c08-bf92-6ff7bb0cfadb"])
 }
