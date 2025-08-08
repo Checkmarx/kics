@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive3.tf"
+  }
+]
