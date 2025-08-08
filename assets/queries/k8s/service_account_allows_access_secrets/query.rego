@@ -21,7 +21,7 @@ CxPolicy[result] {
 	resources[_] == "secrets"
 
 	rules := document.rules[resource].verbs
-	commonLib.compareArrays(ruleTaint, rules)
+	commonLib.compareArrays(ruleTaint, rules) # any of verbs match the Rule
 
 	result := {
 		"documentId": document.id,
@@ -29,6 +29,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.rules", [metadata.name]),
 		"issueType": "IncorrectValue",
+		"searchValue": document.kind, # multiple kind can match the same rule
 		"keyExpectedValue": sprintf("The metadata.name={{%s}}.rules.verbs should not contain the following verbs: [%s]", [metadata.name, rules]),
 		"keyActualValue": sprintf("The metadata.name={{%s}}.rules.verbs contain the following verbs: [%s]", [metadata.name, rules]),
 		"searchLine": commonLib.build_search_line(["rules", resource, "verbs"],[]),
