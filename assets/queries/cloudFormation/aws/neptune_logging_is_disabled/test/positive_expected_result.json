@@ -26,7 +26,7 @@
   {
     "queryName": "Neptune Logging Is Disabled",
     "severity": "MEDIUM",
-    "line": 5,
+    "line": 7,
     "filename": "positive5.yaml"
   },
   {
