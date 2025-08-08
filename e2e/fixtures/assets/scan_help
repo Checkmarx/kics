@@ -28,7 +28,7 @@ Flags:
                                       example: 'info,low'
       --exclude-type strings          case insensitive list of platform types not to scan
                                       (Ansible,AzureResourceManager,Buildah,CICD,CloudFormation,Crossplane,DockerCompose,Dockerfile,GRPC,GoogleDeploymentManager,Knative,Kubernetes,OpenAPI,Pulumi,ServerLessFW,Terraform)
-                                      cannot be provided with type inclusion flags
+                                      cannot be provided with type exclusion flags
       --experimental-queries          include experimental queries (queries not yet thoroughly reviewed)
       --fail-on strings               which kind of results should return an exit code different from 0
                                       accepts: critical, high, medium, low and info
