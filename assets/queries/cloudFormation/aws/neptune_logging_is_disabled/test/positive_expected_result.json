@@ -1,0 +1,38 @@
+[
+  {
+    "queryName": "Neptune Logging Is Disabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "filename": "positive1.json"
+  },
+  {
+    "queryName": "Neptune Logging Is Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive2.json"
+  },
+  {
+    "queryName": "Neptune Logging Is Disabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "filename": "positive3.json"
+  },
+  {
+    "queryName": "Neptune Logging Is Disabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive4.yaml"
+  },
+  {
+    "queryName": "Neptune Logging Is Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive5.yaml"
+  },
+  {
+    "queryName": "Neptune Logging Is Disabled",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive6.yaml"
+  }
+]
