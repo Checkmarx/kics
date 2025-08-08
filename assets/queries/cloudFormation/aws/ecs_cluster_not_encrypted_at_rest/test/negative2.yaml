@@ -11,9 +11,9 @@ Resources:
             Ebs:
               VolumeSize: 30
               VolumeType: gp2
+              Encrypted: "true"
         UserData:
           Fn::Base64: !Sub |
             #!/bin/bash
             echo ECS_CLUSTER=${ECSCluster} >> /etc/ecs/ecs.config
-
 

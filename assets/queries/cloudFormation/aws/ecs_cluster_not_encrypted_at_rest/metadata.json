@@ -4,9 +4,9 @@
   "severity": "HIGH",
   "category": "Encryption",
   "descriptionText": "Ensure that AWS ECS clusters are encrypted. Data encryption at rest, prevents unauthorized users from accessing sensitive data on your AWS ECS clusters and associated cache storage systems.",
-  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-ec2-instance.html#cfn-ec2-instance-blockdevicemappings",
   "platform": "CloudFormation",
   "descriptionID": "512ea20d",
   "cloudProvider": "aws",
-  "cwe": "311"
+  "cwe": "312"
 }

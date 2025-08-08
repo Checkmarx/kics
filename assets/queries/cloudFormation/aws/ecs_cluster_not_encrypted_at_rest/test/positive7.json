@@ -9,12 +9,7 @@
           "InstanceType": "t3.micro",
           "BlockDeviceMappings": [
             {
-              "DeviceName": "/dev/xvda",
-              "Ebs": {
-                "VolumeSize": 30,
-                "VolumeType": "gp2",
-                "Encrypted": false
-              }
+              "DeviceName": "/dev/xvda"
             }
           ],
           "UserData": {
