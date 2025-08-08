@@ -1,108 +1,56 @@
 {
   "Resources": {
-    "InternetGateway": {
-      "Type": "AWS::EC2::InternetGateway"
-    },
-    "GatewayAttachment": {
-      "Properties": {
-        "InternetGatewayId": "InternetGateway",
-        "VpcId": "VPC"
-      },
-      "Type": "AWS::EC2::VPCGatewayAttachment"
-    },
-    "Role": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Sid": "",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "ecs.amazonaws.com"
-              },
-              "Action": "sts:AssumeRole"
-            }
-          ],
-          "Version": "2008-10-17T00:00:00Z"
-        },
-        "ManagedPolicyArns": [
-          "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
-        ]
-      }
-    },
     "cluster": {
       "Type": "AWS::ECS::Cluster"
     },
     "service": {
       "Type": "AWS::ECS::Service",
       "Properties": {
-        "PlacementConstraints": [
-          {
-            "Type": "memberOf",
-            "Expression": "attribute:ecs.availability-zone != us-east-1d"
-          },
-          {
-            "Type": "distinctInstance"
-          }
-        ],
         "ServiceName": "ServiceName",
-        "Role": "Role",
         "Cluster": "cluster",
-        "DesiredCount": 0,
-        "HealthCheckGracePeriodSeconds": "HealthCheckGracePeriodSeconds",
-        "TaskDefinition": "taskdefinition1",
-        "DeploymentConfiguration": {
-          "MaximumPercent": 200,
-          "MinimumHealthyPercent": 100
+        "TaskDefinition": "taskdefinition",
+        "DesiredCount": 1,
+        "Role": "Role"
+      }
+    },
+    "taskdefinition": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "ContainerDefinitions": [
+          {
+            "Name": "AppContainer",
+            "Image": "amazon/amazon-ecs-sample",
+            "Essential": true,
+            "Memory": 512,
+            "Cpu": 100,
+            "MountPoints": [
+              {
+                "SourceVolume": "my-efs-vol",
+                "ContainerPath": "/mnt/efs"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Role": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ecs.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
         },
-        "LoadBalancers": [
-          {
-            "ContainerName": "AppName",
-            "ContainerPort": "AppContainerPort",
-            "LoadBalancerName": "elb"
-          }
-        ],
-        "PlacementStrategies": [
-          {
-            "Type": "binpack",
-            "Field": "memory"
-          },
-          {
-            "Type": "spread",
-            "Field": "host"
-          }
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
         ]
-      }
-    },
-    "elb": {
-      "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
-      "Properties": {
-        "LoadBalancerName": "LoadBalancerName",
-        "Listeners": [
-          {
-            "LoadBalancerPort": "80",
-            "Protocol": "HTTP",
-            "InstancePort": "AppHostPort"
-          }
-        ],
-        "Subnets": [
-          "Subnet1"
-        ]
-      },
-      "DependsOn": "GatewayAttachment"
-    },
-    "VPC2": {
-      "Type": "AWS::EC2::VPC",
-      "Properties": {
-        "CidrBlock": "10.0.0.0/24"
-      }
-    },
-    "Subnet1": {
-      "Type": "AWS::EC2::Subnet",
-      "Properties": {
-        "VpcId": "VPC",
-        "CidrBlock": "10.0.0.0/25"
       }
     }
   }
