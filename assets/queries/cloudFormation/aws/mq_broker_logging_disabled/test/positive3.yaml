@@ -1,0 +1,103 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Create a basic ActiveMQ broker"
+Resources:
+  BasicBroker3:
+    Type: "AWS::AmazonMQ::Broker"
+    Properties:
+      BrokerName: MyBasicBroker
+      DeploymentMode: SINGLE_INSTANCE
+      EngineType: ActiveMQ
+      EngineVersion: "5.15.0"
+      HostInstanceType: mq.t2.micro
+      PubliclyAccessible: "false"
+      Users:
+        -
+          ConsoleAccess: "true"
+          Groups:
+            - MyGroup
+          Password:
+            Ref: "BrokerPassword"
+          Username:
+            Ref: "BrokerUsername"
+      Logs:
+        General: "true"
+  BasicBroker4:
+    Type: "AWS::AmazonMQ::Broker"
+    Properties:
+      BrokerName: MyBasicBroker
+      DeploymentMode: SINGLE_INSTANCE
+      EngineType: ActiveMQ
+      EngineVersion: "5.15.0"
+      HostInstanceType: mq.t2.micro
+      PubliclyAccessible: "false"
+      Users:
+        -
+          ConsoleAccess: "true"
+          Groups:
+            - MyGroup
+          Password:
+            Ref: "BrokerPassword"
+          Username:
+            Ref: "BrokerUsername"
+      Logs:
+        Audit: "true"
+  BasicBroker5:
+    Type: "AWS::AmazonMQ::Broker"
+    Properties:
+      BrokerName: MyBasicBroker
+      DeploymentMode: SINGLE_INSTANCE
+      EngineType: ActiveMQ
+      EngineVersion: "5.15.0"
+      HostInstanceType: mq.t2.micro
+      PubliclyAccessible: "false"
+      Users:
+        -
+          ConsoleAccess: "true"
+          Groups:
+            - MyGroup
+          Password:
+            Ref: "BrokerPassword"
+          Username:
+            Ref: "BrokerUsername"
+      Logs:
+        General: "false"
+        Audit: "true"
+  BasicBroker6:
+    Type: "AWS::AmazonMQ::Broker"
+    Properties:
+      BrokerName: MyBasicBroker
+      DeploymentMode: SINGLE_INSTANCE
+      EngineType: ActiveMQ
+      EngineVersion: "5.15.0"
+      HostInstanceType: mq.t2.micro
+      PubliclyAccessible: "false"
+      Users:
+        -
+          ConsoleAccess: "true"
+          Groups:
+            - MyGroup
+          Password:
+            Ref: "BrokerPassword"
+          Username:
+            Ref: "BrokerUsername"
+      Logs:
+        Audit: "false"
+        General: "true"
+  BasicBroker7:
+    Type: "AWS::AmazonMQ::Broker"
+    Properties:
+      BrokerName: MyBasicBroker
+      DeploymentMode: SINGLE_INSTANCE
+      EngineType: ActiveMQ
+      EngineVersion: "5.15.0"
+      HostInstanceType: mq.t2.micro
+      PubliclyAccessible: "false"
+      Users:
+        -
+          ConsoleAccess: "true"
+          Groups:
+            - MyGroup
+          Password:
+            Ref: "BrokerPassword"
+          Username:
+            Ref: "BrokerUsername"
