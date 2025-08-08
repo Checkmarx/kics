@@ -13,7 +13,7 @@
               "Ebs": {
                 "VolumeSize": 30,
                 "VolumeType": "gp2",
-                "Encrypted": false
+                "Encrypted": "true"
               }
             }
           ],
