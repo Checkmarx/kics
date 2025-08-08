@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource := document.Resources[key]
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties
-	properties.SSESpecification.SSEEnabled == false
+	cf_lib.isCloudFormationFalse(properties.SSESpecification.SSEEnabled)
 
 	result := {
 		"documentId": input.document[i].id,

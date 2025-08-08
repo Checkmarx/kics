@@ -84,7 +84,7 @@ has_all_or_dynamob_arn(arn, table_name){
 
 get_encryption(resource) = encryption{
     sse := resource.Properties.SSESpecification
-    sse.SSEEnabled == true
+	cf_lib.isCloudFormationTrue(sse.SSEEnabled)
     encryption := "encrypted"
 } else = encryption{
     encryption := "unencrypted"

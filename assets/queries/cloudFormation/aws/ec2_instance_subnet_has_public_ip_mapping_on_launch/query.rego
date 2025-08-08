@@ -7,7 +7,7 @@ CxPolicy[result] {
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::EC2::Subnet"
-	resource.Properties.MapPublicIpOnLaunch == true
+	cf_lib.isCloudFormationTrue(resource.Properties.MapPublicIpOnLaunch)
 
 	result := {
 		"documentId": input.document[i].id,
