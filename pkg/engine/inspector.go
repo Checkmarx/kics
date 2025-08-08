@@ -5,12 +5,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-
+	"os"
+	"path/filepath"
 	"runtime"
 	"strings"
 	"sync"
 	"time"
 
+	consoleHelpers "github.com/Checkmarx/kics/v2/internal/console/helpers"
 	"github.com/Checkmarx/kics/v2/internal/metrics"
 	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
 	"github.com/Checkmarx/kics/v2/pkg/detector"
@@ -18,6 +20,7 @@ import (
 	"github.com/Checkmarx/kics/v2/pkg/detector/helm"
 	"github.com/Checkmarx/kics/v2/pkg/engine/source"
 	"github.com/Checkmarx/kics/v2/pkg/model"
+
 	"github.com/open-policy-agent/opa/v1/ast"
 	"github.com/open-policy-agent/opa/v1/cover"
 	"github.com/open-policy-agent/opa/v1/rego"
@@ -26,6 +29,7 @@ import (
 	"github.com/open-policy-agent/opa/v1/util"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
+	"gopkg.in/yaml.v3"
 )
 
 // Default values for inspector
@@ -40,6 +44,8 @@ const (
 	DefaultIssueType            = model.IssueTypeIncorrectValue
 
 	regoQuery = `result = data.Cx.CxPolicy`
+	// TransitionInformationBasePath the path to yaml files that contains the transition information
+	TransitionInformationBasePath = "./assets/similarityID_transition"
 )
 
 // ErrNoResult - error representing when a query didn't return a result
@@ -58,7 +64,8 @@ type QueryLoader struct {
 
 // VulnerabilityBuilder represents a function that will build a vulnerability
 type VulnerabilityBuilder func(ctx *QueryContext, tracker Tracker, v interface{},
-	detector *detector.DetectLine, useOldSeverities bool, kicsComputeNewSimID bool) (*model.Vulnerability, error)
+	detector *detector.DetectLine, useOldSeverities bool, kicsComputeNewSimID bool,
+	similarityIDTransitionQueryMap map[string]TransitionQueryInfo) (*model.Vulnerability, error)
 
 // PreparedQuery includes the opaQuery and its metadata
 type PreparedQuery struct {
@@ -76,12 +83,13 @@ type Inspector struct {
 	excludeResults map[string]bool
 	detector       *detector.DetectLine
 
-	enableCoverageReport bool
-	coverageReport       cover.Report
-	queryExecTimeout     time.Duration
-	useOldSeverities     bool
-	numWorkers           int
-	kicsComputeNewSimID  bool
+	enableCoverageReport      bool
+	coverageReport            cover.Report
+	queryExecTimeout          time.Duration
+	useOldSeverities          bool
+	numWorkers                int
+	kicsComputeNewSimID       bool
+	similarityIDTransitionMap map[string]TransitionQueryInfo
 }
 
 // QueryContext contains the context where the query is executed, which scan it belongs, basic information of query,
@@ -148,6 +156,12 @@ func NewInspector(
 
 	failedQueries := make(map[string]error)
 
+	similarityIDTransitionPath, errSimilarityIDTransitionPath := consoleHelpers.GetDefaultQueryPath(TransitionInformationBasePath)
+	if errSimilarityIDTransitionPath != nil {
+		log.Warn().Msg("Unable to find transition information files, similarity ID transitions will not be available")
+	}
+	similarityIDTransitionQueryMap := getSimilarityIDTransitionQueryMap(similarityIDTransitionPath)
+
 	metrics.Metric.Stop()
 
 	if needsLog {
@@ -167,16 +181,17 @@ func NewInspector(
 	}
 
 	return &Inspector{
-		QueryLoader:         &queryLoader,
-		vb:                  vb,
-		tracker:             tracker,
-		failedQueries:       failedQueries,
-		excludeResults:      excludeResults,
-		detector:            lineDetector,
-		queryExecTimeout:    queryExecTimeout,
-		useOldSeverities:    useOldSeverities,
-		numWorkers:          adjustNumWorkers(numWorkers),
-		kicsComputeNewSimID: kicsComputeNewSimID,
+		QueryLoader:               &queryLoader,
+		vb:                        vb,
+		tracker:                   tracker,
+		failedQueries:             failedQueries,
+		excludeResults:            excludeResults,
+		detector:                  lineDetector,
+		queryExecTimeout:          queryExecTimeout,
+		useOldSeverities:          useOldSeverities,
+		numWorkers:                adjustNumWorkers(numWorkers),
+		kicsComputeNewSimID:       kicsComputeNewSimID,
+		similarityIDTransitionMap: similarityIDTransitionQueryMap,
 	}, nil
 }
 
@@ -200,6 +215,47 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
 		platformLibraries[platform] = platformLibrary
 	}
 	return platformLibraries
+}
+
+// getSimilarityIDTransitionQueryMap gets the map of similarity ID transition queries from the assets
+func getSimilarityIDTransitionQueryMap(informationPath string) map[string]TransitionQueryInfo {
+	var transitionQueryMap = make(map[string]TransitionQueryInfo)
+	err := filepath.WalkDir(informationPath, func(path string, d os.DirEntry, err error) error {
+		var changeList = TransitionQueryInfoChangeList{}
+		if err != nil {
+			log.Error().Msgf("Error walking through transition information files: %v", err)
+			return err
+		}
+
+		if filepath.Ext(d.Name()) == ".yaml" || filepath.Ext(d.Name()) == ".yml" {
+			content, err := os.ReadFile(filepath.Clean(path))
+			if err != nil {
+				log.Error().Msgf("Error reading transition information file %s", d.Name())
+				return err
+			}
+
+			err = yaml.Unmarshal(content, &changeList)
+			if err != nil {
+				log.Error().Msgf("Error unmarshalling transition information file %s: %v", d.Name(), err)
+				return err
+			}
+
+			for _, change := range changeList.SimilarityIDChangeList {
+				if _, ok := transitionQueryMap[change.QueryID]; ok {
+					log.Warn().Msgf(
+						"Duplicate query ID found in transition information file %s: %s", d.Name(), change.QueryID)
+				} else {
+					transitionQueryMap[change.QueryID] = change
+				}
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		log.Error().Msgf("Error getting similarity ID transition query map: %v", err)
+		return nil
+	}
+	return transitionQueryMap
 }
 
 type InspectionJob struct {
@@ -483,7 +539,8 @@ func (c *Inspector) DecodeQueryResults(
 }
 
 func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultItem interface{}) (*model.Vulnerability, bool) {
-	vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector, c.useOldSeverities, c.kicsComputeNewSimID)
+	vulnerability, err := c.vb(ctx, c.tracker, queryResultItem, c.detector,
+		c.useOldSeverities, c.kicsComputeNewSimID, c.similarityIDTransitionMap)
 	if err != nil && err.Error() == ErrNoResult.Error() {
 		// Ignoring bad results
 		return nil, false

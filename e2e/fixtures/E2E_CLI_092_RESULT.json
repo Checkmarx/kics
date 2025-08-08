@@ -153,13 +153,13 @@
 			"files": [
 				{
 					"file_name": "e2e\\fixtures\\samples\\tmp-gitignore\\project\\positive1.json",
-					"similarity_id": "784e2d544fa3390808bed7b05bf0a64a8ddcc6637f34e3bba38225c10af90b91",
+					"similarity_id": "b89ba126a5fb0f116b1c9ef815a9797417cacd458b0a345ae1a250e2891298e4",
 					"line": 3,
 					"resource_type": "n/a",
 					"resource_name": "n/a",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources",
-					"search_line": -1,
+					"search_line": 3,
 					"search_value": "",
 					"expected_value": "'AWS::AccessAnalyzer::Analyzer' should be set",
 					"actual_value": "'AWS::AccessAnalyzer::Analyzer' is undefined"

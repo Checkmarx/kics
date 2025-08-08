@@ -20,7 +20,7 @@ build_search_line(path, obj) = resolvedPath {
 
 convert_path_item(pathItem) = convertedPath {
 	is_number(pathItem)
-	convertedPath := sprintf("%d", [pathItem])
+	convertedPath := sprintf("_kics_number_%d", [pathItem])
 } else = convertedPath {
 	convertedPath := sprintf("%s", [pathItem])
 }
@@ -513,6 +513,7 @@ get_nested_values_info(object, array_vals) = return_value {
 	return_value := {
 		"valid": count(array_vals) == count(arr),
 		"searchKey": concat(".", arr),
+		"searchLine": arr,
 	}
 }
 

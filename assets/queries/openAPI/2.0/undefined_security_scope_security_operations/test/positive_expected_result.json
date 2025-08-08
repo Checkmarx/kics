@@ -2,13 +2,13 @@
   {
     "queryName": "Undefined Scope 'securityDefinition' On 'security' Field On Operations",
     "severity": "LOW",
-    "line": 11,
+    "line": 13,
     "filename": "positive1.yaml"
   },
   {
     "queryName": "Undefined Scope 'securityDefinition' On 'security' Field On Operations",
     "severity": "LOW",
-    "line": 14,
+    "line": 16,
     "filename": "positive2.json"
   }
 ]
