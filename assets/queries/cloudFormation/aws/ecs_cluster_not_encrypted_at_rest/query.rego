@@ -3,130 +3,70 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
-
 CxPolicy[result] {  
-	# Case of undefined field(s) during path checking - EC2::LaunchTemplate
 	resource := input.document[i].Resources
 	elem := resource[key]
-	elem.Type == "AWS::EC2::LaunchTemplate"
-	template_data := elem.Properties.LaunchTemplateData
-	path := check_valid_path(template_data,key)
-	not path.value
+	elem.Type == "AWS::ECS::Service"
+	elem.Properties.Cluster
+	taskdefinitionkey := getTaskDefinitionName(elem)
+	taskDefinition := resource[taskdefinitionkey]
+
+	count(taskDefinition.Properties.ContainerDefinitions) > 0
+	res := is_transit_encryption_disabled(taskDefinition, taskdefinitionkey)
     
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": elem.Type,
 		"resourceName": cf_lib.get_resource_name(resource, key), 
-		"searchKey": sprintf("Resources.%s.Properties.LaunchTemplateData%s", [key,path.path_tail]),
+		"searchKey": sprintf("Resources.%s.Properties.Volumes", [taskdefinitionkey]),
+		"issueType": res["issueT"],
+		"keyExpectedValue": res["kev"],
+        "keyActualValue": res["kav"],
+	}
+}
+
+CxPolicy[result] {
+	resource := input.document[i].Resources
+	elem := resource[key]
+	elem.Type == "AWS::ECS::Service"
+	elem.Properties.Cluster
+	taskdefinitionkey := getTaskDefinitionName(elem)
+	not common_lib.valid_key(resource, taskdefinitionkey)
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": elem.Type,
+		"resourceName": cf_lib.get_resource_name(resource, key),
+		"searchKey": sprintf("Resources.%s", [taskdefinitionkey]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.LaunchTemplateData.BlockDeviceMappings.Ebs.Encrypted should be defined and true", [key]),
-		"keyActualValue": sprintf("%s is not defined.", [path.missing_resource]),
-		"searchLine": common_lib.build_search_line(path.searchLine,[]),
+		"keyExpectedValue": sprintf("Resources.%s should be defined", [taskdefinitionkey]),
+		"keyActualValue": sprintf("Resources.%s is not defined.", [taskdefinitionkey]),
 	}
 }
 
-CxPolicy[result] {  
-	# Case of "encrypted" defined but set to false - EC2::LaunchTemplate
-	resource := input.document[i].Resources
-	elem := resource[key]
-	elem.Type == "AWS::EC2::LaunchTemplate"
-	template_data := elem.Properties.LaunchTemplateData
-	path := check_valid_path(template_data,key)
-	path.value
-
-	cf_lib.isCloudFormationFalse(template_data.BlockDeviceMappings[path.index].Ebs.Encrypted)
-    
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": elem.Type,
-		"resourceName": cf_lib.get_resource_name(resource, key), 
-		"searchKey": sprintf("Resources.%s.Properties.LaunchTemplateData.BlockDeviceMappings.Ebs.Encrypted", [key]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.LaunchTemplateData.BlockDeviceMappings.Ebs.Encrypted should be defined and true", [key]),
-		"keyActualValue": "Encrypted is set to false.",
-		"searchLine": common_lib.build_search_line(path.searchLine,[]),
-	}
+is_transit_encryption_disabled(taskDefinition, taskdefinitionkey) = res {
+	volume := taskDefinition.Properties.Volumes[j]
+    common_lib.valid_key(volume.EFSVolumeConfiguration, "TransitEncryption") 
+    volume.EFSVolumeConfiguration.TransitEncryption == "DISABLED"
+    res := {
+    	"issueT": "IncorrectValue",
+    	"kev": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption should be enabled", [taskdefinitionkey, j]),
+		"kav": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption is disabled", [taskdefinitionkey, j]),
+    }
+} else = res { 
+	volume := taskDefinition.Properties.Volumes[j]
+    efsVolumeConfiguration := volume.EFSVolumeConfiguration
+    not common_lib.valid_key(efsVolumeConfiguration, "TransitEncryption")
+    res := {
+    	"issueT": "MissingAttribute",
+    	"kev": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption should be defined", [taskdefinitionkey, j]),
+        "kav": sprintf("Resources.%s.Properties.Volumes[%d].EFSVolumeConfiguration.TransitEncryption is not defined (set to DISABLED by default)", [taskdefinitionkey, j]),
+    }
 }
 
-CxPolicy[result] {  
-	# Case of undefined field(s) during path checking - EC2::Instance
-	resource := input.document[i].Resources
-	elem := resource[key]
-	elem.Type == "AWS::EC2::Instance"
-	template_data := elem.Properties
-	path := check_valid_path(template_data,key)
-	not path.value
-    
-	searchLine := [x | x := path.searchLine[_]; x != "LaunchTemplateData"]
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": elem.Type,
-		"resourceName": cf_lib.get_resource_name(resource, key), 
-		"searchKey": sprintf("Resources.%s.Properties%s", [key,path.path_tail]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.BlockDeviceMappings.Ebs.Encrypted should be defined and true", [key]),
-		"keyActualValue": sprintf("%s is not defined.", [path.missing_resource]),
-		"searchLine": common_lib.build_search_line(searchLine,[]),
-	}
+getTaskDefinitionName(resource) := name {
+	name := resource.Properties.TaskDefinition
+	not common_lib.valid_key(name, "Ref")
+} else := name {
+	name := resource.Properties.TaskDefinition.Ref
 }
-
-CxPolicy[result] {  
-	# Case of "encrypted" defined but set to false - EC2::Instance
-	resource := input.document[i].Resources
-	elem := resource[key]
-	elem.Type == "AWS::EC2::Instance"
-	template_data := elem.Properties
-	path := check_valid_path(template_data,key)
-	path.value
-
-	cf_lib.isCloudFormationFalse(template_data.BlockDeviceMappings[path.index].Ebs.Encrypted)
-
-	searchLine := [x | x := path.searchLine[_]; x != "LaunchTemplateData"]
-    
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": elem.Type,
-		"resourceName": cf_lib.get_resource_name(resource, key), 
-		"searchKey": sprintf("Resources.%s.Properties.BlockDeviceMappings.Ebs.Encrypted", [key]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.BlockDeviceMappings.Ebs.Encrypted should be defined and true", [key]),
-		"keyActualValue": "Encrypted is set to false.",
-		"searchLine": common_lib.build_search_line(searchLine,[]),
-	}
-}
-
-check_valid_path(template_data,key) = path {
-	common_lib.valid_key(template_data.BlockDeviceMappings[i].Ebs,"Encrypted")
-	path := {
-		"value": true,
-		"searchLine": ["Resources",key,"Properties","LaunchTemplateData","BlockDeviceMappings",i,"Ebs","Encrypted"],
-		"path_tail": sprintf(".BlockDeviceMappings[%d].Ebs.Encrypted",[i]),
-		"index": i
-	}
-} else = path {
-	common_lib.valid_key(template_data.BlockDeviceMappings[i],"Ebs")
-	path := {
-		"value": false,
-		"searchLine": ["Resources",key,"Properties","LaunchTemplateData","BlockDeviceMappings",i,"Ebs"],
-		"path_tail": sprintf(".BlockDeviceMappings[%d].Ebs.Encrypted",[i]),
-		"missing_resource": "Encrypted"
-	}
-} else = path {
-	common_lib.valid_key(template_data,"BlockDeviceMappings")
-	path := {
-		"value": false,
-		"searchLine": ["Resources",key,"Properties","LaunchTemplateData","BlockDeviceMappings"],
-		"path_tail": ".BlockDeviceMappings[x].Ebs",
-		"missing_resource": "Ebs"
-	}
-} else = path {
-	path := {
-		"value": false,
-		"searchLine": ["Resources",key,"Properties","LaunchTemplateData"],
-		"path_tail": ".BlockDeviceMappings",
-		"missing_resource": "BlockDeviceMappings"
-	}
-} 
-
-

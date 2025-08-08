@@ -1,28 +1,64 @@
 {
   "Resources": {
-    "ECSLaunchTemplate": {
-      "Type": "AWS::EC2::LaunchTemplate",
+    "cluster": {
+      "Type": "AWS::ECS::Cluster"
+    },
+    "service": {
+      "Type": "AWS::ECS::Service",
       "Properties": {
-        "LaunchTemplateName": "ECS-Encrypted-LT",
-        "LaunchTemplateData": {
-          "ImageId": "ami-xxxxxxxxxxxxxx",
-          "InstanceType": "t3.micro",
-          "BlockDeviceMappings": [
-            {
-              "DeviceName": "/dev/xvda",
-              "Ebs": {
-                "VolumeSize": 30,
-                "VolumeType": "gp2",
-                "Encrypted": false
+        "ServiceName": "ServiceName",
+        "Cluster": "cluster",
+        "TaskDefinition": "taskdefinition",
+        "DesiredCount": 1,
+        "Role": "Role"
+      }
+    },
+    "taskdefinition": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "ContainerDefinitions": [
+          {
+            "Name": "AppContainer",
+            "Image": "amazon/amazon-ecs-sample",
+            "Essential": true,
+            "Memory": 512,
+            "Cpu": 100,
+            "MountPoints": [
+              {
+                "SourceVolume": "my-efs-vol",
+                "ContainerPath": "/mnt/efs"
               }
-            }
-          ],
-          "UserData": {
-            "Fn::Base64": {
-              "Fn::Sub": "#!/bin/bash\necho ECS_CLUSTER=${ECSCluster} >> /etc/ecs/ecs.config"
+            ]
+          }
+        ],
+        "Volumes": [
+          {
+            "Name": "my-efs-vol",
+            "EFSVolumeConfiguration": {
+              "FilesystemId": "fs-12345678"
             }
           }
-        }
+        ]
+      }
+    },
+    "Role": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ecs.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
+        ]
       }
     }
   }
