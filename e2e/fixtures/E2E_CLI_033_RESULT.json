@@ -71,13 +71,13 @@
       "files": [
         {
           "file_name": "/path/e2e/fixtures/samples/terraform-single.tf",
-          "similarity_id": "1812f3cc5d9c2b20527d2f8a7ffbdbd1490e049e6f9b205c5f9b311e6c9efb27",
+          "similarity_id": "aa346cd1642a83b40e221f96a43d88dbfacecdf1f8e5314c24145f8d35530197",
           "line": 1,
           "resource_type": "n/a",
           "resource_name": "n/a",
           "issue_type": "MissingAttribute",
           "search_key": "resource",
-          "search_line": 1,
+          "search_line": -1,
           "search_value": "",
           "expected_value": "'aws_accessanalyzer_analyzer' should be set",
           "actual_value": "'aws_accessanalyzer_analyzer' is undefined"
