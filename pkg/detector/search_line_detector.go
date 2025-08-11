@@ -2,6 +2,7 @@ package detector
 
 import (
 	"encoding/json"
+	"strconv"
 	"strings"
 
 	"github.com/tidwall/gjson"
@@ -57,14 +58,15 @@ func (d *searchLineDetector) preparePath(pathItems []string) (oldResult, newResu
 	var objPath strings.Builder
 	_, _ = objPath.WriteString(strings.ReplaceAll(pathItems[0], ".", `\.`))
 
+	obj := strings.ReplaceAll(pathItems[len(pathItems)-1], ".", `\.`)
+
 	var arrayObjects []string
 
 	// Iterate reversely through the path components and get the key of the last array in the path
 	// needed for cases where the fields in the array are <"key": "value"> type and not <object>
 	foundArrayIdx := false
 	for i := len(pathItems) - 1; i >= 0; i-- {
-		if number, found := strings.CutPrefix(pathItems[i], "_kics_number_"); found {
-			pathItems[i] = number
+		if _, err := strconv.Atoi(pathItems[i]); err == nil {
 			foundArrayIdx = true
 			continue
 		}
@@ -73,8 +75,6 @@ func (d *searchLineDetector) preparePath(pathItems []string) (oldResult, newResu
 			foundArrayIdx = false
 		}
 	}
-
-	obj := strings.ReplaceAll(pathItems[len(pathItems)-1], ".", `\.`)
 
 	nextArray := len(arrayObjects) - 1
 	arrPaths := make([]*strings.Builder, 0, len(arrayObjects)+1)
