@@ -36,7 +36,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_db_parameter_group.%s", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to \"all\" and \"1\"",
+		"keyExpectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
 		"keyActualValue": sprintf("aws_db_parameter_group's %s the wrong value", [wrong_values_message]),
         "searchLine": common_lib.build_search_line(["resource", "aws_db_parameter_group", name, extra_path[0],extra_path[1],extra_path[2]], []),
 	}
@@ -55,7 +55,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_db_parameter_group.%s", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to \"all\" and \"1\"",
+		"keyExpectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
 		"keyActualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are not set or both the wrong value",
         "searchLine": common_lib.build_search_line(["resource", "aws_db_parameter_group", name], []),
 	}
@@ -95,13 +95,8 @@ get_wrong_values(parameters) = "both"{
 } else = "none"
 
 
-get_extra_path("log_statement has",parameters) = path {
-    parameters[index].name == "log_statement"
-    path = ["parameter", index , "value"]
-}
-
-get_extra_path("log_min_duration_statement has",parameters) = path {
-    parameters[index].name == "log_min_duration_statement"
+get_extra_path(statement,parameters) = path {
+    parameters[index].name == split(statement," ")[0]
     path = ["parameter", index , "value"]
 }
 

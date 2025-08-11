@@ -3,7 +3,7 @@
   "queryName": "Postgres RDS logging disabled",
   "severity": "LOW",
   "category": "Observability",
-  "descriptionText": "It should be performed the logging of the queries executed in the database in order to understand its performance impact and the detection of possible malicious activity.Note that these logs might contain password information and other credentials if provided in cleartext. More Information: https://repost.aws/knowledge-center/rds-postgresql-cleartext-logging",
+  "descriptionText": "Logging of executed database queries should be enabled to help assess performance impact and detect potential malicious activity.Note that these logs might contain password information and other credentials if provided in cleartext. More Information: https://repost.aws/knowledge-center/rds-postgresql-cleartext-logging",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_parameter_group?q=log_statement#argument-reference",
   "platform": "Terraform",
   "descriptionID": "820882c4",
