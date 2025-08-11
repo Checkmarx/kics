@@ -15,7 +15,7 @@ func init() { //nolint
 			},
 			ExpectedResult: []ResultsValidation{
 				{
-					ResultsFile: "E2E-CLI-101-FAIL",
+					ResultsFile: "E2E-CLI-101",
 				},
 			},
 		},
@@ -33,7 +33,7 @@ func init() { //nolint
 			},
 			ExpectedResult: []ResultsValidation{
 				{
-					ResultsFile: "E2E-CLI-101-FAIL",
+					ResultsFile: "E2E-CLI-101",
 				},
 			},
 		},
@@ -51,7 +51,7 @@ func init() { //nolint
 			},
 			ExpectedResult: []ResultsValidation{
 				{
-					ResultsFile: "E2E-CLI-101-FAIL",
+					ResultsFile: "E2E-CLI-101",
 				},
 			},
 		},
