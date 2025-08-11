@@ -44,33 +44,6 @@
         "HealthCheckGracePeriodSeconds": "HealthCheckGracePeriodSeconds"
       }
     },
-    "elb": {
-      "DependsOn": "GatewayAttachment",
-      "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
-      "Properties": {
-        "LoadBalancerName": "LoadBalancerName",
-        "Listeners": [
-          {
-            "LoadBalancerPort": "80",
-            "Protocol": "HTTP",
-            "InstancePort": "AppHostPort"
-          }
-        ],
-        "Subnets": [
-          "Subnet1"
-        ]
-      }
-    },
-    "InternetGateway": {
-      "Type": "AWS::EC2::InternetGateway"
-    },
-    "GatewayAttachment": {
-      "Type": "AWS::EC2::VPCGatewayAttachment",
-      "Properties": {
-        "VpcId": "VPC",
-        "InternetGatewayId": "InternetGateway"
-      }
-    },
     "taskdefinition": {
       "Type": "AWS::ECS::TaskDefinition",
       "Properties": {
@@ -131,19 +104,6 @@
             }
           }
         ]
-      }
-    },
-    "VPC": {
-      "Type": "AWS::EC2::VPC",
-      "Properties": {
-        "CidrBlock": "10.0.0.0/24"
-      }
-    },
-    "Subnet1": {
-      "Type": "AWS::EC2::Subnet",
-      "Properties": {
-        "VpcId": "VPC",
-        "CidrBlock": "10.0.0.0/25"
       }
     },
     "Role": {

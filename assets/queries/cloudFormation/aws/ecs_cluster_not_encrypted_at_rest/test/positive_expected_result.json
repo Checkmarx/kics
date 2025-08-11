@@ -32,7 +32,7 @@
   {
     "queryName": "ECS Cluster Not Encrypted At Rest",
     "severity": "HIGH",
-    "line": 76,
+    "line": 49,
     "fileName": "positive1.json"
   },
   {
