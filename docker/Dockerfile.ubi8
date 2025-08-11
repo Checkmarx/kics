@@ -4,9 +4,9 @@ WORKDIR /build
 
 ENV PATH=$PATH:/usr/local/go/bin
 
-ADD https://golang.org/dl/go1.24.5.linux-amd64.tar.gz .
+ADD https://golang.org/dl/go1.24.6.linux-amd64.tar.gz .
 RUN yum install git gcc -y \
-  && rm -rf /usr/local/go && tar -C /usr/local -xzf go1.24.5.linux-amd64.tar.gz \
+  && rm -rf /usr/local/go && tar -C /usr/local -xzf go1.24.6.linux-amd64.tar.gz \
   && rm -f go1.24.5.linux-amd64.tar.gz
 
 ENV GOPRIVATE=github.com/Checkmarx/*
