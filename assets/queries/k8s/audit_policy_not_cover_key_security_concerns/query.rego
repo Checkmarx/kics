@@ -22,25 +22,25 @@ CxPolicy[result] {
     startswith(resource.apiVersion, "audit")
 
     # map the current resources and what levels they are defined in
-    resouce_rule_map := { resouce_rule_map |
+    resource_rule_map := { resource_rule_map |
     	rule := resource.rules[_]
         # get resource that is defined in the rule and match the ones in needed_level_per_resource
         rule.resources[_].resources[_] == needed_level_per_resource[x].resource;
         # build retuned map with resource and level
-        resouce_rule_map:= {"resource":needed_level_per_resource[x].resource,"level": rule.level} #
+        resource_rule_map:= {"resource":needed_level_per_resource[x].resource,"level": rule.level} #
     }
 
     # get the resources that are not defined in the needed levels
-    not hasResourceLevel(needed_level_per_resource[y].resource, needed_level_per_resource[y].levels, resouce_rule_map)
+    not hasResourceLevel(needed_level_per_resource[y].resource, needed_level_per_resource[y].levels, resource_rule_map)
 
     current_levels := [ current_levels |
-        resouce_rule_map[k].resource == needed_level_per_resource[y].resource;
-        resouce_rule_map[k].level == needed_level_per_resource[y].levels[_];
-        current_levels := resouce_rule_map[k].level
+        resource_rule_map[k].resource == needed_level_per_resource[y].resource;
+        resource_rule_map[k].level == needed_level_per_resource[y].levels[_];
+        current_levels := resource_rule_map[k].level
     ]
 
     result := {
-        "documentId": input.document[i].id,
+        "documentId": resource.id,
         "resourceType": resource.kind,
         "resourceName": "n/a",
         "searchKey": "kind={{Policy}}.rules",
