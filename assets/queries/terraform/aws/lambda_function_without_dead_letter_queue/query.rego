@@ -26,7 +26,7 @@ is_dead_letter_queue_undefined_or_empty(resource, name) = res {
     res := {
         "sk": sprintf("aws_lambda_function[%s]", [name]),
         "kev": sprintf("'aws_lambda_function[%s].dead_letter_config' should be defined and not null", [name]),
-        "kav": sprintf("'aws_lambda_function[%s]'", [name]),
+        "kav": sprintf("'aws_lambda_function[%s].dead_letter_config' is undefined or null", [name]),
     }
 } else = res {
     common_lib.valid_key(resource.dead_letter_config, "target_arn")
