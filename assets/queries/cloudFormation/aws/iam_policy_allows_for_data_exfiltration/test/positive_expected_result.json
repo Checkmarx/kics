@@ -50,7 +50,7 @@
   {
     "queryName": "IAM policy allows for data exfiltration",
     "severity": "MEDIUM",
-    "line": 14,
+    "line": 15,
     "fileName": "positive9.json"
   },
   {
