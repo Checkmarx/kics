@@ -25,6 +25,19 @@ resource sqlServer1_sqlDatabase1 'Microsoft.Sql/servers/databases@2021-02-01-pre
   }
 }
 
+resource sqlServer1_default 'Microsoft.Sql/servers/auditingSettings@2021-02-01-preview' = {
+  parent: sqlServer1
+  name: 'default'
+  properties: {
+    auditActionsAndGroups: ['DATABASE_LOGOUT_GROUP']
+    isAzureMonitorTargetEnabled: true
+    isStorageSecondaryKeyInUse: true
+    queueDelayMs: 1000
+    retentionDays: 100
+    state: 'Enabled'
+  }
+}
+
 resource sqlServer1_sqlDatabase1_default 'Microsoft.Sql/servers/databases/auditingSettings@2021-02-01-preview' = {
   parent: sqlServer1_sqlDatabase1
   name: 'default'

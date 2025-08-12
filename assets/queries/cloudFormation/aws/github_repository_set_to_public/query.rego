@@ -26,7 +26,7 @@ CxPolicy[result] {
 
 	resource.Type == "AWS::CodeStar::GitHubRepository"
 
-	resource.Properties.IsPrivate != true
+	not cf_lib.isCloudFormationTrue(resource.Properties.IsPrivate)
 
 	result := {
 		"documentId": input.document[i].id,

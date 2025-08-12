@@ -9,8 +9,8 @@ CxPolicy[result] {
 	document.Resources[workspaceName].Type == "AWS::WorkSpaces::Workspace"
 	workspace := document.Resources[workspaceName]
 
-	# The UserVolumeEncryptionEnabled property is defined, but is set to false
-	not isTrue(workspace.Properties.UserVolumeEncryptionEnabled)
+	# The UserVolumeEncryptionEnabled property is defined, but is not set to true
+	not cf_lib.isCloudFormationTrue(workspace.Properties.UserVolumeEncryptionEnabled)
 
 	result := {
 		"documentId": document.id,
@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("Resources.%s.Properties.UserVolumeEncryptionEnabled", [workspaceName]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.UserVolumeEncryptionEnabled should be set to true", [workspaceName]),
-		"keyActualValue": sprintf("Resources.%s.Properties.UserVolumeEncryptionEnabled is set to false", [workspaceName]),
+		"keyActualValue": sprintf("Resources.%s.Properties.UserVolumeEncryptionEnabled is not set to true", [workspaceName]),
 	}
 }
 
@@ -43,6 +43,3 @@ CxPolicy[result] {
 	}
 }
 
-isTrue(true) = true
-
-isTrue("true") = true
