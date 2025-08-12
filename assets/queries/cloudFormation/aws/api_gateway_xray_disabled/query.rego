@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::ApiGateway::Stage"
 	properties := resource.Properties
-	isResFalse(properties.TracingEnabled)
+	cf_lib.isCloudFormationFalse(properties.TracingEnabled)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -37,10 +37,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("Resources.%s.Properties.TracingEnabled should be defined", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.TracingEnabled is undefined", [name]),
 	}
-}
-
-isResFalse(answer) {
-	answer == "false"
-} else {
-	answer == false
 }
