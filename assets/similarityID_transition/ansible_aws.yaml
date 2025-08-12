@@ -14,15 +14,15 @@ similarityIDChangeList:
     - queryId: 71ea648a-d31a-4b5a-a589-5674243f1c33
       queryName: Public Port Wide
       observations: ""
-      change: 5
+      change: 4
     - queryId: ea6bc7a6-d696-4dcf-a788-17fa03c17c81
       queryName: Security Group Ingress Not Restricted
       observations: ""
-      change: 5
+      change: 4
     - queryId: 57ced4b9-6ba4-487b-8843-b65562b90c77
       queryName: Security Group With Unrestricted Access To SSH
       observations: ""
-      change: 5
+      change: 4
     - queryId: fb8f8929-afeb-4c46-99f0-a6cf410f7df4
       queryName: Vulnerable Default SSL Certificate
       observations: ""
