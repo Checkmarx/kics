@@ -1,8 +1,8 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
-    "RootGroup": {
-      "Type": "AWS::IAM::Group",
+    "RootRole": {
+      "Type": "AWS::IAM::Role",
       "Properties": {
         "Policies": [
           {

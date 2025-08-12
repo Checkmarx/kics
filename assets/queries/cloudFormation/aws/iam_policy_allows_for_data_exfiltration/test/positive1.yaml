@@ -14,22 +14,3 @@ Resources:
                 Action:
                   - '*'
                 Resource: '*'
-        - PolicyName: fullctrl
-          PolicyDocument:
-            Version: "2012-10-17"
-            Statement:
-              - Effect: Allow
-                Action:
-                  - 'iam:passrole'
-                Resource: '*'
-        - PolicyName: disableMfa
-          PolicyDocument:
-            Version: "2012-10-17"
-            Statement:
-              - Effect: Allow
-                Action:
-                  - 'iam:DeactivateMFADevice'
-                Resource: 'test'
-                Condition:
-                  Bool:
-                    "aws:MultiFactorAuthPresent": false

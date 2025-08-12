@@ -1,22 +1,26 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
-    "MyPolicy": {
-      "Type": "AWS::IAM::Policy",
+    "RootGroup": {
+      "Type": "AWS::IAM::Group",
       "Properties": {
-        "PolicyName": "CFNUsers",
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "secretsmanager:GetSecretValue"
-              ],
-              "Resource": "*"
+        "Policies": [
+          {
+            "PolicyName": "root",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:GetObject"
+                  ],
+                  "Resource": "*"
+                }
+              ]
             }
-          ]
-        }
+          }
+        ]
       }
     }
   }

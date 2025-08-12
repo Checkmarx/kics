@@ -9,14 +9,14 @@ resource "aws_iam_policy" "km_ssm_secrets_policy" {
         {
             "Sid": "KaiMonkeySSMSecretsPolicyGet",
             "Effect": "Allow",
-            "Action": "secretsmanager:GetSecretValue",
+            "Action": "safe_string_action",
             "Resource": "*"
         },
         {
             "Sid": "KaiMonkeySSMSecretsPolicyGetDecrypt",
             "Effect": "Allow",
             "Action": [
-                "kms:Decrypt"
+                "safe_array_action"
             ],
             "Resource": "*"
         }

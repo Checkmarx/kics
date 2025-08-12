@@ -10,9 +10,7 @@
           "Statement": [
             {
               "Effect": "Allow",
-              "Action": [
-                "safe_action"
-              ],
+              "Action": "secretsmanager:GetSecretValue",
               "Resource": "*"
             }
           ]

@@ -3,15 +3,17 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
+ilegal_actions := ["s3:GetObject", "ssm:GetParameter", "ssm:GetParameters", "ssm:GetParametersByPath", "secretsmanager:GetSecretValue","*","s3:*"]
+
 CxPolicy[result] {
-	ilegal_actions := ["s3:GetObject", "ssm:GetParameter", "ssm:GetParameters", "ssm:GetParametersByPath", "secretsmanager:GetSecretValue","*","s3:*"]
 	resource := input.document[i].resource["aws_iam_policy"][name]
 
 	policy := common_lib.json_unmarshal(resource.policy)
 	st := common_lib.get_statement(policy)
-	statement := st[_]
-	statement.Effect == "Allow"
-    statement.Action[i2] == ilegal_actions[_]
+	statement := st[st_index]
+	common_lib.is_allow_effect(statement)
+    ilegal_action := is_ilegal(statement.Action)
+	ilegal_action != "none"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -19,11 +21,22 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_policy[%s].policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'policy.Statement.Action' shouldn't contain '%s'",[statement.Action[i2]]),
-		"keyActualValue": sprintf("'policy.Statement.Action' contains '%s'",[statement.Action[i2]]),
+		"keyExpectedValue": sprintf("'%s.policy.Statement.Action[%d]' shouldn't contain ilegal actions",[name,st_index]),
+		"keyActualValue": sprintf("'%s.policy.Statement.Action[%d]' contains [%s]",[name,st_index,ilegal_action]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_iam_policy", name, "policy"], []),
-		"searchValue" : sprintf("%s",[statement.Action[i2]]),
+		"searchValue" : sprintf("%s",[ilegal_action]),
 	}
 }
 
-
+is_ilegal(Action) = Action {
+	is_string(Action)
+	Action == ilegal_actions[_]
+} else = res {
+	is_array(Action)
+	illegal_actions_list := [a |
+    	a := Action[_]
+    	ilegal_actions[_] == a
+	]
+	res := concat(", ", illegal_actions_list)
+	res != ""
+} else = "none"

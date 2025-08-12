@@ -1,8 +1,8 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
-    "RootGroup": {
-      "Type": "AWS::IAM::Group",
+    "RootRole": {
+      "Type": "AWS::IAM::Role",
       "Properties": {
         "Policies": [
           {
@@ -13,7 +13,9 @@
                 {
                   "Effect": "Allow",
                   "Action": [
-                    "safe_action"
+                    "s3:GetObject", 
+                    "ssm:GetParameter", 
+                    "s3:*"
                   ],
                   "Resource": "*"
                 }
