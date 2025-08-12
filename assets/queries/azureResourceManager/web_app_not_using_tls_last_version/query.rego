@@ -55,7 +55,7 @@ prepare_issue(resource) = issue {
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'siteConfig.minTlsVersion' is undefined",
 		"keyExpectedValue": "'siteConfig.minTlsVersion' should be defined",
-		"sk": "",
+		"sk": ".properties",
 		"sl": ["name"],
 	}
 }
