@@ -10,5 +10,11 @@
     "severity": "MEDIUM",
     "line": 44,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Secure Ciphers Disabled",
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive3.yaml"
   }
 ]

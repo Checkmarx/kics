@@ -1,4 +1,4 @@
-resource "azurerm_app_service" "negative1" {
+resource "azurerm_app_service" "with_http2" {
   name                = "example-app-service"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -7,15 +7,14 @@ resource "azurerm_app_service" "negative1" {
   site_config {
     dotnet_framework_version = "v4.0"
     scm_type                 = "LocalGit"
+    http2_enabled            = false
   }
 
   app_settings = {
-    "SOME_KEY" = "some-value"
+    SOME_KEY = "some-value"
   }
 
-  auth_settings = {
-    enabled = true
-  }
+  client_cert_enabled = false
 
   connection_string {
     name  = "Database"
