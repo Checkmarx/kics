@@ -2239,7 +2239,7 @@
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Flags:
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  -m, --bom                           include bill of materials (BoM) in results output
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>      --cloud-provider strings        list of cloud providers to scan (alicloud, aws, azure, gcp)
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>      --cloud-provider strings        list of cloud providers to scan (alicloud,aws,azure,gcp,nifcloud,tencentcloud)
 <a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>      --config string                 path to configuration file
 <a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>      --old-severities                use old severities in query results (excludes critical severity)
 <a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>      --disable-full-descriptions     disable request for full descriptions and use default vulnerability descriptions
@@ -2289,14 +2289,14 @@
 <a id="__codelineno-6-55" name="__codelineno-6-55" href="#__codelineno-6-55"></a>  -d, --payload-path string           path to store internal representation JSON file
 <a id="__codelineno-6-56" name="__codelineno-6-56" href="#__codelineno-6-56"></a>      --preview-lines int             number of lines to be display in CLI results (min: 1, max: 30) (default 3)
 <a id="__codelineno-6-57" name="__codelineno-6-57" href="#__codelineno-6-57"></a>  -q, --queries-path strings          paths to directory with queries (default [./assets/queries])
-<a id="__codelineno-6-58" name="__codelineno-6-58" href="#__codelineno-6-58"></a>      --report-formats strings        formats in which the results will be exported (all, asff, codeclimate, csv, cyclonedx, glsast, html, json, junit, pdf, sarif, sonarqube) (default [json])
+<a id="__codelineno-6-58" name="__codelineno-6-58" href="#__codelineno-6-58"></a>      --report-formats strings        formats in which the results will be exported (all,asff,codeclimate,csv,cyclonedx,glsast,html,json,junit,pdf,sarif,sonarqube) (default [json])
 <a id="__codelineno-6-59" name="__codelineno-6-59" href="#__codelineno-6-59"></a>  -r, --secrets-regexes-path string   path to secrets regex rules configuration file
 <a id="__codelineno-6-60" name="__codelineno-6-60" href="#__codelineno-6-60"></a>      --timeout int                   number of seconds the query has to execute before being canceled (default 60)
 <a id="__codelineno-6-61" name="__codelineno-6-61" href="#__codelineno-6-61"></a>  -t, --type strings                  case insensitive list of platform types to scan
-<a id="__codelineno-6-62" name="__codelineno-6-62" href="#__codelineno-6-62"></a>                                      (Ansible, AzureResourceManager, Bicep, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+<a id="__codelineno-6-62" name="__codelineno-6-62" href="#__codelineno-6-62"></a>                                      (Ansible,AzureResourceManager,Buildah,CICD,CloudFormation,Crossplane,DockerCompose,Dockerfile,GRPC,GoogleDeploymentManager,Knative,Kubernetes,OpenAPI,Pulumi,ServerLessFW,Terraform)
 <a id="__codelineno-6-63" name="__codelineno-6-63" href="#__codelineno-6-63"></a>                                      cannot be provided with type exclusion flags
 <a id="__codelineno-6-64" name="__codelineno-6-64" href="#__codelineno-6-64"></a>      --exclude-type strings          case insensitive list of platform types not to scan
-<a id="__codelineno-6-65" name="__codelineno-6-65" href="#__codelineno-6-65"></a>                                      (Ansible, AzureResourceManager, Bicep, Buildah, CICD, CloudFormation, Crossplane, DockerCompose, Dockerfile, GRPC, GoogleDeploymentManager, Knative, Kubernetes, OpenAPI, Pulumi, ServerLessFW, Terraform)
+<a id="__codelineno-6-65" name="__codelineno-6-65" href="#__codelineno-6-65"></a>                                      (Ansible,AzureResourceManager,Buildah,CICD,CloudFormation,Crossplane,DockerCompose,Dockerfile,GRPC,GoogleDeploymentManager,Knative,Kubernetes,OpenAPI,Pulumi,ServerLessFW,Terraform)
 <a id="__codelineno-6-66" name="__codelineno-6-66" href="#__codelineno-6-66"></a>                                      cannot be provided with type inclusion flags                                         
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Global Flags:

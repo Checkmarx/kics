@@ -2217,7 +2217,7 @@
 <h2 id="bicep">Bicep<a class="headerlink" href="#bicep" title="Permanent link">&para;</a></h2>
 <h3 id="linting_and_file_validation">Linting and File Validation<a class="headerlink" href="#linting_and_file_validation" title="Permanent link">&para;</a></h3>
 <p>Currently, KICS doesn't perform validation checks on Bicep files before scanning them.
-This means that even if a file isn't syntactically or structurally correct, it will still be scanned, potentially leading to inaccurate results without any error notifications. We're actively prioritizing this fix and anticipate implementing it in the forthcoming weeks.</p>
+This means that even if a file isn't syntactically or structurally correct, it will still be scanned, potentially leading to inaccurate results without any error notifications.</p>
 <h3 id="commands_on_bicep_files_as_comments">Commands on Bicep Files as Comments<a class="headerlink" href="#commands_on_bicep_files_as_comments" title="Permanent link">&para;</a></h3>
 <p>The current version does not support <strong>ignoring sections using special commands in comments</strong> when scanning Bicep files. Unlike other file types, where comments starting with <code>kics-scan</code> can control the scan behavior, this feature is not yet available for Bicep.</p>
 <p>We are working on adding this capability in future updates. Until then, please note that Bicep files will be scanned in their entirety, and commands in comments will be ignored.</p>
