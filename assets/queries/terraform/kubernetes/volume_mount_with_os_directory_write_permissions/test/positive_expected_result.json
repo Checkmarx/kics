@@ -8,13 +8,79 @@
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
+    "line": 66,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 100,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 158,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 163,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 250,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 255,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
     "line": 11,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Volume Mount With OS Directory Write Permissions",
     "severity": "HIGH",
-    "line": 12,
-    "fileName": "positive3.tf"
+    "line": 70,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 105,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 164,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 170,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 258,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Volume Mount With OS Directory Write Permissions",
+    "severity": "HIGH",
+    "line": 264,
+    "fileName": "positive2.tf"
   }
 ]

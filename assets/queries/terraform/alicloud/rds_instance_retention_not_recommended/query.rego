@@ -12,12 +12,13 @@ CxPolicy[result] {
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),
+        "searchValue": "sql_collector_status",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
 		"keyActualValue": "'sql_collector_status' is not defined",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name], []),
 		"remediation": "sql_collector_status = \"Enabled\"",
-        "remediationType": "addition",	
+        "remediationType": "addition",
 	}
 }
 
@@ -38,7 +39,7 @@ CxPolicy[result] {
             "before": "Disabled",
             "after": "Enabled"
         }),
-        "remediationType": "replacement",	
+        "remediationType": "replacement",
 	}
 }
 
@@ -52,12 +53,13 @@ CxPolicy[result] {
 		"resourceType": "alicloud_db_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("alicloud_db_instance[%s]", [name]),
+        "searchValue": "sql_collector_config_value",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'sql_collector_status' should be defined and set to Enabled and 'sql_collector_config_value' should be defined and set to 180 or more",
 		"keyActualValue": "'sql_collector_config_value' is not defined",
 		"searchLine": common_lib.build_search_line(["resource", "alicloud_db_instance", name], []),
 		"remediation": "sql_collector_config_value = 180",
-        "remediationType": "addition",	
+        "remediationType": "addition",
 	}
 }
 
@@ -78,6 +80,6 @@ CxPolicy[result] {
             "before": "30",
             "after": "180"
         }),
-        "remediationType": "replacement",	
+        "remediationType": "replacement",
 	}
 }
