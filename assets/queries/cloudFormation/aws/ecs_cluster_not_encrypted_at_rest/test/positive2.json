@@ -33,7 +33,10 @@
         ],
         "Volumes": [
           {
-            "Name": "my-efs-vol"
+            "Name": "my-efs-vol",
+            "EFSVolumeConfiguration": {
+              "FilesystemId": "fs-12345678"
+            }
           }
         ]
       }
