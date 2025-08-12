@@ -41,5 +41,5 @@ CxPolicy[result] {
 
 contains(arr, elem) {
 	arr[i].Key == elem
-	arr[i].Value == false
+	cf_lib.isCloudFormationFalse(arr[i].Value)
 }

@@ -10,5 +10,11 @@
     "severity": "CRITICAL",
     "line": 4,
     "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Amazon DMS Replication Instance Is Publicly Accessible",
+    "severity": "CRITICAL",
+    "line": 9,
+    "fileName": "positive3.yaml"
   }
 ]
