@@ -98,6 +98,7 @@ func (d *searchLineDetector) getResult() int {
 		d.resolvedPath + "." + d.targetObj + "._kics_lines._kics__default._kics_line",
 		d.resolvedArrayPath + "." + d.targetObj + "._kics__default._kics_line",
 		d.resolvedArrayPath + "._kics_" + d.targetObj + "._kics_line",
+		d.resolvedPath + "." + d.targetObj + "._kics_line",
 	}
 
 	result := -1
