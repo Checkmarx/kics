@@ -35,8 +35,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(res, name),
 		"searchKey": sprintf("Resources.%s.Properties.EncryptionConfig", [name]),
 		"issueType": "IncorrectValue", 
-		"keyExpectedValue": "'secrets' should be defined on Resources",
-		"keyActualValue": "'secrets' is undefined on Resources",
+		"keyExpectedValue": "'secrets' should be defined inside the Resources field",
+		"keyActualValue": "'secrets' is undefined on the Resources field",
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "EncryptionConfig"], [])
 	}
 }
