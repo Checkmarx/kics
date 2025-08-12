@@ -317,7 +317,7 @@
 				
 				<option value="file130">github.com/Checkmarx/kics/v2/pkg/scan/preview_secrets_mask.go (72.6%)</option>
 				
-				<option value="file131">github.com/Checkmarx/kics/v2/pkg/scan/scan.go (70.1%)</option>
+				<option value="file131">github.com/Checkmarx/kics/v2/pkg/scan/scan.go (70.2%)</option>
 				
 				<option value="file132">github.com/Checkmarx/kics/v2/pkg/scan/utils.go (85.5%)</option>
 				
@@ -686,9 +686,9 @@ func evalUsage(usage string, supportedPlatforms, supportedCloudProviders []strin
         variables := map[string]string{
                 "sliceInstructions":  "can be provided multiple times or as a comma separated string",
                 "supportedLogLevels": strings.Join(constants.AvailableLogLevels, ","),
-                "supportedPlatforms": strings.Join(supportedPlatforms, ", "),
-                "supportedProviders": strings.Join(supportedCloudProviders, ", "),
-                "supportedReports":   strings.Join(append([]string{"all"}, helpers.ListReportFormats()...), ", "),
+                "supportedPlatforms": strings.Join(supportedPlatforms, ","),
+                "supportedProviders": strings.Join(supportedCloudProviders, ","),
+                "supportedReports":   strings.Join(append([]string{"all"}, helpers.ListReportFormats()...), ","),
                 "defaultLogFile":     constants.DefaultLogFile,
                 "logFormatPretty":    constants.LogFormatPretty,
                 "logFormatJSON":      constants.LogFormatJSON,
@@ -1049,7 +1049,7 @@ func validateMultiStrEnum(flagName string) error <span class="cov4" title="4">{
         enums := GetMultiStrFlag(flagName)
         invalidEnum := make([]string, 0)
         caseInsensitiveMap := make(map[string]string)
-        for key, value := range validMultiStrEnums[flagName] </span><span class="cov10" title="62">{
+        for key, value := range validMultiStrEnums[flagName] </span><span class="cov10" title="61">{
                 caseInsensitiveMap[strings.ToLower(key)] = value
         }</span>
         <span class="cov4" title="4">for _, enum := range enums </span><span class="cov4" title="6">{
@@ -1661,7 +1661,7 @@ func NewListPlatformsCmd() *cobra.Command <span class="cov10" title="21">{
                 Use:   "list-platforms",
                 Short: "List supported platforms",
                 RunE: func(cmd *cobra.Command, args []string) error </span><span class="cov1" title="1">{
-                        for _, v := range source.ListSupportedPlatforms() </span><span class="cov9" title="17">{
+                        for _, v := range source.ListSupportedPlatforms() </span><span class="cov9" title="16">{
                                 _, err := fmt.Fprintf(cmd.OutOrStdout(), "%s\n", v)
                                 if err != nil </span><span class="cov0" title="0">{
                                         return err
@@ -2248,7 +2248,6 @@ var (
                 "OpenAPI":                 "openAPI",
                 "Terraform":               "terraform",
                 "AzureResourceManager":    "azureResourceManager",
-                "Bicep":                   "bicep",
                 "GoogleDeploymentManager": "googleDeploymentManager",
                 "GRPC":                    "grpc",
                 "Buildah":                 "buildah",
@@ -2633,7 +2632,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="22">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3308,7 +3307,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
 
         <span class="cov4" title="29">go func() </span><span class="cov4" title="29">{
                 // close channel results when the worker has finished writing into it
-                defer func() </span><span class="cov4" title="28">{
+                defer func() </span><span class="cov4" title="29">{
                         close(unwanted)
                         close(results)
                         close(locCount)
@@ -3369,7 +3368,7 @@ func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, locCount chan&
                 // Bicep
                 case ".bicep":<span class="cov4" title="18">
                         if a.isAvailableType(bicep) </span><span class="cov4" title="18">{
-                                results &lt;- bicep
+                                results &lt;- arm
                                 locCount &lt;- linesCount
                         }</span>
                 // GRPC
@@ -5567,7 +5566,7 @@ func detectLastSingle(line int, dis map[int]int, idInfo map[int]interface{}, id 
         if idInfo == nil </span><span class="cov4" title="12">{
                 return true
         }</span>
-        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="8">{
+        <span class="cov3" title="6">for key, value := range dis </span><span class="cov4" title="9">{
                 if value == dis[line] &amp;&amp; key != line </span><span class="cov1" title="1">{
                         // check if we are only looking at original data equivalent to the vulnerability
                         if ok := idInfo[id].(map[int]int)[key]; ok != 0 </span><span class="cov1" title="1">{
@@ -8050,7 +8049,7 @@ func NewFilesystemSource(source, types, cloudProviders []string, libraryPath str
 func ListSupportedPlatforms() []string <span class="cov1" title="1">{
         keys := make([]string, len(constants.AvailablePlatforms))
         i := 0
-        for k := range constants.AvailablePlatforms </span><span class="cov7" title="17">{
+        for k := range constants.AvailablePlatforms </span><span class="cov6" title="16">{
                 keys[i] = k
                 i++
         }</span>
@@ -20416,12 +20415,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="212">{
+        for variable := range s.varList </span><span class="cov7" title="214">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="638">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="598">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -33013,12 +33012,9 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) <
                 return nil, nil
         }</span>
 
-        <span class="cov1" title="1">paramsPlatforms := c.ScanParams.Platform
-        useDifferentPlatformQueries(&amp;paramsPlatforms)
-
-        querySource := source.NewFilesystemSource(
+        <span class="cov1" title="1">querySource := source.NewFilesystemSource(
                 c.ScanParams.QueriesPath,
-                paramsPlatforms,
+                c.ScanParams.Platform,
                 c.ScanParams.CloudProvider,
                 c.ScanParams.LibrariesPath,
                 c.ScanParams.ExperimentalQueries)
@@ -33127,26 +33123,6 @@ func (c *Client) executeScan(ctx context.Context) (*Results, error) <span class=
                 Files:          files,
                 FailedQueries:  failedQueries,
         }, nil</span>
-}
-
-func useDifferentPlatformQueries(platforms *[]string) <span class="cov1" title="1">{
-        hasBicep := false
-        hasARM := false
-        for _, platform := range *platforms </span><span class="cov1" title="1">{
-                if platform == "bicep" </span><span class="cov0" title="0">{
-                        hasBicep = true
-                }</span>
-                <span class="cov1" title="1">if platform == "azureresourcemanager" </span><span class="cov0" title="0">{
-                        hasARM = true
-                }</span>
-                <span class="cov1" title="1">if hasARM &amp;&amp; hasBicep </span><span class="cov0" title="0">{
-                        break</span>
-                }
-        }
-
-        <span class="cov1" title="1">if hasBicep &amp;&amp; !hasARM </span><span class="cov0" title="0">{
-                *platforms = append(*platforms, "azureresourcemanager")
-        }</span>
 }
 
 func getExcludeResultsMap(excludeResults []string) map[string]bool <span class="cov4" title="2">{
@@ -34087,7 +34063,7 @@ func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7
         keys := make([]string, len(stringKeyMap))
 
         i := 0
-        for k := range stringKeyMap </span><span class="cov10" title="86835">{
+        for k := range stringKeyMap </span><span class="cov10" title="81728">{
                 keys[i] = k
                 i++
         }</span>
