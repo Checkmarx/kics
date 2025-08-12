@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "BatchJobDefinition"
+Resources:
+  JobDefinition:
+    Type: AWS::Batch::JobDefinition
+    Properties:
+      Type: container
+      JobDefinitionName: nvidia-smi
+      ContainerProperties:
+        MountPoints:
+          - ReadOnly: false
+            SourceVolume: nvidia
+            ContainerPath: /usr/local/nvidia
+        Volumes:
+          - Host:
+              SourcePath: /var/lib/nvidia-docker/volumes/nvidia_driver/latest
+            Name: nvidia
+        Command:
+          - nvidia-smi
+        Memory: 2000
+        Privileged: "false"
+        JobRoleArn: String
+        ReadonlyRootFilesystem: true
+        Vcpus: 2
+        Image: nvidia/cuda
+

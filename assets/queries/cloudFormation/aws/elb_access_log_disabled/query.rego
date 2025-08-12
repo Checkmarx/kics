@@ -42,5 +42,5 @@ checkALP(prop) {
 }
 
 checkALPAttr(prop) {
-	prop.AccessLoggingPolicy.Enabled == false
+	cf_lib.isCloudFormationFalse(prop.AccessLoggingPolicy.Enabled)
 }
