@@ -9,8 +9,10 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-// ComputeSimilarityID This function receives four string parameters and computes a sha256 hash
-func ComputeSimilarityID(basePaths []string, filePath, queryID, searchKey, searchValue string) (*string, error) {
+// ComputeSimilarityID This function receives four string parameters and computes
+// a sha256 hash
+func ComputeSimilarityID(basePaths []string, filePath, subDocumentIdx, queryID,
+	searchKeyOrSearchLine, searchValue string) (*string, error) {
 	basePath := ""
 	for _, path := range basePaths {
 		if strings.Contains(filepath.ToSlash(filePath), filepath.ToSlash(path)) {
@@ -23,7 +25,11 @@ func ComputeSimilarityID(basePaths []string, filePath, queryID, searchKey, searc
 		log.Debug().Msgf("Error while standardizing path: %s", err)
 	}
 
-	var stringNode = standardizedPath + queryID + searchKey + searchValue
+	if subDocumentIdx != "0" && subDocumentIdx != "" { // subDocumentIdx is used to uniquely identify sub-documents in YAML
+		standardizedPath += subDocumentIdx
+	}
+
+	var stringNode = standardizedPath + queryID + searchKeyOrSearchLine + searchValue
 
 	hashSum := sha256.Sum256([]byte(stringNode))
 

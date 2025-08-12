@@ -39,6 +39,7 @@ ENV TERM xterm-256color
 COPY --from=build_env /app/bin/kics /app/bin/kics
 COPY --from=build_env /app/assets/queries /app/bin/assets/queries
 COPY --from=build_env /app/assets/cwe_csv /app/bin/assets/cwe_csv
+COPY --from=build_env /app/assets/similarityID_transition  /app/bin/assets/similarityID_transition
 COPY --from=build_env /app/assets/libraries/* /app/bin/assets/libraries/
 
 WORKDIR /app/bin
