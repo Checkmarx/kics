@@ -6,4 +6,4 @@ similarityIDChangeList:
     - queryId: 1c1325ff-831d-43a1-973e-839ae57dfcc0
       queryName: Volume Has Sensitive Host Directory
       observations: I think the only issue was that the fallback to the searchKey in the first two policies didn't distinguish between volumes. That said, I'm not sure why it would need to fall back in the first place.
-      change: 1
+      change: 2
