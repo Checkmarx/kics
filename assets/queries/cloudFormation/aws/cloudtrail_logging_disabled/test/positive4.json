@@ -1,0 +1,36 @@
+{
+  "Resources": {
+    "S3Bucket": {
+      "DeletionPolicy": "Retain",
+      "Type": "AWS::S3::Bucket",
+      "Properties": {}
+    },
+    "myTrail5": {
+      "DependsOn": [
+        "BucketPolicy",
+        "TopicPolicy"
+      ],
+      "Type": "AWS::CloudTrail::Trail",
+      "Properties": {
+        "IsMultiRegionTrail": "true",
+        "S3BucketName": {
+          "Ref": "S3Bucket"
+        },
+        "SnsTopicName": {
+          "Fn::GetAtt": [
+            "Topic",
+            "TopicName"
+          ]
+        },
+        "IsLogging": false
+      }
+    }
+  },
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "OperatorEmail": {
+      "Description": "Email address to notify when new logs are published.",
+      "Type": "String"
+    }
+  }
+}

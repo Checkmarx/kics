@@ -1,4 +1,4 @@
-resource "azurerm_app_service" "negative" {
+resource "azurerm_app_service" "negative1" {
   name                = "example-app-service"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -10,10 +10,12 @@ resource "azurerm_app_service" "negative" {
   }
 
   app_settings = {
-    SOME_KEY = "some-value"
+    "SOME_KEY" = "some-value"
   }
 
-  client_cert_enabled = true
+  auth_settings {
+    enabled = true
+  }
 
   connection_string {
     name  = "Database"
@@ -21,4 +23,3 @@ resource "azurerm_app_service" "negative" {
     value = "Server=some-server.mydomain.com;Integrated Security=SSPI"
   }
 }
-
