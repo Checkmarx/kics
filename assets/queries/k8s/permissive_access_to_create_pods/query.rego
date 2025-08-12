@@ -88,6 +88,7 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
+		"searchKey": sprintf("metadata.name={{%s}}.rules.verbs.%s", [metadata.name, rules[j].verbs[l]]),
 		"searchValue": sprintf("%s/*", [document.kind]), # multiple kind can match the same spec structure
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name=%s.rules.verbs should not contain a wildcard value when metadata.name=%s.rules.resources contains a wildcard value", [metadata.name, metadata.name]),
