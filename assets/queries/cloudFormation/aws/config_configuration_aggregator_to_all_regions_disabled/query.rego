@@ -45,7 +45,7 @@ CxPolicy[result] {
 
     accSources := resource.Properties.AccountAggregationSources
 
-    accSources[j].AllAwsRegions == false
+	cf_lib.isCloudFormationFalse(accSources[j].AllAwsRegions)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -83,7 +83,7 @@ CxPolicy[result] {
 
     orgSource := resource.Properties.OrganizationAggregationSource
 
-    orgSource.AllAwsRegions == false
+	cf_lib.isCloudFormationFalse(orgSource.AllAwsRegions)
 
 	result := {
 		"documentId": input.document[i].id,
