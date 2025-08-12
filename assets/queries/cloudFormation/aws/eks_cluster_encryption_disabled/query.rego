@@ -17,6 +17,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute", 
 		"keyExpectedValue": "'EncryptionConfig' should be defined and not null",
 		"keyActualValue": "'EncryptionConfig' is undefined or null",
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties"], []),
 	}
 }
 
@@ -36,5 +37,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue", 
 		"keyExpectedValue": "'secrets' should be defined on Resources",
 		"keyActualValue": "'secrets' is undefined on Resources",
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "EncryptionConfig"], [])
 	}
 }
