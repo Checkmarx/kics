@@ -2,13 +2,19 @@
   {
     "queryName": "ElasticSearch Without Slow Logs",
     "severity": "LOW",
-    "line": 34,
+    "line": 13,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "ElasticSearch Without Slow Logs",
     "severity": "LOW",
-    "line": 30,
+    "line": 17,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "LOW",
+    "line": 9,
     "fileName": "positive2.yaml"
   },
   {
@@ -20,25 +26,97 @@
   {
     "queryName": "ElasticSearch Without Slow Logs",
     "severity": "LOW",
-    "line": 44,
-    "fileName": "positive4.json"
+    "line": 13,
+    "fileName": "positive4.yaml"
   },
   {
     "queryName": "ElasticSearch Without Slow Logs",
     "severity": "LOW",
-    "line": 42,
-    "fileName": "positive5.json"
+    "line": 17,
+    "fileName": "positive4.yaml"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "LOW",
+    "line": 13,
+    "fileName": "positive5.yaml"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "LOW",
+    "line": 17,
+    "fileName": "positive5.yaml"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "LOW",
+    "line": 10,
+    "fileName": "positive6.yaml"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "LOW",
+    "line": 13,
+    "fileName": "positive6.yaml"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "LOW",
+    "line": 14,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive7.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "LOW",
+    "line": 11,
+    "fileName": "positive8.json"
   },
   {
     "queryName": "ElasticSearch Without Slow Logs",
     "severity": "LOW",
     "line": 7,
-    "fileName": "positive6.json"
+    "fileName": "positive9.json"
   },
   {
     "queryName": "ElasticSearch Without Slow Logs",
     "severity": "LOW",
-    "line": 34,
-    "fileName": "positive7.yaml"
+    "line": 14,
+    "fileName": "positive10.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive10.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "LOW",
+    "line": 14,
+    "fileName": "positive11.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "LOW",
+    "line": 18,
+    "fileName": "positive11.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "LOW",
+    "line": 12,
+    "fileName": "positive12.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Slow Logs",
+    "severity": "LOW",
+    "line": 15,
+    "fileName": "positive12.json"
   }
 ]

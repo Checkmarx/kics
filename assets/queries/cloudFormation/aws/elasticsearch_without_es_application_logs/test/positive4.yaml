@@ -7,11 +7,7 @@ Resources:
       DomainName:
         Ref: DomainName
       LogPublishingOptions:
-        SEARCH_SLOW_LOGS:
+        ES_APPLICATION_LOGS:
           CloudWatchLogsLogGroupArn: >-
             arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-slow-logs
-          Enabled: "false"
-        INDEX_SLOW_LOGS:
-          CloudWatchLogsLogGroupArn: >-
-            arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-index-slow-logs
-          Enabled: "false"
+          Enabled: false
