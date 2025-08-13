@@ -22,5 +22,17 @@
     "severity": "LOW",
     "line": 6,
     "fileName": "positive4.json"
+  },
+  {
+    "queryName": "API Gateway Cache Cluster Disabled",
+    "severity": "LOW",
+    "line": 31,
+    "fileName": "positive5.yaml"
+  },
+  {
+    "queryName": "API Gateway Cache Cluster Disabled",
+    "severity": "LOW",
+    "line": 6,
+    "fileName": "positive6.json"
   }
 ]
