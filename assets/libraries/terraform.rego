@@ -7,8 +7,6 @@ check_cidr(rule) {
 } else {
 	rule.cidr_block == "0.0.0.0/0"
 } else {
-	rule.cidr_block == "0.0.0.0/0"
-} else {
 	rule.ipv6_cidr_blocks[_] == "::/0"
 } else {
 	rule.ipv6_cidr_blocks == "::/0"
