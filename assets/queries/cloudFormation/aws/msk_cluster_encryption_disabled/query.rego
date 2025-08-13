@@ -47,7 +47,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::MSK::Cluster"
 
 	properties := resource.Properties
-	isResFalse(properties.EncryptionInfo.EncryptionInTransit.InCluster)
+	cf_lib.isCloudFormationFalse(properties.EncryptionInfo.EncryptionInTransit.InCluster)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -60,8 +60,3 @@ CxPolicy[result] {
 	}
 }
 
-isResFalse(answer) {
-	answer == "false"
-} else {
-	answer == false
-}
