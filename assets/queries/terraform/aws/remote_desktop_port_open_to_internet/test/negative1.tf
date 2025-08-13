@@ -1,7 +1,6 @@
 resource "aws_security_group" "negative1" {
   name        = "Dont open remote desktop port"
   description = "Doesn't enable the remote desktop port"
-
 }
 
 resource "aws_security_group" "negative2" {

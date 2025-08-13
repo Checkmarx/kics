@@ -7,6 +7,8 @@ check_cidr(rule) {
 } else {
 	rule.cidr_block == "0.0.0.0/0"
 } else {
+	rule.cidr_block == "0.0.0.0/0"
+} else {
 	rule.ipv6_cidr_blocks[_] == "::/0"
 } else {
 	rule.ipv6_cidr_blocks == "::/0"
@@ -18,6 +20,16 @@ check_cidr(rule) {
 	rule.ipv6_cidr_blocks[_] == "0:0:0:0:0:0:0:0/0"
 } else {
 	rule.ipv6_cidr_blocks == "0:0:0:0:0:0:0:0/0"
+}
+
+check_cidr(rule) {
+	rule.cidr_ipv4 == "0.0.0.0/0"
+} else {
+	rule.cidr_ipv6 == "::/0"
+} else {
+	rule.cidr_ipv6 == "0000:0000:0000:0000:0000:0000:0000:0000/0"
+} else {
+	rule.cidr_ipv6 == "0:0:0:0:0:0:0:0/0"
 }
 
 
@@ -32,6 +44,21 @@ portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
 	rule.protocol == "tcp"
+	containsPort(rule, port)
+}
+
+portOpenToInternet(rule, port) {
+	check_cidr(rule)
+	protocols := ["tcp","-1"]
+	rule.ip_protocol == protocols[_]
+	containsPort(rule, port)
+}
+
+portOpenToInternet(rules, port) {
+	rule := rules[_]
+	check_cidr(rule)
+	protocols := ["tcp","-1"]
+	rule.ip_protocol == protocols[_]
 	containsPort(rule, port)
 }
 
