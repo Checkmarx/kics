@@ -69,6 +69,6 @@
     "queryName": "ElasticSearch Without Audit Logs",
     "severity": "MEDIUM",
     "line": 12,
-    "fileName": "positive11.json"
+    "fileName": "positive12.json"
   }
 ]
