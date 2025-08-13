@@ -40,7 +40,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' is true", [name]),
 		"keyActualValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' is false", [name]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service" ,name, "client_cert_enabeld"], []),
+		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service", name, "client_cert_enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
 			"after": "true"
@@ -63,9 +63,9 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name), 
 		"searchKey": sprintf("azurerm_app_service[%s].client_cert_enabled", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' or 'azurerm_app_service[%s].site_config.http2_enabled' are true", [name]),
+		"keyExpectedValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' or 'azurerm_app_service[%s].site_config.http2_enabled' are true", [name, name]),
 		"keyActualValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' and 'azurerm_app_service[%s].site_config.http2_enabled' set to false", [name, name]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service" ,name, "client_cert_enabeld"], []),
+		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service" ,name, "client_cert_enabled"], []),
 		"remediation": json.marshal({
 			"before": "false",
 			"after": "true"
