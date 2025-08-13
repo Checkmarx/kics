@@ -439,7 +439,7 @@ func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- i
 		// Bicep
 		case ".bicep":
 			if a.isAvailableType(bicep) {
-				results <- bicep
+				results <- arm
 				locCount <- linesCount
 			}
 		// GRPC
