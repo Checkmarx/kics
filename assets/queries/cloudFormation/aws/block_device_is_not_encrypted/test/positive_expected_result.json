@@ -14,13 +14,13 @@
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
-    "line": 1,
+    "line": 6,
     "fileName": "positive3.json"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
-    "line": 1,
+    "line": 5,
     "fileName": "positive4.yaml"
   },
   {
@@ -38,13 +38,13 @@
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
-    "line": 1,
+    "line": 7,
     "fileName": "positive7.json"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
-    "line": 1,
+    "line": 5,
     "fileName": "positive8.yaml"
   },
   {
