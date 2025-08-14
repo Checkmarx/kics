@@ -1,0 +1,12 @@
+{
+  "id": "c0c26068-fdf0-40e5-9b3b-fc8a5f585d2e",
+  "queryName": "ECS Services assigned with public IP address",
+  "severity": "MEDIUM",
+  "category": "Networking and Firewall",
+  "descriptionText": "Amazon ECS Services should not be assigned public IP addresses. Public IP assignment exposes services directly to the internet, increasing the attack surface and potential unauthorized access.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-ecs-service.html",
+  "platform": "CloudFormation",
+  "descriptionID": "c0c26068",
+  "cloudProvider": "aws",
+  "cwe": "201"
+}
