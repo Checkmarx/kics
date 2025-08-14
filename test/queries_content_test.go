@@ -174,14 +174,14 @@ func testQueryHasAllRequiredFiles(t *testing.T, entry queryEntry) {
 	require.FileExists(t, entry.ExpectedPositiveResultFile("test"))
 
 	for positiveDirectory, positiveFiles := range entry.PositiveDirectories(t) {
-		require.True(t, len(positiveFiles) > 0, "No positive samples found for query %s, directory %s", entry.dir, positiveDirectory)
+		require.True(t, len(positiveFiles) > 1, "Not enough positive samples found for query %s in directory %s", entry.dir, positiveDirectory)
 		for _, positiveFile := range positiveFiles {
 			require.FileExists(t, positiveFile)
 		}
 		require.FileExists(t, entry.ExpectedPositiveResultFile("test/"+positiveDirectory))
 	}
 	for negativeDirectory, negativeFiles := range entry.NegativeDirectories(t) {
-		require.True(t, len(negativeFiles) > 0, "No negative samples found for query %s, directory %s", entry.dir, negativeDirectory)
+		require.True(t, len(negativeFiles) > 1, "Not enough negative samples found for query %s in directory %s", entry.dir, negativeDirectory)
 		for _, negativeFile := range negativeFiles {
 			require.FileExists(t, negativeFile)
 		}
