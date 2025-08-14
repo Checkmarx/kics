@@ -50,14 +50,16 @@ portOpenToInternet(rules, port) {
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
 	prot_types := ["protocol","ip_protocol"]
-	rule[prot_types[_]] == "-1"
+	open_port := ["all","-1"]
+	rule[prot_types[_]] == open_port[_]
 }
 
 portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
 	prot_types := ["protocol","ip_protocol"]
-	rule[prot_types[_]] == "-1"
+	open_port := ["all","-1"]
+	rule[prot_types[_]] == open_port[_]
 }
 
 # Checks if a port is included in a rule
