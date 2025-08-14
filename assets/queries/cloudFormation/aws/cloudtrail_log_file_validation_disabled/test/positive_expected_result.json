@@ -12,15 +12,39 @@
     "fileName": "positive1.yaml"
   },
   {
-    "line": 87,
-    "fileName": "positive2.json",
     "queryName": "CloudTrail Log File Validation Disabled",
-    "severity": "LOW"
+    "severity": "LOW",
+    "line": 87,
+    "fileName": "positive2.json"
   },
   {
     "queryName": "CloudTrail Log File Validation Disabled",
     "severity": "LOW",
     "line": 108,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "CloudTrail Log File Validation Disabled",
+    "severity": "LOW",
+    "line": 62,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "CloudTrail Log File Validation Disabled",
+    "severity": "LOW",
+    "line": 77,
+    "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "CloudTrail Log File Validation Disabled",
+    "severity": "LOW",
+    "line": 87,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "CloudTrail Log File Validation Disabled",
+    "severity": "LOW",
+    "line": 108,
+    "fileName": "positive4.json"
   }
 ]
