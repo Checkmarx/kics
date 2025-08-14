@@ -4,6 +4,6 @@ resource sample_databases_default 'Microsoft.Sql/servers/databases/securityAlert
     emailAccountAdmins: true
     emailAddresses: ['sample@email.com']
     retentionDays: 4
-    state: 'Enabled'
+    state: 'Disabled'
   }
 }

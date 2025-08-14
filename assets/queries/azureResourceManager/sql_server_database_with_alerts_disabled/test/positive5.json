@@ -2,17 +2,20 @@
   "properties": {
     "template": {
       "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-      "contentVersion": "1.0.0.0",
+      "contentVersion": "2.0.0.0",
+      "apiProfile": "2019-03-01-hybrid",
+      "parameters": {},
+      "variables": {},
+      "functions": [],
       "resources": [
         {
-          "type": "Microsoft.Web/sites",
-          "apiVersion": "2020-12-01",
-          "name": "App",
+          "type": "Microsoft.Sql/servers/databases",
+          "apiVersion": "2021-02-01-preview",
+          "name": "sample/default",
           "location": "[resourceGroup().location]",
           "properties": {
-            "siteConfig": {
-              "minTlsVersion": "1.2"
-            }
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "maxSizeBytes": 2147483648
           }
         }
       ],
