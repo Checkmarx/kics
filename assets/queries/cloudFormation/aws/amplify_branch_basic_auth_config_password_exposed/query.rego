@@ -10,7 +10,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::Amplify::Branch"
 
 	properties := resource.Properties
-	properties.BasicAuthConfig.EnableBasicAuth == true
+	cf_lib.isCloudFormationTrue(properties.BasicAuthConfig.EnableBasicAuth)
 	paramName := properties.BasicAuthConfig.Password
 
 	defaultToken := document.Parameters[paramName].Default
@@ -35,7 +35,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::Amplify::Branch"
 
 	properties := resource.Properties
-	properties.BasicAuthConfig.EnableBasicAuth == true
+	cf_lib.isCloudFormationTrue(properties.BasicAuthConfig.EnableBasicAuth)
 	paramName := properties.BasicAuthConfig.Password
 	common_lib.valid_key(document, "Parameters")
 	not common_lib.valid_key(document.Parameters, paramName)
@@ -61,7 +61,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::Amplify::Branch"
 
 	properties := resource.Properties
-	properties.BasicAuthConfig.EnableBasicAuth == true
+	cf_lib.isCloudFormationTrue(properties.BasicAuthConfig.EnableBasicAuth)
 	paramName := properties.BasicAuthConfig.Password
 	not common_lib.valid_key(document, "Parameters")
 
