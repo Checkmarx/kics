@@ -1,0 +1,21 @@
+{
+  "Resources": {
+    "CreateTestDBPolicy": {
+      "Type": "AWS::IAM::ManagedPolicy",
+      "Properties": {
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": "s3:*",
+          "Resource": "*"
+        }
+      ]
+        },
+        "Users": ["TestUser"],
+        "Description": "Policy for creating a test database"
+      }
+    }
+  }
+}
