@@ -1,0 +1,12 @@
+{
+  "id": "720f44cf-285e-4b69-8f72-835e6bc1dceb",
+  "queryName": "Lambda Function Without Dead Letter Queue",
+  "severity": "LOW",
+  "category": "Insecure Configurations",
+  "descriptionText": "AWS Lambda Function should be configured for a Dead Letter Queue(DLQ)",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#dead_letter_config",
+  "platform": "Terraform",
+  "descriptionID": "720f44cf",
+  "cloudProvider": "aws",
+  "cwe": "390"
+}

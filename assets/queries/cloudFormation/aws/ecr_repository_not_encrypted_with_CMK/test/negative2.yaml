@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  ecrepo:
+    Type: AWS::ECR::Repository
+    Properties:
+      ImageScanningConfiguration:
+        ScanOnPush: false
+      EncryptionConfiguration:
+        EncryptionType: KMS
+        KmsKey: arn:aws:kms:123456789012:key/your-custom-key-id
