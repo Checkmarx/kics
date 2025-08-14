@@ -31,3 +31,14 @@ resource "aws_security_group" "positive1-2" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_security_group" "positive1-3" {
+
+  ingress {
+    description = "Remote desktop open private"
+    from_port   = 3380
+    to_port     = 3450
+    protocol    = "tcp"
+    ipv6_cidr_blocks = ["::/0"]
+  }
+}

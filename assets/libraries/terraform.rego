@@ -31,34 +31,33 @@ check_cidr(rule) {
 }
 
 
-# Checks if a TCP port is open in a rule (legacy)
+# Checks if a TCP port is open 
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
-	rule.protocol == "tcp"
+	prot_types := ["protocol","ip_protocol"]
+	rule[prot_types[_]] == "tcp"
 	containsPort(rule, port)
 }
 
 portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
-	rule.protocol == "tcp"
+	prot_types := ["protocol","ip_protocol"]
+	rule[prot_types[_]] == "tcp"
 	containsPort(rule, port)
 }
 
-# Checks if a TCP port is open in a rule (ingress resources)
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
-	protocols := ["tcp","-1"]
-	rule.ip_protocol == protocols[_]
-	containsPort(rule, port)
+	prot_types := ["protocol","ip_protocol"]
+	rule[prot_types[_]] == "-1"
 }
 
 portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
-	protocols := ["tcp","-1"]
-	rule.ip_protocol == protocols[_]
-	containsPort(rule, port)
+	prot_types := ["protocol","ip_protocol"]
+	rule[prot_types[_]] == "-1"
 }
 
 # Checks if a port is included in a rule

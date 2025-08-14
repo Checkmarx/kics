@@ -19,7 +19,7 @@ resource "aws_vpc_security_group_ingress_rule" "negative2-2" {
   security_group_id = aws_security_group.ec2.id
   description = "allows RDP from Internet"
 
-  cidr_ipv6   = "0.0.1.0/0"
+  cidr_ipv6   = "2001:db8:abcd:0012::/64"
   from_port   = 3389 
   ip_protocol = "-1"
   to_port     = 3389
