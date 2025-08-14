@@ -37,9 +37,9 @@ func evalUsage(usage string, supportedPlatforms, supportedCloudProviders []strin
 	variables := map[string]string{
 		"sliceInstructions":  "can be provided multiple times or as a comma separated string",
 		"supportedLogLevels": strings.Join(constants.AvailableLogLevels, ","),
-		"supportedPlatforms": strings.Join(supportedPlatforms, ", "),
-		"supportedProviders": strings.Join(supportedCloudProviders, ", "),
-		"supportedReports":   strings.Join(append([]string{"all"}, helpers.ListReportFormats()...), ", "),
+		"supportedPlatforms": strings.Join(supportedPlatforms, ","),
+		"supportedProviders": strings.Join(supportedCloudProviders, ","),
+		"supportedReports":   strings.Join(append([]string{"all"}, helpers.ListReportFormats()...), ","),
 		"defaultLogFile":     constants.DefaultLogFile,
 		"logFormatPretty":    constants.LogFormatPretty,
 		"logFormatJSON":      constants.LogFormatJSON,
