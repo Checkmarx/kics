@@ -22,7 +22,7 @@ CxPolicy[result] {
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudTrail::Trail"
-	resource.Properties.EnableLogFileValidation == false
+	cf_lib.isCloudFormationFalse(resource.Properties.EnableLogFileValidation)
 
 	result := {
 		"documentId": input.document[i].id,
