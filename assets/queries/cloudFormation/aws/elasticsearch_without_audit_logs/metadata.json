@@ -1,0 +1,12 @@
+{
+  "id": "c420748a-bd4a-46c8-9541-93dd1e0ccf38",
+  "queryName": "ElasticSearch Without Audit Logs",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensure that AWS Elasticsearch enables support for audit logs",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-logpublishingoptions",
+  "platform": "CloudFormation",
+  "descriptionID": "c420748a",
+  "cloudProvider": "aws",
+  "cwe": "778"
+}
