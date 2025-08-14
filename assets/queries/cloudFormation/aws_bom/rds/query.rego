@@ -35,10 +35,10 @@ CxPolicy[result] {
 
 ## get accessibility functions
 get_resource_accessibility(resource) = accessibility{
-    resource.Properties.PubliclyAccessible == true
+	cf_lib.isCloudFormationTrue(resource.Properties.PubliclyAccessible)
     accessibility:= "public"
 } else = accessibility{
-    resource.Properties.PubliclyAccessible == false
+	cf_lib.isCloudFormationFalse(resource.Properties.PubliclyAccessible)
     accessibility:= "private"
 } else = accessibility{
     not common_lib.valid_key(resource,"PubliclyAccessible")
@@ -80,10 +80,10 @@ get_db_instance_encryption(resource) = encryption{
 
 # get encytion for instances with engines that are not aurora 
 get_enc_for_not_aurora(resource) = encryption{
-	resource.Properties.StorageEncrypted == true
+	cf_lib.isCloudFormationTrue(resource.Properties.StorageEncrypted)
 	encryption := "encrypted"
 } else = encryption{
-	resource.Properties.StorageEncrypted == false
+	cf_lib.isCloudFormationFalse(resource.Properties.StorageEncrypted)
 	encryption := "unencrypted"
 } else = encryption{
 	not common_lib.valid_key(resource.Properties, "StorageEncrypted")
@@ -106,7 +106,7 @@ get_enc_for_not_aurora(resource) = encryption{
 }	
 
 get_encryption(resource) = encryption{
-	resource.Properties.StorageEncrypted == true
+	cf_lib.isCloudFormationTrue(resource.Properties.StorageEncrypted)
 	encryption := "encrypted"
 } else = encryption{
 	encryption := "unencrypted"
@@ -124,10 +124,10 @@ get_enc_for_aurora(resource) = encryption{
 
 # get encytion for for the cluster
 get_cluster_enc(resource)= encryption{
-	resource.Properties.StorageEncrypted == true
+	cf_lib.isCloudFormationTrue(resource.Properties.StorageEncrypted)
 	encryption := "encrypted"
 } else = encryption{
-	resource.Properties.StorageEncrypted == false
+	cf_lib.isCloudFormationFalse(resource.Properties.StorageEncrypted)
 	encryption := "unencrypted"
 } else = encryption{
 	not common_lib.valid_key(resource.Properties, "SourceDBClusterIdentifier ")
