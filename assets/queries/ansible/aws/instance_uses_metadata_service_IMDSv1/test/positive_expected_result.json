@@ -1,0 +1,32 @@
+[
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 10,
+        "fileName": "positive1.yaml"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 2,
+        "fileName": "positive2.yaml"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 11,
+        "fileName": "positive3.yaml"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 9,
+        "fileName": "positive4.yaml"
+    },
+    {
+        "queryName": "Instance Uses Metadata Service IMDSv1",
+        "severity": "LOW",
+        "line": 9,
+        "fileName": "positive5.yaml"
+    }
+]

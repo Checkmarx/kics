@@ -6,19 +6,19 @@
   "lines_parsed": 289,
   "lines_ignored": 0,
   "files_failed_to_scan": 0,
-  "queries_total": 500,
+  "queries_total": 501,
   "queries_failed_to_execute": 0,
   "queries_failed_to_compute_similarity_id": 0,
   "scan_id": "console",
   "severity_counters": {
     "CRITICAL": 0,
-    "HIGH": 6,
+    "HIGH": 7,
     "INFO": 3,
     "LOW": 5,
     "MEDIUM": 10,
     "TRACE": 0
   },
-  "total_counter": 24,
+  "total_counter": 25,
   "total_bom_resources": 0,
   "start": "2024-05-28T13:21:07.0046236+01:00",
   "end": "2024-05-28T13:21:21.5156346+01:00",
@@ -26,6 +26,34 @@
     "/path/e2e/fixtures/samples/positive.yaml"
   ],
   "queries": [
+    {
+			"query_name": "ECS Cluster Not Encrypted At Rest",
+			"query_id": "6c131358-c54d-419b-9dd6-1f7dd41d180c",
+			"query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html",
+			"severity": "HIGH",
+			"platform": "CloudFormation",
+			"cwe": "311",
+			"cloud_provider": "AWS",
+			"category": "Encryption",
+			"experimental": false,
+			"description": "Ensure that AWS ECS clusters are encrypted. Data encryption at rest, prevents unauthorized users from accessing sensitive data on your AWS ECS clusters and associated cache storage systems.",
+			"description_id": "512ea20d",
+			"files": [
+				{
+					"file_name": "e2e\\fixtures\\samples\\positive.yaml",
+					"similarity_id": "09b890ded81b8c60969447d54434ddc2dfe362d9eefcaf3ae62f650e8ca28f62",
+					"line": 48,
+					"resource_type": "AWS::ECS::Service",
+					"resource_name": "service",
+					"issue_type": "MissingAttribute",
+					"search_key": "Resources.TaskDefinition.Properties.Volumes[0]",
+					"search_line": -1,
+					"search_value": "",
+					"expected_value": "Resources.TaskDefinition.Properties.Volumes[0].EFSVolumeConfiguration should be defined",
+					"actual_value": "Resources.TaskDefinition.Properties.Volumes[0].EFSVolumeConfiguration is not defined"
+				}
+			]
+		},
     {
       "query_name": "Fully Open Ingress",
       "query_id": "e415f8d3-fc2b-4f52-88ab-1129e8c8d3f5",
