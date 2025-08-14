@@ -1,4 +1,4 @@
-module "positive6" {
+module "positive12" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 6.0"
 

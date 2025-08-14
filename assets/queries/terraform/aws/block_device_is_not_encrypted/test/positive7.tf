@@ -1,4 +1,4 @@
-resource "aws_instance" "positive6" {
+resource "aws_instance" "positive8" {
   ami                         = "ami-074251216af698218"
   instance_type      = "t2.micro"
 
@@ -14,7 +14,7 @@ resource "aws_instance" "positive6" {
 }
 
 
-resource "aws_instance" "positive7" {
+resource "aws_instance" "positive9" {
   ami           = "ami-0c55b159cbfafe1f0" # Replace with a valid AMI ID for your region
   instance_type = "t3.micro"
 

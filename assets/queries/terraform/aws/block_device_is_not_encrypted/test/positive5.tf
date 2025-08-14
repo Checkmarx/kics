@@ -17,18 +17,16 @@ resource "aws_instance" "positive4" {
 
 
 resource "aws_instance" "positive5" {
-  ami           = "ami-0c55b159cbfafe1f0" # Replace with a valid AMI ID for your region
+  ami           = "ami-0c55b159cbfafe1f0" 
   instance_type = "t3.micro"
 
-  # Optional: tags for identification
   tags = {
     Name = "positive5"
   }
 
-  # Attach an additional EBS volume
   ebs_block_device {
-    device_name           = "/dev/sdh" # Must be a valid device name
-    volume_size           = 10         # Size in GB
+    device_name           = "/dev/sdh"
+    volume_size           = 10         
     volume_type           = "gp3"
     delete_on_termination = "true"
     encrypted             = "false"
