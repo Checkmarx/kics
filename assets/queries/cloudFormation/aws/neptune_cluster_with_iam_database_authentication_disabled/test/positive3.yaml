@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: A sample template
+Resources:
+  NeptuneDBCluster:
+    Type: AWS::Neptune::DBCluster
+    Properties:
+      IamAuthEnabled: "false"
+      StorageEncrypted: "true"
+  NeptuneDBCluster2:
+    Type: AWS::Neptune::DBCluster
+    Properties:
+      IamAuthEnabled: "false"
+      StorageEncrypted: "true"
