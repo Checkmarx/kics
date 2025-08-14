@@ -33,7 +33,6 @@
       "taskdefinition": {
         "Type": "AWS::ECS::TaskDefinition",
         "Properties": {
-            
             "ContainerDefinitions": [
                 {
                     "Name": "container-using-efs",
@@ -56,13 +55,7 @@
             ],
             "Volumes": [
                 {
-                    "name": "myEfsVolume",
-                    "EFSVolumeConfiguration": {
-                        "fileSystemId": "fs-1234",
-                        "rootDirectory": "/path/to/my/data",
-                        "TransitEncryptionPort": 10,
-                        "TransitEncryption": "DISABLED"
-                    }
+                    "Name": "myEfsVolume"
                 }
             ]
         }
