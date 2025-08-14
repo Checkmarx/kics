@@ -1,0 +1,12 @@
+{
+  "id": "e5849a68-bdbe-4b70-97c6-6901f39f8094",
+  "queryName": "DAX Cluster Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "AWS DAX Cluster should have server-side encryption at rest",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-dax-cluster.html",
+  "platform": "CloudFormation",
+  "descriptionID": "e5849a68",
+  "cloudProvider": "aws",
+  "cwe": "311"
+}

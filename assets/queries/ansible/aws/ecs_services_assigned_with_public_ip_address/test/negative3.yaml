@@ -1,0 +1,12 @@
+- name: negative3
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Create ECS service on EC2 without network_configuration
+      community.aws.ecs_service:
+        state: present
+        name: service-on-ec2
+        cluster: my-cluster
+        task_definition: my-task-def:2
+        desired_count: 2
+        launch_type: EC2

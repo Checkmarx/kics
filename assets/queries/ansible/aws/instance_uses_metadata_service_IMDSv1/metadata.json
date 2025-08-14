@@ -1,0 +1,12 @@
+{
+    "id": "b9ef8c0e-1392-4df4-aa84-2e0f95681c75",
+    "queryName": "Instance Uses Metadata Service IMDSv1",
+    "severity": "LOW",
+    "category": "Insecure Configurations",
+    "descriptionText": "Instance metadata can be accessed with both IMDSv1 or IMDSv2. Although, IMDSv2 service is a session-oriented service, granting additional protection against exposure of metadata information. That version should be used instead of IMDSv1 in order to mitigate those situations.",
+    "descriptionUrl": "https://docs.ansible.com/ansible/latest/collections/amazon/aws/ec2_instance_module.html",
+    "platform": "Ansible",
+    "descriptionID": "b9ef8c0e",
+    "cloudProvider": "aws",
+    "cwe": "200" 
+}
