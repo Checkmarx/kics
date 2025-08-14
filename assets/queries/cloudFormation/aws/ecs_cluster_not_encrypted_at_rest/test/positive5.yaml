@@ -1,0 +1,68 @@
+Resources:
+  cluster:
+    Type: AWS::ECS::Cluster
+  service:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster: !Ref cluster
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
+      DesiredCount: 0
+      HealthCheckGracePeriodSeconds: !Ref HealthCheckGracePeriodSeconds
+      LoadBalancers:
+        - ContainerName: !Ref AppName
+          ContainerPort: !Ref AppContainerPort
+          LoadBalancerName: !Ref elb
+      PlacementStrategies:
+        - Type: binpack
+          Field: memory
+        - Type: spread
+          Field: host
+      PlacementConstraints:
+        - Type: memberOf
+          Expression: 'attribute:ecs.availability-zone != us-east-1d'
+        - Type: distinctInstance
+      TaskDefinition: !Ref taskdefinition1
+      ServiceName: !Ref ServiceName
+      Role: !Ref Role
+  elb:
+    Type: AWS::ElasticLoadBalancing::LoadBalancer
+    Properties:
+      LoadBalancerName: !Ref LoadBalancerName
+      Listeners:
+        - InstancePort: !Ref AppHostPort
+          LoadBalancerPort: '80'
+          Protocol: HTTP
+      Subnets:
+        - !Ref Subnet1
+    DependsOn: GatewayAttachment
+  VPC2:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/24
+  Subnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.0.0/25
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+  GatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      InternetGatewayId: !Ref InternetGateway
+      VpcId: !Ref VPC
+  Role:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2008-10-17
+        Statement:
+          - Sid: ''
+            Effect: Allow
+            Principal:
+              Service: ecs.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole'
