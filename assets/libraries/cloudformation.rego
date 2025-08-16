@@ -69,9 +69,7 @@ udpPortsMap = {
 }
 
 # Get content of the resource(s) based on the type
-getResourcesByType(resources, type) = list {
-	list = [resource | resources[i].Type == type; resource := resources[i]]
-}
+getResourcesByType(resources, type) := [resource | resources[i].Type == type; resource := resources[i]]
 
 getBucketName(resource) = name {
 	name := resource.Properties.Bucket
