@@ -1,0 +1,12 @@
+{
+  "id": "40078463-6806-4bc0-b86e-7f121df601c1",
+  "queryName": "Block Device Is Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Block device mappings for Launch Configurations and EC2 instances should mandate encryption of all attached EBS volumes to safeguard sensitive data. This is achieved by specifying the 'encrypted' parameter with a value of 'true' for each volume.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-properties-autoscaling-launchconfiguration-blockdevice.html",
+  "platform": "CloudFormation",
+  "descriptionID": "40078463",
+  "cloudProvider": "aws",
+  "cwe": "311"
+}
