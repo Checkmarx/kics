@@ -1,0 +1,11 @@
+{
+  "id": "18900ae2-9fb4-4c37-b717-1e209db9fe98",
+  "queryName": "Backup Vault Encryption Disabled",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Amazon Backup Vault does not have encryption enabled. It shall be provided a key to encrypt the backups, preventing access from unauthorized users.",
+  "descriptionUrl": "https://www.pulumi.com/registry/packages/aws/api-docs/backup/vault/#kmskeyarn_yaml",
+  "platform": "Pulumi",
+  "descriptionID": "ee1e9358",
+  "cloudProvider": "aws"
+}
