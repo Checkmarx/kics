@@ -20,19 +20,46 @@ check_cidr(rule) {
 	rule.ipv6_cidr_blocks == "0:0:0:0:0:0:0:0/0"
 }
 
+check_cidr(rule) {
+	rule.cidr_ipv4 == "0.0.0.0/0"
+} else {
+	rule.cidr_ipv6 == "::/0"
+} else {
+	rule.cidr_ipv6 == "0000:0000:0000:0000:0000:0000:0000:0000/0"
+} else {
+	rule.cidr_ipv6 == "0:0:0:0:0:0:0:0/0"
+}
 
-# Checks if a TCP port is open in a rule
+
+# Checks if a TCP port is open 
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
-	rule.protocol == "tcp"
+	prot_types := ["protocol","ip_protocol"]
+	rule[prot_types[_]] == "tcp"
 	containsPort(rule, port)
 }
 
 portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
-	rule.protocol == "tcp"
+	prot_types := ["protocol","ip_protocol"]
+	rule[prot_types[_]] == "tcp"
 	containsPort(rule, port)
+}
+
+portOpenToInternet(rule, port) {
+	check_cidr(rule)
+	prot_types := ["protocol","ip_protocol"]
+	open_port := ["all","-1"]
+	rule[prot_types[_]] == open_port[_]
+}
+
+portOpenToInternet(rules, port) {
+	rule := rules[_]
+	check_cidr(rule)
+	prot_types := ["protocol","ip_protocol"]
+	open_port := ["all","-1"]
+	rule[prot_types[_]] == open_port[_]
 }
 
 # Checks if a port is included in a rule
