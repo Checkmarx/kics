@@ -1,28 +1,17 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: ElasticsearchDomain resource
 Resources:
-  ProductionElasticsearch:
-    Type: AWS::Elasticsearch::Domain
+  ElasticsearchDomain:
+    Type: "AWS::OpenSearchService::Domain"
     Properties:
-      EBSOptions:
-        EBSEnabled: true
-        VolumeSize: 70
-        VolumeType: gp2
-      ElasticsearchClusterConfig:
-        DedicatedMasterCount: 3
-        DedicatedMasterEnabled: true
-        DedicatedMasterType: omitted
-        InstanceCount: 3
-        InstanceType: omitted
-        ZoneAwarenessConfig:
-          AvailabilityZoneCount: 3
-        ZoneAwarenessEnabled: true
-      ElasticsearchVersion: omitted
+      DomainName:
+        Ref: DomainName
       LogPublishingOptions:
-        "INDEX_SLOW_LOGS":
-          CloudWatchLogsLogGroupArn: !GetAtt ProductionElasticsearchIndexSlowLogs.Arn
-          Enabled: true
-        "SEARCH_SLOW_LOGS":
-          CloudWatchLogsLogGroupArn: !GetAtt ProductionElasticsearchSearchSlowLogs.Arn
-          Enabled: true
-        "ES_APPLICATION_LOGS":
-          CloudWatchLogsLogGroupArn: !GetAtt ProductionElasticsearchApplicationLogs.Arn
-          Enabled: true
+        SEARCH_SLOW_LOGS:
+          CloudWatchLogsLogGroupArn: >-
+            arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-slow-logs
+          Enabled: "true"
+        INDEX_SLOW_LOGS:
+          CloudWatchLogsLogGroupArn: >-
+            arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-index-slow-logs
+          Enabled: "true"
