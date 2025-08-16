@@ -410,6 +410,7 @@ func TestNewInspector(t *testing.T) { //nolint
 		tracker             Tracker
 		queryFilter         source.QueryInspectorParameters
 		excludeResults      map[string]bool
+		excludeQueryIDs     map[string]bool
 		queryExecTimeout    int
 		needsLog            bool
 		useOldSeverities    bool
@@ -462,6 +463,7 @@ func TestNewInspector(t *testing.T) { //nolint
 				tt.args.tracker,
 				&tt.args.queryFilter,
 				tt.args.excludeResults,
+				tt.args.excludeQueryIDs,
 				tt.args.queryExecTimeout,
 				tt.args.useOldSeverities,
 				tt.args.needsLog,
@@ -785,7 +787,9 @@ func newInspectorInstance(t *testing.T, queryPath []string, kicsComputeNewSimID 
 		vb,
 		&tracker.CITracker{},
 		&source.QueryInspectorParameters{},
-		map[string]bool{}, 60,
+		map[string]bool{},
+		map[string]bool{},
+		60,
 		false, true, 1,
 		kicsComputeNewSimID,
 	)

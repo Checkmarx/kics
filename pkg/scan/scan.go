@@ -72,6 +72,7 @@ func (c *Client) initScan(ctx context.Context) (*executeScanParameters, error) {
 		c.Tracker,
 		queryFilter,
 		c.ExcludeResultsMap,
+		getExcludeQueryIDsMap(c.ScanParams.ExcludeQueries),
 		c.ScanParams.QueryExecTimeout,
 		c.ScanParams.UseOldSeverities,
 		true,
@@ -176,6 +177,14 @@ func getExcludeResultsMap(excludeResults []string) map[string]bool {
 		excludeResultsMap[er] = true
 	}
 	return excludeResultsMap
+}
+
+func getExcludeQueryIDsMap(excludeQueries []string) map[string]bool {
+	excludeQueryIDsMap := make(map[string]bool)
+	for _, eq := range excludeQueries {
+		excludeQueryIDsMap[eq] = true
+	}
+	return excludeQueryIDsMap
 }
 
 func getSecretsRegexRules(regexRulesPath string) (regexRulesContent string, err error) {
