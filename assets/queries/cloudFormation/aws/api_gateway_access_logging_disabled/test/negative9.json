@@ -6,10 +6,6 @@
       "Properties": {
         "StageName": "Prod",
         "Description": "Prod Stage",
-        "AccessLogSettings": {
-            "DestinationArn": "dest",
-            "Format": "format"
-        },
         "DeploymentId": {
           "Ref": "MyDeployment"
         },
@@ -18,6 +14,7 @@
         },
         "DefaultRouteSettings": {
           "DetailedMetricsEnabled": true,
+          "LoggingLevel": "INFO",
           "DataTraceEnabled": false,
           "ThrottlingBurstLimit": 10,
           "ThrottlingRateLimit": 10

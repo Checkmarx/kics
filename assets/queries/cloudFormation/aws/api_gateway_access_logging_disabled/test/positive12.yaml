@@ -4,7 +4,7 @@ Resources:
   ApiGatewayRestApi:
     Type: AWS::ApiGatewayV2::Api
     Properties:
-      ProtocolType: HTTP
+      ProtocolType: WEBSOCKET
       Description: Test websocket API
   ApiGatewayStage:
     Type: AWS::ApiGatewayV2::Stage
@@ -13,3 +13,9 @@ Resources:
       Description: Lambda API Stage v0
       ApiId: !Ref ApiGatewayRestApi
       StageName: "v0"
+      DefaultRouteSettings:
+        DetailedMetricsEnabled: true
+        LoggingLevel: "OFF"
+        DataTraceEnabled: false
+        ThrottlingBurstLimit: 10
+        ThrottlingRateLimit: 10

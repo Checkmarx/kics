@@ -3,15 +3,15 @@
   "Description": "Router53",
   "Resources": {
     "MyStage": {
-      "Type": "AWS::ApiGateway::Stage",
+      "Type": "AWS::ApiGatewayV2::Stage",
       "Properties": {
         "Description": "Prod Stage",
-        "AccessLogSetting": {
+        "AccessLogSettings": {
             "DestinationArn": "dest",
             "Format": "format"
         },
         "DeploymentId": "MyDeployment",
-        "RestApiId": "CFNWebSocket",
+        "ApiId": "CFNWebSocket",
         "StageName": "Prod"
       }
     }
