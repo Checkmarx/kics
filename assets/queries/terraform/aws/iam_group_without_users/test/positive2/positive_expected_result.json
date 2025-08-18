@@ -2,13 +2,13 @@
   {
     "queryName": "IAM Group Without Users",
     "severity": "MEDIUM",
-    "fileName": "positive.tf",
-    "line": 12
+    "fileName": "positive2_1.tf",
+    "line": 1
   },
   {
     "queryName": "IAM Group Without Users",
     "severity": "MEDIUM",
-    "fileName": "positive.tf",
-    "line": 33
+    "fileName": "positive2_1.tf",
+    "line": 5
   }
 ]
