@@ -9,14 +9,13 @@
       "functions": [],
       "resources": [
         {
-          "type": "Microsoft.Sql/servers/databases/securityAlertPolicies",
+          "type": "Microsoft.Sql/servers/databases",
           "apiVersion": "2021-02-01-preview",
-          "name": "sample/databases/default",
+          "name": "sample/default",
+          "location": "[resourceGroup().location]",
           "properties": {
-            "emailAccountAdmins": true,
-            "emailAddresses": [ "sample@email.com" ],
-            "retentionDays": 4,
-            "state": "Enabled"
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "maxSizeBytes": 2147483648
           }
         }
       ],
