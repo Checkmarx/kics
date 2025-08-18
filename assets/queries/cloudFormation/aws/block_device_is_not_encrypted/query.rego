@@ -36,8 +36,8 @@ prepare_issue(resource, name) = res {
     res := {
         "sk": sprintf("Resources.%s.Properties.BlockDeviceMappings[%d].Ebs.Encrypted", [name, idx]),
         "it": "IncorrectValue",
-        "kev": sprintf("'BlockDeviceMappings[%d].Ebs.Encrypted' should be defined to 'true'", [name, idx]),
-        "kav": sprintf("'BlockDeviceMappings[%d].Ebs.Encrypted' is not defined to 'true'", [name, idx]),
+        "kev": sprintf("'BlockDeviceMappings[%d].Ebs.Encrypted' should be defined to 'true'", [idx]),
+        "kav": sprintf("'BlockDeviceMappings[%d].Ebs.Encrypted' is not defined to 'true'", [idx]),
         "sl": common_lib.build_search_line(["Resources", "Properties", "BlockDeviceMappings", idx, "Ebs", "Encrypted"], []),
     }
 } else = res {
