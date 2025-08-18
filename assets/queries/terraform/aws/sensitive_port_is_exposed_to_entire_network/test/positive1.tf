@@ -98,8 +98,9 @@ resource "aws_security_group" "positive7" {
     from_port   = 2383
     to_port     = 2383
     protocol    = "udp"
-    cidr_blocks = ["/0", "1.2.3.4/12"]
+    ipv6_cidr_blocks = ["::/0"]
   }
 }
+
 
 

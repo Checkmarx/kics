@@ -9,7 +9,7 @@ CxPolicy[result] {
 	types := ["aws_vpc_security_group_ingress_rule","aws_security_group_rule"]
 	resource := input.document[i].resource[types[i2]][name]
 
-	check_type(types[i2],resource)
+	tf.lib.is_security_group_ingress(types[i2],resource)
 	tf_lib.portOpenToInternet(resource, 3389)
 
 	result := {
@@ -20,7 +20,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s] shouldn't open the remote desktop port (3389)", [types[i2],name]),
 		"keyActualValue": sprintf("%s[%s] opens the remote desktop port (3389)", [types[i2],name]),
-		"searchLine": common_lib.build_search_line(path, ["Properties", "StorageEncrypted"]),
 		"searchLine": common_lib.build_search_line(["resource", types[i2], name], []),
 	}
 }
@@ -62,8 +61,3 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name], []),
 	}
 }
-
-check_type(type,resource) = false {
-	type == "aws_security_group_rule"
-	resource.type != "ingress"
-} else = true 
