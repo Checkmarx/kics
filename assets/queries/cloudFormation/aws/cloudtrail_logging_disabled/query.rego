@@ -5,7 +5,7 @@ import data.generic.cloudformation as cf_lib
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
 	resource.Type == "AWS::CloudTrail::Trail"
-	resource.Properties.IsLogging == false
+	cf_lib.isCloudFormationFalse(resource.Properties.IsLogging)
 
 	result := {
 		"documentId": input.document[i].id,
