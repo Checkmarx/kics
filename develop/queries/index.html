@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../img/logo/kics-donkey.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.17">
     
     
       
@@ -2307,11 +2307,51 @@ And the file tree should be as follows:</p>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    |   |   |- metadata.json
 <a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    |   |   |- query.rego
 </code></pre></div>
+<h5 id="folder-based_test_case_optional">Folder-Based Test Case (Optional)<a class="headerlink" href="#folder-based_test_case_optional" title="Permanent link">&para;</a></h5>
+<p>Test cases can optionally be organized into folders, which is useful when multiple resource files are needed for a single case.
+Each folder is treated as a single unit representing either a positive or a negative case. Positive cases must include their own <code>positive_expected_result.json</code> file containing the expected results.
+Other than the <code>positive_expected_result.json</code> file, every file inside the folder must start with the folder’s name.
+The file tree for a query can be extended to:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>- &lt;technology&gt;/
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    |- &lt;provider&gt;/
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    |    |- &lt;queryfolder&gt;/
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    |    |    |- test/
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    |    |    |    |- positive&lt;.ext&gt;
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    |    |    |    |- negative&lt;.ext&gt;
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    |    |    |    |- positive_expected_result.json
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    |    |    |    |- positive/ (= &lt;folder_name&gt;/)
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    |    |    |    |    |- &lt;folder_name&gt;&lt;.ext&gt;
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    |    |    |    |    |- positive_expected_result.json
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    |    |    |    |- negative/ (= &lt;folder_name&gt;/)
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    |    |    |    |    |- &lt;folder_name&gt;&lt;.ext&gt;
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>    |    |    |- metadata.json
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>    |    |    |- query.rego
+</code></pre></div></p>
+<p>A query containing all the cases could look like:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>- &lt;technology&gt;/
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    |- &lt;provider&gt;/
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    |    |- &lt;queryfolder&gt;/
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    |    |    |- test/
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    |    |    |    |- positive1&lt;.ext&gt;
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    |    |    |    |- positive2&lt;.ext&gt;
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    |    |    |    |- negative1&lt;.ext&gt;
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    |    |    |    |- negative2&lt;.ext&gt;
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    |    |    |    |- positive_expected_result.json
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    |    |    |    |- positive3/
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    |    |    |    |    |- positive3_1&lt;.ext&gt;
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    |    |    |    |    |- positive3_2&lt;.ext&gt;
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    |    |    |    |    |- positive_expected_result.json
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    |    |    |    |- negative3/
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>    |    |    |    |    |- negative3_1&lt;.ext&gt;
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>    |    |    |    |    |- negative3_2&lt;.ext&gt;
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>    |    |    |- metadata.json
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>    |    |    |- query.rego
+</code></pre></div></p>
 <h4 id="query_dependencies">Query Dependencies<a class="headerlink" href="#query_dependencies" title="Permanent link">&para;</a></h4>
 <p>If you want to use the functions defined in your own library, you should use the flag <code>-b</code> to indicate the directory where the libraries are placed. The functions need to be grouped by platform and the library name should follow the following format: <code>&lt;platform&gt;.rego</code>. It doesn't matter your directory structure. In other words, for example, if you want to indicate a directory that contains a library for your terraform queries, you should group your functions (used in your terraform queries) in a file named <code>terraform.rego</code> wherever you want.</p>
 <h4 id="default_queries">Default Queries<a class="headerlink" href="#default_queries" title="Permanent link">&para;</a></h4>
 <p>To use KICS default queries add the KICS_QUERIES_PATH environmental variable to your shell profile, e.g:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>echo &#39;export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries&#39; &gt;&gt; ~/.zshrc
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>echo &#39;export KICS_QUERIES_PATH=/usr/local/opt/kics/share/kics/assets/queries&#39; &gt;&gt; ~/.zshrc
 </code></pre></div>
 <h4 id="custom_queries">Custom Queries<a class="headerlink" href="#custom_queries" title="Permanent link">&para;</a></h4>
 <p>You can provide your own path to the queries directory with <code>-q</code> CLI option (see CLI Options section below), otherwise the default directory will be used. The default <em>./assets/queries</em> is built-in in the image. You can use this to provide a path to your own custom queries. Check <a href="../creating-queries/">create a new query guide</a> to learn how to define your own queries.</p>
@@ -2372,10 +2412,10 @@ And the file tree should be as follows:</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "toc.integrate"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "toc.integrate"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
       
         <script src="../js/version-mike.js"></script>
       
