@@ -62,7 +62,7 @@
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
-    "line": 34,
+    "line": 32,
     "fileName": "positive5.tf"
   },
   {
