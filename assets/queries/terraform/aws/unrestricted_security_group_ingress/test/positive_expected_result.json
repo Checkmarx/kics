@@ -58,5 +58,23 @@
     "severity": "HIGH",
     "line": 9,
     "filename": "positive10.tf"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive11.tf"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
+    "line": 6,
+    "filename": "positive12.tf"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
+    "line": 15,
+    "filename": "positive12.tf"
   }
 ]
