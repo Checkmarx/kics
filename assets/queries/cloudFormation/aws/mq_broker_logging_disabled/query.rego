@@ -53,7 +53,7 @@ CxPolicy[result] {
     logTypes := ["Audit","General"]
 
     common_lib.valid_key(properties.Logs,logTypes[j])
-	properties.Logs[logTypes[j]] == false
+	cf_lib.isCloudFormationFalse(properties.Logs[logTypes[j]])
 
 	result := {
 		"documentId": input.document[i].id,
