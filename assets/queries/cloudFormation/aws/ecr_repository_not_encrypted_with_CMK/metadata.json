@@ -1,0 +1,12 @@
+{
+  "id": "77a92b0e-b578-4a2e-bb0d-3c53ec4cfb7e",
+  "queryName": "ECR Repository Not Encrypted With CMK",
+  "severity": "LOW",
+  "category": "Encryption",
+  "descriptionText": "ECR repositories should be encrypted with customer-managed keys to meet stricter security and compliance requirements on access control, monitoring, and key rotation",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-ecr-repository.html#cfn-ecr-repository-encryptionconfiguration",
+  "platform": "CloudFormation",
+  "descriptionID": "77a92b0e",
+  "cloudProvider": "aws",
+  "cwe": "311"
+}
