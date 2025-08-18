@@ -38,7 +38,7 @@ prepare_issue(resource, name) = res {
         "it": "IncorrectValue",
         "kev": sprintf("'BlockDeviceMappings[%d].Ebs.Encrypted' should be defined to 'true'", [idx]),
         "kav": sprintf("'BlockDeviceMappings[%d].Ebs.Encrypted' is not defined to 'true'", [idx]),
-        "sl": common_lib.build_search_line(["Resources", "Properties", "BlockDeviceMappings", idx, "Ebs", "Encrypted"], []),
+        "sl": common_lib.build_search_line(["Resources", name, "Properties", "BlockDeviceMappings", idx, "Ebs", "Encrypted"], []),
     }
 } else = res {
     common_lib.valid_key(resource.Properties, "BlockDeviceMappings")
@@ -52,6 +52,6 @@ prepare_issue(resource, name) = res {
         "it": "MissingAttribute",
         "kev": sprintf("'BlockDeviceMappings[%d].Ebs.Encrypted' should be defined to 'true'", [idx]),
         "kav": sprintf("'BlockDeviceMappings[%d].Ebs.Encrypted' is not defined", [idx]),
-        "sl": common_lib.build_search_line(["Resources", "Properties", "BlockDeviceMappings", idx, "Ebs"], []),
+        "sl": common_lib.build_search_line(["Resources", name, "Properties", "BlockDeviceMappings", idx, "Ebs"], []),
     }
 } 
