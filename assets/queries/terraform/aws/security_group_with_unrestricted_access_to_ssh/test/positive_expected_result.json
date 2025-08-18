@@ -142,5 +142,29 @@
     "severity": "MEDIUM",
     "line": 17,
     "fileName": "positive22.tf"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive23.tf"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive24.tf"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive25.tf"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive26.tf"
   }
 ]
