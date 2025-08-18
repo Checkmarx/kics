@@ -13,7 +13,7 @@ resource "azurerm_app_service" "positive2" {
     "SOME_KEY" = "some-value"
   }
 
-  auth_settings = {
+  auth_settings {
     enabled = false
   }
 

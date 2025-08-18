@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource = document[i].Resources[name]
 	resource.Type == "AWS::DMS::ReplicationInstance"
 	properties := resource.Properties
-	properties.PubliclyAccessible == true
+	cf_lib.isCloudFormationTrue(properties.PubliclyAccessible)
 
 	result := {
 		"documentId": input.document[i].id,
