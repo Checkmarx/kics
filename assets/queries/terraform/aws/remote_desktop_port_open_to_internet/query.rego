@@ -9,7 +9,7 @@ CxPolicy[result] {
 	types := ["aws_vpc_security_group_ingress_rule","aws_security_group_rule"]
 	resource := input.document[i].resource[types[i2]][name]
 
-	tf.lib.is_security_group_ingress(types[i2],resource)
+	tf_lib.is_security_group_ingress(types[i2],resource)
 	tf_lib.portOpenToInternet(resource, 3389)
 
 	result := {
