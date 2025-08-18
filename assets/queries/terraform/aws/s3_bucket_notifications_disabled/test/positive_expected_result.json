@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "S3 bucket notifications disabled",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "S3 bucket notifications disabled",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "S3 bucket notifications disabled",
+    "severity": "LOW",
+    "line": 5,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "S3 bucket notifications disabled",
+    "severity": "LOW",
+    "line": 1,
+    "fileName": "positive4.tf"
+  }
+]
