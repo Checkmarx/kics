@@ -130,6 +130,50 @@ And the file tree should be as follows:
     |   |   |- query.rego
 ```
 
+##### Folder-Based Test Case (Optional)
+
+Test cases can optionally be organized into folders, which is useful when multiple resource files are needed for a single case.
+Each folder is treated as a single unit representing either a positive or a negative case. Positive cases must include their own `positive_expected_result.json` file containing the expected results.
+Other than the `positive_expected_result.json` file, every file inside the folder must start with the folder’s name.
+The file tree for a query can be extended to:
+```none
+- <technology>/
+    |- <provider>/
+    |    |- <queryfolder>/
+    |    |    |- test/
+    |    |    |    |- positive<.ext>
+    |    |    |    |- negative<.ext>
+    |    |    |    |- positive_expected_result.json
+    |    |    |    |- positive/ (= <folder_name>/)
+    |    |    |    |    |- <folder_name><.ext>
+    |    |    |    |    |- positive_expected_result.json
+    |    |    |    |- negative/ (= <folder_name>/)
+    |    |    |    |    |- <folder_name><.ext>
+    |    |    |- metadata.json
+    |    |    |- query.rego
+```
+
+A query containing all the cases could look like:
+```none
+- <technology>/
+    |- <provider>/
+    |    |- <queryfolder>/
+    |    |    |- test/
+    |    |    |    |- positive1<.ext>
+    |    |    |    |- positive2<.ext>
+    |    |    |    |- negative1<.ext>
+    |    |    |    |- negative2<.ext>
+    |    |    |    |- positive_expected_result.json
+    |    |    |    |- positive3/
+    |    |    |    |    |- positive3_1<.ext>
+    |    |    |    |    |- positive3_2<.ext>
+    |    |    |    |    |- positive_expected_result.json
+    |    |    |    |- negative3/
+    |    |    |    |    |- negative3_1<.ext>
+    |    |    |    |    |- negative3_2<.ext>
+    |    |    |- metadata.json
+    |    |    |- query.rego
+```
 
 #### Query Dependencies
 
