@@ -1,0 +1,17 @@
+- name: negative2
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Create ECS service on FARGATE without assign_public_ip
+      community.aws.ecs_service:
+        state: present
+        name: service-no-public-ip
+        cluster: my-cluster
+        task_definition: my-task-def:1
+        desired_count: 1
+        launch_type: FARGATE
+        network_configuration:
+          subnets:
+            - subnet-aaaa1111
+          security_groups:
+            - sg-bbbb2222

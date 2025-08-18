@@ -446,6 +446,18 @@
   {
     "queryName": "Passwords And Secrets - Generic Password",
     "severity": "HIGH",
+    "line": 8,
+    "fileName": "positive54.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive54.tf"
+  },
+  {
+    "queryName": "Passwords And Secrets - Generic Password",
+    "severity": "HIGH",
     "line": 4,
     "fileName": "positive55.json"
   }
