@@ -3,7 +3,8 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-# aws_security_group_rule and aws_vpc_security_group_ingress_rule
+
+# Case of aws_security_group_rule or aws_vpc_security_group_ingress_rule
 
 CxPolicy[result] {
 	#ipv4
@@ -91,10 +92,12 @@ rule_is_unrestricted("aws_security_group_rule","ipv6",rule,name) = results {
 	} 
 } else = ""
 
-# aws_security_group
+
+
+#Case of aws_security_group
 
 CxPolicy[result] {
-	#Case of Single Ingress 
+	#Single Ingress 
 	ingrs := input.document[i].resource.aws_security_group[name].ingress
 
 	some j
@@ -108,12 +111,12 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "One of 'ingress.cidr_blocks' not equal '0.0.0.0/0'",
 		"keyActualValue": "One of 'ingress.cidr_blocks' equal '0.0.0.0/0'",
-		"searchLine": common_lib.build_search_line(["resource", "aws_security_group_rule", name, "ingress", "cidr_blocks"], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", "cidr_blocks"], []),
 	}
 }
 
 CxPolicy[result] {
-	#Case of Single Ingress  and IPV6
+	#Single Ingress and IPV6
 	ingrs := input.document[i].resource.aws_security_group[name].ingress
 
 	some j
@@ -127,45 +130,42 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "One of 'ingress.ipv6_cidr_blocks' should not be equal to '::/0'",
 		"keyActualValue": "One of 'ingress.ipv6_cidr_blocks' is equal '::/0'",
-		"searchLine": common_lib.build_search_line(["resource", "aws_security_group_rule", name, "ingress", "ipv6_cidr_blocks"], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", "ipv6_cidr_blocks"], []),
 	}
 }
 
 
 CxPolicy[result] {
 	#Case of Ingress Array
-	ingrs := input.document[i].resource.aws_security_group[name].ingress[j]
+	ingrs := input.document[i].resource.aws_security_group[name].ingress[i2]
 	contains(ingrs.cidr_blocks[idx], "0.0.0.0/0")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_security_group",
 		"resourceName": tf_lib.get_resource_name(input.document[i].resource.aws_security_group[name], name),
-		"searchKey": sprintf("aws_security_group[%s]", [name]),
+		"searchKey": sprintf("aws_security_group[%s].ingress[%d].cidr_blocks", [name,i2]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "One of 'ingress.cidr_blocks' not equal '0.0.0.0/0'",
 		"keyActualValue": "One of 'ingress.cidr_blocks' equal '0.0.0.0/0'",
-		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", j, "cidr_blocks", idx], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2, "cidr_blocks"], []),
 	}
 }
 
-
-
-
 CxPolicy[result] {
 	#Case of Ingress Array and IPV6
-	ingrs := input.document[i].resource.aws_security_group[name].ingress[j]
+	ingrs := input.document[i].resource.aws_security_group[name].ingress[i2]
 	contains(ingrs.ipv6_cidr_blocks[idx], tf_lib.unrestricted_ipv6[l])
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_security_group",
 		"resourceName": tf_lib.get_resource_name(input.document[i].resource.aws_security_group[name], name),
-		"searchKey": sprintf("aws_security_group[%s]", [name]),
+		"searchKey": sprintf("aws_security_group[%s].ingress[%d].ipv6_cidr_blocks", [name,i2]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "One of 'ingress.ipv6_cidr_blocks' should not be equal to '::/0'",
 		"keyActualValue": "One of 'ingress.ipv6_cidr_blocks' is equal '::/0'",
-		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", j, "ipv6_cidr_blocks", idx], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2, "ipv6_cidr_blocks"], []),
 	}
 }
 

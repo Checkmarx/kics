@@ -230,25 +230,25 @@
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
     "severity": "LOW",
-    "line": 99,
+    "line": 104,
     "filename": "positive1.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
     "severity": "LOW",
-    "line": 99,
+    "line": 120,
     "filename": "positive1.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
     "severity": "LOW",
-    "line": 99,
+    "line": 120,
     "filename": "positive1.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Wide Private Network",
     "severity": "LOW",
-    "line": 99,
+    "line": 120,
     "filename": "positive1.tf"
   },
   {

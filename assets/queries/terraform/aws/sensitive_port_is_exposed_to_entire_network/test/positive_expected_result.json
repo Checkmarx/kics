@@ -230,25 +230,25 @@
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 105,
+    "line": 110,
     "filename": "positive1.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 105,
+    "line": 126,
     "filename": "positive1.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 105,
+    "line": 126,
     "filename": "positive1.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 105,
+    "line": 126,
     "filename": "positive1.tf"
   },
   {

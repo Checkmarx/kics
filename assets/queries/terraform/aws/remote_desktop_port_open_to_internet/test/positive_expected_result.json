@@ -8,7 +8,7 @@
   {
     "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
-    "line": 14,
+    "line": 26,
     "fileName": "positive1.tf"
   },
   {

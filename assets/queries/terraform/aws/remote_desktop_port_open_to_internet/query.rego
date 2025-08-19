@@ -54,10 +54,10 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("aws_security_group[%s]", [name,i2]),
+		"searchKey": sprintf("aws_security_group[%s].ingress[%d]", [name,i2]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_security_group[%s].ingress[%d] shouldn't open the remote desktop port (3389)", [name,i2]),
 		"keyActualValue": sprintf("aws_security_group[%s].ingress[%d] opens the remote desktop port (3389)", [name,i2]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2], []),
 	}
 }
