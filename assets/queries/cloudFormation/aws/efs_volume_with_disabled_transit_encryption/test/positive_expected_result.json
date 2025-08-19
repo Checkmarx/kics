@@ -2,37 +2,49 @@
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
-    "line": 64,
+    "line": 35,
     "fileName": "positive1.json"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
-    "line": 59,
+    "line": 31,
     "fileName": "positive2.json"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
-    "line": 58,
+    "line": 30,
     "fileName": "positive3.json"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
-    "line": 50,
-    "fileName": "positive4.yaml"
+    "line": 7,
+    "fileName": "positive4.json"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
-    "line": 49,
+    "line": 35,
     "fileName": "positive5.yaml"
   },
   {
     "queryName": "EFS Volume With Disabled Transit Encryption",
     "severity": "MEDIUM",
-    "line": 47,
+    "line": 34,
     "fileName": "positive6.yaml"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 32,
+    "fileName": "positive7.yaml"
+  },
+  {
+    "queryName": "EFS Volume With Disabled Transit Encryption",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive8.yaml"
   }
 ]

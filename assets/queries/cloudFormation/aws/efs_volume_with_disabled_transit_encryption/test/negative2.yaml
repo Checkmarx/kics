@@ -10,24 +10,9 @@ Resources:
             -
               SourceVolume: "my-vol"
               ContainerPath: "/var/www/my-vol"
-          Image: "amazon/amazon-ecs-sample"
-          Cpu: 256
-          PortMappings:
-            -
-              ContainerPort:
-                Ref: "AppContainerPort"
-              HostPort:
-                Ref: "AppHostPort"
           EntryPoint:
             - "/usr/sbin/apache2"
             - "-D"
-            - "FOREGROUND"
-          Memory: 512
-          Essential: true
-          Environment:
-            -
-              Name: PASSWORD
-        -
           Name: "busybox"
           Image: "busybox"
           Cpu: 256

@@ -24,11 +24,6 @@
                         }
                     ]
                 }
-            ],
-            "Volumes": [
-                {
-                    "Name": "myEfsVolume"
-                }
             ]
         }
       }
