@@ -57,7 +57,7 @@ CxPolicy[result] {
 	resource.Type == types[_]
 	logs := resource.Properties.LogPublishingOptions[logName]
 	logName == slowLogs[_]
-	results := enabled_is_undefined_or_false(logs,path,name,logName)
+	results := cf_lib.enabled_is_undefined_or_false(logs,path,name,logName)
 	results != ""
 
 	result := {
@@ -71,19 +71,3 @@ CxPolicy[result] {
 		"searchLine": results.searchLine,
 	}
 }
-
-enabled_is_undefined_or_false(logs,path,name,logName) = results {
-	not common_lib.valid_key(logs,"Enabled")
-	results := {
-		"print" : "is undefined",
-		"searchKey" : sprintf("%s%s.Properties.LogPublishingOptions.%s", [cf_lib.getPath(path),name, logName]),
-		"searchLine" : common_lib.build_search_line(path, [name, "Properties", "LogPublishingOptions", logName]),
-	}
-} else = results {
-	cf_lib.isCloudFormationFalse(logs.Enabled)
-	results := {
-		"print" : "is set to false",
-		"searchKey" : sprintf("%s%s.Properties.LogPublishingOptions.%s.Enabled", [cf_lib.getPath(path),name, logName]),
-		"searchLine" : common_lib.build_search_line(path, [name, "Properties", "LogPublishingOptions", logName, "Enabled"]),
-	}
-} else = ""
