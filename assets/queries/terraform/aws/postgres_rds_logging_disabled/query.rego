@@ -56,7 +56,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("aws_db_parameter_group.%s", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "aws_db_parameter_group's log_statement and log_min_duration_statement should be set to 'all' and '1'",
-		"keyActualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are not set or both the wrong value",
+		"keyActualValue": "aws_db_parameter_group's log_statement and log_min_duration_statement are not set or both have the wrong value",
         "searchLine": common_lib.build_search_line(["resource", "aws_db_parameter_group", name], []),
 	}
 }
@@ -73,11 +73,11 @@ get_undefined_parameters(resource) = "log_statement and log_min_duration_stateme
 } else = "none"
 
 log_statement_defined(parameters) {
-    parameters[i].name == "log_statement"
+    parameters[_].name == "log_statement"
 }
 
 log_min_duration_statement_defined(parameters) {
-    parameters[i].name == "log_min_duration_statement"
+    parameters[_].name == "log_min_duration_statement"
 }
 
 get_wrong_values(parameters) = "both"{
