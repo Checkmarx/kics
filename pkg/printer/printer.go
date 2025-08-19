@@ -169,8 +169,10 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 
 	printSeverityCounter(summary)
 
-	if err := prettyPrintResultsTable(summary); err != nil {
-		return err
+	if len(summary.Queries) != 0 {
+		if err := prettyPrintResultsTable(summary); err != nil {
+			return err
+		}
 	}
 
 	log.Info().Msg("Inspector stopped")
