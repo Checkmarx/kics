@@ -70,6 +70,3 @@ CxPolicy[result] {
 		"searchLine": results.searchLine,
 	}
 }
-
-
-
