@@ -4,6 +4,27 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
+    #Case of aws_vpc_security_group_(ingress|egress)_rule without description
+    types := ["aws_vpc_security_group_ingress_rule","aws_vpc_security_group_egress_rule"]
+
+    resource := input.document[i].resource[types[i2]][name]
+    not common_lib.valid_key(resource, "description")
+
+    result := {
+        "documentId": input.document[i].id,
+        "resourceType": types[i2],
+        "resourceName": tf_lib.get_resource_name(resource, name),
+        "searchKey": sprintf("%s[{{%s}}]", [types[i2], name]),
+        "issueType": "MissingAttribute",
+        "keyExpectedValue": sprintf("%s[{{%s}}].description should be defined and not null", [types[i2], name]),
+        "keyActualValue": sprintf("%s[{{%s}}].description is undefined or null", [types[i2], name]),
+        "searchLine": common_lib.build_search_line(["resource", types[i2], name], []),
+    }
+}
+
+
+CxPolicy[result] {
+	#Case of Single Ingress/Egress
 	resource := input.document[i].resource.aws_security_group[name]
 	types := {"ingress", "egress"}
 	resourceType := resource[types[y]]
@@ -23,6 +44,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
+	#Case of Ingress/Egress Array
 	resource := input.document[i].resource.aws_security_group[name]
 	types := {"ingress", "egress"}
 	resourceType := resource[types[y]]
@@ -50,10 +72,10 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_security_group_rule",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("aws_security_group_rule[{{%s}}].description", [name]),
+		"searchKey": sprintf("aws_security_group_rule[{{%s}}]", [name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_security_group_rule[{{%s}}] description should be defined and not null", [name]),
 		"keyActualValue": sprintf("aws_security_group_rule[{{%s}}] description is undefined or null", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_security_group_rule", name, "description"], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_security_group_rule", name], []),
 	}
 }

@@ -22,4 +22,17 @@
     "severity": "INFO",
     "line": 23,
     "filename": "positive3.tf"
-  }]
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 7,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive4.tf"
+  }
+]
