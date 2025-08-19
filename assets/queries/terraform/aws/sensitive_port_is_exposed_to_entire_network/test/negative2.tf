@@ -19,7 +19,7 @@ resource "aws_vpc_security_group_ingress_rule" "negative2" {
   from_port          = 2384
   to_port            = 2386
   ip_protocol        = "tcp"
-  cidr_ipv4          = "/0"
+  cidr_ipv4          = "0.0.0.0/0"
 }
 
 resource "aws_vpc_security_group_ingress_rule" "negative3" {
@@ -28,7 +28,7 @@ resource "aws_vpc_security_group_ingress_rule" "negative3" {
   from_port          = 25
   to_port            = 2500
   ip_protocol        = "tcp"
-  cidr_ipv4          = "1.2.3.4/0"
+  cidr_ipv4          = "1.2.3.4/5"
 }
 
 resource "aws_vpc_security_group_ingress_rule" "negative4" {
