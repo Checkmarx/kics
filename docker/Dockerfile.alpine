@@ -1,0 +1,59 @@
+FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.24.6-alpine AS build_env
+
+# Install build dependencies
+RUN apk add --no-cache git
+
+# Copy the source from the current directory to the Working Directory inside the container
+WORKDIR /app
+
+ENV GOPRIVATE=github.com/Checkmarx/*
+ARG VERSION="development"
+ARG COMMIT="NOCOMMIT"
+ARG SENTRY_DSN=""
+ARG DESCRIPTIONS_URL=""
+ARG TARGETOS
+ARG TARGETARCH
+
+# Copy go mod and sum files
+COPY go.mod go.sum ./
+
+# Get dependencies - will also be cached if we won't change mod/sum
+RUN go mod download -x
+
+# COPY the source code as the last step
+COPY . .
+
+# Build the Go app
+RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
+    -ldflags "-s -w -X github.com/Checkmarx/kics/v2/internal/constants.Version=${VERSION} -X github.com/Checkmarx/kics/v2/internal/constants.SCMCommit=${COMMIT} -X github.com/Checkmarx/kics/v2/internal/constants.SentryDSN=${SENTRY_DSN} -X github.com/Checkmarx/kics/v2/internal/constants.BaseURL=${DESCRIPTIONS_URL}" \
+    -a -installsuffix cgo \
+    -o bin/kics cmd/console/main.go
+
+# Runtime image - Alpine base with apk support
+FROM alpine:latest
+
+# Install runtime dependencies including git for scanning repositories
+RUN apk add --no-cache git wget unzip
+
+RUN addgroup -g 1000 checkmarx && \
+    adduser -D -u 1000 -G checkmarx -h /app/bin -s /bin/sh checkmarx
+
+# Copy built binary to the runtime container with proper ownership
+COPY --from=build_env --chown=checkmarx:checkmarx /app/bin/kics /app/bin/kics
+COPY --from=build_env --chown=checkmarx:checkmarx /app/assets/queries /app/bin/assets/queries
+COPY --from=build_env --chown=checkmarx:checkmarx /app/assets/cwe_csv /app/bin/assets/cwe_csv
+COPY --from=build_env --chown=checkmarx:checkmarx /app/assets/libraries/* /app/bin/assets/libraries/
+
+WORKDIR /app/bin
+
+# Switch to non-root user for security
+USER checkmarx
+
+# Add kics to PATH
+ENV PATH $PATH:/app/bin
+
+# Healthcheck the container (consistent with Debian variant)
+HEALTHCHECK CMD wget -q --method=HEAD localhost/system-status.txt
+
+# Command to run the executable
+ENTRYPOINT ["/app/bin/kics"]

@@ -16,6 +16,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_iam_group[%s] should be associated with an aws_iam_group_membership that has at least one user set", [name]),
 		"keyActualValue": sprintf("aws_iam_group[%s] is not associated with an aws_iam_group_membership that has at least one user set", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_iam_group", name], [])
 	}
 }
 

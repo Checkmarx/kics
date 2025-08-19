@@ -10,5 +10,11 @@
     "severity": "MEDIUM",
     "line": 8,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "EC2 Instance Subnet Has Public IP Mapping On Launch",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive3.yaml"
   }
 ]
