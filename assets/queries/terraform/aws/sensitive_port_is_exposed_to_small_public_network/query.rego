@@ -67,7 +67,7 @@ CxPolicy[result] {
     ingress := resource.ingress[j]
 	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
 
-	isSmallPublicNetwork(resource)
+	isSmallPublicNetwork(ingress)
 	tf_lib.containsPort(ingress, portNumber)
 	isTCPorUDP(protocol)
 
@@ -80,6 +80,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
 		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name], []),
 	}
 }
 

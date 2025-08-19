@@ -69,7 +69,7 @@ CxPolicy[result] {
     ingress := resource.ingress[j]
 	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
 
-	tf_lib.cidr_is_unmasked(resource)
+	tf_lib.cidr_is_unmasked(ingress)
 	tf_lib.containsPort(ingress, portNumber)
 	isTCPorUDP(protocol)
 
