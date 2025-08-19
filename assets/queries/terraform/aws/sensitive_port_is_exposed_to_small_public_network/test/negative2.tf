@@ -12,7 +12,7 @@ resource "aws_security_group_rule" "negative2" {
   from_port         = 2384
   to_port           = 2386
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = ["/0"]
   security_group_id = aws_security_group.allow_tls2.id
 }
 
