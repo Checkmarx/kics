@@ -2632,7 +2632,7 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
         <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov8" title="23">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="21">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -3307,7 +3307,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
 
         <span class="cov4" title="29">go func() </span><span class="cov4" title="29">{
                 // close channel results when the worker has finished writing into it
-                defer func() </span><span class="cov4" title="29">{
+                defer func() </span><span class="cov4" title="28">{
                         close(unwanted)
                         close(results)
                         close(locCount)
@@ -20415,12 +20415,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="212">{
+        for variable := range s.varList </span><span class="cov7" title="216">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="633">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="570">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
