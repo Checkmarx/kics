@@ -2,11 +2,43 @@
   {
     "queryName": "HTTP Port Open To Internet",
     "severity": "MEDIUM",
-    "line": 1
+    "line": 5,
+    "fileName": "positive1.tf"
   },
   {
     "queryName": "HTTP Port Open To Internet",
     "severity": "MEDIUM",
-    "line": 14
+    "line": 26,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 37,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive3.tf"
   }
 ]

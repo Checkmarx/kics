@@ -2,7 +2,7 @@ resource "aws_security_group" "positive1" {
   name        = "http_positive_tcp_1"
   description = "Gets the HTTP port open with the tcp protocol"
 
-  ingress {
+   ingress {
     description = "HTTP port open"
     from_port   = 78
     to_port     = 91
@@ -29,5 +29,16 @@ resource "aws_security_group" "positive2" {
     to_port     = 81
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "positive1-3" {
+
+  ingress {
+    description = "Remote desktop open private"
+    from_port   = 22
+    to_port     = 88
+    protocol    = "tcp"
+    ipv6_cidr_blocks = ["::/0"]
   }
 }

@@ -21,6 +21,7 @@ CxPolicy[result] {
 		"resourceType": "aws_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_security_group[%s].ingress", [name]),
+		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
 		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
