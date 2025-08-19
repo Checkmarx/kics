@@ -1,5 +1,7 @@
 package Cx
 
+import future.keywords.in
+
 import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
 
@@ -9,7 +11,7 @@ validTypeConcat := concat(", ", validTypes)
 
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_docdb_cluster[name]
-	not exist(resource, "enabled_cloudwatch_logs_exports")
+	not "enabled_cloudwatch_logs_exports" in object.keys(resource)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -55,8 +57,4 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("aws_docdb_cluster.enabled_cloudwatch_logs_exports should have all following values: %s", [validTypeConcat]),
 		"keyActualValue": sprintf("aws_docdb_cluster.enabled_cloudwatch_logs_exports has the following missing values: %s", [concat(", ", missingTypes)]),
 	}
-}
-
-exist(obj, key) {
-	_ = obj[key]
 }

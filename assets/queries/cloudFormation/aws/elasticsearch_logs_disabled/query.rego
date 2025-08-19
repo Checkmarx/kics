@@ -66,9 +66,3 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties"], []),
 	}
 }
-
-contains(array, elem) {
-	array[_] == elem
-} else = false {
-	true
-}

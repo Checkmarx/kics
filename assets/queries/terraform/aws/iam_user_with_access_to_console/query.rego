@@ -18,6 +18,4 @@ CxPolicy[result] {
 	}
 }
 
-clean_user(user) = search {
-	search := regex.find_all_string_submatch_n("\\${(.*?)\\}", user, -1)
-}
+clean_user(user) := regex.find_all_string_submatch_n("\\${(.*?)\\}", user, -1)

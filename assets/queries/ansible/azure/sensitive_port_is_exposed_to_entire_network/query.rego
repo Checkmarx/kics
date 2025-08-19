@@ -79,9 +79,7 @@ else = containing {
 	containing := true
 }
 
-isTCPorUDP(protocol) = is {
-	is := upper(protocol) != "ICMP"
-}
+isTCPorUDP(protocol) := upper(protocol) != "ICMP"
 
 inbound_direction(resource){
 	upper(resource.direction) == "INBOUND"

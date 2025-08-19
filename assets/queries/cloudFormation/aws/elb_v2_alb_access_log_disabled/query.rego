@@ -39,6 +39,7 @@ CxPolicy[result] {
 	}
 }
 
+# regal ignore:rule-shadows-builtin
 contains(arr, elem) {
 	arr[i].Key == elem
 	cf_lib.isCloudFormationFalse(arr[i].Value)

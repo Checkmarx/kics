@@ -88,9 +88,7 @@ check_reference_unexisting_swagger(doc, reference, type) = checkRef {
 	object.get(doc[type], checkRef, "undefined") == "undefined"
 }
 
-concat_path(path) = concatenated {
-	concatenated := concat(".", [x | x := resolve_path(path[_]); x != ""])
-}
+concat_path(path) := concat(".", [x | x := resolve_path(path[_]); x != ""])
 
 resolve_path(pathItem) = resolved {
 	any([contains(pathItem, "."), contains(pathItem, "="), contains(pathItem, "/")])
@@ -133,9 +131,7 @@ undefined_field_in_numeric_schema(value, field) {
 	object.get(value, field, "undefined") == "undefined"
 }
 
-is_path_template(path) = matches {
-	matches := regex.find_n(`\{([A-Za-z]+[A-Za-z-_]*[A-Za-z]+)\}`, path, -1)
-}
+is_path_template(path) := regex.find_n(`\{([A-Za-z]+[A-Za-z-_]*[A-Za-z]+)\}`, path, -1)
 
 # It verifies if the 'field' is consistent with the 'type'
 invalid_field(field, type) {
