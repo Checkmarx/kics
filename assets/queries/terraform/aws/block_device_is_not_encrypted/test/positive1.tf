@@ -1,4 +1,4 @@
-resource "aws_launch_configuration" "positive1" {
+resource "aws_launch_configuration" "example1" {
   image_id      = data.aws_ami.ubuntu.id
   instance_type = "m4.large"
   spot_price    = "0.001"
@@ -13,7 +13,7 @@ resource "aws_launch_configuration" "positive1" {
   }
 }
 
-resource "aws_launch_configuration" "positive1" {
+resource "aws_launch_configuration" "example2" {
   image_id      = data.aws_ami.ubuntu.id
   instance_type = "m4.large"
   spot_price    = "0.001"
@@ -29,7 +29,7 @@ resource "aws_launch_configuration" "positive1" {
   }
 }
 
-resource "aws_launch_configuration" "positive1" {
+resource "aws_launch_configuration" "example3" {
   name = "test-launch-config"
 
   root_block_device {
