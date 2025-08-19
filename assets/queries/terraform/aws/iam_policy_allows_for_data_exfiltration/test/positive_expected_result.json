@@ -1,0 +1,20 @@
+[
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "IAM policy allows for data exfiltration",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive2.tf"
+  }
+]

@@ -3,10 +3,10 @@
   "queryName": "Web App Not Using TLS Last Version",
   "severity": "MEDIUM",
   "category": "Encryption",
-  "descriptionText": "Resources of type 'Microsoft.Web/sites' should define 'properties.siteConfig.minTlsVersion' with '1.3'",
+  "descriptionText": "Resources of type 'Microsoft.Web/sites' should define 'properties.siteConfig.minTlsVersion' with '1.2' or '1.3'",
   "descriptionUrl": "https://docs.microsoft.com/en-us/azure/templates/microsoft.web/sites?tabs=json#siteconfig-object",
   "platform": "AzureResourceManager",
-  "descriptionID": "1a442064",
+  "descriptionID": "b5c851d5",
   "cloudProvider": "azure",
   "cwe": "327",
   "oldSeverity": "HIGH"
