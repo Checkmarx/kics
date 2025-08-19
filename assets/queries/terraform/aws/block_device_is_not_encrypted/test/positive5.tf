@@ -1,4 +1,4 @@
-resource "aws_instance" "positive4" {
+resource "aws_instance" "positive5" {
   ami                         = "ami-074251216af698218"
   instance_type      = "t2.micro"
 

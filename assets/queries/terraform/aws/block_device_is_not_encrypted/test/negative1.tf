@@ -14,7 +14,7 @@ resource "aws_launch_configuration" "negative1" {
   }
 }
 
-resource "aws_launch_configuration" "negative2" {
+resource "aws_launch_configuration" "negative1" {
   name = "test-launch-config"
 
   ephemeral_block_device {
