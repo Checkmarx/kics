@@ -1,4 +1,4 @@
-resource "aws_security_group" "positive1" {
+resource "aws_security_group" "positive1-1" {
   name        = "allow_tls_1"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -11,7 +11,7 @@ resource "aws_security_group" "positive1" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-resource "aws_security_group" "positive2" {
+resource "aws_security_group" "positive1-2" {
   name        = "allow_tls_2"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
@@ -30,5 +30,16 @@ resource "aws_security_group" "positive2" {
     to_port     = 2384
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "positive1-3" {
+
+  ingress {
+    description = "Remote desktop open private"
+    from_port   = 2200
+    to_port     = 2500
+    protocol    = "tcp"
+    ipv6_cidr_blocks = ["::/0"]
   }
 }
