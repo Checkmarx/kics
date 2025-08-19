@@ -58,6 +58,7 @@ var (
 		"../assets/queries/cicd/github/run_block_injection",
 		"../assets/queries/cicd/github/script_block_injection",
 		"../assets/queries/azureResourceManager/key_vault_not_recoverable",
+		"../assets/queries/terraform/aws/iam_policy_allows_for_data_exfiltration",
 	}
 
 	// TODO uncomment this test once all metadata are fixed
@@ -171,7 +172,21 @@ func testQueryHasAllRequiredFiles(t *testing.T, entry queryEntry) {
 	for _, negativeFile := range entry.NegativeFiles(t) {
 		require.FileExists(t, negativeFile)
 	}
-	require.FileExists(t, entry.ExpectedPositiveResultFile())
+	require.FileExists(t, entry.ExpectedPositiveResultFile("test"))
+
+	for positiveDirectory, positiveFiles := range entry.PositiveDirectories(t) {
+		require.True(t, len(positiveFiles) > 1, "Not enough positive samples found for query %s in directory %s", entry.dir, positiveDirectory)
+		for _, positiveFile := range positiveFiles {
+			require.FileExists(t, positiveFile)
+		}
+		require.FileExists(t, entry.ExpectedPositiveResultFile("test/"+positiveDirectory))
+	}
+	for negativeDirectory, negativeFiles := range entry.NegativeDirectories(t) {
+		require.True(t, len(negativeFiles) > 1, "Not enough negative samples found for query %s in directory %s", entry.dir, negativeDirectory)
+		for _, negativeFile := range negativeFiles {
+			require.FileExists(t, negativeFile)
+		}
+	}
 }
 
 func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
