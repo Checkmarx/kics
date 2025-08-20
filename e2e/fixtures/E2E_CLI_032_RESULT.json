@@ -405,7 +405,7 @@
 					"resource_name": "MyAmpAppSecretManagerRotater",
 					"issue_type": "MissingAttribute",
 					"search_key": "Resources.MyAmpAppSecretManagerRotater.Properties",
-					"search_line": -1,
+					"search_line": 270,
 					"search_value": "",
 					"expected_value": "'Resources.MyAmpAppSecretManagerRotater.Properties.KmsKeyId' should be defined and not null",
 					"actual_value": "'Resources.MyAmpAppSecretManagerRotater.Properties.KmsKeyId' is undefined or null"
