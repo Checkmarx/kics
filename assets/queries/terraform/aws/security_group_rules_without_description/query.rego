@@ -24,7 +24,7 @@ CxPolicy[result] {
 
 
 CxPolicy[result] {
-	#Case of Single Ingress/Egress
+	#Case of Single Ingress/Egress without description
 	resource := input.document[i].resource.aws_security_group[name]
 	types := {"ingress", "egress"}
 	resourceType := resource[types[y]]
@@ -44,7 +44,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	#Case of Ingress/Egress Array
+	#Case of Ingress/Egress Array element without description
 	resource := input.document[i].resource.aws_security_group[name]
 	types := {"ingress", "egress"}
 	resourceType := resource[types[y]]
@@ -65,6 +65,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
+	#Case of aws_security_group_rule without description
 	resource := input.document[i].resource.aws_security_group_rule[name]
 	not common_lib.valid_key(resource, "description")
 

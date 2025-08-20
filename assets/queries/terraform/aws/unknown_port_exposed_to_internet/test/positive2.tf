@@ -7,8 +7,8 @@ resource "aws_security_group" "positive2" {
 resource "aws_vpc_security_group_ingress_rule" "positive2_1_rule" {
   security_group_id = aws_security_group.positive2.id
   cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 2300
-  to_port           = 2400
+  from_port         = 44
+  to_port           = 443
   ip_protocol       = "tcp"
   description       = "TLS from VPC"
 }
@@ -16,8 +16,8 @@ resource "aws_vpc_security_group_ingress_rule" "positive2_1_rule" {
 resource "aws_vpc_security_group_ingress_rule" "positive2_2_rule_2" {
   security_group_id = aws_security_group.positive2.id
   cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 2350
-  to_port           = 2384
+  from_port         = 18
+  to_port           = 18
   ip_protocol       = "tcp"
   description       = "TLS from VPC"
 }
@@ -25,8 +25,8 @@ resource "aws_vpc_security_group_ingress_rule" "positive2_2_rule_2" {
 resource "aws_vpc_security_group_ingress_rule" "positive2_3_rule" {
   security_group_id = aws_security_group.positive2.id
   cidr_ipv6         = "::/0"
-  from_port         = 2200
-  to_port           = 2500
+  from_port         = 600
+  to_port           = 1200
   ip_protocol       = "tcp"
   description       = "Remote desktop open private"
 }

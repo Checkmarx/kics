@@ -12,14 +12,11 @@ check_cidr(rule) {
 	rule.ipv6_cidr_blocks[_] == unrestricted_ipv6[_]
 } else {
 	rule.ipv6_cidr_blocks == unrestricted_ipv6[_]
-} 
-
-check_cidr(rule) {
+} else {
 	rule.cidr_ipv4 == "0.0.0.0/0"
 } else {
 	rule.cidr_ipv6 == unrestricted_ipv6[_]
 } 
-
 
 is_security_group_ingress(type,resource) {
 	type == "aws_security_group_rule"
