@@ -6,48 +6,7 @@ import data.generic.cloudformation as cf_lib
 types := ["AWS::Elasticsearch::Domain","AWS::OpenSearchService::Domain"]
 
 CxPolicy[result] {
-	docs := input.document[i]
-	[path, Resources] := walk(docs)
-	resource := Resources[name]
-	resource.Type == types[_]
-	common_lib.valid_key(resource.Properties, "LogPublishingOptions")
-	logs := [logName | "AUDIT_LOGS" == logName; log := resource.Properties.LogPublishingOptions[logName]]
-	count(logs) == 0
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": resource.Type,
-		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties.LogPublishingOptions", [cf_lib.getPath(path),name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions should declare audit logs", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions does not declares audit logs", [name]),
-		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "LogPublishingOptions"], []),
-	}
-}
-
-CxPolicy[result] {
-	docs := input.document[i]
-	[path, Resources] := walk(docs)
-	resource := Resources[name]
-	resource.Type == types[_]
-	logs := resource.Properties.LogPublishingOptions[logName]
-	logName == "AUDIT_LOGS"
-	cf_lib.isCloudFormationFalse(logs.Enabled)
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": resource.Type,
-		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties.LogPublishingOptions.%s.Enabled", [cf_lib.getPath(path),name, logName]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s should be enabled if is a audit logs", [name, logName]),
-		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s is a audit logs but isn't enabled", [name, logName]),
-		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "LogPublishingOptions", logName, "Enabled"], []),
-	}
-}
-
-CxPolicy[result] {
+	#Case of no "LogPublishingOptions" field
 	docs := input.document[i]
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
@@ -63,7 +22,51 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("%s%s.Properties.LogPublishingOptions should be defined and not null", [cf_lib.getPath(path),name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions is undefined or null", [name]),
-		"searchLine": common_lib.build_search_line(["Resource", name, "Properties"], []),
+		"searchLine": common_lib.build_search_line(path, [name, "Properties"]),
 	}
 }
 
+CxPolicy[result] {
+	#Case of no log specification for AUDIT_LOGS witin LogPublishingOptions
+	docs := input.document[i]
+	[path, Resources] := walk(docs)
+	resource := Resources[name]
+	resource.Type == types[_]
+	common_lib.valid_key(resource.Properties, "LogPublishingOptions")
+	logs := [logName | "AUDIT_LOGS" == logName; log := resource.Properties.LogPublishingOptions[logName]]
+	count(logs) == 0
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("%s%s.Properties.LogPublishingOptions", [cf_lib.getPath(path),name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions should declare audit logs", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions does not declare audit logs", [name]),
+		"searchLine": common_lib.build_search_line(path, [name, "Properties", "LogPublishingOptions"]),
+	}
+}
+
+CxPolicy[result] {
+	#Case of "Enabled" field undefined or set to false within the log specificationy
+	docs := input.document[i]
+	[path, Resources] := walk(docs)
+	resource := Resources[name]
+	resource.Type == types[_]
+	logs := resource.Properties.LogPublishingOptions[logName]
+	logName == "AUDIT_LOGS"
+	results := cf_lib.enabled_is_undefined_or_false(logs,path,name,logName)
+	results != ""
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
+		"searchKey": results.searchKey,
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s.Enabled should be defined and set to 'true'", [name, logName]),
+		"keyActualValue": sprintf("Resources.%s.Properties.LogPublishingOptions.%s.Enabled %s", [name, logName, results.print]),
+		"searchLine": results.searchLine,
+	}
+}
