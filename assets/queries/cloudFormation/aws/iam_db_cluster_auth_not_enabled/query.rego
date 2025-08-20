@@ -10,7 +10,7 @@ CxPolicy[result] {
     resource.Type == "AWS::RDS::DBCluster"
 
     not common_lib.valid_key(resource.Properties, "EnableIAMDatabaseAuthentication")
-    common_lib.valid_for_iam_engine_and_version_check(resource.Properties, "Engine", "EngineVersion", "DBClusterInstanceClass")
+    valid_for_iam_engine_and_version_check_edited(resource.Properties, "Engine", "EngineVersion")
 
     result := {
         "documentId": input.document[i].id,
@@ -32,7 +32,7 @@ CxPolicy[result] {
 
     common_lib.valid_key(resource.Properties, "EnableIAMDatabaseAuthentication")
     cf_lib.isCloudFormationFalse(resource.Properties.EnableIAMDatabaseAuthentication)
-    common_lib.valid_for_iam_engine_and_version_check(resource.Properties, "Engine", "EngineVersion", "DBClusterInstanceClass")
+    valid_for_iam_engine_and_version_check_edited(resource.Properties, "Engine", "EngineVersion")
 
     result := {
         "documentId": input.document[i].id,
@@ -46,7 +46,7 @@ CxPolicy[result] {
     }
 }
 
-valid_for_iam_engine_and_version_check_edited(resource, engineVar, engineVersionVar, instanceClassVar) {
+valid_for_iam_engine_and_version_check_edited(resource, engineVar, engineVersionVar) {
     key_list := [engineVar, engineVersionVar]
     contains(lower(resource[engineVar]), "mariadb")
     supported_versions := {"10.6", "10.11", "11.4"}
