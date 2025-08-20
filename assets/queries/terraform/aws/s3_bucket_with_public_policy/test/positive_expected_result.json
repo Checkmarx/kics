@@ -52,5 +52,11 @@
     "severity": "MEDIUM",
     "line": 2,
     "filename": "positive9.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive10.tf"
   }
 ]
