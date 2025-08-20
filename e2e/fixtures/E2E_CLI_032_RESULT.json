@@ -6,8 +6,8 @@
 	"lines_parsed": 289,
 	"lines_ignored": 0,
 	"files_failed_to_scan": 0,
-	"queries_total": 500,
-	"queries_failed_to_execute": 0,
+	"queries_total": 512,
+	"queries_failed_to_execute": 44,
 	"queries_failed_to_compute_similarity_id": 0,
 	"scan_id": "console",
 	"severity_counters": {
@@ -20,8 +20,8 @@
 	},
 	"total_counter": 25,
 	"total_bom_resources": 0,
-	"start": "2025-08-01T13:21:12.2674197+01:00",
-	"end": "2025-08-01T13:22:16.2808894+01:00",
+	"start": "2025-08-20T14:13:17.1114047+01:00",
+	"end": "2025-08-20T14:13:28.3694965+01:00",
 	"paths": [
 		"/path/e2e/fixtures/samples/positive.yaml"
 	],
@@ -292,11 +292,11 @@
 					"resource_type": "AWS::ECS::TaskDefinition",
 					"resource_name": "TaskDefinition",
 					"issue_type": "MissingAttribute",
-					"search_key": "Resources.TaskDefinition.Properties.Volumes.0",
+					"search_key": "Resources.TaskDefinition.Properties.Volumes[0]",
 					"search_line": 85,
 					"search_value": "",
-					"expected_value": "'Resources.TaskDefinition.Properties.Volumes[0].EFSVolumeConfiguration' should be defined",
-					"actual_value": "'Resources.TaskDefinition.Properties.Volumes[0].EFSVolumeConfiguration' is not defined"
+					"expected_value": "Resources.TaskDefinition.Properties.Volumes[0].EFSVolumeConfiguration should be defined",
+					"actual_value": "Resources.TaskDefinition.Properties.Volumes[0].EFSVolumeConfiguration is not defined"
 				}
 			]
 		},
