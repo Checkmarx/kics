@@ -5,7 +5,6 @@ import data.generic.cloudformation as cf_lib
 
 types := ["AWS::Elasticsearch::Domain","AWS::OpenSearchService::Domain"]
 
-
 CxPolicy[result] {
 	#Case of no "LogPublishingOptions" field
 	docs := input.document[i]

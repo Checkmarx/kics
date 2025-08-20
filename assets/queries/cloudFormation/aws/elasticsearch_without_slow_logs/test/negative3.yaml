@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: ElasticsearchDomain resource
+Description: Sample
 Resources:
   ElasticsearchDomain:
     Type: "AWS::OpenSearchService::Domain"

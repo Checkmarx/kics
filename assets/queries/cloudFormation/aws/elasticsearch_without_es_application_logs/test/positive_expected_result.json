@@ -26,38 +26,38 @@
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
-    "line": 13,
+    "line": 10,
     "fileName": "positive5.yaml"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
-    "line": 10,
+    "line": 13,
     "fileName": "positive6.yaml"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive7.json"
+    "line": 9,
+    "fileName": "positive7.yaml"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive8.json"
+    "line": 6,
+    "fileName": "positive8.yaml"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
-    "line": 7,
-    "fileName": "positive9.json"
+    "line": 13,
+    "fileName": "positive9.yaml"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
-    "line": 14,
-    "fileName": "positive10.json"
+    "line": 10,
+    "fileName": "positive10.yaml"
   },
   {
     "queryName": "ElasticSearch Without Es Application Logs",
@@ -68,7 +68,55 @@
   {
     "queryName": "ElasticSearch Without Es Application Logs",
     "severity": "MEDIUM",
-    "line": 12,
+    "line": 11,
     "fileName": "positive12.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive13.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive14.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive15.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive16.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive17.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive18.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive19.json"
+  },
+  {
+    "queryName": "ElasticSearch Without Es Application Logs",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive20.json"
   }
 ]
