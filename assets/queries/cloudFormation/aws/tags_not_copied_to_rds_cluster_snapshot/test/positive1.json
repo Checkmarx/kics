@@ -1,0 +1,25 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "example",
+    "Resources": {
+        "MyDBInstance": {
+            "Type": "AWS::RDS::DBInstance",
+            "Properties": {
+                "DBInstanceIdentifier": "my-db-instance",
+                "Engine": "mysql",
+                "DBInstanceClass": "db.t3.micro",
+                "AllocatedStorage": "20",
+                "CopyTagsToSnapshot": false
+            },
+            "DeletionPolicy": "Snapshot"
+        },
+        "MyDBCluster": {
+            "Type": "AWS::RDS::DBCluster",
+            "Properties": {
+                "DBClusterIdentifier": "my-db-cluster",
+                "Engine": "aurora-mysql",
+                "CopyTagsToSnapshot": false
+            }
+        }
+    }
+}
