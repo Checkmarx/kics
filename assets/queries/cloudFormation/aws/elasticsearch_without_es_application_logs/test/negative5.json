@@ -1,0 +1,20 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Sample",
+  "Resources": {
+    "ElasticsearchDomain": {
+      "Type": "AWS::Elasticsearch::Domain",
+      "Properties": {
+        "DomainName": {
+          "Ref": "DomainName"
+        },
+        "LogPublishingOptions": {
+          "ES_APPLICATION_LOGS": {
+            "CloudWatchLogsLogGroupArn": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/aes/domains/es-slow-logs",
+            "Enabled": "true"
+          }
+        }
+      }
+    }
+  }
+}
