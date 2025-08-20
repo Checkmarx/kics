@@ -1,4 +1,4 @@
-resource "aws_rds_cluster" "negative1" {
+resource "aws_rds_cluster" "positive1" {
   cluster_identifier = "example-cluster"
 
   engine         = "aurora-mysql"
