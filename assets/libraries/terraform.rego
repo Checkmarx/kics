@@ -74,6 +74,19 @@ portOpenToInternet(rules, port) {
 	rule[prot_types[_]] == open_port[_]
 }
 
+get_ingress_list(ingress) = result {
+	is_array(ingress)
+	result := {
+		"value" : ingress,
+		"is_unique_element" : false
+	}
+} else = result {
+	result := {
+		"value" : [ingress],
+		"is_unique_element" : true
+	}
+}
+
 # Checks if a port is included in a rule
 containsPort(rule, port) {
 	rule.from_port <= port

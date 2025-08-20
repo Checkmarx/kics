@@ -4,7 +4,7 @@ resource "aws_security_group" "ec2" {
   vpc_id      = var.vpc_id
 }
 
-resource "aws_security_group_rule" "positive3-1" {
+resource "aws_security_group_rule" "positive3_1" {
   type              = "ingress"
   from_port         = 70
   to_port           = 82
@@ -14,7 +14,7 @@ resource "aws_security_group_rule" "positive3-1" {
   description        = "allows RDP from Internet (IPv4)"
 }
 
-resource "aws_security_group_rule" "positive3-2" {
+resource "aws_security_group_rule" "positive3_2" {
   type              = "ingress"
   from_port         = 79
   to_port           = 100

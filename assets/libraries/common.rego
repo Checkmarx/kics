@@ -462,7 +462,7 @@ is_recommended_tls(field) {
 }
 
 is_unrestricted(sourceRange) {
-	cidrs := {"0.0.0.0/0", "::/0"}
+	cidrs := {"0.0.0.0/0", "::/0", "0000:0000:0000:0000:0000:0000:0000:0000/0", "0:0:0:0:0:0:0:0/0"}
 	sourceRange == cidrs[_]
 }
 

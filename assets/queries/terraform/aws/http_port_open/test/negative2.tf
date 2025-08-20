@@ -4,7 +4,7 @@ resource "aws_security_group" "ec2" {
   vpc_id      = var.vpc_id
 }
 
-resource "aws_vpc_security_group_ingress_rule" "negative2-1" {
+resource "aws_vpc_security_group_ingress_rule" "negative2_1" {
   security_group_id = aws_security_group.ec2.id
   description = "allows RDP from Internet"
 
@@ -14,7 +14,7 @@ resource "aws_vpc_security_group_ingress_rule" "negative2-1" {
   to_port     = 82
 }
 
-resource "aws_vpc_security_group_ingress_rule" "negative2-2" {
+resource "aws_vpc_security_group_ingress_rule" "negative2_2" {
   security_group_id = aws_security_group.ec2.id
   description = "allows RDP from Internet"
 

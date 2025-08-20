@@ -3,7 +3,7 @@ resource "aws_security_group" "ec2" {
   description = "Doesn't enable the remote desktop port"
 }
 
-resource "aws_security_group" "negative1-1" {
+resource "aws_security_group" "negative1_1" {
 
   ingress {
     description = "Remote desktop open private"
@@ -13,7 +13,7 @@ resource "aws_security_group" "negative1-1" {
   }
 }
 
-resource "aws_security_group" "negative1-2" {
+resource "aws_security_group" "negative1_2" {
 
   ingress {
     description = "Remote desktop open private"
@@ -24,7 +24,7 @@ resource "aws_security_group" "negative1-2" {
   }
 }
 
-resource "aws_security_group" "negative1-3" {
+resource "aws_security_group" "negative1_3" {
 
   ingress {
     description = "Remote desktop open private"

@@ -24,43 +24,44 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	#Case of single Ingress
+	#Case of Single Ingress or Ingress Array
 	resource := input.document[i].resource.aws_security_group[name]
 
-	not is_array(resource.ingress)
-	tf_lib.portOpenToInternet(resource.ingress, 80)
+	ingress_list := tf_lib.get_ingress_list(resource.ingress)
+	results := http_is_open(ingress_list.value[i2],ingress_list.is_unique_element,name,i2)
+	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("aws_security_group[%s].ingress", [name]),
+		"searchKey": results.searchKey,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "aws_security_group.ingress shouldn't open the HTTP port (80)",
-		"keyActualValue": "aws_security_group.ingress opens the HTTP port (80)",
-		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress"], []),
+		"keyExpectedValue": results.keyExpectedValue,
+		"keyActualValue": results.keyActualValue,
+		"searchLine": results.searchLine,
 	}
 }
 
-CxPolicy[result] {
-	#Case of Ingress Array
-	resource := input.document[i].resource.aws_security_group[name]
+http_is_open(ingress,is_unique_element,name,i2) = results {
+	is_unique_element
+	tf_lib.portOpenToInternet(ingress, 80)
 
-	is_array(resource.ingress)
-	tf_lib.portOpenToInternet(resource.ingress[i2], 80)
+	results := {
+		"searchKey" : sprintf("aws_security_group[%s].ingress", [name]),
+		"keyExpectedValue" : sprintf("aws_security_group[%s].ingress shouldn't open the HTTP port (80)",[name]),
+		"keyActualValue" : sprintf("aws_security_group[%s].ingress opens the HTTP port (80)",[name]),
+		"searchLine" : common_lib.build_search_line(["resource", "aws_security_group", name, "ingress"], []),
+	}
 
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "aws_security_group",
-		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("aws_security_group[%s].ingress[%d]", [name,i2]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("aws_security_group[%s].ingress[%d] shouldn't open the HTTP port (80)", [name,i2]),
-		"keyActualValue": sprintf("aws_security_group[%s].ingress[%d] opens the HTTP port (80)", [name,i2]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2], []),
+} else = results {
+	not is_unique_element
+	tf_lib.portOpenToInternet(ingress, 80)
+
+	results := {
+		"searchKey" : sprintf("aws_security_group[%s].ingress[%d]", [name,i2]),
+		"keyExpectedValue" : sprintf("aws_security_group[%s].ingress[%d] shouldn't open the HTTP port (80)", [name,i2]),
+		"keyActualValue" : sprintf("aws_security_group[%s].ingress[%d] opens the HTTP port (80)", [name,i2]),
+		"searchLine" : common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2], []),
 	}
 }
-
-
-
-
