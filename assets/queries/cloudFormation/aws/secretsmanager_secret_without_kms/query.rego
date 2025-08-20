@@ -17,6 +17,7 @@ CxPolicy[result] {
 		"issueType": res["it"],
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.KmsKeyId' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.KmsKeyId' is undefined or null", [name]),
+        "searchLine": res["sl"],
 	}
 }
 
@@ -27,6 +28,7 @@ is_kms_key_id_not_defined(resource, name)  = res {
     res := {
         "sk": sprintf("Resources.%s.Properties.KmsKeyId", [name]),
         "it": "IncorrectValue",
+        "sl": common_lib.build_search_line(["Resources", name, "Properties", "KmsKeyId"], []),
     }
 } else = res {
     not common_lib.valid_key(resource.Properties, "KmsKeyId")
@@ -34,5 +36,6 @@ is_kms_key_id_not_defined(resource, name)  = res {
     res := {
         "sk": sprintf("Resources.%s.Properties", [name]),
         "it": "MissingAttribute",
+        "sl": common_lib.build_search_line(["Resources", name, "Properties"], []),
     }
 }
