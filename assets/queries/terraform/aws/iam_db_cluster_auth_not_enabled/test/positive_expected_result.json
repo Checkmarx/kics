@@ -1,0 +1,14 @@
+[
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 0,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 0,
+    "fileName": "positive2.tf"
+  }
+]
