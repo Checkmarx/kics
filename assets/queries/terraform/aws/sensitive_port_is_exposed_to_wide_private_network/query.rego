@@ -77,12 +77,12 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
-		"searchKey": sprintf("module[%s].%s", [name, ingressKey]),
+		"searchKey": sprintf("module[%s].%s.%d", [name, ingressKey,idx]),
 		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
 		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
-		"searchLine": common_lib.build_search_line(["module", name, ingressKey], []),
+		"searchLine": common_lib.build_search_line(["module", name, ingressKey, idx], []),
 	}
 }
 

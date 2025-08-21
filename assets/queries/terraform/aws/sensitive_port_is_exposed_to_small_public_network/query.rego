@@ -56,6 +56,36 @@ CxPolicy[result] {
 	}
 }
 
+# module
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_with_cidr_blocks")
+	common_lib.valid_key(module, ingressKey)
+
+	portContent := common_lib.tcpPortsMap[port]
+	portNumber = port
+	portName = portContent
+
+	ingress := module[ingressKey][idx]
+	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
+
+	isSmallPublicNetwork(ingress)
+	tf_lib.containsPort(ingress, portNumber)
+	isTCPorUDP(protocol)
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
+		"searchKey": sprintf("module[%s].%s.%d", [name, ingressKey,idx]),
+		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
+		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
+		"searchLine": common_lib.build_search_line(["module", name, ingressKey, idx], []),
+	}
+}
+
 is_exposed_to_small_public_network(ingress,is_unique_element,name,i2,portNumber,portName,protocol) = results {
 	is_unique_element
 

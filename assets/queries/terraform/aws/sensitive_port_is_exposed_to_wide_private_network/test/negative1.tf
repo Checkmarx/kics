@@ -100,3 +100,33 @@ module "negative7" {
     }
   ]
 }
+
+resource "aws_security_group" "positive_array_test" {
+  name        = "allow_tls7"
+  description = "Allow TLS inbound traffic"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description = "TLS from VPC"
+    from_port   = 2383
+    to_port     = 2383
+    protocol    = "udp"
+    cidr_blocks = ["0.1.1.1/21", "8.8.8.8/24"]
+  }
+
+  ingress {
+    description = "TLS from VPC"
+    from_port   = 28000
+    to_port     = 28001
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
+
+  ingress {
+    description = "TLS from VPC"
+    from_port   = 20
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["192.01.01.02/23"]
+  }
+}
