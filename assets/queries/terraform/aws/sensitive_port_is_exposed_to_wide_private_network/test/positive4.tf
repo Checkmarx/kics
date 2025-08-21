@@ -11,7 +11,7 @@ module "vote_service_sg" {
       description = "TLS from VPC"
       from_port   = 22
       to_port     = 22
-      protocol    = "TCP"
+      protocol    = "tcp"
       cidr_blocks = ["172.16.0.0/12"]
     }
   ]

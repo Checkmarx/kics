@@ -44,6 +44,29 @@ CxPolicy[result] {
 	}
 }
 
+# module
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_with_cidr_blocks")
+	common_lib.valid_key(module, ingressKey)
+
+	ingress := module[ingressKey][i2]
+
+	tf_lib.portOpenToInternet(ingress, 2383)
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
+		"searchKey": sprintf("module[%s].%s.%d", [name, ingressKey,i2]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("module[%s].%s.%d shouldn't open SQL Analysis Services Port 2383",[name, ingressKey,i2]),
+		"keyActualValue": sprintf("module[%s].%s.%d opens SQL Analysis Services Port 2383",[name, ingressKey,i2]),
+		"searchLine": common_lib.build_search_line(["module", name, ingressKey, i2], []),
+	}
+}
+
+
 port_is_open_to_internet(ingress,is_unique_element,name,i2) = results {
 	is_unique_element
 	tf_lib.portOpenToInternet(ingress, 2383)

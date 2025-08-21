@@ -9,10 +9,10 @@ module "vote_service_sg" {
   ingress_with_cidr_blocks = [
     {
       description = "TLS from VPC"
-      from_port   = 22
-      to_port     = 22
-      protocol    = "tcp"
-      cidr_blocks = ["10.92.168.0/28"]
+      from_port   = 2300
+      to_port     = 3000
+      protocol    = "-1"
+      cidr_blocks = ["10.92.168.0/28","0.0.0.0/0"]
     }
   ]
 }
@@ -30,8 +30,8 @@ module "vote_service_sg_array" {
       description = "TLS from VPC"
       from_port   = 2383
       to_port     = 2383
-      protocol    = "udp"
-      cidr_blocks = ["/0", "1.2.3.4/27"]
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0", "1.2.3.4/27"]
     },
     {
       description = "TLS from VPC"
@@ -42,10 +42,10 @@ module "vote_service_sg_array" {
     },
     {
       description = "TLS from VPC"
-      from_port   = 20
-      to_port     = 22
+      from_port   = 2000
+      to_port     = 2500
       protocol    = "tcp"
-      cidr_blocks = ["10.92.168.0/28"]
+      ipv6_cidr_blocks = ["::/0"]
     }
   ]
 }
