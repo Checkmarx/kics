@@ -133,9 +133,7 @@ is_unrestricted_ingress(ingress,is_unique_element,name,i2) = results {
 } else = ""
 
 
-
 # modules 
-
 CxPolicy[result] {
 	module := input.document[i].module[name]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", "ingress_ipv6_cidr_blocks") # based on module terraform-aws-modules/security-group/aws
