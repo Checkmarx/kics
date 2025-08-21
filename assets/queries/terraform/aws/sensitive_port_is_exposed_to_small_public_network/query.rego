@@ -48,6 +48,7 @@ CxPolicy[result] {
 		"resourceType": "aws_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": results.searchKey,
+		"searchValue": results.searchValue,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": results.keyExpectedValue,
 		"keyActualValue": results.keyActualValue,
@@ -64,6 +65,7 @@ is_exposed_to_small_public_network(ingress,is_unique_element,name,i2,portNumber,
 
 	results := {
 		"searchKey": sprintf("aws_security_group[%s].ingress", [name]),
+		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
 		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress"], []),
