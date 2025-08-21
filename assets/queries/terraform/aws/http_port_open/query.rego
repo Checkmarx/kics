@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),	
 		"searchKey": sprintf("%s[%s]", [types[i2],name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s[%s] shouldn't open the HTTP port (80)", [types[i2],name]),
+		"keyExpectedValue": sprintf("%s[%s] should not open the HTTP port (80)", [types[i2],name]),
 		"keyActualValue": sprintf("%s[%s] opens the HTTP port (80)", [types[i2],name]),
 		"searchLine": common_lib.build_search_line(["resource", types[i2], name], []),
 	}
@@ -43,13 +43,35 @@ CxPolicy[result] {
 	}
 }
 
+# module
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_with_cidr_blocks")
+	common_lib.valid_key(module, ingressKey)
+
+	ingress := module[ingressKey][i2]
+
+	tf_lib.portOpenToInternet(ingress, 80)
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
+		"searchKey": sprintf("module[%s].%s.%d", [name, ingressKey,i2]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("module[%s].%s.%d should not open the HTTP port (80)",[name, ingressKey,i2]),
+		"keyActualValue": sprintf("module[%s].%s.%d opens the HTTP port (80)",[name, ingressKey,i2]),
+		"searchLine": common_lib.build_search_line(["module", name, ingressKey, i2], []),
+	}
+}
+
 http_is_open(ingress,is_unique_element,name,i2) = results {
 	is_unique_element
 	tf_lib.portOpenToInternet(ingress, 80)
 
 	results := {
 		"searchKey" : sprintf("aws_security_group[%s].ingress", [name]),
-		"keyExpectedValue" : sprintf("aws_security_group[%s].ingress shouldn't open the HTTP port (80)",[name]),
+		"keyExpectedValue" : sprintf("aws_security_group[%s].ingress should not open the HTTP port (80)",[name]),
 		"keyActualValue" : sprintf("aws_security_group[%s].ingress opens the HTTP port (80)",[name]),
 		"searchLine" : common_lib.build_search_line(["resource", "aws_security_group", name, "ingress"], []),
 	}
@@ -60,7 +82,7 @@ http_is_open(ingress,is_unique_element,name,i2) = results {
 
 	results := {
 		"searchKey" : sprintf("aws_security_group[%s].ingress[%d]", [name,i2]),
-		"keyExpectedValue" : sprintf("aws_security_group[%s].ingress[%d] shouldn't open the HTTP port (80)", [name,i2]),
+		"keyExpectedValue" : sprintf("aws_security_group[%s].ingress[%d] should not open the HTTP port (80)", [name,i2]),
 		"keyActualValue" : sprintf("aws_security_group[%s].ingress[%d] opens the HTTP port (80)", [name,i2]),
 		"searchLine" : common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2], []),
 	}

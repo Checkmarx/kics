@@ -40,5 +40,23 @@
     "severity": "MEDIUM",
     "line": 17,
     "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 30,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 44,
+    "fileName": "positive4.tf"
   }
 ]
