@@ -52,5 +52,23 @@
     "severity": "HIGH",
     "line": 27,
     "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 30,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 44,
+    "fileName": "positive4.tf"
   }
 ]

@@ -45,6 +45,29 @@ CxPolicy[result] {
 	}
 }
 
+# module
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_with_cidr_blocks")
+	common_lib.valid_key(module, ingressKey)
+
+	ingress := module[ingressKey][i2]
+
+	unknownPort(ingress.from_port, ingress.to_port)
+	tf_lib.check_cidr(ingress)
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
+		"searchKey": sprintf("module[%s].%s.%d", [name, ingressKey,i2]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("module[%s].%s.%d ports are known",[name, ingressKey,i2]),
+		"keyActualValue": sprintf("module[%s].%s.%d ports are unknown and exposed to the entire Internet",[name, ingressKey,i2]),
+		"searchLine": common_lib.build_search_line(["module", name, ingressKey, i2], []),
+	}
+}
+
 check_unknown_port(ingress,name) = results {
 	is_array(ingress)
 
