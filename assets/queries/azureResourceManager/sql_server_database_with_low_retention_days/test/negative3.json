@@ -29,7 +29,7 @@
       "properties": {
         "state": "Enabled",
         "isAzureMonitorTargetEnabled": true,
-        "retentionDays": 89
+        "retentionDays": 91
       },
       "dependsOn": [
         "[resourceId('Microsoft.Sql/servers', 'sqlServer1')]"

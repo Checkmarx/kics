@@ -16,5 +16,6 @@ resource auditingSetting 'Microsoft.Sql/servers/auditingSettings@2022-05-01-prev
   properties: {
     state: 'Enabled'
     isAzureMonitorTargetEnabled: true
+    retentionDays: 91
   }
 }

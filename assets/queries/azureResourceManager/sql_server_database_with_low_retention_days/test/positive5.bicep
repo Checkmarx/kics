@@ -1,28 +1,18 @@
-@description('Nome do servidor SQL')
-param sqlServerName string = 'my-sql-server'
-
-@description('Localização do recurso')
-param location string = resourceGroup().location
-
-@description('Login do administrador')
-param administratorLogin string = 'sqladminuser'
-
-@secure()
-@description('Password do administrador')
-param administratorLoginPassword string
-
-resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
-  name: sqlServerName
-  location: location
+resource sqlServer1 'Microsoft.Sql/servers@2021-02-01-preview' = {
+  name: 'sqlServer1'
+  location: resourceGroup().location
+  tags: {
+    displayName: 'sqlServer1'
+  }
   properties: {
-    administratorLogin: administratorLogin
-    administratorLoginPassword: administratorLoginPassword
+    administratorLogin: 'adminUsername'
+    administratorLoginPassword: 'adminPassword'
   }
 }
 
 resource auditingSetting 'Microsoft.Sql/servers/auditingSettings@2022-05-01-preview' = {
   name: 'default' 
-  parent: sqlServer
+  parent: sqlServer1
   properties: {
     state: 'Enabled'
     isAzureMonitorTargetEnabled: true
