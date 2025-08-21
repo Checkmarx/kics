@@ -1,0 +1,12 @@
+{
+  "id": "bed9762b-9bf6-4823-98e2-b1752bee0bf7",
+  "queryName": "Secretsmanager Secret Without KMS",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "AWS Secretmanager should use AWS KMS customer master key (CMK) to encrypt the secret values in the versions stored in the secret",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-secretsmanager-secret.html",
+  "platform": "CloudFormation",
+  "descriptionID": "bed9762b",
+  "cloudProvider": "aws",
+  "cwe": "326"
+}
