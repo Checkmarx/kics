@@ -708,32 +708,32 @@
     "filename": "positive3.tf"
   },
 	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
+	  "queryName": "Sensitive Port Is Exposed To Wide Private Network",
+    "severity": "LOW",
 	  "line": 11,
 	  "filename": "positive4.tf"
 	},
 	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
+	  "queryName": "Sensitive Port Is Exposed To Wide Private Network",
+    "severity": "LOW",
 	  "line": 30,
 	  "filename": "positive4.tf"
 	},
 	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
+	  "queryName": "Sensitive Port Is Exposed To Wide Private Network",
+    "severity": "LOW",
 	  "line": 44,
 	  "filename": "positive4.tf"
 	},
 	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
+	  "queryName": "Sensitive Port Is Exposed To Wide Private Network",
+    "severity": "LOW",
 	  "line": 44,
 	  "filename": "positive4.tf"
 	},
 	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
+	  "queryName": "Sensitive Port Is Exposed To Wide Private Network",
+    "severity": "LOW",
 	  "line": 44,
 	  "filename": "positive4.tf"
 	}
