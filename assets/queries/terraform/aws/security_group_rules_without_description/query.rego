@@ -22,46 +22,49 @@ CxPolicy[result] {
     }
 }
 
-
 CxPolicy[result] {
-	#Case of Single Ingress/Egress without description
-	resource := input.document[i].resource.aws_security_group[name]
+	#Case of Single Ingress/Egress or Ingress/Egress Array element without description
+	security_group := input.document[i].resource.aws_security_group[name]
 	types := {"ingress", "egress"}
-	resourceType := resource[types[y]]
-    not is_array(resourceType)
-	not common_lib.valid_key(resourceType, "description")
+	resource := security_group[types[y]]
+
+	gress_list := tf_lib.get_ingress_list(resource)
+	results := check_description(gress_list.value[i2],gress_list.is_unique_element,name,i2,types[y])
+	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("aws_security_group[%s].%s", [name, types[y]]),
+		"searchKey": results.searchKey,
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_security_group[%s].%s description should be defined and not null", [name, types[y]]),
-		"keyActualValue": sprintf("aws_security_group[%s].%s description is undefined or null", [name, types[y]]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, types[y]], []),
+		"keyExpectedValue": results.keyExpectedValue,
+		"keyActualValue": results.keyActualValue,
+		"searchLine": results.searchLine,
 	}
 }
 
-CxPolicy[result] {
-	#Case of Ingress/Egress Array element without description
-	resource := input.document[i].resource.aws_security_group[name]
-	types := {"ingress", "egress"}
-	resourceType := resource[types[y]]
-    is_array(resourceType)
-    currentResource := resourceType[resourceIndex]
-	not common_lib.valid_key(currentResource, "description")
+check_description(resource,is_unique_element,name,resourceIndex,type) = results {
+	is_unique_element
+	not common_lib.valid_key(resource, "description")
 
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "aws_security_group",
-		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("aws_security_group[%s].%s", [name, types[y]]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("aws_security_group[%s].%s description should be defined and not null", [name, types[y]]),
-		"keyActualValue": sprintf("aws_security_group[%s].%s description is undefined or null", [name, types[y]]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, types[y], resourceIndex], []),
+	results := {
+		"searchKey" : sprintf("aws_security_group[%s].%s", [name, type]),
+		"keyExpectedValue" : sprintf("aws_security_group[%s].%s description should be defined and not null", [name, type]),
+		"keyActualValue" : sprintf("aws_security_group[%s].%s description is undefined or null", [name, type]),
+		"searchLine" : common_lib.build_search_line(["resource", "aws_security_group", name, type], []),
+	}
+} else = results {
+	not is_unique_element
+	not common_lib.valid_key(resource, "description")
+
+	results := {
+		"searchKey" : sprintf("aws_security_group[%s].%s.%d", [name, type,resourceIndex]),
+		"keyExpectedValue": sprintf("aws_security_group[%s].%s[%d] description should be defined and not null", [name, type,resourceIndex]),
+		"keyActualValue": sprintf("aws_security_group[%s].%s[%d] description is undefined or null", [name, type,resourceIndex]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, type, resourceIndex], []),
 	}
 }
+
 
 

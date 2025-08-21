@@ -34,60 +34,57 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	#Case of Single Ingress
+	#Case of Single Ingress or Ingress Array
 	resource := input.document[i].resource.aws_security_group[name]
 
 	portContent := common_lib.tcpPortsMap[port]
-	portNumber = port
-	portName = portContent
-	protocol := tf_lib.getProtocolList(resource.ingress.protocol)[_]
 
-	tf_lib.cidr_is_unmasked(resource)
-	tf_lib.containsPort(resource.ingress, portNumber)
-	isTCPorUDP(protocol)
+	ingress_list := tf_lib.get_ingress_list(resource.ingress)
+	ingress := ingress_list.value[i2]
+	results := is_exposed_to_network(ingress,ingress_list.is_unique_element,name,i2,port,portContent,tf_lib.getProtocolList(ingress.protocol)[_])
+	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_security_group",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("aws_security_group[%s].ingress", [name]),
-		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
+		"searchKey": results.searchKey,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
-		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress"], []),
+		"keyExpectedValue": results.keyExpectedValue,
+		"keyActualValue": results.keyActualValue,
+		"searchLine": results.searchLine,
 	}
 }
 
-CxPolicy[result] {
-	#Case of Ingress Array
-	resource := input.document[i].resource.aws_security_group[name]
-
-	portContent := common_lib.tcpPortsMap[port]
-	portNumber = port
-	portName = portContent
-    ingress := resource.ingress[i2]
-	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
+is_exposed_to_network(ingress,is_unique_element,name,i2,portNumber,portName,protocol) = results {
+	is_unique_element
 
 	tf_lib.cidr_is_unmasked(ingress)
 	tf_lib.containsPort(ingress, portNumber)
 	isTCPorUDP(protocol)
 
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "aws_security_group",
-		"resourceName": tf_lib.get_resource_name(resource, name),
+	results := {
 		"searchKey": sprintf("aws_security_group[%s].ingress[%d]", [name,i2]),
-		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
-		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
 		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2], []),
 	}
-}
+} else = results {
+	not is_unique_element
+
+	tf_lib.cidr_is_unmasked(ingress)
+	tf_lib.containsPort(ingress, portNumber)
+	isTCPorUDP(protocol)
+
+	results := {
+		"searchKey": sprintf("aws_security_group[%s].ingress", [name]),
+		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
+		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress"], []),
+	}
+} else = ""
+
 
 isTCPorUDP("TCP") = true
 
 isTCPorUDP("UDP") = true
-
-
