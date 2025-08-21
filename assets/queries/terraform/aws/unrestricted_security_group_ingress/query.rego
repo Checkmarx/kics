@@ -67,90 +67,70 @@ rule_is_unrestricted("aws_security_group_rule",rule,name) = results {
 
 #Case of aws_security_group
 CxPolicy[result] {
-	#Single Ingress 
-	ingrs := input.document[i].resource.aws_security_group[name].ingress
+	#Case of Single Ingress or Ingress Array - ipv4 or ipv6
+	resource := input.document[i].resource.aws_security_group[name]
 
-	some j
-	contains(ingrs.cidr_blocks[j], "0.0.0.0/0")
+	ingress_list := tf_lib.get_ingress_list(resource.ingress)
+	results := is_unrestricted_ingress(ingress_list.value[i2],ingress_list.is_unique_element,name,i2)
+	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_security_group",
-		"resourceName": tf_lib.get_resource_name(input.document[i].resource.aws_security_group[name], name),
-		"searchKey": sprintf("aws_security_group[%s].ingress.cidr_blocks", [name]),
+		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": results.searchKey,
 		"issueType": "IncorrectValue",
+		"keyExpectedValue": results.keyExpectedValue,
+		"keyActualValue": results.keyActualValue,
+		"searchLine": results.searchLine,
+	}
+}
+
+is_unrestricted_ingress(ingress,is_unique_element,name,i2) = results {
+	#ipv4 single ingress
+	is_unique_element
+	contains(ingress.cidr_blocks[j], "0.0.0.0/0")
+
+	results := {
+		"searchKey": sprintf("aws_security_group[%s].ingress.cidr_blocks", [name]),
 		"keyExpectedValue": sprintf("aws_security_group[%s].ingress.cidr_blocks should not contain '0.0.0.0/0'", [name]),
 		"keyActualValue": sprintf("aws_security_group[%s].ingress.cidr_blocks contains '0.0.0.0/0'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", "cidr_blocks"], []),
 	}
-}
+} else = results {
+	#ipv6 single ingress
+	is_unique_element
+	contains(ingress.ipv6_cidr_blocks[j], tf_lib.unrestricted_ipv6[l])
 
-CxPolicy[result] {
-	#Single Ingress and IPV6
-	ingrs := input.document[i].resource.aws_security_group[name].ingress
-
-	some j
-	contains(ingrs.ipv6_cidr_blocks[j], tf_lib.unrestricted_ipv6[l])
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "aws_security_group",
-		"resourceName": tf_lib.get_resource_name(input.document[i].resource.aws_security_group[name], name),
+	results := {
 		"searchKey": sprintf("aws_security_group[%s].ingress.ipv6_cidr_blocks", [name]),
-		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_security_group[%s].ingress.ipv6_cidr_blocks should not contain '%s'", [name,tf_lib.unrestricted_ipv6[l]]),
 		"keyActualValue": sprintf("aws_security_group[%s].ingress.ipv6_cidr_blocks contains '%s'", [name,tf_lib.unrestricted_ipv6[l]]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", "ipv6_cidr_blocks"], []),
 	}
-}
+} else = results {
+	#ipv4 ingress array
+	not is_unique_element
+	contains(ingress.cidr_blocks[idx], "0.0.0.0/0")
 
-
-CxPolicy[result] {
-	#Case of Ingress Array
-	ingrs := input.document[i].resource.aws_security_group[name].ingress[i2]
-	contains(ingrs.cidr_blocks[idx], "0.0.0.0/0")
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "aws_security_group",
-		"resourceName": tf_lib.get_resource_name(input.document[i].resource.aws_security_group[name], name),
+	results := {
 		"searchKey": sprintf("aws_security_group[%s].ingress[%d].cidr_blocks", [name,i2]),
-		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_security_group[%s].ingress[%d].cidr_blocks should not contain '0.0.0.0/0'", [name,i2]),
 		"keyActualValue": sprintf("aws_security_group[%s].ingress[%d].cidr_blocks contains '0.0.0.0/0'", [name,i2]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2, "cidr_blocks"], []),
 	}
-}
+} else = results {
+	#ipv6 ingress array
+	not is_unique_element
+	contains(ingress.ipv6_cidr_blocks[idx], tf_lib.unrestricted_ipv6[l])
 
-CxPolicy[result] {
-	#Case of Ingress Array and IPV6
-	ingrs := input.document[i].resource.aws_security_group[name].ingress[i2]
-	contains(ingrs.ipv6_cidr_blocks[idx], tf_lib.unrestricted_ipv6[l])
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "aws_security_group",
-		"resourceName": tf_lib.get_resource_name(input.document[i].resource.aws_security_group[name], name),
+	results := {
 		"searchKey": sprintf("aws_security_group[%s].ingress[%d].ipv6_cidr_blocks", [name,i2]),
-		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("aws_security_group[%s].ingress[%d].ipv6_cidr_blocks should not contain '%s'", [name,i2,tf_lib.unrestricted_ipv6[l]]),
 		"keyActualValue": sprintf("aws_security_group[%s].ingress[%d].ipv6_cidr_blocks contains '%s'", [name,i2,tf_lib.unrestricted_ipv6[l]]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2, "ipv6_cidr_blocks"], []),
 	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
+} else = ""
 
 
 
