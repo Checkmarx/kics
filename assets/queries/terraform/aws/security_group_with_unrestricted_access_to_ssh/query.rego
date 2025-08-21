@@ -43,48 +43,25 @@ CxPolicy[result] {
 	}
 }
 
-
+# module
 CxPolicy[result] {
-	#module with Single Ingress or Ingress Array
 	module := input.document[i].module[name]
-	common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_cidr_blocks")
+	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_with_cidr_blocks")
+	common_lib.valid_key(module, ingressKey)
 
-	ingress_list := tf_lib.get_ingress_list(module.ingress)
-	results := module_ssh_port_is_open(ingress_list.value[i2],ingress_list.is_unique_element,name,i2)
-	results != ""
+	ingress := module[ingressKey][i2]
+
+	tf_lib.portOpenToInternet(ingress, 22)
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
-		"searchKey": results.searchKey,
+		"searchKey": sprintf("module[%s].%s.%d", [name, ingressKey,i2]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": results.keyExpectedValue,
-		"keyActualValue": results.keyActualValue,
-		"searchLine": results.searchLine,
-	}
-}
-
-module_ssh_port_is_open(ingress,is_unique_element,name,i2) = results {
-	is_unique_element
-	tf_lib.portOpenToInternet(ingress, 22)
-
-	results := {
-		"searchKey": sprintf("module[%s].ingress", [name]),
-		"keyExpectedValue": sprintf("module[%s].ingress 'SSH' (Port:22) should not be open",[name]),
-		"keyActualValue": sprintf("module[%s].ingress 'SSH' (Port:22) is open",[name]),
-		"searchLine": common_lib.build_search_line(["module", name, "ingress"], []),
-	}
-
-} else = results {
-	not is_unique_element
-	tf_lib.portOpenToInternet(ingress, 22)
-
-	results := {
-		"searchKey": sprintf("module[%s].ingress[%d]", [name,i2]),
-		"keyExpectedValue": sprintf("module[%s].ingress[%d] 'SSH' (Port:22) should not be open",[name,i2]),
-		"keyActualValue": sprintf("module[%s].ingress[%d] 'SSH' (Port:22) is open",[name,i2]),
-		"searchLine": common_lib.build_search_line(["module", name, "ingress", i2], []),
+		"keyExpectedValue": sprintf("module[%s].%s.%d 'SSH' (Port:22) should not be open",[name, ingressKey,i2]),
+		"keyActualValue": sprintf("module[%s].%s.%d 'SSH' (Port:22) is open",[name, ingressKey,i2]),
+		"searchLine": common_lib.build_search_line(["module", name, ingressKey, i2], []),
 	}
 }
 

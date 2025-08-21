@@ -5,30 +5,20 @@ module "vote_service_sg" {
   description = "Security group for user-service with custom ports open within VPC, and PostgreSQL publicly open"
   vpc_id      = "vpc-12345678"
 
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    ipv6_cidr_blocks = ["fd00::/8", "::/0"]
-  }
-
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    ipv6_cidr_blocks = ["fd00::/8"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-  tags = {
-    Name = "allow_tls"
-  }
+  ingress_with_cidr_blocks = [
+    {
+      description = "TLS from VPC"
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      ipv6_cidr_blocks = ["fd00::/8"]
+    },
+    {
+      description = "TLS from VPC"
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      ipv6_cidr_blocks = ["fd00::/8", "::/0"]
+    }
+  ]
 }

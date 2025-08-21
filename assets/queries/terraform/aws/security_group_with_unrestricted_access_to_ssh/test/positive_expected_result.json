@@ -14,13 +14,13 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 8,
+    "line": 10,
     "fileName": "positive3.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 8,
+    "line": 10,
     "fileName": "positive4.tf"
   },
   {
@@ -38,13 +38,13 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 8,
+    "line": 17,
     "fileName": "positive7.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 8,
+    "line": 17,
     "fileName": "positive8.tf"
   },
   {
@@ -62,13 +62,13 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 8,
+    "line": 10,
     "fileName": "positive11.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 8,
+    "line": 10,
     "fileName": "positive12.tf"
   },
   {
@@ -86,13 +86,13 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 8,
+    "line": 17,
     "fileName": "positive15.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 8,
+    "line": 17,
     "fileName": "positive16.tf"
   },
   {
@@ -110,13 +110,13 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 8,
+    "line": 10,
     "fileName": "positive19.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 8,
+    "line": 10,
     "fileName": "positive20.tf"
   },
   {
@@ -134,13 +134,13 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 8,
+    "line": 10,
     "fileName": "positive22.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 17,
+    "line": 18,
     "fileName": "positive22.tf"
   },
   {
