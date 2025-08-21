@@ -44,14 +44,38 @@ CxPolicy[result] {
 	}
 }
 
+# module "aws_security_group" (ingress|egress)_with_cidr_blocks without description 
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_with_cidr_blocks")
+	egressKey  := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "egress_with_cidr_blocks")
+	keys := [ingressKey,egressKey]
+	common_lib.valid_key(module, keys[i2])
+
+	gress := module[keys[i2]][i3]
+
+	not common_lib.valid_key(gress, "description")
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
+		"searchKey": sprintf("module[%s].%s.%d", [name, keys[i2],i3]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("module[%s].%s.%d.description should be defined and not null",[name, keys[i2],i3]),
+		"keyActualValue": sprintf("module[%s].%s.%d.description is undefined or null",[name, keys[i2],i3]),
+		"searchLine": common_lib.build_search_line(["module", name, keys[i2], i3], []),
+	}
+}
+
 check_description(resource,is_unique_element,name,resourceIndex,type) = results {
 	is_unique_element
 	not common_lib.valid_key(resource, "description")
 
 	results := {
 		"searchKey" : sprintf("aws_security_group[%s].%s", [name, type]),
-		"keyExpectedValue" : sprintf("aws_security_group[%s].%s description should be defined and not null", [name, type]),
-		"keyActualValue" : sprintf("aws_security_group[%s].%s description is undefined or null", [name, type]),
+		"keyExpectedValue" : sprintf("aws_security_group[%s].%s.description should be defined and not null", [name, type]),
+		"keyActualValue" : sprintf("aws_security_group[%s].%s.description is undefined or null", [name, type]),
 		"searchLine" : common_lib.build_search_line(["resource", "aws_security_group", name, type], []),
 	}
 } else = results {
@@ -60,8 +84,8 @@ check_description(resource,is_unique_element,name,resourceIndex,type) = results 
 
 	results := {
 		"searchKey" : sprintf("aws_security_group[%s].%s.%d", [name, type,resourceIndex]),
-		"keyExpectedValue": sprintf("aws_security_group[%s].%s[%d] description should be defined and not null", [name, type,resourceIndex]),
-		"keyActualValue": sprintf("aws_security_group[%s].%s[%d] description is undefined or null", [name, type,resourceIndex]),
+		"keyExpectedValue": sprintf("aws_security_group[%s].%s[%d].description should be defined and not null", [name, type,resourceIndex]),
+		"keyActualValue": sprintf("aws_security_group[%s].%s[%d].description is undefined or null", [name, type,resourceIndex]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, type, resourceIndex], []),
 	}
 }

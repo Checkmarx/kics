@@ -34,5 +34,41 @@
     "severity": "INFO",
     "line": 15,
     "filename": "positive4.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 11,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 20,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 39,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 53,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 62,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 76,
+    "filename": "positive5.tf"
   }
 ]
