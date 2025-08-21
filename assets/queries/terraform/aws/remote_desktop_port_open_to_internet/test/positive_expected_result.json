@@ -40,5 +40,23 @@
     "severity": "HIGH",
     "line": 17,
     "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 11,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 30,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 44,
+    "fileName": "positive4.tf"
   }
 ]
