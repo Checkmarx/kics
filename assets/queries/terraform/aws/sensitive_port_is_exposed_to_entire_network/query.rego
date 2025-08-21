@@ -64,10 +64,10 @@ is_exposed_to_network(ingress,is_unique_element,name,i2,portNumber,portName,prot
 	isTCPorUDP(protocol)
 
 	results := {
-		"searchKey": sprintf("aws_security_group[%s].ingress[%d]", [name,i2]),
+		"searchKey": sprintf("aws_security_group[%s].ingress", [name]),
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
 		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress"], []),
 	}
 } else = results {
 	not is_unique_element
@@ -77,10 +77,10 @@ is_exposed_to_network(ingress,is_unique_element,name,i2,portNumber,portName,prot
 	isTCPorUDP(protocol)
 
 	results := {
-		"searchKey": sprintf("aws_security_group[%s].ingress", [name]),
+		"searchKey": sprintf("aws_security_group[%s].ingress[%d]", [name,i2]),
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
 		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
-		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress"], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2], []),
 	}
 } else = ""
 
