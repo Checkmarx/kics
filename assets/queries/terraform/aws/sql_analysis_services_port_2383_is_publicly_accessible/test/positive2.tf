@@ -1,32 +1,25 @@
-resource "aws_security_group" "positive2" {
-  name        = "allow_tls_1"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
+resource "aws_security_group" "ec2" {
+  description = "ec2 sg"
+  name        = "secgroup-ec2"
+  vpc_id      = var.vpc_id
 }
 
-resource "aws_vpc_security_group_ingress_rule" "positive2_1_rule" {
-  security_group_id = aws_security_group.positive2.id
-  cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 2300
-  to_port           = 2400
-  ip_protocol       = "tcp"
-  description       = "TLS from VPC"
+resource "aws_vpc_security_group_ingress_rule" "positive2-1" {
+  security_group_id = aws_security_group.ec2.id
+  description = "allows RDP from Internet"
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 2383 
+  ip_protocol = "tcp"
+  to_port     = 2383
 }
 
-resource "aws_vpc_security_group_ingress_rule" "positive2_2_rule_2" {
-  security_group_id = aws_security_group.positive2.id
-  cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 2350
-  to_port           = 2384
-  ip_protocol       = "tcp"
-  description       = "TLS from VPC"
-}
+resource "aws_vpc_security_group_ingress_rule" "positive2-2" {
+  security_group_id = aws_security_group.ec2.id
+  description = "allows RDP from Internet"
 
-resource "aws_vpc_security_group_ingress_rule" "positive2_3_rule" {
-  security_group_id = aws_security_group.positive2.id
-  cidr_ipv6         = "::/0"
-  from_port         = 2200
-  to_port           = 2500
-  ip_protocol       = "tcp"
-  description       = "Remote desktop open private"
+  cidr_ipv6   = "::/0"
+  from_port   = 2383 
+  ip_protocol = "-1"
+  to_port     = 2383
 }
