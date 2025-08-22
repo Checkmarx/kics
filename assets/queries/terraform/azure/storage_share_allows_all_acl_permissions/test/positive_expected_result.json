@@ -2,6 +2,7 @@
   {
     "queryName": "Storage Share Allows All ACL Permissions",
     "severity": "MEDIUM",
-    "line": 10
+    "line": 16,
+    "filename": "positive1.tf"
   }
 ]
