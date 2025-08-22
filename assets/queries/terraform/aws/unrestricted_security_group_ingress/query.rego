@@ -5,7 +5,6 @@ import data.generic.terraform as tf_lib
 
 
 # Case of aws_security_group_rule or aws_vpc_security_group_ingress_rule
-
 CxPolicy[result] {
 	types := ["aws_vpc_security_group_ingress_rule","aws_security_group_rule"]
 	rule := input.document[i].resource[types[i2]][name]
@@ -27,7 +26,51 @@ CxPolicy[result] {
 	}
 }
 
+#Case of aws_security_group
+CxPolicy[result] {
+	#Case of Single Ingress or Ingress Array - ipv4 or ipv6
+	resource := input.document[i].resource.aws_security_group[name]
 
+	ingress_list := tf_lib.get_ingress_list(resource.ingress)
+	results := is_unrestricted_ingress(ingress_list.value[i2],ingress_list.is_unique_element,name,i2)
+	results != ""
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "aws_security_group",
+		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": results.searchKey,
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": results.keyExpectedValue,
+		"keyActualValue": results.keyActualValue,
+		"searchLine": results.searchLine,
+	}
+}
+
+# modules for direct ingress_cidr (ipv4/ipv6) and ingress_with_cidr (ipv4/ipv6)
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	types := ["ingress_cidr_blocks","ingress_ipv6_cidr_blocks","ingress_with_cidr_blocks","ingress_with_ipv6_cidr_blocks"]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", types[i2]) # based on module terraform-aws-modules/security-group/aws
+
+	object_list := tf_lib.get_ingress_list(module[keyToCheck])
+	cidr_or_ingress := object_list.value[i3]
+	results := check_cidr_block(cidr_or_ingress,name,types[i2],keyToCheck,i3)
+	results != ""
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": "n/a",
+		"resourceName": "n/a",
+		"searchKey": results.searchKey,
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": results.keyExpectedValue,
+		"keyActualValue": results.keyActualValue,
+		"searchLine": results.searchLine
+	}
+}
+
+# aws_security_group_rule or aws_vpc_security_group_ingress_rule
 rule_is_unrestricted("aws_vpc_security_group_ingress_rule",rule,name) = results {
 	rule.cidr_ipv4 == "0.0.0.0/0"
 	results := {
@@ -64,28 +107,7 @@ rule_is_unrestricted("aws_security_group_rule",rule,name) = results {
 	} 
 } else = ""
 
-
-#Case of aws_security_group
-CxPolicy[result] {
-	#Case of Single Ingress or Ingress Array - ipv4 or ipv6
-	resource := input.document[i].resource.aws_security_group[name]
-
-	ingress_list := tf_lib.get_ingress_list(resource.ingress)
-	results := is_unrestricted_ingress(ingress_list.value[i2],ingress_list.is_unique_element,name,i2)
-	results != ""
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "aws_security_group",
-		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": results.searchKey,
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": results.keyExpectedValue,
-		"keyActualValue": results.keyActualValue,
-		"searchLine": results.searchLine,
-	}
-}
-
+# aws_security_group
 is_unrestricted_ingress(ingress,is_unique_element,name,i2) = results {
 	#ipv4 single ingress
 	is_unique_element
@@ -132,29 +154,7 @@ is_unrestricted_ingress(ingress,is_unique_element,name,i2) = results {
 	}
 } else = ""
 
-# modules for direct ingress_cidr (ipv4/ipv6) and ingress_with_cidr (ipv4/ipv6)
-CxPolicy[result] {
-	module := input.document[i].module[name]
-	types := ["ingress_cidr_blocks","ingress_ipv6_cidr_blocks","ingress_with_cidr_blocks","ingress_with_ipv6_cidr_blocks"]
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", types[i2]) # based on module terraform-aws-modules/security-group/aws
-
-	object_list := tf_lib.get_ingress_list(module[keyToCheck])
-	cidr_or_ingress := object_list.value[i3]
-	results := check_cidr_block(cidr_or_ingress,name,types[i2],keyToCheck,i3)
-	results != ""
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "n/a",
-		"resourceName": "n/a",
-		"searchKey": results.searchKey,
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": results.keyExpectedValue,
-		"keyActualValue": results.keyActualValue,
-		"searchLine": results.searchLine
-	}
-}
-
+# Modules
 check_cidr_block(cidr_or_ingress,name,type,keyToCheck,i3) = results {
 	#ipv4 inside ingress
 	type == "ingress_with_cidr_blocks"

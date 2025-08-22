@@ -34,7 +34,6 @@ resource "aws_security_group" "positive_1_ipv4_array" {
   }
 }
 
-
 resource "aws_security_group" "positive_1_ipv6_array" {
   ingress {
     from_port         = 3306
