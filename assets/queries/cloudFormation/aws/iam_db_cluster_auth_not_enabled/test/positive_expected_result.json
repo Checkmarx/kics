@@ -106,5 +106,77 @@
     "severity": "MEDIUM",
     "line": 6,
     "fileName": "positive18.json"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive19.yaml"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive20.json"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 5,
+    "fileName": "positive21.yaml"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 6,
+    "fileName": "positive22.json"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive23.yaml"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive24.json"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive25.yaml"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive26.json"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive27.yaml"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 20,
+    "fileName": "positive28.json"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive29.yaml"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 20,
+    "fileName": "positive30.json"
   }
 ]
