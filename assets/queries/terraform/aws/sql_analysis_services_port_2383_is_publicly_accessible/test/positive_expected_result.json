@@ -2,19 +2,43 @@
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
-    "line": 6,
+    "line": 5,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
-    "line": 27,
+    "line": 26,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
-    "line": 38,
+    "line": 39,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 60,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 73,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 87,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 101,
     "fileName": "positive1.tf"
   },
   {
@@ -26,13 +50,7 @@
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
-    "line": 16,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
-    "severity": "MEDIUM",
-    "line": 25,
+    "line": 17,
     "fileName": "positive2.tf"
   },
   {
@@ -50,12 +68,6 @@
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
-    "line": 27,
-    "fileName": "positive3.tf"
-  },
-  {
-    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
-    "severity": "MEDIUM",
     "line": 11,
     "fileName": "positive4.tf"
   },
@@ -68,7 +80,25 @@
   {
     "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
     "severity": "MEDIUM",
-    "line": 44,
+    "line": 49,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 63,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 82,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible",
+    "severity": "MEDIUM",
+    "line": 96,
     "fileName": "positive4.tf"
   }
 ]

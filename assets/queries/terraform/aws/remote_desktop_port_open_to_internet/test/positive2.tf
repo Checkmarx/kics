@@ -4,7 +4,6 @@ resource "aws_security_group" "ec2" {
   vpc_id      = var.vpc_id
 }
 
-
 resource "aws_vpc_security_group_ingress_rule" "positive2-1" {
   security_group_id = aws_security_group.ec2.id
   description = "allows RDP from Internet"

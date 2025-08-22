@@ -1,7 +1,18 @@
-resource "aws_security_group" "negative1" {
-  name        = "allow_tls"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
+resource "aws_security_group" "ec2" {
+  name        = "Dont open remote desktop port"
+  description = "Doesn't enable the remote desktop port"
+}
+
+resource "aws_security_group" "negative1-1" {
+  ingress {
+    description = "Remote desktop open private"
+    from_port   = 18
+    to_port     = 30
+    protocol    = "tcp"
+  }
+}
+
+resource "aws_security_group" "negative1-2" {
 
   ingress {
     description = "TLS from VPC"
@@ -10,15 +21,15 @@ resource "aws_security_group" "negative1" {
     protocol    = "tcp"
     cidr_blocks = ["192.120.0.0/16", "75.132.0.0/16"]
   }
+}
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+resource "aws_security_group" "negative1-3" {
 
-  tags = {
-    Name = "allow_tls"
+  ingress {
+    description = "TLS from VPC"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    ipv6_cidr_blocks = ["fd00::/8", "fd01::/8"]
   }
 }

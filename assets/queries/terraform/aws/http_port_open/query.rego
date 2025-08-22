@@ -76,7 +76,6 @@ http_is_open(ingress,is_unique_element,name,i2) = results {
 		"keyActualValue" : sprintf("aws_security_group[%s].ingress opens the HTTP port (80)",[name]),
 		"searchLine" : common_lib.build_search_line(["resource", "aws_security_group", name, "ingress"], []),
 	}
-
 } else = results {
 	not is_unique_element
 	tf_lib.portOpenToInternet(ingress, 80)

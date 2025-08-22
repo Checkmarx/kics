@@ -2,169 +2,103 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 6,
+    "line": 5,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 6,
+    "line": 26,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 39,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 60,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 73,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 87,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 101,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 7,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 10,
+    "line": 17,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 7,
     "fileName": "positive3.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 10,
+    "line": 17,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 11,
     "fileName": "positive4.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive5.tf"
+    "line": 30,
+    "fileName": "positive4.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive6.tf"
+    "line": 49,
+    "fileName": "positive4.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 17,
-    "fileName": "positive7.tf"
+    "line": 63,
+    "fileName": "positive4.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 17,
-    "fileName": "positive8.tf"
+    "line": 82,
+    "fileName": "positive4.tf"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive9.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive10.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive11.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive12.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive13.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive14.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 17,
-    "fileName": "positive15.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 17,
-    "fileName": "positive16.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive17.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive18.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive19.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive20.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 6,
-    "fileName": "positive21.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 15,
-    "fileName": "positive21.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive22.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 18,
-    "fileName": "positive22.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive23.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive24.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive25.tf"
-  },
-  {
-    "queryName": "Security Group With Unrestricted Access To SSH",
-    "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive26.tf"
+    "line": 96,
+    "fileName": "positive4.tf"
   }
 ]

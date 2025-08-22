@@ -1,17 +1,25 @@
-module "vote_service_sg" {
-  source = "terraform-aws-modules/security-group/aws"
-  version = "4.3.0"
-  name        = "user-service"
-  description = "Security group for user-service with custom ports open within VPC, and PostgreSQL publicly open"
-  vpc_id      = "vpc-12345678"
+resource "aws_security_group" "ec2" {
+  description = "ec2 sg"
+  name        = "secgroup-ec2"
+  vpc_id      = var.vpc_id
+}
 
-  ingress_with_cidr_blocks = [
-     {
-        description = "TLS from VPC"
-        from_port   = 22
-        to_port     = 22
-        protocol    = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-     }
-  ]
+resource "aws_security_group_rule" "positive3-1" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.ec2.id
+  description        = "allows RDP from Internet (IPv4)"
+}
+
+resource "aws_security_group_rule" "positive3-2" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "-1" 
+  ipv6_cidr_blocks  = ["::/0"]
+  security_group_id = aws_security_group.ec2.id
+  description        = "allows RDP from Internet (IPv6)"
 }

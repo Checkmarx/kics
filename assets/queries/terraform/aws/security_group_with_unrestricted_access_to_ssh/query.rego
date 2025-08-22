@@ -4,11 +4,11 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	#Case of aws_vpc_security_group_ingress_rule or aws_security_group_rule
+	#Case of "aws_vpc_security_group_ingress_rule" or "aws_security_group_rule"
 	types := ["aws_vpc_security_group_ingress_rule","aws_security_group_rule"]
 	resource := input.document[i].resource[types[i2]][name]
-	tf_lib.is_security_group_ingress(types[i2],resource)
 
+	tf_lib.is_security_group_ingress(types[i2],resource)
 	tf_lib.portOpenToInternet(resource, 22)
 
 	result := {
@@ -24,7 +24,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	#aws_security_group with Single Ingress or Ingress Array
+	#Case of "aws_security_group"
 	resource := input.document[i].resource.aws_security_group[name]
 	
 	ingress_list := tf_lib.get_ingress_list(resource.ingress)
@@ -43,10 +43,11 @@ CxPolicy[result] {
 	}
 }
 
-# module
 CxPolicy[result] {
+	#Case of "security-group" Module
 	module := input.document[i].module[name]
-	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_with_cidr_blocks")
+	types := ["ingress_with_cidr_blocks","ingress_with_ipv6_cidr_blocks"]
+	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", types[t])
 	common_lib.valid_key(module, ingressKey)
 
 	ingress := module[ingressKey][i2]
@@ -75,7 +76,6 @@ ssh_port_is_open(ingress,is_unique_element,name,i2) = results {
 		"keyActualValue": sprintf("aws_security_group[%s].ingress 'SSH' (Port:22) is open", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress"], []),
 	}
-
 } else = results {
 	not is_unique_element
 	tf_lib.portOpenToInternet(ingress, 22)
@@ -86,6 +86,4 @@ ssh_port_is_open(ingress,is_unique_element,name,i2) = results {
 		"keyActualValue": sprintf("aws_security_group[%s].ingress[%d] 'SSH' (Port:22) is open", [name,i2]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2], []),
 	}
-}
-
-
+} else = ""

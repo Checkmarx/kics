@@ -3,9 +3,8 @@ package Cx
 import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
 
-
 CxPolicy[result] {
-	#Case of aws_vpc_security_group_ingress_rule / aws_security_group_rule
+	#Case of "aws_vpc_security_group_ingress_rule" or "aws_security_group_rule"
 	types := ["aws_vpc_security_group_ingress_rule","aws_security_group_rule"]
 	resource := input.document[i].resource[types[i2]][name]
 
@@ -25,7 +24,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	#Case of Single Ingress or Ingress Array
+	#Case of "aws_security_group"
 	resource := input.document[i].resource.aws_security_group[name]
 
 	ingress_list := tf_lib.get_ingress_list(resource.ingress)
@@ -44,10 +43,11 @@ CxPolicy[result] {
 	}
 }
 
-# module
 CxPolicy[result] {
+	#Case of "security-group" Module
 	module := input.document[i].module[name]
-	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_with_cidr_blocks")
+	types := ["ingress_with_cidr_blocks","ingress_with_ipv6_cidr_blocks"]
+	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", types[t])
 	common_lib.valid_key(module, ingressKey)
 
 	ingress := module[ingressKey][i2]

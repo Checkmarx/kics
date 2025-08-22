@@ -36,7 +36,6 @@ module "vote_service_sg_ipv6" {
   ]
 }
 
-
 module "vote_service_sg_ipv4_array" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.3.0"

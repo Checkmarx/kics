@@ -1,11 +1,10 @@
 package Cx
 
-import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
-
+import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	#Case of aws_vpc_security_group_ingress_rule / aws_security_group_rule
+	#Case of "aws_vpc_security_group_ingress_rule" or "aws_security_group_rule"
 	types := ["aws_vpc_security_group_ingress_rule","aws_security_group_rule"]
 	resource := input.document[i].resource[types[i2]][name]
 
@@ -25,7 +24,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	#Case of Single Ingress or Ingress Array
+	#Case of "aws_security_group"
 	resource := input.document[i].resource.aws_security_group[name]
 
 	ingress_list := tf_lib.get_ingress_list(resource.ingress)
@@ -44,10 +43,11 @@ CxPolicy[result] {
 	}
 }
 
-# module
 CxPolicy[result] {
+	#Case of "security-group" Module
 	module := input.document[i].module[name]
-	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_with_cidr_blocks")
+	types := ["ingress_with_cidr_blocks","ingress_with_ipv6_cidr_blocks"]
+	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", types[t])
 	common_lib.valid_key(module, ingressKey)
 
 	ingress := module[ingressKey][i2]
@@ -65,7 +65,6 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["module", name, ingressKey, i2], []),
 	}
 }
-
 
 port_is_open_to_internet(ingress,is_unique_element,name,i2) = results {
 	is_unique_element
@@ -86,6 +85,5 @@ port_is_open_to_internet(ingress,is_unique_element,name,i2) = results {
 		"keyExpectedValue": sprintf("aws_security_group[%s].ingress[%d] shouldn't open SQL Analysis Services Port 2383", [name,i2]),
 		"keyActualValue": sprintf("aws_security_group[%s].ingress[%d] opens SQL Analysis Services Port 2383", [name,i2]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2], []),
-
 	}
 } else = ""

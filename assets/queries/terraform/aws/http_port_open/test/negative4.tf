@@ -47,8 +47,8 @@ module "vote_service_sg_ipv4_array" {
   ingress_with_cidr_blocks = [
     {
       description = "TLS from VPC"
-      from_port   = 2383
-      to_port     = 2383
+      from_port   = 0
+      to_port     = 100
       protocol    = "udp"
       cidr_blocks = ["0.1.1.1/21", "8.8.8.8/24"]
     },
@@ -80,10 +80,17 @@ module "vote_service_sg_ipv6_array" {
   ingress_with_ipv6_cidr_blocks = [
     {
       description = "TLS from VPC"
-      from_port   = 2383
-      to_port     = 2383
+      from_port   = 0
+      to_port     = 100
       protocol    = "udp"
       ipv6_cidr_blocks = ["2001:0db8:85a3::8a2e:0370:7334/64", "::/0"]
+    },
+    {
+      description = "TLS from VPC"
+      from_port   = 28000
+      to_port     = 28001
+      protocol    = "tcp"
+      ipv6_cidr_blocks = ["10.0.0.0/16"]
     },
     {
       description = "TLS from VPC"
