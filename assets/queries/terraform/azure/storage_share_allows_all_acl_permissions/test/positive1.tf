@@ -1,4 +1,10 @@
-resource "azurerm_storage_share" "example" {
+resource "azurerm_storage_share_file" "positive1" {
+  name             = "my-awesome-content.zip"
+  storage_share_id = azurerm_storage_share.default_storage_share.id
+  source           = "some-local-file.zip"
+}
+
+resource "azurerm_storage_share" "default_storage_share" {
   name                 = "sharename"
   storage_account_name = azurerm_storage_account.example.name
   quota                = 50
@@ -12,10 +18,4 @@ resource "azurerm_storage_share" "example" {
       expiry      = "2021-07-02T10:38:21.0000000Z"
     }
   }
-}
-
-resource "azurerm_storage_share_file" "example" {
-  name             = "my-awesome-content.zip"
-  storage_share_id = azurerm_storage_share.example.id
-  source           = "some-local-file.zip"
 }
