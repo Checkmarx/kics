@@ -49,4 +49,3 @@ resource "aws_security_group" "negative_1_ipv6_array" {
     ipv6_cidr_blocks  = ["fc00::/8"]
   }
 }
-
