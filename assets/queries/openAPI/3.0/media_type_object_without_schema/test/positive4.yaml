@@ -29,9 +29,6 @@ components:
       required: true
       content:
         multipart/form-data:
-          examples:
-            tshirt:
-              $ref: "#/components/examples/tshirt"
           encoding:
             code:
               contentType: image/png, image/jpeg
