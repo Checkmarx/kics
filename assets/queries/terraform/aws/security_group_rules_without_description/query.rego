@@ -44,27 +44,26 @@ CxPolicy[result] {
 	}
 }
 
-# module "aws_security_group" (ingress|egress)_with_cidr_blocks without description 
+# module "aws_security_group" (ingress|egress)_with_cidr_blocks (ipv4/ipv6) without description 
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_with_cidr_blocks")
-	egressKey  := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "egress_with_cidr_blocks")
-	keys := [ingressKey,egressKey]
-	common_lib.valid_key(module, keys[i2])
+	types := ["ingress_with_cidr_blocks","egress_with_cidr_blocks","ingress_with_ipv6_cidr_blocks","egress_with_ipv6_cidr_blocks"]
+	key := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", types[t])
+	common_lib.valid_key(module, key)
 
-	gress := module[keys[i2]][i3]
+	target := module[key][i2]
 
-	not common_lib.valid_key(gress, "description")
+	not common_lib.valid_key(target, "description")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
-		"searchKey": sprintf("module[%s].%s.%d", [name, keys[i2],i3]),
+		"searchKey": sprintf("module[%s].%s.%d", [name, key, i2]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("module[%s].%s.%d.description should be defined and not null",[name, keys[i2],i3]),
-		"keyActualValue": sprintf("module[%s].%s.%d.description is undefined or null",[name, keys[i2],i3]),
-		"searchLine": common_lib.build_search_line(["module", name, keys[i2], i3], []),
+		"keyExpectedValue": sprintf("module[%s].%s.%d.description should be defined and not null",[name, key, i2]),
+		"keyActualValue": sprintf("module[%s].%s.%d.description is undefined or null",[name, key, i2]),
+		"searchLine": common_lib.build_search_line(["module", name, key, i2], []),
 	}
 }
 
