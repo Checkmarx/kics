@@ -136,38 +136,74 @@ is_unrestricted_ingress(ingress,is_unique_element,name,i2) = results {
 # modules 
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", "ingress_ipv6_cidr_blocks") # based on module terraform-aws-modules/security-group/aws
-
-	cidr := module[keyToCheck][idxCidr]
-	contains(cidr, tf_lib.unrestricted_ipv6[l])
+	
+	results := get_ipv6_cidr_blocks_if_exists(module,name)
+	common_lib.inArray(results.value, tf_lib.unrestricted_ipv6[l])
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
-		"searchKey": sprintf("module[%s].%s", [name, keyToCheck]),
+		"searchKey": results.searchKey,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("module[%s].%s should not contain '%s'", [name, keyToCheck, tf_lib.unrestricted_ipv6[l]]),
-		"keyActualValue": sprintf("module[%s].%s contains '%s'", [name, keyToCheck, tf_lib.unrestricted_ipv6[l]]),
-		"searchLine": common_lib.build_search_line(["module", name, "ingress_ipv6_cidr_blocks", idxCidr], []),
+		"keyExpectedValue": sprintf("module[%s].%s should not contain '%s'", [name, results.keyToCheck, tf_lib.unrestricted_ipv6[l]]),
+		"keyActualValue": sprintf("module[%s].%s contains '%s'", [name, results.keyToCheck, tf_lib.unrestricted_ipv6[l]]),
+		"searchLine": results.searchLine
 	}
 }
 
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", "ingress_cidr_blocks") # based on module terraform-aws-modules/security-group/aws
-
-	cidr := module[keyToCheck][idxCidr]
-	contains(cidr, "0.0.0.0/0")
+	
+	results := get_ipv4_cidr_blocks_if_exists(module,name)
+	common_lib.inArray(results.value, "0.0.0.0/0")
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
-		"searchKey": sprintf("module[%s].%s", [name, keyToCheck]),
+		"searchKey": results.searchKey,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("module[%s].%s should not contain '0.0.0.0/0'", [name, keyToCheck]),
-		"keyActualValue": sprintf("module[%s].%s contains '0.0.0.0/0'", [name, keyToCheck]),
-		"searchLine": common_lib.build_search_line(["module", name, "ingress_cidr_blocks", idxCidr], []),
+		"keyExpectedValue": sprintf("module[%s].%s should not contain '0.0.0.0/0'", [name, results.keyToCheck]),
+		"keyActualValue": sprintf("module[%s].%s contains '0.0.0.0/0'", [name, results.keyToCheck]),
+		"searchLine": results.searchLine
 	}
 }
+
+get_ipv4_cidr_blocks_if_exists(module,name) = results {
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", "ingress_cidr_blocks") # based on module terraform-aws-modules/security-group/aws
+	results := {
+		"keyToCheck" : keyToCheck,
+		"value" : module[keyToCheck],
+		"searchKey" : sprintf("module[%s].%s", [name, keyToCheck]),
+		"searchLine" : common_lib.build_search_line(["module", name, keyToCheck], []),
+	} 
+} else = results {
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", "ingress_with_cidr_blocks") # based on module terraform-aws-modules/security-group/aws
+	results := {
+		"keyToCheck" : keyToCheck,
+		"value" : module[keyToCheck].cidr_blocks,
+		"searchKey" : sprintf("module[%s].%s.cidr_blocks", [name, keyToCheck]),
+		"searchLine" : common_lib.build_search_line(["module", name, keyToCheck, "cidr_blocks"], []),
+	} 
+}
+
+get_ipv6_cidr_blocks_if_exists(module,name) = results {
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", "ingress_ipv6_cidr_blocks") # based on module terraform-aws-modules/security-group/aws
+	results := {
+		"keyToCheck" : keyToCheck,
+		"value" : module[keyToCheck],
+		"searchKey" : sprintf("module[%s].%s", [name, keyToCheck]),
+		"searchLine" : common_lib.build_search_line(["module", name, keyToCheck], []),
+	} 
+} else = results {
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", "ingress_with_ipv6_cidr_blocks") # based on module terraform-aws-modules/security-group/aws
+	results := {
+		"keyToCheck" : keyToCheck,
+		"value" : module[keyToCheck].ipv6_cidr_blocks,
+		"searchKey" : sprintf("module[%s].%s.ipv6_cidr_blocks", [name, keyToCheck]),
+		"searchLine" : common_lib.build_search_line(["module", name, keyToCheck, "ipv6_cidr_blocks"], []),
+	} 
+}
+
+
