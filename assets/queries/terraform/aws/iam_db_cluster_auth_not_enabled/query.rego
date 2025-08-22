@@ -36,7 +36,7 @@ CxPolicy[result] { # iam_database_authentication_enabled set to false for resour
         "searchKey": sprintf("aws_rds_cluster[%s].iam_database_authentication_enabled", [name]),
         "issueType": "MissingAttribute",
         "keyExpectedValue": "'iam_database_authentication_enabled' should be set to true",
-        "keyActualValue": "'iam_database_authentication_enabled' is undefined",
+        "keyActualValue": "'iam_database_authentication_enabled' is defined to false",
         "searchLine": common_lib.build_search_line(["resource", "aws_rds_cluster", name, "iam_database_authentication_enabled"], []),
         "remediation": json.marshal({
 			"before": "false",
