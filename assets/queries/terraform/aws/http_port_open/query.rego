@@ -46,7 +46,8 @@ CxPolicy[result] {
 CxPolicy[result] {
 	#Case of "security-group" Module
 	module := input.document[i].module[name]
-	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_with_cidr_blocks")
+	types := ["ingress_with_cidr_blocks","ingress_with_ipv6_cidr_blocks"]
+	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", types[t])
 	common_lib.valid_key(module, ingressKey)
 
 	ingress := module[ingressKey][i2]
