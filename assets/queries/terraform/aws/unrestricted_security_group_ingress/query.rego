@@ -132,13 +132,16 @@ is_unrestricted_ingress(ingress,is_unique_element,name,i2) = results {
 	}
 } else = ""
 
-
-# modules 
+# modules for direct ingress_cidr (ipv4/ipv6) and ingress_with_cidr (ipv4/ipv6)
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	
-	results := get_ipv6_cidr_blocks_if_exists(module,name)
-	common_lib.inArray(results.value, tf_lib.unrestricted_ipv6[l])
+	types := ["ingress_cidr_blocks","ingress_ipv6_cidr_blocks","ingress_with_cidr_blocks","ingress_with_ipv6_cidr_blocks"]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", types[i2]) # based on module terraform-aws-modules/security-group/aws
+
+	object_list := tf_lib.get_ingress_list(module[keyToCheck])
+	cidr_or_ingress := object_list.value[i3]
+	results := check_cidr_block(cidr_or_ingress,name,types[i2],keyToCheck,i3)
+	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -146,64 +149,50 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": results.searchKey,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("module[%s].%s should not contain '%s'", [name, results.keyToCheck, tf_lib.unrestricted_ipv6[l]]),
-		"keyActualValue": sprintf("module[%s].%s contains '%s'", [name, results.keyToCheck, tf_lib.unrestricted_ipv6[l]]),
+		"keyExpectedValue": results.keyExpectedValue,
+		"keyActualValue": results.keyActualValue,
 		"searchLine": results.searchLine
 	}
 }
 
-CxPolicy[result] {
-	module := input.document[i].module[name]
-	
-	results := get_ipv4_cidr_blocks_if_exists(module,name)
-	common_lib.inArray(results.value, "0.0.0.0/0")
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "n/a",
-		"resourceName": "n/a",
-		"searchKey": results.searchKey,
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("module[%s].%s should not contain '0.0.0.0/0'", [name, results.keyToCheck]),
-		"keyActualValue": sprintf("module[%s].%s contains '0.0.0.0/0'", [name, results.keyToCheck]),
-		"searchLine": results.searchLine
-	}
-}
-
-get_ipv4_cidr_blocks_if_exists(module,name) = results {
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", "ingress_cidr_blocks") # based on module terraform-aws-modules/security-group/aws
+check_cidr_block(cidr_or_ingress,name,type,keyToCheck,i3) = results {
+	#ipv4 inside ingress
+	type == "ingress_with_cidr_blocks"
+	common_lib.inArray(cidr_or_ingress.cidr_blocks, "0.0.0.0/0")
 	results := {
-		"keyToCheck" : keyToCheck,
-		"value" : module[keyToCheck],
+		"keyExpectedValue": sprintf("module[%s].%s[%d].cidr_blocks should not contain '0.0.0.0/0'", [name, keyToCheck, i3]),
+		"keyActualValue": sprintf("module[%s].%s[%d].cidr_blocks contains '0.0.0.0/0'", [name, keyToCheck, i3]),
+		"searchKey" : sprintf("module[%s].%s[%d].cidr_blocks", [name, keyToCheck, i3]),
+		"searchLine" : common_lib.build_search_line(["module", name, keyToCheck, i3, "cidr_blocks"], []),
+	} 
+} else = results {
+	#ipv6 inside ingress
+	type == "ingress_with_ipv6_cidr_blocks"
+	common_lib.inArray(cidr_or_ingress.ipv6_cidr_blocks, tf_lib.unrestricted_ipv6[l])
+	results := {
+		"keyExpectedValue": sprintf("module[%s].%s[%d].ipv6_cidr_blocks should not contain '%s'", [name, keyToCheck, i3, tf_lib.unrestricted_ipv6[l]]),
+		"keyActualValue": sprintf("module[%s].%s[%d].ipv6_cidr_blocks contains '%s'", [name, keyToCheck, i3, tf_lib.unrestricted_ipv6[l]]),
+		"searchKey" : sprintf("module[%s].%s[%d].ipv6_cidr_blocks", [name, keyToCheck, i3]),
+		"searchLine" : common_lib.build_search_line(["module", name, keyToCheck, i3, "ipv6_cidr_blocks"], []),
+	} 
+} else = results {
+	#direct ipv4
+	type == "ingress_cidr_blocks"
+	cidr_or_ingress == "0.0.0.0/0"
+	results := {
+		"keyExpectedValue": sprintf("module[%s].%s should not contain '0.0.0.0/0'", [name, keyToCheck]),
+		"keyActualValue": sprintf("module[%s].%s contains '0.0.0.0/0'", [name, keyToCheck]),
 		"searchKey" : sprintf("module[%s].%s", [name, keyToCheck]),
 		"searchLine" : common_lib.build_search_line(["module", name, keyToCheck], []),
 	} 
 } else = results {
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", "ingress_with_cidr_blocks") # based on module terraform-aws-modules/security-group/aws
+	#direct ipv6
+	type == "ingress_ipv6_cidr_blocks"
+	cidr_or_ingress == tf_lib.unrestricted_ipv6[l]
 	results := {
-		"keyToCheck" : keyToCheck,
-		"value" : module[keyToCheck].cidr_blocks,
-		"searchKey" : sprintf("module[%s].%s.cidr_blocks", [name, keyToCheck]),
-		"searchLine" : common_lib.build_search_line(["module", name, keyToCheck, "cidr_blocks"], []),
-	} 
-}
-
-get_ipv6_cidr_blocks_if_exists(module,name) = results {
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", "ingress_ipv6_cidr_blocks") # based on module terraform-aws-modules/security-group/aws
-	results := {
-		"keyToCheck" : keyToCheck,
-		"value" : module[keyToCheck],
+		"keyExpectedValue": sprintf("module[%s].%s should not contain '%s'", [name, keyToCheck, tf_lib.unrestricted_ipv6[l]]),
+		"keyActualValue": sprintf("module[%s].%s contains '%s'", [name, keyToCheck, tf_lib.unrestricted_ipv6[l]]),
 		"searchKey" : sprintf("module[%s].%s", [name, keyToCheck]),
 		"searchLine" : common_lib.build_search_line(["module", name, keyToCheck], []),
 	} 
-} else = results {
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", "ingress_with_ipv6_cidr_blocks") # based on module terraform-aws-modules/security-group/aws
-	results := {
-		"keyToCheck" : keyToCheck,
-		"value" : module[keyToCheck].ipv6_cidr_blocks,
-		"searchKey" : sprintf("module[%s].%s.ipv6_cidr_blocks", [name, keyToCheck]),
-		"searchLine" : common_lib.build_search_line(["module", name, keyToCheck, "ipv6_cidr_blocks"], []),
-	} 
-}
-
-
+} else = ""

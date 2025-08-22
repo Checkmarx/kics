@@ -8,73 +8,97 @@
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
+    "line": 16,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
+    "line": 33,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
+    "line": 50,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
     "line": 6,
     "filename": "positive2.tf"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 13,
+    "line": 15,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
+    "line": 24,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
+    "line": 6,
     "filename": "positive3.tf"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 9,
+    "line": 15,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "Unrestricted Security Group Ingress",
+    "severity": "HIGH",
+    "line": 4,
     "filename": "positive4.tf"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 9,
-    "filename": "positive5.tf"
+    "line": 10,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 6,
-    "filename": "positive6.tf"
+    "line": 16,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 6,
-    "filename": "positive7.tf"
+    "line": 22,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 13,
-    "filename": "positive8.tf"
+    "line": 34,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 9,
-    "filename": "positive9.tf"
+    "line": 48,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 9,
-    "filename": "positive10.tf"
+    "line": 58,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Unrestricted Security Group Ingress",
     "severity": "HIGH",
-    "line": 6,
-    "filename": "positive11.tf"
-  },
-  {
-    "queryName": "Unrestricted Security Group Ingress",
-    "severity": "HIGH",
-    "line": 6,
-    "filename": "positive12.tf"
-  },
-  {
-    "queryName": "Unrestricted Security Group Ingress",
-    "severity": "HIGH",
-    "line": 15,
-    "filename": "positive12.tf"
+    "line": 72,
+    "filename": "positive4.tf"
   }
 ]
