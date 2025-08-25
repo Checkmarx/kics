@@ -32,4 +32,3 @@ resource "aws_security_group" "negative1-3" {
     ipv6_cidr_blocks = ["2001:db8:abcd:0012::/64"]
   }
 }
-

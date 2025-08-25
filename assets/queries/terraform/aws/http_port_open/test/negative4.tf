@@ -90,7 +90,7 @@ module "vote_service_sg_ipv6_array" {
       from_port   = 28000
       to_port     = 28001
       protocol    = "tcp"
-      ipv6_cidr_blocks = ["10.0.0.0/16"]
+      ipv6_cidr_blocks = ["2606:4700:3035::6815:3e3/24"]
     },
     {
       description = "TLS from VPC"
