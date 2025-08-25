@@ -3,7 +3,6 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-
 # Case of aws_security_group_rule or aws_vpc_security_group_ingress_rule
 CxPolicy[result] {
 	types := ["aws_vpc_security_group_ingress_rule","aws_security_group_rule"]

@@ -4,22 +4,22 @@ resource "aws_security_group" "ec2" {
   vpc_id      = var.vpc_id
 }
 
-resource "aws_security_group_rule" "positive3_1" {
+resource "aws_security_group_rule" "positive3-1" {
   type              = "ingress"
-  from_port         = 70
-  to_port           = 82
+  from_port         = 80
+  to_port           = 80
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.ec2.id
-  description        = "allows RDP from Internet (IPv4)"
+  description        = "HTTP port open"
 }
 
-resource "aws_security_group_rule" "positive3_2" {
+resource "aws_security_group_rule" "positive3-2" {
   type              = "ingress"
-  from_port         = 79
-  to_port           = 100
+  from_port         = 80
+  to_port           = 80
   protocol          = "-1" 
   ipv6_cidr_blocks  = ["::/0"]
   security_group_id = aws_security_group.ec2.id
-  description        = "allows RDP from Internet (IPv6)"
+  description        = "HTTP port open"
 }

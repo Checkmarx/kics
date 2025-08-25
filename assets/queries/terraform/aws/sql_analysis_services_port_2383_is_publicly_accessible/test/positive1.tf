@@ -1,9 +1,9 @@
 resource "aws_security_group" "positive1-1" {
   name        = "allow_tls"
-  description = "SSH port open"
+  description = "SQL Analysis Services port open"
 
   ingress {
-    description = "SSH port open"
+    description = "SQL Analysis Services port open"
     from_port   = 2300
     to_port     = 2400
     protocol    = "tcp"
@@ -13,10 +13,10 @@ resource "aws_security_group" "positive1-1" {
 
 resource "aws_security_group" "positive1-2" {
   name        = "allow_tls"
-  description = "SSH port open"
+  description = "SQL Analysis Services port open"
 
   ingress {
-    description = "SSH port open"
+    description = "SQL Analysis Services port open"
     from_port   = 2380
     to_port     = 2390
     protocol    = "tcp"
@@ -24,7 +24,7 @@ resource "aws_security_group" "positive1-2" {
   }
 
   ingress {
-    description = "SSH port open"
+    description = "SQL Analysis Services port open"
     from_port   = 2350
     to_port     = 2384
     protocol    = "tcp"
@@ -34,10 +34,10 @@ resource "aws_security_group" "positive1-2" {
 
 resource "aws_security_group" "positive1-3" {
   name        = "allow_tls"
-  description = "SSH port open"
+  description = "SQL Analysis Services port open"
 
   ingress {
-    description = "SSH port open"
+    description = "SQL Analysis Services port open"
     from_port   = 2300
     to_port     = 2400
     protocol    = "tcp"
@@ -47,10 +47,10 @@ resource "aws_security_group" "positive1-3" {
 
 resource "aws_security_group" "positive1-4" {
   name        = "allow_tls"
-  description = "SSH port open"
+  description = "SQL Analysis Services port open"
 
   ingress {
-    description = "SSH port open"
+    description = "SQL Analysis Services port open"
     from_port   = 2380
     to_port     = 2390
     protocol    = "tcp"
@@ -58,7 +58,7 @@ resource "aws_security_group" "positive1-4" {
   }
 
   ingress {
-    description = "SSH port open"
+    description = "SQL Analysis Services port open"
     from_port   = 2350
     to_port     = 2384
     protocol    = "tcp"
@@ -68,10 +68,10 @@ resource "aws_security_group" "positive1-4" {
 
 resource "aws_security_group" "positive1-5" {
   name        = "allow_tls"
-  description = "SSH port open"
+  description = "SQL Analysis Services port open"
 
   ingress {
-    description = "SSH port open"
+    description = "SQL Analysis Services port open"
     from_port   = 2383
     to_port     = 2383
     protocol    = "tcp"
@@ -82,10 +82,10 @@ resource "aws_security_group" "positive1-5" {
 
 resource "aws_security_group" "positive1-6" {
   name        = "allow_tls"
-  description = "SSH port open"
+  description = "SQL Analysis Services port open"
 
   ingress {
-    description = "SSH port open"
+    description = "SQL Analysis Services port open"
     from_port   = 2383
     to_port     = 2383
     protocol    = "tcp"
@@ -96,10 +96,10 @@ resource "aws_security_group" "positive1-6" {
 
 resource "aws_security_group" "positive1-7" {
   name        = "allow_tls"
-  description = "SSH port open"
+  description = "SQL Analysis Services port open"
 
   ingress {
-    description = "SSH port open"
+    description = "SQL Analysis Services port open"
     from_port   = 2383
     to_port     = 2383
     protocol    = "tcp"

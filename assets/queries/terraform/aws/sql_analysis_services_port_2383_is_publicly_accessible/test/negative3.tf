@@ -4,7 +4,7 @@ resource "aws_security_group" "negative" {
   vpc_id      = aws_vpc.main.id
 }
 
-resource "aws_security_group_rule" "negative3_1" {
+resource "aws_security_group_rule" "negative3-1" {
   type              = "ingress"
   from_port         = 2383
   to_port           = 2383
@@ -13,7 +13,7 @@ resource "aws_security_group_rule" "negative3_1" {
   description       = "TLS from VPC"
 }
 
-resource "aws_security_group_rule" "negative3_2" {
+resource "aws_security_group_rule" "negative3-2" {
   type              = "ingress"
   from_port         = 2383
   to_port           = 2383
@@ -23,7 +23,7 @@ resource "aws_security_group_rule" "negative3_2" {
   description       = "Remote desktop open private"
 }
 
-resource "aws_security_group_rule" "negative3_3" {
+resource "aws_security_group_rule" "negative3-3" {
   type              = "ingress"
   from_port         = 2200
   to_port           = 2500
