@@ -121,7 +121,6 @@ isTCPorUDP("TCP") = true
 
 isTCPorUDP("UDP") = true
 
-
 small_network_affix := ["/25","/26","/27","/28","/29"]
 ipv6_small_network_affix := ["/121","/122","/123","/124","/125"]
 

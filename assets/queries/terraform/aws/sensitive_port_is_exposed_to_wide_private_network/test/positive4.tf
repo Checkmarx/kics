@@ -11,7 +11,7 @@ module "vote_service_sg_ipv4" {
       description = "TLS from VPC"
       from_port   = 22
       to_port     = 22
-      protocol    = "tcp"
+      protocol    = "-1"
       cidr_blocks = ["172.16.0.0/12"]
     }
   ]
@@ -31,7 +31,7 @@ module "vote_service_sg_ipv6" {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
-      ipv6_cidr_blocks = ["fc00::/7"]
+      ipv6_cidr_blocks = ["fd00:abcd::1"]
     }
   ]
 }
@@ -83,7 +83,7 @@ module "vote_service_sg_ipv6_array" {
       from_port   = 2383
       to_port     = 2383
       protocol    = "udp"
-      ipv6_cidr_blocks = ["fc00::/7", "2401:fa00:4:1a::abcd/128"]
+      ipv6_cidr_blocks = ["fd00:abcd::1", "2401:fa00:4:1a::abcd/128"]
     },
     {
       description = "TLS from VPC"
@@ -97,7 +97,7 @@ module "vote_service_sg_ipv6_array" {
       from_port   = 20
       to_port     = 22
       protocol    = "tcp"
-      ipv6_cidr_blocks = ["fc00::/7"]
+      ipv6_cidr_blocks = ["fd00:abcd::1"]
     }
   ]
 }

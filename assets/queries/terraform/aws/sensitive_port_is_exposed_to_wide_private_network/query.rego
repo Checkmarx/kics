@@ -70,7 +70,7 @@ CxPolicy[result] {
 	ingress := module[ingressKey][idx]
 	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
 
-	common_lib.isPrivateIP(ingress.cidr_blocks[_])
+	isPrivateNetwork(ingress)
 	tf_lib.containsPort(ingress, portNumber)
 	isTCPorUDP(protocol)
 
