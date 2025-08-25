@@ -22,30 +22,6 @@ module "vote_service_sg_ipv4" {
   ]
 }
 
-module "vote_service_sg_ipv6" {
-  source  = "terraform-aws-modules/security-group/aws"
-
-  ingress_with_ipv6_cidr_blocks = [
-    {
-      description      = "TLS from VPC"
-      from_port        = 0
-      to_port          = 0
-      protocol         = "-1"
-      ipv6_cidr_blocks = ["2001:db8::/32"]
-    }
-  ]
-
-  egress_with_ipv6_cidr_blocks = [
-    {
-      description      = "TLS from VPC"
-      from_port        = 0
-      to_port          = 0
-      protocol         = "-1"
-      ipv6_cidr_blocks = ["2001:db8::/32"]
-    }
-  ]
-}
-
 module "vote_service_sg_ipv4_array" {
   source  = "terraform-aws-modules/security-group/aws"
 
@@ -94,6 +70,30 @@ module "vote_service_sg_ipv4_array" {
       to_port     = 22
       protocol    = "tcp"
       cidr_blocks = ["192.01.01.02/23"]
+    }
+  ]
+}
+
+module "vote_service_sg_ipv6" {
+  source  = "terraform-aws-modules/security-group/aws"
+
+  ingress_with_ipv6_cidr_blocks = [
+    {
+      description      = "TLS from VPC"
+      from_port        = 0
+      to_port          = 0
+      protocol         = "-1"
+      ipv6_cidr_blocks = ["2001:db8::/32"]
+    }
+  ]
+
+  egress_with_ipv6_cidr_blocks = [
+    {
+      description      = "TLS from VPC"
+      from_port        = 0
+      to_port          = 0
+      protocol         = "-1"
+      ipv6_cidr_blocks = ["2001:db8::/32"]
     }
   ]
 }

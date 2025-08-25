@@ -4,7 +4,7 @@ resource "aws_security_group" "example" {
   vpc_id      = aws_vpc.main.id
 }
 
-resource "aws_vpc_security_group_ingress_rule" "http_ingress" {
+resource "aws_vpc_security_group_ingress_rule" "negative4-1" {
   description       = "sample_description"
   security_group_id = aws_security_group.example.id
   cidr_ipv4         = "192.168.1.0/24"
@@ -13,7 +13,7 @@ resource "aws_vpc_security_group_ingress_rule" "http_ingress" {
   ip_protocol       = "tcp"
 }
 
-resource "aws_vpc_security_group_egress_rule" "all_outbound" {
+resource "aws_vpc_security_group_egress_rule" "negative4-2" {
   description       = "sample_description"
   security_group_id = aws_security_group.example.id
   cidr_ipv4         = "0.0.0.0/0"

@@ -4,7 +4,7 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-    #Case of aws_vpc_security_group_(ingress|egress)_rule or aws_security_group_rule without description
+	#Case of "aws_vpc_security_group_(ingress|egress)_rule" or "aws_security_group_rule" without description
     types := ["aws_vpc_security_group_ingress_rule","aws_vpc_security_group_egress_rule","aws_security_group_rule"]
 
     resource := input.document[i].resource[types[i2]][name]
@@ -23,7 +23,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	#Case of Single Ingress/Egress or Ingress/Egress Array element without description
+	#Case of "aws_security_group" ingress/egress without description
 	security_group := input.document[i].resource.aws_security_group[name]
 	types := {"ingress", "egress"}
 	resource := security_group[types[y]]
@@ -44,8 +44,8 @@ CxPolicy[result] {
 	}
 }
 
-# module "aws_security_group" (ingress|egress)_with_cidr_blocks (ipv4/ipv6) without description 
 CxPolicy[result] {
+	#Case of "security-group" Module (ingress|egress)_with_cidr_blocks (ipv4/ipv6) without description 
 	module := input.document[i].module[name]
 	types := ["ingress_with_cidr_blocks","egress_with_cidr_blocks","ingress_with_ipv6_cidr_blocks","egress_with_ipv6_cidr_blocks"]
 	key := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", types[t])
@@ -88,6 +88,3 @@ check_description(resource,is_unique_element,name,resourceIndex,type) = results 
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, type, resourceIndex], []),
 	}
 }
-
-
-

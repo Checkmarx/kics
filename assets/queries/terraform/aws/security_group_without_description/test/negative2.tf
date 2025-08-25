@@ -1,4 +1,4 @@
-module "vote_service_sg" {
+module "negative2" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.3.0"
 

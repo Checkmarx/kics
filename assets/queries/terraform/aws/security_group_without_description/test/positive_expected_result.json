@@ -20,7 +20,7 @@
   {
     "queryName": "Security Group Without Description",
     "severity": "INFO",
-    "line": 11,
+    "line": 10,
     "filename": "positive2.tf"
   }
 ]

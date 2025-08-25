@@ -3,8 +3,8 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-# resource "aws_security_group" without description 
 CxPolicy[result] {
+	#Case of "aws_security_group" Resource without description 
 	resource := input.document[i].resource.aws_security_group[name]
 	not common_lib.valid_key(resource, "description")
 
@@ -20,8 +20,8 @@ CxPolicy[result] {
 	}
 }
 
-# module "aws_security_group" without description 
 CxPolicy[result] {
+	#Case of "security-group" Module without description 
 	module := input.document[i].module[name]
 	contains(module.source,"security-group")
 	not common_lib.valid_key(module, "description")
@@ -37,4 +37,3 @@ CxPolicy[result] {
 		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
 }
-
