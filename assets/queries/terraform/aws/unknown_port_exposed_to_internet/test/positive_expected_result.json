@@ -80,7 +80,7 @@
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
-    "line": 49,
+    "line": 44,
     "fileName": "positive4.tf"
   },
   {

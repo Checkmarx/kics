@@ -56,25 +56,25 @@
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
-    "line": 37,
+    "line": 42,
     "filename": "positive5.tf"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
-    "line": 50,
+    "line": 51,
     "filename": "positive5.tf"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
-    "line": 64,
+    "line": 65,
     "filename": "positive5.tf"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
-    "line": 73,
+    "line": 78,
     "filename": "positive5.tf"
   },
   {

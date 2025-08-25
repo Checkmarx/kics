@@ -1,28 +1,28 @@
-module "negative_4_ipv4" {
+module "negative4-ipv4" {
   source  = "terraform-aws-modules/security-group/aws"
 
   ingress_cidr_blocks = ["10.10.0.0/16"]
 }
 
-module "negative_4_ipv4_array" {
+module "negative4-ipv4_array" {
   source  = "terraform-aws-modules/security-group/aws"
 
   ingress_cidr_blocks = ["10.10.2.0/16", "192.12.0.1/20"]
 }
 
-module "negative_4_ipv6" {
+module "negative4-ipv6" {
   source  = "terraform-aws-modules/security-group/aws"
 
   ingress_ipv6_cidr_blocks  = ["fc00::/8"]
 }
 
-module "negative_4_ipv6_array" {
+module "negative4-ipv6_array" {
   source  = "terraform-aws-modules/security-group/aws"
 
   ingress_ipv6_cidr_blocks  = ["fc00::/8", "fd00::/12"]
 }
 
-module "negative_4_whole_ingresses" {
+module "negative4-whole_ingresses" {
   source  = "terraform-aws-modules/security-group/aws"
 
   ingress_with_cidr_blocks = [

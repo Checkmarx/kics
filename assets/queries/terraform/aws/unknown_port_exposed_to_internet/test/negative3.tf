@@ -4,7 +4,7 @@ resource "aws_security_group" "negative3" {
   vpc_id      = aws_vpc.main.id
 }
 
-resource "aws_security_group_rule" "negative3_1_rule" {
+resource "aws_security_group_rule" "negative3-1" {
   type              = "ingress"
   from_port         = 443
   to_port           = 443
@@ -12,7 +12,7 @@ resource "aws_security_group_rule" "negative3_1_rule" {
   security_group_id = aws_security_group.negative3.id
 }
 
-resource "aws_security_group_rule" "negative3_2_rule" {
+resource "aws_security_group_rule" "negative3-2" {
   type              = "ingress"
   from_port         = 2383
   to_port           = 2383
@@ -21,7 +21,7 @@ resource "aws_security_group_rule" "negative3_2_rule" {
   security_group_id = aws_security_group.negative3.id
 }
 
-resource "aws_security_group_rule" "negative3_3_rule" {
+resource "aws_security_group_rule" "negative3-3" {
   type              = "ingress"
   from_port         = 20
   to_port           = 20

@@ -4,7 +4,7 @@ resource "aws_security_group" "positive3" {
   vpc_id      = aws_vpc.main.id
 }
 
-resource "aws_security_group_rule" "positive3_1_rule" {
+resource "aws_security_group_rule" "positive3-1" {
   type              = "ingress"
   security_group_id = aws_security_group.positive3.id
   description       = "Unknown port exposed"
@@ -14,7 +14,7 @@ resource "aws_security_group_rule" "positive3_1_rule" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
-resource "aws_security_group_rule" "positive3_3_rule" {
+resource "aws_security_group_rule" "positive3-2" {
   type              = "ingress"
   security_group_id = aws_security_group.positive3.id
   description       = "Unknown port exposed"

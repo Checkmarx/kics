@@ -1,4 +1,4 @@
-resource "aws_security_group" "negative_1_ipv4" {
+resource "aws_security_group" "negative1-ipv4" {
   ingress {
     from_port         = 3306
     to_port           = 3306
@@ -8,7 +8,7 @@ resource "aws_security_group" "negative_1_ipv4" {
   }
 }
 
-resource "aws_security_group" "negative_1_ipv6" {
+resource "aws_security_group" "negative1-ipv6" {
   ingress {
     from_port         = 3306
     to_port           = 3306
@@ -18,7 +18,7 @@ resource "aws_security_group" "negative_1_ipv6" {
   }
 }
 
-resource "aws_security_group" "negative_1_ipv4_array" {
+resource "aws_security_group" "negative1-ipv4_array" {
   ingress {
     from_port   = 3306
     to_port     = 3306
@@ -34,7 +34,7 @@ resource "aws_security_group" "negative_1_ipv4_array" {
   }
 }
 
-resource "aws_security_group" "negative_1_ipv6_array" {
+resource "aws_security_group" "negative1-ipv6_array" {
   ingress {
     from_port         = 3306
     to_port           = 3306

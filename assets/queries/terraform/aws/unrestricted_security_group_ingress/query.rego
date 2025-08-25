@@ -3,8 +3,8 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-# Case of aws_security_group_rule or aws_vpc_security_group_ingress_rule
 CxPolicy[result] {
+	#Case of "aws_vpc_security_group_ingress_rule" or "aws_security_group_rule"
 	types := ["aws_vpc_security_group_ingress_rule","aws_security_group_rule"]
 	rule := input.document[i].resource[types[i2]][name]
 
@@ -25,9 +25,8 @@ CxPolicy[result] {
 	}
 }
 
-#Case of aws_security_group
 CxPolicy[result] {
-	#Case of Single Ingress or Ingress Array - ipv4 or ipv6
+	#Case of "aws_security_group"
 	resource := input.document[i].resource.aws_security_group[name]
 
 	ingress_list := tf_lib.get_ingress_list(resource.ingress)
@@ -46,8 +45,8 @@ CxPolicy[result] {
 	}
 }
 
-# modules for direct ingress_cidr (ipv4/ipv6) and ingress_with_cidr (ipv4/ipv6)
 CxPolicy[result] {
+	#Case of "security-group" Module
 	module := input.document[i].module[name]
 	types := ["ingress_cidr_blocks","ingress_ipv6_cidr_blocks","ingress_with_cidr_blocks","ingress_with_ipv6_cidr_blocks"]
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group_rule", types[i2]) # based on module terraform-aws-modules/security-group/aws
@@ -69,7 +68,7 @@ CxPolicy[result] {
 	}
 }
 
-# aws_security_group_rule or aws_vpc_security_group_ingress_rule
+# "aws_vpc_security_group_ingress_rule"
 rule_is_unrestricted("aws_vpc_security_group_ingress_rule",rule,name) = results {
 	rule.cidr_ipv4 == "0.0.0.0/0"
 	results := {
@@ -88,6 +87,7 @@ rule_is_unrestricted("aws_vpc_security_group_ingress_rule",rule,name) = results 
 	}
 } else = ""
 
+# "aws_security_group_rule"
 rule_is_unrestricted("aws_security_group_rule",rule,name) = results {
 	contains(rule.cidr_blocks[j], "0.0.0.0/0")
 	results := {
@@ -106,7 +106,7 @@ rule_is_unrestricted("aws_security_group_rule",rule,name) = results {
 	} 
 } else = ""
 
-# aws_security_group
+# "aws_security_group"
 is_unrestricted_ingress(ingress,is_unique_element,name,i2) = results {
 	#ipv4 single ingress
 	is_unique_element
@@ -153,7 +153,7 @@ is_unrestricted_ingress(ingress,is_unique_element,name,i2) = results {
 	}
 } else = ""
 
-# Modules
+# "security-group" Module
 check_cidr_block(cidr_or_ingress,name,type,keyToCheck,i3) = results {
 	#ipv4 inside ingress
 	type == "ingress_with_cidr_blocks"

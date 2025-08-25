@@ -1,10 +1,10 @@
-resource "aws_security_group" "negative3" {
+resource "aws_security_group" "negative2" {
   name        = "allow_tls"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.main.id
 }
 
-resource "aws_vpc_security_group_ingress_rule" "negative2_1_rule" {
+resource "aws_vpc_security_group_ingress_rule" "negative2-1" {
   security_group_id = aws_security_group.negative3.id
   from_port         = 443
   to_port           = 443
@@ -12,7 +12,7 @@ resource "aws_vpc_security_group_ingress_rule" "negative2_1_rule" {
   description       = "TLS from VPC"
 }
 
-resource "aws_vpc_security_group_ingress_rule" "negative2_2_rule" {
+resource "aws_vpc_security_group_ingress_rule" "negative2-2" {
   security_group_id = aws_security_group.negative3.id
   from_port         = 2383
   to_port           = 2383
@@ -22,7 +22,7 @@ resource "aws_vpc_security_group_ingress_rule" "negative2_2_rule" {
 }
 
 
-resource "aws_vpc_security_group_ingress_rule" "negative2_3_rule" {
+resource "aws_vpc_security_group_ingress_rule" "negative2-3" {
   security_group_id = aws_security_group.negative3.id
   from_port         = 20
   to_port           = 20

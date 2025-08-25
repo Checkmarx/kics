@@ -1,28 +1,28 @@
-module "positive_4_ipv4" {
+module "positive4-ipv4" {
   source  = "terraform-aws-modules/security-group/aws"
 
   ingress_cidr_blocks = ["0.0.0.0/0"]
 }
 
-module "positive_4_ipv4_array" {
+module "positive4-ipv4_array" {
   source  = "terraform-aws-modules/security-group/aws"
 
   ingress_cidr_blocks = ["10.10.0.0/16", "0.0.0.0/0"]
 }
 
-module "positive_4_ipv6" {
+module "positive4-ipv6" {
   source  = "terraform-aws-modules/security-group/aws"
 
   ingress_ipv6_cidr_blocks  = ["::/0"]
 }
 
-module "positive_4_ipv6_array" {
+module "positive4-ipv6_array" {
   source  = "terraform-aws-modules/security-group/aws"
 
   ingress_ipv6_cidr_blocks  = ["fc00::/8", "::/0"]
 }
 
-module "positive_4_whole_ingresses" {
+module "positive4-whole_ingresses" {
   source  = "terraform-aws-modules/security-group/aws"
 
   ingress_with_cidr_blocks = [

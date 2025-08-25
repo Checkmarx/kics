@@ -1,4 +1,4 @@
-resource "aws_security_group_rule" "positive_3_ipv4" {
+resource "aws_security_group_rule" "positive3-ipv4" {
   type              = "ingress"
   from_port         = 3306
   to_port           = 3306
@@ -7,7 +7,7 @@ resource "aws_security_group_rule" "positive_3_ipv4" {
   security_group_id = aws_security_group.default.id
 }
 
-resource "aws_security_group_rule" "positive_3_ipv6_1" {
+resource "aws_security_group_rule" "positive3-ipv6_1" {
   type              = "ingress"
   from_port         = 3306
   to_port           = 3306
@@ -16,7 +16,7 @@ resource "aws_security_group_rule" "positive_3_ipv6_1" {
   security_group_id = aws_security_group.default.id
 }
 
-resource "aws_security_group_rule" "positive_3_ipv6_2" {
+resource "aws_security_group_rule" "positive3-ipv6_2" {
   type              = "ingress"
   from_port         = 3306
   to_port           = 3306
