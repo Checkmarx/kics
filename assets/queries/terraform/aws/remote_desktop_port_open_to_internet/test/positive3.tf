@@ -11,7 +11,7 @@ resource "aws_security_group_rule" "positive3-1" {
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.ec2.id
-  description        = "Remote desktop port open"
+  description       = "Remote desktop port open"
 }
 
 resource "aws_security_group_rule" "positive3-2" {
@@ -21,5 +21,5 @@ resource "aws_security_group_rule" "positive3-2" {
   protocol          = "-1" 
   ipv6_cidr_blocks  = ["::/0"]
   security_group_id = aws_security_group.ec2.id
-  description        = "Remote desktop port open"
+  description       = "Remote desktop port open"
 }

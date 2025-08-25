@@ -30,5 +30,5 @@ resource "aws_security_group_rule" "negative3-3" {
   protocol          = "-1" 
   ipv6_cidr_blocks  = ["2001:db8:abcd:0012::/64"]
   security_group_id = aws_security_group.ec2.id
-  description        = "allows RDP from Internet (IPv6)"
+  description       = "allows RDP from Internet (IPv6)"
 }

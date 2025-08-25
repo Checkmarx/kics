@@ -3,7 +3,7 @@ module "vote_service_sg_ipv4" {
   version = "4.3.0"
 
   name        = "user-service"
-  description = "Security group for user-service with custom ports open within VPC, and PostgreSQL publicly open"
+  description = "SSH port open"
   vpc_id      = "vpc-12345678"
 
   ingress_with_cidr_blocks = [
@@ -22,7 +22,7 @@ module "vote_service_sg_ipv6" {
   version = "4.3.0"
 
   name        = "user-service"
-  description = "Security group for user-service with custom ports open within VPC, and PostgreSQL publicly open"
+  description = "SSH port open"
   vpc_id      = "vpc-12345678"
 
   ingress_with_ipv6_cidr_blocks = [
@@ -41,7 +41,7 @@ module "vote_service_sg_ipv4_array" {
   version = "4.3.0"
 
   name        = "user-service"
-  description = "Security group for user-service with custom ports open within VPC, and PostgreSQL publicly open"
+  description = "SSH port open"
   vpc_id      = "vpc-12345678"
 
   ingress_with_cidr_blocks = [
@@ -74,7 +74,7 @@ module "vote_service_sg_ipv6_array" {
   version = "4.3.0"
 
   name        = "user-service"
-  description = "Security group for user-service with custom ports open within VPC, and PostgreSQL publicly open"
+  description = "SSH port open"
   vpc_id      = "vpc-12345678"
 
   ingress_with_ipv6_cidr_blocks = [
