@@ -4,7 +4,7 @@ import data.generic.terraform as tf_lib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	#Case of aws_vpc_security_group_ingress_rule / aws_security_group_rule
+	#Case of "aws_vpc_security_group_ingress_rule" or "aws_security_group_rule"
 	types := ["aws_vpc_security_group_ingress_rule","aws_security_group_rule"]
 	protocol_field_name := ["ip_protocol","protocol"]
 	resource := input.document[i].resource[types[i2]][name]
@@ -33,7 +33,7 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	#Case of Single Ingress or Ingress Array
+	#Case of "aws_security_group"
 	resource := input.document[i].resource.aws_security_group[name]
 
 	portContent := common_lib.tcpPortsMap[port]
@@ -56,10 +56,11 @@ CxPolicy[result] {
 	}
 }
 
-# module
 CxPolicy[result] {
+	#Case of "security-group" Module
 	module := input.document[i].module[name]
-	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", "ingress_with_cidr_blocks")
+	types := ["ingress_with_cidr_blocks","ingress_with_ipv6_cidr_blocks"]
+	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", types[t])
 	common_lib.valid_key(module, ingressKey)
 
 	portContent := common_lib.tcpPortsMap[port]
@@ -122,13 +123,14 @@ isTCPorUDP("UDP") = true
 
 
 small_network_affix := ["/25","/26","/27","/28","/29"]
+ipv6_small_network_affix := ["/121","/122","/123","/124","/125"]
 
 isSmallPublicNetwork(resource) {
 	endswith(resource.cidr_blocks[_], small_network_affix[_])
 } else {
-	endswith(resource.ipv6_cidr_blocks[_], small_network_affix[_])
+	endswith(resource.ipv6_cidr_blocks[_], ipv6_small_network_affix[_])
 } else {
 	endswith(resource.cidr_ipv4, small_network_affix[_])
 } else {
-	endswith(resource.cidr_ipv6, small_network_affix[_])
+	endswith(resource.cidr_ipv6, ipv6_small_network_affix[_])
 }

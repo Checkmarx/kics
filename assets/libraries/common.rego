@@ -77,7 +77,7 @@ emptyOrNull(null) = true
 
 # Checks if an IP is private
 isPrivateIP(ipVal) {
-	private_ips := ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
+	private_ips := ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12","fc00::/7"]
 	some i
 	net.cidr_contains(private_ips[i], ipVal)
 }
