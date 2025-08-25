@@ -3,16 +3,8 @@ resource "aws_iam_role" "iam_for_lambda" {
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
-resource "aws_lambda_function" "func1" {
-  filename      = "your-function1.zip"
-  function_name = "example_lambda_name"
-  role          = aws_iam_role.iam_for_lambda.arn
-  handler       = "exports.example"
-  runtime       = "nodejs20.x"
-}
-
-resource "aws_lambda_function" "func2" {
-  filename      = "your-function2.zip"
+resource "aws_lambda_function" "func" {
+  filename      = "your-function.zip"
   function_name = "example_lambda_name"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "exports.example"
@@ -27,16 +19,9 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
   bucket = aws_s3_bucket.bucket.id
 
   lambda_function {
-    lambda_function_arn = aws_lambda_function.func1.arn
+    lambda_function_arn = aws_lambda_function.different_function.arn
     events              = ["s3:ObjectCreated:*"]
     filter_prefix       = "AWSLogs/"
     filter_suffix       = ".log"
-   }
- 
-  lambda_function {
-    lambda_function_arn = aws_lambda_function.func1.arn
-    events              = ["s3:ObjectCreated:Post"]
-    filter_prefix       = "OtherLogs/"
-    filter_suffix       = ".json"
-   }
+  }
 }
