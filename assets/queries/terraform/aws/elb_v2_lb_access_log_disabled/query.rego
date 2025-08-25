@@ -35,7 +35,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, load_balancer, name),
         "searchKey": sprintf("%s[%s].access_logs", [load_balancer,name]),
         "issueType": "MissingAttribute",
-        "keyExpectedValue": "'access_logs.enable' should be defined and set to true",
+        "keyExpectedValue": "'access_logs.enabled' should be defined and set to true",
         "keyActualValue": "'access_logs.enabled' is undefined",
         "searchLine": common_lib.build_search_line(["resource", load_balancer, name, "access_logs"], []),
     }
@@ -54,8 +54,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_specific_resource_name(resource, load_balancer, name),
         "searchKey": sprintf("%s[%s].access_logs.enabled", [load_balancer,name]),
         "issueType": "IncorrectValue",
-        "keyExpectedValue": "'access_logs.enable' should be defined and set to true",
-        "keyActualValue": "'access_logs.enable' is not set to true",
+        "keyExpectedValue": "'access_logs.enabled' should be defined and set to true",
+        "keyActualValue": "'access_logs.enabled' is not set to true",
         "searchLine": common_lib.build_search_line(["resource", load_balancer, name, "access_logs", "enabled"], []),
     }
 }
