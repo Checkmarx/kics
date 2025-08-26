@@ -46,6 +46,53 @@ CxPolicy[result] { # iam_database_authentication_enabled set to false for resour
     }
 }
 
+CxPolicy[result] { # iam_database_authentication_enabled not defined for module
+    module := input.document[i].module[name]
+
+    keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_rds_cluster", "iam_database_authentication_enabled")
+
+    not common_lib.valid_key(module, keyToCheck)
+    valid_for_iam_engine_and_version_check_edited(module, "engine", "engine_version")
+
+    result := {
+        "documentId": input.document[i].id,
+        "resourceType": "n/a",
+        "resourceName": "n/a",
+        "searchKey": sprintf("module[%s]", [name]),
+        "issueType": "MissingAttribute",
+        "keyExpectedValue": "'iam_database_authentication_enabled' should be set to true",
+        "keyActualValue": "'iam_database_authentication_enabled' is undefined",
+        "searchLine": common_lib.build_search_line(["module", name], []),
+        "remediation": "iam_database_authentication_enabled = true",
+        "remediationType": "addition",
+    }
+}
+
+CxPolicy[result] { # iam_database_authentication_enabled set to false for module
+    module := input.document[i].module[name]
+
+    keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_rds_cluster", "iam_database_authentication_enabled")
+
+    module[keyToCheck] == false
+    valid_for_iam_engine_and_version_check_edited(module, "engine", "engine_version")
+
+    result := {
+        "documentId": input.document[i].id,
+        "resourceType": "n/a",
+        "resourceName": "n/a",
+        "searchKey": sprintf("module[%s].iam_database_authentication_enabled", [name]),
+        "issueType": "MissingAttribute",
+        "keyExpectedValue": "'iam_database_authentication_enabled' should be set to true",
+        "keyActualValue": "'iam_database_authentication_enabled' is defined to false",
+        "searchLine": common_lib.build_search_line(["module", name, "iam_database_authentication_enabled"], []),
+        "remediation": json.marshal({
+			"before": "false",
+			"after": "true",
+		}),
+        "remediationType": "replacement",
+    }
+}
+
 valid_for_iam_engine_and_version_check_edited(resource, engineVar, engineVersionVar) {
     key_list := [engineVar, engineVersionVar]
     contains(lower(resource[engineVar]), "mariadb")
