@@ -1,0 +1,14 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Sample",
+  "Resources": {
+    "ElasticsearchDomain": {
+      "Type": "AWS::OpenSearchService::Domain",
+      "Properties": {
+        "DomainName": {
+          "Ref": "DomainName"
+        }
+      }
+    }
+  }
+}

@@ -14,36 +14,27 @@ paths:
             application/json:
               schema:
                 type: object
+                discriminator:
+                  propertyName: petType
                 properties:
                   code:
                     type: string
                     format: binary
-              examples:
-                foo:
-                  value:
-                    versions:
-                      - status: CURRENT
-                        updated: "2011-01-21T11:33:21Z"
-                        id: v2.0
-                        links:
-                          - href: http://127.0.0.1:8774/v2/
-                            rel: self
-components:
-  requestBodies:
-    NewItem:
-      description: A JSON object containing item data
-      required: true
-      content:
-        multipart/form-data:
-          schema:
-            type: object
-            properties:
+                  message:
+                    type: string
+              encoding:
+                code:
+                  contentType: image/png, image/jpeg
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+              format: binary
+              properties:
+                code:
+                  type: string
+                  format: binary
+            encoding:
               code:
-                type: string
-                format: binary
-          examples:
-            tshirt:
-              $ref: "#/components/examples/tshirt"
-          encoding:
-            code:
-              contentType: image/png, image/jpeg
+                contentType: image/png, image/jpeg

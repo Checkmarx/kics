@@ -1,0 +1,12 @@
+{
+  "id": "228497f6-414f-41c8-9113-f36a2b1b7975",
+  "queryName": "IAM DB Cluster Auth Not Enabled",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "IAM Authentication should be enabled to verify the access of users and applications to your databases by enabling IAM policies and multi-factor authentication. This is a safety measure to ensure the protection of newly created databases without the proper IAM policies or in the change of policies in existing databases.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#iam_database_authentication_enabled",
+  "platform": "Terraform",
+  "descriptionID": "228497f6",
+  "cloudProvider": "aws",
+  "cwe": "311"
+}

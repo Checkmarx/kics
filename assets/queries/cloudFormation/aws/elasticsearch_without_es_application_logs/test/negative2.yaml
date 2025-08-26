@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Sample
+Resources:
+  ProductionElasticsearch:
+    Type: "AWS::Elasticsearch::Domain"
+    Properties:
+      DomainName:
+        Ref: DomainName
+      LogPublishingOptions:
+        "ES_APPLICATION_LOGS":
+          CloudWatchLogsLogGroupArn: !GetAtt ProductionElasticsearchIndexSlowLogs.Arn
+          Enabled: true
