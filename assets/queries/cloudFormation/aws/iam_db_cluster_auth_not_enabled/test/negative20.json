@@ -15,12 +15,12 @@
                     "Ref": "SourceDBInstanceIdentifier"
                 },
                 "Engine": "mariadb",
-                "EngineVersion": "10.6",
+                "EngineVersion": "10.5",
                 "DBClusterParameterGroupName": "default.aurora-postgresql10",
                 "EnableCloudwatchLogsExports": [
                     "postgresql"
                 ],
-                "EnableIAMDatabaseAuthentication": true
+                "EnableIAMDatabaseAuthentication": false
             }
         }
     }

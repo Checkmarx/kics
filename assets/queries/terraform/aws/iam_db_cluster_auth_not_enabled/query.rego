@@ -100,8 +100,7 @@ valid_for_iam_engine_and_version_check_edited(resource, engineVar, engineVersion
     version_check := {x | x := resource[key_list[_]]; contains(x, supported_versions[_])}
     count(version_check) > 0
 } else {
-    engines_that_support_iam := ["aurora-postgresql", "postgres", "mysql", "mariadb"]
-    contains(lower(resource[engineVar]), engines_that_support_iam[_])
+    contains(lower(resource[engineVar]), "mariadb")
     not common_lib.valid_key(resource, engineVersionVar)
 } else {
     engines_that_supports_iam := ["aurora-postgresql", "postgres", "mysql"]

@@ -8,7 +8,6 @@ Resources:
       StorageEncrypted: true
       DBClusterIdentifier: postgres-db-cluster
       Engine: postgres
- 
       DBClusterParameterGroupName: default.postgres15
       EnableCloudwatchLogsExports:
         - postgresql

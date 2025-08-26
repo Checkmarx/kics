@@ -10,17 +10,15 @@
                 "MasterUserPassword": {
                     "Ref": "DBPassword"
                 },
-                "StorageEncrypted": true,
                 "DBClusterIdentifier": {
                     "Ref": "SourceDBInstanceIdentifier"
                 },
                 "Engine": "mariadb",
-                "EngineVersion": "10.6",
-                "DBClusterParameterGroupName": "default.aurora-postgresql10",
+                "EngineVersion": "11.4",
+                "DBClusterParameterGroupName": "default.mariadb",
                 "EnableCloudwatchLogsExports": [
-                    "postgresql"
-                ],
-                "EnableIAMDatabaseAuthentication": true
+                    "mariadb"
+                ]
             }
         }
     }
