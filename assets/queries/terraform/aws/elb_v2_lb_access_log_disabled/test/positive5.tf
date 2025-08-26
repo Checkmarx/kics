@@ -11,7 +11,6 @@ resource "aws_alb" "test" {
   access_logs {
     bucket  = aws_s3_bucket.lb_logs.id
     prefix  = "test-lb"
-    enabled = false
   }
 
   tags = {

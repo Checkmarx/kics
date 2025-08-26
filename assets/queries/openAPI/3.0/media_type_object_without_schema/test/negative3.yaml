@@ -12,6 +12,12 @@ paths:
           description: 200 response
           content:
             application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    format: binary
               examples:
                 foo:
                   value:
@@ -29,6 +35,12 @@ components:
       required: true
       content:
         multipart/form-data:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                format: binary
           examples:
             tshirt:
               $ref: "#/components/examples/tshirt"

@@ -34,7 +34,7 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
    }
  
   lambda_function {
-    lambda_function_arn = aws_lambda_function.func1.arn
+    lambda_function_arn = aws_lambda_function.func2.arn
     events              = ["s3:ObjectCreated:Post"]
     filter_prefix       = "OtherLogs/"
     filter_suffix       = ".json"

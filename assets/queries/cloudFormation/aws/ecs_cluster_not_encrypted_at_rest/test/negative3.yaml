@@ -1,0 +1,62 @@
+Resources:
+  TaskDef54694570:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Environment:
+            - Name: DEPLOYMENT_TIMESTAMP
+              Value: "2024-08-20T00:41:57.620Z"
+          Essential: true
+          HealthCheck:
+            Command:
+              - CMD-SHELL
+              - curl -f http://localhost:3000/health || exit
+            Interval: 30
+            Retries: 3
+            StartPeriod: 30
+            Timeout: 5
+          Image:
+            Fn::Join:
+              - ""
+              - - 123456789012.dkr.ecr.us-west-2.
+                - Ref: AWS::URLSuffix
+                - /example-nms:latest
+      ExecutionRoleArn:
+        Fn::GetAtt:
+          - TaskDefExecutionRoleB4775C97
+          - Arn
+      RequiresCompatibilities:
+        - EC2
+      Tags:
+        - Key: classification
+          Value: internal
+        - Key: component
+          Value: example-nms
+        - Key: env
+          Value: development
+        - Key: owner
+          Value: example@owner.com
+        - Key: product
+          Value: internal_tools
+      TaskRoleArn:
+        Fn::GetAtt:
+          - EcsTaskRole8DFA0181
+          - Arn
+  ExampleNameMatchService0992A2E7:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster: example-ecs
+      SchedulingStrategy: REPLICA
+      Tags:
+        - Key: classification
+          Value: internal
+        - Key: component
+          Value: example-nms
+        - Key: env
+          Value: development
+        - Key: owner
+          Value: example@owner.com
+        - Key: product
+          Value: internal_tools
+      TaskDefinition:
+        Ref: TaskDef54694570
