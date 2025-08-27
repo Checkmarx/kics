@@ -5,11 +5,11 @@ Resources:
     Properties:
       MasterUsername: !Ref DBUsername
       MasterUserPassword: !Ref DBPassword
-      StorageEncrypted: true
+      StorageEncrypted: "true"
       DBClusterIdentifier: !Ref SourceDBInstanceIdentifier
       Engine: mariadb
-      EngineVersion: '10.6'
-      DBClusterParameterGroupName: default.aurora-postgresql10
+      EngineVersion: "10.11" 
+      DBClusterParameterGroupName: default.mariadb
       EnableCloudwatchLogsExports:
-        - postgresql
-      EnableIAMDatabaseAuthentication: true
+        - mariadb
+      EnableIAMDatabaseAuthentication: "false"

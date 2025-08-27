@@ -16,11 +16,11 @@
                 },
                 "Engine": "mariadb",
                 "EngineVersion": "10.6",
-                "DBClusterParameterGroupName": "default.aurora-postgresql10",
+                "DBClusterParameterGroupName": "default.mariadb",
                 "EnableCloudwatchLogsExports": [
-                    "postgresql"
+                    "mariadb"
                 ],
-                "EnableIAMDatabaseAuthentication": true
+                "EnableIAMDatabaseAuthentication": false
             }
         }
     }
