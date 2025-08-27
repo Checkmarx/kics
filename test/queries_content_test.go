@@ -280,6 +280,7 @@ func testQueryHasGoodReturnParams(t *testing.T, entry queryEntry) { //nolint
 			InputDataPath:  "",
 		},
 		map[string]bool{},
+		map[string]bool{},
 		60,
 		true,
 		true,

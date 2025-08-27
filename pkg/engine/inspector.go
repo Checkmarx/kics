@@ -69,12 +69,13 @@ type PreparedQuery struct {
 // Inspector represents a list of compiled queries, a builder for vulnerabilities, an information tracker
 // a flag to enable coverage and the coverage report if it is enabled
 type Inspector struct {
-	QueryLoader    *QueryLoader
-	vb             VulnerabilityBuilder
-	tracker        Tracker
-	failedQueries  map[string]error
-	excludeResults map[string]bool
-	detector       *detector.DetectLine
+	QueryLoader     *QueryLoader
+	vb              VulnerabilityBuilder
+	tracker         Tracker
+	failedQueries   map[string]error
+	excludeResults  map[string]bool
+	excludeQueryIDs map[string]bool
+	detector        *detector.DetectLine
 
 	enableCoverageReport bool
 	coverageReport       cover.Report
@@ -119,6 +120,7 @@ func NewInspector(
 	tracker Tracker,
 	queryParameters *source.QueryInspectorParameters,
 	excludeResults map[string]bool,
+	excludeQueryIDs map[string]bool,
 	queryTimeout int,
 	useOldSeverities bool,
 	needsLog bool,
@@ -172,6 +174,7 @@ func NewInspector(
 		tracker:             tracker,
 		failedQueries:       failedQueries,
 		excludeResults:      excludeResults,
+		excludeQueryIDs:     excludeQueryIDs,
 		detector:            lineDetector,
 		queryExecTimeout:    queryExecTimeout,
 		useOldSeverities:    useOldSeverities,
@@ -517,6 +520,10 @@ func getVulnerabilitiesFromQuery(ctx *QueryContext, c *Inspector, queryResultIte
 	if _, ok := c.excludeResults[vulnerability.SimilarityID]; ok {
 		log.Debug().
 			Msgf("Excluding result SimilarityID: %s", vulnerability.SimilarityID)
+		return nil, false
+	} else if _, ok := c.excludeQueryIDs[vulnerability.QueryID]; ok {
+		log.Debug().
+			Msgf("Excluding result QueryID: %s", vulnerability.QueryID)
 		return nil, false
 	} else if checkComment(vulnerability.Line, file.LinesIgnore) {
 		log.Debug().
