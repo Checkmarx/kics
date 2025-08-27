@@ -1,0 +1,16 @@
+apiVersion: ssm.aws.upbound.io/v1beta1
+kind: Parameter
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ssm/v1beta1/parameter
+  labels:
+    testing.upbound.io/example-name: foo
+  name: foo
+spec:
+  forProvider:
+    region: us-west-1
+    type: SecureString
+    valueSecretRef:
+      key: example-key
+      name: parameter-secret
+      namespace: upbound-system

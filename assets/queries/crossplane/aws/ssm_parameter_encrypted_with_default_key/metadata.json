@@ -1,0 +1,11 @@
+{
+  "id": "d4be25bc-1742-40ee-a430-5e1aa54f262e",
+  "queryName": "SSM Parameter Encrypted With Default Key",
+  "severity": "INFO",
+  "category": "Secret Management",
+  "descriptionText": "SSM parameters of type “SecureString” use, by default, AWS KMS to encrypt and decrypt secure string parameter values. However, this does not offer full protection given that SSM parameters do not offer resource policies that prevent other users from viewing this data. Given this, a KMS key shall be defined for encrypting the SecureString.",
+  "descriptionUrl": "https://doc.crds.dev/github.com/crossplane-contrib/provider-jet-aws/ssm.aws.jet.crossplane.io/Parameter/v1alpha1@v0.3.0-preview#spec-forProvider-keyId",
+  "platform": "Crossplane",
+  "descriptionID": "eb8aa22d",
+  "cloudProvider": "aws"
+}
