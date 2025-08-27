@@ -1,0 +1,7 @@
+[
+  {
+    "queryName": "Backup Vault Encryption Disabled",
+    "severity": "MEDIUM",
+    "line": 1
+  }
+]
