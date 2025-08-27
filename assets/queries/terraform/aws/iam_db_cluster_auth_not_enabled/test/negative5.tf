@@ -7,7 +7,7 @@ module "aurora_cluster" {
   engine         = "mariadb"
   engine_version = "10.5"
 
-  iam_database_authentication_enabled = true
+  iam_database_authentication_enabled = false
 
   skip_final_snapshot = true
 }
