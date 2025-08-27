@@ -10,3 +10,5 @@ Resources:
       RestApiId: !Ref MyRestApi
       DeploymentId: !Ref TestDeployment
       DocumentationVersion: ""
+      MethodSettings:
+        LoggingLevel: "OFF"
