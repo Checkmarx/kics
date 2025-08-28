@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceName": value.name,
 		"searchKey": sprintf("%s.name=%s%s", [common_lib.concat_path(path), value.name, issue.sk]),
 		"issueType": issue.issueType,
-		"keyExpectedValue": "'siteConfig.minTlsVersion' should be 1.3",
+		"keyExpectedValue": issue.keyExpectedValue,
 		"keyActualValue": issue.keyActualValue,
 		"searchLine": common_lib.build_search_line(path, issue.sl),
 	}
@@ -30,6 +30,11 @@ is_last_tls(doc, resource) {
 	val == "1.3"
 }
 
+is_last_tls(doc, resource) {
+	[val, _] :=  arm_lib.getDefaultValueFromParametersIfPresent(doc, resource.properties.siteConfig.minTlsVersion)
+	val == "1.2"
+}
+
 prepare_issue(resource) = issue {
 	common_lib.valid_key(resource, "properties")
 	common_lib.valid_key(resource.properties, "siteConfig")
@@ -38,7 +43,8 @@ prepare_issue(resource) = issue {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
 		"issueType": "IncorrectValue",
-		"keyActualValue": "'minTlsVersion' is not 1.3",
+		"keyActualValue": "'minTlsVersion' is not 1.2 or 1.3",
+		"keyExpectedValue": "'siteConfig.minTlsVersion' should be 1.2 or 1.3",
 		"sk": ".properties.siteConfig.minTlsVersion",
 		"sl": ["properties", "siteConfig", "minTlsVersion"],
 	}
@@ -48,7 +54,8 @@ prepare_issue(resource) = issue {
 		"resourceName": resource.name,
 		"issueType": "MissingAttribute",
 		"keyActualValue": "'siteConfig.minTlsVersion' is undefined",
-		"sk": "",
+		"keyExpectedValue": "'siteConfig.minTlsVersion' should be defined",
+		"sk": ".properties",
 		"sl": ["name"],
 	}
 }

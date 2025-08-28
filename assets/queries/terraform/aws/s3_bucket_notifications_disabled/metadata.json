@@ -1,0 +1,12 @@
+{
+  "id": "e39f87f5-0abf-488b-864c-63ee1f588140",
+  "queryName": "S3 bucket notifications disabled",
+  "severity": "LOW",
+  "category": "Observability",
+  "descriptionText": "S3 bucket notifications provide alerts triggered when certain operations are performed, which might be a helpful indicator for detecting unintended operations that might compromise your infrastructure or even malicious activity.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_notification",
+  "platform": "Terraform",
+  "descriptionID": "e39f87f5",
+  "cloudProvider": "aws",
+  "cwe": "778"
+}

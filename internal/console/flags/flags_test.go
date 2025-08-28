@@ -336,14 +336,14 @@ func TestFlags_evalUsage(t *testing.T) {
 			usage:              "test ${supportedPlatforms}",
 			supportedPlatforms: []string{"terraform", "dockerfile"},
 			supportedProviders: []string{"aws", "azure"},
-			expected:           fmt.Sprintf("test %s", strings.Join([]string{"terraform", "dockerfile"}, ", ")),
+			expected:           fmt.Sprintf("test %s", strings.Join([]string{"terraform", "dockerfile"}, ",")),
 		},
 		{
 			name:               "should return message translated for multiple variables",
 			usage:              "test ${supportedPlatforms} ${defaultLogFile}",
 			supportedPlatforms: []string{"terraform", "dockerfile"},
 			supportedProviders: []string{"aws", "azure"},
-			expected:           fmt.Sprintf("test %s %s", strings.Join([]string{"terraform", "dockerfile"}, ", "), constants.DefaultLogFile),
+			expected:           fmt.Sprintf("test %s %s", strings.Join([]string{"terraform", "dockerfile"}, ","), constants.DefaultLogFile),
 		},
 	}
 	for _, test := range tests {

@@ -16,5 +16,11 @@
     "severity": "MEDIUM",
     "line": 6,
     "fileName": "positive3.yaml"
+  },
+  {
+    "queryName": "Elasticsearch with HTTPS disabled",
+    "severity": "MEDIUM",
+    "line": 15,
+    "fileName": "positive4.yaml"
   }
 ]
