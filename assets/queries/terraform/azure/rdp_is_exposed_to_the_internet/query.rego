@@ -45,10 +45,9 @@ CxPolicy[result] {
   }
 }
 
-isRelevantProtocol(protocol) = allow {
+isRelevantProtocol(protocol) = true {
 	upper(protocol) != "UDP"
 	upper(protocol) != "ICMP"
-	allow = true
 }
 
 isRelevantPort(port) = true {
@@ -66,19 +65,14 @@ isRelevantPort(port) = true {
 	to_number(trim(sublist[1], " ")) >= 3389
 }
 
-isRelevantAddressPrefix(prefix) = allow {
+isRelevantAddressPrefix(prefix) = true {
 	prefix == "*"
-	allow = true
-} else = allow {
+} else = true {
 	prefix == "0.0.0.0"
-	allow = true
-} else = allow {
+} else = true {
 	endswith(prefix, "/0")
-	allow = true
-} else = allow {
+} else = true {
 	prefix == "internet"
-	allow = true
-} else = allow {
+} else = true {
 	prefix == "any"
-	allow = true
 }
