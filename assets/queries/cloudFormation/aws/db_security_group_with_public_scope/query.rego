@@ -69,5 +69,5 @@ CxPolicy[result] {
 
 check_public(resource) {
 	resource.Type == "AWS::RDS::DBInstance"
-	resource.Properties.PubliclyAccessible == true
+	cf_lib.isCloudFormationTrue(resource.Properties.PubliclyAccessible)
 }
