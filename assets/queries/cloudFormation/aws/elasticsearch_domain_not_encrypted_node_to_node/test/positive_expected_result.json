@@ -68,7 +68,7 @@
   {
     "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
     "severity": "MEDIUM",
-    "line": 7,
+    "line": 10,
     "fileName": "positive12.json"
   }
 ]
