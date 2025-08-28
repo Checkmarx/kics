@@ -46,5 +46,29 @@
     "severity": "MEDIUM",
     "line": 42,
     "fileName": "positive8.json"
+  },
+  {
+    "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive9.yaml"
+  },
+  {
+    "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive10.json"
+  },
+  {
+    "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive11.yaml"
+  },
+  {
+    "queryName": "Elasticsearch Domain Not Encrypted Node To Node",
+    "severity": "MEDIUM",
+    "line": 7,
+    "fileName": "positive12.json"
   }
 ]
