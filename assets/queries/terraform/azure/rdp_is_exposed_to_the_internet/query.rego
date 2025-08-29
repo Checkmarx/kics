@@ -46,7 +46,6 @@ CxPolicy[result] {
 }
 
 isRelevantProtocol(protocol) = true {
-	upper(protocol) != "UDP"
 	upper(protocol) != "ICMP"
 }
 

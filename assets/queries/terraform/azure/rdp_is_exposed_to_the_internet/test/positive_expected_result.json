@@ -122,6 +122,18 @@
 	{
 		"queryName": "RDP Is Exposed To The Internet",
 		"severity": "HIGH",
+		"line": 273,
+    	"fileName": "positive1.tf"
+	},
+	{
+		"queryName": "RDP Is Exposed To The Internet",
+		"severity": "HIGH",
+		"line": 286,
+    	"fileName": "positive1.tf"
+	},
+	{
+		"queryName": "RDP Is Exposed To The Internet",
+		"severity": "HIGH",
 		"line": 8,
     	"fileName": "positive2.tf"
 	},
@@ -165,6 +177,18 @@
 		"queryName": "RDP Is Exposed To The Internet",
 		"severity": "HIGH",
 		"line": 105,
+    	"fileName": "positive2.tf"
+	},
+	{
+		"queryName": "RDP Is Exposed To The Internet",
+		"severity": "HIGH",
+		"line": 117,
+    	"fileName": "positive2.tf"
+	},
+	{
+		"queryName": "RDP Is Exposed To The Internet",
+		"severity": "HIGH",
+		"line": 130,
     	"fileName": "positive2.tf"
 	}
 ]
