@@ -3,7 +3,6 @@ resource "aws_iam_role" "iam_for_lambda" {
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
-
 resource "aws_lambda_function" "func" {
   filename      = "your-function.zip"
   function_name = "example_lambda_name"
@@ -25,6 +24,4 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
     filter_prefix       = "AWSLogs/"
     filter_suffix       = ".log"
   }
-
-  depends_on = [aws_lambda_permission.allow_bucket]
 }
