@@ -2,34 +2,6 @@
     "AWSTemplateFormatVersion": "2010-09-09",
     "Description": "A sample template",
     "Resources": {
-      "ECSService": {
-        "Properties": {
-          "LoadBalancers": [
-            {
-              "TargetGroupArn": {
-                "Ref": "TargetGroup"
-              },
-              "ContainerPort": 80,
-              "ContainerName": "sample-app"
-            }
-          ],
-          "Cluster": {
-            "Ref": "ECSCluster"
-          },
-          "LaunchType": "FARGATE",
-          "Role": {
-            "Ref": "ECSServiceRole"
-          },
-          "TaskDefinition": {
-            "Ref": "ECSTaskDefinition"
-          },
-          "DesiredCount": 1
-        },
-        "Type": "AWS::ECS::Service",
-        "DependsOn": [
-          "Listener"
-        ]
-      },
       "taskdefinition": {
         "Type": "AWS::ECS::TaskDefinition",
         "Properties": {
@@ -53,10 +25,10 @@
                     ]
                 }
             ],
-            "volumes": [
+            "Volumes": [
                 {
                     "Name": "myEfsVolume",
-                    "efsVolumeConfiguration": {
+                    "EFSVolumeConfiguration": {
                         "FileSystemId": "fs-1234",
                         "RootDirectory": "/path/to/my/data",
                         "TransitEncryptionPort": 10

@@ -1,0 +1,12 @@
+{
+  "id": "63a847b2-3782-4dbb-b452-524bf038984b",
+  "queryName": "Neptune Logging Is Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Neptune logging should be enabled",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-neptune-dbcluster.html#cfn-neptune-dbcluster-enablecloudwatchlogsexports",
+  "platform": "CloudFormation",
+  "descriptionID": "63a847b2",
+  "cloudProvider": "aws",
+  "cwe": "778"
+}

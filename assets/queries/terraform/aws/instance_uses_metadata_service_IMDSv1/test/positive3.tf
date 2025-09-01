@@ -19,4 +19,3 @@ resource "aws_launch_configuration" "positive3" {
     instance_metadata_tags = "enabled"
   }
 }
-

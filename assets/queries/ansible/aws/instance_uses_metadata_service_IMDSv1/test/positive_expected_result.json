@@ -106,15 +106,13 @@
         "severity": "LOW",
         "line": 20,
         "fileName": "positive5.yaml"
-    }
-    ,
+    },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
         "line": 31,
         "fileName": "positive5.yaml"
-    }
-    ,
+    },
     {
         "queryName": "Instance Uses Metadata Service IMDSv1",
         "severity": "LOW",
