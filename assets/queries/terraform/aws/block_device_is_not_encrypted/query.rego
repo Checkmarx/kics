@@ -148,8 +148,8 @@ is_not_encrypted(target_block,name,block,idx) = results {
 } else = results {
 	target_block.ebs.encrypted == false
 	results := {
-		"searchKey": sprintf("module[%s].%s.%d.ebs", [name, block, idx]), #does not point to encrypted due to search limitations
-		"searchLine": common_lib.build_search_line(["module", name, block, idx, "ebs"], []),
+		"searchKey": sprintf("module[%s].%s.%d.ebs.encrypted", [name, block, idx]), #does not point to encrypted due to search limitations
+		"searchLine": common_lib.build_search_line(["module", name, block, idx, "ebs", "encrypted"], []),
 	}
 } else = ""
 
