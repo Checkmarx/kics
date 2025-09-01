@@ -77,6 +77,7 @@ node_to_node_block_not_defined(resource, type, name) = r {
     }
 } else = r {
     type == "AWS::OpenSearchService::Domain"
+    regex.match("^Elasticsearch_[0-9]{1}\\.[0-9]{1,2}$", resource.EngineVersion)
     resource.NodeToNodeEncryptionOptions == {}
     r := {
         "sk": sprintf("Resources.%s.Properties.NodeToNodeEncryptionOptions", [name]),
