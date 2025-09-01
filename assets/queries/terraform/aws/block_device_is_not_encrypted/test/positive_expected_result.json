@@ -80,31 +80,37 @@
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
-    "line": 5,
-    "fileName": "positive7.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
-    "line": 27,
-    "fileName": "positive7.tf"
-  },
-  {
-    "queryName": "Block Device Is Not Encrypted",
-    "severity": "HIGH",
     "line": 11,
-    "fileName": "positive8.tf"
+    "fileName": "positive7.tf"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 29,
+    "fileName": "positive7.tf"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
     "line": 10,
-    "fileName": "positive9.tf"
+    "fileName": "positive8.tf"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 27,
+    "fileName": "positive8.tf"
   },
   {
     "queryName": "Block Device Is Not Encrypted",
     "severity": "HIGH",
     "line": 9,
-    "fileName": "positive10.tf"
+    "fileName": "positive9.tf"
+  },
+  {
+    "queryName": "Block Device Is Not Encrypted",
+    "severity": "HIGH",
+    "line": 26,
+    "fileName": "positive9.tf"
   }
 ]
