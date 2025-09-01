@@ -9,8 +9,14 @@ resource "aws_instance" "positive3" {
   metadata_options {
     instance_metadata_tags = "enabled"
   }
+}
 
-  tags = {
-    Name = "positive3"
+resource "aws_launch_configuration" "positive3" {
+  image_id      = "ami-12345678"
+  instance_type = "t2.micro"
+
+  metadata_options {
+    instance_metadata_tags = "enabled"
   }
 }
+
