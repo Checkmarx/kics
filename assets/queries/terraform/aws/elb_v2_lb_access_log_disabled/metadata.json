@@ -1,0 +1,12 @@
+{
+  "id": "3e34db4f-0ad9-4290-bfd0-4a9ee884acaf",
+  "queryName": "ELBv2 LB Access Log Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "ELBv2 LBs should have access log enabled to capture detailed information about requests sent to your load balancer.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb#enabled",
+  "platform": "Terraform",
+  "descriptionID": "3e34db4f",
+  "cloudProvider": "aws",
+  "cwe": "778"
+}

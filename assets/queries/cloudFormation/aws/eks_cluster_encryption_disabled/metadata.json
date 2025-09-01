@@ -1,0 +1,12 @@
+{
+  "id": "8e5ef52b-e673-4c3f-9b2e-99cdd0139059",
+  "queryName": "EKS Cluster Encryption Disabled",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "EKS Cluster should be encrypted",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-properties-eks-cluster-encryptionconfig.html",
+  "platform": "CloudFormation",
+  "descriptionID": "8e5ef52b",
+  "cloudProvider": "aws",
+  "cwe": "311"
+}

@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::DynamoDB::Table"
 	properties := resource.Properties
 	
-	properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled == false
+	cf_lib.isCloudFormationFalse(properties.PointInTimeRecoverySpecification.PointInTimeRecoveryEnabled)
 
 	result := {
 		"documentId": input.document[i].id,
