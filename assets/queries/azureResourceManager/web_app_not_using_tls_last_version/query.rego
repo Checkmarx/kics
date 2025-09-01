@@ -56,6 +56,6 @@ prepare_issue(resource) = issue {
 		"keyActualValue": "'siteConfig.minTlsVersion' is undefined",
 		"keyExpectedValue": "'siteConfig.minTlsVersion' should be defined",
 		"sk": ".properties",
-		"sl": ["name"],
+		"sl": ["properties"],
 	}
 }
