@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::EMR::SecurityConfiguration"
 
 	properties := resource.Properties
-	properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption == false
+	cf_lib.isCloudFormationFalse(properties.SecurityConfiguration.EncryptionConfiguration.AtRestEncryptionConfiguration.LocalDiskEncryptionConfiguration.EnableEbsEncryption)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -28,7 +28,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::EMR::SecurityConfiguration"
 
 	properties := resource.Properties
-	properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption == false
+	cf_lib.isCloudFormationFalse(properties.SecurityConfiguration.EncryptionConfiguration.EnableInTransitEncryption)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -47,7 +47,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::EMR::SecurityConfiguration"
 
 	properties := resource.Properties
-	properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption == false
+	cf_lib.isCloudFormationFalse(properties.SecurityConfiguration.EncryptionConfiguration.EnableAtRestEncryption)
 
 	result := {
 		"documentId": input.document[i].id,

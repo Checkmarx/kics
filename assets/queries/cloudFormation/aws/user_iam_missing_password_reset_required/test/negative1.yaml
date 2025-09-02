@@ -7,7 +7,7 @@ Resources:
         Path: "/"
         LoginProfile:
          Password: myP@ssW0rd
-         PasswordResetRequired: true
+         PasswordResetRequired: "true"
         Policies:
         - PolicyName: giveaccesstoqueueonly
           PolicyDocument:

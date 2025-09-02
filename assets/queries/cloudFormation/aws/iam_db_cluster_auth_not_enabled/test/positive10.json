@@ -1,0 +1,26 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "sample": {
+            "Type": "AWS::RDS::DBCluster",
+            "Properties": {
+                "MasterUsername": {
+                    "Ref": "DBUsername"
+                },
+                "MasterUserPassword": {
+                    "Ref": "DBPassword"
+                },
+                "StorageEncrypted": true,
+                "DBClusterIdentifier": {
+                    "Ref": "SourceDBInstanceIdentifier"
+                },
+                "Engine": "mysql",
+                "DBClusterParameterGroupName": "default.mysql10",
+                "EnableCloudwatchLogsExports": [
+                    "mysql"
+                ],
+                "EnableIAMDatabaseAuthentication": "false"
+            }
+        }
+    }
+}
