@@ -15,12 +15,12 @@ CxPolicy[result] {
         "documentId": input.document[i].id,
         "resourceType": supported_resources[k],
         "resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": res["sk"],
-		"issueType": res["it"],
-		"keyExpectedValue": res["kev"],
-		"keyActualValue": res["kav"],
-		"searchLine": res["sl"],
-	}
+        "searchKey": res["sk"],
+        "issueType": res["it"],
+        "keyExpectedValue": res["kev"],
+        "keyActualValue": res["kav"],
+        "searchLine": res["sl"],
+	  }
 }
 
 CxPolicy[result] {

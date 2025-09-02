@@ -1,0 +1,12 @@
+{
+  "id": "6282794f-def8-4d6f-9df6-289318aa42b8",
+  "queryName": "IAM DB Cluster Auth Not Enabled",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "IAM Authentication should be enabled to verify the access of users and applications to your databases by enabling IAM policies and multi-factor authentication. This is a safety measure to ensure the protection of newly created databases without the proper IAM policies or in the change of policies in existing databases.",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-rds-dbcluster.html#cfn-rds-dbcluster-enableiamdatabaseauthentication",
+  "platform": "CloudFormation",
+  "descriptionID": "6282794f",
+  "cloudProvider": "aws",
+  "cwe": "311"
+}
