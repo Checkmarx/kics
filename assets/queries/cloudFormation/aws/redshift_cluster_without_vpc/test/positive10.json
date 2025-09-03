@@ -1,0 +1,16 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "RedshiftCluster": {
+      "Type": "AWS::Redshift::Cluster",
+      "Properties": {
+        "ClusterIdentifier": "tf-redshift-cluster",
+        "DBName": "mydb",
+        "ClusterSubnetGroupName": { "Ref": "RedshiftSubnetGroup" },
+        "VpcSecurityGroupIds": [
+          { "Ref": "RedshiftSecurityGroup" }
+        ]
+      }
+    }
+  }
+}

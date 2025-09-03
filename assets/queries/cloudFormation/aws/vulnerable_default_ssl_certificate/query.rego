@@ -8,7 +8,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::CloudFront::Distribution"
 
 	value := resource.Properties.DistributionConfig.ViewerCertificate.CloudfrontDefaultCertificate
-	isAttrTrue(value)
+	cf_lib.isCloudFormationTrue(value)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -43,12 +43,6 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("Resources.%s.Properties.DistributionConfig.ViewerCertificate.%s is not defined", [name, attr[a]]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "DistributionConfig", "ViewerCertificate"], []),
 	}
-}
-
-isAttrTrue(value) {
-	value == "true"
-} else {
-	value == true
 }
 
 hasCustomConfig(viewerCertificate) {

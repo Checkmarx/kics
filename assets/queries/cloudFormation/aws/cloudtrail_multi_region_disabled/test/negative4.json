@@ -1,0 +1,109 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "OperatorEmail": {
+      "Description": "Email address to notify when new logs are published.",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "TopicPolicy": {
+      "Type": "AWS::SNS::TopicPolicy",
+      "Properties": {
+        "Topics": [
+          {
+            "Ref": "Topic"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2008-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "cloudtrail.amazonaws.com"
+              },
+              "Resource": "*",
+              "Action": "SNS:Publish",
+              "Sid": "AWSCloudTrailSNSPolicy"
+            }
+          ]
+        }
+      }
+    },
+    "myTrail": {
+      "Type": "AWS::CloudTrail::Trail",
+      "Properties": {
+        "S3BucketName": {
+          "Ref": "S3Bucket"
+        },
+        "SnsTopicName": {
+          "Fn::GetAtt": [
+            "Topic",
+            "TopicName"
+          ]
+        },
+        "IsLogging": true,
+        "IsMultiRegionTrail": "true"
+      },
+      "DependsOn": [
+        "BucketPolicy",
+        "TopicPolicy"
+      ]
+    },
+    "S3Bucket": {
+      "Properties": {},
+      "DeletionPolicy": "Retain",
+      "Type": "AWS::S3::Bucket"
+    },
+    "BucketPolicy": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "S3Bucket"
+        },
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Principal": {
+                "Service": "cloudtrail.amazonaws.com"
+              },
+              "Action": "s3:GetBucketAcl",
+              "Resource": "arn:aws:s3:::${S3Bucket}",
+              "Sid": "AWSCloudTrailAclCheck",
+              "Effect": "Allow"
+            },
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "cloudtrail.amazonaws.com"
+              },
+              "Action": "s3:PutObject",
+              "Resource": "arn:aws:s3:::${S3Bucket}/AWSLogs/${AWS::AccountId}/*",
+              "Condition": {
+                "StringEquals": {
+                  "s3:x-amz-acl": "bucket-owner-full-control"
+                }
+              },
+              "Sid": "AWSCloudTrailWrite"
+            }
+          ]
+        }
+      },
+      "Type": "AWS::S3::BucketPolicy"
+    },
+    "Topic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "Subscription": [
+          {
+            "Endpoint": {
+              "Ref": "OperatorEmail"
+            },
+            "Protocol": "email"
+          }
+        ]
+      }
+    }
+  }
+}

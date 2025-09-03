@@ -46,7 +46,7 @@ CxPolicy[result] {
 
     autoDeployment := resource.Properties.AutoDeployment
 
-    autoDeployment.Enabled == false
+	cf_lib.isCloudFormationFalse(autoDeployment.Enabled)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -85,7 +85,7 @@ CxPolicy[result] {
 
     autoDeployment.Enabled
 
-    autoDeployment.RetainStacksOnAccountRemoval == false
+	cf_lib.isCloudFormationFalse(autoDeployment.RetainStacksOnAccountRemoval)
 
 	result := {
 		"documentId": input.document[i].id,

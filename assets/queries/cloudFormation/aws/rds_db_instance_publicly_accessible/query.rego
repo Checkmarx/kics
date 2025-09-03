@@ -8,7 +8,7 @@ CxPolicy[result] {
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
 	resource.Type == "AWS::RDS::DBInstance"
-	resource.Properties.PubliclyAccessible == true
+	cf_lib.isCloudFormationTrue(resource.Properties.PubliclyAccessible)
 
 	result := {
 		"documentId": input.document[i].id,

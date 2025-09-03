@@ -1,0 +1,5 @@
+similarityIDChangeList:
+  - queryId: daaace5f-c0dc-4835-b526-7a116b7f4b4e
+    queryName: Enum Name Not CamelCase
+    observations: ""
+    change: 4
