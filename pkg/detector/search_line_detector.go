@@ -164,6 +164,7 @@ func (d *searchLineDetector) getResult() (oldResult, newResult int) {
 			pathObjectsNew = append(pathObjectsNew,
 				d.resolvedPath+"._kics_lines._kics__default._kics_line", // for cases where the object is in the root
 				"_kics_lines._kics_"+d.targetObj+"._kics_line",          // for cases where key is in the root
+				d.resolvedPath+"."+d.targetObj+"._kics_line",
 			)
 		} else {
 			for _, resolvedArrayPath := range d.resolvedArrayPaths[0:oldResolvedArrayPathInd] {
