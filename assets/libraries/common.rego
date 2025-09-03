@@ -582,7 +582,8 @@ weakCipher(aux) {
 valid_for_iam_engine_and_version_check(resource, engineVar, engineVersionVar, instanceClassVar) {
 	key_list := [engineVar, engineVersionVar]
 	contains(lower(resource[engineVar]), "mariadb")
-	version_check := {x | x := resource[key_list[_]]; contains(x, "10.6")}
+	supported_versions := {"10.6", "10.11", "11.4"}
+	version_check := {x | x := resource[key_list[_]]; contains(x, supported_versions[_])}
 	count(version_check) > 0
 } else {
 	engines_that_supports_iam := ["aurora-postgresql", "postgres", "mysql", "mariadb"]

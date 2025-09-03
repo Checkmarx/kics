@@ -1,0 +1,12 @@
+{
+  "id": "1f624961-9a18-4387-91c8-3856e1974b6f",
+  "queryName": "Block Device Is Not Encrypted",
+  "severity": "HIGH",
+  "category": "Encryption",
+  "descriptionText": "Block device mappings for Launch Configurations and EC2 instances should mandate encryption of all attached EBS volumes to safeguard sensitive data. This is achieved by specifying the 'encrypted' parameter with a value of 'true' for each volume.",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_configuration#encrypted",
+  "platform": "Terraform",
+  "descriptionID": "1f624961",
+  "cloudProvider": "aws",
+  "cwe": "311"
+}

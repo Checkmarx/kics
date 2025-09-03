@@ -99,11 +99,11 @@ type queryEntry struct {
 	platform string
 }
 
-func (q queryEntry) getSampleFiles(tb testing.TB, filePattern string) []string {
+func (q queryEntry) getSampleFiles(tb testing.TB, directory, filePattern string) []string {
 	var files []string
 	for _, kinds := range q.kind {
-		kindFiles, err := filepath.Glob(path.Join(q.dir, fmt.Sprintf(filePattern, strings.ToLower(string(kinds)))))
-		positiveExpectedResultsFilepath := filepath.FromSlash(path.Join(q.dir, "test", ExpectedResultsFilename))
+		kindFiles, err := filepath.Glob(path.Join(q.dir, directory, fmt.Sprintf(filePattern, strings.ToLower(string(kinds)))))
+		positiveExpectedResultsFilepath := q.ExpectedPositiveResultFile(directory)
 		for i, check := range kindFiles {
 			if check == positiveExpectedResultsFilepath {
 				kindFiles = append(kindFiles[:i], kindFiles[i+1:]...)
@@ -116,15 +116,41 @@ func (q queryEntry) getSampleFiles(tb testing.TB, filePattern string) []string {
 }
 
 func (q queryEntry) PositiveFiles(tb testing.TB) []string {
-	return q.getSampleFiles(tb, "test/positive*.%s")
+	return q.getSampleFiles(tb, "test", "positive*.%s")
 }
 
 func (q queryEntry) NegativeFiles(tb testing.TB) []string {
-	return q.getSampleFiles(tb, "test/negative*.%s")
+	return q.getSampleFiles(tb, "test", "negative*.%s")
 }
 
-func (q queryEntry) ExpectedPositiveResultFile() string {
-	return filepath.FromSlash(path.Join(q.dir, "test", ExpectedResultsFilename))
+func (q queryEntry) ExpectedPositiveResultFile(directory string) string {
+	return filepath.FromSlash(path.Join(q.dir, directory, ExpectedResultsFilename))
+}
+
+func (q queryEntry) getSampleDirectories(tb testing.TB, dirPattern string) map[string][]string {
+	matches, err := filepath.Glob(path.Join(q.dir, dirPattern))
+	require.Nil(tb, err)
+
+	dirs := make(map[string][]string)
+	for _, match := range matches {
+		info, err := os.Stat(match)
+		require.Nil(tb, err)
+		if info.IsDir() {
+			relativePath, err := filepath.Rel(q.dir, match)
+			require.Nil(tb, err)
+			base := filepath.Base(relativePath)
+			dirs[base] = q.getSampleFiles(tb, relativePath, base+"*.%s")
+		}
+	}
+	return dirs
+}
+
+func (q queryEntry) PositiveDirectories(tb testing.TB) map[string][]string {
+	return q.getSampleDirectories(tb, "test/positive*")
+}
+
+func (q queryEntry) NegativeDirectories(tb testing.TB) map[string][]string {
+	return q.getSampleDirectories(tb, "test/negative*")
 }
 
 func appendQueries(queriesDir []queryEntry, dirName string, kind []model.FileKind, platform string) []queryEntry {
