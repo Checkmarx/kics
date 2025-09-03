@@ -9,7 +9,6 @@ CxPolicy[result] {
     resource := input.document[i].resource[supported_resources[k]][name]
 
     res := tags_not_copied_to_snapshot(resource, name, supported_resources[k], ["resource",supported_resources[k]])
-    res != ""
 
     result := {
         "documentId": input.document[i].id,
@@ -30,7 +29,6 @@ CxPolicy[result] {
 	common_lib.get_module_equivalent_key("aws", module.source, supported_resources[k], block)
 
     res := tags_not_copied_to_snapshot(module, name, "module", ["module"])
-    res != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -62,4 +60,4 @@ tags_not_copied_to_snapshot(resource, name, type, path) = res {
         "sl": common_lib.build_search_line(path, [name, "copy_tags_to_snapshot"]),
         "it": "IncorrectValue",
     }
-} else = ""
+}
