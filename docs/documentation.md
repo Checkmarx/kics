@@ -4,16 +4,34 @@ There are multiple ways to get KICS up and running:
 
 #### Docker
 
-KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> and can be used as follows:
+KICS is available as a <a href="https://hub.docker.com/r/checkmarx/kics" target="_blank">Docker image</a> with multiple variants to fit different use cases:
 
 To scan a directory/file on your host you have to mount it as a volume to the container and specify the path on the container filesystem with the `-p` KICS parameter (see Scan Command Options section below)
 
+**Quick Start:**
 ```shell
 docker pull checkmarx/kics:latest
 docker run -t -v "{path_to_host_folder_to_scan}":/path checkmarx/kics scan -p /path -o "/path/"
 ```
 
+**Available Image Variants:**
+
+| Tag | Base OS | Package Manager | Use Case |
+|-----|---------|----------------|----------|
+| `latest`, `v{VERSION}` | Wolfi Linux | None | Default, lightweight image |
+| `alpine`, `v{VERSION}-alpine` | Alpine Linux | `apk` | When you need `apk` package manager |
+| `debian`, `v{VERSION}-debian` | Debian | `apt-get` | When you need `apt-get` package manager |
+| `ubi8`, `v{VERSION}-ubi8` | Red Hat UBI8 | `yum` | Enterprise environments, Red Hat compatible |
+
 You can see the list of available tags in [dockerhub](https://hub.docker.com/r/checkmarx/kics/tags?page=1&ordering=-name)
+
+**Choosing the Right Image:**
+
+- **For most users**: Use `latest` (default, smallest size)
+- **If you need to install additional packages**: Choose based on your preferred package manager:
+  - `alpine` for `apk add` commands
+  - `debian` for `apt-get install` commands  
+  - `ubi8` for `yum install` commands in enterprise environments
 
 ℹ️ **UBI Based Images**
 

@@ -68,16 +68,13 @@ isUnsafeAction("s3:*") = true
 
 isUnsafeAction("s3:PutObject") = true
 
-equalsFalse("false") = true
-
-equalsFalse(false) = true
 
 isValidSslPolicyStatement(stmt) {
 	is_array(stmt)
 	st := stmt[s]
 	st.Effect == "Deny"
 	isUnsafeAction(st.Action)
-	equalsFalse(st.Condition.Bool["aws:SecureTransport"])
+	cf_lib.isCloudFormationFalse(st.Condition.Bool["aws:SecureTransport"])
 } else {
 	is_array(stmt)
 	st := stmt[s]
@@ -85,20 +82,20 @@ isValidSslPolicyStatement(stmt) {
 	is_array(st.Action)
 	action := st.Action[i]
 	isUnsafeAction(action)
-	equalsFalse(st.Condition.Bool["aws:SecureTransport"])
+	cf_lib.isCloudFormationFalse(st.Condition.Bool["aws:SecureTransport"])
 } 
 else {
 	is_object(stmt)
 	stmt.Effect == "Deny"
 	isUnsafeAction(stmt.Action)
-	equalsFalse(stmt.Condition.Bool["aws:SecureTransport"])
+	cf_lib.isCloudFormationFalse(stmt.Condition.Bool["aws:SecureTransport"])
 }
 else {
 	is_array(stmt)
 	st := stmt[s]
 	st.Effect == "Allow"
 	isUnsafeAction(st.Action)
-	not equalsFalse(st.Condition.Bool["aws:SecureTransport"])
+	not cf_lib.isCloudFormationFalse(st.Condition.Bool["aws:SecureTransport"])
 } else {
 	is_array(stmt)
 	st := stmt[s]
@@ -106,11 +103,11 @@ else {
 	is_array(st.Action)
 	action := st.Action[i]
 	isUnsafeAction(action)
-	not equalsFalse(st.Condition.Bool["aws:SecureTransport"])
+	not cf_lib.isCloudFormationFalse(st.Condition.Bool["aws:SecureTransport"])
 } 
 else {
 	is_object(stmt)
 	stmt.Effect == "Allow"
 	isUnsafeAction(stmt.Action)
-	not equalsFalse(stmt.Condition.Bool["aws:SecureTransport"])
+	not cf_lib.isCloudFormationFalse(stmt.Condition.Bool["aws:SecureTransport"])
 }
