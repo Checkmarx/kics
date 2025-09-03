@@ -1,14 +1,62 @@
 [
   {
     "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "HIGH",
+    "severity": "MEDIUM",
     "line": 11,
     "filename": "positive1.tf"
   },
   {
     "queryName": "S3 Bucket Allows Public Policy",
-    "severity": "HIGH",
-    "line": 5,
+    "severity": "MEDIUM",
+    "line": 12,
     "filename": "positive2.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 9,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 5,
+    "filename": "positive6.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 7,
+    "filename": "positive7.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 11,
+    "filename": "positive8.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 2,
+    "filename": "positive9.tf"
+  },
+  {
+    "queryName": "S3 Bucket Allows Public Policy",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive10.tf"
   }
 ]

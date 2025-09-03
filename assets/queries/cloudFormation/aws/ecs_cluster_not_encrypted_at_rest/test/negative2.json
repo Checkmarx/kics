@@ -1,3 +1,4 @@
+
 {
   "AWSTemplateFormatVersion": "2010-09-09T00:00:00Z",
   "Description": "Creating ECS service",

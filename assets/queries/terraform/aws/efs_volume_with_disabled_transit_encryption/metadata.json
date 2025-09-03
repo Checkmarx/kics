@@ -1,0 +1,13 @@
+{
+  "id": "4d46ff3b-7160-41d1-a310-71d6d370b08f",
+  "queryName": "EFS Volume With Disabled Transit Encryption",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "AWS ECS Task Definition EFS data in transit between AWS ECS host and AWS EFS server should be encrypted",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#transit_encryption-1",
+  "platform": "Terraform",
+  "descriptionID": "b01e131b",
+  "cloudProvider": "aws",
+  "cwe": "319",
+  "oldSeverity": "HIGH"
+}

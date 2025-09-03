@@ -6,21 +6,33 @@
     "line": 8
   },
   {
+    "fileName": "positive2.json",
+    "queryName": "API Gateway Cache Encrypted Disabled",
+    "severity": "HIGH",
+    "line": 11
+  },
+  {
     "fileName": "positive3.yaml",
     "queryName": "API Gateway Cache Encrypted Disabled",
     "severity": "HIGH",
     "line": 9
   },
   {
-    "queryName": "API Gateway Cache Encrypted Disabled",
-    "severity": "HIGH",
-    "line": 11,
-    "fileName": "positive2.json"
-  },
-  {
-    "line": 12,
     "fileName": "positive4.json",
     "queryName": "API Gateway Cache Encrypted Disabled",
-    "severity": "HIGH"
+    "severity": "HIGH",
+    "line": 12
+  },
+  {
+    "fileName": "positive5.yaml",
+    "queryName": "API Gateway Cache Encrypted Disabled",
+    "severity": "HIGH",
+    "line": 9
+  },
+  {
+    "fileName": "positive6.json",
+    "queryName": "API Gateway Cache Encrypted Disabled",
+    "severity": "HIGH",
+    "line": 12
   }
 ]
