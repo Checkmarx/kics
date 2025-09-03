@@ -66,4 +66,4 @@ similarityIDChangeList:
     - queryId: a62a99d1-8196-432f-8f80-3c100b05d62a
       queryName: Volume Mount With OS Directory Write Permissions
       observations: ""
-      change: 4
+      change: 2
