@@ -6,7 +6,7 @@ resource "aws_api_gateway_stage" "positive3" {
   depends_on         = [aws_api_gateway_deployment.api_http_method_deployment]
   stage_name         = "qa"
   access_log_settings {
-    destination_arn = ""
+    destination_arn = null
     # ...
   }
 }

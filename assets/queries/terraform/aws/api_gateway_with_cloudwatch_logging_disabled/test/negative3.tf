@@ -6,7 +6,7 @@ resource "aws_api_gateway_stage" "api_stage_environment" {
   depends_on         = [aws_api_gateway_deployment.api_http_method_deployment]
   stage_name         = "qa"
   access_log_settings {
-    destination_arn = "aws_cloudwatch_log_group.sample_name.arn"
+    destination_arn = aws_cloudwatch_log_group.sample_name.arn
     # ...
   }
 }

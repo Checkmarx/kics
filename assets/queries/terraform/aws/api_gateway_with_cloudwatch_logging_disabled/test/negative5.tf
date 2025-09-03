@@ -11,7 +11,7 @@ resource "aws_api_gateway_stage" "example" {
 
   stage_name = module.env.vars.stage_name
   access_log_settings {
-    destination_arn = "aws_cloudwatch_log_group.sample_name.arn"
+    destination_arn = aws_cloudwatch_log_group.sample_name.arn
     # ...
   }
   # ... other configuration ...

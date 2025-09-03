@@ -16,7 +16,7 @@ resource "aws_api_gateway_stage" "example" {
 
   stage_name = var.stage_name
   access_log_settings {
-    destination_arn = ""
+    destination_arn = null
     # ...
   }
   # ... other configuration ...
