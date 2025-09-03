@@ -38,7 +38,6 @@ CxPolicy[result] {
 	specInfo := k8sLib.getSpecInfo(document)
 	container := specInfo.spec[types[x]][c]
 
-	common_lib.valid_key(container, "imagePullPolicy")
 	container.imagePullPolicy != "Always"
 
 	not contains(container.image, "@") # digest

@@ -34,8 +34,8 @@ CxPolicy[result] {
 	metadata := document.metadata
 
 	containers := specInfo.spec[types[x]]
-    contianerSec := containers[k].securityContext
-	not common_lib.valid_key(contianerSec, "capabilities")
+    containerSec := containers[k].securityContext
+	not common_lib.valid_key(containerSec, "capabilities")
 
 	result := {
 		"documentId": input.document[i].id,

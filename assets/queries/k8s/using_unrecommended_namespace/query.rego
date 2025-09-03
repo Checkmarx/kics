@@ -44,7 +44,7 @@ CxPolicy[result] {
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"issueType": "IncorrectValue",
-		"searchValue": document.kind    , # multiple kinds can match
+		"searchValue": document.kind, # multiple kinds can match
 		"searchKey": sprintf("metadata.name={{%s}}.namespace", [metadata.name]),
 		"keyExpectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
 		"keyActualValue": sprintf("'metadata.namespace' is set to %s", [options[x]]),

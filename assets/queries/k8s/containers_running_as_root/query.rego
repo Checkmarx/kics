@@ -25,7 +25,7 @@ CxPolicy[result] {
 		"searchValue": document.kind, # multiple kind can match the same spec structure
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext runAsUser is higher than 0 and/or 'runAsNonRoot' is true", [metadata.name, specInfo.path, types[x], specInfo.spec[types[x]][c].name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.securityContext runAsUser is 0 and 'runAsNonRoot' is false", [metadata.name, specInfo.path, types[x], specInfo.spec[types[x]][c].name]),
-		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], c])
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], c, "securityContext"])
 	}
 }
 
