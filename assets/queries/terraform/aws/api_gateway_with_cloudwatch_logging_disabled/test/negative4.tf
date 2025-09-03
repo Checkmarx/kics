@@ -15,11 +15,15 @@ resource "aws_api_gateway_stage" "example" {
   depends_on = [aws_cloudwatch_log_group.example]
 
   stage_name = var.stage_name
+  access_log_settings {
+    destination_arn = ""
+    # ...
+  }
   # ... other configuration ...
 }
 
 resource "aws_cloudwatch_log_group" "example" {
-  name              = "API-Gateway-Execution-Logs_${aws_api_gateway_rest_api.example.id}/${var.stage_names}"
+  name              = "API-Gateway-Execution-Logs_${aws_api_gateway_rest_api.example.id}/${var.stage_name}"
   retention_in_days = 7
   # ... potentially other configuration ...
 }
