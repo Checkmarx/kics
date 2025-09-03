@@ -146,6 +146,7 @@ func CheckLine(t *testing.T, expec, want string, line int) {
 	if errE == nil && errW == nil {
 		checkJSONLog(t, logExp, logWant)
 	} else {
+		strings.ReplaceAll(expec, "\r", "")
 		require.Equal(t, expec, want,
 			"Expected Output line:\n%s\n\nKICS Output line:\n%s\n\nLine Number: %d", want, expec, line)
 	}
