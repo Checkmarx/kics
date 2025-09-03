@@ -17,6 +17,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_cloudfront_distribution[%s].viewer_certificate should be defined and not null", [name]),
 		"keyActualValue": sprintf("aws_cloudfront_distribution[%s].viewer_certificate is undefined or null", [name]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_cloudfront_distribution", name], []),
 	}
 }
 
@@ -31,9 +32,11 @@ CxPolicy[result] {
 		"resourceType": "aws_cloudfront_distribution",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudfront_distribution[%s].viewer_certificate", [name]),
+		"searchValue": "cloudfront_default_certificate",
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Attribute 'cloudfront_default_certificate' should be 'false' or not defined",
 		"keyActualValue": "Attribute 'cloudfront_default_certificate' is 'true'",
+		"searchLine": common_lib.build_search_line(["resource", "aws_cloudfront_distribution", name], ["viewer_certificate"]),
 	}
 }
 
@@ -52,9 +55,11 @@ CxPolicy[result] {
 		"resourceType": "aws_cloudfront_distribution",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_cloudfront_distribution[%s].viewer_certificate", [name]),
+		"searchValue": attributes,
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "Attributes 'ssl_support_method' and 'minimum_protocol_version' should be defined when one of 'acm_certificate_arn' or 'iam_certificate_id' is declared.",
 		"keyActualValue": sprintf("Attribute '%s' is not defined", [attributes]),
+		"searchLine": common_lib.build_search_line(["resource", "aws_cloudfront_distribution", name], ["viewer_certificate"]),
 	}
 }
 
