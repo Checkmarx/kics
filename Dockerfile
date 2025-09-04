@@ -1,4 +1,4 @@
-FROM checkmarx/go:1.25.0-r1-f1fc6d63831d00@sha256:f1fc6d63831d0003dd9cbe6d27bba7f6457e5488830c131b1f25ce1e553f37d6 AS build_env
+FROM checkmarx/go:1.25.0-r1-8eb2c2d3a7bff2@sha256:8eb2c2d3a7bff2e2c5ed4bfddd88d7ca57cbed7f9e2e99f98eec9658f38009e8 AS build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
