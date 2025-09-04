@@ -40,5 +40,17 @@
     "severity": "MEDIUM",
     "line": 7,
     "fileName": "positive7.tf"
+  },
+  {
+    "queryName": "App Service HTTP2 Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive8.tf"
+  },
+  {
+    "queryName": "App Service HTTP2 Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive9.tf"
   }
 ]
