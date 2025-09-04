@@ -46,11 +46,11 @@ CxPolicy[result] {
 
 node_to_node_encryption_not_enabled(resource, type) {
     type == "AWS::Elasticsearch::Domain"
-    not resource.NodeToNodeEncryptionOptions.Enabled == true
+    not cf_lib.isCloudFormationTrue(resource.NodeToNodeEncryptionOptions.Enabled)
 } else {
     type == "AWS::OpenSearchService::Domain"
     regex.match("^Elasticsearch_[0-9]{1}\\.[0-9]{1,2}$", resource.EngineVersion)
-    not resource.NodeToNodeEncryptionOptions.Enabled == true
+    not cf_lib.isCloudFormationTrue(resource.NodeToNodeEncryptionOptions.Enabled)
 }
 
 node_to_node_block_not_defined(resource, type, name) = r {
