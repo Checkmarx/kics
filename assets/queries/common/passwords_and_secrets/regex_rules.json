@@ -350,6 +350,10 @@
         {
           "description": "Avoiding next_token Var",
           "regex": "(?i)['\"]?next(_)?token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
+        },
+        {
+          "description": "Avoiding reference to module outputs in Bicep",
+          "regex": "(?i)['\"]?token(_)?(key)?\\s*[:=]\\s*([a-zA-Z][a-zA-Z0-9_]*)\\.outputs\\.([a-zA-Z][a-zA-Z0-9_]*)"
         }
       ],
       "specialMask": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*"
