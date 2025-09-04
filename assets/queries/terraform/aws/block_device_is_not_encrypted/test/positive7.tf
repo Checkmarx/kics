@@ -1,32 +1,36 @@
-resource "aws_instance" "example1" {
-  ami                         = "ami-074251216af698218"
-  instance_type      = "t2.micro"
+module "positive7-aws6" {
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "~> 6.0"
 
-  root_block_device {
-    throughput            = "0"
-    volume_size           = "8"
+  name           = "web-app-instance"
+  ami            = "ami-074251216af698218"
+  instance_type  = "t2.micro"
+
+  root_block_device = {
+    delete_on_termination = true
+    encrypted             = false
+    throughput            = 0
+    volume_size           = 8
     volume_type           = "gp2"
   }
-
-  tags = {
-    Name = "web-app-instance"
-  }
 }
 
+module "positive7-legacy" {
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "~> 5.7"
 
-resource "aws_instance" "example2" {
-  ami           = "ami-0c55b159cbfafe1f0" # Replace with a valid AMI ID for your region
-  instance_type = "t3.micro"
+  name           = "web-app-instance"
+  ami            = "ami-074251216af698218"
+  instance_type  = "t2.micro"
 
-  # Optional: tags for identification
-  tags = {
-    Name = "web-app-instance"
-  }
-
-  # Attach an additional EBS volume
-  ebs_block_device {
-    device_name           = "/dev/sdh" # Must be a valid device name
-    volume_size           = 10         # Size in GB
-    volume_type           = "gp3"
-  }
+  root_block_device = [
+    {
+    delete_on_termination = true
+    encrypted             = false
+    throughput            = 0
+    volume_size           = 8
+    volume_type           = "gp2"
+   }
+  ]
 }
+
