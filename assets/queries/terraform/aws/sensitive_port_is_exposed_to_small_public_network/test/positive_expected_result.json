@@ -2,823 +2,775 @@
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 6
+	  "line": 6,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 6
+	  "line": 6,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 6
+	  "line": 6,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 6
+	  "line": 6,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 6
+	  "line": 6,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 6
+	  "line": 6,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 6
+	  "line": 6,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 6
+	  "line": 6,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 6
+	  "line": 6,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 6
+	  "line": 6,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 6
+	  "line": 6,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 6
+	  "line": 6,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 21
+	  "line": 21,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 21
+	  "line": 21,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 21
+	  "line": 21,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 21
+	  "line": 21,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 21
+	  "line": 21,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 21
+	  "line": 21,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 36
+	  "line": 36,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 36
+	  "line": 36,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 36
+	  "line": 36,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 36
+	  "line": 36,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 36
+	  "line": 36,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 36
+	  "line": 36,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 36
+	  "line": 36,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 36
+	  "line": 36,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 36
+	  "line": 36,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 36
+	  "line": 36,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 51
+	  "line": 51,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 51
+	  "line": 51,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 51
+	  "line": 51,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 66
+	  "line": 66,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 81
+	  "line": 81,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 81
+	  "line": 81,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 81
+	  "line": 81,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 81
+	  "line": 81,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 81
+	  "line": 81,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 96
+	  "line": 96,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
-	}, 
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
-	},
-	{
-	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
-	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 110,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 126,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 126,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 126,
+	  "filename": "positive1.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 9,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 9,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 9,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 9,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 9,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 9,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 17,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 17,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 17,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 17,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 17,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 17,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 17,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 17,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 17,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 17,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 25,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 25,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 25,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 33,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 41,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 41,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 41,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 41,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 41,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 49,
+	  "filename": "positive2.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 1,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 10,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 10,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 10,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 10,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 10,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 10,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 19,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 19,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 19,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 19,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 19,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 19,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 19,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 19,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 19,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 19,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 28,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 28,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 28,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 37,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 46,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 46,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 46,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 46,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 46,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 55,
+	  "filename": "positive3.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 11,
+	  "filename": "positive4.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 11,
+	  "filename": "positive4.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 30,
+	  "filename": "positive4.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 49,
+	  "filename": "positive4.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 63,
+	  "filename": "positive4.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 63,
+	  "filename": "positive4.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 63,
+	  "filename": "positive4.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 82,
+	  "filename": "positive4.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 96,
+	  "filename": "positive4.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 96,
+	  "filename": "positive4.tf"
 	},
 	{
 	  "queryName": "Sensitive Port Is Exposed To Small Public Network",
 	  "severity": "MEDIUM",
-	  "line": 111
+	  "line": 96,
+	  "filename": "positive4.tf"
 	}
   ]
-  

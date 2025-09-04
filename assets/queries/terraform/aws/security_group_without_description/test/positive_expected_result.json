@@ -4,5 +4,23 @@
     "severity": "INFO",
     "line": 1,
     "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Security Group Without Description",
+    "severity": "INFO",
+    "line": 7,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Security Group Without Description",
+    "severity": "INFO",
+    "line": 1,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Security Group Without Description",
+    "severity": "INFO",
+    "line": 10,
+    "filename": "positive2.tf"
   }
 ]

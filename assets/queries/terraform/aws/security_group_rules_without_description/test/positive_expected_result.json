@@ -22,4 +22,89 @@
     "severity": "INFO",
     "line": 23,
     "filename": "positive3.tf"
-  }]
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 7,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive4.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 6,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 15,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 28,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 42,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 51,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 65,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 78,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 87,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 100,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 114,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 123,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 137,
+    "filename": "positive5.tf"
+  }
+]

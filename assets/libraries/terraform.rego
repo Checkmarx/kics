@@ -2,37 +2,89 @@ package generic.terraform
 
 import data.generic.common as common_lib
 
+unrestricted_ipv6 := ["::/0","0000:0000:0000:0000:0000:0000:0000:0000/0","0:0:0:0:0:0:0:0/0"]
+
 check_cidr(rule) {
 	rule.cidr_blocks[_] == "0.0.0.0/0"
 } else {
 	rule.cidr_block == "0.0.0.0/0"
 } else {
-	rule.ipv6_cidr_blocks[_] == "::/0"
+	rule.ipv6_cidr_blocks[_] == unrestricted_ipv6[_]
 } else {
-	rule.ipv6_cidr_blocks == "::/0"
+	rule.ipv6_cidr_blocks == unrestricted_ipv6[_]
 } else {
-	rule.ipv6_cidr_blocks[_] == "0000:0000:0000:0000:0000:0000:0000:0000/0"
+	rule.cidr_ipv4 == "0.0.0.0/0"
 } else {
-	rule.ipv6_cidr_blocks == "0000:0000:0000:0000:0000:0000:0000:0000/0"
+	rule.cidr_ipv6 == unrestricted_ipv6[_]
+} 
+
+is_security_group_ingress(type,resource) {
+	type == "aws_security_group_rule"
+	resource.type == "ingress"
 } else {
-	rule.ipv6_cidr_blocks[_] == "0:0:0:0:0:0:0:0/0"
+	type == "aws_vpc_security_group_ingress_rule"
+} 
+
+cidr_is_unmasked(resource) {
+	#in line ingress
+	endswith(resource.ingress.cidr_blocks[_], "/0")
 } else {
-	rule.ipv6_cidr_blocks == "0:0:0:0:0:0:0:0/0"
-}
+	endswith(resource.ingress.ipv6_cidr_blocks[_], "/0")
+} else {
+	#security_group_rule or in line ingress passed as "resource"
+	endswith(resource.cidr_blocks[_], "/0")
+} else {
+	endswith(resource.ipv6_cidr_blocks[_], "/0")
+} else {
+	#security_group_ingress_rule
+	endswith(resource.cidr_ipv4, "/0")
+} else {
+	endswith(resource.cidr_ipv6, "/0")
+} 
 
 
-# Checks if a TCP port is open in a rule
+# Checks if a TCP port is open 
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
-	rule.protocol == "tcp"
+	prot_types := ["protocol","ip_protocol"]
+	rule[prot_types[_]] == "tcp"
 	containsPort(rule, port)
 }
 
 portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
-	rule.protocol == "tcp"
+	prot_types := ["protocol","ip_protocol"]
+	rule[prot_types[_]] == "tcp"
 	containsPort(rule, port)
+}
+
+portOpenToInternet(rule, port) {
+	check_cidr(rule)
+	prot_types := ["protocol","ip_protocol"]
+	open_port := ["all","-1"]
+	rule[prot_types[_]] == open_port[_]
+}
+
+portOpenToInternet(rules, port) {
+	rule := rules[_]
+	check_cidr(rule)
+	prot_types := ["protocol","ip_protocol"]
+	open_port := ["all","-1"]
+	rule[prot_types[_]] == open_port[_]
+}
+
+get_ingress_list(ingress) = result {
+	is_array(ingress)
+	result := {
+		"value" : ingress,
+		"is_unique_element" : false
+	}
+} else = result {
+	result := {
+		"value" : [ingress],
+		"is_unique_element" : true
+	}
 }
 
 # Checks if a port is included in a rule
