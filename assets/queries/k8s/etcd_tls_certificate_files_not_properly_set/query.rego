@@ -21,6 +21,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
+		"searchValue": sprintf("%s%s", [resource.kind, flag]), # multiple kind can match the same spec structure
 		"keyExpectedValue": sprintf("%s flag should be defined", [flag]),
 		"keyActualValue": sprintf("%s flag is not defined",[flag]),
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"]),

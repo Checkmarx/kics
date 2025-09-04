@@ -41,8 +41,10 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, specInfo.path]),
 		"issueType": "MissingAttribute",
+		"searchValue": document.kind, # multiple kind can match the same spec structure
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken should be defined and set to false", [metadata.name, specInfo.path]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken is undefined", [metadata.name, specInfo.path]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), []),
 	}
 }
 
@@ -56,8 +58,10 @@ checkAutomount(specInfo, document, metadata) = result {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken", [metadata.name, specInfo.path]),
 		"issueType": "IncorrectValue",
+		"searchValue": document.kind, # multiple kind can match the same spec structure
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken should be set to false", [metadata.name, specInfo.path]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s.automountServiceAccountToken is true", [metadata.name, specInfo.path]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), ["automountServiceAccountToken"]),
 	}
 }
 
@@ -83,5 +87,6 @@ checkAutomount(specInfo, document, metadata) = result {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.automountServiceAccountToken should be set to false", [SAWithAutoMount[k].metadata.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.automountServiceAccountToken is true", [SAWithAutoMount[k].metadata.name]),
+		"searchLine": common_lib.build_search_line([], ["automountServiceAccountToken"]),
 	}
 }
