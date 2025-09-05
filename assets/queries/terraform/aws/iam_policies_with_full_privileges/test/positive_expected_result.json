@@ -14,13 +14,13 @@
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
-    "line": 14,
+    "line": 13,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "IAM Policies With Full Privileges",
     "severity": "MEDIUM",
-    "line": 25,
+    "line": 24,
     "fileName": "positive2.tf"
   },
   {
@@ -34,5 +34,41 @@
     "severity": "MEDIUM",
     "line": 20,
     "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "IAM Policies With Full Privileges",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "IAM Policies With Full Privileges",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "IAM Policies With Full Privileges",
+    "severity": "MEDIUM",
+    "line": 4,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "IAM Policies With Full Privileges",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "IAM Policies With Full Privileges",
+    "severity": "MEDIUM",
+    "line": 2,
+    "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "IAM Policies With Full Privileges",
+    "severity": "MEDIUM",
+    "line": 17,
+    "fileName": "positive6.tf"
   }
 ]

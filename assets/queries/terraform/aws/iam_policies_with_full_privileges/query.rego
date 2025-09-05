@@ -22,8 +22,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].policy", [resourceType[idx], name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'policy.Statement.Action' shouldn't contain '*'",
-		"keyActualValue": "'policy.Statement.Action' contains '*'",
+		"keyExpectedValue": "'policy.Statement.Action' shouldn't contain '*' or 'iam:*'",
+		"keyActualValue": "'policy.Statement.Action' contains '*' or 'iam:*'",
 		"searchLine": common_lib.build_search_line(["resource", resourceType[idx], name, "policy"], []),
 	}
 }
@@ -44,8 +44,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("aws_iam_policy_document[%s].statement", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'statement.actions' shouldn't contain '*'",
-		"keyActualValue": "'statement.actions' contains '*'",
+		"keyExpectedValue": "'statement.actions' shouldn't contain '*' or 'iam:*'",
+		"keyActualValue": "'statement.actions' contains '*' or 'iam:*'",
 		"searchLine": common_lib.build_search_line(["data", "aws_iam_policy_document", name, "statement"], []),
 	}
 }
@@ -64,10 +64,10 @@ CxPolicy[result] {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_iam_policy_document",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("aws_iam_policy_document[%s].statement[%s]", [name, statement_index]),
+		"searchKey": sprintf("aws_iam_policy_document[%s].statement[%d]", [name, statement_index]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'statement.actions' shouldn't contain '*'",
-		"keyActualValue": "'statement.actions' contains '*'",
+		"keyExpectedValue": "'statement.actions' shouldn't contain '*' or 'iam:*'",
+		"keyActualValue": "'statement.actions' contains '*' or 'iam:*'",
 		"searchLine": common_lib.build_search_line(["data", "aws_iam_policy_document", name, "statement", statement_index], []),
 	}
 }
