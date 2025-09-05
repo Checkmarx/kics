@@ -4,7 +4,6 @@ Resources:
     Type: AWS::Neptune::DBCluster
     Properties:
       DBClusterIdentifier: String
-      EnableCloudwatchLogsExports:
       KmsKeyId: String
       Port: 10000
       StorageEncrypted: false
