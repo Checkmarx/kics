@@ -37,7 +37,8 @@ CxPolicy[result] {
 	[da_val , _] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.networkAcls.defaultAction)
 	da_val != "Allow"
 
-	[bp_val, bp_val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, value.properties.networkAcls.bypass)
+	ret := get_bypass_value(value.properties.networkAcls)
+	[bp_val, bp_val_type] := arm_lib.getDefaultValueFromParametersIfPresent(doc, ret)
 	not contains_azure_service(bp_val)
 
 	result := {
@@ -57,6 +58,14 @@ contains_azure_service(bypass) {
 	common_lib.inArray(values, "AzureServices")
 }
 
+get_bypass_value(networkAcls) = ret {
+	common_lib.valid_key(networkAcls, "bypass")
+	ret := networkAcls.bypass
+} else = ret {
+	not common_lib.valid_key(networkAcls, "bypass")
+	ret := "None"
+} 
+
 path_check(resource) = "" {
   	not common_lib.valid_key(resource,"properties")
   } else = ".properties" {
@@ -65,6 +74,4 @@ path_check(resource) = "" {
   	not common_lib.valid_key(resource.properties,"networkAcls")
   } else = "there_is_complete_path" {
 	common_lib.valid_key(resource.properties.networkAcls,"defaultAction")
-  } else = "there_is_complete_path" {
-	common_lib.valid_key(resource.properties.networkAcls,"bypass")
   } else = ".properties.networkAcls"
