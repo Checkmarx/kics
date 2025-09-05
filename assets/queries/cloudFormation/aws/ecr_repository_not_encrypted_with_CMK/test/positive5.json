@@ -1,0 +1,17 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "MyRepository": {
+      "Type": "AWS::ECR::Repository",
+      "Properties": {
+        "RepositoryName": "test-repository",
+        "ImageScanningConfiguration": {
+          "ScanOnPush": false
+        },
+        "EncryptionConfiguration": {
+            "EncryptionType": "KMS_DSSE"
+        }
+      }
+    }
+  }
+}
