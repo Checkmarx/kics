@@ -19,5 +19,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s.network_configuration.assign_public_ip' should be set to false (default value is false)", [modules[m]]),
 		"keyActualValue": sprintf("'%s.network_configuration.assign_public_ip' is set to true", [modules[m]]),
+		"searchLine": common_lib.build_search_line(["playbooks", 0, "tasks", t, modules[m], "network_configuration", "assign_public_ip"], []),
 	}
 }
