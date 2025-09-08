@@ -44,12 +44,6 @@
   {
     "queryName": "Trusted Microsoft Services Not Enabled",
     "severity": "MEDIUM",
-    "line": 24,
-    "fileName": "positive8.json"
-  },
-  {
-    "queryName": "Trusted Microsoft Services Not Enabled",
-    "severity": "MEDIUM",
     "line": 11,
     "fileName": "positive1.bicep"
   },
@@ -88,11 +82,5 @@
     "severity": "MEDIUM",
     "line": 10,
     "fileName": "positive7.bicep"
-  },
-  {
-    "queryName": "Trusted Microsoft Services Not Enabled",
-    "severity": "MEDIUM",
-    "line": 11,
-    "fileName": "positive8.bicep"
   }
 ]
