@@ -983,6 +983,7 @@
         },
         "terraform-aws-modules/rds/aws": {
           "resources": [
+            "aws_rds_cluster",
             "aws_db_option_group",
             "random_id",
             "aws_iam_role",

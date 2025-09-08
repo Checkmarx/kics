@@ -1,0 +1,26 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "sample": {
+            "Type": "AWS::RDS::DBCluster",
+            "Properties": {
+                "MasterUsername": {
+                    "Ref": "DBUsername"
+                },
+                "MasterUserPassword": {
+                    "Ref": "DBPassword"
+                },
+                "StorageEncrypted": true,
+                "DBClusterIdentifier": {
+                    "Ref": "SourceDBInstanceIdentifier"
+                },
+                "Engine": "mariadb",
+                "EngineVersion": "10.5",
+                "DBClusterParameterGroupName": "default.aurora-postgresql10",
+                "EnableCloudwatchLogsExports": [
+                    "postgresql"
+                ]
+            }
+        }
+    }
+}
