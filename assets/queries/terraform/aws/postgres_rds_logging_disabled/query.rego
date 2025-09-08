@@ -104,5 +104,3 @@ one_wrong_value(wrong_values_message) = true {
     wrong_values_message != "none"
     wrong_values_message != "both"
 } else = false
-
-
