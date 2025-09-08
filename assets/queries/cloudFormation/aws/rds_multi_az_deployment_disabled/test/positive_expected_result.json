@@ -22,5 +22,11 @@
     "fileName": "positive2.json",
     "queryName": "RDS Multi-AZ Deployment Disabled",
     "severity": "MEDIUM"
+  },
+  {
+    "queryName": "RDS Multi-AZ Deployment Disabled",
+    "severity": "MEDIUM",
+    "line": 128,
+    "fileName": "positive3.yaml"
   }
 ]

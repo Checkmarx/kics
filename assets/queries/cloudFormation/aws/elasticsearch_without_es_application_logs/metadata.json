@@ -1,0 +1,12 @@
+{
+  "id": "f3a2dfb1-c8ff-47d1-a08a-aa329613a73c",
+  "queryName": "ElasticSearch Without Es Application Logs",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "Ensure that AWS Elasticsearch enables support for es application logs",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html#cfn-elasticsearch-domain-logpublishingoptions",
+  "platform": "CloudFormation",
+  "descriptionID": "f3a2dfb1",
+  "cloudProvider": "aws",
+  "cwe": "778"
+}

@@ -54,7 +54,7 @@ CxPolicy[result] {
 	field := types[type]
 	resource.Type == field
 
-	resource.Properties.DomainEndpointOptions.EnforceHTTPS == false
+	cf_lib.isCloudFormationFalse(resource.Properties.DomainEndpointOptions.EnforceHTTPS)
 
 	result := {
 		"documentId": input.document[i].id,

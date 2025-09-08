@@ -1,0 +1,12 @@
+{
+  "id": "9c30655c-f9a1-4296-b365-53c0bba80c76",
+  "queryName": "Tags Not Copied to RDS Cluster Snapshot",
+  "severity": "LOW",
+  "category": "Backup",
+  "descriptionText": "Tags of the RDS Cluster should be copied to the respective snapshots to ensure that snapshots retain important metadata for identification, cost allocation, and resource management",
+  "descriptionUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-rds-dbcluster.html#cfn-rds-dbcluster-copytagstosnapshot",
+  "platform": "CloudFormation",
+  "descriptionID": "9c30655c",
+  "cloudProvider": "aws",
+  "cwe": "284"
+}

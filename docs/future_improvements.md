@@ -11,7 +11,7 @@ Here, you'll find information on upcoming enhancements, planned features, and ar
 ### Linting and File Validation
 
 Currently, KICS doesn't perform validation checks on Bicep files before scanning them.
-This means that even if a file isn't syntactically or structurally correct, it will still be scanned, potentially leading to inaccurate results without any error notifications. We're actively prioritizing this fix and anticipate implementing it in the forthcoming weeks.
+This means that even if a file isn't syntactically or structurally correct, it will still be scanned, potentially leading to inaccurate results without any error notifications.
 
 ### Logic and Cycle Operators
 

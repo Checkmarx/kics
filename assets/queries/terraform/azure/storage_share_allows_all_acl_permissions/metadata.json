@@ -1,0 +1,12 @@
+{
+  "id": "5ed0a5f3-6b81-4a6c-a7d1-0f1d8d9ae806",
+  "queryName": "Storage Share Allows All ACL Permissions",
+  "severity": "MEDIUM",
+  "category": "Access Control",
+  "descriptionText": "Azure Storage Share should not allow all ACL (Access Control List) permissions - r (read), w (write), d (delete), and l (list).",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_share",
+  "platform": "Terraform",
+  "descriptionID": "5ed0a5f3",
+  "cloudProvider": "azure",
+  "cwe": "732"
+}

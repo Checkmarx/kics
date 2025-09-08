@@ -7,8 +7,8 @@ CxPolicy[result] {
 	resource := input.document[i].Resources
 	elem := resource[key]
 	elem.Type == "AWS::ECS::Service"
-	clustername := elem.Properties.Cluster
-	taskdefinitionkey := elem.Properties.TaskDefinition
+	elem.Properties.Cluster
+	taskdefinitionkey := getTaskDefinitionName(elem)
 	taskDefinition := resource[taskdefinitionkey]
 
 	count(taskDefinition.Properties.ContainerDefinitions) > 0
@@ -29,8 +29,8 @@ CxPolicy[result] {
 	resource := input.document[i].Resources
 	elem := resource[key]
 	elem.Type == "AWS::ECS::Service"
-	clustername := elem.Properties.Cluster
-	taskdefinitionkey := elem.Properties.TaskDefinition
+	elem.Properties.Cluster
+	taskdefinitionkey := getTaskDefinitionName(elem)
 	not common_lib.valid_key(resource, taskdefinitionkey)
 
 	result := {
@@ -42,4 +42,11 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("Resources.%s should be defined", [taskdefinitionkey]),
 		"keyActualValue": sprintf("Resources.%s is not defined.", [taskdefinitionkey]),
 	}
+}
+
+getTaskDefinitionName(resource) := name {
+	name := resource.Properties.TaskDefinition
+	not common_lib.valid_key(name, "Ref")
+} else := name {
+	name := resource.Properties.TaskDefinition.Ref
 }
