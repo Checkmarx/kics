@@ -1,0 +1,11 @@
+{
+  "id": "e67fb60b-61fd-41d4-ac43-7d2c5838756e",
+  "queryName": "RDS Multi-AZ Deployment Disabled",
+  "severity": "MEDIUM",
+  "category": "Backup",
+  "descriptionText": "AWS RDS Instance should have a multi-az deployment",
+  "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/database.aws.crossplane.io/RDSInstance/v1beta1@v0.17.0#spec-forProvider-multiAZ",
+  "platform": "Crossplane",
+  "descriptionID": "2ca093c8",
+  "cloudProvider": "aws"
+}
