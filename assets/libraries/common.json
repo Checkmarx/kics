@@ -723,6 +723,14 @@
     ],
     "modules": {
       "aws": {
+        "terraform-aws-modules/ecs/aws" : {
+          "resources": [
+            "aws_ecs_service"
+          ],
+          "inputs": { 
+            "services" : "services"
+          }
+        },
         "terraform-aws-modules/vpc/aws": {
           "resources": [
             "aws_vpn_gateway",
