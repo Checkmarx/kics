@@ -1,4 +1,4 @@
-resource "aws_iam_role_policy" "positive1" {
+resource "aws_iam_role_policy" "positive3" {
   name = "apigateway-cloudwatch-logging"
   role = aws_iam_role.apigateway_cloudwatch_logging.id
 
