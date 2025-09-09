@@ -33,30 +33,30 @@
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 5,
-    "fileName": "positive1.yaml"
+    "fileName": "positive6.yaml"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive2.yaml"
+    "fileName": "positive7.yaml"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 9,
-    "fileName": "positive3.yaml"
+    "fileName": "positive8.yaml"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive4.yaml"
+    "fileName": "positive9.yaml"
   },
   {
     "queryName": "ECR Repository Not Encrypted With CMK",
     "severity": "LOW",
     "line": 8,
-    "fileName": "positive5.yaml"
+    "fileName": "positive10.yaml"
   }
 ]
