@@ -381,7 +381,7 @@ To improve the KICS line detection mechanism, `searchLine` was introduced.
 
 SearchLine uses json path to get the correct line information from the payload (which can be seen with the flag `payload-lines`).
 
-For Ansible Hosts, Config files and Buildah, there is no need to fill this parameter since the attributes can vary in different files. If you still want to use you will expect an inconsistent behaviour.
+For Ansible Hosts, Config files and Buildah, there is no need to fill this parameter since the attributes can vary in different files. If you still want to use you should expect an inconsistent behaviour.
 
 Original Content:
 ```
