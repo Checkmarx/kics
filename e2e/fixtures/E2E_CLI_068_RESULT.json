@@ -33,6 +33,7 @@
 			"severity": "HIGH",
 			"platform": "Dockerfile",
 			"cwe": "250",
+			"cloud_provider": "COMMON",
 			"category": "Build Process",
 			"experimental": false,
 			"description": "A user should be specified in the dockerfile, otherwise the image will run as root",
