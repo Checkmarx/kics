@@ -20,4 +20,4 @@ Resources:
         InstanceType: t3.micro
         MetadataOptions:
           HttpEndpoint: disabled
-        HttpTokens: optional
+          HttpTokens: optional
