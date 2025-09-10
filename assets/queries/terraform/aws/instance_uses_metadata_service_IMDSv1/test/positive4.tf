@@ -5,8 +5,9 @@ provider "aws" {
 resource "aws_instance" "positive4" {
   ami           = "ami-12345678"
   instance_type = "t2.micro"
+}
 
-  tags = {
-    Name = "positive4"
-  }
+resource "aws_launch_configuration" "positive4" {
+  image_id      = "ami-12345678"
+  instance_type = "t2.micro"
 }

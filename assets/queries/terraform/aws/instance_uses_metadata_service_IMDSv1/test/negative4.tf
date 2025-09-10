@@ -2,9 +2,9 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_instance" "negative1" {
-  ami           = "ami-12345678"
-  instance_type = "t2.micro"
+module "negative4_instance" {
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "~> 6.0"
 
   metadata_options {
     http_endpoint = "enabled"
@@ -12,12 +12,13 @@ resource "aws_instance" "negative1" {
   }
 }
 
-resource "aws_launch_configuration" "negative1" {
-  image_id      = "ami-12345678"
-  instance_type = "t2.micro"
+module "negative4_launch_config" {
+  source  = "terraform-aws-modules/autoscaling/aws"
+  version = "~> 6.0"
 
   metadata_options {
     http_endpoint = "enabled"
     http_tokens   = "required"
   }
 }
+

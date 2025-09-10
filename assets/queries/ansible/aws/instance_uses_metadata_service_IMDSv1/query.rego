@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 	
-modules := {"amazon.aws.ec2_instance"}
+modules := {"amazon.aws.ec2_instance","community.aws.ec2_instance","community.aws.autoscaling_launch_config","community.aws.ec2_lc"}
 
 CxPolicy[result] {
     doc := input.document[i]
@@ -47,7 +47,6 @@ CxPolicy[result] {
         "keyActualValue": sprintf("'%s.metadata_options.http_tokens' is not defined to 'required'", [modules[type]]),
     }
 }
-
 
 is_metadata_service_enabled (resource) {
     common_lib.valid_key(resource, "metadata_options")

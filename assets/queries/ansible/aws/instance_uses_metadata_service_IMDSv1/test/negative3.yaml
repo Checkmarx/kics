@@ -7,8 +7,8 @@
     tags:
       Environment: Testing
     metadata_options:
-      http_endpoint: enabled
-      http_tokens: required
+      http_endpoint: disabled
+      http_tokens: optional
 
 - name: create launch configuration with metadata options
   community.aws.autoscaling_launch_config:
@@ -19,10 +19,10 @@
     tags:
       Environment: Testing
     metadata_options:
-      http_endpoint: enabled
-      http_tokens: required
+      http_endpoint: disabled
+      http_tokens: optional
 
-- name: start an instance with legacy naming and metadata options
+- name: start an instance with legacy naming metadata options
   community.aws.ec2_instance:
     name: "public-metadataoptions-instance"
     vpc_subnet_id: subnet-5calable
@@ -31,10 +31,10 @@
     tags:
       Environment: Testing
     metadata_options:
-      http_endpoint: enabled
-      http_tokens: required
+      http_endpoint: disabled
+      http_tokens: optional
 
-- name: create launch configuration with legacy naming and metadata options
+- name: create launch configuration with legacy naming metadata options
   community.aws.ec2_lc:
     name: "public-metadataoptions-instance"
     vpc_subnet_id: subnet-5calable
@@ -43,5 +43,5 @@
     tags:
       Environment: Testing
     metadata_options:
-      http_endpoint: enabled
-      http_tokens: required
+      http_endpoint: disabled
+      http_tokens: optional
