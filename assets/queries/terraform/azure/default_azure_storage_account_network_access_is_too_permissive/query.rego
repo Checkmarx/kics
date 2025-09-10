@@ -11,7 +11,7 @@ CxPolicy[result] {
 	res1 := publicNetworkAccessEnabled(resource)
 	res2 := aclsDefaultActionAllow(networkRules.rules)
 
-	issue := prepare_issue(res1, res2, var0, networkRules.type, networkRules.key)
+	issue := prepare_issue(res1, res2, var0, networkRules.type, networkRules.key, resource)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -27,7 +27,7 @@ CxPolicy[result] {
 	}
 }
 
-prepare_issue(res1, res2, resource_id, rules_type, rules_key) = issue {
+prepare_issue(res1, res2, resource_id, rules_type, rules_key, resource) = issue {
     res1 == "not defined"
 	res2 == "not defined"
 	issue := {
@@ -41,6 +41,7 @@ prepare_issue(res1, res2, resource_id, rules_type, rules_key) = issue {
 	}
 } else = issue {
     res1 == "enabled"
+	not is_function_app(resource)
     issue := {
 		"kav": "azurerm_storage_account.public_network_access_enabled set to 'true'",
 		"kev": "azurerm_storage_account.public_network_access_enabled should be set to 'false'",
@@ -126,3 +127,14 @@ aclsDefaultActionAllow(network_rules) = reason {
 has_key(x, k) {
 	_ = x[k]
 }
+
+is_function_app(resource) {
+	common_lib.valid_key(resource, "tags")
+	is_object(resource.tags)
+	common_lib.valid_key(resource.tags, "bdo-attached-service")
+	resource.tags["bdo-attached-service"] == "function"
+} else {
+	common_lib.valid_key(resource, "tags")
+	not is_object(resource.tags)
+	regex.match("(?i)bdo-attached-service[\"']?\\s*=?\\s*[\"']?function[\"']?", resource.tags)
+} else = false
