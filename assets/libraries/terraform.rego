@@ -25,16 +25,19 @@ is_security_group_ingress(type,resource) {
 	type == "aws_vpc_security_group_ingress_rule"
 } 
 
-cidr_is_unmasked(resource) {
-	cidr_sources := [
-		resource.ingress.cidr_blocks,         # array
-		resource.ingress.ipv6_cidr_blocks,    # array
-		resource.cidr_blocks,                 # array
-		resource.ipv6_cidr_blocks,            # array
-		[resource.cidr_ipv4],                 # object wrapped as array
-		[resource.cidr_ipv6]                  # object wrapped as array
+cidr_sources := [
+		"cidr_blocks",                 
+		"ipv6_cidr_blocks",    
+		"cidr_ipv4",                 
+		"cidr_ipv6"          
 	]
-	endswith(cidr_sources[_][_], "/0")
+
+cidr_is_unmasked(resource) {
+	#security_group_rule or in security_group ingress field
+	endswith(resource[cidr_sources[_]][_], "/0")
+} else {
+	#security_group_ingress_rule
+	endswith(resource[cidr_sources[_]], "/0")
 }
 
 prot_types := ["protocol","ip_protocol"]
