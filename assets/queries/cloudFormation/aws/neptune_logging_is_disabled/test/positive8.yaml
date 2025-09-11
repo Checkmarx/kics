@@ -5,6 +5,7 @@ Resources:
     Properties:
       DBClusterIdentifier: String
       EnableCloudwatchLogsExports:
+        - slowquery
       KmsKeyId: String
       Port: 10000
       StorageEncrypted: false
