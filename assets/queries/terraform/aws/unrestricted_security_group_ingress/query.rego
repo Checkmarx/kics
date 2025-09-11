@@ -89,7 +89,7 @@ rule_is_unrestricted("aws_vpc_security_group_ingress_rule",rule,name) = results 
 
 # "aws_security_group_rule"
 rule_is_unrestricted("aws_security_group_rule",rule,name) = results {
-	contains(rule.cidr_blocks[j], "0.0.0.0/0")
+	contains(rule.cidr_blocks[_], "0.0.0.0/0")
 	results := {
 		"searchKey" : sprintf("aws_security_group_rule[%s].cidr_blocks", [name]),
 		"keyExpectedValue": sprintf("aws_security_group_rule[%s].cidr_blocks' should not contain '0.0.0.0/0'",[name]),
@@ -97,7 +97,7 @@ rule_is_unrestricted("aws_security_group_rule",rule,name) = results {
 		"field": "cidr_blocks"
 	}
 } else = results {
-	contains(rule.ipv6_cidr_blocks[j], tf_lib.unrestricted_ipv6[l])
+	contains(rule.ipv6_cidr_blocks[_], tf_lib.unrestricted_ipv6[l])
 	results := {
 		"searchKey": sprintf("aws_security_group_rule[%s].ipv6_cidr_blocks", [name]),
 		"keyExpectedValue": sprintf("aws_security_group_rule[%s].ipv6_cidr_blocks should not contain '%s'",[name,tf_lib.unrestricted_ipv6[l]]),
@@ -110,7 +110,7 @@ rule_is_unrestricted("aws_security_group_rule",rule,name) = results {
 is_unrestricted_ingress(ingress,is_unique_element,name,i2) = results {
 	#ipv4 single ingress
 	is_unique_element
-	contains(ingress.cidr_blocks[j], "0.0.0.0/0")
+	contains(ingress.cidr_blocks[_], "0.0.0.0/0")
 
 	results := {
 		"searchKey": sprintf("aws_security_group[%s].ingress.cidr_blocks", [name]),
@@ -121,7 +121,7 @@ is_unrestricted_ingress(ingress,is_unique_element,name,i2) = results {
 } else = results {
 	#ipv6 single ingress
 	is_unique_element
-	contains(ingress.ipv6_cidr_blocks[j], tf_lib.unrestricted_ipv6[l])
+	contains(ingress.ipv6_cidr_blocks[_], tf_lib.unrestricted_ipv6[l])
 
 	results := {
 		"searchKey": sprintf("aws_security_group[%s].ingress.ipv6_cidr_blocks", [name]),
@@ -132,7 +132,7 @@ is_unrestricted_ingress(ingress,is_unique_element,name,i2) = results {
 } else = results {
 	#ipv4 ingress array
 	not is_unique_element
-	contains(ingress.cidr_blocks[idx], "0.0.0.0/0")
+	contains(ingress.cidr_blocks[_], "0.0.0.0/0")
 
 	results := {
 		"searchKey": sprintf("aws_security_group[%s].ingress[%d].cidr_blocks", [name,i2]),
@@ -143,7 +143,7 @@ is_unrestricted_ingress(ingress,is_unique_element,name,i2) = results {
 } else = results {
 	#ipv6 ingress array
 	not is_unique_element
-	contains(ingress.ipv6_cidr_blocks[idx], tf_lib.unrestricted_ipv6[l])
+	contains(ingress.ipv6_cidr_blocks[_], tf_lib.unrestricted_ipv6[l])
 
 	results := {
 		"searchKey": sprintf("aws_security_group[%s].ingress[%d].ipv6_cidr_blocks", [name,i2]),

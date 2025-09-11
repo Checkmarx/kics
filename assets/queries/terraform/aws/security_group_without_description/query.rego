@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("aws_security_group[%s] description should be defined and not null", [name]),
 		"keyActualValue": sprintf("aws_security_group[%s] description is undefined or null", [name]),
-		"searchLine": common_lib.build_search_line(["aws_security_group", name], []),
+		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name], []),
 	}
 }
 

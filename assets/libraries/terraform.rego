@@ -26,27 +26,23 @@ is_security_group_ingress(type,resource) {
 } 
 
 cidr_is_unmasked(resource) {
-	#in line ingress
-	endswith(resource.ingress.cidr_blocks[_], "/0")
-} else {
-	endswith(resource.ingress.ipv6_cidr_blocks[_], "/0")
-} else {
-	#security_group_rule or in line ingress passed as "resource"
-	endswith(resource.cidr_blocks[_], "/0")
-} else {
-	endswith(resource.ipv6_cidr_blocks[_], "/0")
-} else {
-	#security_group_ingress_rule
-	endswith(resource.cidr_ipv4, "/0")
-} else {
-	endswith(resource.cidr_ipv6, "/0")
-} 
+	cidr_sources := [
+		resource.ingress.cidr_blocks,         # array
+		resource.ingress.ipv6_cidr_blocks,    # array
+		resource.cidr_blocks,                 # array
+		resource.ipv6_cidr_blocks,            # array
+		[resource.cidr_ipv4],                 # object wrapped as array
+		[resource.cidr_ipv6]                  # object wrapped as array
+	]
+	endswith(cidr_sources[_][_], "/0")
+}
 
+prot_types := ["protocol","ip_protocol"]
+open_port := ["all","-1"]
 
 # Checks if a TCP port is open 
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
-	prot_types := ["protocol","ip_protocol"]
 	rule[prot_types[_]] == "tcp"
 	containsPort(rule, port)
 }
@@ -54,23 +50,18 @@ portOpenToInternet(rule, port) {
 portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
-	prot_types := ["protocol","ip_protocol"]
 	rule[prot_types[_]] == "tcp"
 	containsPort(rule, port)
 }
 
 portOpenToInternet(rule, port) {
 	check_cidr(rule)
-	prot_types := ["protocol","ip_protocol"]
-	open_port := ["all","-1"]
 	rule[prot_types[_]] == open_port[_]
 }
 
 portOpenToInternet(rules, port) {
 	rule := rules[_]
 	check_cidr(rule)
-	prot_types := ["protocol","ip_protocol"]
-	open_port := ["all","-1"]
 	rule[prot_types[_]] == open_port[_]
 }
 
