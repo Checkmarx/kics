@@ -31,7 +31,7 @@ CxPolicy[result] {
 	resource.Type == "AWS::Neptune::DBCluster"
 	
     common_lib.valid_key(resource.Properties,"EnableCloudwatchLogsExports")
-    not contains_valid_keyword(resource.Properties.EnableCloudwatchLogsExports)
+	not common_lib.inArray(resource.Properties.EnableCloudwatchLogsExports,"audit")
 
 	result := {
 		"documentId": input.document[i].id,
@@ -39,8 +39,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s%s.Properties.EnableCloudwatchLogsExports", [cf_lib.getPath(path), name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.EnableCloudwatchLogsExports' should include 'audit' and/or 'slowquery'", [name]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.EnableCloudwatchLogsExports' does not include 'audit' or 'slowquery'", [name]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.EnableCloudwatchLogsExports' should include 'audit'", [name]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.EnableCloudwatchLogsExports' does not include 'audit'", [name]),
         "searchLine": common_lib.build_search_line(path, [name, "Properties", "EnableCloudwatchLogsExports"]),
 	}
 }
@@ -62,10 +62,3 @@ is_null_or_missing_LogsExports(Properties,path,name) = results {
 		"searchLine": common_lib.build_search_line(path, [name, "Properties"])
 	}
 } else = ""
-
-
-contains_valid_keyword(list) = true {
-  list[_] == "audit"
-} else = true {
-  list[_] == "slowquery"
-} else = false
