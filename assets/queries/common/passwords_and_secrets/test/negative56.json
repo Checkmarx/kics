@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "[parameters('apiVersion')]",
+            "name": "[parameters('logicAppName')]",
+            "location": "centralus",
+            "properties": {},
+            "Parse_JSON_-_OAuth_Token": {
+                "runAfter_164": {
+                    "HTTP_-_Get_OAuth_Token": [
+                        "Succeeded"
+                    ]
+                }
+            },
+            "runAfter_192": {
+                "Parse_JSON_-_OAuth_Token": [
+                    "Succeeded"
+                ]
+            },
+            "runAfter_240": {
+                "Try_-_Get_OAuth_Token": [
+                    "TimedOut",
+                    "Failed"
+                ]
+            },
+            "runAfter_678": {
+                "Catch_-_Get_OAuth_Token": [
+                    "Skipped"
+                ]
+            }
+        }
+    ]
+}

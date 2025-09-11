@@ -346,6 +346,10 @@
         {
           "description": "Avoiding next_token Var",
           "regex": "(?i)['\"]?next(_)?token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
+        },
+        {
+          "description": "Avoiding Run After Triggers",
+          "regex": "(?i)['\"](HTTP|Parse_JSON|Try|Catch)_-_(Get_)?OAuth_Token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
         }
       ],
       "specialMask": "(?i)['\"]?token(_)?(key)?['\"]?\\s*[:=]\\s*"
