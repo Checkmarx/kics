@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	doc := input.document[i]
 	[path, value] = walk(doc)
@@ -14,5 +16,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Enum Name should follow CamelCase (Initial Letter is Capital)",
 		"keyActualValue": "Enum Name doesn't follow CamelCase",
+		"searchLine": common_lib.build_search_line(path, ["enum", name]),
 	}
 }

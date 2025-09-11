@@ -254,7 +254,7 @@ func TestGetLineBySearchLine(t *testing.T) { //nolint
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetLineBySearchLine(tt.args.pathComponents, tt.args.file)
+			_, got, err := GetLineBySearchLine(tt.args.pathComponents, tt.args.file, false)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetLineBySearchLine() error = %v, wantErr %v", err, tt.wantErr)
 				return

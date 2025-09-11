@@ -340,7 +340,7 @@ CxPolicy[result] {
 ```
 
 - `searchValue` [optional] should be used when the query returns more than one result for the same line
-- `searchLine` [optional] path where the breaking point occurs in the sample
+- `searchLine` path where the breaking point occurs in the sample. Find more about it in the [Search Line](#search-line) section below.
 
 For example, the query **Sensitive Port Is Exposed To Entire Network** can return more than one result in the same line (the ingress covers a range of ports). To avoid it, the *searchValue* should be used.
 
@@ -381,7 +381,7 @@ To improve the KICS line detection mechanism, `searchLine` was introduced.
 
 SearchLine uses json path to get the correct line information from the payload (which can be seen with the flag `payload-lines`).
 
-For Ansible Hosts and Config files, there is no need to fill this parameter since the attributes can vary in different files. If you still want to use you will expect an inconsistent behaviour.
+For Ansible Hosts, Config files and Buildah, there is no need to fill this parameter since the attributes can vary in different files. If you still want to use you should expect an inconsistent behaviour.
 
 Original Content:
 ```
