@@ -5,7 +5,6 @@ Resources:
     Properties:
       DBClusterIdentifier: String
       EnableCloudwatchLogsExports:
-        - error
       KmsKeyId: String
       Port: 10000
       StorageEncrypted: false

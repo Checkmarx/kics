@@ -49,6 +49,20 @@ prepare_issue(resource) = issue {
 		"sl": ["properties", "siteConfig", "minTlsVersion"],
 	}
 } else = issue {
+	common_lib.valid_key(resource, "properties")
+	common_lib.valid_key(resource.properties, "siteConfig")
+	not common_lib.valid_key(resource.properties.siteConfig, "minTlsVersion")
+
+	issue := {
+		"resourceType": resource.type,
+		"resourceName": resource.name,
+		"issueType": "MissingAttribute",
+		"keyActualValue": "'minTlsVersion' is undefined",
+		"keyExpectedValue": "'minTlsVersion' should be defined",
+		"sk": ".properties.siteConfig",
+		"sl": ["properties", "siteConfig"],
+	}
+} else = issue {
 	issue := {
 		"resourceType": resource.type,
 		"resourceName": resource.name,
@@ -56,6 +70,6 @@ prepare_issue(resource) = issue {
 		"keyActualValue": "'siteConfig.minTlsVersion' is undefined",
 		"keyExpectedValue": "'siteConfig.minTlsVersion' should be defined",
 		"sk": ".properties",
-		"sl": ["name"],
+		"sl": ["properties"],
 	}
 }
