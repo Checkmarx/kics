@@ -9,7 +9,7 @@ resource "aws_security_group" "negative3" {
   }
 }
 
-resource "aws_security_group_rule" "negative3a" {
+resource "aws_security_group_rule" "negative3-1" {
 
   from_port         = 80
   to_port           = 80
@@ -20,7 +20,7 @@ resource "aws_security_group_rule" "negative3a" {
   description       = "Enable HTTP access for select VMs"
 }
 
-resource "aws_security_group_rule" "negative3b" {
+resource "aws_security_group_rule" "negative3-2" {
 
   from_port         = 443
   to_port           = 443
