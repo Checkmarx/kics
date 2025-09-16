@@ -81,6 +81,7 @@ check_unknown_port(ingress,name) = results {
 		"searchLine" : common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", j], []),
 	}
 } else = results {
+	not is_array(ingress)
 
 	unknownPort(ingress.from_port, ingress.to_port)
 	tf_lib.check_cidr(ingress)
