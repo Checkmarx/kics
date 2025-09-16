@@ -158,6 +158,15 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 		}
 		printFiles(&summary.Queries[idx], printer)
 	}
+	if !consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) {
+		fmt.Printf("\nResults Summary:\n")
+		printFMTSeverityCounter(model.SeverityCritical, summary.SeverityCounters[model.SeverityCritical], printer.Critical)
+		printFMTSeverityCounter(model.SeverityHigh, summary.SeverityCounters[model.SeverityHigh], printer.High)
+		printFMTSeverityCounter(model.SeverityMedium, summary.SeverityCounters[model.SeverityMedium], printer.Medium)
+		printFMTSeverityCounter(model.SeverityLow, summary.SeverityCounters[model.SeverityLow], printer.Low)
+		printFMTSeverityCounter(model.SeverityInfo, summary.SeverityCounters[model.SeverityInfo], printer.Info)
+		fmt.Printf("TOTAL: %d\n\n", summary.TotalCounter)
+	}
 	log.Info().Msg("--- Parsing Summary ---")
 	log.Info().Msgf("Scanned Files: %d", summary.ScannedFiles)
 	log.Info().Msgf("Parsed Files: %d", summary.ParsedFiles)
@@ -178,6 +187,10 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 	log.Info().Msg("Inspector stopped")
 
 	return nil
+}
+
+func printFMTSeverityCounter(severity string, counter int, printColor color.RGBColor) {
+	fmt.Printf("%s: %d\n", printColor.Sprint(severity), counter)
 }
 
 func printSeverityCounter(summary *model.Summary) {
