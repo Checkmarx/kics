@@ -9,7 +9,7 @@ resource "aws_security_group" "positive3" {
   }
 }
 
-resource "aws_security_group_rule" "positive3a" {
+resource "aws_security_group_rule" "positive3-1" {
 
   description       = "Enable HTTP access for select VMs"
   from_port         = 80
@@ -20,7 +20,7 @@ resource "aws_security_group_rule" "positive3a" {
   type              = "ingress"
 }
 
-resource "aws_security_group_rule" "positive3b" {
+resource "aws_security_group_rule" "positive3-2" {
 
   from_port         = 443
   to_port           = 443
