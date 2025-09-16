@@ -29,7 +29,8 @@ CxPolicy[result] {
 	#Case of "aws_security_group"
 	resource := input.document[i].resource.aws_security_group[name]
 
-	results := check_unknown_port(resource.ingress,name)
+	ingress_list := tf_lib.get_ingress_list(resource.ingress)
+	results := check_unknown_port(ingress_list.value[i2],ingress_list.is_unique_element,name,i2)
 	results != ""
 
 	result := {
@@ -68,20 +69,8 @@ CxPolicy[result] {
 	}
 }
 
-check_unknown_port(ingress,name) = results {
-	is_array(ingress)
-
-	unknownPort(ingress[j].from_port, ingress[j].to_port)
-	tf_lib.check_cidr(ingress[j])
-
-	results := {
-		"searchKey" : sprintf("aws_security_group[%s].ingress[%d]", [name,j]),
-		"keyExpectedValue" : sprintf("aws_security_group[%s].ingress[%d] ports are known", [name,j]),
-		"keyActualValue" : sprintf("aws_security_group[%s].ingress[%d] ports are unknown and exposed to the entire Internet", [name,j]),
-		"searchLine" : common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", j], []),
-	}
-} else = results {
-	not is_array(ingress)
+check_unknown_port(ingress,is_unique_element,name,j) = results {
+	is_unique_element
 
 	unknownPort(ingress.from_port, ingress.to_port)
 	tf_lib.check_cidr(ingress)
@@ -91,6 +80,18 @@ check_unknown_port(ingress,name) = results {
 		"keyExpectedValue" : sprintf("aws_security_group[%s].ingress ports are known", [name]),
 		"keyActualValue" : sprintf("aws_security_group[%s].ingress ports are unknown and exposed to the entire Internet", [name]),
 		"searchLine" : common_lib.build_search_line(["resource", "aws_security_group", name, "ingress"], []),
+	}
+} else = results {
+	not is_unique_element
+
+	unknownPort(ingress.from_port, ingress.to_port)
+	tf_lib.check_cidr(ingress)
+
+	results := {
+		"searchKey" : sprintf("aws_security_group[%s].ingress[%d]", [name,j]),
+		"keyExpectedValue" : sprintf("aws_security_group[%s].ingress[%d] ports are known", [name,j]),
+		"keyActualValue" : sprintf("aws_security_group[%s].ingress[%d] ports are unknown and exposed to the entire Internet", [name,j]),
+		"searchLine" : common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", j], []),
 	}
 } else = ""
 
