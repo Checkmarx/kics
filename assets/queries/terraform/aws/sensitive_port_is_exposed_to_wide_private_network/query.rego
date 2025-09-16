@@ -10,8 +10,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource[types[i2]][name]
 
 	tf_lib.is_security_group_ingress(types[i2],resource)
-	portName := common_lib.tcpPortsMap[port]
-	portNumber = port
+	portName := common_lib.tcpPortsMap[portNumber]
 	protocol := tf_lib.getProtocolList(resource[protocol_field_name[i2]])[_]
 
 	isPrivateNetwork(resource)
@@ -62,8 +61,7 @@ CxPolicy[result] {
 	ingressKey := common_lib.get_module_equivalent_key("aws", module.source, "aws_security_group", types[t])
 	common_lib.valid_key(module, ingressKey)
 
-	portName := common_lib.tcpPortsMap[port]
-	portNumber = port
+	portName := common_lib.tcpPortsMap[portNumber]
 
 	ingress := module[ingressKey][idx]
 	protocol := tf_lib.getProtocolList(ingress.protocol)[_]
