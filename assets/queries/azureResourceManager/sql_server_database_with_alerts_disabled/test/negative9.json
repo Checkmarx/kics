@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.37.4.10188",
+      "templateHash": "4912734550592086719"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Sql/servers/securityAlertPolicies",
+      "apiVersion": "2021-02-01-preview",
+      "name": "sampleServer/Default",
+      "properties": {
+        "state": "Enabled",
+        "emailAccountAdmins": true
+      }
+    }
+  ]
+}

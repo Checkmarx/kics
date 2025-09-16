@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.37.4.10188",
+      "templateHash": "7042966288860294010"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2021-02-01-preview",
+      "name": "sampleServer",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "administratorLogin": "sqladminuser",
+        "administratorLoginPassword": "P@ssw0rd123!"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/securityAlertPolicies",
+      "apiVersion": "2021-02-01-preview",
+      "name": "sampleServer/Default",
+      "properties": {
+        "state": "Enabled",
+        "disabledAlerts": [],
+        "emailAccountAdmins": true
+      }
+    }
+  ]
+}
