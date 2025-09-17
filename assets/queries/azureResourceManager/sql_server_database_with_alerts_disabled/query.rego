@@ -2,8 +2,7 @@ package Cx
 
 import data.generic.common as common_lib
 
-
-types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies"]
+types := ["Microsoft.Sql/servers/databases/securityAlertPolicies", "securityAlertPolicies", "Microsoft.Sql/servers/securityAlertPolicies"]
 
 CxPolicy[result] {
   # case of no security alert policy
@@ -74,4 +73,4 @@ CxPolicy[result] {
 any_security_alert_policy(doc, types)  {
   [_, value] := walk(doc)
   value.type == types[_]
-} 
+}
