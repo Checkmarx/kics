@@ -9,8 +9,13 @@ resource "aws_instance" "positive1" {
   metadata_options {
     http_tokens   = "optional"
   }
+}
 
-  tags = {
-    Name = "positive1"
+resource "aws_launch_configuration" "positive1" {
+  image_id      = "ami-12345678"
+  instance_type = "t2.micro"
+
+  metadata_options {
+    http_tokens   = "optional"
   }
 }
