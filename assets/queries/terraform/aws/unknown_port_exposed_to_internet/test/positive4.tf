@@ -45,7 +45,7 @@ module "vote_service_sg_ipv4_array" {
       from_port   = 2000
       to_port     = 2500
       protocol    = "tcp"
-      ipv6_cidr_blocks = ["::/0"]
+      cidr_blocks = ["0.0.0.0/0"]
     }
   ]
 }
