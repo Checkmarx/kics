@@ -32,9 +32,9 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 	var csvItems []csvSchema
 
 	for _, row := range csvData[1:] {
-		line, lineErr := strconv.Atoi(row[15])
+		line, lineErr := strconv.Atoi(row[16])
 		require.NoError(t, lineErr, "Error when converting CSV: %s", fullPath)
-		searchLine, searchErr := strconv.Atoi(row[18])
+		searchLine, searchErr := strconv.Atoi(row[19])
 		require.NoError(t, searchErr, "Error when converting CSV: %s", fullPath)
 
 		csvStruct.QueryName = row[0]
@@ -54,12 +54,12 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 		csvStruct.FileName = row[14]
 		csvStruct.SimilarityID = row[15]
 		csvStruct.Line = line
-		csvStruct.IssueType = row[16]
-		csvStruct.SearchKey = row[17]
+		csvStruct.IssueType = row[17]
+		csvStruct.SearchKey = row[18]
 		csvStruct.SearchLine = searchLine
-		csvStruct.SearchValue = row[19]
-		csvStruct.ExpectedValue = row[20]
-		csvStruct.ActualValue = row[21]
+		csvStruct.SearchValue = row[20]
+		csvStruct.ExpectedValue = row[21]
+		csvStruct.ActualValue = row[22]
 		csvItems = append(csvItems, csvStruct)
 	}
 
@@ -76,6 +76,7 @@ type csvSchema struct {
 	Severity                    string
 	Platform                    string
 	Cwe                         string
+	RiskScore                   string
 	CloudProvider               string
 	Category                    string
 	DescriptionID               string
@@ -92,5 +93,4 @@ type csvSchema struct {
 	SearchValue                 string
 	ExpectedValue               string
 	ActualValue                 string
-	RiskScore                   string
 }
