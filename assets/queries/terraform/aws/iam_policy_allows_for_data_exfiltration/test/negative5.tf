@@ -1,12 +1,12 @@
-resource "aws_iam_policy" "positive2" {
-  name        = "positive2"
+resource "aws_iam_policy" "negative5" {
+  name        = "negative5"
   description = "Provides full access to AWS services and resources."
   policy      = <<POLICY
 {
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Effect": "Allow",
+            "Effect": "Deny",
             "Action": [
         "*"
       ],
