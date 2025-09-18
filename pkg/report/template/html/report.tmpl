@@ -62,6 +62,9 @@
         <div class="query-info">
           <div class="query-title">
             <h2>
+              {{- if eq .Severity "CRITICAL" -}}
+              <div class="kics-red">{{ includeSVG "vulnerability_fill.svg" }}</div>
+              {{- end -}}
               {{- if eq .Severity "HIGH" -}}
               <div class="kics-orange">{{ includeSVG "vulnerability_fill.svg" }}</div>
               {{- end -}}
@@ -78,6 +81,7 @@
             </h2>
             <span><strong>Platform:</strong> <span class="query-info-platform">{{ .Platform }}</span></span>
             {{ if .CWE }}<span><strong>CWE:</strong> {{ .CWE }}</span>{{ end }}
+            {{ if .RiskScore }}<span><strong>Risk Score:</strong> {{ .RiskScore }}</span>{{ end }}
             <span><strong>Category:</strong> <span class="query-info-category">{{ .Category }}</span></span>
           </div>
           <div class="query-details">

@@ -61,7 +61,7 @@
                         }
                     }
                 }
-            },   
+            },
                 "start_time": {
                     "type": "string",
                     "minLength": 1
@@ -158,8 +158,7 @@
                         "minLength": 0
                     },
                     "riskScore": {
-                        "type": "string",
-                        "minLength": 1
+                        "type": "string"
                     },
                     "links": {
                         "type": "array",

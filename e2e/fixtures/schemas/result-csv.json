@@ -101,7 +101,8 @@
             },
             "RiskScore": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "pattern": "^([0-9]|10)(\\.\\d{1,2})?$"
             },
             "CloudProvider": {
                 "type": "string",
