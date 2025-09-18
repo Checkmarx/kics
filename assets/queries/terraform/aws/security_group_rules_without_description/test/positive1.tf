@@ -1,7 +1,4 @@
 resource "aws_security_group" "positive1" {
-  name        = "positive1"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port        = 443
@@ -17,9 +14,5 @@ resource "aws_security_group" "positive1" {
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
-  }
-
-  tags = {
-    Name = "positive1"
   }
 }

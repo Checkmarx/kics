@@ -1,11 +1,7 @@
-resource "aws_security_group" "negative2" {
-
-  name        = "${var.prefix}-external-http-https"
-  description = "Allow main HTTP / HTTPS"
-  vpc_id      = local.vpc_id
+resource "aws_security_group" "negative2-1" {
 
   ingress {
-    description = "Enable HTTP access for select VMs"
+    description = "sample_description"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
@@ -13,14 +9,29 @@ resource "aws_security_group" "negative2" {
   }
 
   ingress {
-    description = "Enable HTTPS access for select VMs"
+    description = "sample_description"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
 
-  tags = {
-    Name = "${var.prefix}-external-http-https"
+resource "aws_security_group" "negative2-2" {
+
+  egress {
+    description = "sample_description"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    description = "sample_description"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
