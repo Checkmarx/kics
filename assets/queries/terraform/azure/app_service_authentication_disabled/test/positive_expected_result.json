@@ -58,5 +58,29 @@
     "severity": "MEDIUM",
     "line": 8,
     "fileName": "positive10.tf"
+  },
+  {
+    "queryName": "App Service Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive11.tf"
+  },
+  {
+    "queryName": "App Service Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive12.tf"
+  },
+  {
+    "queryName": "App Service Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive13.tf"
+  },
+  {
+    "queryName": "App Service Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 11,
+    "fileName": "positive14.tf"
   }
 ]
