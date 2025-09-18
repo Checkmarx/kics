@@ -144,6 +144,7 @@ type QueryMetadata struct {
 	Metadata  map[string]interface{}
 	Platform  string
 	CWE       string
+	RiskScore string
 	// special field for generic queries
 	// represents how many queries are aggregated into a single rego file
 	Aggregation  int
@@ -168,6 +169,7 @@ type Vulnerability struct {
 	DescriptionID    string      `json:"descriptionID"`
 	Platform         string      `db:"platform" json:"platform"`
 	CWE              string      `db:"cwe" json:"cwe"`
+	RiskScore        string      `db:"risk_score" json:"riskScore"`
 	Severity         Severity    `json:"severity"`
 	Line             int         `json:"line"`
 	VulnLines        *[]CodeLine `json:"vulnLines"`

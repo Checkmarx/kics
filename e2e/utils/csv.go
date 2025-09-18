@@ -59,6 +59,7 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 		csvStruct.SearchValue = row[19]
 		csvStruct.ExpectedValue = row[20]
 		csvStruct.ActualValue = row[21]
+		csvStruct.RiskScore = row[22]
 		csvItems = append(csvItems, csvStruct)
 	}
 
@@ -91,4 +92,5 @@ type csvSchema struct {
 	SearchValue                 string
 	ExpectedValue               string
 	ActualValue                 string
+	RiskScore                   string
 }

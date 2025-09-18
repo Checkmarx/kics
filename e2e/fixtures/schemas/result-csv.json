@@ -99,6 +99,10 @@
                 "type": "string",
                 "minLength": 0
             },
+            "RiskScore": {
+                "type": "string",
+                "minLength": 1
+            },
             "CloudProvider": {
                 "type": "string",
                 "minLength": 1

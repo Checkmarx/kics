@@ -261,6 +261,10 @@
                                         "CWE": {
                                             "type": "string",
                                             "minLength": 0
+                                        },
+                                        "RiskScore": {
+                                            "type": "string",
+                                            "minLength": 1
                                         }
                                     }
                                 }

@@ -117,6 +117,10 @@
             "type": "string",
             "minLength": 0
           },
+          "riskScore": {
+            "type": "string",
+            "minLength": 1
+          },
           "files": {
             "type": "array",
             "items": {
