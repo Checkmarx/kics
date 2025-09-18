@@ -68,67 +68,43 @@
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
-    "line": 15,
+    "line": 12,
     "filename": "positive5.tf"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
-    "line": 28,
+    "line": 21,
     "filename": "positive5.tf"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
-    "line": 34,
+    "line": 27,
     "filename": "positive5.tf"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
-    "line": 43,
+    "line": 40,
     "filename": "positive5.tf"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
-    "line": 49,
+    "line": 46,
     "filename": "positive5.tf"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
-    "line": 62,
+    "line": 55,
     "filename": "positive5.tf"
   },
   {
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
-    "line": 71,
-    "filename": "positive5.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 84,
-    "filename": "positive5.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 90,
-    "filename": "positive5.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 99,
-    "filename": "positive5.tf"
-  },
-  {
-    "queryName": "Security Group Rule Without Description",
-    "severity": "INFO",
-    "line": 105,
+    "line": 61,
     "filename": "positive5.tf"
   }
 ]
