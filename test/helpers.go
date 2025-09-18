@@ -252,6 +252,8 @@ var queryHighExperimental = model.QueryResult{
 			VulnLines:        &[]model.CodeLine{},
 		},
 	},
+	CWE:       "319",
+	RiskScore: "6",
 }
 
 var queryMediumCycloneCWE = model.QueryResult{
@@ -391,6 +393,8 @@ var queryHighPasswordsAndSecrets = model.QueryResult{
 	DescriptionID: "d69d8a89",
 	Platform:      "Common",
 	CloudProvider: "common",
+	CWE:           "798",
+	RiskScore:     "7.8",
 	Severity:      model.SeverityHigh,
 	Files: []model.VulnerableFile{
 		{

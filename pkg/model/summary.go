@@ -185,6 +185,7 @@ func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObje
 }
 
 // CreateSummary creates a report for a single scan, based on its scanID
+// nolint: funlen
 func CreateSummary(counters *Counters, vulnerabilities []Vulnerability,
 	scanID string, pathExtractionMap map[string]ExtractedPathObject, version Version) Summary {
 	log.Debug().Msg("model.CreateSummary()")
