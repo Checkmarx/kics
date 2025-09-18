@@ -33,6 +33,7 @@
       "severity": "MEDIUM",
       "platform": "CloudFormation",
       "cwe": "665",
+      "riskScore": "5.2",
       "cloud_provider": "AWS",
       "category": "Networking and Firewall",
       "experimental": false,

@@ -43,15 +43,16 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 		csvStruct.Severity = row[3]
 		csvStruct.Platform = row[4]
 		csvStruct.Cwe = row[5]
-		csvStruct.CloudProvider = row[6]
-		csvStruct.Category = row[7]
-		csvStruct.DescriptionID = row[8]
-		csvStruct.Description = row[9]
-		csvStruct.CISDescriptionIDFormatted = row[10]
-		csvStruct.CISDescriptionTitle = row[11]
-		csvStruct.CISDescriptionTextFormatted = row[12]
-		csvStruct.FileName = row[13]
-		csvStruct.SimilarityID = row[14]
+		csvStruct.RiskScore = row[6]
+		csvStruct.CloudProvider = row[7]
+		csvStruct.Category = row[8]
+		csvStruct.DescriptionID = row[9]
+		csvStruct.Description = row[10]
+		csvStruct.CISDescriptionIDFormatted = row[11]
+		csvStruct.CISDescriptionTitle = row[12]
+		csvStruct.CISDescriptionTextFormatted = row[13]
+		csvStruct.FileName = row[14]
+		csvStruct.SimilarityID = row[15]
 		csvStruct.Line = line
 		csvStruct.IssueType = row[16]
 		csvStruct.SearchKey = row[17]
@@ -59,7 +60,6 @@ func CSVToJSON(t *testing.T, filename string) []byte {
 		csvStruct.SearchValue = row[19]
 		csvStruct.ExpectedValue = row[20]
 		csvStruct.ActualValue = row[21]
-		csvStruct.RiskScore = row[22]
 		csvItems = append(csvItems, csvStruct)
 	}
 

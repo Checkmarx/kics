@@ -142,8 +142,7 @@
                 "type":"string"
             },
             "RiskScore": {
-                "type": "string",
-                "minLength": 1
+                "type": "string"
             },
             "Title": {
                 "type": "string",
