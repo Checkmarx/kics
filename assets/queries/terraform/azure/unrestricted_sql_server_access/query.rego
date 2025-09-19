@@ -23,11 +23,11 @@ CxPolicy[result] {
 
 low_abs_difference_or_both_unspecified(start_range, end_range) = results {
 	# access from Microsoft Azure Infrastructure
-	start_range = "0.0.0.0"
-	end_range = "0.0.0.0"
+	start_range == "0.0.0.0"
+	end_range == "0.0.0.0"
 	results := {
-		"expected_value" : "The difference between the value of the 'end_ip_address' and of 'start_ip_address' should be less than 256",
-		"actual_value" : "The difference between the value of the 'end_ip_address' and of 'start_ip_address' is greater than or equal to 256"
+		"expected_value" : "Firewall rules should not have both 'start_ip_address' and 'end_ip_address' set to '0.0.0.0'.",
+		"actual_value" : "Both 'start_ip_address' and 'end_ip_address' are set to '0.0.0.0'"
 	}
 } else = results{
 	startIP_value := common_lib.calc_IP_value(start_range)
@@ -35,7 +35,7 @@ low_abs_difference_or_both_unspecified(start_range, end_range) = results {
 
 	abs(endIP_value - startIP_value) >= 256
 	results := {
-		"expected_value" : "Firewall rules should not have both 'start_ip_address' and 'end_ip_address' set to '0.0.0.0'.",
-		"actual_value" : "Both 'start_ip_address' and 'end_ip_address' are set to '0.0.0.0'"
+		"expected_value" : "The difference between the value of the 'end_ip_address' and of 'start_ip_address' should be less than 256",
+		"actual_value" : "The difference between the value of the 'end_ip_address' and of 'start_ip_address' is greater than or equal to 256"
 	}
 } else = ""
