@@ -1,53 +1,66 @@
-resource "aws_security_group_rule" "negative1" {
-  type              = "ingress"
-  from_port         = 2383
-  to_port           = 2383
-  protocol          = "tcp"
-  cidr_blocks       = [aws_vpc.main.cidr_block]
-  security_group_id = aws_security_group.allow_tls1.id
+# ipv4
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv4_1" {
+  #incorrect protocol
+  from_port    = 22
+  to_port      = 22
+  ip_protocol  = "icmp"
+  cidr_ipv4    = "10.0.0.0/25"
 }
 
-resource "aws_security_group_rule" "negative2" {
-  type              = "ingress"
-  from_port         = 2384
-  to_port           = 2386
-  protocol          = "tcp"
-  cidr_blocks       = ["/0"]
-  security_group_id = aws_security_group.allow_tls2.id
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv4_2" {
+  #incorrect port range (unknown)
+  from_port    = 5000
+  to_port      = 5000
+  ip_protocol  = "tcp"
+  cidr_ipv4    = "192.168.0.0/26"
 }
 
-resource "aws_security_group_rule" "negative3" {
-  type              = "ingress"
-  from_port         = 25
-  to_port           = 2500
-  protocol          = "tcp"
-  cidr_blocks       = ["1.2.3.4/0"]
-  security_group_id = aws_security_group.allow_tls3.id
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv4_3" {
+  #incorrect cidr (not wide private network)
+  from_port    = 22
+  to_port      = 22
+  ip_protocol  = "udp"
+  cidr_ipv4    = "1.0.0.0/2"
 }
 
-resource "aws_security_group_rule" "negative4" {
-  type              = "ingress"
-  from_port         = 25
-  to_port           = 2500
-  protocol          = "tcp"
-  cidr_blocks       = ["1.2.3.4/5"]
-  security_group_id = aws_security_group.allow_tls4.id
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv4_4" {
+  #all incorrect 
+  from_port    = 5000
+  to_port      = 5000
+  ip_protocol  = "icmp"
+  cidr_ipv4    = "1.0.0.0/2"
 }
 
-resource "aws_security_group_rule" "negative5" {
-  type              = "ingress"
-  from_port         = 25
-  to_port           = 2500
-  protocol          = "udp"
-  cidr_blocks       = ["1.2.3.4/5", "0.0.0.0/12"]
-  security_group_id = aws_security_group.allow_tls5.id
+# ipv6
+
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv6_1" {
+  #incorrect protocol
+  from_port         = 22
+  to_port           = 22
+  ip_protocol       = "icmpv6"
+  cidr_ipv6         = "fd00::/121"
 }
 
-resource "aws_security_group_rule" "negative6" {
-  type              = "ingress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = "-1"
-  cidr_blocks       = ["1.2.3.4", "0.0.0.0/0"]
-  security_group_id = aws_security_group.allow_tls6.id
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv6_2" {
+  #incorrect port range (unknown)
+  from_port         = 5000
+  to_port           = 5000
+  ip_protocol       = "tcp"
+  cidr_ipv6         = "fd12:3456:789a::1/122" 
+}
+
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv6_3" {
+  #incorrect cidr 
+  from_port         = 22
+  to_port           = 22
+  ip_protocol       = "udp"
+  cidr_ipv6         = "2400:cb00::/32"  
+}
+
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv6_4" {
+  #all incorrect
+  from_port         = 5000
+  to_port           = 5000
+  ip_protocol       = "icmpv6"
+  cidr_ipv6         = "2400:cb00::/32"
 }
