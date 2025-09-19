@@ -1,75 +1,66 @@
-resource "aws_security_group" "positive" {
-  name        = "allow_tls1"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
+# ipv4
+resource "aws_security_group_rule" "positive3_ipv4_1" {
+  from_port    = 22
+  to_port      = 22
+  protocol     = "-1"
+  cidr_blocks  = ["10.0.0.0/0"]
+  type         = "ingress"
 }
 
-resource "aws_security_group_rule" "positive1_rule" {
-  type              = "ingress"
-  from_port         = 2200
-  to_port           = 2500
+resource "aws_security_group_rule" "positive3_ipv4_2" {
+  from_port    = 22
+  to_port      = 22
+  protocol     = "tcp"
+  cidr_blocks  = ["192.168.0.0/0"]
+  type         = "ingress"
+}
+
+resource "aws_security_group_rule" "positive3_ipv4_3" {
+  from_port    = 22
+  to_port      = 22
+  protocol     = "udp"
+  cidr_blocks  = ["172.16.0.0/0"]
+  type         = "ingress"
+}
+
+resource "aws_security_group_rule" "positive3_ipv4_4" {
+  from_port    = 110
+  to_port      = 110
+  protocol     = "udp"
+  cidr_blocks  = ["10.68.0.0", "172.16.0.0/0"]
+  type         = "ingress"
+}
+
+# ipv6
+
+resource "aws_security_group_rule" "positive3_ipv6_1" {
+  from_port         = 22
+  to_port           = 22
   protocol          = "-1"
-  cidr_blocks       = ["0.0.0.0/0"]
-  description       = "TLS from VPC"
-  security_group_id = aws_security_group.positive.id
+  ipv6_cidr_blocks  = ["fd00::/0"]
+  type              = "ingress"
 }
 
-resource "aws_security_group_rule" "positive2_rule" {
-  type              = "ingress"
-  from_port         = 20
-  to_port           = 60
-  protocol          = "tcp"
-  cidr_blocks       = ["/0"]
-  description       = "TLS from VPC"
-  security_group_id = aws_security_group.positive.id
-}
-
-resource "aws_security_group_rule" "positive3_rule" {
-  type              = "ingress"
-  from_port         = 5000
-  to_port           = 6000
-  protocol          = "-1"
-  cidr_blocks       = ["0.0.0.0/0"]
-  description       = "TLS from VPC"
-  security_group_id = aws_security_group.positive.id
-}
-
-resource "aws_security_group_rule" "positive4_rule" {
-  type              = "ingress"
-  from_port         = 20
+resource "aws_security_group_rule" "positive3_ipv6_2" {
+  from_port         = 22
   to_port           = 22
   protocol          = "tcp"
-  cidr_blocks       = ["/0"]
-  description       = "TLS from VPC"
-  security_group_id = aws_security_group.positive.id
+  ipv6_cidr_blocks  = ["fd12:3456:789a::1/0"]
+  type              = "ingress"
 }
 
-resource "aws_security_group_rule" "positive5_rule_2" {
-  type              = "ingress"
-  from_port         = 445
-  to_port           = 500
+resource "aws_security_group_rule" "positive3_ipv6_3" {
+  from_port         = 22
+  to_port           = 22
   protocol          = "udp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  description       = "TLS from VPC"
-  security_group_id = aws_security_group.positive.id
+  ipv6_cidr_blocks  = ["fd00:abcd:1234::42/0"]
+  type              = "ingress"
 }
 
-resource "aws_security_group_rule" "positive6_rule_2" {
-  type              = "ingress"
-  from_port         = 135
-  to_port           = 170
+resource "aws_security_group_rule" "positive3_ipv6_4" {
+  from_port         = 110
+  to_port           = 110
   protocol          = "udp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  description       = "TLS from VPC"
-  security_group_id = aws_security_group.positive.id
-}
-
-resource "aws_security_group_rule" "positive7_rule" {
+  ipv6_cidr_blocks  = ["fd03:5678::/64", "fd00:abcd:1234::42/0"] 
   type              = "ingress"
-  from_port         = 2383
-  to_port           = 2383
-  protocol          = "udp"
-  ipv6_cidr_blocks  = ["::/0"]
-  description       = "TLS from VPC"
-  security_group_id = aws_security_group.positive.id
 }
