@@ -46,7 +46,7 @@ does_not_have_valid_stage_name(resource,doc,name) = results {
 	results := {
 		"searchKey": sprintf("aws_api_gateway_stage[%s]", [name]),
 		"keyExpectedValue": sprintf("'aws_cloudwatch_log_group' for 'aws_api_gateway_stage[%s]' should be defined and use the correct naming convention",[name]),
-		"keyActualValue": sprintf("'aws_cloudwatch_log_group' for 'aws_api_gateway_stage[%s]' is undefined or not using the correct naming convention",[name]),
+		"keyActualValue": sprintf("'aws_cloudwatch_log_group' for 'aws_api_gateway_stage[%s]' is undefined or is not using the correct naming convention",[name]),
 		"searchLine": common_lib.build_search_line(["resource","aws_api_gateway_stage", name],[])
 	}
 } else = ""
