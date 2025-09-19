@@ -50,6 +50,7 @@ var (
 		"../assets/queries/cloudFormation/aws/elb_sensitive_port_is_exposed_to_entire_network",
 		"../assets/queries/terraform/aws/sensitive_port_is_exposed_to_entire_network",
 		"../assets/queries/terraform/aws/sensitive_port_is_exposed_to_small_public_network",
+		"../assets/queries/terraform/aws/sensitive_port_is_exposed_to_wide_private_network",
 		"../assets/queries/terraform/azure/sensitive_port_is_exposed_to_entire_network",
 		"../assets/queries/terraform/azure/sensitive_port_is_exposed_to_small_public_network",
 		"../assets/queries/dockerfile/apt_get_install_pin_version_not_defined",
