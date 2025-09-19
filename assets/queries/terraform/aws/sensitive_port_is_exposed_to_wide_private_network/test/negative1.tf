@@ -1,5 +1,5 @@
 # ipv4
-resource "aws_security_group" "positive1_ipv4_1" {
+resource "aws_security_group" "negative1_ipv4_1" {
   #incorrect protocol
   ingress {
     from_port   = 22
@@ -9,7 +9,7 @@ resource "aws_security_group" "positive1_ipv4_1" {
   }
 }
 
-resource "aws_security_group" "positive1_ipv4_2" {
+resource "aws_security_group" "negative1_ipv4_2" {
   #incorrect port range (unknown)
   ingress {
     from_port   = 5000
@@ -19,7 +19,7 @@ resource "aws_security_group" "positive1_ipv4_2" {
   }
 }
 
-resource "aws_security_group" "positive1_array_test_ipv4" {
+resource "aws_security_group" "negative1_array_test_ipv4" {
   #incorrect cidr (not wide private network)
   ingress {
     from_port   = 22
@@ -38,7 +38,7 @@ resource "aws_security_group" "positive1_array_test_ipv4" {
 
 # ipv6
 
-resource "aws_security_group" "positive1_ipv6_1" {
+resource "aws_security_group" "negative1_ipv6_1" {
   #incorrect protocol
   ingress {
     from_port         = 22
@@ -48,7 +48,7 @@ resource "aws_security_group" "positive1_ipv6_1" {
   }
 }
 
-resource "aws_security_group" "positive1_ipv6_2" {
+resource "aws_security_group" "negative1_ipv6_2" {
   #incorrect port range (unknown)
   ingress {
     from_port         = 5000
@@ -58,7 +58,7 @@ resource "aws_security_group" "positive1_ipv6_2" {
   }
 }
 
-resource "aws_security_group" "positive1_array_test_ipv6" {
+resource "aws_security_group" "negative1_array_test_ipv6" {
   #incorrect cidr 
   ingress {
     from_port         = 22

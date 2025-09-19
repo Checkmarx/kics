@@ -41,13 +41,13 @@ module "positive4_ipv6_1" {
       from_port         = 22
       to_port           = 22
       protocol          = "tcp"
-      ipv6_cidr_blocks  = ["fd12:3456:789a::1"]  # private ipv6 address
+      ipv6_cidr_blocks  = ["fd12:3456:789a::1"] 
     },
     {
       from_port         = 22
       to_port           = 22
       protocol          = "udp"
-      ipv6_cidr_blocks  = ["fd00:abcd:1234::42"]  # private ipv6 address
+      ipv6_cidr_blocks  = ["fd00:abcd:1234::42"] 
     },
     {
       from_port         = 110

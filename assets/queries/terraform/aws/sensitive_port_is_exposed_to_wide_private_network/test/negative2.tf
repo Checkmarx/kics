@@ -1,5 +1,5 @@
 # ipv4
-resource "aws_vpc_security_group_ingress_rule" "positive2_ipv4_1" {
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv4_1" {
   #incorrect protocol
   from_port    = 22
   to_port      = 22
@@ -7,7 +7,7 @@ resource "aws_vpc_security_group_ingress_rule" "positive2_ipv4_1" {
   cidr_ipv4    = "10.0.0.0/8"
 }
 
-resource "aws_vpc_security_group_ingress_rule" "positive2_ipv4_2" {
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv4_2" {
   #incorrect port range (unknown)
   from_port    = 5000
   to_port      = 5000
@@ -15,7 +15,7 @@ resource "aws_vpc_security_group_ingress_rule" "positive2_ipv4_2" {
   cidr_ipv4    = "192.168.0.0/16"
 }
 
-resource "aws_vpc_security_group_ingress_rule" "positive2_ipv4_3" {
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv4_3" {
   #incorrect cidr (not wide private network)
   from_port    = 22
   to_port      = 22
@@ -23,7 +23,7 @@ resource "aws_vpc_security_group_ingress_rule" "positive2_ipv4_3" {
   cidr_ipv4    = "8.8.0.0/16"
 }
 
-resource "aws_vpc_security_group_ingress_rule" "positive2_ipv4_4" {
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv4_4" {
   #all incorrect 
   from_port    = 5000
   to_port      = 5000
@@ -33,7 +33,7 @@ resource "aws_vpc_security_group_ingress_rule" "positive2_ipv4_4" {
 
 # ipv6
 
-resource "aws_vpc_security_group_ingress_rule" "positive2_ipv6_1" {
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv6_1" {
   #incorrect protocol
   from_port         = 22
   to_port           = 22
@@ -41,7 +41,7 @@ resource "aws_vpc_security_group_ingress_rule" "positive2_ipv6_1" {
   cidr_ipv6         = "fd00::/8"  # ipv6 equivalent of 10.0.0.0/8
 }
 
-resource "aws_vpc_security_group_ingress_rule" "positive2_ipv6_2" {
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv6_2" {
   #incorrect port range (unknown)
   from_port         = 5000
   to_port           = 5000
@@ -49,7 +49,7 @@ resource "aws_vpc_security_group_ingress_rule" "positive2_ipv6_2" {
   cidr_ipv6         = "fd12:3456:789a::1"  # private ipv6 address 
 }
 
-resource "aws_vpc_security_group_ingress_rule" "positive2_ipv6_3" {
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv6_3" {
   #incorrect cidr 
   from_port         = 22
   to_port           = 22
@@ -57,7 +57,7 @@ resource "aws_vpc_security_group_ingress_rule" "positive2_ipv6_3" {
   cidr_ipv6         = "2400:cb00::/32"  # not a private ipv6 address 
 }
 
-resource "aws_vpc_security_group_ingress_rule" "positive2_ipv6_4" {
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv6_4" {
   #all incorrect
   from_port         = 5000
   to_port           = 5000

@@ -45,11 +45,19 @@ resource "aws_security_group_rule" "positive3_ipv6_2" {
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
-  ipv6_cidr_blocks  = ["fd12:3456:789a::1"]  # private ipv6 address 
+  ipv6_cidr_blocks  = ["fd12:3456:789a::1"]
   type              = "ingress"
 }
 
 resource "aws_security_group_rule" "positive3_ipv6_3" {
+  from_port         = 22
+  to_port           = 22
+  protocol          = "udp"
+  ipv6_cidr_blocks  = ["fd00:abcd:1234::42"]
+  type              = "ingress"
+}
+
+resource "aws_security_group_rule" "positive3_ipv6_4" {
   from_port         = 110
   to_port           = 110
   protocol          = "udp"

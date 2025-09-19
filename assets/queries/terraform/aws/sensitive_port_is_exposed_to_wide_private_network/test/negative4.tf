@@ -1,4 +1,4 @@
-module "positive4_ipv4_1" {
+module "negative4_ipv4_1" {
   source  = "terraform-aws-modules/security-group/aws"
   ingress_with_cidr_blocks = [
     {
@@ -32,7 +32,7 @@ module "positive4_ipv4_1" {
   ]
 }
 
-module "positive4_ipv6_1" {
+module "negative4_ipv6_1" {
   source  = "terraform-aws-modules/security-group/aws"
   ingress_with_ipv6_cidr_blocks = [
     {

@@ -1,5 +1,5 @@
 # ipv4
-resource "aws_security_group_rule" "positive3_ipv4_1" {
+resource "aws_security_group_rule" "negative3_ipv4_1" {
   #incorrect protocol
   from_port    = 22
   to_port      = 22
@@ -8,7 +8,7 @@ resource "aws_security_group_rule" "positive3_ipv4_1" {
   type         = "ingress"
 }
 
-resource "aws_security_group_rule" "positive3_ipv4_2" {
+resource "aws_security_group_rule" "negative3_ipv4_2" {
   #incorrect port range (unknown)
   from_port    = 5000
   to_port      = 5000
@@ -17,7 +17,7 @@ resource "aws_security_group_rule" "positive3_ipv4_2" {
   type         = "ingress"
 }
 
-resource "aws_security_group_rule" "positive3_ipv4_3" {
+resource "aws_security_group_rule" "negative3_ipv4_3" {
   #incorrect cidr (not wide private network)
   from_port    = 22
   to_port      = 22
@@ -26,7 +26,7 @@ resource "aws_security_group_rule" "positive3_ipv4_3" {
   type         = "ingress"
 }
 
-resource "aws_security_group_rule" "positive3_ipv4_4" {
+resource "aws_security_group_rule" "negative3_ipv4_4" {
   #all incorrect 
   from_port    = 5000
   to_port      = 5000
@@ -37,7 +37,7 @@ resource "aws_security_group_rule" "positive3_ipv4_4" {
 
 # ipv6
 
-resource "aws_security_group_rule" "positive3_ipv6_1" {
+resource "aws_security_group_rule" "negative3_ipv6_1" {
   #incorrect protocol
   from_port         = 22
   to_port           = 22
@@ -46,7 +46,7 @@ resource "aws_security_group_rule" "positive3_ipv6_1" {
   type              = "ingress"
 }
 
-resource "aws_security_group_rule" "positive3_ipv6_2" {
+resource "aws_security_group_rule" "negative3_ipv6_2" {
   #incorrect port range (unknown)
   from_port         = 5000
   to_port           = 5000
@@ -55,7 +55,7 @@ resource "aws_security_group_rule" "positive3_ipv6_2" {
   type              = "ingress"
 }
 
-resource "aws_security_group_rule" "positive3_ipv6_3" {
+resource "aws_security_group_rule" "negative3_ipv6_3" {
   #incorrect cidr 
   from_port         = 22
   to_port           = 22
@@ -64,7 +64,7 @@ resource "aws_security_group_rule" "positive3_ipv6_3" {
   type              = "ingress"
 }
 
-resource "aws_security_group_rule" "positive3_ipv6_4" {
+resource "aws_security_group_rule" "negative3_ipv6_4" {
   #all incorrect
   from_port         = 5000
   to_port           = 5000

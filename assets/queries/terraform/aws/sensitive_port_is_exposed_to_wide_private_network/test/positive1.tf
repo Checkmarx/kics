@@ -48,7 +48,7 @@ resource "aws_security_group" "positive1_ipv6_2" {
     from_port         = 22
     to_port           = 22
     protocol          = "tcp"
-    ipv6_cidr_blocks  = ["fd12:3456:789a::1"]  # private ipv6 address 
+    ipv6_cidr_blocks  = ["fd12:3456:789a::1"]   
   }
 }
 
@@ -57,7 +57,7 @@ resource "aws_security_group" "positive1_array_test_ipv6" {
     from_port         = 22
     to_port           = 22
     protocol          = "udp"
-    ipv6_cidr_blocks  = ["fd00:abcd:1234::42"]  # private ipv6 address 
+    ipv6_cidr_blocks  = ["fd00:abcd:1234::42"] 
   }
 
   ingress {
