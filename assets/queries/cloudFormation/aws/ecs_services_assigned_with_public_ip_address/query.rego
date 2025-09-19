@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
@@ -16,5 +17,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue", 
 		"keyExpectedValue": "'AssignPublicIp' field should be defined to 'DISABLED' (defaults to 'DISABLED')",
 		"keyActualValue": "'AssignPublicIp' field is defined to 'ENABLED'",
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "NetworkConfiguration", "AwsvpcConfiguration", "AssignPublicIp"], []),
 	}
 }
