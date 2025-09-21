@@ -29,3 +29,12 @@ resource "aws_vpc_security_group_ingress_rule" "negative2-3" {
   ip_protocol       = "-1"
   description       = "allows RDP from Internet"
 }
+
+resource "aws_vpc_security_group_ingress_rule" "negative2-4" {
+  security_group_id = aws_security_group.ec2.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 30
+  to_port           = 2000
+  ip_protocol       = "tcp"
+  description       = "allows RDP from Internet"
+}

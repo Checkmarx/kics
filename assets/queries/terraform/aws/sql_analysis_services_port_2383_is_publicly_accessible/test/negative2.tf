@@ -29,3 +29,12 @@ resource "aws_vpc_security_group_ingress_rule" "negative2-3" {
   ip_protocol       = "tcp"
   description       = "Remote desktop open private"
 }
+
+resource "aws_vpc_security_group_ingress_rule" "negative2-4" {
+  security_group_id = aws_security_group.negative.id
+  cidr_ipv6         = "::/0"
+  from_port         = 20
+  to_port           = 2000
+  ip_protocol       = "tcp"
+  description       = "Remote desktop open private"
+}

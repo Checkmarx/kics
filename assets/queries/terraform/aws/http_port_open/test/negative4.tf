@@ -69,7 +69,7 @@ module "vote_service_sg_ipv4_array" {
   ]
 }
 
-module "vote_service_sg_ipv6_array" {
+module "vote_service_sg_ipv6_array_port_80_not_covered" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.3.0"
 
@@ -88,7 +88,7 @@ module "vote_service_sg_ipv6_array" {
   ]
 }
 
-module "vote_service_sg_ipv4_array" {
+module "vote_service_sg_ipv4_array_port_80_not_covered" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.3.0"
 
