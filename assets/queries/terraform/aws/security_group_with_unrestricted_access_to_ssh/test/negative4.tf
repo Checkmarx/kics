@@ -69,7 +69,7 @@ module "vote_service_sg_ipv4_array" {
       from_port   = 22
       to_port     = 22
       protocol    = "udp"
-      cidr_blocks = ["0.1.1.1/21", "8.8.8.8/24"]
+      cidr_blocks = ["0.0.0.0/0", "8.8.8.8/24"]
     },
     {
       description = "TLS from VPC"
@@ -117,6 +117,13 @@ module "vote_service_sg_ipv6_array" {
       to_port     = 22
       protocol    = "tcp"
       ipv6_cidr_blocks = ["2606:4700:3033::6815:3e3/56"]
+    },
+    {
+      description = "TLS from VPC"
+      from_port   = 28000
+      to_port     = 28001
+      protocol    = "tcp"
+      ipv6_cidr_blocks = ["::/0"]
     }
   ]
 }

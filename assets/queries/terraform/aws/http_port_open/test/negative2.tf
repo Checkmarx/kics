@@ -32,7 +32,7 @@ resource "aws_vpc_security_group_ingress_rule" "negative2-3" {
 
 resource "aws_vpc_security_group_ingress_rule" "negative2-4" {
   security_group_id = aws_security_group.ec2.id
-  cidr_ipv4         = "0.0.0.0/0"
+  cidr_ipv6         = "::/0"
   from_port         = 3380
   to_port           = 3459
   ip_protocol       = "tcp"
@@ -41,10 +41,28 @@ resource "aws_vpc_security_group_ingress_rule" "negative2-4" {
 
 resource "aws_vpc_security_group_ingress_rule" "negative2-5" {
   security_group_id = aws_security_group.ec2.id
-  cidr_ipv6         = "::/0"
-  from_port         = 3380 
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 3380
   to_port           = 3459
   ip_protocol       = "tcp"
+  description       = "allows RDP from Internet"
+}
+
+resource "aws_vpc_security_group_ingress_rule" "negative2-6" {
+  security_group_id = aws_security_group.ec2.id
+  cidr_ipv6         = "::/0"
+  from_port         = 80 
+  to_port           = 80
+  ip_protocol       = "udp"
+  description       = "allows RDP from Internet"
+}
+
+resource "aws_vpc_security_group_ingress_rule" "negative2-7" {
+  security_group_id = aws_security_group.ec2.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 80
+  to_port           = 80
+  ip_protocol       = "udp"
   description       = "allows RDP from Internet"
 }
 

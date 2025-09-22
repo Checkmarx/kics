@@ -42,3 +42,33 @@ resource "aws_security_group_rule" "negative3-4" {
   security_group_id = aws_security_group.negative.id
   description       = "Remote desktop open private"
 }
+
+resource "aws_security_group_rule" "negative3-5" {
+  type              = "ingress"
+  from_port         = 20
+  to_port           = 2000
+  protocol          = "tcp"
+  ipv6_cidr_blocks  = ["::/0"]
+  security_group_id = aws_security_group.negative.id
+  description       = "Remote desktop open private"
+}
+
+resource "aws_security_group_rule" "negative3-6" {
+  type              = "ingress"
+  from_port         = 2383
+  to_port           = 2383
+  protocol          = "udp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.negative.id
+  description       = "Remote desktop open private"
+}
+
+resource "aws_security_group_rule" "negative3-6" {
+  type              = "ingress"
+  from_port         = 2383
+  to_port           = 2383
+  protocol          = "udp"
+  ipv6_cidr_blocks  = ["::/0"]
+  security_group_id = aws_security_group.negative.id
+  description       = "Remote desktop open private"
+}

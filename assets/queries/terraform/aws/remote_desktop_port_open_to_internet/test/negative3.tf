@@ -53,3 +53,22 @@ resource "aws_security_group_rule" "negative3-5" {
   description       = "allows RDP from Internet (IPv6)"
 }
 
+resource "aws_security_group_rule" "negative3-6" {
+  type              = "ingress"
+  from_port         = 3389
+  to_port           = 3389
+  protocol          = "udp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.ec2.id
+  description        = "allows RDP from Internet (IPv4)"
+}
+
+resource "aws_security_group_rule" "negative3-6" {
+  type              = "ingress"
+  from_port         = 3389
+  to_port           = 3389
+  protocol          = "udp" 
+  ipv6_cidr_blocks  = ["::/0"]
+  security_group_id = aws_security_group.ec2.id
+  description       = "allows RDP from Internet (IPv6)"
+}
