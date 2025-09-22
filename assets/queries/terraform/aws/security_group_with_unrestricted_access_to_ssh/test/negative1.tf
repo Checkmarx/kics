@@ -64,3 +64,24 @@ resource "aws_security_group" "negative1-5" {
     ipv6_cidr_blocks = ["fd00::/8"]
   }
 }
+
+resource "aws_security_group" "negative1-6" {
+  name        = "allow_tls"
+  description = "sample"
+
+  ingress {
+    description = "sample"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "sample"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "udp"
+    ipv6_cidr_blocks = ["fd00::/8", "::/0"]
+  }
+}
