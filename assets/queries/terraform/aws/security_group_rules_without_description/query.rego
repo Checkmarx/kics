@@ -60,7 +60,7 @@ CxPolicy[result] {
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].%s.%d", [name, key, i2]),
-		"issueType": "IncorrectValue",
+		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("module[%s].%s.%d.description should be defined and not null",[name, key, i2]),
 		"keyActualValue": sprintf("module[%s].%s.%d.description is undefined or null",[name, key, i2]),
 		"searchLine": common_lib.build_search_line(["module", name, key, i2], []),
