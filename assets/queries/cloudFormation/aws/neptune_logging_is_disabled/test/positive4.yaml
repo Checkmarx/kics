@@ -1,9 +1,0 @@
-AWSTemplateFormatVersion: "2010-09-09"
-Resources:
-  Prod:
-    Type: AWS::Neptune::DBCluster
-    Properties:
-      DBClusterIdentifier: String
-      KmsKeyId: String
-      Port: 10000
-      StorageEncrypted: false
