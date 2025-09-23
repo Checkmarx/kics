@@ -47,6 +47,7 @@ type QueryResult struct {
 	Severity                    Severity         `json:"severity"`
 	Platform                    string           `json:"platform"`
 	CWE                         string           `json:"cwe,omitempty"`
+	RiskScore                   string           `json:"risk_score,omitempty"`
 	CloudProvider               string           `json:"cloud_provider,omitempty"`
 	Category                    string           `json:"category"`
 	Experimental                bool             `json:"experimental"`
@@ -184,6 +185,7 @@ func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObje
 }
 
 // CreateSummary creates a report for a single scan, based on its scanID
+// nolint: funlen
 func CreateSummary(counters *Counters, vulnerabilities []Vulnerability,
 	scanID string, pathExtractionMap map[string]ExtractedPathObject, version Version) Summary {
 	log.Debug().Msg("model.CreateSummary()")
@@ -203,6 +205,7 @@ func CreateSummary(counters *Counters, vulnerabilities []Vulnerability,
 				QueryURI:      item.QueryURI,
 				Platform:      item.Platform,
 				CWE:           item.CWE,
+				RiskScore:     item.RiskScore,
 				Experimental:  item.Experimental,
 				CloudProvider: strings.ToUpper(item.CloudProvider),
 				Category:      item.Category,

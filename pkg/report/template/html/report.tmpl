@@ -13,7 +13,7 @@
     <div class="report-header-footer"><span class="title">KICS <span>REPORT</span></span><span class="timestamp">{{ getCurrentTime }}</span><a href="https://www.kics.io/" rel="noopener" target="_blank">KICS.IO</a></div>
     <div class="run-info">
       <span style="flex-basis:100%" id="scan-paths"><strong>KICS {{ getVersion }}</strong></span>
-      <span style="flex-basis:100%" id="scan-paths"><strong>Scanned paths:</strong> {{ getPaths .ScannedPaths }}</span>
+      <span style="flex-basis:100%; word-break: break-word;" id="scan-paths"><strong>Scanned paths:</strong> {{ getPaths .ScannedPaths }}</span>
       <span style="flex-basis:100%" id="scan-platforms"><strong>Platforms:</strong> {{ getPlatforms .Queries }}</span>
       {{- with .Times -}}
         <span id="scan-start-time"><strong>Start time:</strong> {{ .Start.Format "15:04:05, Jan 02 2006" }}</span>
@@ -62,6 +62,9 @@
         <div class="query-info">
           <div class="query-title">
             <h2>
+              {{- if eq .Severity "CRITICAL" -}}
+              <div class="kics-red">{{ includeSVG "vulnerability_fill.svg" }}</div>
+              {{- end -}}
               {{- if eq .Severity "HIGH" -}}
               <div class="kics-orange">{{ includeSVG "vulnerability_fill.svg" }}</div>
               {{- end -}}
@@ -78,6 +81,7 @@
             </h2>
             <span><strong>Platform:</strong> <span class="query-info-platform">{{ .Platform }}</span></span>
             {{ if .CWE }}<span><strong>CWE:</strong> {{ .CWE }}</span>{{ end }}
+            {{ if .RiskScore }}<span><strong>Risk Score:</strong> {{ .RiskScore }}</span>{{ end }}
             <span><strong>Category:</strong> <span class="query-info-category">{{ .Category }}</span></span>
           </div>
           <div class="query-details">

@@ -8,5 +8,6 @@
   "platform": "CICD",
   "descriptionID": "63e215f4",
   "cloudProvider": "common",
-  "cwe": "94"
+  "cwe": "94",
+  "riskScore": "8.3"
 }

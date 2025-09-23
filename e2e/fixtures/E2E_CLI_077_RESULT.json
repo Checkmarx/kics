@@ -33,6 +33,7 @@
       "severity": "MEDIUM",
       "platform": "AzureResourceManager",
       "cwe": "319",
+      "riskScore": "6.8",
       "cloud_provider": "AZURE",
       "category": "Insecure Configurations",
       "experimental": false,

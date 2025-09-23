@@ -8,5 +8,6 @@
   "platform": "Terraform",
   "descriptionID": "2c27e24e",
   "cloudProvider": "azure",
-  "cwe": "284"
+  "cwe": "284",
+  "riskScore": "4.6"
 }

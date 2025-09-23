@@ -33,6 +33,7 @@
 			"severity": "MEDIUM",
 			"platform": "Ansible",
 			"cwe": "668",
+      "riskScore": "5.2",
 			"cloud_provider": "COMMON",
 			"category": "Best Practices",
 			"experimental": false,

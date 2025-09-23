@@ -85,6 +85,7 @@ type Vulnerability struct {
 	// vulnerability body information
 	ID              string           `xml:"v:id"`
 	CWE             string           `xml:"v:cwe"`
+	RiskScore       string           `xml:"v:riskScore"`
 	Source          Source           `xml:"v:source"`
 	Ratings         []Rating         `xml:"v:ratings>v:rating"`
 	Description     string           `xml:"v:description"`
@@ -169,9 +170,10 @@ func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) [
 		file := query.Files[idx]
 		if fileName == file.FileName {
 			vuln := Vulnerability{
-				Ref: purl + query.QueryID,
-				ID:  query.QueryID,
-				CWE: query.CWE,
+				Ref:       purl + query.QueryID,
+				ID:        query.QueryID,
+				CWE:       query.CWE,
+				RiskScore: query.RiskScore,
 				Source: Source{
 					Name: "KICS",
 					URL:  "https://kics.io/",

@@ -9,5 +9,6 @@
   "descriptionID": "de97fa1a",
   "cloudProvider": "aws",
   "cwe": "703",
-  "oldSeverity": "MEDIUM"
+  "oldSeverity": "MEDIUM",
+  "riskScore": "3.6"
 }

@@ -141,6 +141,11 @@
             "CWE":{
                 "type":"string"
             },
+            "RiskScore": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^([0-9]|10)(\\.\\d{1,2})?$"
+            },
             "Title": {
                 "type": "string",
                 "minLength": 1

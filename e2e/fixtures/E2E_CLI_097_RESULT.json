@@ -33,6 +33,7 @@
       "severity": "MEDIUM",
       "platform": "DockerCompose",
       "cwe": "770",
+      "riskScore": "5.5",
 			"cloud_provider": "COMMON",
       "category": "Resource Management",
       "experimental": false,

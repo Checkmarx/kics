@@ -33,6 +33,7 @@
       "severity": "INFO",
       "platform": "AzureResourceManager",
       "cwe": "778",
+      "riskScore": "0.0",
       "cloud_provider": "AZURE",
       "category": "Networking and Firewall",
       "experimental": false,

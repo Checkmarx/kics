@@ -39,6 +39,9 @@
                         "type": "string",
                         "minLength": 0
                     },
+                    "riskScore": {
+                        "type": "string"
+                    },
                     "type": {
                         "type": "string",
                         "enum": [
