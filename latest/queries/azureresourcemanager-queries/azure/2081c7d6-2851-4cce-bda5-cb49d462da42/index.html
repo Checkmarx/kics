@@ -1,0 +1,3031 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Open source solution for static code analysis of Infrastructure as Code. Finding security vulnerabilities, compliance issues, and infrastructure misconfigurations during project development cycle.">
+      
+      
+      
+        <link rel="canonical" href="http://docs.kics.io/latest/queries/azureresourcemanager-queries/azure/2081c7d6-2851-4cce-bda5-cb49d462da42/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../img/logo/kics-donkey.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Standard Price Is Not Selected - KICS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="KICS" class="md-header__button md-logo" aria-label="KICS" data-md-component="logo">
+      
+  <img src="../../../../img/logo/Checkmarx_Kics_Logo_fit_to_content.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KICS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Standard Price Is Not Selected
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Checkmarx/kics/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../documentation/" class="md-tabs__link">
+          
+  
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+  Queries
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../integrations/" class="md-tabs__link">
+          
+  
+  
+  Integrations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../roadmap/" class="md-tabs__link">
+          
+  
+  
+  Project
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../CONTRIBUTING/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contribution
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../community/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Community
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="KICS" class="md-nav__button md-logo" aria-label="KICS" data-md-component="logo">
+      
+  <img src="../../../../img/logo/Checkmarx_Kics_Logo_fit_to_content.png" alt="logo">
+
+    </a>
+    KICS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Checkmarx/kics/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Documentation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../documentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Line Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../configuration-file/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../running-kics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Running KICS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Results
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Platforms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../utilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utilities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../kics_auto_remediation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Auto Remediation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../certifications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Certifications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../future_improvements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Future Improvements
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../changes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changes in v1.3.0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../changes1_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changes in v1.6.0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../changes1_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changes in v1.7.0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Queries
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Queries
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    General Info
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../creating-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating Queries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../secrets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Passwords And Secrets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../bom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bill of Materials
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Queries List
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Queries List
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../all-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    All
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ansible-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ansible
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure Resource Manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../buildah-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Buildah
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cicd-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CICD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cloudformation-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CloudFormation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../common-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Common
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../crossplane-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crossplane
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dockercompose-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Docker Compose
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dockerfile-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dockerfile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../googledeploymentmanager-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Google Deployment Manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../grpc-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    gRPC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../knative-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Knative
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../kubernetes-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../openapi-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OpenAPI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../pulumi-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pulumi
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../serverlessfw-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ServerlessFW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../terraform-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Integrations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Integrations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_azurepipelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure DevOps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_bamboo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bamboo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_bitbucketpipelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bitbucket Pipelines
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_circleci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CircleCI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_codefresh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Codefresh
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_ghactions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Github Actions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_gitlabci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gitlab CI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_jenkins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jenkins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_teamcity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    TeamCity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_travisci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Travis CI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_tfcloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Terraform Cloud
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_aws_codebuild/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS CodeBuild
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../BADGE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Badge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_pre_commit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using pre-commit hooks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_terraformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Terraformer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_auto_scanning_visual_studio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    KICS Auto Scanning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_kuberneter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kuberneter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../integrations_aws_cdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS CDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Project
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Checkmarx/kics/projects" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plans
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Checkmarx/kics/issues" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Issues
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../releases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Releases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contribution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../community/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Community
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+  
+  
+
+
+  <h1>Standard Price Is Not Selected</h1>
+
+<style>
+  .highlight .hll {
+    background-color: #ff171742;
+  }
+  .md-content {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+</style>
+
+<ul>
+<li><strong>Query id:</strong> 2081c7d6-2851-4cce-bda5-cb49d462da42</li>
+<li><strong>Query name:</strong> Standard Price Is Not Selected</li>
+<li><strong>Platform:</strong> AzureResourceManager</li>
+<li><strong>Severity:</strong> <span style="color:#edd57e">Low</span></li>
+<li><strong>Category:</strong> Resource Management</li>
+<li><strong>CWE:</strong> <a href="https://cwe.mitre.org/data/definitions/732.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/732.html')">732</a></li>
+<li><strong>URL:</strong> <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/azureResourceManager/standard_price_not_selected">Github</a></li>
+</ul>
+<h3 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h3>
+<p>Azure Security Center provides more features for standard pricing mode, so it must be activated.<br>
+<a href="https://docs.microsoft.com/en-us/azure/templates/microsoft.security/pricings?tabs=json#pricingproperties-object">Documentation</a></p>
+<h3 id="code_samples">Code samples<a class="headerlink" href="#code_samples" title="Permanent link">&para;</a></h3>
+<h4 id="code_samples_with_security_vulnerabilities">Code samples with security vulnerabilities<a class="headerlink" href="#code_samples_with_security_vulnerabilities" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><span class="filename">Positive test num. 1 - bicep file</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>resource webApp1 &#39;Microsoft.Web/sites@2018-11-01&#39; = {
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  name: &#39;webApp1&#39;
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  location: resourceGroup().location
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  tags: {
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    &#39;hidden-related:${resourceGroup().id}/providers/Microsoft.Web/serverfarms/appServicePlan1&#39;: &#39;Resource&#39;
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    displayName: &#39;webApp1&#39;
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  }
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  properties: {
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    name: &#39;webApp1&#39;
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    serverFarmId: resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  }
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  dependsOn: [resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)]
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>}
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>resource Princing &#39;Microsoft.Security/pricings@2017-08-01-preview&#39; = {
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  name: &#39;Princing&#39;
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>  properties: {
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="hll">    pricingTier: &#39;Free&#39;
+</span><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>  }
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>}
+</code></pre></div>
+<div class="highlight"><span class="filename">Positive test num. 2 - json file</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;contentVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;webApp1&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Web/sites&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-11-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[resourceGroup().location]&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="nt">&quot;[concat(&#39;hidden-related:&#39;, resourceGroup().id, &#39;/providers/Microsoft.Web/serverfarms/appServicePlan1&#39;)]&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Resource&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;webApp1&quot;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">      </span><span class="nt">&quot;dependsOn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="s2">&quot;[resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)]&quot;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">      </span><span class="p">],</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">      </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;webApp1&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">        </span><span class="nt">&quot;serverFarmId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)]&quot;</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/pricings&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">      </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2017-08-01-preview&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Princing&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">      </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="hll"><span class="w">        </span><span class="nt">&quot;pricingTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Free&quot;</span>
+</span><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Positive test num. 3 - bicep file</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>resource webApp1 &#39;Microsoft.Web/sites@2018-11-01&#39; = {
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  name: &#39;webApp1&#39;
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  location: resourceGroup().location
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  tags: {
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    &#39;hidden-related:${resourceGroup().id}/providers/Microsoft.Web/serverfarms/appServicePlan1&#39;: &#39;Resource&#39;
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    displayName: &#39;webApp1&#39;
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  }
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  properties: {
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    name: &#39;webApp1&#39;
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    serverFarmId: resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>  }
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>  dependsOn: [resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)]
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>}
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>resource Princing &#39;Microsoft.Security/pricings@2017-08-01-preview&#39; = {
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>  name: &#39;Princing&#39;
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>  properties: {
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="hll">    pricingTier: &#39;Free&#39;
+</span><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>  }
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>}
+</code></pre></div></p>
+<details><summary>Positive test num. 4 - json file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="nt">&quot;contentVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;webApp1&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Web/sites&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">          </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-11-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">          </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[resourceGroup().location]&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">          </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">            </span><span class="nt">&quot;[concat(&#39;hidden-related:&#39;, resourceGroup().id, &#39;/providers/Microsoft.Web/serverfarms/appServicePlan1&#39;)]&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Resource&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">            </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;webApp1&quot;</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">          </span><span class="p">},</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">          </span><span class="nt">&quot;dependsOn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">            </span><span class="s2">&quot;[resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)]&quot;</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">          </span><span class="p">],</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;webApp1&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">            </span><span class="nt">&quot;serverFarmId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)]&quot;</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/pricings&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">          </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2017-08-01-preview&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Princing&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="hll"><span class="w">            </span><span class="nt">&quot;pricingTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Free&quot;</span>
+</span><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">      </span><span class="p">],</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">      </span><span class="nt">&quot;outputs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="w">    </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="w">  </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;template&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Blueprint/blueprints/artifacts&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;myTemplate&quot;</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="p">}</span>
+</code></pre></div>
+</details>
+<details><summary>Positive test num. 5 - bicep file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>@description(
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  &#39;Specifiy whether you want to enable Standard tier for Virtual Machine resource type&#39;
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>)
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>@allowed([&#39;Standard&#39;, &#39;Free&#39;])
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>param virtualMachineTier string = &#39;Free&#39;
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>resource VirtualMachines &#39;Microsoft.Security/pricings@2018-06-01&#39; = {
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>  name: &#39;VirtualMachines&#39;
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  properties: {
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="hll">    pricingTier: virtualMachineTier
+</span><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>  }
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>}
+</code></pre></div>
+</details>
+<details><summary>Positive test num. 6 - json file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">&quot;contentVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="nt">&quot;virtualMachineTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">            </span><span class="nt">&quot;defaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Free&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">                </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">                </span><span class="s2">&quot;Free&quot;</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Specifiy whether you want to enable Standard tier for Virtual Machine resource type&quot;</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">    </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/pricings&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">            </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-06-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VirtualMachines&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="hll"><span class="w">                </span><span class="nt">&quot;pricingTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;virtualMachineTier&#39;)]&quot;</span>
+</span><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">    </span><span class="p">],</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">    </span><span class="nt">&quot;outputs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="p">}</span>
+</code></pre></div>
+</details>
+
+<h4 id="code_samples_without_security_vulnerabilities">Code samples without security vulnerabilities<a class="headerlink" href="#code_samples_without_security_vulnerabilities" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><span class="filename">Negative test num. 1 - bicep file</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>resource webApp1 &#39;Microsoft.Web/sites@2018-11-01&#39; = {
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  name: &#39;webApp1&#39;
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  location: resourceGroup().location
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  tags: {
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    &#39;hidden-related:${resourceGroup().id}/providers/Microsoft.Web/serverfarms/appServicePlan1&#39;: &#39;Resource&#39;
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    displayName: &#39;webApp1&#39;
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  }
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>  properties: {
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    name: &#39;webApp1&#39;
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    serverFarmId: resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>  }
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>  dependsOn: [resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)]
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>}
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>resource Princing &#39;Microsoft.Security/pricings@2017-08-01-preview&#39; = {
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>  name: &#39;Princing&#39;
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>  properties: {
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>    pricingTier: &#39;Standard&#39;
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>  }
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>}
+</code></pre></div>
+<div class="highlight"><span class="filename">Negative test num. 2 - json file</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">&quot;contentVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;webApp1&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Web/sites&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">      </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-11-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">      </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[resourceGroup().location]&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">      </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span><span class="nt">&quot;[concat(&#39;hidden-related:&#39;, resourceGroup().id, &#39;/providers/Microsoft.Web/serverfarms/appServicePlan1&#39;)]&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Resource&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">        </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;webApp1&quot;</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">      </span><span class="nt">&quot;dependsOn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">        </span><span class="s2">&quot;[resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)]&quot;</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">      </span><span class="p">],</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">      </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;webApp1&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">        </span><span class="nt">&quot;serverFarmId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)]&quot;</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/pricings&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">      </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2017-08-01-preview&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Princing&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="w">      </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w">        </span><span class="nt">&quot;pricingTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Standard&quot;</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Negative test num. 3 - bicep file</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>resource webApp1 &#39;Microsoft.Web/sites@2018-11-01&#39; = {
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  name: &#39;webApp1&#39;
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>  location: resourceGroup().location
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>  tags: {
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    &#39;hidden-related:${resourceGroup().id}/providers/Microsoft.Web/serverfarms/appServicePlan1&#39;: &#39;Resource&#39;
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    displayName: &#39;webApp1&#39;
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>  }
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>  properties: {
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    name: &#39;webApp1&#39;
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    serverFarmId: resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>  }
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>  dependsOn: [resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)]
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>}
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>resource Princing &#39;Microsoft.Security/pricings@2017-08-01-preview&#39; = {
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>  name: &#39;Princing&#39;
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>  properties: {
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>    pricingTier: &#39;Standard&#39;
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>  }
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>}
+</code></pre></div></p>
+<details><summary>Negative test num. 4 - json file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">      </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">      </span><span class="nt">&quot;contentVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">      </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;webApp1&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Web/sites&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">          </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-11-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">          </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[resourceGroup().location]&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">          </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">            </span><span class="nt">&quot;[concat(&#39;hidden-related:&#39;, resourceGroup().id, &#39;/providers/Microsoft.Web/serverfarms/appServicePlan1&#39;)]&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Resource&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">            </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;webApp1&quot;</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">          </span><span class="p">},</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">          </span><span class="nt">&quot;dependsOn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">            </span><span class="s2">&quot;[resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)]&quot;</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">          </span><span class="p">],</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;webApp1&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">            </span><span class="nt">&quot;serverFarmId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[resourceId(&#39;Microsoft.Web/serverfarms&#39;, &#39;appServicePlan1&#39;)]&quot;</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/pricings&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="w">          </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2017-08-01-preview&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Princing&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="w">            </span><span class="nt">&quot;pricingTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Standard&quot;</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="w">      </span><span class="p">],</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="w">      </span><span class="nt">&quot;outputs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a><span class="w">    </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a><span class="w">  </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;template&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a><span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Blueprint/blueprints/artifacts&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;myTemplate&quot;</span>
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="p">}</span>
+</code></pre></div>
+</details>
+<details><summary>Negative test num. 5 - bicep file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>@description(
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>  &#39;Name of the central Log Analytics workspace that stores security event and data collected by Azure Security Center&#39;
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>)
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>@allowed([&#39;az-security-workspace&#39;])
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>param workspaceName string = &#39;az-security-workspace&#39;
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>@description(
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>  &#39;Name of the resource group where the central log analytics workspace belongs to&#39;
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>)
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>@allowed([&#39;azsec-security-rg&#39;])
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>param workspaceRgName string = &#39;azsec-security-rg&#39;
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>@description(&#39;Specify whether Auto Provisoning is turned on or off&#39;)
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>@allowed([&#39;On&#39;, &#39;Off&#39;])
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>param autoProvisionSetting string = &#39;On&#39;
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>@description(
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>  &#39;Email of the administrator who should be notified about Azure Security Center alert&#39;
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>)
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>param ascOwnerEmail string
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>@description(
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>  &#39;Phone number of the administrator should be notified about Azure Security Center alert&#39;
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>)
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>param ascOwnerContact string
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>@description(
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>  &#39;Specify whether you want to notify high severity alert to ASC administrator&#39;
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a>)
+<a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a>@allowed([&#39;On&#39;, &#39;Off&#39;])
+<a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>param highSeverityAlertNotification string = &#39;On&#39;
+<a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a>
+<a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a>@description(
+<a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a>  &#39;Specifiy whether you want to notify high severity alert to subscription owner&#39;
+<a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>)
+<a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a>@allowed([&#39;On&#39;, &#39;Off&#39;])
+<a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a>param subscriptionOwnerNotification string = &#39;On&#39;
+<a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a>
+<a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a>@description(
+<a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a>  &#39;Specifiy whether you want to enable Standard tier for Virtual Machine resource type&#39;
+<a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a>)
+<a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a>@allowed([&#39;Standard&#39;, &#39;Free&#39;])
+<a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a>param virtualMachineTier string = &#39;Standard&#39;
+<a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a>
+<a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a>@description(
+<a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a>  &#39;Specify whether you want to enable Standard tier for Azure App Service resource type&#39;
+<a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a>)
+<a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a>@allowed([&#39;Standard&#39;, &#39;Free&#39;])
+<a id="__codelineno-10-49" name="__codelineno-10-49" href="#__codelineno-10-49"></a>param appServiceTier string = &#39;Standard&#39;
+<a id="__codelineno-10-50" name="__codelineno-10-50" href="#__codelineno-10-50"></a>
+<a id="__codelineno-10-51" name="__codelineno-10-51" href="#__codelineno-10-51"></a>@description(
+<a id="__codelineno-10-52" name="__codelineno-10-52" href="#__codelineno-10-52"></a>  &#39;Specify whether you want to enable Standard tier for PaaS SQL Service resource type&#39;
+<a id="__codelineno-10-53" name="__codelineno-10-53" href="#__codelineno-10-53"></a>)
+<a id="__codelineno-10-54" name="__codelineno-10-54" href="#__codelineno-10-54"></a>@allowed([&#39;Standard&#39;, &#39;Free&#39;])
+<a id="__codelineno-10-55" name="__codelineno-10-55" href="#__codelineno-10-55"></a>param paasSQLServiceTier string = &#39;Standard&#39;
+<a id="__codelineno-10-56" name="__codelineno-10-56" href="#__codelineno-10-56"></a>
+<a id="__codelineno-10-57" name="__codelineno-10-57" href="#__codelineno-10-57"></a>@description(
+<a id="__codelineno-10-58" name="__codelineno-10-58" href="#__codelineno-10-58"></a>  &#39;Specify whether you want to enable Standard tier for SQL Server on VM resource type&#39;
+<a id="__codelineno-10-59" name="__codelineno-10-59" href="#__codelineno-10-59"></a>)
+<a id="__codelineno-10-60" name="__codelineno-10-60" href="#__codelineno-10-60"></a>@allowed([&#39;Standard&#39;, &#39;Free&#39;])
+<a id="__codelineno-10-61" name="__codelineno-10-61" href="#__codelineno-10-61"></a>param sqlServerOnVmTier string = &#39;Standard&#39;
+<a id="__codelineno-10-62" name="__codelineno-10-62" href="#__codelineno-10-62"></a>
+<a id="__codelineno-10-63" name="__codelineno-10-63" href="#__codelineno-10-63"></a>@description(
+<a id="__codelineno-10-64" name="__codelineno-10-64" href="#__codelineno-10-64"></a>  &#39;Specify whether you want to enable Standard tier for Storage Account resource type&#39;
+<a id="__codelineno-10-65" name="__codelineno-10-65" href="#__codelineno-10-65"></a>)
+<a id="__codelineno-10-66" name="__codelineno-10-66" href="#__codelineno-10-66"></a>@allowed([&#39;Standard&#39;, &#39;Free&#39;])
+<a id="__codelineno-10-67" name="__codelineno-10-67" href="#__codelineno-10-67"></a>param storageAccountTier string = &#39;Standard&#39;
+<a id="__codelineno-10-68" name="__codelineno-10-68" href="#__codelineno-10-68"></a>
+<a id="__codelineno-10-69" name="__codelineno-10-69" href="#__codelineno-10-69"></a>@description(
+<a id="__codelineno-10-70" name="__codelineno-10-70" href="#__codelineno-10-70"></a>  &#39;Specify whether you want to enable Standard tier for Kubernetes service resource type&#39;
+<a id="__codelineno-10-71" name="__codelineno-10-71" href="#__codelineno-10-71"></a>)
+<a id="__codelineno-10-72" name="__codelineno-10-72" href="#__codelineno-10-72"></a>@allowed([&#39;Standard&#39;, &#39;Free&#39;])
+<a id="__codelineno-10-73" name="__codelineno-10-73" href="#__codelineno-10-73"></a>param kubernetesServiceTier string = &#39;Standard&#39;
+<a id="__codelineno-10-74" name="__codelineno-10-74" href="#__codelineno-10-74"></a>
+<a id="__codelineno-10-75" name="__codelineno-10-75" href="#__codelineno-10-75"></a>@description(
+<a id="__codelineno-10-76" name="__codelineno-10-76" href="#__codelineno-10-76"></a>  &#39;Specify whether you want to enable Standard tier for Container Registry resource type&#39;
+<a id="__codelineno-10-77" name="__codelineno-10-77" href="#__codelineno-10-77"></a>)
+<a id="__codelineno-10-78" name="__codelineno-10-78" href="#__codelineno-10-78"></a>@allowed([&#39;Standard&#39;, &#39;Free&#39;])
+<a id="__codelineno-10-79" name="__codelineno-10-79" href="#__codelineno-10-79"></a>param containerRegistryTier string = &#39;Standard&#39;
+<a id="__codelineno-10-80" name="__codelineno-10-80" href="#__codelineno-10-80"></a>
+<a id="__codelineno-10-81" name="__codelineno-10-81" href="#__codelineno-10-81"></a>@description(
+<a id="__codelineno-10-82" name="__codelineno-10-82" href="#__codelineno-10-82"></a>  &#39;Specify whether you want to enable Standard tier for Key Vault resource type&#39;
+<a id="__codelineno-10-83" name="__codelineno-10-83" href="#__codelineno-10-83"></a>)
+<a id="__codelineno-10-84" name="__codelineno-10-84" href="#__codelineno-10-84"></a>@allowed([&#39;Standard&#39;, &#39;Free&#39;])
+<a id="__codelineno-10-85" name="__codelineno-10-85" href="#__codelineno-10-85"></a>param keyvaultTier string = &#39;Standard&#39;
+<a id="__codelineno-10-86" name="__codelineno-10-86" href="#__codelineno-10-86"></a>
+<a id="__codelineno-10-87" name="__codelineno-10-87" href="#__codelineno-10-87"></a>@description(
+<a id="__codelineno-10-88" name="__codelineno-10-88" href="#__codelineno-10-88"></a>  &#39;Select integration name to enable. Only MCAS or MDATP is supported.&#39;
+<a id="__codelineno-10-89" name="__codelineno-10-89" href="#__codelineno-10-89"></a>)
+<a id="__codelineno-10-90" name="__codelineno-10-90" href="#__codelineno-10-90"></a>@allowed([&#39;MCAS&#39;, &#39;MDATP&#39;])
+<a id="__codelineno-10-91" name="__codelineno-10-91" href="#__codelineno-10-91"></a>param integrationName string
+<a id="__codelineno-10-92" name="__codelineno-10-92" href="#__codelineno-10-92"></a>
+<a id="__codelineno-10-93" name="__codelineno-10-93" href="#__codelineno-10-93"></a>@description(&#39;Specify whether you want to enable or not.&#39;)
+<a id="__codelineno-10-94" name="__codelineno-10-94" href="#__codelineno-10-94"></a>@allowed([true, false])
+<a id="__codelineno-10-95" name="__codelineno-10-95" href="#__codelineno-10-95"></a>param integrationEnabled bool
+<a id="__codelineno-10-96" name="__codelineno-10-96" href="#__codelineno-10-96"></a>
+<a id="__codelineno-10-97" name="__codelineno-10-97" href="#__codelineno-10-97"></a>resource default &#39;Microsoft.Security/workspaceSettings@2017-08-01-preview&#39; = {
+<a id="__codelineno-10-98" name="__codelineno-10-98" href="#__codelineno-10-98"></a>  name: &#39;default&#39;
+<a id="__codelineno-10-99" name="__codelineno-10-99" href="#__codelineno-10-99"></a>  properties: {
+<a id="__codelineno-10-100" name="__codelineno-10-100" href="#__codelineno-10-100"></a>    scope: subscription().id
+<a id="__codelineno-10-101" name="__codelineno-10-101" href="#__codelineno-10-101"></a>    workspaceId: &#39;${subscription().id}/resourceGroups/${workspaceRgName}/providers/Microsoft.OperationalInsights/workspaces/${workspaceName}&#39;
+<a id="__codelineno-10-102" name="__codelineno-10-102" href="#__codelineno-10-102"></a>  }
+<a id="__codelineno-10-103" name="__codelineno-10-103" href="#__codelineno-10-103"></a>}
+<a id="__codelineno-10-104" name="__codelineno-10-104" href="#__codelineno-10-104"></a>
+<a id="__codelineno-10-105" name="__codelineno-10-105" href="#__codelineno-10-105"></a>resource Microsoft_Security_autoProvisioningSettings_default &#39;Microsoft.Security/autoProvisioningSettings@2017-08-01-preview&#39; = {
+<a id="__codelineno-10-106" name="__codelineno-10-106" href="#__codelineno-10-106"></a>  name: &#39;default&#39;
+<a id="__codelineno-10-107" name="__codelineno-10-107" href="#__codelineno-10-107"></a>  properties: {
+<a id="__codelineno-10-108" name="__codelineno-10-108" href="#__codelineno-10-108"></a>    autoProvision: autoProvisionSetting
+<a id="__codelineno-10-109" name="__codelineno-10-109" href="#__codelineno-10-109"></a>  }
+<a id="__codelineno-10-110" name="__codelineno-10-110" href="#__codelineno-10-110"></a>}
+<a id="__codelineno-10-111" name="__codelineno-10-111" href="#__codelineno-10-111"></a>
+<a id="__codelineno-10-112" name="__codelineno-10-112" href="#__codelineno-10-112"></a>resource default1 &#39;Microsoft.Security/securityContacts@2017-08-01-preview&#39; = {
+<a id="__codelineno-10-113" name="__codelineno-10-113" href="#__codelineno-10-113"></a>  name: &#39;default1&#39;
+<a id="__codelineno-10-114" name="__codelineno-10-114" href="#__codelineno-10-114"></a>  properties: {
+<a id="__codelineno-10-115" name="__codelineno-10-115" href="#__codelineno-10-115"></a>    emails: ascOwnerEmail
+<a id="__codelineno-10-116" name="__codelineno-10-116" href="#__codelineno-10-116"></a>    phone: ascOwnerContact
+<a id="__codelineno-10-117" name="__codelineno-10-117" href="#__codelineno-10-117"></a>    alertNotifications: {
+<a id="__codelineno-10-118" name="__codelineno-10-118" href="#__codelineno-10-118"></a>      state: &#39;On&#39;
+<a id="__codelineno-10-119" name="__codelineno-10-119" href="#__codelineno-10-119"></a>      minimalSeverity: highSeverityAlertNotification
+<a id="__codelineno-10-120" name="__codelineno-10-120" href="#__codelineno-10-120"></a>    }
+<a id="__codelineno-10-121" name="__codelineno-10-121" href="#__codelineno-10-121"></a>    notificationsByRole: {
+<a id="__codelineno-10-122" name="__codelineno-10-122" href="#__codelineno-10-122"></a>      state: &#39;On&#39;
+<a id="__codelineno-10-123" name="__codelineno-10-123" href="#__codelineno-10-123"></a>      roles: subscriptionOwnerNotification
+<a id="__codelineno-10-124" name="__codelineno-10-124" href="#__codelineno-10-124"></a>    }
+<a id="__codelineno-10-125" name="__codelineno-10-125" href="#__codelineno-10-125"></a>  }
+<a id="__codelineno-10-126" name="__codelineno-10-126" href="#__codelineno-10-126"></a>}
+<a id="__codelineno-10-127" name="__codelineno-10-127" href="#__codelineno-10-127"></a>
+<a id="__codelineno-10-128" name="__codelineno-10-128" href="#__codelineno-10-128"></a>resource VirtualMachines &#39;Microsoft.Security/pricings@2018-06-01&#39; = {
+<a id="__codelineno-10-129" name="__codelineno-10-129" href="#__codelineno-10-129"></a>  name: &#39;VirtualMachines&#39;
+<a id="__codelineno-10-130" name="__codelineno-10-130" href="#__codelineno-10-130"></a>  properties: {
+<a id="__codelineno-10-131" name="__codelineno-10-131" href="#__codelineno-10-131"></a>    pricingTier: virtualMachineTier
+<a id="__codelineno-10-132" name="__codelineno-10-132" href="#__codelineno-10-132"></a>  }
+<a id="__codelineno-10-133" name="__codelineno-10-133" href="#__codelineno-10-133"></a>}
+<a id="__codelineno-10-134" name="__codelineno-10-134" href="#__codelineno-10-134"></a>
+<a id="__codelineno-10-135" name="__codelineno-10-135" href="#__codelineno-10-135"></a>resource AppServices &#39;Microsoft.Security/pricings@2018-06-01&#39; = {
+<a id="__codelineno-10-136" name="__codelineno-10-136" href="#__codelineno-10-136"></a>  name: &#39;AppServices&#39;
+<a id="__codelineno-10-137" name="__codelineno-10-137" href="#__codelineno-10-137"></a>  properties: {
+<a id="__codelineno-10-138" name="__codelineno-10-138" href="#__codelineno-10-138"></a>    pricingTier: appServiceTier
+<a id="__codelineno-10-139" name="__codelineno-10-139" href="#__codelineno-10-139"></a>  }
+<a id="__codelineno-10-140" name="__codelineno-10-140" href="#__codelineno-10-140"></a>  dependsOn: [VirtualMachines]
+<a id="__codelineno-10-141" name="__codelineno-10-141" href="#__codelineno-10-141"></a>}
+<a id="__codelineno-10-142" name="__codelineno-10-142" href="#__codelineno-10-142"></a>
+<a id="__codelineno-10-143" name="__codelineno-10-143" href="#__codelineno-10-143"></a>resource SqlServers &#39;Microsoft.Security/pricings@2018-06-01&#39; = {
+<a id="__codelineno-10-144" name="__codelineno-10-144" href="#__codelineno-10-144"></a>  name: &#39;SqlServers&#39;
+<a id="__codelineno-10-145" name="__codelineno-10-145" href="#__codelineno-10-145"></a>  properties: {
+<a id="__codelineno-10-146" name="__codelineno-10-146" href="#__codelineno-10-146"></a>    pricingTier: paasSQLServiceTier
+<a id="__codelineno-10-147" name="__codelineno-10-147" href="#__codelineno-10-147"></a>  }
+<a id="__codelineno-10-148" name="__codelineno-10-148" href="#__codelineno-10-148"></a>  dependsOn: [AppServices]
+<a id="__codelineno-10-149" name="__codelineno-10-149" href="#__codelineno-10-149"></a>}
+<a id="__codelineno-10-150" name="__codelineno-10-150" href="#__codelineno-10-150"></a>
+<a id="__codelineno-10-151" name="__codelineno-10-151" href="#__codelineno-10-151"></a>resource SqlServerVirtualMachines &#39;Microsoft.Security/pricings@2018-06-01&#39; = {
+<a id="__codelineno-10-152" name="__codelineno-10-152" href="#__codelineno-10-152"></a>  name: &#39;SqlServerVirtualMachines&#39;
+<a id="__codelineno-10-153" name="__codelineno-10-153" href="#__codelineno-10-153"></a>  properties: {
+<a id="__codelineno-10-154" name="__codelineno-10-154" href="#__codelineno-10-154"></a>    pricingTier: sqlServerOnVmTier
+<a id="__codelineno-10-155" name="__codelineno-10-155" href="#__codelineno-10-155"></a>  }
+<a id="__codelineno-10-156" name="__codelineno-10-156" href="#__codelineno-10-156"></a>  dependsOn: [SqlServers]
+<a id="__codelineno-10-157" name="__codelineno-10-157" href="#__codelineno-10-157"></a>}
+<a id="__codelineno-10-158" name="__codelineno-10-158" href="#__codelineno-10-158"></a>
+<a id="__codelineno-10-159" name="__codelineno-10-159" href="#__codelineno-10-159"></a>resource StorageAccounts &#39;Microsoft.Security/pricings@2018-06-01&#39; = {
+<a id="__codelineno-10-160" name="__codelineno-10-160" href="#__codelineno-10-160"></a>  name: &#39;StorageAccounts&#39;
+<a id="__codelineno-10-161" name="__codelineno-10-161" href="#__codelineno-10-161"></a>  properties: {
+<a id="__codelineno-10-162" name="__codelineno-10-162" href="#__codelineno-10-162"></a>    pricingTier: storageAccountTier
+<a id="__codelineno-10-163" name="__codelineno-10-163" href="#__codelineno-10-163"></a>  }
+<a id="__codelineno-10-164" name="__codelineno-10-164" href="#__codelineno-10-164"></a>  dependsOn: [SqlServerVirtualMachines]
+<a id="__codelineno-10-165" name="__codelineno-10-165" href="#__codelineno-10-165"></a>}
+<a id="__codelineno-10-166" name="__codelineno-10-166" href="#__codelineno-10-166"></a>
+<a id="__codelineno-10-167" name="__codelineno-10-167" href="#__codelineno-10-167"></a>resource KubernetesService &#39;Microsoft.Security/pricings@2018-06-01&#39; = {
+<a id="__codelineno-10-168" name="__codelineno-10-168" href="#__codelineno-10-168"></a>  name: &#39;KubernetesService&#39;
+<a id="__codelineno-10-169" name="__codelineno-10-169" href="#__codelineno-10-169"></a>  properties: {
+<a id="__codelineno-10-170" name="__codelineno-10-170" href="#__codelineno-10-170"></a>    pricingTier: kubernetesServiceTier
+<a id="__codelineno-10-171" name="__codelineno-10-171" href="#__codelineno-10-171"></a>  }
+<a id="__codelineno-10-172" name="__codelineno-10-172" href="#__codelineno-10-172"></a>  dependsOn: [StorageAccounts]
+<a id="__codelineno-10-173" name="__codelineno-10-173" href="#__codelineno-10-173"></a>}
+<a id="__codelineno-10-174" name="__codelineno-10-174" href="#__codelineno-10-174"></a>
+<a id="__codelineno-10-175" name="__codelineno-10-175" href="#__codelineno-10-175"></a>resource ContainerRegistry &#39;Microsoft.Security/pricings@2018-06-01&#39; = {
+<a id="__codelineno-10-176" name="__codelineno-10-176" href="#__codelineno-10-176"></a>  name: &#39;ContainerRegistry&#39;
+<a id="__codelineno-10-177" name="__codelineno-10-177" href="#__codelineno-10-177"></a>  properties: {
+<a id="__codelineno-10-178" name="__codelineno-10-178" href="#__codelineno-10-178"></a>    pricingTier: containerRegistryTier
+<a id="__codelineno-10-179" name="__codelineno-10-179" href="#__codelineno-10-179"></a>  }
+<a id="__codelineno-10-180" name="__codelineno-10-180" href="#__codelineno-10-180"></a>  dependsOn: [KubernetesService]
+<a id="__codelineno-10-181" name="__codelineno-10-181" href="#__codelineno-10-181"></a>}
+<a id="__codelineno-10-182" name="__codelineno-10-182" href="#__codelineno-10-182"></a>
+<a id="__codelineno-10-183" name="__codelineno-10-183" href="#__codelineno-10-183"></a>resource KeyVaults &#39;Microsoft.Security/pricings@2018-06-01&#39; = {
+<a id="__codelineno-10-184" name="__codelineno-10-184" href="#__codelineno-10-184"></a>  name: &#39;KeyVaults&#39;
+<a id="__codelineno-10-185" name="__codelineno-10-185" href="#__codelineno-10-185"></a>  properties: {
+<a id="__codelineno-10-186" name="__codelineno-10-186" href="#__codelineno-10-186"></a>    pricingTier: keyvaultTier
+<a id="__codelineno-10-187" name="__codelineno-10-187" href="#__codelineno-10-187"></a>  }
+<a id="__codelineno-10-188" name="__codelineno-10-188" href="#__codelineno-10-188"></a>  dependsOn: [ContainerRegistry]
+<a id="__codelineno-10-189" name="__codelineno-10-189" href="#__codelineno-10-189"></a>}
+<a id="__codelineno-10-190" name="__codelineno-10-190" href="#__codelineno-10-190"></a>
+<a id="__codelineno-10-191" name="__codelineno-10-191" href="#__codelineno-10-191"></a>resource integration &#39;Microsoft.Security/settings@2019-01-01&#39; = {
+<a id="__codelineno-10-192" name="__codelineno-10-192" href="#__codelineno-10-192"></a>  name: integrationName
+<a id="__codelineno-10-193" name="__codelineno-10-193" href="#__codelineno-10-193"></a>  kind: &#39;DataExportSettings&#39;
+<a id="__codelineno-10-194" name="__codelineno-10-194" href="#__codelineno-10-194"></a>  properties: {
+<a id="__codelineno-10-195" name="__codelineno-10-195" href="#__codelineno-10-195"></a>    enabled: integrationEnabled
+<a id="__codelineno-10-196" name="__codelineno-10-196" href="#__codelineno-10-196"></a>  }
+<a id="__codelineno-10-197" name="__codelineno-10-197" href="#__codelineno-10-197"></a>}
+</code></pre></div>
+</details>
+<details><summary>Negative test num. 6 - json file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">{</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="nt">&quot;contentVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">        </span><span class="nt">&quot;workspaceName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">            </span><span class="nt">&quot;defaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;az-security-workspace&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">                </span><span class="s2">&quot;az-security-workspace&quot;</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Name of the central Log Analytics workspace that stores security event and data collected by Azure Security Center&quot;</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">        </span><span class="nt">&quot;workspaceRgName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">            </span><span class="nt">&quot;defaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;azsec-security-rg&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">                </span><span class="s2">&quot;azsec-security-rg&quot;</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Name of the resource group where the central log analytics workspace belongs to&quot;</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="w">        </span><span class="nt">&quot;autoProvisionSetting&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="w">            </span><span class="nt">&quot;defaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;On&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="w">                </span><span class="s2">&quot;On&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="w">                </span><span class="s2">&quot;Off&quot;</span>
+<a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Specify whether Auto Provisoning is turned on or off&quot;</span>
+<a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a><span class="w">        </span><span class="nt">&quot;ascOwnerEmail&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Email of the administrator who should be notified about Azure Security Center alert&quot;</span>
+<a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a><span class="w">        </span><span class="nt">&quot;ascOwnerContact&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-43" name="__codelineno-11-43" href="#__codelineno-11-43"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Phone number of the administrator should be notified about Azure Security Center alert&quot;</span>
+<a id="__codelineno-11-46" name="__codelineno-11-46" href="#__codelineno-11-46"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-47" name="__codelineno-11-47" href="#__codelineno-11-47"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-48" name="__codelineno-11-48" href="#__codelineno-11-48"></a><span class="w">        </span><span class="nt">&quot;highSeverityAlertNotification&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-49" name="__codelineno-11-49" href="#__codelineno-11-49"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-50" name="__codelineno-11-50" href="#__codelineno-11-50"></a><span class="w">            </span><span class="nt">&quot;defaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;On&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-51" name="__codelineno-11-51" href="#__codelineno-11-51"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-52" name="__codelineno-11-52" href="#__codelineno-11-52"></a><span class="w">                </span><span class="s2">&quot;On&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-53" name="__codelineno-11-53" href="#__codelineno-11-53"></a><span class="w">                </span><span class="s2">&quot;Off&quot;</span>
+<a id="__codelineno-11-54" name="__codelineno-11-54" href="#__codelineno-11-54"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-55" name="__codelineno-11-55" href="#__codelineno-11-55"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-56" name="__codelineno-11-56" href="#__codelineno-11-56"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Specify whether you want to notify high severity alert to ASC administrator&quot;</span>
+<a id="__codelineno-11-57" name="__codelineno-11-57" href="#__codelineno-11-57"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-58" name="__codelineno-11-58" href="#__codelineno-11-58"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-59" name="__codelineno-11-59" href="#__codelineno-11-59"></a><span class="w">        </span><span class="nt">&quot;subscriptionOwnerNotification&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-60" name="__codelineno-11-60" href="#__codelineno-11-60"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-61" name="__codelineno-11-61" href="#__codelineno-11-61"></a><span class="w">            </span><span class="nt">&quot;defaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;On&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-62" name="__codelineno-11-62" href="#__codelineno-11-62"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-63" name="__codelineno-11-63" href="#__codelineno-11-63"></a><span class="w">                </span><span class="s2">&quot;On&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-64" name="__codelineno-11-64" href="#__codelineno-11-64"></a><span class="w">                </span><span class="s2">&quot;Off&quot;</span>
+<a id="__codelineno-11-65" name="__codelineno-11-65" href="#__codelineno-11-65"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-66" name="__codelineno-11-66" href="#__codelineno-11-66"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-67" name="__codelineno-11-67" href="#__codelineno-11-67"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Specifiy whether you want to notify high severity alert to subscription owner&quot;</span>
+<a id="__codelineno-11-68" name="__codelineno-11-68" href="#__codelineno-11-68"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-69" name="__codelineno-11-69" href="#__codelineno-11-69"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-70" name="__codelineno-11-70" href="#__codelineno-11-70"></a><span class="w">        </span><span class="nt">&quot;virtualMachineTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-71" name="__codelineno-11-71" href="#__codelineno-11-71"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-72" name="__codelineno-11-72" href="#__codelineno-11-72"></a><span class="w">            </span><span class="nt">&quot;defaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-73" name="__codelineno-11-73" href="#__codelineno-11-73"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-74" name="__codelineno-11-74" href="#__codelineno-11-74"></a><span class="w">                </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-75" name="__codelineno-11-75" href="#__codelineno-11-75"></a><span class="w">                </span><span class="s2">&quot;Free&quot;</span>
+<a id="__codelineno-11-76" name="__codelineno-11-76" href="#__codelineno-11-76"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-77" name="__codelineno-11-77" href="#__codelineno-11-77"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-78" name="__codelineno-11-78" href="#__codelineno-11-78"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Specifiy whether you want to enable Standard tier for Virtual Machine resource type&quot;</span>
+<a id="__codelineno-11-79" name="__codelineno-11-79" href="#__codelineno-11-79"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-80" name="__codelineno-11-80" href="#__codelineno-11-80"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-81" name="__codelineno-11-81" href="#__codelineno-11-81"></a><span class="w">        </span><span class="nt">&quot;appServiceTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-82" name="__codelineno-11-82" href="#__codelineno-11-82"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-83" name="__codelineno-11-83" href="#__codelineno-11-83"></a><span class="w">            </span><span class="nt">&quot;defaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-84" name="__codelineno-11-84" href="#__codelineno-11-84"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-85" name="__codelineno-11-85" href="#__codelineno-11-85"></a><span class="w">                </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-86" name="__codelineno-11-86" href="#__codelineno-11-86"></a><span class="w">                </span><span class="s2">&quot;Free&quot;</span>
+<a id="__codelineno-11-87" name="__codelineno-11-87" href="#__codelineno-11-87"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-88" name="__codelineno-11-88" href="#__codelineno-11-88"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-89" name="__codelineno-11-89" href="#__codelineno-11-89"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Specify whether you want to enable Standard tier for Azure App Service resource type&quot;</span>
+<a id="__codelineno-11-90" name="__codelineno-11-90" href="#__codelineno-11-90"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-91" name="__codelineno-11-91" href="#__codelineno-11-91"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-92" name="__codelineno-11-92" href="#__codelineno-11-92"></a><span class="w">        </span><span class="nt">&quot;paasSQLServiceTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-93" name="__codelineno-11-93" href="#__codelineno-11-93"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-94" name="__codelineno-11-94" href="#__codelineno-11-94"></a><span class="w">            </span><span class="nt">&quot;defaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-95" name="__codelineno-11-95" href="#__codelineno-11-95"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-96" name="__codelineno-11-96" href="#__codelineno-11-96"></a><span class="w">                </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-97" name="__codelineno-11-97" href="#__codelineno-11-97"></a><span class="w">                </span><span class="s2">&quot;Free&quot;</span>
+<a id="__codelineno-11-98" name="__codelineno-11-98" href="#__codelineno-11-98"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-99" name="__codelineno-11-99" href="#__codelineno-11-99"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-100" name="__codelineno-11-100" href="#__codelineno-11-100"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Specify whether you want to enable Standard tier for PaaS SQL Service resource type&quot;</span>
+<a id="__codelineno-11-101" name="__codelineno-11-101" href="#__codelineno-11-101"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-102" name="__codelineno-11-102" href="#__codelineno-11-102"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-103" name="__codelineno-11-103" href="#__codelineno-11-103"></a><span class="w">        </span><span class="nt">&quot;sqlServerOnVmTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-104" name="__codelineno-11-104" href="#__codelineno-11-104"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-105" name="__codelineno-11-105" href="#__codelineno-11-105"></a><span class="w">            </span><span class="nt">&quot;defaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-106" name="__codelineno-11-106" href="#__codelineno-11-106"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-107" name="__codelineno-11-107" href="#__codelineno-11-107"></a><span class="w">                </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-108" name="__codelineno-11-108" href="#__codelineno-11-108"></a><span class="w">                </span><span class="s2">&quot;Free&quot;</span>
+<a id="__codelineno-11-109" name="__codelineno-11-109" href="#__codelineno-11-109"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-110" name="__codelineno-11-110" href="#__codelineno-11-110"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-111" name="__codelineno-11-111" href="#__codelineno-11-111"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Specify whether you want to enable Standard tier for SQL Server on VM resource type&quot;</span>
+<a id="__codelineno-11-112" name="__codelineno-11-112" href="#__codelineno-11-112"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-113" name="__codelineno-11-113" href="#__codelineno-11-113"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-114" name="__codelineno-11-114" href="#__codelineno-11-114"></a><span class="w">        </span><span class="nt">&quot;storageAccountTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-115" name="__codelineno-11-115" href="#__codelineno-11-115"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-116" name="__codelineno-11-116" href="#__codelineno-11-116"></a><span class="w">            </span><span class="nt">&quot;defaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-117" name="__codelineno-11-117" href="#__codelineno-11-117"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-118" name="__codelineno-11-118" href="#__codelineno-11-118"></a><span class="w">                </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-119" name="__codelineno-11-119" href="#__codelineno-11-119"></a><span class="w">                </span><span class="s2">&quot;Free&quot;</span>
+<a id="__codelineno-11-120" name="__codelineno-11-120" href="#__codelineno-11-120"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-121" name="__codelineno-11-121" href="#__codelineno-11-121"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-122" name="__codelineno-11-122" href="#__codelineno-11-122"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Specify whether you want to enable Standard tier for Storage Account resource type&quot;</span>
+<a id="__codelineno-11-123" name="__codelineno-11-123" href="#__codelineno-11-123"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-124" name="__codelineno-11-124" href="#__codelineno-11-124"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-125" name="__codelineno-11-125" href="#__codelineno-11-125"></a><span class="w">        </span><span class="nt">&quot;kubernetesServiceTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-126" name="__codelineno-11-126" href="#__codelineno-11-126"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-127" name="__codelineno-11-127" href="#__codelineno-11-127"></a><span class="w">            </span><span class="nt">&quot;defaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-128" name="__codelineno-11-128" href="#__codelineno-11-128"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-129" name="__codelineno-11-129" href="#__codelineno-11-129"></a><span class="w">                </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-130" name="__codelineno-11-130" href="#__codelineno-11-130"></a><span class="w">                </span><span class="s2">&quot;Free&quot;</span>
+<a id="__codelineno-11-131" name="__codelineno-11-131" href="#__codelineno-11-131"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-132" name="__codelineno-11-132" href="#__codelineno-11-132"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-133" name="__codelineno-11-133" href="#__codelineno-11-133"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Specify whether you want to enable Standard tier for Kubernetes service resource type&quot;</span>
+<a id="__codelineno-11-134" name="__codelineno-11-134" href="#__codelineno-11-134"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-135" name="__codelineno-11-135" href="#__codelineno-11-135"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-136" name="__codelineno-11-136" href="#__codelineno-11-136"></a><span class="w">        </span><span class="nt">&quot;containerRegistryTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-137" name="__codelineno-11-137" href="#__codelineno-11-137"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-138" name="__codelineno-11-138" href="#__codelineno-11-138"></a><span class="w">            </span><span class="nt">&quot;defaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-139" name="__codelineno-11-139" href="#__codelineno-11-139"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-140" name="__codelineno-11-140" href="#__codelineno-11-140"></a><span class="w">                </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-141" name="__codelineno-11-141" href="#__codelineno-11-141"></a><span class="w">                </span><span class="s2">&quot;Free&quot;</span>
+<a id="__codelineno-11-142" name="__codelineno-11-142" href="#__codelineno-11-142"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-143" name="__codelineno-11-143" href="#__codelineno-11-143"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-144" name="__codelineno-11-144" href="#__codelineno-11-144"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Specify whether you want to enable Standard tier for Container Registry resource type&quot;</span>
+<a id="__codelineno-11-145" name="__codelineno-11-145" href="#__codelineno-11-145"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-146" name="__codelineno-11-146" href="#__codelineno-11-146"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-147" name="__codelineno-11-147" href="#__codelineno-11-147"></a><span class="w">        </span><span class="nt">&quot;keyvaultTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-148" name="__codelineno-11-148" href="#__codelineno-11-148"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-149" name="__codelineno-11-149" href="#__codelineno-11-149"></a><span class="w">            </span><span class="nt">&quot;defaultValue&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-150" name="__codelineno-11-150" href="#__codelineno-11-150"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-151" name="__codelineno-11-151" href="#__codelineno-11-151"></a><span class="w">                </span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-152" name="__codelineno-11-152" href="#__codelineno-11-152"></a><span class="w">                </span><span class="s2">&quot;Free&quot;</span>
+<a id="__codelineno-11-153" name="__codelineno-11-153" href="#__codelineno-11-153"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-154" name="__codelineno-11-154" href="#__codelineno-11-154"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-155" name="__codelineno-11-155" href="#__codelineno-11-155"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Specify whether you want to enable Standard tier for Key Vault resource type&quot;</span>
+<a id="__codelineno-11-156" name="__codelineno-11-156" href="#__codelineno-11-156"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-157" name="__codelineno-11-157" href="#__codelineno-11-157"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-158" name="__codelineno-11-158" href="#__codelineno-11-158"></a><span class="w">        </span><span class="nt">&quot;integrationName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-159" name="__codelineno-11-159" href="#__codelineno-11-159"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-160" name="__codelineno-11-160" href="#__codelineno-11-160"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-161" name="__codelineno-11-161" href="#__codelineno-11-161"></a><span class="w">                </span><span class="s2">&quot;MCAS&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-162" name="__codelineno-11-162" href="#__codelineno-11-162"></a><span class="w">                </span><span class="s2">&quot;MDATP&quot;</span>
+<a id="__codelineno-11-163" name="__codelineno-11-163" href="#__codelineno-11-163"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-164" name="__codelineno-11-164" href="#__codelineno-11-164"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-165" name="__codelineno-11-165" href="#__codelineno-11-165"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Select integration name to enable. Only MCAS or MDATP is supported.&quot;</span>
+<a id="__codelineno-11-166" name="__codelineno-11-166" href="#__codelineno-11-166"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-167" name="__codelineno-11-167" href="#__codelineno-11-167"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-168" name="__codelineno-11-168" href="#__codelineno-11-168"></a><span class="w">        </span><span class="nt">&quot;integrationEnabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-169" name="__codelineno-11-169" href="#__codelineno-11-169"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-170" name="__codelineno-11-170" href="#__codelineno-11-170"></a><span class="w">            </span><span class="nt">&quot;allowedValues&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-171" name="__codelineno-11-171" href="#__codelineno-11-171"></a><span class="w">                </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-11-172" name="__codelineno-11-172" href="#__codelineno-11-172"></a><span class="w">                </span><span class="kc">false</span>
+<a id="__codelineno-11-173" name="__codelineno-11-173" href="#__codelineno-11-173"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-174" name="__codelineno-11-174" href="#__codelineno-11-174"></a><span class="w">            </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-175" name="__codelineno-11-175" href="#__codelineno-11-175"></a><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Specify whether you want to enable or not.&quot;</span>
+<a id="__codelineno-11-176" name="__codelineno-11-176" href="#__codelineno-11-176"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-177" name="__codelineno-11-177" href="#__codelineno-11-177"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-11-178" name="__codelineno-11-178" href="#__codelineno-11-178"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-11-179" name="__codelineno-11-179" href="#__codelineno-11-179"></a><span class="w">    </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-180" name="__codelineno-11-180" href="#__codelineno-11-180"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-11-181" name="__codelineno-11-181" href="#__codelineno-11-181"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/workspaceSettings&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-182" name="__codelineno-11-182" href="#__codelineno-11-182"></a><span class="w">            </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2017-08-01-preview&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-183" name="__codelineno-11-183" href="#__codelineno-11-183"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-184" name="__codelineno-11-184" href="#__codelineno-11-184"></a><span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-185" name="__codelineno-11-185" href="#__codelineno-11-185"></a><span class="w">                </span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[subscription().id]&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-186" name="__codelineno-11-186" href="#__codelineno-11-186"></a><span class="w">                </span><span class="nt">&quot;workspaceId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[concat(subscription().id,&#39;/resourceGroups/&#39;,parameters(&#39;workspaceRgName&#39;),&#39;/providers/Microsoft.OperationalInsights/workspaces/&#39;,parameters(&#39;workspaceName&#39;))]&quot;</span>
+<a id="__codelineno-11-187" name="__codelineno-11-187" href="#__codelineno-11-187"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-188" name="__codelineno-11-188" href="#__codelineno-11-188"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-189" name="__codelineno-11-189" href="#__codelineno-11-189"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-11-190" name="__codelineno-11-190" href="#__codelineno-11-190"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/autoProvisioningSettings&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-191" name="__codelineno-11-191" href="#__codelineno-11-191"></a><span class="w">            </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2017-08-01-preview&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-192" name="__codelineno-11-192" href="#__codelineno-11-192"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-193" name="__codelineno-11-193" href="#__codelineno-11-193"></a><span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-194" name="__codelineno-11-194" href="#__codelineno-11-194"></a><span class="w">                </span><span class="nt">&quot;autoProvision&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;autoProvisionSetting&#39;)]&quot;</span>
+<a id="__codelineno-11-195" name="__codelineno-11-195" href="#__codelineno-11-195"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-196" name="__codelineno-11-196" href="#__codelineno-11-196"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-197" name="__codelineno-11-197" href="#__codelineno-11-197"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-11-198" name="__codelineno-11-198" href="#__codelineno-11-198"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/securityContacts&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-199" name="__codelineno-11-199" href="#__codelineno-11-199"></a><span class="w">            </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2017-08-01-preview&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-200" name="__codelineno-11-200" href="#__codelineno-11-200"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default1&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-201" name="__codelineno-11-201" href="#__codelineno-11-201"></a><span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-202" name="__codelineno-11-202" href="#__codelineno-11-202"></a><span class="w">                </span><span class="nt">&quot;emails&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;ascOwnerEmail&#39;)]&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-203" name="__codelineno-11-203" href="#__codelineno-11-203"></a><span class="w">                </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;ascOwnerContact&#39;)]&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-204" name="__codelineno-11-204" href="#__codelineno-11-204"></a><span class="w">                </span><span class="nt">&quot;alertNotifications&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-205" name="__codelineno-11-205" href="#__codelineno-11-205"></a><span class="w">                    </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;On&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-206" name="__codelineno-11-206" href="#__codelineno-11-206"></a><span class="w">                    </span><span class="nt">&quot;minimalSeverity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;highSeverityAlertNotification&#39;)]&quot;</span>
+<a id="__codelineno-11-207" name="__codelineno-11-207" href="#__codelineno-11-207"></a><span class="w">                </span><span class="p">},</span>
+<a id="__codelineno-11-208" name="__codelineno-11-208" href="#__codelineno-11-208"></a><span class="w">                </span><span class="nt">&quot;notificationsByRole&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-209" name="__codelineno-11-209" href="#__codelineno-11-209"></a><span class="w">                    </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;On&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-210" name="__codelineno-11-210" href="#__codelineno-11-210"></a><span class="w">                    </span><span class="nt">&quot;roles&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;subscriptionOwnerNotification&#39;)]&quot;</span>
+<a id="__codelineno-11-211" name="__codelineno-11-211" href="#__codelineno-11-211"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-11-212" name="__codelineno-11-212" href="#__codelineno-11-212"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-213" name="__codelineno-11-213" href="#__codelineno-11-213"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-214" name="__codelineno-11-214" href="#__codelineno-11-214"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-11-215" name="__codelineno-11-215" href="#__codelineno-11-215"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/pricings&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-216" name="__codelineno-11-216" href="#__codelineno-11-216"></a><span class="w">            </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-06-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-217" name="__codelineno-11-217" href="#__codelineno-11-217"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VirtualMachines&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-218" name="__codelineno-11-218" href="#__codelineno-11-218"></a><span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-219" name="__codelineno-11-219" href="#__codelineno-11-219"></a><span class="w">                </span><span class="nt">&quot;pricingTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;virtualMachineTier&#39;)]&quot;</span>
+<a id="__codelineno-11-220" name="__codelineno-11-220" href="#__codelineno-11-220"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-221" name="__codelineno-11-221" href="#__codelineno-11-221"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-222" name="__codelineno-11-222" href="#__codelineno-11-222"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-11-223" name="__codelineno-11-223" href="#__codelineno-11-223"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/pricings&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-224" name="__codelineno-11-224" href="#__codelineno-11-224"></a><span class="w">            </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-06-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-225" name="__codelineno-11-225" href="#__codelineno-11-225"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AppServices&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-226" name="__codelineno-11-226" href="#__codelineno-11-226"></a><span class="w">            </span><span class="nt">&quot;dependsOn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-227" name="__codelineno-11-227" href="#__codelineno-11-227"></a><span class="w">                </span><span class="s2">&quot;[concat(&#39;Microsoft.Security/pricings/VirtualMachines&#39;)]&quot;</span>
+<a id="__codelineno-11-228" name="__codelineno-11-228" href="#__codelineno-11-228"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-229" name="__codelineno-11-229" href="#__codelineno-11-229"></a><span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-230" name="__codelineno-11-230" href="#__codelineno-11-230"></a><span class="w">                </span><span class="nt">&quot;pricingTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;appServiceTier&#39;)]&quot;</span>
+<a id="__codelineno-11-231" name="__codelineno-11-231" href="#__codelineno-11-231"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-232" name="__codelineno-11-232" href="#__codelineno-11-232"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-233" name="__codelineno-11-233" href="#__codelineno-11-233"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-11-234" name="__codelineno-11-234" href="#__codelineno-11-234"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/pricings&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-235" name="__codelineno-11-235" href="#__codelineno-11-235"></a><span class="w">            </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-06-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-236" name="__codelineno-11-236" href="#__codelineno-11-236"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SqlServers&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-237" name="__codelineno-11-237" href="#__codelineno-11-237"></a><span class="w">            </span><span class="nt">&quot;dependsOn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-238" name="__codelineno-11-238" href="#__codelineno-11-238"></a><span class="w">                </span><span class="s2">&quot;[concat(&#39;Microsoft.Security/pricings/AppServices&#39;)]&quot;</span>
+<a id="__codelineno-11-239" name="__codelineno-11-239" href="#__codelineno-11-239"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-240" name="__codelineno-11-240" href="#__codelineno-11-240"></a><span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-241" name="__codelineno-11-241" href="#__codelineno-11-241"></a><span class="w">                </span><span class="nt">&quot;pricingTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;paasSQLServiceTier&#39;)]&quot;</span>
+<a id="__codelineno-11-242" name="__codelineno-11-242" href="#__codelineno-11-242"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-243" name="__codelineno-11-243" href="#__codelineno-11-243"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-244" name="__codelineno-11-244" href="#__codelineno-11-244"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-11-245" name="__codelineno-11-245" href="#__codelineno-11-245"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/pricings&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-246" name="__codelineno-11-246" href="#__codelineno-11-246"></a><span class="w">            </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-06-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-247" name="__codelineno-11-247" href="#__codelineno-11-247"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SqlServerVirtualMachines&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-248" name="__codelineno-11-248" href="#__codelineno-11-248"></a><span class="w">            </span><span class="nt">&quot;dependsOn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-249" name="__codelineno-11-249" href="#__codelineno-11-249"></a><span class="w">                </span><span class="s2">&quot;[concat(&#39;Microsoft.Security/pricings/SqlServers&#39;)]&quot;</span>
+<a id="__codelineno-11-250" name="__codelineno-11-250" href="#__codelineno-11-250"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-251" name="__codelineno-11-251" href="#__codelineno-11-251"></a><span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-252" name="__codelineno-11-252" href="#__codelineno-11-252"></a><span class="w">                </span><span class="nt">&quot;pricingTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;sqlServerOnVmTier&#39;)]&quot;</span>
+<a id="__codelineno-11-253" name="__codelineno-11-253" href="#__codelineno-11-253"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-254" name="__codelineno-11-254" href="#__codelineno-11-254"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-255" name="__codelineno-11-255" href="#__codelineno-11-255"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-11-256" name="__codelineno-11-256" href="#__codelineno-11-256"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/pricings&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-257" name="__codelineno-11-257" href="#__codelineno-11-257"></a><span class="w">            </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-06-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-258" name="__codelineno-11-258" href="#__codelineno-11-258"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;StorageAccounts&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-259" name="__codelineno-11-259" href="#__codelineno-11-259"></a><span class="w">            </span><span class="nt">&quot;dependsOn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-260" name="__codelineno-11-260" href="#__codelineno-11-260"></a><span class="w">                </span><span class="s2">&quot;[concat(&#39;Microsoft.Security/pricings/SqlServerVirtualMachines&#39;)]&quot;</span>
+<a id="__codelineno-11-261" name="__codelineno-11-261" href="#__codelineno-11-261"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-262" name="__codelineno-11-262" href="#__codelineno-11-262"></a><span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-263" name="__codelineno-11-263" href="#__codelineno-11-263"></a><span class="w">                </span><span class="nt">&quot;pricingTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;storageAccountTier&#39;)]&quot;</span>
+<a id="__codelineno-11-264" name="__codelineno-11-264" href="#__codelineno-11-264"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-265" name="__codelineno-11-265" href="#__codelineno-11-265"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-266" name="__codelineno-11-266" href="#__codelineno-11-266"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-11-267" name="__codelineno-11-267" href="#__codelineno-11-267"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/pricings&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-268" name="__codelineno-11-268" href="#__codelineno-11-268"></a><span class="w">            </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-06-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-269" name="__codelineno-11-269" href="#__codelineno-11-269"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;KubernetesService&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-270" name="__codelineno-11-270" href="#__codelineno-11-270"></a><span class="w">            </span><span class="nt">&quot;dependsOn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-271" name="__codelineno-11-271" href="#__codelineno-11-271"></a><span class="w">                </span><span class="s2">&quot;[concat(&#39;Microsoft.Security/pricings/StorageAccounts&#39;)]&quot;</span>
+<a id="__codelineno-11-272" name="__codelineno-11-272" href="#__codelineno-11-272"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-273" name="__codelineno-11-273" href="#__codelineno-11-273"></a><span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-274" name="__codelineno-11-274" href="#__codelineno-11-274"></a><span class="w">                </span><span class="nt">&quot;pricingTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;kubernetesServiceTier&#39;)]&quot;</span>
+<a id="__codelineno-11-275" name="__codelineno-11-275" href="#__codelineno-11-275"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-276" name="__codelineno-11-276" href="#__codelineno-11-276"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-277" name="__codelineno-11-277" href="#__codelineno-11-277"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-11-278" name="__codelineno-11-278" href="#__codelineno-11-278"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/pricings&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-279" name="__codelineno-11-279" href="#__codelineno-11-279"></a><span class="w">            </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-06-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-280" name="__codelineno-11-280" href="#__codelineno-11-280"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ContainerRegistry&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-281" name="__codelineno-11-281" href="#__codelineno-11-281"></a><span class="w">            </span><span class="nt">&quot;dependsOn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-282" name="__codelineno-11-282" href="#__codelineno-11-282"></a><span class="w">                </span><span class="s2">&quot;[concat(&#39;Microsoft.Security/pricings/KubernetesService&#39;)]&quot;</span>
+<a id="__codelineno-11-283" name="__codelineno-11-283" href="#__codelineno-11-283"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-284" name="__codelineno-11-284" href="#__codelineno-11-284"></a><span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-285" name="__codelineno-11-285" href="#__codelineno-11-285"></a><span class="w">                </span><span class="nt">&quot;pricingTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;containerRegistryTier&#39;)]&quot;</span>
+<a id="__codelineno-11-286" name="__codelineno-11-286" href="#__codelineno-11-286"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-287" name="__codelineno-11-287" href="#__codelineno-11-287"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-288" name="__codelineno-11-288" href="#__codelineno-11-288"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-11-289" name="__codelineno-11-289" href="#__codelineno-11-289"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/pricings&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-290" name="__codelineno-11-290" href="#__codelineno-11-290"></a><span class="w">            </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-06-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-291" name="__codelineno-11-291" href="#__codelineno-11-291"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;KeyVaults&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-292" name="__codelineno-11-292" href="#__codelineno-11-292"></a><span class="w">            </span><span class="nt">&quot;dependsOn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-293" name="__codelineno-11-293" href="#__codelineno-11-293"></a><span class="w">                </span><span class="s2">&quot;[concat(&#39;Microsoft.Security/pricings/ContainerRegistry&#39;)]&quot;</span>
+<a id="__codelineno-11-294" name="__codelineno-11-294" href="#__codelineno-11-294"></a><span class="w">            </span><span class="p">],</span>
+<a id="__codelineno-11-295" name="__codelineno-11-295" href="#__codelineno-11-295"></a><span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-296" name="__codelineno-11-296" href="#__codelineno-11-296"></a><span class="w">                </span><span class="nt">&quot;pricingTier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;keyvaultTier&#39;)]&quot;</span>
+<a id="__codelineno-11-297" name="__codelineno-11-297" href="#__codelineno-11-297"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-298" name="__codelineno-11-298" href="#__codelineno-11-298"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-11-299" name="__codelineno-11-299" href="#__codelineno-11-299"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-11-300" name="__codelineno-11-300" href="#__codelineno-11-300"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Security/settings&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-301" name="__codelineno-11-301" href="#__codelineno-11-301"></a><span class="w">            </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2019-01-01&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-302" name="__codelineno-11-302" href="#__codelineno-11-302"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;integrationName&#39;)]&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-303" name="__codelineno-11-303" href="#__codelineno-11-303"></a><span class="w">            </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DataExportSettings&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-304" name="__codelineno-11-304" href="#__codelineno-11-304"></a><span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-305" name="__codelineno-11-305" href="#__codelineno-11-305"></a><span class="w">                </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;integrationEnabled&#39;)]&quot;</span>
+<a id="__codelineno-11-306" name="__codelineno-11-306" href="#__codelineno-11-306"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-11-307" name="__codelineno-11-307" href="#__codelineno-11-307"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-11-308" name="__codelineno-11-308" href="#__codelineno-11-308"></a><span class="w">    </span><span class="p">],</span>
+<a id="__codelineno-11-309" name="__codelineno-11-309" href="#__codelineno-11-309"></a><span class="w">    </span><span class="nt">&quot;outputs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-310" name="__codelineno-11-310" href="#__codelineno-11-310"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-11-311" name="__codelineno-11-311" href="#__codelineno-11-311"></a><span class="p">}</span>
+</code></pre></div>
+</details>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 Checkmarx Ltd. All Rights Reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "toc.integrate"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../../js/version-mike.js"></script>
+      
+        <script src="../../../../js/custom.js"></script>
+      
+    
+  </body>
+</html>
