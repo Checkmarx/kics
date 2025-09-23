@@ -1,80 +1,166 @@
-
-resource "kubernetes_pod" "test2" {
+resource "kubernetes_pod" "test20" {
   metadata {
     name = "terraform-example"
   }
 
   spec {
+    container {
+      image = "nginx:1.7.9"
+      name  = "example1"
 
-    container =  [
-      {
-        image = "nginx:1.7.9"
-        name  = "example"
+      security_context {
+        allow_privilege_escalation = false
+      }
 
-        security_context = {
-          allow_privilege_escalation = false
-        }
+      env {
+        name  = "environment"
+        value = "test"
+      }
 
-        env = {
-          name  = "environment"
-          value = "test"
-        }
+      port {
+        container_port = 8080
+      }
 
-        port = {
-          container_port = 8080
-        }
+      liveness_probe {
+        http_get {
+          path = "/nginx_status"
+          port = 80
 
-        liveness_probe = {
-          http_get = {
-            path = "/nginx_status"
-            port = 80
-
-            http_header = {
-              name  = "X-Custom-Header"
-              value = "Awesome"
-            }
-          }
-
-          initial_delay_seconds = 3
-          period_seconds        = 3
-        }
-      },
-
-      {
-        image = "nginx:1.7.9"
-        name  = "example2"
-
-        security_context = {
-          capabilities = {
-            drop = ["ALL"]
+          http_header {
+            name  = "X-Custom-Header"
+            value = "Awesome"
           }
         }
 
-        env = {
-          name  = "environment"
-          value = "test"
-        }
+        initial_delay_seconds = 3
+        period_seconds        = 3
+      }
+    }
 
-        port = {
-          container_port = 8080
-        }
+    container {
+      image = "nginx:1.7.9"
+      name  = "example2"
 
-        liveness_probe = {
-          http_get = {
-            path = "/nginx_status"
-            port = 80
+      security_context {
+        allow_privilege_escalation = false
+      }
 
-            http_header = {
-              name  = "X-Custom-Header"
-              value = "Awesome"
-            }
+      env {
+        name  = "environment"
+        value = "test"
+      }
+
+      port {
+        container_port = 8080
+      }
+
+      liveness_probe {
+        http_get {
+          path = "/nginx_status"
+          port = 80
+
+          http_header {
+            name  = "X-Custom-Header"
+            value = "Awesome"
           }
+        }
 
-          initial_delay_seconds = 3
-          period_seconds        = 3
+        initial_delay_seconds = 3
+        period_seconds        = 3
+      }
+    }
+
+    container {
+      image = "nginx:1.7.9"
+      name  = "example3"
+
+      security_context {
+        capabilities {
+          drop = ["ALL"]
         }
       }
-    ]
+
+      env {
+        name  = "environment"
+        value = "test"
+      }
+
+      port {
+        container_port = 8080
+      }
+
+      liveness_probe {
+        http_get {
+          path = "/nginx_status"
+          port = 80
+
+          http_header {
+            name  = "X-Custom-Header"
+            value = "Awesome"
+          }
+        }
+
+        initial_delay_seconds = 3
+        period_seconds        = 3
+      }
+    }
+
+    dns_config {
+      nameservers = ["1.1.1.1", "8.8.8.8", "9.9.9.9"]
+      searches    = ["example.com"]
+
+      option {
+        name  = "ndots"
+        value = 1
+      }
+
+      option {
+        name = "use-vc"
+      }
+    }
+
+    dns_policy = "None"
+  }
+}
+
+resource "kubernetes_pod" "test21" {
+  metadata {
+    name = "terraform-example"
+  }
+
+  spec {
+    container {
+      image = "nginx:1.7.9"
+      name  = "example1"
+
+      security_context {
+        allow_privilege_escalation = false
+      }
+
+      env {
+        name  = "environment"
+        value = "test"
+      }
+
+      port {
+        container_port = 8080
+      }
+
+      liveness_probe {
+        http_get {
+          path = "/nginx_status"
+          port = 80
+
+          http_header {
+            name  = "X-Custom-Header"
+            value = "Awesome"
+          }
+        }
+
+        initial_delay_seconds = 3
+        period_seconds        = 3
+      }
+    }
 
     dns_config {
       nameservers = ["1.1.1.1", "8.8.8.8", "9.9.9.9"]

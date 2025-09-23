@@ -23,6 +23,7 @@ CxPolicy[result] {
 		"searchKey": sprintf("metadata.name={{%s}}.%s", [metadata.name, specInfo.path]),
 		"keyExpectedValue": sprintf("metadata.name={{%s}}.%s has a security context", [metadata.name, specInfo.path]),
 		"keyActualValue": sprintf("metadata.name={{%s}}.%s does not have a security context", [metadata.name, specInfo.path]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), []),
 	}
 }
 
@@ -43,7 +44,9 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name=%s", [metadata.name, specInfo.path, types[x], containers[index].name]),
+		"searchValue": document.kind, # multiple kind can match the same spec structure
 		"keyExpectedValue": sprintf("%s.%s.name=%s has a security context", [specInfo.path, types[x], containers[index].name]),
 		"keyActualValue": sprintf("%s.%s.name=%s does not have a security context", [specInfo.path, types[x], containers[index].name]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], index]),
 	}
 }

@@ -330,4 +330,3 @@ func getQueryFilter() *source.QueryInspectorParameters {
 		InputDataPath:  "",
 	}
 }
-
