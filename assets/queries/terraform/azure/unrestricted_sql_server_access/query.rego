@@ -35,7 +35,7 @@ low_abs_difference_or_both_unspecified(start_range, end_range) = results {
 
 	abs(endIP_value - startIP_value) >= 256
 	results := {
-		"expected_value" : "The difference between the value of the 'end_ip_address' and of 'start_ip_address' should be less than 256",
-		"actual_value" : "The difference between the value of the 'end_ip_address' and of 'start_ip_address' is greater than or equal to 256"
+		"expected_value" : "The difference between the value of the 'end_ip_address' and 'start_ip_address' should be less than 256",
+		"actual_value" : "The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256"
 	}
 } else = ""
