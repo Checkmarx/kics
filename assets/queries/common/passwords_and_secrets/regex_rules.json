@@ -348,7 +348,7 @@
           "regex": "(?i)['\"]?next(_)?token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
         },
         {
-          "description": "Avoiding Run After Triggers",
+          "description": "Avoiding Run After Triggers (if written in conformity with best practices)",
           "regex": "(?i)['\"](HTTP|Parse_JSON|Try|Catch)_-_(Get_)?OAuth_Token['\"]?\\s*[:=]\\s*['\"]?([[A-Za-z0-9/~^_!@&%()=?*+-]+)['\"]?"
         }
       ],
