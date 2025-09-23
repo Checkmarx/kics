@@ -77,7 +77,7 @@ emptyOrNull(null) = true
 
 # Checks if an IP is private
 isPrivateIP(ipVal) {
-	private_ips := ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
+	private_ips := ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12", "fc00::/8", "fd00::/8"]
 	some i
 	net.cidr_contains(private_ips[i], ipVal)
 }
@@ -462,7 +462,7 @@ is_recommended_tls(field) {
 }
 
 is_unrestricted(sourceRange) {
-	cidrs := {"0.0.0.0/0", "::/0"}
+	cidrs := {"0.0.0.0/0", "::/0", "0000:0000:0000:0000:0000:0000:0000:0000/0", "0:0:0:0:0:0:0:0/0"}
 	sourceRange == cidrs[_]
 }
 
@@ -513,6 +513,7 @@ get_nested_values_info(object, array_vals) = return_value {
 	return_value := {
 		"valid": count(array_vals) == count(arr),
 		"searchKey": concat(".", arr),
+		"searchLine": arr,
 	}
 }
 

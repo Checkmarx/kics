@@ -2,991 +2,241 @@
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 6,
-    "filename": "positive.tf"
+    "line": 3,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 6,
-    "filename": "positive.tf"
+    "line": 3,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 6,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 6,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 6,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 6,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 6,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 6,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 6,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 6,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 6,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 6,
-    "filename": "positive.tf"
+    "line": 12,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
     "line": 21,
-    "filename": "positive.tf"
+    "filename": "positive1.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 21,
-    "filename": "positive.tf"
+    "line": 27,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 21,
-    "filename": "positive.tf"
+    "line": 38,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 21,
-    "filename": "positive.tf"
+    "line": 38,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 21,
-    "filename": "positive.tf"
+    "line": 47,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 21,
-    "filename": "positive.tf"
+    "line": 56,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 63,
+    "filename": "positive1.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 9,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 16,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 23,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 32,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 32,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 39,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 46,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 53,
+    "filename": "positive2.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 2,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 10,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 18,
+    "filename": "positive3.tf"
+  },
+  {
+    "queryName": "Sensitive Port Is Exposed To Entire Network",
+    "severity": "HIGH",
+    "line": 26,
+    "filename": "positive3.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
     "line": 36,
-    "filename": "positive.tf"
+    "filename": "positive3.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
     "line": 36,
-    "filename": "positive.tf"
+    "filename": "positive3.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 36,
-    "filename": "positive.tf"
+    "line": 44,
+    "filename": "positive3.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 36,
-    "filename": "positive.tf"
+    "line": 52,
+    "filename": "positive3.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 36,
-    "filename": "positive.tf"
+    "line": 60,
+    "filename": "positive3.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 36,
-    "filename": "positive.tf"
+    "line": 5,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 36,
-    "filename": "positive.tf"
+    "line": 5,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 36,
-    "filename": "positive.tf"
+    "line": 11,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 36,
-    "filename": "positive.tf"
+    "line": 17,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 36,
-    "filename": "positive.tf"
+    "line": 23,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 51,
-    "filename": "positive.tf"
+    "line": 35,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 51,
-    "filename": "positive.tf"
+    "line": 35,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 51,
-    "filename": "positive.tf"
+    "line": 41,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 66,
-    "filename": "positive.tf"
+    "line": 47,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Sensitive Port Is Exposed To Entire Network",
     "severity": "HIGH",
-    "line": 81,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 81,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 81,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 81,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 81,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 96,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 111,
-    "filename": "positive.tf"
-  },
-  {
-    "queryName": "Sensitive Port Is Exposed To Entire Network",
-    "severity": "HIGH",
-    "line": 33,
-    "filename": "positive.json"
+    "line": 53,
+    "filename": "positive4.tf"
   }
 ]

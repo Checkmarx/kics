@@ -1,5 +1,5 @@
 resource "aws_neptune_cluster" "negative1" {
-  cluster_identifier                  = "neptune-cluster"
+  cluster_identifier                  = "neptune-cluster1"
   engine                              = "neptune"
   backup_retention_period             = 5
   preferred_backup_window             = "10:10-11:11"
@@ -10,7 +10,18 @@ resource "aws_neptune_cluster" "negative1" {
 }
 
 resource "aws_neptune_cluster" "negative2" {
-  cluster_identifier                  = "neptune-cluster"
+  cluster_identifier                  = "neptune-cluster2"
+  engine                              = "neptune"
+  backup_retention_period             = 5
+  preferred_backup_window             = "10:10-11:11"
+  skip_final_snapshot                 = true
+  iam_database_authentication_enabled = true
+  apply_immediately                   = true
+  enable_cloudwatch_logs_exports      = ["audit", "slowquery"]
+}
+
+resource "aws_neptune_cluster" "negative3" {
+  cluster_identifier                  = "neptune-cluster3"
   engine                              = "neptune"
   backup_retention_period             = 5
   preferred_backup_window             = "10:10-11:11"

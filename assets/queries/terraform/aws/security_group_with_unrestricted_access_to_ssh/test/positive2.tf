@@ -1,24 +1,25 @@
-resource "aws_security_group" "positive2" {
-  name        = "allow_tls"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
+resource "aws_security_group" "ec2" {
+  description = "ec2 sg"
+  name        = "secgroup-ec2"
+  vpc_id      = var.vpc_id
+}
 
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["192.120.0.0/16", "0.0.0.0/0"]
-  }
+resource "aws_vpc_security_group_ingress_rule" "positive2-1" {
+  security_group_id = aws_security_group.ec2.id
+  description = "SSH port open"
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 22 
+  ip_protocol = "tcp"
+  to_port     = 22
+}
 
-  tags = {
-    Name = "allow_tls"
-  }
+resource "aws_vpc_security_group_ingress_rule" "positive2-2" {
+  security_group_id = aws_security_group.ec2.id
+  description = "SSH port open"
+
+  cidr_ipv6   = "::/0"
+  from_port   = 22 
+  ip_protocol = "-1"
+  to_port     = 22
 }
