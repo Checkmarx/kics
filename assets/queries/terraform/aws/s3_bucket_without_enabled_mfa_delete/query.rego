@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-checkedFields = {
+checkedFields := {
 	"enabled",
 	"mfa_delete"
 }
@@ -19,6 +19,7 @@ CxPolicy[result] {
 		"resourceType": "aws_s3_bucket",
 		"resourceName": tf_lib.get_specific_resource_name(bucket, "aws_s3_bucket", name),
 		"searchKey": sprintf("aws_s3_bucket[%s].versioning", [name]),
+		"searchValue": checkedFields[j],
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' should be set to true", [checkedFields[j]]),
 		"keyActualValue": sprintf("'%s' is undefined or null", [checkedFields[j]]),
@@ -49,13 +50,14 @@ CxPolicy[result] {
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_s3_bucket", "versioning")
 
 	not common_lib.valid_key(module, "lifecycle_rule")
-	not common_lib.valid_key(module[keyToCheck],  checkedFields[c])
+	not common_lib.valid_key(module[keyToCheck], checkedFields[c])
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "n/a",
 		"resourceName": "n/a",
 		"searchKey": sprintf("module[%s].versioning", [name]),
+		"searchValue": checkedFields[c],
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' should be set to true", [checkedFields[c]]),
 		"keyActualValue": sprintf("'%s' is undefined or null", [checkedFields[c]]),
@@ -128,7 +130,7 @@ CxPolicy[result] {
 
 # version after TF AWS 4.0
 CxPolicy[result] {
-	
+
 	input.document[_].resource.aws_s3_bucket[bucketName]
 
 	not tf_lib.has_target_resource(bucketName, "aws_s3_bucket_lifecycle_configuration")

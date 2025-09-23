@@ -209,11 +209,11 @@ var (
 func TestComputeSimilarityID(t *testing.T) {
 	for _, tc := range similarityIDTests {
 		t.Run(tc.name, func(tt *testing.T) {
-			firstHash, err := ComputeSimilarityID(tc.calls[0].basePaths, tc.calls[0].filePath, tc.calls[0].queryID, tc.calls[0].searchKey,
+			firstHash, err := ComputeSimilarityID(tc.calls[0].basePaths, tc.calls[0].filePath, "", tc.calls[0].queryID, tc.calls[0].searchKey,
 				tc.calls[0].searchValue)
 			require.NoError(tt, err, "test[%s] expects no error", tc.name)
 			require.NotEmpty(tt, *firstHash, "test[%s] expects firstHash not empty", tc.name)
-			secondHash, err := ComputeSimilarityID(tc.calls[1].basePaths, tc.calls[1].filePath, tc.calls[1].queryID, tc.calls[1].searchKey,
+			secondHash, err := ComputeSimilarityID(tc.calls[1].basePaths, tc.calls[1].filePath, "", tc.calls[1].queryID, tc.calls[1].searchKey,
 				tc.calls[1].searchValue)
 			require.NoError(tt, err, "test[%s] expects no error", tc.name)
 			require.NotEmpty(tt, *secondHash, "test[%s] expects secondHash not empty", tc.name)

@@ -1,32 +1,74 @@
-resource "aws_security_group" "negative1" {
-  name        = "allow_tls"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
+resource "aws_security_group" "ec2" {
+  description = "ec2 sg"
+  name        = "secgroup-ec2"
+  vpc_id      = var.vpc_id
+}
 
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["192.120.0.0/16", "75.132.0.0/16"]
-  }
+resource "aws_security_group_rule" "negative3-1" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  security_group_id = aws_security_group.negative.id
+  description       = "TLS from VPC"
+}
 
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["192.121.0.0/16", "75.132.0.0/16"]
-  }
+resource "aws_security_group_rule" "negative3-2" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.1.0/0"]
+  security_group_id = aws_security_group.ec2.id
+  description       = "allows RDP from Internet (IPv4)"
+}
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+resource "aws_security_group_rule" "negative3-3" {
+  type              = "ingress"
+  from_port         = 15
+  to_port           = 25
+  protocol          = "-1" 
+  ipv6_cidr_blocks  = ["2001:db8:abcd:0012::/64"]
+  security_group_id = aws_security_group.ec2.id
+  description       = "allows RDP from Internet (IPv6)"
+}
 
-  tags = {
-    Name = "allow_tls"
-  }
+resource "aws_security_group_rule" "negative3-4" {
+  type              = "ingress"
+  from_port         = 30
+  to_port           = 2000
+  protocol          = "tcp" 
+  ipv6_cidr_blocks  = ["::/0"]
+  security_group_id = aws_security_group.ec2.id
+  description       = "allows RDP from Internet (IPv6)"
+}
+
+resource "aws_security_group_rule" "negative3-5" {
+  type              = "ingress"
+  from_port         = 30
+  to_port           = 2000
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.ec2.id
+  description       = "allows RDP from Internet (IPv4)"
+}
+
+resource "aws_security_group_rule" "negative3-6" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "udp" 
+  ipv6_cidr_blocks  = ["::/0"]
+  security_group_id = aws_security_group.ec2.id
+  description       = "allows RDP from Internet (IPv6)"
+}
+
+resource "aws_security_group_rule" "negative3-7" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "udp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.ec2.id
+  description       = "allows RDP from Internet (IPv4)"
 }
