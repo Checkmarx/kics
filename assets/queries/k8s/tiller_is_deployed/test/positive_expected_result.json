@@ -2,7 +2,7 @@
 	{
 		"queryName": "Tiller (Helm v2) Is Deployed",
 		"severity": "HIGH",
-		"line": 8
+		"line": 4
 	},
 	{
 		"queryName": "Tiller (Helm v2) Is Deployed",

@@ -1,0 +1,25 @@
+similarityIDChangeList:
+    - queryId: d172a060-8569-4412-8045-3560ebd477e8
+      queryName: Object Without Required Property (v3)
+      observations: Possibly fixed – I was unable to reproduce the duplication issue, but I added searchLine in hopes that it resolves it. [The closest I got was with servers defined both inside an operation (e.g., get) and at the root level] Also, I modified searchKey because it was printing sets of array indexes. The query should still be further refined
+      change: 1
+    - queryId: 20a482d5-c5d9-4a7a-b7a4-60d0805047b4
+      queryName: Security Operation Field Undefined
+      observations: ""
+      change: 4
+    - queryId: 8aee4754-970d-4c5f-8142-a49dfe388b1a
+      queryName: Server Object Variable Not Used
+      observations: ""
+      change: 4
+    - queryId: a0bf7382-5d5a-4224-924c-3db8466026c9
+      queryName: Server URL Not Absolute
+      observations: ""
+      change: 4
+    - queryId: 23a9e2d9-8738-4556-a71c-2802b6ffa022
+      queryName: Undefined Scope 'securityScheme' On Global 'security' Field
+      observations: ""
+      change: 1
+    - queryId: 462d6a1d-fed9-4d75-bb9e-3de902f35e6e
+      queryName: Undefined Scope 'securityScheme' On 'security' Field On Operations
+      observations: ""
+      change: 1

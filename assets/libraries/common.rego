@@ -513,6 +513,7 @@ get_nested_values_info(object, array_vals) = return_value {
 	return_value := {
 		"valid": count(array_vals) == count(arr),
 		"searchKey": concat(".", arr),
+		"searchLine": arr,
 	}
 }
 

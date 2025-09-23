@@ -2,19 +2,55 @@
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
-    "line": 8,
+    "line": 12,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
-    "line": 9,
+    "line": 47,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "No Drop Capabilities for Containers",
+    "severity": "LOW",
+    "line": 141,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "No Drop Capabilities for Containers",
+    "severity": "LOW",
+    "line": 11,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "No Drop Capabilities for Containers",
     "severity": "LOW",
-    "line": 9,
+    "line": 44,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "No Drop Capabilities for Containers",
+    "severity": "LOW",
+    "line": 136,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "No Drop Capabilities for Containers",
+    "severity": "LOW",
+    "line": 7,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "No Drop Capabilities for Containers",
+    "severity": "LOW",
+    "line": 36,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "No Drop Capabilities for Containers",
+    "severity": "LOW",
+    "line": 124,
     "fileName": "positive3.tf"
   }
 ]

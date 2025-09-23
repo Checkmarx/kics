@@ -1,0 +1,49 @@
+similarityIDChangeList:
+    - queryId: 7f15962a-d862-451c-ac9b-84ec13747aa6
+      queryName: Object Using Enum With Keyword (v2)
+      observations: ""
+      change: 4
+    - queryId: 2e9b6612-8f69-42e0-a5b8-ed17739c2f3a
+      queryName: Object Using Enum With Keyword (v3)
+      observations: ""
+      change: 4
+    - queryId: 194ef1f8-360e-4c14-8ed2-e83e2bafa142
+      queryName: Path Parameter With No Corresponding Template Path (v2)
+      observations: 'Ungraceful transition: the previous searchKey was too generic, leading to two issues: duplicate similarityIDs (due to not distinguishing problematic path variables) and missing results when identically named path variables were used across multiple HTTP methods for the same path.'
+      change: 1
+    - queryId: 69d7aefd-149d-47b8-8d89-1c2181a8067b
+      queryName: Path Parameter With No Corresponding Template Path (v3)
+      observations: 'Ungraceful transition: the previous searchKey was too generic, leading to two issues: duplicate similarityIDs (due to not distinguishing problematic path variables) and missing results when identically named path variables were used across multiple HTTP methods for the same path.'
+      change: 1
+    - queryId: 492c6cbb-f3f8-4807-aa4f-42b8b1c46b59
+      queryName: Type Has Invalid Keyword (v2)
+      observations: ""
+      change: 4
+    - queryId: a9228976-10cf-4b5f-b902-9e962aad037a
+      queryName: Type Has Invalid Keyword (v3)
+      observations: ""
+      change: 4
+    - queryId: 6c35d2c6-09f2-4e5c-a094-e0e91327071d
+      queryName: Response Code Missing (v3)
+      observations:
+      change: 2
+    - queryId: 6e96ed39-bf45-4089-99ba-f1fe7cf6966f
+      queryName: Response Code Missing (v2)
+      observations:
+      change: 2
+    - queryId: 8c8261c2-19a9-4ef7-ad37-b8bc7bdd4d85
+      queryName: Maximum Length Undefined (v3)
+      observations:
+      change: 2
+    - queryId: 2ec86e48-ab90-4cb6-a131-0502afd1f442
+      queryName: Maximum Length Undefined (v2)
+      observations:
+      change: 2
+    - queryId: 00b78adf-b83f-419c-8ed8-c6018441dd3a
+      queryName: Pattern Undefined (v3)
+      observations:
+      change: 2
+    - queryId: afde15cf-9444-4126-8c62-41cd79db1d1d
+      queryName: Pattern Undefined (v2)
+      observations:
+      change: 2

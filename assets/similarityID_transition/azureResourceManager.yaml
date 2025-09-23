@@ -1,0 +1,9 @@
+similarityIDChangeList:
+    - queryId: 43f6e60c-9cdb-4e77-864d-a66595d26518
+      queryName: Storage Logging For Read Write And Delete Requests Disabled
+      observations: ""
+      change: 3
+    - queryId: 70111098-7f85-48f0-b1b4-e4261cf5f61b
+      queryName: Website with 'Http20Enabled' Disabled
+      observations: ""
+      change: 1

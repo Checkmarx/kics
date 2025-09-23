@@ -21,6 +21,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.command", [metadata.name, specInfo.path, types[x], container.name]),
 		"issueType": "MissingAttribute",
+		"searchValue": tls,
 		"keyExpectedValue": sprintf( "TLS %s connection setting should be set", [tls]),
 		"keyActualValue": sprintf("TLS %s connection not set", [tls]),
 		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], j, "command"])
@@ -41,7 +42,9 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("kind={{%s}}", ["KubeletConfiguration"]),
 		"issueType": "MissingAttribute",
+		"searchValue": tls,
 		"keyExpectedValue": sprintf( "TLS %s connection setting should be set", [tls]),
 		"keyActualValue": sprintf("TLS %s connection not set", [tls]),
+		"searchLine": common_lib.build_search_line(["kind"], [])
 	}
 }

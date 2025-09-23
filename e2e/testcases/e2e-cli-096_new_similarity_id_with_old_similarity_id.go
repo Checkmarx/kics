@@ -10,7 +10,7 @@ func init() { //nolint
 				[]string{"scan", "-o", "/path/e2e/output",
 					"--output-name", "E2E_CLI_096_RESULT",
 					"-p", "\"/path/test/fixtures/new_similarity_id\"",
-					"-i", "bb9ac4f7-e13b-423d-a010-c74a1bfbe492",
+					"-i", "1828a670-5957-4bc5-9974-47da228f75e2,cf34805e-3872-4c08-bf92-6ff7bb0cfadb",
 					"--kics_compute_new_simid",
 				},
 			},

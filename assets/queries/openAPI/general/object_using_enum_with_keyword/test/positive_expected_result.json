@@ -26,13 +26,13 @@
   {
     "queryName": "Object Using Enum With Keyword (v2)",
     "severity": "INFO",
-    "line": 21,
+    "line": 29,
     "filename": "positive5.json"
   },
   {
     "queryName": "Object Using Enum With Keyword (v2)",
     "severity": "INFO",
-    "line": 22,
+    "line": 31,
     "filename": "positive6.yaml"
   }
 ]

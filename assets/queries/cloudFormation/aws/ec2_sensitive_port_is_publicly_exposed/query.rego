@@ -1,14 +1,14 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
-import data.generic.common as commonLib
 
 isAccessibleFromEntireNetwork(ingress) {
 	endswith(ingress.CidrIp, "/0")
 }
 
 getProtocolList(protocol) = list {
-	upper(protocol) == ["-1", "ALL"][_]
+	sprintf("%v", [protocol]) == "-1"
 	list = ["TCP", "UDP"]
 } else = list {
 	upper(protocol) == "TCP"
@@ -16,17 +16,6 @@ getProtocolList(protocol) = list {
 } else = list {
 	upper(protocol) == "UDP"
 	list = ["UDP"]
-}
-
-getProtocolPorts(protocols, tcpPortsMap, udpPortsMap) = portsMap {
-	sprintf("%v", protocols[_]) == ["-1", "ALL"][_]
-	portsMap = object.union(tcpPortsMap, udpPortsMap)
-} else = portsMap {
-	protocols[_] == "UDP"
-	portsMap = udpPortsMap
-} else = portsMap {
-	protocols[_] == "TCP"
-	portsMap = tcpPortsMap
 }
 
 CxPolicy[result] {
@@ -38,14 +27,14 @@ CxPolicy[result] {
 		ec2Instance.Type == "AWS::EC2::Instance"
 	]
 
-	ec2Instance := ec2InstanceList[j]
+	ec2Instance := ec2InstanceList[_]
 
 	securityGroupList = [{"name": key, "properties": secGroup} |
 		secGroup := resources[key]
 		secGroup.Type == "AWS::EC2::SecurityGroup"
 	]
 
-	secGroup := securityGroupList[k]
+	secGroup := securityGroupList[_]
 
 	ec2Instance.properties.Properties.SecurityGroups[_] == secGroup.name
 
@@ -53,16 +42,18 @@ CxPolicy[result] {
 
 	protocols := getProtocolList(ingress.IpProtocol)
 	protocol := protocols[m]
-	portsMap = getProtocolPorts(protocols, commonLib.tcpPortsMap, cf_lib.udpPortsMap)
+	portsMap := {
+		"TCP": common_lib.tcpPortsMap,
+		"UDP": cf_lib.udpPortsMap,
+	}
 
 	#############	Checks
 	isAccessibleFromEntireNetwork(ingress)
 
 	# is in ports range
 	portRange := numbers.range(ingress.FromPort, ingress.ToPort)
-	portsMap[portRange[idx]]
-	portNumber = portRange[idx]
-	portName := portsMap[portNumber]
+	portNumber := portRange[idx]
+	portName := portsMap[protocol][portNumber]
 
 	#############	Result
 	result := {
@@ -70,9 +61,10 @@ CxPolicy[result] {
 		"resourceType": "AWS::EC2::SecurityGroup",
 		"resourceName": cf_lib.get_resource_name(secGroup.properties, secGroup.name),
 		"searchKey": sprintf("Resources.%s.SecurityGroupIngress", [secGroup.name]),
-		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
+		"searchValue": sprintf("%s/%s:%d", [ec2Instance.name, protocol, portNumber]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in EC2 security group for instance %s", [portName, protocol, portNumber, ec2Instance.name]),
 		"keyActualValue": sprintf("%s (%s:%d) is allowed in EC2 security group for instance %s", [portName, protocol, portNumber, ec2Instance.name]),
+		"searchLine": common_lib.build_search_line(["Resources", secGroup.name, "Properties", "SecurityGroupIngress", l], []),
 	}
 }

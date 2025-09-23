@@ -21,5 +21,4 @@ spec:
         command: ["etcd"]
         args: ["--peer-key-file=/etc/env/file2.key"]
       nodeSelector:
-        kubernetes.io/hostname: worker02  
-    restartPolicy: OnFailure
+        kubernetes.io/hostname: worker02

@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as common_lib
+
 CxPolicy[result] {
 	document := input.document[i]
 	metadata := document.metadata
@@ -15,7 +17,9 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.labels.%s", [metadata.name, key]),
 		"issueType": "IncorrectValue",
+		"searchValue": document.kind,
 		"keyExpectedValue": sprintf("'metadata.labels.{{%s}}' has valid label %s", [key, value]),
 		"keyActualValue": sprintf("'metadata.labels.{{%s}}' has invalid label %s", [key, value]),
+		"searchLine": common_lib.build_search_line(["metadata", "labels"], [key]),
 	}
 }

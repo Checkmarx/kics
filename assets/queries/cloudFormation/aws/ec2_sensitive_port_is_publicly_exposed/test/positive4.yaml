@@ -13,7 +13,7 @@ Resources:
       SecurityGroupIngress:
         - ToPort: 389
           FromPort: 389
-          IpProtocol: all
+          IpProtocol: "-1"
           CidrIp: 10.0.0.0/0
         - ToPort: 150
           FromPort: 180

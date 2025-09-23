@@ -7,7 +7,7 @@ resource "aws_api_gateway_stage" "negative1" {
   }
 }
 
-resource "aws_api_gateway_method_settings" "all" {
+resource "aws_api_gateway_method_settings" "allnegative1" {
   stage_name  = aws_api_gateway_stage.negative1.stage_name
   method_path = "*/*"
 

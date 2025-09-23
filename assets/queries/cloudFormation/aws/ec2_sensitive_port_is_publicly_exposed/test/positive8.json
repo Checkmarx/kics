@@ -18,7 +18,7 @@
             "CidrIp": "10.0.0.0/0",
             "ToPort": 389,
             "FromPort": 389,
-            "IpProtocol": "all"
+            "IpProtocol": "-1"
           },
           {
             "FromPort": 180,

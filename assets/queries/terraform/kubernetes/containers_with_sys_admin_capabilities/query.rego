@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 types := {"init_container", "container"}
@@ -10,7 +11,7 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_array(containers) == true
+	is_array(containers)
 	containers[y].security_context.capabilities.add[_] = "SYS_ADMIN"
 
 	result := {
@@ -21,6 +22,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.add should not have 'SYS_ADMIN'", [resourceType, name, specInfo.path, types[x], y]),
 		"keyActualValue": sprintf("%s[%s].%s.%s[%d].security_context.capabilities.add has 'SYS_ADMIN'", [resourceType, name, specInfo.path, types[x], y]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], y, "security_context", "capabilities", "add"]),
 	}
 }
 
@@ -30,7 +32,7 @@ CxPolicy[result] {
 	specInfo := tf_lib.getSpecInfo(resource[name])
 	containers := specInfo.spec[types[x]]
 
-	is_object(containers) == true
+	is_object(containers)
 	containers.security_context.capabilities.add[_] = "SYS_ADMIN"
 
 	result := {
@@ -41,5 +43,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s[%s].%s.%s.security_context.capabilities.add should not have 'SYS_ADMIN'", [resourceType, name, specInfo.path, types[x]]),
 		"keyActualValue": sprintf("%s[%s].%s.%s.security_context.capabilities.add has 'SYS_ADMIN'", [resourceType, name, specInfo.path, types[x]]),
+		"searchLine": common_lib.build_search_line(array.concat(["resource", resourceType, name], split(specInfo.path, ".")), [types[x], "security_context", "capabilities", "add"]),
 	}
 }

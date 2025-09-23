@@ -14,7 +14,7 @@
   {
     "queryName": "NET_RAW Capabilities Not Being Dropped",
     "severity": "MEDIUM",
-    "line": 21,
+    "line": 23,
     "fileName": "positive1.yaml"
   },
   {

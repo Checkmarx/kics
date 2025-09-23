@@ -17,8 +17,10 @@ CxPolicy[result] {
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties", [name]),
+		"searchValue": attr,
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.%s' should be declared", [name, attr]),
 		"keyActualValue": sprintf("'Resources.%s.Properties.%s' is not declared", [name, attr]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties"], []),
 	}
 }

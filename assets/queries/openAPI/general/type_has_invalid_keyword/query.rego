@@ -25,18 +25,19 @@ CxPolicy[result] {
 		"keyExpectedValue": "There shouldn't be any invalid keywords",
 		"keyActualValue": sprintf("Keyword %s is not valid for type %s", [invalidKeys[a], value.type]),
 		"overrideKey": version,
+		"searchLine": common_lib.build_search_line(path, [invalidKeys[a]]),
 	}
 }
 
 check_keywords(value) = invalidKeys {
 	invalidKeys := { invalidKeyword |
-        keywords := specificKeywords[type]
+		keywords := specificKeywords[type]
 		typeName := get_value_type(value.type)
 		type != typeName
 		value[key]
 		common_lib.inArray(keywords, key)
 		invalidKeyword := key
-    }
+	}
 }
 
 get_value_type(type) = typeName {

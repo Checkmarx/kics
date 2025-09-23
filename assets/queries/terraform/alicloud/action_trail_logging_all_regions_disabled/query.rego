@@ -8,12 +8,12 @@ CxPolicy[result] {
 	resource := input.document[i].resource.alicloud_actiontrail_trail[name]
     not common_lib.valid_key(resource, "oss_bucket_name")
 
-
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_actiontrail_trail",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_actiontrail_trail", name),
 		"searchKey": sprintf("alicloud_actiontrail_trail[%s]", [name]),
+        "searchValue": "oss_bucket_name",
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "oss_bucket_name should be set.",
 		"keyActualValue": "oss_bucket_name is not set.",
@@ -28,12 +28,12 @@ CxPolicy[result] {
     possibilities := {"event_rw", "trail_region"}
     not common_lib.valid_key(resource, possibilities[p])
 
-
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "alicloud_actiontrail_trail",
 		"resourceName": tf_lib.get_specific_resource_name(resource, "alicloud_actiontrail_trail", name),
 		"searchKey": sprintf("alicloud_actiontrail_trail[%s]", [name]),
+        "searchValue": possibilities[p],
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'%s' should be set.",[possibilities[p]]),
 		"keyActualValue": sprintf("'%s' is not set.",[possibilities[p]]),

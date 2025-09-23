@@ -64,7 +64,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string,
 
 	fileCommands := s.Parser.CommentsCommands(filename, *content)
 
-	for _, document := range documents.Docs {
+	for idx, document := range documents.Docs {
 		_, err = json.Marshal(document)
 		if err != nil {
 			sentryReport.ReportSentry(&sentryReport.Report{
@@ -94,6 +94,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string,
 			ResolvedFiles:     documents.ResolvedFiles,
 			LinesOriginalData: utils.SplitLines(documents.Content),
 			IsMinified:        documents.IsMinified,
+			SubDocumentIndex:  idx,
 		}
 
 		s.saveToFile(ctx, &file)

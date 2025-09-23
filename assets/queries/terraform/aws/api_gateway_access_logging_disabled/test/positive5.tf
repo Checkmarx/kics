@@ -1,4 +1,4 @@
-resource "aws_api_gateway_stage" "postive1" {
+resource "aws_api_gateway_stage" "positive50" {
   stage_name    = "dev"
   rest_api_id   = "id"
 
@@ -7,8 +7,8 @@ resource "aws_api_gateway_stage" "postive1" {
   }
 }
 
-resource "aws_api_gateway_method_settings" "all" {
-  stage_name  = aws_api_gateway_stage.postive1.stage_name
+resource "aws_api_gateway_method_settings" "allpositive5" {
+  stage_name  = aws_api_gateway_stage.positive50.stage_name
   method_path = "*/*"
 
   settings {
@@ -16,7 +16,7 @@ resource "aws_api_gateway_method_settings" "all" {
   }
 }
 
-resource "aws_apigatewayv2_stage" "postive2" {
+resource "aws_apigatewayv2_stage" "positive51" {
   stage_name    = "dev"
   rest_api_id   = "id"
 

@@ -1,0 +1,21 @@
+similarityIDChangeList:
+    - queryId: c065b98e-1515-4991-9dca-b602bd6a2fbb
+      queryName: Action Trail Logging For All Regions Disabled
+      observations: ""
+      change: 3
+    - queryId: b9b7ada8-3868-4a35-854e-6100a2bb863d
+      queryName: Kubernetes Cluster Without Terway as CNI Network Plugin
+      observations: ""
+      change: 3
+    - queryId: 72ceb736-0aee-43ea-a191-3a69ab135681
+      queryName: No ROS Stack Policy
+      observations: ""
+      change: 3
+    - queryId: 2ae9d554-23fb-4065-bfd1-fe43d5f7c419
+      queryName: Public Security Group Rule Sensitive Port
+      observations: ""
+      change: 3
+    - queryId: dc158941-28ce-481d-a7fa-dc80761edf46
+      queryName: RDS Instance Retention Period Not Recommended
+      observations: ""
+      change: 3

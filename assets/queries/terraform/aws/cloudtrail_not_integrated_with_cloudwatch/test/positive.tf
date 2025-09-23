@@ -5,7 +5,7 @@ resource "aws_cloudtrail" "positive1" {
   include_global_service_events = false
 }
 
-data "aws_caller_identity" "current" {}
+data "aws_caller_identity" "currentpositive" {}
 
 resource "aws_s3_bucket" "positive4" {
   bucket        = "tf-test-trail"
@@ -31,7 +31,7 @@ resource "aws_s3_bucket" "positive4" {
               "Service": "cloudtrail.amazonaws.com"
             },
             "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::tf-test-trail/prefix/AWSLogs/${data.aws_caller_identity.current.account_id}/*",
+            "Resource": "arn:aws:s3:::tf-test-trail/prefix/AWSLogs/${data.aws_caller_identity.currentpositive.account_id}/*",
             "Condition": {
                 "StringEquals": {
                     "s3:x-amz-acl": "bucket-owner-full-control"

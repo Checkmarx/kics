@@ -15,7 +15,7 @@ CxPolicy[result] {
 	common_lib.valid_key(properties, "enum")
 	common_lib.valid_key(properties, keywords[x])
 
-	path_c := {x | obj := clean_path(path[n]); obj != ""; x := obj}
+	path_c := {x | obj := clean_path(path[_]); obj != ""; x := obj}
 
 	result := {
 		"documentId": doc.id,
@@ -24,6 +24,7 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s.properties.%s should not contain 'enum' and schema keyword", [concat(".", path_c), name]),
 		"keyActualValue": sprintf("%s.properties.%s contains 'enum' and schema keyword '%s'", [concat(".", path_c), name, keywords[x]]),
 		"overrideKey": version,
+		"searchLine": common_lib.build_search_line(path, ["properties", name, keywords[x]]),
 	}
 }
 
