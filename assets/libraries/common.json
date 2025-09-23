@@ -1071,6 +1071,20 @@
             "database_subnet_ipv6_prefixes": "database_subnet_ipv6_prefixes"
           }
         },
+        "terraform-aws-modules/iam/aws//modules/iam-policy": {
+          "resources": [
+            "aws_iam_policy"
+          ],
+          "inputs": {
+            "create": "create",
+            "description": "description",
+            "name": "name",
+            "name_prefix": "name_prefix",
+            "path": "path",
+            "policy": "policy",
+            "tags": "tags"
+          }
+        },
         "terraform-aws-modules/ec2-instance/aws": {
           "resources": [
             "aws_spot_instance_request",

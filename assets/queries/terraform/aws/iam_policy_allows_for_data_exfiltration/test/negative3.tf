@@ -1,19 +1,19 @@
-resource "aws_iam_policy" "negative1" {
-  name        = "negative1_${var.environment}"
-  description = "Kai Monkey SSM Secrets Policy"
+resource "aws_iam_user_policy" "negative3" {
+  name = "negative3_${var.environment}"
+  user = aws_iam_user.example_user.name
 
   policy = <<EOF
 {
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "KaiMonkeySSMSecretsPolicyGet",
+            "Sid": "ExampleUserPolicyString",
             "Effect": "Allow",
             "Action": "safe_string_action",
             "Resource": "*"
         },
         {
-            "Sid": "KaiMonkeySSMSecretsPolicyGetDecrypt",
+            "Sid": "ExampleUserPolicyArray",
             "Effect": "Allow",
             "Action": [
                 "safe_array_action"
