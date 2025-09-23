@@ -8,5 +8,10 @@
     "queryName": "CDN Configuration Is Missing",
     "severity": "LOW",
     "line": 61
+  },
+  {
+    "queryName": "CDN Configuration Is Missing",
+    "severity": "LOW",
+    "line": 61
   }
 ]

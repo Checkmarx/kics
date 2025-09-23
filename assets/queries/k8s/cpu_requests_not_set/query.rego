@@ -19,9 +19,11 @@ CxPolicy[result] {
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
+		"searchValue": document.kind,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.resources.requests", [metadata.name, specInfo.path, types[x], containers[index].name]),
 		"keyExpectedValue": sprintf("%s.%s.name={{%s}}.resources.requests should have CPU requests", [specInfo.path, types[x], containers[index].name]),
 		"keyActualValue": sprintf("%s.%s.name={{%s}}.resources.requests doesn't have CPU requests", [specInfo.path, types[x], containers[index].name]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], index, "resources", "requests"]),
 	}
 }
 
@@ -39,9 +41,11 @@ CxPolicy[result] {
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
+		"searchValue": document.kind,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.resources", [metadata.name, specInfo.path, types[x], containers[index].name]),
 		"keyExpectedValue": sprintf("%s.%s.name=%s.resources should have requests defined", [specInfo.path, types[x], containers[index].name]),
 		"keyActualValue": sprintf("%s.%s.name=%s.resources doesn't have requests defined", [specInfo.path, types[x], containers[index].name]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], index, "resources"]),
 	}
 }
 
@@ -59,8 +63,10 @@ CxPolicy[result] {
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
+		"searchValue": document.kind,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name=%s", [metadata.name, specInfo.path, types[x], containers[index].name]),
 		"keyExpectedValue": sprintf("%s.%s.name=%s should have resources defined", [specInfo.path, types[x], containers[index].name]),
 		"keyActualValue": sprintf("%s.%s.name=%s doesn't have resources defined", [specInfo.path, types[x], containers[index].name]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x], index]),
 	}
 }
