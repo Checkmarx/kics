@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-ilegal_actions := ["s3:GetObject", "ssm:GetParameter", "ssm:GetParameters", "ssm:GetParametersByPath", "secretsmanager:GetSecretValue","*","s3:*"]
+illegal_actions := ["s3:GetObject", "ssm:GetParameter", "ssm:GetParameters", "ssm:GetParametersByPath", "secretsmanager:GetSecretValue","*","s3:*"]
 
 CxPolicy[result] { # resources
 	resourceType := {"aws_iam_policy", "aws_iam_group_policy", "aws_iam_user_policy", "aws_iam_role_policy"}
@@ -13,8 +13,8 @@ CxPolicy[result] { # resources
 	st := common_lib.get_statement(policy)
 	statement := st[st_index]
 	common_lib.is_allow_effect(statement)
-    ilegal_action := is_ilegal(statement.Action)
-	ilegal_action != "none"
+    illegal_action := is_illegal(statement.Action)
+	illegal_action != "none"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -22,10 +22,10 @@ CxPolicy[result] { # resources
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s].policy", [resourceType[idx], name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s.policy.Statement.Action[%d]' shouldn't contain ilegal actions",[name,st_index]),
-		"keyActualValue": sprintf("'%s.policy.Statement.Action[%d]' contains [%s]",[name,st_index,ilegal_action]),
+		"keyExpectedValue": sprintf("'%s.policy.Statement.Action[%d]' shouldn't contain illegal actions",[name,st_index]),
+		"keyActualValue": sprintf("'%s.policy.Statement.Action[%d]' contains [%s]",[name,st_index,illegal_action]),
 		"searchLine": common_lib.build_search_line(["resource", resourceType[idx], name, "policy"], []),
-		"searchValue" : sprintf("%s",[ilegal_action]),
+		"searchValue" : sprintf("%s",[illegal_action]),
 	}
 }
 
@@ -37,8 +37,8 @@ CxPolicy[result] { # modules
 	st := common_lib.get_statement(policy)
 	statement := st[st_index]
 	common_lib.is_allow_effect(statement)
-	ilegal_action := is_ilegal(statement.Action)
-	ilegal_action != "none"
+	illegal_action := is_illegal(statement.Action)
+	illegal_action != "none"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -46,10 +46,10 @@ CxPolicy[result] { # modules
 		"resourceName": "n/a",
 		"searchKey": sprintf("%s.policy", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s.policy.Statement.Action[%d]' shouldn't contain ilegal actions",[name,st_index]),
-		"keyActualValue": sprintf("'%s.policy.Statement.Action[%d]' contains [%s]",[name,st_index,ilegal_action]),
+		"keyExpectedValue": sprintf("'%s.policy.Statement.Action[%d]' shouldn't contain illegal actions",[name,st_index]),
+		"keyActualValue": sprintf("'%s.policy.Statement.Action[%d]' contains [%s]",[name,st_index,illegal_action]),
 		"searchLine": common_lib.build_search_line(["module", name, "policy"], []),
-		"searchValue" : sprintf("%s",[ilegal_action]),
+		"searchValue" : sprintf("%s",[illegal_action]),
 	}
 }
 
@@ -75,28 +75,28 @@ CxPolicy[result] { # data source
 prepare_issue_data_source(statement, name, index, is_unique_element) = res {
 	not is_unique_element
 	common_lib.is_allow_effect(statement)
-    ilegal_action := is_ilegal(statement.actions)
-	ilegal_action != "none"
+    illegal_action := is_illegal(statement.actions)
+	illegal_action != "none"
 
 	res := {
 		"sk": sprintf("aws_iam_policy_document[%s].statement[%d].actions", [name, index]),
-		"kev": sprintf("'aws_iam_policy_document[%s].statement[%d].actions' shouldn't contain ilegal actions", [name, index]),
-		"kav": sprintf("'aws_iam_policy_document[%s].statement[%d].actions' contains [%s]", [name, index, ilegal_action]),
+		"kev": sprintf("'aws_iam_policy_document[%s].statement[%d].actions' shouldn't contain illegal actions", [name, index]),
+		"kav": sprintf("'aws_iam_policy_document[%s].statement[%d].actions' contains [%s]", [name, index, illegal_action]),
 		"sl": common_lib.build_search_line(["data", "aws_iam_policy_document", name, "statement", index, "actions"], []),
-		"sv": sprintf("%s", [ilegal_action]),
+		"sv": sprintf("%s", [illegal_action]),
 	}
 } else = res {
 	is_unique_element
 	common_lib.is_allow_effect(statement)
-	ilegal_action := is_ilegal(statement.actions)
-	ilegal_action != "none"
+	illegal_action := is_illegal(statement.actions)
+	illegal_action != "none"
 
 	res := {
 		"sk": sprintf("aws_iam_policy_document[%s].statement.actions", [name]),
-		"kev": sprintf("'aws_iam_policy_document[%s].statement.actions' shouldn't contain ilegal actions", [name]),
-		"kav": sprintf("'aws_iam_policy_document[%s].statement.actions' contains [%s]", [name, ilegal_action]),
+		"kev": sprintf("'aws_iam_policy_document[%s].statement.actions' shouldn't contain illegal actions", [name]),
+		"kav": sprintf("'aws_iam_policy_document[%s].statement.actions' contains [%s]", [name, illegal_action]),
 		"sl": common_lib.build_search_line(["data", "aws_iam_policy_document", name, "statement", "actions"], []),
-		"sv": sprintf("%s", [ilegal_action]),
+		"sv": sprintf("%s", [illegal_action]),
 	}
 } else = ""
 
@@ -113,14 +113,14 @@ get_as_list(statements) = result {
 	}
 }
 
-is_ilegal(Action) = Action {
+is_illegal(Action) = Action {
 	is_string(Action)
-	Action == ilegal_actions[_]
+	Action == illegal_actions[_]
 } else = res {
 	is_array(Action)
 	illegal_actions_list := [a |
     	a := Action[_]
-    	ilegal_actions[_] == a
+    	illegal_actions[_] == a
 	]
 	res := concat(", ", illegal_actions_list)
 	res != ""
