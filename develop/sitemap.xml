@@ -445,6 +445,10 @@
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/ansible-queries/aws/560f256b-0b45-4496-bcb5-733681e7d38d/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/ansible-queries/aws/57ced4b9-6ba4-487b-8843-b65562b90c77/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
@@ -666,6 +670,10 @@
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/ansible-queries/aws/b8a9852c-9943-4973-b8d5-77dae9352851/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/ansible-queries/aws/b9ef8c0e-1392-4df4-aa84-2e0f95681c75/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -1385,6 +1393,10 @@
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/022f8938-4b17-420c-aca3-f917f290f322/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/0264093f-6791-4475-af34-4b8102dcbcd0/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
@@ -1649,11 +1661,23 @@
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/40078463-6806-4bc0-b86e-7f121df601c1/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/40d5e9cd-5cfd-41f9-be60-b6cf4e907917/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/42e7dca3-8cce-4325-8df0-108888259136/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/43356255-495d-4148-ad8d-f6af5eac09dd/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/43ed6fe0-edb6-43c2-97be-6501cf563d53/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -1805,6 +1829,14 @@
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/6282794f-def8-4d6f-9df6-289318aa42b8/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/63a847b2-3782-4dbb-b452-524bf038984b/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/65844ba3-03a1-40a8-b3dd-919f122e8c95/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
@@ -1886,6 +1918,10 @@
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/7772bb8c-c0f3-42d4-8e4e-f1b8939ad085/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/77a92b0e-b578-4a2e-bb0d-3c53ec4cfb7e/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -2009,6 +2045,10 @@
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/8e5ef52b-e673-4c3f-9b2e-99cdd0139059/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/8f957abd-9703-413d-87d3-c578950a753c/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
@@ -2042,6 +2082,10 @@
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/9b83114b-b2a1-4534-990d-06da015e47aa/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/9c30655c-f9a1-4296-b365-53c0bba80c76/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -2094,6 +2138,10 @@
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/a478af30-8c3a-404d-aa64-0b673cee509a/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/a4f5f706-80fd-4c96-9a24-6ab317d33d24/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -2189,11 +2237,19 @@
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/bed9762b-9bf6-4823-98e2-b1752bee0bf7/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/bf4473f1-c8a2-4b1b-8134-bd32efabab93/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/bf89373a-be40-4c04-99f5-746742dfd7f3/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/c0c26068-fdf0-40e5-9b3b-fc8a5f585d2e/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -2210,6 +2266,10 @@
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/c3ce69fd-e3df-49c6-be78-1db3f802261c/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/c420748a-bd4a-46c8-9541-93dd1e0ccf38/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -2349,6 +2409,10 @@
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/e5849a68-bdbe-4b70-97c6-6901f39f8094/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/e649a218-d099-4550-86a4-1231e1fcb60d/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
@@ -2362,10 +2426,6 @@
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/ed4c48b8-eccc-4881-95c1-09fdae23db25/</loc>
-         <lastmod>2025-09-23</lastmod>
-    </url>
-    <url>
-         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/edbd62d4-8700-41de-b000-b3cfebb5e996/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -2386,6 +2446,10 @@
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/f0104061-8bfc-4b45-8a7d-630eb502f281/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/cloudformation-queries/aws/f3a2dfb1-c8ff-47d1-a08a-aa329613a73c/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -5173,11 +5237,19 @@
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/1f624961-9a18-4387-91c8-3856e1974b6f/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/20018359-6fd7-4d05-ab26-d4dffccbdf79/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/2134641d-30a4-4b16-8ffc-2cd4c4ffd15d/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/228497f6-414f-41c8-9113-f36a2b1b7975/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -5333,6 +5405,10 @@
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/3e34db4f-0ad9-4290-bfd0-4a9ee884acaf/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/3ef8696c-e4ae-4872-92c7-520bb44dfe77/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
@@ -5418,10 +5494,6 @@
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/4d46ff3b-7160-41d1-a310-71d6d370b08f/</loc>
-         <lastmod>2025-09-23</lastmod>
-    </url>
-    <url>
-         <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/4de9de27-254e-424f-bd70-4c1e95790838/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -5613,6 +5685,10 @@
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/6d3dead4-c6b2-4db7-81bd-3a83eae8f255/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/6db03a91-f933-4f13-ab38-a8b87a7de54d/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
@@ -5650,6 +5726,10 @@
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/70cb518c-d990-46f6-bc05-44a5041493d6/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/720f44cf-285e-4b69-8f72-835e6bc1dceb/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -5722,6 +5802,10 @@
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/8173d5eb-96b5-4aa6-a71b-ecfa153c123d/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/820882c4-0c07-4686-b1ca-c69241c57470/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -6017,6 +6101,10 @@
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/ba2ed23b-52d3-45ca-be25-f6c358d45abd/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/ba40ace1-a047-483c-8a8d-bc2d3a67a82d/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
@@ -6030,6 +6118,10 @@
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/baecd2da-492a-4d59-b9dc-29540a1398e0/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/bafe7989-3c4b-47f0-910b-e6e1cba7f146/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -6069,6 +6161,10 @@
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/c306ac53-ee5b-41d3-86a9-0fd2722b4e67/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/c3831315-5ae6-4fa8-b458-3d4d5ab7a3f6/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
@@ -6098,6 +6194,10 @@
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/cc997676-481b-4e93-aa81-d19f8c5e9b12/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/cd1d93f2-8ed2-4eb5-b536-776619f1869b/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -6178,6 +6278,10 @@
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/e39bee8c-fe54-4a3f-824d-e5e2d1cca40a/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/terraform-queries/aws/e39f87f5-0abf-488b-864c-63ee1f588140/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
@@ -6361,6 +6465,10 @@
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
+         <loc>http://docs.kics.io/develop/queries/terraform-queries/azure/25cd1853-7e80-4106-9ac3-03f8636c25be/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/azure/261a83f8-dd72-4e8c-b5e1-ebf06e8fe606/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
@@ -6417,10 +6525,6 @@
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>
-         <loc>http://docs.kics.io/develop/queries/terraform-queries/azure/48bbe0fd-57e4-4678-a4a1-119e79c90fc3/</loc>
-         <lastmod>2025-09-23</lastmod>
-    </url>
-    <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/azure/4a9e0f00-0765-4f72-a0d4-d31110b78279/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
@@ -6462,6 +6566,10 @@
     </url>
     <url>
          <loc>http://docs.kics.io/develop/queries/terraform-queries/azure/5c822443-e1ea-46b8-84eb-758ec602e844/</loc>
+         <lastmod>2025-09-23</lastmod>
+    </url>
+    <url>
+         <loc>http://docs.kics.io/develop/queries/terraform-queries/azure/5ed0a5f3-6b81-4a6c-a7d1-0f1d8d9ae806/</loc>
          <lastmod>2025-09-23</lastmod>
     </url>
     <url>

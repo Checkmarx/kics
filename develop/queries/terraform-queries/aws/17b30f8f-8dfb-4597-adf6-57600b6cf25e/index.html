@@ -2164,7 +2164,7 @@
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="na">include_global_service_events</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kr">data</span><span class="w"> </span><span class="nc">&quot;aws_caller_identity&quot;</span><span class="w"> </span><span class="nv">&quot;current&quot;</span><span class="w"> </span><span class="p">{}</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kr">data</span><span class="w"> </span><span class="nc">&quot;aws_caller_identity&quot;</span><span class="w"> </span><span class="nv">&quot;currentpositive&quot;</span><span class="w"> </span><span class="p">{}</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_s3_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;positive4&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="na">bucket</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;tf-test-trail&quot;</span>
@@ -2190,7 +2190,7 @@
 <a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="sh">              &quot;Service&quot;: &quot;cloudtrail.amazonaws.com&quot;</span>
 <a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="sh">            },</span>
 <a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="sh">            &quot;Action&quot;: &quot;s3:PutObject&quot;,</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="sh">            &quot;Resource&quot;: &quot;arn:aws:s3:::tf-test-trail/prefix/AWSLogs/${data.aws_caller_identity.current.account_id}/*&quot;,</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="sh">            &quot;Resource&quot;: &quot;arn:aws:s3:::tf-test-trail/prefix/AWSLogs/${data.aws_caller_identity.currentpositive.account_id}/*&quot;,</span>
 <a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="sh">            &quot;Condition&quot;: {</span>
 <a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="sh">                &quot;StringEquals&quot;: {</span>
 <a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="sh">                    &quot;s3:x-amz-acl&quot;: &quot;bucket-owner-full-control&quot;</span>
@@ -2260,7 +2260,7 @@
 <a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="p">}</span>
 <a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>
 <a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>
-<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="kr">data</span><span class="w"> </span><span class="nc">&quot;aws_caller_identity&quot;</span><span class="w"> </span><span class="nv">&quot;current&quot;</span><span class="w"> </span><span class="p">{}</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="kr">data</span><span class="w"> </span><span class="nc">&quot;aws_caller_identity&quot;</span><span class="w"> </span><span class="nv">&quot;currentnegative&quot;</span><span class="w"> </span><span class="p">{}</span>
 <a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>
 <a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_cloudtrail&quot;</span><span class="w"> </span><span class="nv">&quot;negative1&quot;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="w">  </span><span class="na">name</span><span class="w">                          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;tf-trail-foobar&quot;</span>
@@ -2295,7 +2295,7 @@
 <a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a><span class="sh">              &quot;Service&quot;: &quot;cloudtrail.amazonaws.com&quot;</span>
 <a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a><span class="sh">            },</span>
 <a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a><span class="sh">            &quot;Action&quot;: &quot;s3:PutObject&quot;,</span>
-<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a><span class="sh">            &quot;Resource&quot;: &quot;arn:aws:s3:::tf-test-trail/prefix/AWSLogs/${data.aws_caller_identity.current.account_id}/*&quot;,</span>
+<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a><span class="sh">            &quot;Resource&quot;: &quot;arn:aws:s3:::tf-test-trail/prefix/AWSLogs/${data.aws_caller_identity.currentnegative.account_id}/*&quot;,</span>
 <a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a><span class="sh">            &quot;Condition&quot;: {</span>
 <a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a><span class="sh">                &quot;StringEquals&quot;: {</span>
 <a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a><span class="sh">                    &quot;s3:x-amz-acl&quot;: &quot;bucket-owner-full-control&quot;</span>

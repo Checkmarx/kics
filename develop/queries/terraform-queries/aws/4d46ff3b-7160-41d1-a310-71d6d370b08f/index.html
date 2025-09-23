@@ -20,7 +20,7 @@
     
     
       
-        <title>ECS Task Definition Volume Not Encrypted - KICS</title>
+        <title>EFS Volume With Disabled Transit Encryption - KICS</title>
       
     
     
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ECS Task Definition Volume Not Encrypted
+              EFS Volume With Disabled Transit Encryption
             
           </span>
         </div>
@@ -2131,7 +2131,7 @@
   
 
 
-  <h1>ECS Task Definition Volume Not Encrypted</h1>
+  <h1>EFS Volume With Disabled Transit Encryption</h1>
 
 <style>
   .highlight .hll {
@@ -2145,16 +2145,16 @@
 
 <ul>
 <li><strong>Query id:</strong> 4d46ff3b-7160-41d1-a310-71d6d370b08f</li>
-<li><strong>Query name:</strong> ECS Task Definition Volume Not Encrypted</li>
+<li><strong>Query name:</strong> EFS Volume With Disabled Transit Encryption</li>
 <li><strong>Platform:</strong> Terraform</li>
-<li><strong>Severity:</strong> <span style="color:#bb2124">High</span></li>
+<li><strong>Severity:</strong> <span style="color:#ff7213">Medium</span></li>
 <li><strong>Category:</strong> Encryption</li>
-<li><strong>CWE:</strong> <a href="https://cwe.mitre.org/data/definitions/311.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/311.html')">311</a></li>
-<li><strong>URL:</strong> <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/ecs_task_definition_volume_not_encrypted">Github</a></li>
+<li><strong>CWE:</strong> <a href="https://cwe.mitre.org/data/definitions/319.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/319.html')">319</a></li>
+<li><strong>URL:</strong> <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/efs_volume_with_disabled_transit_encryption">Github</a></li>
 </ul>
 <h3 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h3>
 <p>AWS ECS Task Definition EFS data in transit between AWS ECS host and AWS EFS server should be encrypted<br>
-<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#transit_encryption">Documentation</a></p>
+<a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_task_definition#transit_encryption-1">Documentation</a></p>
 <h3 id="code_samples">Code samples<a class="headerlink" href="#code_samples" title="Permanent link">&para;</a></h3>
 <h4 id="code_samples_with_security_vulnerabilities">Code samples with security vulnerabilities<a class="headerlink" href="#code_samples_with_security_vulnerabilities" title="Permanent link">&para;</a></h4>
 <p><div class="highlight"><span class="filename">Positive test num. 1 - tf file</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_ecs_task_definition&quot;</span><span class="w"> </span><span class="nv">&quot;service&quot;</span><span class="w"> </span><span class="p">{</span>
