@@ -1,5 +1,7 @@
 package Cx
 
+import data.generic.common as commonLib
+
 CxPolicy[result] {
 	document := input.document[i]
 	keyword := "tiller"
@@ -13,8 +15,10 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
 		"issueType": "IncorrectValue",
+		"searchValue": document.kind, # multiple kind can match the same rule
 		"keyExpectedValue": sprintf("metadata.name of %s should not contain 'tiller'", [document.kind]),
 		"keyActualValue": sprintf("metadata.name of %s contains 'tiller'", [document.kind]),
+		"searchLine": commonLib.build_search_line(["metadata", "name"], []),
 	}
 }
 
@@ -33,8 +37,10 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
 		"issueType": "IncorrectValue",
+		"searchValue": document.kind, # multiple kind can match the same rule
 		"keyExpectedValue": sprintf("metadata.labels of %s should not have values that contain 'tiller'", [document.kind]),
 		"keyActualValue": sprintf("metadata.labels.%s of %s contains 'tiller'", [document.kind, j]),
+		"searchLine": commonLib.build_search_line(["metadata", "labels", j], []),
 	}
 }
 
@@ -54,7 +60,9 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.spec.selector.%s", [metadata.name, j]),
 		"issueType": "IncorrectValue",
+		"searchValue": document.kind, # multiple kind can match the same rule
 		"keyExpectedValue": sprintf("spec.selector of %s should not have values that contain 'tiller'", [document.kind]),
 		"keyActualValue": sprintf("spec.selector.%s of %s contains 'tiller'", [document.kind, j]),
+		"searchLine": commonLib.build_search_line(["spec", "selector", j], []),
 	}
 }
