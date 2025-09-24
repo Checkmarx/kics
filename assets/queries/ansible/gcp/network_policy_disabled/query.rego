@@ -19,9 +19,11 @@ CxPolicy[result] {
 		"resourceType": modules[m],
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}", [task.name, modules[m]]),
+		"searchValue": field,
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("gcp_container_cluster.%s should be defined", [fields[f]]),
 		"keyActualValue": sprintf("gcp_container_cluster.%s is undefined", [fields[f]]),
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m]], []),
 	}
 }
 
@@ -40,6 +42,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "gcp_container_cluster.addons_config.network_policy_config should be defined",
 		"keyActualValue": "gcp_container_cluster.addons_config.network_policy_config is undefined",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m]], ["addons_config"]),
 	}
 }
 
@@ -58,6 +61,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "gcp_container_cluster.network_policy.enabled should be true",
 		"keyActualValue": "gcp_container_cluster.network_policy.enabled is false",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m]], ["network_policy", "enabled"]),
 	}
 }
 
@@ -77,5 +81,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "gcp_container_cluster.addons_config.network_policy_config.disabled should be set to false",
 		"keyActualValue": "gcp_container_cluster.addons_config.network_policy_config.disabled is true",
+		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m]], ["addons_config", "network_policy_config", "disabled"]),
 	}
 }

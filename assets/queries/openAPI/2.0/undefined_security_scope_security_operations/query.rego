@@ -10,7 +10,7 @@ CxPolicy[result] {
 	operationObject := doc.paths[path][operation]
 	not is_array(operationObject.security)
 
-	scope := operationObject.security[schemeKey][_]
+	scope := operationObject.security[schemeKey][scopeIdx]
 	openapi_lib.check_scheme(doc, schemeKey, scope, "2.0")
 
 	result := {
@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("scope %s should be defined on 'securityDefinitions'", [scope]),
 		"keyActualValue": sprintf("scope %s is not defined on 'securityDefinitions'", [scope]),
-		"searchLine": common_lib.build_search_line(["paths", path, operation, "security", schemeKey], []),
+		"searchLine": common_lib.build_search_line(["paths", path, operation, "security", schemeKey, scopeIdx], []),
 	}
 }
 
@@ -30,7 +30,7 @@ CxPolicy[result] {
 	operationObject := doc.paths[path][operation]
 	is_array(operationObject.security)
 
-	scope := operationObject.security[s][schemeKey][_]
+	scope := operationObject.security[s][schemeKey][scopeIdx]
 	openapi_lib.check_scheme(doc, schemeKey, scope, "2.0")
 
 	result := {
@@ -39,6 +39,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("scope %s should be defined on 'securityDefinitions'", [scope]),
 		"keyActualValue": sprintf("scope %s is not defined on 'securityDefinitions'", [scope]),
-		"searchLine": common_lib.build_search_line(["paths", path, operation, "security", s, schemeKey], []),
+		"searchLine": common_lib.build_search_line(["paths", path, operation, "security", s, schemeKey, scopeIdx], []),
 	}
 }

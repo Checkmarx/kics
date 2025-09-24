@@ -7,7 +7,7 @@
 	{
 		"queryName": "Tiller Service Is Not Deleted",
 		"severity": "HIGH",
-		"line": 4
+		"line": 7
 	},
 	{
 		"queryName": "Tiller Service Is Not Deleted",

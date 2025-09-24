@@ -1,6 +1,7 @@
 package generic.k8s
 
 import data.generic.common as common_lib
+import future.keywords.in
 
 getSpecInfo(document) = specInfo { # this one can be also used for the result
 	templates := {"job_template", "jobTemplate"}
@@ -108,3 +109,25 @@ valid_pod_spec_kind_list = [
 	"Revision",
 	"ContainerSource",
 ]
+
+# returns a valid search line path for the given object and array values
+# if the array values are partial valid, it will return the valid parts
+get_valid_search_line_path(object, array_vals) = obj {
+	arr := [x |
+		some i, _ in array_vals
+		path := array.slice(array_vals, 0, i + 1)
+		walk(object, [path, _]) # evaluates to false if path is not in object
+		x := path[i]
+	]
+	obj:= {
+        "searchLine": arr,
+        "searchKey": get_search_key(arr),
+	}
+}
+
+get_search_key(array_vals) = searchKeyPath {
+    count(array_vals) > 0
+    searchKeyPath := sprintf(".%s", [concat(".", array_vals)])
+} else = searchKeyPath {
+    searchKeyPath := ""
+}

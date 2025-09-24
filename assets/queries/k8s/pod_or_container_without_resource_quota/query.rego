@@ -21,6 +21,7 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
 		"searchKey": sprintf("metadata.name={{%s}}", [metadata.name]),
+		"searchValue": document.kind, # multiple kind can match the same spec structure
 		"keyExpectedValue": sprintf("metadata.name={{%s}} has a 'ResourceQuota' policy associated", [metadata.name]),
 		"keyActualValue": sprintf("metadata.name={{%s}} does not have a 'ResourceQuota' policy associated", [metadata.name]),
 		"searchLine": common_lib.build_search_line(["metadata", "namespace"], [])

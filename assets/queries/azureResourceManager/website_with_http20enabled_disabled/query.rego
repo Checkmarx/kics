@@ -37,7 +37,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' property defined in siteConfig",
 		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' property defined in siteConfig",
-		"searchLine": common_lib.build_search_line(path, ["properties"]),
+		"searchLine": common_lib.build_search_line(path, ["properties", "siteConfig"]),
 	}
 }
 
@@ -58,6 +58,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("resource with type 'Microsoft.Web/sites' should have the 'http20Enabled' %s set to true in siteConfig", [val_type]),
 		"keyActualValue": "resource with type 'Microsoft.Web/sites' doesn't have 'http20Enabled' set to true in siteConfig",
-		"searchLine": common_lib.build_search_line(path, ["properties"]),
+		"searchLine": common_lib.build_search_line(path, ["properties", "siteConfig", "http20Enabled"]),
 	}
 }
