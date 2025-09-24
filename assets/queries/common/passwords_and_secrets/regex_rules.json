@@ -90,7 +90,7 @@
         }, 
         {
           "description": "Allow secrets retrieved from Bicep getSecret built in function",
-          "regex": "(?i)['\"]?secret[_]?(key|value)?['\"]?\\s*(:|=)\\s*[a-zA-Z]*\\.getSecret\\(\\s*[\"']?([A-Za-z0-9/~^_!@#&%(){};=?*+-<>,:;[\\]%$]*)[\"']?"
+          "regex": "(?i)['\"]?secret[_]?(key|value)?['\"]?\\s*(:|=)\\s*[a-zA-Z]*\\.getSecret\\(\\s*[\"']([A-Za-z0-9/~^_!@#&%(){};=?*+-<>,:;[\\]%$]+)[\"']\\)"
         }
       ],
       "specialMask": "(?i)['\"]?secret[_]?(key)?['\"]?\\s*(:|=)\\s*"
@@ -353,7 +353,7 @@
         },
         {
           "description": "Avoiding references to module outputs in Bicep",
-          "regex": "(?i)['\"]?token(_)?(key)?\\s*[:=]\\s*([a-zA-Z][a-zA-Z0-9_]*)\\.outputs\\.([a-zA-Z][a-zA-Z0-9_]*)"
+          "regex": "(?i)token(_)?(key)?\\s*[:=]\\s*([a-zA-Z][a-zA-Z0-9_]*)\\.outputs\\.([a-zA-Z][a-zA-Z0-9_]*)"
         },
         {
           "description": "Avoiding Run After Triggers (if written in conformity with best practices)",
