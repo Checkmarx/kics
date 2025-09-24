@@ -1,9 +1,9 @@
-resource "azurerm_resource_group" "positive1" {
+resource "azurerm_resource_group" "positive1-legacy" {
   name     = "acceptanceTestResourceGroup1"
   location = "West US"
 }
 
-resource "azurerm_sql_server" "positive2" {
+resource "azurerm_sql_server" "positive2-legacy" {
   name                         = "mysqlserver"
   resource_group_name          = azurerm_resource_group.example.name
   location                     = "West US"
@@ -12,7 +12,7 @@ resource "azurerm_sql_server" "positive2" {
   administrator_login_password = "4-v3ry-53cr37-p455w0rd"
 }
 
-resource "azurerm_sql_firewall_rule" "positive3" {
+resource "azurerm_sql_firewall_rule" "positive3-legacy" {
   name                = "FirewallRule1"
   resource_group_name = azurerm_resource_group.example.name
   server_name         = azurerm_sql_server.example.name
@@ -20,10 +20,18 @@ resource "azurerm_sql_firewall_rule" "positive3" {
   end_ip_address      = "10.0.27.62"
 }
 
-resource "azurerm_sql_firewall_rule" "positive4" {
+resource "azurerm_sql_firewall_rule" "positive4-legacy" {
   name                = "FirewallRule1"
   resource_group_name = azurerm_resource_group.example.name
   server_name         = azurerm_sql_server.example.name
   start_ip_address    = "10.0.17.62"
   end_ip_address      = "10.0.27.62"
+}
+
+# Azure feature "Allow access to Azure services"
+resource "azurerm_sql_firewall_rule" "positive5-legacy" {
+  resource_group_name   = azurerm_resource_group.example.name
+  server_name           = azurerm_sql_server.example.name
+  start_ip_address      = "0.0.0.0"
+  end_ip_address        = "0.0.0.0"
 }
