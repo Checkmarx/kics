@@ -12,7 +12,6 @@ CxPolicy[result] {
 	count({x |
 	    response := responses[x]
 	    oper != "head"
-	    x != "304"
 	    regex.match(`^20[0124]$`, x) == true
     }) == 0
 
