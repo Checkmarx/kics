@@ -1,0 +1,12 @@
+{
+  "id": "ba2ed23b-52d3-45ca-be25-f6c358d45abd",
+  "queryName": "IAM policy allows for data exfiltration",
+  "severity": "MEDIUM",
+  "category": "Resource Management",
+  "descriptionText": "This policy contains actions that can retrieve information unrestricted and could lead to data exfiltration",
+  "descriptionUrl": "https://cloudsplaining.readthedocs.io/en/latest/glossary/data-exfiltration/",
+  "platform": "Terraform",
+  "descriptionID": "ba2ed23b",
+  "cloudProvider": "aws",
+  "cwe": "200" 
+}

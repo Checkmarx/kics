@@ -1556,7 +1556,108 @@ RUN apk add --no-cache git \
 
 ```
 </details>
-<details><summary>Positive test num. 49 - dockerfile file</summary>
+<details><summary>Positive test num. 49 - json file</summary>
+
+```json hl_lines="54"
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "siteName": {
+      "type": "string"
+    },
+    "administratorLogin": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]"
+    }
+  },
+  "variables": {
+    "databaseName": "[concat(parameters('siteName'), 'db')]",
+    "serverName": "[concat(parameters('siteName'), 'srv')]",
+    "hostingPlanName": "[concat(parameters('siteName'), 'plan')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2020-06-01",
+      "name": "[variables('hostingPlanName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "Tier": "Standard",
+        "Name": "S1"
+      },
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2020-06-01",
+      "name": "[parameters('siteName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+      ],
+      "properties": {
+        "serverFarmId": "[variables('hostingPlanName')]"
+      },
+      "resources": [
+        {
+          "type": "config",
+          "apiVersion": "2020-06-01",
+          "name": "connectionstrings",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/sites', parameters('siteName'))]"
+          ],
+          "properties": {
+            "defaultConnection": {
+              "value": "[concat('Database=', variables('databaseName'), ';Data Source=', reference(resourceId('Microsoft.DBforMySQL/servers', variables('serverName'))).fullyQualifiedDomainName, ';User Id=', parameters('administratorLogin'), '@', variables('serverName'), ';Password=HardCodedP@ssw0rd!')]",
+              "type": "MySql"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+
+```
+</details>
+<details><summary>Positive test num. 50 - tf file</summary>
+
+```tf hl_lines="8 14"
+
+variable "linux_vms" {
+  description = "positive54.tf"
+  type = map(object({
+    region                           = string
+    size                             = optional(string)
+    admin_username                   = optional(string)
+    admin_password                   = "optional(sensitive(string))"
+  }))
+  default = {}
+}
+
+resource "azurerm_linux_virtual_machine" "vms" {
+  admin_password        = try(each.value.admin_password, "exposed_password", null)
+}
+```
+</details>
+<details><summary>Positive test num. 51 - json file</summary>
+
+```json hl_lines="4"
+{
+  "Resources": {
+    "service-3": {
+      "secretValue": "secretVaule1"
+    }
+  }
+}
+
+```
+</details>
+<details><summary>Positive test num. 52 - dockerfile file</summary>
 
 ```dockerfile hl_lines="3 7"
 FROM baseImage
@@ -1569,7 +1670,7 @@ ARG password=pass!1213Fs
 
 ```
 </details>
-<details><summary>Positive test num. 50 - tf file</summary>
+<details><summary>Positive test num. 53 - tf file</summary>
 
 ```tf hl_lines="8"
 resource "google_container_cluster" "primary2" {
@@ -1594,7 +1695,7 @@ resource "google_container_cluster" "primary2" {
 
 ```
 </details>
-<details><summary>Positive test num. 51 - json file</summary>
+<details><summary>Positive test num. 54 - json file</summary>
 
 ```json hl_lines="4 7"
 {
@@ -1610,7 +1711,7 @@ resource "google_container_cluster" "primary2" {
 
 ```
 </details>
-<details><summary>Positive test num. 52 - tf file</summary>
+<details><summary>Positive test num. 55 - tf file</summary>
 
 ```tf hl_lines="8"
 resource "google_container_cluster" "primary4" {
@@ -2938,6 +3039,141 @@ secrets:
 
 ```json
 {
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "siteName": {
+      "type": "string"
+    },
+    "administratorLogin": {
+      "type": "string"
+    },
+    "administratorLoginPassword": {
+      "type": "securestring"
+    },
+    "secretSuffix": {
+      "type": "string",
+      "defaultValue": "word"
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]"
+    }
+  },
+  "variables": {
+    "databaseName": "[concat(parameters('siteName'), 'db')]",
+    "serverName": "[concat(parameters('siteName'), 'srv')]",
+    "hostingPlanName": "[concat(parameters('siteName'), 'plan')]",
+    "passKey": "[concat('Pass', parameters('secretSuffix'))]"
+  },
+  "resources": [
+    {
+      "apiVersion": "2020-06-01",
+      "type": "Microsoft.Web/serverfarms",
+      "name": "[variables('hostingPlanName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "Tier": "Standard",
+        "Name": "S1"
+      },
+      "properties": {}
+    },
+    {
+      "apiVersion": "2020-06-01",
+      "type": "Microsoft.Web/sites",
+      "name": "[parameters('siteName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+      ],
+      "properties": {
+        "serverFarmId": "[variables('hostingPlanName')]"
+      },
+      "resources": [
+        {
+          "apiVersion": "2020-06-01",
+          "type": "config",
+          "name": "connectionstrings",
+          "properties": {
+            "defaultConnection": {
+              "value": "[concat('Database=', variables('databaseName'), ';Data Source=', reference(resourceId('Microsoft.DBforMySQL/servers',variables('serverName'))).fullyQualifiedDomainName, ';User Id=', parameters('administratorLogin'),'@', variables('serverName'),';Password=', parameters('administratorLoginPassword'))]",
+              "type": "MySql"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+</details>
+<details><summary>Negative test num. 50 - json file</summary>
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "apiSecret": {
+      "type": "secureString"
+    }
+  },
+  "variables": {
+    "connectionSecret": "[parameters('apiSecret')]"
+  },
+  "resources": []
+}
+```
+</details>
+<details><summary>Negative test num. 51 - yml file</summary>
+
+```yml
+jobs:
+  release:
+    if: github.event.pull_request.merged == true || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on:
+      group: Prod
+      labels: helm
+    permissions:
+       contents: write # for publishing release
+       actions: write # for createWorkflowDispatch
+       issues: write # for comments on issues
+       pull-requests: write # for comments on pull requests
+       #id-token: write # for oidc npm provenance
+       #"id-token": read 
+       #'id-token': none
+       #permissions: {id-token: write, contents: read, pull-requests: write} 
+    steps:
+      - name: debug
+        shell: bash
+        run: |
+          echo 'github.event_actor=${{ github.event_actor }}'
+```
+</details>
+<details><summary>Negative test num. 52 - tf file</summary>
+
+```tf
+
+variable "linux_vms" {
+  description = "A list of the Linux VMs to create.  \n <a name=region:></a>[region:](#region:) The Azure location where the Windows Virtual Machine should exist. Changing this forces a new resource to be created.  \n <a name=size:></a>[size:](#size:) The SKU which should be used for this Virtual Machine, such as Standard_F2.  \n <a name=admin_username:></a>[admin_username:](#admin_username:) The username of the local administrator used for the Virtual Machine. Changing this forces a new resource to be created.  \n <a name=admin_password:></a>[admin_password:](#admin_password:) he Password which should be used for the local-administrator on this Virtual Machine. Changing this forces a new resource to be created."
+  type = map(object({
+    region                           = string
+    size                             = optional(string)
+    admin_username                   = optional(string)
+    admin_password                   = optional(string)
+  }))
+  default = {}
+}
+
+resource "azurerm_linux_virtual_machine" "vms" {
+  admin_password        = try(each.value.admin_password, null)
+}
+```
+</details>
+<details><summary>Negative test num. 53 - json file</summary>
+
+```json
+{
   "openapi": "3.0.0",
   "info": {
     "title": "Simple API Overview",
@@ -2954,7 +3190,7 @@ secrets:
 
 ```
 </details>
-<details><summary>Negative test num. 50 - tf file</summary>
+<details><summary>Negative test num. 54 - tf file</summary>
 
 ```tf
 resource "google_container_cluster" "primary3" {
@@ -2979,7 +3215,7 @@ resource "google_container_cluster" "primary3" {
 
 ```
 </details>
-<details><summary>Negative test num. 51 - tf file</summary>
+<details><summary>Negative test num. 55 - tf file</summary>
 
 ```tf
 resource "google_container_cluster" "primary5" {
@@ -3004,7 +3240,7 @@ resource "google_container_cluster" "primary5" {
 
 ```
 </details>
-<details><summary>Negative test num. 52 - tf file</summary>
+<details><summary>Negative test num. 56 - tf file</summary>
 
 ```tf
 resource "google_secret_manager_secret" "secret-basic" {

@@ -1,5 +1,6 @@
 package Cx
 
+import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
@@ -9,8 +10,8 @@ CxPolicy[result] {
 	properties := resource.Properties
 
 	fromPort := to_number(properties.EC2InboundPermissions[index].FromPort)
-    toPort := to_number(properties.EC2InboundPermissions[index].ToPort)
-    fromPort != toPort
+	toPort := to_number(properties.EC2InboundPermissions[index].ToPort)
+	fromPort != toPort
 
 	result := {
 		"documentId": input.document[i].id,
@@ -20,5 +21,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.EC2InboundPermissions[%d].FromPort is equal to Resources.%s.Properties.EC2InboundPermissions[%d].ToPort", [name, index, name, index]),
 		"keyActualValue": sprintf("Resources.%s.Properties.EC2InboundPermissions[%d].FromPort is not equal to Resources.%s.Properties.EC2InboundPermissions[%d].ToPort", [name, index, name, index]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "EC2InboundPermissions", index], []),
 	}
 }

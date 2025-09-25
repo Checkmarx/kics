@@ -1,0 +1,35 @@
+- name: start an instance
+  amazon.aws.ec2_instance:
+    name: "public-instance2"
+    vpc_subnet_id: subnet-5calable
+    instance_type: t3.small
+    image_id: ami-123456
+    tags:
+      Environment: Testing
+
+- name: create launch configuration 
+  community.aws.autoscaling_launch_config:
+    name: "public-instance3"
+    vpc_subnet_id: subnet-5calable
+    instance_type: t3.small
+    image_id: ami-123456
+    tags:
+      Environment: Testing
+
+- name: start an instance with legacy naming
+  community.aws.ec2_instance:
+    name: "public-instance4"
+    vpc_subnet_id: subnet-5calable
+    instance_type: t3.small
+    image_id: ami-123456
+    tags:
+      Environment: Testing
+
+- name: create launch configuration with legacy naming
+  community.aws.ec2_lc:
+    name: "public-instance5"
+    vpc_subnet_id: subnet-5calable
+    instance_type: t3.small
+    image_id: ami-123456
+    tags:
+      Environment: Testing

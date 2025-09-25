@@ -1,4 +1,4 @@
-FROM checkmarx/go:1.24.5-r2-36b5e3994e500b@sha256:36b5e3994e500b9c46c72884930af004a29170a679188c97a6ed1fe0c48486f4 AS build_env
+FROM checkmarx/go:1.25.1-r0-4c4611ff34fb2a@sha256:4c4611ff34fb2af13432a000fdda2abb0bceb4201e9c2b8081eb20df91175003 AS build_env
 
 # Copy the source from the current directory to the Working Directory inside the container
 WORKDIR /app
@@ -29,7 +29,7 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build \
 # Runtime image
 # Ignore no User Cmd since KICS container is stopped afer scan
 # kics-scan ignore-line
-FROM checkmarx/git:2.49.0-r2-37196b58d09795@sha256:37196b58d09795a9d068a57cd019cfe90f2de49cae52e0f6675e658fca1e7ba3
+FROM checkmarx/git:2.51.0-r1-2d1628b5b0a188@sha256:2d1628b5b0a188eea1f362c71316553486f9b0fab150c292759a1343adb59399
 
 ENV TERM xterm-256color
 
@@ -39,6 +39,7 @@ ENV TERM xterm-256color
 COPY --from=build_env /app/bin/kics /app/bin/kics
 COPY --from=build_env /app/assets/queries /app/bin/assets/queries
 COPY --from=build_env /app/assets/cwe_csv /app/bin/assets/cwe_csv
+COPY --from=build_env /app/assets/similarityID_transition  /app/bin/assets/similarityID_transition
 COPY --from=build_env /app/assets/libraries/* /app/bin/assets/libraries/
 
 WORKDIR /app/bin

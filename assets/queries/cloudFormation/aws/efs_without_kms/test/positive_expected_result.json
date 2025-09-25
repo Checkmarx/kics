@@ -10,5 +10,11 @@
     "severity": "LOW",
     "line": 157,
     "fileName": "positive2.json"
+  },
+  {
+    "queryName": "EFS Without KMS",
+    "severity": "LOW",
+    "line": 82,
+    "fileName": "positive3.yaml"
   }
 ]

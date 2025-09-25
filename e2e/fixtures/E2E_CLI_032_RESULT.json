@@ -6,7 +6,7 @@
   "lines_parsed": 289,
   "lines_ignored": 0,
   "files_failed_to_scan": 0,
-  "queries_total": 500,
+  "queries_total": 514,
   "queries_failed_to_execute": 0,
   "queries_failed_to_compute_similarity_id": 0,
   "scan_id": "console",
@@ -15,10 +15,10 @@
     "HIGH": 6,
     "INFO": 3,
     "LOW": 5,
-    "MEDIUM": 10,
+    "MEDIUM": 12,
     "TRACE": 0
   },
-  "total_counter": 24,
+  "total_counter": 26,
   "total_bom_resources": 0,
   "start": "2024-05-28T13:21:07.0046236+01:00",
   "end": "2024-05-28T13:21:21.5156346+01:00",
@@ -140,7 +140,7 @@
           "resource_name": "EcsSecurityGroupSSHinbound",
           "issue_type": "IncorrectValue",
           "search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
-          "search_line": -1,
+          "search_line": 32,
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
           "actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp is open to the world (0.0.0.0/0)"
@@ -153,7 +153,7 @@
           "resource_name": "EcsSecurityGroupHTTPinbound02",
           "issue_type": "IncorrectValue",
           "search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
-          "search_line": -1,
+          "search_line": 24,
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp should not be open to the world (0.0.0.0/0)",
           "actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp is open to the world (0.0.0.0/0)"
@@ -273,6 +273,34 @@
       ]
     },
     {
+      "query_name": "EFS Volume With Disabled Transit Encryption",
+      "query_id": "c1282e03-b285-4637-aee7-eefe3a7bb658",
+      "query_url": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/efs-volumes.html",
+      "severity": "MEDIUM",
+      "platform": "CloudFormation",
+      "cwe": "319",
+      "cloud_provider": "AWS",
+      "category": "Encryption",
+      "experimental": false,
+      "description": "Amazon EFS volume does not have encryption for data at transit enabled. To prevent such a scenario, enable the attribute 'TransitEncryption'",
+      "description_id": "99f92ea6",
+      "files": [
+        {
+          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "946e95f1100e7262469d8e5437fd566fe3358aa8db4eba431b4ba5a34225c3a9",
+          "line": 85,
+          "resource_type": "AWS::ECS::TaskDefinition",
+          "resource_name": "TaskDefinition",
+          "issue_type": "MissingAttribute",
+          "search_key": "Resources.TaskDefinition.Properties.Volumes[0]",
+          "search_line": 85,
+          "search_value": "",
+          "expected_value": "Resources.TaskDefinition.Properties.Volumes[0].EFSVolumeConfiguration should be defined",
+          "actual_value": "Resources.TaskDefinition.Properties.Volumes[0].EFSVolumeConfiguration is not defined"
+        }
+      ]
+    },
+    {
       "query_name": "ELB With Security Group Without Inbound Rules",
       "query_id": "e200a6f3-c589-49ec-9143-7421d4a2c845",
       "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupingress",
@@ -357,6 +385,34 @@
       ]
     },
     {
+      "query_name": "Secretsmanager Secret Without KMS",
+      "query_id": "bed9762b-9bf6-4823-98e2-b1752bee0bf7",
+      "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-secretsmanager-secret.html",
+      "severity": "MEDIUM",
+      "platform": "CloudFormation",
+      "cwe": "326",
+      "cloud_provider": "AWS",
+      "category": "Encryption",
+      "experimental": false,
+      "description": "AWS Secretmanager should use AWS KMS customer master key (CMK) to encrypt the secret values in the versions stored in the secret",
+      "description_id": "bed9762b",
+      "files": [
+        {
+          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "1161862cff56e2f56caec02b6c6772888c7e614b249221a69d29a5e88cb93880",
+          "line": 270,
+          "resource_type": "AWS::SecretsManager::Secret",
+          "resource_name": "MyAmpAppSecretManagerRotater",
+          "issue_type": "MissingAttribute",
+          "search_key": "Resources.MyAmpAppSecretManagerRotater.Properties",
+          "search_line": 270,
+          "search_value": "",
+          "expected_value": "'Resources.MyAmpAppSecretManagerRotater.Properties.KmsKeyId' should be defined and not null",
+          "actual_value": "'Resources.MyAmpAppSecretManagerRotater.Properties.KmsKeyId' is undefined or null"
+        }
+      ]
+    },
+    {
       "query_name": "Security Group Ingress With Port Range",
       "query_id": "87482183-a8e7-4e42-a566-7a23ec231c16",
       "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html",
@@ -377,7 +433,7 @@
           "resource_name": "EcsSecurityGroupHTTPinbound02",
           "issue_type": "IncorrectValue",
           "search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
-          "search_line": -1,
+          "search_line": 19,
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort should equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
           "actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
@@ -390,7 +446,7 @@
           "resource_name": "EcsSecurityGroupALBports",
           "issue_type": "IncorrectValue",
           "search_key": "Resources.EcsSecurityGroupALBports.Properties",
-          "search_line": -1,
+          "search_line": 35,
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
           "actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
@@ -403,7 +459,7 @@
           "resource_name": "EcsSecurityGroupSSHinbound",
           "issue_type": "IncorrectValue",
           "search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
-          "search_line": -1,
+          "search_line": 27,
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
           "actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
@@ -453,12 +509,12 @@
       "files": [
         {
           "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "8cd0c1d85f668baacc2d37b0037e026fc5d62761f353dd314942b227afd41c43",
-          "line": 115,
+          "similarity_id": "1a3083ecb6510696d2224f736fbb492fc716b17b4061a0750af6f6e7cfbd6cd2",
+          "line": 207,
           "resource_type": "AWS::ECS::TaskDefinition",
           "resource_name": "TaskDefinition",
           "issue_type": "MissingAttribute",
-          "search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions.1.Name=busybox",
+          "search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions.0.Name=simple-app",
           "search_line": -1,
           "search_value": "",
           "expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
@@ -466,12 +522,12 @@
         },
         {
           "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "1a3083ecb6510696d2224f736fbb492fc716b17b4061a0750af6f6e7cfbd6cd2",
-          "line": 207,
+          "similarity_id": "8cd0c1d85f668baacc2d37b0037e026fc5d62761f353dd314942b227afd41c43",
+          "line": 115,
           "resource_type": "AWS::ECS::TaskDefinition",
           "resource_name": "TaskDefinition",
           "issue_type": "MissingAttribute",
-          "search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions.0.Name=simple-app",
+          "search_key": "Resources.TaskDefinition.Properties.ContainerDefinitions.1.Name=busybox",
           "search_line": -1,
           "search_value": "",
           "expected_value": "'Resources.TaskDefinition.Properties.ContainerDefinitions' should contain 'HealthCheck' property",
@@ -550,26 +606,13 @@
       "files": [
         {
           "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
-          "line": 35,
-          "resource_type": "AWS::EC2::SecurityGroupIngress",
-          "resource_name": "EcsSecurityGroupALBports",
-          "issue_type": "MissingAttribute",
-          "search_key": "Resources.EcsSecurityGroupALBports.Properties",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description should be set",
-          "actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
-        },
-        {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "e96cf20cc6e1e11dce2d40d9e2b37446a00f00c3f541aa7dd13861059f6fcce8",
           "line": 19,
           "resource_type": "AWS::EC2::SecurityGroupIngress",
           "resource_name": "EcsSecurityGroupHTTPinbound02",
           "issue_type": "MissingAttribute",
           "search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
-          "search_line": -1,
+          "search_line": 19,
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description should be set",
           "actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.Description is undefined"
@@ -582,10 +625,23 @@
           "resource_name": "EcsSecurityGroupSSHinbound",
           "issue_type": "MissingAttribute",
           "search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
-          "search_line": -1,
+          "search_line": 27,
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description should be set",
           "actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.Description is undefined"
+        },
+        {
+          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "39fec612777f59fb4181dd2330ee465ec860c962acfebb07a4f1ee1f122d24e7",
+          "line": 35,
+          "resource_type": "AWS::EC2::SecurityGroupIngress",
+          "resource_name": "EcsSecurityGroupALBports",
+          "issue_type": "MissingAttribute",
+          "search_key": "Resources.EcsSecurityGroupALBports.Properties",
+          "search_line": 35,
+          "search_value": "",
+          "expected_value": "Resources.EcsSecurityGroupALBports.Properties.Description should be set",
+          "actual_value": "Resources.EcsSecurityGroupALBports.Properties.Description is undefined"
         }
       ]
     }

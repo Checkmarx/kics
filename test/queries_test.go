@@ -161,9 +161,15 @@ func testPositiveAndNegativeQueries(t *testing.T, entry queryEntry) {
 	name := strings.TrimPrefix(entry.dir, BaseTestsScanPath)
 	t.Run(name+"_positive", func(t *testing.T) {
 		testQuery(t, entry, entry.PositiveFiles(t), getExpectedVulnerabilities(t, entry))
+		for dir, files := range entry.PositiveDirectories(t) {
+			testQuery(t, entry, files, getExpectedVulnerabilitiesInDirectory(t, entry, "test/"+dir))
+		}
 	})
 	t.Run(name+"_negative", func(t *testing.T) {
 		testQuery(t, entry, entry.NegativeFiles(t), []model.Vulnerability{})
+		for _, files := range entry.NegativeDirectories(t) {
+			testQuery(t, entry, files, []model.Vulnerability{})
+		}
 	})
 }
 
@@ -171,21 +177,31 @@ func benchmarkPositiveAndNegativeQueries(b *testing.B, entry queryEntry) {
 	name := strings.TrimPrefix(entry.dir, BaseTestsScanPath)
 	b.Run(name+"_positive", func(b *testing.B) {
 		testQuery(b, entry, entry.PositiveFiles(b), getExpectedVulnerabilities(b, entry))
+		for dir, files := range entry.PositiveDirectories(b) {
+			testQuery(b, entry, files, getExpectedVulnerabilitiesInDirectory(b, entry, "test/"+dir))
+		}
 	})
 	b.Run(name+"_negative", func(b *testing.B) {
 		testQuery(b, entry, entry.NegativeFiles(b), []model.Vulnerability{})
+		for _, files := range entry.NegativeDirectories(b) {
+			testQuery(b, entry, files, []model.Vulnerability{})
+		}
 	})
 }
 
-func getExpectedVulnerabilities(tb testing.TB, entry queryEntry) []model.Vulnerability {
-	content, err := os.ReadFile(entry.ExpectedPositiveResultFile())
-	require.NoError(tb, err, "can't read expected result file %s", entry.ExpectedPositiveResultFile())
+func getExpectedVulnerabilitiesInDirectory(tb testing.TB, entry queryEntry, directory string) []model.Vulnerability {
+	content, err := os.ReadFile(entry.ExpectedPositiveResultFile(directory))
+	require.NoError(tb, err, "can't read expected result file %s", entry.ExpectedPositiveResultFile(directory))
 
 	var expectedVulnerabilities []model.Vulnerability
 	err = json.Unmarshal(content, &expectedVulnerabilities)
-	require.NoError(tb, err, "can't unmarshal expected result file %s", entry.ExpectedPositiveResultFile())
+	require.NoError(tb, err, "can't unmarshal expected result file %s", entry.ExpectedPositiveResultFile(directory))
 
 	return expectedVulnerabilities
+}
+
+func getExpectedVulnerabilities(tb testing.TB, entry queryEntry) []model.Vulnerability {
+	return getExpectedVulnerabilitiesInDirectory(tb, entry, "test")
 }
 
 func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVulnerabilities []model.Vulnerability) {
@@ -226,7 +242,7 @@ func testQuery(tb testing.TB, entry queryEntry, filesPath []string, expectedVuln
 			ExcludeQueries: source.ExcludeQueries{ByIDs: []string{}, ByCategories: []string{}},
 			InputDataPath:  "",
 		},
-		map[string]bool{}, 60, false, true, 1, false)
+		map[string]bool{}, 60, false, true, 1, true)
 
 	require.Nil(tb, err)
 	require.NotNil(tb, inspector)

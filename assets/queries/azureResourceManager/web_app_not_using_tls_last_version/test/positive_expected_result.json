@@ -2,13 +2,13 @@
   {
     "queryName": "Web App Not Using TLS Last Version",
     "severity": "MEDIUM",
-    "line": 12,
+    "line": 14,
     "filename": "positive1.json"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
     "severity": "MEDIUM",
-    "line": 8,
+    "line": 12,
     "filename": "positive2.json"
   },
   {
@@ -20,14 +20,8 @@
   {
     "queryName": "Web App Not Using TLS Last Version",
     "severity": "MEDIUM",
-    "line": 10,
+    "line": 13,
     "filename": "positive4.json"
-  },
-  {
-    "queryName": "Web App Not Using TLS Last Version",
-    "severity": "MEDIUM",
-    "line": 14,
-    "filename": "positive5.json"
   },
   {
     "queryName": "Web App Not Using TLS Last Version",
@@ -38,7 +32,7 @@
   {
     "queryName": "Web App Not Using TLS Last Version",
     "severity": "MEDIUM",
-    "line": 2,
+    "line": 4,
     "filename": "positive2.bicep"
   },
   {
@@ -50,13 +44,7 @@
   {
     "queryName": "Web App Not Using TLS Last Version",
     "severity": "MEDIUM",
-    "line": 2,
+    "line": 5,
     "filename": "positive4.bicep"
-  },
-  {
-    "queryName": "Web App Not Using TLS Last Version",
-    "severity": "MEDIUM",
-    "line": 6,
-    "filename": "positive5.bicep"
   }
 ]

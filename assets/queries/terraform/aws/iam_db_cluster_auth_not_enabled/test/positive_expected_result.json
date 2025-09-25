@@ -1,0 +1,122 @@
+[
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive6.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive7.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive8.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive9.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive10.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive11.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive12.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive13.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive14.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive15.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive16.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive17.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive18.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 9,
+    "fileName": "positive19.tf"
+  },
+  {
+    "queryName": "IAM DB Cluster Auth Not Enabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive20.tf"
+  }
+]

@@ -9,7 +9,7 @@ CxPolicy[result] {
 	resource.Type = "AWS::ElastiCache::ReplicationGroup"
 	properties := resource.Properties
 	lower(properties.Engine) == "redis"
-	properties.TransitEncryptionEnabled == false
+	cf_lib.isCloudFormationFalse(properties.TransitEncryptionEnabled)
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,

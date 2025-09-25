@@ -16,10 +16,11 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.content", [openapi_lib.concat_path(path)]),
+		"searchKey": sprintf("%s.content[%s]", [openapi_lib.concat_path(path),x]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The attribute 'schema' should be set",
 		"keyActualValue": "The attribute 'schema' is undefined",
+		"searchLine": common_lib.build_search_line(path,["content", x])
 	}
 }
 
@@ -35,9 +36,10 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": doc.id,
-		"searchKey": sprintf("%s.content", [openapi_lib.concat_path(path)]),
+		"searchKey": sprintf("%s.content[%s]", [openapi_lib.concat_path(path),x]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "The attribute 'schema' should be set",
 		"keyActualValue": "The attribute 'schema' is undefined",
+		"searchLine": common_lib.build_search_line(path,["content", x])
 	}
 }

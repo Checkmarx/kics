@@ -9,7 +9,7 @@ CxPolicy[result] {
 	common_lib.inArray({"AWS::DocDB::DBCluster", "AWS::Neptune::DBCluster", "AWS::RDS::DBCluster", "AWS::RDS::DBInstance", "AWS::Redshift::Cluster"}, resource.Type)
 
 	properties := resource.Properties
-	properties.StorageEncrypted == true
+	cf_lib.isCloudFormationTrue(properties.StorageEncrypted)
 	not common_lib.valid_key(properties, "KmsKeyId")
 
 	result := {

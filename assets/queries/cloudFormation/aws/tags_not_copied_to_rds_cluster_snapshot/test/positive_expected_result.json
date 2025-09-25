@@ -1,0 +1,74 @@
+[
+    {
+		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
+		"severity": "LOW",
+		"line": 12,
+		"fileName": "positive1.json"
+	},
+	{
+		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
+		"severity": "LOW",
+		"line": 21,
+		"fileName": "positive1.json"
+	},
+	{
+		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
+		"severity": "LOW",
+		"line": 12,
+		"fileName": "positive2.yaml"
+	},
+	{
+		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
+		"severity": "LOW",
+		"line": 19,
+		"fileName": "positive2.yaml"
+	},
+	{
+		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
+		"severity": "LOW",
+		"line": 12,
+		"fileName": "positive3.json"
+	},
+	{
+		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
+		"severity": "LOW",
+		"line": 21,
+		"fileName": "positive3.json"
+	}, 
+    {
+		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
+		"severity": "LOW",
+		"line": 12,
+		"fileName": "positive4.yaml"
+	},
+	{
+		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
+		"severity": "LOW",
+		"line": 19,
+		"fileName": "positive4.yaml"
+	},
+	{
+		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
+		"severity": "LOW",
+		"line": 7,
+		"fileName": "positive5.json"
+	},
+	{
+		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
+		"severity": "LOW",
+		"line": 17,
+		"fileName": "positive5.json"
+	},
+	{
+		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
+		"severity": "LOW",
+		"line": 7,
+		"fileName": "positive6.yaml"
+	},
+	{
+		"queryName": "Tags Not Copied to RDS Cluster Snapshot",
+		"severity": "LOW",
+		"line": 15,
+		"fileName": "positive6.yaml"
+	}
+]

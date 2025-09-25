@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Lambda Function Without Dead Letter Queue",
+    "severity": "LOW",
+    "line": 16,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Lambda Function Without Dead Letter Queue",
+    "severity": "LOW",
+    "line": 24,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Lambda Function Without Dead Letter Queue",
+    "severity": "LOW",
+    "line": 16,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Lambda Function Without Dead Letter Queue",
+    "severity": "LOW",
+    "line": 26,
+    "fileName": "positive4.tf"
+  }
+]
