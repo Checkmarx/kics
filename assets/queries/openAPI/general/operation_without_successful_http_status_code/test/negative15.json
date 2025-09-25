@@ -10,8 +10,8 @@
         "operationId": "listVersionsv2",
         "summary": "List API versions",
         "responses": {
-          "201": {
-            "description": "201 response"
+          "204": {
+            "description": "204 response"
           }
         }
       }

@@ -1,5 +1,5 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "Simple API overview",
     "version": "1.0.0"
@@ -10,8 +10,31 @@
         "operationId": "listVersionsv2",
         "summary": "List API versions",
         "responses": {
-          "201": {
-            "description": "201 response"
+          "204": {
+            "description": "204 response",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "foo": {
+                    "value": {
+                      "versions": [
+                        {
+                          "status": "CURRENT",
+                          "updated": "2011-01-21T11:33:21Z",
+                          "id": "v2.0",
+                          "links": [
+                            {
+                              "href": "http://127.0.0.1:8774/v2/",
+                              "rel": "self"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

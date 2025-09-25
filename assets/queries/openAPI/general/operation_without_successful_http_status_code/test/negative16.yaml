@@ -8,5 +8,5 @@ paths:
       operationId: listVersionsv2
       summary: List API versions
       responses:
-        "202":
-          description: 202 response
+        "204":
+          description: 204 response
