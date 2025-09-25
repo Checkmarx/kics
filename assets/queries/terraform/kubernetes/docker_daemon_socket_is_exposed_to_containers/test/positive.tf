@@ -4,22 +4,19 @@ resource "kubernetes_pod" "test" {
   }
 
   spec {
+   volume {
+     host_path {
+       path = "/var/run/docker.sock"
+       type = "Directory"
+     }
+   }
 
-    volume = [
-     {
-       host_path = {
-         path = "/var/run/docker.sock"
-         type = "Directory"
-       }
+   volume {
+     host_path {
+       path = "/var/run/docker.sock"
+       type = "Directory"
      }
-     ,
-     {
-       host_path = {
-         path = "/var/run/docker.sock"
-         type = "Directory"
-       }
-     }
-    ]
+   }
 
     container {
       image = "nginx:1.7.9"
@@ -94,22 +91,19 @@ resource "kubernetes_deployment" "example" {
       }
 
       spec {
+        volume {
+          host_path {
+            path = "/var/run/docker.sock"
+            type = "Directory"
+          }
+        }
 
-        volume = [
-          {
-            host_path = {
-              path = "/var/run/docker.sock"
-              type = "Directory"
-            }
+        volume {
+          host_path {
+            path = "/var/run/docker.sock"
+            type = "Directory"
           }
-          ,
-          {
-            host_path = {
-              path = "/var/run/docker.sock"
-              type = "Directory"
-            }
-          }
-        ]
+        }
 
         container {
           image = "nginx:1.7.8"
@@ -165,22 +159,19 @@ resource "kubernetes_cron_job" "demo2" {
         template {
           metadata {}
           spec {
+            volume {
+              host_path {
+                path = "/var/run/docker.sock"
+                type = "Directory"
+              }
+            }
 
-            volume = [
-              {
-                host_path = {
-                  path = "/var/run/docker.sock"
-                  type = "Directory"
-                }
+            volume {
+              host_path {
+                path = "/var/run/docker.sock"
+                type = "Directory"
               }
-              ,
-              {
-                host_path = {
-                  path = "/var/run/docker.sock"
-                  type = "Directory"
-                }
-              }
-            ]
+            }
 
             container {
               name    = "hello"

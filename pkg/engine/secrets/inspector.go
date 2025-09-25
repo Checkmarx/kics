@@ -506,6 +506,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 	simID, err := similarity.ComputeSimilarityID(
 		basePaths,
 		file.FilePath,
+		"",
 		query.ID,
 		fmt.Sprintf("%d", lineNumber),
 		"",
