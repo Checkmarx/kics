@@ -14,7 +14,31 @@
   {
     "queryName": "App Service Not Using Latest TLS Encryption Version",
     "severity": "MEDIUM",
+    "line": 20,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "App Service Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "App Service Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
     "line": 10,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "App Service Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 20,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "App Service Not Using Latest TLS Encryption Version",
+    "severity": "MEDIUM",
+    "line": 26,
     "fileName": "positive3.tf"
   }
 ]
