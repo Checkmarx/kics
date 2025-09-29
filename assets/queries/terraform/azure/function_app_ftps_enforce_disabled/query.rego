@@ -20,8 +20,8 @@ CxPolicy[result] { # only for legacy "azurerm_function_app" because ftps_state d
 		"keyExpectedValue": sprintf("'azurerm_function_app[%s].site_config.ftps_state' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'azurerm_function_app[%s].site_config.ftps_state' is undefined or null", [name]),
 		"searchLine": results.searchLine,
-		"remediation": "ftps_state = \"FtpsOnly\"",
-		"remediationType": "addition",
+		"remediation": results.remediation,
+		"remediationType": results.remediationType,
 	}
 }
 
@@ -30,12 +30,16 @@ get_path(function,name) = results {
 	results := {
 		"searchKey": sprintf("azurerm_function_app[%s]'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name], []),
+		"remediation": null,
+		"remediationType": null,
 	}	
 } else = results {
 	not common_lib.valid_key(function.site_config, "ftps_state")
 	results := {
 		"searchKey": sprintf("azurerm_function_app[%s].site_config'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name, "site_config"], []),
+		"remediation": "ftps_state = \"FtpsOnly\"",
+		"remediationType": "addition",
 	}	
 } else = ""
 
