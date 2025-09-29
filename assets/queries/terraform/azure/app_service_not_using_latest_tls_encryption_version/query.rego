@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] { #legacy support, 1.2 is the latest tls
 	app := input.document[i].resource.azurerm_app_service[name]
 
-	min_tls_version = to_number(app.site_config.minimum_tls_version)
+	min_tls_version = to_number(app.site_config.min_tls_version)
 	min_tls_version != 1.2
 
 	result := {
