@@ -72,7 +72,8 @@ minimum_tls_undefined_or_not_latest(app,type,name) = results {
 	}
 # Case of minimum_tls_version not set to 1.3
 } else = results { 
-	to_number(app.site_config.minimum_tls_version) != 1.3
+	tls_version = to_number(app.site_config.minimum_tls_version)
+	tls_version != 1.3
 	results := {
 		"searchKey" : sprintf("%s[%s].site_config.minimum_tls_version", [type,name]),
 		"issueType" : "IncorrectValue",
@@ -80,7 +81,7 @@ minimum_tls_undefined_or_not_latest(app,type,name) = results {
 		"keyActualValue" : sprintf("'%s[%s].site_config.minimum_tls_version' is not set to '1.3'", [type,name]),
 		"searchLine" : common_lib.build_search_line(["resource", type, name, "site_config", "minimum_tls_version"], []),
 		"remediation" : json.marshal({
-			"before": sprintf("%.1f", [app.site_config.minimum_tls_version]),
+			"before": sprintf("%.1f", [tls_version]),
 			"after": "1.3"
 		}),
 		"remediationType" : "replacement",
