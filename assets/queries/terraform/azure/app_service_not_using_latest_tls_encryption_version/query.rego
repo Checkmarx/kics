@@ -67,8 +67,8 @@ minimum_tls_undefined_or_not_latest(app,type,name) = results {
 		"keyExpectedValue" : sprintf("'%s[%s].site_config.minimum_tls_version' should be defined and set to '1.3'", [type,name]),
 		"keyActualValue" : sprintf("'%s[%s].site_config.minimum_tls_version' is not defined", [type,name]),
 		"searchLine" : common_lib.build_search_line(["resource", type, name, "site_config"], []),
-		"remediation" : null,
-		"remediationType" : null,
+		"remediation": "minimum_tls_version = 1.3",
+		"remediationType": "addition",
 	}
 # Case of minimum_tls_version not set to 1.3
 } else = results { 
