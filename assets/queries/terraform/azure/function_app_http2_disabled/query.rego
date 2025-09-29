@@ -9,7 +9,6 @@ CxPolicy[result] {
 	app := input.document[i].resource[types[t]][name]
 
 	not common_lib.valid_key(app, "site_config")
-	
 
 	result := {
 		"documentId": input.document[i].id,
