@@ -55,8 +55,8 @@ minimum_tls_undefined_or_not_latest(app,type,name) = results {
 		"keyExpectedValue" : sprintf("'%s[%s].site_config.minimum_tls_version' should be defined and set to '1.3'", [type,name]),
 		"keyActualValue" : sprintf("'%s[%s].site_config' is not defined", [type,name]),
 		"searchLine" : common_lib.build_search_line(["resource", type, name], []),
-		"remediation": "site_config.minimum_tls_version = 1.3",
-		"remediationType": "addition",
+		"remediation": null,
+		"remediationType": null,
 	}
 # Case of undefined minimum_tls_version - tls defaults to 1.2
 } else = results { 
