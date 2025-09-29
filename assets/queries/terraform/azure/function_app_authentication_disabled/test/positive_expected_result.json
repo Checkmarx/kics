@@ -8,7 +8,79 @@
   {
     "queryName": "Function App Authentication Disabled",
     "severity": "MEDIUM",
-    "line": 10,
+    "line": 25,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
     "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 39,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 52,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 68,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 16,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 39,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 52,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Function App Authentication Disabled",
+    "severity": "MEDIUM",
+    "line": 68,
+    "fileName": "positive3.tf"
   }
 ]

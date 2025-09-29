@@ -1,4 +1,4 @@
-resource "azurerm_linux_function_app" "positive3" {
+resource "azurerm_windows_function_app" "positive7" {
   name                = "example-app-service"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_service_plan.example.location
@@ -7,7 +7,7 @@ resource "azurerm_linux_function_app" "positive3" {
   site_config {}
 }
 
-resource "azurerm_linux_function_app" "positive4" {
+resource "azurerm_windows_function_app" "positive8" {
   name                = "example-app-service"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_service_plan.example.location
@@ -18,7 +18,7 @@ resource "azurerm_linux_function_app" "positive4" {
   site_config {}
 }
 
-resource "azurerm_linux_function_app" "positive5" {
+resource "azurerm_windows_function_app" "positive9" {
   name                = "example-app-service"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_service_plan.example.location
@@ -29,7 +29,7 @@ resource "azurerm_linux_function_app" "positive5" {
   site_config {}
 }
 
-resource "azurerm_linux_function_app" "positive6" {
+resource "azurerm_windows_function_app" "positive10" {
   name                = "example-app-service"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_service_plan.example.location
@@ -41,7 +41,7 @@ resource "azurerm_linux_function_app" "positive6" {
   site_config {}
 }
 
-resource "azurerm_linux_function_app" "positive13" {
+resource "azurerm_windows_function_app" "positive11" {
   name                = "example-app-service"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_service_plan.example.location
@@ -55,7 +55,7 @@ resource "azurerm_linux_function_app" "positive13" {
   site_config {}
 }
 
-resource "azurerm_linux_function_app" "positive14" {
+resource "azurerm_windows_function_app" "positive12" {
   name                = "example-app-service"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_service_plan.example.location
