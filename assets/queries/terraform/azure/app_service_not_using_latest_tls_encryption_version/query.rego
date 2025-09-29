@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] { #legacy support, 1.2 is the latest tls
 	app := input.document[i].resource.azurerm_app_service[name]
 
-	not min_version_is_latest(app.site_config.min_tls_version,1.2,"1.2")
+	to_number(app.site_config.min_tls_version) != 1.2
 
 	result := {
 		"documentId": input.document[i].id,
@@ -72,7 +72,7 @@ minimum_tls_undefined_or_not_latest(app,type,name) = results {
 	}
 # Case of minimum_tls_version not set to 1.3
 } else = results { 
-	not min_version_is_latest(app.site_config.minimum_tls_version,1.3,"1.3")
+	to_number(app.site_config.minimum_tls_version) != 1.3
 	results := {
 		"searchKey" : sprintf("%s[%s].site_config.minimum_tls_version", [type,name]),
 		"issueType" : "IncorrectValue",
@@ -86,9 +86,3 @@ minimum_tls_undefined_or_not_latest(app,type,name) = results {
 		"remediationType" : "replacement",
 	}
 } else = ""
-
-min_version_is_latest(min_version,ver_number,ver_string) {
-	min_version == ver_number
-} else {
-	min_version == ver_string
-}
