@@ -6,7 +6,8 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] { #legacy support, 1.2 is the latest tls
 	app := input.document[i].resource.azurerm_app_service[name]
 
-	to_number(app.site_config.min_tls_version) != 1.2
+	min_tls_version = to_number(app.site_config.minimum_tls_version)
+	min_tls_version != 1.2
 
 	result := {
 		"documentId": input.document[i].id,
@@ -18,7 +19,7 @@ CxPolicy[result] { #legacy support, 1.2 is the latest tls
 		"keyActualValue": sprintf("'azurerm_app_service[%s].site_config.min_tls_version' is not set to '1.2'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_app_service", name, "site_config", "min_tls_version"], []),
 		"remediation": json.marshal({
-			"before": sprintf("%.1f", [app.site_config.min_tls_version]),
+			"before": sprintf("%.1f", [min_tls_version]),
 			"after": "1.2"
 		}),
 		"remediationType": "replacement",
@@ -72,8 +73,8 @@ minimum_tls_undefined_or_not_latest(app,type,name) = results {
 	}
 # Case of minimum_tls_version not set to 1.3
 } else = results { 
-	tls_version = to_number(app.site_config.minimum_tls_version)
-	tls_version != 1.3
+	min_tls_version = to_number(app.site_config.minimum_tls_version)
+	min_tls_version != 1.3
 	results := {
 		"searchKey" : sprintf("%s[%s].site_config.minimum_tls_version", [type,name]),
 		"issueType" : "IncorrectValue",
@@ -81,7 +82,7 @@ minimum_tls_undefined_or_not_latest(app,type,name) = results {
 		"keyActualValue" : sprintf("'%s[%s].site_config.minimum_tls_version' is not set to '1.3'", [type,name]),
 		"searchLine" : common_lib.build_search_line(["resource", type, name, "site_config", "minimum_tls_version"], []),
 		"remediation" : json.marshal({
-			"before": sprintf("%.1f", [tls_version]),
+			"before": sprintf("%.1f", [min_tls_version]),
 			"after": "1.3"
 		}),
 		"remediationType" : "replacement",
