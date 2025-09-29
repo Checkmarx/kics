@@ -3,18 +3,17 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-types := ["azurerm_app_service","azurerm_linux_web_app", "azurerm_windows_web_app"]
+types := {"azurerm_app_service","azurerm_linux_web_app", "azurerm_windows_web_app"}
 
 CxPolicy[result] {
-	doc := input.document[i]
-    resource := doc.resource[types[t]][name]
+    resource := input.document[i].resource[types[t]][name]
 
 	not resource.site_config.http2_enabled  
 	results := client_certificate_is_undefined_or_false(resource,name,types[t])
 	results != ""
 
 	result := {
-		"documentId": doc.id,
+		"documentId": input.document[i].id,
 		"resourceType": types[t],
 		"resourceName": tf_lib.get_resource_name(resource, name), 
 		"searchKey": results.searchKey,
@@ -75,7 +74,7 @@ client_certificate_is_undefined_or_false(resource,name,type) = results { # case 
 		}),
 		"remediationType": "replacement",
 	}
-}
+} else = ""
 
 get_field("azurerm_app_service")     = "client_cert_enabled" 
 get_field("azurerm_linux_web_app")   = "client_certificate_enabled"
