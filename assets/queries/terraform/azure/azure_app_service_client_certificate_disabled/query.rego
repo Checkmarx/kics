@@ -41,7 +41,25 @@ client_certificate_is_undefined_or_false(resource,name,type) = results { # case 
 		"remediationType": "addition",
 	}
 	
-} else = results { # case of no "client_cert_enabled" set to false
+} else = results { # case of both "client_cert_enabled" and "http2_enabled"(explicitly) set to false
+	common_lib.valid_key(resource.site_config, "http2_enabled")
+	resource.site_config.http2_enabled == false
+	field_name = get_field(type)
+	resource[field_name] == false
+
+	results := {
+		"searchKey": sprintf("%s[%s].%s", [type, name, field_name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'%s[%s].%s' or '%s[%s].site_config.http2_enabled' is true", [type, name, field_name, type, name]),
+		"keyActualValue": sprintf("'%s[%s].%s' and '%s[%s].site_config.http2_enabled' are set to false", [type, name, field_name, type, name]),
+		"searchLine": common_lib.build_search_line(["resource", type, name, field_name], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
+	}
+} else = results { # case of "client_cert_enabled" set to false
 	field_name = get_field(type)
 	resource[field_name] == false
 
