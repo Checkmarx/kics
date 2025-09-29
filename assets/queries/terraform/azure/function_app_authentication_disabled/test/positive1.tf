@@ -1,4 +1,4 @@
-resource "azurerm_function_app" "positive1" {
+resource "azurerm_function_app" "positive1-1" {
   name                = "example-app-service"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
@@ -10,7 +10,7 @@ resource "azurerm_function_app" "positive1" {
   }
 }
 
-resource "azurerm_function_app" "positive2" {
+resource "azurerm_function_app" "positive1-2" {
   name                = "example-app-service"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name

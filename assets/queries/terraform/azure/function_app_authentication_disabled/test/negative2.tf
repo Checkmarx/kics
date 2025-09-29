@@ -1,4 +1,4 @@
-resource "azurerm_linux_function_app" "negative2" {
+resource "azurerm_linux_function_app" "negative2-1" {
   name                = "example-app-service"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_service_plan.example.location
@@ -9,7 +9,7 @@ resource "azurerm_linux_function_app" "negative2" {
   site_config {}
 }
 
-resource "azurerm_linux_function_app" "negative3" {
+resource "azurerm_linux_function_app" "negative2-2" {
   name                = "example-app-service"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_service_plan.example.location
@@ -21,7 +21,7 @@ resource "azurerm_linux_function_app" "negative3" {
   site_config {}
 }
 
-resource "azurerm_linux_function_app" "negative7" {
+resource "azurerm_linux_function_app" "negative2-3" {
   name                = "example-app-service"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_service_plan.example.location
