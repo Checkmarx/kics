@@ -3,12 +3,17 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
+# Improved rule: Only flags S3 buckets that allow public policies 
+# unless they are clearly intended for public use (websites, CDNs, etc.)
 CxPolicy[result] { 
 	resources := input.document[i].resource
 	
 	account_level_status := prepare_account_level_status(resources)
 
 	not account_level_status == "secure"
+	
+	# Only flag if this doesn't appear to be intentional public use
+	not is_intentional_public_bucket(resources)
 
 	res := prepare_issues(resources, account_level_status)
 
@@ -81,6 +86,37 @@ prepare_issues(resources, account_level_status) = res {
 		"kav": sprintf("'aws_s3_bucket_public_access_block[%s].block_public_policy' is not defined (defaults to false)", [name]),
 		"sl": common_lib.build_search_line(["resource", "aws_s3_bucket_public_access_block", name], [])
 	}
+}
+
+# Check if this appears to be an intentional public bucket (website, CDN, etc.)
+is_intentional_public_bucket(resources) {
+	# Only consider buckets with very clear public use indicators
+	common_lib.valid_key(resources, "aws_s3_bucket")
+	bucket := resources.aws_s3_bucket[name]
+	
+	# Must have public bucket name AND website configuration
+	has_public_bucket_name(name)
+	common_lib.valid_key(bucket, "website")
+} else {
+	# Or have CloudFront distribution integration with public bucket name
+	common_lib.valid_key(resources, "aws_cloudfront_distribution")
+	has_cloudfront_s3_integration(resources)
+	common_lib.valid_key(resources, "aws_s3_bucket")
+	bucket := resources.aws_s3_bucket[name]
+	has_public_bucket_name(name)
+}
+
+# Check if bucket name indicates public use
+has_public_bucket_name(name) {
+	publicIndicators := {"website", "static", "public", "assets", "cdn", "www", "web"}
+	contains(lower(name), publicIndicators[_])
+}
+
+# Check if there's CloudFront distribution configured for S3
+has_cloudfront_s3_integration(resources) {
+	distribution := resources.aws_cloudfront_distribution[_]
+	origin := distribution.origin[_]
+	contains(origin.domain_name, "s3")
 }
 
 prepare_account_level_status(resources) = status{ # aws_s3_account_public_access_block resource block not defined

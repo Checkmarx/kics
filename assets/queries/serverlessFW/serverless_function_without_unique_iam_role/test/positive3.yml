@@ -1,0 +1,25 @@
+service: service-different-event-types
+frameworkVersion: '2'
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+# These functions SHOULD be flagged - different event types need different permissions
+functions:
+  httpFunction:
+    handler: handler.http
+    events:
+      - http:
+          path: /api
+          method: get
+  s3Function:
+    handler: handler.s3
+    events:
+      - s3:
+          bucket: my-bucket
+          event: s3:ObjectCreated:*
+  snsFunction:
+    handler: handler.sns
+    events:
+      - sns:
+          topicName: my-topic

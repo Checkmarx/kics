@@ -10,5 +10,23 @@
     "severity": "HIGH",
     "line": 8,
     "fileName": "positive2.yml"
+  },
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "HIGH",
+    "line": 9,
+    "fileName": "positive3.yml"
+  },
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "HIGH",
+    "line": 15,
+    "fileName": "positive3.yml"
+  },
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "HIGH",
+    "line": 21,
+    "fileName": "positive3.yml"
   }
 ]

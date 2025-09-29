@@ -1,0 +1,44 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API with Mixed Security - Should Flag",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/secure": {
+      "get": {
+        "operationId": "getSecure",
+        "summary": "Get secure data",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/unsecure": {
+      "post": {
+        "operationId": "postUnsecure",
+        "summary": "Post without security",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
