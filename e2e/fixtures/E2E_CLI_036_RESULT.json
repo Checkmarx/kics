@@ -249,34 +249,6 @@
       ]
     },
     {
-      "query_name": "ELB With Security Group Without Outbound Rules",
-      "query_id": "01d5a458-a6c4-452a-ac50-054d59275b7c",
-      "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupegress",
-      "severity": "MEDIUM",
-      "platform": "CloudFormation",
-      "cwe": "665",
-      "cloud_provider": "AWS",
-      "category": "Networking and Firewall",
-      "experimental": false,
-      "description": "An AWS Elastic Load Balancer (ELB) shouldn't have security groups without outbound rules",
-      "description_id": "7b876844",
-      "files": [
-        {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "ee0915eb8433ec18c3f357c5eb0d243ce5c3a077e63e222230c4c0d7bf049416",
-          "line": 14,
-          "resource_type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
-          "resource_name": "ECSALB",
-          "issue_type": "MissingAttribute",
-          "search_key": "Resources.EcsSecurityGroup.Properties",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupEgress' is defined",
-          "actual_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupEgress' is undefined"
-        }
-      ]
-    },
-    {
       "query_name": "Empty Roles For ECS Cluster Task Definitions",
       "query_id": "7f384a5f-b5a2-4d84-8ca3-ee0a5247becb",
       "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html",
