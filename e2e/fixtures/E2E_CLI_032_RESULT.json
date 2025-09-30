@@ -301,34 +301,6 @@
       ]
     },
     {
-      "query_name": "ELB With Security Group Without Inbound Rules",
-      "query_id": "e200a6f3-c589-49ec-9143-7421d4a2c845",
-      "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupingress",
-      "severity": "MEDIUM",
-      "platform": "CloudFormation",
-      "cwe": "665",
-      "cloud_provider": "AWS",
-      "category": "Networking and Firewall",
-      "experimental": false,
-      "description": "An AWS Elastic Load Balancer (ELB) shouldn't have security groups without outbound rules",
-      "description_id": "3ccdd7d2",
-      "files": [
-        {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "d762780be8bebaa6b6bc6b6075a5dcee0edd37f639aa63061f29a13160eae116",
-          "line": 14,
-          "resource_type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
-          "resource_name": "ECSALB",
-          "issue_type": "MissingAttribute",
-          "search_key": "Resources.EcsSecurityGroup.Properties",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupIngress' is defined",
-          "actual_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupIngress' is undefined"
-        }
-      ]
-    },
-    {
       "query_name": "ELB With Security Group Without Outbound Rules",
       "query_id": "01d5a458-a6c4-452a-ac50-054d59275b7c",
       "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupegress",

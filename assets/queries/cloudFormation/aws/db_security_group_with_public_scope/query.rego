@@ -3,10 +3,8 @@ package Cx
 import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
-	not input.document[i].Resources[name].Type == "AWS::RDS::DBSecurityGroup"
 	resource := input.document[i].Resources[name]
-	check_public(resource)
-	some j
+	is_public_dbinstance(resource)
 	res := input.document[i].Resources[j]
 	res.Type == "AWS::EC2::SecurityGroup"
 	not res.Properties.SecurityGroupIngress[x].CidrIpv6
@@ -25,10 +23,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	not input.document[i].Resources[name].Type == "AWS::RDS::DBSecurityGroup"
 	resource := input.document[i].Resources[name]
-	check_public(resource)
-	some j
+	is_public_dbinstance(resource)
 	res := input.document[i].Resources[j]
 	res.Type == "AWS::EC2::SecurityGroup"
 	not res.Properties.SecurityGroupIngress[x].CidrIp
@@ -47,10 +43,8 @@ CxPolicy[result] {
 }
 
 CxPolicy[result] {
-	not input.document[i].Resources[name].Type == "AWS::EC2::SecurityGroup"
 	resource := input.document[i].Resources[name]
-	check_public(resource)
-	some j
+	is_public_dbinstance(resource)
 	res := input.document[i].Resources[j]
 	res.Type == "AWS::RDS::DBSecurityGroup"
 	ipv4 := res.Properties.DBSecurityGroupIngress[x].CIDRIP
@@ -67,7 +61,10 @@ CxPolicy[result] {
 	}
 }
 
-check_public(resource) {
+is_public_dbinstance(resource) {
 	resource.Type == "AWS::RDS::DBInstance"
 	cf_lib.isCloudFormationTrue(resource.Properties.PubliclyAccessible)
+} else {
+	resource.Type == "AWS::RDS::DBInstance"
+	common_lib.valid_key(resource.Properties.PubliclyAccessible)
 }
