@@ -12,7 +12,7 @@ CxPolicy[result] {
 	
 	securityGroup_name := cf_lib.get_name(securityGroups[sg])
 	not has_standalone_ingress(securityGroup_name, doc)
-	value := withoutOutboundRules(doc.Resources[securityGroup_name],securityGroup_name)
+	value := withoutInboundRules(doc.Resources[securityGroup_name],securityGroup_name)
 	value != ""
 
 	result := {
@@ -27,7 +27,7 @@ CxPolicy[result] {
 	}
 }
 
-withoutOutboundRules(securityGroup,name) = results {
+withoutInboundRules(securityGroup,name) = results {
 	not common_lib.valid_key(securityGroup.Properties, "SecurityGroupIngress")
 	results := {"expected": "be defined", "actual": "undefined", "path": "", "issue": "MissingAttribute",
 				"searchlineArray": ["Resources", name, "Properties"]}
