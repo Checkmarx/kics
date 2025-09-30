@@ -5,7 +5,7 @@ import data.generic.terraform as tf_lib
 
 types := {"azurerm_function_app", "azurerm_linux_function_app", "azurerm_windows_function_app"}
 
-CxPolicy[result] { # only for legacy "azurerm_function_app" because ftps_state defaults to "AllAllowed"
+CxPolicy[result] { # for legacy "azurerm_function_app" -- ftps_state defaults to "AllAllowed"
 	function := input.document[i].resource.azurerm_function_app[name]
 
 	results := get_path(function,name)

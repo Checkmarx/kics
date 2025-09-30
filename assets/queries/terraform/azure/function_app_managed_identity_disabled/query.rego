@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-types := {"azurerm_function_app","azurerm_linux_function_app", "azurerm_windows_function_app"}
+types := {"azurerm_function_app", "azurerm_linux_function_app", "azurerm_windows_function_app"}
 
 CxPolicy[result] {
 	function := input.document[i].resource[types[t]][name]
