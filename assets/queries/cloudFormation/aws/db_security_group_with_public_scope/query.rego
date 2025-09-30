@@ -1,6 +1,7 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[name]
@@ -65,6 +66,6 @@ is_public_dbinstance(resource) {
 	resource.Type == "AWS::RDS::DBInstance"
 	cf_lib.isCloudFormationTrue(resource.Properties.PubliclyAccessible)
 } else {
-	resource.Type == "AWS::RDS::DBInstance"
-	common_lib.valid_key(resource.Properties.PubliclyAccessible)
+	resource.Type == "AWS::RDS::DBInstance" 
+	not common_lib.valid_key(resource.Properties, "PubliclyAccessible") #default value varies so true is assumed 
 }
