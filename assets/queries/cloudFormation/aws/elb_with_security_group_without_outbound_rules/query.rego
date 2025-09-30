@@ -4,34 +4,41 @@ import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	resource := input.document[i].Resources[name]
+	doc := input.document[i]
+	resource := doc.Resources[name]
 
 	cf_lib.isLoadBalancer(resource)
 	securityGroups := resource.Properties.SecurityGroups
-
-	some sg
-	securityGroup := securityGroups[sg]
-	value := withoutOutboundRules(securityGroup)
+	
+	securityGroup_name := cf_lib.get_name(securityGroups[sg])
+	not has_standalone_egress(securityGroup_name, doc)
+	value := withoutOutboundRules(doc.Resources[securityGroup_name],securityGroup_name)
+	value != ""
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("Resources.%s.Properties%s", [securityGroup, value.path]),
+		"searchKey": sprintf("Resources.%s.Properties%s", [securityGroup_name, value.path]),
 		"issueType": value.issue,
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupEgress' is %s", [securityGroup, value.expected]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.SecurityGroupEgress' is %s", [securityGroup, value.actual]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupEgress' should %s", [securityGroup_name, value.expected]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.SecurityGroupEgress' is %s", [securityGroup_name, value.actual]),
+		"searchLine": common_lib.build_search_line(value.searchlineArray,[])
 	}
 }
 
-withoutOutboundRules(securityGroupName) = result {
-	securityGroup := input.document[i].Resources[securityGroupName]
+withoutOutboundRules(securityGroup,name) = results {
 	not common_lib.valid_key(securityGroup.Properties, "SecurityGroupEgress")
-	result := {"expected": "defined", "actual": "undefined", "path": "", "issue": "MissingAttribute"}
-}
-
-withoutOutboundRules(securityGroupName) = result {
-	securityGroup := input.document[i].Resources[securityGroupName]
+	results := {"expected": "be defined", "actual": "undefined", "path": "", "issue": "MissingAttribute",
+				"searchlineArray": ["Resources", name, "Properties"]}
+} else = results {
 	securityGroup.Properties.SecurityGroupEgress == []
-	result := {"expected": "not empty", "actual": "empty", "path": ".SecurityGroupEgress", "issue": "IncorrectValue"}
+	results := {"expected": "not be empty", "actual": "empty", "path": ".SecurityGroupEgress", "issue": "IncorrectValue",
+				"searchlineArray": ["Resources", name, "Properties", "SecurityGroupEgress"]}
+} 
+
+has_standalone_egress(securityGroup_name,doc) {
+	resource := doc.Resources[j]
+	resource.Type == "AWS::EC2::SecurityGroupEgress"
+	cf_lib.get_name(resource.Properties.GroupId) == securityGroup_name
 }
