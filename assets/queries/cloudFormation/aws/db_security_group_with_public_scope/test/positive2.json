@@ -85,7 +85,7 @@
     "DBInstance": {
       "Type": "AWS::RDS::DBInstance",
       "Properties": {
-        "PubliclyAccessible": false,
+        "PubliclyAccessible": true,
         "DBName": {
           "Ref": "DBName"
         },

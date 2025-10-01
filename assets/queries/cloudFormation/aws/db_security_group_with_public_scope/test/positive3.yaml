@@ -1,34 +1,15 @@
 Resources:
-  DBEC2SecurityGroup2:
-    Type: AWS::EC2::SecurityGroup
+  DbSecurityByEC2SecurityGroup:
+    Type: AWS::RDS::DBSecurityGroup #legacy-inline
     Properties:
-      GroupDescription: Open database for access
-      SecurityGroupIngress:
-      - IpProtocol: tcp
-        FromPort: 80
-        ToPort: 80
-        CidrIpv6: ::/0
-      SecurityGroupEgress:
-      - IpProtocol: tcp
-        FromPort: 80
-        ToPort: 80
-        CidrIp: 0.0.0.0/0
-  DBInstance3:
+      GroupDescription: "Ingress for Amazon EC2 security group"
+      DBSecurityGroupIngress:
+        -
+          CIDRIP: 0.0.0.0/0
+  DBInstance:
     Type: AWS::RDS::DBInstance
-    Properties:
-      PubliclyAccessible: true
+    Properties: 
+      PubliclyAccessible: "true"  #quoted string support test
       DBName:
         Ref: DBName
       Engine: MySQL
-      MultiAZ:
-        Ref: MultiAZDatabase
-      MasterUsername:
-        Ref: DBUser
-      DBInstanceClass:
-        Ref: DBClass
-      AllocatedStorage:
-        Ref: DBAllocatedStorage
-      MasterUserPassword:
-        Ref: DBPassword
-      VPCSecurityGroups:
-      - !GetAtt DBEC2SecurityGroup2.GroupId

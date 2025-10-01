@@ -1,21 +1,76 @@
 Resources:
-  DBinstance:
-    Type: AWS::RDS::DBInstance
-    Properties:
-      PubliclyAccessible: true
-      DBSecurityGroups:
-        -
-          Ref: "DbSecurityByEC2SecurityGroup"
-      AllocatedStorage: "5"
-      DBInstanceClass: "db.t3.small"
-      Engine: "MySQL"
-      MasterUsername: "YourName"
-      MasterUserPassword: "YourPassword"
-    DeletionPolicy: "Snapshot"
-  DbSecurityByEC2SecurityGroup:
+  # This sample does not flag because "PubliclyAccessible" is set to false
+  # Legacy RDS DBSecurityGroup with inline ingress
+  DbSecurityByEC2SecurityGroupInline:
     Type: AWS::RDS::DBSecurityGroup
     Properties:
-      GroupDescription: "Ingress for Amazon EC2 security group"
+      GroupDescription: "Legacy inline ingress"
       DBSecurityGroupIngress:
-        -
-          CIDRIP: 1.2.3.4/24
+        - CIDRIP: 0.0.0.0/0
+
+  # Legacy RDS DBSecurityGroup with standalone ingress
+  DbSecurityByEC2SecurityGroupStandalone:
+    Type: AWS::RDS::DBSecurityGroup
+    Properties:
+      GroupDescription: "Legacy standalone ingress"
+
+  DbSecurityIngressRule:
+    Type: AWS::RDS::DBSecurityGroupIngress
+    Properties:
+      DBSecurityGroupName: !Ref DbSecurityByEC2SecurityGroupStandalone
+      CIDRIP: 0.0.0.0/0
+
+  # EC2 Security Group with inline IPv4 and IPv6 rules
+  DBEC2SecurityGroupInline:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Inline IPv4 and IPv6 ingress"
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIpv6: ::/0
+
+  # EC2 Security Group with standalone ingress rules
+  DBEC2SecurityGroupStandalone:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Standalone IPv4 and IPv6 ingress"
+      VpcId: !Ref VPC
+
+  DBEC2SecurityGroupIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DBEC2SecurityGroupStandalone
+      IpProtocol: tcp
+      FromPort: 80
+      ToPort: 80
+      CidrIp: 0.0.0.0/0
+
+  DBEC2SecurityGroupIngressIPv6:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DBEC2SecurityGroupStandalone
+      IpProtocol: tcp
+      FromPort: 80
+      ToPort: 80
+      CidrIpv6: ::/0
+
+  # RDS Instance referencing all security groups
+  DBInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      PubliclyAccessible: false     #set to false
+      DBName: !Ref DBName
+      Engine: MySQL
+      DBSecurityGroups:
+        - !Ref DbSecurityByEC2SecurityGroupInline
+        - !Ref DbSecurityByEC2SecurityGroupStandalone
+      VPCSecurityGroups:
+        - !Ref DBEC2SecurityGroupInline
+        - !Ref DBEC2SecurityGroupStandalone

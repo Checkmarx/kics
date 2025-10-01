@@ -1,14 +1,44 @@
 {
   "Resources": {
-    "DBEC2SecurityGroup": {
+    "DbSecurityByEC2SecurityGroupInline": {
+      "Type": "AWS::RDS::DBSecurityGroup",
+      "Properties": {
+        "GroupDescription": "Legacy inline ingress",
+        "DBSecurityGroupIngress": [
+          {
+            "CIDRIP": "1.2.3.4/24"
+          }
+        ]
+      }
+    },
+    "DbSecurityByEC2SecurityGroupStandalone": {
+      "Type": "AWS::RDS::DBSecurityGroup",
+      "Properties": {
+        "GroupDescription": "Legacy standalone ingress"
+      }
+    },
+    "DbSecurityIngressRule": {
+      "Type": "AWS::RDS::DBSecurityGroupIngress",
+      "Properties": {
+        "DBSecurityGroupName": {
+          "Ref": "DbSecurityByEC2SecurityGroupStandalone"
+        },
+        "CIDRIP": "1.2.3.4/24"
+      }
+    },
+    "DBEC2SecurityGroupInline": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
+        "GroupDescription": "Inline IPv4 and IPv6 ingress",
+        "VpcId": {
+          "Ref": "VPC"
+        },
         "SecurityGroupIngress": [
           {
-            "CidrIp": "1.2.3.4/24",
             "IpProtocol": "tcp",
             "FromPort": 80,
-            "ToPort": 80
+            "ToPort": 80,
+            "CidrIp": "1.2.3.4/24"
           },
           {
             "IpProtocol": "tcp",
@@ -16,16 +46,40 @@
             "ToPort": 80,
             "CidrIpv6": "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
           }
-        ],
-        "SecurityGroupEgress": [
-          {
-            "IpProtocol": "tcp",
-            "FromPort": 80,
-            "ToPort": 80,
-            "CidrIp": "0.0.0.0/0"
-          }
-        ],
-        "GroupDescription": "Open database for access"
+        ]
+      }
+    },
+    "DBEC2SecurityGroupStandalone": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Standalone IPv4 and IPv6 ingress",
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      }
+    },
+    "DBEC2SecurityGroupIngress": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "DBEC2SecurityGroupStandalone"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": 80,
+        "ToPort": 80,
+        "CidrIp": "1.2.3.4/24"
+      }
+    },
+    "DBEC2SecurityGroupIngressIPv6": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "DBEC2SecurityGroupStandalone"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": 80,
+        "ToPort": 80,
+        "CidrIpv6": "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
       }
     },
     "DBInstance": {
@@ -35,24 +89,22 @@
         "DBName": {
           "Ref": "DBName"
         },
-        "MultiAZ": {
-          "Ref": "MultiAZDatabase"
-        },
-        "MasterUsername": {
-          "Ref": "DBUser"
-        },
-        "AllocatedStorage": {
-          "Ref": "DBAllocatedStorage"
-        },
         "Engine": "MySQL",
-        "DBInstanceClass": {
-          "Ref": "DBClass"
-        },
-        "MasterUserPassword": {
-          "Ref": "DBPassword"
-        },
+        "DBSecurityGroups": [
+          {
+            "Ref": "DbSecurityByEC2SecurityGroupInline"
+          },
+          {
+            "Ref": "DbSecurityByEC2SecurityGroupStandalone"
+          }
+        ],
         "VPCSecurityGroups": [
-          "DBEC2SecurityGroup.GroupId"
+          {
+            "Ref": "DBEC2SecurityGroupInline"
+          },
+          {
+            "Ref": "DBEC2SecurityGroupStandalone"
+          }
         ]
       }
     }

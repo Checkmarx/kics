@@ -75,3 +75,7 @@ similarityIDChangeList:
       queryName: Vulnerable Default SSL Certificate
       observations: ""
       change: 5
+    - queryId: 9564406d-e761-4e61-b8d7-5926e3ab8e79
+      queryName: DB Security Group With Public Scope
+      observations: The query was not pointing to the specific ingress inside the SecurityGroupIngress array 
+      change: 1
