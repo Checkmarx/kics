@@ -78,11 +78,11 @@ rule_is_unrestricted("aws_vpc_security_group_ingress_rule",rule,name) = results 
 		"field": "cidr_ipv4"
 	}
 } else = results {
-	rule.cidr_ipv6 == tf_lib.unrestricted_ipv6[l]
+	rule.cidr_ipv6 == common_lib.unrestricted_ipv6[l]
 	results := {
 		"searchKey" : sprintf("aws_vpc_security_group_ingress_rule[%s].cidr_ipv6", [name]),
-		"keyExpectedValue": sprintf("aws_vpc_security_group_ingress_rule[%s].cidr_ipv6 should not be equal to '%s'", [name,tf_lib.unrestricted_ipv6[l]]),   
-		"keyActualValue": sprintf("aws_vpc_security_group_ingress_rule[%s].cidr_ipv6 is equal to '%s'", [name,tf_lib.unrestricted_ipv6[l]]),   
+		"keyExpectedValue": sprintf("aws_vpc_security_group_ingress_rule[%s].cidr_ipv6 should not be equal to '%s'", [name,common_lib.unrestricted_ipv6[l]]),   
+		"keyActualValue": sprintf("aws_vpc_security_group_ingress_rule[%s].cidr_ipv6 is equal to '%s'", [name,common_lib.unrestricted_ipv6[l]]),   
 		"field": "cidr_ipv6"
 	}
 } else = ""
@@ -97,11 +97,11 @@ rule_is_unrestricted("aws_security_group_rule",rule,name) = results {
 		"field": "cidr_blocks"
 	}
 } else = results {
-	contains(rule.ipv6_cidr_blocks[_], tf_lib.unrestricted_ipv6[l])
+	contains(rule.ipv6_cidr_blocks[_], common_lib.unrestricted_ipv6[l])
 	results := {
 		"searchKey": sprintf("aws_security_group_rule[%s].ipv6_cidr_blocks", [name]),
-		"keyExpectedValue": sprintf("aws_security_group_rule[%s].ipv6_cidr_blocks should not contain '%s'",[name,tf_lib.unrestricted_ipv6[l]]),
-		"keyActualValue": sprintf("aws_security_group_rule[%s].ipv6_cidr_blocks contains '%s'",[name,tf_lib.unrestricted_ipv6[l]]),
+		"keyExpectedValue": sprintf("aws_security_group_rule[%s].ipv6_cidr_blocks should not contain '%s'",[name,common_lib.unrestricted_ipv6[l]]),
+		"keyActualValue": sprintf("aws_security_group_rule[%s].ipv6_cidr_blocks contains '%s'",[name,common_lib.unrestricted_ipv6[l]]),
 		"field": "ipv6_cidr_blocks"
 	} 
 } else = ""
@@ -121,12 +121,12 @@ is_unrestricted_ingress(ingress,is_unique_element,name,i2) = results {
 } else = results {
 	#ipv6 single ingress
 	is_unique_element
-	contains(ingress.ipv6_cidr_blocks[_], tf_lib.unrestricted_ipv6[l])
+	contains(ingress.ipv6_cidr_blocks[_], common_lib.unrestricted_ipv6[l])
 
 	results := {
 		"searchKey": sprintf("aws_security_group[%s].ingress.ipv6_cidr_blocks", [name]),
-		"keyExpectedValue": sprintf("aws_security_group[%s].ingress.ipv6_cidr_blocks should not contain '%s'", [name,tf_lib.unrestricted_ipv6[l]]),
-		"keyActualValue": sprintf("aws_security_group[%s].ingress.ipv6_cidr_blocks contains '%s'", [name,tf_lib.unrestricted_ipv6[l]]),
+		"keyExpectedValue": sprintf("aws_security_group[%s].ingress.ipv6_cidr_blocks should not contain '%s'", [name,common_lib.unrestricted_ipv6[l]]),
+		"keyActualValue": sprintf("aws_security_group[%s].ingress.ipv6_cidr_blocks contains '%s'", [name,common_lib.unrestricted_ipv6[l]]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", "ipv6_cidr_blocks"], []),
 	}
 } else = results {
@@ -143,12 +143,12 @@ is_unrestricted_ingress(ingress,is_unique_element,name,i2) = results {
 } else = results {
 	#ipv6 ingress array
 	not is_unique_element
-	contains(ingress.ipv6_cidr_blocks[_], tf_lib.unrestricted_ipv6[l])
+	contains(ingress.ipv6_cidr_blocks[_], common_lib.unrestricted_ipv6[l])
 
 	results := {
 		"searchKey": sprintf("aws_security_group[%s].ingress[%d].ipv6_cidr_blocks", [name,i2]),
-		"keyExpectedValue": sprintf("aws_security_group[%s].ingress[%d].ipv6_cidr_blocks should not contain '%s'", [name,i2,tf_lib.unrestricted_ipv6[l]]),
-		"keyActualValue": sprintf("aws_security_group[%s].ingress[%d].ipv6_cidr_blocks contains '%s'", [name,i2,tf_lib.unrestricted_ipv6[l]]),
+		"keyExpectedValue": sprintf("aws_security_group[%s].ingress[%d].ipv6_cidr_blocks should not contain '%s'", [name,i2,common_lib.unrestricted_ipv6[l]]),
+		"keyActualValue": sprintf("aws_security_group[%s].ingress[%d].ipv6_cidr_blocks contains '%s'", [name,i2,common_lib.unrestricted_ipv6[l]]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2, "ipv6_cidr_blocks"], []),
 	}
 } else = ""
@@ -167,10 +167,10 @@ check_cidr_block(cidr_or_ingress,name,type,keyToCheck,i3) = results {
 } else = results {
 	#ipv6 inside ingress
 	type == "ingress_with_ipv6_cidr_blocks"
-	common_lib.inArray(cidr_or_ingress.ipv6_cidr_blocks, tf_lib.unrestricted_ipv6[l])
+	common_lib.inArray(cidr_or_ingress.ipv6_cidr_blocks, common_lib.unrestricted_ipv6[l])
 	results := {
-		"keyExpectedValue": sprintf("module[%s].%s[%d].ipv6_cidr_blocks should not contain '%s'", [name, keyToCheck, i3, tf_lib.unrestricted_ipv6[l]]),
-		"keyActualValue": sprintf("module[%s].%s[%d].ipv6_cidr_blocks contains '%s'", [name, keyToCheck, i3, tf_lib.unrestricted_ipv6[l]]),
+		"keyExpectedValue": sprintf("module[%s].%s[%d].ipv6_cidr_blocks should not contain '%s'", [name, keyToCheck, i3, common_lib.unrestricted_ipv6[l]]),
+		"keyActualValue": sprintf("module[%s].%s[%d].ipv6_cidr_blocks contains '%s'", [name, keyToCheck, i3, common_lib.unrestricted_ipv6[l]]),
 		"searchKey" : sprintf("module[%s].%s[%d].ipv6_cidr_blocks", [name, keyToCheck, i3]),
 		"searchLine" : common_lib.build_search_line(["module", name, keyToCheck, i3, "ipv6_cidr_blocks"], []),
 	} 
@@ -187,10 +187,10 @@ check_cidr_block(cidr_or_ingress,name,type,keyToCheck,i3) = results {
 } else = results {
 	#direct ipv6
 	type == "ingress_ipv6_cidr_blocks"
-	cidr_or_ingress == tf_lib.unrestricted_ipv6[l]
+	cidr_or_ingress == common_lib.unrestricted_ipv6[l]
 	results := {
-		"keyExpectedValue": sprintf("module[%s].%s should not contain '%s'", [name, keyToCheck, tf_lib.unrestricted_ipv6[l]]),
-		"keyActualValue": sprintf("module[%s].%s contains '%s'", [name, keyToCheck, tf_lib.unrestricted_ipv6[l]]),
+		"keyExpectedValue": sprintf("module[%s].%s should not contain '%s'", [name, keyToCheck, common_lib.unrestricted_ipv6[l]]),
+		"keyActualValue": sprintf("module[%s].%s contains '%s'", [name, keyToCheck, common_lib.unrestricted_ipv6[l]]),
 		"searchKey" : sprintf("module[%s].%s", [name, keyToCheck]),
 		"searchLine" : common_lib.build_search_line(["module", name, keyToCheck], []),
 	} 
