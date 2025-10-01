@@ -79,7 +79,7 @@
         "IpProtocol": "tcp",
         "FromPort": 80,
         "ToPort": 80,
-        "CidrIpv6": "::/0"
+        "CidrIpv6": "0000:0000:0000:0000:0000:0000:0000:0000/0"
       }
     },
     "DBInstance": {

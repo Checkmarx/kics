@@ -37,7 +37,7 @@ exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = res
 	}
 } else = results {
 	type == "AWS::EC2::SecurityGroup"
-	res.CidrIpv6 == "::/0" #ipv6
+	res.CidrIpv6 == common_lib.unrestricted_ipv6[_] #ipv6
 
 	results := {
 		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIpv6", [resource_index, ing_index]),
@@ -67,7 +67,7 @@ exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = res
 	}
 } else = results {
 	type == "AWS::EC2::SecurityGroupIngress"
-	res.Properties.CidrIpv6 == "::/0" #standalone ipv6
+	res.Properties.CidrIpv6 == common_lib.unrestricted_ipv6[_] #standalone ipv6
 
 	results := {
 		"searchKey": sprintf("Resources.%s.Properties.CidrIpv6", [resource_index]),
