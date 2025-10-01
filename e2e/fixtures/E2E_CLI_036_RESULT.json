@@ -235,15 +235,15 @@
       "files": [
         {
           "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "ee0915eb8433ec18c3f357c5eb0d243ce5c3a077e63e222230c4c0d7bf049416",
+          "similarity_id": "21ac3838a65782694befbcb5bea5e40b5dbf055b4acdec29326ee8c09df8aef5",
           "line": 14,
           "resource_type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
           "resource_name": "ECSALB",
           "issue_type": "MissingAttribute",
           "search_key": "Resources.EcsSecurityGroup.Properties",
-          "search_line": -1,
+          "search_line": 14,
           "search_value": "",
-          "expected_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupEgress' is defined",
+          "expected_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupEgress' should be defined",
           "actual_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupEgress' is undefined"
         }
       ]
