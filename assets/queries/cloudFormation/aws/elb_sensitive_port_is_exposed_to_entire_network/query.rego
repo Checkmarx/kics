@@ -3,53 +3,6 @@ package Cx
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
-isAccessibleFromEntireNetwork(ingress) {
-	endswith(ingress.CidrIp, "/0")
-}
-
-getProtocolList(protocol) = list {
-	upper(protocol) == ["-1", "ALL"][_]
-	list = ["TCP", "UDP"]
-} else = list {
-	upper(protocol) == "TCP"
-	list = ["TCP"]
-} else = list {
-	upper(protocol) == "UDP"
-	list = ["UDP"]
-}
-
-getProtocolPorts(protocols, tcpPortsMap) = portsMap {
-	protocols[_] == ["-1", "ALL"][_]
-	portsMap = tcpPortsMap
-} else = portsMap {
-	protocols[_] == "UDP"
-	portsMap = tcpPortsMap
-} else = portsMap {
-	protocols[_] == "TCP"
-	portsMap = tcpPortsMap
-}
-
-getELBType(elb) = type {
-	common_lib.valid_key(elb.Properties, "Type")
-	type = elb.Properties.Type
-} else = type {
-	elb.Type == "AWS::ElasticLoadBalancing::LoadBalancer"
-	type = "classic"
-} else = type {
-	elb.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
-	type = "application"
-}
-
-getLinkedSecGroupList(elb, resources) = elbSecGroupName {
-	common_lib.valid_key(elb.Properties, "SecurityGroups")
-	elbSecGroupName = elb.Properties.SecurityGroups
-} else = ec2SecGroup {
-	ec2InstanceList := [ec2 | ec2 := resources[name]; contains(upper(ec2.Type), "INSTANCE")]
-	ec2Instance := ec2InstanceList[i]
-	common_lib.valid_key(ec2Instance.Properties, "SecurityGroups")
-	ec2SecGroup = ec2Instance.Properties.SecurityGroups
-}
-
 CxPolicy[result] {
 	#############	document and resource
 	resources := input.document[i].Resources
@@ -73,7 +26,7 @@ CxPolicy[result] {
 
 	protocols := getProtocolList(ingress.IpProtocol)
 	protocol := protocols[n]
-	portsMap = getProtocolPorts(protocols, common_lib.tcpPortsMap, cf_lib.udpPortsMap)
+	portsMap = common_lib.tcpPortsMap
 
 	#############	Checks
 	isAccessibleFromEntireNetwork(ingress)
@@ -95,4 +48,40 @@ CxPolicy[result] {
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s load balancer %s", [portName, protocol, portNumber, elbType, elb.name]),
 		"keyActualValue": sprintf("%s (%s:%d) is allowed in %v load balancer %s", [portName, protocol, portNumber, elbType, elb.name]),
 	}
+}
+
+isAccessibleFromEntireNetwork(ingress) {
+	endswith(ingress.CidrIp, "/0")
+}
+
+getProtocolList(protocol) = list {
+	upper(protocol) == ["-1", "ALL"][_]
+	list = ["TCP", "UDP"]
+} else = list {
+	upper(protocol) == "TCP"
+	list = ["TCP"]
+} else = list {
+	upper(protocol) == "UDP"
+	list = ["UDP"]
+}
+
+getELBType(elb) = type {
+	common_lib.valid_key(elb.Properties, "Type")
+	type = elb.Properties.Type
+} else = type {
+	elb.Type == "AWS::ElasticLoadBalancing::LoadBalancer"
+	type = "classic"
+} else = type {
+	elb.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
+	type = "application"
+}
+
+getLinkedSecGroupList(elb, resources) = elbSecGroupName {
+	common_lib.valid_key(elb.Properties, "SecurityGroups")
+	elbSecGroupName = elb.Properties.SecurityGroups
+} else = ec2SecGroup {
+	ec2InstanceList := [ec2 | ec2 := resources[name]; contains(upper(ec2.Type), "INSTANCE")]
+	ec2Instance := ec2InstanceList[i]
+	common_lib.valid_key(ec2Instance.Properties, "SecurityGroups")
+	ec2SecGroup = ec2Instance.Properties.SecurityGroups
 }
