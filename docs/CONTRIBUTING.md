@@ -37,6 +37,8 @@ Use succinct but descriptive name (prefix with *feature/issue#-descriptive-name>
    git checkout -b <name-of-your-issue>
    ```
 5. Make your changes locally.
+   We recommend running the E2E tests by following the steps recommended in the [README](https://github.com/Checkmarx/kics/blob/master/e2e/README.md).
+   
 6. Validate your changes to reassure they meet project quality and contribution standards:
    ```sh
    golangci-lint run
@@ -59,6 +61,8 @@ Use succinct but descriptive name (prefix with *feature/issue#-descriptive-name>
    git push --set-upstream origin <name-of-your-issue>
    ```
 8. Submit a pull request on GitHub website.
+   
+   If the changes do not pass the pipeline, we recommend following the steps outlined [here](#tips), which cover some common cases.
 
 ---
 
@@ -139,6 +143,79 @@ Join the [GitHub discussions](https://github.com/Checkmarx/kics/discussions).
 Or contact KICS core team at [kics@checkmarx.com](mailto:kics@checkmarx.com)
 
 And become one of our top contributors!
+
+---
+
+## Tips 
+
+### Github Actions failing on E2E tests
+
+If an E2E test causes failures in Github actions, the recommended steps are: 
+
+1. Open the action that causes fail.
+2. Go to Summary tab.
+3. On the Summary page, go through the bottom of the page and download any artifact that not has an `.dockerbuild` extension.
+4. Extract the e2e-report and open the HTML in a browser.
+5. Filter the tests to display only those that failed.
+6. Check which test is causing the issue (e.g., E2E-CLI-032) and review the error description (e.g. number of lines not matching the expected value).
+7. Navigate to the `e2e/testcases` directory on [KICS github repository](https://github.com/Checkmarx/kics/tree/master/e2e/testcases) and open the Go file corresponding to the failing test (e.g. `e2e-cli-032_scan_output-path_validate_json.go`).
+
+8. Manually run a scan using the arguments provided in the file. 
+   Example for `E2E-CLI-032`:   
+   ```sh
+   go run .\cmd\console\main.go scan -o "/path/e2e/output" --output-name "E2E_CLI_032_RESULT" -p "/path/e2e/fixtures/samples/positive.yaml"
+   ``` 
+   Here, `/path/e2e/output` is where the scan results will be stored, and `/path/e2e/fixtures/samples/positive.yaml` is the input file that should be used by replacing path with the path to `positive.yaml` on your local machine.
+
+9. Navigate to the path specified by the `-o` flag and compare the generated file with the version in the [fixtures directory of the KICS repository](https://github.com/Checkmarx/kics/tree/master/e2e/fixtures).
+
+10. Merge the generated file or add any missing data to the original file in the repository. **Example**: paste the generated `E2E_CLI_032_RESULT` into `e2e/fixtures/e2e/E2E_CLI_032_RESULT.json`.
+
+11. Correct the path, to `/path/e2e/fixtures/samples/positive.yaml`, if it currently points to a local machine directory. **Example**: change `C:\Users\john\Desktop\kics\e2e\fixtures\samples\positive.yaml` to `/path/e2e/fixtures/samples/positive.yaml`.
+
+12. Commit and push the changes.
+
+### GitGuard Security Checks failing on the pipeline
+
+If the pipeline fails when submitting a Pull Request, it may be due to GitGuard detecting a secret. In such cases, the KICS team will review the detected secret. If the secret is confirmed to be used only for testing purposes, the action will be marked as a False Positive and can be safely ignored.
+
+### Flacky tests
+
+There is a known set of tests that are considered flaky. These tests may fail intermittently due to timming issues, external dependencies or environment-specific conditions, rather than actual problems on the code. The team is aware of these cases and continues to monitor and improve them. 
+
+Below is a list of currently identified flaky tests:
+
+- CycloneDX
+- analyserPaths
+
+Tests that compare terminal output are particularly prone to flakiness. Typically, a test is considered flaky if it passes on two operating systems but fails on one
+Tests that compare terminal output are particularly prone to flakiness. Typically, an flacky test is detected when, for the unit tests, it passes for two different operating systems but, for one in specific is does not. Normally, for this cases is a flacky test and, the KICS team should re-run the actions. 
+
+### Unit tests
+
+When a unit test fails in the KICS pipeline, there are two recommended approaches:
+
+1. Open the failing unit-test page, go to **Test and Generate Report Dev**, wait for the report to generate, then search for `FAIL:` to identify the issue.
+
+2. Alternatively, access the **Summary** tab, download the artifact that includes the failing OS in its name (or any artifact if all OS tests fail), open it, and search for `FAIL:` or the name of the query (e.g., `user_data_contains_encodd_private_key`).
+
+Unit test failures can occurr due to incorrectly defined lines in `positive_expected_result.json` or missing tests in that file.
+
+### Grype or Trivy tests failing
+
+Sometimes the KICS pipelines may fail due to issues in the Grype and Trivy tests. In such cases, it might be sufficient to just update the version on the `go.mod` file. For such cases here are the recommended steps:
+
+1. Open the action that is currently failing.
+2. Go to the `Summary` tab on the top left corner.
+3. Go to the `Grype docker image scan` or `Trivy docker image scan` jobs.
+4. Download the artifact `trivy-fs-scan-results` or similar.
+5. Open the `results.txt` file and check if there is any table that suggests the the new version of the library that is causing the problem.
+6. After that, go to the `go.mod` file that is on the root of the repository and, change the version of the library to the version that is suggested on the file `results.txt` downloaded.
+7. Run `go mod tidy`.
+8. Run `go mod vendor`.
+9. Commit and push the changes.
+
+NOTE: This is only a solution to solve the cases when the results provide a library that is on `go.mod` file and has a recommended fixed version. In some cases, there is no recommended version for the library on the `results.txt` or the library mentioned on the file is not on the `go.mod` file, for these cases, commonly it is needed to update the image on the `Dockerfile`.
 
 ---
 
