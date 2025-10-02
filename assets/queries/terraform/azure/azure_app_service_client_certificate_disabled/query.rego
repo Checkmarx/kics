@@ -34,7 +34,7 @@ client_certificate_is_undefined_or_false(resource,name,type) = results { # case 
 		"searchKey" : sprintf("%s[%s]", [type, name]),
 		"issueType" : "MissingAttribute",
 		"keyExpectedValue" : sprintf("'%s[%s].%s' should be defined and set to true", [type, name, field_name]),
-		"keyActualValue" : sprintf("'%s[%s].client_cert_enabeld' is undefined", [type, name]),
+		"keyActualValue" : sprintf("'%s[%s].client_cert_enabled' is undefined", [type, name]),
 		"searchLine": common_lib.build_search_line(["resource", type , name], []),
 		"remediation": sprintf("%s = true",[field_name]),
 		"remediationType": "addition",
