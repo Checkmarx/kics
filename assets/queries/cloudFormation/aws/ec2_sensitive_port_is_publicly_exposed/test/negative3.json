@@ -1,5 +1,19 @@
 {
+  "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
+    "EC2Instance01": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-79fd7eee",
+        "InstanceType": "t3.medium",
+        "SecurityGroupIds": [
+          { "Ref": "Negative1IPv4_1" },
+          { "Ref": "Negative1IPv4_2" },
+          { "Ref": "Negative1ArrayTestIPv4" }
+        ],
+        "KeyName": "my-new-rsa-key"
+      }
+    },
     "Negative1IPv4_1": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {

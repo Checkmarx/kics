@@ -1,4 +1,13 @@
 Resources:
+  EC2Instance01:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-79fd7eee
+      InstanceType: t3.medium
+      SecurityGroupIds:
+        - !Ref DualStackSecurityGroup
+      KeyName: my-new-rsa-key
+
   DualStackSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:

@@ -1,4 +1,15 @@
 Resources:
+  EC2Instance01:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-79fd7eee
+      InstanceType: t3.medium
+      SecurityGroupIds:
+        - !Ref Positive1IPv4_1
+        - !Ref Positive1IPv4_2
+        - !Ref Positive1ArrayTestIPv4
+      KeyName: my-new-rsa-key
+
   Positive1IPv4_1:
     Type: AWS::EC2::SecurityGroup
     Properties:

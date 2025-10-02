@@ -1,5 +1,17 @@
 {
+  "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
+    "EC2Instance01": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-79fd7eee",
+        "InstanceType": "t3.medium",
+        "SecurityGroupIds": [
+          { "Ref": "Negative2SecurityGroup" }
+        ],
+        "KeyName": "my-new-rsa-key"
+      }
+    },
     "Negative2SecurityGroup": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
