@@ -2,10 +2,15 @@
 
 The purpose of this docs is to describe KICS' E2E test suite
 
+## Prerequisites
+Before running any commands on this guide, make sure the following technologies are installed and set up on your system:
+- Node.js 
+- Go (Golang) 1.16 or higher
+- Docker engine
+
 ## Getting Started
 
 Before running the tests, you must start the script server (NodeJS) and keep it running.
-_Note: If you don't run this script, only the tests "031" and "052" must fail._
 
 - Before running tests:
 ```bash
@@ -15,6 +20,8 @@ npm start
 ```
 
 - **Running E2E Tests from binary (faster) (used in dev/local):**
+
+_Note: for Windows only the test "092" must fail and, for Linux, only the tests "052" must fail._
 
 Prepare
 ```bash
@@ -34,6 +41,8 @@ go test "github.com/Checkmarx/kics/v2/e2e" -v -count=1 -tags dev
 ```
 
 - **Running E2E Tests from docker (slower) (used in CI):**
+
+_Note: when running the tests from docker only the tests "031" and "052" must fail_.
 
 Prepare
 ```bash
@@ -71,7 +80,6 @@ var tests = []struct {
 Test case args structure
 
 ```go
-
 type cmdArgs []string
 
 type args struct {
