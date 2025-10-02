@@ -179,7 +179,7 @@ If an E2E test causes failures in Github actions, the recommended steps are:
 
 If the pipeline fails when submitting a Pull Request, it may be due to GitGuard detecting a secret. In such cases, the KICS team will review the detected secret. If the secret is confirmed to be used only for testing purposes, the action will be marked as a False Positive and can be safely ignored.
 
-### Flacky tests
+### Flaky tests
 
 There is a known set of tests that are considered flaky. These tests may fail intermittently due to timming issues, external dependencies or environment-specific conditions, rather than actual problems on the code. The team is aware of these cases and continues to monitor and improve them. 
 
