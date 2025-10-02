@@ -4,40 +4,58 @@ import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
 CxPolicy[result] {
+	types := {"AWS::EC2::SecurityGroupIngress","AWS::EC2::SecurityGroup"}
 	resources := input.document[i].Resources
-	secGroup := resources[sec_group_name]
-	secGroup.Type == "AWS::EC2::SecurityGroup"
+	resource := resources[resource_name]
+	resource.Type == types[t]
 
-	ingress := secGroup.Properties.SecurityGroupIngress[l]
+	ingress_list := cf_lib.get_ingress_list(resource)
+	ingress := ingress_list[ing_index]
 
+	# check that it is exposed
+	cidr_fields := {"CidrIp", "CidrIpv6"}
+	endswith(ingress[cidr_fields[c]], "/0")
+
+	# get relevant ports for protocol(s)
 	protocols := getProtocolList(ingress.IpProtocol)
 	protocol := protocols[m]
-	portsMap := {
-		"TCP": common_lib.tcpPortsMap,
-		"UDP": cf_lib.udpPortsMap,
-	}
+	portsMap := common_lib.tcpPortsMap
 
-	isAccessibleFromEntireNetwork(ingress)
-
+	#check that relevant port numbers are included
 	portRange := numbers.range(ingress.FromPort, ingress.ToPort)
 	portNumber := portRange[idx]
-	portName := portsMap[protocol][portNumber]
+	portName := portsMap[portNumber]
+
+	results := get_search_values(ing_index, resource.Type, resource_name)
 
 	result := {
 		"documentId": input.document[i].id,
-		"resourceType": "AWS::EC2::SecurityGroup",
-		"resourceName": cf_lib.get_resource_name(secGroup, sec_group_name),
-		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d]", [sec_group_name,l]),
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, resource_name),
+		"searchKey": results.searchKey,
 		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
 		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
-		"searchLine": common_lib.build_search_line(["Resources", sec_group_name, "Properties", "SecurityGroupIngress", l], []),
+		"searchLine": results.searchLine,
 	}
 }
 
-isAccessibleFromEntireNetwork(ingress) {
-	endswith(ingress.CidrIp, "/0")
+get_search_values(ing_index, type, resource_name) = results {
+	type == "AWS::EC2::SecurityGroup"
+
+	results := {
+		"searchKey" : sprintf("Resources.%s.Properties.SecurityGroupIngress[%d]", [resource_name, ing_index]),
+		"searchLine" : common_lib.build_search_line(["Resources", resource_name, "Properties", "SecurityGroupIngress", ing_index], []),
+	}
+
+} else = results {
+	type == "AWS::EC2::SecurityGroupIngress"
+
+	results := {
+		"searchKey" : sprintf("Resources.%s.Properties", [resource_name]),
+		"searchLine" : common_lib.build_search_line(["Resources", resource_name, "Properties"], []),
+	}
 }
 
 getProtocolList(protocol) = list {

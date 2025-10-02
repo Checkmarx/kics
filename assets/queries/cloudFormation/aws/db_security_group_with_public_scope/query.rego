@@ -9,8 +9,8 @@ CxPolicy[result] {
 	is_public_dbinstance(public_db)
 	resource := input.document[i].Resources[j]
 	resource.Type == types[t]
-	value := get_ingress_list(resource)
-	results := exposed_inline_or_standalone_ingress(value.array[ing_index], ing_index, value.type, j)
+	ingress_list := cf_lib.get_ingress_list(resource)
+	results := exposed_inline_or_standalone_ingress(ingress_list[ing_index], ing_index, resource.Type, j)
 	results != ""
 	
 	result := {
@@ -57,7 +57,7 @@ exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = res
 	}
 } else = results { # standalone ingress resources 
 	type == "AWS::EC2::SecurityGroupIngress"
-	res.Properties.CidrIp == "0.0.0.0/0"  #standalone ipv4
+	res.CidrIp == "0.0.0.0/0"  #standalone ipv4
 
 	results := {
 		"searchKey": sprintf("Resources.%s.Properties.CidrIp", [resource_index]),
@@ -67,7 +67,7 @@ exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = res
 	}
 } else = results {
 	type == "AWS::EC2::SecurityGroupIngress"
-	res.Properties.CidrIpv6 == common_lib.unrestricted_ipv6[_] #standalone ipv6
+	res.CidrIpv6 == common_lib.unrestricted_ipv6[_] #standalone ipv6
 
 	results := {
 		"searchKey": sprintf("Resources.%s.Properties.CidrIpv6", [resource_index]),
@@ -77,7 +77,7 @@ exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = res
 	}
 } else = results {
 	type == "AWS::RDS::DBSecurityGroupIngress"
-	res.Properties.CIDRIP == "0.0.0.0/0" #standalone ipv4 - legacy resource
+	res.CIDRIP == "0.0.0.0/0" #standalone ipv4 - legacy resource
 	results := {
 		"searchKey": sprintf("Resources.%s.Properties.CIDRIP", [resource_index]),
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.CIDRIP' should not be '0.0.0.0/0'.", [resource_index]),
@@ -93,20 +93,3 @@ is_public_dbinstance(resource) {
 	resource.Type == "AWS::RDS::DBInstance" 
 	not common_lib.valid_key(resource.Properties, "PubliclyAccessible") #default value varies so true is assumed 
 }
-
-get_ingress_list(resource) = result {
-	ingress_array_types := ["AWS::EC2::SecurityGroup","AWS::RDS::DBSecurityGroup"]
-	resource.Type == ingress_array_types[t]
-	result := {
-		"array" : resource.Properties[get_field(resource.Type)],
-		"type" : resource.Type
-	}
-} else = result {
-	result := {
-		"array" : [resource],
-		"type" : resource.Type
-	}
-}
-
-get_field("AWS::EC2::SecurityGroup") = "SecurityGroupIngress"
-get_field("AWS::RDS::DBSecurityGroup") = "DBSecurityGroupIngress" #legacy

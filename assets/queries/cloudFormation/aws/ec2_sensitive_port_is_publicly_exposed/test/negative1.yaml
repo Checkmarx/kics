@@ -1,29 +1,39 @@
-AWSTemplateFormatVersion: 2010-09-09T00:00:00Z
 Resources:
-  SafeSecGroup:
+  Negative1IPv4_1:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      SecurityGroupEgress:
-        - IpProtocol: tcp
+      GroupDescription: "Incorrect protocol: ICMP"
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+        - IpProtocol: "icmp"
           FromPort: 22
           ToPort: 22
-          CidrIp: 127.0.0.1/32
-      GroupDescription: Allow http and ssh
-      VpcId: my-vpc
-      SecurityGroupIngress:
-        - FromPort: 80
-          ToPort: 80
-          CidrIp: 127.0.0.1/32
-          IpProtocol: tcp
-        - ToPort: 77
-          CidrIp: 127.0.0.1/32
-          IpProtocol: all
-          FromPort: 77
-  MyNegativeEC2Instance:
-    Type: AWS::EC2::Instance
+          CidrIp: "10.0.0.0/0"
+
+  Negative1IPv4_2:
+    Type: AWS::EC2::SecurityGroup
     Properties:
-      SecurityGroups:
-        - SafeSecGroup
-      KeyName: my-new-rsa-key
-      ImageId: ami-79fd7eee
-      InstanceType: t3.medium
+      GroupDescription: "Unknown port: port 5000"
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+        - IpProtocol: "tcp"
+          FromPort: 5000
+          ToPort: 5000
+          CidrIp: "192.168.0.0/0"
+
+  Negative1ArrayTestIPv4:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Mixed incorrect CIDRs and protocols"
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+      # incorrect cidr (not exposed)
+        - IpProtocol: "udp" 
+          FromPort: 22
+          ToPort: 22
+          CidrIp: "8.8.0.0/16" 
+      # all fields "incorrect"
+        - IpProtocol: "icmp" 
+          FromPort: 5000 
+          ToPort: 5000
+          CidrIp: "10.68.0.0/14"
