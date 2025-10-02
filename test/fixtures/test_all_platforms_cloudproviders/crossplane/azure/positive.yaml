@@ -1,0 +1,14 @@
+apiVersion: cache.azure.crossplane.io/v1beta1
+kind: Redis
+metadata:
+  name: azureRedis3
+spec:
+  providerConfigRef:
+    name: crossplane-azure
+  forProvider:
+    location: West Europe
+    sku:
+      name: Basic
+      family: C
+      capacity: 0
+    enableNonSslPort: true
