@@ -8,9 +8,9 @@ CxPolicy[result] {
 	[path, Resources] := walk(doc)
 	resource := Resources[name]
 	resource.Type == "AWS::EC2::SecurityGroup"
-	security_group := resource.Properties
-	security_group.GroupName == "default"
-	search_values := check_rules(security_group, path, name, doc)
+	security_group_properties := resource.Properties
+	security_group_properties.GroupName == "default"
+	search_values := check_rules(security_group_properties, path, name, doc)
 	search_values != ""
 
 	result := {
@@ -26,9 +26,9 @@ CxPolicy[result] {
 }
 
 
-check_rules(security_group, raw_path, security_group_name, doc) = search_values {
+check_rules(security_group_properties, raw_path, security_group_name, doc) = search_values {
 	inline_traffic_rules := {"SecurityGroupIngress", "SecurityGroupEgress"}
-	count(security_group[inline_traffic_rules[_]]) != 0
+	count(security_group_properties[inline_traffic_rules[_]]) != 0
 
 	path := cf_lib.getPath(raw_path)
 
