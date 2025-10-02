@@ -3,42 +3,12 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
-isAccessibleFromEntireNetwork(ingress) {
-	endswith(ingress.CidrIp, "/0")
-}
-
-getProtocolList(protocol) = list {
-	sprintf("%v", [protocol]) == "-1"
-	list = ["TCP", "UDP"]
-} else = list {
-	upper(protocol) == "TCP"
-	list = ["TCP"]
-} else = list {
-	upper(protocol) == "UDP"
-	list = ["UDP"]
-}
-
 CxPolicy[result] {
-	#############	document and resource
 	resources := input.document[i].Resources
+	secGroup := resources[sec_group_name]
+	secGroup.Type == "AWS::EC2::SecurityGroup"
 
-	ec2InstanceList = [{"name": key, "properties": ec2Instance} |
-		ec2Instance := resources[key]
-		ec2Instance.Type == "AWS::EC2::Instance"
-	]
-
-	ec2Instance := ec2InstanceList[_]
-
-	securityGroupList = [{"name": key, "properties": secGroup} |
-		secGroup := resources[key]
-		secGroup.Type == "AWS::EC2::SecurityGroup"
-	]
-
-	secGroup := securityGroupList[_]
-
-	ec2Instance.properties.Properties.SecurityGroups[_] == secGroup.name
-
-	ingress := secGroup.properties.Properties.SecurityGroupIngress[l]
+	ingress := secGroup.Properties.SecurityGroupIngress[l]
 
 	protocols := getProtocolList(ingress.IpProtocol)
 	protocol := protocols[m]
@@ -47,24 +17,36 @@ CxPolicy[result] {
 		"UDP": cf_lib.udpPortsMap,
 	}
 
-	#############	Checks
 	isAccessibleFromEntireNetwork(ingress)
 
-	# is in ports range
 	portRange := numbers.range(ingress.FromPort, ingress.ToPort)
 	portNumber := portRange[idx]
 	portName := portsMap[protocol][portNumber]
 
-	#############	Result
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "AWS::EC2::SecurityGroup",
-		"resourceName": cf_lib.get_resource_name(secGroup.properties, secGroup.name),
-		"searchKey": sprintf("Resources.%s.SecurityGroupIngress", [secGroup.name]),
-		"searchValue": sprintf("%s/%s:%d", [ec2Instance.name, protocol, portNumber]),
+		"resourceName": cf_lib.get_resource_name(secGroup, sec_group_name),
+		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d]", [sec_group_name,l]),
+		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in EC2 security group for instance %s", [portName, protocol, portNumber, ec2Instance.name]),
-		"keyActualValue": sprintf("%s (%s:%d) is allowed in EC2 security group for instance %s", [portName, protocol, portNumber, ec2Instance.name]),
-		"searchLine": common_lib.build_search_line(["Resources", secGroup.name, "Properties", "SecurityGroupIngress", l], []),
+		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
+		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
+		"searchLine": common_lib.build_search_line(["Resources", sec_group_name, "Properties", "SecurityGroupIngress", l], []),
 	}
+}
+
+isAccessibleFromEntireNetwork(ingress) {
+	endswith(ingress.CidrIp, "/0")
+}
+
+getProtocolList(protocol) = list {
+	protocol == "-1"
+	list = ["TCP", "UDP"]
+} else = list {
+	upper(protocol) == "TCP"
+	list = ["TCP"]
+} else = list {
+	upper(protocol) == "UDP"
+	list = ["UDP"]
 }
