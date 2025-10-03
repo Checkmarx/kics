@@ -466,9 +466,9 @@
           "resource_name": "ECSALB",
           "issue_type": "MissingAttribute",
           "search_key": "Resources.EcsSecurityGroup.Properties",
-          "search_line": -1,
+          "search_line": 14,
           "search_value": "",
-          "expected_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupEgress' is defined",
+          "expected_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupEgress' should be defined",
           "actual_value": "'Resources.EcsSecurityGroup.Properties.SecurityGroupEgress' is undefined"
         }
       ]
