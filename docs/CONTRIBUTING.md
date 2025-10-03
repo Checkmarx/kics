@@ -152,9 +152,9 @@ And become one of our top contributors!
 
 If an E2E test causes failures in Github actions, the recommended steps are: 
 
-1. Open the action that causes fail.
+1. Open the action that causes failure.
 2. Go to Summary tab.
-3. On the Summary page, go through the bottom of the page and download any artifact that not has an `.dockerbuild` extension.
+3. On the Summary page, go to the bottom of the page and download any artifact that not has an `.dockerbuild` extension.
 4. Extract the e2e-report and open the HTML in a browser.
 5. Filter the tests to display only those that failed.
 6. Check which test is causing the issue (e.g., E2E-CLI-032) and review the error description (e.g. number of lines not matching the expected value).
@@ -188,8 +188,8 @@ Below is a list of currently identified flaky tests:
 - CycloneDX
 - analyserPaths
 
-Tests that compare terminal output are particularly prone to flakiness. Typically, a test is considered flaky if it passes on two operating systems but fails on one
-Tests that compare terminal output are particularly prone to flakiness. Typically, an flacky test is detected when, for the unit tests, it passes for two different operating systems but, for one in specific is does not. Normally, for this cases is a flacky test and, the KICS team should re-run the actions. 
+Tests that compare terminal output are particularly prone to flakiness. Typically, a test is considered flaky if it passes on two operating systems but fails on one.
+Tests that compare terminal output are particularly prone to flakiness. Typically, an flacky test is detected when, for the unit tests, it passes for two different operating systems but, for one in specific is does not. Normally, for this cases it's a flacky test, and the KICS team should re-run the actions. 
 
 ### Unit tests
 
@@ -197,25 +197,27 @@ When a unit test fails in the KICS pipeline, there are two recommended approache
 
 1. Open the failing unit-test page, go to **Test and Generate Report Dev**, wait for the report to generate, then search for `FAIL:` to identify the issue.
 
-2. Alternatively, access the **Summary** tab, download the artifact that includes the failing OS in its name (or any artifact if all OS tests fail), open it, and search for `FAIL:` or the name of the query (e.g., `user_data_contains_encodd_private_key`).
+2. Alternatively, access the **Summary** tab, download the artifact that includes the failing OS in its name (or any artifact if all OS tests fail), open it, and search for `FAIL:` or the name of the query (e.g., `user_data_contains_encoded_private_key`).
 
 Unit test failures can occurr due to incorrectly defined lines in `positive_expected_result.json` or missing tests in that file.
 
 ### Grype or Trivy tests failing
 
-Sometimes the KICS pipelines may fail due to issues in the Grype and Trivy tests. In such cases, it might be sufficient to just update the version on the `go.mod` file. For such cases here are the recommended steps:
+Sometimes the KICS pipelines may fail due to issues in the Grype and Trivy tests. In such cases, it might be sufficient to just update a package version on the `go.mod` file. For such cases here are the recommended steps:
 
 1. Open the action that is currently failing.
 2. Go to the `Summary` tab on the top left corner.
 3. Go to the `Grype docker image scan` or `Trivy docker image scan` jobs.
 4. Download the artifact `trivy-fs-scan-results` or similar.
-5. Open the `results.txt` file and check if there is any table that suggests the the new version of the library that is causing the problem.
-6. After that, go to the `go.mod` file that is on the root of the repository and, change the version of the library to the version that is suggested on the file `results.txt` downloaded.
+5. Open the `results.txt` file and check if there is any table that suggests which version of the library is causing the problem.
+6. After that, go to the `go.mod` file that is on the root of the repository, changing the version of the library to the version that is suggested on the file `results.txt` downloaded, under "fixed version".
 7. Run `go mod tidy`.
 8. Run `go mod vendor`.
 9. Commit and push the changes.
 
-NOTE: This is only a solution to solve the cases when the results provide a library that is on `go.mod` file and has a recommended fixed version. In some cases, there is no recommended version for the library on the `results.txt` or the library mentioned on the file is not on the `go.mod` file, for these cases, commonly it is needed to update the image on the `Dockerfile`.
+NOTE: This is only a solution to solve the cases when the results provide a package that is on `go.mod` file and has a recommended fixed version. In some cases, there is no recommended version for the library on the `results.txt` or the library mentioned on the file is not on the `go.mod` file, for these cases, the typical solution is to update the image defined in the `Dockerfile`.
+
+To check for the latest images available, you can refer to [dockerhub checkmarx community organization]([Checkmarx | Docker Hub](https://hub.docker.com/u/checkmarx))
 
 ---
 

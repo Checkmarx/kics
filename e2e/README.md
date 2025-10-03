@@ -21,7 +21,7 @@ npm start
 
 - **Running E2E Tests from binary (faster) (used in dev/local):**
 
-_Note: for Windows only the test "092" must fail and, for Linux, only the tests "052" must fail._
+_Note: for Windows only the test "092" must fail and, for Linux, only the test "052" should fail._
 
 Prepare
 ```bash
@@ -42,7 +42,7 @@ go test "github.com/Checkmarx/kics/v2/e2e" -v -count=1 -tags dev
 
 - **Running E2E Tests from docker (slower) (used in CI):**
 
-_Note: when running the tests from docker only the tests "031" and "052" must fail_.
+_Note: when running the tests from docker, only the tests "031" and "052" should fail_.
 
 Prepare
 ```bash
