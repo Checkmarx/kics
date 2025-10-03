@@ -3,6 +3,8 @@ package Cx
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
+cidr_fields := ["CidrIp","CidrIpv6","CIDRIP"]
+
 CxPolicy[result] {
 	types := ["AWS::EC2::SecurityGroup","AWS::RDS::DBSecurityGroup","AWS::RDS::DBSecurityGroupIngress","AWS::EC2::SecurityGroupIngress"]
 	public_db := input.document[i].Resources[name]
@@ -26,65 +28,35 @@ CxPolicy[result] {
 }
 
 exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = results { # inline ingresses 
-	type == "AWS::EC2::SecurityGroup"
-	res.CidrIp == "0.0.0.0/0" #ipv4
+	type == ["AWS::EC2::SecurityGroup", "AWS::RDS::DBSecurityGroup"][x1]
+
+	unrestricted_ips := array.concat(common_lib.unrestricted_ipv6, ["0.0.0.0/0"])
+	res[cidr_fields[x2]] == unrestricted_ips[x3]  #standalone ipv4 or ipv6
+
+	ingress_field_name := get_ingress_field_name(type)
 
 	results := {
-		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIp", [resource_index, ing_index]),
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress[%d].CidrIp' should not be '0.0.0.0/0'.", [resource_index,ing_index]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress[%d].CidrIp' is '0.0.0.0/0'.", [resource_index,ing_index]),
-		"searchLine" : common_lib.build_search_line(["Resources", resource_index, "Properties", "SecurityGroupIngress", ing_index, "CidrIp"],[])
+		"searchKey": sprintf("Resources.%s.Properties.%s[%d].%s", [resource_index, ingress_field_name, ing_index, cidr_fields[x2]]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.%s[%d].%s' should not be '%s'.", [resource_index, ingress_field_name, ing_index, cidr_fields[x2], unrestricted_ips[x3]]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.%s[%d].%s' is '%s'.", [resource_index, ingress_field_name, ing_index, cidr_fields[x2], unrestricted_ips[x3]]),
+		"searchLine" : common_lib.build_search_line(["Resources", resource_index, "Properties", ingress_field_name, ing_index, cidr_fields[x2]],[])
 	}
-} else = results {
-	type == "AWS::EC2::SecurityGroup"
-	res.CidrIpv6 == common_lib.unrestricted_ipv6[_] #ipv6
+} else = results { # standalone ingress resources
+	type == ["AWS::EC2::SecurityGroupIngress", "AWS::RDS::DBSecurityGroupIngress"][x1]
+
+	unrestricted_ips := array.concat(common_lib.unrestricted_ipv6, ["0.0.0.0/0"])
+	res[cidr_fields[x2]] == unrestricted_ips[x3]  #standalone ipv4 or ipv6
 
 	results := {
-		"searchKey": sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].CidrIpv6", [resource_index, ing_index]),
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress[%d].CidrIpv6' should not be '::/0'.", [resource_index,ing_index]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress[%d].CidrIpv6' is '::/0'.", [resource_index,ing_index]),
-		"searchLine" : common_lib.build_search_line(["Resources", resource_index, "Properties", "SecurityGroupIngress", ing_index, "CidrIpv6"],[])
-	}
-} else = results {
-	type == "AWS::RDS::DBSecurityGroup"
-	res.CIDRIP == "0.0.0.0/0"  #ipv4 - legacy resource
-
-	results := {
-		"searchKey": sprintf("Resources.%s.Properties.DBSecurityGroupIngress[%d].CIDRIP", [resource_index, ing_index]),
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.DBSecurityGroupIngress[%d].CIDRIP' should not be '0.0.0.0/0'.", [resource_index,ing_index]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.DBSecurityGroupIngress[%d].CIDRIP' is '0.0.0.0/0'.", [resource_index,ing_index]),
-		"searchLine" : common_lib.build_search_line(["Resources", resource_index, "Properties", "DBSecurityGroupIngress", ing_index, "CIDRIP"],[])
-	}
-} else = results { # standalone ingress resources 
-	type == "AWS::EC2::SecurityGroupIngress"
-	res.CidrIp == "0.0.0.0/0"  #standalone ipv4
-
-	results := {
-		"searchKey": sprintf("Resources.%s.Properties.CidrIp", [resource_index]),
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.CidrIp' should not be '0.0.0.0/0'.", [resource_index]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.CidrIp' is '0.0.0.0/0'.", [resource_index]),
-		"searchLine" : common_lib.build_search_line(["Resources", resource_index, "Properties", "CidrIp"],[])
-	}
-} else = results {
-	type == "AWS::EC2::SecurityGroupIngress"
-	res.CidrIpv6 == common_lib.unrestricted_ipv6[_] #standalone ipv6
-
-	results := {
-		"searchKey": sprintf("Resources.%s.Properties.CidrIpv6", [resource_index]),
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.CidrIpv6' should not be '::/0'.", [resource_index]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.CidrIpv6' is '::/0'.", [resource_index]),
-		"searchLine" : common_lib.build_search_line(["Resources", resource_index, "Properties", "CidrIpv6"],[])
-	}
-} else = results {
-	type == "AWS::RDS::DBSecurityGroupIngress"
-	res.CIDRIP == "0.0.0.0/0" #standalone ipv4 - legacy resource
-	results := {
-		"searchKey": sprintf("Resources.%s.Properties.CIDRIP", [resource_index]),
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.CIDRIP' should not be '0.0.0.0/0'.", [resource_index]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.CIDRIP' is '0.0.0.0/0'.", [resource_index]),
-		"searchLine" : common_lib.build_search_line(["Resources", resource_index, "Properties", "CIDRIP"],[])
+		"searchKey": sprintf("Resources.%s.Properties.%s", [resource_index, cidr_fields[x2]]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.%s' should not be '%s'.", [resource_index, cidr_fields[x2], unrestricted_ips[x3]]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.%s' is '%s'.", [resource_index, cidr_fields[x2], unrestricted_ips[x3]]),
+		"searchLine" : common_lib.build_search_line(["Resources", resource_index, "Properties", cidr_fields[x2]],[])
 	}
 } else = ""
+
+get_ingress_field_name("AWS::EC2::SecurityGroup") = "SecurityGroupIngress"
+get_ingress_field_name("AWS::RDS::DBSecurityGroup") = "DBSecurityGroupIngress"
 
 is_public_dbinstance(resource) {
 	resource.Type == "AWS::RDS::DBInstance"
