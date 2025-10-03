@@ -214,7 +214,7 @@ Sometimes the KICS pipelines may fail due to issues in the Grype and Trivy tests
 8. Run `go mod vendor`.
 9. Commit and push the changes.
 
-NOTE: This is only a solution to solve the cases when the results provide a package that is on `go.mod` file and has a recommended fixed version. In some cases, there is no recommended version for the library on the `results.txt` or the library mentioned on the file is not on the `go.mod` file, for these cases, the typical solution is to update the image defined in the `Dockerfile`.
+NOTE: This is only a solution to solve the cases when the results provide a package that is on `go.mod` file and has a recommended fixed version. In some cases, there is no recommended version for the package on the `results.txt` or the package/library mentioned on the file is not on the `go.mod` file. For these cases, the typical solution is to update the image defined in the `Dockerfile`.
 
 To check for the latest images available, you can refer to [dockerhub checkmarx community organization]([Checkmarx | Docker Hub](https://hub.docker.com/u/checkmarx))
 
