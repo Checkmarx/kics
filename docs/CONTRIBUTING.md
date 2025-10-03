@@ -209,7 +209,7 @@ Sometimes the KICS pipelines may fail due to issues in the Grype and Trivy tests
 3. Go to the `Grype docker image scan` or `Trivy docker image scan` jobs.
 4. Download the artifact `trivy-fs-scan-results` or similar.
 5. Open the `results.txt` file and check if there is any table that suggests which version of the package is causing the problem.
-6. After that, go to the `go.mod` file that is on the root of the repository, changing the version of the library to the version that is suggested on the file `results.txt` downloaded, under "fixed version".
+6. After that, go to the `go.mod` file that is on the root of the repository, change the version of the package to the version that is suggested on the file `results.txt` downloaded, under "fixed version".
 7. Run `go mod tidy`.
 8. Run `go mod vendor`.
 9. Commit and push the changes.
