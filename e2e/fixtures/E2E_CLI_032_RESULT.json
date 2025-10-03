@@ -41,7 +41,7 @@
 			"files": [
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "662b31cbe2182decf0aaf031658a6b94e759b0c58fd00fe5679ee34486ee3871",
+					"similarity_id": "8edb0459005a7705b31fda90d57f8276cdb25a8e3c0b61533411addd61143b61",
 					"line": 19,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
 					"resource_name": "EcsSecurityGroup",
@@ -54,7 +54,7 @@
 				},
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "9d35753b2e8568b9eb3ecf9d413ec14cc99e5da739ed25e5e5588822d55acc17",
+					"similarity_id": "f660e873808e61e40e34b5bc55d9e15b73fd98e05e33da08d82e837c136d819c",
 					"line": 27,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
 					"resource_name": "EcsSecurityGroup",
@@ -67,7 +67,7 @@
 				},
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "7d89bb72066d96f3043c0044c1efc3e38a7d711efa317adc17ba38f5ba061dde",
+					"similarity_id": "d250dd713f12efedf9fc132d1d0d0b6585f00dbb8c72b872d76b5d5c7df69b48",
 					"line": 19,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
 					"resource_name": "EcsSecurityGroup",
@@ -80,7 +80,7 @@
 				},
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "bcfffba3931ea37ad64158062dc23df519a2449bae9a357218759c0547774d19",
+					"similarity_id": "f6773e3c13d8da89551d0f38c1c07187fa24f88a2bc5efcb5f538cdc0636a206",
 					"line": 19,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
 					"resource_name": "EcsSecurityGroup",
@@ -93,7 +93,7 @@
 				},
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "36c90140aa309c897ff187a19234667d554e5e8dda64edd9e9f3980cbf52de9c",
+					"similarity_id": "d5d8666ff51c494098194e765137131871df1070b7d64ac77395342423efe2cb",
 					"line": 19,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
 					"resource_name": "EcsSecurityGroup",
@@ -106,7 +106,7 @@
 				},
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "baa9f32771181297b9ee2c7801bf03d2ebc0c41eaf081f6ef20a465e138e3d4e",
+					"similarity_id": "7fc50151d65fb7d7e354038c1fb2dd00199d17a0139e732e46297d1989f64a37",
 					"line": 27,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
 					"resource_name": "EcsSecurityGroup",
@@ -119,7 +119,7 @@
 				},
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "ee383bd864450fdb64f5abebfea2484b205e51ed355e0ed169b217f4cd92a174",
+					"similarity_id": "c56b11d7012e54595e0180e9e4e856f63ead0c6a7add6418cdde3eb7857cca1b",
 					"line": 19,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
 					"resource_name": "EcsSecurityGroup",
@@ -132,7 +132,7 @@
 				},
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "c400df8c870bc1451269113b8ac91a68792a950aaa68b523572479de37c25ce5",
+					"similarity_id": "bee3032bed0cd5f396c91a95c9934e12523f1476f285c01599080ca9e6a2b32b",
 					"line": 27,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
 					"resource_name": "EcsSecurityGroup",
@@ -145,7 +145,7 @@
 				},
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "97388328ff4d04dd7da20f350de6ccc08dab71f8758ef81c9397eba3ad9ae976",
+					"similarity_id": "e4a5ba3815f30a278c7d278bfba92deee48d22cf61856ed5168b8fe796a25fc7",
 					"line": 19,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
 					"resource_name": "EcsSecurityGroup",
@@ -158,7 +158,7 @@
 				},
 				{
 					"file_name": "/path/e2e/fixtures/samples/positive.yaml",
-					"similarity_id": "2047b1c863130dd89b2bfdfa245b442086727d0534b003dbe3088a4212bab819",
+					"similarity_id": "a56ab59b07ca0113deff2feabf6710d3bb660283dda087b8d7cf7c1d31d244c4",
 					"line": 19,
 					"resource_type": "AWS::EC2::SecurityGroupIngress",
 					"resource_name": "EcsSecurityGroup",
