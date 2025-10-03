@@ -154,7 +154,7 @@ If an E2E test causes failures in Github actions, the recommended steps are:
 
 1. Open the action that causes failure.
 2. Go to Summary tab.
-3. On the Summary page, go to the bottom of the page and download any artifact that not has an `.dockerbuild` extension.
+3. On the Summary page, go to the bottom of the page and download any artifact that does not have a `.dockerbuild` extension.
 4. Extract the e2e-report and open the HTML in a browser.
 5. Filter the tests to display only those that failed.
 6. Check which test is causing the issue (e.g., E2E-CLI-032) and review the error description (e.g. number of lines not matching the expected value).
