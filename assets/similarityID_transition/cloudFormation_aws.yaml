@@ -79,3 +79,7 @@ similarityIDChangeList:
       queryName: DB Security Group With Public Scope
       observations: The query was not pointing to the specific ingress inside the SecurityGroupIngress array 
       change: 1
+    - queryId: 78055456-f670-4d2e-94d5-392d1cf4f5e4
+      queryName: ELB Sensitive Port Is Exposed To Entire Network
+      observations: The query was not pointing to the specific ingress inside the SecurityGroupIngress array 
+      change: 1

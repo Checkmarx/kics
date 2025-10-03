@@ -28,7 +28,7 @@ CxPolicy[result] {
 	protocol := protocols[m]
 	portsMap := common_lib.tcpPortsMap
 
-	#check that relevant port numbers are included
+	#check which sensitive port numbers are included
 	portRange := numbers.range(ingress.FromPort, ingress.ToPort)
 	portNumber := portRange[idx]
 	portName := portsMap[portNumber]
@@ -42,8 +42,8 @@ CxPolicy[result] {
 		"searchKey": results.searchKey,
 		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed", [portName, protocol, portNumber]),
-		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
+		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in EC2 security group for instance '%s'", [portName, protocol, portNumber, ec2_instance_name]),
+		"keyActualValue": sprintf("%s (%s:%d) is allowed in EC2 security group for instance '%s'", [portName, protocol, portNumber, ec2_instance_name]),
 		"searchLine": results.searchLine,
 	}
 }
@@ -65,7 +65,7 @@ search_for_standalone_ingress(sec_group_name, doc) = ingresses_with_names {
 
 
 get_search_values(ing_index, sec_group_name, names_list) = results {
-	ing_index < count(names_list) 
+	ing_index < count(names_list) # if ingress is standalone 
 
 	results := {
 		"searchKey" : sprintf("Resources.%s.Properties", [names_list[ing_index]]),
@@ -73,7 +73,6 @@ get_search_values(ing_index, sec_group_name, names_list) = results {
 		"type" : "AWS::EC2::SecurityGroupIngress"
 	}
 } else = results {
-	
 	
 	results := {
 		"searchKey" : sprintf("Resources.%s.Properties.SecurityGroupIngress[%d]", [sec_group_name, ing_index]),
@@ -91,7 +90,7 @@ getProtocolList(protocol) = list {
 } else = list {
 	upper(protocol) == "UDP"
 	list = ["UDP"]
-}
+} else = []
 
 get_inline_ingress_list(group) = [] {
 	not common_lib.valid_key(group.Properties,"SecurityGroupIngress")

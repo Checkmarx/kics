@@ -1,78 +1,90 @@
-AWSTemplateFormatVersion: 2010-09-09
-Parameters:
-  MySubnets:
-    Description: "My subnet"
-    Type: List<String>
 Resources:
-  ApplicationLoadBalancer:
-    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+  LoadBalancer01:
+    Type: AWS::ElasticLoadBalancing::LoadBalancer
     Properties:
-      Name: ip-target-alb
-      Subnets: !Ref MySubnets
+      Listeners:
+        - LoadBalancerPort: 80
+          InstancePort: 80
+          Protocol: HTTP
       SecurityGroups:
-        - !Ref ALBNegativeSecGroup
-      Tags:
-        - Key: Name
-          Value: ip-target-alb
-  ALBNegativeSecGroup:
+        - !Ref Negative2SecurityGroup
+
+  Negative2SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-        GroupDescription: Allow http and ssh
-        VpcId: my-vpc
-        SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 22
-          ToPort: 22
-          CidrIp: 127.0.0.1/32
-        - IpProtocol: tcp
-          FromPort: 77
-          ToPort: 77
-          CidrIp: 127.0.0.1/0
-        SecurityGroupEgress:
-        - IpProtocol: tcp
-          FromPort: 22
-          ToPort: 22
-          CidrIp: 0.0.0.0/0
-  HTTPALBListener:
-    Type: AWS::ElasticLoadBalancingV2::Listener
+      GroupDescription: "Security group for negative test cases"
+      VpcId: !Ref MyVPC  
+
+# IPv4 Rules
+  Negative2IPv4Ingress1:
+    Type: AWS::EC2::SecurityGroupIngress
     Properties:
-      LoadBalancerArn: !Ref ApplicationLoadBalancer
-      Port: 80
-      Protocol: HTTP
-      DefaultActions:
-          - Type: forward
-            TargetGroupArn: !Ref IPTargetGroup
-  IPTargetGroup:
-    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "icmp"      # incorrect protocol
+      FromPort: 22
+      ToPort: 22
+      CidrIp: "10.0.0.0/0"
+
+  Negative2IPv4Ingress2:
+    Type: AWS::EC2::SecurityGroupIngress
     Properties:
-        VpcId: my-vpc
-        Port: 80
-        Protocol: HTTP
-        TargetType: ip
-        Matcher:
-            HttpCode: '200'
-        HealthCheckIntervalSeconds: 10
-        HealthCheckPath: /health/check
-        HealthCheckProtocol: HTTP
-        HealthCheckTimeoutSeconds: 5
-        HealthyThresholdCount: 2
-        UnhealthyThresholdCount: 2
-  TestListenerRule1:
-    Type: "AWS::ElasticLoadBalancingV2::ListenerRule"
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "tcp"
+      FromPort: 5000      # unknown port
+      ToPort: 5000
+      CidrIp: "192.168.0.0/0"
+
+  Negative2IPv4Ingress3:
+    Type: AWS::EC2::SecurityGroupIngress
     Properties:
-        Priority: 1
-        ListenerArn: !Ref HTTPALBListener
-        Conditions:
-          - Field: "host-header"
-            Values:
-              - "test1.checkmarx.com"
-        Actions:
-          - Type: "forward"
-            TargetGroupArn: !Ref IPTargetGroup
-            Order: 1
-            ForwardConfig:
-                TargetGroups:
-                  - TargetGroupArn: !Ref IPTargetGroup
-                    Weight: 1
-                TargetGroupStickinessConfig:
-                    Enabled: false
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "udp"
+      FromPort: 22
+      ToPort: 22
+      CidrIp: "8.8.0.0/16"  # incorrect cidr (not exposed)
+
+  Negative2IPv4Ingress4:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup # all fields "incorrect"
+      IpProtocol: "icmp"    
+      FromPort: 5000
+      ToPort: 5000
+      CidrIp: "8.8.0.0/16"
+
+# IPv6 Rules
+  Negative2IPv6Ingress1:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "58"  # protocol number 58 is "icmpv6" = incorrect protocol
+      FromPort: 22
+      ToPort: 22
+      CidrIpv6: "fd00::/0"
+
+  Negative2IPv6Ingress2:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "tcp"
+      FromPort: 5000    # unknown port
+      ToPort: 5000
+      CidrIpv6: "fd12:3456:789a::1/0"
+
+  Negative2IPv6Ingress3:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "udp"
+      FromPort: 22
+      ToPort: 22
+      CidrIpv6: "2400:cb00::/32"  # incorrect cidr (not exposed)
+
+  Negative2IPv6Ingress4:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup   # all fields "incorrect"
+      IpProtocol: "58"  # ICMPv6
+      FromPort: 5000
+      ToPort: 5000
+      CidrIpv6: "2400:cb00::/32"

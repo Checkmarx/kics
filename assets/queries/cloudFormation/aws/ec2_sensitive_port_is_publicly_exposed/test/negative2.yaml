@@ -14,7 +14,7 @@ Resources:
       GroupDescription: "Security group for negative test cases"
       VpcId: !Ref MyVPC  
 
-  # IPv4 Rules
+# IPv4 Rules
   Negative2IPv4Ingress1:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
@@ -51,7 +51,7 @@ Resources:
       ToPort: 5000
       CidrIp: "8.8.0.0/16"
 
-  # IPv6 Rules
+# IPv6 Rules
   Negative2IPv6Ingress1:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:

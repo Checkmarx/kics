@@ -2,7 +2,7 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
     "LoadBalancer01": {
-      "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
       "Properties": {
         "Listeners": [
           {
@@ -12,95 +12,95 @@
           }
         ],
         "SecurityGroups": [
-          { "Ref": "Negative2SecurityGroup" }
+          { "Ref": "DualStackSecurityGroup" }
         ]
       }
     },
-    "Negative2SecurityGroup": {
+    "DualStackSecurityGroup": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupDescription": "Security group for negative test cases",
+        "GroupDescription": "Security group for IPv4 and IPv6 ingress rules",
         "VpcId": { "Ref": "MyVPC" }
       }
     },
-    "Negative2IPv4Ingress1": {
+    "IPv4Ingress1": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "GroupId": { "Ref": "Negative2SecurityGroup" },
-        "IpProtocol": "icmp",
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
+        "IpProtocol": "-1",
         "FromPort": 22,
         "ToPort": 22,
         "CidrIp": "10.0.0.0/0"
       }
     },
-    "Negative2IPv4Ingress2": {
+    "IPv4Ingress2": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
         "IpProtocol": "tcp",
-        "FromPort": 5000,
-        "ToPort": 5000,
+        "FromPort": 22,
+        "ToPort": 22,
         "CidrIp": "192.168.0.0/0"
       }
     },
-    "Negative2IPv4Ingress3": {
+    "IPv4Ingress3": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
         "IpProtocol": "udp",
         "FromPort": 22,
         "ToPort": 22,
-        "CidrIp": "8.8.0.0/16"
+        "CidrIp": "172.16.0.0/0"
       }
     },
-    "Negative2IPv4Ingress4": {
+    "IPv4Ingress4": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "GroupId": { "Ref": "Negative2SecurityGroup" },
-        "IpProtocol": "icmp",
-        "FromPort": 5000,
-        "ToPort": 5000,
-        "CidrIp": "8.8.0.0/16"
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
+        "IpProtocol": "udp",
+        "FromPort": 110,
+        "ToPort": 110,
+        "CidrIp": "172.16.0.0/0"
       }
     },
-    "Negative2IPv6Ingress1": {
+    "IPv6Ingress1": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "GroupId": { "Ref": "Negative2SecurityGroup" },
-        "IpProtocol": "58",
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
+        "IpProtocol": "-1",
         "FromPort": 22,
         "ToPort": 22,
         "CidrIpv6": "fd00::/0"
       }
     },
-    "Negative2IPv6Ingress2": {
+    "IPv6Ingress2": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
         "IpProtocol": "tcp",
-        "FromPort": 5000,
-        "ToPort": 5000,
+        "FromPort": 22,
+        "ToPort": 22,
         "CidrIpv6": "fd12:3456:789a::1/0"
       }
     },
-    "Negative2IPv6Ingress3": {
+    "IPv6Ingress3": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "GroupId": { "Ref": "Negative2SecurityGroup" },
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
         "IpProtocol": "udp",
         "FromPort": 22,
         "ToPort": 22,
-        "CidrIpv6": "2400:cb00::/32"
+        "CidrIpv6": "fd00:abcd:1234::42/0"
       }
     },
-    "Negative2IPv6Ingress4": {
+    "IPv6Ingress4": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
-        "GroupId": { "Ref": "Negative2SecurityGroup" },
-        "IpProtocol": "58",
-        "FromPort": 5000,
-        "ToPort": 5000,
-        "CidrIpv6": "2400:cb00::/32"
+        "GroupId": { "Ref": "DualStackSecurityGroup" },
+        "IpProtocol": "udp",
+        "FromPort": 110,
+        "ToPort": 110,
+        "CidrIpv6": "fd00:abcd:1234::42/0"
       }
     }
   }
