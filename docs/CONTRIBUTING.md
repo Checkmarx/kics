@@ -188,7 +188,7 @@ Below is a list of currently identified flaky tests:
 - CycloneDX
 - analyserPaths
 
-Tests that compare terminal output are particularly prone to flakiness. Typically, an flacky test is detected when, for the unit tests, it passes for two different operating systems but, for one in specific is does not. Normally, for this cases it's a flacky test, and the KICS team should re-run the actions. 
+Tests that compare terminal output are particularly prone to flakiness. Typically, a flacky test is detected when, for the unit tests, it passes for two different operating systems but, for one in specific is does not. Normally, for this cases it's a flacky test, and the KICS team should re-run the actions. 
 
 ### Unit tests
 
