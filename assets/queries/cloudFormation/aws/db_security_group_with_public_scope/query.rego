@@ -8,9 +8,12 @@ cidr_fields := ["CidrIp","CidrIpv6","CIDRIP"]
 CxPolicy[result] {
 	types := ["AWS::EC2::SecurityGroup","AWS::RDS::DBSecurityGroup","AWS::RDS::DBSecurityGroupIngress","AWS::EC2::SecurityGroupIngress"]
 	public_db := input.document[i].Resources[name]
-	is_public_dbinstance(public_db)
+	public_db.Type == "AWS::RDS::DBInstance"
+	is_public_db(public_db)
+
 	resource := input.document[i].Resources[j]
 	resource.Type == types[t]
+
 	ingress_list := cf_lib.get_ingress_list(resource)
 	results := exposed_inline_or_standalone_ingress(ingress_list[ing_index], ing_index, resource.Type, j)
 	results != ""
@@ -58,10 +61,8 @@ exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = res
 get_ingress_field_name("AWS::EC2::SecurityGroup") = "SecurityGroupIngress"
 get_ingress_field_name("AWS::RDS::DBSecurityGroup") = "DBSecurityGroupIngress"
 
-is_public_dbinstance(resource) {
-	resource.Type == "AWS::RDS::DBInstance"
+is_public_db(resource) {
 	cf_lib.isCloudFormationTrue(resource.Properties.PubliclyAccessible)
 } else {
-	resource.Type == "AWS::RDS::DBInstance" 
 	not common_lib.valid_key(resource.Properties, "PubliclyAccessible") #default value varies so true is assumed 
 }

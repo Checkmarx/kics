@@ -5,20 +5,19 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	doc := input.document[i]
-	resource := doc.Resources[name]
+	elbInstance := doc.Resources[name]
 
-	cf_lib.isLoadBalancer(resource)
-	securityGroups := resource.Properties.SecurityGroups
-	
-	securityGroup_name := cf_lib.get_name(securityGroups[sg])
+	cf_lib.isLoadBalancer(elbInstance)
+	securityGroup_name := cf_lib.get_name(elbInstance.Properties.SecurityGroups[sg])
+
 	not has_standalone_ingress(securityGroup_name, doc)
-	value := withoutInboundRules(doc.Resources[securityGroup_name],securityGroup_name)
+	value := withoutInboundRules(doc.Resources[securityGroup_name], securityGroup_name)
 	value != ""
 
 	result := {
 		"documentId": doc.id,
-		"resourceType": resource.Type,
-		"resourceName": cf_lib.get_resource_name(resource, name),
+		"resourceType": elbInstance.Type,
+		"resourceName": cf_lib.get_resource_name(elbInstance, name),
 		"searchKey": sprintf("Resources.%s.Properties%s", [securityGroup_name, value.path]),
 		"issueType": value.issue,
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupIngress' should %s", [securityGroup_name, value.expected]),
@@ -27,18 +26,28 @@ CxPolicy[result] {
 	}
 }
 
-withoutInboundRules(securityGroup,name) = results {
-	not common_lib.valid_key(securityGroup.Properties, "SecurityGroupIngress")
-	results := {"expected": "be defined", "actual": "undefined", "path": "", "issue": "MissingAttribute",
-				"searchlineArray": ["Resources", name, "Properties"]}
-} else = results {
-	securityGroup.Properties.SecurityGroupIngress == []
-	results := {"expected": "not be empty", "actual": "empty", "path": ".SecurityGroupIngress", "issue": "IncorrectValue",
-				"searchlineArray": ["Resources", name, "Properties", "SecurityGroupIngress"]}
-} 
-
 has_standalone_ingress(securityGroup_name,doc) {
 	resource := doc.Resources[j]
 	resource.Type == "AWS::EC2::SecurityGroupIngress"
 	cf_lib.get_name(resource.Properties.GroupId) == securityGroup_name
 }
+
+withoutInboundRules(securityGroup,name) = results {
+	not common_lib.valid_key(securityGroup.Properties, "SecurityGroupIngress")
+	results := {
+		"expected": "be defined",
+		"actual": "undefined",
+		"path": "",
+		"issue": "MissingAttribute",
+		"searchlineArray": ["Resources", name, "Properties"]
+	}
+} else = results {
+	securityGroup.Properties.SecurityGroupIngress == []
+	results := {
+		"expected": "not be empty",
+		"actual": "empty",
+		"path": ".SecurityGroupIngress",
+		"issue": "IncorrectValue",
+		"searchlineArray": ["Resources", name, "Properties", "SecurityGroupIngress"]
+	}
+} 

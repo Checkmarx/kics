@@ -8,8 +8,7 @@ CxPolicy[result] {
 	resources := doc.Resources
 
 	elbInstance = resources[elb_instance_name]
-	contains(elbInstance.Type, "ElasticLoadBalancing")
-	elbType := getELBType(elbInstance)
+	elbType := getELBType(elbInstance.Type)
 
 	sec_group := resources[sec_group_name]
 	sec_group.Type == "AWS::EC2::SecurityGroup"
@@ -25,14 +24,14 @@ CxPolicy[result] {
 	endswith(ingress[cidr_fields[c]], "/0")
 
 	# get relevant ports for protocol(s)
-	protocols := getProtocolList(ingress.IpProtocol)
-	protocol := protocols[m]
-	portsMap := common_lib.tcpPortsMap
+	protocols := cf_lib.getProtocolList(ingress.IpProtocol)
+	protocol  := protocols[m]
+	portsMap  := common_lib.tcpPortsMap
 
 	#check which sensitive port numbers are included
-	portRange := numbers.range(ingress.FromPort, ingress.ToPort)
+	portRange  := numbers.range(ingress.FromPort, ingress.ToPort)
 	portNumber := portRange[idx]
-	portName := portsMap[portNumber]
+	portName   := portsMap[portNumber]
 
 	results := get_search_values(ing_index, sec_group_name, ingresses_with_names.names)
 
@@ -81,27 +80,8 @@ get_search_values(ing_index, sec_group_name, names_list) = results {
 	}
 }
 
-getProtocolList(protocol) = list {
-	protocol == "-1"
-	list = ["TCP", "UDP"]
-} else = list {
-	upper(protocol) == "TCP"
-	list = ["TCP"]
-} else = list {
-	upper(protocol) == "UDP"
-	list = ["UDP"]
-} else = []
-
-getELBType(elb) = type {
-	common_lib.valid_key(elb.Properties, "Type")
-	type = elb.Properties.Type
-} else = type {
-	elb.Type == "AWS::ElasticLoadBalancing::LoadBalancer"
-	type = "classic"
-} else = type {
-	elb.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
-	type = "application"
-}
+getELBType("AWS::ElasticLoadBalancing::LoadBalancer") = "classic" 
+getELBType("AWS::ElasticLoadBalancingV2::LoadBalancer") = "application"
 
 get_inline_ingress_list(group) = [] {
 	not common_lib.valid_key(group.Properties,"SecurityGroupIngress")
