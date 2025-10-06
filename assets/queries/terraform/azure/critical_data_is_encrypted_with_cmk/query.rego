@@ -30,7 +30,7 @@ get_res(doc) = res { # key_vault_key_id field not defined
     res := {
         "rt": "azurerm_storage_account",
         "rn": tf_lib.get_resource_name(doc.azurerm_storage_account[name], name),
-        "sk": sprintf("azurerm_storage_account.customer_managed_key", []),
+        "sk": sprintf("azurerm_storage_account[%s].customer_managed_key", [name]),
         "it": "MissingAttribute",
         "kav": "'key_vault_key_id' is not defined inside the 'customer_managed_key' block",
         "kev": "'key_vault_key_id' must be defined inside the 'customer_managed_key' block",
@@ -46,7 +46,7 @@ get_res(doc) = res { # key_vault_key_id field not defined
     res := {
         "rt": "azurerm_storage_account",
         "rn": tf_lib.get_resource_name(doc.azurerm_storage_account[name], name),
-        "sk": sprintf("", []),
+        "sk": sprintf("azurerm_storage_account[%s]", [name]),
         "it": "MissingAttribute",
         "kav": "'azurerm_storage_account' does not have a 'customer_managed_key' block defined",
         "kev": "'azurerm_storage_account' should have a 'customer_managed_key' block defined",
