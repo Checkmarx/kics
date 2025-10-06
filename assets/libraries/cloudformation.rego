@@ -16,12 +16,6 @@ isCloudFormationTrue(answer) {
 	answer == true
 }
 
-entireNetwork(rule) {
-	rule.CidrIp == "0.0.0.0/0"
-} else {
-	rule.CidrIpv6 == common_lib.unrestricted_ipv6[_]
-}
-
 # Find out if the document has a resource type equals to 'AWS::SecretsManager::Secret'
 hasSecretManager(str, document) {
 	selectedSecret := strings.replace_n({"${": "", "}": ""}, regex.find_n(`\${\w+}`, str, 1)[0])
@@ -57,22 +51,39 @@ checkAction(currentAction, actionToCompare) {
 	contains(lower(action), actionToCompare)
 }
 
-# Dictionary of UDP ports
-udpPortsMap = {
-	53: "DNS",
-	137: "NetBIOS Name Service",
-	138: "NetBIOS Datagram Service",
-	139: "NetBIOS Session Service",
-	161: "SNMP",
-	389: "LDAP",
-	1434: "MSSQL Browser",
-	2483: "Oracle DB SSL",
-	2484: "Oracle DB SSL",
-	5432: "PostgreSQL",
-	11211: "Memcached",
-	11214: "Memcached SSL",
-	11215: "Memcached SSL",
+get_ingress_list(resource) = result {
+	ingress_array_types := ["AWS::EC2::SecurityGroup","AWS::RDS::DBSecurityGroup"]
+	resource.Type == ingress_array_types[_]
+	result := resource.Properties[get_field(resource.Type)]
+} else = result {
+	# assumes it is a "AWS::EC2::SecurityGroupIngress" or "AWS::EC2::SecurityGroupEgress" resource
+	result := [resource.Properties]
 }
+
+get_field("AWS::EC2::SecurityGroup") = "SecurityGroupIngress"
+get_field("AWS::RDS::DBSecurityGroup") = "DBSecurityGroupIngress" #legacy
+
+containsPort(from_port, to_port, port) {
+	from_port <= port
+	to_port >= port
+} else {
+	from_port == 0
+	to_port == 0
+}
+
+entireNetwork(rule) {
+	rule.CidrIp == "0.0.0.0/0"
+} else {
+	rule.CidrIpv6 == common_lib.unrestricted_ipv6[_]
+}
+
+getProtocolList(protocol) = list {
+	protocol == "-1"
+	list = ["TCP", "UDP"]
+} else = list {
+	common_lib.inArray(["TCP", "UDP"],upper(protocol)) 
+	list = [upper(protocol)]
+} else = []
 
 # Get content of the resource(s) based on the type
 getResourcesByType(resources, type) = list {
@@ -295,11 +306,3 @@ enabled_is_undefined_or_false(logs,path,name,logName) = results {
 		"searchLine" : common_lib.build_search_line(path, [name, "Properties", "LogPublishingOptions", logName, "Enabled"]),
 	}
 } else = ""
-
-containsPort(from_port, to_port, port) {
-	from_port <= port
-	to_port >= port
-} else {
-	from_port == 0
-	to_port == 0
-}
