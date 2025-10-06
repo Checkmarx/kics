@@ -23,29 +23,39 @@ CxPolicy[result] {
 	cidr_fields := {"CidrIp", "CidrIpv6"}
 	endswith(ingress[cidr_fields[c]], "/0")
 
-	# get relevant ports for protocol(s)
-	protocols := cf_lib.getProtocolList(ingress.IpProtocol)
-	protocol  := protocols[m]
-	portsMap  := common_lib.tcpPortsMap
-
 	#check which sensitive port numbers are included
-	portRange  := numbers.range(ingress.FromPort, ingress.ToPort)
-	portNumber := portRange[idx]
-	portName   := portsMap[portNumber]
+	ports := get_sensitive_ports(ingress)
 
 	results := get_search_values(ing_index, sec_group_name, ingresses_with_names.names)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": doc.id,
 		"resourceType": results.type,
 		"resourceName": cf_lib.get_resource_name(sec_group, sec_group_name),
 		"searchKey": results.searchKey,
-		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
+		"searchValue": ports[x].searchValue,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s load balancer '%s'", [portName, protocol, portNumber, elbType, elb_instance_name]),
-		"keyActualValue": sprintf("%s (%s:%d) is allowed in %v load balancer '%s'", [portName, protocol, portNumber, elbType, elb_instance_name]),
+		"keyExpectedValue": sprintf("%s should not be allowed in %s load balancer '%s'", [ports[x].value, elbType, elb_instance_name]),
+		"keyActualValue": sprintf("%s is allowed in %v load balancer '%s'", [ports[x].value, elbType, elb_instance_name]),
 		"searchLine": results.searchLine,
 	}
+}
+
+get_sensitive_ports(ingress) = ports {
+	ingress.IpProtocol == "-1"
+	ports := [{ 
+		"value" : "ALL PORTS (ALL PROTOCOLS:0-65535)",
+		"searchValue" : "ALL PROTOCOLS,0-65535"
+		}]
+} else = ports {
+	portName   := common_lib.tcpPortsMap[portNumber]
+	protocol  := upper(ingress.IpProtocol)
+	cf_lib.containsPort(ingress.FromPort, ingress.ToPort, portNumber)
+
+	ports := [x | x := { 
+		"value" : sprintf("%s (%s:%d)", [portName, protocol, portNumber]),
+		"searchValue" : sprintf("%s,%d", [protocol, portNumber]),
+		}]
 }
 
 search_for_standalone_ingress(sec_group_name, doc) = ingresses_with_names {

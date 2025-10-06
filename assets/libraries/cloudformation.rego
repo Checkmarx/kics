@@ -63,13 +63,13 @@ get_ingress_list(resource) = result {
 get_field("AWS::EC2::SecurityGroup") = "SecurityGroupIngress"
 get_field("AWS::RDS::DBSecurityGroup") = "DBSecurityGroupIngress" #legacy
 
-getProtocolList(protocol) = list {
-	protocol == "-1"
-	list = ["TCP", "UDP"]
-} else = list {
-	common_lib.inArray(["TCP", "UDP"],upper(protocol)) 
-	list = [upper(protocol)]
-} else = []
+containsPort(from_port, to_port, port) {
+	from_port <= port
+	to_port >= port
+} else {
+	from_port == 0
+	to_port == 0
+}
 
 # Get content of the resource(s) based on the type
 getResourcesByType(resources, type) = list {
