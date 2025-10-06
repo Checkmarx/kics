@@ -1,133 +1,69 @@
-resource "aws_security_group" "positive1" {
-  name        = "allow_tls1"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
-
+# ipv4
+resource "aws_security_group" "positive1_ipv4_1" {
   ingress {
-    description = "TLS from VPC"
-    from_port   = 2200
-    to_port     = 2500
+    from_port   = 22
+    to_port     = 22
     protocol    = "-1"
-    cidr_blocks = ["12.0.0.0/25"]
+    cidr_blocks = ["10.0.0.0/25"]
   }
 }
 
-
-resource "aws_security_group" "positive2" {
-  name        = "allow_tls2"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
-
+resource "aws_security_group" "positive1_ipv4_2" {
   ingress {
-    description = "TLS from VPC"
-    from_port   = 20
-    to_port     = 60
-    protocol    = "tcp"
-    cidr_blocks = ["1.2.3.4/26"]
-  }
-}
-
-
-resource "aws_security_group" "positive3" {
-  name        = "allow_tls3"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
-
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 5000
-    to_port     = 6000
-    protocol    = "-1"
-    cidr_blocks = ["2.12.22.33/27"]
-  }
-}
-
-
-resource "aws_security_group" "positive4" {
-  name        = "allow_tls4"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
-
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 20
+    from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["10.92.168.0/28"]
+    cidr_blocks = ["192.168.0.0/26"]
   }
 }
 
-
-resource "aws_security_group" "positive5" {
-  name        = "allow_tls5"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
-
+resource "aws_security_group" "positive1_array_test_ipv4" {
   ingress {
-    description = "TLS from VPC"
-    from_port   = 445
-    to_port     = 500
-    protocol    = "udp"
-    cidr_blocks = ["1.1.1.1/29","0.0.0.0/0",  "2.2.3.4/12"]
-  }
-}
-
-
-resource "aws_security_group" "positive6" {
-  name        = "allow_tls6"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
-
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 135
-    to_port     = 170
-    protocol    = "udp"
-    cidr_blocks = ["10.68.0.0", "0.0.0.0/28"]
-  }
-}
-
-
-resource "aws_security_group" "positive7" {
-  name        = "allow_tls7"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
-
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 2383
-    to_port     = 2383
-    protocol    = "udp"
-    cidr_blocks = ["/0", "1.2.3.4/27"]
-  }
-}
-
-resource "aws_security_group" "positive_array_test" {
-  name        = "allow_tls7"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
-
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 2383
-    to_port     = 2383
-    protocol    = "udp"
-    cidr_blocks = ["/0", "1.2.3.4/27"]
-  }
-
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 28000
-    to_port     = 28001
-    protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/8"]
-  }
-
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 20
+    from_port   = 22
     to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["10.92.168.0/28"]
+    protocol    = "udp"
+    cidr_blocks = ["172.16.0.0/27"]
+  }
+  ingress {
+    from_port   = 110
+    to_port     = 110
+    protocol    = "udp"
+    cidr_blocks = ["10.68.0.0", "172.16.0.0/27"]
+  }
+}
+
+# ipv6
+
+resource "aws_security_group" "positive1_ipv6_1" {
+  ingress {
+    from_port         = 22
+    to_port           = 22
+    protocol          = "-1"
+    ipv6_cidr_blocks  = ["fd00::/121"]
+  }
+}
+
+resource "aws_security_group" "positive1_ipv6_2" {
+  ingress {
+    from_port         = 22
+    to_port           = 22
+    protocol          = "tcp"
+    ipv6_cidr_blocks  = ["fd12:3456:789a::1/122"]
+  }
+}
+
+resource "aws_security_group" "positive1_array_test_ipv6" {
+  ingress {
+    from_port         = 22
+    to_port           = 22
+    protocol          = "udp"
+    ipv6_cidr_blocks  = ["fd00:abcd:1234::42/123"] 
+  }
+
+  ingress {
+    from_port         = 110
+    to_port           = 110
+    protocol          = "udp"
+    ipv6_cidr_blocks  = ["fd03:5678::/64", "fd00:abcd:1234::42/123"] 
   }
 }
