@@ -184,7 +184,7 @@ func SetStrFlag(flagName, value string) {
 	}
 }
 
-// SetBoolFlag set a string flag using its name
+// SetBoolFlag set a boolean flag using its name
 func SetBoolFlag(flagName string, value bool) {
 	if _, ok := flagsBoolReferences[flagName]; ok {
 		*flagsBoolReferences[flagName] = value
