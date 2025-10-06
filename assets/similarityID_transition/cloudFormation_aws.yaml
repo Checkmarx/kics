@@ -79,3 +79,7 @@ similarityIDChangeList:
       queryName: Remote Desktop Port Open To Internet
       observations: Unlike the similar 'HTTP Port Open To Internet' query, it was not poiting to the specific ingress inside the SecurityGroupIngress array
       change: 1
+    - queryId: 66f2d8f9-a911-4ced-ae27-34f09690bb2c
+      queryName: Security Groups Allows Unrestricted Outbound Traffic
+      observations: Although the searcKey was correct some engine makes it point properly only with the searchKey, which was missing
+      change: 1

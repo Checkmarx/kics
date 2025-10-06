@@ -1,43 +1,45 @@
 {
-  "Parameters": {
-    "KeyName": {
-      "Description": "The EC2 Key Pair to allow SSH access to the instance",
-      "Type": "AWS::EC2::KeyPair::KeyName"
-    }
-  },
   "Resources": {
-    "Ec2Instance": {
-      "Type": "AWS::EC2::Instance",
+    "Positive2_security_group": {
+      "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "ImageId": "ami-7a11e213",
-        "SecurityGroups": [
-          "InstanceSecurityGroup",
-          "MyExistingSecurityGroup"
-        ],
-        "KeyName": "KeyName"
-      }
-    },
-    "InstanceSecurityGroup": {
-      "Properties": {
-        "SecurityGroupIngress": [
-          {
-            "CidrIp": "0.0.0.0/0",
-            "IpProtocol": "tcp",
-            "FromPort": "22",
-            "ToPort": "22"
-          }
-        ],
+        "GroupDescription": "Enable SSH access via port 22",
+        "VpcId": {
+          "Ref": "MyVPC"
+        },
         "SecurityGroupEgress": [
           {
-            "IpProtocol": "ALL",
-            "FromPort": "22",
-            "ToPort": "22",
+            "IpProtocol": "-1",
+            "FromPort": 2000,
+            "ToPort": 2000,
             "CidrIp": "0.0.0.0/0"
           }
-        ],
-        "GroupDescription": "Enable SSH access via port 22"
-      },
-      "Type": "AWS::EC2::SecurityGroup"
+        ]
+      }
+    },
+    "Positive2_egress_ipv4": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "Positive2_security_group"
+        },
+        "IpProtocol": "-1",
+        "FromPort": 3000,
+        "ToPort": 3000,
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "Positive2_egress_ipv6": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "Positive2_security_group"
+        },
+        "IpProtocol": "-1",
+        "FromPort": 4000,
+        "ToPort": 4000,
+        "CidrIpv6": "::/0"
+      }
     }
   }
 }

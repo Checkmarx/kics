@@ -16,6 +16,12 @@ isCloudFormationTrue(answer) {
 	answer == true
 }
 
+entireNetwork(rule) {
+	rule.CidrIp == "0.0.0.0/0"
+} else {
+	rule.CidrIpv6 == common_lib.unrestricted_ipv6[_]
+}
+
 # Find out if the document has a resource type equals to 'AWS::SecretsManager::Secret'
 hasSecretManager(str, document) {
 	selectedSecret := strings.replace_n({"${": "", "}": ""}, regex.find_n(`\${\w+}`, str, 1)[0])

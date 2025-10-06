@@ -13,7 +13,7 @@ CxPolicy[result] { #missing AWS::RDS::DBSecurityGroup TODO
 	ingress_list := array.concat(ingresses_with_names.ingress_list, get_inline_ingress_list(sec_group))
 	ingress := ingress_list[ing_index]
 
-	entireNetwork(ingress)
+	cf_lib.entireNetwork(ingress)
 	isTCP(ingress.IpProtocol)
 	ingress.FromPort <= 80
 	ingress.ToPort >= 80
@@ -30,12 +30,6 @@ CxPolicy[result] { #missing AWS::RDS::DBSecurityGroup TODO
 		"keyActualValue": sprintf("'%s' opens the HTTP port (80)", [results.searchKey]),
 		"searchLine": results.searchLine, 
 	}
-}
-
-entireNetwork(rule) {
-	rule.CidrIp == "0.0.0.0/0"
-} else {
-	rule.CidrIpv6 == common_lib.unrestricted_ipv6[_]
 }
 
 isTCP("tcp") := true
@@ -70,8 +64,8 @@ get_search_values(ing_index, sec_group_name, names_list) = results {
 } else = results {
 	
 	results := {
-		"searchKey" : sprintf("Resources.%s.Properties.SecurityGroupIngress[%d]", [sec_group_name, ing_index]),
-		"searchLine" : common_lib.build_search_line(["Resources", sec_group_name, "Properties", "SecurityGroupIngress", ing_index], []),
+		"searchKey" : sprintf("Resources.%s.Properties.SecurityGroupIngress[%d]", [sec_group_name, ing_index-count(names_list)]),
+		"searchLine" : common_lib.build_search_line(["Resources", sec_group_name, "Properties", "SecurityGroupIngress", ing_index-count(names_list)], []),
 		"type" : "AWS::EC2::SecurityGroup"
 	}
 }
