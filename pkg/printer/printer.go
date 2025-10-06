@@ -159,7 +159,7 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 		printFiles(&summary.Queries[idx], printer)
 	}
 	if !consoleFlags.GetBoolFlag(consoleFlags.VerboseFlag) {
-		fmt.Printf("\nResults Summary:\n")
+		fmt.Print("\nResults Summary:\n")
 		printFMTSeverityCounter(model.SeverityCritical, summary.SeverityCounters[model.SeverityCritical], printer.Critical)
 		printFMTSeverityCounter(model.SeverityHigh, summary.SeverityCounters[model.SeverityHigh], printer.High)
 		printFMTSeverityCounter(model.SeverityMedium, summary.SeverityCounters[model.SeverityMedium], printer.Medium)
