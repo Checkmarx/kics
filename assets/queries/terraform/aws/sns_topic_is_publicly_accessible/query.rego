@@ -29,7 +29,7 @@ CxPolicy[result] {
 
 CxPolicy[result] {
 	module := input.document[i].module[name]
-	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_default_vpc", "")
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_sns_topic", "")
 }
 
 is_access_limited_to_an_account_id(statement) {

@@ -13,6 +13,8 @@ CxPolicy[result] {
 	common_lib.is_allow_effect(statement)
 	common_lib.any_principal(statement)
 
+	not is_access_limited_to_an_account_id(statement)
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": resource.Type,

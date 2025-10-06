@@ -14,6 +14,8 @@ CxPolicy[result] {
 	statement.Effect == "Allow"
 	common_lib.any_principal(statement)
 
+	not is_access_limited_to_an_account_id(statement)
+
 	result := {
 		"documentId": id,
 		"resourceType": modules[m],
