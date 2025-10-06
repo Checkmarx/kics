@@ -6,8 +6,6 @@ import data.generic.terraform as tf_lib
 CxPolicy[result] {
 	resource := input.document[i].resource.aws_sns_topic[name]
 
-	keys := ["aws:SourceOwner", "aws:SourceAccount"]
-
 	policy := common_lib.json_unmarshal(resource.policy)
 	st := common_lib.get_statement(policy)
 	statement := st[_]
