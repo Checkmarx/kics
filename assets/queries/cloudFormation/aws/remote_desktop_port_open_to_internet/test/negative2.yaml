@@ -12,8 +12,8 @@ Resources:
     Properties:
       GroupId: !Ref Negative2SecurityGroup
       IpProtocol: udp      # incorrect protocol
-      FromPort: 80
-      ToPort: 80
+      FromPort: 3389
+      ToPort: 3389
       CidrIp: "0.0.0.0/0"
 
   Negative2IPv4Ingress2:
@@ -21,7 +21,7 @@ Resources:
     Properties:
       GroupId: !Ref Negative2SecurityGroup
       IpProtocol: "-1"
-      FromPort: 100      # not catching port 80
+      FromPort: 100      # not catching port 3389
       ToPort: 200
       CidrIp: "0.0.0.0/0"
 
@@ -30,8 +30,8 @@ Resources:
     Properties:
       GroupId: !Ref Negative2SecurityGroup
       IpProtocol: tcp
-      FromPort: 0
-      ToPort: 100
+      FromPort: 2000
+      ToPort: 4000
       CidrIp: "8.8.0.0/16"  # CidrIP is not 0:0:0:0/0
 
   Negative2IPv4Ingress4:
@@ -49,8 +49,8 @@ Resources:
     Properties:
       GroupId: !Ref Negative2SecurityGroup
       IpProtocol: "udp"  # incorrect protocol
-      FromPort: 80
-      ToPort: 80
+      FromPort: 3389
+      ToPort: 3389
       CidrIpv6: "::/0"
 
   Negative2IPv6Ingress2:
@@ -58,7 +58,7 @@ Resources:
     Properties:
       GroupId: !Ref Negative2SecurityGroup
       IpProtocol: tcp
-      FromPort: 5000    # not catching port 80
+      FromPort: 5000    # not catching port 3389
       ToPort: 5000
       CidrIpv6: "0000:0000:0000:0000:0000:0000:0000:0000/0"
 
@@ -67,8 +67,8 @@ Resources:
     Properties:
       GroupId: !Ref Negative2SecurityGroup
       IpProtocol: udp
-      FromPort: 0
-      ToPort: 100
+      FromPort: 2000
+      ToPort: 4000
       CidrIpv6: "2400:cb00::/32"  # CidrIP is not 0:0:0:0/0
 
   Negative2IPv6Ingress4:

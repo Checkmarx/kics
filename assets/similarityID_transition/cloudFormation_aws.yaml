@@ -75,3 +75,7 @@ similarityIDChangeList:
       queryName: Vulnerable Default SSL Certificate
       observations: ""
       change: 5
+    - queryId: c9846969-d066-431f-9b34-8c4abafe422a
+      queryName: Remote Desktop Port Open To Internet
+      observations: Unlike the similar 'HTTP Port Open To Internet' query, it was not poiting to the specific ingress inside the SecurityGroupIngress array
+      change: 1

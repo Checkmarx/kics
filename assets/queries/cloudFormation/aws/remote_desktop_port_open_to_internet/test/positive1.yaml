@@ -1,12 +1,41 @@
 Resources:
-  InstanceSecurityGroup:
+
+  Positive1IPv4_1:
     Type: AWS::EC2::SecurityGroup
     Properties:
-        GroupDescription: Allow rdp to client host
+        GroupDescription: Allow http to client host
         VpcId:
           Ref: myVPC
         SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 3389
           ToPort: 3389
+          CidrIp: 0.0.0.0/0
+
+  Positive1IPv4_2:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+        GroupDescription: Allow http to client host
+        VpcId:
+          Ref: myVPC
+        SecurityGroupIngress:
+        - IpProtocol: "-1"
+          FromPort: 1000
+          ToPort: 4000
+          CidrIp: 0.0.0.0/0
+
+  Positive1ArrayTestIPv4:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+        GroupDescription: Allow http to client host
+        VpcId:
+          Ref: myVPC
+        SecurityGroupIngress:
+        - IpProtocol: "-1"
+          FromPort: 1000
+          ToPort: 4000
+          CidrIp: 192.0.0.0/16
+        - IpProtocol: "6"
+          FromPort: 2000
+          ToPort: 3400
           CidrIp: 0.0.0.0/0
