@@ -32,6 +32,13 @@ CxPolicy[result] {
 	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_sns_topic", "")
 }
 
+get_module_res(module) = res {
+
+	res := {
+		
+	}
+}
+
 is_access_limited_to_an_account_id(statement) {
 	common_lib.valid_key(statement, "Condition")
 	condition_keys := ["aws:SourceOwner", "aws:SourceAccount", "aws:ResourceAccount", "aws:PrincipalAccount", "aws:VpceAccount"]
