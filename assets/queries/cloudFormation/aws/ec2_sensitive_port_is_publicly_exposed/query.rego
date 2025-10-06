@@ -75,8 +75,8 @@ get_search_values(ing_index, sec_group_name, names_list) = results {
 } else = results {
 	
 	results := {
-		"searchKey" : sprintf("Resources.%s.Properties.SecurityGroupIngress[%d]", [sec_group_name, ing_index]),
-		"searchLine" : common_lib.build_search_line(["Resources", sec_group_name, "Properties", "SecurityGroupIngress", ing_index], []),
+		"searchKey" : sprintf("Resources.%s.Properties.SecurityGroupIngress[%d]", [sec_group_name, ing_index-count(names_list)]),
+		"searchLine" : common_lib.build_search_line(["Resources", sec_group_name, "Properties", "SecurityGroupIngress", ing_index-count(names_list)], []),
 		"type" : "AWS::EC2::SecurityGroup"
 	}
 }
