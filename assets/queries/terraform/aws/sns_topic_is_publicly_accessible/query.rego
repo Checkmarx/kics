@@ -13,6 +13,8 @@ CxPolicy[result] {
 	common_lib.is_allow_effect(statement)
 	tf_lib.anyPrincipal(statement)
 
+	not is_access_limited_to_an_account_id(statement)
+
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "aws_sns_topic",
@@ -23,4 +25,16 @@ CxPolicy[result] {
 		"keyActualValue": "'Statement.Principal.AWS' contains '*'",
 		"searchLine": common_lib.build_search_line(["resource", "aws_sns_topic", name, "policy"], []),
 	}
+}
+
+CxPolicy[result] {
+	module := input.document[i].module[name]
+	keyToCheck := common_lib.get_module_equivalent_key("aws", module.source, "aws_default_vpc", "")
+}
+
+is_access_limited_to_an_account_id(statement) {
+	common_lib.valid_key(statement, "Condition")
+	condition_keys := ["aws:SourceOwner", "aws:SourceAccount", "aws:ResourceAccount", "aws:PrincipalAccount", "aws:VpceAccount"]
+	condition_operator := statement.Condition[op][key]
+	lower(key) == lower(condition_keys[_])
 }
