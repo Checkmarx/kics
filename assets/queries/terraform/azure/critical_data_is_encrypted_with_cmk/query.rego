@@ -89,10 +89,7 @@ get_res(doc) = res { # key_vault_key_id field not defined
         "kav": "'storage_account_id' is not referencing an existent 'azurerm_storage_account'",
         "kev": "'storage_account_id' is referencing an 'azurerm_storage_account' that doesn't exist",
         "sl": common_lib.build_search_line(["resource", "azurerm_storage_account_customer_managed_key", name_cmk, "storage_account_id"], []),
-        "rem": json.marshal({
-            "before": sprintf("%s", [storage_account_cmk.storage_account_id]),
-            "after": sprintf("resource \"azurerm_storage_account\" \"%s\" {\n\tname = \"examplestorageacc1\"\n\tresource_group_name = \"example-rg\"\n\tlocation = \"eastus\"\n\taccount_tier = \"Standard\"\n\taccount_replication_type = \"LRS\"\n\tcustomer_managed_key {\n\t\tkey_vault_key_id = \"https://example-vault.vault.azure.net/keys/example-key/1234567890abcdef\"\n\t}\n}", [res_storage_account_name]),            
-        }),
-        "rt": "replacement"
+        "rem": null,
+        "rt": null
     }
 }
