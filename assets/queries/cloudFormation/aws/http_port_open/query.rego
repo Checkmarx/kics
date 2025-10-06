@@ -15,8 +15,7 @@ CxPolicy[result] { #missing AWS::RDS::DBSecurityGroup TODO
 
 	cf_lib.entireNetwork(ingress)
 	isTCP(ingress.IpProtocol)
-	ingress.FromPort <= 80
-	ingress.ToPort >= 80
+	cf_lib.containsPort(ingress.FromPort, ingress.ToPort, 80)
 
 	results := get_search_values(ing_index, sec_group_name, ingresses_with_names.names)
 

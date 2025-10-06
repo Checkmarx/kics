@@ -3,7 +3,7 @@ package Cx
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
-CxPolicy[result] { #missing AWS::RDS::DBSecurityGroup TODO
+CxPolicy[result] { # missing AWS::RDS::DBSecurityGroup TODO
 	doc := input.document[i]
 	sec_group := doc.Resources[sec_group_name]
 	sec_group.Type == "AWS::EC2::SecurityGroup"
@@ -15,8 +15,7 @@ CxPolicy[result] { #missing AWS::RDS::DBSecurityGroup TODO
 
 	cf_lib.entireNetwork(ingress)
 	isTCP(ingress.IpProtocol)
-	ingress.FromPort <= 3389
-	ingress.ToPort >= 3389
+	cf_lib.containsPort(ingress.FromPort, ingress.ToPort, 3389)
 
 	results := get_search_values(ing_index, sec_group_name, ingresses_with_names.names)
 

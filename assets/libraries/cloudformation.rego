@@ -295,3 +295,11 @@ enabled_is_undefined_or_false(logs,path,name,logName) = results {
 		"searchLine" : common_lib.build_search_line(path, [name, "Properties", "LogPublishingOptions", logName, "Enabled"]),
 	}
 } else = ""
+
+containsPort(from_port, to_port, port) {
+	from_port <= port
+	to_port >= port
+} else {
+	from_port == 0
+	to_port == 0
+}

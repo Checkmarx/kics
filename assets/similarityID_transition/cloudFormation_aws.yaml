@@ -83,3 +83,7 @@ similarityIDChangeList:
       queryName: Security Groups Allows Unrestricted Outbound Traffic
       observations: Although the searcKey was correct some engine makes it point properly only with the searchKey, which was missing
       change: 1
+    - queryId: cdbb0467-2957-4a77-9992-7b55b29df7b7
+      queryName: Security Groups With Exposed Admin Ports
+      observations: It was not poiting to the specific ingress inside the SecurityGroupIngress array
+      change: 1  

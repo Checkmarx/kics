@@ -3,7 +3,7 @@ package Cx
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
-CxPolicy[result] {
+CxPolicy[result] { # missing AWS::RDS::DBSecurityGroup TODO
 	doc := input.document[i]
 	sec_group := doc.Resources[sec_group_name]
 	sec_group.Type == "AWS::EC2::SecurityGroup"

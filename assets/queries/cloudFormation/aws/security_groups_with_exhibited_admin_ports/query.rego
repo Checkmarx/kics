@@ -1,37 +1,69 @@
 package Cx
 
 import data.generic.cloudformation as cf_lib
+import data.generic.common as common_lib
 
-CxPolicy[result] {
-	docs := input.document[i]
-	[path, Resources] := walk(docs)
-	resource := Resources[name]
-	ports := [20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389]
+admin_ports := [20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389]
 
-	check_cidrip(resource.Properties)
-	check_security_groups_ingress(resource.Properties, ports)
+CxPolicy[result] { # missing AWS::RDS::DBSecurityGroup TODO
+	doc := input.document[i]
+	sec_group := doc.Resources[sec_group_name]
+	sec_group.Type == "AWS::EC2::SecurityGroup"
+
+	ingresses_with_names := search_for_standalone_ingress(sec_group_name, doc)
+
+	ingress_list := array.concat(ingresses_with_names.ingress_list, get_inline_ingress_list(sec_group))
+	ingress := ingress_list[ing_index]
+
+	cf_lib.entireNetwork(ingress)
+	cf_lib.containsPort(ingress.FromPort, ingress.ToPort, admin_ports[x])
+
+	results := get_search_values(ing_index, sec_group_name, ingresses_with_names.names)
 
 	result := {
-		"documentId": input.document[i].id,
-		"resourceType": resource.Type,
-		"resourceName": cf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("%s%s.Properties.SecurityGroupIngress", [cf_lib.getPath(path), name]),
+		"documentId": doc.id,
+		"resourceType": results.type,
+		"resourceName": cf_lib.get_resource_name(sec_group, sec_group_name),
+		"searchKey": results.searchKey,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("None of the Resources.%s.Properties.SecurityGroupIngress should have an exposed port", [name]),
-		"keyActualValue": sprintf("One of the Resources.%s.Properties.SecurityGroupIngress has a exposed port (20,21,22,23,115,137,138,2049,3389)", [name]),
+		"keyExpectedValue": "No exposed ingress rule should contain admin ports(20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389)",
+		"keyActualValue": sprintf("'%s' is exposed and contains admin port '%d'", [results.searchKey, admin_ports[x]]),
+		"searchLine": results.searchLine,
 	}
 }
 
-check_cidrip(group) {
-	group.SecurityGroupIngress[_].CidrIp == "0.0.0.0/0"
+search_for_standalone_ingress(sec_group_name, doc) = ingresses_with_names {
+  resources := doc.Resources
+
+  names := [name |
+    ingress := resources[name]
+    ingress.Type == "AWS::EC2::SecurityGroupIngress"
+    cf_lib.get_name(ingress.Properties.GroupId) == sec_group_name
+  ]
+
+  ingresses_with_names := {
+    "ingress_list": [resources[name].Properties | name := names[_]],
+    "names": names
+  }
+} else = {"ingress_list": [], "names": []}
+
+get_search_values(ing_index, sec_group_name, names_list) = results {
+	ing_index < count(names_list) # if ingress is standalone 
+
+	results := {
+		"searchKey" : sprintf("Resources.%s.Properties", [names_list[ing_index]]),
+		"searchLine" : common_lib.build_search_line(["Resources", names_list[ing_index], "Properties"], []),
+		"type" : "AWS::EC2::SecurityGroupIngress"
+	}
+} else = results {
+	
+	results := {
+		"searchKey" : sprintf("Resources.%s.Properties.SecurityGroupIngress[%d]", [sec_group_name, ing_index-count(names_list)]),
+		"searchLine" : common_lib.build_search_line(["Resources", sec_group_name, "Properties", "SecurityGroupIngress", ing_index-count(names_list)], []),
+		"type" : "AWS::EC2::SecurityGroup"
+	}
 }
 
-check_security_groups_ingress(group, ports) {
-	some p
-	group.SecurityGroupIngress[_].FromPort == ports[p]
-}
-
-check_security_groups_ingress(group, ports) {
-	some p
-	group.SecurityGroupIngress[_].ToPort == ports[p]
-}
+get_inline_ingress_list(group) = [] {
+	not common_lib.valid_key(group.Properties,"SecurityGroupIngress")
+} else = group.Properties.SecurityGroupIngress

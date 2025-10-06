@@ -2,7 +2,7 @@ Resources:
   Positive1_security_group:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
-      GroupDescription: Enable SSH access via port 22
+      GroupDescription: Open security group
       VpcId: !Ref MyVPC
       SecurityGroupEgress:
         - IpProtocol: "-1"
