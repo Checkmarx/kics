@@ -50,6 +50,7 @@ get_sensitive_ports(ingress) = ports {
 } else = ports {
 	portName   := common_lib.tcpPortsMap[portNumber]
 	protocol  := upper(ingress.IpProtocol)
+	protocol  == ["TCP", "UDP"][_]
 	cf_lib.containsPort(ingress.FromPort, ingress.ToPort, portNumber)
 
 	ports := [x | x := { 
