@@ -3,96 +3,97 @@ package Cx
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
-isAccessibleFromEntireNetwork(ingress) {
-	endswith(ingress.CidrIp, "/0")
-}
-
-getProtocolList(protocol) = list {
-	upper(protocol) == ["-1", "ALL"][_]
-	list = ["TCP", "UDP"]
-} else = list {
-	upper(protocol) == "TCP"
-	list = ["TCP"]
-} else = list {
-	upper(protocol) == "UDP"
-	list = ["UDP"]
-}
-
-getProtocolPorts(protocols, tcpPortsMap) = portsMap {
-	protocols[_] == ["-1", "ALL"][_]
-	portsMap = tcpPortsMap
-} else = portsMap {
-	protocols[_] == "UDP"
-	portsMap = tcpPortsMap
-} else = portsMap {
-	protocols[_] == "TCP"
-	portsMap = tcpPortsMap
-}
-
-getELBType(elb) = type {
-	common_lib.valid_key(elb.Properties, "Type")
-	type = elb.Properties.Type
-} else = type {
-	elb.Type == "AWS::ElasticLoadBalancing::LoadBalancer"
-	type = "classic"
-} else = type {
-	elb.Type == "AWS::ElasticLoadBalancingV2::LoadBalancer"
-	type = "application"
-}
-
-getLinkedSecGroupList(elb, resources) = elbSecGroupName {
-	common_lib.valid_key(elb.Properties, "SecurityGroups")
-	elbSecGroupName = elb.Properties.SecurityGroups
-} else = ec2SecGroup {
-	ec2InstanceList := [ec2 | ec2 := resources[name]; contains(upper(ec2.Type), "INSTANCE")]
-	ec2Instance := ec2InstanceList[i]
-	common_lib.valid_key(ec2Instance.Properties, "SecurityGroups")
-	ec2SecGroup = ec2Instance.Properties.SecurityGroups
-}
-
 CxPolicy[result] {
-	#############	document and resource
-	resources := input.document[i].Resources
-	loadBalancerList := [{"name": key, "properties": loadBalancer} |
-		loadBalancer := resources[key]
-		contains(loadBalancer.Type, "ElasticLoadBalancing")
-	]
+	doc := input.document[i]
+	resources := doc.Resources
 
-	elb := loadBalancerList[j]
-	elbType := getELBType(elb.properties)
-	elbSecGroupList := getLinkedSecGroupList(elb.properties, resources)
+	elbInstance = resources[elb_instance_name]
+	elbType := getELBType(elbInstance.Type)
 
-	securityGroupList = [{"name": key, "properties": secGroup} |
-		secGroup := resources[key]
-		contains(secGroup.Type, "SecurityGroup")
-	]
+	sec_group := resources[sec_group_name]
+	sec_group.Type == "AWS::EC2::SecurityGroup"
 
-	secGroup := securityGroupList[k]
-	secGroup.name == elbSecGroupList[l]
-	ingress := secGroup.properties.Properties.SecurityGroupIngress[m]
+	cf_lib.get_name(elbInstance.Properties.SecurityGroups[_]) == sec_group_name
+	ingresses_with_names := search_for_standalone_ingress(sec_group_name, doc)
 
-	protocols := getProtocolList(ingress.IpProtocol)
-	protocol := protocols[n]
-	portsMap = getProtocolPorts(protocols, common_lib.tcpPortsMap)
+	ingress_list := array.concat(ingresses_with_names.ingress_list, get_inline_ingress_list(sec_group))
+	ingress := ingress_list[ing_index]
 
-	#############	Checks
-	isAccessibleFromEntireNetwork(ingress)
+	# check that it is exposed
+	cidr_fields := {"CidrIp", "CidrIpv6"}
+	endswith(ingress[cidr_fields[c]], "/0")
 
-	# is in ports range
-	portRange := numbers.range(ingress.FromPort, ingress.ToPort)
-	portsMap[portRange[idx]]
-	portNumber = portRange[idx]
-	portName := portsMap[portNumber]
+	#check which sensitive port numbers are included
+	ports := get_sensitive_ports(ingress)
 
-	##############	Result
+	results := get_search_values(ing_index, sec_group_name, ingresses_with_names.names)
+
 	result := {
-		"documentId": input.document[i].id,
-		"resourceType": secGroup.properties.Type,
-		"resourceName": cf_lib.get_resource_name(secGroup.properties, secGroup.name),
-		"searchKey": sprintf("Resources.%s.SecurityGroupIngress", [secGroup.name]),
-		"searchValue": sprintf("%s,%d", [protocol, portNumber]),
+		"documentId": doc.id,
+		"resourceType": results.type,
+		"resourceName": cf_lib.get_resource_name(sec_group, sec_group_name),
+		"searchKey": results.searchKey,
+		"searchValue": ports[x].searchValue,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in %s load balancer %s", [portName, protocol, portNumber, elbType, elb.name]),
-		"keyActualValue": sprintf("%s (%s:%d) is allowed in %v load balancer %s", [portName, protocol, portNumber, elbType, elb.name]),
+		"keyExpectedValue": sprintf("%s should not be allowed in %s load balancer '%s'", [ports[x].value, elbType, elb_instance_name]),
+		"keyActualValue": sprintf("%s is allowed in %v load balancer '%s'", [ports[x].value, elbType, elb_instance_name]),
+		"searchLine": results.searchLine,
 	}
 }
+
+get_sensitive_ports(ingress) = ports {
+	ingress.IpProtocol == "-1"
+	ports := [{ 
+		"value" : "ALL PORTS (ALL PROTOCOLS:0-65535)",
+		"searchValue" : "ALL PROTOCOLS,0-65535"
+		}]
+} else = ports {
+	portName  := common_lib.tcpPortsMap[portNumber]
+	protocol  := upper(ingress.IpProtocol)
+	protocol  == ["TCP", "UDP"][_]
+	cf_lib.containsPort(ingress.FromPort, ingress.ToPort, portNumber)
+
+	ports := [x | x := { 
+		"value" : sprintf("%s (%s:%d)", [portName, protocol, portNumber]),
+		"searchValue" : sprintf("%s,%d", [protocol, portNumber]),
+		}]
+}
+
+search_for_standalone_ingress(sec_group_name, doc) = ingresses_with_names {
+  resources := doc.Resources
+
+  names := [name |
+    ingress := resources[name]
+    ingress.Type == "AWS::EC2::SecurityGroupIngress"
+    cf_lib.get_name(ingress.Properties.GroupId) == sec_group_name
+  ]
+
+  ingresses_with_names := {
+    "ingress_list": [resources[name].Properties | name := names[_]],
+    "names": names
+  }
+} else = { "ingress_list": [], "names": []}
+
+get_search_values(ing_index, sec_group_name, names_list) = results {
+	ing_index < count(names_list) # if ingress is standalone 
+
+	results := {
+		"searchKey" : sprintf("Resources.%s.Properties", [names_list[ing_index]]),
+		"searchLine" : common_lib.build_search_line(["Resources", names_list[ing_index], "Properties"], []),
+		"type" : "AWS::EC2::SecurityGroupIngress"
+	}
+} else = results {
+	
+	results := {
+		"searchKey" : sprintf("Resources.%s.Properties.SecurityGroupIngress[%d]", [sec_group_name, ing_index-count(names_list)]),
+		"searchLine" : common_lib.build_search_line(["Resources", sec_group_name, "Properties", "SecurityGroupIngress", ing_index-count(names_list)], []),
+		"type" : "AWS::EC2::SecurityGroup"
+	}
+}
+
+getELBType("AWS::ElasticLoadBalancing::LoadBalancer") = "classic" 
+getELBType("AWS::ElasticLoadBalancingV2::LoadBalancer") = "application"
+
+get_inline_ingress_list(group) = [] {
+	not common_lib.valid_key(group.Properties,"SecurityGroupIngress")
+} else = group.Properties.SecurityGroupIngress

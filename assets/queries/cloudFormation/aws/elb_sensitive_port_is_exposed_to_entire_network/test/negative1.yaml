@@ -1,50 +1,51 @@
-AWSTemplateFormatVersion: 2010-09-09
 Resources:
-  MyLoadBalancer:
-      Type: AWS::ElasticLoadBalancing::LoadBalancer
-      Properties:
-        AvailabilityZones:
-        - "us-east-2a"
-        CrossZone: true
-        Scheme: internet-facing
-        Listeners:
-        - InstancePort: '80'
-          InstanceProtocol: HTTP
-          LoadBalancerPort: '443'
-          Protocol: HTTPS
-          PolicyNames:
-          - My-SSLNegotiation-Policy
-          SSLCertificateId: arn:aws:iam::123456789012:server-certificate/my-server-certificate
-        HealthCheck:
-          Target: HTTP:80/
-          HealthyThreshold: '2'
-          UnhealthyThreshold: '3'
-          Interval: '10'
-          Timeout: '5'
-        SecurityGroups:
-          [ !Ref LBNegativeSecGroup01 ]
-        Policies:
-        - PolicyName: My-SSLNegotiation-Policy
-          PolicyType: SSLNegotiationPolicyType
-          Attributes:
-          - Name: Reference-Security-Policy
-            Value: ELBSecurityPolicy-TLS-1-2-2017-01
-  LBNegativeSecGroup01:
+  LoadBalancer01:
+    Type: AWS::ElasticLoadBalancing::LoadBalancer
+    Properties:
+      Listeners:
+        - LoadBalancerPort: 80
+          InstancePort: 80
+          Protocol: HTTP
+      SecurityGroups:
+        - !Ref Negative1IPv4_1
+        - !Ref Negative1IPv4_2
+        - !Ref Negative1ArrayTestIPv4
+
+  Negative1IPv4_1:
     Type: AWS::EC2::SecurityGroup
     Properties:
-        GroupDescription: Allow http and ssh
-        VpcId: my-vpc
-        SecurityGroupIngress:
-        - IpProtocol: tcp
+      GroupDescription: "Incorrect protocol: ICMP"
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+        - IpProtocol: "icmp"
           FromPort: 22
           ToPort: 22
-          CidrIp: 127.0.0.1/32
-        - IpProtocol: tcp
+          CidrIp: "10.0.0.0/0"
+
+  Negative1IPv4_2:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Unknown port: port 5000"
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+        - IpProtocol: "tcp"
+          FromPort: 5000
+          ToPort: 5000
+          CidrIp: "192.168.0.0/0"
+
+  Negative1ArrayTestIPv4:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Mixed incorrect CIDRs and protocols"
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+      # incorrect cidr (not exposed)
+        - IpProtocol: "udp"
           FromPort: 22
           ToPort: 22
-          CidrIp: 127.0.0.1/32
-        SecurityGroupEgress:
-        - IpProtocol: tcp
-          FromPort: 22
-          ToPort: 22
-          CidrIp: 0.0.0.0/0
+          CidrIp: "8.8.0.0/16"
+      # all fields "incorrect"
+        - IpProtocol: "icmp"
+          FromPort: 5000
+          ToPort: 5000
+          CidrIp: "10.68.0.0/14"

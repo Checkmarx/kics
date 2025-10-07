@@ -3,68 +3,95 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
-isAccessibleFromEntireNetwork(ingress) {
-	endswith(ingress.CidrIp, "/0")
-}
-
-getProtocolList(protocol) = list {
-	sprintf("%v", [protocol]) == "-1"
-	list = ["TCP", "UDP"]
-} else = list {
-	upper(protocol) == "TCP"
-	list = ["TCP"]
-} else = list {
-	upper(protocol) == "UDP"
-	list = ["UDP"]
-}
-
 CxPolicy[result] {
-	#############	document and resource
-	resources := input.document[i].Resources
+	doc := input.document[i]
+	resources := doc.Resources
 
-	ec2InstanceList = [{"name": key, "properties": ec2Instance} |
-		ec2Instance := resources[key]
-		ec2Instance.Type == "AWS::EC2::Instance"
-	]
+	ec2Instance = resources[ec2_instance_name]
+	ec2Instance.Type == "AWS::EC2::Instance"
 
-	ec2Instance := ec2InstanceList[_]
+	sec_group := resources[sec_group_name]
+	sec_group.Type == "AWS::EC2::SecurityGroup"
 
-	securityGroupList = [{"name": key, "properties": secGroup} |
-		secGroup := resources[key]
-		secGroup.Type == "AWS::EC2::SecurityGroup"
-	]
+	cf_lib.get_name(ec2Instance.Properties.SecurityGroupIds[_]) == sec_group_name
+	ingresses_with_names := search_for_standalone_ingress(sec_group_name, doc)
 
-	secGroup := securityGroupList[_]
+	ingress_list := array.concat(ingresses_with_names.ingress_list, get_inline_ingress_list(sec_group))
+	ingress := ingress_list[ing_index]
 
-	ec2Instance.properties.Properties.SecurityGroups[_] == secGroup.name
+	# check that it is exposed
+	cidr_fields := {"CidrIp", "CidrIpv6"}
+	endswith(ingress[cidr_fields[c]], "/0")
 
-	ingress := secGroup.properties.Properties.SecurityGroupIngress[l]
+	#check which sensitive port numbers are included
+	ports := get_sensitive_ports(ingress)
 
-	protocols := getProtocolList(ingress.IpProtocol)
-	protocol := protocols[m]
-	portsMap := {
-		"TCP": common_lib.tcpPortsMap,
-		"UDP": common_lib.tcpPortsMap,
-	}
+	results := get_search_values(ing_index, sec_group_name, ingresses_with_names.names)
 
-	#############	Checks
-	isAccessibleFromEntireNetwork(ingress)
-
-	# is in ports range
-	portRange := numbers.range(ingress.FromPort, ingress.ToPort)
-	portNumber := portRange[idx]
-	portName := portsMap[protocol][portNumber]
-
-	#############	Result
 	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "AWS::EC2::SecurityGroup",
-		"resourceName": cf_lib.get_resource_name(secGroup.properties, secGroup.name),
-		"searchKey": sprintf("Resources.%s.SecurityGroupIngress", [secGroup.name]),
-		"searchValue": sprintf("%s/%s:%d", [ec2Instance.name, protocol, portNumber]),
+		"documentId": doc.id,
+		"resourceType": results.type,
+		"resourceName": cf_lib.get_resource_name(sec_group, sec_group_name),
+		"searchKey": results.searchKey,
+		"searchValue": ports[x].searchValue,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("%s (%s:%d) should not be allowed in EC2 security group for instance %s", [portName, protocol, portNumber, ec2Instance.name]),
-		"keyActualValue": sprintf("%s (%s:%d) is allowed in EC2 security group for instance %s", [portName, protocol, portNumber, ec2Instance.name]),
-		"searchLine": common_lib.build_search_line(["Resources", secGroup.name, "Properties", "SecurityGroupIngress", l], []),
+		"keyExpectedValue": sprintf("%s should not be allowed in EC2 security group for instance '%s'", [ports[x].value, ec2_instance_name]),
+		"keyActualValue": sprintf("%s is allowed in EC2 security group for instance '%s'", [ports[x].value, ec2_instance_name]),
+		"searchLine": results.searchLine,
 	}
 }
+
+get_sensitive_ports(ingress) = ports {
+	ingress.IpProtocol == "-1"
+	ports := [{ 
+		"value" : "ALL PORTS (ALL PROTOCOLS:0-65535)",
+		"searchValue" : "ALL PROTOCOLS,0-65535"
+		}]
+} else = ports {
+	portName   := common_lib.tcpPortsMap[portNumber]
+	protocol  := upper(ingress.IpProtocol)
+	protocol  == ["TCP", "UDP"][_]
+	cf_lib.containsPort(ingress.FromPort, ingress.ToPort, portNumber)
+
+	ports := [x | x := { 
+		"value" : sprintf("%s (%s:%d)", [portName, protocol, portNumber]),
+		"searchValue" : sprintf("%s,%d", [protocol, portNumber]),
+		}]
+}
+
+search_for_standalone_ingress(sec_group_name, doc) = ingresses_with_names {
+  resources := doc.Resources
+
+  names := [name |
+    ingress := resources[name]
+    ingress.Type == "AWS::EC2::SecurityGroupIngress"
+    cf_lib.get_name(ingress.Properties.GroupId) == sec_group_name
+  ]
+
+  ingresses_with_names := {
+    "ingress_list": [resources[name].Properties | name := names[_]],
+    "names": names
+  }
+} else = { "ingress_list": [], "names": []}
+
+
+get_search_values(ing_index, sec_group_name, names_list) = results {
+	ing_index < count(names_list) # if ingress is standalone 
+
+	results := {
+		"searchKey" : sprintf("Resources.%s.Properties", [names_list[ing_index]]),
+		"searchLine" : common_lib.build_search_line(["Resources", names_list[ing_index], "Properties"], []),
+		"type" : "AWS::EC2::SecurityGroupIngress"
+	}
+} else = results {
+	
+	results := {
+		"searchKey" : sprintf("Resources.%s.Properties.SecurityGroupIngress[%d]", [sec_group_name, ing_index-count(names_list)]),
+		"searchLine" : common_lib.build_search_line(["Resources", sec_group_name, "Properties", "SecurityGroupIngress", ing_index-count(names_list)], []),
+		"type" : "AWS::EC2::SecurityGroup"
+	}
+}
+
+get_inline_ingress_list(group) = [] {
+	not common_lib.valid_key(group.Properties,"SecurityGroupIngress")
+} else = group.Properties.SecurityGroupIngress
