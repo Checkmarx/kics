@@ -1,5 +1,4 @@
 {
-  "AWSTemplateFormatVersion": "2010-09-09",
   "Resources": {
     "LoadBalancer01": {
       "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
@@ -14,7 +13,10 @@
         "SecurityGroups": [
           { "Ref": "Positive1IPv4_1" },
           { "Ref": "Positive1IPv4_2" },
-          { "Ref": "Positive1ArrayTestIPv4" }
+          { "Ref": "Positive1ArrayTestIPv4" },
+          { "Ref": "Positive1IPv6_1" },
+          { "Ref": "Positive1IPv6_2" },
+          { "Ref": "Positive1ArrayTestIPv6" }
         ]
       }
     },
@@ -68,6 +70,54 @@
             "FromPort": 110,
             "ToPort": 110,
             "CidrIp": "172.16.0.0/0"
+          }
+        ]
+      }
+    },
+    "Positive1IPv6_1": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Allow all protocols on port 22 from 10.0.0.0/0",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "-1",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIpv6": "fd00::/0"
+          }
+        ]
+      }
+    },
+    "Positive1IPv6_2": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Allow TCP on port 22 from 192.168.0.0/0",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIpv6": "fd12:3456:789a::1/0"
+          }
+        ]
+      }
+    },
+    "Positive1ArrayTestIPv6": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Allow UDP on ports 22 and 110 from multiple CIDRs",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "udp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIpv6": "fd00:abcd:1234::42/0"
+          },
+          {
+            "IpProtocol": "udp",
+            "FromPort": 110,
+            "ToPort": 110,
+            "CidrIpv6": "fd00:abcd:1234::42/0"
           }
         ]
       }

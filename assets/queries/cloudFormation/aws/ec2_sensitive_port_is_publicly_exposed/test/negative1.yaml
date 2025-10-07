@@ -8,8 +8,12 @@ Resources:
         - !Ref Negative1IPv4_1
         - !Ref Negative1IPv4_2
         - !Ref Negative1ArrayTestIPv4
+        - !Ref Negative1IPv6_1
+        - !Ref Negative1IPv6_2
+        - !Ref Negative1ArrayTestIPv6
       KeyName: my-new-rsa-key
-
+      
+# Ipv4 Rules
   Negative1IPv4_1:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -48,3 +52,38 @@ Resources:
           FromPort: 5000 
           ToPort: 5000
           CidrIp: "10.68.0.0/14"
+
+# IPv6 Rules
+  Negative1IPv6_1:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Allow all protocols on port 22 from 10.0.0.0/0"
+      SecurityGroupIngress:
+      - IpProtocol: "58"  # protocol number 58 is "icmpv6" = incorrect protocol
+        FromPort: 22
+        ToPort: 22
+        CidrIpv6: "fd00::/0"
+
+  Negative1IPv6_2:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Allow TCP on port 22 from 192.168.0.0/0"
+      SecurityGroupIngress:
+        - IpProtocol: "tcp"
+          FromPort: 5000    # unknown port
+          ToPort: 5000
+          CidrIpv6: "fd12:3456:789a::1/0"
+
+  Negative1ArrayTestIPv6:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Allow UDP on ports 22 and 110 from multiple CIDRs"
+      SecurityGroupIngress:
+        - IpProtocol: "udp"
+          FromPort: 22
+          ToPort: 22
+          CidrIpv6: "2400:cb00::/32"  # incorrect cidr (not exposed)
+        - IpProtocol: "58"   # all fields "incorrect"
+          FromPort: 110
+          ToPort: 110
+          CidrIpv6: "fd00:abcd:1234::42/0"
