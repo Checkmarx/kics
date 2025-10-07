@@ -71,6 +71,20 @@ containsPort(from_port, to_port, port) {
 	to_port == 0
 }
 
+entireNetwork(rule) {
+	rule.CidrIp == "0.0.0.0/0"
+} else {
+	rule.CidrIpv6 == common_lib.unrestricted_ipv6[_]
+}
+
+getProtocolList(protocol) = list {
+	protocol == "-1"
+	list = ["TCP", "UDP"]
+} else = list {
+	common_lib.inArray(["TCP", "UDP"],upper(protocol)) 
+	list = [upper(protocol)]
+} else = []
+
 # Get content of the resource(s) based on the type
 getResourcesByType(resources, type) = list {
 	list = [resource | resources[i].Type == type; resource := resources[i]]
