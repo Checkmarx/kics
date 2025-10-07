@@ -18,7 +18,7 @@ CxPolicy[result] {
         "keyExpectedValue": res["kev"],
         "keyActualValue": res["kav"],
         "remediation": res["rem"],
-        "remediationType": res["rt"],
+        "remediationType": res["rtype"],
     }
 }
 
@@ -36,7 +36,7 @@ get_res(doc) = res { # key_vault_key_id field not defined
         "kev": "'key_vault_key_id' must be defined inside the 'customer_managed_key' block",
         "sl": common_lib.build_search_line(["resource", "azurerm_storage_account", name, "customer_managed_key"], []),
         "rem": "key_vault_key_id = \"azure\"",
-        "rt": "addition"
+        "rtype": "addition"
     }
 } else = res { # customer_managed_key block not defined
     common_lib.valid_key(doc, "azurerm_storage_account")
@@ -52,7 +52,7 @@ get_res(doc) = res { # key_vault_key_id field not defined
         "kev": "'azurerm_storage_account' should have a 'customer_managed_key' block defined",
         "sl": common_lib.build_search_line(["resource", "azurerm_storage_account", name], []),
         "rem": "customer_managed_key {\n\t\tkey_vault_key_id = \"azure\"\n\t}",
-        "rt": "addition"
+        "rtype": "addition"
     }
 } else = res { # azurerm_storage_account_customer_managed_key with an incorrect storage_account_id
     common_lib.valid_key(doc, "azurerm_storage_account")
@@ -72,7 +72,7 @@ get_res(doc) = res { # key_vault_key_id field not defined
             "before": sprintf("%s", [storage_account_cmk.storage_account_id]),
             "after": sprintf("azurerm_storage_account.%s.id", [name])
         }),
-        "rt": "replacement"
+        "rtype": "replacement"
     }
 } else = res { # no azurerm_storage_account_defined
     common_lib.valid_key(doc, "azurerm_storage_account_customer_managed_key")
@@ -90,6 +90,6 @@ get_res(doc) = res { # key_vault_key_id field not defined
         "kev": "'storage_account_id' is referencing an 'azurerm_storage_account' that doesn't exist",
         "sl": common_lib.build_search_line(["resource", "azurerm_storage_account_customer_managed_key", name_cmk, "storage_account_id"], []),
         "rem": null,
-        "rt": null
+        "rtype": null
     }
 }
