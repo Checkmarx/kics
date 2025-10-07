@@ -20,7 +20,7 @@
   {
     "queryName": "Fully Open Ingress",
     "severity": "HIGH",
-    "line": 45,
+    "line": 46,
     "fileName": "positive1.yaml"
   },
   {
