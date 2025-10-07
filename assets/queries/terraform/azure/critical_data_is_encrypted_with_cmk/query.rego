@@ -51,8 +51,8 @@ get_res(doc) = res { # key_vault_key_id field not defined
         "kav": "'azurerm_storage_account' does not have a 'customer_managed_key' block defined",
         "kev": "'azurerm_storage_account' should have a 'customer_managed_key' block defined",
         "sl": common_lib.build_search_line(["resource", "azurerm_storage_account", name], []),
-        "rem": "customer_managed_key {\n\t\tkey_vault_key_id = \"azure\"\n\t}",
-        "rtype": "addition"
+        "rem": null,
+        "rtype": null
     }
 } else = res { # azurerm_storage_account_customer_managed_key with an incorrect storage_account_id
     common_lib.valid_key(doc, "azurerm_storage_account")
