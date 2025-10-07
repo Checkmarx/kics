@@ -1,4 +1,4 @@
-resource "azurerm_storage_account" "example" {
+resource "azurerm_storage_account" "positive2" {
   name                     = "examplestorageacc4"
   resource_group_name      = "example-rg"
   location                 = "eastus"

@@ -6,7 +6,7 @@ resource "azurerm_storage_account" "main" {
   account_replication_type = "LRS"
 }
 
-resource "azurerm_storage_account_customer_managed_key" "example" {
+resource "azurerm_storage_account_customer_managed_key" "positive3" {
   storage_account_id = azurerm_storage_account.not_main.id
   key_vault_id       = "https://example-vault.vault.azure.net/"
   key_name           = "example-key"
