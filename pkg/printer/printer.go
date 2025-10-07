@@ -22,7 +22,7 @@ import (
 const (
 	charsLimitPerLine = 255
 	common            = "common"
-	SpacesInTab       = 4
+	spacesInTab       = 4
 )
 
 var (
@@ -212,7 +212,7 @@ func printSeverityCounter(summary *model.Summary) {
 // Prints the formated Queries summary table
 func prettyPrintResultsTable(summary *model.Summary) error {
 	var buf bytes.Buffer
-	writer := tabwriter.NewWriter(&buf, 0, 0, SpacesInTab, ' ', tabwriter.TabIndent)
+	writer := tabwriter.NewWriter(&buf, 0, 0, spacesInTab, ' ', tabwriter.TabIndent)
 
 	if _, err := writer.Write([]byte("--- Queries Summary ---\nPlatform\tQuery Name\tSeverity\tCWE\tResults\n \t \t \t \t \n")); err != nil {
 		return err
