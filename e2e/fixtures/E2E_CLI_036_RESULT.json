@@ -12,13 +12,13 @@
   "scan_id": "console",
   "severity_counters": {
     "CRITICAL": 0,
-    "HIGH": 4,
+    "HIGH": 2,
     "INFO": 3,
     "LOW": 3,
     "MEDIUM": 10,
     "TRACE": 0
   },
-  "total_counter": 20,
+  "total_counter": 18,
   "total_bom_resources": 0,
   "start": "2024-05-28T12:51:01.1706894+01:00",
   "end": "2024-05-28T12:51:08.9940487+01:00",
@@ -26,47 +26,6 @@
     "/path/e2e/fixtures/samples/positive.yaml"
   ],
   "queries": [
-    {
-      "query_name": "Fully Open Ingress",
-      "query_id": "e415f8d3-fc2b-4f52-88ab-1129e8c8d3f5",
-      "query_url": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/get-set-up-for-amazon-ecs.html#create-a-base-security-group",
-      "severity": "HIGH",
-      "platform": "CloudFormation",
-      "cwe": "668",
-      "cloud_provider": "AWS",
-      "category": "Networking and Firewall",
-      "experimental": false,
-      "description": "ECS Service's security group should not allow unrestricted access to all ports from all IPv4 addresses",
-      "description_id": "747f49ac",
-      "files": [
-        {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "88653ab159ca0a15095afc685f98da24685fa547bb5f1ca7c95ef468f209387c",
-          "line": 24,
-          "resource_type": "AWS::EC2::SecurityGroupIngress",
-          "resource_name": "EcsSecurityGroupHTTPinbound02",
-          "issue_type": "IncorrectValue",
-          "search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties.CidrIp",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from all IPv4 adresses and to all available ports",
-          "actual_value": "Resource name 'EcsSecurityGroupHTTPinbound02' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
-        },
-        {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "5f39aa8e63613a7e8bfd7641ccfb931fa0225e95b3449bc1210b50329d65d713",
-          "line": 32,
-          "resource_type": "AWS::EC2::SecurityGroupIngress",
-          "resource_name": "EcsSecurityGroupSSHinbound",
-          "issue_type": "IncorrectValue",
-          "search_key": "Resources.EcsSecurityGroupSSHinbound.Properties.CidrIp",
-          "search_line": -1,
-          "search_value": "",
-          "expected_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from all IPv4 adresses and to all available ports",
-          "actual_value": "Resource name 'EcsSecurityGroupSSHinbound' of type 'AWS::EC2::SecurityGroupIngress' should not accept ingress connections from CIDR 0.0.0.0/0 to all available ports"
-        }
-      ]
-    },
     {
       "query_name": "Unrestricted Security Group Ingress",
       "query_id": "4a1e6b34-1008-4e61-a5f2-1f7c276f8d14",
