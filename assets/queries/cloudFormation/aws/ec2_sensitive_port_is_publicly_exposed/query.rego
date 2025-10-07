@@ -44,7 +44,7 @@ CxPolicy[result] {
 	protocol := protocols[m]
 	portsMap := {
 		"TCP": common_lib.tcpPortsMap,
-		"UDP": cf_lib.udpPortsMap,
+		"UDP": common_lib.tcpPortsMap,
 	}
 
 	#############	Checks

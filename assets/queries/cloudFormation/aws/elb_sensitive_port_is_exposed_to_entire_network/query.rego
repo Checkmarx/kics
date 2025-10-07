@@ -18,12 +18,12 @@ getProtocolList(protocol) = list {
 	list = ["UDP"]
 }
 
-getProtocolPorts(protocols, tcpPortsMap, udpPortsMap) = portsMap {
+getProtocolPorts(protocols, tcpPortsMap) = portsMap {
 	protocols[_] == ["-1", "ALL"][_]
-	portsMap = object.union(tcpPortsMap, udpPortsMap)
+	portsMap = tcpPortsMap
 } else = portsMap {
 	protocols[_] == "UDP"
-	portsMap = udpPortsMap
+	portsMap = tcpPortsMap
 } else = portsMap {
 	protocols[_] == "TCP"
 	portsMap = tcpPortsMap
@@ -73,7 +73,7 @@ CxPolicy[result] {
 
 	protocols := getProtocolList(ingress.IpProtocol)
 	protocol := protocols[n]
-	portsMap = getProtocolPorts(protocols, common_lib.tcpPortsMap, cf_lib.udpPortsMap)
+	portsMap = getProtocolPorts(protocols, common_lib.tcpPortsMap)
 
 	#############	Checks
 	isAccessibleFromEntireNetwork(ingress)
