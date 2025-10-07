@@ -184,6 +184,15 @@ func SetStrFlag(flagName, value string) {
 	}
 }
 
+// SetBoolFlag set a boolean flag using its name
+func SetBoolFlag(flagName string, value bool) {
+	if _, ok := flagsBoolReferences[flagName]; ok {
+		*flagsBoolReferences[flagName] = value
+	} else {
+		log.Debug().Msgf("Could not set bool flag %s", flagName)
+	}
+}
+
 // SetMultiStrFlag set a slice of strings flag using its name
 func SetMultiStrFlag(flagName string, value []string) {
 	if _, ok := flagsMultiStrReferences[flagName]; ok {
