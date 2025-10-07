@@ -15,10 +15,10 @@
     "HIGH": 4,
     "INFO": 3,
     "LOW": 5,
-    "MEDIUM": 12,
+    "MEDIUM": 10,
     "TRACE": 0
   },
-  "total_counter": 24,
+  "total_counter": 22,
   "total_bom_resources": 0,
   "start": "2024-05-28T13:21:07.0046236+01:00",
   "end": "2024-05-28T13:21:21.5156346+01:00",
@@ -386,19 +386,6 @@
       "files": [
         {
           "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "d60022e14f1b45c574f71c0f48b3fee882b471819597b770e3545988a8f5295a",
-          "line": 19,
-          "resource_type": "AWS::EC2::SecurityGroupIngress",
-          "resource_name": "EcsSecurityGroupHTTPinbound02",
-          "issue_type": "IncorrectValue",
-          "search_key": "Resources.EcsSecurityGroupHTTPinbound02.Properties",
-          "search_line": 19,
-          "search_value": "",
-          "expected_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort should equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort",
-          "actual_value": "Resources.EcsSecurityGroupHTTPinbound02.Properties.FromPort is not equal to Resources.EcsSecurityGroupHTTPinbound02.Properties.ToPort"
-        },
-        {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "000056cd0b9697e13f2f4561f1963e34c58c042b921c4d0fad0f2fa5214374eb",
           "line": 35,
           "resource_type": "AWS::EC2::SecurityGroupIngress",
@@ -409,19 +396,6 @@
           "search_value": "",
           "expected_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort should equal to Resources.EcsSecurityGroupALBports.Properties.ToPort",
           "actual_value": "Resources.EcsSecurityGroupALBports.Properties.FromPort is not equal to Resources.EcsSecurityGroupALBports.Properties.ToPort"
-        },
-        {
-          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
-          "similarity_id": "810487007189ac4de717dffc3204a05756e80e910b34f89ee08fd14f612328aa",
-          "line": 27,
-          "resource_type": "AWS::EC2::SecurityGroupIngress",
-          "resource_name": "EcsSecurityGroupSSHinbound",
-          "issue_type": "IncorrectValue",
-          "search_key": "Resources.EcsSecurityGroupSSHinbound.Properties",
-          "search_line": 27,
-          "search_value": "",
-          "expected_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort should equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort",
-          "actual_value": "Resources.EcsSecurityGroupSSHinbound.Properties.FromPort is not equal to Resources.EcsSecurityGroupSSHinbound.Properties.ToPort"
         }
       ]
     },

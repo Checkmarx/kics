@@ -11,7 +11,7 @@ Resources:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       GroupId: !Ref Negative2SecurityGroup
-      IpProtocol: udp      # incorrect protocol
+      IpProtocol: "udp"      # incorrect protocol
       FromPort: 3389
       ToPort: 3389
       CidrIp: "0.0.0.0/0"
@@ -20,7 +20,7 @@ Resources:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       GroupId: !Ref Negative2SecurityGroup
-      IpProtocol: "-1"
+      IpProtocol: "tcp"
       FromPort: 100      # not catching port 3389
       ToPort: 200
       CidrIp: "0.0.0.0/0"
@@ -29,7 +29,7 @@ Resources:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       GroupId: !Ref Negative2SecurityGroup
-      IpProtocol: tcp
+      IpProtocol: "-1"
       FromPort: 2000
       ToPort: 4000
       CidrIp: "8.8.0.0/16"  # CidrIP is not 0:0:0:0/0
@@ -38,7 +38,7 @@ Resources:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       GroupId: !Ref Negative2SecurityGroup 
-      IpProtocol: udp    # all fields "incorrect"
+      IpProtocol: "udp"    # all fields "incorrect"
       FromPort: 5000
       ToPort: 5000
       CidrIp: "8.8.0.0/16"
@@ -57,7 +57,7 @@ Resources:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       GroupId: !Ref Negative2SecurityGroup
-      IpProtocol: tcp
+      IpProtocol: "tcp"
       FromPort: 5000    # not catching port 3389
       ToPort: 5000
       CidrIpv6: "0000:0000:0000:0000:0000:0000:0000:0000/0"
@@ -66,7 +66,7 @@ Resources:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       GroupId: !Ref Negative2SecurityGroup
-      IpProtocol: udp
+      IpProtocol: "-1"
       FromPort: 2000
       ToPort: 4000
       CidrIpv6: "2400:cb00::/32"  # CidrIP is not 0:0:0:0/0
@@ -75,7 +75,7 @@ Resources:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       GroupId: !Ref Negative2SecurityGroup   # all fields "incorrect"
-      IpProtocol: udp 
+      IpProtocol: "udp" 
       FromPort: 5000
       ToPort: 5000
       CidrIpv6: "2400:cb00::/32"

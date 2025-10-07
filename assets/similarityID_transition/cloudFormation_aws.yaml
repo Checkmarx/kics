@@ -87,3 +87,11 @@ similarityIDChangeList:
       queryName: Security Groups With Exposed Admin Ports
       observations: It was not poiting to the specific ingress inside the SecurityGroupIngress array
       change: 1  
+    - queryId: 1cc2fbd7-816c-4fbf-ad6d-38a4afa4312a
+      queryName: Security Group Egress CIDR Open To World
+      observations: SearchValue cannot reach field but searchLine can and was added changing results
+      change: 1  
+    - queryId: dae9c373-8287-462f-8746-6f93dad93610
+      queryName: Security Group Egress With Port Range
+      observations: SearchValue cannot reach field but searchLine can and was added changing results
+      change: 1  

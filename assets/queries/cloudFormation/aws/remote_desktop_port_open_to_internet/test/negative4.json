@@ -27,7 +27,7 @@
         "GroupId": {
           "Ref": "Negative2SecurityGroup"
         },
-        "IpProtocol": "-1",
+        "IpProtocol": "tcp",
         "FromPort": 100,
         "ToPort": 200,
         "CidrIp": "0.0.0.0/0"
@@ -51,7 +51,7 @@
         "GroupId": {
           "Ref": "Negative2SecurityGroup"
         },
-        "IpProtocol": "udp",
+        "IpProtocol": "-1",
         "FromPort": 5000,
         "ToPort": 5000,
         "CidrIp": "8.8.0.0/16"
@@ -87,7 +87,7 @@
         "GroupId": {
           "Ref": "Negative2SecurityGroup"
         },
-        "IpProtocol": "udp",
+        "IpProtocol": "-1",
         "FromPort": 2000,
         "ToPort": 4000,
         "CidrIpv6": "2400:cb00::/32"

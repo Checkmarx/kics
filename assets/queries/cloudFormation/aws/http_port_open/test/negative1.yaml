@@ -7,7 +7,7 @@ Resources:
         VpcId:
           Ref: myVPC
         SecurityGroupIngress:
-        - IpProtocol: udp  # wrong protocol
+        - IpProtocol: "udp"  # wrong protocol
           FromPort: 80
           ToPort: 80
           CidrIp: 0.0.0.0/0
@@ -19,7 +19,7 @@ Resources:
         VpcId:
           Ref: myVPC
         SecurityGroupIngress:
-        - IpProtocol: "-1"
+        - IpProtocol: "tcp"
           FromPort: 100
           ToPort: 200      # not catching port 80
           CidrIp: 0.0.0.0/0
@@ -35,7 +35,7 @@ Resources:
           FromPort: 0
           ToPort: 1000
           CidrIp: 192.0.0.0/16  # CidrIP is not 0:0:0:0/0
-        - IpProtocol: udp   # all fields "incorrect"
+        - IpProtocol: "udp"   # all fields "incorrect"
           FromPort: 1000
           ToPort: 2000
           CidrIp: 192.120.0.0/16

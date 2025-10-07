@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 
 admin_ports := [20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389]
 
-CxPolicy[result] { # missing AWS::RDS::DBSecurityGroup TODO
+CxPolicy[result] {
 	doc := input.document[i]
 	sec_group := doc.Resources[sec_group_name]
 	sec_group.Type == "AWS::EC2::SecurityGroup"

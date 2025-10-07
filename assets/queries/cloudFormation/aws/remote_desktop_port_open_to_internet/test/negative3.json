@@ -26,7 +26,7 @@
         },
         "SecurityGroupIngress": [
           {
-            "IpProtocol": "-1",
+            "IpProtocol": "tcp",
             "FromPort": 100,
             "ToPort": 200,
             "CidrIp": "0.0.0.0/0"

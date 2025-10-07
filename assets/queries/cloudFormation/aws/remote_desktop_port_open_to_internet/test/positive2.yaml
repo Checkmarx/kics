@@ -12,8 +12,8 @@ Resources:
     Properties:
       GroupId: !Ref DualStackSecurityGroup
       IpProtocol: "-1"
-      FromPort: 1000
-      ToPort: 4000
+      FromPort: 10
+      ToPort: 10
       CidrIp: "0.0.0.0/0"
 
   IPv4Ingress2:
@@ -30,7 +30,7 @@ Resources:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       GroupId: !Ref DualStackSecurityGroup
-      IpProtocol: "-1"
+      IpProtocol: "tcp"
       FromPort: 1000
       ToPort: 4000
       CidrIpv6: "::/0"
