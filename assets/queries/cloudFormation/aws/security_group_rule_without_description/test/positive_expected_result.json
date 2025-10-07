@@ -30,6 +30,12 @@
     "fileName": "positive1.yaml"
   },
   {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 47,
+    "fileName": "positive1.yaml"
+  },
+  {
     "severity": "INFO",
     "line": 5,
     "fileName": "positive2.json",
@@ -57,6 +63,12 @@
     "queryName": "Security Group Rule Without Description",
     "severity": "INFO",
     "line": 56,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Security Group Rule Without Description",
+    "severity": "INFO",
+    "line": 69,
     "fileName": "positive2.json"
   }
 ]

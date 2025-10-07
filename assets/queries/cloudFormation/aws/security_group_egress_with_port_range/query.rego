@@ -20,6 +20,7 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.FromPort should equal to Resources.%s.Properties.ToPort", [name, name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.FromPort is not equal to Resources.%s.Properties.ToPort", [name, name]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties"], []),
 	}
 }
 
@@ -41,5 +42,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.SecurityGroupEgress[%d].FromPort should equal to Resources.%s.Properties.SecurityGroupEgress[%d].ToPort", [name, index, name, index]),
 		"keyActualValue": sprintf("Resources.%s.Properties.SecurityGroupEgress[%d].FromPort is not equal to Resources.%s.Properties.SecurityGroupEgress[%d].ToPort", [name, index, name, index]),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "SecurityGroupEgress", index], []),
 	}
 }
