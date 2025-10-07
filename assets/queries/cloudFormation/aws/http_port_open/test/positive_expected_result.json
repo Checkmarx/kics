@@ -2,25 +2,19 @@
   {
     "queryName": "HTTP Port Open To Internet",
     "severity": "MEDIUM",
-    "line": 10,
-    "fileName": "positive1.yaml"
-  },
-  {
-    "queryName": "HTTP Port Open To Internet",
-    "severity": "MEDIUM",
-    "line": 11,
+    "line": 9,
     "fileName": "positive1.yaml"
   },
   {
     "fileName": "positive2.json",
     "queryName": "HTTP Port Open To Internet",
     "severity": "MEDIUM",
-    "line": 13
+    "line": 12
   },
   {
-    "fileName": "positive2.json",
     "queryName": "HTTP Port Open To Internet",
     "severity": "MEDIUM",
-    "line": 14
+    "line": 9,
+    "fileName": "positive3.yaml"
   }
 ]
