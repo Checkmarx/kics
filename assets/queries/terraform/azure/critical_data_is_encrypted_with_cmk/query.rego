@@ -51,8 +51,8 @@ get_res(doc) = res { # key_vault_key_id field not defined
         "kav": "'azurerm_storage_account' does not have a 'customer_managed_key' block defined",
         "kev": "'azurerm_storage_account' should have a 'customer_managed_key' block defined",
         "sl": common_lib.build_search_line(["resource", "azurerm_storage_account", name], []),
-        "rem": null,
-        "rtype": null
+        "rem": "customer_managed_key {\n\t\tkey_vault_key_id = \"azure\"\n\t}",
+        "rtype": "addition"
     }
 } else = res { # azurerm_storage_account_customer_managed_key with an incorrect storage_account_id
     common_lib.valid_key(doc, "azurerm_storage_account")
@@ -68,11 +68,8 @@ get_res(doc) = res { # key_vault_key_id field not defined
         "kav": "'storage_account_id' is not referencing an existent 'azurerm_storage_account'",
         "kev": "'storage_account_id' is referencing an 'azurerm_storage_account' that doesn't exist",
         "sl": common_lib.build_search_line(["resource", "azurerm_storage_account_customer_managed_key", name_cmk, "storage_account_id"], []),
-        "rem": json.marshal({
-            "before": sprintf("%s", [storage_account_cmk.storage_account_id]),
-            "after": sprintf("azurerm_storage_account.%s.id", [name])
-        }),
-        "rtype": "replacement"
+        "rem": null,
+        "rtype": null,
     }
 } else = res { # no azurerm_storage_account_defined
     common_lib.valid_key(doc, "azurerm_storage_account_customer_managed_key")
