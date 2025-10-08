@@ -62,19 +62,19 @@
   {
     "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
-    "line": 12,
+    "line": 10,
     "fileName": "positive3.json"
   },
   {
     "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
-    "line": 29,
+    "line": 25,
     "fileName": "positive3.json"
   },
   {
     "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
-    "line": 52,
+    "line": 46,
     "fileName": "positive3.json"
   },
   {
