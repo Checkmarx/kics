@@ -40,10 +40,9 @@
       Statement:
       - Effect: Allow
         Action: Publish
-        Principal: 
-          AWS: "*"
+        Principal: "*"
         Condition:
-            StringEquals:
-              aws:SourceAccount: "123456789012"
-            Bool:
-              aws:SecureTransport: "true"
+          StringEquals:
+            aws:SourceAccount: "123456789012"
+          Bool:
+            aws:SecureTransport: "true"

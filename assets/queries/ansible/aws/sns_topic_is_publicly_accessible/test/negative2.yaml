@@ -10,8 +10,7 @@
         - Sid: AllowPublishFromSpecificAccount
           Effect: Allow
           Resource: "arn:aws:sns:*:*:secure-topic"
-          Principal:
-            AWS: "*"
+          Principal: "*"
           Action: sns:Publish
           Condition:
             StringEquals:
@@ -38,8 +37,7 @@
       Statement:
       - Effect: Allow
         Action: Publish
-        Principal: 
-          AWS: "*"
+        Principal: "*"
         Condition:
-            StringEquals:
-              aws:SourceAccount: "123456789012"
+          StringEquals:
+            aws:SourceAccount: "123456789012"
