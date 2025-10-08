@@ -2,13 +2,121 @@
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 15,
+    "line": 10,
     "fileName": "positive1.yaml"
   },
   {
     "queryName": "Security Group With Unrestricted Access To SSH",
     "severity": "MEDIUM",
-    "line": 27,
-    "fileName": "positive2.json"
+    "line": 22,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 38,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 51,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 63,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 79,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 21,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 31,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 40,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 10,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 25,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 46,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 61,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 76,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 97,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 22,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 32,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Security Group With Unrestricted Access To SSH",
+    "severity": "MEDIUM",
+    "line": 42,
+    "fileName": "positive4.json"
   }
 ]
