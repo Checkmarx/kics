@@ -10,8 +10,7 @@
         - Sid: AllowAnyPrincipalWithRestrictions
           Effect: Allow
           Resource: "arn:aws:sns:*:*:mixed-topic"
-          Principal:
-            AWS: "*"
+          Principal: "*"
           Action: sns:Publish
           Condition:
             StringEquals:
@@ -42,7 +41,7 @@
         Action: Publish
         Principal: "*"
         Condition:
-          StringEquals:
+        - StringEquals:
             aws:SourceAccount: "123456789012"
           Bool:
             aws:SecureTransport: "true"

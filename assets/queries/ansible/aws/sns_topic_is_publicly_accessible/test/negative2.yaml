@@ -39,5 +39,5 @@
         Action: Publish
         Principal: "*"
         Condition:
-          StringEquals:
+        - StringEquals:
             aws:SourceAccount: "123456789012"
