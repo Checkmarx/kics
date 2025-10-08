@@ -1,25 +1,21 @@
-- name: Create alarm SNS topic community
+- name: Create SNS topic with safe policy
   community.aws.sns_topic:
-    name: alarms
+    name: secure-topic
+    display_name: "Secure SNS Topic"
     state: present
-    display_name: alarm SNS topic
-    delivery_policy:
-      http:
-        defaultHealthyRetryPolicy:
-          minDelayTarget: 2
-          maxDelayTarget: 4
-          numRetries: 3
-          numMaxDelayRetries: 5
-          backoffFunction: <linear|arithmetic|geometric|exponential>
-        disableSubscriptionOverrides: true
-        defaultThrottlePolicy:
-          maxReceivesPerSecond: 10
     policy:
-      Version: '2022-05-02'
+      Id: secure-topic-policy
+      Version: "2012-10-17"
       Statement:
-      - Effect: Allow
-        Action: Publish
-        Principal: NotAll
+        - Sid: AllowPublishFromSpecificAccount
+          Effect: Allow
+          Resource: "arn:aws:sns:*:*:secure-topic"
+          Principal:
+            AWS: "*"
+          Action: sns:Publish
+          Condition:
+            StringEquals:
+              aws:SourceAccount: "123456789012"
 
 - name: Create alarm SNS topic
   sns_topic:
@@ -42,4 +38,8 @@
       Statement:
       - Effect: Allow
         Action: Publish
-        Principal: NotAll
+        Principal: 
+          AWS: "*"
+        Condition:
+            StringEquals:
+              aws:SourceAccount: "123456789012"
