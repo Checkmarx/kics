@@ -1,77 +1,66 @@
-resource "aws_security_group" "negative" {
-  name        = "shared_tls_group"
-  description = "Security group with multiple ingress rules"
-  vpc_id      = aws_vpc.main.id
+# ipv4
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv4_1" {
+  #incorrect protocol
+  from_port    = 22
+  to_port      = 22
+  ip_protocol  = "icmp"
+  cidr_ipv4    = "10.0.0.0/8"
 }
 
-resource "aws_vpc_security_group_ingress_rule" "negative1" {
-  security_group_id = aws_security_group.negative.id
-  cidr_ipv4         = aws_vpc.main.cidr_block
-  from_port         = 2383
-  to_port           = 2383
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv4_2" {
+  #incorrect port range (unknown)
+  from_port    = 5000
+  to_port      = 5000
+  ip_protocol  = "tcp"
+  cidr_ipv4    = "192.168.0.0/16"
+}
+
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv4_3" {
+  #incorrect cidr (not wide private network)
+  from_port    = 22
+  to_port      = 22
+  ip_protocol  = "udp"
+  cidr_ipv4    = "8.8.0.0/16"
+}
+
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv4_4" {
+  #all incorrect 
+  from_port    = 5000
+  to_port      = 5000
+  ip_protocol  = "icmp"
+  cidr_ipv4    = "8.8.0.0/16"
+}
+
+# ipv6
+
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv6_1" {
+  #incorrect protocol
+  from_port         = 22
+  to_port           = 22
+  ip_protocol       = "icmpv6"
+  cidr_ipv6         = "fd00::/8"  # ipv6 equivalent of 10.0.0.0/8
+}
+
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv6_2" {
+  #incorrect port range (unknown)
+  from_port         = 5000
+  to_port           = 5000
   ip_protocol       = "tcp"
-  description       = "TLS from VPC"
+  cidr_ipv6         = "fd12:3456:789a::1"  # private ipv6 address 
 }
 
-resource "aws_vpc_security_group_ingress_rule" "negative2" {
-  security_group_id = aws_security_group.negative.id
-  cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 2384
-  to_port           = 2386
-  ip_protocol       = "tcp"
-  description       = "TLS from VPC"
-}
-
-resource "aws_vpc_security_group_ingress_rule" "negative3" {
-  security_group_id = aws_security_group.negative.id
-  cidr_ipv4         = "1.2.3.4/0"
-  from_port         = 25
-  to_port           = 2500
-  ip_protocol       = "tcp"
-  description       = "TLS from VPC"
-}
-
-resource "aws_vpc_security_group_ingress_rule" "negative4" {
-  security_group_id = aws_security_group.negative.id
-  cidr_ipv4         = "1.2.3.4/5"
-  from_port         = 25
-  to_port           = 2500
-  ip_protocol       = "tcp"
-  description       = "TLS from VPC"
-}
-
-resource "aws_vpc_security_group_ingress_rule" "negative5a" {
-  security_group_id = aws_security_group.negative.id
-  cidr_ipv4         = "1.2.3.4/5"
-  from_port         = 25
-  to_port           = 2500
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv6_3" {
+  #incorrect cidr 
+  from_port         = 22
+  to_port           = 22
   ip_protocol       = "udp"
-  description       = "TLS from VPC"
+  cidr_ipv6         = "2400:cb00::/32"  # not a private ipv6 address 
 }
 
-resource "aws_vpc_security_group_ingress_rule" "negative5b" {
-  security_group_id = aws_security_group.negative.id
-  cidr_ipv4         = "0.0.0.0/12"
-  from_port         = 25
-  to_port           = 2500
-  ip_protocol       = "udp"
-  description       = "TLS from VPC"
-}
-
-resource "aws_vpc_security_group_ingress_rule" "negative6a" {
-  security_group_id = aws_security_group.negative.id
-  cidr_ipv4         = "1.2.3.4"
-  from_port         = 0
-  to_port           = 0
-  ip_protocol       = "-1"
-  description       = "TLS from VPC"
-}
-
-resource "aws_vpc_security_group_ingress_rule" "negative6b" {
-  security_group_id = aws_security_group.negative.id
-  cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 0
-  to_port           = 0
-  ip_protocol       = "-1"
-  description       = "TLS from VPC"
+resource "aws_vpc_security_group_ingress_rule" "negative2_ipv6_4" {
+  #all incorrect
+  from_port         = 5000
+  to_port           = 5000
+  ip_protocol       = "icmpv6"
+  cidr_ipv6         = "2400:cb00::/32"
 }

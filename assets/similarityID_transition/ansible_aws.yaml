@@ -1,0 +1,29 @@
+similarityIDChangeList:
+    - queryId: eee107f9-b3d8-45d3-b9c6-43b5a7263ce1
+      queryName: Authentication Without MFA
+      observations: ""
+      change: 5
+    - queryId: b25398a2-0625-4e61-8e4d-a1bb23905bf6
+      queryName: CDN Configuration Is Missing
+      observations: ""
+      change: 5
+    - queryId: ebb2118a-03bc-4d53-ab43-d8750f5cb8d3
+      queryName: CloudTrail Not Integrated With CloudWatch
+      observations: ""
+      change: 5
+    - queryId: 71ea648a-d31a-4b5a-a589-5674243f1c33
+      queryName: Public Port Wide
+      observations: ""
+      change: 4
+    - queryId: ea6bc7a6-d696-4dcf-a788-17fa03c17c81
+      queryName: Security Group Ingress Not Restricted
+      observations: ""
+      change: 4
+    - queryId: 57ced4b9-6ba4-487b-8843-b65562b90c77
+      queryName: Security Group With Unrestricted Access To SSH
+      observations: ""
+      change: 4
+    - queryId: fb8f8929-afeb-4c46-99f0-a6cf410f7df4
+      queryName: Vulnerable Default SSL Certificate
+      observations: ""
+      change: 5

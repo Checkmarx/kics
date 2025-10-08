@@ -1,0 +1,69 @@
+similarityIDChangeList:
+    - queryId: 60af03ff-a421-45c8-b214-6741035476fa
+      queryName: Container Resources Limits Undefined
+      observations: ""
+      change: 5
+    - queryId: fe771ff7-ba15-4f8f-ad7a-8aa232b49a28
+      queryName: Containers With Added Capabilities
+      observations: ""
+      change: 4
+    - queryId: 3f55386d-75cd-4e9a-ac47-167b26c04724
+      queryName: Containers With Sys Admin Capabilities
+      observations: ""
+      change: 4
+    - queryId: 5f4735ce-b9ba-4d95-a089-a37a767b716f
+      queryName: CPU Limits Not Set
+      observations: ""
+      change: 4
+    - queryId: 577ac19c-6a77-46d7-9f14-e049cdd15ec2
+      queryName: CPU Requests Not Set
+      observations: ""
+      change: 4
+    - queryId: 461ed7e4-f8d5-4bc1-b3c6-64ddb4fd00a3
+      queryName: Deployment Has No PodAntiAffinity
+      observations: ""
+      change: 4
+    - queryId: 4e203a65-c8d8-49a2-b749-b124d43c9dc1
+      queryName: Docker Daemon Socket is Exposed to Containers
+      observations: ""
+      change: 4
+    - queryId: 228c4c19-feeb-4c18-848c-800ac70fdfb7
+      queryName: Image Without Digest
+      observations: ""
+      change: 4
+    - queryId: fd097ed0-7fe6-4f58-8b71-fef9f0820a21
+      queryName: Memory Limits Not Defined
+      observations: ""
+      change: 4
+    - queryId: 21719347-d02b-497d-bda4-04a03c8e5b61
+      queryName: Memory Requests Not Defined
+      observations: ""
+      change: 4
+    - queryId: bc3dabb6-fd50-40f8-b9ba-7429c9f1fb0e
+      queryName: Metadata Label Is Invalid
+      observations: array problem - Verify searchLine
+      change: 4
+    - queryId: e5587d53-a673-4a6b-b3f2-ba07ec274def
+      queryName: NET_RAW Capabilities Not Being Dropped
+      observations: ""
+      change: 4
+    - queryId: 21cef75f-289f-470e-8038-c7cee0664164
+      queryName: No Drop Capabilities for Containers
+      observations: ""
+      change: 4
+    - queryId: 522d4a64-4dc9-44bd-9240-7d8a0d5cb5ba
+      queryName: Permissive Access to Create Pods
+      observations: ""
+      change: 5
+    - queryId: ad69e38a-d92e-4357-a8da-f2f29d545883
+      queryName: Pod or Container Without Security Context
+      observations: ""
+      change: 4
+    - queryId: 8657197e-3f87-4694-892b-8144701d83c1
+      queryName: Readiness Probe Is Not Configured
+      observations: ""
+      change: 4
+    - queryId: a62a99d1-8196-432f-8f80-3c100b05d62a
+      queryName: Volume Mount With OS Directory Write Permissions
+      observations: ""
+      change: 2
