@@ -60,8 +60,8 @@ get_search_values(ing_index, sec_group_name, names_list, cidr_type) = results {
 	ing_index < count(names_list) # if ingress is standalone 
 
 	results := {
-		"searchKey" : sprintf("Resources.%s.Properties", [names_list[ing_index]]),
-		"searchLine" : common_lib.build_search_line(["Resources", names_list[ing_index], "Properties"], []),
+		"searchKey" : sprintf("Resources.%s.Properties.%s", [names_list[ing_index], cidr_type]),
+		"searchLine" : common_lib.build_search_line(["Resources", names_list[ing_index], "Properties", cidr_type], []),
 		"type" : "AWS::EC2::SecurityGroupIngress"
 	}
 } else = results {
