@@ -35,7 +35,7 @@ get_res(doc) = res { # key_vault_key_id field not defined
         "kav": "'key_vault_key_id' is not defined inside the 'customer_managed_key' block",
         "kev": "'key_vault_key_id' must be defined inside the 'customer_managed_key' block",
         "sl": common_lib.build_search_line(["resource", "azurerm_storage_account", name, "customer_managed_key"], []),
-        "rem": "key_vault_key_id = \"azure\"",
+        "rem": "\nkey_vault_key_id = \"azure\"\n",
         "rtype": "addition"
     }
 } else = res { # customer_managed_key block not defined
@@ -60,6 +60,7 @@ get_res(doc) = res { # key_vault_key_id field not defined
     storage_account_cmk := doc.azurerm_storage_account_customer_managed_key[name_cmk]
     storage_account := doc.azurerm_storage_account[name]
     not name == split(storage_account_cmk.storage_account_id, ".")[1]
+    clean_storage_id := trim_suffix(trim_prefix(storage_account_cmk.storage_account_id, "${"), "}")
     res := {
         "rt": "azurerm_storage_account_customer_managed_key",
         "rn": tf_lib.get_resource_name(storage_account_cmk, name_cmk),
@@ -69,8 +70,8 @@ get_res(doc) = res { # key_vault_key_id field not defined
         "kev": "'storage_account_id' is referencing an 'azurerm_storage_account' that doesn't exist",
         "sl": common_lib.build_search_line(["resource", "azurerm_storage_account_customer_managed_key", name_cmk, "storage_account_id"], []),
         "rem": json.marshal({
-            "before": sprintf("%s", [storage_account_cmk.storage_account_id]),
-            "after": sprintf("${azurerm_storage_account.%s.id}", [name])
+            "before": sprintf("%s", [clean_storage_id]),
+            "after": sprintf("azurerm_storage_account.%s.id", [name])
         }),
         "rtype": "replacement"
     }
