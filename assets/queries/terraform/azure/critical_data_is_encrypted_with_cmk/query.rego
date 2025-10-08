@@ -58,7 +58,7 @@ get_res(doc) = res { # key_vault_key_id field not defined
     common_lib.valid_key(doc, "azurerm_storage_account")
     common_lib.valid_key(doc, "azurerm_storage_account_customer_managed_key")
     storage_account_cmk := doc.azurerm_storage_account_customer_managed_key[name_cmk]
-    storage_account := doc.azurerm_storage_account[name]
+    doc.azurerm_storage_account[name]
     not name == split(storage_account_cmk.storage_account_id, ".")[1]
     clean_storage_id := trim_suffix(trim_prefix(storage_account_cmk.storage_account_id, "${"), "}")
     res := {
@@ -80,7 +80,7 @@ get_res(doc) = res { # key_vault_key_id field not defined
     not common_lib.valid_key(doc, "azurerm_storage_account")
     storage_account_cmk := doc.azurerm_storage_account_customer_managed_key[name_cmk]
     common_lib.valid_key(storage_account_cmk, "storage_account_id")
-    res_storage_account_name := split(storage_account_cmk.storage_account_id, ".")[1]
+    split(storage_account_cmk.storage_account_id, ".")[1]
 
     res := {
         "rt": "azurerm_storage_account_customer_managed_key",
