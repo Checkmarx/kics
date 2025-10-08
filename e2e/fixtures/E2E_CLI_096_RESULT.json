@@ -20,10 +20,10 @@
   },
   "total_counter": 12,
   "total_bom_resources": 0,
-  "start": "2025-10-08T16:42:38.5715137+01:00",
-  "end": "2025-10-08T16:42:42.6319597+01:00",
+  "start": "2025-10-08T17:23:23.074521+01:00",
+  "end": "2025-10-08T17:23:26.7848028+01:00",
   "paths": [
-    "/path/test/fixtures/new_similarity_id"
+    "path/test/fixtures/new_similarity_id"
   ],
   "queries": [
     {
@@ -99,35 +99,7 @@
       "description_id": "4a720a0c",
       "files": [
         {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\containers_running_as_root.yaml",
-          "similarity_id": "ba5ee61f9e0d70ff3db10d830c91acf149743d76ec1d65ac0d57a7acfa00c468",
-          "old_similarity_id": "3295e435cbe209c4b52fc5a3e4b68623b4335186cfe1a8644fefaa2325a27b21",
-          "line": 6,
-          "resource_type": "Policy",
-          "resource_name": "n/a",
-          "issue_type": "MissingAttribute",
-          "search_key": "kind={{Policy}}.rules",
-          "search_line": 6,
-          "search_value": "tokenreviews",
-          "expected_value": "Resource 'tokenreviews' should be defined in one of following levels '[\"Metadata\"]'",
-          "actual_value": "Resource 'tokenreviews' is currently defined with the following levels '[]'"
-        },
-        {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\containers_running_as_root.yaml",
-          "similarity_id": "f648c38b5b336a59ead09ed2629c0486570a7589f61ac40fa601b5d33afbffb9",
-          "old_similarity_id": "3295e435cbe209c4b52fc5a3e4b68623b4335186cfe1a8644fefaa2325a27b21",
-          "line": 6,
-          "resource_type": "Policy",
-          "resource_name": "n/a",
-          "issue_type": "MissingAttribute",
-          "search_key": "kind={{Policy}}.rules",
-          "search_line": 6,
-          "search_value": "pods",
-          "expected_value": "Resource 'pods' should be defined in one of following levels '[\"Metadata\"]'",
-          "actual_value": "Resource 'pods' is currently defined with the following levels '[]'"
-        },
-        {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\containers_running_as_root.yaml",
+          "file_name": "path\\fixtures\\new_similarity_id\\audit_policy_not_cover_key_security_concerns.yaml",
           "similarity_id": "aa44987d9d73d38a61d3790b4e5e740dab278091749ff889ae1d5d87f3166d1a",
           "old_similarity_id": "3295e435cbe209c4b52fc5a3e4b68623b4335186cfe1a8644fefaa2325a27b21",
           "line": 6,
@@ -141,49 +113,7 @@
           "actual_value": "Resource 'pods/exec' is currently defined with the following levels '[]'"
         },
         {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\containers_running_as_root.yaml",
-          "similarity_id": "32263233cb4fc6b10fbb0adb3a30a7394cdd4ece92cab8b67fcff4cd7ed3e34e",
-          "old_similarity_id": "3295e435cbe209c4b52fc5a3e4b68623b4335186cfe1a8644fefaa2325a27b21",
-          "line": 6,
-          "resource_type": "Policy",
-          "resource_name": "n/a",
-          "issue_type": "MissingAttribute",
-          "search_key": "kind={{Policy}}.rules",
-          "search_line": 6,
-          "search_value": "services/proxy",
-          "expected_value": "Resource 'services/proxy' should be defined in one of following levels '[\"Metadata\", \"Request\", \"RequestResponse\"]'",
-          "actual_value": "Resource 'services/proxy' is currently defined with the following levels '[]'"
-        },
-        {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\containers_running_as_root.yaml",
-          "similarity_id": "ee4afea4b0978fc3e3c97b2a4c96a2ed7a5bdba06074c9037f5295fedaa3ea63",
-          "old_similarity_id": "3295e435cbe209c4b52fc5a3e4b68623b4335186cfe1a8644fefaa2325a27b21",
-          "line": 6,
-          "resource_type": "Policy",
-          "resource_name": "n/a",
-          "issue_type": "MissingAttribute",
-          "search_key": "kind={{Policy}}.rules",
-          "search_line": 6,
-          "search_value": "configmaps",
-          "expected_value": "Resource 'configmaps' should be defined in one of following levels '[\"Metadata\"]'",
-          "actual_value": "Resource 'configmaps' is currently defined with the following levels '[]'"
-        },
-        {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\containers_running_as_root.yaml",
-          "similarity_id": "844a0cf13ee70affb95563cc930c8706659240be2a190649366244d1dea22872",
-          "old_similarity_id": "3295e435cbe209c4b52fc5a3e4b68623b4335186cfe1a8644fefaa2325a27b21",
-          "line": 6,
-          "resource_type": "Policy",
-          "resource_name": "n/a",
-          "issue_type": "MissingAttribute",
-          "search_key": "kind={{Policy}}.rules",
-          "search_line": 6,
-          "search_value": "deployments",
-          "expected_value": "Resource 'deployments' should be defined in one of following levels '[\"Metadata\"]'",
-          "actual_value": "Resource 'deployments' is currently defined with the following levels '[]'"
-        },
-        {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\containers_running_as_root.yaml",
+          "file_name": "path\\fixtures\\new_similarity_id\\audit_policy_not_cover_key_security_concerns.yaml",
           "similarity_id": "a6dcb94b3b1825e40f02e3796bea94599972ebd45c784fda770986331688f975",
           "old_similarity_id": "3295e435cbe209c4b52fc5a3e4b68623b4335186cfe1a8644fefaa2325a27b21",
           "line": 6,
@@ -197,7 +127,7 @@
           "actual_value": "Resource 'pods/portforward' is currently defined with the following levels '[]'"
         },
         {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\containers_running_as_root.yaml",
+          "file_name": "path\\fixtures\\new_similarity_id\\audit_policy_not_cover_key_security_concerns.yaml",
           "similarity_id": "d10f7454a05b3efc0417bc0576bfdb6c6a95c411199eb832a82848ef243ef980",
           "old_similarity_id": "3295e435cbe209c4b52fc5a3e4b68623b4335186cfe1a8644fefaa2325a27b21",
           "line": 6,
@@ -211,7 +141,7 @@
           "actual_value": "Resource 'pods/proxy' is currently defined with the following levels '[]'"
         },
         {
-          "file_name": "path\\test\\fixtures\\new_similarity_id\\containers_running_as_root.yaml",
+          "file_name": "path\\fixtures\\new_similarity_id\\audit_policy_not_cover_key_security_concerns.yaml",
           "similarity_id": "9d44a81ca1345d31503ca4e230ab7e9c0dc4146157b93262c847de2dece14d1e",
           "old_similarity_id": "3295e435cbe209c4b52fc5a3e4b68623b4335186cfe1a8644fefaa2325a27b21",
           "line": 6,
@@ -223,6 +153,76 @@
           "search_value": "secrets",
           "expected_value": "Resource 'secrets' should be defined in one of following levels '[\"Metadata\"]'",
           "actual_value": "Resource 'secrets' is currently defined with the following levels '[]'"
+        },
+        {
+          "file_name": "path\\fixtures\\new_similarity_id\\audit_policy_not_cover_key_security_concerns.yaml",
+          "similarity_id": "ba5ee61f9e0d70ff3db10d830c91acf149743d76ec1d65ac0d57a7acfa00c468",
+          "old_similarity_id": "3295e435cbe209c4b52fc5a3e4b68623b4335186cfe1a8644fefaa2325a27b21",
+          "line": 6,
+          "resource_type": "Policy",
+          "resource_name": "n/a",
+          "issue_type": "MissingAttribute",
+          "search_key": "kind={{Policy}}.rules",
+          "search_line": 6,
+          "search_value": "tokenreviews",
+          "expected_value": "Resource 'tokenreviews' should be defined in one of following levels '[\"Metadata\"]'",
+          "actual_value": "Resource 'tokenreviews' is currently defined with the following levels '[]'"
+        },
+        {
+          "file_name": "path\\fixtures\\new_similarity_id\\audit_policy_not_cover_key_security_concerns.yaml",
+          "similarity_id": "f648c38b5b336a59ead09ed2629c0486570a7589f61ac40fa601b5d33afbffb9",
+          "old_similarity_id": "3295e435cbe209c4b52fc5a3e4b68623b4335186cfe1a8644fefaa2325a27b21",
+          "line": 6,
+          "resource_type": "Policy",
+          "resource_name": "n/a",
+          "issue_type": "MissingAttribute",
+          "search_key": "kind={{Policy}}.rules",
+          "search_line": 6,
+          "search_value": "pods",
+          "expected_value": "Resource 'pods' should be defined in one of following levels '[\"Metadata\"]'",
+          "actual_value": "Resource 'pods' is currently defined with the following levels '[]'"
+        },
+        {
+          "file_name": "path\\fixtures\\new_similarity_id\\audit_policy_not_cover_key_security_concerns.yaml",
+          "similarity_id": "32263233cb4fc6b10fbb0adb3a30a7394cdd4ece92cab8b67fcff4cd7ed3e34e",
+          "old_similarity_id": "3295e435cbe209c4b52fc5a3e4b68623b4335186cfe1a8644fefaa2325a27b21",
+          "line": 6,
+          "resource_type": "Policy",
+          "resource_name": "n/a",
+          "issue_type": "MissingAttribute",
+          "search_key": "kind={{Policy}}.rules",
+          "search_line": 6,
+          "search_value": "services/proxy",
+          "expected_value": "Resource 'services/proxy' should be defined in one of following levels '[\"Metadata\", \"Request\", \"RequestResponse\"]'",
+          "actual_value": "Resource 'services/proxy' is currently defined with the following levels '[]'"
+        },
+        {
+          "file_name": "path\\fixtures\\new_similarity_id\\audit_policy_not_cover_key_security_concerns.yaml",
+          "similarity_id": "ee4afea4b0978fc3e3c97b2a4c96a2ed7a5bdba06074c9037f5295fedaa3ea63",
+          "old_similarity_id": "3295e435cbe209c4b52fc5a3e4b68623b4335186cfe1a8644fefaa2325a27b21",
+          "line": 6,
+          "resource_type": "Policy",
+          "resource_name": "n/a",
+          "issue_type": "MissingAttribute",
+          "search_key": "kind={{Policy}}.rules",
+          "search_line": 6,
+          "search_value": "configmaps",
+          "expected_value": "Resource 'configmaps' should be defined in one of following levels '[\"Metadata\"]'",
+          "actual_value": "Resource 'configmaps' is currently defined with the following levels '[]'"
+        },
+        {
+          "file_name": "path\\fixtures\\new_similarity_id\\audit_policy_not_cover_key_security_concerns.yaml",
+          "similarity_id": "844a0cf13ee70affb95563cc930c8706659240be2a190649366244d1dea22872",
+          "old_similarity_id": "3295e435cbe209c4b52fc5a3e4b68623b4335186cfe1a8644fefaa2325a27b21",
+          "line": 6,
+          "resource_type": "Policy",
+          "resource_name": "n/a",
+          "issue_type": "MissingAttribute",
+          "search_key": "kind={{Policy}}.rules",
+          "search_line": 6,
+          "search_value": "deployments",
+          "expected_value": "Resource 'deployments' should be defined in one of following levels '[\"Metadata\"]'",
+          "actual_value": "Resource 'deployments' is currently defined with the following levels '[]'"
         }
       ]
     }
