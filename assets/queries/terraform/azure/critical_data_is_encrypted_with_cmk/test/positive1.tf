@@ -5,5 +5,7 @@ resource "azurerm_storage_account" "positive1" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
 
-  customer_managed_key {}
+  customer_managed_key {
+    user_assigned_identity_id = azurerm_user_assigned_identity.example.id
+  }
 }
