@@ -25,7 +25,9 @@
       Statement:
         - Action: Publish
           Effect: Allow
-          Principal: "*"
+          Principal: 
+            AWS: "*"
+            
 - name: Create alarm SNS topic
   sns_topic:
     name: "alarms"
@@ -52,4 +54,5 @@
       Statement:
         - Effect: Allow
           Action: Publish
-          Principal: '*'
+          Principal: 
+            AWS: "*"
