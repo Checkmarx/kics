@@ -20,6 +20,24 @@
   {
     "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
+    "line": 51,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 63,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 79,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
     "line": 12,
     "fileName": "positive2.yaml"
   },
@@ -57,6 +75,24 @@
     "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
     "line": 52,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 61,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 76,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 97,
     "fileName": "positive3.json"
   },
   {

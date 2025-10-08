@@ -69,7 +69,7 @@ Resources:
       IpProtocol: "-1"
       FromPort: 2000
       ToPort: 4000
-      CidrIpv6: "2400:cb00::/32"  # CidrIP is not 0:0:0:0/0
+      CidrIpv6: "2400:cb00::/32"  # CidrIPv6 is not ::/0
 
   Negative2IPv6Ingress4:
     Type: AWS::EC2::SecurityGroupIngress

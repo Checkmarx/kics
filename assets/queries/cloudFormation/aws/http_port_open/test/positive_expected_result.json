@@ -20,6 +20,24 @@
   {
     "queryName": "HTTP Port Open To Internet",
     "severity": "MEDIUM",
+    "line": 51,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 63,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 79,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
     "line": 12,
     "fileName": "positive2.yaml"
   },
@@ -44,19 +62,37 @@
   {
     "queryName": "HTTP Port Open To Internet",
     "severity": "MEDIUM",
-    "line": 12,
+    "line": 10,
     "fileName": "positive3.json"
   },
   {
     "queryName": "HTTP Port Open To Internet",
     "severity": "MEDIUM",
-    "line": 29,
+    "line": 25,
     "fileName": "positive3.json"
   },
   {
     "queryName": "HTTP Port Open To Internet",
     "severity": "MEDIUM",
-    "line": 52,
+    "line": 46,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 61,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 76,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "HTTP Port Open To Internet",
+    "severity": "MEDIUM",
+    "line": 97,
     "fileName": "positive3.json"
   },
   {
