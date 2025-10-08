@@ -23,7 +23,7 @@
   "start": "2025-10-08T17:23:23.074521+01:00",
   "end": "2025-10-08T17:23:26.7848028+01:00",
   "paths": [
-    "path/test/fixtures/new_similarity_id"
+    "/path/test/fixtures/new_similarity_id"
   ],
   "queries": [
     {
