@@ -1,0 +1,22 @@
+service: service-with-provider-iam
+frameworkVersion: '2'
+provider:
+  name: aws
+  runtime: nodejs12.x
+  iam:
+    role: arn:aws:iam::123456789012:role/my-service-role
+
+# These functions should NOT be flagged - provider-level IAM role is configured
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: /hello
+          method: get
+  world:
+    handler: handler.world
+    events:
+      - http:
+          path: /world
+          method: get
