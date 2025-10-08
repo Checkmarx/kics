@@ -1,5 +1,5 @@
-resource "aws_iam_policy" "privileged-instance-policy" {
-  name        = "privileged-instance-policy"
+resource "aws_iam_policy" "positive2" {
+  name        = "positive2"
   description = "Provides full access to AWS services and resources."
   policy      = <<POLICY
 {

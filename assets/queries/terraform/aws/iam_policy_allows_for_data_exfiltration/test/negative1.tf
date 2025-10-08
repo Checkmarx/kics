@@ -1,5 +1,5 @@
-resource "aws_iam_policy" "km_ssm_secrets_policy" {
-  name        = "km_ssm_secrets_policy_${var.environment}"
+resource "aws_iam_policy" "negative1" {
+  name        = "negative1_${var.environment}"
   description = "Kai Monkey SSM Secrets Policy"
 
   policy = <<EOF

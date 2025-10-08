@@ -1,0 +1,21 @@
+similarityIDChangeList:
+    - queryId: 8c978947-0ff6-485c-b0c2-0bfca6026466
+      queryName: Shared Volumes Between Containers
+      observations: (immense) 142,561 -> 49,017
+      change: 3
+    - queryId: 1c1325ff-831d-43a1-973e-839ae57dfcc0
+      queryName: Volume Has Sensitive Host Directory
+      observations: I think the only issue was that the fallback to the searchKey in the first two policies didn't distinguish between volumes. That said, I'm not sure why it would need to fall back in the first place.
+      change: 2
+    - queryId: 2fc99041-ddad-49d5-853f-e35e70a48391
+      queryName: Restart Policy On Failure Not Set To 5
+      observations:
+      change: 2
+    - queryId: bb9ac4f7-e13b-423d-a010-c74a1bfbe492
+      queryName: Memory Not Limited
+      observations:
+      change: 2
+    - queryId: 6b610c50-99fb-4ef0-a5f3-e312fd945bc3
+      queryName: Cpus Not Limited
+      observations:
+      change: 2
