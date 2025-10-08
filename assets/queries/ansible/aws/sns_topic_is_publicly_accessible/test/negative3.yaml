@@ -15,8 +15,7 @@
           Condition:
             StringEquals:
               aws:SourceAccount: "123456789012"
-            Bool:
-              aws:SecureTransport: "true"
+
 
 - name: Create alarm SNS topic
   sns_topic:
@@ -41,7 +40,5 @@
         Action: Publish
         Principal: "*"
         Condition:
-        - StringEquals:
+          StringEquals:
             aws:SourceAccount: "123456789012"
-          Bool:
-            aws:SecureTransport: "true"

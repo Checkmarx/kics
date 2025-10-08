@@ -20,7 +20,7 @@
   sns_topic:
     name: alarms
     state: present
-    display_name: alarm SNS topic
+    display_name: "alarm SNS topic"
     delivery_policy:
       http:
         defaultHealthyRetryPolicy:
@@ -28,16 +28,16 @@
           maxDelayTarget: 4
           numRetries: 3
           numMaxDelayRetries: 5
-          backoffFunction: <linear|arithmetic|geometric|exponential>
+          backoffFunction: exponential
         disableSubscriptionOverrides: true
         defaultThrottlePolicy:
           maxReceivesPerSecond: 10
     policy:
       Version: '2022-05-02'
       Statement:
-      - Effect: Allow
-        Action: Publish
-        Principal: "*"
-        Condition:
-        - StringEquals:
-            aws:SourceAccount: "123456789012"
+        - Effect: Allow
+          Action: Publish
+          Principal: "*"
+          Condition:
+            StringEquals:
+              aws:SourceAccount: "123456789012"
