@@ -2,13 +2,121 @@
   {
     "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
-    "line": 8,
+    "line": 10,
     "fileName": "positive1.yaml"
   },
   {
-    "fileName": "positive2.json",
     "queryName": "Remote Desktop Port Open To Internet",
     "severity": "HIGH",
-    "line": 10
+    "line": 22,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 38,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 51,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 63,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 79,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 12,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 21,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 31,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 40,
+    "fileName": "positive2.yaml"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 25,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 46,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 61,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 76,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 97,
+    "fileName": "positive3.json"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 14,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 26,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 38,
+    "fileName": "positive4.json"
+  },
+  {
+    "queryName": "Remote Desktop Port Open To Internet",
+    "severity": "HIGH",
+    "line": 50,
+    "fileName": "positive4.json"
   }
 ]

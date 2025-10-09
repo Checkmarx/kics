@@ -25,7 +25,7 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(sec_group, sec_group_name),
 		"searchKey": results.searchKey, 
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s' shouldn't open unknown ports to the Internet", [results.searchKey]),
+		"keyExpectedValue": sprintf("'%s' should not open unknown ports to the Internet", [results.searchKey]),
 		"keyActualValue": sprintf("'%s' opens unknown ports to the Internet", [results.searchKey]),
 		"searchLine": results.searchLine, 
 	}

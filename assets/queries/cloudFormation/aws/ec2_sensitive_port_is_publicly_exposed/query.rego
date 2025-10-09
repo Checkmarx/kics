@@ -16,7 +16,7 @@ CxPolicy[result] {
 	cf_lib.get_name(ec2Instance.Properties.SecurityGroupIds[_]) == sec_group_name
 	ingresses_with_names := search_for_standalone_ingress(sec_group_name, doc)
 
-	ingress_list := array.concat(ingresses_with_names.ingress_list, get_ingress_list_if_exists(sec_group))
+	ingress_list := array.concat(ingresses_with_names.ingress_list, get_inline_ingress_list(sec_group))
 	ingress := ingress_list[ing_index]
 
 	# check that it is exposed
@@ -41,6 +41,24 @@ CxPolicy[result] {
 	}
 }
 
+get_sensitive_ports(ingress) = ports {
+	ingress.IpProtocol == "-1"
+	ports := [{ 
+		"value" : "ALL PORTS (ALL PROTOCOLS:0-65535)",
+		"searchValue" : "ALL PROTOCOLS,0-65535"
+		}]
+} else = ports {
+	portName   := common_lib.tcpPortsMap[portNumber]
+	protocol  := upper(ingress.IpProtocol)
+	protocol  == ["TCP", "UDP"][_]
+	cf_lib.containsPort(ingress.FromPort, ingress.ToPort, portNumber)
+
+	ports := [x | x := { 
+		"value" : sprintf("%s (%s:%d)", [portName, protocol, portNumber]),
+		"searchValue" : sprintf("%s,%d", [protocol, portNumber]),
+		}]
+}
+
 search_for_standalone_ingress(sec_group_name, doc) = ingresses_with_names {
   resources := doc.Resources
 
@@ -56,27 +74,6 @@ search_for_standalone_ingress(sec_group_name, doc) = ingresses_with_names {
   }
 } else = { "ingress_list": [], "names": []}
 
-get_ingress_list_if_exists(group) = [] {	# to prevent null exception
-	not common_lib.valid_key(group.Properties,"SecurityGroupIngress")
-} else = group.Properties.SecurityGroupIngress
-
-get_sensitive_ports(ingress) = ports {
-	ingress.IpProtocol == "-1"
-	ports := [{ 
-		"value" : "ALL PORTS (ALL PROTOCOLS:0-65535)",
-		"searchValue" : "ALL PROTOCOLS,0-65535"
-		}]
-} else = ports {
-	portName   := common_lib.tcpPortsMap[portNumber]
-	protocol  := upper(ingress.IpProtocol)
-	protocol  == ["TCP", "6", "UDP", "17"][_]
-	cf_lib.containsPort(ingress.FromPort, ingress.ToPort, portNumber)
-
-	ports := [x | x := { 
-		"value" : sprintf("%s (%s:%d)", [portName, protocol, portNumber]),
-		"searchValue" : sprintf("%s,%d", [protocol, portNumber]),
-		}]
-}
 
 get_search_values(ing_index, sec_group_name, names_list) = results {
 	ing_index < count(names_list) # if ingress is standalone 
@@ -94,3 +91,7 @@ get_search_values(ing_index, sec_group_name, names_list) = results {
 		"type" : "AWS::EC2::SecurityGroup"
 	}
 }
+
+get_inline_ingress_list(group) = [] {
+	not common_lib.valid_key(group.Properties,"SecurityGroupIngress")
+} else = group.Properties.SecurityGroupIngress

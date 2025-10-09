@@ -1,38 +1,44 @@
 {
   "Resources": {
-    "Ec2Instance": {
-      "Type": "AWS::EC2::Instance",
-      "Properties": {
-        "ImageId": "",
-        "SecurityGroups": [
-          "InstanceSecurityGroup"
-        ],
-        "KeyName": "mykey"
-      }
-    },
-    "InstanceSecurityGroup": {
+    "Positive1_security_group": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
+        "GroupDescription": "Enable SSH access via port 22",
         "VpcId": {
-          "Ref": "myVPC"
+          "Ref": "MyVPC"
         },
         "SecurityGroupIngress": [
           {
-            "CidrIp": "0.0.0.0/0",
-            "IpProtocol": "tcp",
-            "FromPort": 20,
-            "ToPort": 20
-          }
-        ],
-        "SecurityGroupEgress": [
-          {
-            "IpProtocol": "tcp",
-            "FromPort": 80,
-            "ToPort": 80,
+            "IpProtocol": "-1",
+            "FromPort": 22,
+            "ToPort": 22,
             "CidrIp": "0.0.0.0/0"
           }
-        ],
-        "GroupDescription": "Allow http to client host"
+        ]
+      }
+    },
+    "Positive1_ingress_ipv4": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "Positive1_security_group"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": 0,
+        "ToPort": 100,
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "Positive1_ingress_ipv6": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "Positive1_security_group"
+        },
+        "IpProtocol": "udp",
+        "FromPort": 2000,
+        "ToPort": 2060,
+        "CidrIpv6": "::/0"
       }
     }
   }

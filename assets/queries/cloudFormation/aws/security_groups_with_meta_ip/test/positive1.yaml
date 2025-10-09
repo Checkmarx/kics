@@ -1,5 +1,5 @@
 Resources:
-## Protocol set to "-1" (all ports will regardless of range set)
+## Protocol set to "-1" (all ports open regardless of range set)
   Positive1_security_group_1:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:

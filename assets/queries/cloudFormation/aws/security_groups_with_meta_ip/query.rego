@@ -14,7 +14,7 @@ CxPolicy[result] {
 	ingress := ingress_list[ing_index]
 
 	cidr_types := {"CidrIp","CidrIpv6"}
-	exposed_addresses := ["0.0.0.0/0", common_lib.unrestricted_ipv6[_]]
+	exposed_addresses := concat(["0.0.0.0/0"], common_lib.unrestricted_ipv6)
 	ingress[cidr_types[c]] == exposed_addresses[a]
 
 	key_string := check_security_groups_ingress(ingress)

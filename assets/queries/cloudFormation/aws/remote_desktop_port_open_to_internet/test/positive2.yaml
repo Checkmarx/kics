@@ -21,8 +21,8 @@ Resources:
     Properties:
       GroupId: !Ref DualStackSecurityGroup
       IpProtocol: "tcp"
-      FromPort: 10
-      ToPort: 40
+      FromPort: 3200
+      ToPort: 3500
       CidrIp: "0.0.0.0/0"
 
 # IPv6 Rules
@@ -31,8 +31,8 @@ Resources:
     Properties:
       GroupId: !Ref DualStackSecurityGroup
       IpProtocol: "tcp"
-      FromPort: 0
-      ToPort: 30
+      FromPort: 1000
+      ToPort: 4000
       CidrIpv6: "::/0"
 
   IPv6Ingress2:
@@ -40,6 +40,6 @@ Resources:
     Properties:
       GroupId: !Ref DualStackSecurityGroup
       IpProtocol: "tcp"
-      FromPort: 10
-      ToPort: 40
+      FromPort: 3200
+      ToPort: 3500
       CidrIpv6: "0000:0000:0000:0000:0000:0000:0000:0000/0"
