@@ -1,42 +1,74 @@
 {
-  "Parameters": {
-    "KeyName": {
-      "Description": "The EC2 Key Pair to allow SSH access to the instance",
-      "Type": "AWS::EC2::KeyPair::KeyName"
-    }
-  },
   "Resources": {
-    "Ec2Instance": {
-      "Type": "AWS::EC2::Instance",
-      "Properties": {
-        "SecurityGroups": [
-          "InstanceSecurityGroup",
-          "MyExistingSecurityGroup"
-        ],
-        "KeyName": "KeyName",
-        "ImageId": "ami-7a11e213"
-      }
-    },
-    "InstanceSecurityGroup": {
+    "Negative2_security_group": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupDescription": "Enable SSH access via port 22",
-        "SecurityGroupIngress": [
-          {
-            "IpProtocol": "tcp",
-            "FromPort": "22",
-            "ToPort": "22",
-            "CidrIp": "0.0.0.0/0"
-          }
-        ],
+        "GroupDescription": "Open security group",
+        "VpcId": {
+          "Ref": "MyVPC"
+        },
         "SecurityGroupEgress": [
           {
-            "CidrIp": "0.0.0.0/0",
             "IpProtocol": "tcp",
-            "FromPort": "22",
-            "ToPort": "22"
+            "FromPort": 2000,
+            "ToPort": 2000,
+            "CidrIp": "0.0.0.0/0"
+          },
+          {
+            "IpProtocol": "-1",
+            "FromPort": 2000,
+            "ToPort": 2000,
+            "CidrIp": "192.162.0.0/16"
           }
         ]
+      }
+    },
+    "Negative2_egress_ipv4_1": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "Negative2_security_group"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": 3000,
+        "ToPort": 3000,
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "Negative2_egress_ipv4_2": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "Negative2_security_group"
+        },
+        "IpProtocol": "-1",
+        "FromPort": 3000,
+        "ToPort": 3000,
+        "CidrIp": "192.162.0.0/16"
+      }
+    },
+    "Negative2_egress_ipv6_1": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "Negative2_security_group"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": 4000,
+        "ToPort": 4000,
+        "CidrIpv6": "::/0"
+      }
+    },
+    "Negative2_egress_ipv6_2": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "Negative2_security_group"
+        },
+        "IpProtocol": "-1",
+        "FromPort": 4000,
+        "ToPort": 4000,
+        "CidrIpv6": "2001:0db8::/32"
       }
     }
   }

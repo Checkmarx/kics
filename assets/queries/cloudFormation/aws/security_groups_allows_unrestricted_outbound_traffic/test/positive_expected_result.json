@@ -1,14 +1,38 @@
 [
   {
-    "line": 16,
-    "fileName": "positive1.yaml",
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
-    "severity": "MEDIUM"
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive1.yaml"
   },
   {
     "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
     "severity": "MEDIUM",
-    "line": 21,
+    "line": 16,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
+    "severity": "MEDIUM",
+    "line": 26,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
+    "severity": "MEDIUM",
+    "line": 12,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
+    "severity": "MEDIUM",
+    "line": 22,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Security Groups Allows Unrestricted Outbound Traffic",
+    "severity": "MEDIUM",
+    "line": 34,
     "fileName": "positive2.json"
   }
 ]
