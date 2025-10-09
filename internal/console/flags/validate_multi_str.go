@@ -52,6 +52,7 @@ func validateMultiStrEnum(flagName string) error {
 		caseInsensitiveMap[strings.ToLower(key)] = value
 	}
 	for _, enum := range enums {
+		enum = strings.TrimSpace(enum)
 		if _, ok := caseInsensitiveMap[strings.ToLower(enum)]; enum != "" && !ok {
 			invalidEnum = append(invalidEnum, enum)
 		}
