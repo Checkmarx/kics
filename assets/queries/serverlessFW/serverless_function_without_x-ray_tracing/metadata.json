@@ -8,5 +8,6 @@
   "platform": "ServerlessFW",
   "descriptionID": "f3f93ff6",
   "cloudProvider": "common",
-  "cwe": "778"
+  "cwe": "778",
+  "riskScore": "3.3"
 }
