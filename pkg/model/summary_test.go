@@ -18,6 +18,7 @@ func TestCreateSummary(t *testing.T) {
 			FileName:         "fileName",
 			QueryID:          "QueryID",
 			CWE:              "22",
+			RiskScore:        "6",
 			QueryName:        "query_name",
 			Severity:         SeverityHigh,
 			Line:             1,
@@ -86,6 +87,7 @@ func TestCreateSummary(t *testing.T) {
 					QueryID:   "QueryID",
 					Severity:  SeverityHigh,
 					CWE:       "22",
+					RiskScore: "6",
 					Files: []VulnerableFile{
 						{
 							FileName:         "fileName",
