@@ -88,9 +88,10 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	}
 
 	v1 := Vulnerability{
-		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-%se38a8e0a-b88b-4902-b3fe-b0fcb17d5c10", positiveSha[0:12]),
-		ID:  "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
-		CWE: "",
+		Ref:       fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-%se38a8e0a-b88b-4902-b3fe-b0fcb17d5c10", positiveSha[0:12]),
+		ID:        "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+		CWE:       "",
+		RiskScore: "0",
 		Source: Source{
 			Name: "KICS",
 			URL:  "https://kics.io/",
@@ -110,9 +111,10 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	}
 
 	v2 := Vulnerability{
-		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-%s704dadd3-54fc-48ac-b6a0-02f170011473", positiveSha[0:12]),
-		ID:  "704dadd3-54fc-48ac-b6a0-02f170011473",
-		CWE: "",
+		Ref:       fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/positive.tf@0.0.0-%s704dadd3-54fc-48ac-b6a0-02f170011473", positiveSha[0:12]),
+		ID:        "704dadd3-54fc-48ac-b6a0-02f170011473",
+		CWE:       "",
+		RiskScore: "3",
 		Source: Source{
 			Name: "KICS",
 			URL:  "https://kics.io/",
@@ -132,9 +134,10 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	}
 
 	v3 := Vulnerability{
-		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%se38a8e0a-b88b-4902-b3fe-b0fcb17d5c10", negativeSha[0:12]),
-		ID:  "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
-		CWE: "",
+		Ref:       fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%se38a8e0a-b88b-4902-b3fe-b0fcb17d5c10", negativeSha[0:12]),
+		ID:        "e38a8e0a-b88b-4902-b3fe-b0fcb17d5c10",
+		CWE:       "",
+		RiskScore: "0",
 		Source: Source{
 			Name: "KICS",
 			URL:  "https://kics.io/",
@@ -154,9 +157,10 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	}
 
 	v4 := Vulnerability{
-		Ref: fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%s704dadd3-54fc-48ac-b6a0-02f170011473", negativeSha[0:12]),
-		ID:  "704dadd3-54fc-48ac-b6a0-02f170011473",
-		CWE: "22",
+		Ref:       fmt.Sprintf("pkg:generic/../../../assets/queries/terraform/aws/guardduty_detector_disabled/test/negative.tf@0.0.0-%s704dadd3-54fc-48ac-b6a0-02f170011473", negativeSha[0:12]),
+		ID:        "704dadd3-54fc-48ac-b6a0-02f170011473",
+		CWE:       "22",
+		RiskScore: "3",
 		Source: Source{
 			Name: "KICS",
 			URL:  "https://kics.io/",
@@ -178,8 +182,9 @@ func TestBuildCycloneDxReport(t *testing.T) {
 	vulnsC3 = append(vulnsC3, v4)
 
 	v5 := Vulnerability{
-		Ref: fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v316278b3-87ac-444c-8f8f-a733a28da609", criticalSha[0:12]),
-		ID:  "316278b3-87ac-444c-8f8f-a733a28da609",
+		Ref:       fmt.Sprintf("pkg:generic/../../../test/fixtures/test_critical_custom_queries/amazon_mq_broker_encryption_disabled/test/positive1.yaml@0.0.0-%v316278b3-87ac-444c-8f8f-a733a28da609", criticalSha[0:12]),
+		ID:        "316278b3-87ac-444c-8f8f-a733a28da609",
+		RiskScore: "8.5",
 		Source: Source{
 			Name: "KICS",
 			URL:  "https://kics.io/",

@@ -8,5 +8,6 @@
   "platform": "Terraform",
   "descriptionID": "89f1ff38",
   "cloudProvider": "nifcloud",
-  "cwe": "285"
+  "cwe": "285",
+  "riskScore": "2.9"
 }
