@@ -71,7 +71,6 @@ is_false_or_undefined(resourceBlock,block,type,name) = res {
 prepare_issue_launch_configuration_module(target_block, block, name, idx, module_source,is_array) = res {
 	is_array
 	results := is_not_encrypted(target_block,name,block,idx)
-	results != ""
 	common_lib.get_module_equivalent_key("aws", module_source, supported_resources[i2], block)
 
 	valid_block(block)
@@ -86,7 +85,6 @@ prepare_issue_launch_configuration_module(target_block, block, name, idx, module
 } else = res {
 	is_array
 	results := undefined_encrypted_field(target_block,name,block,idx)
-	results != ""
 	common_lib.get_module_equivalent_key("aws", module_source, supported_resources[i2], block)
 
 	valid_block(block)
@@ -136,7 +134,7 @@ valid_block(block) {
 
 get_as_array(value) = res {
 	is_array(value)
-	res := value 
+	res := value
 } else = [value]
 
 is_not_encrypted(target_block,name,block,idx) = results {
@@ -151,7 +149,7 @@ is_not_encrypted(target_block,name,block,idx) = results {
 		"searchKey": sprintf("module[%s].%s.%d.ebs.encrypted", [name, block, idx]), #does not point to encrypted due to search limitations
 		"searchLine": common_lib.build_search_line(["module", name, block, idx, "ebs", "encrypted"], []),
 	}
-} else = ""
+}
 
 undefined_encrypted_field(target_block,name,block,idx) = results {
 	common_lib.valid_key(target_block, "ebs")
@@ -167,4 +165,4 @@ undefined_encrypted_field(target_block,name,block,idx) = results {
 		"searchKey": sprintf("module[%s].%s.%d", [name, block, idx]),
 		"searchLine": common_lib.build_search_line(["module", name, block, idx], []),
 	}
-} else = ""
+}

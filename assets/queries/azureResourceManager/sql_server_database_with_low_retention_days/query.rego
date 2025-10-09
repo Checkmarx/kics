@@ -12,7 +12,7 @@ CxPolicy[result] {
 
 	value.type == dbTypes[_]
 	childrenArr := get_children(doc, value, path)
-	
+
 	child := childrenArr[k].value[i2]
 	child.type == types[_]
 
@@ -22,7 +22,6 @@ CxPolicy[result] {
 	lower(val) == "enabled"
 
 	results := invalid_retention_days(doc, child, child_path, i2)
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -56,7 +55,7 @@ invalid_retention_days(doc, child, child_path, i2) = results {
 		"keyActualValue": sprintf("'auditingSettings.properties.retentionDays' %s is %d", [val_rd_type, child.properties.retentionDays]),
 		"searchLine": get_searchLine(child_path, i2, ["properties", "retentionDays"])
 	}
-} else = ""
+}
 
 get_searchLine(path,index,path_to_field) = sk {
 	is_number(path[count(path) - 1])
@@ -65,12 +64,12 @@ get_searchLine(path,index,path_to_field) = sk {
 	 sk := common_lib.build_search_line(path, array.concat([index],path_to_field))
 }
 
-get_children(doc, parent, path) = childArr { 
+get_children(doc, parent, path) = childArr {
 	common_lib.valid_key(parent, "resources")
     childArr := [{"value": parent.resources, "path": array.concat(path, ["resources"])}]
 } else = childArr {
 	not common_lib.valid_key(parent, "resources")
-	values := [x | 
+	values := [x |
 		[path_child, value_child] := walk(doc)
 		value_child.name != parent.name
 		common_lib.valid_key(value_child, "dependsOn")

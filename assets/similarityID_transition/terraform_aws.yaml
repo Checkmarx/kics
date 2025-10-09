@@ -27,3 +27,43 @@ similarityIDChangeList:
       queryName: Vulnerable Default SSL Certificate
       observations: ""
       change: 5
+    - queryId: ffac8a12-322e-42c1-b9b9-81ff85c39ef7
+      queryName: HTTP Port Open To Internet
+      observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
+      change: 2
+    - queryId: 151187cb-0efc-481c-babd-ad24e3c9bc22
+      queryName: Remote Desktop Port Open To Internet
+      observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
+      change: 2
+    - queryId: 68eb4bf3-f9bf-463d-b5cf-e029bb446d2e
+      queryName: Security Group Rule Without Description
+      observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
+      change: 2
+    - queryId: 65905cec-d691-4320-b320-2000436cb696
+      queryName: Security Group With Unrestricted Access To SSH
+      observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
+      change: 2
+    - queryId: 381c3f2a-ef6f-4eff-99f7-b169cda3422c
+      queryName: Sensitive Port Is Exposed To Entire Network
+      observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
+      change: 2
+    - queryId: e35c16a2-d54e-419d-8546-a804d8e024d0
+      queryName: Sensitive Port Is Exposed To Small Public Network
+      observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
+      change: 2
+    - queryId: 92fe237e-074c-4262-81a4-2077acb928c1
+      queryName: Sensitive Port Is Exposed To Wide Private Network
+      observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
+      change: 2
+    - queryId: 54c417bf-c762-48b9-9d31-b3d87047e3f0
+      queryName: SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible
+      observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
+      change: 2
+    - queryId: 590d878b-abdc-428f-895a-e2b68a0e1998
+      queryName: Unknown Port Exposed To Internet
+      observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
+      change: 2
+    - queryId: 4728cd65-a20c-49da-8b31-9c08b423e4db
+      queryName: Unrestricted Security Group Ingress
+      observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
+      change: 2
