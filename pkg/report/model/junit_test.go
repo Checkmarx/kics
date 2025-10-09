@@ -55,7 +55,8 @@ var junitTests = []junitTest{
 				Files: []model.VulnerableFile{
 					{KeyActualValue: "actual", KeyExpectedValue: "expected", FileName: "test.tf", Line: 1, SimilarityID: "similarity"},
 				},
-				CWE: "",
+				CWE:       "",
+				RiskScore: "6",
 			},
 		},
 		file: model.VulnerableFile{
@@ -81,6 +82,7 @@ var junitTests = []junitTest{
 							XMLName:   xml.Name{Space: "", Local: ""},
 							Name:      "test: test.tf file in line 1",
 							CWE:       "",
+							RiskScore: "6",
 							ClassName: "Terraform",
 							Failures: []junitFailure{
 								{
@@ -108,7 +110,8 @@ var junitTests = []junitTest{
 				Files: []model.VulnerableFile{
 					{KeyActualValue: "actual", KeyExpectedValue: "expected", FileName: "test.tf", Line: 1, SimilarityID: "similarity"},
 				},
-				CWE: "22",
+				CWE:       "22",
+				RiskScore: "6",
 			},
 		},
 		file: model.VulnerableFile{
@@ -134,6 +137,7 @@ var junitTests = []junitTest{
 							XMLName:   xml.Name{Space: "", Local: ""},
 							Name:      "test: test.tf file in line 1",
 							CWE:       "22",
+							RiskScore: "6",
 							ClassName: "Terraform",
 							Failures: []junitFailure{
 								{
@@ -161,6 +165,7 @@ var junitTests = []junitTest{
 				Files: []model.VulnerableFile{
 					{KeyActualValue: "actual", KeyExpectedValue: "expected", FileName: "test.tf", Line: 1, SimilarityID: "similarity"},
 				},
+				RiskScore: "8.5",
 			},
 		},
 		file: model.VulnerableFile{
@@ -186,6 +191,7 @@ var junitTests = []junitTest{
 							XMLName:   xml.Name{Space: "", Local: ""},
 							Name:      "test: test.tf file in line 1",
 							ClassName: "Terraform",
+							RiskScore: "8.5",
 							Failures: []junitFailure{
 								{
 									Type:    "test description",

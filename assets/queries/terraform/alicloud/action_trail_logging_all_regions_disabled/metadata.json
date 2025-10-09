@@ -8,5 +8,6 @@
   "platform": "Terraform",
   "descriptionID": "72180b32",
   "cloudProvider": "alicloud",
-  "cwe": "778"
+  "cwe": "778",
+  "riskScore": "5.1"
 }
