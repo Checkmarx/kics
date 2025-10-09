@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.openapi as openapi_lib
 
-# This two rules verifies schema and schemas without allOf, anyOf and oneOf
+# These two rules verify schema and schemas without allOf, anyOf and oneOf
 CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"
@@ -38,7 +38,7 @@ CxPolicy[result] {
 	}
 }
 
-#This rules verifies anyOf and oneOf
+# These rules verify anyOf and oneOf
 CxPolicy[result] {
 	doc := input.document[i]
 	openapi_lib.check_openapi(doc) == "3.0"

@@ -1,0 +1,56 @@
+openapi: 3.0.3
+info:
+  title: Tariff Setup API
+  version: 1.0.0
+
+paths:
+  /CreateTariffSetup:
+    post:
+      summary: Creates tariff setups.
+      tags:
+        - Tariff Setups
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/TariffSetupServiceAPI.TariffSetups'
+                nullable: true
+        '4XX':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+
+components:
+  schemas:
+    TariffSetupServiceAPI.TariffSetups:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "tariff-123"
+        name:
+          type: string
+          example: "Standard Tariff"
+        rates:
+          type: array
+          items:
+            type: number
+          example: [0.15, 0.20, 0.25]
+
+  responses:
+    error:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: "ERR_400"
+              message:
+                type: string
+                example: "Invalid request payload"

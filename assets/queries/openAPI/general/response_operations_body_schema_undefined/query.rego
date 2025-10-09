@@ -83,3 +83,19 @@ get_key_by_version(version) = key {
 
 	key = keys[version]
 }
+
+
+# get_ref() - returns the object based on the type (schema, examples). If the object is a ref gets the object from the ref
+#example not compliant with schema type
+get_ref(obj, docs, type, version) = example {
+	not common_lib.valid_key(obj, "$ref")
+	example := obj
+} else = example {
+	version == "3.0"
+	path := split(substring(obj["$ref"], 2, -1), "/")
+	example := docs.components[type][path[minus(count(path), 1)]]
+} else = example {
+	version == "2.0"
+	path := split(substring(obj["$ref"], 2, -1), "/")
+	example := docs[type][path[minus(count(path), 1)]]
+}
