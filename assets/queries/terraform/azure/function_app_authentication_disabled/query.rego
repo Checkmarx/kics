@@ -3,43 +3,94 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-CxPolicy[result] {
-	function := input.document[i].resource.azurerm_function_app[name]
+types := {"azurerm_function_app", "azurerm_linux_function_app", "azurerm_windows_function_app"}
 
-	not common_lib.valid_key(function, "auth_settings")
+CxPolicy[result] {
+	doc := input.document[i]
+	resource := doc.resource[types[t]][name]
+
+	res := prepare_issues(resource, types[t], name)
 
 	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "azurerm_function_app",
-		"resourceName": tf_lib.get_resource_name(function, name),
-		"searchKey": sprintf("azurerm_function_app[%s]", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_function_app[%s].auth_settings' should be defined and not null", [name]),
-		"keyActualValue": sprintf("'azurerm_function_app[%s].auth_settings' is undefined or null", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name], []),
-		"remediation": "\nauth_settings {\n\t\tenabled = true\n\t}\n",
-		"remediationType": "addition",
+		"documentId": doc.id,
+		"resourceType": types[t],
+		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": res["sk"],
+		"searchLine": res["sl"],
+		"issueType": res["it"],
+		"keyExpectedValue": res["kev"],
+		"keyActualValue": res["kav"],
+		"remediation": res["rem"],
+		"remediationType": res["rt"],
 	}
 }
 
-CxPolicy[result] {
-	function := input.document[i].resource.azurerm_function_app[name]
-
-	function.auth_settings.enabled != true
-
-	result := {
-		"documentId": input.document[i].id,
-		"resourceType": "azurerm_function_app",
-		"resourceName": tf_lib.get_resource_name(function, name),
-		"searchKey": sprintf("azurerm_function_app[%s].auth_settings.enabled", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_function_app[%s].auth_settings.enabled' should be set to true", [name]),
-		"keyActualValue": sprintf("'azurerm_function_app[%s].auth_settings.enabled' is not set to true", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "azurerm_function_app", name, "auth_settings", "enabled"], []),
-		"remediation": json.marshal({
+prepare_issues(resource, type, name) = res { # auth_settings not defined for azurerm_function_app (legacy)
+	not common_lib.valid_key(resource, "auth_settings")
+	type == "azurerm_function_app"
+	res := {
+		"sk": sprintf("%s[%s]", [type, name]),
+		"sl": common_lib.build_search_line(["resource", type, name], []),
+		"it": "MissingAttribute",
+		"kev": sprintf("'%s[%s].auth_settings' should be defined", [type, name]),
+		"kav": sprintf("'%s[%s].auth_settings' is not defined", [type, name]),
+		"rem": "auth_settings {\n\t\tenabled = true\n\t}",
+		"rt": "addition", 
+	}
+} else = res{ # auth_settings and auth_settings_v2 not defined
+	not common_lib.valid_key(resource, "auth_settings")
+	not common_lib.valid_key(resource, "auth_settings_v2")
+	res := {
+		"sk": sprintf("%s[%s]", [type, name]),
+		"sl": common_lib.build_search_line(["resource", type, name], []),
+		"it": "MissingAttribute",
+		"kev": sprintf("'%s[%s].auth_settings' or '%s[%s].auth_settings_v2' should be defined", [type, name, type, name]),
+		"kav": sprintf("'%s[%s].auth_settings' and '%s[%s].auth_settings_v2' are not defined", [type, name, type, name]),
+		"rem": "auth_settings {\n\t\tenabled = true\n\t}",
+		"rt": "addition", 
+	}
+} else = res { # auth_settings field defined and auth_settings.enabled defined to false
+	not common_lib.valid_key(resource, "auth_settings_v2")
+	common_lib.valid_key(resource, "auth_settings")
+	resource.auth_settings.enabled == false
+	res := {
+		"sk": sprintf("'%s[%s].auth_settings.enabled'", [type, name]),
+		"sl": common_lib.build_search_line(["resource", type, name, "auth_settings", "enabled"], []),
+		"it": "IncorrectValue",
+		"kev": sprintf("'%s[%s].auth_settings.enabled' should be defined to 'true'", [type, name]),
+		"kav": sprintf("'%s[%s].auth_settings.enabled' is defined to 'false'", [type, name]),
+		"rem": json.marshal({
 			"before": "false",
 			"after": "true"
 		}),
-		"remediationType": "replacement",
+		"rt": "replacement",
 	}
-}
+}  else = res { # auth_settings_v2 field defined with the field auth_enabled defined to false
+	common_lib.valid_key(resource, "auth_settings_v2")
+	common_lib.valid_key(resource.auth_settings_v2, "auth_enabled")
+	resource.auth_settings_v2.auth_enabled == false 
+	res := {
+		"sk": sprintf("%s[%s].auth_settings_v2.auth_enabled", [type, name]),
+		"sl": common_lib.build_search_line(["resource", type, name, "auth_settings_v2", "auth_enabled"], []),
+		"it": "IncorrectValue",
+		"kev": sprintf("'%s[%s].auth_settings_v2.auth_enabled' should be defined to 'true'", [type, name]),
+		"kav": sprintf("'%s[%s].auth_settings_v2.auth_enabled' is defined to 'false'", [type, name]),
+		"rem": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"rt": "replacement",
+	}
+} else = res { # auth_settings_v2 field defined but without the field auth_enabled defined
+	common_lib.valid_key(resource, "auth_settings_v2")
+	not common_lib.valid_key(resource.auth_settings_v2, "auth_enabled")
+	res := {
+		"sk": sprintf("%s[%s].auth_settings_v2", [type, name]),
+		"sl": common_lib.build_search_line(["resource", type, name, "auth_settings_v2"], []),
+		"it": "MissingAttribute",
+		"kev": sprintf("'%s[%s].auth_settings_v2.auth_enabled' should be defined (default value is 'false')", [type, name]),
+		"kav": sprintf("'%s[%s].auth_settings_v2.auth_enabled' is not defined", [type, name]),
+		"rem": "auth_enabled = true",
+		"rt": "addition",
+	}
+} 

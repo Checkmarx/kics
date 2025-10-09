@@ -5,7 +5,6 @@ import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
     load_balancer := get_load_balancer(input.document[i].resource)
-    load_balancer != ""
     resource := input.document[i].resource[load_balancer][name]
 
     not common_lib.valid_key(resource, "access_logs")
