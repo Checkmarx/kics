@@ -8,7 +8,7 @@ CxPolicy[result] {
 	elbInstance := doc.Resources[name]
 
 	cf_lib.isLoadBalancer(elbInstance)
-	securityGroup_name := cf_lib.get_name(elbInstance.Properties.SecurityGroups[sg])
+	securityGroup_name := cf_lib.get_name(elbInstance.Properties.SecurityGroups[_])
 
 	not has_standalone_ingress(securityGroup_name, doc)
 	value := withoutInboundRules(doc.Resources[securityGroup_name], securityGroup_name)

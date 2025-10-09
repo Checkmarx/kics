@@ -17,7 +17,7 @@ Resources:
   Positive1IPv4_1:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: "Allow all protocols on port 22 from 10.0.0.0/0"
+      GroupDescription: "Allow all protocols on all ports from 10.0.0.0/0"
       SecurityGroupIngress:
         - IpProtocol: "-1"
           FromPort: 22
@@ -27,9 +27,9 @@ Resources:
   Positive1IPv4_2:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: "Allow TCP on port 22 from 192.168.0.0/0"
+      GroupDescription: "Port 22 on TCP"
       SecurityGroupIngress:
-        - IpProtocol: "tcp"
+        - IpProtocol: "6"
           FromPort: 22
           ToPort: 22
           CidrIp: "192.168.0.0/0"
@@ -37,16 +37,16 @@ Resources:
   Positive1ArrayTestIPv4:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: "Allow UDP on ports 22 and 110 from multiple CIDRs"
+      GroupDescription: "Ports 22 and 110 on UDP"
       SecurityGroupIngress:
-        - IpProtocol: "udp"
+        - IpProtocol: "17"
           FromPort: 22
           ToPort: 22
           CidrIp: "172.16.0.0/0"
         - IpProtocol: "udp"
           FromPort: 110
           ToPort: 110
-          CidrIp: "10.68.0.0"
+          CidrIp: "10.68.0.0"   # not exposed
         - IpProtocol: "udp"
           FromPort: 110
           ToPort: 110
@@ -56,7 +56,7 @@ Resources:
   Positive1IPv6_1:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: "Allow all protocols on port 22 from 10.0.0.0/0"
+      GroupDescription: "Allow all ports on all protocols"
       SecurityGroupIngress:
       - IpProtocol: "-1"
         FromPort: 22
@@ -66,7 +66,7 @@ Resources:
   Positive1IPv6_2:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: "Allow TCP on port 22 from 192.168.0.0/0"
+      GroupDescription: "Allow port 22 on TCP"
       SecurityGroupIngress:
         - IpProtocol: "tcp"
           FromPort: 22
@@ -76,7 +76,7 @@ Resources:
   Positive1ArrayTestIPv6:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: "Allow UDP on ports 22 and 110 from multiple CIDRs"
+      GroupDescription: "Allow ports 22 and 110 on UDP"
       SecurityGroupIngress:
         - IpProtocol: "udp"
           FromPort: 22

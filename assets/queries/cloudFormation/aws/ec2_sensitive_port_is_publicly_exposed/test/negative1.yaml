@@ -39,7 +39,7 @@ Resources:
   Negative1ArrayTestIPv4:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: "Mixed incorrect CIDRs and protocols"
+      GroupDescription: "Mixed incorrect CIDR and 'All incorrect'"
       VpcId: !Ref MyVPC
       SecurityGroupIngress:
       # incorrect cidr (not exposed)
@@ -57,7 +57,7 @@ Resources:
   Negative1IPv6_1:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: "Allow all protocols on port 22 from 10.0.0.0/0"
+      GroupDescription: "Incorrect protocol: ICMPV6"
       SecurityGroupIngress:
       - IpProtocol: "58"  # protocol number 58 is "icmpv6" = incorrect protocol
         FromPort: 22
@@ -67,9 +67,9 @@ Resources:
   Negative1IPv6_2:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: "Allow TCP on port 22 from 192.168.0.0/0"
+      GroupDescription: "Unknown port: port 5000"
       SecurityGroupIngress:
-        - IpProtocol: "tcp"
+        - IpProtocol: "6"
           FromPort: 5000    # unknown port
           ToPort: 5000
           CidrIpv6: "fd12:3456:789a::1/0"
@@ -77,7 +77,7 @@ Resources:
   Negative1ArrayTestIPv6:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: "Allow UDP on ports 22 and 110 from multiple CIDRs"
+      GroupDescription: "Mixed incorrect CIDR and 'All incorrect'"
       SecurityGroupIngress:
         - IpProtocol: "udp"
           FromPort: 22

@@ -23,7 +23,7 @@ CxPolicy[result] {
 	cidr_fields := {"CidrIp", "CidrIpv6"}
 	endswith(ingress[cidr_fields[c]], "/0")
 
-	#check which sensitive port numbers are included
+	# check which sensitive port numbers are included
 	ports := get_sensitive_ports(ingress)
 
 	results := get_search_values(ing_index, sec_group_name, ingresses_with_names.names)
@@ -50,7 +50,7 @@ get_sensitive_ports(ingress) = ports {
 } else = ports {
 	portName  := common_lib.tcpPortsMap[portNumber]
 	protocol  := upper(ingress.IpProtocol)
-	protocol  == ["TCP", "UDP"][_]
+	protocol  == ["TCP", "6", "UDP", "17"][_]
 	cf_lib.containsPort(ingress.FromPort, ingress.ToPort, portNumber)
 
 	ports := [x | x := { 
@@ -94,6 +94,6 @@ get_search_values(ing_index, sec_group_name, names_list) = results {
 getELBType("AWS::ElasticLoadBalancing::LoadBalancer") = "classic" 
 getELBType("AWS::ElasticLoadBalancingV2::LoadBalancer") = "application"
 
-get_inline_ingress_list(group) = [] {
+get_inline_ingress_list(group) = [] { 	# to prevent null reference
 	not common_lib.valid_key(group.Properties,"SecurityGroupIngress")
 } else = group.Properties.SecurityGroupIngress
