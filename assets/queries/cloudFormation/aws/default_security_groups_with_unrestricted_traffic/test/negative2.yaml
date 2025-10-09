@@ -2,7 +2,7 @@ Resources:
   InstanceSecurityGroup_not_named_default:  # def
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
-      GroupName: not_default
+      GroupName: not_default  # name is not "default"
       GroupDescription: Enable SSH access via port 22
       SecurityGroupIngress: # inline ingress
         - IpProtocol: tcp

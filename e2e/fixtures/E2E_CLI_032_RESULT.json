@@ -310,6 +310,7 @@
       ]
     },
     {
+<<<<<<< HEAD
       "query_name": "ELB With Security Group Without Inbound Rules",
       "query_id": "e200a6f3-c589-49ec-9143-7421d4a2c845",
       "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupingress",
@@ -339,6 +340,8 @@
       ]
     },
     {
+=======
+>>>>>>> 1d6ccaee7f6353dd85f1fb77a5b5f43347ec064f
       "query_name": "ELB With Security Group Without Outbound Rules",
       "query_id": "01d5a458-a6c4-452a-ac50-054d59275b7c",
       "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupegress",
@@ -353,8 +356,13 @@
       "description_id": "7b876844",
       "files": [
         {
+<<<<<<< HEAD
           "file_name":"/path/e2e/fixtures/samples/positive.yaml",
           "similarity_id": "ee0915eb8433ec18c3f357c5eb0d243ce5c3a077e63e222230c4c0d7bf049416",
+=======
+          "file_name": "/path/e2e/fixtures/samples/positive.yaml",
+          "similarity_id": "21ac3838a65782694befbcb5bea5e40b5dbf055b4acdec29326ee8c09df8aef5",
+>>>>>>> 1d6ccaee7f6353dd85f1fb77a5b5f43347ec064f
           "line": 14,
           "resource_type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
           "resource_name": "ECSALB",

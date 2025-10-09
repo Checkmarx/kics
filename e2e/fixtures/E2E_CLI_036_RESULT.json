@@ -227,6 +227,7 @@
       ]
     },
     {
+<<<<<<< HEAD
       "query_name": "ELB With Security Group Without Inbound Rules",
       "query_id": "e200a6f3-c589-49ec-9143-7421d4a2c845",
       "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupingress",
@@ -256,6 +257,8 @@
       ]
     },
     {
+=======
+>>>>>>> 1d6ccaee7f6353dd85f1fb77a5b5f43347ec064f
       "query_name": "ELB With Security Group Without Outbound Rules",
       "query_id": "01d5a458-a6c4-452a-ac50-054d59275b7c",
       "query_url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html#cfn-ec2-securitygroup-securitygroupegress",

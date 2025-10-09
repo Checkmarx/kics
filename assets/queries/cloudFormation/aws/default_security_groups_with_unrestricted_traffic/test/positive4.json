@@ -1,6 +1,6 @@
 {
   "Resources": {
-    "InstanceSecurityGroup_default_1": {
+    "InstanceSecurityGroup_default": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
         "GroupName": "default",
@@ -11,7 +11,7 @@
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
         "GroupId": {
-          "Ref": "InstanceSecurityGroup_default_1"
+          "Ref": "InstanceSecurityGroup_default"
         },
         "IpProtocol": "tcp",
         "FromPort": 22,
@@ -19,18 +19,11 @@
         "CidrIp": "0.0.0.0/0"
       }
     },
-    "InstanceSecurityGroup_default_2": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupName": "default",
-        "GroupDescription": "Enable SSH access via port 22"
-      }
-    },
     "InstanceSecurityGroupEgress": {
       "Type": "AWS::EC2::SecurityGroupEgress",
       "Properties": {
         "GroupId": {
-          "Ref": "InstanceSecurityGroup_default_2"
+          "Ref": "InstanceSecurityGroup_default"
         },
         "IpProtocol": "tcp",
         "FromPort": 22,

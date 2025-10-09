@@ -78,8 +78,13 @@ rule_is_unrestricted("aws_vpc_security_group_ingress_rule",rule,name) = results 
 	rule.cidr_ipv6 == common_lib.unrestricted_ipv6[l]
 	results := {
 		"searchKey" : sprintf("aws_vpc_security_group_ingress_rule[%s].cidr_ipv6", [name]),
+<<<<<<< HEAD
 		"keyExpectedValue": sprintf("aws_vpc_security_group_ingress_rule[%s].cidr_ipv6 should not be equal to '%s'", [name,common_lib.unrestricted_ipv6[l]]),   
 		"keyActualValue": sprintf("aws_vpc_security_group_ingress_rule[%s].cidr_ipv6 is equal to '%s'", [name,common_lib.unrestricted_ipv6[l]]),   
+=======
+		"keyExpectedValue": sprintf("aws_vpc_security_group_ingress_rule[%s].cidr_ipv6 should not be equal to '%s'", [name, common_lib.unrestricted_ipv6[l]]),   
+		"keyActualValue": sprintf("aws_vpc_security_group_ingress_rule[%s].cidr_ipv6 is equal to '%s'", [name, common_lib.unrestricted_ipv6[l]]),   
+>>>>>>> 1d6ccaee7f6353dd85f1fb77a5b5f43347ec064f
 		"field": "cidr_ipv6"
 	}
 }

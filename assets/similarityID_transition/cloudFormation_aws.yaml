@@ -102,4 +102,16 @@ similarityIDChangeList:
     - queryId: dae9c373-8287-462f-8746-6f93dad93610
       queryName: Security Group Egress With Port Range
       observations: SearchValue cannot reach field but searchLine can and was added changing results
+      change: 1   
+    - queryId: adcd0082-e90b-4b63-862b-21899f6e6a48
+      queryName: Security Groups With Meta IP
+      observations: Was pointing to whole array instead of object inside the array, also added searchLine
+      change: 1   
+    - queryId: 6e856af2-62d7-4ba2-adc1-73b62cef9cc1
+      queryName: Security Group With Unrestricted Access To SSH
+      observations: Pointed to a whole array instead of the relevant object inside
+      change: 1   
+    - queryId: 0104165b-02d5-426f-abc9-91fb48189899
+      queryName: DB Security Group Open To Large Scope
+      observations: Pointed to the whole array when it could/should point to a specific field of an object inside the array 
       change: 1  

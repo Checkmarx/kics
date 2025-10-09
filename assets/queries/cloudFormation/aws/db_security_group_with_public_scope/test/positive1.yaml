@@ -60,7 +60,7 @@ Resources:
       ToPort: 80
       CidrIpv6: "0000:0000:0000:0000:0000:0000:0000:0000/0"
 
-  # RDS Instance referencing all security groups
+  # Public RDS Instance referencing all security groups
   DBInstance:
     Type: AWS::RDS::DBInstance
     Properties:
