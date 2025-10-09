@@ -31,7 +31,6 @@ CxPolicy[result] {
 	encryption_config := resource.Properties.EncryptionConfiguration
 	encryption_type := encryption_config.EncryptionType
 	results := valid_encryption_configuration(encryption_config,encryption_type,name)
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -46,7 +45,7 @@ CxPolicy[result] {
 }
 
 valid_encryption_configuration(encryption_config,encryption_type,name) = results {
-	not common_lib.inArray(valid_encryption_values,encryption_type) 
+	not common_lib.inArray(valid_encryption_values,encryption_type)
 	results := {
 		"searchKey" : sprintf("Resources.%s.Properties.EncryptionConfiguration.EncryptionType", [name]),
 		"issueType" : "IncorrectValue",
@@ -55,7 +54,7 @@ valid_encryption_configuration(encryption_config,encryption_type,name) = results
 		"searchLine" : common_lib.build_search_line(["Resources", name,"Properties","EncryptionConfiguration","EncryptionType"],[]),
 	}
 } else = results {
-	common_lib.inArray(valid_encryption_values,encryption_type) 
+	common_lib.inArray(valid_encryption_values,encryption_type)
 	not common_lib.valid_key(encryption_config, "KmsKey")
 	results := {
 		"searchKey" : sprintf("Resources.%s.Properties.EncryptionConfiguration", [name]),
@@ -64,4 +63,4 @@ valid_encryption_configuration(encryption_config,encryption_type,name) = results
 		"keyActualValue": sprintf("Resources.%s.Properties.EncryptionConfiguration.KmsKey is undefined or null", [name]),
 		"searchLine" : common_lib.build_search_line(["Resources", name,"Properties","EncryptionConfiguration"],[]),
 	}
-} else = "" 
+}

@@ -288,4 +288,4 @@ enabled_is_undefined_or_false(logs,path,name,logName) = results {
 		"searchKey" : sprintf("%s%s.Properties.LogPublishingOptions.%s.Enabled", [getPath(path),name, logName]),
 		"searchLine" : common_lib.build_search_line(path, [name, "Properties", "LogPublishingOptions", logName, "Enabled"]),
 	}
-} else = ""
+}

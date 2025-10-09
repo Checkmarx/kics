@@ -60,7 +60,7 @@ CxPolicy[result] { # data source
 	res := prepare_issue_data_source(statement_array.value[index], name, index, statement_array.is_unique_element)
 
 	result := {
-		"documentId": input.document[i].id, 
+		"documentId": input.document[i].id,
 		"resourceType": "aws_iam_policy_document",
 		"resourceName": name,
 		"searchKey": res["sk"],
@@ -98,7 +98,7 @@ prepare_issue_data_source(statement, name, index, is_unique_element) = res {
 		"sl": common_lib.build_search_line(["data", "aws_iam_policy_document", name, "statement", "actions"], []),
 		"sv": sprintf("%s", [illegal_action]),
 	}
-} else = ""
+}
 
 get_as_list(statements) = result {
 	is_array(statements)
