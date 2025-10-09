@@ -7,5 +7,7 @@
   "descriptionUrl": "<DESCRIPTION_URL>",
   "descriptionID": "<DESCRIPTION_ID>",
   "platform": "<PLATFORM>",
-  "cloudProvider": "<CLOUDPROVIDER>"
+  "cloudProvider": "<CLOUDPROVIDER>",
+  "cwe": "<CWE>",
+  "riskScore": "<RISK_SCORE>"
 }

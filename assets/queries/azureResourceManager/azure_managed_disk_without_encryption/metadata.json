@@ -8,5 +8,6 @@
   "platform": "AzureResourceManager",
   "descriptionID": "e2fa6cda",
   "cloudProvider": "azure",
-  "cwe": "311"
+  "cwe": "311",
+  "riskScore": "7.1"
 }
