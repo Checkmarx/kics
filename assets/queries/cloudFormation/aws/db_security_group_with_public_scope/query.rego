@@ -17,7 +17,6 @@ CxPolicy[result] {
 
 	ingress_list := cf_lib.get_ingress_list(resource)
 	results := exposed_inline_or_standalone_ingress(ingress_list[ing_index], ing_index, resource.Type, resource_name)
-	results != ""
 	
 	result := {
 		"documentId": doc.id,
@@ -57,7 +56,7 @@ exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = res
 		"keyActualValue": sprintf("'Resources.%s.Properties.%s' is '%s'.", [resource_index, cidr_fields[x2], unrestricted_ips[x3]]),
 		"searchLine" : common_lib.build_search_line(["Resources", resource_index, "Properties", cidr_fields[x2]],[])
 	}
-} else = ""
+}
 
 get_ingress_field_name("AWS::EC2::SecurityGroup") = "SecurityGroupIngress"
 get_ingress_field_name("AWS::RDS::DBSecurityGroup") = "DBSecurityGroupIngress"

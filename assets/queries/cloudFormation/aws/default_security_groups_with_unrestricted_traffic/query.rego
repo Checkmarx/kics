@@ -34,7 +34,6 @@ CxPolicy[result] {						# standalone rules
 	rule := rules.rule_list[x]
 
 	search_values := check_standalone_rule(security_group_name, rule, rules.names[x])
-	search_values != ""
 
 	result := {
 		"documentId": input.document[i].id,

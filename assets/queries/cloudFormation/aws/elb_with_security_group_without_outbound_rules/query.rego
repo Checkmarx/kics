@@ -12,7 +12,6 @@ CxPolicy[result] {
 
 	not has_standalone_egress(securityGroup_name, doc)
 	value := withoutOutboundRules(doc.Resources[securityGroup_name],securityGroup_name)
-	value != ""
 
 	result := {
 		"documentId": doc.id,
