@@ -14,17 +14,17 @@ CxPolicy[result] {
 	
 	types := ["AWS::EC2::SecurityGroup","AWS::EC2::SecurityGroupIngress"]
 
-	resource := doc.Resources[j]
+	resource := doc.Resources[name]
 	resource.Type == types[_]
 
 	ingress_list := cf_lib.get_ingress_list(resource)
-	results := exposed_inline_or_standalone_ingress(ingress_list[ing_index], ing_index, resource.Type, j)
+	results := exposed_inline_or_standalone_ingress(ingress_list[ing_index], ing_index, resource.Type, name)
 	results != ""
 	
 	result := {
 		"documentId": doc.id,
 		"resourceType": resource.Type,
-		"resourceName": cf_lib.get_resource_name(resource, j),
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": results.searchKey,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": results.keyExpectedValue,
@@ -63,5 +63,5 @@ affects_all_ports(resource) {
 	resource.IpProtocol == "-1"
 } else {
 	resource.FromPort == 0
-	resource.ToPort == 0
+	resource.ToPort == 65535
 }

@@ -22,13 +22,13 @@
           {
             "IpProtocol": "tcp",
             "FromPort": 0,
-            "ToPort": 0,
+            "ToPort": 65535,
             "CidrIp": "0.0.0.0/0"
           },
           {
-            "IpProtocol": "tcp",
+            "IpProtocol": "udp",
             "FromPort": 0,
-            "ToPort": 0,
+            "ToPort": 65535,
             "CidrIpv6": "::/0"
           }
         ]
@@ -61,7 +61,7 @@
         },
         "IpProtocol": "tcp",
         "FromPort": 0,
-        "ToPort": 0,
+        "ToPort": 65535,
         "CidrIpv6": "0000:0000:0000:0000:0000:0000:0000:0000/0"
       }
     },

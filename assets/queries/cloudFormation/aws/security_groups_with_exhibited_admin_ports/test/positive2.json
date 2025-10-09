@@ -24,8 +24,8 @@
           "Ref": "Positive1_security_group"
         },
         "IpProtocol": "tcp",
-        "FromPort": 101,
-        "ToPort": 120,
+        "FromPort": 0,
+        "ToPort": 100,
         "CidrIp": "0.0.0.0/0"
       }
     },

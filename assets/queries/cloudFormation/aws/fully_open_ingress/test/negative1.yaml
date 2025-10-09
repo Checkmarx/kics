@@ -13,13 +13,13 @@ Resources:
       GroupDescription: "Inline IPv4 and IPv6 ingress"
       VpcId: !Ref VPC
       SecurityGroupIngress:
-        - IpProtocol: tcp
+        - IpProtocol: "tcp"
           FromPort: 0
-          ToPort: 10000       #does not expose all ports
+          ToPort: 65534       #does not expose all ports
           CidrIp: 0.0.0.0/0
-        - IpProtocol: tcp
+        - IpProtocol: "udp"
           FromPort: 0
-          ToPort: 0
+          ToPort: 65535
           CidrIpv6: 2607:f0d0:1002:51::4/56      #cidr not exposed 
 
   # EC2 Security Group with standalone ingress rules
@@ -40,9 +40,9 @@ Resources:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       GroupId: !Ref DBEC2SecurityGroupStandalone
-      IpProtocol: tcp
+      IpProtocol: "tcp"
       FromPort: 0
-      ToPort: 10001       #does not expose all ports
+      ToPort: 34000       #does not expose all ports
       CidrIpv6: ::/0    
 
   # RDS Instance referencing all security groups

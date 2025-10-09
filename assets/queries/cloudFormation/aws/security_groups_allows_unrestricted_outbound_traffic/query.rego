@@ -10,12 +10,12 @@ CxPolicy[result] {
 
 	egresses_with_names := search_for_standalone_egress(sec_group_name, doc)
 
-	egress_list := array.concat(egresses_with_names.egress_list, get_inline_egress_list(sec_group))
+	egress_list := array.concat(egresses_with_names.egress_list, get_egress_list_if_exists(sec_group))
 	egress := egress_list[eg_index]
 
 	egress.IpProtocol == "-1" 
 
-	cidr_types := {"CidrIp","CidrIpv6"}
+	cidr_types := {"CidrIp", "CidrIpv6"}
 	exposed_addresses := ["0.0.0.0/0", common_lib.unrestricted_ipv6[_]]
 	egress[cidr_types[c]] == exposed_addresses[a]
 
@@ -65,7 +65,7 @@ get_search_values(eg_index, sec_group_name, names_list) = results {
 	}
 }
 
-get_inline_egress_list(group) = [] {
+get_egress_list_if_exists(group) = [] {
 	not common_lib.valid_key(group.Properties,"SecurityGroupEgress")
 } else = group.Properties.SecurityGroupEgress
 

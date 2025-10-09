@@ -66,9 +66,6 @@ get_field("AWS::RDS::DBSecurityGroup") = "DBSecurityGroupIngress" #legacy
 containsPort(from_port, to_port, port) {
 	from_port <= port
 	to_port >= port
-} else {
-	from_port == 0
-	to_port == 0
 }
 
 entireNetwork(rule) {

@@ -7,7 +7,7 @@ Resources:
         VpcId:
           Ref: myVPC
         SecurityGroupIngress:
-        - IpProtocol: tcp
+        - IpProtocol: "tcp"
           FromPort: 3389
           ToPort: 3389
           CidrIp: 0.0.0.0/0

@@ -3,7 +3,7 @@ package Cx
 import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
-admin_ports := [20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389]
+admin_ports := ["20", "21", "22", "23", "115", "137", "138", "139", "2049", "3389"]
 
 CxPolicy[result] {
 	doc := input.document[i]
@@ -12,11 +12,11 @@ CxPolicy[result] {
 
 	ingresses_with_names := search_for_standalone_ingress(sec_group_name, doc)
 
-	ingress_list := array.concat(ingresses_with_names.ingress_list, get_inline_ingress_list(sec_group))
+	ingress_list := array.concat(ingresses_with_names.ingress_list, get_ingress_list_if_exists(sec_group))
 	ingress := ingress_list[ing_index]
 
 	cf_lib.entireNetwork(ingress)
-	cf_lib.containsPort(ingress.FromPort, ingress.ToPort, admin_ports[x])
+	exposed_ports := get_exposed_ports(ingress)
 
 	results := get_search_values(ing_index, sec_group_name, ingresses_with_names.names)
 
@@ -26,10 +26,17 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(sec_group, sec_group_name),
 		"searchKey": results.searchKey,
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "No exposed ingress rule should contain admin ports(20, 21, 22, 23, 115, 137, 138, 139, 2049, 3389)",
-		"keyActualValue": sprintf("'%s' is exposed and contains admin port '%d'", [results.searchKey, admin_ports[x]]),
+		"keyExpectedValue": "No exposed ingress rule should contain admin ports: 20, 21, 22, 23, 115, 137, 138, 139, 2049 or 3389",
+		"keyActualValue": sprintf("'%s' is exposed and contains port(s): %s", [results.searchKey, concat(", ", exposed_ports)]),
 		"searchLine": results.searchLine,
 	}
+}
+
+get_exposed_ports(ingress) = admin_ports {
+	ingress.IpProtocol == "-1"
+} else = exposed_ports {
+	exposed_ports := [admin_ports[i2] | cf_lib.containsPort(ingress.FromPort, ingress.ToPort, to_number(admin_ports[i2]))]
+	exposed_ports != []
 }
 
 search_for_standalone_ingress(sec_group_name, doc) = ingresses_with_names {
@@ -64,6 +71,6 @@ get_search_values(ing_index, sec_group_name, names_list) = results {
 	}
 }
 
-get_inline_ingress_list(group) = [] {
+get_ingress_list_if_exists(group) = [] {
 	not common_lib.valid_key(group.Properties,"SecurityGroupIngress")
 } else = group.Properties.SecurityGroupIngress

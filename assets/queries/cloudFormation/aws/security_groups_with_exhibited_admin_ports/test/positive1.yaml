@@ -16,8 +16,8 @@ Resources:
     Properties:
       GroupId: !Ref Positive1_security_group
       IpProtocol: tcp
-      FromPort: 101       # exposes 115
-      ToPort: 120
+      FromPort: 0       # exposes 20, 21, 22, 23
+      ToPort: 100
       CidrIp: 0.0.0.0/0
 
   # Standalone IPv6 ingress rule

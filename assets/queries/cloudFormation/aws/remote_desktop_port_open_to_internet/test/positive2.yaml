@@ -20,7 +20,7 @@ Resources:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       GroupId: !Ref DualStackSecurityGroup
-      IpProtocol: tcp
+      IpProtocol: "tcp"
       FromPort: 3200
       ToPort: 3500
       CidrIp: "0.0.0.0/0"
@@ -39,7 +39,7 @@ Resources:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
       GroupId: !Ref DualStackSecurityGroup
-      IpProtocol: tcp
+      IpProtocol: "tcp"
       FromPort: 3200
       ToPort: 3500
       CidrIpv6: "0000:0000:0000:0000:0000:0000:0000:0000/0"

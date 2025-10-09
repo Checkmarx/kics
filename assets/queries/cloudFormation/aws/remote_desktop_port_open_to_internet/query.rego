@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	ingresses_with_names := search_for_standalone_ingress(sec_group_name, doc)
 
-	ingress_list := array.concat(ingresses_with_names.ingress_list, get_inline_ingress_list(sec_group))
+	ingress_list := array.concat(ingresses_with_names.ingress_list, get_ingress_list_if_exists(sec_group))
 	ingress := ingress_list[ing_index]
 
 	cf_lib.entireNetwork(ingress)
@@ -69,6 +69,6 @@ get_search_values(ing_index, sec_group_name, names_list) = results {
 	}
 }
 
-get_inline_ingress_list(group) = [] {
+get_ingress_list_if_exists(group) = [] {
 	not common_lib.valid_key(group.Properties,"SecurityGroupIngress")
 } else = group.Properties.SecurityGroupIngress
