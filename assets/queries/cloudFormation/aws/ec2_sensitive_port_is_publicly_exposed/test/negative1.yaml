@@ -8,17 +8,12 @@ Resources:
         - !Ref Negative1IPv4_1
         - !Ref Negative1IPv4_2
         - !Ref Negative1ArrayTestIPv4
-<<<<<<< HEAD
         - !Ref Negative1IPv6_1
         - !Ref Negative1IPv6_2
         - !Ref Negative1ArrayTestIPv6
       KeyName: my-new-rsa-key
       
 # Ipv4 Rules
-=======
-      KeyName: my-new-rsa-key
-
->>>>>>> 49f31346f893c112d2d924d2079060e5c6aaa4d2
   Negative1IPv4_1:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -44,11 +39,7 @@ Resources:
   Negative1ArrayTestIPv4:
     Type: AWS::EC2::SecurityGroup
     Properties:
-<<<<<<< HEAD
       GroupDescription: "Mixed incorrect CIDR and 'All incorrect'"
-=======
-      GroupDescription: "Mixed incorrect CIDRs and protocols"
->>>>>>> 49f31346f893c112d2d924d2079060e5c6aaa4d2
       VpcId: !Ref MyVPC
       SecurityGroupIngress:
       # incorrect cidr (not exposed)
@@ -61,7 +52,6 @@ Resources:
           FromPort: 5000 
           ToPort: 5000
           CidrIp: "10.68.0.0/14"
-<<<<<<< HEAD
 
 # IPv6 Rules
   Negative1IPv6_1:
@@ -97,5 +87,3 @@ Resources:
           FromPort: 110
           ToPort: 110
           CidrIpv6: "fd00:abcd:1234::42/0"
-=======
->>>>>>> 49f31346f893c112d2d924d2079060e5c6aaa4d2
