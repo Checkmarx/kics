@@ -30,7 +30,6 @@ CxPolicy[result] { # 1.3 is the latest tls
 	app := input.document[i].resource[types[t]][name]
 
 	results := minimum_tls_undefined_or_not_latest(app,types[t],name)
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -86,4 +85,4 @@ minimum_tls_undefined_or_not_latest(app,type,name) = results {
 		}),
 		"remediationType" : "replacement",
 	}
-} else = ""
+}

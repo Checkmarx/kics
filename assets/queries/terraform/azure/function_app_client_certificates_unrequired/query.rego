@@ -9,7 +9,6 @@ CxPolicy[result] {
     function := input.document[i].resource[types[t]][name]
 
 	results := client_certificate_not_required(function,name,types[t])
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -55,7 +54,7 @@ client_certificate_not_required(function,name,type) = results {
 		}),
 		"remediationType": "replacement",
 	}
-} else = ""
+}
 
 get_field("azurerm_function_app")         = "client_cert_mode" 
 get_field("azurerm_linux_function_app")   = "client_certificate_mode"
