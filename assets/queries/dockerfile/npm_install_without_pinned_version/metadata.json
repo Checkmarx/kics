@@ -7,5 +7,6 @@
   "descriptionUrl": "https://docs.docker.com/engine/reference/builder/#run",
   "platform": "Dockerfile",
   "descriptionID": "8bd60033",
-  "cwe": "1357"
+  "cwe": "1357",
+  "riskScore": "5.7"
 }

@@ -44,6 +44,7 @@ var tests = []gitlabSASTTest{
 			Severity:    model.SeverityHigh,
 			Files:       []model.VulnerableFile{},
 			CWE:         "",
+			RiskScore:   "6",
 		},
 		file: model.VulnerableFile{},
 		want: gitlabSASTReport{
@@ -61,7 +62,8 @@ var tests = []gitlabSASTTest{
 			Files: []model.VulnerableFile{
 				{KeyActualValue: "test", FileName: "test.json", Line: 1, SimilarityID: "similarity"},
 			},
-			CWE: "",
+			CWE:       "",
+			RiskScore: "6",
 		},
 		file: model.VulnerableFile{
 			KeyActualValue: "test",
@@ -93,7 +95,8 @@ var tests = []gitlabSASTTest{
 							Value:          "1",
 						},
 					},
-					CWE: "",
+					CWE:       "",
+					RiskScore: "6",
 				},
 			},
 		},
@@ -109,7 +112,8 @@ var tests = []gitlabSASTTest{
 			Files: []model.VulnerableFile{
 				{KeyActualValue: "test", FileName: "test.json", Line: 1, SimilarityID: "similarity"},
 			},
-			CWE: "22",
+			CWE:       "22",
+			RiskScore: "6",
 		},
 		file: model.VulnerableFile{
 			KeyActualValue: "test",
@@ -141,7 +145,8 @@ var tests = []gitlabSASTTest{
 							Value:          "1",
 						},
 					},
-					CWE: "22",
+					CWE:       "22",
+					RiskScore: "6",
 				},
 			},
 		},
@@ -157,6 +162,7 @@ var tests = []gitlabSASTTest{
 			Files: []model.VulnerableFile{
 				{KeyActualValue: "test", FileName: "test.json", Line: 1, SimilarityID: "similarity"},
 			},
+			RiskScore: "6",
 		},
 		file: model.VulnerableFile{
 			KeyActualValue: "test",
@@ -188,6 +194,7 @@ var tests = []gitlabSASTTest{
 							Value:          "1",
 						},
 					},
+					RiskScore: "6",
 				},
 			},
 		},

@@ -8,5 +8,6 @@
   "platform": "Terraform",
   "descriptionID": "2d49b723",
   "cloudProvider": "tencentcloud",
-  "cwe": "284"
+  "cwe": "284",
+  "riskScore": "7.8"
 }

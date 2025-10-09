@@ -38,6 +38,7 @@ var sarifTests = []sarifTest{
 				Severity:    model.SeverityHigh,
 				Files:       []model.VulnerableFile{},
 				CWE:         "",
+				RiskScore:   "6",
 			},
 		},
 		want: sarifReport{
@@ -56,7 +57,8 @@ var sarifTests = []sarifTest{
 				Files: []model.VulnerableFile{
 					{KeyActualValue: "test", FileName: "test.json", Line: -1},
 				},
-				CWE: "",
+				CWE:       "",
+				RiskScore: "6",
 			},
 		},
 		want: sarifReport{
@@ -96,7 +98,7 @@ var sarifTests = []sarifTest{
 							ResultRuleID:    "1",
 							ResultRuleIndex: 0,
 							ResultKind:      "fail",
-							ResultMessage:   sarifMessage{Text: "test", MessageProperties: sarifProperties{"platform": ""}},
+							ResultMessage:   sarifMessage{Text: "test", MessageProperties: sarifProperties{"platform": "", "riskScore": "6"}},
 							ResultLocations: []sarifLocation{
 								{
 									PhysicalLocation: sarifPhysicalLocation{
@@ -157,7 +159,8 @@ var sarifTests = []sarifTest{
 				Files: []model.VulnerableFile{
 					{KeyActualValue: "test", FileName: "", Line: 1},
 				},
-				CWE: "",
+				CWE:       "",
+				RiskScore: "6",
 			},
 			{
 				QueryName:   "test info",
@@ -169,7 +172,8 @@ var sarifTests = []sarifTest{
 				Files: []model.VulnerableFile{
 					{KeyActualValue: "test", FileName: "", Line: 1},
 				},
-				CWE: "22",
+				CWE:       "22",
+				RiskScore: "6",
 			},
 		},
 		want: sarifReport{
@@ -246,7 +250,7 @@ var sarifTests = []sarifTest{
 							ResultKind:      "fail",
 							ResultMessage: sarifMessage{
 								Text:              "test",
-								MessageProperties: sarifProperties{"platform": ""},
+								MessageProperties: sarifProperties{"platform": "", "riskScore": "6"},
 							},
 							ResultLocations: []sarifLocation{
 								{
@@ -263,7 +267,7 @@ var sarifTests = []sarifTest{
 							ResultKind:      "informational",
 							ResultMessage: sarifMessage{
 								Text:              "test",
-								MessageProperties: sarifProperties{"platform": ""},
+								MessageProperties: sarifProperties{"platform": "", "riskScore": "6"},
 							},
 							ResultLocations: []sarifLocation{
 								{

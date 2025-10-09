@@ -7,6 +7,7 @@
   "descriptionUrl": "https://doc.crds.dev/github.com/crossplane/provider-aws/ecs.aws.crossplane.io/Cluster/v1alpha1@v0.42.0#spec-forProvider-settings",
   "platform": "Crossplane",
   "descriptionID": "a6911ebd",
-	"cloudProvider": "aws",
-  "cwe": "778"
+  "cloudProvider": "aws",
+  "cwe": "778",
+  "riskScore": "3.3"
 }

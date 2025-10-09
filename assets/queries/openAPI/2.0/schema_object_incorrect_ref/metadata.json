@@ -8,5 +8,6 @@
   "platform": "OpenAPI",
   "descriptionID": "8389f514",
   "cloudProvider": "common",
-  "cwe": "20"
+  "cwe": "20",
+  "riskScore": "0.0"
 }

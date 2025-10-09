@@ -33,6 +33,7 @@
       "severity": "MEDIUM",
       "platform": "AzureResourceManager",
       "cwe": "522",
+      "riskScore": "5.7",
       "cloud_provider": "AZURE",
       "category": "Best Practices",
       "experimental": false,

@@ -18,5 +18,6 @@
   },
   "cwe": "319",
   "oldSeverity": "MEDIUM",
-  "cloudProvider": "common"
+  "cloudProvider": "common",
+  "riskScore": "0.0"
 }

@@ -530,6 +530,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
 				IssueType:        "RedundantAttribute",
 				Platform:         SecretsQueryMetadata["platform"],
 				CWE:              SecretsQueryMetadata["cwe"],
+				RiskScore:        SecretsQueryMetadata["riskScore"],
 				Severity:         model.SeverityHigh,
 				QueryURI:         SecretsQueryMetadata["descriptionUrl"],
 				Category:         SecretsQueryMetadata["category"],

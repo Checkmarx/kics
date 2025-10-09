@@ -34,6 +34,7 @@
       "platform": "OpenAPI",
       "cloudProvider": "common",
       "cwe": "20",
+      "riskScore": "0.0",
       "category": "Structure and Semantics",
       "experimental": false,
       "description": "Every defined property must be unique throughout the whole API",

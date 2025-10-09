@@ -32,8 +32,9 @@
         "descriptionUrl",
         "cloudProvider",
         "platform",
-        "descriptionID", 
-        "cwe"
+        "descriptionID",
+        "cwe",
+        "riskScore"
     ],
     "properties": {
         "id": {
@@ -176,6 +177,9 @@
             ]
         },
         "cwe": {
+            "type": "string"
+        },
+        "riskScore": {
             "type": "string"
         }
     }

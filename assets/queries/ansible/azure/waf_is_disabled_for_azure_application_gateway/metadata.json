@@ -8,5 +8,6 @@
   "platform": "Ansible",
   "descriptionID": "eda7b816",
   "cloudProvider": "azure",
-  "cwe": "693"
+  "cwe": "693",
+  "riskScore": "4.9"
 }

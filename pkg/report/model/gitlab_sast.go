@@ -48,6 +48,7 @@ type gitlabSASTVulnerability struct {
 	Severity    string                              `json:"severity"`
 	Name        string                              `json:"name"`
 	CWE         string                              `json:"cwe,omitempty"`
+	RiskScore   string                              `json:"risk_score"`
 	Links       []gitlabSASTVulnerabilityLink       `json:"links"`
 	Location    gitlabSASTVulnerabilityLocation     `json:"location"`
 	Identifiers []gitlabSASTVulnerabilityIdentifier `json:"identifiers"`
@@ -123,10 +124,11 @@ func initGitlabSASTScan(start, end time.Time) gitlabSASTScan {
 func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryResult, file *model.VulnerableFile) {
 	if len(issue.Files) > 0 {
 		vulnerability := gitlabSASTVulnerability{
-			ID:       file.SimilarityID,
-			Severity: cases.Title(language.Und).String(strings.ToLower(string(issue.Severity))),
-			Name:     issue.QueryName,
-			CWE:      issue.CWE,
+			ID:        file.SimilarityID,
+			Severity:  cases.Title(language.Und).String(strings.ToLower(string(issue.Severity))),
+			Name:      issue.QueryName,
+			CWE:       issue.CWE,
+			RiskScore: issue.RiskScore,
 			Links: []gitlabSASTVulnerabilityLink{
 				{
 					URL: issue.QueryURI,
