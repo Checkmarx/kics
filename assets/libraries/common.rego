@@ -75,6 +75,9 @@ emptyOrNull("") = true
 
 emptyOrNull(null) = true
 
+# List of valid forms for the "::/0" ipv6 address
+unrestricted_ipv6 := ["::/0","0000:0000:0000:0000:0000:0000:0000:0000/0","0:0:0:0:0:0:0:0/0"]
+
 # Checks if an IP is private
 isPrivateIP(ipVal) {
 	private_ips := ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12", "fc00::/8", "fd00::/8"]

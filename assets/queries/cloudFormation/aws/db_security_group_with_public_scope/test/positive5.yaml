@@ -8,7 +8,8 @@ Resources:
           CIDRIP: 0.0.0.0/0
   DBInstance:
     Type: AWS::RDS::DBInstance
-    Properties:   #defaults to public == true
+    Properties: 
+      PubliclyAccessible: "true"  #quoted string support test
       DBName:
         Ref: DBName
       Engine: MySQL
