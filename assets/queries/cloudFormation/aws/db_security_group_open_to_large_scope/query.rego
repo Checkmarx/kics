@@ -10,11 +10,10 @@ CxPolicy[result] {
 	doc := input.document[i]
 
 	resource := doc.Resources[name]
-	resource.Type == types[t]
+	resource.Type == types[_]
 
 	ingress_list := cf_lib.get_ingress_list(resource)
 	results := exposed_inline_or_standalone_ingress(ingress_list[ing_index], ing_index, resource.Type, name)
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -61,8 +60,7 @@ exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = res
 		"keyActualValue": sprintf("'Resources.%s.Properties.%s' has more than 256 hosts.", [resource_index, cidr_fields[x2]]),
 		"searchLine" : common_lib.build_search_line(["Resources", resource_index, "Properties", cidr_fields[x2]],[])
 	}
-} else = ""
+}
 
 get_ingress_field_name("AWS::EC2::SecurityGroup") = "SecurityGroupIngress"
 get_ingress_field_name("AWS::RDS::DBSecurityGroup") = "DBSecurityGroupIngress"
-

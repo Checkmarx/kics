@@ -10,7 +10,7 @@ CxPolicy[result] {
 
 	ingresses_with_names := search_for_standalone_ingress(sec_group_name, doc)
 
-	ingress_list := array.concat(ingresses_with_names.ingress_list, get_inline_ingress_list(sec_group))
+	ingress_list := array.concat(ingresses_with_names.ingress_list, get_ingress_list_if_exists(sec_group))
 	ingress := ingress_list[ing_index]
 
 	cidr_types := {"CidrIp","CidrIpv6"}
@@ -18,7 +18,6 @@ CxPolicy[result] {
 	ingress[cidr_types[c]] == exposed_addresses[a]
 
 	key_string := check_security_groups_ingress(ingress)
-	key_string != ""
 
 	results := get_search_values(ing_index, sec_group_name, ingresses_with_names.names, cidr_types[c])
 
@@ -26,7 +25,7 @@ CxPolicy[result] {
 		"documentId": doc.id,
 		"resourceType": results.type,
 		"resourceName": cf_lib.get_resource_name(sec_group, sec_group_name),
-		"searchKey": results.searchKey, #sprintf("Resources.%s.Properties.SecurityGroupIngress.CidrIp", [name]),
+		"searchKey": results.searchKey,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("No ingress should have a '%s' set to '%s' with %s.", [cidr_types[c], exposed_addresses[a], key_string]),
 		"keyActualValue": sprintf("'%s' has %s equal to %s with %s.", [results.searchKey, cidr_types[c], exposed_addresses[a], key_string]),
@@ -39,7 +38,7 @@ check_security_groups_ingress(ingress) = "'IpProtocol' set to '-1'"{
 } else = "all 65535 ports open" {
 	ingress.FromPort == 0
 	ingress.ToPort == 65535
-} else = ""
+}
 
 search_for_standalone_ingress(sec_group_name, doc) = ingresses_with_names {
   resources := doc.Resources
@@ -73,6 +72,6 @@ get_search_values(ing_index, sec_group_name, names_list, cidr_type) = results {
 	}
 }
 
-get_inline_ingress_list(group) = [] {
+get_ingress_list_if_exists(group) = [] {
 	not common_lib.valid_key(group.Properties,"SecurityGroupIngress")
 } else = group.Properties.SecurityGroupIngress
