@@ -11,7 +11,6 @@ CxPolicy[result] {
 	tf_lib.is_security_group_ingress(types[i2],resource)
 
 	results := check_unknown_port_for_rules(resource,name,types[i2])
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -31,7 +30,6 @@ CxPolicy[result] {
 
 	ingress_list := tf_lib.get_ingress_list(resource.ingress)
 	results := check_unknown_port(ingress_list.value[i2],ingress_list.is_unique_element,name,i2)
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -93,7 +91,7 @@ check_unknown_port(ingress,is_unique_element,name,j) = results {
 		"keyActualValue" : sprintf("aws_security_group[%s].ingress[%d] ports are unknown and exposed to the entire Internet", [name,j]),
 		"searchLine" : common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", j], []),
 	}
-} else = ""
+}
 
 check_unknown_port_for_rules(rule,name,rule_type) = results {
 
@@ -106,7 +104,7 @@ check_unknown_port_for_rules(rule,name,rule_type) = results {
 		"keyActualValue" : sprintf("%s[%s] ports are unknown and exposed to the entire Internet", [rule_type,name]),
 		"searchLine" : common_lib.build_search_line(["resource", rule_type , name], []),
 	}
-} else = ""
+}
 
 unknownPort(from_port,to_port) {
 	port := numbers.range(from_port, to_port)[i]
