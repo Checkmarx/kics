@@ -2,12 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Simple API Overview",
-    "version": "1.0.0",
-    "contact": {
-      "name": "contact",
-      "url": "https://www.google.com/",
-      "email": "user@gmail.com"
-    }
+    "version": "1.0.0"
   },
   "paths": {
     "/": {
@@ -17,34 +12,16 @@
         "responses": {
           "200": {
             "description": "200 response"
-          }
-        }
-      },
-      "delete": {
-        "operationId": "deleteVersion",
-        "summary": "Deletes API versions",
-        "responses": {
-          "204": {
-            "description": "no content"
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "ApiVersion": {
-        "type": "object",
-        "discriminator": {
-          "propertyName": "ApiVersion"
-        },
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32"
           },
-          "version": {
-            "type": "string"
+          "201": {
+            "description": "201 response",
+            "content": {}
+          },
+          "202": {
+            "description": "202 response",
+            "content": {
+              "application/pdf": {}
+            }
           }
         }
       }

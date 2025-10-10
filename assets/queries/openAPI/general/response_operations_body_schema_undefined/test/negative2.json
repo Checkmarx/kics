@@ -16,16 +16,20 @@
         "summary": "List API versions",
         "responses": {
           "200": {
-            "description": "200 response"
-          }
-        }
-      },
-      "delete": {
-        "operationId": "deleteVersion",
-        "summary": "Deletes API versions",
-        "responses": {
-          "204": {
-            "description": "no content"
+            "description": "200 response",
+            "schema": {
+              "type": "object",
+              "discriminator": "ApiVersion",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "version": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }

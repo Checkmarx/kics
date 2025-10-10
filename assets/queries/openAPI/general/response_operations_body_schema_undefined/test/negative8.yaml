@@ -1,0 +1,37 @@
+openapi: 3.0.3
+info:
+  title: Tariff Setup API
+  version: 1.0.0
+
+paths:
+  /CreateTariffSetup:
+    post:
+      summary: Creates tariff setups.
+      tags:
+        - Tariff Setups
+      responses:
+        '400':
+          $ref: '#/components/responses/error'    # $ref is valid because responses/error has a schema
+        '500':
+          $ref: '#/components/responses/error'
+
+components:
+
+  responses:
+    error:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+            
+  schemas:
+    error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "ERR_400"
+        message:
+          type: string
+          example: "Invalid request payload"

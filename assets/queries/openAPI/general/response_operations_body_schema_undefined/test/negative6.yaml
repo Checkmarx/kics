@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  title: Simple API Overview
+  title: Simple API Overview  
   version: 1.0.0
   contact:
     name: contact
@@ -14,8 +14,8 @@ paths:
       responses:
         "200":
           description: 200 response
-          schema:
-            type: object
+          schema:                     # schema is defined
+            type: object  
             discriminator: ApiVersion
             properties:
               code:
@@ -23,9 +23,3 @@ paths:
                 format: int32
               version:
                 type: string
-    delete:
-      operationId: deleteVersion
-      summary: Deletes API versions
-      responses:
-        "204":
-          description: no content

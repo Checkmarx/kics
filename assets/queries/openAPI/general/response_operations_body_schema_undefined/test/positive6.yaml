@@ -1,36 +1,45 @@
-openapi: 3.0.0
+openapi: 3.0.3
 info:
-  title: Simple API Overview
+  title: Tariff Setup API
   version: 1.0.0
-  contact:
-    name: contact
-    url: https://www.google.com/
-    email: user@gmail.com
+
 paths:
-  "/":
-    get:
-      operationId: listVersionsv2
-      summary: List API versions
+  /CreateTariffSetup:
+    post:
+      summary: Creates tariff setups.
+      tags:
+        - Tariff Setups
       responses:
-        "200":
-          description: 200 response
-          content:
-            application/json: {}
-    delete:
-      operationId: deleteVersion
-      summary: Deletes API versions
-      responses:
-        "204":
-          description: no content
+        '400':
+          $ref: '#/components/schemas/missing_component'  # incorrect referencing
+        '401':
+          $ref: '#/components/responses/error1'  # components/responses/error1 is missing schema field
+        '402':
+          $ref: '#/components/responses/error2'  # components/responses/error2 has an empty content field
+        '403':
+          $ref: '#/components/responses/error3'  # components/responses/error3 is missing content field
+
 components:
+  responses:
+    error1:
+      description: Error response
+      content:
+        application/json:
+
+    error2:
+      description: Error response
+      content:
+
+    error3:
+      description: Error response
+
   schemas:
-    ApiVersion:
+    error:
       type: object
-      discriminator:
-        propertyName: ApiVersion
       properties:
         code:
-          type: integer
-          format: int32
-        version:
           type: string
+          example: "ERR_400"
+        message:
+          type: string
+          example: "Invalid request payload"

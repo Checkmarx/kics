@@ -16,14 +16,8 @@ paths:
           description: 200 response
           content:
             application/json:
-              schema:
+              schema:                                       # schema is defined
                 "$ref": "#/components/schemas/ApiVersion"
-    delete:
-      operationId: deleteVersion
-      summary: Deletes API versions
-      responses:
-        "204":
-          description: no content
 components:
   schemas:
     ApiVersion:
