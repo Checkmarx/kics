@@ -151,7 +151,7 @@
 				
 				<option value="file47">github.com/Checkmarx/kics/v2/pkg/engine/similarity/similarity_id.go (90.5%)</option>
 				
-				<option value="file48">github.com/Checkmarx/kics/v2/pkg/engine/source/filesystem.go (74.1%)</option>
+				<option value="file48">github.com/Checkmarx/kics/v2/pkg/engine/source/filesystem.go (73.1%)</option>
 				
 				<option value="file49">github.com/Checkmarx/kics/v2/pkg/engine/source/source.go (67.9%)</option>
 				
@@ -247,7 +247,7 @@
 				
 				<option value="file95">github.com/Checkmarx/kics/v2/pkg/printer/options.go (85.3%)</option>
 				
-				<option value="file96">github.com/Checkmarx/kics/v2/pkg/printer/printer.go (85.5%)</option>
+				<option value="file96">github.com/Checkmarx/kics/v2/pkg/printer/printer.go (85.7%)</option>
 				
 				<option value="file97">github.com/Checkmarx/kics/v2/pkg/printer/utils.go (80.0%)</option>
 				
@@ -293,13 +293,13 @@
 				
 				<option value="file118">github.com/Checkmarx/kics/v2/pkg/report/model/junit.go (94.4%)</option>
 				
-				<option value="file119">github.com/Checkmarx/kics/v2/pkg/report/model/sarif.go (70.9%)</option>
+				<option value="file119">github.com/Checkmarx/kics/v2/pkg/report/model/sarif.go (71.7%)</option>
 				
 				<option value="file120">github.com/Checkmarx/kics/v2/pkg/report/model/sarif_categories.go (100.0%)</option>
 				
 				<option value="file121">github.com/Checkmarx/kics/v2/pkg/report/model/sonarqube.go (92.9%)</option>
 				
-				<option value="file122">github.com/Checkmarx/kics/v2/pkg/report/pdf.go (89.5%)</option>
+				<option value="file122">github.com/Checkmarx/kics/v2/pkg/report/pdf.go (89.7%)</option>
 				
 				<option value="file123">github.com/Checkmarx/kics/v2/pkg/report/sarif.go (77.8%)</option>
 				
@@ -2603,13 +2603,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov10" title="61">{
+        for _, sample := range prof.Sample </span><span class="cov10" title="55">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov10" title="61">total += v
+                <span class="cov10" title="55">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2633,8 +2633,8 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 }</span>
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
-        <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov9" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="24">{
+        <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -5777,7 +5777,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="10">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov6" title="11">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -7885,6 +7885,7 @@ func (c *Inspector) addVulnerability(basePaths []string, file *model.FileMetadat
                                 IssueType:        "RedundantAttribute",
                                 Platform:         SecretsQueryMetadata["platform"],
                                 CWE:              SecretsQueryMetadata["cwe"],
+                                RiskScore:        SecretsQueryMetadata["riskScore"],
                                 Severity:         model.SeverityHigh,
                                 QueryURI:         SecretsQueryMetadata["descriptionUrl"],
                                 Category:         SecretsQueryMetadata["category"],
@@ -8514,11 +8515,27 @@ func ReadQuery(queryDir string) (model.QueryMetadata, error) <span class="cov5" 
 
         <span class="cov5" title="10">experimental := getExperimental(metadata["experimental"])
 
-        return model.QueryMetadata{
+        cwe := ""
+        if cweValue, ok := metadata["cwe"]; ok </span><span class="cov0" title="0">{
+                if cweStr, ok := cweValue.(string); ok </span><span class="cov0" title="0">{
+                        cwe = cweStr
+                }</span>
+        }
+
+        <span class="cov5" title="10">riskScore := ""
+        if riskScoreValue, ok := metadata["riskScore"]; ok </span><span class="cov0" title="0">{
+                if riskScoreStr, ok := riskScoreValue.(string); ok </span><span class="cov0" title="0">{
+                        riskScore = riskScoreStr
+                }</span>
+        }
+
+        <span class="cov5" title="10">return model.QueryMetadata{
                 Query:        path.Base(filepath.ToSlash(queryDir)),
                 Content:      string(queryContent),
                 Metadata:     metadata,
                 Platform:     platform,
+                CWE:          cwe,
+                RiskScore:    riskScore,
                 InputData:    inputData,
                 Aggregation:  aggregation,
                 Experimental: experimental,
@@ -8807,6 +8824,8 @@ func modifyVulSearchKeyReference(doc interface{}, originalSearchKey string, stri
 }
 
 // DefaultVulnerabilityBuilder defines a vulnerability builder to execute default actions of scan
+//
+//nolint:gocyclo
 var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
         tracker Tracker,
         v interface{},
@@ -8945,7 +8964,8 @@ var DefaultVulnerabilityBuilder = func(ctx *QueryContext,
                 DescriptionID:    getStringFromMap("descriptionID", DefaultQueryDescriptionID, overrideKey, vObj, &amp;logWithFields),
                 Severity:         severity,
                 Platform:         getStringFromMap("platform", "", overrideKey, vObj, &amp;logWithFields),
-                CWE:              getStringFromMap("cwe", "", overrideKey, vObj, &amp;logWithFields),
+                CWE:              ctx.Query.Metadata.CWE,
+                RiskScore:        ctx.Query.Metadata.RiskScore,
                 Line:             linesVulne.Line,
                 VulnLines:        linesVulne.VulnLines,
                 ResourceType:     PtrStringToString(mustMapKeyToString(vObj, "resourceType")),
@@ -9195,7 +9215,7 @@ type searchLineCalculator struct {
 func (s *searchLineCalculator) calculate() <span class="cov6" title="81">{
         if searchLine, ok := s.vObj["searchLine"]; ok </span><span class="cov5" title="49">{
                 line := make([]string, 0, len(searchLine.([]interface{})))
-                for _, strElement := range searchLine.([]interface{}) </span><span class="cov6" title="135">{
+                for _, strElement := range searchLine.([]interface{}) </span><span class="cov7" title="135">{
                         line = append(line, strElement.(string))
                 }</span>
                 <span class="cov5" title="49">var err error
@@ -9243,15 +9263,15 @@ func mustMapKeyToString(m map[string]interface{}, key string) *string <span clas
         }</span>
         <span class="cov8" title="633">return res</span>
 }
-func mapKeyToString(m map[string]interface{}, key string, allowNil bool) (*string, error) <span class="cov10" title="1588">{
+func mapKeyToString(m map[string]interface{}, key string, allowNil bool) (*string, error) <span class="cov10" title="1509">{
         v, ok := m[key]
-        if !ok </span><span class="cov8" title="400">{
+        if !ok </span><span class="cov8" title="393">{
                 return nil, fmt.Errorf("key '%s' not found in map", key)
         }</span>
-        <span class="cov9" title="1188">switch vv := v.(type) </span>{
+        <span class="cov9" title="1116">switch vv := v.(type) </span>{
         case json.Number:<span class="cov0" title="0">
                 return stringToPtrString(vv.String()), nil</span>
-        case string:<span class="cov9" title="1183">
+        case string:<span class="cov9" title="1111">
                 return stringToPtrString(vv), nil</span>
         case int, int32, int64:<span class="cov1" title="2">
                 return stringToPtrString(fmt.Sprintf("%d", vv)), nil</span>
@@ -9274,18 +9294,18 @@ func mapKeyToString(m map[string]interface{}, key string, allowNil bool) (*strin
         }</span>
         <span class="cov0" title="0">return stringToPtrString(""), nil</span>
 }
-func stringToPtrString(v string) *string <span class="cov9" title="1188">{
+func stringToPtrString(v string) *string <span class="cov9" title="1116">{
         return &amp;v
 }</span>
 
 // PtrStringToString - converts a pointer to string to a string
-func PtrStringToString(v *string) string <span class="cov8" title="682">{
+func PtrStringToString(v *string) string <span class="cov9" title="682">{
         if v == nil </span><span class="cov7" title="238">{
                 return ""
         }</span>
         <span class="cov8" title="444">return *v</span>
 }
-func tryOverride(overrideKey, vulnParam string, vObj map[string]interface{}) *string <span class="cov9" title="729">{
+func tryOverride(overrideKey, vulnParam string, vObj map[string]interface{}) *string <span class="cov8" title="657">{
         if overrideKey != "" </span><span class="cov2" title="3">{
                 if override, ok := vObj["override"].(map[string]interface{}); ok </span><span class="cov2" title="3">{
                         if overrideObject, ok := override[overrideKey].(map[string]interface{}); ok </span><span class="cov2" title="3">{
@@ -9300,20 +9320,20 @@ func tryOverride(overrideKey, vulnParam string, vObj map[string]interface{}) *st
                         }
                 }
         }
-        <span class="cov9" title="727">return nil</span>
+        <span class="cov8" title="655">return nil</span>
 }
-func getStringFromMap(vulnParam, defaultParam, overrideKey string, vObj map[string]interface{}, logWithFields *zerolog.Logger) string <span class="cov9" title="705">{
+func getStringFromMap(vulnParam, defaultParam, overrideKey string, vObj map[string]interface{}, logWithFields *zerolog.Logger) string <span class="cov8" title="626">{
         ts, err := mapKeyToString(vObj, vulnParam, false)
-        if err != nil </span><span class="cov5" title="53">{
+        if err != nil </span><span class="cov5" title="46">{
                 logWithFields.Err(err).
                         Msgf("Saving result. failed to detect %s", vulnParam)
                 return defaultParam
         }</span>
-        <span class="cov8" title="652">overrideValue := tryOverride(overrideKey, vulnParam, vObj)
+        <span class="cov8" title="580">overrideValue := tryOverride(overrideKey, vulnParam, vObj)
         if overrideValue != nil </span><span class="cov1" title="1">{
                 ts = overrideValue
         }</span>
-        <span class="cov8" title="652">return *ts</span>
+        <span class="cov8" title="580">return *ts</span>
 }
 func getBoolFromMap(
         vulnParam string,
@@ -10835,6 +10855,7 @@ type QueryMetadata struct {
         Metadata  map[string]interface{}
         Platform  string
         CWE       string
+        RiskScore string
         // special field for generic queries
         // represents how many queries are aggregated into a single rego file
         Aggregation  int
@@ -10859,6 +10880,7 @@ type Vulnerability struct {
         DescriptionID    string      `json:"descriptionID"`
         Platform         string      `db:"platform" json:"platform"`
         CWE              string      `db:"cwe" json:"cwe"`
+        RiskScore        string      `db:"risk_score" json:"riskScore"`
         Severity         Severity    `json:"severity"`
         Line             int         `json:"line"`
         VulnLines        *[]CodeLine `json:"vulnLines"`
@@ -11250,6 +11272,7 @@ type QueryResult struct {
         Severity                    Severity         `json:"severity"`
         Platform                    string           `json:"platform"`
         CWE                         string           `json:"cwe,omitempty"`
+        RiskScore                   string           `json:"risk_score,omitempty"`
         CloudProvider               string           `json:"cloud_provider,omitempty"`
         Category                    string           `json:"category"`
         Experimental                bool             `json:"experimental"`
@@ -11387,6 +11410,7 @@ func resolvePath(filePath string, pathExtractionMap map[string]ExtractedPathObje
 }
 
 // CreateSummary creates a report for a single scan, based on its scanID
+// nolint: funlen
 func CreateSummary(counters *Counters, vulnerabilities []Vulnerability,
         scanID string, pathExtractionMap map[string]ExtractedPathObject, version Version) Summary <span class="cov4" title="2">{
         log.Debug().Msg("model.CreateSummary()")
@@ -11406,6 +11430,7 @@ func CreateSummary(counters *Counters, vulnerabilities []Vulnerability,
                                 QueryURI:      item.QueryURI,
                                 Platform:      item.Platform,
                                 CWE:           item.CWE,
+                                RiskScore:     item.RiskScore,
                                 Experimental:  item.Experimental,
                                 CloudProvider: strings.ToUpper(item.CloudProvider),
                                 Category:      item.Category,
@@ -20656,12 +20681,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="212">{
+        for variable := range s.varList </span><span class="cov7" title="220">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="645">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="542">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -27794,8 +27819,12 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
                         }</span>
                         <span class="cov5" title="12">fmt.Printf("%s %s\n", printer.Bold("Platform:"), summary.Queries[idx].Platform)
 
-                        if summary.Queries[idx].CWE != "" </span><span class="cov2" title="2">{
+                        if summary.Queries[idx].CWE != "" </span><span class="cov3" title="4">{
                                 fmt.Printf("%s %s\n", printer.Bold("CWE:"), summary.Queries[idx].CWE)
+                        }</span>
+
+                        <span class="cov5" title="12">if summary.Queries[idx].RiskScore != "" </span><span class="cov5" title="12">{
+                                fmt.Printf("%s %s\n", printer.Bold("Risk Score:"), summary.Queries[idx].RiskScore)
                         }</span>
 
                         // checks if should print queries URL DOCS based on the use of custom queries and invalid ids
@@ -27956,7 +27985,7 @@ func (p *Printer) PrintBySev(content, sev string) string <span class="cov10" tit
 }
 
 // Bold returns the output in a bold format
-func (p *Printer) Bold(content string) string <span class="cov8" title="34">{
+func (p *Printer) Bold(content string) string <span class="cov8" title="48">{
         return color.Bold.Sprintf("%s", content)
 }</span>
 
@@ -29234,7 +29263,7 @@ var svgMap = map[string]string{
         "vulnerability_out.svg":  vulnerabilityOutSVG,
 }
 
-func includeSVG(name string) template.HTML <span class="cov10" title="23">{
+func includeSVG(name string) template.HTML <span class="cov10" title="24">{
         return template.HTML(svgMap[name]) //nolint
 }</span>
 
@@ -29413,6 +29442,7 @@ type AwsSecurityFinding struct {
         Types         []string
         UpdatedAt     string
         CWE           string
+        RiskScore     string
 }
 
 // AsffRecommendation includes the recommendation to avoid the finding
@@ -29524,6 +29554,7 @@ func (a *AwsAccountInfo) getFinding(query *model.QueryResult, file *model.Vulner
                 },
                 Compliance: Compliance{Status: *aws.String("FAILED")},
                 CWE:        *aws.String(query.CWE),
+                RiskScore:  *aws.String(query.RiskScore),
         }
 
         return finding</span>
@@ -29573,6 +29604,7 @@ type CodeClimateReport struct {
         Type        string   `json:"type"`
         CheckName   string   `json:"check_name"`
         CWE         string   `json:"cwe,omitempty"`
+        RiskScore   string   `json:"risk_score"`
         Description string   `json:"description"`
         Categories  []string `json:"categories"`
         Location    location `json:"location"`
@@ -29599,6 +29631,7 @@ func BuildCodeClimateReport(summary *model.Summary) []CodeClimateReport <span cl
                                 Type:        "issue",
                                 CheckName:   summary.Queries[i].QueryName,
                                 CWE:         summary.Queries[i].CWE,
+                                RiskScore:   summary.Queries[i].RiskScore,
                                 Description: summary.Queries[i].Description,
                                 Categories:  []string{"Security"},
                                 Location: location{
@@ -29627,6 +29660,7 @@ type CSVReport struct {
         Severity                    string `csv:"severity"`
         Platform                    string `csv:"platform"`
         CWE                         string `csv:"cwe,omitempty"`
+        RiskScore                   string `csv:"risk_score"`
         CloudProvider               string `csv:"cloud_provider"`
         Category                    string `csv:"category"`
         DescriptionID               string `csv:"description_id"`
@@ -29658,6 +29692,7 @@ func BuildCSVReport(summary *model.Summary) []CSVReport <span class="cov7" title
                                 Severity:                    string(summary.Queries[i].Severity),
                                 Platform:                    summary.Queries[i].Platform,
                                 CWE:                         summary.Queries[i].CWE,
+                                RiskScore:                   summary.Queries[i].RiskScore,
                                 CloudProvider:               summary.Queries[i].CloudProvider,
                                 Category:                    summary.Queries[i].Category,
                                 DescriptionID:               summary.Queries[i].DescriptionID,
@@ -29769,6 +29804,7 @@ type Vulnerability struct {
         // vulnerability body information
         ID              string           `xml:"v:id"`
         CWE             string           `xml:"v:cwe"`
+        RiskScore       string           `xml:"v:riskScore"`
         Source          Source           `xml:"v:source"`
         Ratings         []Rating         `xml:"v:ratings&gt;v:rating"`
         Description     string           `xml:"v:description"`
@@ -29853,9 +29889,10 @@ func getVulnerabilitiesByFile(query *model.QueryResult, fileName, purl string) [
                 file := query.Files[idx]
                 if fileName == file.FileName </span><span class="cov7" title="5">{
                         vuln := Vulnerability{
-                                Ref: purl + query.QueryID,
-                                ID:  query.QueryID,
-                                CWE: query.CWE,
+                                Ref:       purl + query.QueryID,
+                                ID:        query.QueryID,
+                                CWE:       query.CWE,
+                                RiskScore: query.RiskScore,
                                 Source: Source{
                                         Name: "KICS",
                                         URL:  "https://kics.io/",
@@ -30010,6 +30047,7 @@ type gitlabSASTVulnerability struct {
         Severity    string                              `json:"severity"`
         Name        string                              `json:"name"`
         CWE         string                              `json:"cwe,omitempty"`
+        RiskScore   string                              `json:"risk_score"`
         Links       []gitlabSASTVulnerabilityLink       `json:"links"`
         Location    gitlabSASTVulnerabilityLocation     `json:"location"`
         Identifiers []gitlabSASTVulnerabilityIdentifier `json:"identifiers"`
@@ -30085,10 +30123,11 @@ func initGitlabSASTScan(start, end time.Time) gitlabSASTScan <span class="cov10"
 func (glsr *gitlabSASTReport) BuildGitlabSASTVulnerability(issue *model.QueryResult, file *model.VulnerableFile) <span class="cov8" title="4">{
         if len(issue.Files) &gt; 0 </span><span class="cov7" title="3">{
                 vulnerability := gitlabSASTVulnerability{
-                        ID:       file.SimilarityID,
-                        Severity: cases.Title(language.Und).String(strings.ToLower(string(issue.Severity))),
-                        Name:     issue.QueryName,
-                        CWE:      issue.CWE,
+                        ID:        file.SimilarityID,
+                        Severity:  cases.Title(language.Und).String(strings.ToLower(string(issue.Severity))),
+                        Name:      issue.QueryName,
+                        CWE:       issue.CWE,
+                        RiskScore: issue.RiskScore,
                         Links: []gitlabSASTVulnerabilityLink{
                                 {
                                         URL: issue.QueryURI,
@@ -30150,6 +30189,7 @@ type junitTestSuite struct {
 type junitTestCase struct {
         XMLName   xml.Name       `xml:"testcase"`
         CWE       string         `xml:"cwe,attr,omitempty"`
+        RiskScore string         `xml:"risk_score,attr,omitempty"`
         Name      string         `xml:"name,attr"`
         ClassName string         `xml:"classname,attr"`
         Failures  []junitFailure `xml:"failure"`
@@ -30191,6 +30231,7 @@ func (jUnit *junitTestSuites) GenerateTestEntry(query *model.QueryResult) <span 
                         Name:      fmt.Sprintf("%s: %s file in line %d", query.QueryName, query.Files[idx].FileName, query.Files[idx].Line),
                         ClassName: query.Platform,
                         CWE:       query.CWE,
+                        RiskScore: query.RiskScore,
                         Failures:  []junitFailure{},
                 }
 
@@ -30282,6 +30323,7 @@ type ruleMetadata struct {
         queryURI         string
         queryCategory    string
         queryCwe         string
+        queryRiskScore   string
         severity         model.Severity
 }
 
@@ -30797,13 +30839,21 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
                         HelpURI:              helpURI,
                         RuleProperties:       nil,
                 }
-                if cisMetadata.id != "" </span><span class="cov0" title="0">{
-                        rule.RuleFullDescription.Text = cisMetadata.descriptionText
-                        rule.RuleProperties = sarifProperties{
-                                "cisId":    cisMetadata.id,
-                                "cisTitle": cisMetadata.title,
-                        }
-                }</span>
+
+                // Initialize rule properties if we have CIS metadata or risk score
+                if cisMetadata.id != "" || queryMetadata.queryRiskScore != "" </span><span class="cov2" title="3">{
+                        rule.RuleProperties = make(sarifProperties)
+
+                        if cisMetadata.id != "" </span><span class="cov0" title="0">{
+                                rule.RuleFullDescription.Text = cisMetadata.descriptionText
+                                rule.RuleProperties["cisId"] = cisMetadata.id
+                                rule.RuleProperties["cisTitle"] = cisMetadata.title
+                        }</span>
+
+                        <span class="cov2" title="3">if queryMetadata.queryRiskScore != "" </span><span class="cov2" title="3">{
+                                rule.RuleProperties["riskScore"] = queryMetadata.queryRiskScore
+                        }</span>
+                }
 
                 <span class="cov2" title="3">sr.Runs[0].Tool.Driver.Rules = append(sr.Runs[0].Tool.Driver.Rules, rule)
                 index = len(sr.Runs[0].Tool.Driver.Rules) - 1</span>
@@ -30851,6 +30901,7 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string <span cl
                         queryURI:         issue.QueryURI,
                         queryCategory:    issue.Category,
                         queryCwe:         issue.CWE,
+                        queryRiskScore:   issue.RiskScore,
                         severity:         issue.Severity,
                 }
                 cisDescriptions := ruleCISMetadata{
@@ -30869,15 +30920,20 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string <span cl
                         if line &lt; 1 </span><span class="cov1" title="1">{
                                 line = 1
                         }</span>
+                        <span class="cov2" title="3">messageProperties := sarifProperties{
+                                "platform": issue.Platform,
+                        }
+                        if issue.RiskScore != "" </span><span class="cov2" title="3">{
+                                messageProperties["riskScore"] = issue.RiskScore
+                        }</span>
+
                         <span class="cov2" title="3">result := sarifResult{
                                 ResultRuleID:    issue.QueryID,
                                 ResultRuleIndex: ruleIndex,
                                 ResultKind:      kind,
                                 ResultMessage: sarifMessage{
-                                        Text: issue.Files[idx].KeyActualValue,
-                                        MessageProperties: sarifProperties{
-                                                "platform": issue.Platform,
-                                        },
+                                        Text:              issue.Files[idx].KeyActualValue,
+                                        MessageProperties: messageProperties,
                                 },
                                 ResultLocations: []sarifLocation{
                                         {
@@ -31014,6 +31070,7 @@ type Issue struct {
         RuleID             string      `json:"ruleId"`
         Severity           string      `json:"severity"`
         CWE                string      `json:"cwe,omitempty"`
+        RiskScore          string      `json:"riskScore,omitempty"`
         Type               string      `json:"type"`
         PrimaryLocation    *Location   `json:"primaryLocation"`
         SecondaryLocations []*Location `json:"secondaryLocations,omitempty"`
@@ -31056,6 +31113,7 @@ func (s *SonarQubeReportBuilder) buildIssue(query *model.QueryResult) <span clas
                 RuleID:             query.QueryID,
                 Severity:           severitySonarQubeEquivalence[query.Severity],
                 CWE:                query.CWE,
+                RiskScore:          query.RiskScore,
                 Type:               categorySonarQubeEquivalence[query.Category],
                 PrimaryLocation:    buildLocation(0, query),
                 SecondaryLocations: buildSecondaryLocation(query),
@@ -31138,15 +31196,15 @@ var (
         checkmarxLogo string
 )
 
-func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize int) <span class="cov9" title="16">{
-        m.Col(colTwo, func() </span><span class="cov9" title="16">{
+func createQueryEntryMetadataField(m pdf.Maroto, label, value string, textSize int) <span class="cov10" title="20">{
+        m.Col(colTwo, func() </span><span class="cov10" title="20">{
                 m.Text(label, props.Text{
                         Size:        float64(textSize),
                         Align:       consts.Left,
                         Extrapolate: false,
                 })
         }</span>)
-        <span class="cov9" title="16">m.Col(colTwo, func() </span><span class="cov9" title="16">{
+        <span class="cov10" title="20">m.Col(colTwo, func() </span><span class="cov10" title="20">{
                 m.Text(value, props.Text{
                         Size:        float64(textSize),
                         Align:       consts.Left,
@@ -31163,6 +31221,7 @@ func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error <span c
                 severity := string(queries[i].Severity)
                 platform := queries[i].Platform
                 cwe := queries[i].CWE
+                riskScore := queries[i].RiskScore
                 category := queries[i].Category
                 description := queries[i].Description
                 var err error
@@ -31210,6 +31269,9 @@ func createQueriesTable(m pdf.Maroto, queries []model.QueryResult) error <span c
                 }</span>)
                 <span class="cov5" title="4">m.Row(colFour, func() </span><span class="cov5" title="4">{
                         createQueryEntryMetadataField(m, "Cwe", cwe, defaultTextSize)
+                }</span>)
+                <span class="cov5" title="4">m.Row(colFour, func() </span><span class="cov5" title="4">{
+                        createQueryEntryMetadataField(m, "Risk Score", riskScore, defaultTextSize)
                 }</span>)
                 <span class="cov5" title="4">m.Row(colSix, func() </span><span class="cov5" title="4">{
                         createQueryEntryMetadataField(m, "Category", category, defaultTextSize)
@@ -34342,7 +34404,8 @@ var queryHigh = model.QueryResult{ //nolint
                         VulnLines:        &amp;[]model.CodeLine{},
                 },
         },
-        CWE: "",
+        CWE:       "",
+        RiskScore: "6",
 }
 
 var queryMedium = model.QueryResult{
@@ -34364,7 +34427,8 @@ var queryMedium = model.QueryResult{
                         VulnLines:        &amp;[]model.CodeLine{},
                 },
         },
-        CWE: "",
+        CWE:       "",
+        RiskScore: "3",
 }
 
 var queryMedium2 = model.QueryResult{
@@ -34386,6 +34450,7 @@ var queryMedium2 = model.QueryResult{
         Platform:    "Terraform",
         Description: "Make sure that Amazon GuardDuty is Enabled",
         CWE:         "",
+        RiskScore:   "3",
 }
 
 var queryInfo = model.QueryResult{
@@ -34450,6 +34515,8 @@ var queryHighExperimental = model.QueryResult{
                         VulnLines:        &amp;[]model.CodeLine{},
                 },
         },
+        CWE:       "319",
+        RiskScore: "6",
 }
 
 var queryMediumCycloneCWE = model.QueryResult{
@@ -34471,6 +34538,7 @@ var queryMediumCycloneCWE = model.QueryResult{
         Platform:    "Terraform",
         Description: "Make sure that Amazon GuardDuty is Enabled",
         CWE:         "22",
+        RiskScore:   "3",
 }
 
 var queryMediumCWE = model.QueryResult{
@@ -34492,7 +34560,8 @@ var queryMediumCWE = model.QueryResult{
                         VulnLines:        &amp;[]model.CodeLine{},
                 },
         },
-        CWE: "22",
+        CWE:       "22",
+        RiskScore: "3",
 }
 
 var queryHighCWE = model.QueryResult{ //nolint
@@ -34526,7 +34595,8 @@ var queryHighCWE = model.QueryResult{ //nolint
                         VulnLines:        &amp;[]model.CodeLine{},
                 },
         },
-        CWE: "22",
+        CWE:       "22",
+        RiskScore: "6",
 }
 
 var queryCritical = model.QueryResult{
@@ -34551,6 +34621,8 @@ var queryCritical = model.QueryResult{
                         VulnLines:        &amp;[]model.CodeLine{},
                 },
         },
+        CWE:       "",
+        RiskScore: "8.5",
 }
 
 var queryLowCICDCloudProvider = model.QueryResult{
@@ -34573,6 +34645,8 @@ var queryLowCICDCloudProvider = model.QueryResult{
                         VulnLines:        &amp;[]model.CodeLine{},
                 },
         },
+        CWE:       "",
+        RiskScore: "1",
 }
 
 var queryHighPasswordsAndSecrets = model.QueryResult{
@@ -34582,6 +34656,8 @@ var queryHighPasswordsAndSecrets = model.QueryResult{
         DescriptionID: "d69d8a89",
         Platform:      "Common",
         CloudProvider: "common",
+        CWE:           "798",
+        RiskScore:     "7.8",
         Severity:      model.SeverityHigh,
         Files: []model.VulnerableFile{
                 {
@@ -34694,7 +34770,8 @@ var queryCriticalASFF = model.QueryResult{
                         VulnLines:        &amp;[]model.CodeLine{},
                 },
         },
-        CWE: "22",
+        CWE:       "22",
+        RiskScore: "8.5",
 }
 
 var SummaryMockCriticalFullPathASFF = model.Summary{
@@ -34773,7 +34850,8 @@ var queryCriticalCLI = model.QueryResult{
                         VulnLines:        &amp;[]model.CodeLine{},
                 },
         },
-        CWE: "",
+        CWE:       "",
+        RiskScore: "8.5",
 }
 
 // SummaryMockCWE a summary to be used with cwe field complete
