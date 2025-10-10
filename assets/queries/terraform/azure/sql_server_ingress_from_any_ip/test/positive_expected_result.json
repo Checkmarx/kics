@@ -10,5 +10,29 @@
     "severity": "CRITICAL",
     "line": 1,
     "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "SQLServer Ingress From Any IP",
+    "severity": "CRITICAL",
+    "line": 1,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "SQLServer Ingress From Any IP",
+    "severity": "CRITICAL",
+    "line": 1,
+    "fileName": "positive4.tf"
+  },
+  {
+    "queryName": "SQLServer Ingress From Any IP",
+    "severity": "CRITICAL",
+    "line": 1,
+    "fileName": "positive5.tf"
+  },
+  {
+    "queryName": "SQLServer Ingress From Any IP",
+    "severity": "CRITICAL",
+    "line": 1,
+    "fileName": "positive6.tf"
   }
 ]
