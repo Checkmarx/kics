@@ -47,7 +47,7 @@ get_results(response, path, op, code, version, doc) = output {
 		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content should have at least one content-type defined", [path, op, code]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content has no content-type defined", [path, op, code]),
 		"searchLine": common_lib.build_search_line(["paths", path, op, "responses", code, "content"], []),
-		"overrideKey": version,
+		"overrideKey": "3.0",
 	}]
 } else = output {
 	version == "3.0"
@@ -57,7 +57,7 @@ get_results(response, path, op, code, version, doc) = output {
 		"keyExpectedValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.schema should be defined", [path, op, code, content_type]),
 		"keyActualValue": sprintf("paths.{{%s}}.{{%s}}.responses.{{%s}}.content.{{%s}}.schema is undefined", [path, op, code, content_type]),
 		"searchLine": common_lib.build_search_line(["paths", path, op, "responses", code, "content", content_type], []),
-		"overrideKey": version,
+		"overrideKey": "3.0",
 	} | some content_type
 		responses := response.content[content_type]
 		not common_lib.valid_key(responses, "schema")
@@ -84,23 +84,37 @@ get_key_by_version(version) = key {
 
 has_valid_ref(obj, doc, version) {
 	version == "3.0"
-	path := split(substring(obj["$ref"], 2, -1), "/")		
+	ref := get_ref(obj)
+	
+	path := split(substring(ref, 2, -1), "/")		
 	type := path[minus(count(path), 2)]
 	resource := doc.components[type][path[minus(count(path), 1)]]
+
 	is_schema_or_has_schema(resource, type)
 } else {
 	version == "2.0"
-	path := split(substring(obj["$ref"], 2, -1), "/")
+	ref := get_ref(obj)
+
+	path := split(substring(ref, 2, -1), "/")
 	type := path[minus(count(path), 2)]
 	resource := doc[type][path[minus(count(path), 1)]]
+
 	is_schema_or_has_schema(resource, type)
 } 
+
+get_ref(obj) = res{
+	res := obj["RefMetadata"]["$ref"]		# --enable-openapi-refs 
+	res != null
+} else = res {
+	res := obj["$ref"]
+	res != null
+}
 
 is_schema_or_has_schema(resource, type) {
 	type == ["schemas","definitions"][_]	
 	resource != null					
 } else {
-	common_lib.valid_key(resource, "schema")	# 2.0
+	common_lib.valid_key(resource, "schema")	# swagger 2.0
 } else {
 	common_lib.valid_key(resource[_][_], "schema")	# 3.0
 }

@@ -26,13 +26,13 @@
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
     "severity": "MEDIUM",
-    "line": 16,
+    "line": 17,
     "filename": "positive2.json"
   },
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
     "severity": "MEDIUM",
-    "line": 19,
+    "line": 20,
     "filename": "positive2.json"
   },
   {
@@ -68,7 +68,7 @@
   {
     "queryName": "Response on operations that should have a body has undefined schema (v3)",
     "severity": "MEDIUM",
-    "line": 15,
+    "line": 16,
     "filename": "positive6.yaml"
   },
   {
