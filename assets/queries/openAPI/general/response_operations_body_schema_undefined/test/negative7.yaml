@@ -10,10 +10,10 @@ paths:
       tags:
         - Tariff Setups
       responses:
-        '400':
-          $ref: '#/components/schemas/error'    # schema reference is valid
-        '500':
-          $ref: '#/components/schemas/error'
+        "400":
+          $ref: "#/components/schemas/error" # schema reference is valid
+        "500":
+          $ref: "#/components/schemas/error"
 
 components:
   schemas:

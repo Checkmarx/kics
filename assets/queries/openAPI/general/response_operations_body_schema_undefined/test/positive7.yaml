@@ -12,5 +12,5 @@ paths:
       operationId: listVersionsv2
       summary: List API versions
       responses:
-        "200":    
+        "200":
           description: 200 response   # undefined schema field (2.0)

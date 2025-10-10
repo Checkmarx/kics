@@ -24,7 +24,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/error'
-            
+
   schemas:
     error:
       type: object
