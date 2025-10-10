@@ -9,7 +9,7 @@ VERSION := snapshot-$(shell echo ${COMMIT} | cut -c1-8)
 LIB = $(shell pwd)/lib
 IMAGE_TAG := dev
 TARGET_BIN ?= bin/kics
-CONSTANTS_PATH = github.com/Checkmarx/kics/internal/constants
+CONSTANTS_PATH = github.com/Checkmarx/kics/v2/internal/constants
 
 .PHONY: clean
 clean: ## remove files created during build
