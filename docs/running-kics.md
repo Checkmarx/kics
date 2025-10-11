@@ -232,7 +232,7 @@ Results that point to lines 2 and 3 will be ignored.
 
 Results that point from line 1 to 6 will be ignored.
 
-For Bicep, `ignore-block` is only usable within a `resource` block, either for the whole block or for a single property.
+For Bicep, `ignore-block` can be used to ignore the next code block (resource or property block).
 
 ```bicep
 1: resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
@@ -245,7 +245,7 @@ For Bicep, `ignore-block` is only usable within a `resource` block, either for t
 ...
 ```
 
-Results that point from line 4 to 6 will be ignored.
+Results that point from line 4 to 6 (the sku property block) will be ignored.
 
 For Dockerfile `ignore-block` is only usable when the whole `FROM` block should be ignored.
 

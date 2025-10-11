@@ -1,131 +1,12 @@
-package comment
+package comment_test
 
 import (
-	"bufio"
 	"reflect"
-	"strings"
 	"testing"
 
 	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/antlr/parser"
-	"github.com/antlr4-go/antlr/v4"
+	"github.com/Checkmarx/kics/v2/pkg/parser/bicep/comment"
 )
-
-// Helper function to get lines info from content (replicates the functionality from parser package)
-func getLinesInfoFromContent(content string) []LineInfo {
-	var linesInfo []LineInfo
-	scanner := bufio.NewScanner(strings.NewReader(content))
-	lineNumber := 0
-	byteOffset := 0
-
-	type blockInfo struct {
-		BlockType string
-		StartLine int
-		EndLine   int
-	}
-
-	var currentBlock blockInfo
-	var blockStack []blockInfo
-
-	for scanner.Scan() {
-		line := scanner.Text()
-		trimmedLine := strings.TrimSpace(line)
-		lineBytes := []byte(line)
-		lineLength := len(lineBytes)
-
-		// Create a new lexer instance for the current line
-		lineLexer := parser.NewbicepLexer(antlr.NewInputStream(line))
-		tokens := lineLexer.GetAllTokens()
-
-		if len(blockStack) > 0 {
-			currentBlock = blockStack[len(blockStack)-1]
-		}
-
-		if strings.HasSuffix(trimmedLine, "{") {
-			currentBlock = blockInfo{
-				BlockType: trimmedLine,
-				StartLine: lineNumber,
-			}
-			blockStack = append(blockStack, currentBlock)
-		} else if strings.Contains(trimmedLine, "}") {
-			if len(blockStack) > 0 {
-				currentBlock.EndLine = lineNumber
-				for i := range linesInfo {
-					if linesInfo[i].Block.StartLine == currentBlock.StartLine {
-						linesInfo[i].Block.EndLine = lineNumber
-					}
-				}
-				blockStack = blockStack[:len(blockStack)-1]
-			}
-		}
-
-		// Determine the type of the line based on the tokens
-		lineType := "other"
-		if len(tokens) > 0 {
-			symbolicNames := lineLexer.GetSymbolicNames()
-			if tokens[0].GetTokenType() < len(symbolicNames) {
-				lineType = symbolicNames[tokens[0].GetTokenType()]
-			}
-		}
-
-		lineInfo := LineInfo{
-			Type: lineType,
-			Bytes: struct {
-				Bytes  []byte
-				String string
-			}{
-				Bytes:  lineBytes,
-				String: line,
-			},
-			Range: struct {
-				Start struct {
-					Line   int
-					Column int
-					Byte   int
-				}
-				End struct {
-					Line   int
-					Column int
-					Byte   int
-				}
-			}{
-				Start: struct {
-					Line   int
-					Column int
-					Byte   int
-				}{
-					Line:   lineNumber,
-					Column: 0,
-					Byte:   byteOffset,
-				},
-				End: struct {
-					Line   int
-					Column int
-					Byte   int
-				}{
-					Line:   lineNumber,
-					Column: lineLength,
-					Byte:   byteOffset + lineLength,
-				},
-			},
-			Block: struct {
-				BlockType string
-				StartLine int
-				EndLine   int
-			}{
-				BlockType: currentBlock.BlockType,
-				StartLine: currentBlock.StartLine,
-				EndLine:   currentBlock.EndLine,
-			},
-		}
-
-		linesInfo = append(linesInfo, lineInfo)
-		lineNumber++
-		byteOffset += lineLength + 1 // +1 for the newline character
-	}
-
-	return linesInfo
-}
 
 var (
 	samples = map[string][]byte{
@@ -180,6 +61,44 @@ var (
 				}
 			}
 		`),
+		"ignore-line-inline": []byte(`
+		resource aksCluster1 'Microsoft.ContainerService/managedClusters@2020-02-01' = {
+			name: 'aksCluster1'
+			location: resourceGroup().location
+			properties: { // kics-scan ignore-line
+				kubernetesVersion: '1.15.7'
+				dnsPrefix: 'dnsprefix'
+			}
+		}
+		`),
+		"ignore-full-file": []byte(`
+		// kics-scan ignore
+		resource aksCluster1 'Microsoft.ContainerService/managedClusters@2020-02-01' = {
+			name: 'aksCluster1'
+			location: resourceGroup().location
+			properties: {
+				kubernetesVersion: '1.15.7'
+			}
+		}
+		`),
+		"ignore-block-multiple": []byte(`
+		// kics-scan ignore-block
+		resource aksCluster1 'Microsoft.ContainerService/managedClusters@2020-02-01' = {
+			name: 'aksCluster1'
+		}
+		resource aksCluster2 'Microsoft.ContainerService/managedClusters@2020-02-01' = {
+			name: 'aksCluster2'
+		}
+		`),
+		"ignore-block-property": []byte(`
+		resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
+			name: 'storageaccountname'
+			// kics-scan ignore-block
+			sku: {
+				name: 'Standard_LRS'
+			}
+		}
+		`),
 	}
 )
 
@@ -189,19 +108,20 @@ func TestComment_ProcessLines(t *testing.T) {
 		name     string
 		content  []byte
 		filename string
-		want     IgnoreMap
+		want     comment.IgnoreMap
 	}{
 		{
 			name:     "TestComment_ProcessLines: ignore-block",
 			content:  samples["ignore-block"],
 			filename: "",
-			want: IgnoreMap{
-				model.IgnoreBlock: []Pos{
-					{Line: 3, Column: 77, Byte: 107, BlockStart: 3, BlockEnd: 23},
+			want: comment.IgnoreMap{
+				model.IgnoreBlock: []comment.Pos{
+					{Line: 3, Column: 3, Byte: 107, BlockStart: 3, BlockEnd: 24},
 				},
-				model.IgnoreLine: []Pos{},
-				model.IgnoreComment: []Pos{
+				model.IgnoreLine: []comment.Pos{},
+				model.IgnoreComment: []comment.Pos{
 					{Line: 11, Column: 0, Byte: 0},
+					{Line: 14, Column: 0, Byte: 0},
 				},
 			},
 		},
@@ -209,23 +129,72 @@ func TestComment_ProcessLines(t *testing.T) {
 			name:     "TestComment_ProcessLines: ignore-line",
 			content:  samples["ignore-line"],
 			filename: "",
-			want: IgnoreMap{
-				model.IgnoreBlock: []Pos{},
-				model.IgnoreLine: []Pos{
-					{Line: 8, Column: 29, Byte: 233, BlockStart: 6, BlockEnd: 8},
-					{Line: 15, Column: 35, Byte: 422, BlockStart: 10, BlockEnd: 23},
+			want: comment.IgnoreMap{
+				model.IgnoreBlock: []comment.Pos{},
+				model.IgnoreLine: []comment.Pos{
+					{Line: 8, Column: 5, Byte: 233, BlockStart: 6, BlockEnd: 9},
+					{Line: 15, Column: 5, Byte: 422, BlockStart: 10, BlockEnd: 24},
 				},
-				model.IgnoreComment: []Pos{
+				model.IgnoreComment: []comment.Pos{
 					{Line: 11, Column: 0, Byte: 0, BlockStart: 0, BlockEnd: 0},
+					{Line: 15, Column: 0, Byte: 0, BlockStart: 0, BlockEnd: 0},
 				},
+			},
+		},
+		{
+			name:     "TestComment_ProcessLines: ignore-line-inline",
+			content:  samples["ignore-line-inline"],
+			filename: "",
+			want: comment.IgnoreMap{
+				model.IgnoreBlock: []comment.Pos{},
+				model.IgnoreLine: []comment.Pos{
+					{Line: 4, Column: 16, Byte: 180, BlockStart: 1, BlockEnd: 7},
+				},
+				model.IgnoreComment: []comment.Pos{},
+			},
+		},
+		{
+			name:     "TestComment_ProcessLines: ignore-full-file",
+			content:  samples["ignore-full-file"],
+			filename: "",
+			want: comment.IgnoreMap{
+				model.IgnoreBlock: []comment.Pos{},
+				model.IgnoreLine:  []comment.Pos{},
+				model.IgnoreComment: []comment.Pos{
+					{Line: 0, Column: 0, Byte: 0, BlockStart: 0, BlockEnd: 0},
+				},
+			},
+		},
+		{
+			name:     "TestComment_ProcessLines: ignore-block-multiple",
+			content:  samples["ignore-block-multiple"],
+			filename: "",
+			want: comment.IgnoreMap{
+				model.IgnoreBlock: []comment.Pos{
+					{Line: 2, Column: 0, Byte: 106, BlockStart: 2, BlockEnd: 4},
+				},
+				model.IgnoreLine:    []comment.Pos{},
+				model.IgnoreComment: []comment.Pos{},
+			},
+		},
+		{
+			name:     "TestComment_ProcessLines: ignore-block-property",
+			content:  samples["ignore-block-property"],
+			filename: "",
+			want: comment.IgnoreMap{
+				model.IgnoreBlock: []comment.Pos{
+					{Line: 4, Column: 2, Byte: 140, BlockStart: 4, BlockEnd: 6},
+				},
+				model.IgnoreLine:    []comment.Pos{},
+				model.IgnoreComment: []comment.Pos{},
 			},
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			linesInfo := getLinesInfoFromContent(string(tt.content))
-			ignore := ProcessLines(linesInfo)
+			linesInfo := comment.GetLinesInfo(string(tt.content))
+			ignore := comment.ProcessLines(linesInfo)
 
 			// IgnoreMap
 			if !reflect.DeepEqual(ignore, tt.want) {
@@ -248,22 +217,46 @@ func TestComment_GetIgnoreLines(t *testing.T) {
 			name:     "TestComment_GetIgnoreLines: ignore-block",
 			content:  samples["ignore-block"],
 			filename: "",
-			want:     []int{3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 11},
+			want:     []int{3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 11, 14},
 		},
 		{
 			name:     "TestComment_GetIgnoreLines: ignore-line",
 			content:  samples["ignore-line"],
 			filename: "",
-			want:     []int{8, 15, 11},
+			want:     []int{8, 15, 11, 15},
+		},
+		{
+			name:     "TestComment_GetIgnoreLines: ignore-line-inline",
+			content:  samples["ignore-line-inline"],
+			filename: "",
+			want:     []int{4},
+		},
+		{
+			name:     "TestComment_GetIgnoreLines: ignore-full-file",
+			content:  samples["ignore-full-file"],
+			filename: "",
+			want:     []int{0},
+		},
+		{
+			name:     "TestComment_GetIgnoreLines: ignore-block-multiple",
+			content:  samples["ignore-block-multiple"],
+			filename: "",
+			want:     []int{2, 3, 4},
+		},
+		{
+			name:     "TestComment_GetIgnoreLines: ignore-block-property",
+			content:  samples["ignore-block-property"],
+			filename: "",
+			want:     []int{4, 5, 6},
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			linesInfo := getLinesInfoFromContent(string(tt.content))
-			ignore := ProcessLines(linesInfo)
+			linesInfo := comment.GetLinesInfo(string(tt.content))
+			ignore := comment.ProcessLines(linesInfo)
 
-			GetIgnoreLines := GetIgnoreLines(ignore)
+			GetIgnoreLines := comment.GetIgnoreLines(ignore)
 
 			// GetIgnoreLines test
 			if !reflect.DeepEqual(GetIgnoreLines, tt.want) {
