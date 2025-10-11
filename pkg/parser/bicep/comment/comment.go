@@ -53,8 +53,12 @@ type BlockInfo struct {
 	EndLine   int
 }
 
+const (
+	singleLineComment = "SINGLE_LINE_COMMENT"
+)
+
 // GetLinesInfo analyzes the input text and returns line information including blocks and tokens
-func GetLinesInfo(input string) []LineInfo {
+func GetLinesInfo(input string) []LineInfo { //nolint:funlen
 	var linesInfo []LineInfo
 	scanner := bufio.NewScanner(strings.NewReader(input))
 	lineNumber, byteOffset := 0, 0
@@ -107,8 +111,8 @@ func GetLinesInfo(input string) []LineInfo {
 			for tokenIdx, token := range tokens {
 				if tok := token.GetTokenType(); tok < len(symbolicNames) {
 					tokenName := symbolicNames[tok]
-					if tokenName == "SINGLE_LINE_COMMENT" {
-						lineType = "SINGLE_LINE_COMMENT"
+					if tokenName == singleLineComment {
+						lineType = singleLineComment
 						commentColumn = strings.Index(line, "//")
 						if commentColumn == -1 {
 							commentColumn = 0
@@ -229,7 +233,7 @@ func ProcessLines(lines []LineInfo) (ig IgnoreMap) {
 	ignoreBlocks := make([]Pos, 0)
 	ignoreComments := make([]Pos, 0)
 	for i := range lines {
-		if lines[i].Type != "SINGLE_LINE_COMMENT" {
+		if lines[i].Type != singleLineComment {
 			continue
 		}
 

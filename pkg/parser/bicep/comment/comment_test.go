@@ -148,7 +148,7 @@ func TestComment_ProcessLines(t *testing.T) {
 			want: comment.IgnoreMap{
 				model.IgnoreBlock: []comment.Pos{},
 				model.IgnoreLine: []comment.Pos{
-					{Line: 4, Column: 16, Byte: 180, BlockStart: 1, BlockEnd: 7},
+					{Line: 5, Column: 17, Byte: 186, BlockStart: 2, BlockEnd: 8},
 				},
 				model.IgnoreComment: []comment.Pos{},
 			},
@@ -161,7 +161,7 @@ func TestComment_ProcessLines(t *testing.T) {
 				model.IgnoreBlock: []comment.Pos{},
 				model.IgnoreLine:  []comment.Pos{},
 				model.IgnoreComment: []comment.Pos{
-					{Line: 0, Column: 0, Byte: 0, BlockStart: 0, BlockEnd: 0},
+					{Line: 1, Column: 0, Byte: 0, BlockStart: 0, BlockEnd: 0},
 				},
 			},
 		},
@@ -171,7 +171,7 @@ func TestComment_ProcessLines(t *testing.T) {
 			filename: "",
 			want: comment.IgnoreMap{
 				model.IgnoreBlock: []comment.Pos{
-					{Line: 2, Column: 0, Byte: 106, BlockStart: 2, BlockEnd: 4},
+					{Line: 3, Column: 2, Byte: 111, BlockStart: 3, BlockEnd: 5},
 				},
 				model.IgnoreLine:    []comment.Pos{},
 				model.IgnoreComment: []comment.Pos{},
@@ -183,7 +183,7 @@ func TestComment_ProcessLines(t *testing.T) {
 			filename: "",
 			want: comment.IgnoreMap{
 				model.IgnoreBlock: []comment.Pos{
-					{Line: 4, Column: 2, Byte: 140, BlockStart: 4, BlockEnd: 6},
+					{Line: 5, Column: 3, Byte: 146, BlockStart: 5, BlockEnd: 7},
 				},
 				model.IgnoreLine:    []comment.Pos{},
 				model.IgnoreComment: []comment.Pos{},
@@ -229,25 +229,25 @@ func TestComment_GetIgnoreLines(t *testing.T) {
 			name:     "TestComment_GetIgnoreLines: ignore-line-inline",
 			content:  samples["ignore-line-inline"],
 			filename: "",
-			want:     []int{4},
+			want:     []int{5},
 		},
 		{
 			name:     "TestComment_GetIgnoreLines: ignore-full-file",
 			content:  samples["ignore-full-file"],
 			filename: "",
-			want:     []int{0},
+			want:     []int{1},
 		},
 		{
 			name:     "TestComment_GetIgnoreLines: ignore-block-multiple",
 			content:  samples["ignore-block-multiple"],
 			filename: "",
-			want:     []int{2, 3, 4},
+			want:     []int{3, 4, 5},
 		},
 		{
 			name:     "TestComment_GetIgnoreLines: ignore-block-property",
 			content:  samples["ignore-block-property"],
 			filename: "",
-			want:     []int{4, 5, 6},
+			want:     []int{5, 6, 7},
 		},
 	}
 
