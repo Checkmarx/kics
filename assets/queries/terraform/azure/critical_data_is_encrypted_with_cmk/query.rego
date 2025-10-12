@@ -85,7 +85,7 @@ get_res_storage_account(storage_account, name) = res { # key_vault_key_id field 
         "kav": "'key_vault_key_id' is not defined inside the 'customer_managed_key' block",
         "kev": "'key_vault_key_id' must be defined inside the 'customer_managed_key' block",
         "sl": common_lib.build_search_line(["resource", "azurerm_storage_account", name, "customer_managed_key"], []),
-        "rem": "\nkey_vault_key_id = \"azure\"\n",
+        "rem": "customer_managed_key {\n\t\tkey_vault_key_id = \"azure\"\n\t}",
         "rtype": "addition"
     }
 }
