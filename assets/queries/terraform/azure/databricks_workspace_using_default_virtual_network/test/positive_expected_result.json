@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "",
+    "severity": "",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "",
+    "severity": "",
+    "line": 8,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "",
+    "severity": "",
+    "line": 8,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "",
+    "severity": "",
+    "line": 8,
+    "fileName": "positive3.tf"
+  }
+]
