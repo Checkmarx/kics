@@ -153,12 +153,20 @@ def format_positive_tests(positive_tests : dict) -> str:
 
     return result if result != '' else 'Tests Not Fround'
 
+# Utility for generate ".md" documentation - gets color for a severity level
+def get_severity_color(severity : str) -> str:
+    colors = {'Critical': '#ff0000', 'High': '#bb2124', 'Medium': '#ff7213', 'Low': '#edd57e', 'Info': '#5bc0de', 'Trace': '#CCCCCC'}
+    return colors.get(severity.capitalize())
+
 # Utility for generate ".md" documentation
 def format_severity(severity : str) -> str:
-    colors = {'Critical': '#ff0000', 'High': '#bb2124', 'Medium': '#ff7213', 'Low': '#edd57e', 'Info': '#5bc0de', 'Trace': '#CCCCCC'}
-    severity = severity.capitalize()
-    color = colors.get(severity)
-    return f'<span style="color:{color}">{severity}</span>'
+    color = get_severity_color(severity)
+    return f'<span style="color:{color}">{severity.capitalize()}</span>'
+
+# Utility for generate ".md" documentation - formats risk score with color based on severity
+def format_risk_score(risk_score : str, severity : str) -> str:
+    color = get_severity_color(severity)
+    return f'<span style="color:{color}">{risk_score}</span>'
 
 # Generates a ".md" file for each query
 def generate_md_docs(queries_database : str, output_path : str, template_file_path = 'template.md', delete_folders : bool = False):
@@ -198,6 +206,7 @@ def generate_md_docs(queries_database : str, output_path : str, template_file_pa
             '<SEVERITY>', format_severity(query_data.get('severity'))).replace(
             '<CATEGORY>', query_data.get('category')).replace(
             '<CWE>', cwe).replace(
+            '<RISKSCORE>', format_risk_score(query_data.get('riskScore'), query_data.get('severity'))).replace(
             '<GITHUB_URL>', query_data.get('githubUrl')).replace(
             '<DESCRIPTION_TEXT>', query_data.get('descriptionText')).replace(
             '<DESCRIPTION_URL>', query_data.get('descriptionUrl')).replace(
