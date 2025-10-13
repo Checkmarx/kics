@@ -9,7 +9,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource[types[t]][name]
 
 	results := https_undefined_or_false(resource,name,types[t])
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,

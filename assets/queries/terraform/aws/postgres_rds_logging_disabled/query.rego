@@ -8,7 +8,6 @@ CxPolicy[result] {
 	resource := input.document[i].resource.aws_db_parameter_group[name]
 	
     undefined_parameters_message = get_undefined_parameters(resource)
-    undefined_parameters_message != "none"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -70,7 +69,7 @@ get_undefined_parameters(resource) = "log_statement and log_min_duration_stateme
     not log_statement_defined(resource.parameter) 
 } else = "log_min_duration_statement is" {
     not log_min_duration_statement_defined(resource.parameter)
-} else = "none"
+}
 
 log_statement_defined(parameters) {
     parameters[_].name == "log_statement"
@@ -92,7 +91,7 @@ get_wrong_values(parameters) = "both"{
 } else = "log_min_duration_statement has" {
     parameters[i2].name == "log_min_duration_statement"
     parameters[i2].value != "1"
-} else = "none"
+}
 
 
 get_extra_path(statement,parameters) = path {

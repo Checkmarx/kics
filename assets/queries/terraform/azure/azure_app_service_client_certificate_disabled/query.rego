@@ -10,7 +10,6 @@ CxPolicy[result] {
 
 	not resource.site_config.http2_enabled  
 	results := client_certificate_is_undefined_or_false(resource,name,types[t])
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -74,7 +73,7 @@ client_certificate_is_undefined_or_false(resource,name,type) = results { # case 
 		}),
 		"remediationType": "replacement",
 	}
-} else = ""
+}
 
 get_field("azurerm_app_service")     = "client_cert_enabled" 
 get_field("azurerm_linux_web_app")   = "client_certificate_enabled"
