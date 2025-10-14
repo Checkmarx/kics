@@ -3,44 +3,70 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-CxPolicy[result] {
-	doc := input.document[i]
-    resource := doc.resource.azurerm_app_service[name]
+types := {"azurerm_app_service", "azurerm_linux_web_app", "azurerm_windows_web_app"}
 
-    not common_lib.valid_key(resource, "client_cert_enabled")
-	not has_http2_protocol_enabled(resource)
+CxPolicy[result] {
+    resource := input.document[i].resource[types[t]][name]
+
+	not resource.site_config.http2_enabled  
+	results := client_certificate_is_undefined_or_false(resource,name,types[t])
 
 	result := {
-		"documentId": doc.id,
-		"resourceType": "azurerm_app_service",
+		"documentId": input.document[i].id,
+		"resourceType": types[t],
 		"resourceName": tf_lib.get_resource_name(resource, name), 
-		"searchKey": sprintf("azurerm_app_service[%s]", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' should be defined", [name]),
-		"keyActualValue": sprintf("'azurerm_app_service[%s].client_cert_enabeld' is undefined", [name]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service" ,name], []),
-		"remediation": "client_cert_enabled = true",
+		"searchKey": results.searchKey,
+		"issueType": results.issueType,
+		"keyExpectedValue": results.keyExpectedValue,
+		"keyActualValue": results.keyActualValue,
+		"searchLine": results.searchLine,
+		"remediation": results.remediation,
+		"remediationType": results.remediationType,
+	}
+}
+
+client_certificate_is_undefined_or_false(resource,name,type) = results { # case of no "client_cert_enabled" field 
+	field_name = get_field(type)
+	not common_lib.valid_key(resource, field_name)
+
+	results := {
+		"searchKey" : sprintf("%s[%s]", [type, name]),
+		"issueType" : "MissingAttribute",
+		"keyExpectedValue" : sprintf("'%s[%s].%s' should be defined and set to true", [type, name, field_name]),
+		"keyActualValue" : sprintf("'%s[%s].client_cert_enabled' is undefined", [type, name]),
+		"searchLine": common_lib.build_search_line(["resource", type , name], []),
+		"remediation": sprintf("%s = true",[field_name]),
 		"remediationType": "addition",
 	}
-}
+	
+} else = results { # case of both "client_cert_enabled" and "http2_enabled"(explicitly) set to false
+	common_lib.valid_key(resource.site_config, "http2_enabled")
+	resource.site_config.http2_enabled == false
+	field_name = get_field(type)
+	resource[field_name] == false
 
-CxPolicy[result] {
-	doc := input.document[i]
-    resource := doc.resource.azurerm_app_service[name]
-
-	resource.client_cert_enabled == false
-    not http2_defined_to_false(resource)
-	not has_http2_protocol_enabled(resource)
-
-	result := {
-		"documentId": doc.id,
-		"resourceType": "azurerm_app_service",
-		"resourceName": tf_lib.get_resource_name(resource, name), 
-		"searchKey": sprintf("azurerm_app_service[%s].client_cert_enabled", [name]),
+	results := {
+		"searchKey": sprintf("%s[%s].%s", [type, name, field_name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' is true", [name]),
-		"keyActualValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' is false", [name]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service", name, "client_cert_enabled"], []),
+		"keyExpectedValue": sprintf("'%s[%s].%s' or '%s[%s].site_config.http2_enabled' is true", [type, name, field_name, type, name]),
+		"keyActualValue": sprintf("'%s[%s].%s' and '%s[%s].site_config.http2_enabled' are set to false", [type, name, field_name, type, name]),
+		"searchLine": common_lib.build_search_line(["resource", type, name, field_name], []),
+		"remediation": json.marshal({
+			"before": "false",
+			"after": "true"
+		}),
+		"remediationType": "replacement",
+	}
+} else = results { # case of "client_cert_enabled" set to false
+	field_name = get_field(type)
+	resource[field_name] == false
+
+	results := {
+		"searchKey": sprintf("%s[%s].%s", [type, name, field_name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'%s[%s].%s' should be set to true", [type, name, field_name]),
+		"keyActualValue": sprintf("'%s[%s].%s' is set to false", [type, name, field_name]),
+		"searchLine": common_lib.build_search_line(["resource", type, name, field_name], []),
 		"remediation": json.marshal({
 			"before": "false",
 			"after": "true"
@@ -49,39 +75,6 @@ CxPolicy[result] {
 	}
 }
 
-CxPolicy[result] {
-	doc := input.document[i]
-    resource := doc.resource.azurerm_app_service[name]
-
-	resource.client_cert_enabled == false
-    http2_defined_to_false(resource)
-	not has_http2_protocol_enabled(resource)
-
-	result := {
-		"documentId": doc.id,
-		"resourceType": "azurerm_app_service",
-		"resourceName": tf_lib.get_resource_name(resource, name), 
-		"searchKey": sprintf("azurerm_app_service[%s].client_cert_enabled", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' or 'azurerm_app_service[%s].site_config.http2_enabled' are true", [name, name]),
-		"keyActualValue": sprintf("'azurerm_app_service[%s].client_cert_enabled' and 'azurerm_app_service[%s].site_config.http2_enabled' set to false", [name, name]),
-		"searchLine": common_lib.build_search_line(["resource","azurerm_app_service" ,name, "client_cert_enabled"], []),
-		"remediation": json.marshal({
-			"before": "false",
-			"after": "true"
-		}),
-		"remediationType": "replacement",
-	}
-}
-
-has_http2_protocol_enabled(resource) {
-	common_lib.valid_key(resource, "site_config")
-    common_lib.valid_key(resource.site_config, "http2_enabled")
-    resource.site_config.http2_enabled
-}
-
-http2_defined_to_false (resource) {
-    common_lib.valid_key(resource, "site_config")
-    common_lib.valid_key(resource.site_config, "http2_enabled")
-    resource.site_config.http2_enabled == false
-}
+get_field("azurerm_app_service")     = "client_cert_enabled" 
+get_field("azurerm_linux_web_app")   = "client_certificate_enabled"
+get_field("azurerm_windows_web_app") = "client_certificate_enabled"
