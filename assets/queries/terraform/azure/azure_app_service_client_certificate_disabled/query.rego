@@ -73,9 +73,7 @@ client_certificate_is_undefined_or_false(resource,name,type) = results { # case 
 		}),
 		"remediationType": "replacement",
 	}
-} else = results { # case of "client_cert_enabled" set to false
-	field_name = get_field(type)
-	resource[field_name] == false
+}
 
 get_field("azurerm_app_service")     = "client_cert_enabled"
 get_field("azurerm_linux_web_app")   = "client_certificate_enabled"
