@@ -198,7 +198,7 @@ When a unit test fails in the KICS pipeline, there are two recommended approache
 
 2. Alternatively, access the **Summary** tab, download the artifact that includes the failing OS in its name (or any artifact if all OS tests fail), open it, and search for `FAIL:` or the name of the query (e.g., `user_data_contains_encoded_private_key`).
 
-Unit test failures can occurr due to incorrectly defined lines in `positive_expected_result.json` or missing tests in that file.
+Unit test failures can occur due to incorrectly defined lines in `positive_expected_result.json` or missing tests in that file.
 
 ### Grype or Trivy tests failing
 
