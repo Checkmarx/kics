@@ -9,13 +9,14 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/pkg/errors"
+	"github.com/rs/zerolog/log"
+	ignore "github.com/sabhiram/go-gitignore"
+
 	"github.com/Checkmarx/kics/v2/internal/metrics"
 	"github.com/Checkmarx/kics/v2/pkg/engine/provider"
 	"github.com/Checkmarx/kics/v2/pkg/model"
 	"github.com/Checkmarx/kics/v2/pkg/utils"
-	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
-	ignore "github.com/sabhiram/go-gitignore"
 
 	yamlParser "gopkg.in/yaml.v3"
 )
@@ -777,6 +778,11 @@ func multiPlatformTypeCheck(typesSelected *[]string) {
 }
 
 func (a *analyzerInfo) isAvailableType(typeName string) bool {
+	// Convert bicep internal type to its platform name for flag matching
+	if typeName == "bicep" {
+		typeName = "azureresourcemanager"
+	}
+
 	// no flag is set
 	if len(a.typesFlag) == 1 && a.typesFlag[0] == "" && len(a.excludeTypesFlag) == 1 && a.excludeTypesFlag[0] == "" {
 		return true
