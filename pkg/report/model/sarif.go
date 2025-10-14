@@ -46,6 +46,7 @@ type ruleMetadata struct {
 	queryURI         string
 	queryCategory    string
 	queryCwe         string
+	queryRiskScore   string
 	severity         model.Severity
 }
 
@@ -561,11 +562,19 @@ func (sr *sarifReport) buildSarifRule(queryMetadata *ruleMetadata, cisMetadata r
 			HelpURI:              helpURI,
 			RuleProperties:       nil,
 		}
-		if cisMetadata.id != "" {
-			rule.RuleFullDescription.Text = cisMetadata.descriptionText
-			rule.RuleProperties = sarifProperties{
-				"cisId":    cisMetadata.id,
-				"cisTitle": cisMetadata.title,
+
+		// Initialize rule properties if we have CIS metadata or risk score
+		if cisMetadata.id != "" || queryMetadata.queryRiskScore != "" {
+			rule.RuleProperties = make(sarifProperties)
+
+			if cisMetadata.id != "" {
+				rule.RuleFullDescription.Text = cisMetadata.descriptionText
+				rule.RuleProperties["cisId"] = cisMetadata.id
+				rule.RuleProperties["cisTitle"] = cisMetadata.title
+			}
+
+			if queryMetadata.queryRiskScore != "" {
+				rule.RuleProperties["riskScore"] = queryMetadata.queryRiskScore
 			}
 		}
 
@@ -615,6 +624,7 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string {
 			queryURI:         issue.QueryURI,
 			queryCategory:    issue.Category,
 			queryCwe:         issue.CWE,
+			queryRiskScore:   issue.RiskScore,
 			severity:         issue.Severity,
 		}
 		cisDescriptions := ruleCISMetadata{
@@ -633,15 +643,20 @@ func (sr *sarifReport) BuildSarifIssue(issue *model.QueryResult) string {
 			if line < 1 {
 				line = 1
 			}
+			messageProperties := sarifProperties{
+				"platform": issue.Platform,
+			}
+			if issue.RiskScore != "" {
+				messageProperties["riskScore"] = issue.RiskScore
+			}
+
 			result := sarifResult{
 				ResultRuleID:    issue.QueryID,
 				ResultRuleIndex: ruleIndex,
 				ResultKind:      kind,
 				ResultMessage: sarifMessage{
-					Text: issue.Files[idx].KeyActualValue,
-					MessageProperties: sarifProperties{
-						"platform": issue.Platform,
-					},
+					Text:              issue.Files[idx].KeyActualValue,
+					MessageProperties: messageProperties,
 				},
 				ResultLocations: []sarifLocation{
 					{

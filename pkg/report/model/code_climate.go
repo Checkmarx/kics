@@ -16,6 +16,7 @@ type CodeClimateReport struct {
 	Type        string   `json:"type"`
 	CheckName   string   `json:"check_name"`
 	CWE         string   `json:"cwe,omitempty"`
+	RiskScore   string   `json:"risk_score"`
 	Description string   `json:"description"`
 	Categories  []string `json:"categories"`
 	Location    location `json:"location"`
@@ -42,6 +43,7 @@ func BuildCodeClimateReport(summary *model.Summary) []CodeClimateReport {
 				Type:        "issue",
 				CheckName:   summary.Queries[i].QueryName,
 				CWE:         summary.Queries[i].CWE,
+				RiskScore:   summary.Queries[i].RiskScore,
 				Description: summary.Queries[i].Description,
 				Categories:  []string{"Security"},
 				Location: location{
