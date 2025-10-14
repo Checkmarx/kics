@@ -251,7 +251,7 @@
 				
 				<option value="file97">github.com/Checkmarx/kics/v2/pkg/printer/utils.go (80.0%)</option>
 				
-				<option value="file98">github.com/Checkmarx/kics/v2/pkg/progress/circle/circle_progress.go (100.0%)</option>
+				<option value="file98">github.com/Checkmarx/kics/v2/pkg/progress/circle/circle_progress.go (80.0%)</option>
 				
 				<option value="file99">github.com/Checkmarx/kics/v2/pkg/progress/counter/counter_progress.go (91.7%)</option>
 				
@@ -2603,13 +2603,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="53">{
+        for _, sample := range prof.Sample </span><span class="cov10" title="56">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="53">total += v
+                <span class="cov10" title="56">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -2633,8 +2633,8 @@ func (m *Metrics) formatTotal(b int64, typeMap map[string]float64, defaultMetric
                 }</span>
                 <span class="cov1" title="1">return fmt.Sprintf("%.f%s", metric, defaultMetric)</span>
         }
-        <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov10" title="55">{
-                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="20">{
+        <span class="cov6" title="10">for k, u := range typeMap </span><span class="cov9" title="55">{
+                if u &gt;= formatter &amp;&amp; (value/u) &gt;= 1.0 </span><span class="cov7" title="19">{
                         formatter = u
                         mesure = k
                 }</span>
@@ -2940,13 +2940,14 @@ import (
         "strings"
         "sync"
 
+        "github.com/pkg/errors"
+        "github.com/rs/zerolog/log"
+        ignore "github.com/sabhiram/go-gitignore"
+
         "github.com/Checkmarx/kics/v2/internal/metrics"
         "github.com/Checkmarx/kics/v2/pkg/engine/provider"
         "github.com/Checkmarx/kics/v2/pkg/model"
         "github.com/Checkmarx/kics/v2/pkg/utils"
-        "github.com/pkg/errors"
-        "github.com/rs/zerolog/log"
-        ignore "github.com/sabhiram/go-gitignore"
 
         yamlParser "gopkg.in/yaml.v3"
 )
@@ -3241,7 +3242,7 @@ var defaultConfigFiles = []string{"pnpm-lock.yaml"}
 
 // Analyze will go through the slice paths given and determine what type of queries should be loaded
 // should be loaded based on the extension of the file and the content
-func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title="30">{
+func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov5" title="34">{
         // start metrics for file analyzer
         metrics.Metric.Start("file_type_analyzer")
         returnAnalyzedPaths := model.AnalyzedPaths{
@@ -3260,17 +3261,17 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
         done := make(chan bool)
         hasGitIgnoreFile, gitIgnore := shouldConsiderGitIgnoreFile(a.Paths[0], a.GitIgnoreFileName, a.ExcludeGitIgnore)
         // get all the files inside the given paths
-        for _, path := range a.Paths </span><span class="cov5" title="34">{
+        for _, path := range a.Paths </span><span class="cov5" title="38">{
                 if _, err := os.Stat(path); err != nil </span><span class="cov1" title="1">{
                         return returnAnalyzedPaths, errors.Wrap(err, "failed to analyze path")
                 }</span>
-                <span class="cov5" title="33">if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov7" title="263">{
+                <span class="cov5" title="37">if err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error </span><span class="cov7" title="343">{
                         if err != nil </span><span class="cov0" title="0">{
                                 return err
                         }</span>
 
-                        <span class="cov7" title="263">ext, errExt := utils.GetExtension(path)
-                        if errExt == nil </span><span class="cov7" title="214">{
+                        <span class="cov7" title="343">ext, errExt := utils.GetExtension(path)
+                        if errExt == nil </span><span class="cov7" title="286">{
                                 trimmedPath := strings.ReplaceAll(path, a.Paths[0], filepath.Base(a.Paths[0]))
                                 ignoreFiles = a.checkIgnore(info.Size(), hasGitIgnoreFile, gitIgnore, path, trimmedPath, ignoreFiles)
 
@@ -3279,23 +3280,23 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
                                         a.Exc = append(a.Exc, path)
                                 }</span>
 
-                                <span class="cov7" title="214">if _, ok := possibleFileTypes[ext]; ok &amp;&amp; !isExcludedFile(path, a.Exc) </span><span class="cov7" title="188">{
+                                <span class="cov7" title="286">if _, ok := possibleFileTypes[ext]; ok &amp;&amp; !isExcludedFile(path, a.Exc) </span><span class="cov7" title="260">{
                                         files = append(files, path)
                                 }</span>
                         }
-                        <span class="cov7" title="263">return nil</span>
+                        <span class="cov7" title="343">return nil</span>
                 }); err != nil <span class="cov0" title="0">{
                         log.Error().Msgf("failed to analyze path %s: %s", path, err)
                 }</span>
         }
 
         // unwanted is the channel shared by the workers that contains the unwanted files that the parser will ignore
-        <span class="cov4" title="29">unwanted := make(chan string, len(files))
+        <span class="cov5" title="33">unwanted := make(chan string, len(files))
 
         a.Types, a.ExcludeTypes = typeLower(a.Types, a.ExcludeTypes)
 
         // Start the workers
-        for _, file := range files </span><span class="cov7" title="188">{
+        for _, file := range files </span><span class="cov7" title="260">{
                 wg.Add(1)
                 // analyze the files concurrently
                 a := &amp;analyzerInfo{
@@ -3307,18 +3308,18 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
                 go a.worker(results, unwanted, locCount, &amp;wg)
         }</span>
 
-        <span class="cov4" title="29">go func() </span><span class="cov4" title="29">{
+        <span class="cov5" title="33">go func() </span><span class="cov5" title="33">{
                 // close channel results when the worker has finished writing into it
-                defer func() </span><span class="cov4" title="29">{
+                defer func() </span><span class="cov5" title="32">{
                         close(unwanted)
                         close(results)
                         close(locCount)
                 }</span>()
-                <span class="cov4" title="29">wg.Wait()
+                <span class="cov5" title="33">wg.Wait()
                 done &lt;- true</span>
         }()
 
-        <span class="cov4" title="29">availableTypes, unwantedPaths, loc := computeValues(results, unwanted, locCount, done)
+        <span class="cov5" title="33">availableTypes, unwantedPaths, loc := computeValues(results, unwanted, locCount, done)
         multiPlatformTypeCheck(&amp;availableTypes)
         unwantedPaths = append(unwantedPaths, ignoreFiles...)
         unwantedPaths = append(unwantedPaths, projectConfigFiles...)
@@ -3333,17 +3334,17 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov4" title=
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, locCount chan&lt;- int, wg *sync.WaitGroup) <span class="cov7" title="188">{ //nolint: gocyclo
-        defer func() </span><span class="cov7" title="188">{
+func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, locCount chan&lt;- int, wg *sync.WaitGroup) <span class="cov7" title="260">{ //nolint: gocyclo
+        defer func() </span><span class="cov7" title="260">{
                 if err := recover(); err != nil </span><span class="cov0" title="0">{
                         log.Warn().Msgf("Recovered from analyzing panic for file %s with error: %#v", a.filePath, err.(error).Error())
                         unwanted &lt;- a.filePath
                 }</span>
-                <span class="cov7" title="188">wg.Done()</span>
+                <span class="cov7" title="260">wg.Done()</span>
         }()
 
-        <span class="cov7" title="188">ext, errExt := utils.GetExtension(a.filePath)
-        if errExt == nil </span><span class="cov7" title="188">{
+        <span class="cov7" title="260">ext, errExt := utils.GetExtension(a.filePath)
+        if errExt == nil </span><span class="cov7" title="260">{
                 linesCount, _ := utils.LineCounter(a.filePath, a.fallbackMinifiedFileLOC)
 
                 switch ext </span>{
@@ -3368,8 +3369,8 @@ func (a *analyzerInfo) worker(results, unwanted chan&lt;- string, locCount chan&
                                 locCount &lt;- linesCount
                         }</span>
                 // Bicep
-                case ".bicep":<span class="cov4" title="18">
-                        if a.isAvailableType(bicep) </span><span class="cov4" title="18">{
+                case ".bicep":<span class="cov6" title="90">
+                        if a.isAvailableType(bicep) </span><span class="cov5" title="54">{
                                 results &lt;- arm
                                 locCount &lt;- linesCount
                         }</span>
@@ -3591,23 +3592,23 @@ func checkForAnsibleHost(yamlContent model.Document) bool <span class="cov4" tit
 
 // computeValues computes expected Lines of Code to be scanned from locCount channel
 // and creates the types and unwanted slices from the channels removing any duplicates
-func computeValues(types, unwanted chan string, locCount chan int, done chan bool) (typesS, unwantedS []string, locTotal int) <span class="cov4" title="29">{
+func computeValues(types, unwanted chan string, locCount chan int, done chan bool) (typesS, unwantedS []string, locTotal int) <span class="cov5" title="33">{
         var val int
         unwantedSlice := make([]string, 0)
         typeSlice := make([]string, 0)
-        for </span><span class="cov7" title="347">{
+        for </span><span class="cov8" title="423">{
                 select </span>{
-                case i := &lt;-locCount:<span class="cov6" title="135">
+                case i := &lt;-locCount:<span class="cov6" title="171">
                         val += i</span>
                 case i := &lt;-unwanted:<span class="cov5" title="48">
                         if !utils.Contains(i, unwantedSlice) </span><span class="cov5" title="48">{
                                 unwantedSlice = append(unwantedSlice, i)
                         }</span>
-                case i := &lt;-types:<span class="cov6" title="135">
-                        if !utils.Contains(i, typeSlice) </span><span class="cov6" title="76">{
+                case i := &lt;-types:<span class="cov6" title="171">
+                        if !utils.Contains(i, typeSlice) </span><span class="cov6" title="78">{
                                 typeSlice = append(typeSlice, i)
                         }</span>
-                case &lt;-done:<span class="cov4" title="29">
+                case &lt;-done:<span class="cov5" title="33">
                         return typeSlice, unwantedSlice, val</span>
                 }
         }
@@ -3640,51 +3641,51 @@ func getKeysFromExcludeTypesFlag(excludeTypesFlag []string) []string <span class
 }
 
 // isExcludedFile verifies if the path is pointed in the --exclude-paths flag
-func isExcludedFile(path string, exc []string) bool <span class="cov7" title="196">{
-        for i := range exc </span><span class="cov7" title="226">{
+func isExcludedFile(path string, exc []string) bool <span class="cov7" title="268">{
+        for i := range exc </span><span class="cov7" title="298">{
                 exclude, err := provider.GetExcludePaths(exc[i])
                 if err != nil </span><span class="cov0" title="0">{
                         log.Err(err).Msg("failed to get exclude paths")
                 }</span>
-                <span class="cov7" title="226">for j := range exclude </span><span class="cov7" title="226">{
+                <span class="cov7" title="298">for j := range exclude </span><span class="cov7" title="298">{
                         if exclude[j] == path </span><span class="cov3" title="8">{
                                 log.Info().Msgf("Excluded file %s from analyzer", path)
                                 return true
                         }</span>
                 }
         }
-        <span class="cov7" title="188">return false</span>
+        <span class="cov7" title="260">return false</span>
 }
 
-func isDeadSymlink(path string) bool <span class="cov7" title="212">{
+func isDeadSymlink(path string) bool <span class="cov7" title="284">{
         fileInfo, _ := os.Stat(path)
         return fileInfo == nil
 }</span>
 
-func isConfigFile(path string, exc []string) bool <span class="cov7" title="214">{
-        for i := range exc </span><span class="cov7" title="214">{
+func isConfigFile(path string, exc []string) bool <span class="cov7" title="286">{
+        for i := range exc </span><span class="cov7" title="286">{
                 exclude, err := provider.GetExcludePaths(exc[i])
                 if err != nil </span><span class="cov0" title="0">{
                         log.Err(err).Msg("failed to get exclude paths")
                 }</span>
-                <span class="cov7" title="214">for j := range exclude </span><span class="cov7" title="214">{
+                <span class="cov7" title="286">for j := range exclude </span><span class="cov7" title="286">{
                         fileInfo, _ := os.Stat(path)
                         if fileInfo != nil &amp;&amp; fileInfo.IsDir() </span><span class="cov0" title="0">{
                                 continue</span>
                         }
 
-                        <span class="cov7" title="214">if len(path)-len(exclude[j]) &gt; 0 &amp;&amp; path[len(path)-len(exclude[j]):] == exclude[j] &amp;&amp; exclude[j] != "" </span><span class="cov2" title="5">{
+                        <span class="cov7" title="286">if len(path)-len(exclude[j]) &gt; 0 &amp;&amp; path[len(path)-len(exclude[j]):] == exclude[j] &amp;&amp; exclude[j] != "" </span><span class="cov2" title="5">{
                                 log.Info().Msgf("Excluded file %s from analyzer", path)
                                 return true
                         }</span>
                 }
         }
-        <span class="cov7" title="209">return false</span>
+        <span class="cov7" title="281">return false</span>
 }
 
 // shouldConsiderGitIgnoreFile verifies if the scan should exclude the files according to the .gitignore file
 func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bool) (hasGitIgnoreFileRes bool,
-        gitIgnoreRes *ignore.GitIgnore) <span class="cov4" title="30">{
+        gitIgnoreRes *ignore.GitIgnore) <span class="cov5" title="34">{
         gitIgnorePath := filepath.ToSlash(filepath.Join(path, gitIgnore))
         _, err := os.Stat(gitIgnorePath)
 
@@ -3695,26 +3696,31 @@ func shouldConsiderGitIgnoreFile(path, gitIgnore string, excludeGitIgnoreFile bo
                         return true, gitIgnore
                 }</span>
         }
-        <span class="cov4" title="29">return false, nil</span>
+        <span class="cov5" title="33">return false, nil</span>
 }
 
-func multiPlatformTypeCheck(typesSelected *[]string) <span class="cov4" title="29">{
+func multiPlatformTypeCheck(typesSelected *[]string) <span class="cov5" title="33">{
         if utils.Contains("serverlessfw", *typesSelected) &amp;&amp; !utils.Contains("cloudformation", *typesSelected) </span><span class="cov1" title="1">{
                 *typesSelected = append(*typesSelected, "cloudformation")
         }</span>
-        <span class="cov4" title="29">if utils.Contains("knative", *typesSelected) &amp;&amp; !utils.Contains("kubernetes", *typesSelected) </span><span class="cov1" title="1">{
+        <span class="cov5" title="33">if utils.Contains("knative", *typesSelected) &amp;&amp; !utils.Contains("kubernetes", *typesSelected) </span><span class="cov1" title="1">{
                 *typesSelected = append(*typesSelected, "kubernetes")
         }</span>
 }
 
-func (a *analyzerInfo) isAvailableType(typeName string) bool <span class="cov6" title="146">{
+func (a *analyzerInfo) isAvailableType(typeName string) bool <span class="cov7" title="218">{
+        // Convert bicep internal type to its platform name for flag matching
+        if typeName == "bicep" </span><span class="cov6" title="90">{
+                typeName = "azureresourcemanager"
+        }</span>
+
         // no flag is set
-        if len(a.typesFlag) == 1 &amp;&amp; a.typesFlag[0] == "" &amp;&amp; len(a.excludeTypesFlag) == 1 &amp;&amp; a.excludeTypesFlag[0] == "" </span><span class="cov6" title="113">{
+        <span class="cov7" title="218">if len(a.typesFlag) == 1 &amp;&amp; a.typesFlag[0] == "" &amp;&amp; len(a.excludeTypesFlag) == 1 &amp;&amp; a.excludeTypesFlag[0] == "" </span><span class="cov6" title="113">{
                 return true
-        }</span> else<span class="cov5" title="33"> if len(a.typesFlag) &gt; 1 || a.typesFlag[0] != "" </span><span class="cov3" title="11">{
+        }</span> else<span class="cov6" title="105"> if len(a.typesFlag) &gt; 1 || a.typesFlag[0] != "" </span><span class="cov5" title="47">{
                 // type flag is set
                 return utils.Contains(typeName, a.typesFlag)
-        }</span> else<span class="cov4" title="22"> if len(a.excludeTypesFlag) &gt; 1 || a.excludeTypesFlag[0] != "" </span><span class="cov4" title="22">{
+        }</span> else<span class="cov5" title="58"> if len(a.excludeTypesFlag) &gt; 1 || a.excludeTypesFlag[0] != "" </span><span class="cov5" title="58">{
                 // exclude type flag is set
                 return !utils.Contains(typeName, a.excludeTypesFlag)
         }</span>
@@ -3724,7 +3730,7 @@ func (a *analyzerInfo) isAvailableType(typeName string) bool <span class="cov6" 
 
 func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool,
         gitIgnore *ignore.GitIgnore,
-        fullPath string, trimmedPath string, ignoreFiles []string) []string <span class="cov7" title="214">{
+        fullPath string, trimmedPath string, ignoreFiles []string) []string <span class="cov7" title="286">{
         exceededFileSize := a.MaxFileSize &gt;= 0 &amp;&amp; float64(fileSize)/float64(sizeMb) &gt; float64(a.MaxFileSize)
 
         if (hasGitIgnoreFile &amp;&amp; gitIgnore.MatchesPath(trimmedPath)) || isDeadSymlink(fullPath) || exceededFileSize </span><span class="cov2" title="3">{
@@ -3735,19 +3741,19 @@ func (a *Analyzer) checkIgnore(fileSize int64, hasGitIgnoreFile bool,
                         log.Error().Msgf("file %s exceeds maximum file size of %d Mb", fullPath, a.MaxFileSize)
                 }</span>
         }
-        <span class="cov7" title="214">return ignoreFiles</span>
+        <span class="cov7" title="286">return ignoreFiles</span>
 }
 
-func typeLower(types, exclTypes []string) (typesRes, exclTypesRes []string) <span class="cov4" title="29">{
-        for i := range types </span><span class="cov4" title="30">{
+func typeLower(types, exclTypes []string) (typesRes, exclTypesRes []string) <span class="cov5" title="33">{
+        for i := range types </span><span class="cov5" title="36">{
                 types[i] = strings.ToLower(types[i])
         }</span>
 
-        <span class="cov4" title="29">for i := range exclTypes </span><span class="cov4" title="30">{
+        <span class="cov5" title="33">for i := range exclTypes </span><span class="cov5" title="36">{
                 exclTypes[i] = strings.ToLower(exclTypes[i])
         }</span>
 
-        <span class="cov4" title="29">return types, exclTypes</span>
+        <span class="cov5" title="33">return types, exclTypes</span>
 }
 
 // isBlacklistedTypeMatch checks if any blacklisted regex for the given returnType matches the content.
@@ -5777,7 +5783,7 @@ func createVulnLines(startPos int, lines []string) *[]model.CodeLine <span class
 func SelectLineWithMinimumDistance(distances map[int]int, startingFrom int) int <span class="cov5" title="8">{
         minDistance, lineOfMinDistance := constants.MaxInteger, startingFrom
         for line, distance := range distances </span><span class="cov6" title="12">{
-                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="9">{
+                if distance &lt; minDistance || distance == minDistance &amp;&amp; line &lt; lineOfMinDistance </span><span class="cov5" title="8">{
                         minDistance = distance
                         lineOfMinDistance = line
                 }</span>
@@ -20681,12 +20687,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="214">{
+        for variable := range s.varList </span><span class="cov7" title="205">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="632">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="669">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -28094,8 +28100,8 @@ func NewProgressBar(label string, silent bool) ProgressBar <span class="cov10" t
 }
 
 // Start initializes the Circle Progress Bar
-func (p ProgressBar) Start() <span class="cov1" title="1">{
-        for </span><span class="cov1" title="1">{ // increment until the Close func is called
+func (p ProgressBar) Start() <span class="cov0" title="0">{
+        for </span><span class="cov0" title="0">{ // increment until the Close func is called
                 p.pBar.Increment()
                 // lower cpu usage from infinite loop
                 time.Sleep(time.Millisecond * sleepTimeout)
