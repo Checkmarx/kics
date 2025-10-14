@@ -18,7 +18,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("%s[%s]", [types[t], name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'%s' should be associated with 'azurerm_monitor_diagnostic_setting'", [types[t]]),
-		"keyActualValue": sprintf("'%s' is not associated with 'azurerm_monitor_diagnostic_setting'", [types[t]]),
+		"keyExpectedValue": sprintf("'%s' should be associated with an 'azurerm_monitor_diagnostic_setting' resource", [types[t]]),
+		"keyActualValue": sprintf("'%s' is not associated with an 'azurerm_monitor_diagnostic_setting' resource", [types[t]]),
 	}
 }

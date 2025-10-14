@@ -13,13 +13,12 @@ resource "azurerm_resource_group" "example" {
 
 resource "azurerm_monitor_diagnostic_setting" "example" {
   name               = "example"
-  target_resource_id = data.azurerm_key_vault.example.id
+  target_resource_id = data.azurerm_databricks_workspace.not_example.id  # incorrect referencing
 }
 
-resource "azurerm_key_vault" "example" {
-  name                        = "testvault"
-  location                    = azurerm_resource_group.example.location
+resource "azurerm_databricks_workspace" "example" {
+  name                        = "test"
   resource_group_name         = azurerm_resource_group.example.name
-  sku_name = "standard"
-  tenant_id                   = data.azurerm_client_config.current.tenant_id
+  location                    = azurerm_resource_group.example.location
+  sku = "standard"
 }

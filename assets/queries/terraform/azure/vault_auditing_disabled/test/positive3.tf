@@ -11,12 +11,9 @@ resource "azurerm_resource_group" "example" {
   location = "West US"
 }
 
-resource "azurerm_monitor_diagnostic_setting" "example" {
-  name               = "example"
-  target_resource_id = data.azurerm_databricks_workspace.example.id
-}
+# missing "azurerm_monitor_diagnostic_setting" resource
 
-data "azurerm_databricks_workspace" "example" {
+resource "azurerm_databricks_workspace" "example" {
   name                        = "test"
   resource_group_name         = azurerm_resource_group.example.name
   location                    = azurerm_resource_group.example.location
