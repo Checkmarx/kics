@@ -10,6 +10,7 @@ type CSVReport struct {
 	Severity                    string `csv:"severity"`
 	Platform                    string `csv:"platform"`
 	CWE                         string `csv:"cwe,omitempty"`
+	RiskScore                   string `csv:"risk_score"`
 	CloudProvider               string `csv:"cloud_provider"`
 	Category                    string `csv:"category"`
 	DescriptionID               string `csv:"description_id"`
@@ -41,6 +42,7 @@ func BuildCSVReport(summary *model.Summary) []CSVReport {
 				Severity:                    string(summary.Queries[i].Severity),
 				Platform:                    summary.Queries[i].Platform,
 				CWE:                         summary.Queries[i].CWE,
+				RiskScore:                   summary.Queries[i].RiskScore,
 				CloudProvider:               summary.Queries[i].CloudProvider,
 				Category:                    summary.Queries[i].Category,
 				DescriptionID:               summary.Queries[i].DescriptionID,

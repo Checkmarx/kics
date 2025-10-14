@@ -140,6 +140,10 @@ func PrintResult(summary *model.Summary, printer *Printer, usingCustomQueries bo
 				fmt.Printf("%s %s\n", printer.Bold("CWE:"), summary.Queries[idx].CWE)
 			}
 
+			if summary.Queries[idx].RiskScore != "" {
+				fmt.Printf("%s %s\n", printer.Bold("Risk Score:"), summary.Queries[idx].RiskScore)
+			}
+
 			// checks if should print queries URL DOCS based on the use of custom queries and invalid ids
 			if !usingCustomQueries && validQueryID(summary.Queries[idx].QueryID) {
 				queryURLId := summary.Queries[idx].QueryID
