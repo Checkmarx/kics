@@ -1,25 +1,25 @@
 [
   {
-    "queryName": "",
-    "severity": "",
+    "queryName": "Beta - Databricks Workspace Using Default Virtual Network",
+    "severity": "HIGH",
     "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "",
-    "severity": "",
+    "queryName": "Beta - Databricks Workspace Using Default Virtual Network",
+    "severity": "HIGH",
     "line": 8,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "",
-    "severity": "",
+    "queryName": "Beta - Databricks Workspace Using Default Virtual Network",
+    "severity": "HIGH",
     "line": 8,
     "fileName": "positive3.tf"
   },
   {
-    "queryName": "",
-    "severity": "",
+    "queryName": "Beta - Databricks Workspace Using Default Virtual Network",
+    "severity": "HIGH",
     "line": 8,
     "fileName": "positive3.tf"
   }
