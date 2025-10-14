@@ -21,6 +21,6 @@
     "queryName": "Beta - Databricks Workspace Using Default Virtual Network",
     "severity": "HIGH",
     "line": 8,
-    "fileName": "positive3.tf"
+    "fileName": "positive4.tf"
   }
 ]
