@@ -8,13 +8,49 @@
   {
     "queryName": "Function App HTTP2 Disabled",
     "severity": "MEDIUM",
-    "line": 9,
+    "line": 14,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Function App HTTP2 Disabled",
+    "severity": "MEDIUM",
+    "line": 29,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Function App HTTP2 Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Function App HTTP2 Disabled",
     "severity": "MEDIUM",
-    "line": 13,
+    "line": 14,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Function App HTTP2 Disabled",
+    "severity": "MEDIUM",
+    "line": 29,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Function App HTTP2 Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Function App HTTP2 Disabled",
+    "severity": "MEDIUM",
+    "line": 14,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Function App HTTP2 Disabled",
+    "severity": "MEDIUM",
+    "line": 29,
     "fileName": "positive3.tf"
   }
 ]
