@@ -154,7 +154,7 @@ If an E2E test causes failures in Github actions, the recommended steps are:
 
 1. Open the action that causes failure.
 2. Go to Summary tab.
-3. On the Summary page, go to the bottom of the page and download any artifact that not has an `.dockerbuild` extension.
+3. On the Summary page, go to the bottom of the page and download any artifact that does not have a `.dockerbuild` extension.
 4. Extract the e2e-report and open the HTML in a browser.
 5. Filter the tests to display only those that failed.
 6. Check which test is causing the issue (e.g., E2E-CLI-032) and review the error description (e.g. number of lines not matching the expected value).
@@ -188,8 +188,7 @@ Below is a list of currently identified flaky tests:
 - CycloneDX
 - analyserPaths
 
-Tests that compare terminal output are particularly prone to flakiness. Typically, a test is considered flaky if it passes on two operating systems but fails on one.
-Tests that compare terminal output are particularly prone to flakiness. Typically, an flacky test is detected when, for the unit tests, it passes for two different operating systems but, for one in specific is does not. Normally, for this cases it's a flacky test, and the KICS team should re-run the actions. 
+Tests that compare terminal output are particularly prone to flakiness. Typically, a flacky test is detected when, for the unit tests, it passes for some of the operating systems but, for one in specific it does not. Normally, for this cases it's a flacky test, and the KICS team should re-run the actions. 
 
 ### Unit tests
 
@@ -199,7 +198,7 @@ When a unit test fails in the KICS pipeline, there are two recommended approache
 
 2. Alternatively, access the **Summary** tab, download the artifact that includes the failing OS in its name (or any artifact if all OS tests fail), open it, and search for `FAIL:` or the name of the query (e.g., `user_data_contains_encoded_private_key`).
 
-Unit test failures can occurr due to incorrectly defined lines in `positive_expected_result.json` or missing tests in that file.
+Unit test failures can occur due to incorrectly defined lines in `positive_expected_result.json` or missing tests in that file.
 
 ### Grype or Trivy tests failing
 
@@ -209,13 +208,13 @@ Sometimes the KICS pipelines may fail due to issues in the Grype and Trivy tests
 2. Go to the `Summary` tab on the top left corner.
 3. Go to the `Grype docker image scan` or `Trivy docker image scan` jobs.
 4. Download the artifact `trivy-fs-scan-results` or similar.
-5. Open the `results.txt` file and check if there is any table that suggests which version of the library is causing the problem.
-6. After that, go to the `go.mod` file that is on the root of the repository, changing the version of the library to the version that is suggested on the file `results.txt` downloaded, under "fixed version".
+5. Open the `results.txt` file and check if there is any table that suggests which version of the package is causing the problem.
+6. After that, go to the `go.mod` file that is on the root of the repository, change the version of the package to the version that is suggested on the file `results.txt` downloaded, under "fixed version".
 7. Run `go mod tidy`.
 8. Run `go mod vendor`.
 9. Commit and push the changes.
 
-NOTE: This is only a solution to solve the cases when the results provide a package that is on `go.mod` file and has a recommended fixed version. In some cases, there is no recommended version for the library on the `results.txt` or the library mentioned on the file is not on the `go.mod` file, for these cases, the typical solution is to update the image defined in the `Dockerfile`.
+NOTE: This is only a solution to solve the cases when the results provide a package that is on `go.mod` file and has a recommended fixed version. In some cases, there is no recommended version for the package on the `results.txt` or the package/library mentioned on the file is not on the `go.mod` file. For these cases, the typical solution is to update the image defined in the `Dockerfile`.
 
 To check for the latest images available, you can refer to [dockerhub checkmarx community organization](https://hub.docker.com/u/checkmarx)
 
