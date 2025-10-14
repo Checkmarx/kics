@@ -1,6 +1,6 @@
 [
   {
-    "queryName": "Beta - CVM Instance Disable Monitor Service",
+    "queryName": "CVM Instance Disable Monitor Service",
     "severity": "INFO",
     "line": 13,
     "fileName": "positive1.tf"
