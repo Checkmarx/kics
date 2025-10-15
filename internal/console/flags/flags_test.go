@@ -287,6 +287,34 @@ func TestFlags_SetStrFlag(t *testing.T) {
 	}
 }
 
+func TestFlags_SetBoolFlag(t *testing.T) {
+	tests := []struct {
+		name     string
+		flagName string
+		expected bool
+	}{
+		{
+			name:     "should return value for valid flag",
+			flagName: "test",
+			expected: true,
+		},
+		{
+			name:     "should not return value for invalid flag",
+			flagName: "undefined",
+			expected: false,
+		},
+	}
+	existValue := true
+	flagsBoolReferences["test"] = &existValue
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			SetBoolFlag(test.flagName, true)
+			got := GetBoolFlag(test.flagName)
+			require.Equal(t, test.expected, got)
+		})
+	}
+}
+
 func TestFlags_SetMultiStrFlag(t *testing.T) {
 	tests := []struct {
 		name     string
