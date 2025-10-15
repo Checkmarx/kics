@@ -1,6 +1,6 @@
 {
   "id": "ada01ed1-b10c-4f2a-b110-b20fa4f9baa6",
-  "queryName": "Beta - CLB Instance Log Setting Disabled",
+  "queryName": "CLB Instance Log Setting Disabled",
   "severity": "MEDIUM",
   "category": "Encryption",
   "descriptionText": "CLB Instance should set log enabled",

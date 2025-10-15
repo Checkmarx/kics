@@ -1,6 +1,6 @@
 {
   "id": "93bb2065-63ec-45a2-a466-f106b56f2e32",
-  "queryName": "Beta - CVM Instance Using Default Security Group",
+  "queryName": "CVM Instance Using Default Security Group",
   "severity": "LOW",
   "category": "Access Control",
   "descriptionText": "CVM instances should not use default security group(s)",

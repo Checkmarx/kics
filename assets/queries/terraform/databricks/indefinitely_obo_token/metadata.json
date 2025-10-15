@@ -1,6 +1,6 @@
 {
   "id": "23e1f5f0-12b7-4d7e-9087-f60f42ccd514",
-  "queryName": "Beta - Indefinitely Databricks OBO Token Lifetime",
+  "queryName": "Indefinitely Databricks OBO Token Lifetime",
   "severity": "MEDIUM",
   "category": "Insecure Defaults",
   "descriptionText": "OBO Token has an indefinitely lifetime",

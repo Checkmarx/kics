@@ -1,12 +1,12 @@
 [
 	{
-		"queryName": "Beta - Unrestricted Databricks ACL",
+		"queryName": "Unrestricted Databricks ACL",
 		"severity": "HIGH",
 		"line": 10,
 		"fileName": "positive1.tf"
 	},
 	{
-		"queryName": "Beta - Unrestricted Databricks ACL",
+		"queryName": "Unrestricted Databricks ACL",
 		"severity": "HIGH",
 		"line": 10,
 		"fileName": "positive2.tf"

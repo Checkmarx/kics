@@ -1,24 +1,24 @@
 [
   {
-    "queryName": "Beta - CVM Instance Using User Data",
+    "queryName": "CVM Instance Using User Data",
     "severity": "LOW",
     "line": 41,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "Beta - CVM Instance Using User Data",
+    "queryName": "CVM Instance Using User Data",
     "severity": "LOW",
     "line": 41,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "Beta - CVM Instance Using User Data",
+    "queryName": "CVM Instance Using User Data",
     "severity": "LOW",
     "line": 41,
     "fileName": "positive3.tf"
   },
   {
-    "queryName": "Beta - CVM Instance Using User Data",
+    "queryName": "CVM Instance Using User Data",
     "severity": "LOW",
     "line": 41,
     "fileName": "positive4.tf"

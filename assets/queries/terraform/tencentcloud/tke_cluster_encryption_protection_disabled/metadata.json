@@ -1,6 +1,6 @@
 {
   "id": "3ed47402-e322-465f-a0f0-8681135a17b0",
-  "queryName": "Beta - TKE Cluster Encryption Protection Disabled",
+  "queryName": "TKE Cluster Encryption Protection Disabled",
   "severity": "HIGH",
   "category": "Encryption",
   "descriptionText": "TKE Cluster should have encryption protection enabled",

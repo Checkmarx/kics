@@ -197,27 +197,29 @@ Find security vulnerabilities, compliance issues, and infrastructure misconfigur
 <img alt="NIFCloud" src="docs/img/logo-nifcloud.png" width="110">
 </a>
 </td>
-</tr></table>
-
-### Beta Features
-<p align="center">
+</tr>
+</table>
+<table align="center"><tr>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#databricks-for-terraform">
 <picture>
 <source media="(prefers-color-scheme: light)" srcset="docs/img/logo-databricks.png" width="200">
 <source media="(prefers-color-scheme: dark)" srcset="docs/img/logo-databricks-dark.png" width="200">
 <img alt="Databricks" src="docs/img/logo-databricks.png" width="200">
 </picture>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</a>
+</td>
+<td>
+<a href="https://github.com/Checkmarx/kics/blob/master/docs/platforms.md#tencentcloud-for-terraform">
 <picture>
 <source media="(prefers-color-scheme: light)" srcset="docs/img/logo-tencentcloud.png" width="180">
 <source media="(prefers-color-scheme: dark)" srcset="docs/img/logo-tencentcloud-dark.png" width="180">
 <img alt="TencentCloud" src="docs/img/logo-tencentcloud.png" width="180">
 </picture>
-&nbsp;&nbsp;&nbsp;
-</p>
-
-By default, Databricks, NIFCloud, and TencentCloud queries run when you scan Terraform files using KICS.
-
-The `Severity` and `Description` of these queries are still under review.
+</a>
+</td>
+</tr>
+</table>
 
 ## Getting Started
 

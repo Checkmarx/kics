@@ -1,12 +1,12 @@
 [
 	{
-		"queryName": "Beta - Databricks Autoscale Badly Setup",
+		"queryName": "Databricks Autoscale Badly Setup",
 		"severity": "MEDIUM",
 		"line": 6,
 		"fileName": "positive1.tf"
 	},
 	{
-		"queryName": "Beta - Databricks Autoscale Badly Setup",
+		"queryName": "Databricks Autoscale Badly Setup",
 		"severity": "MEDIUM",
 		"line": 6,
 		"fileName": "positive2.tf"

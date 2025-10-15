@@ -1,6 +1,6 @@
 {
   "id": "a74b4602-a62c-4a02-956a-e19f86ea24b5",
-  "queryName": "Beta - CVM Instance Has Public IP",
+  "queryName": "CVM Instance Has Public IP",
   "severity": "HIGH",
   "category": "Networking and Firewall",
   "descriptionText": "CVM Instance should not have a public IP address.",
