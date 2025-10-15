@@ -51,11 +51,30 @@ get_results(databricks, name) = results {
 	}
 } else = results {
 	not common_lib.valid_key(databricks, "managed_disk_cmk_key_vault_key_id")
+	not common_lib.valid_key(databricks, "managed_services_cmk_key_vault_key_id")
+
+	results := {
+		"searchKey" : sprintf("azurerm_databricks_workspace[%s]", [name]),
+		"searchLine" : common_lib.build_search_line(["resource", "azurerm_databricks_workspace", name], []),
+		"keyExpectedValue" : sprintf("The 'managed_disk_cmk_key_vault_key_id' and 'managed_services_cmk_key_vault_key_id' fields for 'azurerm_databricks_workspace[%s]' are defined and not null", [name]),
+		"keyActualValue" : sprintf("The 'managed_disk_cmk_key_vault_key_id' and 'managed_services_cmk_key_vault_key_id' fields for 'azurerm_databricks_workspace[%s]' are undefined or null", [name]),
+	}
+} else = results {
+	not common_lib.valid_key(databricks, "managed_disk_cmk_key_vault_key_id")
 
 	results := {
 		"searchKey" : sprintf("azurerm_databricks_workspace[%s]", [name]),
 		"searchLine" : common_lib.build_search_line(["resource", "azurerm_databricks_workspace", name], []),
 		"keyExpectedValue" : sprintf("'azurerm_databricks_workspace[%s].managed_disk_cmk_key_vault_key_id' is defined and not null", [name]),
 		"keyActualValue" : sprintf("'azurerm_databricks_workspace[%s].managed_disk_cmk_key_vault_key_id' is undefined or null", [name]),
+	}
+} else = results {
+	not common_lib.valid_key(databricks, "managed_services_cmk_key_vault_key_id")
+
+	results := {
+		"searchKey" : sprintf("azurerm_databricks_workspace[%s]", [name]),
+		"searchLine" : common_lib.build_search_line(["resource", "azurerm_databricks_workspace", name], []),
+		"keyExpectedValue" : sprintf("'azurerm_databricks_workspace[%s].managed_services_cmk_key_vault_key_id' is defined and not null", [name]),
+		"keyActualValue" : sprintf("'azurerm_databricks_workspace[%s].managed_services_cmk_key_vault_key_id' is undefined or null", [name]),
 	}
 }

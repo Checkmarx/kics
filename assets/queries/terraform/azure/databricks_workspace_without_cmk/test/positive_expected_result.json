@@ -7,16 +7,26 @@
   {
     "queryName": "Beta - Databricks Workspace Without CMK",
     "severity": "MEDIUM",
-    "line": 11
-  },
-  {
-    "queryName": "Beta - Databricks Workspace Without CMK",
-    "severity": "MEDIUM",
-    "line": 26
+    "line": 12
   },
   {
     "queryName": "Beta - Databricks Workspace Without CMK",
     "severity": "MEDIUM",
     "line": 29
+  },
+  {
+    "queryName": "Beta - Databricks Workspace Without CMK",
+    "severity": "MEDIUM",
+    "line": 34
+  },
+  {
+    "queryName": "Beta - Databricks Workspace Without CMK",
+    "severity": "MEDIUM",
+    "line": 45
+  },
+  {
+    "queryName": "Beta - Databricks Workspace Without CMK",
+    "severity": "MEDIUM",
+    "line": 56
   }
 ]
