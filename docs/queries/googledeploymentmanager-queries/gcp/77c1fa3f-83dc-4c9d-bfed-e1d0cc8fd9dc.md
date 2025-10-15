@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Access Control
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/1188.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/1188.html')">1188</a>
+-   **Risk score:** <span style="color:#ff7213">7.0</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/googleDeploymentManager/gcp/cloud_storage_bucket_is_publicly_accessible)
 
 ### Description
@@ -67,3 +68,4 @@ resources:
       entity: user-liz@example.com
 
 ```
+

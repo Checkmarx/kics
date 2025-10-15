@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Secret Management
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/798.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/798.html')">798</a>
+-   **Risk score:** <span style="color:#bb2124">7.8</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/common/passwords_and_secrets)
 
 ### Description
@@ -3170,7 +3171,121 @@ resource "azurerm_linux_virtual_machine" "vms" {
 }
 ```
 </details>
-<details><summary>Negative test num. 53 - json file</summary>
+<details><summary>Negative test num. 53 - bicep file</summary>
+
+```bicep
+import { common, tagsObject, deployName, removeSpace } from '../../../CommonValues.bicep'
+
+@description('Nome do sistema')
+param systemName string
+
+@description('Nome do recurso')
+param resourceName string = removeSpace(systemName)
+
+@description('Enterprise Tagging object')
+param tags tagsObject
+
+resource kvTest 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
+  name: 'kv-test-sample'
+  scope: resourceGroup('rg-test-sample')
+}
+
+module consumerModule '../SecretConsumer/Resource.bicep' = {
+  name: deployName(resourceName, 'Test.SecretConsumer', tags.lastReleaseId)
+  params: {
+    systemName: systemName
+    resourceName: resourceName
+    tags: tags
+    apiClientSecret: kvTest.getSecret('secret-sample') 
+  }
+}
+
+```
+</details>
+<details><summary>Negative test num. 54 - json file</summary>
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "[parameters('apiVersion')]",
+            "name": "[parameters('logicAppName')]",
+            "location": "centralus",
+            "properties": {},
+            "actions": {
+                "Sample_action_1": {
+                    "runAfter_164": {
+                        "HTTP_-_Get_OAuth_Token": [
+                            "Succeeded"
+                        ]
+                    }
+                },
+                "Sample_action_2": {
+                    "runAfter_192": {
+                        "Parse_JSON_-_OAuth_Token": [
+                            "Succeeded"
+                        ]
+                    }
+                },
+                "Sample_action_3": {
+                    "runAfter_240": {
+                        "Try_-_Get_OAuth_Token": [
+                            "TimedOut",
+                            "Failed"
+                        ]
+                    }
+                },
+                "Sample_action_4": {
+                    "runAfter_678": {
+                        "Catch_-_Get_OAuth_Token": [
+                            "Skipped"
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+</details>
+<details><summary>Negative test num. 55 - bicep file</summary>
+
+```bicep
+param systemName string
+param resourceName string
+param tags object
+param originUrl string
+
+module myModule '../AnotherModule/Resource.bicep' = {
+  name: '${resourceName}-MyModule'
+  params: {
+    systemName: systemName
+    resourceName: resourceName
+    tags: tags
+    apiUrl: originUrl
+  }
+}
+
+module clientModule '../ClientModule/Resource.bicep' = {
+  name: '${resourceName}-ClientModule'
+  params: {
+    systemName: systemName
+    resourceName: resourceName
+    tags: tags
+    validationToken: myModule.outputs.apiToken 
+  }
+}
+
+// Saída do módulo
+output clientUrl string = clientModule.outputs.clientUrl
+output clientName string = clientModule.outputs.clientName
+
+```
+</details>
+<details><summary>Negative test num. 56 - json file</summary>
 
 ```json
 {
@@ -3190,7 +3305,7 @@ resource "azurerm_linux_virtual_machine" "vms" {
 
 ```
 </details>
-<details><summary>Negative test num. 54 - tf file</summary>
+<details><summary>Negative test num. 57 - tf file</summary>
 
 ```tf
 resource "google_container_cluster" "primary3" {
@@ -3215,7 +3330,7 @@ resource "google_container_cluster" "primary3" {
 
 ```
 </details>
-<details><summary>Negative test num. 55 - tf file</summary>
+<details><summary>Negative test num. 58 - tf file</summary>
 
 ```tf
 resource "google_container_cluster" "primary5" {
@@ -3240,7 +3355,7 @@ resource "google_container_cluster" "primary5" {
 
 ```
 </details>
-<details><summary>Negative test num. 56 - tf file</summary>
+<details><summary>Negative test num. 59 - tf file</summary>
 
 ```tf
 resource "google_secret_manager_secret" "secret-basic" {
@@ -3257,3 +3372,4 @@ resource "google_secret_manager_secret" "secret-basic" {
 
 ```
 </details>
+

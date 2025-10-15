@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Secret Management
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/256.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/256.html')">256</a>
+-   **Risk score:** <span style="color:#bb2124">7.5</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/iam_user_login_profile_password_is_in_plaintext)
 
 ### Description
@@ -267,3 +268,4 @@ Resources:
 
 ```
 </details>
+
