@@ -1,5 +1,5 @@
 ---
-title: Beta - CLB Instance Log Setting Disabled
+title: CLB Instance Log Setting Disabled
 hide:
   toc: true
   navigation: true
@@ -16,11 +16,12 @@ hide:
 </style>
 
 -   **Query id:** ada01ed1-b10c-4f2a-b110-b20fa4f9baa6
--   **Query name:** Beta - CLB Instance Log Setting Disabled
+-   **Query name:** CLB Instance Log Setting Disabled
 -   **Platform:** Terraform
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Encryption
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/778.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/778.html')">778</a>
+-   **Risk score:** <span style="color:#ff7213">6.4</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/tencentcloud/clb_instance_log_setting_disabled)
 
 ### Description
@@ -109,3 +110,4 @@ resource "tencentcloud_clb_instance" "internal_clb" {
 }
 
 ```
+

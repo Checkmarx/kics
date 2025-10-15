@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Encryption
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/326.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/326.html')">326</a>
+-   **Risk score:** <span style="color:#ff7213">4.9</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/googleDeploymentManager/gcp/disk_encryption_disabled)
 
 ### Description
@@ -170,3 +171,4 @@ resources:
       kmsKeyName: disk-crypto-key
 
 ```
+

@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Best Practices
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/665.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/665.html')">665</a>
+-   **Risk score:** <span style="color:#ff7213">5.1</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/azure/key_vault_secrets_content_type_undefined)
 
 ### Description
@@ -49,3 +50,4 @@ resource "azurerm_key_vault_secret" "negative" {
 }
 
 ```
+
