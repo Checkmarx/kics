@@ -46,7 +46,7 @@ get_results(databricks, name) = results {
 	results := {
 		"searchKey" : sprintf("azurerm_databricks_workspace[%s].customer_managed_key_enabled", [name]),
 		"searchLine" : common_lib.build_search_line(["resource", "azurerm_databricks_workspace", name, "customer_managed_key_enabled"], []),
-		"keyExpectedValue" : sprintf("'azurerm_databricks_workspace[%s.customer_managed_key_enabled' is defined and set to true", [name]),
+		"keyExpectedValue" : sprintf("'azurerm_databricks_workspace[%s].customer_managed_key_enabled' is defined and set to true", [name]),
 		"keyActualValue" : sprintf("'azurerm_databricks_workspace[%s].customer_managed_key_enabled' is set to %s", [name, databricks.customer_managed_key_enabled]),
 	}
 } else = results {
