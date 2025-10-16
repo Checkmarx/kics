@@ -1,0 +1,26 @@
+[
+  {
+    "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "Beta - Logs And Alerts Missing Custom Role Changes",
+    "severity": "MEDIUM",
+    "line": 1,
+    "fileName": "positive4.tf"
+  }
+]
