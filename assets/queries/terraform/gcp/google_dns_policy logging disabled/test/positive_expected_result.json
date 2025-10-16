@@ -1,20 +1,12 @@
 [
   {
-    "queryName": "",
-    "severity": "",
-    "line": ,
-    "fileName": "positive1.tf"
+    "queryName": "Beta - Google DNS Policy Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 1
   },
   {
-    "queryName": "",
-    "severity": "",
-    "line": ,
-    "fileName": "positive2.tf"
-  },
-  {
-    "queryName": "",
-    "severity": "",
-    "line": ,
-    "fileName": "positive3.tf"
+    "queryName": "Beta - Google DNS Policy Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 11
   }
 ]
