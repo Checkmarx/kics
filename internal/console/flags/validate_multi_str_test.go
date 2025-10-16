@@ -77,6 +77,12 @@ func TestFlags_validateMultiStrEnum(t *testing.T) {
 			flagValue: &[]string{"Ansible", "Terrraform"},
 			wantErr:   true,
 		},
+		{
+			name:      "should execute fine when values have leading or trailing spaces",
+			flagName:  "exclude-categories",
+			flagValue: &[]string{"Ansible ", "  Terraform  "},
+			wantErr:   true,
+		},
 	}
 	for _, test := range tests {
 		flagsMultiStrReferences[test.flagName] = test.flagValue
