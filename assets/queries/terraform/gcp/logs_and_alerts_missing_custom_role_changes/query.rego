@@ -19,7 +19,7 @@ CxPolicy[result] {
 		"resourceType": resources[m],
 		"resourceName": tf_lib.get_resource_name(log_or_alert, name),
 		"searchKey": sprintf("%s[%s].%s", [resources[m], name, filter_data.path]),
-		"issueType": "MissingAttribute",
+		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'%s[%s].%s' should capture all custom role changes", [resources[m], name, filter_data.path]),
 		"keyActualValue": sprintf("'%s[%s].%s' does not capture all custom role changes", [resources[m], name, filter_data.path]),
 		"searchLine": common_lib.build_search_line(filter_data.searchArray, [])
