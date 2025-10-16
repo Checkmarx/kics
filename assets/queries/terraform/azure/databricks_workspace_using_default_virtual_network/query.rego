@@ -17,7 +17,7 @@ CxPolicy[result] {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": results.keyExpectedValue,
 		"keyActualValue": results.keyActualValue,
-		"searchLine": results.searchLine,
+		"searchLine": results.searchLine
 	}
 }
 
