@@ -12,7 +12,7 @@ CxPolicy[result] {
 	lines := split(filter_data.filter, "\n")
 
 	target_methods := {"CreateRole", "UpdateRole", "UndeleteRole", "DeleteRole"}
-	is_missing_methods_or_impossible_filter(filter_data.filter, target_methods, lines)
+	is_missing_methods_or_impossible_filter(target_methods, lines)
 
 	result := {
 		"documentId": doc.id,
@@ -26,8 +26,8 @@ CxPolicy[result] {
 	}
 }
 
-is_missing_methods_or_impossible_filter(filter, target_methods, lines) {
-	not contains_method(filter, target_methods, lines)
+is_missing_methods_or_impossible_filter(target_methods, lines) {
+	not contains_method(target_methods, lines)
 } else {
 	methods_decalared := {line |
 	 line := lines[_]
@@ -38,11 +38,12 @@ is_missing_methods_or_impossible_filter(filter, target_methods, lines) {
 	count(methods_decalared) >= 2  # means it has declared method = x AND method = y
 }
 
-contains_method(filter, target_methods, lines) {
+contains_method(target_methods, lines) {
 	not_statements := {method |
 	 method := target_methods[_]
 	 line := lines[_]
 	 contains(line, "NOT")
+	 not contains(line, "!=")
 	 contains(line, method)}
 
 	count(not_statements) == 0		# must not negate any necessary method
@@ -50,16 +51,24 @@ contains_method(filter, target_methods, lines) {
 	found_methods := {method |
 	 method := target_methods[_]
 	 line := lines[_]
-	 not contains(line, "NOT")
+	 is_affirmative_or_double_negative(line)
 	 contains(line, method)}
 
-	found_methods == target_methods	 # must have all necessary methods
+	found_methods == target_methods	 # must have all necessary methods ( "=" or "NOT !=")
 } else {
 	methods := {line |
 	 line := lines[_]
 	 contains(line, "protoPayload.methodName")}
 
 	all_methods_allowed(methods)
+}
+
+is_affirmative_or_double_negative(line) {
+	 not contains(line, "NOT")
+	 not contains(line, "!=")
+} else {
+	 contains(line, "NOT")
+	 contains(line, "!=")
 }
 
 all_methods_allowed(methods) {
