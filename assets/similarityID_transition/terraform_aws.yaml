@@ -51,10 +51,6 @@ similarityIDChangeList:
       queryName: Sensitive Port Is Exposed To Small Public Network
       observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
       change: 2
-    - queryId: 92fe237e-074c-4262-81a4-2077acb928c1
-      queryName: Sensitive Port Is Exposed To Wide Private Network
-      observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
-      change: 2
     - queryId: 54c417bf-c762-48b9-9d31-b3d87047e3f0
       queryName: SQL Analysis Services Port 2383 (TCP) Is Publicly Accessible
       observations: "Query got to production without proper classification. Now needs to be classified as Transition without changes"
