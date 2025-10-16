@@ -1,0 +1,14 @@
+{
+  "id": "",
+  "queryName": "Beta - Google DNS Policy Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "",
+  "descriptionText": "",
+  "descriptionUrl": "",
+  "platform": "Terraform",
+  "descriptionID": "",
+  "cloudProvider": "gcp",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": true
+}
