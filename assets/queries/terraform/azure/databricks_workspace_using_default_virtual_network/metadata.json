@@ -10,5 +10,5 @@
   "cloudProvider": "azure",
   "cwe": "693",
   "riskScore": "6.0",
-  "experimental": true
+  "experimental": "true"
 }
