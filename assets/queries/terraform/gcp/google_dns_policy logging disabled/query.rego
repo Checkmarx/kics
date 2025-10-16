@@ -48,8 +48,8 @@ get_results(dns, name) = results {
 		"keyActualValue": sprintf("'google_dns_policy[%s].enable_logging' is set to %s", [name, dns.enable_logging]),
 		"searchLine": common_lib.build_search_line(["resource", "google_dns_policy", name, "enable_logging"], []),
 		"remediation": json.marshal({
-			"before": "false",
-			"after": "true"
+			"before": false,
+			"after": true
 		}),
 		"remediationType": "replacement",
 	}
