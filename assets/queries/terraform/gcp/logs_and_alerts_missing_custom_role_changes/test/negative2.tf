@@ -1,42 +1,64 @@
-resource "google_logging_metric" "logging_metric" {
-  name   = "custom-role-changes-metric"
-  filter = <<-FILTER
-    resource.type="project"
-    protoPayload.serviceName="iam.googleapis.com"
-    (
-      protoPayload.methodName:*
-      protoPayload.methodName =~ "(CreateRole|UpdateRole|DeleteRole|UndeleteRole)"
-    )
-  FILTER
+resource "google_monitoring_alert_policy" "custom_role_changes" {
+  display_name = "Custom Role Changes Alert"
 
-  metric_descriptor {
-    metric_kind = "DELTA"
-    value_type  = "DISTRIBUTION"
-    unit        = "1"
-    labels {
-      key         = "mass"
-      value_type  = "STRING"
-      description = "amount of matter"
+  conditions {
+    display_name = "Detect Create/Update/Delete Role Audit Logs"
+
+    condition_matched_log {
+      filter = <<-FILTER
+        resource.type="project"
+        protoPayload.serviceName="iam.googleapis.com"
+        protoPayload.methodName:*
+        protoPayload.methodName =~ "(CreateRole|UpdateRole|DeleteRole|UndeleteRole|AnyotherMethod)"
+      FILTER
     }
-    labels {
-      key         = "sku"
-      value_type  = "INT64"
-      description = "Identifying number for item"
+  }
+}
+
+resource "google_monitoring_alert_policy" "custom_role_changes_2" {
+  display_name = "Custom Role Changes Alert 2"
+
+  conditions {
+    display_name = "Detect Create/Update/Delete Role Audit Logs"
+
+    condition_matched_log {
+      filter = <<-FILTER
+        resource.type="project"
+        protoPayload.serviceName="iam.googleapis.com"
+        protoPayload.methodName:*
+        (
+          protoPayload.methodName="google.iam.admin.v1.CreateRole"
+          OR protoPayload.methodName="google.iam.admin.v1.UpdateRole"
+          OR protoPayload.methodName="google.iam.admin.v1.DeleteRole"
+          OR protoPayload.methodName="google.iam.admin.v1.UndeleteRole"
+          OR protoPayload.methodName="projects.someProject.locations.someLocation.AnyotherMethod"
+        )
+      FILTER
     }
-    display_name = "Custom Role Changes Metric"
   }
+}
 
-  value_extractor = "EXTRACT(jsonPayload.request)"
-  label_extractors = {
-    "mass" = "EXTRACT(jsonPayload.request)"
-    "sku"  = "EXTRACT(jsonPayload.id)"
-  }
+resource "google_monitoring_alert_policy" "custom_role_changes_3" {
+  display_name = "Custom Role Changes Alert 3"
 
-  bucket_options {
-    linear_buckets {
-      num_finite_buckets = 3
-      width              = 1
-      offset             = 1
+  conditions {
+    display_name = "Detect Create/Update/Delete Role Audit Logs"
+
+    condition_matched_log {
+
+      # Support for "NOT !=" statements
+      filter = <<-FILTER
+        resource.type="project"
+        protoPayload.serviceName="iam.googleapis.com"
+        protoPayload.methodName:*
+        (
+          protoPayload.methodName="google.iam.admin.v1.CreateRole"
+          OR NOT protoPayload.methodName!="google.iam.admin.v1.UpdateRole"
+          OR protoPayload.methodName="google.iam.admin.v1.DeleteRole"
+          OR protoPayload.methodName="google.iam.admin.v1.UndeleteRole"
+          OR protoPayload.methodName="projects.someProject.locations.someLocation.AnyotherMethod"
+        )
+      FILTER
     }
   }
 }
