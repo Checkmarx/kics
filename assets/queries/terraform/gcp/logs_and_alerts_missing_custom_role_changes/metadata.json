@@ -7,7 +7,7 @@
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/logging_metric#filter-1",
   "platform": "Terraform",
   "descriptionID": "69d4f245",
-  "cloudProvider": "azure",
+  "cloudProvider": "gcp",
   "cwe": "778",
   "riskScore": "3.0",
   "experimental": "true"
