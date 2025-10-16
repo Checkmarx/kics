@@ -17,9 +17,7 @@ CxPolicy[result] {
 		"issueType": results.issueType,
 		"keyExpectedValue": results.keyExpectedValue,
 		"keyActualValue": results.keyActualValue,
-		"searchLine": results.searchLine,
-		"remediation": results.remediation,
-		"remediationType": results.remediationType,
+		"searchLine": results.searchLine
 	}
 }
 
@@ -32,9 +30,7 @@ get_results(dns, name) = results {
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": sprintf("'google_dns_policy[%s].enable_logging' should be defined and not null", [name]),
 		"keyActualValue": sprintf("'google_dns_policy[%s].enable_logging' is undefined or null", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "google_dns_policy", name], []),
-		"remediation": "enable_logging = true",
-		"remediationType": "addition",
+		"searchLine": common_lib.build_search_line(["resource", "google_dns_policy", name], [])
 	}
 
 } else = results {
@@ -46,11 +42,6 @@ get_results(dns, name) = results {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_dns_policy[%s].enable_logging' should be defined and set to true", [name]),
 		"keyActualValue": sprintf("'google_dns_policy[%s].enable_logging' is set to %s", [name, dns.enable_logging]),
-		"searchLine": common_lib.build_search_line(["resource", "google_dns_policy", name, "enable_logging"], []),
-		"remediation": json.marshal({
-			"before": false,
-			"after": true
-		}),
-		"remediationType": "replacement",
+		"searchLine": common_lib.build_search_line(["resource", "google_dns_policy", name, "enable_logging"], [])
 	}
 }
