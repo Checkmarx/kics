@@ -19,6 +19,7 @@ resource "google_project_service" "positive_3" {
 }
 
 locals {
+  api = "not_cloudasset.googleapis.com"
   apis_toset = toset([
     "compute.googleapis.com",
     "pubsub.googleapis.com",
@@ -30,11 +31,16 @@ locals {
 }
 
 resource "google_project_service" "positive_4" {
-  for_each = local.apis_toset
+  for_each = local.api
   service  = each.value
 }
 
 resource "google_project_service" "positive_5" {
+  for_each = local.apis_toset
+  service  = each.value
+}
+
+resource "google_project_service" "positive_6" {
   for_each = local.apis_set
   service  = each.value
 }

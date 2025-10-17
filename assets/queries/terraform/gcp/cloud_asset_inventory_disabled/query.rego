@@ -25,7 +25,7 @@ service_includes_cloudasset(service, project, doc) {
 	service == "cloudasset.googleapis.com"
 } else {
 	service == "${each.value}"
-	contains(project.for_each, "cloudasset.googleapis.com")
+	contains(project.for_each, "\"cloudasset.googleapis.com\"")
 } else {
 	service == "${each.value}"
 	project.for_each[_] == "cloudasset.googleapis.com"
@@ -40,7 +40,9 @@ service_includes_cloudasset(service, project, doc) {
 }
 
 contains_or_in_set(local_var) {
+	local_var == "cloudasset.googleapis.com"
+} else  {
 	local_var[_] == "cloudasset.googleapis.com"
 } else {
-	contains(local_var, "cloudasset.googleapis.com")
+	contains(local_var, "\"cloudasset.googleapis.com\"")
 }
