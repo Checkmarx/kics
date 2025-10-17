@@ -13,7 +13,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": types[t],
-		"resourceName": tf_lib.get_resource_name(resource, name), 
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": results.searchKey,
 		"issueType": results.issueType,
 		"keyExpectedValue": results.keyExpectedValue,
