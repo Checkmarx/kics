@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Functions with similar AWS service environment variables - should NOT be flagged
+
+Resources:
+  Function1:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs12.x
+      Role: arn:aws:iam::123456789012:role/shared-dynamodb-role
+      Environment:
+        Variables:
+          DYNAMODB_TABLE: users
+          DYNAMODB_REGION: us-east-1
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: get
+
+  Function2:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler2
+      Runtime: nodejs12.x
+      Role: arn:aws:iam::123456789012:role/shared-dynamodb-role
+      Environment:
+        Variables:
+          DYNAMODB_TABLE: products
+          DYNAMODB_REGION: us-east-1
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /products
+            Method: get
