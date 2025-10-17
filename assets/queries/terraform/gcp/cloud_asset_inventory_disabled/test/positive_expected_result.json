@@ -17,11 +17,6 @@
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
     "severity": "MEDIUM",
-    "line": 34
-  },
-  {
-    "queryName": "Beta - Cloud Asset Inventory Disabled",
-    "severity": "MEDIUM",
     "line": 35
   },
   {
