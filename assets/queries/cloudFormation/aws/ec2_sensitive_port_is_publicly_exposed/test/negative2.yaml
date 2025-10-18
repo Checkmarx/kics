@@ -1,13 +1,12 @@
 Resources:
-  LoadBalancer01:
-    Type: AWS::ElasticLoadBalancing::LoadBalancer
+  EC2Instance01:
+    Type: AWS::EC2::Instance
     Properties:
-      Listeners:
-        - LoadBalancerPort: 80
-          InstancePort: 80
-          Protocol: HTTP
-      SecurityGroups:
+      ImageId: ami-79fd7eee
+      InstanceType: t3.medium
+      SecurityGroupIds:
         - !Ref Negative2SecurityGroup
+      KeyName: my-new-rsa-key
 
   Negative2SecurityGroup:
     Type: AWS::EC2::SecurityGroup
