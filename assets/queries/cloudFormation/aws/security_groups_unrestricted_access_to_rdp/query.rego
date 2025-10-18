@@ -2,7 +2,7 @@ package Cx
 
 import data.generic.cloudformation as cf_lib
 
-CxPolicy[result] {
+CxPolicy[result] {			# Fulfilled by c9846969-d066-431f-9b34-8c4abafe422a
 	docs := input.document[i]
 	[path, Resources] := walk(docs)
 	resource := Resources[name]
