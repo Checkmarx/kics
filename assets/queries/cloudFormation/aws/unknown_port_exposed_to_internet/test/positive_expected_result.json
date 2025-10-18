@@ -2,13 +2,97 @@
   {
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
-    "line": 9,
+    "line": 10,
     "fileName": "positive1.yaml"
   },
   {
-    "fileName": "positive2.json",
     "queryName": "Unknown Port Exposed To Internet",
     "severity": "HIGH",
-    "line": 12
+    "line": 14,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 21,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 30,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 45,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 49,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 56,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 65,
+    "fileName": "positive1.yaml"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 10,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 16,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 26,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 36,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 51,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 57,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 67,
+    "fileName": "positive2.json"
+  },
+  {
+    "queryName": "Unknown Port Exposed To Internet",
+    "severity": "HIGH",
+    "line": 77,
+    "fileName": "positive2.json"
   }
 ]

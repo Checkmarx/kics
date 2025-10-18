@@ -6,7 +6,7 @@ Resources:
       VpcId:
          Ref: myVPC
       SecurityGroupIngress:
-      - IpProtocol: -1
+      - IpProtocol: "-1"
         FromPort: 80
         ToPort: 80
         CidrIp: 0.0.0.0/0
@@ -32,7 +32,7 @@ Resources:
   InboundRule:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
-      IpProtocol: -1
+      IpProtocol: "-1"
       FromPort: 0
       ToPort: 65535
       SourceSecurityGroupId:

@@ -1,0 +1,81 @@
+Resources:
+
+  Negative2SecurityGroup:
+      Type: AWS::EC2::SecurityGroup
+      Properties:
+        GroupDescription: "Security group for negative test cases"
+        VpcId: !Ref MyVPC  
+
+# IPv4 Rules
+  Negative2IPv4Ingress1:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "udp"      # incorrect protocol
+      FromPort: 22
+      ToPort: 22
+      CidrIp: "0.0.0.0/0"
+
+  Negative2IPv4Ingress2:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "tcp"
+      FromPort: 100      # not catching port 22
+      ToPort: 200
+      CidrIp: "0.0.0.0/0"
+
+  Negative2IPv4Ingress3:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "-1"
+      FromPort: 0
+      ToPort: 30
+      CidrIp: "8.8.0.0/16"  # CidrIP is not 0:0:0:0/0
+
+  Negative2IPv4Ingress4:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup 
+      IpProtocol: "udp"    # all fields "incorrect"
+      FromPort: 4000
+      ToPort: 4000
+      CidrIp: "8.8.0.0/16"
+
+# IPv6 Rules
+  Negative2IPv6Ingress1:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "udp"  # incorrect protocol
+      FromPort: 22
+      ToPort: 22
+      CidrIpv6: "::/0"
+
+  Negative2IPv6Ingress2:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "tcp"
+      FromPort: 4000    # not catching port 22
+      ToPort: 4000
+      CidrIpv6: "0000:0000:0000:0000:0000:0000:0000:0000/0"
+
+  Negative2IPv6Ingress3:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup
+      IpProtocol: "-1"
+      FromPort: 0
+      ToPort: 30
+      CidrIpv6: "2400:cb00::/32"  # CidrIPv6 is not ::/0
+
+  Negative2IPv6Ingress4:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref Negative2SecurityGroup   # all fields "incorrect"
+      IpProtocol: "udp" 
+      FromPort: 4000
+      ToPort: 4000
+      CidrIpv6: "2400:cb00::/32"
