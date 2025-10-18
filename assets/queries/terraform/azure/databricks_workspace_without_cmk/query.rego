@@ -9,7 +9,7 @@ CxPolicy[result] {
 	results := get_results(resource, name)
 
 	result := {
-		"documentId": doc.id,
+		"documentId": input.document[i].id,
 		"resourceType": "azurerm_databricks_workspace",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": results.searchKey,
