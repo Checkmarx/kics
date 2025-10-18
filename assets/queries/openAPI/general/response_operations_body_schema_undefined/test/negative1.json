@@ -26,15 +26,6 @@
             }
           }
         }
-      },
-      "delete": {
-        "operationId": "deleteVersion",
-        "summary": "Deletes API versions",
-        "responses": {
-          "204": {
-            "description": "no content"
-          }
-        }
       }
     }
   },

@@ -11,16 +11,28 @@
         "tags": ["Tariff Setups"],
         "responses": {
           "400": {
-            "$ref": "#/components/schemas/error"
+            "$ref": "#/components/responses/error"
           },
           "500": {
-            "$ref": "#/components/schemas/error"
+            "$ref": "#/components/responses/error"
           }
         }
       }
     }
   },
   "components": {
+    "responses": {
+      "error": {
+        "description": "Error response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
     "schemas": {
       "error": {
         "type": "object",
