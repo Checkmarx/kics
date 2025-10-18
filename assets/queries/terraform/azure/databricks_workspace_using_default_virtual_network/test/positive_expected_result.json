@@ -8,15 +8,5 @@
     "queryName": "Beta - Databricks Workspace Using Default Virtual Network",
     "severity": "MEDIUM",
     "line": 18
-  },
-  {
-    "queryName": "Beta - Databricks Workspace Using Default Virtual Network",
-    "severity": "MEDIUM",
-    "line": 29
-  },
-  {
-    "queryName": "Beta - Databricks Workspace Using Default Virtual Network",
-    "severity": "MEDIUM",
-    "line": 42
   }
 ]
