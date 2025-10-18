@@ -4,15 +4,14 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	doc := input.document[i]
-	databricks := doc.resource["azurerm_databricks_workspace"][name]
+	resource := input.document[i].resource["azurerm_databricks_workspace"][name]
 
-	results := get_results(databricks, name)
+	results := get_results(resource, name)
 
 	result := {
 		"documentId": doc.id,
 		"resourceType": "azurerm_databricks_workspace",
-		"resourceName": tf_lib.get_resource_name(databricks, name),
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": results.searchKey,
 		"issueType": results.issueType,
 		"keyExpectedValue": results.keyExpectedValue,
