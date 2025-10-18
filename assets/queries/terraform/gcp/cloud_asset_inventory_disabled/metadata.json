@@ -1,0 +1,14 @@
+{
+  "id": "4f60da73-190e-4048-8e1d-cc5a3974cd15",
+  "queryName": "Beta - Cloud Asset Inventory Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "The 'google_project_service.service' field must include 'cloudasset.googleapis.com' to allow Cloud Asset Inventory",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_service#service-1",
+  "platform": "Terraform",
+  "descriptionID": "4f60da73",
+  "cloudProvider": "gcp",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
