@@ -4,15 +4,14 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	doc := input.document[i]
-	project := doc.resource["google_project_service"][name]
+	resource := input.document[i].resource["google_project_service"][name]
 
-	not service_includes_cloudasset(project.service, project, doc)
+	not service_includes_cloudasset(resource.service, resource, input.document[i])
 
 	result := {
-		"documentId": doc.id,
+		"documentId": input.document[i].id,
 		"resourceType": "google_project_service",
-		"resourceName": tf_lib.get_resource_name(project, name),
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_project_service[%s].service", [name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_project_service[%s].service' should contain or be equal to 'cloudasset.googleapis.com'", [name]),
