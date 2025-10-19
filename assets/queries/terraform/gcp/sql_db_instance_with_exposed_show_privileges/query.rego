@@ -32,8 +32,9 @@ get_results(resource, name) = results {
 		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be set 'skip_show_database' to 'on'", [name]),
 		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name], []),
-		"remediation": null,
-		"remediationType": null
+		"remediation": "settings { database_flags = [{ name = \"skip_show_database\", value = \"on\" }] }",
+		"remediationType": "addition"
+
 	}
 } else = results {
 	not common_lib.valid_key(resource.settings, "database_flags")
@@ -44,8 +45,8 @@ get_results(resource, name) = results {
 		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be set 'skip_show_database' to 'on'", [name]),
 		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings"], []),
-		"remediation": null,
-		"remediationType": null
+		"remediation": "database_flags = [{ name = \"skip_show_database\", value = \"on\" }]",
+		"remediationType": "addition"
 	}
 
 } else = results {
@@ -57,7 +58,7 @@ get_results(resource, name) = results {
 		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be set 'skip_show_database' to 'on'", [name]),
 		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' does not set 'skip_show_database'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags"], []),
-		"remediation": "database_flags {name = \"skip_show_database\", value = \"on\"}",
+		"remediation": "{name = \"skip_show_database\", value = \"on\"}",
 		"remediationType": "addition"
 	}
 
