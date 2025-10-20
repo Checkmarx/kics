@@ -27,7 +27,7 @@ get_results(resource, name) = results {
 	results := {
 		"searchKey": sprintf("google_sql_database_instance[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be set 'local_infile' to 'on'", [name]),
+		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be set 'local_infile' to 'off'", [name]),
 		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name], [])
 
@@ -38,7 +38,7 @@ get_results(resource, name) = results {
 	results := {
 		"searchKey": sprintf("google_sql_database_instance[%s].settings", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be set 'local_infile' to 'on'", [name]),
+		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be set 'local_infile' to 'off'", [name]),
 		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings"], [])
 	}
@@ -49,19 +49,19 @@ get_results(resource, name) = results {
 	results := {
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.database_flags", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be set 'local_infile' to 'on'", [name]),
+		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be set 'local_infile' to 'off'", [name]),
 		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' does not set 'local_infile'", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags"], [])
 	}
 
 } else = results {
 	resource.settings.database_flags[x].name == "local_infile"
-	resource.settings.database_flags[x].value != "on"
+	resource.settings.database_flags[x].value != "off"
 
 	results := {
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.database_flags[%s]", [name, x]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be set 'local_infile' to 'on'", [name]),
+		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be set 'local_infile' to 'off'", [name]),
 		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' sets 'local_infile' to '%s'", [name, resource.settings.database_flags[x].value]),
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", x], [])
 	}
