@@ -33,7 +33,9 @@ resource "google_sql_database_instance" "positive_4" {
 
   settings {
     database_flags = [
-      { name = "log_connections", value = "off" }  # Flag is not set to "on"
+      { name = "sample_flag1", value = "off" },
+      { name = "log_connections", value = "off" },  # Flag is not set to "on"
+      { name = "sample_flag2", value = "off" }
     ]
   }
 }
