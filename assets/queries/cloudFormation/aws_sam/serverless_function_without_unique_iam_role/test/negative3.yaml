@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Functions with same event types - should NOT be flagged
+
+Resources:
+  Function1:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs12.x
+      Role: arn:aws:iam::123456789012:role/shared-api-role
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: get
+
+  Function2:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler2
+      Runtime: nodejs12.x
+      Role: arn:aws:iam::123456789012:role/shared-api-role
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /world
+            Method: post

@@ -1,0 +1,94 @@
+# These should NOT be flagged - legitimate system components and test resources
+
+# Legitimate system DaemonSet in kube-system
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: kube-proxy
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      k8s-app: kube-proxy
+  template:
+    metadata:
+      labels:
+        k8s-app: kube-proxy
+    spec:
+      containers:
+      - name: kube-proxy
+        image: k8s.gcr.io/kube-proxy:v1.21.0
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+
+---
+# Legitimate system service in kube-system
+apiVersion: v1
+kind: Service
+metadata:
+  name: coredns
+  namespace: kube-system
+spec:
+  selector:
+    k8s-app: kube-dns
+  ports:
+  - port: 53
+
+---
+# Simple test pod in default namespace
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-nginx
+  namespace: default
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+
+---
+# System ConfigMap in kube-system
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns
+  namespace: kube-system
+data:
+  Corefile: |
+    .:53 {
+        errors
+        health
+    }
+
+---
+# Development resource with dev labels
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-app
+  labels:
+    environment: dev
+    app: demo
+spec:
+  containers:
+  - name: app
+    image: nginx:latest
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
