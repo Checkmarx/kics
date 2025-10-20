@@ -33,7 +33,12 @@ resource "google_sql_database_instance" "positive_4" {
 
   settings {
     database_flags = [
-      { name = "skip_show_database", value = "off" }  # Flag is not set to "on"
+      { name = "skip_show_database1", value = "off" },  # Flag is not set to "on"
+      { name = "skip_show_database2", value = "off" },  # Flag is not set to "on"
+      { name = "skip_show_database3", value = "off" },  # Flag is not set to "on"
+      { name = "skip_show_database", value = "off" },  # Flag is not set to "on"
+      { name = "skip_show_database4", value = "off" },  # Flag is not set to "on"
+      { name = "skip_show_database5", value = "off" }  # Flag is not set to "on"
     ]
   }
 }
