@@ -7,7 +7,6 @@ CxPolicy[result] {
 	types := ["azurerm_mssql_firewall_rule","azurerm_sql_firewall_rule", "azurerm_mariadb_firewall_rule", "azurerm_postgresql_firewall_rule", "azurerm_postgresql_flexible_server_firewall_rule", "azurerm_mysql_flexible_server_firewall_rule"]
 	resource := input.document[i].resource[types[i2]][name]
 	results := low_abs_difference_or_both_unspecified(resource.start_ip_address ,resource.end_ip_address)
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -38,4 +37,4 @@ low_abs_difference_or_both_unspecified(start_range, end_range) = results {
 		"expected_value" : "The difference between the value of the 'end_ip_address' and 'start_ip_address' should be less than 256",
 		"actual_value" : "The difference between the value of the 'end_ip_address' and 'start_ip_address' is greater than or equal to 256"
 	}
-} else = ""
+}

@@ -8,5 +8,6 @@
   "platform": "Pulumi",
   "descriptionID": "5feb747f",
   "cloudProvider": "aws",
-  "cwe": "778"
+  "cwe": "778",
+  "riskScore": "5.1"
 }
