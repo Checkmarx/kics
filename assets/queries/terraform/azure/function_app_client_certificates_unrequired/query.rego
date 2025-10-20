@@ -13,7 +13,7 @@ CxPolicy[result] {
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": types[t],
-		"resourceName": tf_lib.get_resource_name(function, name),
+		"resourceName": tf_lib.get_resource_name(function, name), 
 		"searchKey": results.searchKey,
 		"issueType": results.issueType,
 		"keyExpectedValue": results.keyExpectedValue,
@@ -37,7 +37,7 @@ client_certificate_not_required(function,name,type) = results {
 		"remediation": sprintf("%s = \"Required\"",[field_name]),
 		"remediationType": "addition",
 	}
-
+	
 } else = results {
 	field_name = get_field(type)
 	function[field_name] != "Required"
@@ -56,6 +56,6 @@ client_certificate_not_required(function,name,type) = results {
 	}
 }
 
-get_field("azurerm_function_app")         = "client_cert_mode"
+get_field("azurerm_function_app")         = "client_cert_mode" 
 get_field("azurerm_linux_function_app")   = "client_certificate_mode"
 get_field("azurerm_windows_function_app") = "client_certificate_mode"
