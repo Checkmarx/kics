@@ -8,5 +8,6 @@
   "platform": "CloudFormation",
   "descriptionID": "ec506916",
   "cloudProvider": "aws",
-  "cwe": "668"
+  "cwe": "668",
+  "riskScore": "5.2"
 }

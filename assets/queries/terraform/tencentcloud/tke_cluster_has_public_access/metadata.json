@@ -1,6 +1,6 @@
 {
   "id": "df6928ed-02f4-421f-9a67-a529860dd7e7",
-  "queryName": "Beta - TKE Cluster Has Public Access",
+  "queryName": "TKE Cluster Has Public Access",
   "severity": "MEDIUM",
   "category": "Insecure Configurations",
   "descriptionText": "TKE Cluster 'public_ip_assigned' should be set to false",
@@ -8,5 +8,6 @@
   "platform": "Terraform",
   "descriptionID": "6570e731",
   "cloudProvider": "tencentcloud",
-  "cwe": "732"
+  "cwe": "732",
+  "riskScore": "5.2"
 }

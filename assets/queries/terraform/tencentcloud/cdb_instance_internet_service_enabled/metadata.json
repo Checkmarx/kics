@@ -1,6 +1,6 @@
 {
   "id": "5d820574-4a60-4916-b049-0810b8629731",
-  "queryName": "Beta - CDB Instance Internet Service Enabled",
+  "queryName": "CDB Instance Internet Service Enabled",
   "severity": "HIGH",
   "category": "Insecure Configurations",
   "descriptionText": "CDB Instance Internet should have internet service disabled",
@@ -8,5 +8,6 @@
   "platform": "Terraform",
   "descriptionID": "2d49b723",
   "cloudProvider": "tencentcloud",
-  "cwe": "284"
+  "cwe": "284",
+  "riskScore": "7.8"
 }

@@ -14,7 +14,6 @@ CxPolicy[result] { # resources
 	statement := st[st_index]
 	common_lib.is_allow_effect(statement)
     illegal_action := is_illegal(statement.Action)
-	illegal_action != "none"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -38,7 +37,6 @@ CxPolicy[result] { # modules
 	statement := st[st_index]
 	common_lib.is_allow_effect(statement)
 	illegal_action := is_illegal(statement.Action)
-	illegal_action != "none"
 
 	result := {
 		"documentId": input.document[i].id,
@@ -60,7 +58,7 @@ CxPolicy[result] { # data source
 	res := prepare_issue_data_source(statement_array.value[index], name, index, statement_array.is_unique_element)
 
 	result := {
-		"documentId": input.document[i].id, 
+		"documentId": input.document[i].id,
 		"resourceType": "aws_iam_policy_document",
 		"resourceName": name,
 		"searchKey": res["sk"],
@@ -76,7 +74,6 @@ prepare_issue_data_source(statement, name, index, is_unique_element) = res {
 	not is_unique_element
 	common_lib.is_allow_effect(statement)
     illegal_action := is_illegal(statement.actions)
-	illegal_action != "none"
 
 	res := {
 		"sk": sprintf("aws_iam_policy_document[%s].statement[%d].actions", [name, index]),
@@ -89,7 +86,6 @@ prepare_issue_data_source(statement, name, index, is_unique_element) = res {
 	is_unique_element
 	common_lib.is_allow_effect(statement)
 	illegal_action := is_illegal(statement.actions)
-	illegal_action != "none"
 
 	res := {
 		"sk": sprintf("aws_iam_policy_document[%s].statement.actions", [name]),
@@ -98,7 +94,7 @@ prepare_issue_data_source(statement, name, index, is_unique_element) = res {
 		"sl": common_lib.build_search_line(["data", "aws_iam_policy_document", name, "statement", "actions"], []),
 		"sv": sprintf("%s", [illegal_action]),
 	}
-} else = ""
+}
 
 get_as_list(statements) = result {
 	is_array(statements)
@@ -124,4 +120,4 @@ is_illegal(Action) = Action {
 	]
 	res := concat(", ", illegal_actions_list)
 	res != ""
-} else = "none"
+}
