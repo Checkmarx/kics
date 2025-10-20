@@ -33,7 +33,9 @@ resource "google_sql_database_instance" "positive_4" {
 
   settings {
     database_flags = [
-      { name = "skip_show_database", value = "off" }  # Flag is not set to "off"
+      { name = "sample_flag1", value = "on" },
+      { name = "local_infile", value = "on" },  # Flag is not set to "off"
+      { name = "sample_flag2", value = "on" }
     ]
   }
 }

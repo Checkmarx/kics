@@ -17,6 +17,6 @@
   {
     "queryName": "Beta - SQL DB Instance With Local Data Loading Enabled",
     "severity": "MEDIUM",
-    "line": 35
+    "line": 37
   }
 ]

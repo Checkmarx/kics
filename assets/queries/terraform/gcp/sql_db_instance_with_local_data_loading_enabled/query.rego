@@ -59,11 +59,11 @@ get_results(resource, name) = results {
 	resource.settings.database_flags[x].value != "off"
 
 	results := {
-		"searchKey": sprintf("google_sql_database_instance[%s].settings.database_flags[%s]", [name, x]),
+		"searchKey": sprintf("google_sql_database_instance[%s].settings.database_flags[%d].name", [name, x]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be defined and set 'local_infile' to 'off'", [name]),
 		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' sets 'local_infile' to '%s'", [name, resource.settings.database_flags[x].value]),
-		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", x], [])
+		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", x, "name"], [])
 	}
 }
 
