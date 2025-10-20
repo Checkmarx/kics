@@ -1,0 +1,13 @@
+{
+  "id": "0498d7af-fdc5-4505-b1cb-6ff8209fbafa",
+  "queryName": "Beta - Critical Data Is Encrypted With CMK",
+  "severity": "MEDIUM",
+  "category": "Encryption",
+  "descriptionText": "Ensure critical data is encrypted with Customer Managed Keys (CMK)",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account#key_vault_key_id-1",
+  "platform": "Terraform",
+  "descriptionID": "0498d7af",
+  "cloudProvider": "azure",
+  "cwe": "311",
+  "riskScore": "6.0"
+}
