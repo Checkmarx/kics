@@ -1,25 +1,25 @@
 [
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 30,
     "filename": "positive1.tf"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 38,
     "filename": "positive2.tf"
   },
     {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 12,
     "fileName": "positive3.tf"
   },
   {
     "queryName": "Default Azure Storage Account Network Access Is Too Permissive",
-    "severity": "MEDIUM",
+    "severity": "HIGH",
     "line": 6,
     "fileName": "positive4.tf"
   }

@@ -5,10 +5,9 @@ import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
     load_balancer := get_load_balancer(input.document[i].resource)
-    load_balancer != ""
     resource := input.document[i].resource[load_balancer][name]
 
-    not common_lib.valid_key(resource, "access_logs")  
+    not common_lib.valid_key(resource, "access_logs")
 
     result := {
         "documentId": input.document[i].id,
@@ -24,10 +23,9 @@ CxPolicy[result] {
 
 CxPolicy[result] {
     load_balancer := get_load_balancer(input.document[i].resource)
-    load_balancer != ""
     resource := input.document[i].resource[load_balancer][name]
 
-    not common_lib.valid_key(resource.access_logs, "enabled")  
+    not common_lib.valid_key(resource.access_logs, "enabled")
 
     result := {
         "documentId": input.document[i].id,
@@ -43,7 +41,6 @@ CxPolicy[result] {
 
 CxPolicy[result] {
     load_balancer := get_load_balancer(input.document[i].resource)
-    load_balancer != ""
     resource := input.document[i].resource[load_balancer][name]
 
     resource.access_logs.enabled != true
@@ -66,5 +63,5 @@ get_load_balancer(resource) = lb {
 } else = lb {
     common_lib.valid_key(resource,"aws_alb")
     lb = "aws_alb"
-} else = ""
+}
 
