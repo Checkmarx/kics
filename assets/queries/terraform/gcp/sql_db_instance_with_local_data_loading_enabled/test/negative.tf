@@ -21,3 +21,18 @@ resource "google_sql_database_instance" "negative_2" {
     ]
   }
 }
+
+resource "google_sql_database_instance" "negative_3" { # Single object support test
+  name             = "mysql-instance-with-flag"
+  database_version = "MYSQL_8_0"
+  region           = "us-central1"
+
+  settings {
+    tier = "db-f1-micro"
+
+    database_flags {
+      name = "local_infile"
+      value = "off"
+      }   # Has flag set to "off"
+  }
+}
