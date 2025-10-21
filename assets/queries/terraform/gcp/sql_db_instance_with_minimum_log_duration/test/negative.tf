@@ -47,7 +47,7 @@ resource "google_sql_database_instance" "negative_2" {
     tier = "db-f1-micro"
 
     database_flags = [
-      { name = "log_min_duration_statement", value = "-1" },   # Has flag set to "on"
+      { name = "log_min_duration_statement", value = "-1" },   # Has flag set to "-1"
     ]
   }
 }
