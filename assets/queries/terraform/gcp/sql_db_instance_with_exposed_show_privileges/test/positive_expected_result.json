@@ -18,5 +18,10 @@
     "queryName": "Beta - SQL DB Instance With Exposed Show Privileges",
     "severity": "MEDIUM",
     "line": 37
+  },
+  {
+    "queryName": "Beta - SQL DB Instance With Exposed Show Privileges",
+    "severity": "MEDIUM",
+    "line": 50
   }
 ]

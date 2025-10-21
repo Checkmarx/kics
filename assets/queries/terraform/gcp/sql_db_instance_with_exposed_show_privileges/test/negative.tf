@@ -17,7 +17,23 @@ resource "google_sql_database_instance" "negative_2" {
     tier = "db-f1-micro"
 
     database_flags = [
+      { name = "sample_flag1", value = "off" },
       { name = "skip_show_database", value = "on" },   # Has flag set to "on"
     ]
+  }
+}
+
+resource "google_sql_database_instance" "negative_3" { # Single object support test
+  name             = "mysql-instance-with-flag"
+  database_version = "MYSQL_8_0"
+  region           = "us-central1"
+
+  settings {
+    tier = "db-f1-micro"
+
+    database_flags {
+      name = "skip_show_database"
+      value = "on"
+      }   # Has flag set to "on"
   }
 }
