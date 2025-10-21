@@ -26,7 +26,6 @@ get_results(resource,doc,name) = results {
 	results := does_not_have_valid_stage_name(resource,doc,name)
 } else = results {
 	r2 := does_not_have_valid_stage_name(resource,doc,name)
-	r2 != ""
 	results := does_not_have_valid_destination_arn(resource,doc,name)
 }
 
