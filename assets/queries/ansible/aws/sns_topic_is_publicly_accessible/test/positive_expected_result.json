@@ -8,7 +8,7 @@
 	{
 		"queryName": "SNS Topic is Publicly Accessible",
 		"severity": "CRITICAL",
-		"line": 50,
+		"line": 52,
 		"fileName": "positive.yaml"
 	}
 ]
