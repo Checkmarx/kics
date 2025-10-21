@@ -1,13 +1,13 @@
 [
   {
     "queryName": "Beta - Key Vault Purge Protection Is Enabled",
-    "severity": "",
+    "severity": "HIGH",
     "line": 8,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "Beta - Key Vault Purge Protection Is Enabled",
-    "severity": "",
+    "severity": "HIGH",
     "line": 1,
     "fileName": "positive2.tf"
   }
