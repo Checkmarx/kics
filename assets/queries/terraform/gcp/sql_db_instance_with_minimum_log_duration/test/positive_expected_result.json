@@ -2,21 +2,6 @@
   {
     "queryName": "Beta - SQL DB Instance With Minimum Log Duration",
     "severity": "MEDIUM",
-    "line": 1
-  },
-  {
-    "queryName": "Beta - SQL DB Instance With Minimum Log Duration",
-    "severity": "MEDIUM",
-    "line": 14
-  },
-  {
-    "queryName": "Beta - SQL DB Instance With Minimum Log Duration",
-    "severity": "MEDIUM",
-    "line": 23
-  },
-  {
-    "queryName": "Beta - SQL DB Instance With Minimum Log Duration",
-    "severity": "MEDIUM",
-    "line": 37
+    "line": 9
   }
 ]
