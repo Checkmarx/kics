@@ -1,6 +1,6 @@
 {
   "id": "b4e75c5c-83d5-4568-90e3-57ed5ec4051b",
-  "queryName": "Beta - CVM Instance Using Default VPC",
+  "queryName": "CVM Instance Using Default VPC",
   "severity": "LOW",
   "category": "Networking and Firewall",
   "descriptionText": "CVM Instances should not be configured under a default VPC network",
