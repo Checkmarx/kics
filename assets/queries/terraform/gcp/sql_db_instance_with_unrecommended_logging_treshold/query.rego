@@ -7,61 +7,16 @@ CxPolicy[result] {
 	resource := input.document[i].resource.google_sql_database_instance[name]
 
 	contains(resource.database_version, "POSTGRES")
-	results := get_results(resource, name)
+	resource.settings.database_flags[x].name  == "log_min_messages"
+	not common_lib.inArray(["WARNING", "ERROR", "LOG", "FATAL", "PANIC"], resource.settings.database_flags[x].value)
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "google_sql_database_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": results.searchKey,
-		"issueType": results.issueType,
-		"keyExpectedValue": results.keyExpectedValue,
-		"keyActualValue": results.keyActualValue,
-		"searchLine": results.searchLine
-	}
-}
-
-get_results(resource, name) = results {
-	not common_lib.valid_key(resource, "settings")
-
-	results := {
-		"searchKey": sprintf("google_sql_database_instance[%s]", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be defined and set 'log_min_messages' to 'WARNING' or a higher severity", [name]),
-		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings' is undefined or null", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name], [])
-
-	}
-} else = results {
-	not common_lib.valid_key(resource.settings, "database_flags")
-
-	results := {
-		"searchKey": sprintf("google_sql_database_instance[%s].settings", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be defined and set 'log_min_messages' to 'WARNING' or a higher severity", [name]),
-		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' is undefined or null", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings"], [])
-	}
-
-} else = results {
-	not has_flag(resource.settings.database_flags)
-
-	results := {
-		"searchKey": sprintf("google_sql_database_instance[%s].settings.database_flags", [name]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be defined and set 'log_min_messages' to 'WARNING' or a higher severity", [name]),
-		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' does not set 'log_min_messages'", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags"], [])
-	}
-
-} else = results {
-	resource.settings.database_flags[x].name  == "log_min_messages"
-	not common_lib.inArray(["WARNING", "ERROR", "LOG", "FATAL", "PANIC"], resource.settings.database_flags[x].value)
-
-	results := {
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.database_flags[%d].name", [name, x]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be defined and set 'log_min_messages' to 'WARNING' or a higher severity", [name]),
+		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should set 'log_min_messages' to 'WARNING' or a higher severity", [name]),
 		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' sets 'log_min_messages' to '%s'", [name, resource.settings.database_flags[x].value]),
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", x, "name"], [])
 	}

@@ -9,43 +9,29 @@ resource "google_sql_database_instance" "negative_1" {
 }
 
 resource "google_sql_database_instance" "negative_2" {
-  name             = "mysql-instance-with-flag"
-  database_version = "POSTGRES_15"
+  name             = "mysql-instance-without-flag"
+  database_version = "POSTGRES_17"
   region           = "us-central1"
 
-  settings {
-    tier = "db-f1-micro"
-
-    database_flags = [
-      { name = "log_min_messages", value = "WARNING" },   # Has flag set to "WARNING"
-    ]
-  }
+  # Defaults to "ERROR"
 }
 
 resource "google_sql_database_instance" "negative_3" {
-  name             = "mysql-instance-with-flag"
-  database_version = "POSTGRES_15"
+  name             = "postgres-instance-without-flag"
+  database_version = "POSTGRES_16"
   region           = "us-central1"
 
-  settings {
-    tier = "db-f1-micro"
-
-    database_flags = [
-      { name = "log_min_messages", value = "ERROR" },   # Has flag set to "ERROR"
-    ]
-  }
+  settings {}  # Defaults to "ERROR"
 }
 
 resource "google_sql_database_instance" "negative_4" {
-  name             = "mysql-instance-with-flag"
+  name             = "postgres-instance-without-flag"
   database_version = "POSTGRES_15"
   region           = "us-central1"
 
   settings {
-    tier = "db-f1-micro"
-
     database_flags = [
-      { name = "log_min_messages", value = "LOG" },   # Has flag set to "LOG"
+      # Defaults to "ERROR"
     ]
   }
 }
@@ -59,12 +45,54 @@ resource "google_sql_database_instance" "negative_5" {
     tier = "db-f1-micro"
 
     database_flags = [
-      { name = "log_min_messages", value = "FATAL" },   # Has flag set to "FATAL"
+      { name = "log_min_messages", value = "WARNING" },   # Has flag set to "WARNING"
     ]
   }
 }
 
 resource "google_sql_database_instance" "negative_6" {
+  name             = "mysql-instance-with-flag"
+  database_version = "POSTGRES_15"
+  region           = "us-central1"
+
+  settings {
+    tier = "db-f1-micro"
+
+    database_flags = [
+      { name = "log_min_messages", value = "ERROR" },   # Has flag set to "ERROR"
+    ]
+  }
+}
+
+resource "google_sql_database_instance" "negative_7" {
+  name             = "mysql-instance-with-flag"
+  database_version = "POSTGRES_15"
+  region           = "us-central1"
+
+  settings {
+    tier = "db-f1-micro"
+
+    database_flags = [
+      { name = "log_min_messages", value = "LOG" },   # Has flag set to "LOG"
+    ]
+  }
+}
+
+resource "google_sql_database_instance" "negative_8" {
+  name             = "mysql-instance-with-flag"
+  database_version = "POSTGRES_15"
+  region           = "us-central1"
+
+  settings {
+    tier = "db-f1-micro"
+
+    database_flags = [
+      { name = "log_min_messages", value = "FATAL" },   # Has flag set to "FATAL"
+    ]
+  }
+}
+
+resource "google_sql_database_instance" "negative_9" {
   name             = "mysql-instance-with-flag"
   database_version = "POSTGRES_15"
   region           = "us-central1"
