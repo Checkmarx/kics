@@ -78,7 +78,7 @@ resource "google_sql_database_instance" "negative_7" {
   }
 }
 
-resource "google_sql_database_instance" "negative_8" {
+resource "google_sql_database_instance" "negative_8" { # Single object support test
   name             = "mysql-instance-with-flag"
   database_version = "POSTGRES_15"
   region           = "us-central1"
@@ -86,8 +86,9 @@ resource "google_sql_database_instance" "negative_8" {
   settings {
     tier = "db-f1-micro"
 
-    database_flags = [
-      { name = "log_min_error_statement", value = "PANIC" },   # Has flag set to "PANIC"
-    ]
+    database_flags {
+      name = "log_min_error_statement"
+      value = "PANIC"
+      }   # Has flag set to "PANIC"
   }
 }

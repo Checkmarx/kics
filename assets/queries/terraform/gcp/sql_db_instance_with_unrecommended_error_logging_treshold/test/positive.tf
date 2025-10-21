@@ -23,3 +23,16 @@ resource "google_sql_database_instance" "positive_2" {
     ]
   }
 }
+
+resource "google_sql_database_instance" "positive_3" {    # Single object support test
+  name             = "postgres-instance-with-flag"
+  database_version = "POSTGRES_13"
+  region           = "us-central1"
+
+  settings {
+    database_flags {
+     name = "log_min_error_statement"
+     value = "DEBUG4"   # Flag is set to "DEBUG4"
+    }
+  }
+}
