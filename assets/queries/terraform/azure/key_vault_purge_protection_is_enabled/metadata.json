@@ -1,7 +1,7 @@
 {
   "id": "cec6e005-9309-46eb-b34b-456f6eae818b",
   "queryName": "Beta - Key Vault Purge Protection Is Enabled",
-  "severity": "HIGH",
+  "severity": "MEDIUM",
   "category": "Backup",
   "descriptionText": "Deleting an Azure Key Vault without purge protection enabled can cause permanent loss of keys, secrets, and certificates, leading to unrecoverable data loss and disruption of dependent services.",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault",
