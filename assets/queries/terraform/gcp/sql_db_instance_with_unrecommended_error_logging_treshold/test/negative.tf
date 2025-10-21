@@ -9,6 +9,34 @@ resource "google_sql_database_instance" "negative_1" {
 }
 
 resource "google_sql_database_instance" "negative_2" {
+  name             = "mysql-instance-without-flag"
+  database_version = "POSTGRES_17"
+  region           = "us-central1"
+
+  # Defaults to "ERROR"
+}
+
+resource "google_sql_database_instance" "negative_3" {
+  name             = "postgres-instance-without-flag"
+  database_version = "POSTGRES_16"
+  region           = "us-central1"
+
+  settings {}  # Defaults to "ERROR"
+}
+
+resource "google_sql_database_instance" "negative_4" {
+  name             = "postgres-instance-without-flag"
+  database_version = "POSTGRES_15"
+  region           = "us-central1"
+
+  settings {
+    database_flags = [
+      # Defaults to "ERROR"
+    ]
+  }
+}
+
+resource "google_sql_database_instance" "negative_5" {
   name             = "mysql-instance-with-flag"
   database_version = "POSTGRES_15"
   region           = "us-central1"
@@ -22,7 +50,7 @@ resource "google_sql_database_instance" "negative_2" {
   }
 }
 
-resource "google_sql_database_instance" "negative_3" {
+resource "google_sql_database_instance" "negative_6" {
   name             = "mysql-instance-with-flag"
   database_version = "POSTGRES_15"
   region           = "us-central1"
@@ -36,7 +64,7 @@ resource "google_sql_database_instance" "negative_3" {
   }
 }
 
-resource "google_sql_database_instance" "negative_4" {
+resource "google_sql_database_instance" "negative_7" {
   name             = "mysql-instance-with-flag"
   database_version = "POSTGRES_15"
   region           = "us-central1"
@@ -50,7 +78,7 @@ resource "google_sql_database_instance" "negative_4" {
   }
 }
 
-resource "google_sql_database_instance" "negative_5" {
+resource "google_sql_database_instance" "negative_8" {
   name             = "mysql-instance-with-flag"
   database_version = "POSTGRES_15"
   region           = "us-central1"
