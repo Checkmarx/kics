@@ -4,15 +4,14 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	doc := input.document[i]
-	dns := doc.resource["google_dns_policy"][name]
+	resource := input.document[i].resource.google_dns_policy[name]
 
-	results := get_results(dns, name)
+	results := get_results(resource, name)
 
 	result := {
-		"documentId": doc.id,
+		"documentId": input.document[i].id,
 		"resourceType": "google_dns_policy",
-		"resourceName": tf_lib.get_resource_name(dns, name),
+		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": results.searchKey,
 		"issueType": results.issueType,
 		"keyExpectedValue": results.keyExpectedValue,
@@ -28,7 +27,7 @@ get_results(dns, name) = results {
 	results := {
 		"searchKey": sprintf("google_dns_policy[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'google_dns_policy[%s].enable_logging' should be defined and not null", [name]),
+		"keyExpectedValue": sprintf("'google_dns_policy[%s].enable_logging' should be defined and set to true", [name]),
 		"keyActualValue": sprintf("'google_dns_policy[%s].enable_logging' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "google_dns_policy", name], [])
 	}
