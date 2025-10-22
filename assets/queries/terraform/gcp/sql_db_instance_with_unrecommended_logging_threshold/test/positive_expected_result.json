@@ -1,16 +1,16 @@
 [
   {
-    "queryName": "Beta - SQL DB Instance With Unrecommended Logging Treshold",
+    "queryName": "Beta - SQL DB Instance With Unrecommended Logging Threshold",
     "severity": "LOW",
     "line": 9
   },
   {
-    "queryName": "Beta - SQL DB Instance With Unrecommended Logging Treshold",
+    "queryName": "Beta - SQL DB Instance With Unrecommended Logging Threshold",
     "severity": "LOW",
     "line": 22
   },
   {
-    "queryName": "Beta - SQL DB Instance With Unrecommended Logging Treshold",
+    "queryName": "Beta - SQL DB Instance With Unrecommended Logging Threshold",
     "severity": "LOW",
     "line": 34
   }
