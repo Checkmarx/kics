@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"searchKey": results.searchKey,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should set 'log_min_messages' to 'WARNING' or a higher severity", [name]),
-		"keyActualValue": results.keyActualValue,
+		"keyActualValue" : sprintf("'google_sql_database_instance[%s].settings.database_flags' sets 'log_min_messages' to '%s'", [name, results.value]),
 		"searchLine": results.searchLine
 	}
 }
@@ -27,8 +27,8 @@ get_results(resource, name) = results {  # array
 
 	results := {
 		"searchKey" : sprintf("google_sql_database_instance[%s].settings.database_flags[%d].name", [name, x]),
-		"keyActualValue" : sprintf("'google_sql_database_instance[%s].settings.database_flags' sets 'log_min_messages' to '%s'", [name, resource.settings.database_flags[x].value]),
-		"searchLine" : common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", x, "name"], [])
+		"searchLine" : common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", x, "name"], []),
+		"value" : resource.settings.database_flags[x].value
 	}
 } else = results { # single object
 	resource.settings.database_flags.name  == "log_min_messages"
@@ -36,7 +36,7 @@ get_results(resource, name) = results {  # array
 
 	results := {
 		"searchKey" : sprintf("google_sql_database_instance[%s].settings.database_flags.name", [name]),
-		"keyActualValue" : sprintf("'google_sql_database_instance[%s].settings.database_flags' sets 'log_min_messages' to '%s'", [name, resource.settings.database_flags.value]),
-		"searchLine" : common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", "name"], [])
+		"searchLine" : common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", "name"], []),
+		"value" : resource.settings.database_flags.value
 	}
 }
