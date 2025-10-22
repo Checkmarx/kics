@@ -3,5 +3,10 @@
     "queryName": "Beta - SQL DB Instance With Minimum Log Duration",
     "severity": "MEDIUM",
     "line": 9
+  },
+  {
+    "queryName": "Beta - SQL DB Instance With Minimum Log Duration",
+    "severity": "MEDIUM",
+    "line": 22
   }
 ]

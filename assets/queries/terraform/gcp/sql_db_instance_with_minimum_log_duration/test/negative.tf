@@ -10,7 +10,7 @@ resource "google_sql_database_instance" "negative_1" {
   }
 }
 
-resource "google_sql_database_instance" "positive_1" {
+resource "google_sql_database_instance" "negative_2" {
   name             = "mysql-instance-without-flag"
   database_version = "POSTGRES_17"
   region           = "us-central1"
@@ -18,7 +18,7 @@ resource "google_sql_database_instance" "positive_1" {
   # Default value is -1
 }
 
-resource "google_sql_database_instance" "positive_2" {
+resource "google_sql_database_instance" "negative_3" {
   name             = "postgres-instance-without-flag"
   database_version = "POSTGRES_16"
   region           = "us-central1"
@@ -26,7 +26,7 @@ resource "google_sql_database_instance" "positive_2" {
   settings {}  # Default value is -1
 }
 
-resource "google_sql_database_instance" "positive_3" {
+resource "google_sql_database_instance" "negative_4" {
   name             = "postgres-instance-without-flag"
   database_version = "POSTGRES_15"
   region           = "us-central1"
@@ -38,7 +38,7 @@ resource "google_sql_database_instance" "positive_3" {
   }
 }
 
-resource "google_sql_database_instance" "negative_2" {
+resource "google_sql_database_instance" "negative_5" {
   name             = "mysql-instance-with-flag"
   database_version = "POSTGRES_15"
   region           = "us-central1"
@@ -49,5 +49,20 @@ resource "google_sql_database_instance" "negative_2" {
     database_flags = [
       { name = "log_min_duration_statement", value = "-1" },   # Has flag set to "-1"
     ]
+  }
+}
+
+resource "google_sql_database_instance" "negative_6" { # Single object support test
+  name             = "mysql-instance-with-flag"
+  database_version = "POSTGRES_15"
+  region           = "us-central1"
+
+  settings {
+    tier = "db-f1-micro"
+
+    database_flags {
+      name = "log_min_duration_statement"
+      value = "-1"
+      }   # Has flag set to "-1"
   }
 }
