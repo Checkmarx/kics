@@ -45,12 +45,16 @@ resource "google_sql_database_instance" "negative_5" {
     tier = "db-f1-micro"
 
     database_flags = [
-      { name = "log_min_messages", value = "WARNING" },   # Has flag set to "WARNING"
+      { name = "log_min_messages", value = "WARNING" },   # Has flag set to "WARNING" (minimum)
+      { name = "log_min_messages", value = "ERROR" },     # Has flag set to "ERROR"
+      { name = "log_min_messages", value = "LOG" },       # Has flag set to "LOG"
+      { name = "log_min_messages", value = "FATAL" },     # Has flag set to "FATAL"
+      { name = "log_min_messages", value = "PANIC" },     # Has flag set to "PANIC"
     ]
   }
 }
 
-resource "google_sql_database_instance" "negative_6" {
+resource "google_sql_database_instance" "negative_6" { # Single object support test 1
   name             = "mysql-instance-with-flag"
   database_version = "POSTGRES_15"
   region           = "us-central1"
@@ -58,13 +62,14 @@ resource "google_sql_database_instance" "negative_6" {
   settings {
     tier = "db-f1-micro"
 
-    database_flags = [
-      { name = "log_min_messages", value = "ERROR" },   # Has flag set to "ERROR"
-    ]
+    database_flags {
+       name = "log_min_messages"
+       value = "WARNING"
+       }   # Has flag set to "WARNING" (minimum)
   }
 }
 
-resource "google_sql_database_instance" "negative_7" {
+resource "google_sql_database_instance" "negative_7" { # Single object support test 2
   name             = "mysql-instance-with-flag"
   database_version = "POSTGRES_15"
   region           = "us-central1"
@@ -72,36 +77,9 @@ resource "google_sql_database_instance" "negative_7" {
   settings {
     tier = "db-f1-micro"
 
-    database_flags = [
-      { name = "log_min_messages", value = "LOG" },   # Has flag set to "LOG"
-    ]
-  }
-}
-
-resource "google_sql_database_instance" "negative_8" {
-  name             = "mysql-instance-with-flag"
-  database_version = "POSTGRES_15"
-  region           = "us-central1"
-
-  settings {
-    tier = "db-f1-micro"
-
-    database_flags = [
-      { name = "log_min_messages", value = "FATAL" },   # Has flag set to "FATAL"
-    ]
-  }
-}
-
-resource "google_sql_database_instance" "negative_9" {
-  name             = "mysql-instance-with-flag"
-  database_version = "POSTGRES_15"
-  region           = "us-central1"
-
-  settings {
-    tier = "db-f1-micro"
-
-    database_flags = [
-      { name = "log_min_messages", value = "PANIC" },   # Has flag set to "PANIC"
-    ]
+    database_flags {
+       name = "log_min_messages"
+       value = "PANIC"
+       }   # Has flag set to "PANIC"
   }
 }

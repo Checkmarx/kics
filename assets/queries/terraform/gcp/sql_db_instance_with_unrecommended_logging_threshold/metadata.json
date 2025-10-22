@@ -1,6 +1,6 @@
 {
   "id": "ecbbe763-95dc-47e6-8660-84ff751e5acf",
-  "queryName": "Beta - SQL DB Instance With Unrecommended Logging Treshold",
+  "queryName": "Beta - SQL DB Instance With Unrecommended Logging Threshold",
   "severity": "LOW",
   "category": "Observability",
   "descriptionText": "All 'google_sql_database_instance' resources based on POSTGRES should have the 'log_min_messages' flag set to 'WARNING' or a higher severity to prevent excessively logging",
