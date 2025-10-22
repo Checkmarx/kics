@@ -54,7 +54,7 @@ get_results(resource, name) = results {
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags"], [])
 	}
 
-} else = results {
+} else = results {  # array
 	resource.settings.database_flags[x].name == "log_connections"
 	resource.settings.database_flags[x].value != "on"
 
@@ -65,8 +65,21 @@ get_results(resource, name) = results {
 		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' sets 'log_connections' to '%s'", [name, resource.settings.database_flags[x].value]),
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", x, "name"], [])
 	}
+} else = results { # single object
+	resource.settings.database_flags.name == "log_connections"
+	resource.settings.database_flags.value != "on"
+
+	results := {
+		"searchKey": sprintf("google_sql_database_instance[%s].settings.database_flags.name", [name]),
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be defined and set 'log_connections' to 'on'", [name]),
+		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' sets 'log_connections' to '%s'", [name, resource.settings.database_flags.value]),
+		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", "name"], [])
+	}
 }
 
 has_flag(database_flags) {
 	database_flags[_].name == "log_connections"
+} else {
+	database_flags.name    == "log_connections"
 }
