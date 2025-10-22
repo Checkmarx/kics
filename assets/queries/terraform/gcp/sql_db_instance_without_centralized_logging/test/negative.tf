@@ -21,3 +21,18 @@ resource "google_sql_database_instance" "negative_2" {
     ]
   }
 }
+
+resource "google_sql_database_instance" "negative_3" {  # Single object support test
+  name             = "mysql-instance-with-flag"
+  database_version = "POSTGRES_15"
+  region           = "us-central1"
+
+  settings {
+    tier = "db-f1-micro"
+
+    database_flags {
+      name = "cloudsql.enable_pgaudit"
+      value = "on"
+      }   # Has flag set to "on"
+  }
+}
