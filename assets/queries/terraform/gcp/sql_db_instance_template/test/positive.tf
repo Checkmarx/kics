@@ -1,4 +1,4 @@
-resource "google_sql_database_instance" "positive_4" {
+resource "google_sql_database_instance" "positive_1" {
   name             = "sqlserver-instance-with-flag"
   database_version = "SQLSERVER_2017_EXPRESS"
   region           = "us-central1"
@@ -12,7 +12,7 @@ resource "google_sql_database_instance" "positive_4" {
   }
 }
 
-resource "google_sql_database_instance" "positive_5" { # Single object support test
+resource "google_sql_database_instance" "positive_2" { # Single object support test
   name             = "sqlserver-instance-with-flag"
   database_version = "SQLSERVER_2017_EXPRESS"
   region           = "us-central1"

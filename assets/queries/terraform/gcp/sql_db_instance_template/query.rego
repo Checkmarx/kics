@@ -14,9 +14,9 @@ CxPolicy[result] {
 		"resourceType": "google_sql_database_instance",
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": results.searchKey,
-		"issueType": results.issueType,
-		"keyExpectedValue": results.keyExpectedValue,
-		"keyActualValue": results.keyActualValue,
+		"issueType": "IncorrectValue",
+		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be defined and set 'cross db ownership chaining' to 'off'", [name]),
+		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' sets 'cross db ownership chaining' to '%s'", [name, results.value]),
 		"searchLine": results.searchLine
 	}
 }
@@ -27,10 +27,8 @@ get_results(resource, name) = results { # array
 
 	results := {
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.database_flags[%d].name", [name, x]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be defined and set 'cross db ownership chaining' to 'off'", [name]),
-		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' sets 'cross db ownership chaining' to '%s'", [name, resource.settings.database_flags[x].value]),
-		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", x, "name"], [])
+		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", x, "name"], []),
+		"value": resource.settings.database_flags[x].value
 	}
 } else = results { # single object
 	resource.settings.database_flags.name  == "cross db ownership chaining"
@@ -38,13 +36,7 @@ get_results(resource, name) = results { # array
 
 	results := {
 		"searchKey": sprintf("google_sql_database_instance[%s].settings.database_flags.name", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' should be defined and set 'cross db ownership chaining' to 'off'", [name]),
-		"keyActualValue": sprintf("'google_sql_database_instance[%s].settings.database_flags' sets 'cross db ownership chaining' to '%s'", [name, resource.settings.database_flags.value]),
-		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", "name"], [])
+		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", "name"], []),
+		"value": resource.settings.database_flags.value
 	}
-}
-
-has_flag(database_flags) {
-	database_flags[_].name == "cross db ownership chaining"
 }
