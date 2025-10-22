@@ -21,7 +21,7 @@ CxPolicy[result] {
 	}
 }
 
-get_results(resource, name) = results {
+get_results(resource, name) = results { # array
   resource.settings.database_flags[x].name  == "log_min_error_statement"
   not common_lib.inArray(["ERROR", "LOG", "FATAL", "PANIC"], resource.settings.database_flags[x].value)
 
@@ -30,7 +30,7 @@ get_results(resource, name) = results {
 		"searchLine": common_lib.build_search_line(["resource", "google_sql_database_instance", name, "settings", "database_flags", x, "name"], []),
 		"value" : resource.settings.database_flags[x].value
 	}
-} else = results {
+} else = results { # single object
   resource.settings.database_flags.name  == "log_min_error_statement"
   not common_lib.inArray(["ERROR", "LOG", "FATAL", "PANIC"], resource.settings.database_flags.value)
 
