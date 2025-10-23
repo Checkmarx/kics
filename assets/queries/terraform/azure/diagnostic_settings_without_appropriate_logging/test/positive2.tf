@@ -1,5 +1,26 @@
 # legacy syntax
+
 resource "azurerm_monitor_diagnostic_setting" "positive2_1" {
+  name                       = "diagnostic-settings-name"
+  target_resource_id         = azurerm_key_vault.example.id
+
+  log {                               # single "disabled" log block (object)
+    category = "Administrative"
+    enabled  = false
+  }
+}
+
+resource "azurerm_monitor_diagnostic_setting" "positive2_2" {
+  name                       = "diagnostic-settings-name"
+  target_resource_id         = azurerm_key_vault.example.id
+
+  log {                               # single "enabled" log block (object)
+    category = "Administrative"
+    enabled  = true
+  }
+}
+
+resource "azurerm_monitor_diagnostic_setting" "positive2_3" {
   name                       = "diagnostic-settings-name"
   target_resource_id         = azurerm_key_vault.example.id
 
@@ -13,26 +34,6 @@ resource "azurerm_monitor_diagnostic_setting" "positive2_1" {
     enabled  = true
   }
 
-}
-
-resource "azurerm_monitor_diagnostic_setting" "positive2_2" {
-  name                       = "diagnostic-settings-name"
-  target_resource_id         = azurerm_key_vault.example.id
-
-  log {                               # single "disabled" log block (object)
-    category = "Administrative"
-    enabled  = false
-  }
-}
-
-resource "azurerm_monitor_diagnostic_setting" "positive2_3" {
-  name                       = "diagnostic-settings-name"
-  target_resource_id         = azurerm_key_vault.example.id
-
-  log {                               # single "enabled" log block (object)
-    category = "Administrative"
-    enabled  = true
-  }
 }
 
 resource "azurerm_monitor_diagnostic_setting" "positive2_4" {

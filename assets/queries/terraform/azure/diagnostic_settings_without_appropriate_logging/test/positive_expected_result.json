@@ -20,25 +20,25 @@
   {
     "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
     "severity": "MEDIUM",
-    "line": 2,
+    "line": 3,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
     "severity": "MEDIUM",
-    "line": 18,
+    "line": 13,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
     "severity": "MEDIUM",
-    "line": 28,
+    "line": 23,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
     "severity": "MEDIUM",
-    "line": 38,
+    "line": 39,
     "fileName": "positive2.tf"
   }
 ]
