@@ -47,7 +47,12 @@ resource "azurerm_monitor_diagnostic_setting" "positive2_4" {
 
   log {
     category = "Alert"
-    enabled  = false
+    enabled  = true
+  }
+
+  log {
+    category = "Policy"
+    enabled  = true
   }
 
   log {
