@@ -4,9 +4,9 @@ resource "azurerm_monitor_diagnostic_setting" "positive2_1" {
   name                       = "diagnostic-settings-name"
   target_resource_id         = azurerm_key_vault.example.id
 
-  log {                               # single "disabled" log block (object)
+  log {                               # single "enabled" log block (object)
     category = "Administrative"
-    enabled  = false
+    enabled  = true
   }
 }
 
@@ -14,9 +14,9 @@ resource "azurerm_monitor_diagnostic_setting" "positive2_2" {
   name                       = "diagnostic-settings-name"
   target_resource_id         = azurerm_key_vault.example.id
 
-  log {                               # single "enabled" log block (object)
+  log {                               # single "disabled" log block (object)
     category = "Administrative"
-    enabled  = true
+    enabled  = false
   }
 }
 
