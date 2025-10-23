@@ -28,8 +28,8 @@ get_results(resource, name) = results { # missing "log"
 	results := {
 		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log' should be defined and not null", [name]),
-		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log' is undefined or null", [name]),
+		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].enabled_log' should be defined and not null", [name]),
+		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].enabled_log' is undefined or null", [name]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name], [])
 	}
 } else = results { 	# log array
@@ -39,7 +39,7 @@ get_results(resource, name) = results { # missing "log"
 	results := {
 		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s]", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log' should be defined and enable at least one log category", [name]),
+		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log' should enable at least one log category", [name]),
 		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log' has all its log blocks(%d) disabled", [name, count(resource.log)]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name], [])
 	}
@@ -49,7 +49,7 @@ get_results(resource, name) = results { # missing "log"
 	results := {
 		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s].log", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log' should be defined and set 'enabled' to 'true'", [name]),
+		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log' should set 'enabled' to 'true'", [name]),
 		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log' sets 'enabled' to '%s'", [name, resource.log.enabled]),
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name, "log"], [])
 	}
