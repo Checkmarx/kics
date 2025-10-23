@@ -1,0 +1,14 @@
+{
+  "id": "1c329b9b-8221-4b55-8d5f-f0959faf9cee",
+  "queryName": "Beta - SQL DB Instance With External Scripts Enabled",
+  "severity": "HIGH",
+  "category": "Insecure Configurations",
+  "descriptionText": "All 'google_sql_database_instance' resources based on SQLSERVER should enable the 'external scripts enabled' flag to 'off' to prevent malicious code injection attempts",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance.html#settings-1",
+  "platform": "Terraform",
+  "descriptionID": "1c329b9b",
+  "cloudProvider": "gcp",
+  "cwe": "94",
+  "riskScore": "6.0",
+  "experimental": "true"
+}
