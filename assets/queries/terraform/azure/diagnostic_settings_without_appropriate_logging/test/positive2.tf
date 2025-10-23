@@ -1,5 +1,4 @@
 # legacy syntax
-
 resource "azurerm_monitor_diagnostic_setting" "positive2_1" {
   name                       = "diagnostic-settings-name"
   target_resource_id         = azurerm_key_vault.example.id
