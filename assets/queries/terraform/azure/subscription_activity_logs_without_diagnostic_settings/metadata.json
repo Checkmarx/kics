@@ -1,0 +1,14 @@
+{
+  "id": "50f32d3c-096e-406a-bb26-71b3c91c11c0",
+  "queryName": "Beta - Subscription Activity Logs Without Diagnostic Settings",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "There 'azurerm_monitor_diagnostic_setting' ",
+  "descriptionUrl": "",
+  "platform": "Terraform",
+  "descriptionID": "50f32d3c",
+  "cloudProvider": "azure",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
