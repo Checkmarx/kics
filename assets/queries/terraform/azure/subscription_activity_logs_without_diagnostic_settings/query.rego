@@ -7,6 +7,7 @@ CxPolicy[result] {
 	resource := input.document[i].resource.azurerm_monitor_diagnostic_setting[name]
 
 	target_is_subscription(resource.target_resource_id)
+	not common_lib.valid_key(resource, "enabled_log")		# array or single object
 	results := get_results(resource, name)
 
 	result := {
@@ -21,7 +22,7 @@ CxPolicy[result] {
 	}
 }
 
-get_results(resource, name) = results { # missing "log" field
+get_results(resource, name) = results { # missing "log"
 	not common_lib.valid_key(resource, "log")
 
 	results := {
@@ -33,7 +34,7 @@ get_results(resource, name) = results { # missing "log" field
 	}
 } else = results { 	# log array
 	is_array(resource.log)
-	not at_least_one_enabled_log(resource.log)
+	not at_least_one_enabled_log(resource)
 
 	results := {
 		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s]", [name]),
@@ -43,7 +44,7 @@ get_results(resource, name) = results { # missing "log" field
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name], [])
 	}
 } else = results {	# single log object
-	resource.log.enabled != true
+	not at_least_one_enabled_log(resource)
 
 	results := {
 		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s].log", [name]),
@@ -60,6 +61,8 @@ target_is_subscription(id) {
 	regex.match("^/subscriptions/\\$\\{[^}]+\\}$", id)
 }
 
-at_least_one_enabled_log(log) {
-	log[_].enabled == true
+at_least_one_enabled_log(resource) {
+	resource.log[_].enabled == true
+} else {
+	resource.log.enabled == true
 }
