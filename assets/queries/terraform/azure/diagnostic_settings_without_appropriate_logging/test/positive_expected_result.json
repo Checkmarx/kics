@@ -1,20 +1,44 @@
 [
   {
-    "queryName": "",
-    "severity": "",
-    "line": ,
+    "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
+    "severity": "MEDIUM",
+    "line": 1,
     "fileName": "positive1.tf"
   },
   {
-    "queryName": "",
-    "severity": "",
-    "line": ,
+    "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
+    "severity": "MEDIUM",
+    "line": 8,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
+    "severity": "MEDIUM",
+    "line": 18,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
+    "severity": "MEDIUM",
+    "line": 4,
     "fileName": "positive2.tf"
   },
   {
-    "queryName": "",
-    "severity": "",
-    "line": ,
-    "fileName": "positive3.tf"
+    "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
+    "severity": "MEDIUM",
+    "line": 20,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
+    "severity": "MEDIUM",
+    "line": 30,
+    "fileName": "positive2.tf"
+  },
+  {
+    "queryName": "Beta - Diagnostic Settings Without Appropriate Logging",
+    "severity": "MEDIUM",
+    "line": 40,
+    "fileName": "positive2.tf"
   }
 ]
