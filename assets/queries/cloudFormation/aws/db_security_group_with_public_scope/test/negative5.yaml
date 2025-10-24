@@ -8,8 +8,10 @@ Resources:
           CIDRIP: 0.0.0.0/0
   DBInstance:
     Type: AWS::RDS::DBInstance
-    Properties: 
+    Properties:
       PubliclyAccessible: "false"  #quoted string support test
       DBName:
         Ref: DBName
       Engine: MySQL
+      DBSecurityGroups:
+        - !Ref DbSecurityByEC2SecurityGroup

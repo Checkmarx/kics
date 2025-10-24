@@ -17,7 +17,12 @@
         "DBName": {
           "Ref": "DBName"
         },
-        "Engine": "MySQL"
+        "Engine": "MySQL",
+        "DBSecurityGroups": [
+          {
+            "Ref": "DbSecurityByEC2SecurityGroup"
+          }
+        ]
       }
     }
   }

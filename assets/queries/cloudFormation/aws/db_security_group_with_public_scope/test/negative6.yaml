@@ -1,0 +1,71 @@
+Resources:
+  # This sample is identical to Positive1 except that the "!Ref" on the DBInstance are incorrect
+  DbSecurityByEC2SecurityGroupInline:
+    Type: AWS::RDS::DBSecurityGroup
+    Properties:
+      GroupDescription: "Legacy inline ingress"
+      DBSecurityGroupIngress:
+        - CIDRIP: 0.0.0.0/0
+
+  DbSecurityByEC2SecurityGroupStandalone:
+    Type: AWS::RDS::DBSecurityGroup
+    Properties:
+      GroupDescription: "Legacy standalone ingress"
+
+  DbSecurityIngressRule:
+    Type: AWS::RDS::DBSecurityGroupIngress
+    Properties:
+      DBSecurityGroupName: !Ref DbSecurityByEC2SecurityGroupStandalone
+      CIDRIP: 0.0.0.0/0
+
+  DBEC2SecurityGroupInline:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Inline IPv4 and IPv6 ingress"
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIpv6: ::/0
+
+  DBEC2SecurityGroupStandalone:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Standalone IPv4 and IPv6 ingress"
+      VpcId: !Ref VPC
+
+  DBEC2SecurityGroupIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DBEC2SecurityGroupStandalone
+      IpProtocol: tcp
+      FromPort: 80
+      ToPort: 80
+      CidrIp: 0.0.0.0/0
+
+  DBEC2SecurityGroupIngressIPv6:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref DBEC2SecurityGroupStandalone
+      IpProtocol: tcp
+      FromPort: 80
+      ToPort: 80
+      CidrIpv6: "0000:0000:0000:0000:0000:0000:0000:0000/0"
+
+  DBInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      PubliclyAccessible: true
+      DBName: !Ref DBName
+      Engine: MySQL
+      DBSecurityGroups:
+        - !Ref invalid_reference_1
+        - !Ref invalid_reference_2
+      VPCSecurityGroups:
+        - !Ref invalid_reference_3
+        - !Ref invalid_reference_4

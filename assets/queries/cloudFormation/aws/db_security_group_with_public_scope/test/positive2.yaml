@@ -12,3 +12,5 @@ Resources:
       DBName:
         Ref: DBName
       Engine: MySQL
+      DBSecurityGroups:
+        - !Ref DbSecurityByEC2SecurityGroup

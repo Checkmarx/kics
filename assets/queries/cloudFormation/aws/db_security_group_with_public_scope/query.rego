@@ -11,14 +11,17 @@ CxPolicy[result] {
 	db.Type == "AWS::RDS::DBInstance"
 	is_public_db(db)
 
-	resource := input.document[i].Resources[resource_name]
+	referenced_sec_groups := [x | x := cf_lib.get_name(db.Properties[["VPCSecurityGroups","DBSecurityGroups"][_]][_])]
+	resource := input.document[y].Resources[resource_name]
 	resource.Type == types[_]
+
+	is_associated_with_db(resource, resource_name, referenced_sec_groups)
 
 	ingress_list := cf_lib.get_ingress_list(resource)
 	results := exposed_inline_or_standalone_ingress(ingress_list[ing_index], ing_index, resource.Type, resource_name)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": input.document[y].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, resource_name),
 		"searchKey": results.searchKey,
@@ -57,6 +60,14 @@ exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = res
 
 get_ingress_field_name("AWS::EC2::SecurityGroup") = "SecurityGroupIngress"
 get_ingress_field_name("AWS::RDS::DBSecurityGroup") = "DBSecurityGroupIngress"
+
+is_associated_with_db(resource, resource_name, referenced_sec_groups) {			# case of sec_group
+	resource_name == referenced_sec_groups[_]
+} else {																		# case of EC2 ingress
+	cf_lib.get_name(resource.Properties.GroupId) == referenced_sec_groups[_]
+} else {																		# case of DB ingress (legacy)
+	cf_lib.get_name(resource.Properties.DBSecurityGroupName) == referenced_sec_groups[_]
+}
 
 is_public_db(resource) {
 	cf_lib.isCloudFormationTrue(resource.Properties.PubliclyAccessible)
