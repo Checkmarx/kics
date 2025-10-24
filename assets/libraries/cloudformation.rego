@@ -327,12 +327,13 @@ search_for_standalone_ingress(sec_group_name, doc) = ingresses_with_names {
 } else = {"ingress_list": [], "names": []}
 
 
-get_search_values(ing_index, sec_group_name, names_list) = results {
+get_search_values(ing_index, sec_group_name, names_list, index_sec_document, index_main_document) = results {
 	ing_index < count(names_list) # if ingress has name it is standalone
 
 	results := {
 		"searchKey" : sprintf("Resources.%s.Properties", [names_list[ing_index]]),
 		"searchLine" : common_lib.build_search_line(["Resources", names_list[ing_index], "Properties"], []),
+		"doc_index" : index_sec_document,
 		"type" : "AWS::EC2::SecurityGroupIngress"
 	}
 } else = results {  # else it is part of the "SecurityGroupIngress" array
@@ -340,6 +341,7 @@ get_search_values(ing_index, sec_group_name, names_list) = results {
 	results := {
 		"searchKey" : sprintf("Resources.%s.Properties.SecurityGroupIngress[%d]", [sec_group_name, ing_index-count(names_list)]),
 		"searchLine" : common_lib.build_search_line(["Resources", sec_group_name, "Properties", "SecurityGroupIngress", ing_index-count(names_list)], []),
+		"doc_index": index_main_document,
 		"type" : "AWS::EC2::SecurityGroup"
 	}
 }

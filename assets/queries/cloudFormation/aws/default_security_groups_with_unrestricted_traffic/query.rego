@@ -27,13 +27,13 @@ CxPolicy[result] {						# standalone rules
 	resource.Type == "AWS::EC2::SecurityGroup"
 
 	resource.Properties.GroupName == "default"
-	rules := search_for_standalone_rules(security_group_name, input.document[i])
+	rules := search_for_standalone_rules(security_group_name, input.document[y])
 	rule := rules.rule_list[x]
 
 	check_standalone_rule(security_group_name, rule, rules.names[x])
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": input.document[y].id,
 		"resourceType": "AWS::EC2::SecurityGroup",
 		"resourceName": cf_lib.get_resource_name(resource, security_group_name),
 		"searchKey" : sprintf("Resources.%s.Properties.GroupId", [rules.names[x]]),
