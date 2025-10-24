@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Build Process
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/284.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/284.html')">284</a>
+-   **Risk score:** <span style="color:#bb2124">7.7</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/k8s/pod_security_policy_admission_control_plugin_not_set)
 
 ### Description
@@ -80,3 +81,4 @@ spec:
   restartPolicy: OnFailure
 
 ```
+
