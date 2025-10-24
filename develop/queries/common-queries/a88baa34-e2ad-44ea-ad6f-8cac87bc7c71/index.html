@@ -2150,6 +2150,7 @@
 <li><strong>Severity:</strong> <span style="color:#bb2124">High</span></li>
 <li><strong>Category:</strong> Secret Management</li>
 <li><strong>CWE:</strong> <a href="https://cwe.mitre.org/data/definitions/798.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/798.html')">798</a></li>
+<li><strong>Risk score:</strong> <span style="color:#bb2124">7.8</span></li>
 <li><strong>URL:</strong> <a href="https://github.com/Checkmarx/kics/tree/master/assets/queries/common/passwords_and_secrets">Github</a></li>
 </ul>
 <h3 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h3>
@@ -5079,83 +5080,192 @@
 <a id="__codelineno-106-14" name="__codelineno-106-14" href="#__codelineno-106-14"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Negative test num. 53 - json file</summary>
+<details><summary>Negative test num. 53 - bicep file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-107-1" name="__codelineno-107-1" href="#__codelineno-107-1"></a><span class="p">{</span>
-<a id="__codelineno-107-2" name="__codelineno-107-2" href="#__codelineno-107-2"></a><span class="w">  </span><span class="nt">&quot;openapi&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.0.0&quot;</span><span class="p">,</span>
-<a id="__codelineno-107-3" name="__codelineno-107-3" href="#__codelineno-107-3"></a><span class="w">  </span><span class="nt">&quot;info&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-107-4" name="__codelineno-107-4" href="#__codelineno-107-4"></a><span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Simple API Overview&quot;</span><span class="p">,</span>
-<a id="__codelineno-107-5" name="__codelineno-107-5" href="#__codelineno-107-5"></a><span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>
-<a id="__codelineno-107-6" name="__codelineno-107-6" href="#__codelineno-107-6"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-107-7" name="__codelineno-107-7" href="#__codelineno-107-7"></a><span class="w">  </span><span class="nt">&quot;paths&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
-<a id="__codelineno-107-8" name="__codelineno-107-8" href="#__codelineno-107-8"></a><span class="w">  </span><span class="nt">&quot;servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-107-9" name="__codelineno-107-9" href="#__codelineno-107-9"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-107-10" name="__codelineno-107-10" href="#__codelineno-107-10"></a><span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://my.api.server.com/&quot;</span><span class="p">,</span>
-<a id="__codelineno-107-11" name="__codelineno-107-11" href="#__codelineno-107-11"></a><span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My API Server 1&quot;</span>
-<a id="__codelineno-107-12" name="__codelineno-107-12" href="#__codelineno-107-12"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-107-13" name="__codelineno-107-13" href="#__codelineno-107-13"></a><span class="w">  </span><span class="p">]</span>
-<a id="__codelineno-107-14" name="__codelineno-107-14" href="#__codelineno-107-14"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-107-1" name="__codelineno-107-1" href="#__codelineno-107-1"></a>import { common, tagsObject, deployName, removeSpace } from &#39;../../../CommonValues.bicep&#39;
+<a id="__codelineno-107-2" name="__codelineno-107-2" href="#__codelineno-107-2"></a>
+<a id="__codelineno-107-3" name="__codelineno-107-3" href="#__codelineno-107-3"></a>@description(&#39;Nome do sistema&#39;)
+<a id="__codelineno-107-4" name="__codelineno-107-4" href="#__codelineno-107-4"></a>param systemName string
+<a id="__codelineno-107-5" name="__codelineno-107-5" href="#__codelineno-107-5"></a>
+<a id="__codelineno-107-6" name="__codelineno-107-6" href="#__codelineno-107-6"></a>@description(&#39;Nome do recurso&#39;)
+<a id="__codelineno-107-7" name="__codelineno-107-7" href="#__codelineno-107-7"></a>param resourceName string = removeSpace(systemName)
+<a id="__codelineno-107-8" name="__codelineno-107-8" href="#__codelineno-107-8"></a>
+<a id="__codelineno-107-9" name="__codelineno-107-9" href="#__codelineno-107-9"></a>@description(&#39;Enterprise Tagging object&#39;)
+<a id="__codelineno-107-10" name="__codelineno-107-10" href="#__codelineno-107-10"></a>param tags tagsObject
+<a id="__codelineno-107-11" name="__codelineno-107-11" href="#__codelineno-107-11"></a>
+<a id="__codelineno-107-12" name="__codelineno-107-12" href="#__codelineno-107-12"></a>resource kvTest &#39;Microsoft.KeyVault/vaults@2023-07-01&#39; existing = {
+<a id="__codelineno-107-13" name="__codelineno-107-13" href="#__codelineno-107-13"></a>  name: &#39;kv-test-sample&#39;
+<a id="__codelineno-107-14" name="__codelineno-107-14" href="#__codelineno-107-14"></a>  scope: resourceGroup(&#39;rg-test-sample&#39;)
+<a id="__codelineno-107-15" name="__codelineno-107-15" href="#__codelineno-107-15"></a>}
+<a id="__codelineno-107-16" name="__codelineno-107-16" href="#__codelineno-107-16"></a>
+<a id="__codelineno-107-17" name="__codelineno-107-17" href="#__codelineno-107-17"></a>module consumerModule &#39;../SecretConsumer/Resource.bicep&#39; = {
+<a id="__codelineno-107-18" name="__codelineno-107-18" href="#__codelineno-107-18"></a>  name: deployName(resourceName, &#39;Test.SecretConsumer&#39;, tags.lastReleaseId)
+<a id="__codelineno-107-19" name="__codelineno-107-19" href="#__codelineno-107-19"></a>  params: {
+<a id="__codelineno-107-20" name="__codelineno-107-20" href="#__codelineno-107-20"></a>    systemName: systemName
+<a id="__codelineno-107-21" name="__codelineno-107-21" href="#__codelineno-107-21"></a>    resourceName: resourceName
+<a id="__codelineno-107-22" name="__codelineno-107-22" href="#__codelineno-107-22"></a>    tags: tags
+<a id="__codelineno-107-23" name="__codelineno-107-23" href="#__codelineno-107-23"></a>    apiClientSecret: kvTest.getSecret(&#39;secret-sample&#39;) 
+<a id="__codelineno-107-24" name="__codelineno-107-24" href="#__codelineno-107-24"></a>  }
+<a id="__codelineno-107-25" name="__codelineno-107-25" href="#__codelineno-107-25"></a>}
 </code></pre></div>
 </details>
-<details><summary>Negative test num. 54 - tf file</summary>
+<details><summary>Negative test num. 54 - json file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-108-1" name="__codelineno-108-1" href="#__codelineno-108-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;primary3&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-108-2" name="__codelineno-108-2" href="#__codelineno-108-2"></a><span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;marcellus-wallace&quot;</span>
-<a id="__codelineno-108-3" name="__codelineno-108-3" href="#__codelineno-108-3"></a><span class="w">  </span><span class="na">location</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1-a&quot;</span>
-<a id="__codelineno-108-4" name="__codelineno-108-4" href="#__codelineno-108-4"></a><span class="w">  </span><span class="na">initial_node_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
-<a id="__codelineno-108-5" name="__codelineno-108-5" href="#__codelineno-108-5"></a>
-<a id="__codelineno-108-6" name="__codelineno-108-6" href="#__codelineno-108-6"></a><span class="w">  </span><span class="nb">master_auth</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-108-7" name="__codelineno-108-7" href="#__codelineno-108-7"></a><span class="w">    </span><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1234567890qwertyuiopasdfghjklçzxcvbnm&quot;</span>
-<a id="__codelineno-108-8" name="__codelineno-108-8" href="#__codelineno-108-8"></a><span class="w">    </span><span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
-<a id="__codelineno-108-9" name="__codelineno-108-9" href="#__codelineno-108-9"></a>
-<a id="__codelineno-108-10" name="__codelineno-108-10" href="#__codelineno-108-10"></a><span class="w">    </span><span class="nb">client_certificate_config</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-108-11" name="__codelineno-108-11" href="#__codelineno-108-11"></a><span class="w">      </span><span class="na">issue_client_certificate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
-<a id="__codelineno-108-12" name="__codelineno-108-12" href="#__codelineno-108-12"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-108-13" name="__codelineno-108-13" href="#__codelineno-108-13"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-108-14" name="__codelineno-108-14" href="#__codelineno-108-14"></a>
-<a id="__codelineno-108-15" name="__codelineno-108-15" href="#__codelineno-108-15"></a><span class="w">  </span><span class="nb">timeouts</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-108-16" name="__codelineno-108-16" href="#__codelineno-108-16"></a><span class="w">    </span><span class="na">create</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;30m&quot;</span>
-<a id="__codelineno-108-17" name="__codelineno-108-17" href="#__codelineno-108-17"></a><span class="w">    </span><span class="na">update</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;40m&quot;</span>
-<a id="__codelineno-108-18" name="__codelineno-108-18" href="#__codelineno-108-18"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-108-19" name="__codelineno-108-19" href="#__codelineno-108-19"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-108-1" name="__codelineno-108-1" href="#__codelineno-108-1"></a><span class="p">{</span>
+<a id="__codelineno-108-2" name="__codelineno-108-2" href="#__codelineno-108-2"></a><span class="w">    </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#&quot;</span><span class="p">,</span>
+<a id="__codelineno-108-3" name="__codelineno-108-3" href="#__codelineno-108-3"></a><span class="w">    </span><span class="nt">&quot;contentVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-108-4" name="__codelineno-108-4" href="#__codelineno-108-4"></a><span class="w">    </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-108-5" name="__codelineno-108-5" href="#__codelineno-108-5"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-108-6" name="__codelineno-108-6" href="#__codelineno-108-6"></a><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Microsoft.Logic/workflows&quot;</span><span class="p">,</span>
+<a id="__codelineno-108-7" name="__codelineno-108-7" href="#__codelineno-108-7"></a><span class="w">            </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;apiVersion&#39;)]&quot;</span><span class="p">,</span>
+<a id="__codelineno-108-8" name="__codelineno-108-8" href="#__codelineno-108-8"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[parameters(&#39;logicAppName&#39;)]&quot;</span><span class="p">,</span>
+<a id="__codelineno-108-9" name="__codelineno-108-9" href="#__codelineno-108-9"></a><span class="w">            </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;centralus&quot;</span><span class="p">,</span>
+<a id="__codelineno-108-10" name="__codelineno-108-10" href="#__codelineno-108-10"></a><span class="w">            </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<a id="__codelineno-108-11" name="__codelineno-108-11" href="#__codelineno-108-11"></a><span class="w">            </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-108-12" name="__codelineno-108-12" href="#__codelineno-108-12"></a><span class="w">                </span><span class="nt">&quot;Sample_action_1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-108-13" name="__codelineno-108-13" href="#__codelineno-108-13"></a><span class="w">                    </span><span class="nt">&quot;runAfter_164&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-108-14" name="__codelineno-108-14" href="#__codelineno-108-14"></a><span class="w">                        </span><span class="nt">&quot;HTTP_-_Get_OAuth_Token&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-108-15" name="__codelineno-108-15" href="#__codelineno-108-15"></a><span class="w">                            </span><span class="s2">&quot;Succeeded&quot;</span>
+<a id="__codelineno-108-16" name="__codelineno-108-16" href="#__codelineno-108-16"></a><span class="w">                        </span><span class="p">]</span>
+<a id="__codelineno-108-17" name="__codelineno-108-17" href="#__codelineno-108-17"></a><span class="w">                    </span><span class="p">}</span>
+<a id="__codelineno-108-18" name="__codelineno-108-18" href="#__codelineno-108-18"></a><span class="w">                </span><span class="p">},</span>
+<a id="__codelineno-108-19" name="__codelineno-108-19" href="#__codelineno-108-19"></a><span class="w">                </span><span class="nt">&quot;Sample_action_2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-108-20" name="__codelineno-108-20" href="#__codelineno-108-20"></a><span class="w">                    </span><span class="nt">&quot;runAfter_192&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-108-21" name="__codelineno-108-21" href="#__codelineno-108-21"></a><span class="w">                        </span><span class="nt">&quot;Parse_JSON_-_OAuth_Token&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-108-22" name="__codelineno-108-22" href="#__codelineno-108-22"></a><span class="w">                            </span><span class="s2">&quot;Succeeded&quot;</span>
+<a id="__codelineno-108-23" name="__codelineno-108-23" href="#__codelineno-108-23"></a><span class="w">                        </span><span class="p">]</span>
+<a id="__codelineno-108-24" name="__codelineno-108-24" href="#__codelineno-108-24"></a><span class="w">                    </span><span class="p">}</span>
+<a id="__codelineno-108-25" name="__codelineno-108-25" href="#__codelineno-108-25"></a><span class="w">                </span><span class="p">},</span>
+<a id="__codelineno-108-26" name="__codelineno-108-26" href="#__codelineno-108-26"></a><span class="w">                </span><span class="nt">&quot;Sample_action_3&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-108-27" name="__codelineno-108-27" href="#__codelineno-108-27"></a><span class="w">                    </span><span class="nt">&quot;runAfter_240&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-108-28" name="__codelineno-108-28" href="#__codelineno-108-28"></a><span class="w">                        </span><span class="nt">&quot;Try_-_Get_OAuth_Token&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-108-29" name="__codelineno-108-29" href="#__codelineno-108-29"></a><span class="w">                            </span><span class="s2">&quot;TimedOut&quot;</span><span class="p">,</span>
+<a id="__codelineno-108-30" name="__codelineno-108-30" href="#__codelineno-108-30"></a><span class="w">                            </span><span class="s2">&quot;Failed&quot;</span>
+<a id="__codelineno-108-31" name="__codelineno-108-31" href="#__codelineno-108-31"></a><span class="w">                        </span><span class="p">]</span>
+<a id="__codelineno-108-32" name="__codelineno-108-32" href="#__codelineno-108-32"></a><span class="w">                    </span><span class="p">}</span>
+<a id="__codelineno-108-33" name="__codelineno-108-33" href="#__codelineno-108-33"></a><span class="w">                </span><span class="p">},</span>
+<a id="__codelineno-108-34" name="__codelineno-108-34" href="#__codelineno-108-34"></a><span class="w">                </span><span class="nt">&quot;Sample_action_4&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-108-35" name="__codelineno-108-35" href="#__codelineno-108-35"></a><span class="w">                    </span><span class="nt">&quot;runAfter_678&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-108-36" name="__codelineno-108-36" href="#__codelineno-108-36"></a><span class="w">                        </span><span class="nt">&quot;Catch_-_Get_OAuth_Token&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-108-37" name="__codelineno-108-37" href="#__codelineno-108-37"></a><span class="w">                            </span><span class="s2">&quot;Skipped&quot;</span>
+<a id="__codelineno-108-38" name="__codelineno-108-38" href="#__codelineno-108-38"></a><span class="w">                        </span><span class="p">]</span>
+<a id="__codelineno-108-39" name="__codelineno-108-39" href="#__codelineno-108-39"></a><span class="w">                    </span><span class="p">}</span>
+<a id="__codelineno-108-40" name="__codelineno-108-40" href="#__codelineno-108-40"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-108-41" name="__codelineno-108-41" href="#__codelineno-108-41"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-108-42" name="__codelineno-108-42" href="#__codelineno-108-42"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-108-43" name="__codelineno-108-43" href="#__codelineno-108-43"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-108-44" name="__codelineno-108-44" href="#__codelineno-108-44"></a><span class="p">}</span>
 </code></pre></div>
 </details>
-<details><summary>Negative test num. 55 - tf file</summary>
+<details><summary>Negative test num. 55 - bicep file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-109-1" name="__codelineno-109-1" href="#__codelineno-109-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;primary5&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-109-2" name="__codelineno-109-2" href="#__codelineno-109-2"></a><span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;marcellus-wallace-credential&quot;</span>
-<a id="__codelineno-109-3" name="__codelineno-109-3" href="#__codelineno-109-3"></a><span class="w">  </span><span class="na">location</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1-a&quot;</span>
-<a id="__codelineno-109-4" name="__codelineno-109-4" href="#__codelineno-109-4"></a><span class="w">  </span><span class="na">initial_node_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-109-1" name="__codelineno-109-1" href="#__codelineno-109-1"></a>param systemName string
+<a id="__codelineno-109-2" name="__codelineno-109-2" href="#__codelineno-109-2"></a>param resourceName string
+<a id="__codelineno-109-3" name="__codelineno-109-3" href="#__codelineno-109-3"></a>param tags object
+<a id="__codelineno-109-4" name="__codelineno-109-4" href="#__codelineno-109-4"></a>param originUrl string
 <a id="__codelineno-109-5" name="__codelineno-109-5" href="#__codelineno-109-5"></a>
-<a id="__codelineno-109-6" name="__codelineno-109-6" href="#__codelineno-109-6"></a><span class="w">  </span><span class="nb">master_auth</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-109-7" name="__codelineno-109-7" href="#__codelineno-109-7"></a><span class="w">    </span><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PRIVATE KEY_key&quot;</span>
-<a id="__codelineno-109-8" name="__codelineno-109-8" href="#__codelineno-109-8"></a><span class="w">    </span><span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
-<a id="__codelineno-109-9" name="__codelineno-109-9" href="#__codelineno-109-9"></a>
-<a id="__codelineno-109-10" name="__codelineno-109-10" href="#__codelineno-109-10"></a><span class="w">    </span><span class="nb">client_certificate_config</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-109-11" name="__codelineno-109-11" href="#__codelineno-109-11"></a><span class="w">      </span><span class="na">issue_client_certificate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
-<a id="__codelineno-109-12" name="__codelineno-109-12" href="#__codelineno-109-12"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-109-13" name="__codelineno-109-13" href="#__codelineno-109-13"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-109-14" name="__codelineno-109-14" href="#__codelineno-109-14"></a>
-<a id="__codelineno-109-15" name="__codelineno-109-15" href="#__codelineno-109-15"></a><span class="w">  </span><span class="nb">timeouts</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-109-16" name="__codelineno-109-16" href="#__codelineno-109-16"></a><span class="w">    </span><span class="na">create</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;30m&quot;</span>
-<a id="__codelineno-109-17" name="__codelineno-109-17" href="#__codelineno-109-17"></a><span class="w">    </span><span class="na">update</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;40m&quot;</span>
-<a id="__codelineno-109-18" name="__codelineno-109-18" href="#__codelineno-109-18"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-109-19" name="__codelineno-109-19" href="#__codelineno-109-19"></a><span class="p">}</span>
+<a id="__codelineno-109-6" name="__codelineno-109-6" href="#__codelineno-109-6"></a>module myModule &#39;../AnotherModule/Resource.bicep&#39; = {
+<a id="__codelineno-109-7" name="__codelineno-109-7" href="#__codelineno-109-7"></a>  name: &#39;${resourceName}-MyModule&#39;
+<a id="__codelineno-109-8" name="__codelineno-109-8" href="#__codelineno-109-8"></a>  params: {
+<a id="__codelineno-109-9" name="__codelineno-109-9" href="#__codelineno-109-9"></a>    systemName: systemName
+<a id="__codelineno-109-10" name="__codelineno-109-10" href="#__codelineno-109-10"></a>    resourceName: resourceName
+<a id="__codelineno-109-11" name="__codelineno-109-11" href="#__codelineno-109-11"></a>    tags: tags
+<a id="__codelineno-109-12" name="__codelineno-109-12" href="#__codelineno-109-12"></a>    apiUrl: originUrl
+<a id="__codelineno-109-13" name="__codelineno-109-13" href="#__codelineno-109-13"></a>  }
+<a id="__codelineno-109-14" name="__codelineno-109-14" href="#__codelineno-109-14"></a>}
+<a id="__codelineno-109-15" name="__codelineno-109-15" href="#__codelineno-109-15"></a>
+<a id="__codelineno-109-16" name="__codelineno-109-16" href="#__codelineno-109-16"></a>module clientModule &#39;../ClientModule/Resource.bicep&#39; = {
+<a id="__codelineno-109-17" name="__codelineno-109-17" href="#__codelineno-109-17"></a>  name: &#39;${resourceName}-ClientModule&#39;
+<a id="__codelineno-109-18" name="__codelineno-109-18" href="#__codelineno-109-18"></a>  params: {
+<a id="__codelineno-109-19" name="__codelineno-109-19" href="#__codelineno-109-19"></a>    systemName: systemName
+<a id="__codelineno-109-20" name="__codelineno-109-20" href="#__codelineno-109-20"></a>    resourceName: resourceName
+<a id="__codelineno-109-21" name="__codelineno-109-21" href="#__codelineno-109-21"></a>    tags: tags
+<a id="__codelineno-109-22" name="__codelineno-109-22" href="#__codelineno-109-22"></a>    validationToken: myModule.outputs.apiToken 
+<a id="__codelineno-109-23" name="__codelineno-109-23" href="#__codelineno-109-23"></a>  }
+<a id="__codelineno-109-24" name="__codelineno-109-24" href="#__codelineno-109-24"></a>}
+<a id="__codelineno-109-25" name="__codelineno-109-25" href="#__codelineno-109-25"></a>
+<a id="__codelineno-109-26" name="__codelineno-109-26" href="#__codelineno-109-26"></a>// Saída do módulo
+<a id="__codelineno-109-27" name="__codelineno-109-27" href="#__codelineno-109-27"></a>output clientUrl string = clientModule.outputs.clientUrl
+<a id="__codelineno-109-28" name="__codelineno-109-28" href="#__codelineno-109-28"></a>output clientName string = clientModule.outputs.clientName
 </code></pre></div>
 </details>
-<details><summary>Negative test num. 56 - tf file</summary>
+<details><summary>Negative test num. 56 - json file</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-110-1" name="__codelineno-110-1" href="#__codelineno-110-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_secret_manager_secret&quot;</span><span class="w"> </span><span class="nv">&quot;secret-basic&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-110-2" name="__codelineno-110-2" href="#__codelineno-110-2"></a><span class="w">  </span><span class="na">secret_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;secret-version&quot;</span>
-<a id="__codelineno-110-3" name="__codelineno-110-3" href="#__codelineno-110-3"></a>
-<a id="__codelineno-110-4" name="__codelineno-110-4" href="#__codelineno-110-4"></a><span class="w">  </span><span class="nb">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-110-5" name="__codelineno-110-5" href="#__codelineno-110-5"></a><span class="w">    </span><span class="na">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-label&quot;</span>
-<a id="__codelineno-110-6" name="__codelineno-110-6" href="#__codelineno-110-6"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-110-7" name="__codelineno-110-7" href="#__codelineno-110-7"></a>
-<a id="__codelineno-110-8" name="__codelineno-110-8" href="#__codelineno-110-8"></a><span class="w">  </span><span class="nb">replication</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-110-9" name="__codelineno-110-9" href="#__codelineno-110-9"></a><span class="w">    </span><span class="na">automatic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
-<a id="__codelineno-110-10" name="__codelineno-110-10" href="#__codelineno-110-10"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-110-11" name="__codelineno-110-11" href="#__codelineno-110-11"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-110-1" name="__codelineno-110-1" href="#__codelineno-110-1"></a><span class="p">{</span>
+<a id="__codelineno-110-2" name="__codelineno-110-2" href="#__codelineno-110-2"></a><span class="w">  </span><span class="nt">&quot;openapi&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.0.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-110-3" name="__codelineno-110-3" href="#__codelineno-110-3"></a><span class="w">  </span><span class="nt">&quot;info&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-110-4" name="__codelineno-110-4" href="#__codelineno-110-4"></a><span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Simple API Overview&quot;</span><span class="p">,</span>
+<a id="__codelineno-110-5" name="__codelineno-110-5" href="#__codelineno-110-5"></a><span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>
+<a id="__codelineno-110-6" name="__codelineno-110-6" href="#__codelineno-110-6"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-110-7" name="__codelineno-110-7" href="#__codelineno-110-7"></a><span class="w">  </span><span class="nt">&quot;paths&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<a id="__codelineno-110-8" name="__codelineno-110-8" href="#__codelineno-110-8"></a><span class="w">  </span><span class="nt">&quot;servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-110-9" name="__codelineno-110-9" href="#__codelineno-110-9"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-110-10" name="__codelineno-110-10" href="#__codelineno-110-10"></a><span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://my.api.server.com/&quot;</span><span class="p">,</span>
+<a id="__codelineno-110-11" name="__codelineno-110-11" href="#__codelineno-110-11"></a><span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My API Server 1&quot;</span>
+<a id="__codelineno-110-12" name="__codelineno-110-12" href="#__codelineno-110-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-110-13" name="__codelineno-110-13" href="#__codelineno-110-13"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-110-14" name="__codelineno-110-14" href="#__codelineno-110-14"></a><span class="p">}</span>
+</code></pre></div>
+</details>
+<details><summary>Negative test num. 57 - tf file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-111-1" name="__codelineno-111-1" href="#__codelineno-111-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;primary3&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-111-2" name="__codelineno-111-2" href="#__codelineno-111-2"></a><span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;marcellus-wallace&quot;</span>
+<a id="__codelineno-111-3" name="__codelineno-111-3" href="#__codelineno-111-3"></a><span class="w">  </span><span class="na">location</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1-a&quot;</span>
+<a id="__codelineno-111-4" name="__codelineno-111-4" href="#__codelineno-111-4"></a><span class="w">  </span><span class="na">initial_node_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<a id="__codelineno-111-5" name="__codelineno-111-5" href="#__codelineno-111-5"></a>
+<a id="__codelineno-111-6" name="__codelineno-111-6" href="#__codelineno-111-6"></a><span class="w">  </span><span class="nb">master_auth</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-111-7" name="__codelineno-111-7" href="#__codelineno-111-7"></a><span class="w">    </span><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1234567890qwertyuiopasdfghjklçzxcvbnm&quot;</span>
+<a id="__codelineno-111-8" name="__codelineno-111-8" href="#__codelineno-111-8"></a><span class="w">    </span><span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<a id="__codelineno-111-9" name="__codelineno-111-9" href="#__codelineno-111-9"></a>
+<a id="__codelineno-111-10" name="__codelineno-111-10" href="#__codelineno-111-10"></a><span class="w">    </span><span class="nb">client_certificate_config</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-111-11" name="__codelineno-111-11" href="#__codelineno-111-11"></a><span class="w">      </span><span class="na">issue_client_certificate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-111-12" name="__codelineno-111-12" href="#__codelineno-111-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-111-13" name="__codelineno-111-13" href="#__codelineno-111-13"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-111-14" name="__codelineno-111-14" href="#__codelineno-111-14"></a>
+<a id="__codelineno-111-15" name="__codelineno-111-15" href="#__codelineno-111-15"></a><span class="w">  </span><span class="nb">timeouts</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-111-16" name="__codelineno-111-16" href="#__codelineno-111-16"></a><span class="w">    </span><span class="na">create</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;30m&quot;</span>
+<a id="__codelineno-111-17" name="__codelineno-111-17" href="#__codelineno-111-17"></a><span class="w">    </span><span class="na">update</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;40m&quot;</span>
+<a id="__codelineno-111-18" name="__codelineno-111-18" href="#__codelineno-111-18"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-111-19" name="__codelineno-111-19" href="#__codelineno-111-19"></a><span class="p">}</span>
+</code></pre></div>
+</details>
+<details><summary>Negative test num. 58 - tf file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-112-1" name="__codelineno-112-1" href="#__codelineno-112-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_container_cluster&quot;</span><span class="w"> </span><span class="nv">&quot;primary5&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-112-2" name="__codelineno-112-2" href="#__codelineno-112-2"></a><span class="w">  </span><span class="na">name</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;marcellus-wallace-credential&quot;</span>
+<a id="__codelineno-112-3" name="__codelineno-112-3" href="#__codelineno-112-3"></a><span class="w">  </span><span class="na">location</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1-a&quot;</span>
+<a id="__codelineno-112-4" name="__codelineno-112-4" href="#__codelineno-112-4"></a><span class="w">  </span><span class="na">initial_node_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<a id="__codelineno-112-5" name="__codelineno-112-5" href="#__codelineno-112-5"></a>
+<a id="__codelineno-112-6" name="__codelineno-112-6" href="#__codelineno-112-6"></a><span class="w">  </span><span class="nb">master_auth</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-112-7" name="__codelineno-112-7" href="#__codelineno-112-7"></a><span class="w">    </span><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PRIVATE KEY_key&quot;</span>
+<a id="__codelineno-112-8" name="__codelineno-112-8" href="#__codelineno-112-8"></a><span class="w">    </span><span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<a id="__codelineno-112-9" name="__codelineno-112-9" href="#__codelineno-112-9"></a>
+<a id="__codelineno-112-10" name="__codelineno-112-10" href="#__codelineno-112-10"></a><span class="w">    </span><span class="nb">client_certificate_config</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-112-11" name="__codelineno-112-11" href="#__codelineno-112-11"></a><span class="w">      </span><span class="na">issue_client_certificate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-112-12" name="__codelineno-112-12" href="#__codelineno-112-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-112-13" name="__codelineno-112-13" href="#__codelineno-112-13"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-112-14" name="__codelineno-112-14" href="#__codelineno-112-14"></a>
+<a id="__codelineno-112-15" name="__codelineno-112-15" href="#__codelineno-112-15"></a><span class="w">  </span><span class="nb">timeouts</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-112-16" name="__codelineno-112-16" href="#__codelineno-112-16"></a><span class="w">    </span><span class="na">create</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;30m&quot;</span>
+<a id="__codelineno-112-17" name="__codelineno-112-17" href="#__codelineno-112-17"></a><span class="w">    </span><span class="na">update</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;40m&quot;</span>
+<a id="__codelineno-112-18" name="__codelineno-112-18" href="#__codelineno-112-18"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-112-19" name="__codelineno-112-19" href="#__codelineno-112-19"></a><span class="p">}</span>
+</code></pre></div>
+</details>
+<details><summary>Negative test num. 59 - tf file</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-113-1" name="__codelineno-113-1" href="#__codelineno-113-1"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_secret_manager_secret&quot;</span><span class="w"> </span><span class="nv">&quot;secret-basic&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-113-2" name="__codelineno-113-2" href="#__codelineno-113-2"></a><span class="w">  </span><span class="na">secret_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;secret-version&quot;</span>
+<a id="__codelineno-113-3" name="__codelineno-113-3" href="#__codelineno-113-3"></a>
+<a id="__codelineno-113-4" name="__codelineno-113-4" href="#__codelineno-113-4"></a><span class="w">  </span><span class="nb">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-113-5" name="__codelineno-113-5" href="#__codelineno-113-5"></a><span class="w">    </span><span class="na">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my-label&quot;</span>
+<a id="__codelineno-113-6" name="__codelineno-113-6" href="#__codelineno-113-6"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-113-7" name="__codelineno-113-7" href="#__codelineno-113-7"></a>
+<a id="__codelineno-113-8" name="__codelineno-113-8" href="#__codelineno-113-8"></a><span class="w">  </span><span class="nb">replication</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-113-9" name="__codelineno-113-9" href="#__codelineno-113-9"></a><span class="w">    </span><span class="na">automatic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<a id="__codelineno-113-10" name="__codelineno-113-10" href="#__codelineno-113-10"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-113-11" name="__codelineno-113-11" href="#__codelineno-113-11"></a><span class="p">}</span>
 </code></pre></div>
 </details>
 
