@@ -1,38 +1,85 @@
 {
   "Resources": {
-    "Ec2Instance": {
-      "Properties": {
-        "SecurityGroups": [
-          "InstanceSecurityGroup"
-        ],
-        "KeyName": "mykey",
-        "ImageId": ""
-      },
-      "Type": "AWS::EC2::Instance"
-    },
-    "InstanceSecurityGroup": {
+    "Positive1_security_group_1": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupDescription": "Allow http to client host",
-        "VpcId": {
-          "Ref": "myVPC"
-        },
+        "GroupDescription": "Open security group",
+        "VpcId": { "Ref": "MyVPC" },
         "SecurityGroupIngress": [
           {
-            "FromPort": 0,
-            "ToPort": 65535,
-            "CidrIp": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          }
-        ],
-        "SecurityGroupEgress": [
-          {
-            "IpProtocol": "tcp",
-            "FromPort": 80,
-            "ToPort": 80,
+            "IpProtocol": "-1",
+            "FromPort": 2000,
+            "ToPort": 2000,
             "CidrIp": "0.0.0.0/0"
+          },
+          {
+            "IpProtocol": "-1",
+            "FromPort": 2000,
+            "ToPort": 2000,
+            "CidrIpv6": "::/0"
           }
         ]
+      }
+    },
+    "Positive1_ingress_ipv4_1": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Positive1_security_group_1" },
+        "IpProtocol": "-1",
+        "FromPort": 3000,
+        "ToPort": 3000,
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "Positive1_ingress_ipv6_1": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Positive1_security_group_1" },
+        "IpProtocol": "-1",
+        "FromPort": 3000,
+        "ToPort": 3000,
+        "CidrIpv6": "::/0"
+      }
+    },
+    "Positive1_security_group_2": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Open security group",
+        "VpcId": { "Ref": "MyVPC" },
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 0,
+            "ToPort": 65535,
+            "CidrIp": "0.0.0.0/0"
+          },
+          {
+            "IpProtocol": "udp",
+            "FromPort": 0,
+            "ToPort": 65535,
+            "CidrIpv6": "::/0"
+          }
+        ]
+      }
+    },
+    "Positive1_ingress_ipv4_2": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Positive1_security_group_2" },
+        "IpProtocol": "udp",
+        "FromPort": 0,
+        "ToPort": 65535,
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "Positive1_ingress_ipv6_2": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": { "Ref": "Positive1_security_group_2" },
+        "IpProtocol": "tcp",
+        "FromPort": 0,
+        "ToPort": 65535,
+        "CidrIpv6": "::/0"
       }
     }
   }
