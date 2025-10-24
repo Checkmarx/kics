@@ -10,7 +10,7 @@ CxPolicy[result] {
 	elbType := getELBType(elbInstance.Type)
 
 	resource := resources[sec_group_name]
-	sec_group.Type == "AWS::EC2::SecurityGroup"
+	resource.Type == "AWS::EC2::SecurityGroup"
 
 	cf_lib.get_name(elbInstance.Properties.SecurityGroups[_]) == sec_group_name
 	ingresses_with_names := cf_lib.search_for_standalone_ingress(sec_group_name, input.document[i])
