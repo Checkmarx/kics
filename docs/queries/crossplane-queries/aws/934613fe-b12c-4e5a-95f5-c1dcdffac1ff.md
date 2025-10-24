@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#5bc0de">Info</span>
 -   **Category:** Observability
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/778.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/778.html')">778</a>
+-   **Risk score:** <span style="color:#5bc0de">0.0</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/crossplane/aws/cloudwatch_without_retention_period_specified)
 
 ### Description
@@ -153,3 +154,4 @@ spec:
             retentionInDays: 1
 
 ```
+

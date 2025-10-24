@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Networking and Firewall
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/200.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/200.html')">200</a>
+-   **Risk score:** <span style="color:#bb2124">7.7</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/ansible/azure/sensitive_port_is_exposed_to_entire_network)
 
 ### Description
@@ -335,3 +336,4 @@ A sensitive port, such as port 23 or port 110, is open for the whole network in 
       destination_address_prefix: '*'
 
 ```
+

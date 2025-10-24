@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Build Process
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/710.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/710.html')">710</a>
+-   **Risk score:** <span style="color:#edd57e">1.9</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/dockerfile/update_instruction_alone)
 
 ### Description
@@ -199,3 +200,4 @@ RUN dnf update && dnf install nginx
 CMD ["nginx", "-g", "daemon off;"]
 ```
 </details>
+
