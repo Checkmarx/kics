@@ -49,4 +49,4 @@ withoutInboundRules(securityGroup,name) = results {
 		"issue": "IncorrectValue",
 		"searchlineArray": ["Resources", name, "Properties", "SecurityGroupIngress"]
 	}
-} 
+}

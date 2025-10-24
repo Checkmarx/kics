@@ -7,22 +7,20 @@ unrestricted_ips := array.concat(common_lib.unrestricted_ipv6, ["0.0.0.0/0"])
 cidr_fields := ["CidrIp","CidrIpv6"]
 
 CxPolicy[result] {
-	doc := input.document[i]
+	cf_lib.getResourcesByType(input.document[i].Resources, "AWS::ECS::Service") != []
+	cf_lib.getResourcesByType(input.document[i].Resources, "AWS::ECS::Cluster") != []
 
-	cf_lib.getResourcesByType(doc.Resources, "AWS::ECS::Service") != []
-	cf_lib.getResourcesByType(doc.Resources, "AWS::ECS::Cluster") != []
-	
 	types := ["AWS::EC2::SecurityGroup","AWS::EC2::SecurityGroupIngress"]
 
-	resource := doc.Resources[name]
+	resource := input.document[i].Resources[name]
 	resource.Type == types[_]
 
 	ingress_list := cf_lib.get_ingress_list(resource)
 	results := exposed_inline_or_standalone_ingress(ingress_list[ing_index], ing_index, resource.Type, name)
 	results != ""
-	
+
 	result := {
-		"documentId": doc.id,
+		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": results.searchKey,
@@ -30,7 +28,7 @@ CxPolicy[result] {
 		"keyExpectedValue": results.keyExpectedValue,
 		"keyActualValue": results.keyActualValue,
 		"searchLine" : results.searchLine,
-	}	
+	}
 }
 
 exposed_inline_or_standalone_ingress(resource, ing_index, type, resource_index) = results { # inline ingress
@@ -63,5 +61,5 @@ affects_all_ports(resource) {
 	resource.IpProtocol == "-1"
 } else {
 	resource.FromPort == 0
-	resource.ToPort == 65535
+	resource.ToPort   == 65535
 }

@@ -78,9 +78,16 @@ getProtocolList(protocol) = list {
 	protocol == "-1"
 	list = ["TCP", "UDP"]
 } else = list {
-	common_lib.inArray(["TCP", "UDP"],upper(protocol)) 
+	common_lib.inArray(["TCP", "UDP"],upper(protocol))
 	list = [upper(protocol)]
 } else = []
+
+isTCP_and_port_exposed(ingress, port) {
+	upper(ingress.IpProtocol) == ["TCP","6"][_]
+	containsPort(ingress.FromPort, ingress.ToPort, port)
+} else {
+	ingress.IpProtocol == "-1"
+}
 
 # Get content of the resource(s) based on the type
 getResourcesByType(resources, type) = list {
@@ -301,5 +308,38 @@ enabled_is_undefined_or_false(logs,path,name,logName) = results {
 		"print" : "is set to 'false'",
 		"searchKey" : sprintf("%s%s.Properties.LogPublishingOptions.%s.Enabled", [getPath(path),name, logName]),
 		"searchLine" : common_lib.build_search_line(path, [name, "Properties", "LogPublishingOptions", logName, "Enabled"]),
+	}
+}
+
+search_for_standalone_ingress(sec_group_name, doc) = ingresses_with_names {
+  resources := doc.Resources
+
+  names := [name |
+    ingress := resources[name]
+    ingress.Type == "AWS::EC2::SecurityGroupIngress"
+    get_name(ingress.Properties.GroupId) == sec_group_name
+  ]
+
+  ingresses_with_names := {
+    "ingress_list": [resources[name].Properties | name := names[_]],
+    "names": names
+  }
+} else = {"ingress_list": [], "names": []}
+
+
+get_search_values(ing_index, sec_group_name, names_list) = results {
+	ing_index < count(names_list) # if ingress has name it is standalone
+
+	results := {
+		"searchKey" : sprintf("Resources.%s.Properties", [names_list[ing_index]]),
+		"searchLine" : common_lib.build_search_line(["Resources", names_list[ing_index], "Properties"], []),
+		"type" : "AWS::EC2::SecurityGroupIngress"
+	}
+} else = results {  # else it is part of the "SecurityGroupIngress" array
+
+	results := {
+		"searchKey" : sprintf("Resources.%s.Properties.SecurityGroupIngress[%d]", [sec_group_name, ing_index-count(names_list)]),
+		"searchLine" : common_lib.build_search_line(["Resources", sec_group_name, "Properties", "SecurityGroupIngress", ing_index-count(names_list)], []),
+		"type" : "AWS::EC2::SecurityGroup"
 	}
 }

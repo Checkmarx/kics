@@ -65,7 +65,7 @@ search_for_standalone_rules(sec_group_name, doc) = rules_with_names {
 
 
 check_standalone_rule(security_group_name, rule, rule_name) = search_values {
-	
+
 	cf_lib.get_name(rule.Properties.GroupId) == security_group_name
 
 	search_values := {
@@ -82,4 +82,4 @@ check_rules(properties, security_group_name, doc) = search_values {
 		"searchKey" : sprintf("Resources.%s.Properties", [security_group_name]),
 		"searchLine" : common_lib.build_search_line(["Resources", security_group_name, "Properties"], [])
 	}
-} 
+}

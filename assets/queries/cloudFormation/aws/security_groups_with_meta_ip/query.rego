@@ -8,9 +8,9 @@ CxPolicy[result] {
 	sec_group := doc.Resources[sec_group_name]
 	sec_group.Type == "AWS::EC2::SecurityGroup"
 
-	ingresses_with_names := search_for_standalone_ingress(sec_group_name, doc)
+	ingresses_with_names := cf_lib.search_for_standalone_ingress(sec_group_name, doc)
 
-	ingress_list := array.concat(ingresses_with_names.ingress_list, get_ingress_list_if_exists(sec_group))
+	ingress_list := array.concat(ingresses_with_names.ingress_list, common_lib.get_array_if_exists(sec_group.Properties,"SecurityGroupIngress"))
 	ingress := ingress_list[ing_index]
 
 	cidr_types := {"CidrIp","CidrIpv6"}
@@ -34,44 +34,25 @@ CxPolicy[result] {
 }
 
 check_security_groups_ingress(ingress) = "'IpProtocol' set to '-1'"{
-	ingress.IpProtocol == "-1" 
+	ingress.IpProtocol == "-1"
 } else = "all 65535 ports open" {
 	ingress.FromPort == 0
 	ingress.ToPort == 65535
 }
 
-search_for_standalone_ingress(sec_group_name, doc) = ingresses_with_names {
-  resources := doc.Resources
-
-  names := [name |
-    ingress := resources[name]
-    ingress.Type == "AWS::EC2::SecurityGroupIngress"
-    cf_lib.get_name(ingress.Properties.GroupId) == sec_group_name
-  ]
-
-  ingresses_with_names := {
-    "ingress_list": [resources[name].Properties | name := names[_]],
-    "names": names
-  }
-} else = {"ingress_list": [], "names": []}
-
 get_search_values(ing_index, sec_group_name, names_list, cidr_type) = results {
-	ing_index < count(names_list) # if ingress is standalone 
+	ing_index < count(names_list) # if ingress has name it is standalone
 
 	results := {
 		"searchKey" : sprintf("Resources.%s.Properties.%s", [names_list[ing_index], cidr_type]),
 		"searchLine" : common_lib.build_search_line(["Resources", names_list[ing_index], "Properties", cidr_type], []),
 		"type" : "AWS::EC2::SecurityGroupIngress"
 	}
-} else = results {
-	
+} else = results {  # else it is part of the "SecurityGroupIngress" array
+
 	results := {
 		"searchKey" : sprintf("Resources.%s.Properties.SecurityGroupIngress[%d].%s", [sec_group_name, ing_index - count(names_list), cidr_type]),
 		"searchLine" : common_lib.build_search_line(["Resources", sec_group_name, "Properties", "SecurityGroupIngress", ing_index - count(names_list), cidr_type], []),
 		"type" : "AWS::EC2::SecurityGroup"
 	}
 }
-
-get_ingress_list_if_exists(group) = [] {
-	not common_lib.valid_key(group.Properties,"SecurityGroupIngress")
-} else = group.Properties.SecurityGroupIngress

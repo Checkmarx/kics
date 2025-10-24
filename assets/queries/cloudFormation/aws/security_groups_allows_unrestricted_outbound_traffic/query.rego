@@ -10,16 +10,16 @@ CxPolicy[result] {
 
 	egresses_with_names := search_for_standalone_egress(sec_group_name, doc)
 
-	egress_list := array.concat(egresses_with_names.egress_list, get_egress_list_if_exists(sec_group))
+	egress_list := array.concat(egresses_with_names.egress_list, common_lib.get_array_if_exists(sec_group.Properties,"SecurityGroupEgress"))
 	egress := egress_list[eg_index]
 
-	egress.IpProtocol == "-1" 
+	egress.IpProtocol == "-1"
 
 	cidr_types := {"CidrIp", "CidrIpv6"}
 	exposed_addresses := ["0.0.0.0/0", common_lib.unrestricted_ipv6[_]]
 	egress[cidr_types[c]] == exposed_addresses[a]
 
-	results := get_search_values(eg_index, sec_group_name, egresses_with_names.names)
+	results := get_search_values_egress(eg_index, sec_group_name, egresses_with_names.names)
 
 	result := {
 		"documentId": doc.id,
@@ -48,8 +48,8 @@ search_for_standalone_egress(sec_group_name, doc) = egresses_with_names {
   }
 } else = {"egress_list": [], "names": []}
 
-get_search_values(eg_index, sec_group_name, names_list) = results {
-	eg_index < count(names_list) # if egress is standalone 
+get_search_values_egress(eg_index, sec_group_name, names_list) = results {
+	eg_index < count(names_list) # if egress is standalone
 
 	results := {
 		"searchKey" : sprintf("Resources.%s.Properties", [names_list[eg_index]]),
@@ -57,15 +57,10 @@ get_search_values(eg_index, sec_group_name, names_list) = results {
 		"type" : "AWS::EC2::SecurityGroupEgress"
 	}
 } else = results {
-	
+
 	results := {
 		"searchKey" : sprintf("Resources.%s.Properties.SecurityGroupEgress[%d]", [sec_group_name, eg_index - count(names_list)]),
 		"searchLine" : common_lib.build_search_line(["Resources", sec_group_name, "Properties", "SecurityGroupEgress", eg_index - count(names_list)], []),
 		"type" : "AWS::EC2::SecurityGroup"
 	}
 }
-
-get_egress_list_if_exists(group) = [] {
-	not common_lib.valid_key(group.Properties,"SecurityGroupEgress")
-} else = group.Properties.SecurityGroupEgress
-

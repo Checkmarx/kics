@@ -36,7 +36,7 @@ large_scope(ip_address, cidr) {
 	to_number(input_mask[1]) < 25	# should be 25-32
 }
 
-exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = results { # inline ingresses 
+exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = results { # inline ingresses
 	type == ["AWS::EC2::SecurityGroup", "AWS::RDS::DBSecurityGroup"][x1]
 
 	large_scope(res[cidr_fields[x2]], cidr_fields[x2])

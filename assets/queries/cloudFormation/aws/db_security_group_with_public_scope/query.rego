@@ -17,7 +17,7 @@ CxPolicy[result] {
 
 	ingress_list := cf_lib.get_ingress_list(resource)
 	results := exposed_inline_or_standalone_ingress(ingress_list[ing_index], ing_index, resource.Type, resource_name)
-	
+
 	result := {
 		"documentId": doc.id,
 		"resourceType": resource.Type,
@@ -30,7 +30,7 @@ CxPolicy[result] {
 	}
 }
 
-exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = results { # inline ingresses 
+exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = results { 				# inline ingresses
 	type == ["AWS::EC2::SecurityGroup", "AWS::RDS::DBSecurityGroup"][x1]
 
 	unrestricted_ips := array.concat(common_lib.unrestricted_ipv6, ["0.0.0.0/0"])
@@ -44,7 +44,7 @@ exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = res
 		"keyActualValue": sprintf("'Resources.%s.Properties.%s[%d].%s' is '%s'.", [resource_index, ingress_field_name, ing_index, cidr_fields[x2], unrestricted_ips[x3]]),
 		"searchLine" : common_lib.build_search_line(["Resources", resource_index, "Properties", ingress_field_name, ing_index, cidr_fields[x2]],[])
 	}
-} else = results { # standalone ingress resources
+} else = results { 																					# standalone ingress resources
 	type == ["AWS::EC2::SecurityGroupIngress", "AWS::RDS::DBSecurityGroupIngress"][x1]
 
 	unrestricted_ips := array.concat(common_lib.unrestricted_ipv6, ["0.0.0.0/0"])
@@ -64,5 +64,5 @@ get_ingress_field_name("AWS::RDS::DBSecurityGroup") = "DBSecurityGroupIngress"
 is_public_db(resource) {
 	cf_lib.isCloudFormationTrue(resource.Properties.PubliclyAccessible)
 } else {
-	not common_lib.valid_key(resource.Properties, "PubliclyAccessible") #default value varies so true is assumed 
+	not common_lib.valid_key(resource.Properties, "PubliclyAccessible") #default value varies so true is assumed
 }

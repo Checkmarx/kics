@@ -754,3 +754,7 @@ valid_non_empty_key(field, key) = output {
 	keyObj == ""
 	output := concat(".", ["", key])
 }
+
+get_array_if_exists(resource, field_name) = [] {
+	not valid_key(resource, field_name)
+} else = resource[field_name]
