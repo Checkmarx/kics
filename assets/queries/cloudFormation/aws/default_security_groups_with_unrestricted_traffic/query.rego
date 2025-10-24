@@ -4,18 +4,17 @@ import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
 CxPolicy[result] {						# inline rules
-	doc := input.document[i]
-	security_group := doc.Resources[security_group_name]
-	security_group.Type == "AWS::EC2::SecurityGroup"
+	resource := input.document[i].Resources[security_group_name]
+	resource.Type == "AWS::EC2::SecurityGroup"
 
-	security_group.Properties.GroupName == "default"
-	search_values := check_rules(security_group.Properties, security_group_name, doc)
+	resource.Properties.GroupName == "default"
+	search_values := check_rules(resource.Properties, security_group_name, input.document[i])
 	search_values != ""
 
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "AWS::EC2::SecurityGroup",
-		"resourceName": cf_lib.get_resource_name(security_group, security_group_name),
+		"resourceName": cf_lib.get_resource_name(resource, security_group_name),
 		"searchKey": search_values.searchKey,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Any 'AWS::EC2::SecurityGroup' with 'Properties.GroupName' set to 'default' should not have any traffic rules set.",
@@ -25,12 +24,11 @@ CxPolicy[result] {						# inline rules
 }
 
 CxPolicy[result] {						# standalone rules
-	doc := input.document[i]
-	security_group := doc.Resources[security_group_name]
-	security_group.Type == "AWS::EC2::SecurityGroup"
+	resource := input.document[i].Resources[security_group_name]
+	resource.Type == "AWS::EC2::SecurityGroup"
 
-	security_group.Properties.GroupName == "default"
-	rules := search_for_standalone_rules(security_group_name, doc)
+	resource.Properties.GroupName == "default"
+	rules := search_for_standalone_rules(security_group_name, input.document[i])
 	rule := rules.rule_list[x]
 
 	search_values := check_standalone_rule(security_group_name, rule, rules.names[x])
@@ -38,7 +36,7 @@ CxPolicy[result] {						# standalone rules
 	result := {
 		"documentId": input.document[i].id,
 		"resourceType": "AWS::EC2::SecurityGroup",
-		"resourceName": cf_lib.get_resource_name(security_group, security_group_name),
+		"resourceName": cf_lib.get_resource_name(resource, security_group_name),
 		"searchKey": search_values.searchKey,
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "Any 'AWS::EC2::SecurityGroup' with 'Properties.GroupName' set to 'default' should not have any traffic rules set.",

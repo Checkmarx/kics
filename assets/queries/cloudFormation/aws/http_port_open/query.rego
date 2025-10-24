@@ -5,7 +5,7 @@ import data.generic.common as common_lib
 
 CxPolicy[result] {
 	resource := input.document[i].Resources[sec_group_name]
-	sec_group.Type == "AWS::EC2::SecurityGroup"
+	resource.Type == "AWS::EC2::SecurityGroup"
 
 	ingresses_with_names := cf_lib.search_for_standalone_ingress(sec_group_name, input.document[i])
 

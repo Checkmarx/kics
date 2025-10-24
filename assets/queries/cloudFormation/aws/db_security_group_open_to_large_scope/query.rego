@@ -7,9 +7,8 @@ cidr_fields := ["CidrIp","CidrIpv6","CIDRIP"]
 
 CxPolicy[result] {
 	types := ["AWS::EC2::SecurityGroup","AWS::RDS::DBSecurityGroup","AWS::RDS::DBSecurityGroupIngress","AWS::EC2::SecurityGroupIngress"]
-	doc := input.document[i]
 
-	resource := doc.Resources[name]
+	resource := input.document[i].Resources[name]
 	resource.Type == types[_]
 
 	ingress_list := cf_lib.get_ingress_list(resource)

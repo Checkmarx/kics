@@ -7,19 +7,18 @@ cidr_fields := ["CidrIp","CidrIpv6","CIDRIP"]
 
 CxPolicy[result] {
 	types := ["AWS::EC2::SecurityGroup","AWS::RDS::DBSecurityGroup","AWS::RDS::DBSecurityGroupIngress","AWS::EC2::SecurityGroupIngress"]
-	doc := input.document[i]
-	public_db := doc.Resources[name]
-	public_db.Type == "AWS::RDS::DBInstance"
-	is_public_db(public_db)
+	db := input.document[i].Resources[name]
+	db.Type == "AWS::RDS::DBInstance"
+	is_public_db(db)
 
-	resource := doc.Resources[resource_name]
+	resource := input.document[i].Resources[resource_name]
 	resource.Type == types[_]
 
 	ingress_list := cf_lib.get_ingress_list(resource)
 	results := exposed_inline_or_standalone_ingress(ingress_list[ing_index], ing_index, resource.Type, resource_name)
 
 	result := {
-		"documentId": doc.id,
+		"documentId": input.document[i].id,
 		"resourceType": resource.Type,
 		"resourceName": cf_lib.get_resource_name(resource, resource_name),
 		"searchKey": results.searchKey,

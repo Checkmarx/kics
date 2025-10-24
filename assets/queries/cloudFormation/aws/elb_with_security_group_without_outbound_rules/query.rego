@@ -4,19 +4,18 @@ import data.generic.cloudformation as cf_lib
 import data.generic.common as common_lib
 
 CxPolicy[result] {
-	doc := input.document[i]
-	elbInstance := doc.Resources[name]
+	resource := input.document[i].Resources[name]
 
-	cf_lib.isLoadBalancer(elbInstance)
-	securityGroup_name := cf_lib.get_name(elbInstance.Properties.SecurityGroups[_])
+	cf_lib.isLoadBalancer(resource)
+	securityGroup_name := cf_lib.get_name(resource.Properties.SecurityGroups[_])
 
-	not has_standalone_egress(securityGroup_name, doc)
-	value := withoutOutboundRules(doc.Resources[securityGroup_name],securityGroup_name)
+	not has_standalone_egress(securityGroup_name, input.document[i])
+	value := withoutOutboundRules(input.document[i].Resources[securityGroup_name],securityGroup_name)
 
 	result := {
-		"documentId": doc.id,
-		"resourceType": elbInstance.Type,
-		"resourceName": cf_lib.get_resource_name(elbInstance, name),
+		"documentId": input.document[i].id,
+		"resourceType": resource.Type,
+		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties%s", [securityGroup_name, value.path]),
 		"issueType": value.issue,
 		"keyExpectedValue": sprintf("'Resources.%s.Properties.SecurityGroupEgress' should %s", [securityGroup_name, value.expected]),
@@ -49,4 +48,4 @@ withoutOutboundRules(securityGroup,name) = results {
 		"issue": "IncorrectValue",
 		"searchlineArray": ["Resources", name, "Properties", "SecurityGroupEgress"]
 	}
-} 
+}
