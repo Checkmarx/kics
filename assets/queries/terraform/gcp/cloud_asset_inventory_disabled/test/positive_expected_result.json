@@ -1,0 +1,32 @@
+[
+  {
+    "queryName": "Beta - Cloud Asset Inventory Disabled",
+    "severity": "MEDIUM",
+    "line": 2
+  },
+  {
+    "queryName": "Beta - Cloud Asset Inventory Disabled",
+    "severity": "MEDIUM",
+    "line": 10
+  },
+  {
+    "queryName": "Beta - Cloud Asset Inventory Disabled",
+    "severity": "MEDIUM",
+    "line": 18
+  },
+  {
+    "queryName": "Beta - Cloud Asset Inventory Disabled",
+    "severity": "MEDIUM",
+    "line": 35
+  },
+  {
+    "queryName": "Beta - Cloud Asset Inventory Disabled",
+    "severity": "MEDIUM",
+    "line": 40
+  },
+  {
+    "queryName": "Beta - Cloud Asset Inventory Disabled",
+    "severity": "MEDIUM",
+    "line": 45
+  }
+]
