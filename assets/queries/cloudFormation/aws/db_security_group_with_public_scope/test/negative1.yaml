@@ -1,7 +1,7 @@
 Resources:
   # This sample does not flag because the cidr ips are not 0.0.0.0/0 or ::/0
   # Legacy RDS DBSecurityGroup with inline ingress
-  DbSecurityByEC2SecurityGroupInline:
+  DbSecurityByEC2SecurityGroupInline_neg1:
     Type: AWS::RDS::DBSecurityGroup
     Properties:
       GroupDescription: "Legacy inline ingress"
@@ -9,15 +9,15 @@ Resources:
         - CIDRIP: 1.2.3.4/24
 
   # Legacy RDS DBSecurityGroup with standalone ingress
-  DbSecurityByEC2SecurityGroupStandalone:
+  DbSecurityByEC2SecurityGroupStandalone_neg1:
     Type: AWS::RDS::DBSecurityGroup
     Properties:
       GroupDescription: "Legacy standalone ingress"
 
-  DbSecurityIngressRule:
+  DbSecurityIngressRule_neg1:
     Type: AWS::RDS::DBSecurityGroupIngress
     Properties:
-      DBSecurityGroupName: !Ref DbSecurityByEC2SecurityGroupStandalone
+      DBSecurityGroupName: !Ref DbSecurityByEC2SecurityGroupStandalone_neg1
       CIDRIP: 1.2.3.4/24
 
   # EC2 Security Group with inline IPv4 and IPv6 rules
@@ -37,40 +37,40 @@ Resources:
           CidrIpv6: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
 
   # EC2 Security Group with standalone ingress rules
-  DBEC2SecurityGroupStandalone:
+  DBEC2SecurityGroupStandalone_neg1:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: "Standalone IPv4 and IPv6 ingress"
       VpcId: !Ref VPC
 
-  DBEC2SecurityGroupIngress:
+  DBEC2SecurityGroupIngress_neg1:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
-      GroupId: !Ref DBEC2SecurityGroupStandalone
+      GroupId: !Ref DBEC2SecurityGroupStandalone_neg1
       IpProtocol: tcp
       FromPort: 80
       ToPort: 80
       CidrIp: 1.2.3.4/24
 
-  DBEC2SecurityGroupIngressIPv6:
+  DBEC2SecurityGroupIngressIPv6_neg1:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
-      GroupId: !Ref DBEC2SecurityGroupStandalone
+      GroupId: !Ref DBEC2SecurityGroupStandalone_neg1
       IpProtocol: tcp
       FromPort: 80
       ToPort: 80
       CidrIpv6: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
 
   # RDS Instance referencing all security groups
-  DBInstance:
+  DBInstance_neg1:
     Type: AWS::RDS::DBInstance
     Properties:
       PubliclyAccessible: true
       DBName: !Ref DBName
       Engine: MySQL
       DBSecurityGroups:
-        - !Ref DbSecurityByEC2SecurityGroupInline
-        - !Ref DbSecurityByEC2SecurityGroupStandalone
+        - !Ref DbSecurityByEC2SecurityGroupInline_neg1
+        - !Ref DbSecurityByEC2SecurityGroupStandalone_neg1
       VPCSecurityGroups:
-        - !Ref DBEC2SecurityGroupInline
-        - !Ref DBEC2SecurityGroupStandalone
+        - !Ref DBEC2SecurityGroupInline_neg1
+        - !Ref DBEC2SecurityGroupStandalone_neg1_neg1

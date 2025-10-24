@@ -1,12 +1,12 @@
 Resources:
-  DbSecurityByEC2SecurityGroup:
+  DbSecurityByEC2SecurityGroup_neg5:
     Type: AWS::RDS::DBSecurityGroup #legacy-inline
     Properties:
       GroupDescription: "Ingress for Amazon EC2 security group"
       DBSecurityGroupIngress:
         -
           CIDRIP: 0.0.0.0/0
-  DBInstance:
+  DBInstance_neg5:
     Type: AWS::RDS::DBInstance
     Properties:
       PubliclyAccessible: "false"  #quoted string support test
@@ -14,4 +14,4 @@ Resources:
         Ref: DBName
       Engine: MySQL
       DBSecurityGroups:
-        - !Ref DbSecurityByEC2SecurityGroup
+        - !Ref DbSecurityByEC2SecurityGroup_neg5
