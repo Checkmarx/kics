@@ -77,6 +77,8 @@ emptyOrNull(null) = true
 
 # List of valid forms for the "::/0" ipv6 address
 unrestricted_ipv6 := ["::/0","0000:0000:0000:0000:0000:0000:0000:0000/0","0:0:0:0:0:0:0:0/0"]
+# List of all ip addresses considered "unrestricted"
+unrestricted_ips := array.concat(unrestricted_ipv6, ["0.0.0.0/0"])
 
 # Checks if an IP is private
 isPrivateIP(ipVal) {

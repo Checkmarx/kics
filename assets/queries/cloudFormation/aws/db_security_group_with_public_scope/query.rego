@@ -32,27 +32,25 @@ CxPolicy[result] {
 exposed_inline_or_standalone_ingress(res, ing_index, type, resource_index) = results { 				# inline ingresses
 	type == ["AWS::EC2::SecurityGroup", "AWS::RDS::DBSecurityGroup"][x1]
 
-	unrestricted_ips := array.concat(common_lib.unrestricted_ipv6, ["0.0.0.0/0"])
-	res[cidr_fields[x2]] == unrestricted_ips[x3]  #standalone ipv4 or ipv6
+	res[cidr_fields[x2]] == common_lib.unrestricted_ips[x3]  #standalone ipv4 or ipv6
 
 	ingress_field_name := get_ingress_field_name(type)
 
 	results := {
 		"searchKey": sprintf("Resources.%s.Properties.%s[%d].%s", [resource_index, ingress_field_name, ing_index, cidr_fields[x2]]),
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.%s[%d].%s' should not be '%s'.", [resource_index, ingress_field_name, ing_index, cidr_fields[x2], unrestricted_ips[x3]]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.%s[%d].%s' is '%s'.", [resource_index, ingress_field_name, ing_index, cidr_fields[x2], unrestricted_ips[x3]]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.%s[%d].%s' should not be '%s'.", [resource_index, ingress_field_name, ing_index, cidr_fields[x2], common_lib.unrestricted_ips[x3]]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.%s[%d].%s' is '%s'.", [resource_index, ingress_field_name, ing_index, cidr_fields[x2], common_lib.unrestricted_ips[x3]]),
 		"searchLine" : common_lib.build_search_line(["Resources", resource_index, "Properties", ingress_field_name, ing_index, cidr_fields[x2]],[])
 	}
 } else = results { 																					# standalone ingress resources
 	type == ["AWS::EC2::SecurityGroupIngress", "AWS::RDS::DBSecurityGroupIngress"][x1]
 
-	unrestricted_ips := array.concat(common_lib.unrestricted_ipv6, ["0.0.0.0/0"])
-	res[cidr_fields[x2]] == unrestricted_ips[x3]  #standalone ipv4 or ipv6
+	res[cidr_fields[x2]] == common_lib.unrestricted_ips[x3]  #standalone ipv4 or ipv6
 
 	results := {
 		"searchKey": sprintf("Resources.%s.Properties.%s", [resource_index, cidr_fields[x2]]),
-		"keyExpectedValue": sprintf("'Resources.%s.Properties.%s' should not be '%s'.", [resource_index, cidr_fields[x2], unrestricted_ips[x3]]),
-		"keyActualValue": sprintf("'Resources.%s.Properties.%s' is '%s'.", [resource_index, cidr_fields[x2], unrestricted_ips[x3]]),
+		"keyExpectedValue": sprintf("'Resources.%s.Properties.%s' should not be '%s'.", [resource_index, cidr_fields[x2], common_lib.unrestricted_ips[x3]]),
+		"keyActualValue": sprintf("'Resources.%s.Properties.%s' is '%s'.", [resource_index, cidr_fields[x2], common_lib.unrestricted_ips[x3]]),
 		"searchLine" : common_lib.build_search_line(["Resources", resource_index, "Properties", cidr_fields[x2]],[])
 	}
 }

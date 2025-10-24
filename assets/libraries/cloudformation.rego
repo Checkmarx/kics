@@ -54,14 +54,14 @@ checkAction(currentAction, actionToCompare) {
 get_ingress_list(resource) = result {
 	ingress_array_types := ["AWS::EC2::SecurityGroup","AWS::RDS::DBSecurityGroup"]
 	resource.Type == ingress_array_types[_]
-	result := resource.Properties[get_field(resource.Type)]
+	result := resource.Properties[get_associated_ingress_type(resource.Type)]
 } else = result {
 	# assumes it is a "AWS::EC2::SecurityGroupIngress" or "AWS::EC2::SecurityGroupEgress" resource
 	result := [resource.Properties]
 }
 
-get_field("AWS::EC2::SecurityGroup") = "SecurityGroupIngress"
-get_field("AWS::RDS::DBSecurityGroup") = "DBSecurityGroupIngress" #legacy
+get_associated_ingress_type("AWS::EC2::SecurityGroup") = "SecurityGroupIngress"
+get_associated_ingress_type("AWS::RDS::DBSecurityGroup") = "DBSecurityGroupIngress" #legacy
 
 containsPort(from_port, to_port, port) {
 	from_port <= port

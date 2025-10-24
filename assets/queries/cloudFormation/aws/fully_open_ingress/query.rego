@@ -3,7 +3,6 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
-unrestricted_ips := array.concat(common_lib.unrestricted_ipv6, ["0.0.0.0/0"])
 cidr_fields := ["CidrIp","CidrIpv6"]
 
 CxPolicy[result] {
@@ -34,7 +33,7 @@ CxPolicy[result] {
 exposed_inline_or_standalone_ingress(resource, ing_index, type, resource_index) = results { # inline ingress
 	type == "AWS::EC2::SecurityGroup"
 
-	resource[cidr_fields[c]] == unrestricted_ips[_]
+	resource[cidr_fields[c]] == common_lib.unrestricted_ips[_]
 	affects_all_ports(resource)
 
 	results := {
@@ -46,7 +45,7 @@ exposed_inline_or_standalone_ingress(resource, ing_index, type, resource_index) 
 } else = results { # standalone ingress resource
 	type == "AWS::EC2::SecurityGroupIngress"
 
-	resource[cidr_fields[c]] == unrestricted_ips[_]
+	resource[cidr_fields[c]] == common_lib.unrestricted_ips[_]
 	affects_all_ports(resource)
 
 	results := {
