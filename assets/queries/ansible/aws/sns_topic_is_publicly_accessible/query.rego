@@ -14,6 +14,8 @@ CxPolicy[result] {
 	statement.Effect == "Allow"
 	common_lib.any_principal(statement)
 
+	not is_access_limited_to_an_account_id(statement)
+
 	result := {
 		"documentId": id,
 		"resourceType": modules[m],
@@ -24,4 +26,11 @@ CxPolicy[result] {
 		"keyActualValue": "sns_topic.policy allows actions from all principals",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
+}
+
+is_access_limited_to_an_account_id(statement) {
+	common_lib.valid_key(statement, "Condition")
+	condition_keys := ["aws:SourceOwner", "aws:SourceAccount", "aws:ResourceAccount", "aws:PrincipalAccount", "aws:VpceAccount"]
+	condition_operator := statement.Condition[op][key]
+	lower(key) == lower(condition_keys[_])
 }
