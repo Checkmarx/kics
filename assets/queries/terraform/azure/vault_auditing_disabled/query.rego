@@ -6,7 +6,7 @@ import data.generic.terraform as tf_lib
 required_logs := {"audit", "allLogs"}
 
 CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_key_vault[name]
+	resource := input.document[i].resource[types[t]][name]
 
 
 	diagnostic_resources := [resource |
@@ -17,9 +17,9 @@ CxPolicy[result] {
 
 	result := {
 		"documentId": input.document[i].id,
-		"resourceType": "azurerm_key_vault",
+		"resourceType": types[t],
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("azurerm_key_vault[%s]", [name]),
+		"searchKey": sprintf("%s[%s]", [types[t], name]),
 		"issueType": "MissingAttribute",
 		"keyExpectedValue": "'azurerm_key_vault' should be associated with an 'azurerm_monitor_diagnostic_setting' resource with 'audit' and 'allLogs' log categories enabled",
 		"keyActualValue": keyActualValue,
