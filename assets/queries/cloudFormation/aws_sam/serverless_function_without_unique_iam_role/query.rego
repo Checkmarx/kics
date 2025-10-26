@@ -22,8 +22,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, k),
 		"searchKey": sprintf("Resources.%s.Properties.Role", [k]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resource.%s.Properties.Role is only assigned to the function in question", [k]),
-		"keyActualValue": sprintf("Resource.%s.Properties.Role is assigned to another funtion", [k]),
+		"keyExpectedValue": sprintf("Resource.%s.Properties.Role should be unique when functions have different permission requirements", [k]),
+		"keyActualValue": sprintf("Resource.%s.Properties.Role is shared with another function that has different permission requirements", [k]),
 	    "searchLine": common_lib.build_search_line(["Resources", k, "Properties", "Role"], []),
 	}
 }

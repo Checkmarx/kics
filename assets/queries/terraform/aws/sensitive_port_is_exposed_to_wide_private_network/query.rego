@@ -39,7 +39,6 @@ CxPolicy[result] {
 	ingress_list := tf_lib.get_ingress_list(resource.ingress)
 	ingress := ingress_list.value[i2]
 	results := is_exposed_to_wide_private_network(ingress,ingress_list.is_unique_element,name,i2,port,portContent,tf_lib.getProtocolList(ingress.protocol)[_])
-	results != ""
 
 	result := {
 		"documentId": input.document[i].id,
@@ -111,7 +110,7 @@ is_exposed_to_wide_private_network(ingress,is_unique_element,name,i2,portNumber,
 		"keyActualValue": sprintf("%s (%s:%d) is allowed", [portName, protocol, portNumber]),
 		"searchLine": common_lib.build_search_line(["resource", "aws_security_group", name, "ingress", i2], []),
 	}
-} else = ""
+}
 
 isTCPorUDP("TCP") = true
 

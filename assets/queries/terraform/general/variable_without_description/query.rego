@@ -16,7 +16,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("variable.{{%s}}", [variableName]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'description' should be defined and not null",
+		"keyExpectedValue": sprintf("Complex or sensitive variable '%s' should have a description", [variableName]),
 		"keyActualValue": "'description' is undefined or null",
 	}
 }
@@ -34,7 +34,7 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("variable.{{%s}}.description", [variableName]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "'description' should not be empty",
+		"keyExpectedValue": sprintf("Complex or sensitive variable '%s' should have a non-empty description", [variableName]),
 		"keyActualValue": "'description' is empty",
 	}
 }

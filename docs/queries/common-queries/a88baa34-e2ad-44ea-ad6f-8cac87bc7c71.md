@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Secret Management
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/798.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/798.html')">798</a>
+-   **Risk score:** <span style="color:#bb2124">7.8</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/common/passwords_and_secrets)
 
 ### Description
@@ -1624,7 +1625,40 @@ RUN apk add --no-cache git \
 
 ```
 </details>
-<details><summary>Positive test num. 50 - dockerfile file</summary>
+<details><summary>Positive test num. 50 - tf file</summary>
+
+```tf hl_lines="8 14"
+
+variable "linux_vms" {
+  description = "positive54.tf"
+  type = map(object({
+    region                           = string
+    size                             = optional(string)
+    admin_username                   = optional(string)
+    admin_password                   = "optional(sensitive(string))"
+  }))
+  default = {}
+}
+
+resource "azurerm_linux_virtual_machine" "vms" {
+  admin_password        = try(each.value.admin_password, "exposed_password", null)
+}
+```
+</details>
+<details><summary>Positive test num. 51 - json file</summary>
+
+```json hl_lines="4"
+{
+  "Resources": {
+    "service-3": {
+      "secretValue": "secretVaule1"
+    }
+  }
+}
+
+```
+</details>
+<details><summary>Positive test num. 52 - dockerfile file</summary>
 
 ```dockerfile hl_lines="3 7"
 FROM baseImage
@@ -1637,7 +1671,7 @@ ARG password=pass!1213Fs
 
 ```
 </details>
-<details><summary>Positive test num. 51 - tf file</summary>
+<details><summary>Positive test num. 53 - tf file</summary>
 
 ```tf hl_lines="8"
 resource "google_container_cluster" "primary2" {
@@ -1662,7 +1696,7 @@ resource "google_container_cluster" "primary2" {
 
 ```
 </details>
-<details><summary>Positive test num. 52 - json file</summary>
+<details><summary>Positive test num. 54 - json file</summary>
 
 ```json hl_lines="4 7"
 {
@@ -1678,7 +1712,7 @@ resource "google_container_cluster" "primary2" {
 
 ```
 </details>
-<details><summary>Positive test num. 53 - tf file</summary>
+<details><summary>Positive test num. 55 - tf file</summary>
 
 ```tf hl_lines="8"
 resource "google_container_cluster" "primary4" {
@@ -3074,7 +3108,25 @@ secrets:
 }
 ```
 </details>
-<details><summary>Negative test num. 50 - yml file</summary>
+<details><summary>Negative test num. 50 - json file</summary>
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "apiSecret": {
+      "type": "secureString"
+    }
+  },
+  "variables": {
+    "connectionSecret": "[parameters('apiSecret')]"
+  },
+  "resources": []
+}
+```
+</details>
+<details><summary>Negative test num. 51 - yml file</summary>
 
 ```yml
 jobs:
@@ -3099,7 +3151,141 @@ jobs:
           echo 'github.event_actor=${{ github.event_actor }}'
 ```
 </details>
-<details><summary>Negative test num. 51 - json file</summary>
+<details><summary>Negative test num. 52 - tf file</summary>
+
+```tf
+
+variable "linux_vms" {
+  description = "A list of the Linux VMs to create.  \n <a name=region:></a>[region:](#region:) The Azure location where the Windows Virtual Machine should exist. Changing this forces a new resource to be created.  \n <a name=size:></a>[size:](#size:) The SKU which should be used for this Virtual Machine, such as Standard_F2.  \n <a name=admin_username:></a>[admin_username:](#admin_username:) The username of the local administrator used for the Virtual Machine. Changing this forces a new resource to be created.  \n <a name=admin_password:></a>[admin_password:](#admin_password:) he Password which should be used for the local-administrator on this Virtual Machine. Changing this forces a new resource to be created."
+  type = map(object({
+    region                           = string
+    size                             = optional(string)
+    admin_username                   = optional(string)
+    admin_password                   = optional(string)
+  }))
+  default = {}
+}
+
+resource "azurerm_linux_virtual_machine" "vms" {
+  admin_password        = try(each.value.admin_password, null)
+}
+```
+</details>
+<details><summary>Negative test num. 53 - bicep file</summary>
+
+```bicep
+import { common, tagsObject, deployName, removeSpace } from '../../../CommonValues.bicep'
+
+@description('Nome do sistema')
+param systemName string
+
+@description('Nome do recurso')
+param resourceName string = removeSpace(systemName)
+
+@description('Enterprise Tagging object')
+param tags tagsObject
+
+resource kvTest 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
+  name: 'kv-test-sample'
+  scope: resourceGroup('rg-test-sample')
+}
+
+module consumerModule '../SecretConsumer/Resource.bicep' = {
+  name: deployName(resourceName, 'Test.SecretConsumer', tags.lastReleaseId)
+  params: {
+    systemName: systemName
+    resourceName: resourceName
+    tags: tags
+    apiClientSecret: kvTest.getSecret('secret-sample') 
+  }
+}
+
+```
+</details>
+<details><summary>Negative test num. 54 - json file</summary>
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "[parameters('apiVersion')]",
+            "name": "[parameters('logicAppName')]",
+            "location": "centralus",
+            "properties": {},
+            "actions": {
+                "Sample_action_1": {
+                    "runAfter_164": {
+                        "HTTP_-_Get_OAuth_Token": [
+                            "Succeeded"
+                        ]
+                    }
+                },
+                "Sample_action_2": {
+                    "runAfter_192": {
+                        "Parse_JSON_-_OAuth_Token": [
+                            "Succeeded"
+                        ]
+                    }
+                },
+                "Sample_action_3": {
+                    "runAfter_240": {
+                        "Try_-_Get_OAuth_Token": [
+                            "TimedOut",
+                            "Failed"
+                        ]
+                    }
+                },
+                "Sample_action_4": {
+                    "runAfter_678": {
+                        "Catch_-_Get_OAuth_Token": [
+                            "Skipped"
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+</details>
+<details><summary>Negative test num. 55 - bicep file</summary>
+
+```bicep
+param systemName string
+param resourceName string
+param tags object
+param originUrl string
+
+module myModule '../AnotherModule/Resource.bicep' = {
+  name: '${resourceName}-MyModule'
+  params: {
+    systemName: systemName
+    resourceName: resourceName
+    tags: tags
+    apiUrl: originUrl
+  }
+}
+
+module clientModule '../ClientModule/Resource.bicep' = {
+  name: '${resourceName}-ClientModule'
+  params: {
+    systemName: systemName
+    resourceName: resourceName
+    tags: tags
+    validationToken: myModule.outputs.apiToken 
+  }
+}
+
+// Saída do módulo
+output clientUrl string = clientModule.outputs.clientUrl
+output clientName string = clientModule.outputs.clientName
+
+```
+</details>
+<details><summary>Negative test num. 56 - json file</summary>
 
 ```json
 {
@@ -3119,7 +3305,7 @@ jobs:
 
 ```
 </details>
-<details><summary>Negative test num. 52 - tf file</summary>
+<details><summary>Negative test num. 57 - tf file</summary>
 
 ```tf
 resource "google_container_cluster" "primary3" {
@@ -3144,7 +3330,7 @@ resource "google_container_cluster" "primary3" {
 
 ```
 </details>
-<details><summary>Negative test num. 53 - tf file</summary>
+<details><summary>Negative test num. 58 - tf file</summary>
 
 ```tf
 resource "google_container_cluster" "primary5" {
@@ -3169,7 +3355,7 @@ resource "google_container_cluster" "primary5" {
 
 ```
 </details>
-<details><summary>Negative test num. 54 - tf file</summary>
+<details><summary>Negative test num. 59 - tf file</summary>
 
 ```tf
 resource "google_secret_manager_secret" "secret-basic" {
@@ -3186,3 +3372,4 @@ resource "google_secret_manager_secret" "secret-basic" {
 
 ```
 </details>
+

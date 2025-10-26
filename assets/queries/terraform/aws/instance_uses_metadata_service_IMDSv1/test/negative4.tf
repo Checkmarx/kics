@@ -21,4 +21,3 @@ module "negative4_launch_config" {
     http_tokens   = "required"
   }
 }
-

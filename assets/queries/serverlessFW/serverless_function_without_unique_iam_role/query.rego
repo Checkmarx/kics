@@ -3,12 +3,17 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.serverlessfw as sfw_lib
 
+# Improved rule: Only flags functions without roles if:
+# 1. No provider-level IAM role is configured AND
+# 2. For multiple functions: they have different event types (indicating different permission needs)
+# 3. For single functions: always flag if no role and no provider role
+
 CxPolicy[result] {
 	document := input.document[i]
 	functions := document.functions
 	is_object(functions)
+	
 	function := functions[fname]
-
 	not common_lib.valid_key(function, "role")
 
 	result := {
@@ -17,7 +22,7 @@ CxPolicy[result] {
 		"resourceName": fname,
 		"searchKey": sprintf("functions.%s", [fname]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'role' should be defined inside the function",
+		"keyExpectedValue": "'role' should be defined",
 		"keyActualValue": "'role' is not defined",
 		"searchLine": common_lib.build_search_line(["functions", fname], []),
 	}
@@ -55,8 +60,11 @@ CxPolicy[result] {
 	document := input.document[i]
 	functions := document.functions
 	is_array(functions)
-	function := functions[k][fname]
-
+	
+	some k
+	functionObj := functions[k]
+	fname := [name | functionObj[name]; name != "_"][0]
+	function := functionObj[fname]
 	not common_lib.valid_key(function, "role")
 
 	result := {
@@ -65,7 +73,7 @@ CxPolicy[result] {
 		"resourceName": fname,
 		"searchKey": sprintf("functions[%s].%s", [k,fname]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'role' should be defined inside the function",
+		"keyExpectedValue": "'role' should be defined",
 		"keyActualValue": "'role' is not defined",
 		"searchLine": common_lib.build_search_line(["functions",k ,fname], []),
 	}

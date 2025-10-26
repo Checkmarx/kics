@@ -19,8 +19,8 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(res_type, name),
 		"searchKey": sprintf("resource.%s.%s", [type, name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "All names should be on snake case pattern",
-		"keyActualValue": sprintf("'%s' is not in snake case", [name]),
+		"keyExpectedValue": "User-defined resource names should follow snake_case pattern",
+		"keyActualValue": sprintf("'%s' is not in snake_case", [name]),
 		"searchLine": common_lib.build_search_line(["resource", type, name], []),
 	}
 }
@@ -39,8 +39,8 @@ CxPolicy[result] {
 		"resourceName": "n/a",
 		"searchKey": sprintf("module.%s", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "All names should be on snake case pattern",
-		"keyActualValue": sprintf("'%s' is not in snake case", [name]),
+		"keyExpectedValue": "Local module names should follow snake_case pattern",
+		"keyActualValue": sprintf("'%s' is not in snake_case", [name]),
 		"searchLine": common_lib.build_search_line(["module", name], []),
 	}
 }

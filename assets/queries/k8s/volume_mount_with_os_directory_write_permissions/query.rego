@@ -24,8 +24,10 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"issueType": "IncorrectValue",
+		"searchValue": sprintf("%s%s", [document.kind, type]),
 		"keyExpectedValue": sprintf("The properties readOnly and recursiveReadOnly in metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}} are set to true and Enabled, respectively", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"keyActualValue": sprintf("The properties readOnly or recursiveReadOnly in metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}} are set to false or Disabled, respectively", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x],j, "volumeMounts", v]),
 	}
 }
 
@@ -48,21 +50,27 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"searchKey": sprintf("metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"issueType": "MissingAttribute",
+		"searchValue": sprintf("%s%s", [document.kind, type]),
 		"keyExpectedValue": sprintf("The properties readOnly and recursiveReadOnly in metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}} should be defined and set to true and Enabled, respectively", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
 		"keyActualValue": sprintf("Either readOnly or recursiveReadOnly is missing in metadata.name={{%s}}.%s.%s.name={{%s}}.volumeMounts.name={{%s}}", [metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name, metadata.name, specInfo.path, types[x], container.name, volumeMounts[v].name]),
+		"searchLine": common_lib.build_search_line(split(specInfo.path, "."), [types[x],j, "volumeMounts", v]),
 	}
 }
 
-is_insecure_mount(mount) {
+is_insecure_mount(mount) = type{
     mount.readOnly == false
-} else {
+    type := "readOnly"
+} else = type{
     mount.recursiveReadOnly == "Disabled"
+    type := "recursiveReadOnly"
 }
 
-check_if_mount_missing_props(mount) = true {
+check_if_mount_missing_props(mount) = type {
     not common_lib.valid_key(mount, "readOnly")
-} else = true {
+    type := "readOnly"
+} else = type{
     not common_lib.valid_key(mount, "recursiveReadOnly")
+    type := "recursiveReadOnly"
 }
 
 # Check if mount path is a sensitive OS directory

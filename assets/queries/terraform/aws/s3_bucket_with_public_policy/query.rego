@@ -10,6 +10,9 @@ CxPolicy[result] {
 	account_level_status := prepare_account_level_status(resources)
 
 	not account_level_status == "secure"
+	
+	# Only flag if this doesn't appear to be intentional public use
+	not is_intentional_public_bucket(resources)
 
 	res := prepare_issues(resources, account_level_status)
 	

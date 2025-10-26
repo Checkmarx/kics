@@ -2,14 +2,14 @@
   {
     "queryName": "Variable Without Description",
     "severity": "INFO",
-    "line": 1,
+    "line": 2,
     "filename": "positive1.tf"
   },
   {
     "queryName": "Variable Without Description",
     "severity": "INFO",
-    "line": 4,
-    "filename": "positive2.tf"
+    "line": 17,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "Variable Without Description",

@@ -1,5 +1,6 @@
 package Cx
 
+# Improved: Distinguish between user workloads and system components
 listKinds := ["Pod", "Deployment", "DaemonSet", "StatefulSet", "ReplicaSet", "ReplicationController", "Job", "CronJob", "Service", "Secret", "ServiceAccount", "Role", "RoleBinding", "ConfigMap", "Ingress", "Configuration", "Service", "Revision", "ContainerSource"]
 
 import data.generic.common as common_lib
@@ -25,12 +26,14 @@ CxPolicy[result] {
 		"resourceName": metadata.name,
 		"issueType": "MissingAttribute",
 		"searchKey": sprintf("kind={{%s}}.metadata.name={{%s}}", [kind, metadata.name]),
-		"keyExpectedValue": "metadata.namespace should be defined and not null",
+		"searchValue": document.kind, # multiple kinds can match
+		"keyExpectedValue": "metadata.namespace should be defined for production workloads",
 		"keyActualValue": "metadata.namespace is undefined or null",
 		"searchLine": common_lib.build_search_line(["metadata", "name"], []),
 	}
 }
 
+# Improved rule: Only flags system namespaces when used inappropriately
 CxPolicy[result] {
 	document := input.document[i]
 
@@ -50,6 +53,7 @@ CxPolicy[result] {
 		"resourceType": document.kind,
 		"resourceName": metadata.name,
 		"issueType": "IncorrectValue",
+		"searchValue": document.kind, # multiple kinds can match
 		"searchKey": sprintf("metadata.name={{%s}}.namespace", [metadata.name]),
 		"keyExpectedValue": "'metadata.namespace' should not be set to default, kube-system or kube-public",
 		"keyActualValue": sprintf("'metadata.namespace' is set to %s", [unrecommended_namespaces[x]]),
