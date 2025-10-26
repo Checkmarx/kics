@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Insecure Configurations
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/200.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/200.html')">200</a>
+-   **Risk score:** <span style="color:#bb2124">7.7</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/k8s/shared_host_pid_namespace)
 
 ### Description
@@ -136,3 +137,4 @@ spec:
             allowPrivilegeEscalation: false
 
 ```
+
