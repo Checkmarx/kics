@@ -119,31 +119,23 @@ is_legitimate_naming_exception(name) {
 	re_match(`^[a-z]+v[0-9]+$`, lower(name))
 }
 
-# Helper function: Check if name is a single word
+# Helper function: Check if name is a single word (all lowercase, no separators)
 is_single_word(name) {
 	not contains(name, "_")
 	not contains(name, "-")
 	count(name) <= 12  # Reasonable length for single words
+	# Must be all lowercase to be considered a valid single word
+	name == lower(name)
 }
 
 # Helper function: Determine if module name should enforce snake_case
 should_enforce_module_snake_case(name, module) {
-	# Only enforce on local modules, not external registry modules
+	# Only enforce on local modules (not external registry/git/http)
 	not is_external_module(module)
-	
-	# But exclude legitimate exceptions
 	not is_legitimate_naming_exception(name)
 }
 
-# Helper function: Check if module is external (from registry)
-is_external_module(module) {
-	common_lib.valid_key(module, "source")
-	source := module.source
-	
-	# Terraform registry modules
-	contains(source, "terraform-")
-}
-
+# Helper function: Check if module is external (git/http, not registry)
 is_external_module(module) {
 	common_lib.valid_key(module, "source")
 	source := module.source
@@ -156,8 +148,9 @@ is_external_module(module) {
 	common_lib.valid_key(module, "source")
 	source := module.source
 	
-	# HTTP modules
+	# HTTP modules (not terraform registry)
 	startswith(source, "http")
+	not contains(source, "terraform-")
 }
 
 is_snake_case(path) {

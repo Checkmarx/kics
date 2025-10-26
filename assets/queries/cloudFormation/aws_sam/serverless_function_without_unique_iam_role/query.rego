@@ -3,7 +3,7 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.cloudformation as cf_lib
 
-# IMPROVED VERSION: Reduces False Positives by considering legitimate role sharing scenarios
+# AWS Serverless Function should not share IAM Role
 CxPolicy[result] {
 	resources := input.document[i].Resources
 	resource := resources[k]
@@ -13,8 +13,8 @@ CxPolicy[result] {
 	resources[j].Properties.Role == resource.Properties.Role
 	k != j
 	
-	# Only flag if functions have different permission requirements
-	has_different_cf_permission_needs(resource, resources[j])
+	# Don't flag if functions have identical permission indicators (same events + same env)
+	not has_identical_permission_indicators(resource, resources[j])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -28,6 +28,31 @@ CxPolicy[result] {
 	}
 }
 
+# Check if functions have identical permission indicators
+has_identical_permission_indicators(func1, func2) {
+	# Same event types AND no different AWS service types in env = can share role
+	func1_events := get_cf_event_types(func1)
+	func2_events := get_cf_event_types(func2)
+	func1_events == func2_events
+	count(func1_events) > 0  # Must have events to compare
+	
+	# Check if they use different AWS services
+	not uses_different_aws_services(func1, func2)
+}
+
+# Check if functions use different AWS service types
+uses_different_aws_services(func1, func2) {
+	func1_env := get_cf_environment(func1)
+	func2_env := get_cf_environment(func2)
+	
+	func1_services := get_aws_service_types_from_env(func1_env)
+	func2_services := get_aws_service_types_from_env(func2_env)
+	
+	count(func1_services) > 0
+	count(func2_services) > 0
+	func1_services != func2_services
+}
+
 # Helper function: Determine if CloudFormation functions have different permission needs
 has_different_cf_permission_needs(func1, func2) {
 	# Different event sources indicate different permission requirements
@@ -39,14 +64,37 @@ has_different_cf_permission_needs(func1, func2) {
 }
 
 has_different_cf_permission_needs(func1, func2) {
-	# Different environment variables might indicate different permission needs
+	# Different AWS service TYPES in environment variables indicate different permission needs
 	func1_env := get_cf_environment(func1)
 	func2_env := get_cf_environment(func2)
 	
-	# Check for AWS service-related environment variables
-	has_aws_service_env(func1_env)
-	has_aws_service_env(func2_env)
-	func1_env != func2_env
+	# Get AWS service types from environment variables
+	func1_services := get_aws_service_types_from_env(func1_env)
+	func2_services := get_aws_service_types_from_env(func2_env)
+	
+	# Only flag if they use different AWS service types (not just different values)
+	count(func1_services) > 0
+	count(func2_services) > 0
+	func1_services != func2_services
+}
+
+# Helper function: Get AWS service types from environment variables
+get_aws_service_types_from_env(env) = services {
+	aws_service_patterns := {
+		"S3": "S3_BUCKET",
+		"DYNAMODB": "DYNAMODB_TABLE",
+		"SQS": "SQS_QUEUE",
+		"SNS": "SNS_TOPIC",
+		"RDS": "RDS_",
+		"LAMBDA": "LAMBDA_"
+	}
+	services := {service_type |
+		env_key := object.keys(env)[_]
+		pattern := aws_service_patterns[service_type]
+		contains(upper(env_key), pattern)
+	}
+} else = services {
+	services := set()
 }
 
 # Helper function: Get event types from CloudFormation function

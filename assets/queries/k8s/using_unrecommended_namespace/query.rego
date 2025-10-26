@@ -68,7 +68,7 @@ should_require_explicit_namespace(kind, document) {
 
 # Helper function: Check if resource is a workload that benefits from namespacing
 is_workload_resource(kind) {
-	workload_kinds := {"Deployment", "StatefulSet", "DaemonSet", "Job", "CronJob", "Service", "Ingress", "ConfigMap", "Secret"}
+	workload_kinds := {"Pod", "Deployment", "StatefulSet", "DaemonSet", "Job", "CronJob", "Service", "Ingress", "ConfigMap", "Secret", "Configuration", "Revision", "ServiceAccount", "Role", "RoleBinding"}
 	kind == workload_kinds[_]
 }
 
@@ -80,10 +80,10 @@ is_simple_testing_scenario(document) {
 }
 
 is_simple_testing_scenario(document) {
-	# Resources with testing-related names
-	testing_patterns := {"test", "example", "demo", "sample", "tutorial"}
+	# Resources with testing-related names (check EXACT resource name, not substrings)
+	testing_patterns := {"test", "example", "demo", "sample", "tutorial", "hello-world"}
 	resource_name := lower(document.metadata.name)
-	contains(resource_name, testing_patterns[_])
+	resource_name == testing_patterns[_]
 }
 
 is_simple_testing_scenario(document) {

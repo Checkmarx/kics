@@ -82,14 +82,18 @@ has_different_sfw_permission_needs(func1, func2, document) {
 }
 
 has_different_sfw_permission_needs(func1, func2, document) {
-	# Different environment variables might indicate different permission needs
+	# Different AWS service types in environment variables indicate different permission needs
 	func1_env := get_sfw_environment(func1, document)
 	func2_env := get_sfw_environment(func2, document)
 	
-	# Check for AWS service-related environment variables
-	has_aws_service_env(func1_env)
-	has_aws_service_env(func2_env)
-	func1_env != func2_env
+	# Get AWS service types from each function's environment
+	func1_services := get_aws_service_types(func1_env)
+	func2_services := get_aws_service_types(func2_env)
+	
+	# Only flag if they use different AWS services (not just different values)
+	count(func1_services) > 0
+	count(func2_services) > 0
+	func1_services != func2_services
 }
 
 # Helper function: Get event types from ServerlessFW function
@@ -122,4 +126,23 @@ has_aws_service_env(env) {
 	aws_service_patterns := {"S3_BUCKET", "DYNAMODB_TABLE", "SQS_QUEUE", "SNS_TOPIC", "RDS_", "LAMBDA_"}
 	env_key := object.keys(env)[_]
 	contains(upper(env_key), aws_service_patterns[_])
+}
+
+# Helper function: Get AWS service types from environment variables
+get_aws_service_types(env) = services {
+	aws_service_patterns := {
+		"S3": "S3_BUCKET",
+		"DYNAMODB": "DYNAMODB_TABLE", 
+		"SQS": "SQS_QUEUE",
+		"SNS": "SNS_TOPIC",
+		"RDS": "RDS_",
+		"LAMBDA": "LAMBDA_"
+	}
+	services := {service_type |
+		env_key := object.keys(env)[_]
+		pattern := aws_service_patterns[service_type]
+		contains(upper(env_key), pattern)
+	}
+} else = services {
+	services := set()
 }

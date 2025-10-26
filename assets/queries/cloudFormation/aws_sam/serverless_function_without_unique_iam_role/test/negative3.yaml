@@ -75,14 +75,14 @@ Resources:
           ORDER_TABLE: orders
           SHIPPING_SERVICE: shipping
 
-  # Functions with no events - can share roles
+  # Functions with no events - should have unique roles for least privilege
   UtilityFunction1:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: src/
       Handler: utils.function1
       Runtime: nodejs18.x
-      Role: {"Fn::GetAtt": ["UtilityRole", "Arn"]}
+      Role: {"Fn::GetAtt": ["UtilityRole1", "Arn"]}
 
   UtilityFunction2:
     Type: AWS::Serverless::Function
@@ -90,7 +90,7 @@ Resources:
       CodeUri: src/
       Handler: utils.function2
       Runtime: nodejs18.x
-      Role: {"Fn::GetAtt": ["UtilityRole", "Arn"]}
+      Role: {"Fn::GetAtt": ["UtilityRole2", "Arn"]}
 
   # Functions with same SQS event type
   QueueProcessor1:

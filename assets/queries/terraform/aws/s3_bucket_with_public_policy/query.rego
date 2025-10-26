@@ -14,7 +14,8 @@ CxPolicy[result] {
 	res := prepare_issues(resources, account_level_status)
 	
 	# Only flag if this bucket doesn't appear to be for legitimate public use
-	not is_legitimate_public_bucket(res["resName"], input.document[i])
+	# Note: Only skip if there's explicit evidence of intentional public hosting
+	not is_legitimate_public_bucket_with_explicit_config(res["resName"], input.document[i])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -87,36 +88,16 @@ prepare_issues(resources, account_level_status) = res {
 	}
 }
 
-# Helper function: Check if bucket is for legitimate public use
-is_legitimate_public_bucket(bucket_name, document) {
-	# Check bucket name patterns that indicate public use
-	public_bucket_patterns := {
-		"website", "static", "public", "assets", "cdn", "content", 
-		"media", "images", "js", "css", "frontend", "web", "hosting",
-		"cloudfront", "distribution", "logs", "backup"
-	}
-	
-	bucket_name_lower := lower(bucket_name)
-	contains(bucket_name_lower, public_bucket_patterns[_])
-}
-
-is_legitimate_public_bucket(bucket_name, document) {
-	# Check if bucket has website configuration
-	bucket := document.resource.aws_s3_bucket[_]
+# Helper function: Check if bucket has EXPLICIT configuration indicating intentional public use
+# This should be conservative - only skip if there's strong evidence of intentional public hosting
+is_legitimate_public_bucket_with_explicit_config(bucket_name, document) {
+	# Check if bucket has BOTH website configuration AND CloudFront distribution
+	# This combination strongly indicates intentional public hosting
+	bucket := document.resource.aws_s3_bucket[bucket_name]
 	common_lib.valid_key(bucket, "website")
-}
-
-is_legitimate_public_bucket(bucket_name, document) {
-	# Check if bucket is used with CloudFront
 	cloudfront := document.resource.aws_cloudfront_distribution[_]
 	origin := cloudfront.origin[_]
 	contains(origin.domain_name, bucket_name)
-}
-
-is_legitimate_public_bucket(bucket_name, document) {
-	# Check if bucket has CORS configuration (often indicates public access)
-	bucket := document.resource.aws_s3_bucket[_]
-	common_lib.valid_key(bucket, "cors_rule")
 }
 
 prepare_account_level_status(resources) = status{ # aws_s3_account_public_access_block resource block not defined

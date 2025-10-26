@@ -20,37 +20,37 @@
   {
     "queryName": "Variable Without Description",
     "severity": "INFO",
-    "line": 3,
+    "line": 4,
     "filename": "positive4.tf"
   },
   {
     "queryName": "Variable Without Description",
     "severity": "INFO",
-    "line": 11,
+    "line": 16,
     "filename": "positive4.tf"
   },
   {
     "queryName": "Variable Without Description",
     "severity": "INFO",
-    "line": 19,
+    "line": 25,
     "filename": "positive4.tf"
   },
   {
     "queryName": "Variable Without Description",
     "severity": "INFO",
-    "line": 24,
+    "line": 31,
     "filename": "positive4.tf"
   },
   {
     "queryName": "Variable Without Description",
     "severity": "INFO",
-    "line": 29,
+    "line": 36,
     "filename": "positive4.tf"
   },
   {
     "queryName": "Variable Without Description",
     "severity": "INFO",
-    "line": 38,
+    "line": 45,
     "filename": "positive4.tf"
   }
 ]

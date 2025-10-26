@@ -2,13 +2,13 @@ package Cx
 
 import data.generic.common as common_lib
 
-# IMPROVED VERSION: Reduces False Positives by considering variable context and complexity
+# Check for missing or empty descriptions, but allow simple obvious variable names
 CxPolicy[result] {
 	variable := input.document[i].variable[variableName]
 	not common_lib.valid_key(variable, "description")
 	
-	# Only flag if this variable actually needs a description
-	needs_description(variable, variableName)
+	# Don't flag extremely common/obvious variable names (INFO severity - low priority)
+	not is_extremely_obvious_variable_name(variableName)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -25,9 +25,8 @@ CxPolicy[result] {
 	description := input.document[i].variable[variableName].description
 	count(trim(description, " ")) == 0
 	
-	# Only flag if this variable actually needs a description
-	variable := input.document[i].variable[variableName]
-	needs_description(variable, variableName)
+	# Don't flag extremely common/obvious variable names
+	not is_extremely_obvious_variable_name(variableName)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -40,7 +39,42 @@ CxPolicy[result] {
 	}
 }
 
+# Extremely obvious variable names that don't need descriptions
+is_extremely_obvious_variable_name(name) {
+	obvious := {
+		"region", "environment", "env", "zone", "enabled", "enable", "disabled", "disable",
+		"port", "count", "size", "id", "key", "name", "value", "tag", "tags",
+		"app", "application", "tier", "role", "type", "stage", "phase"
+	}
+	lower(name) == obvious[_]
+}
+
+is_extremely_obvious_variable_name(name) {
+	# Very common compound names (but not domain-specific like "cluster_name")
+	common_compounds := {
+		"instance_count", "database_name", "api_key", "enable_logging", 
+		"is_production", "use_ssl"
+	}
+	lower(name) == common_compounds[_]
+}
+
+is_extremely_obvious_variable_name(name) {
+	# Very common prefixes
+	prefixes := {"enable_", "disable_", "is_", "use_"}
+	startswith(lower(name), prefixes[_])
+}
+
 # Helper function: Determine if a variable actually needs a description
+needs_description(variable, variableName) {
+	# Variables with validation rules ALWAYS need descriptions
+	common_lib.valid_key(variable, "validation")
+}
+
+needs_description(variable, variableName) {
+	# Sensitive variables ALWAYS need descriptions for security documentation
+	variable.sensitive == true
+}
+
 needs_description(variable, variableName) {
 	# Flag complex variables that definitely need documentation
 	has_complex_characteristics(variable, variableName)

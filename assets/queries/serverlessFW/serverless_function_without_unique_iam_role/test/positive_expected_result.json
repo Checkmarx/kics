@@ -14,19 +14,37 @@
   {
     "queryName": "Serverless Function Without Unique IAM Role",
     "severity": "HIGH",
-    "line": 13,
+    "line": 15,
     "fileName": "positive3.yml"
   },
   {
     "queryName": "Serverless Function Without Unique IAM Role",
     "severity": "HIGH",
-    "line": 26,
+    "line": 25,
     "fileName": "positive3.yml"
   },
   {
     "queryName": "Serverless Function Without Unique IAM Role",
     "severity": "HIGH",
-    "line": 39,
+    "line": 35,
+    "fileName": "positive3.yml"
+  },
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "HIGH",
+    "line": 45,
+    "fileName": "positive3.yml"
+  },
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "HIGH",
+    "line": 56,
+    "fileName": "positive3.yml"
+  },
+  {
+    "queryName": "Serverless Function Without Unique IAM Role",
+    "severity": "HIGH",
+    "line": 66,
     "fileName": "positive3.yml"
   }
 ]
