@@ -1,34 +1,39 @@
-resource "azurerm_monitor_diagnostic_setting" "negative1" {
+resource "azurerm_monitor_diagnostic_setting" "negative2" {
   name               = "databricks-diagnostic-logs"
-  target_resource_id = azurerm_databricks_workspace.example_neg1.id
+  target_resource_id = azurerm_databricks_workspace.example_neg2.id
 
   log_analytics_workspace_id = azurerm_log_analytics_workspace.example.id
   storage_account_id       = azurerm_storage_account.example.id
   eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.example.id
   eventhub_name            = "your-eventhub-name"
 
-  enabled_log {
+  log {
     category = "accounts"
+    enabled  = true
   }
 
-  enabled_log {
+  log {
     category = "Filesystem"
+    enabled  = true
   }
 
-  enabled_log {
+  log {
     category = "clusters"
+    enabled  = true
   }
 
-  enabled_log {
+  log {
     category = "notebook"
+    enabled  = true
   }
 
-  enabled_log {
+  log {
     category = "jobs"
+    enabled  = true
   }
 }
 
-resource "azurerm_databricks_workspace" "example_neg1" {
+resource "azurerm_databricks_workspace" "example_neg2" {
   name                = "secure-databricks-ws"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
