@@ -1,24 +1,25 @@
-provider "azurerm" {
-  features {
-    key_vault {purge_soft_delete_on_destroy = true}
+resource "azurerm_monitor_diagnostic_setting" "positive4" {
+  name               = "example"
+  target_resource_id = data.azurerm_databricks_workspace.not_example_pos4.id  # incorrect referencing
+
+  enabled_log {
+    category_group = "audit"
+  }
+
+  enabled_log {
+    category_group = "allLogs"
   }
 }
 
-data "azurerm_client_config" "current" {}
-
-resource "azurerm_resource_group" "example" {
-  name     = "resourceGroup1"
-  location = "West US"
-}
-
-resource "azurerm_monitor_diagnostic_setting" "example" {
-  name               = "example"
-  target_resource_id = data.azurerm_databricks_workspace.not_example.id  # incorrect referencing
-}
-
-resource "azurerm_databricks_workspace" "example" {
-  name                        = "test"
-  resource_group_name         = azurerm_resource_group.example.name
+resource "azurerm_key_vault" "example_pos4" {
+  name                        = "testvault"
   location                    = azurerm_resource_group.example.location
-  sku = "standard"
+  resource_group_name         = azurerm_resource_group.example.name
+  enabled_for_disk_encryption = true
+  tenant_id                   = data.azurerm_client_config.current.tenant_id
+  soft_delete_enabled         = true
+  soft_delete_retention_days  = 7
+  purge_protection_enabled    = false
+
+  sku_name = "standard"
 }
