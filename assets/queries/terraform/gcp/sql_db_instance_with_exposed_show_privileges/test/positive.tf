@@ -20,9 +20,10 @@ resource "google_sql_database_instance" "positive_3" {
   region           = "us-central1"
 
   settings {
-    database_flags = [
-      # Missing 'skip_show_database' flag
-    ]
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      } # Missing 'skip_show_database' flag
   }
 }
 
@@ -32,11 +33,20 @@ resource "google_sql_database_instance" "positive_4" {
   region           = "us-central1"
 
   settings {
-    database_flags = [
-      { name = "sample_flag1", value = "off" },
-      { name = "skip_show_database", value = "off" },  # Flag is not set to "on"
-      { name = "sample_flag2", value = "off" }
-    ]
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      }
+
+    database_flags {
+      name = "skip_show_database"        # Flag is not set to "on"
+      value = "off"
+      }
+
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      }
   }
 }
 
