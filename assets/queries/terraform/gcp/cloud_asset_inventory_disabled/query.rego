@@ -4,9 +4,10 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	resource := input.document[i].resource["google_project_service"][name]
+	resources := input.document[i].resource["google_project_service"]
 
-	not service_includes_cloudasset(resource.service, resource, input.document[i])
+	not at_least_one_enabled_cloud_asset(resources, input.document[i])
+	resource := resources[name]
 
 	result := {
 		"documentId": input.document[i].id,
@@ -14,10 +15,14 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("google_project_service[%s].service", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'google_project_service[%s].service' should contain or be equal to 'cloudasset.googleapis.com'", [name]),
-		"keyActualValue": sprintf("'google_project_service[%s].service' does not contain or equal 'cloudasset.googleapis.com'", [name]),
+		"keyExpectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
+		"keyActualValue": "No 'google_project_service.service' field does not contain or equal 'cloudasset.googleapis.com'",
 		"searchLine": common_lib.build_search_line(["resource", "google_project_service", name, "service"], [])
 	}
+}
+
+at_least_one_enabled_cloud_asset(resources, doc) {
+	service_includes_cloudasset(resources[y].service, resources[y], doc)
 }
 
 service_includes_cloudasset(service, project, doc) {

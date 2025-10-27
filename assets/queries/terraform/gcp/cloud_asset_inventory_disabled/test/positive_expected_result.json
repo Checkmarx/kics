@@ -2,31 +2,43 @@
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
     "severity": "MEDIUM",
-    "line": 2
+    "line": 2,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
     "severity": "MEDIUM",
-    "line": 10
+    "line": 5,
+    "filename": "positive1.tf"
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
     "severity": "MEDIUM",
-    "line": 18
+    "line": 6,
+    "filename": "positive2.tf"
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
     "severity": "MEDIUM",
-    "line": 35
+    "line": 6,
+    "filename": "positive3.tf"
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
     "severity": "MEDIUM",
-    "line": 40
+    "line": 7,
+    "filename": "positive4.tf"
   },
   {
     "queryName": "Beta - Cloud Asset Inventory Disabled",
     "severity": "MEDIUM",
-    "line": 45
+    "line": 10,
+    "filename": "positive5.tf"
+  },
+  {
+    "queryName": "Beta - Cloud Asset Inventory Disabled",
+    "severity": "MEDIUM",
+    "line": 10,
+    "filename": "positive6.tf"
   }
 ]
