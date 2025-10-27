@@ -30,9 +30,11 @@ resource "google_sql_database_instance" "negative_4" {
   region           = "us-central1"
 
   settings {
-    database_flags = [
+    database_flags {
+      name = "sample_flag"
+      value = "off"
+      }
       # Defaults to "off"
-    ]
   }
 }
 
@@ -44,9 +46,20 @@ resource "google_sql_database_instance" "negative_5" {
   settings {
     tier = "db-f1-micro"
 
-    database_flags = [
-      { name = "contained database authentication", value = "off" },   # Has flag set to "off"
-    ]
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      }
+
+    database_flags {                                  # Has flag set to "off" - array
+      name = "contained database authentication"
+      value = "off"
+      }
+
+    database_flags {
+      name = "sample_flag2"
+      value = "off"
+      }
   }
 }
 
@@ -61,6 +74,6 @@ resource "google_sql_database_instance" "negative_6" { # Single object support t
     database_flags {
       name = "contained database authentication"
       value = "off"
-      }   # Has flag set to "off"
+      }
   }
 }
