@@ -16,9 +16,20 @@ resource "google_sql_database_instance" "negative_2" {
   settings {
     tier = "db-f1-micro"
 
-    database_flags = [
-      { name = "3625", value = "on" },   # Has flag set to "on"
-    ]
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      }
+
+    database_flags {                                  # Has flag set to "on"
+      name = "3625"
+      value = "on"
+      }
+
+    database_flags {
+      name = "sample_flag2"
+      value = "off"
+      }
   }
 }
 
