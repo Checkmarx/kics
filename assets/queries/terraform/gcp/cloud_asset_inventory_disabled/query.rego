@@ -4,10 +4,11 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	resources := input.document[i].resource["google_project_service"]
+	resources := [ res | res := input.document[i].resource["google_project_service"][_]]
 
-	not at_least_one_enabled_cloud_asset(resources, input.document[i])
-	resource := resources[name]
+	projects := {x | x := resources[_].project}
+	results := find_invalid_projects(resources, input.document[i], projects)
+	resource := results[_]
 
 	result := {
 		"documentId": input.document[i].id,
@@ -21,8 +22,9 @@ CxPolicy[result] {
 	}
 }
 
-at_least_one_enabled_cloud_asset(resources, doc) {
-	service_includes_cloudasset(resources[y].service, resources[y], doc)
+find_invalid_projects(resources, doc, projects) = not_valid_projects{
+	valid_projects := {resources[y].project | service_includes_cloudasset(resources[y].service, resources[y], doc)}
+	not_valid_projects := {p | p := projects[_]; p != valid_projects[_]}
 }
 
 service_includes_cloudasset(service, project, doc) {
