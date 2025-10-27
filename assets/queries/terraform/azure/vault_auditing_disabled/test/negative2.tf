@@ -1,17 +1,19 @@
-resource "azurerm_monitor_diagnostic_setting" "negative_1" {
+resource "azurerm_monitor_diagnostic_setting" "negative_2" {
   name                       = "diagnostic-settings-name"
-  target_resource_id         = azurerm_key_vault.example_neg.id
+  target_resource_id = data.azurerm_key_vault.example_neg.id
 
-  enabled_log {                     # "enabled_log" for all both category groups
+  log {                               # legacy syntax - "log" with "enabled" set to true for both category groups
     category_group = "audit"
+    enabled  = true
   }
 
-  enabled_log {
+  log {
     category_group = "allLogs"
+    enabled  = true
   }
 }
 
-resource "azurerm_key_vault" "example_neg1" {
+resource "azurerm_key_vault" "example_neg2" {
   name                        = "testvault"
   location                    = azurerm_resource_group.example.location
   resource_group_name         = azurerm_resource_group.example.name
