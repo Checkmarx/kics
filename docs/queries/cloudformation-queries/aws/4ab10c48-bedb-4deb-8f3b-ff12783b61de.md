@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#edd57e">Low</span>
 -   **Category:** Observability
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/778.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/778.html')">778</a>
+-   **Risk score:** <span style="color:#edd57e">3.3</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/cloudFormation/aws/api_gateway_xray_disabled)
 
 ### Description
@@ -288,3 +289,4 @@ Resources:
 }
 
 ```
+

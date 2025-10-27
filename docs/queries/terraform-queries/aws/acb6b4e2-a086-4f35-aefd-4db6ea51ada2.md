@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Observability
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/778.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/778.html')">778</a>
+-   **Risk score:** <span style="color:#ff7213">6.4</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/elasticsearch_logs_disabled)
 
 ### Description
@@ -73,3 +74,4 @@ resource "aws_elasticsearch_domain" "negative1" {
 }
 
 ```
+
