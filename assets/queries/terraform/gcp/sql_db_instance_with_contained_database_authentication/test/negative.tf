@@ -5,6 +5,11 @@ resource "google_sql_database_instance" "negative_1" {
 
   settings {
     tier = "db-f1-micro"
+
+    database_flags {
+      name = "contained database authentication"
+      value = "on"
+      }
   }
 }
 
