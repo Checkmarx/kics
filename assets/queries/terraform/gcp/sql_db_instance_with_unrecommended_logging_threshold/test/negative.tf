@@ -6,9 +6,10 @@ resource "google_sql_database_instance" "negative_1" {
   settings {
     tier = "db-f1-micro"
 
-    database_flags = [
-      { name = "log_min_messages", value = "DEBUG3" }
-    ]
+    database_flags {
+      name = "log_min_messages"
+      value = "DEBUG3"
+    }
   }
 }
 
@@ -34,9 +35,11 @@ resource "google_sql_database_instance" "negative_4" {
   region           = "us-central1"
 
   settings {
-    database_flags = [
+    database_flags {
+      name = "sample_flag1"
+      value = "DEBUG3"
+    }
       # Defaults to "ERROR"
-    ]
   }
 }
 
@@ -48,13 +51,20 @@ resource "google_sql_database_instance" "negative_5" {
   settings {
     tier = "db-f1-micro"
 
-    database_flags = [
-      { name = "log_min_messages", value = "WARNING" },   # Has flag set to "WARNING" (minimum)
-      { name = "log_min_messages", value = "ERROR" },     # Has flag set to "ERROR"
-      { name = "log_min_messages", value = "LOG" },       # Has flag set to "LOG"
-      { name = "log_min_messages", value = "FATAL" },     # Has flag set to "FATAL"
-      { name = "log_min_messages", value = "PANIC" },     # Has flag set to "PANIC"
-    ]
+    database_flags {
+       name = "log_min_messages"
+       value = "ERROR"
+      }   # Has flag set to "ERROR"
+
+    database_flags {
+       name = "log_min_messages"
+       value = "FATAL"
+      }   # Has flag set to "FATAL"
+
+    database_flags {
+       name = "log_min_messages"
+       value = "LOG"
+      }   # Has flag set to "LOG"
   }
 }
 

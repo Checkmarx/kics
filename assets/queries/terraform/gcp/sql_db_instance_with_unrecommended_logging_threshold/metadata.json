@@ -3,7 +3,7 @@
   "queryName": "Beta - SQL DB Instance With Unrecommended Logging Threshold",
   "severity": "LOW",
   "category": "Observability",
-  "descriptionText": "All 'google_sql_database_instance' resources based on POSTGRES should have the 'log_min_messages' flag set to 'WARNING' or a higher severity to prevent excessively logging",
+  "descriptionText": "All 'google_sql_database_instance' resources based on POSTGRES should have the 'log_min_messages' flag set to 'WARNING' or a higher severity to prevent excessive logging",
   "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance.html#settings-1",
   "platform": "Terraform",
   "descriptionID": "ecbbe763",

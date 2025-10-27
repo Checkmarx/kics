@@ -2,16 +2,16 @@
   {
     "queryName": "Beta - SQL DB Instance With Unrecommended Logging Threshold",
     "severity": "LOW",
-    "line": 9
+    "line": 13
   },
   {
     "queryName": "Beta - SQL DB Instance With Unrecommended Logging Threshold",
     "severity": "LOW",
-    "line": 22
+    "line": 31
   },
   {
     "queryName": "Beta - SQL DB Instance With Unrecommended Logging Threshold",
     "severity": "LOW",
-    "line": 34
+    "line": 44
   }
 ]
