@@ -20,9 +20,10 @@ resource "google_sql_database_instance" "positive_3" {
   region           = "us-central1"
 
   settings {
-    database_flags = [
-      # Missing 'local_infile' flag
-    ]
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      } # Missing 'local_infile' flag
   }
 }
 
@@ -32,11 +33,20 @@ resource "google_sql_database_instance" "positive_4" {
   region           = "us-central1"
 
   settings {
-    database_flags = [
-      { name = "sample_flag1", value = "on" },
-      { name = "local_infile", value = "on" },  # Flag is not set to "off"
-      { name = "sample_flag2", value = "on" }
-    ]
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      }
+
+    database_flags {                                 # Flag is not set to "off"
+      name = "local_infile"
+      value = "on"
+      }
+
+    database_flags {
+      name = "sample_flag2"
+      value = "off"
+      }
   }
 }
 
