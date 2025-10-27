@@ -17,11 +17,11 @@
   {
     "queryName": "Beta - SQL DB Instance With Remote Access Enabled",
     "severity": "HIGH",
-    "line": 37
+    "line": 42
   },
   {
     "queryName": "Beta - SQL DB Instance With Remote Access Enabled",
     "severity": "HIGH",
-    "line": 50
+    "line": 60
   }
 ]

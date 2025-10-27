@@ -4,9 +4,10 @@ resource "google_sql_database_instance" "negative_1" {
   region           = "us-central1"
 
   settings {
-    database_flags = [
-      { name = "remote access", value = "on" }
-    ]
+    database_flags {
+      name = "remote access"
+      value = "on"
+      }
   }
 }
 
@@ -18,9 +19,20 @@ resource "google_sql_database_instance" "negative_2" {
   settings {
     tier = "db-f1-micro"
 
-    database_flags = [
-      { name = "remote access", value = "off" },   # Has flag set to "off"
-    ]
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      }
+
+    database_flags {                                  # Has flag set to "off"
+      name = "remote access"
+      value = "off"
+      }
+
+    database_flags {
+      name = "sample_flag2"
+      value = "off"
+      }
   }
 }
 
