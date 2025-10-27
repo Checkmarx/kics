@@ -8,7 +8,6 @@ required_logs := {"accounts", "Filesystem", "clusters", "notebook", "jobs"}
 CxPolicy[result] {
 	resource := input.document[i].resource["azurerm_databricks_workspace"][name]
 
-
 	diagnostic_resources := [resource |
 		resource := input.document[x].resource.azurerm_monitor_diagnostic_setting[_]
 		contains(resource.target_resource_id, concat(".", ["azurerm_databricks_workspace", name, "id"]))]
@@ -21,7 +20,7 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("azurerm_databricks_workspace[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": "'azurerm_databricks_workspace' should be associated with an 'azurerm_monitor_diagnostic_setting' resource",
+		"keyExpectedValue": "'azurerm_databricks_workspace' should be associated with an 'azurerm_monitor_diagnostic_setting' resource with all required logs and a valid destination",
 		"keyActualValue": keyActualValue,
 		"searchLine": common_lib.build_search_line(["resource", "azurerm_databricks_workspace", name],[])
 	}
