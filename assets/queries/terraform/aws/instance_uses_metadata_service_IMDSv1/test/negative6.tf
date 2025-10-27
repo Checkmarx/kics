@@ -21,4 +21,3 @@ module "negative6_launch_config" {
     http_tokens   = "optional"
   }
 }
-
