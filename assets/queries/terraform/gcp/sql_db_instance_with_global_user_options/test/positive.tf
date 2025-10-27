@@ -4,11 +4,20 @@ resource "google_sql_database_instance" "positive_1" {
   region           = "us-central1"
 
   settings {
-    database_flags = [
-      { name = "sample_flag1", value = "off" },
-      { name = "user options", value = "32" },  # Flag is not set to "0" - "32" triggers "ANSI_NULLS" option
-      { name = "sample_flag2", value = "off" }
-    ]
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      }
+
+    database_flags {                          # Flag is not set to "0" - "32" triggers "ANSI_NULLS" option
+      name = "user options"
+      value = "32"
+      }
+
+    database_flags {
+      name = "sample_flag2"
+      value = "off"
+      }
   }
 }
 

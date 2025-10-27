@@ -6,9 +6,10 @@ resource "google_sql_database_instance" "negative_1" {
   settings {
     tier = "db-f1-micro"
 
-    database_flags = [
-      { name = "user options", value = "2048" },  # ANSI_NULL_DFLT_OFF option
-    ]
+    database_flags{
+      name = "user options"
+      value = "2048"        # ANSI_NULL_DFLT_OFF option
+      }
   }
 }
 
@@ -34,9 +35,11 @@ resource "google_sql_database_instance" "negative_4" {
   region           = "us-central1"
 
   settings {
-    database_flags = [
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      }
       # Defaults to "0"
-    ]
   }
 }
 
@@ -48,9 +51,20 @@ resource "google_sql_database_instance" "negative_5" {
   settings {
     tier = "db-f1-micro"
 
-    database_flags = [
-      { name = "user options", value = "0" },   # Has flag set to "0"
-    ]
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      }
+
+    database_flags {                                  # Has flag set to "0"
+      name = "user options"
+      value = "0"
+      }
+
+    database_flags {
+      name = "sample_flag2"
+      value = "off"
+      }
   }
 }
 
