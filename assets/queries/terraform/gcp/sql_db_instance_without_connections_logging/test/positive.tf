@@ -20,9 +20,10 @@ resource "google_sql_database_instance" "positive_3" {
   region           = "us-central1"
 
   settings {
-    database_flags = [
-      # Missing 'log_connections' flag
-    ]
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      } # Missing 'log_connections' flag
   }
 }
 
@@ -32,11 +33,20 @@ resource "google_sql_database_instance" "positive_4" {
   region           = "us-central1"
 
   settings {
-    database_flags = [
-      { name = "sample_flag1", value = "off" },
-      { name = "log_connections", value = "off" },  # Flag is not set to "on"
-      { name = "sample_flag2", value = "off" }
-    ]
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      }
+
+    database_flags {
+      name = "log_connections"    # Flag is not set to "on"
+      value = "off"
+      }
+
+    database_flags {
+      name = "sample_flag2"
+      value = "off"
+      }
   }
 }
 
