@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#ff7213">Medium</span>
 -   **Category:** Access Control
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/284.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/284.html')">284</a>
+-   **Risk score:** <span style="color:#ff7213">6.8</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/terraform/aws/policy_without_principal)
 
 ### Description
@@ -231,3 +232,4 @@ resource "aws_iam_role" "example" {
 }
 ```
 </details>
+
