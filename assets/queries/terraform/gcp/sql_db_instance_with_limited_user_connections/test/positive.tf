@@ -4,11 +4,20 @@ resource "google_sql_database_instance" "positive_1" {
   region           = "us-central1"
 
   settings {
-    database_flags = [
-      { name = "sample_flag1", value = "off" },
-      { name = "user connections", value = "1001" },  # Flag is not set to "0"
-      { name = "sample_flag2", value = "off" }
-    ]
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      }
+
+    database_flags {                                 # Flag is not set to "0"
+      name = "user connections"
+      value = "1001"
+      }
+
+    database_flags {
+      name = "sample_flag2"
+      value = "off"
+      }
   }
 }
 
