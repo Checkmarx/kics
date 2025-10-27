@@ -4,11 +4,20 @@ resource "google_sql_database_instance" "positive_1" {
   region           = "us-central1"
 
   settings {
-    database_flags = [
-      { name = "sample_flag1", value = "off" },
-      { name = "cross db ownership chaining", value = "on" },  # Flag is not set to "off"
-      { name = "sample_flag2", value = "off" }
-    ]
+    database_flags {
+      name = "sample_flag1"
+      value = "off"
+      }
+
+    database_flags {                                  # Flag is not set to "off"
+      name = "cross db ownership chaining"
+      value = "on"
+      }
+
+    database_flags {
+      name = "sample_flag2"
+      value = "off"
+      }
   }
 }
 
