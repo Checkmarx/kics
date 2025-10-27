@@ -21,6 +21,7 @@ hide:
 -   **Severity:** <span style="color:#bb2124">High</span>
 -   **Category:** Access Control
 -   **CWE:** <a href="https://cwe.mitre.org/data/definitions/732.html" onclick="newWindowOpenerSafe(event, 'https://cwe.mitre.org/data/definitions/732.html')">732</a>
+-   **Risk score:** <span style="color:#bb2124">7.7</span>
 -   **URL:** [Github](https://github.com/Checkmarx/kics/tree/master/assets/queries/serverlessFW/serverless_role_with_full_privileges)
 
 ### Description
@@ -92,3 +93,4 @@ functions:
     tracing: Active
 
 ```
+
