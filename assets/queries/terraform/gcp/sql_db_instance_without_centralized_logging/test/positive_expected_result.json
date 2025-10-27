@@ -17,11 +17,11 @@
   {
     "queryName": "Beta - SQL DB Instance Without Centralized Logging",
     "severity": "LOW",
-    "line": 37
+    "line": 42
   },
   {
     "queryName": "Beta - SQL DB Instance Without Centralized Logging",
     "severity": "LOW",
-    "line": 50
+    "line": 60
   }
 ]
