@@ -1,4 +1,4 @@
-module "sns_topic_with_policy_statements_valid" {
+module "sns_topic_with_policy_statements_not_limited_access" {
   source  = "terraform-aws-modules/sns/aws"
   version = "~> 6.0"
 
@@ -12,7 +12,7 @@ module "sns_topic_with_policy_statements_valid" {
       principals = [
         {
           type        = "AWS"
-          identifiers = ["arn:aws:iam::123456789012:root"]
+          identifiers = ["*"]
         }
       ]
       condition = {
