@@ -1,0 +1,26 @@
+openapi: "3.0.0"
+info:
+  title: API with explicit no-security operations
+  version: "1.0.0"
+paths:
+  /public:
+    get:
+      operationId: getPublicData
+      summary: Get public data (no auth required)
+      security: []  # Explicitly marked as no security required
+      responses:
+        '200':
+          description: Public data
+  /health:
+    get:
+      operationId: healthCheck
+      summary: Health check endpoint
+      security: []  # Health checks typically don't need auth
+      responses:
+        '200':
+          description: Service is healthy
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

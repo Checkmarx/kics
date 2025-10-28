@@ -3,14 +3,22 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
+# IMPROVED VERSION: Reduces False Positives by considering legitimate public policy use cases
 CxPolicy[result] { 
 	resources := input.document[i].resource
 	
 	account_level_status := prepare_account_level_status(resources)
 
 	not account_level_status == "secure"
+	
+	# Only flag if this doesn't appear to be intentional public use
+	not is_intentional_public_bucket(resources)
 
 	res := prepare_issues(resources, account_level_status)
+	
+	# Only flag if this bucket doesn't appear to be for legitimate public use
+	# Note: Only skip if there's explicit evidence of intentional public hosting
+	not is_legitimate_public_bucket_with_explicit_config(res["resName"], input.document[i])
 
 	result := {
 		"documentId": input.document[i].id,
@@ -81,6 +89,18 @@ prepare_issues(resources, account_level_status) = res {
 		"kav": sprintf("'aws_s3_bucket_public_access_block[%s].block_public_policy' is not defined (defaults to false)", [name]),
 		"sl": common_lib.build_search_line(["resource", "aws_s3_bucket_public_access_block", name], [])
 	}
+}
+
+# Helper function: Check if bucket has EXPLICIT configuration indicating intentional public use
+# This should be conservative - only skip if there's strong evidence of intentional public hosting
+is_legitimate_public_bucket_with_explicit_config(bucket_name, document) {
+	# Check if bucket has BOTH website configuration AND CloudFront distribution
+	# This combination strongly indicates intentional public hosting
+	bucket := document.resource.aws_s3_bucket[bucket_name]
+	common_lib.valid_key(bucket, "website")
+	cloudfront := document.resource.aws_cloudfront_distribution[_]
+	origin := cloudfront.origin[_]
+	contains(origin.domain_name, bucket_name)
 }
 
 prepare_account_level_status(resources) = status{ # aws_s3_account_public_access_block resource block not defined
