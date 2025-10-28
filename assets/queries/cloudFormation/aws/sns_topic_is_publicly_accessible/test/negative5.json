@@ -1,29 +1,23 @@
 {
-    "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "",
-    "Resources": {
-        "snsPolicy": {
-            "Type": "AWS::SNS::TopicPolicy",
-            "Properties": {
-                "PolicyDocument": {
-                    "Statement": [
-                        {
-                            "Sid": "MyTopicPolicy",
-                            "Effect": "Allow",
-                            "Principal": "*",
-                            "Action": [
-                                "sns:Publish"
-                            ],
-                            "Resource": "arn:aws:sns:MyTopic",
-                            "Condition": {
-                                "StringEquals": {
-                                    "aws:SourceAccount": "123456789012"
-                                }
-                            }
-                        }
-                    ]
-                }
-            }
-        }
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "",
+  "Resources": {
+    "mysnspolicy0" : {
+      "Type" : "AWS::SNS::TopicPolicy",
+      "Properties" : {
+        "PolicyDocument" :  {
+          "Id" : "MyTopicPolicy",
+          "Version" : "2012-10-17",
+          "Statement" : [ {
+            "Sid" : "My-statement-id",
+            "Effect" : "Allow",
+            "Principal" : "otherPrincipal",
+            "Action" : "sns:Publish",
+            "Resource" : "*"
+          } ]
+        },
+        "Topics" : [ { "Ref" : "MySNSTopic" } ]
+      }
     }
+  }
 }

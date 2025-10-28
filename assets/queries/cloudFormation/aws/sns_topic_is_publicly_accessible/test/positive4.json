@@ -17,7 +17,7 @@
                             "Resource": "arn:aws:sns:MyTopic",
                             "Condition": {
                                 "StringEquals": {
-                                    "aws:PrincipalAccount": "123456789012"
+                                    "sns:Endpoint": "my_email_address@example.com"
                                 }
                             }
                         }

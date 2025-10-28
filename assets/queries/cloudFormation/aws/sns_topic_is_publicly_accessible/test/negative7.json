@@ -17,7 +17,7 @@
                             "Resource": "arn:aws:sns:MyTopic",
                             "Condition": {
                                 "StringEquals": {
-                                    "aws:PrincipalAccount": "123456789012"
+                                    "aws:VpceAccount": "123456789012"
                                 }
                             }
                         }
