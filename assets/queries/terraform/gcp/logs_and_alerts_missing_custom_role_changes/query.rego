@@ -12,7 +12,8 @@ CxPolicy[result] {
 	lines := split(filter_data.filter, "\n")
 
 	target_methods := {"CreateRole", "UpdateRole", "UndeleteRole", "DeleteRole"}
-	is_missing_methods_or_impossible_filter(target_methods, lines)
+	target_resource_type := "iam_role"
+	keyActualValue := is_improper_filter(target_methods, target_resource_type, lines)
 
 	result := {
 		"documentId": doc.id,
@@ -20,22 +21,34 @@ CxPolicy[result] {
 		"resourceName": tf_lib.get_resource_name(log_or_alert, name),
 		"searchKey": sprintf("%s[%s].%s", [resources[m], name, filter_data.path]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s[%s].%s' should capture all custom role changes", [resources[m], name, filter_data.path]),
-		"keyActualValue": sprintf("'%s[%s].%s' does not capture all custom role changes", [resources[m], name, filter_data.path]),
+		"keyExpectedValue": sprintf("'%s[%s].%s' should capture all custom role changes for resource type 'iam_role'", [resources[m], name, filter_data.path]),
+		"keyActualValue": sprintf("'%s[%s].%s' %s", [resources[m], name, filter_data.path, keyActualValue]),
 		"searchLine": common_lib.build_search_line(filter_data.searchArray, [])
 	}
 }
 
-is_missing_methods_or_impossible_filter(target_methods, lines) {
+is_improper_filter(target_methods, target_resource_type, lines) = keyActualValue {
+	not correct_resource_type(lines, target_resource_type)
+	keyActualValue := "is applied to the wrong resource type"
+} else = keyActualValue {
 	not contains_method(target_methods, lines)
-} else {
+	keyActualValue := "does not capture all custom role changes for resource type 'iam_role'"
+} else = keyActualValue {
 	methods_decalared := {line |
 	 line := lines[_]
 	 not contains(line, "NOT")
 	 not contains(line, "OR")
+	 not contains(line, "!=")
 	 contains(line, "protoPayload.methodName=")}
 
-	count(methods_decalared) >= 2  # means it has declared method = x AND method = y
+	count(methods_decalared) >= 2
+	methods_decalared[x] != methods_decalared[y]		 # means filter declares method = x AND method = y
+
+	keyActualValue := "declares an invalid filter, 'methodName' cannot be equal to multiple values simultaneously"
+}
+
+correct_resource_type(lines, target_resource_type) {
+	contains(lines[_], sprintf("resource.type=\"%s\"",[target_resource_type]))
 }
 
 contains_method(target_methods, lines) {
@@ -81,13 +94,13 @@ all_methods_allowed(methods) {
 get_filter(resource, type, name) = filter {
 	type == "google_logging_metric"
 	filter := {
-		"filter" :resource.filter,
+		"filter" : resource.filter,
 		"path" : "filter",
 		"searchArray" : ["resource", type, name]
 	}
 } else = filter{
 	filter := {
-		"filter" :resource.conditions.condition_matched_log.filter,
+		"filter" : resource.conditions.condition_matched_log.filter,
 		"path" : "conditions.condition_matched_log.filter",
 		"searchArray" : ["resource", type, name]
 	}

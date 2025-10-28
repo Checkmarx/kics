@@ -1,22 +1,10 @@
 resource "google_logging_metric" "logging_metric" {
   name   = "custom-role-changes-metric"
   filter = <<-FILTER
-    resource.type="project"
-    protoPayload.serviceName="iam.googleapis.com"
-    (
-      protoPayload.methodName:*
-    )
-  FILTER
-}
-
-resource "google_logging_metric" "logging_metric_2" {
-  name   = "custom-role-changes-metric_2"
-  filter = <<-FILTER
-    resource.type="project"
-    protoPayload.serviceName="iam.googleapis.com"
-    (
-      protoPayload.methodName:*
-      protoPayload.methodName =~ "(CreateRole|UpdateRole|DeleteRole|UndeleteRole)"
-    )
+    resource.type="iam_role"
+    AND (protoPayload.methodName = "google.iam.admin.v1.CreateRole" OR
+    protoPayload.methodName="google.iam.admin.v1.DeleteRole" OR
+    protoPayload.methodName="google.iam.admin.v1.UpdateRole OR
+    protoPayload.methodName="google.iam.admin.v1.UndeleteRole")
   FILTER
 }

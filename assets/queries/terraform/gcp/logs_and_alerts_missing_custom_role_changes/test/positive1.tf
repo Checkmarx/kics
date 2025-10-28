@@ -3,22 +3,23 @@ resource "google_logging_metric" "logging_metric" {
 
   # filter negates the "DeleteRole" method
   filter = <<-FILTER
-        resource.type="project"
-        protoPayload.serviceName="iam.googleapis.com"
-        (
-          protoPayload.methodName =~ "(CreateRole|UpdateRole|DeleteRole|UndeleteRole)"
-          AND NOT protoPayload.methodName:"DeleteRole"
-        )
+        resource.type="iam_role"
+        AND (protoPayload.methodName = "google.iam.admin.v1.CreateRole" OR
+        NOT protoPayload.methodName="google.iam.admin.v1.DeleteRole" OR
+        protoPayload.methodName="google.iam.admin.v1.UpdateRole OR
+        protoPayload.methodName="google.iam.admin.v1.UndeleteRole")
       FILTER
 }
 
 resource "google_logging_metric" "logging_metric_2" {
   name   = "my-(custom)/metric_2"
 
-  # filter negates the "DeleteRole" method
+  # filter for the wrong resource type
   filter = <<-FILTER
-        resource.type="project"
-        protoPayload.serviceName="iam.googleapis.com"
-        protoPayload.methodName =~ "(CreateRole|DeleteRole|UndeleteRole)"
+        resource.type="not_iam_role"
+        AND (protoPayload.methodName = "google.iam.admin.v1.CreateRole" OR
+        protoPayload.methodName="google.iam.admin.v1.DeleteRole" OR
+        protoPayload.methodName="google.iam.admin.v1.UpdateRole OR
+        protoPayload.methodName="google.iam.admin.v1.UndeleteRole")
       FILTER
 }
