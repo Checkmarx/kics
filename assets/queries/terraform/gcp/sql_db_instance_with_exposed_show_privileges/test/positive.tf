@@ -44,7 +44,7 @@ resource "google_sql_database_instance" "positive_4" {
       }
 
     database_flags {
-      name = "sample_flag1"
+      name = "sample_flag2"
       value = "off"
       }
   }
