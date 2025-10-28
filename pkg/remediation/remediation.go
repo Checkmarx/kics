@@ -17,8 +17,9 @@ type Report struct {
 
 // Query includes all the files that presents a result related to the queryID
 type Query struct {
-	Files   []File `json:"files"`
-	QueryID string `json:"query_id"`
+	Files        []File `json:"files"`
+	QueryID      string `json:"query_id"`
+	Experimental bool   `json:"experimental"` 
 }
 
 // File presents the result information related to the file
@@ -42,6 +43,7 @@ type Remediation struct {
 	SearchKey     string
 	ExpectedValue string
 	ActualValue   string
+	Experimental  bool
 }
 
 // Set includes all the replacements and additions related to a file
