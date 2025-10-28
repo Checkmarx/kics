@@ -13,13 +13,13 @@
 	},
 	{
 		"queryName": "SNS Topic is Publicly Accessible",
-		"severity": "HIGH",
+		"severity": "CRITICAL",
 		"line": 23,
 		"fileName": "positive2.yaml"
 	},
 	{
 		"queryName": "SNS Topic is Publicly Accessible",
-		"severity": "HIGH",
+		"severity": "CRITICAL",
 		"line": 55,
 		"fileName": "positive2.yaml"
 	}
