@@ -1,6 +1,6 @@
 {
   "id": "50f32d3c-096e-406a-bb26-71b3c91c11c0",
-  "queryName": "Beta - Subscription Activity Logs Without Diagnostic Settings",
+  "queryName": "Beta - Resource Without Diagnostic Settings",
   "severity": "MEDIUM",
   "category": "Observability",
   "descriptionText": "Resources that support diagnostic settings should be associated with a 'azurerm_monitor_diagnostic_setting' resource for exporting activity logs",
