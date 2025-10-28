@@ -171,25 +171,25 @@ func (s *Summary) GetRemediationSetsFromVulns(vulnerabilities []model.Vulnerabil
 				ActualValue:   vuln.KeyActualValue,
 				Experimental:  vuln.Experimental,
 			}
-	
+
 			if file.RemediationType == "replacement" {
 				remediationSet.Replacement = append(remediationSet.Replacement, *r)
 			}
-	
+
 			if file.RemediationType == "addition" {
 				remediationSet.Addition = append(remediationSet.Addition, *r)
 			}
-	
+
 			if _, ok := remediationSets[file.FilePath]; !ok {
 				remediationSets[file.FilePath] = remediationSet
 				continue
 			}
-	
+
 			updatedRemediationSet := remediationSets[file.FilePath].(Set)
-	
+
 			updatedRemediationSet.Addition = append(updatedRemediationSet.Addition, remediationSet.Addition...)
 			updatedRemediationSet.Replacement = append(updatedRemediationSet.Replacement, remediationSet.Replacement...)
-	
+
 			remediationSets[file.FilePath] = updatedRemediationSet
 		}
 	}
@@ -213,7 +213,7 @@ func getVulns(results Report) []model.Vulnerability {
 				SearchKey:        file.SearchKey,
 				KeyExpectedValue: file.ExpectedValue,
 				KeyActualValue:   file.ActualValue,
-				Experimental: 	  query.Experimental,
+				Experimental:     query.Experimental,
 			}
 
 			vulns = append(vulns, *vuln)

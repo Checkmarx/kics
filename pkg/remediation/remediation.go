@@ -19,7 +19,7 @@ type Report struct {
 type Query struct {
 	Files        []File `json:"files"`
 	QueryID      string `json:"query_id"`
-	Experimental bool   `json:"experimental"` 
+	Experimental bool   `json:"experimental"`
 }
 
 // File presents the result information related to the file

@@ -228,7 +228,7 @@ func initScan(queryID string, experimental bool) (*engine.Inspector, error) {
 	}
 
 	queryFilter := source.QueryInspectorParameters{
-		IncludeQueries: includeQueries,
+		IncludeQueries:      includeQueries,
 		ExperimentalQueries: experimental,
 	}
 
