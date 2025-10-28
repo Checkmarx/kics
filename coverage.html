@@ -2612,13 +2612,13 @@ func (m *Metrics) Stop() <span class="cov3" title="3">{
 // the type of profile
 func getTotal(prof *profile.Profile, idx int) int64 <span class="cov2" title="2">{
         var total, diffTotal int64
-        for _, sample := range prof.Sample </span><span class="cov9" title="54">{
+        for _, sample := range prof.Sample </span><span class="cov9" title="53">{
                 var v int64
                 v = sample.Value[idx]
                 if v &lt; 0 </span><span class="cov0" title="0">{
                         v = -v
                 }</span>
-                <span class="cov9" title="54">total += v
+                <span class="cov9" title="53">total += v
                 if sample.DiffBaseSample() </span><span class="cov0" title="0">{
                         diffTotal += v
                 }</span>
@@ -3319,7 +3319,7 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) <span class="cov5" title=
 
         <span class="cov5" title="33">go func() </span><span class="cov5" title="33">{
                 // close channel results when the worker has finished writing into it
-                defer func() </span><span class="cov5" title="33">{
+                defer func() </span><span class="cov5" title="32">{
                         close(unwanted)
                         close(results)
                         close(locCount)
@@ -6297,36 +6297,36 @@ func getPlatformLibraries(queriesSource source.QueriesSource, queries []model.Qu
 // getSimilarityIDTransitionQueryMap gets the map of similarity ID transition queries from the assets
 func getSimilarityIDTransitionQueryMap(informationPath string) map[string]TransitionQueryInfo <span class="cov3" title="6">{
         var transitionQueryMap = make(map[string]TransitionQueryInfo)
-        err := filepath.WalkDir(informationPath, func(path string, d os.DirEntry, err error) error </span><span class="cov7" title="97">{
+        err := filepath.WalkDir(informationPath, func(path string, d os.DirEntry, err error) error </span><span class="cov7" title="102">{
                 var changeList = TransitionQueryInfoChangeList{}
                 if err != nil </span><span class="cov0" title="0">{
                         log.Error().Msgf("Error walking through transition information files: %v", err)
                         return err
                 }</span>
 
-                <span class="cov7" title="97">if filepath.Ext(d.Name()) == ".yaml" || filepath.Ext(d.Name()) == ".yml" </span><span class="cov7" title="91">{
+                <span class="cov7" title="102">if filepath.Ext(d.Name()) == ".yaml" || filepath.Ext(d.Name()) == ".yml" </span><span class="cov7" title="96">{
                         content, err := os.ReadFile(filepath.Clean(path))
                         if err != nil </span><span class="cov0" title="0">{
                                 log.Error().Msgf("Error reading transition information file %s", d.Name())
                                 return err
                         }</span>
 
-                        <span class="cov7" title="91">err = yaml.Unmarshal(content, &amp;changeList)
+                        <span class="cov7" title="96">err = yaml.Unmarshal(content, &amp;changeList)
                         if err != nil </span><span class="cov0" title="0">{
                                 log.Error().Msgf("Error unmarshalling transition information file %s: %v", d.Name(), err)
                                 return err
                         }</span>
 
-                        <span class="cov7" title="91">for _, change := range changeList.SimilarityIDChangeList </span><span class="cov10" title="697">{
+                        <span class="cov7" title="96">for _, change := range changeList.SimilarityIDChangeList </span><span class="cov10" title="702">{
                                 if _, ok := transitionQueryMap[change.QueryID]; ok </span><span class="cov0" title="0">{
                                         log.Warn().Msgf(
                                                 "Duplicate query ID found in transition information file %s: %s", d.Name(), change.QueryID)
-                                }</span> else<span class="cov10" title="697"> {
+                                }</span> else<span class="cov10" title="702"> {
                                         transitionQueryMap[change.QueryID] = change
                                 }</span>
                         }
                 }
-                <span class="cov7" title="97">return nil</span>
+                <span class="cov7" title="102">return nil</span>
         })
         <span class="cov3" title="6">if err != nil </span><span class="cov0" title="0">{
                 log.Error().Msgf("Error getting similarity ID transition query map: %v", err)
@@ -7243,12 +7243,12 @@ func (s *FileSystemSourceProvider) GetSources(ctx context.Context,
 
 func (s *FileSystemSourceProvider) walkDir(ctx context.Context, scanPath string, resolved bool,
         sink Sink, resolverSink ResolverSink, extensions model.Extensions) error <span class="cov1" title="3">{
-        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="33853">{
+        return filepath.Walk(scanPath, func(path string, info os.FileInfo, err error) error </span><span class="cov9" title="33867">{
                 if err != nil </span><span class="cov0" title="0">{
                         return err
                 }</span>
 
-                <span class="cov9" title="33853">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="33490">{
+                <span class="cov9" title="33867">if shouldSkip, skipFolder := s.checkConditions(info, extensions, path, resolved); shouldSkip </span><span class="cov9" title="33504">{
                         return skipFolder
                 }</span>
 
@@ -7320,11 +7320,11 @@ func closeFile(file *os.File, info os.FileInfo) <span class="cov6" title="362">{
 }
 
 func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions model.Extensions,
-        path string, resolved bool) (bool, error) <span class="cov10" title="33872">{
+        path string, resolved bool) (bool, error) <span class="cov10" title="33886">{
         s.mu.RLock()
         defer s.mu.RUnlock()
 
-        if info.IsDir() </span><span class="cov8" title="7052">{
+        if info.IsDir() </span><span class="cov8" title="7056">{
                 // exclude terraform cache folders
                 if queryRegexExcludeTerraCache.MatchString(path) </span><span class="cov3" title="13">{
                         log.Info().Msgf("Directory ignored: %s", path)
@@ -7335,23 +7335,23 @@ func (s *FileSystemSourceProvider) checkConditions(info os.FileInfo, extensions 
                         }</span>
                         <span class="cov3" title="13">return true, filepath.SkipDir</span>
                 }
-                <span class="cov8" title="7039">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
+                <span class="cov8" title="7043">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov1" title="1">{
                         log.Info().Msgf("Directory ignored: %s", path)
                         return true, filepath.SkipDir
                 }</span>
-                <span class="cov8" title="7038">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
-                if err != nil || resolved </span><span class="cov8" title="7035">{
+                <span class="cov8" title="7042">_, err := os.Stat(filepath.Join(path, "Chart.yaml"))
+                if err != nil || resolved </span><span class="cov8" title="7039">{
                         return true, nil
                 }</span>
                 <span class="cov1" title="3">return false, nil</span>
         }
 
-        <span class="cov9" title="26820">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
+        <span class="cov9" title="26830">if f, ok := s.excludes[info.Name()]; ok &amp;&amp; containsFile(f, info) </span><span class="cov0" title="0">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
-        <span class="cov9" title="26820">ext, _ := utils.GetExtension(path)
-        if !extensions.Include(ext) </span><span class="cov9" title="26458">{
+        <span class="cov9" title="26830">ext, _ := utils.GetExtension(path)
+        if !extensions.Include(ext) </span><span class="cov9" title="26468">{
                 log.Trace().Msgf("File ignored: %s", path)
                 return true, nil
         }</span>
@@ -20696,12 +20696,12 @@ func parseFunctionCall(functionData map[string][]interface{}) string <span class
 
 // function to check if an identifier is a parameter/variable and add the required keyword if so
 func convertToParamVar(str string, s *BicepVisitor) string <span class="cov5" title="44">{
-        for variable := range s.varList </span><span class="cov7" title="212">{
+        for variable := range s.varList </span><span class="cov7" title="220">{
                 if variable == str </span><span class="cov3" title="7">{
                         return "variables('" + str + CloseParenthesis
                 }</span>
         }
-        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="609">{
+        <span class="cov5" title="37">for parameter := range s.paramList </span><span class="cov9" title="559">{
                 if parameter == str </span><span class="cov4" title="22">{
                         return "parameters('" + str + CloseParenthesis
                 }</span>
@@ -34431,15 +34431,15 @@ func StringifyStruct(v interface{}) (string, error) <span class="cov0" title="0"
 }
 
 // MapToStringSlice extract slice of keys from a map[string]string
-func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="5191">{
+func MapToStringSlice(stringKeyMap map[string]string) []string <span class="cov7" title="5194">{
         keys := make([]string, len(stringKeyMap))
 
         i := 0
-        for k := range stringKeyMap </span><span class="cov10" title="83056">{
+        for k := range stringKeyMap </span><span class="cov10" title="83104">{
                 keys[i] = k
                 i++
         }</span>
-        <span class="cov7" title="5191">return keys</span>
+        <span class="cov7" title="5194">return keys</span>
 }
 
 var queryHigh = model.QueryResult{ //nolint
