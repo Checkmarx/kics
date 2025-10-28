@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Beta - Google DNS Policy Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 1
+  },
+  {
+    "queryName": "Beta - Google DNS Policy Logging Disabled",
+    "severity": "MEDIUM",
+    "line": 11
+  }
+]
