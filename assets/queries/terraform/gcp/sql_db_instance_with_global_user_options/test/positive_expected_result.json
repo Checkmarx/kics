@@ -1,0 +1,12 @@
+[
+  {
+    "queryName": "Beta - SQL DB Instance With Global User Options",
+    "severity": "MEDIUM",
+    "line": 13
+  },
+  {
+    "queryName": "Beta - SQL DB Instance With Global User Options",
+    "severity": "MEDIUM",
+    "line": 31
+  }
+]
