@@ -354,6 +354,7 @@ func (c *Inspector) Inspect(
 	var wg sync.WaitGroup
 
 	log.Info().Msgf("number of workers is: %d", c.numWorkers)
+	c.numWorkers = 5
 	// Start a goroutine for each worker
 	for w := 0; w < c.numWorkers; w++ {
 		wg.Add(1)
