@@ -31,7 +31,7 @@ get_res(resource, name) = res {
         "sl": common_lib.build_search_line(["resource", "azurerm_key_vault", name], []),
         "kev": "'purge_protection_enabled' should be defined and set to true",
         "kav": "'purge_protection_enabled' is not defined",
-        "rem": "\npurge_protection_enabled = true\n",
+        "rem": "purge_protection_enabled = true",
         "rtype": "addition"
     }
 } else = res {
@@ -40,7 +40,7 @@ get_res(resource, name) = res {
     res := {
         "it": "IncorrectValue",
         "sk": sprintf("azurerm_key_vault[%s].purge_protection_enabled", [name]),
-        "sl": common_lib.build_search_line(["resource", name, "purge_protection_enabled"], []),
+        "sl": common_lib.build_search_line(["resource", "azurerm_key_vault", name, "purge_protection_enabled"], []),
         "kev": "'purge_protection_enabled' field should be set to true",
         "kav": "'purge_protection_enabled' is not set to true",
         "rem": json.marshal({
