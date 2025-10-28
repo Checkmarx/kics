@@ -3,66 +3,51 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-CxPolicy[result] {
-	resource := input.document[i].resource.azurerm_monitor_diagnostic_setting[name]
+target_resources := {"azurerm_key_vault", "azurerm_application_gateway", "azurerm_firewall", "azurerm_lb", "azurerm_public_ip",
+					"azurerm_frontdoor", "azurerm_cdn_frontdoor_profile", "azurerm_cdn_frontdoor_endpoint", "azurerm_cdn_profile",
+					"azurerm_cdn_endpoint", "azurerm_storage_account", "azurerm_mssql_server", "azurerm_mssql_managed_instance",
+					"azurerm_mssql_database", "azurerm_cosmosdb_account", "azurerm_linux_web_app", "azurerm_windows_web_app",
+					"azurerm_linux_function_app", "azurerm_windows_function_app", "azurerm_kubernetes_cluster", "azurerm_eventhub_namespace",
+					"azurerm_servicebus_namespace", "azurerm_container_registry", "azurerm_api_management"}
 
-	target_is_subscription(resource.target_resource_id)
-	not common_lib.valid_key(resource, "enabled_log")		# array or single object
-	results := get_results(resource, name)
+CxPolicy[result] {
+	resource := input.document[i].data.azurerm_subscription[name]			# subscription (data)
+
+	not diagnostic_setting_associated_with_subscription(input.document[i], name)
 
 	result := {
 		"documentId": input.document[i].id,
-		"resourceType": "azurerm_monitor_diagnostic_setting",
+		"resourceType": "azurerm_subscription",
 		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": results.searchKey,
-		"issueType": results.issueType,
-		"keyExpectedValue": results.keyExpectedValue,
-		"keyActualValue": results.keyActualValue,
-		"searchLine": results.searchLine
-	}
-}
-
-get_results(resource, name) = results { # missing "log"
-	not common_lib.valid_key(resource, "log")
-
-	results := {
-		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s]", [name]),
+		"searchKey": sprintf("azurerm_subscription[%s]", [name]),
 		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].enabled_log' should be defined and not null", [name]),
-		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].enabled_log' is undefined or null", [name]),
-		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name], [])
-	}
-} else = results { 	# log array
-	is_array(resource.log)
-	not at_least_one_enabled_log(resource)
-
-	results := {
-		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s]", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log' should enable at least one log category", [name]),
-		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log' has all its log blocks(%d) disabled", [name, count(resource.log)]),
-		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name], [])
-	}
-} else = results {	# single log object
-	not at_least_one_enabled_log(resource)
-
-	results := {
-		"searchKey": sprintf("azurerm_monitor_diagnostic_setting[%s].log", [name]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log' should set 'enabled' to 'true'", [name]),
-		"keyActualValue": sprintf("'azurerm_monitor_diagnostic_setting[%s].log' sets 'enabled' to '%s'", [name, resource.log.enabled]),
-		"searchLine": common_lib.build_search_line(["resource", "azurerm_monitor_diagnostic_setting", name, "log"], [])
+		"keyExpectedValue": sprintf("'azurerm_subscription[%s]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource", [name]),
+		"keyActualValue": sprintf("'azurerm_subscription[%s]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource", [name]),
+		"searchLine": common_lib.build_search_line(["data", "azurerm_subscription", name], [])
 	}
 }
 
-target_is_subscription(id) {
-	regex.match("^/subscriptions/[0-9a-fA-F-]{36}$", id)
-} else {
-	regex.match("^/subscriptions/\\$\\{[^}]+\\}$", id)
+CxPolicy[result] {
+	resource := input.document[i].resource[target_resources[t]][name]			# individual resources
+
+	not diagnostic_setting_associated_with_target_resource(input.document[i], target_resources[t], name)
+
+	result := {
+		"documentId": input.document[i].id,
+		"resourceType": target_resources[t],
+		"resourceName": tf_lib.get_resource_name(resource, name),
+		"searchKey": sprintf("%s[%s]", [target_resources[t], name]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("'%s[%s]' should be associated with a 'azurerm_monitor_diagnostic_setting' resource", [target_resources[t], name]),
+		"keyActualValue": sprintf("'%s[%s]' is not associated with a 'azurerm_monitor_diagnostic_setting' resource", [target_resources[t], name]),
+		"searchLine": common_lib.build_search_line(["resource", target_resources[t], name], [])
+	}
 }
 
-at_least_one_enabled_log(resource) {
-	resource.log[_].enabled == true
-} else {
-	resource.log.enabled == true
+diagnostic_setting_associated_with_subscription(doc, sub_name) {
+	doc.resource.azurerm_monitor_diagnostic_setting[_].target_resource_id == sprintf("${data.azurerm_subscription.%s.id}", [sub_name])
+}
+
+diagnostic_setting_associated_with_target_resource(doc, target_type, target_name) {
+	doc.resource.azurerm_monitor_diagnostic_setting[_].target_resource_id == sprintf("${%s.%s.id}", [target_type, target_name])
 }
