@@ -72,5 +72,7 @@ is_associated_with_db(resource, resource_name, referenced_sec_groups) {			# case
 is_public_db(resource) {
 	cf_lib.isCloudFormationTrue(resource.Properties.PubliclyAccessible)
 } else {
-	not common_lib.valid_key(resource.Properties, "PubliclyAccessible") #default value varies so true is assumed
+	not common_lib.valid_key(resource.Properties, "PubliclyAccessible") # default value varies
+	not common_lib.valid_key(resource, "DBSubnetGroupName")
+	not contains(resource.engine, "aurora")
 }
