@@ -1,0 +1,14 @@
+{
+  "id": "cc9e464e-5abc-4c8f-8077-a9aa7ebe6a05",
+  "queryName": "Beta - Google DNS Policy Logging Disabled",
+  "severity": "MEDIUM",
+  "category": "Observability",
+  "descriptionText": "The 'google_dns_policy' should always have the 'enable_logging' field set to true",
+  "descriptionUrl": "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/dns_policy#enable_logging-1",
+  "platform": "Terraform",
+  "descriptionID": "cc9e464e",
+  "cloudProvider": "gcp",
+  "cwe": "778",
+  "riskScore": "3.0",
+  "experimental": "true"
+}
