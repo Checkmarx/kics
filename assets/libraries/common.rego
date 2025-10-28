@@ -421,17 +421,24 @@ get_policy(p) = policy {
 	policy = p
 }
 
-is_access_limited_to_an_account_id(statement) {
-	valid_key(statement, "Condition")
-	condition_keys := ["aws:SourceOwner", "aws:SourceAccount", "aws:ResourceAccount", "aws:PrincipalAccount", "aws:VpceAccount"]
-	condition_operator := statement.Condition[op][key]
-	lower(key) == lower(condition_keys[_])
-} else {
-	valid_key(statement, "condition")
-	condition_keys := ["aws:SourceOwner", "aws:SourceAccount", "aws:ResourceAccount", "aws:PrincipalAccount", "aws:VpceAccount"]
-	condition_operator := statement.condition[op][key]
-	lower(key) == lower(condition_keys[_])
+condition_keys_limiting_access_to_account_id = {
+	"aws:SourceOwner",
+	"aws:SourceAccount",
+	"aws:ResourceAccount",
+	"aws:PrincipalAccount",
+	"aws:VpceAccount"
 }
+
+conditions = {
+	"Condition",
+	"condition"
+}
+
+is_access_limited_to_an_account_id(statement) {
+	valid_key(statement, conditions[idx])
+	condition_operator := statement[conditions[idx]][op][key]
+	lower(key) == lower(condition_keys_limiting_access_to_account_id[_])
+} 
 
 is_cross_account(statement) {
 	is_string(statement.Principal.AWS)

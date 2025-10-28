@@ -23,6 +23,6 @@ CxPolicy[result] {
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement should not allow actions from all principals", [name]),
 		"keyActualValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement allows actions from all principals", [name]),
-		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "PolicyDocument"], []),
+		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "PolicyDocument"], []),
 	}
 }
