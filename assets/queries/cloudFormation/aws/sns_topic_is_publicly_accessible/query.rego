@@ -13,7 +13,7 @@ CxPolicy[result] {
 	common_lib.is_allow_effect(statement)
 	common_lib.any_principal(statement)
 
-	not is_access_limited_to_an_account_id(statement)
+	not common_lib.is_access_limited_to_an_account_id(statement)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -25,11 +25,4 @@ CxPolicy[result] {
 		"keyActualValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement allows actions from all principals", [name]),
 		"searchLine": common_lib.build_search_line(["Resource", name, "Properties", "PolicyDocument"], []),
 	}
-}
-
-is_access_limited_to_an_account_id(statement) {
-	common_lib.valid_key(statement, "Condition")
-	condition_keys := ["aws:SourceOwner", "aws:SourceAccount", "aws:ResourceAccount", "aws:PrincipalAccount", "aws:VpceAccount"]
-	condition_operator := statement.Condition[op][key]
-	lower(key) == lower(condition_keys[_])
 }

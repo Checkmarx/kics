@@ -13,7 +13,7 @@ CxPolicy[result] {
 	common_lib.is_allow_effect(statement)
 	tf_lib.anyPrincipal(statement)
 
-	not is_access_limited_to_an_account_id(statement)
+	not common_lib.is_access_limited_to_an_account_id(statement)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -53,7 +53,7 @@ get_module_res(module, keyToCheck, name) = res {
 	common_lib.is_allow_effect(statement)
 	tf_lib.anyPrincipal(statement)
 
-	not is_access_limited_to_an_account_id(statement)
+	not common_lib.is_access_limited_to_an_account_id(statement)
 
 	res := {
 		"sk": sprintf("topic_policy", []),
@@ -69,7 +69,7 @@ get_module_res(module, keyToCheck, name) = res {
 	principal.type == "AWS"
 	contains(principal.identifiers[idx_identifiers], "*")
 
-	not is_access_limited_to_an_account_id(statement)
+	not common_lib.is_access_limited_to_an_account_id(statement)
 
 	res := {
 		"sk": sprintf("module[%s].topic_policy_statements[%d].principals[%d].identifiers[%d]", [name, idx, idx_principals, idx_identifiers]),
@@ -77,16 +77,4 @@ get_module_res(module, keyToCheck, name) = res {
 		"kav": "AWS Princiapl contains '*' on the identifiers",
 		"sl": common_lib.build_search_line(["module", name, "topic_policy_statements", idx, "principals", idx_principals, "identifiers", idx_identifiers], []),
 	}
-}
-
-is_access_limited_to_an_account_id(statement) {
-	common_lib.valid_key(statement, "Condition")
-	condition_keys := ["aws:SourceOwner", "aws:SourceAccount", "aws:ResourceAccount", "aws:PrincipalAccount", "aws:VpceAccount"]
-	condition_operator := statement.Condition[op][key]
-	lower(key) == lower(condition_keys[_])
-} else {
-	common_lib.valid_key(statement, "condition")
-	condition_keys := ["aws:SourceOwner", "aws:SourceAccount", "aws:ResourceAccount", "aws:PrincipalAccount", "aws:VpceAccount"]
-	condition_operator := statement.condition[op][key]
-	lower(key) == lower(condition_keys[_])
 }

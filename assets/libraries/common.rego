@@ -421,6 +421,18 @@ get_policy(p) = policy {
 	policy = p
 }
 
+is_access_limited_to_an_account_id(statement) {
+	valid_key(statement, "Condition")
+	condition_keys := ["aws:SourceOwner", "aws:SourceAccount", "aws:ResourceAccount", "aws:PrincipalAccount", "aws:VpceAccount"]
+	condition_operator := statement.Condition[op][key]
+	lower(key) == lower(condition_keys[_])
+} else {
+	valid_key(statement, "condition")
+	condition_keys := ["aws:SourceOwner", "aws:SourceAccount", "aws:ResourceAccount", "aws:PrincipalAccount", "aws:VpceAccount"]
+	condition_operator := statement.condition[op][key]
+	lower(key) == lower(condition_keys[_])
+}
+
 is_cross_account(statement) {
 	is_string(statement.Principal.AWS)
 	regex.match("(^[0-9]{12}$)|(^arn:aws:(iam|sts)::[0-9]{12})", statement.Principal.AWS)
