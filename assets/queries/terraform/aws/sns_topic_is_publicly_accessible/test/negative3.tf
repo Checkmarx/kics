@@ -1,4 +1,4 @@
-resource "aws_sns_topic" "negative2" {
+resource "aws_sns_topic" "negative3" {
 policy = <<EOF
 {
   "Version": "2008-10-17",

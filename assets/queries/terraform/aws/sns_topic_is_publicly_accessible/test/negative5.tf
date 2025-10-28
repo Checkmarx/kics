@@ -1,25 +1,28 @@
-module "sns_topic_with_policy_statements" {
+module "sns_topic_with_policy_field" {
   source  = "terraform-aws-modules/sns/aws"
   version = "~> 6.0"
 
-  name = "example-sns-topic-statements"
+  name = "example-sns-topic-policy"
 
-  topic_policy_statements = [
+  topic_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
     {
-      sid     = "AllowVPCEAccess"
-      effect  = "Allow"
-      actions = ["sns:Publish"]
-      principals = [
-        {
-          type        = "AWS"
-          identifiers = ["*"]
-        }
-      ]
-      condition = {
-        StringEquals = {
-          "aws:VpceAccount" = "987654321098"
+      "Sid": "AllowAllAccounts",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": "sns:Publish",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:PrincipalAccount": "123456789012"
         }
       }
     }
   ]
+}
+EOF
 }

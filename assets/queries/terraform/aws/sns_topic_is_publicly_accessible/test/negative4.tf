@@ -1,24 +1,22 @@
-module "sns_topic_with_policy_field" {
-  source  = "terraform-aws-modules/sns/aws"
-  version = "~> 6.0"
-
-  name = "example-sns-topic-policy"
-
-  topic_policy = <<EOF
+resource "aws_sns_topic" "negative4" {
+  policy = <<EOF
 {
-  "Version": "2012-10-17",
+  "Version": "2008-10-17",
+  "Id": "__default_policy_ID",
   "Statement": [
     {
-      "Sid": "AllowAllAccounts",
+      "Sid": "__default_statement_ID",
       "Effect": "Allow",
       "Principal": {
         "AWS": "*"
       },
-      "Action": "sns:Publish",
-      "Resource": "*",
+      "Action": [
+        "*"
+      ],
+      "Resource": "arn:aws:sns:${var.aws_region}:${var.aws_account_number}:forensics_sns_topic",
       "Condition": {
         "StringEquals": {
-          "aws:PrincipalAccount": "123456789012"
+          "aws:ResourceAccount": "${var.aws_account_number}"
         }
       }
     }
