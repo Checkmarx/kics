@@ -14,7 +14,7 @@
           Action: sns:Publish
           Condition:
             StringEquals:
-              aws:ResourceAccount: "123456789012"
+              aws:VpceAccount: "123456789012"
 
 - name: Create alarm SNS topic
   sns_topic:
@@ -40,4 +40,4 @@
           Principal: "*"
           Condition:
             StringEquals:
-              aws:PrincipalAccount: "123456789012"
+              aws:VpceAccount: "123456789012"

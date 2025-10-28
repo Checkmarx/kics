@@ -40,4 +40,4 @@
           Principal: "*"
           Condition:
             StringEquals:
-              aws:SourceAccount: "123456789012"
+              aws:SourceOwner: "123456789012"
