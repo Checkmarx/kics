@@ -8,5 +8,6 @@
   "platform": "Dockerfile",
   "descriptionID": "8bd60033",
   "cwe": "1357",
-  "cloudProvider": "common"
+  "cloudProvider": "common",
+  "riskScore": "5.7"
 }

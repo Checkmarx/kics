@@ -7,8 +7,7 @@ CxPolicy[result] {
 	doc := input.document[i]
 	resource := doc.resource.aws_api_gateway_stage[name]
 
-	results := get_results(resource,doc,name) 
-	results != ""
+	results := get_results(resource,doc,name)
 
 	result := {
 		"documentId": input.document[i].id,
@@ -26,10 +25,9 @@ get_results(resource,doc,name) = results {
 	not resource.access_log_settings.destination_arn
 	results := does_not_have_valid_stage_name(resource,doc,name)
 } else = results {
-	r2 := does_not_have_valid_stage_name(resource,doc,name) 
-	r2 != ""
-	results := does_not_have_valid_destination_arn(resource,doc,name) 
-} else = ""
+	r2 := does_not_have_valid_stage_name(resource,doc,name)
+	results := does_not_have_valid_destination_arn(resource,doc,name)
+}
 
 does_not_have_valid_destination_arn(resource,doc,name) = results {
 	not haveLogs_destination_arn(resource,doc)
@@ -39,7 +37,7 @@ does_not_have_valid_destination_arn(resource,doc,name) = results {
 		"keyActualValue": sprintf("'aws_api_gateway_stage[%s].access_log_settings.destination_arn' does not reference a valid 'aws_cloudwatch_log_group' arn",[name]),
 		"searchLine": common_lib.build_search_line(["resource","aws_api_gateway_stage", name, "access_log_settings", "destination_arn"],[])
 	}
-} else = ""
+}
 
 does_not_have_valid_stage_name(resource,doc,name) = results {
 	not haveLogs_stageName(resource,doc)
@@ -49,14 +47,14 @@ does_not_have_valid_stage_name(resource,doc,name) = results {
 		"keyActualValue": sprintf("'aws_cloudwatch_log_group' for 'aws_api_gateway_stage[%s]' is undefined or is not using the correct naming convention",[name]),
 		"searchLine": common_lib.build_search_line(["resource","aws_api_gateway_stage", name],[])
 	}
-} else = ""
+}
 
 haveLogs_stageName(resource,doc) {
 	log := doc.resource.aws_cloudwatch_log_group[_]
 	stageName_escaped := replace(replace(resource.stage_name, "$", "\\$"), ".", "\\.")
 	regexPattern := sprintf("API-Gateway-Execution-Logs_\\${aws_api_gateway_rest_api\\.\\w+\\.id}/%s$", [stageName_escaped])
 	regex.match(regexPattern, log.name)
-} 
+}
 
 haveLogs_destination_arn(resource,doc) {
 	common_lib.valid_key(resource.access_log_settings,"destination_arn")

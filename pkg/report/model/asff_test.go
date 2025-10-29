@@ -40,6 +40,7 @@ func TestBuildASFFReport(t *testing.T) {
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},
 		CWE:        "",
+		RiskScore:  "3",
 	}
 
 	awsSecurityFinding2 := AwsSecurityFinding{
@@ -70,6 +71,7 @@ func TestBuildASFFReport(t *testing.T) {
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},
 		CWE:        "22",
+		RiskScore:  "3",
 	}
 
 	awsSecurityFinding3 := AwsSecurityFinding{
@@ -101,6 +103,7 @@ func TestBuildASFFReport(t *testing.T) {
 		},
 		Compliance: Compliance{Status: *aws.String("FAILED")},
 		CWE:        "22",
+		RiskScore:  "8.5",
 	}
 	var awsSecurityFindings []AwsSecurityFinding
 	var awsSecurityFindings2 []AwsSecurityFinding
