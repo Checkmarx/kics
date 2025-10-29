@@ -2,19 +2,31 @@
   {
     "queryName": "",
     "severity": "",
-    "line": ,
+    "line": 1,
     "fileName": "positive1.tf"
   },
   {
     "queryName": "",
     "severity": "",
-    "line": ,
+    "line": 14,
+    "fileName": "positive1.tf"
+  },
+  {
+    "queryName": "",
+    "severity": "",
+    "line": 1,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "",
     "severity": "",
-    "line": ,
+    "line": 22,
+    "fileName": "positive3.tf"
+  },
+  {
+    "queryName": "",
+    "severity": "",
+    "line": 43,
     "fileName": "positive3.tf"
   }
 ]

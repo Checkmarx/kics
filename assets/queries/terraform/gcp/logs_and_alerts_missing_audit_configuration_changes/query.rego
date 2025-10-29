@@ -10,7 +10,8 @@ CxPolicy[result] {
 	log_or_alert := doc.resource[resources[m]][name]
 	filter_data := get_filter(log_or_alert, resources[m], name)
 
-	not regex.match(filter_data.filter, "\\s*protoPayload\\.methodName[ \\n]*=[ \\n]*\\\"SetIamPolicy\\\"[ \\n]*AND[ \\n]*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\[ \\n]*:[ \\n]*\\*\\s*")
+	not regex.match("\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*", filter_data.filter)
+					# Checkes that methodName is "SetIamPolicy" and auditConfigDeltas is set to *
 
 	result := {
 		"documentId": doc.id,
