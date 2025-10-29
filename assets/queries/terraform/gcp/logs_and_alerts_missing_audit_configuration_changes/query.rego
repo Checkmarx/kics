@@ -3,39 +3,158 @@ package Cx
 import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
-resources := {"google_logging_metric", "google_monitoring_alert_policy"}
+types := {"google_logging_metric", "google_monitoring_alert_policy"}
 
 CxPolicy[result] {
-	doc := input.document[i]
-	log_or_alert := doc.resource[resources[m]][name]
-	filter_data := get_filter(log_or_alert, resources[m], name)
+	log_resources   := [{"value" : input.document[x1].resource["google_logging_metric"]	        , "document_index": x1}]
+	alert_resources := [{"value" : input.document[x2].resource["google_monitoring_alert_policy"], "document_index": x2}]
+	results := not_one_valid_log_and_alert_pair(log_resources, alert_resources)
 
-	not regex.match("\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*", filter_data.filter)
-					# Checkes that methodName is "SetIamPolicy" and auditConfigDeltas is set to *
 
 	result := {
-		"documentId": doc.id,
-		"resourceType": resources[m],
-		"resourceName": tf_lib.get_resource_name(log_or_alert, name),
-		"searchKey": sprintf("%s[%s].%s", [resources[m], name, filter_data.path]),
-		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("'%s[%s].%s' should capture all audit configuration changes", [resources[m], name, filter_data.path]),
-		"keyActualValue": sprintf("'%s[%s].%s' does not capture all audit configuration changes", [resources[m], name, filter_data.path]),
-		"searchLine": common_lib.build_search_line(filter_data.searchArray, [])
+		"documentId": results[i].documentId,
+		"resourceType": results[i].resourceType,
+		"resourceName": results[i].resourceName,
+		"searchKey": results[i].searchKey,
+		"issueType": results[i].issueType,
+		"keyExpectedValue": results[i].keyExpectedValue,
+		"keyActualValue": results[i].keyActualValue,
+		"searchLine": results[i].searchLine
 	}
 }
 
-get_filter(resource, type, name) = filter {
+not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
+	missing_resource_type := get_missing_type(log_resources, alert_resources)
+
+	results := [{
+		"documentId": input.document[_].id,
+		"resourceType": sprintf("%s",[missing_resource_type]),
+		"resourceName": "",
+		"searchKey": sprintf("%s",[missing_resource_type]),
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("At least one '%s' resource should capture all audit configuration changes", [missing_resource_type]),
+		"keyActualValue": sprintf("No a single '%s' resource is defined within the project", [missing_resource_type]),
+		"searchLine": common_lib.build_search_line(["resource", missing_resource_type], [])
+	}]
+} else = results {
+	logs_filters_data := [ x | x := get_data(log_resources[_].value[name_log], "google_logging_metric", name_log, log_resources[_].document_index)]
+
+	not single_regex_match(logs_filters_data)
+
+	results := [x | x := {
+		"documentId": input.document[logs_filters_data[i].doc_index].id,
+		"resourceType": "google_logging_metric",
+		"resourceName": tf_lib.get_resource_name(logs_filters_data[i].resource, logs_filters_data[i].name),
+		"searchKey": sprintf("google_logging_metric[%s].%s", [logs_filters_data[i].name, logs_filters_data[i].path]),
+		"issueType":  "IncorrectValue",
+		"keyExpectedValue": "At least one 'google_logging_metric' resource should capture all audit configuration changes",
+		"keyActualValue": "No 'google_logging_metric' resource captures all audit configuration changes",
+		"searchLine": common_lib.build_search_line(logs_filters_data[i].searchArray, [])
+	}]
+
+} else = results {
+	logs_filters_data   := [ x | x := get_data(log_resources[_].value[name_log], "google_logging_metric", name_log, log_resources[_].document_index)]
+
+	valid_logs_names := [logs_filters_data[i2].name |
+  		regex.match(
+    	"\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*",
+    	logs_filters_data[i2].filter)
+	]
+
+	alerts_filters_data := [ x | x := get_data(alert_resources[_].value[name_al], "google_monitoring_alert_policy", name_al, log_resources[_].document_index)]
+
+	value := has_regex_match_or_reference(alerts_filters_data, valid_logs_names)
+
+	results := get_results(alerts_filters_data, value)
+}
+
+get_results(alerts_filters_data, value) = results {
+	value == false
+	results := [x | x := {
+			"documentId": input.document[alerts_filters_data[i].doc_index].id,
+			"resourceType": "google_monitoring_alert_policy",
+			"resourceName": tf_lib.get_resource_name(alerts_filters_data[i].resource, alerts_filters_data[i].name),
+			"searchKey": sprintf("google_monitoring_alert_policy[%s].%s", [alerts_filters_data[i].name, alerts_filters_data[i].path]),
+			"issueType":  "IncorrectValue",
+			"keyExpectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all audit configuration changes",
+			"keyActualValue": "No 'google_monitoring_alert_policy' resource captures all audit configuration changes",
+			"searchLine": common_lib.build_search_line(alerts_filters_data[i].searchArray, [])
+		}]
+} else = results {
+	is_number(value)
+	results := [x | x := {
+			"documentId": input.document[alerts_filters_data[value].doc_index].id,
+			"resourceType": "google_monitoring_alert_policy",
+			"resourceName": tf_lib.get_resource_name(alerts_filters_data[value].resource, alerts_filters_data[value].name),
+			"searchKey": sprintf("google_monitoring_alert_policy[%s]", [alerts_filters_data[value].name]),
+			"issueType":  "IncorrectValue",
+			"keyExpectedValue": "At least one 'google_monitoring_alert_policy' resource should capture all audit configuration changes",
+			"keyActualValue": sprintf("The 'google_monitoring_alert_policy[%s]' resource captures all audit configuration changes but does not define a proper 'notification_channels'",[alerts_filters_data[value].name]),
+			"searchLine": common_lib.build_search_line(alerts_filters_data[value].searchArray, [])
+		}]
+}
+
+
+has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
+	regex.match(
+		"\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*",
+		 alerts_filters_data[i].filter)
+	alerts_filters_data[i].resource.notification_channels
+} else = true {
+	alerts_filters_data[i].allows_ref == true
+	alerts_filters_data[i].resource.notification_channels
+	contains(alerts_filters_data[i].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
+} else = index {
+	regex.match(
+		"\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*",
+		 alerts_filters_data[i].filter)
+	index := i
+} else = index {
+	alerts_filters_data[i].allows_ref == true
+	contains(alerts_filters_data[i].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
+	index := i
+} else = false
+
+single_regex_match(filters_data) {
+	regex.match("\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*", filters_data[_].filter)
+	# Checkes that methodName is "SetIamPolicy" and auditConfigDeltas is set to *
+}
+
+get_missing_type(log_resources, alert_resources) = "google_logging_metric"{
+	log_resources == []
+} else = "google_monitoring_alert_policy" {
+	alert_resources == []
+}
+
+get_data(resource, type, name, doc_index) = filter {
 	type == "google_logging_metric"
 	filter := {
+		"resource" : resource,
 		"filter" : resource.filter,
 		"path" : "filter",
-		"searchArray" : ["resource", type, name]
+		"searchArray" : ["resource", type, name],
+		"name" : name,
+		"doc_index" : doc_index
 	}
-} else = filter{
+} else = filter {
+	# google_monitoring_alert_policy
 	filter := {
+		"resource" : resource,
+		"filter" : resource.conditions.condition_threshold.filter,			# prefered filter (allows referencing)
+		"path" : "conditions.condition_threshold.filter",
+		"searchArray" : ["resource", type, name],
+		"name" : name,
+		"doc_index" : doc_index,
+		"allows_ref" : true
+	}
+} else = filter {
+	filter := {
+		"resource" : resource,
 		"filter" : resource.conditions.condition_matched_log.filter,
 		"path" : "conditions.condition_matched_log.filter",
-		"searchArray" : ["resource", type, name]
+		"searchArray" : ["resource", type, name],
+		"name" : name,
+		"doc_index" : doc_index,
+		"allows_ref" : false
 	}
 }
