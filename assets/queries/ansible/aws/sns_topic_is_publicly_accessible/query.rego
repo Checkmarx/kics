@@ -14,14 +14,16 @@ CxPolicy[result] {
 	statement.Effect == "Allow"
 	common_lib.any_principal(statement)
 
+	not common_lib.is_access_limited_to_an_account_id(statement)
+
 	result := {
 		"documentId": id,
 		"resourceType": modules[m],
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "sns_topic.policy should not allow actions from all principals",
-		"keyActualValue": "sns_topic.policy allows actions from all principals",
+		"keyExpectedValue": "sns_topic.policy.Statement shouldn't contain '*' for an AWS Principal",
+		"keyActualValue": "sns_topic.policy.Statement contains '*' in an AWS Principal",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }
