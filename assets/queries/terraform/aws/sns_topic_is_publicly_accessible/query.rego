@@ -72,9 +72,10 @@ get_module_res(module, keyToCheck, name) = res {
 	not common_lib.is_access_limited_to_an_account_id(statement)
 
 	res := {
-		"sk": sprintf("module[%s].topic_policy_statements[%d].principals[%d].identifiers[%d]", [name, idx, idx_principals, idx_identifiers]),
-		"kev": "AWS Principal shouldn't contain '*' on the identifiers",
-		"kav": "AWS Princiapl contains '*' on the identifiers",
-		"sl": common_lib.build_search_line(["module", name, "topic_policy_statements", idx, "principals", idx_principals, "identifiers", idx_identifiers], []),
+		"sk": sprintf("module[%s].topic_policy_statements", [name]),
+		"kev": 
+		"kev": "'topic_policy_statements.principals.identifiers' shouldn't contain '*' for an AWS Pricipal",
+		"kav": "'topic_policy_statements.principals.identifiers' contain's '*' in an AWS Principal",
+		"sl": common_lib.build_search_line(["module", name, "topic_policy_statements"], []),
 	}
 }
