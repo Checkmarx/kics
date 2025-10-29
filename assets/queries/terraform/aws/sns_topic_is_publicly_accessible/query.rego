@@ -73,9 +73,8 @@ get_module_res(module, keyToCheck, name) = res {
 
 	res := {
 		"sk": sprintf("module[%s].topic_policy_statements", [name]),
-		"kev": 
 		"kev": "'topic_policy_statements.principals.identifiers' shouldn't contain '*' for an AWS Pricipal",
-		"kav": "'topic_policy_statements.principals.identifiers' contain's '*' in an AWS Principal",
+		"kav": "'topic_policy_statements.principals.identifiers' contains '*' in an AWS Principal",
 		"sl": common_lib.build_search_line(["module", name, "topic_policy_statements"], []),
 	}
 }
