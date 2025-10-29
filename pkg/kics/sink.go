@@ -8,14 +8,15 @@ import (
 	"regexp"
 	"sort"
 
-	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
-	"github.com/Checkmarx/kics/v2/pkg/model"
-	"github.com/Checkmarx/kics/v2/pkg/parser/jsonfilter/parser"
-	"github.com/Checkmarx/kics/v2/pkg/utils"
 	"github.com/antlr4-go/antlr/v4"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
+
+	sentryReport "github.com/Checkmarx/kics/v2/internal/sentry"
+	"github.com/Checkmarx/kics/v2/pkg/model"
+	"github.com/Checkmarx/kics/v2/pkg/parser/jsonfilter/parser"
+	"github.com/Checkmarx/kics/v2/pkg/utils"
 )
 
 var (
@@ -36,7 +37,15 @@ func (s *Service) sink(ctx context.Context, filename, scanID string,
 		}
 	}()
 	s.Tracker.TrackFileFound(filename)
-	log.Debug().Msgf("Starting to process file %s", filename)
+	log.Debug().Msgf("[DEBUG] Starting to process file %s", filename)
+
+	//// DEBUG: Print memory stats periodically
+	//var m runtime.MemStats
+	//runtime.ReadMemStats(&m)
+	//if m.Alloc > 1024*1024*1024 { // Log when over 1GB
+	//	log.Warn().Msgf("[DEBUG] High memory usage: Alloc=%d MB, Sys=%d MB while processing %s",
+	//		m.Alloc/1024/1024, m.Sys/1024/1024, filename)
+	//}
 
 	c, err := getContent(rc, data, s.MaxFileSize, filename)
 

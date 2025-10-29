@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+	"sync"
 
 	"github.com/Checkmarx/kics/v2/pkg/parser/terraform/converter"
 	"github.com/hashicorp/hcl/v2"
@@ -15,6 +16,16 @@ import (
 )
 
 var inputVariableMap = make(converter.VariableMap)
+
+// Cache for directory-level variable resolution
+var (
+	variableCache      = make(map[string]converter.VariableMap)
+	variableCacheMutex sync.RWMutex
+	cacheStats         = struct {
+		hits   int
+		misses int
+	}{}
+)
 
 func mergeMaps(baseMap, newItems converter.VariableMap) {
 	for key, value := range newItems {
@@ -87,12 +98,20 @@ func getInputVariablesFromFile(filename string) (converter.VariableMap, error) {
 	return variables, nil
 }
 
-func getInputVariables(currentPath, fileContent, terraformVarsPath string) {
+// buildVariablesForDirectory scans a directory once and builds the complete variable map
+func buildVariablesForDirectory(currentPath, terraformVarsPath string) (converter.VariableMap, error) {
 	variablesMap := make(converter.VariableMap)
+
+	// Get all .tf files
 	tfFiles, err := filepath.Glob(filepath.Join(currentPath, "*.tf"))
 	if err != nil {
 		log.Error().Msg("Error getting .tf files")
+		return variablesMap, err
 	}
+
+	log.Debug().Msgf("[CACHE] Building variable cache for directory %s with %d .tf files", currentPath, len(tfFiles))
+
+	// Process all .tf files for default values
 	for _, tfFile := range tfFiles {
 		variables, errDefaultValues := setInputVariablesDefaultValues(tfFile)
 		if errDefaultValues != nil {
@@ -124,23 +143,7 @@ func getInputVariables(currentPath, fileContent, terraformVarsPath string) {
 		mergeMaps(variablesMap, variables)
 	}
 
-	// If the flag is empty let's look for the value in the first written line of the file
-	if terraformVarsPath == "" {
-		terraformVarsPathRegex := regexp.MustCompile(`(?m)^\s*// kics_terraform_vars: ([\w/\\.:-]+)\r?\n`)
-		terraformVarsPathMatch := terraformVarsPathRegex.FindStringSubmatch(fileContent)
-		if terraformVarsPathMatch != nil {
-			// There is a path tp the variables file in the file so that will be the path to the variables tf file
-			terraformVarsPath = terraformVarsPathMatch[1]
-			// If the path contains ":" assume its a global path
-			if !strings.Contains(terraformVarsPath, ":") {
-				// If not then add the current folder path before so that the comment path can be relative
-				terraformVarsPath = filepath.Join(currentPath, terraformVarsPath)
-			}
-		}
-	}
-
-	// If the terraformVarsPath is empty, this means that it is not in the flag
-	// and it is not in the first written line of the file
+	// Process custom terraform vars path if provided
 	if terraformVarsPath != "" {
 		_, err = os.Stat(terraformVarsPath)
 		if err != nil {
@@ -156,5 +159,63 @@ func getInputVariables(currentPath, fileContent, terraformVarsPath string) {
 		}
 	}
 
+	return variablesMap, nil
+}
+
+// getInputVariables now uses caching to avoid rescanning directories
+func getInputVariables(currentPath, fileContent, terraformVarsPath string) {
+	// Extract terraform vars path from file content if not provided
+	if terraformVarsPath == "" {
+		terraformVarsPathRegex := regexp.MustCompile(`(?m)^\s*// kics_terraform_vars: ([\w/\\.:-]+)\r?\n`)
+		terraformVarsPathMatch := terraformVarsPathRegex.FindStringSubmatch(fileContent)
+		if terraformVarsPathMatch != nil {
+			terraformVarsPath = terraformVarsPathMatch[1]
+			if !strings.Contains(terraformVarsPath, ":") {
+				terraformVarsPath = filepath.Join(currentPath, terraformVarsPath)
+			}
+		}
+	}
+
+	// Create a cache key that includes the custom vars path if provided
+	cacheKey := currentPath
+	if terraformVarsPath != "" {
+		cacheKey = currentPath + "|" + terraformVarsPath
+	}
+
+	// Try to get from cache first
+	variableCacheMutex.RLock()
+	if cachedVars, exists := variableCache[cacheKey]; exists {
+		variableCacheMutex.RUnlock()
+		cacheStats.hits++
+		log.Debug().Msgf("[CACHE HIT] Using cached variables for %s (hits: %d, misses: %d)",
+			currentPath, cacheStats.hits, cacheStats.misses)
+		inputVariableMap["var"] = cty.ObjectVal(cachedVars)
+		return
+	}
+	variableCacheMutex.RUnlock()
+
+	// Cache miss - build variables for this directory
+	cacheStats.misses++
+	log.Debug().Msgf("[CACHE MISS] Building variables for %s (hits: %d, misses: %d)",
+		currentPath, cacheStats.hits, cacheStats.misses)
+
+	variablesMap, err := buildVariablesForDirectory(currentPath, terraformVarsPath)
+	if err != nil {
+		log.Error().Msgf("Error building variables for directory %s: %v", currentPath, err)
+		return
+	}
+
+	// Store in cache
+	variableCacheMutex.Lock()
+	variableCache[cacheKey] = variablesMap
+	variableCacheMutex.Unlock()
+
 	inputVariableMap["var"] = cty.ObjectVal(variablesMap)
+
+	// Log cache efficiency periodically
+	if (cacheStats.hits+cacheStats.misses)%100 == 0 {
+		hitRate := float64(cacheStats.hits) / float64(cacheStats.hits+cacheStats.misses) * 100
+		log.Info().Msgf("[CACHE STATS] Hit rate: %.2f%% (hits: %d, misses: %d, cache size: %d)",
+			hitRate, cacheStats.hits, cacheStats.misses, len(variableCache))
+	}
 }
