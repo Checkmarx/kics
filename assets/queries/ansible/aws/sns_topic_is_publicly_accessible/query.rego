@@ -22,8 +22,8 @@ CxPolicy[result] {
 		"resourceName": task.name,
 		"searchKey": sprintf("name={{%s}}.{{%s}}.policy", [task.name, modules[m]]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": "sns_topic.policy should not allow actions from all principals",
-		"keyActualValue": "sns_topic.policy allows actions from all principals",
+		"keyExpectedValue": "sns_topic.policy.Statement should not contain '*' for an AWS Principal",
+		"keyActualValue": "sns_topic.policy.Statement contains '*' in an AWS Principal",
 		"searchLine": common_lib.build_search_line(["playbooks", t, modules[m], "policy"], []),
 	}
 }

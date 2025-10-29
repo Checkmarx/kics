@@ -21,8 +21,8 @@ CxPolicy[result] {
 		"resourceName": cf_lib.get_resource_name(resource, name),
 		"searchKey": sprintf("Resources.%s.Properties.PolicyDocument", [name]),
 		"issueType": "IncorrectValue",
-		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement should not allow actions from all principals", [name]),
-		"keyActualValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement allows actions from all principals", [name]),
+		"keyExpectedValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement should not contain '*' for an AWS Principal", [name]),
+		"keyActualValue": sprintf("Resources.%s.Properties.PolicyDocument.Statement contains '*' in an AWS Principal", [name]),
 		"searchLine": common_lib.build_search_line(["Resources", name, "Properties", "PolicyDocument"], []),
 	}
 }
