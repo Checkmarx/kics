@@ -4,27 +4,24 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 CxPolicy[result] {
-	resources := [ res | res := input.document[i].resource["google_project_service"][_]]
+	resources := [ res | res := {"value" : input.document[index].resource["google_project_service"][name], "doc_index" : index, "name" : name}]
 
-	projects := {x | x := resources[_].project}
-	results := find_invalid_projects(resources, input.document[i], projects)
-	resource := results[_]
+	not at_least_one_asset_inventory_enabled(resources)
 
 	result := {
-		"documentId": input.document[i].id,
+		"documentId": input.document[resources[x].doc_index].id,
 		"resourceType": "google_project_service",
-		"resourceName": tf_lib.get_resource_name(resource, name),
-		"searchKey": sprintf("google_project_service[%s].service", [name]),
+		"resourceName": tf_lib.get_resource_name(resources[x].value, resources[x].name),
+		"searchKey": sprintf("google_project_service[%s].service", [resources[x].name]),
 		"issueType": "IncorrectValue",
 		"keyExpectedValue": "At least one 'google_project_service.service' field should contain or be equal to 'cloudasset.googleapis.com'",
-		"keyActualValue": "No 'google_project_service.service' field does not contain or equal 'cloudasset.googleapis.com'",
-		"searchLine": common_lib.build_search_line(["resource", "google_project_service", name, "service"], [])
+		"keyActualValue": "No 'google_project_service.service' field contains or is equal to 'cloudasset.googleapis.com'",
+		"searchLine": common_lib.build_search_line(["resource", "google_project_service", resources[x].name, "service"], [])
 	}
 }
 
-find_invalid_projects(resources, doc, projects) = not_valid_projects{
-	valid_projects := {resources[y].project | service_includes_cloudasset(resources[y].service, resources[y], doc)}
-	not_valid_projects := {p | p := projects[_]; p != valid_projects[_]}
+at_least_one_asset_inventory_enabled(resources) {
+	service_includes_cloudasset(resources[y].value.service, resources[y].value, input.document[resources[y].doc_index])
 }
 
 service_includes_cloudasset(service, project, doc) {
