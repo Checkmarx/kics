@@ -293,7 +293,7 @@ type AnalyzedPaths struct {
 	Types       []string
 	Exc         []string
 	ExpectedLOC int
-	FileStats   map[string]FileStatistics // Key: platform type (e.g., "terraform")
+	FileStats   map[string]FileStatistics
 }
 
 // FileStatistics contains file and directory counts per platform type
