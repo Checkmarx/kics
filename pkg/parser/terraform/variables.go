@@ -21,10 +21,6 @@ var inputVariableMap = make(converter.VariableMap)
 var (
 	variableCache      = make(map[string]converter.VariableMap)
 	variableCacheMutex sync.RWMutex
-	cacheStats         = struct {
-		hits   int
-		misses int
-	}{}
 )
 
 func mergeMaps(baseMap, newItems converter.VariableMap) {
@@ -109,8 +105,6 @@ func buildVariablesForDirectory(currentPath, terraformVarsPath string) (converte
 		return variablesMap, err
 	}
 
-	log.Debug().Msgf("[CACHE] Building variable cache for directory %s with %d .tf files", currentPath, len(tfFiles))
-
 	// Process all .tf files for default values
 	for _, tfFile := range tfFiles {
 		variables, errDefaultValues := setInputVariablesDefaultValues(tfFile)
@@ -186,19 +180,12 @@ func getInputVariables(currentPath, fileContent, terraformVarsPath string) {
 	variableCacheMutex.RLock()
 	if cachedVars, exists := variableCache[cacheKey]; exists {
 		variableCacheMutex.RUnlock()
-		cacheStats.hits++
-		log.Debug().Msgf("[CACHE HIT] Using cached variables for %s (hits: %d, misses: %d)",
-			currentPath, cacheStats.hits, cacheStats.misses)
 		inputVariableMap["var"] = cty.ObjectVal(cachedVars)
 		return
 	}
 	variableCacheMutex.RUnlock()
 
 	// Cache miss - build variables for this directory
-	cacheStats.misses++
-	log.Debug().Msgf("[CACHE MISS] Building variables for %s (hits: %d, misses: %d)",
-		currentPath, cacheStats.hits, cacheStats.misses)
-
 	variablesMap, err := buildVariablesForDirectory(currentPath, terraformVarsPath)
 	if err != nil {
 		log.Error().Msgf("Error building variables for directory %s: %v", currentPath, err)
@@ -211,11 +198,4 @@ func getInputVariables(currentPath, fileContent, terraformVarsPath string) {
 	variableCacheMutex.Unlock()
 
 	inputVariableMap["var"] = cty.ObjectVal(variablesMap)
-
-	// Log cache efficiency periodically
-	if (cacheStats.hits+cacheStats.misses)%100 == 0 {
-		hitRate := float64(cacheStats.hits) / float64(cacheStats.hits+cacheStats.misses) * 100
-		log.Info().Msgf("[CACHE STATS] Hit rate: %.2f%% (hits: %d, misses: %d, cache size: %d)",
-			hitRate, cacheStats.hits, cacheStats.misses, len(variableCache))
-	}
 }

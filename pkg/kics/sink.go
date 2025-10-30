@@ -37,15 +37,6 @@ func (s *Service) sink(ctx context.Context, filename, scanID string,
 		}
 	}()
 	s.Tracker.TrackFileFound(filename)
-	log.Debug().Msgf("[DEBUG] Starting to process file %s", filename)
-
-	//// DEBUG: Print memory stats periodically
-	//var m runtime.MemStats
-	//runtime.ReadMemStats(&m)
-	//if m.Alloc > 1024*1024*1024 { // Log when over 1GB
-	//	log.Warn().Msgf("[DEBUG] High memory usage: Alloc=%d MB, Sys=%d MB while processing %s",
-	//		m.Alloc/1024/1024, m.Sys/1024/1024, filename)
-	//}
 
 	c, err := getContent(rc, data, s.MaxFileSize, filename)
 
