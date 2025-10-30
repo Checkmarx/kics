@@ -8,13 +8,13 @@
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
     "severity": "MEDIUM",
-    "line": 1,
+    "line": 7,
     "fileName": "positive2.tf"
   },
   {
     "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
     "severity": "MEDIUM",
-    "line": 1,
+    "line": 7,
     "fileName": "positive3.tf"
   },
   {
@@ -22,17 +22,5 @@
     "severity": "MEDIUM",
     "line": 7,
     "fileName": "positive4.tf"
-  },
-  {
-    "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
-    "severity": "MEDIUM",
-    "line": 7,
-    "fileName": "positive5.tf"
-  },
-  {
-    "queryName": "Beta - Logs And Alerts Missing Audit Configuration Changes",
-    "severity": "MEDIUM",
-    "line": 7,
-    "fileName": "positive6.tf"
   }
 ]

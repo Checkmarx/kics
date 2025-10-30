@@ -4,4 +4,18 @@ resource "google_logging_metric" "audit_config_change" {
   filter      = "protoPayload.methodName=\"SetIamPolicy\" AND protoPayload.serviceData.policyDelta.auditConfigDeltas:*"
 }
 
-# missing a "google_monitoring_alert_policy" resource
+resource "google_monitoring_alert_policy" "audit_config_alert" {
+  display_name = "Audit Config Change Alert"
+
+  combiner = "OR"
+
+  conditions {
+    display_name = "Audit Config Change Condition"
+    condition_threshold {
+      filter = "resource.type=\"gce_instance\" AND metric.type=\"logging.googleapis.com/user/wrong_reference\""
+      # incorrect filter reference
+    }
+  }
+
+  notification_channels = [google_monitoring_notification_channel.email.id]
+}

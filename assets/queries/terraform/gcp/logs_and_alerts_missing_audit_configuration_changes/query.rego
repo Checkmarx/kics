@@ -4,29 +4,7 @@ import data.generic.common as common_lib
 import data.generic.terraform as tf_lib
 
 types := {"google_logging_metric", "google_monitoring_alert_policy"}
-
-CxPolicy[result] {
-	not at_least_one_target_resource(types[t])
-
-	result := {
-		"documentId": input.document[_].id,
-		"resourceType": types[t],
-		"resourceName": types[t],
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("At least one '%s' resource should capture all audit configuration changes", [types[t]]),
-		"keyActualValue": sprintf("No a single '%s' resource is defined within the project", [types[t]])
-	}
-}
-
-at_least_one_target_resource(type) {
-	input.document[index].resource[type]
-}
-
-get_missing_type(log_resources, alert_resources) = "google_logging_metric"{
-	count(log_resources)  == 0
-} else = "google_monitoring_alert_policy" {
-	count(alert_resources) == 0
-}
+regex_pattern := "\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*"
 
 CxPolicy[result] {
 	log_resources   := [{"value": input.document[index].resource.google_logging_metric, "document_index": index}]
@@ -64,11 +42,7 @@ not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
 } else = results {
 	logs_filters_data   := [ x | x := get_data(log_resources[_].value[name_log], "google_logging_metric", name_log, log_resources[_].document_index)]
 
-	valid_logs_names := [logs_filters_data[i2].name |
-  		regex.match(
-    	"\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*",
-    	logs_filters_data[i2].filter)
-	]
+	valid_logs_names := [logs_filters_data[i2].name | regex.match(regex_pattern,logs_filters_data[i2].filter)]
 
 	alerts_filters_data := [ x | x := get_data(alert_resources[_].value[name_al], "google_monitoring_alert_policy", name_al, log_resources[_].document_index)]
 
@@ -104,25 +78,21 @@ get_results(alerts_filters_data, value) = results {
 }
 
 has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
-	regex.match(
-		"\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*",
-		 alerts_filters_data[i].filter)
+	regex.match(regex_pattern, alerts_filters_data[i].filter)
 	alerts_filters_data[i].resource.notification_channels
 } else = true {
 	alerts_filters_data[i].allows_ref == true
 	alerts_filters_data[i].resource.notification_channels
 	contains(alerts_filters_data[i].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
 } else = index {
-	regex.match(
-		"\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*",
-		 alerts_filters_data[index].filter)
+	regex.match(regex_pattern, alerts_filters_data[index].filter)
 } else = index {
 	alerts_filters_data[index].allows_ref == true
 	contains(alerts_filters_data[index].filter, sprintf("logging.googleapis.com/user/%s",[valid_logs_names[_]]))
 } else = false
 
 single_regex_match(filters_data) {
-	regex.match("\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*", filters_data[_].filter)
+	regex.match(regex_pattern, filters_data[_].filter)
 	# Checkes that methodName is "SetIamPolicy" and auditConfigDeltas is set to *
 }
 
