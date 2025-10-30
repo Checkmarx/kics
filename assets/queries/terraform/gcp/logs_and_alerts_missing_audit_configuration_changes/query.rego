@@ -6,10 +6,33 @@ import data.generic.terraform as tf_lib
 types := {"google_logging_metric", "google_monitoring_alert_policy"}
 
 CxPolicy[result] {
+	not at_least_one_target_resource(types[t])
+
+	result := {
+		"documentId": input.document[_].id,
+		"resourceType": types[t],
+		"resourceName": types[t],
+		"searchKey": "",
+		"issueType": "MissingAttribute",
+		"keyExpectedValue": sprintf("At least one '%s' resource should capture all audit configuration changes", [types[t]]),
+		"keyActualValue": sprintf("No a single '%s' resource is defined within the project", [types[t]])
+	}
+}
+
+at_least_one_target_resource(type) {
+	input.document[index].resource[type]
+}
+
+get_missing_type(log_resources, alert_resources) = "google_logging_metric"{
+	count(log_resources)  == 0
+} else = "google_monitoring_alert_policy" {
+	count(alert_resources) == 0
+}
+
+CxPolicy[result] {
 	log_resources   := get_values_if_available("google_logging_metric")
 	alert_resources := get_values_if_available("google_monitoring_alert_policy")
 	results := not_one_valid_log_and_alert_pair(log_resources, alert_resources)
-
 
 	result := {
 		"documentId": results[i].documentId,
@@ -24,25 +47,11 @@ CxPolicy[result] {
 }
 
 get_values_if_available(type) = values {
-    doc := input.document[idx]
-	resource := doc.resource[type]
-    values := [{"value": resource, "document_index": idx}]
+	input.document[index].resource.google_project_service
+    values := [{"value": input.document[index].resource.google_project_service, "document_index": index}]
 } else = []
 
 not_one_valid_log_and_alert_pair(log_resources, alert_resources) = results {
-	missing_resource_type := get_missing_type(log_resources, alert_resources)
-
-	results := [{
-		"documentId": input.document[_].id,
-		"resourceType": sprintf("%s",[missing_resource_type]),
-		"resourceName": missing_resource_type,
-		"searchKey": sprintf("%s",[missing_resource_type]),
-		"issueType": "MissingAttribute",
-		"keyExpectedValue": sprintf("At least one '%s' resource should capture all audit configuration changes", [missing_resource_type]),
-		"keyActualValue": sprintf("No a single '%s' resource is defined within the project", [missing_resource_type]),
-		"searchLine": common_lib.build_search_line(["resource", missing_resource_type], [])
-	}]
-} else = results {
 	logs_filters_data := [ x | x := get_data(log_resources[_].value[name_log], "google_logging_metric", name_log, log_resources[_].document_index)]
 
 	not single_regex_match(logs_filters_data)
@@ -124,12 +133,6 @@ has_regex_match_or_reference(alerts_filters_data, valid_logs_names) = true {
 single_regex_match(filters_data) {
 	regex.match("\\s*protoPayload\\.methodName\\s*=\\s*\\\"SetIamPolicy\\\"\\s*AND\\s*protoPayload\\.serviceData\\.policyDelta\\.auditConfigDeltas\\s*:\\s*\\*\\s*", filters_data[_].filter)
 	# Checkes that methodName is "SetIamPolicy" and auditConfigDeltas is set to *
-}
-
-get_missing_type(log_resources, alert_resources) = "google_logging_metric"{
-	count(log_resources)  == 0
-} else = "google_monitoring_alert_policy" {
-	count(alert_resources) == 0
 }
 
 get_data(resource, type, name, doc_index) = filter {

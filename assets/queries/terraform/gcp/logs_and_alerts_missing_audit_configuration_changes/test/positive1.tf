@@ -1,5 +1,3 @@
-# missing a "google_logging_metric" resource
-
 resource "google_monitoring_alert_policy" "audit_config_alert" {
   display_name = "Audit Config Change Alert"
 
@@ -14,3 +12,5 @@ resource "google_monitoring_alert_policy" "audit_config_alert" {
 
   notification_channels = [google_monitoring_notification_channel.email.id]
 }
+
+# missing a "google_logging_metric" resource
