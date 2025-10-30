@@ -40,5 +40,11 @@
     "severity": "MEDIUM",
     "line": 10,
     "filename": "positive6.tf"
+  },
+  {
+    "queryName": "Beta - Cloud Asset Inventory Disabled",
+    "severity": "MEDIUM",
+    "line": 1,
+    "filename": "positive7.tf"
   }
 ]
