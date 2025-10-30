@@ -413,7 +413,13 @@ func Analyze(a *Analyzer) (model.AnalyzedPaths, error) {
 // worker determines the type of the file by ext (dockerfile and terraform)/content and
 // writes the answer to the results channel and file info for statistics
 // if no types were found, the worker will write the path of the file in the unwanted channel
-func (a *analyzerInfo) worker(results, unwanted chan<- string, locCount chan<- int, fileInfo chan<- fileTypeInfo, wg *sync.WaitGroup) { //nolint: gocyclo
+func (a *analyzerInfo) worker(
+	results,
+	unwanted chan<- string,
+	locCount chan<- int,
+	fileInfo chan<- fileTypeInfo,
+	wg *sync.WaitGroup,
+) { //nolint: gocyclo
 	defer func() {
 		if err := recover(); err != nil {
 			log.Warn().Msgf("Recovered from analyzing panic for file %s with error: %#v", a.filePath, err.(error).Error())
@@ -516,7 +522,14 @@ func needsOverride(check bool, returnType, key, ext string) bool {
 
 // checkContent will determine the file type by content when worker was unable to
 // determine by ext, if no type was determined checkContent adds it to unwanted channel
-func (a *analyzerInfo) checkContent(results, unwanted chan<- string, locCount chan<- int, fileInfo chan<- fileTypeInfo, linesCount int, ext string) {
+func (a *analyzerInfo) checkContent(
+	results,
+	unwanted chan<- string,
+	locCount chan<- int,
+	fileInfo chan<- fileTypeInfo,
+	linesCount int,
+	ext string,
+) {
 	typesFlag := a.typesFlag
 	excludeTypesFlag := a.excludeTypesFlag
 	// get file content
@@ -679,7 +692,13 @@ func checkForAnsibleHost(yamlContent model.Document) bool {
 // computeValues computes expected Lines of Code to be scanned from locCount channel
 // and creates the types and unwanted slices from the channels removing any duplicates
 // also collects file statistics for memory calculation
-func computeValues(types, unwanted chan string, locCount chan int, fileInfo chan fileTypeInfo, done chan bool) (typesS, unwantedS []string, locTotal int, stats map[string]model.FileStatistics) {
+func computeValues(
+	types,
+	unwanted chan string,
+	locCount chan int,
+	fileInfo chan fileTypeInfo,
+	done chan bool,
+) (typesS, unwantedS []string, locTotal int, stats map[string]model.FileStatistics) {
 	var val int
 	unwantedSlice := make([]string, 0)
 	typeSlice := make([]string, 0)

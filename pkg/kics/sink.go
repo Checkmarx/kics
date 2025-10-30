@@ -37,6 +37,7 @@ func (s *Service) sink(ctx context.Context, filename, scanID string,
 		}
 	}()
 	s.Tracker.TrackFileFound(filename)
+	log.Debug().Msgf("Starting to process file %s", filename)
 
 	c, err := getContent(rc, data, s.MaxFileSize, filename)
 
